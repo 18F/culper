@@ -5,7 +5,8 @@
 [![Code Climate](https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg)](https://codeclimate.com/github/18F/e-QIP-prototype)
 [![Accessibility](https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master)](https://continua11y.18f.gov/18F/e-QIP-prototype)
 
-The project team employed a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook](https://playbook.cio.gov/#plays_index_anchor):
+To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the 
+[U.S. Digital Services Playbook](https://playbook.cio.gov/#plays_index_anchor):
 
 1. Understand what people need
 2. Address the whole experience, from start to finish
