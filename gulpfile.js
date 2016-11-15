@@ -29,8 +29,8 @@ gulp.task('default', ['build']);
 function clean () {
     'use strict';
     return del([
-        paths.destination.css,
-        paths.destination.root
+        paths.destination.css + '/*',
+        paths.destination.root + '/*'
     ]);
 }
 

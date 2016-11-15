@@ -23,5 +23,5 @@ func main() {
 func handleRoot(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Eqip-Media-Type", fmt.Sprintf("%s.%s", APIName, APIVersion))
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte("{}"))
+	w.Write([]byte(`{}`))
 }

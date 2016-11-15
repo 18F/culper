@@ -1,0 +1,28 @@
+db:
+  image: postgres
+web:
+  image: abiosoft/caddy
+  volumes:
+    - ./dist:/srv
+  ports:
+    - "8080:2015"
+  links:
+    - db
+  environment:
+    DATABASE_USER: postgres
+    DATABASE_NAME: postgres
+    DATABASE_HOST: db
+api:
+  image: golang
+  working_dir: /go/src/github.com/e-QIP-prototype
+  command: go run root.go
+  volumes:
+    - ./api:/go/src/github.com/e-QIP-prototype
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  environment:
+    DATABASE_USER: postgres
+    DATABASE_NAME: postgres
+    DATABASE_HOST: db
