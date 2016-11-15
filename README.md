@@ -1,10 +1,11 @@
 # e-QIP Prototype
 
-[![Slack](https://img.shields.io/badge/chat-slack-green.svg)](https://gsa-tts.slack.com/messages/acq-e-qip-vendor)
-[![Build Status on Release](https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master)](https://travis-ci.org/18F/e-QIP-prototype)
-[![Build Status on Staging](https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master)](https://travis-ci.org/truetandem/e-QIP-prototype)
-[![Code Climate](https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg)](https://codeclimate.com/github/18F/e-QIP-prototype)
-[![Accessibility](https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master)](https://continua11y.18f.gov/18F/e-QIP-prototype)
+[![Slack][badge_chat]][1]
+
+|         | Builds                             | GPA                                | Accessibility                           |
+| ------- | ---------------------------------- | ---------------------------------- | --------------------------------------- |
+| Release | [![Build Status][badge_ci_18f]][2] | [![Code Climate][badge_cc_18f]][3] | [![Accessibility][badge_access_18f]][4] |
+| Staging | [![Build Status][badge_ci_tt]][5]  | [![Code Climate][badge_cc_tt]][6]  | [![Accessibility][badge_access_tt]][7]  |
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
 [U.S. Digital Services Playbook](https://playbook.cio.gov/#plays_index_anchor):
@@ -150,14 +151,18 @@ For command-line alternatives there are the following:
  - For JavaScript, [JSHint](http://jshint.com) which may be installed with ```npm install -g jshint```
  - For HTML, [html-lint](https://github.com/curtisj44/HTML-Lint) which may be installed with ```npm install -g html-lint```
 
-#### Testing
 
-The testing framework will be written in [Jasmine](http://jasmine.github.io). Various runners may be used:
-
- - The in-browser runner
- - [Karma](https://karma-runner.github.io) is a command-line test runner
-
-For code coverage we can leverage the following:
-
- - For in-browser coverage analysis we use [BlanketJS](http://blanketjs.org)
- - [Karma Coverage](https://github.com/karma-runner/karma-coverage) is a plug-in which may be used in tandem with the Karma test runner
+[badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
+[badge_ci_18f]: https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master
+[badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
+[badge_access_18f]: https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master
+[badge_ci_tt]: https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master
+[badge_cc_tt]: https://codeclimate.com/github/truetandem/e-QIP-prototype/badges/gpa.svg
+[badge_access_tt]: https://continua11y.18f.gov/truetandem/e-QIP-prototype.svg?branch=master
+[1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
+[2]: https://travis-ci.org/18F/e-QIP-prototype
+[3]: https://codeclimate.com/github/18F/e-QIP-prototype
+[4]: https://continua11y.18f.gov/18F/e-QIP-prototype
+[5]: https://travis-ci.org/truetandem/e-QIP-prototype
+[6]: https://codeclimate.com/github/truetandem/e-QIP-prototype
+[7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
