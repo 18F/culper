@@ -1,3 +1,21 @@
-language: generic
-
-script: echo 'testing from .travis.yml'
+language: node_js
+node_js:
+  - 6
+before_deploy:
+  - npm run build
+# deploy:
+#   - provider: script
+#     script: "./bin/deploy.sh staging"
+#     skip_cleanup: true
+#     on:
+#       branch: master
+#       repo: truetandem/e-QIP-prototype
+#   - provider: script
+#     script: "./bin/deploy.sh release"
+#     skip_cleanup: true
+#     on:
+#       branch: master
+#       repo: 18F/e-QIP-prototype
+after_script:
+  - npm install -g pa11y-crawl
+  - pa11y-crawl --run "./node_modules/.bin/http-server dist" --ci http://localhost:8080

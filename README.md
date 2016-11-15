@@ -1,11 +1,12 @@
 # e-QIP Prototype
 
 [![Slack](https://img.shields.io/badge/chat-slack-green.svg)](https://gsa-tts.slack.com/messages/acq-e-qip-vendor)
-[![Build Status](https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master)](https://travis-ci.org/18F/e-QIP-prototype)
+[![Build Status on Release](https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master)](https://travis-ci.org/18F/e-QIP-prototype)
+[![Build Status on Staging](https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master)](https://travis-ci.org/truetandem/e-QIP-prototype)
 [![Code Climate](https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg)](https://codeclimate.com/github/18F/e-QIP-prototype)
 [![Accessibility](https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master)](https://continua11y.18f.gov/18F/e-QIP-prototype)
 
-To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the 
+To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
 [U.S. Digital Services Playbook](https://playbook.cio.gov/#plays_index_anchor):
 
 1. Understand what people need
@@ -123,7 +124,7 @@ where
 
 ### Generating Documentation
 
-This project utilizes JSDoc 3 to generate and render Javascript documentation artifacts. An npm script `docgen` is included that triggers the generation of these artifacts and then stores them in the `doc/` directory. 
+This project utilizes JSDoc 3 to generate and render Javascript documentation artifacts. An npm script `docgen` is included that triggers the generation of these artifacts and then stores them in the `doc/` directory.
 
 To generate the JSDoc, execute the following:
 
