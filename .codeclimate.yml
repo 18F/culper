@@ -1,0 +1,17 @@
+engines:
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+
+ratings:
+  paths:
+    - "src/**"
+
+exclude_paths:
+  - "bin/"
+  - "coverage/"
+  - "doc/"
+  - "hooks/"
+  - "lib/"
+  - "**/vendor/"
