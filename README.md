@@ -53,6 +53,14 @@ First you are going to want to clone the repository
 git clone https://github.com/18F/e-QIP-prototype
 ```
 
+### Docker/docker-compose setup
+
+`cd` into the repo and run:
+
+```
+$ docker-compose up
+```
+
 ### Checking dependencies
 
 For quick development we use [npm](https://www.npmjs.com/). Once
