@@ -14,6 +14,8 @@ web:
     DATABASE_HOST: db
 api:
   image: golang
+  env_file:
+    - .env
   working_dir: /go/src/github.com/e-QIP-prototype
   command: ./docker-run.sh
   volumes:

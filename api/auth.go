@@ -58,7 +58,8 @@ func authCallbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("%s?token=%v", redirectTo, token), http.StatusTemporaryRedirect)
+	redirectToWithToken := fmt.Sprintf("%s?token=%s&refresh=%s&expiration=%s", redirectTo, token.AccessToken, token.RefreshToken, token.Expiry)
+	http.Redirect(w, r, redirectToWithToken, http.StatusTemporaryRedirect)
 }
 
 // configureAuthentication takes a service name and configures the OAuth 2.0 with

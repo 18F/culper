@@ -6,6 +6,9 @@ var sass    = require('gulp-sass');
 
 var paths = {
     entry: './src/boot.jsx',
+    js: [
+        './src/**/*.js*'
+    ],
     sass: [
         './node_modules/uswds/src/stylesheets/**/*.scss',
         './src/sass/**/*.scss'
@@ -60,5 +63,5 @@ function convert () {
 
 function watchdog () {
     'use strict';
-    return gulp.watch([paths.entry, paths.sass], ['build']);
+    return gulp.watch([paths.js, paths.sass], ['build']);
 }

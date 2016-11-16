@@ -4,6 +4,9 @@ var pack = require('path');
 
 module.exports = {
     devtool: debug ? 'inline-sourcemap' : null,
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
     module: {
         loaders: [
             {
