@@ -1,2 +1,2 @@
-import { GithubOAuth } from './oauth';
-export { GithubOAuth };
+import { GithubOAuth, OAuth } from './oauth';
+export { GithubOAuth, OAuth };

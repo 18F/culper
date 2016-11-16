@@ -27,14 +27,11 @@ class OAuth {
     }
 
     logout () {
-        console.log('logging out');
         this.token = '';
         this.expiration = null;
     }
 
     refreshToken () {
-        console.log('requesting new token');
-
         if (token) {
             // TODO: Just request a refreshed token
             return;
@@ -44,12 +41,11 @@ class OAuth {
     }
 
     authenticated () {
-        console.log('determining authentication status');
         if (!this.token) {
             return false;
         }
 
-        let expired = !this.expiration || this.expiration > new Date();
+        let expired = !this.expiration || this.expiration <= new Date();
         if (expired) {
             return false;
         }
@@ -59,4 +55,4 @@ class OAuth {
 }
 
 const GithubOAuth = new OAuth('github');
-export { GithubOAuth };
+export { GithubOAuth, OAuth };

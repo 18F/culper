@@ -32,6 +32,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "enzyme": "^2.6.0",
     "eslint": "^3.10.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.3.2",
@@ -44,13 +45,15 @@
     "gulp-sourcemaps": "^2.2.0",
     "http-server": "^0.9.0",
     "jest": "^17.0.1",
+    "react-addons-test-utils": "^15.4.0",
+    "react-dom": "^15.3.2",
     "react-test-renderer": "^15.3.2",
     "uswds": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jest -u",
+    "test": "./node_modules/.bin/jest -u --coverage",
     "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watchdog"
   }

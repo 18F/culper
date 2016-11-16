@@ -1,17 +1,28 @@
 import React from 'react';
 import Login from './Login';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import { GithubOAuth, OAuth } from '../../services';
 
-test('Renders login button if not authenticated', () => {
-    const component = renderer.create(
-        <Login />
-    );
+describe('The login button', () => {
+    it('renders login button if not authenticated', () => {
+        GithubOAuth.token = null;
+        GithubOAuth.expiration = null;
 
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+        let login = shallow(
+            <Login />
+        );
 
+        expect(login.text()).toEqual('Login');
+    });
 
-});
+    it('renders logout button if authenticated', () => {
+        GithubOAuth.token = 'faketoken';
+        GithubOAuth.expiration = new Date('2017-12-01');
 
-test('Renders logout button if authenticated', () => {
+        let logout = shallow(
+            <Login />
+        );
+
+        expect(logout.text()).toEqual('Logout');
+    });
 });
