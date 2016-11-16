@@ -1,6 +1,6 @@
 {
 	"comment": "",
-	"ignore": "test",
+	"ignore": "test appengine",
 	"package": [
 		{
 			"checksumSHA1": "ZLRh6zW4/DnVsGpgtt+ZiIaEFKc=",
@@ -97,67 +97,7 @@
 			"path": "golang.org/x/oauth2/linkedin",
 			"revision": "36bc61733fc9aafc59f010d5e6bfefb63b007fd7",
 			"revisionTime": "2016-06-06T21:15:38Z"
-		},
-		{
-			"checksumSHA1": "DPw8+XpTtyhvahFtQJCJrFMwqBY=",
-			"path": "google.golang.org/appengine",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "aulAQE9HlL10DHSmCnl99AjKRmY=",
-			"path": "google.golang.org/appengine/internal",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "x6Thdfyasqd68dWZWqzWWeIfAfI=",
-			"path": "google.golang.org/appengine/internal/app_identity",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "TsNO8P0xUlLNyh3Ic/tzSp/fDWM=",
-			"path": "google.golang.org/appengine/internal/base",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "5QsV5oLGSfKZqTCVXP6NRz5T4Tw=",
-			"path": "google.golang.org/appengine/internal/datastore",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "Gep2T9zmVYV8qZfK2gu3zrmG6QE=",
-			"path": "google.golang.org/appengine/internal/log",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "eLZVX1EHLclFtQnjDIszsdyWRHo=",
-			"path": "google.golang.org/appengine/internal/modules",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "a1XY7rz3BieOVqVI2Et6rKiwQCk=",
-			"path": "google.golang.org/appengine/internal/remote_api",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "QtAbHtHmDzcf6vOV9eqlCpKgjiw=",
-			"path": "google.golang.org/appengine/internal/urlfetch",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
-		},
-		{
-			"checksumSHA1": "akOV9pYnCbcPA8wJUutSQVibdyg=",
-			"path": "google.golang.org/appengine/urlfetch",
-			"revision": "41265fb44deca5c3b05a946d5db1f54ae54fe67e",
-			"revisionTime": "2016-03-22T22:23:58Z"
 		}
 	],
-	"rootPath": "github.com/e-QIP-prototype"
+	"rootPath": "github.com/truetandem/e-qip-prototype/api"
 }

@@ -16,10 +16,10 @@ api:
   image: golang
   env_file:
     - .env
-  working_dir: /go/src/github.com/e-QIP-prototype
+  working_dir: /go/src/github.com/truetandem/e-QIP-prototype/api
   command: ./docker-run.sh
   volumes:
-    - ./api:/go/src/github.com/e-QIP-prototype
+    - .:/go/src/github.com/truetandem/e-QIP-prototype
   ports:
     - "3000:3000"
   links:
