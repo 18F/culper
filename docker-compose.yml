@@ -15,7 +15,7 @@ web:
 api:
   image: golang
   working_dir: /go/src/github.com/e-QIP-prototype
-  command: go run root.go
+  command: ./docker-run.sh
   volumes:
     - ./api:/go/src/github.com/e-QIP-prototype
   ports:

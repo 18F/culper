@@ -39,6 +39,11 @@ jspm_packages
 # ReactJS caches
 __snapshots__/
 
+# Go vendoring
+# We will just track the vendor.json file to rehydrate packages during development
+# For release all vendored packages should be frozen
+/api/vendor
+
 # Build artifacts
 .gitmessage
 .projectile
