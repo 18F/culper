@@ -33,7 +33,7 @@
 			"revisionTime": "2016-03-17T21:34:30Z"
 		},
 		{
-			"checksumSHA1": "pl4CO6NpK/Susw95nPWrt8zWcVw=",
+			"checksumSHA1": "0yaHzWgrBrekgxgn23ka9/IURL8=",
 			"path": "github.com/truetandem/e-qip-prototype/api",
 			"revision": "a8a188deb3f3ba01a556489150c6e9b3b29e9550",
 			"revisionTime": "2016-11-15T20:54:13Z"
@@ -159,5 +159,5 @@
 			"revisionTime": "2016-03-22T22:23:58Z"
 		}
 	],
-	"rootPath": "github.com/truetandem/e-qip-prototype/api"
+	"rootPath": "github.com/e-QIP-prototype"
 }
