@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	middleware "github.com/truetandem/e-qip-prototype/api/middleware"
 )
 
 var (
@@ -17,8 +17,11 @@ var (
 )
 
 func main() {
-	r := mux.NewRouter()
+	r := middleware.NewRouter().Inject(LoggerHandler)
 	r.HandleFunc("/", rootHandler)
+
+	s := r.PathPrefix("/").Subrouter().Inject(SessionHandler)
+	s.HandleFunc("/form", rootHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/{service}", authServiceHandler)
