@@ -1,0 +1,6 @@
+FROM node
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app/package.json
+RUN npm set progress=false && \
+    npm install -g --progress=false yarn
+RUN yarn install
