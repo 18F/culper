@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/18F/e-QIP-prototype",
   "dependencies": {
+    "global": "^4.3.1",
     "history": "^4.4.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -44,7 +45,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.2.0",
     "http-server": "^0.9.0",
-    "jest": "^17.0.1",
+    "jest": "^17.0.3",
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.3.2",
     "react-test-renderer": "^15.3.2",

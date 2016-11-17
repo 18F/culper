@@ -19,6 +19,7 @@ frontend:
     - .env
   volumes:
     - .:/usr/src/app
+    - /usr/src/app/node_modules
   command: yarn watch
 api:
   image: golang
