@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { GithubOAuth } from '../../services';
 
 export default class Login extends React.Component {
@@ -13,11 +14,13 @@ export default class Login extends React.Component {
 
     logout () {
         GithubOAuth.logout();
-        location.href = '/';
+        this.setState({ authenticated: GithubOAuth.authenticated() });
+        window.location.reload();
     }
 
     login () {
-        location.href = GithubOAuth.url;
+        this.setState({ authenticated: GithubOAuth.authenticated() });
+        window.location.href = GithubOAuth.url;
     }
 
     render () {
