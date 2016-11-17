@@ -39,6 +39,12 @@
 			"revisionTime": "2016-11-15T20:54:13Z"
 		},
 		{
+			"checksumSHA1": "TnkpAmctQ65CwSTDfjG55+3CCdU=",
+			"path": "github.com/truetandem/e-qip-prototype/api/middleware",
+			"revision": "4af79d4aa3cf3113d2fb72c245b93a693e94a071",
+			"revisionTime": "2016-11-17T22:23:38Z"
+		},
+		{
 			"checksumSHA1": "9jjO5GjLa0XF/nfWihF02RoH4qc=",
 			"path": "golang.org/x/net/context",
 			"revision": "55a3084c9119aeb9ba2437d595b0a7e9cb635da9",
