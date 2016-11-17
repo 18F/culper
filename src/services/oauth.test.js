@@ -1,5 +1,5 @@
 import React from 'react';
-import { GithubOAuth } from '../../src/services/oauth';
+import { GithubOAuth } from './oauth';
 
 test('OAuth checks if user is not authentiated', () => {
     GithubOAuth.token = null;
