@@ -40,4 +40,8 @@ test('OAuth can parse query parameters from url', () => {
     window.location.search = '';
     foo = GithubOAuth.getQueryValue('foo');
     expect(foo).toEqual(null);
+
+    window.location.search = '?foo=bar&foo=meh';
+    foo = GithubOAuth.getQueryValue('foo');
+    expect(foo).toEqual(['bar', 'meh']);
 });
