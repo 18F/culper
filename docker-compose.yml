@@ -12,6 +12,14 @@ web:
     DATABASE_USER: postgres
     DATABASE_NAME: postgres
     DATABASE_HOST: db
+frontend:
+  build: .
+  dockerfile: Dockerfile.yarn
+  env_file:
+    - .env
+  volumes:
+    - .:/usr/src/app
+  command: yarn watch
 api:
   image: golang
   env_file:
