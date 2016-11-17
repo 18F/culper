@@ -55,3 +55,6 @@ __snapshots__/
 /css/
 /fonts/
 /img/
+
+# Test artifacts
+/jest
