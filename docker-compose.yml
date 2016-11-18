@@ -1,0 +1,39 @@
+db:
+  image: postgres
+web:
+  image: abiosoft/caddy
+  volumes:
+    - ./dist:/srv
+  ports:
+    - "8080:2015"
+  links:
+    - db
+  environment:
+    DATABASE_USER: postgres
+    DATABASE_NAME: postgres
+    DATABASE_HOST: db
+frontend:
+  build: .
+  dockerfile: Dockerfile.yarn
+  env_file:
+    - .env
+  volumes:
+    - .:/usr/src/app
+    - /usr/src/app/node_modules
+  command: yarn watch
+api:
+  image: golang
+  env_file:
+    - .env
+  working_dir: /go/src/github.com/truetandem/e-QIP-prototype/api
+  command: ./docker-run.sh
+  volumes:
+    - .:/go/src/github.com/truetandem/e-QIP-prototype
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  environment:
+    DATABASE_USER: postgres
+    DATABASE_NAME: postgres
+    DATABASE_HOST: db

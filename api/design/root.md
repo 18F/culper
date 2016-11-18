@@ -1,0 +1,21 @@
+FORMAT: 1A
+
+# E-QIP API
+
+# Root endpoint [/]
+
+API root endpoint.
+
+## Retrieve the Root Endpoint [GET]
+
+Issue a `GET` request to the root endpoint to get all endpoints that the API
+supports:
+
++ Response 200 (application/json)
+    + Headers
+
+        X-Eqip-Media-Type: eqip.v1
+
+    + Body
+
+        {}
