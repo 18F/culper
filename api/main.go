@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	middleware "github.com/truetandem/e-qip-prototype/api/middleware"
+	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
 )
 
 var (
@@ -19,6 +19,8 @@ var (
 func main() {
 	r := middleware.NewRouter().Inject(LoggerHandler)
 	r.HandleFunc("/", rootHandler)
+	r.HandleFunc("/2fa", twofactorHandler)
+	r.HandleFunc("/2fa/verify", twofactorVerifyHandler)
 
 	s := r.PathPrefix("/").Subrouter().Inject(SessionHandler)
 	s.HandleFunc("/form", rootHandler)
