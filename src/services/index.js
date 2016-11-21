@@ -1,2 +1,3 @@
+import { api } from './api';
 import { GithubOAuth, OAuth } from './oauth';
-export { GithubOAuth, OAuth };
+export { api, GithubOAuth, OAuth };

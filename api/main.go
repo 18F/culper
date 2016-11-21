@@ -19,10 +19,10 @@ var (
 func main() {
 	r := middleware.NewRouter().Inject(LoggerHandler)
 	r.HandleFunc("/", rootHandler)
-	r.HandleFunc("/2fa", twofactorHandler)
-	r.HandleFunc("/2fa/verify", twofactorVerifyHandler)
 
 	s := r.PathPrefix("/").Subrouter().Inject(SessionHandler)
+	s.HandleFunc("/2fa", twofactorHandler)
+	s.HandleFunc("/2fa/verify", twofactorVerifyHandler)
 	s.HandleFunc("/form", rootHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()

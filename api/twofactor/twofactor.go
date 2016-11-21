@@ -10,6 +10,10 @@ import (
 	qr "github.com/skip2/go-qrcode"
 )
 
+const (
+	auth string = "totp"
+)
+
 // Secret creates a random secret and then base32 encodes it.
 func Secret() string {
 	secret := make([]byte, 6)
@@ -25,7 +29,7 @@ func Secret() string {
 // Generate will create a QR code in PNG format which will then
 // be base64 encoded so it can traverse the wire to the front end.
 func Generate(account, secret string) (string, error) {
-	u, err := url.Parse("otpauth://totp")
+	u, err := url.Parse("otpauth://" + auth)
 	if err != nil {
 		return "", err
 	}
