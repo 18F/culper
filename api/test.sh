@@ -1,4 +1,4 @@
 #! /bin/sh
 
-./docker-build.sh
+./build.sh
 go test $(go list ./... | grep -v /vendor/)
