@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
 )
@@ -15,6 +16,14 @@ var (
 	// APIVersion ...
 	APIVersion = "v1"
 )
+
+func getPort() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+	return port
+}
 
 func main() {
 	r := middleware.NewRouter().Inject(LoggerHandler)
@@ -31,5 +40,5 @@ func main() {
 	o.HandleFunc("/{service}/callback", authCallbackHandler)
 
 	log.Println("Starting API mock server")
-	fmt.Println(http.ListenAndServe(":3000", r))
+	fmt.Println(http.ListenAndServe(":"+getPort(), r))
 }
