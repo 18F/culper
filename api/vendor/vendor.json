@@ -71,6 +71,12 @@
 			"revision": ""
 		},
 		{
+			"checksumSHA1": "hrU+s554j35P7xT3W/wdyLUej2k=",
+			"path": "github.com/dgryski/dgoogauth",
+			"revision": "96977cbd42e27be71f9f731db6634123de7e861a",
+			"revisionTime": "2016-06-02T07:13:24Z"
+		},
+		{
 			"checksumSHA1": "q3Bc7JpLWBqhZ4M7oreGo34RSkc=",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "8ee79997227bf9b34611aee7946ae64735e6fd93",
@@ -89,16 +95,64 @@
 			"revisionTime": "2016-03-17T21:34:30Z"
 		},
 		{
-			"checksumSHA1": "0yaHzWgrBrekgxgn23ka9/IURL8=",
-			"path": "github.com/truetandem/e-qip-prototype/api",
+			"checksumSHA1": "GpOUEm/XeltYiaNnFk0/aswAbqw=",
+			"path": "github.com/keighl/mandrill",
+			"revision": "6a59523fcf7d27e9230141f0e2563ba976a92b8f",
+			"revisionTime": "2016-05-26T12:10:27Z"
+		},
+		{
+			"checksumSHA1": "r1klEIiloTrSYFv3cjaJcPHLkLo=",
+			"path": "github.com/microcosm-cc/bluemonday",
+			"revision": "f77f16ffc87a6a58814e64ae72d55f9c41374e6d",
+			"revisionTime": "2016-10-12T08:37:05Z"
+		},
+		{
+			"checksumSHA1": "c7jHQZk5ZEsFR9EXsWJXkszPBZA=",
+			"path": "github.com/russross/blackfriday",
+			"revision": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70",
+			"revisionTime": "2016-10-03T16:27:22Z"
+		},
+		{
+			"checksumSHA1": "kbgJvKG3NRoqU91rYnXGnyR+8HQ=",
+			"path": "github.com/shurcooL/sanitized_anchor_name",
+			"revision": "1dba4b3954bc059efc3991ec364f9f9a35f597d2",
+			"revisionTime": "2016-09-18T04:11:01Z"
+		},
+		{
+			"checksumSHA1": "XPslM+4zG/cp4m//UkL6Why93SU=",
+			"path": "github.com/skip2/go-qrcode",
+			"revision": "5bfceac8c4950ff8f735525ddcde5a6b08d77ab6",
+			"revisionTime": "2016-01-24T02:09:45Z"
+		},
+		{
+			"checksumSHA1": "xkuxp8PnGrQUsIXMiIOCk4U5IGw=",
+			"path": "github.com/skip2/go-qrcode/bitset",
+			"revision": "5bfceac8c4950ff8f735525ddcde5a6b08d77ab6",
+			"revisionTime": "2016-01-24T02:09:45Z"
+		},
+		{
+			"checksumSHA1": "UtPg/z5chOpfiJvr29Or0oUx1Bs=",
+			"path": "github.com/skip2/go-qrcode/reedsolomon",
+			"revision": "5bfceac8c4950ff8f735525ddcde5a6b08d77ab6",
+			"revisionTime": "2016-01-24T02:09:45Z"
+		},
+		{
+			"checksumSHA1": "Q9Hy/+ztbnIlcX0z/A5JqJQV9g0=",
+			"path": "github.com/truetandem/e-QIP-prototype/api",
 			"revision": "a8a188deb3f3ba01a556489150c6e9b3b29e9550",
 			"revisionTime": "2016-11-15T20:54:13Z"
 		},
 		{
-			"checksumSHA1": "TnkpAmctQ65CwSTDfjG55+3CCdU=",
-			"path": "github.com/truetandem/e-qip-prototype/api/middleware",
+			"checksumSHA1": "AL5bZvXmHW/oRg5IEaNRt8mzhy4=",
+			"path": "github.com/truetandem/e-QIP-prototype/api/middleware",
 			"revision": "4af79d4aa3cf3113d2fb72c245b93a693e94a071",
 			"revisionTime": "2016-11-17T22:23:38Z"
+		},
+		{
+			"checksumSHA1": "8YJbXC+vlgT1vuqm77rtpNlYbbo=",
+			"path": "github.com/truetandem/e-QIP-prototype/api/twofactor",
+			"revision": "7788255abcc7edd189b812b05fbce03df4fe1c56",
+			"revisionTime": "2016-11-17T22:53:36Z"
 		},
 		{
 			"checksumSHA1": "9jjO5GjLa0XF/nfWihF02RoH4qc=",
@@ -111,6 +165,18 @@
 			"path": "golang.org/x/net/context/ctxhttp",
 			"revision": "55a3084c9119aeb9ba2437d595b0a7e9cb635da9",
 			"revisionTime": "2016-11-04T22:18:50Z"
+		},
+		{
+			"checksumSHA1": "vqc3a+oTUGX8PmD0TS+qQ7gmN8I=",
+			"path": "golang.org/x/net/html",
+			"revision": "4971afdc2f162e82d185353533d3cf16188a9f4e",
+			"revisionTime": "2016-11-15T21:05:04Z"
+		},
+		{
+			"checksumSHA1": "00eQaGynDYrv3tL+C7l9xH0IDZg=",
+			"path": "golang.org/x/net/html/atom",
+			"revision": "4971afdc2f162e82d185353533d3cf16188a9f4e",
+			"revisionTime": "2016-11-15T21:05:04Z"
 		},
 		{
 			"checksumSHA1": "hyK05cmzm+vPH1OO+F1AkvES3sw=",
