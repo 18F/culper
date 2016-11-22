@@ -42,3 +42,13 @@ func twofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "")
 }
+
+func twofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
+	err := twofactor.Email("fake@mail.gov", secret)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, "")
+}
