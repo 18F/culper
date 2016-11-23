@@ -20,7 +20,7 @@ frontend:
   volumes:
     - .:/usr/src/app
     - /usr/src/app/node_modules
-  command: yarn watch
+  command: ./build-frontend.sh
 api:
   image: golang
   env_file:
