@@ -90,8 +90,9 @@ func transform(level int, n Node) bool {
 		if n.Type != "" {
 			t = strings.Replace(n.Type, "xs:", "", 1)
 		}
-
 		fmt.Printf("%s %s (%s, %s)\n\n", strings.Repeat("#", level), n.Name, t, optional)
+		fmt.Printf("  + Component\n\n    %s\n\n", generateComponent(n))
+
 	case "restriction":
 		// Go through the children
 		fmt.Printf("  + Restrictions\n\n")
@@ -99,15 +100,61 @@ func transform(level int, n Node) bool {
 			fmt.Printf("    - %s: %s\n", c.XMLName.Local, c.Value)
 		}
 		fmt.Printf("\n")
+
 	case "attribute":
 		optional := "required"
 		if n.MinOccurs == 0 {
 			optional = "optional"
 		}
-
 		fmt.Printf("  + Attribute %s (%s)\n\n", n.Name, optional)
 	}
+
 	return true
+}
+
+// generateComponent takes an element and attempts to generate
+// a compatible ReactJS component declaration.
+//
+// Examples:
+//  <Nature min-length="3" max-length="3" pattern="CON|MIL|\d{3}" />
+func generateComponent(n Node) string {
+	var enumerations []string
+	var attributes []string
+
+	walk(0, []Node{n}, func(level int, node Node) bool {
+		for _, c := range node.Nodes {
+			if c.XMLName.Local != "restriction" {
+				if c.XMLName.Local == "element" {
+					return false
+				}
+				continue
+			}
+
+			for _, r := range c.Nodes {
+				switch r.XMLName.Local {
+				case "minLength":
+					attributes = append(attributes, fmt.Sprintf("minLength=\"%s\"", r.Value))
+
+				case "maxLength":
+					attributes = append(attributes, fmt.Sprintf("maxLength=\"%s\"", r.Value))
+
+				case "enumeration":
+					enumerations = append(enumerations, r.Value)
+
+				case "pattern":
+					attributes = append(attributes, fmt.Sprintf("pattern=\"%s\"", r.Value))
+				}
+			}
+		}
+
+		return true
+	})
+
+	if len(enumerations) > 0 {
+		attributes = append(attributes, fmt.Sprintf("enum=\"%s\"", strings.Join(enumerations, ",")))
+	}
+
+	return fmt.Sprintf("<%s %s />", n.Name, strings.Join(attributes, " "))
 }
 
 // NOTE: This is commented out because currently everything needed
