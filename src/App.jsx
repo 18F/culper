@@ -1,30 +1,52 @@
 import React from 'react';
 import { Login } from './components';
 import { GithubOAuth } from './services';
+import { connect } from 'react-redux';
+import { login, logout } from './actions/AuthActions';
 
-export default class App extends React.Component {
+export class App extends React.Component {
     constructor (props) {
         super(props);
-
-        // If there are OAuth values returned then store them.
-        let token = GithubOAuth.getQueryValue('token');
-        let expiration = GithubOAuth.getQueryValue('expiration');
-        if (token || expiration) {
-            GithubOAuth.token = token;
-            GithubOAuth.expiration = expiration;
-        }
+        this.logout = this.logout.bind(this);
     }
 
-    componentDidMount () {
+    logout () {
+        //this.props.dispatch(logout());
+        window.location = window.location.pathname;
     }
 
     render () {
+        let logoutButton = this.props.authenticated ?
+            (<button onClick={this.logout}>Logout</button>) : null;
+
         return (
             <div>
                 <h1>E-QIP Prototype</h1>
-                <Login />
+                <div>Authenticated: {this.props.authenticated ? 'Si' : 'No' }</div>
+                {logoutButton}
                 {this.props.children}
             </div>
         );
     }
 }
+
+/**
+ * Maps the relevant subtree state from the applications state tree.
+ * In this case, we pull the authentication sub-state. This is mapped
+ * to the authentication reducer. When actions are dispatched, this
+ * method is executed which causes a re-render.
+ *
+ */
+function mapStateToProps(state) {
+    console.log('App: mapStateToProps');
+    const auth = state.authentication;
+    return {
+        authenticated: auth.authenticated,
+        token: auth.token
+    };
+}
+
+
+// Wraps the the App component with connect() which adds the dispatch()
+// function to the props property for this component
+export default connect(mapStateToProps)(App);

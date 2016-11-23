@@ -57,4 +57,33 @@ describe('The API', () => {
             });
     });
 
+    it('can login user', () => {
+        const expected = 'faketoken';
+        const mock = new MockAdapter(api.proxy);
+        mock.onPost('/basic/auth').reply(200, expected);
+        api
+            .login('john', 'admin')
+            .then(function (response) {
+                expect(response.data).toEqual(expected);
+            });
+    });
+
+    it('can parse query parameters from url', () => {
+        Object.defineProperty(window.location, 'search', {
+            writable: true,
+            value: '?foo=bar&test=1'
+        });
+
+        let foo = api.getQueryValue('foo');
+        expect(foo).toEqual('bar');
+
+        window.location.search = '';
+        foo = api.getQueryValue('foo');
+        expect(foo).toEqual(null);
+
+        window.location.search = '?foo=bar&foo=meh';
+        foo = api.getQueryValue('foo');
+        expect(foo).toEqual(['bar', 'meh']);
+    });
+
 });

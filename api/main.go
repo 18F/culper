@@ -26,16 +26,17 @@ func getPort() string {
 }
 
 func main() {
-	r := middleware.NewRouter().Inject(LoggerHandler)
+	r := middleware.NewRouter().Inject(CORSHandler, LoggerHandler)
 	r.HandleFunc("/", rootHandler)
 
-	s := r.PathPrefix("/").Subrouter().Inject(SessionHandler)
+	s := r.PathPrefix("/").Subrouter()
 	s.HandleFunc("/2fa", twofactorHandler)
 	s.HandleFunc("/2fa/verify", twofactorVerifyHandler)
 	s.HandleFunc("/2fa/email", twofactorEmailHandler)
 	s.HandleFunc("/form", rootHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
+	o.HandleFunc("/basic", basicAuthHandler).Methods("POST")
 	o.HandleFunc("/{service}", authServiceHandler)
 	o.HandleFunc("/{service}/callback", authCallbackHandler)
 
