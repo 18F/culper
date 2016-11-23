@@ -8,7 +8,7 @@
 | Staging | [![Build Status][badge_ci_tt]][5]  | [![Code Climate][badge_cc_tt]][6]  | [![Accessibility][badge_access_tt]][7]  |
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
-[U.S. Digital Services Playbook](https://playbook.cio.gov/#plays_index_anchor):
+[U.S. Digital Services Playbook][8]:
 
 1. Understand what people need
 2. Address the whole experience, from start to finish
@@ -28,12 +28,11 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 
 ## Project Management
 
-The project team utilizes [ZenHub](https://www.zenhub.com/), a free online and GitHub-integrated project management tool, to administer User Stories, Tasks, and Sprints.
+The project team utilizes [GitHub Projects][9] as an in integrated project management tool to administer User Stories, Tasks, and Sprints.
 
- - [Projects/Roadmap](https://github.com/truetandem/e-QIP-prototype/projects/1)
- - [Milestones/Sprints](https://github.com/truetandem/e-QIP-prototype/milestones)
- - [Epics/User Stories](https://github.com/truetandem/e-QIP-prototype/labels/Epic)
- - [Board/Backlog](https://github.com/truetandem/e-QIP-prototype#boards)
+ - [Board/Backlog][10]
+ - [Milestones/Sprints][11]
+ - [Epics/User Stories][12]
 
 GitHub commits can be traced back to their corresponding tasks through commit comments.  Commits directly related to a task will be prefixed with the task ID:
 
@@ -41,7 +40,7 @@ GitHub commits can be traced back to their corresponding tasks through commit co
 truetandem/e-QIP-prototype#issue_number Commit description
 ```
 
-[Keywords](https://help.github.com/articles/closing-issues-via-commit-messages/) can be used to change the status of the associated issue
+[Keywords][13] can be used to change the status of the associated issue
 
 ## Getting to know the code
 
@@ -63,7 +62,7 @@ $ docker-compose up
 
 ### Checking dependencies
 
-For quick development we use [npm](https://www.npmjs.com/). Once
+For quick development we use [npm][16]. Once
 this has been installed we execute a single command:
 
 ```
@@ -99,20 +98,14 @@ npm test
 ```
 
 The individual test results will be seen in the output, and the coverage
-results may be viewed after running ```npm start``` at
-[http://localhost:8080/coverage](http://localhost:8080/coverage)
-
-In-browser test results and coverage can be accessed at
-[https://18f.github.io/e-QIP-prototype/test](https://18f.github.io/e-QIP-prototype/test)
-
-> Note the **dist/coverage/** directory and associated files are not created until the test have been ran.
+results may be viewed after running ```npm test```.
 
 ### Packaging Application
 
 To package up the application, use the command:
 
 ```
-npm run package
+npm run build
 ```
 
 This will generate the following file structure:
@@ -156,8 +149,8 @@ For Pirates (Emacs) just install ```flycheck``` and everything should be handled
 
 For command-line alternatives there are the following:
 
- - For JavaScript, [JSHint](http://jshint.com) which may be installed with ```npm install -g jshint```
- - For HTML, [html-lint](https://github.com/curtisj44/HTML-Lint) which may be installed with ```npm install -g html-lint```
+ - For JavaScript, [JSHint][14] which may be installed with ```npm install -g jshint```
+ - For HTML, [html-lint][15] which may be installed with ```npm install -g html-lint```
 
 
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
@@ -174,3 +167,12 @@ For command-line alternatives there are the following:
 [5]: https://travis-ci.org/truetandem/e-QIP-prototype
 [6]: https://codeclimate.com/github/truetandem/e-QIP-prototype
 [7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
+[8]: https://playbook.cio.gov/#plays_index_anchor
+[9]: https://help.github.com/articles/tracking-the-progress-of-your-work-with-projects
+[10]: https://github.com/truetandem/e-QIP-prototype/projects/1?fullscreen=true
+[11]: https://github.com/truetandem/e-QIP-prototype/milestones
+[12]: https://github.com/truetandem/e-QIP-prototype/labels/Epic
+[13]: https://help.github.com/articles/closing-issues-via-commit-messages/
+[14]: http://jshint.com
+[15]: https://github.com/curtisj44/HTML-Lint
+[16]: https://www.npmjs.com
