@@ -1,11 +1,25 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
 
-func CORSHandler(w http.ResponseWriter, r *http.Request) error {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-	w.Header().Set("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization")
+	"github.com/gorilla/handlers"
+)
 
-	return nil
+// CORS Wraps an http handler with the gorilla cors handler and
+// specifies the allowed origins, methods and headers.
+func CORS(r http.Handler) http.Handler {
+	return handlers.CORS(
+		handlers.AllowedOrigins([]string{"*"}),
+		handlers.AllowedMethods([]string{"POST", "GET", "PUT"}),
+		handlers.AllowedHeaders([]string{
+			"Access-Control-Allow-Origin",
+			"Accept",
+			"Accept-Language",
+			"Content-Language",
+			"Content-Type",
+			"Date",
+			"Content-Length",
+		}),
+	)(r)
 }
