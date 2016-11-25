@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { login } from '../../actions/AuthActions';
 import LoginButton from '../../components/Login/Login';
-import { redirectTo } from '../../actions/RouteActions';
-import { checkAuthentication } from '../../actions/AuthActions';
+import { connect } from 'react-redux';
+import { login, checkAuthentication } from '../../actions/AuthActions';
 import { api } from '../../services/api';
+import { push } from '../../middleware/history';
 
 class Login extends React.Component {
 
@@ -19,7 +18,12 @@ class Login extends React.Component {
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.login = this.login.bind(this);
-        console.debug('Login View');
+    }
+    componentWillMount() {
+        // If user is authenticated, redirect to home page
+        if (this.props.authenticated) {
+            this.props.dispatch(push('/'));
+        }
     }
 
     onUsernameChange(e) {
@@ -78,8 +82,6 @@ class Login extends React.Component {
  */
 function mapStateToProps(state) {
     const auth = state.authentication;
-
-    console.log('Login mapStateToProps: ', auth.authenticated);
     return {
         authenticated: auth.authenticated,
         token: auth.token

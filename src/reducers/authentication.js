@@ -6,8 +6,8 @@ const defaultState = {
 };
 
 // Defines the authentication sub-state for the application.
-const authentication = function(state = defaultState, action) {
-    switch (action.type ) {
+const authentication = function (state = defaultState, action) {
+    switch (action.type) {
         // Logs the user in
         case AuthConstants.LOGIN_SUCCESS:
             return {
@@ -21,16 +21,9 @@ const authentication = function(state = defaultState, action) {
                 authenticated: false,
                 token: null
             };
-        case AuthConstants.CHECK_AUTH:
-            return {
-                ...state,
-                authenticated: action.authenticated,
-                token: action.token
-            };
+        default:
+            return state;
     }
-
-    return state;
 };
-
 
 export default authentication;

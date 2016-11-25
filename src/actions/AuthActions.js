@@ -1,20 +1,27 @@
 import { api } from '../services/api';
 import AuthConstants from './AuthConstants';
 import { hashHistory } from 'react-router';
-import { redirectTo } from './RouteActions';
+import { push } from '../middleware/history';
 
+/**
+ * Executes a request to log in the user and then
+ * dispatches a login success handler and redirects to
+ * home page.
+ */
 export function login(username, password) {
     return function (dispatch, getState) {
         return api
             .login(username, password)
             .then(r => {
                 dispatch(handleLoginSuccess(r.data));
-                dispatch(redirectTo('/'));
-                //dispatch(redirectTo('/'));
+                dispatch(push('/'));
             });
     };
 }
 
+/**
+ * Logs out a user
+ */
 export function logout() {
     return function (dispatch, getState) {
 
@@ -22,7 +29,7 @@ export function logout() {
         dispatch({
             type: AuthConstants.LOGOUT
         });
-        dispatch(redirectTo('/login'));
+        dispatch(push('/login'));
     };
 }
 
