@@ -7,12 +7,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { api } from './services/api';
 import { handleLoginSuccess } from './actions/AuthActions';
-import { clearRedirect } from './actions/RouteActions';
+import { push } from './middleware/history';
 
 const app = document.getElementById('app');
-
-// Subscribe to updates within application
-store.subscribe(listener);
 
 ReactDOM.render(
     <Provider store={store}>
@@ -26,22 +23,13 @@ ReactDOM.render(
     </Provider>
     , app);
 
-
-function onEnter () {
+/**
+ * Check if we have a token in our base Route so that it gets called once
+ * when a page renders.
+ */
+function onEnter() {
     const token = api.getQueryValue('token');
     if (token) {
         store.dispatch(handleLoginSuccess(token));
-    }
-}
-
-/**
- * Shows use of lower-level store object to subsribe to events. This one
- * specically handles router redirects when logging in and out.
- */
-function listener() {
-    console.log('Listener');
-    const { redirect, redirectPath }  = store.getState().routes;
-    if (redirect) {
-        hashHistory.push(redirectPath);
     }
 }

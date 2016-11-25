@@ -2,9 +2,8 @@ import { api } from '../services/api';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { login, logout, redirectToLogin, handleLoginSuccess, redirectTo } from './AuthActions';
+import { login, logout, redirectToLogin, handleLoginSuccess} from './AuthActions';
 import AuthConstants from './AuthConstants';
-import RouteConstants from './RouteConstants';
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -24,8 +23,8 @@ describe('Auth actions', function () {
                 token: 'faketoken'
             },
             {
-                type: RouteConstants.REDIRECT,
-                redirectPath: '/'
+                type: 'PUSH',
+                to: '/'
             }
         ];
 
@@ -50,7 +49,7 @@ describe('Auth actions', function () {
         const store = mockStore({ authentication: [] });
         const expectedAction = [
             { type: AuthConstants.LOGOUT},
-            { type: RouteConstants.REDIRECT, redirectPath: '/login'}
+            { type: 'PUSH', to: '/login'}
         ];
         store.dispatch(logout('john', 'admin'));
         expect(store.getActions()).toEqual(expectedAction);
