@@ -26,7 +26,7 @@ func getPort() string {
 }
 
 func main() {
-	r := middleware.NewRouter().Inject(CORSHandler, LoggerHandler)
+	r := middleware.NewRouter().Inject(LoggerHandler)
 	r.HandleFunc("/", rootHandler)
 
 	s := r.PathPrefix("/").Subrouter()
@@ -41,5 +41,5 @@ func main() {
 	o.HandleFunc("/{service}/callback", authCallbackHandler)
 
 	log.Println("Starting API mock server")
-	fmt.Println(http.ListenAndServe(":"+getPort(), r))
+	fmt.Println(http.ListenAndServe(":"+getPort(), CORS(r)))
 }
