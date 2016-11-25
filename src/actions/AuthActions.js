@@ -1,42 +1,74 @@
-import { api } from '../services/api';
-import AuthConstants from './AuthConstants';
-import { hashHistory } from 'react-router';
-import { push } from '../middleware/history';
+import { api } from '../services/api'
+import AuthConstants from './AuthConstants'
+import { hashHistory } from 'react-router'
+import { push } from '../middleware/history'
 
 /**
  * Executes a request to log in the user and then
  * dispatches a login success handler and redirects to
  * home page.
  */
-export function login(username, password) {
-    return function (dispatch, getState) {
-        return api
+export function login (username, password) {
+  return function (dispatch, getState) {
+    return api
             .login(username, password)
             .then(r => {
-                dispatch(handleLoginSuccess(r.data));
-                dispatch(push('/'));
-            });
-    };
+              dispatch(handleLoginSuccess(r.data))
+            })
+  }
 }
 
 /**
  * Logs out a user
  */
-export function logout() {
-    return function (dispatch, getState) {
-
+export function logout () {
+  return function (dispatch, getState) {
         // TODO server side call to invalidate token
-        dispatch({
-            type: AuthConstants.LOGOUT
-        });
-        dispatch(push('/login'));
-    };
+    dispatch({
+      type: AuthConstants.LOGOUT
+    })
+    dispatch(push('/login'))
+  }
 }
 
+export function qrcode (account, token) {
+  return api.twoFactor(account)
+}
 
-export function handleLoginSuccess(token) {
-    return {
-        type: AuthConstants.LOGIN_SUCCESS,
-        token: token
-    };
+export function twofactor (account, token) {
+  return function (dispatch, getState) {
+    return api
+            .twoFactor(account, token)
+            .then(response => {
+              dispatch(handleTwoFactorSuccess())
+              dispatch(push('/'))
+            })
+            .catch(function (error) {
+              if (error.response) {
+                console.log('Two-factor authentication: ', error.response.data)
+                switch (error.response.status) {
+                  case 500:
+                        // Internal Server Error
+                    break
+
+                  case 401:
+                        // Unauthorized
+                    break
+                }
+              }
+            })
+  }
+}
+
+export function handleLoginSuccess (token) {
+  return {
+    type: AuthConstants.LOGIN_SUCCESS,
+    token: token
+  }
+}
+
+export function handleTwoFactorSuccess () {
+  return {
+    type: AuthConstants.TWOFACTOR_SUCCESS
+  }
 }
