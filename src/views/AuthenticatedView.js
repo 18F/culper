@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { redirectTo } from '../actions/RouteActions';
 import { api } from '../services/api';
+import { push } from '../middleware/history';
 
 
 /**
@@ -15,13 +15,19 @@ function AuthenticatedView (WrappedComponent) {
 
         constructor(props) {
             super(props);
-            console.log('AuthenticatedView Wrapper');
+        }
+
+        componentWillReceiveProps(nextProps) {
+            this.checkAuthentication();
         }
 
         componentWillMount() {
-            // Check if we have a token in the url
+            this.checkAuthentication();
+        }
+
+        checkAuthentication() {
             if (!this.props.authenticated) {
-                this.props.dispatch(redirectTo('/login'));
+                this.props.dispatch(push('/login'));
             }
         }
 

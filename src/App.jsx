@@ -11,7 +11,6 @@ export class App extends React.Component {
     }
 
     logout () {
-        //this.props.dispatch(logout());
         window.location = window.location.pathname;
     }
 
@@ -38,7 +37,6 @@ export class App extends React.Component {
  *
  */
 function mapStateToProps(state) {
-    console.log('App: mapStateToProps');
     const auth = state.authentication;
     return {
         authenticated: auth.authenticated,
