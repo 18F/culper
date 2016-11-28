@@ -25,4 +25,3 @@ export function push (path) {
     to: path
   }
 }
-
