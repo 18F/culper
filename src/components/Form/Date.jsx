@@ -19,8 +19,15 @@ export class Date extends React.Component {
   /**
    * Generated name for the error message.
    */
-  errorName () {
-    return '' + this.state.name + '-error'
+  errorName (part) {
+    return '' + this.state.name + '-' + part + '-error'
+  }
+
+  /**
+   * Generated name for the part of the date elements.
+   */
+  partName (part) {
+    return '' + this.state.name + '-' + part
   }
 
   /**
@@ -84,11 +91,21 @@ export class Date extends React.Component {
   render () {
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()} htmlFor={this.state.name}>{this.state.label}</label>
-        <span className={this.spanClass()} id={this.errorName()} role="alert">{this.state.help}</span>
-        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="text" placeholder={this.state.placeholder} aria-described-by={this.errorName()} value={this.state.value} />
-        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="text" placeholder={this.state.placeholder} aria-described-by={this.errorName()} value={this.state.value} />
-        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="text" placeholder={this.state.placeholder} aria-described-by={this.errorName()} value={this.state.value} />
+        <div className="usa-form-group usa-form-group-month">
+          <label className={this.labelClass()} htmlFor={this.partName('month')}>{this.state.label}</label>
+          <span className={this.spanClass()} id={this.errorName('month')} role="alert">{this.state.help}</span>
+          <input className={this.inputClass()} id={this.partName('month')} name={this.partName('month')} type="number" placeholder={this.state.placeholder} aria-described-by={this.errorName('month')} value={this.state.value} />
+        </div>
+        <div className="usa-form-group usa-form-group-day">
+          <label className={this.labelClass()} htmlFor={this.partName('day')}>{this.state.label}</label>
+          <span className={this.spanClass()} id={this.errorName('day')} role="alert">{this.state.help}</span>
+          <input className={this.inputClass()} id={this.partName('day')} name={this.partName('day')} type="number" placeholder={this.state.placeholder} aria-described-by={this.errorName('day')} value={this.state.value} />
+        </div>
+        <div className="usa-form-group usa-form-group-year">
+          <label className={this.labelClass()} htmlFor={this.partName('year')}>{this.state.label}</label>
+          <span className={this.spanClass()} id={this.errorName('year')} role="alert">{this.state.help}</span>
+          <input className={this.inputClass()} id={this.partName('year')} name={this.partName('year')} type="number" placeholder={this.state.placeholder} aria-described-by={this.errorName('year')} value={this.state.value} />
+        </div>
       </div>
     )
   }
