@@ -85,5 +85,11 @@ func (a *Account) ValidJwtToken(rawToken string) (bool, error) {
 		return JwtSecret, nil
 	})
 
+	// Invalid token
+	if err != nil {
+		return false, err
+	}
+
+	// Everything is good
 	return token.Valid, err
 }
