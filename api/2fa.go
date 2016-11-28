@@ -15,7 +15,10 @@ var (
 // twofactorHandler is the initial entry and subscription for two-factor
 // authentication.
 func twofactorHandler(w http.ResponseWriter, r *http.Request) {
-	png, err := twofactor.Generate("account", secret)
+	vars := mux.Vars(r)
+	account := vars["account"]
+
+	png, err := twofactor.Generate(account, secret)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -26,10 +29,12 @@ func twofactorHandler(w http.ResponseWriter, r *http.Request) {
 
 // twofactorVerifyHandler verifies a token provided by the end user.
 func twofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	token := vars["token"]
+	var body struct {
+		Token string
+	}
+	DecodeJSON(r, &body)
 
-	ok, err := twofactor.Authenticate(token, secret)
+	ok, err := twofactor.Authenticate(body.Token, secret)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
