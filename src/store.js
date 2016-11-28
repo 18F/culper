@@ -8,8 +8,8 @@ import { historyMiddleware } from './middleware/history'
 // Creates a redux store that defines the state tree for the application.
 // See rootReducer for all sub-states.
 const store = createStore(
-    rootReducer,
-    applyMiddleware(thunk, createLogger(), historyMiddleware)
+  rootReducer,
+  applyMiddleware(thunk, createLogger(), historyMiddleware)
 )
 
 export default store
