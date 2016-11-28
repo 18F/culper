@@ -1,5 +1,5 @@
-import { Home } from './Home';
-import { Login } from './Login';
-import { Help } from './Help';
+import { Home } from './Home'
+import { Login } from './Login'
+import { Help } from './Help'
 
-export { Home, Login, Help };
+export { Home, Login, Help }

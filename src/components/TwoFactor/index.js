@@ -1,2 +1,2 @@
-import TwoFactor from './TwoFactor.jsx';
-export { TwoFactor };
+import TwoFactor from './TwoFactor.jsx'
+export { TwoFactor }
