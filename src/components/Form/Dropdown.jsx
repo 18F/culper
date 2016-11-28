@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class Textarea extends React.Component {
+export class Dropdown extends React.Component {
   constructor (props) {
     super(props)
 
@@ -84,7 +84,9 @@ export class Textarea extends React.Component {
       <div className={this.divClass()}>
         <label className={this.labelClass()} htmlFor={this.state.name}>{this.state.label}</label>
         <span className={this.spanClass()} id={this.errorName()} role="alert">{this.state.help}</span>
-        <textarea className={this.inputClass()} id={this.state.name} name={this.state.name} aria-described-by={this.errorName()}></textarea>
+        <select className={this.inputClass()} id={this.state.name} name={this.state.name} aria-described-by={this.errorName()}>
+          {this.props.children}
+        </select>
       </div>
     )
   }
