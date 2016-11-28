@@ -29,7 +29,8 @@ describe('Authentication Reducer', function () {
     const expectedState = {
       authenticated: false,
       token: null,
-      twofactor: false
+      twofactor: false,
+      qrcode: null
     }
 
     const action = {

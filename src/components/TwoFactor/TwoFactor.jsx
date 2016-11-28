@@ -20,17 +20,12 @@ class TwoFactor extends React.Component {
   componentDidMount () {
     if (!this.state.isVerified) {
       // Get the QR code from the API
-      let self = this
-      this.props.dispatch(
-        qrcode(this.state.username)
-          .then(function (response) {
-            self.setState({png: response.data})
-          }))
+      this.props.dispatch(qrcode(this.state.username))
     }
   }
 
   base64png () {
-    return 'data:image/png;base64,' + this.state.png
+    return 'data:image/png;base64,' + this.props.qrcode
   }
 
   handleChange (event) {
@@ -74,7 +69,8 @@ function mapStateToProps (state) {
   return {
     authenticated: auth.authenticated,
     twofactor: auth.twofactor,
-    token: auth.token
+    token: auth.token,
+    qrcode: auth.qrcode
   }
 }
 

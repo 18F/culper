@@ -31,8 +31,14 @@ export function logout () {
   }
 }
 
-export function qrcode (account, token) {
-  return api.twoFactor(account)
+export function qrcode (account) {
+  return function (dispatch) {
+    return api
+        .twoFactor(account)
+        .then(response => {
+          dispatch(handleTwoFactorQrCode(response.data))
+        })
+  }
 }
 
 export function twofactor (account, token) {
@@ -64,6 +70,13 @@ export function handleLoginSuccess (token) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,
     token: token
+  }
+}
+
+export function handleTwoFactorQrCode (png) {
+  return {
+    type: AuthConstants.TWOFACTOR_QRCODE,
+    qrcode: png
   }
 }
 

@@ -1,3 +1,4 @@
+// import { describe, it, expect } from 'jest'
 import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -44,6 +45,23 @@ describe('Auth actions', function () {
     ]
     store.dispatch(logout('john', 'admin'))
     expect(store.getActions()).toEqual(expectedAction)
+  })
+
+  it('should create an action to handle qrcode', function () {
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/2fa/john').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
+    const store = mockStore({ authentication: [] })
+    const expectedAction = [
+        {
+            qrcode: 'aernstiaenstieanstieansitenaiestnaientsi',
+            type: AuthConstants.TWOFACTOR_QRCODE
+        }
+    ]
+    return store
+            .dispatch(qrcode('john'))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedAction)
+            })
   })
 
   it('should create an action to handle twofactor auth', function () {
