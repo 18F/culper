@@ -1,7 +1,10 @@
 {
-    "extends": "standard",
-    "plugins": [
-        "standard",
-        "promise"
-    ]
+  "extends": "standard",
+  "env": {
+    "jest": true
+  },
+  "plugins": [
+    "standard",
+    "promise"
+  ]
 }

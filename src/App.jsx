@@ -1,32 +1,30 @@
-import React from 'react';
-import { Login } from './components';
-import { GithubOAuth } from './services';
-import { connect } from 'react-redux';
-import { login, logout } from './actions/AuthActions';
+import React from 'react'
+import { connect } from 'react-redux'
 
 export class App extends React.Component {
-    constructor (props) {
-        super(props);
-        this.logout = this.logout.bind(this);
-    }
+  constructor (props) {
+    super(props)
+    this.logout = this.logout.bind(this)
+  }
 
-    logout () {
-        window.location = window.location.pathname;
-    }
+  logout () {
+    window.location = window.location.pathname
+  }
 
-    render () {
-        let logoutButton = this.props.authenticated ?
-            (<button onClick={this.logout}>Logout</button>) : null;
+  render () {
+    let logoutButton = this.props.authenticated
+        ? (<button onClick={this.logout}>Logout</button>)
+        : null
 
-        return (
-            <div>
-                <h1>E-QIP Prototype</h1>
-                <div>Authenticated: {this.props.authenticated ? 'Si' : 'No' }</div>
-                {logoutButton}
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+      <div>
+        <h1>E-QIP Prototype</h1>
+        <div>Authenticated: {this.props.authenticated ? 'Si' : 'No' }</div>
+        {logoutButton}
+        {this.props.children}
+      </div>
+    )
+  }
 }
 
 /**
@@ -36,15 +34,14 @@ export class App extends React.Component {
  * method is executed which causes a re-render.
  *
  */
-function mapStateToProps(state) {
-    const auth = state.authentication;
-    return {
-        authenticated: auth.authenticated,
-        token: auth.token
-    };
+function mapStateToProps (state) {
+  const auth = state.authentication
+  return {
+    authenticated: auth.authenticated,
+    token: auth.token
+  }
 }
-
 
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)
