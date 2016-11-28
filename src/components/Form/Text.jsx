@@ -8,6 +8,7 @@ export class Text extends React.Component {
       name: props.name,
       label: props.label,
       placeholder: props.placeholder,
+      value: props.value,
       help: props.help,
       focus: props.focus || false,
       error: props.error || false,
@@ -85,7 +86,7 @@ export class Text extends React.Component {
       <div className={this.divClass()}>
         <label className={this.labelClass()} htmlFor={this.state.name}>{this.state.label}</label>
         <span className={this.spanClass()} id={this.errorName()} role="alert">{this.state.help}</span>
-        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="text" placeholder={this.state.placeholder} aria-described-by={this.errorName()} />
+        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="text" placeholder={this.state.placeholder} aria-described-by={this.errorName()} value={this.state.value} />
       </div>
     )
   }

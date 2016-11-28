@@ -1,12 +1,13 @@
 import React from 'react'
 
-export class Textarea extends React.Component {
+export class Checkbox extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
       name: props.name,
       label: props.label,
+      checked: false,
       value: props.value,
       help: props.help,
       focus: props.focus || false,
@@ -83,9 +84,9 @@ export class Textarea extends React.Component {
   render () {
     return (
       <div className={this.divClass()}>
+        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="checkbox" aria-described-by={this.errorName()} value={this.state.value} />
         <label className={this.labelClass()} htmlFor={this.state.name}>{this.state.label}</label>
         <span className={this.spanClass()} id={this.errorName()} role="alert">{this.state.help}</span>
-        <textarea className={this.inputClass()} id={this.state.name} name={this.state.name} aria-described-by={this.errorName()}>{this.state.value}</textarea>
       </div>
     )
   }
