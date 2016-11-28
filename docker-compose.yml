@@ -1,5 +1,10 @@
 db:
+  ports:
+    - "5432:5432"
   image: postgres
+  volumes:
+    - ./db/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+    - ./db/data.sql:/docker-entrypoint-initdb.d/2-data.sql
 web:
   image: abiosoft/caddy
   volumes:
