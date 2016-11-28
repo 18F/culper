@@ -10,13 +10,15 @@ class Api {
     this.proxySecured = axios.create({
       baseURL: 'http://localhost:3000',
       timeout: 1000,
-      headers: {'Authorization': ''}
+      headers: {
+        'Authorization': ''
+      }
     })
   }
 
-  /**
-   * Helper method to extract query parameters from the url
-   */
+    /**
+     * Helper method to extract query parameters from the url
+     */
   getQueryValue (key) {
     let query = window.location.search.substring(1)
     let vars = query.split('&')
@@ -46,12 +48,13 @@ class Api {
     return this.proxy.get('/')
   }
 
-  twoFactor (token) {
+  twoFactor (account, token) {
+    // TODO: Fix secure proxy
     if (token) {
-      return this.proxySecured.post('/2fa/verify', { token: token })
+      return this.proxy.post('/2fa/' + account + '/verify', { token: token })
     }
 
-    return this.proxySecured.get('/2fa')
+    return this.proxy.get('/2fa/' + account)
   }
 
   login (username, password) {

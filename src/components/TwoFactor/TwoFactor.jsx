@@ -1,11 +1,14 @@
 import React from 'react'
-import { api } from '../../services'
+import { connect } from 'react-redux'
+import { qrcode, twofactor } from '../../actions/AuthActions'
+import { api } from '../../services/api'
 
-export default class TwoFactor extends React.Component {
+class TwoFactor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       isVerified: false,
+      username: this.props.username,
       token: '',
       png: ''
     }
@@ -15,44 +18,24 @@ export default class TwoFactor extends React.Component {
   }
 
   componentDidMount () {
-    if (!this.states.isVerified) {
+    if (!this.state.isVerified) {
       // Get the QR code from the API
-      api.twoFactor()
-        .then(function (response) {
-          this.setState({png: response.data})
-        })
+      this.props.dispatch(qrcode(this.state.username))
     }
   }
 
-  base65png () {
-    return 'data:image/png;base64,' + this.state.png
+  base64png () {
+    return 'data:image/png;base64,' + this.props.qrcode
   }
 
   handleChange (event) {
-    this.setState({token: event.target.value})
+    this.setState({ token: event.target.value })
   }
 
   handleSubmit (event) {
-    event.preventDefault()
     // Send request to API to validate token
-    api.twoFactor(this.states.token)
-      .then(function (response) {
-        // TODO: Go to the next page or something...
-        this.setState({isVerified: true})
-      })
-      .catch(function (error) {
-        if (error.response) {
-          switch (error.response.status) {
-            case 500:
-            // Internal Server Error
-              break
-
-            case 401:
-            // Unauthorized
-              break
-          }
-        }
-      })
+    event.preventDefault()
+    this.props.dispatch(twofactor(this.state.username, this.state.token))
   }
 
   render () {
@@ -66,7 +49,7 @@ export default class TwoFactor extends React.Component {
     } else {
       return (
         <div>
-          <img width="25" height="50" alt="Two factor authentication" src={this.base64png} />
+          <img width="256" height="256" alt="Two factor authentication" src={this.base64png()} />
           <input type="text" value={this.state.token} onChange={this.handleChange} />
           <button type="button" onClick={this.handleSubmit}>Verify</button>
         </div>
@@ -74,3 +57,23 @@ export default class TwoFactor extends React.Component {
     }
   }
 }
+
+/**
+ * Maps the relevant subtree state from the applications state tree.
+ * In this case, we pull the authentication sub-state. This is mapped
+ * to the authentication reducer. When actions are dispatched, this
+ * method is executed which causes a re-render.
+ */
+function mapStateToProps (state) {
+  const auth = state.authentication
+  return {
+    authenticated: auth.authenticated,
+    twofactor: auth.twofactor,
+    token: auth.token,
+    qrcode: auth.qrcode
+  }
+}
+
+// Wraps the the App component with connect() which adds the dispatch()
+// function to the props property for this component
+export default connect(mapStateToProps)(TwoFactor)

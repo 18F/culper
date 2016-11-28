@@ -1,10 +1,13 @@
+import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { Home, Login, Help } from './views'
-import { hashHistory } from 'react-router'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess } from './actions/AuthActions'
+import { push } from './middleware/history'
 
 const app = document.getElementById('app')
 

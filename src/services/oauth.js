@@ -32,8 +32,8 @@ class OAuth {
   }
 
   refreshToken () {
-    if (token) {
-      // TODO: Just request a refreshed token
+    if (this.token) {
+            // TODO: Just request a refreshed token
       return
     }
 

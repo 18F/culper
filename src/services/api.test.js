@@ -11,11 +11,11 @@ describe('The API', () => {
 
     let actual = null
     api
-      .information()
-      .then(function (response) {
-        actual = response.data
-        expect(actual).toEqual(expected)
-      })
+            .information()
+            .then(function (response) {
+              actual = response.data
+              expect(actual).toEqual(expected)
+            })
   })
 
   it('can set authorization token', () => {
@@ -34,11 +34,11 @@ describe('The API', () => {
     let actual = null
     api.setToken('my-token')
     api
-      .twoFactor()
-      .then(function (response) {
-        actual = response.data
-        expect(actual).toEqual(expected)
-      })
+            .twoFactor()
+            .then(function (response) {
+              actual = response.data
+              expect(actual).toEqual(expected)
+            })
   })
 
   it('can get verify token with two-factor authentication', () => {
@@ -49,12 +49,12 @@ describe('The API', () => {
     let actual = null
     api.setToken('my-token')
     api
-      .twoFactor('123456')
-      .then(function (response) {
-        actual = response.data
-        console.log('expected: ' + expected + ', actual: ' + actual)
-        expect(actual).toEqual(expected)
-      })
+            .twoFactor('123456')
+            .then(function (response) {
+              actual = response.data
+              console.log('expected: ' + expected + ', actual: ' + actual)
+              expect(actual).toEqual(expected)
+            })
   })
 
   it('can login user', () => {
@@ -62,10 +62,10 @@ describe('The API', () => {
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/basic/auth').reply(200, expected)
     api
-      .login('john', 'admin')
-      .then(function (response) {
-        expect(response.data).toEqual(expected)
-      })
+            .login('john', 'admin')
+            .then(function (response) {
+              expect(response.data).toEqual(expected)
+            })
   })
 
   it('can parse query parameters from url', () => {

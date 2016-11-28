@@ -7,12 +7,12 @@ export const PUSH_STATE = 'PUSH'
  * dispatched in order to change router paths.
  */
 export const historyMiddleware = store => next => action => {
-  // If we get a PUSH_STATE type, modify hisory
+    // If we get a PUSH_STATE type, modify hisory
   if (action.type === PUSH_STATE) {
     return hashHistory.push(action.to)
   }
 
-  // Allow redux to continue the flow and executing the next middleware
+    // Allow redux to continue the flow and executing the next middleware
   next(action)
 }
 

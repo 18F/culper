@@ -1,7 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router'
 import AuthenticatedView from '../AuthenticatedView'
 
 class Home extends React.Component {
+
+  constructor (props) {
+    super(props)
+  }
+
   render () {
     return (
       <div>

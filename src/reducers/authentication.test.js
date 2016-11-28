@@ -14,9 +14,10 @@ describe('Authentication Reducer', function () {
   it('should handle login success', function () {
     const expectedState = {
       authenticated: true,
-      token: 'faketoken'
-
+      token: 'faketoken',
+      twofactor: false
     }
+
     const action = {
       type: AuthConstants.LOGIN_SUCCESS,
       token: 'faketoken'
@@ -27,9 +28,11 @@ describe('Authentication Reducer', function () {
   it('should handle logout', function () {
     const expectedState = {
       authenticated: false,
-      token: null
-
+      token: null,
+      twofactor: false,
+      qrcode: null
     }
+
     const action = {
       type: AuthConstants.LOGOUT
     }

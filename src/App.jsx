@@ -1,5 +1,8 @@
 import React from 'react'
+import { Login } from './components'
+import { GithubOAuth } from './services'
 import { connect } from 'react-redux'
+import { login, logout } from './actions/AuthActions'
 
 export class App extends React.Component {
   constructor (props) {
@@ -12,14 +15,14 @@ export class App extends React.Component {
   }
 
   render () {
-    let logoutButton = this.props.authenticated
-        ? (<button onClick={this.logout}>Logout</button>)
-        : null
+    let logoutButton = this.props.authenticated ?
+        (<button onClick={this.logout}>Logout</button>) : null
 
     return (
       <div>
         <h1>E-QIP Prototype</h1>
-        <div>Authenticated: {this.props.authenticated ? 'Si' : 'No' }</div>
+        <div>Basic authenticated: {this.props.authenticated ? 'Yes' : 'No' }</div>
+        <div>Two-factor authentication: {this.props.twofactor ? 'Yes' : 'No' }</div>
         {logoutButton}
         {this.props.children}
       </div>
@@ -38,6 +41,7 @@ function mapStateToProps (state) {
   const auth = state.authentication
   return {
     authenticated: auth.authenticated,
+    twofactor: auth.twofactor,
     token: auth.token
   }
 }
