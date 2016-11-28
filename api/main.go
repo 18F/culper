@@ -30,9 +30,9 @@ func main() {
 	r.HandleFunc("/", rootHandler)
 
 	s := r.PathPrefix("/").Subrouter()
-	s.HandleFunc("/2fa", twofactorHandler)
-	s.HandleFunc("/2fa/verify", twofactorVerifyHandler)
-	s.HandleFunc("/2fa/email", twofactorEmailHandler)
+	s.HandleFunc("/2fa/{account}", twofactorHandler)
+	s.HandleFunc("/2fa/{account}/verify", twofactorVerifyHandler)
+	s.HandleFunc("/2fa/{account}/email", twofactorEmailHandler)
 	s.HandleFunc("/form", rootHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
