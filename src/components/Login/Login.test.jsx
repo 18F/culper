@@ -1,5 +1,7 @@
+import React from 'react'
+import Login from './Login'
 import { shallow } from 'enzyme'
-import { GithubOAuth } from '../../services'
+import { GithubOAuth, OAuth } from '../../services'
 
 describe('The login button', () => {
   it('renders login button if not authenticated', () => {

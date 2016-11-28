@@ -1,5 +1,7 @@
+import React from 'react'
 import MockAdapter from 'axios-mock-adapter'
 import { api } from '../../services'
+import TwoFactor from './TwoFactor'
 import { shallow } from 'enzyme'
 
 describe('The two factor authenictaction component', () => {
