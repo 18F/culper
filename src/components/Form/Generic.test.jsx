@@ -1,8 +1,8 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import { Text } from './Text'
+import { shallow } from 'enzyme'
+import { Generic } from './Generic'
 
-describe('The text component', () => {
+describe('The generic component', () => {
   it('renders appropriately with an error', () => {
     const expected = {
       name: 'input-error',
@@ -11,10 +11,9 @@ describe('The text component', () => {
       type: 'text',
       error: true,
       focus: false,
-      valid: false,
-      readonly: true
+      valid: false
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} readonly={expected.readonly} />)
+    const component = shallow(<Generic name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('span.usa-input-error-message').text()).toEqual(expected.help)
@@ -31,7 +30,7 @@ describe('The text component', () => {
       focus: true,
       valid: false
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
@@ -48,7 +47,7 @@ describe('The text component', () => {
       focus: false,
       valid: true
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
@@ -65,7 +64,7 @@ describe('The text component', () => {
       focus: false,
       valid: false
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('span.hidden').length).toEqual(1)

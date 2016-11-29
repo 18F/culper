@@ -8,12 +8,44 @@ export class Radio extends React.Component {
       name: props.name,
       label: props.label,
       checked: false,
-      value: props.value,
       help: props.help,
+
+      disabled: props.disabled,
+      maxlength: props.maxlength,
+      pattern: props.pattern,
+      readonly: props.readonly,
+      required: props.required,
+      value: props.value,
+
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+  }
+
+  /**
+   * Handle the change event.
+   */
+  handleChange (event) {
+    this.setState({ value: event.target.value })
+  }
+
+  /**
+   * Handle the focus event.
+   */
+  handleFocus (event) {
+    this.setState({ focus: true })
+  }
+
+  /**
+   * Handle the blur event.
+   */
+  handleBlur (event) {
+    this.setState({ focus: false })
   }
 
   /**
@@ -84,9 +116,27 @@ export class Radio extends React.Component {
   render () {
     return (
       <div className={this.divClass()}>
-        <input className={this.inputClass()} id={this.state.name} name={this.state.name} type="radio" aria-described-by={this.errorName()} value={this.state.value} />
-        <label className={this.labelClass()} htmlFor={this.state.name}>{this.state.label}</label>
-        <span className={this.spanClass()} id={this.errorName()} role="alert">{this.state.help}</span>
+        <input className={this.inputClass()}
+               id={this.state.name}
+               name={this.state.name}
+               type="radio"
+               aria-described-by={this.errorName()}
+
+               disabled={this.state.disabled}
+               maxlength={this.state.maxlength}
+               pattern={this.state.pattern}
+               readonly={this.state.readonly}
+               required={this.state.required}
+               value={this.state.value} />
+        <label className={this.labelClass()}
+               htmlFor={this.state.name}>
+          {this.state.label}
+        </label>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
       </div>
     )
   }

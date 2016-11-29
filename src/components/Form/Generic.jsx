@@ -1,13 +1,15 @@
 import React from 'react'
 
-export class Dropdown extends React.Component {
+export class Generic extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
       name: props.name,
       label: props.label,
+      placeholder: props.placeholder,
       help: props.help,
+      type: props.type,
 
       disabled: props.disabled,
       maxlength: props.maxlength,
@@ -112,6 +114,13 @@ export class Dropdown extends React.Component {
     return klass.trim()
   }
 
+  /**
+   * Return a boolean value used for attributes which stutter.
+   */
+  redundant (flag, attribute) {
+    return flag || false
+  }
+
   render () {
     return (
       <div className={this.divClass()}>
@@ -124,19 +133,21 @@ export class Dropdown extends React.Component {
               role="alert">
           {this.state.help}
         </span>
-        <select className={this.inputClass()}
-                id={this.state.name}
-                name={this.state.name}
-                aria-described-by={this.errorName()}
-
-                disabled={this.state.disabled}
-                maxlength={this.state.maxlength}
-                pattern={this.state.pattern}
-                readonly={this.state.readonly}
-                required={this.state.required}
-                value={this.state.value}>
-          {this.props.children}
-        </select>
+        <input className={this.inputClass()}
+               id={this.state.name}
+               name={this.state.name}
+               type={this.state.type}
+               placeholder={this.state.placeholder}
+               aria-described-by={this.errorName()}
+               disabled={this.redundant(this.state.disabled, 'disabled')}
+               maxLength={this.state.maxlength}
+               pattern={this.state.pattern}
+               readOnly={this.redundant(this.state.readonly, 'readonly')}
+               required={this.redundant(this.state.required, 'required')}
+               value={this.state.value}
+               onChange={this.handleChange}
+               onFocus={this.handleFocus}
+               onBlur={this.handleBlur} />
       </div>
     )
   }

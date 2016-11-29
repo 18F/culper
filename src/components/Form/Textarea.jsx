@@ -7,12 +7,44 @@ export class Textarea extends React.Component {
     this.state = {
       name: props.name,
       label: props.label,
-      value: props.value,
       help: props.help,
+
+      disabled: props.disabled,
+      maxlength: props.maxlength,
+      pattern: props.pattern,
+      readonly: props.readonly,
+      required: props.required,
+      value: props.value,
+
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+  }
+
+  /**
+   * Handle the change event.
+   */
+  handleChange (event) {
+    this.setState({ value: event.target.value })
+  }
+
+  /**
+   * Handle the focus event.
+   */
+  handleFocus (event) {
+    this.setState({ focus: true })
+  }
+
+  /**
+   * Handle the blur event.
+   */
+  handleBlur (event) {
+    this.setState({ focus: false })
   }
 
   /**
@@ -83,9 +115,28 @@ export class Textarea extends React.Component {
   render () {
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()} htmlFor={this.state.name}>{this.state.label}</label>
-        <span className={this.spanClass()} id={this.errorName()} role="alert">{this.state.help}</span>
-        <textarea className={this.inputClass()} id={this.state.name} name={this.state.name} aria-described-by={this.errorName()}>{this.state.value}</textarea>
+        <label className={this.labelClass()}
+               htmlFor={this.state.name}>
+          {this.state.label}
+        </label>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
+        <textarea className={this.inputClass()}
+                  id={this.state.name}
+                  name={this.state.name}
+                  aria-described-by={this.errorName()}
+
+                  disabled={this.state.disabled}
+                  maxlength={this.state.maxlength}
+                  pattern={this.state.pattern}
+                  readonly={this.state.readonly}
+                  required={this.state.required}
+                  value={this.state.value}>
+          {this.state.value}
+        </textarea>
       </div>
     )
   }

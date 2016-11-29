@@ -1,7 +1,7 @@
 import React from 'react'
 import { Generic } from './Generic'
 
-export class Text extends React.Component {
+export class Telephone extends React.Component {
   constructor (props) {
     super(props)
 
@@ -30,7 +30,7 @@ export class Text extends React.Component {
                label={this.state.label}
                placeholder={this.state.placeholder}
                help={this.state.help}
-               type="text"
+               type="tel"
                disabled={this.state.disabled}
                maxlength={this.state.maxlength}
                pattern={this.state.pattern}

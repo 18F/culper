@@ -1,24 +1,32 @@
 import React from 'react'
 
-export class Dropdown extends React.Component {
+export class Number extends React.Component {
   constructor (props) {
     super(props)
 
+    console.log('number value: ', props.value || '<none>')
     this.state = {
       name: props.name,
       label: props.label,
+      placeholder: props.placeholder,
       help: props.help,
 
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
+      disabled: false,
+      min: 0,
+      max: 9999,
+      maxlength: 0,
+      readonly: false,
+      required: false,
+      step: 1,
       value: props.value,
 
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+
+      onChange: props.onChange,
+      onFocus: props.onFocus,
+      onBlur: props.onBlur
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -31,6 +39,9 @@ export class Dropdown extends React.Component {
    */
   handleChange (event) {
     this.setState({ value: event.target.value })
+    if (this.state.onChange) {
+      this.state.onChange(event)
+    }
   }
 
   /**
@@ -38,6 +49,9 @@ export class Dropdown extends React.Component {
    */
   handleFocus (event) {
     this.setState({ focus: true })
+    if (this.state.onFocus) {
+      this.state.onFocus(event)
+    }
   }
 
   /**
@@ -45,6 +59,9 @@ export class Dropdown extends React.Component {
    */
   handleBlur (event) {
     this.setState({ focus: false })
+    if (this.state.onBlur) {
+      this.state.onBlur(event)
+    }
   }
 
   /**
@@ -124,19 +141,25 @@ export class Dropdown extends React.Component {
               role="alert">
           {this.state.help}
         </span>
-        <select className={this.inputClass()}
-                id={this.state.name}
-                name={this.state.name}
-                aria-described-by={this.errorName()}
+        <input className={this.inputClass()}
+               id={this.state.name}
+               name={this.state.name}
+               type="number"
+               placeholder={this.state.placeholder}
+               aria-described-by={this.errorName()}
 
-                disabled={this.state.disabled}
-                maxlength={this.state.maxlength}
-                pattern={this.state.pattern}
-                readonly={this.state.readonly}
-                required={this.state.required}
-                value={this.state.value}>
-          {this.props.children}
-        </select>
+               disabled={this.state.disabled}
+               max={this.state.max}
+               maxlength={this.state.maxlength}
+               min={this.state.min}
+               readonly={this.state.readonly}
+               required={this.state.required}
+               step={this.state.step}
+               value={this.state.value}
+
+               onChange={this.handleChange}
+               onFocus={this.handleFocus}
+               onBlur={this.handleBlur} />
       </div>
     )
   }
