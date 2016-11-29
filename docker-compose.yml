@@ -3,8 +3,7 @@ db:
     - "5432:5432"
   image: postgres
   volumes:
-    - ./db/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
-    - ./db/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    - ./db:/docker-entrypoint-initdb.d
 web:
   image: abiosoft/caddy
   volumes:
@@ -41,4 +40,4 @@ api:
   environment:
     DATABASE_USER: postgres
     DATABASE_NAME: postgres
-    DATABASE_HOST: db
+    DATABASE_HOST: db:5432

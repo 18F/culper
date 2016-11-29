@@ -107,6 +107,12 @@
 			"revisionTime": "2016-03-17T21:34:30Z"
 		},
 		{
+			"checksumSHA1": "ZtoqVjpOE8VF9n6Ebqyu4vTUYas=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff",
+			"revisionTime": "2016-08-17T01:46:01Z"
+		},
+		{
 			"checksumSHA1": "GpOUEm/XeltYiaNnFk0/aswAbqw=",
 			"path": "github.com/keighl/mandrill",
 			"revision": "6a59523fcf7d27e9230141f0e2563ba976a92b8f",
@@ -147,6 +153,18 @@
 			"path": "github.com/skip2/go-qrcode/reedsolomon",
 			"revision": "5bfceac8c4950ff8f735525ddcde5a6b08d77ab6",
 			"revisionTime": "2016-01-24T02:09:45Z"
+		},
+		{
+			"checksumSHA1": "vE43s37+4CJ2CDU6TlOUOYE0K9c=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "ca7e7f10cb9fd9c1a6ff7f60436c086d73714180",
+			"revisionTime": "2016-10-25T12:52:55Z"
+		},
+		{
+			"checksumSHA1": "JsJdKXhz87gWenMwBeejTOeNE7k=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "ca7e7f10cb9fd9c1a6ff7f60436c086d73714180",
+			"revisionTime": "2016-10-25T12:52:55Z"
 		},
 		{
 			"checksumSHA1": "9jjO5GjLa0XF/nfWihF02RoH4qc=",
@@ -267,6 +285,42 @@
 			"path": "google.golang.org/appengine/internal/remote_api",
 			"revision": "ca59ef35f409df61fa4a5f8290ff289b37eccfb8",
 			"revisionTime": "2016-11-15T22:01:06Z"
+		},
+		{
+			"checksumSHA1": "w8wfY8necRT44+sNiYkhzr3P0rY=",
+			"path": "gopkg.in/pg.v5",
+			"revision": "928395edae976afcde768237b77d07b312aa5c0d",
+			"revisionTime": "2016-11-26T14:06:10Z"
+		},
+		{
+			"checksumSHA1": "a2+15tYuxbRmtPu7JOcZwEGBEx4=",
+			"path": "gopkg.in/pg.v5/internal",
+			"revision": "928395edae976afcde768237b77d07b312aa5c0d",
+			"revisionTime": "2016-11-26T14:06:10Z"
+		},
+		{
+			"checksumSHA1": "g6++cRsSL1459wmeAcPTNU8I4ZU=",
+			"path": "gopkg.in/pg.v5/internal/parser",
+			"revision": "928395edae976afcde768237b77d07b312aa5c0d",
+			"revisionTime": "2016-11-26T14:06:10Z"
+		},
+		{
+			"checksumSHA1": "1OFRwv5OwsMfGVKE2MobQ4FxtdE=",
+			"path": "gopkg.in/pg.v5/internal/pool",
+			"revision": "928395edae976afcde768237b77d07b312aa5c0d",
+			"revisionTime": "2016-11-26T14:06:10Z"
+		},
+		{
+			"checksumSHA1": "JeWtSLo0+NE1b+1hkuuRrgqgrqs=",
+			"path": "gopkg.in/pg.v5/orm",
+			"revision": "928395edae976afcde768237b77d07b312aa5c0d",
+			"revisionTime": "2016-11-26T14:06:10Z"
+		},
+		{
+			"checksumSHA1": "UybFKSXlgXMS+fbsTZx52Mcvf+8=",
+			"path": "gopkg.in/pg.v5/types",
+			"revision": "928395edae976afcde768237b77d07b312aa5c0d",
+			"revisionTime": "2016-11-26T14:06:10Z"
 		},
 		{
 			"path": "io",

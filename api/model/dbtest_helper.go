@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"log"
 
+	"github.com/truetandem/e-QIP-prototype/api/db"
+
 	pg "gopkg.in/pg.v5"
 )
 
@@ -18,9 +20,6 @@ func LoadSchema(db *pg.DB) {
 }
 
 func NewTestDB() *pg.DB {
-	db := pg.Connect(&pg.Options{
-		User:     "postgres",
-		Database: "postgres",
-	})
+	db := db.NewDB()
 	return db
 }

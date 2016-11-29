@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"log"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -39,6 +40,7 @@ func (a *Account) WithContext(ctx *pg.DB) {
 func (a *Account) BasicAuthentication(password string) error {
 	var basicMembership BasicAuthMembership
 
+	fmt.Println(a.db)
 	// Find if basic auth record exists for given account username
 	err := a.db.Model(&basicMembership).
 		Column("basic_auth_membership.*", "Account").
@@ -46,6 +48,7 @@ func (a *Account) BasicAuthentication(password string) error {
 		Select()
 
 	if err != nil {
+		log.Println(err)
 		return ErrAccoundDoesNotExist
 	}
 
