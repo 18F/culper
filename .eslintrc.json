@@ -5,6 +5,10 @@
     },
     "plugins": [
         "standard",
-        "promise"
-    ]
+        "promise",
+        "react"
+    ],
+    "rules" : {
+      "react/jsx-uses-vars" : 1
+    }
 }
