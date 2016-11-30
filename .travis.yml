@@ -19,7 +19,7 @@ after_script:
   - pa11y-crawl --run "docker-compose up" --ci http://localhost:8080
 
 before_deploy:
- - ./before-deploy.sh
+ - ./bin/before-deploy.sh
 deploy:
   - provider: script
     script: "./bin/deploy.sh staging"
