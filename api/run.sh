@@ -1,4 +1,4 @@
 #! /bin/sh
 
-./docker-build.sh
+./build.sh
 ./api 2>&1

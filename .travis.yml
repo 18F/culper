@@ -1,38 +1,35 @@
 language: node
 
-env:
-  DOCKER_COMPOSE_VERSION: 1.4.2
-
 services:
   - docker
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/1.4.2/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
 script:
   - docker-compose build
-  - docker-compose run api ./docker-test.sh
+  - docker-compose run api ./test.sh
   - docker-compose run frontend npm test
 
 after_script:
   - npm install -g pa11y-crawl
   - pa11y-crawl --run "docker-compose up" --ci http://localhost:8080
 
-#before_deploy:
-#  - npm run build
-# deploy:
-#   - provider: script
-#     script: "./bin/deploy.sh staging"
-#     skip_cleanup: true
-#     on:
-#       branch: master
-#       repo: truetandem/e-QIP-prototype
-#   - provider: script
-#     script: "./bin/deploy.sh release"
-#     skip_cleanup: true
-#     on:
-#       branch: master
-#       repo: 18F/e-QIP-prototype
+before_deploy:
+ - ./before-deploy.sh
+deploy:
+  - provider: script
+    script: "./bin/deploy.sh staging"
+    skip_cleanup: true
+    on:
+      branch: master
+      repo: truetandem/e-QIP-prototype
+  - provider: script
+    script: "./bin/deploy.sh production"
+    skip_cleanup: true
+    on:
+      branch: master
+      repo: 18F/e-QIP-prototype
