@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ func TestRoot(t *testing.T) {
 	}
 
 	rec := httptest.NewRecorder()
-	handler := http.HandlerFunc(rootHandler)
+	handler := http.HandlerFunc(RootHandler)
 	handler.ServeHTTP(rec, req)
 	if status := rec.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)

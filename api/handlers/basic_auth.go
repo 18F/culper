@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"net/http"
@@ -7,8 +7,7 @@ import (
 	"github.com/truetandem/e-QIP-prototype/api/model"
 )
 
-// Logs in a user and generates a jwt token
-func basicAuthHandler(w http.ResponseWriter, r *http.Request) {
+func BasicAuth(w http.ResponseWriter, r *http.Request) {
 
 	var respBody struct {
 		Username string

@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ var (
 )
 
 // authServiceHandler is the initial entry point for authentication.
-func authServiceHandler(w http.ResponseWriter, r *http.Request) {
+func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	service := vars["service"]
 
@@ -34,7 +34,7 @@ func authServiceHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // authCallbackHandler handles responses from the authentication provider.
-func authCallbackHandler(w http.ResponseWriter, r *http.Request) {
+func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	service := vars["service"]
 	config, ok := configureAuthentication(service)

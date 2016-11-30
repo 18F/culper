@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ var (
 
 // twofactorHandler is the initial entry and subscription for two-factor
 // authentication.
-func twofactorHandler(w http.ResponseWriter, r *http.Request) {
+func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	account := vars["account"]
 
@@ -28,7 +28,7 @@ func twofactorHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // twofactorVerifyHandler verifies a token provided by the end user.
-func twofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
+func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	var body struct {
 		Token string
 	}
@@ -48,7 +48,7 @@ func twofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "")
 }
 
-func twofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
+func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 	err := twofactor.Email("fake@mail.gov", secret)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
