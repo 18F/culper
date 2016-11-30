@@ -10,14 +10,6 @@ import (
 	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
 )
 
-var (
-	// APIName ...
-	APIName = "eqip"
-
-	// APIVersion ...
-	APIVersion = "v1"
-)
-
 func getPort() string {
 	port := os.Getenv("PORT")
 	if port == "" {

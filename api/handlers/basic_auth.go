@@ -15,7 +15,7 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := DecodeJSON(r.Body, &respBody); err != nil {
-		http.Error(w, err.Error(), 500)
+		ErrorJSON(w, r, err)
 		return
 	}
 
@@ -28,14 +28,14 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 
 	// Make sure username and password are valid
 	if err := account.BasicAuthentication(respBody.Password); err != nil {
-		http.Error(w, err.Error(), 500)
+		ErrorJSON(w, r, err)
 		return
 	}
 
 	// Generate jwt token
 	signedToken, _, err := account.NewJwtToken()
 	if err != nil {
-		http.Error(w, err.Error(), 500)
+		ErrorJSON(w, r, err)
 		return
 	}
 
