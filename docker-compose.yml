@@ -26,11 +26,12 @@ frontend:
     - /usr/src/app/node_modules
   command: ./build-frontend.sh
 api:
-  image: golang
+  build: .
+  dockerfile: Dockerfile.api
   env_file:
     - .env
   working_dir: /go/src/github.com/truetandem/e-QIP-prototype/api
-  command: ./docker-run.sh
+  command: ./run.sh
   volumes:
     - .:/go/src/github.com/truetandem/e-QIP-prototype
   ports:

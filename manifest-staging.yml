@@ -1,0 +1,12 @@
+---
+applications:
+- name: eqip-prototype-staging
+  memory: 1G
+  instances: 2
+  domain: fr.cloud.gov
+  host: eqip-prototype-staging
+  buildpack: go_buildpack
+  command: api/run.sh
+  env:
+    GOVERSION: go1.7
+    GOPACKAGENAME: main

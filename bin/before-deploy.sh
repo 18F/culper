@@ -1,3 +1,5 @@
+echo "Running before-deploy script"
+
 npm run build
 
 export PATH=$HOME:$PATH
