@@ -1,0 +1,11 @@
+---
+applications:
+- name: eqip-prototype
+  memory: 1G
+  instances: 2
+  domain: fr.cloud.gov
+  host: eqip-prototype
+  buildpack: https://github.com/cloudfoundry/go-buildpack.git
+  command: api/run.sh
+  env:
+    GOPACKAGENAME: main

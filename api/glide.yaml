@@ -1,0 +1,26 @@
+package: github.com/truetandem/e-QIP-prototype/api
+import:
+- package: github.com/dgrijalva/jwt-go
+  version: v3.0.0
+- package: github.com/dgryski/dgoogauth
+- package: github.com/gorilla/handlers
+  version: v1.1
+- package: github.com/gorilla/mux
+  version: v1.1
+- package: github.com/keighl/mandrill
+  version: 1.1.0
+- package: github.com/microcosm-cc/bluemonday
+- package: github.com/russross/blackfriday
+  version: v1.4
+- package: github.com/skip2/go-qrcode
+- package: golang.org/x/crypto
+  subpackages:
+  - bcrypt
+- package: golang.org/x/oauth2
+  subpackages:
+  - facebook
+  - github
+  - google
+  - linkedin
+- package: gopkg.in/pg.v5
+  version: v5.1.2
