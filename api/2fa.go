@@ -32,7 +32,7 @@ func twofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	var body struct {
 		Token string
 	}
-	DecodeJSON(r, &body)
+	DecodeJSON(r.Body, &body)
 
 	ok, err := twofactor.Authenticate(body.Token, secret)
 	if err != nil {

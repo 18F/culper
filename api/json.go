@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 )
 
@@ -12,8 +13,8 @@ func EncodeJSON(w http.ResponseWriter, data interface{}) error {
 }
 
 // DecodeJSON decodes a request body to the specified interface
-func DecodeJSON(r *http.Request, v interface{}) error {
-	if err := json.NewDecoder(r.Body).Decode(v); err != nil {
+func DecodeJSON(r io.Reader, v interface{}) error {
+	if err := json.NewDecoder(r).Decode(v); err != nil {
 		return err
 	}
 	return nil

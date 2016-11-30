@@ -40,6 +40,11 @@ func main() {
 	o.HandleFunc("/{service}", authServiceHandler)
 	o.HandleFunc("/{service}/callback", authCallbackHandler)
 
+	a := r.PathPrefix("/account").Subrouter().Inject(JwtTokenValidatorHandler)
+	a.HandleFunc("/{id}", func(w http.ResponseWriter, r *http.Request) {
+		EncodeJSON(w, "Testing JwtToken")
+	}).Methods("GET")
+
 	log.Println("Starting API mock server")
 	fmt.Println(http.ListenAndServe(":"+getPort(), CORS(r)))
 }
