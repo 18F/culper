@@ -51,7 +51,6 @@ export function twofactor (account, token) {
             })
             .catch(function (error) {
               if (error.response) {
-                console.log('Two-factor authentication: ', error.response.data)
                 switch (error.response.status) {
                   case 500:
                         // Internal Server Error
