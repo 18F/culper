@@ -10,7 +10,7 @@ if [ $# -ne 1 ]; then
   exit
 fi
 
-cf login --a $API --u $CF_USERNAME --p $CF_PASSWORD --o $ORG -s $SPACE
+cf login -a $API -u $CF_USERNAME -p $CF_PASSWORD -o $ORG -s $SPACE
 
 if [ $SPACE = 'production' ]; then
   API_NAME="eqip-prototype-api"

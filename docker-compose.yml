@@ -18,7 +18,7 @@ web:
     DATABASE_HOST: db
 frontend:
   build: .
-  dockerfile: Dockerfile.yarn
+  dockerfile: Dockerfile.frontend
   env_file:
     - .env
   volumes:
