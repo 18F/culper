@@ -41,14 +41,14 @@ describe('The date component', () => {
       name: 'input-success',
       label: 'DateControl input success',
       help: 'Helpful error message',
-      error: false,
-      focus: false,
-      valid: true
+      value: '01-28-2016'
     }
-    const component = mount(<DateControl name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<DateControl name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} value={expected.value} />)
+    component.find('input#' + expected.name + '-month').simulate('change')
     expect(component.find('label').length).toEqual(3)
     expect(component.find('input#' + expected.name + '-month').length).toEqual(1)
-    // expect(component.find('input#' + expected.name + '-month').hasClass('usa-input-success')).toEqual(true)
+    expect(component.find('input#' + expected.name + '-month').nodes[0].value).toEqual('1')
+    expect(component.find('input#' + expected.name + '-month').hasClass('usa-input-success')).toEqual(true)
     expect(component.find('span.hidden').length).toEqual(3)
   })
 

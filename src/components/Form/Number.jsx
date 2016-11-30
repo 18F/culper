@@ -4,13 +4,11 @@ export class Number extends React.Component {
   constructor (props) {
     super(props)
 
-    console.log('number value: ', props.value || '<none>')
     this.state = {
       name: props.name,
       label: props.label,
       placeholder: props.placeholder,
       help: props.help,
-
       disabled: false,
       min: 0,
       max: 9999,
@@ -19,14 +17,9 @@ export class Number extends React.Component {
       required: false,
       step: 1,
       value: props.value,
-
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false,
-
-      onChange: props.onChange,
-      onFocus: props.onFocus,
-      onBlur: props.onBlur
+      valid: props.valid || false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -38,9 +31,12 @@ export class Number extends React.Component {
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value })
-    if (this.state.onChange) {
-      this.state.onChange(event)
+    this.setState({ value: event.target.value }, () => {
+      this.validate(event)
+    })
+
+    if (this.props.onChange) {
+      this.props.onChange(event)
     }
   }
 
@@ -49,8 +45,8 @@ export class Number extends React.Component {
    */
   handleFocus (event) {
     this.setState({ focus: true })
-    if (this.state.onFocus) {
-      this.state.onFocus(event)
+    if (this.props.onFocus) {
+      this.props.onFocus(event)
     }
   }
 
@@ -59,9 +55,57 @@ export class Number extends React.Component {
    */
   handleBlur (event) {
     this.setState({ focus: false })
-    if (this.state.onBlur) {
-      this.state.onBlur(event)
+    if (this.props.onBlur) {
+      this.props.onBlur(event)
     }
+  }
+
+  /**
+   * Execute validation checks on the value.
+   *
+   * Possible return values:
+   *  1. null: In a neutral state
+   *  2. false: Does not meet criterion and is deemed invalid
+   *  3. true: Meets all specified criterion
+   */
+  validate (event) {
+    let hits = 0
+    let status = true
+
+    if (this.state.value) {
+      if (this.state.min) {
+        status = status && this.state.value >= this.state.min
+        hits++
+      }
+
+      if (this.state.max) {
+        status = status && this.state.value <= this.state.max
+        hits++
+      }
+
+      if (this.state.maxlength && this.state.maxlength > 0) {
+        status = status && this.state.value.length > this.state.maxlength
+        hits++
+      }
+    }
+
+    // If nothing was tested then go back to neutral
+    if (hits === 0) {
+      status = null
+    }
+
+    // Set the internal state
+    this.setState({
+      error: status === false,
+      valid: status === true
+    })
+
+    // Bubble up to subscribers
+    if (this.props.onValidate) {
+      this.props.onValidate(event, status)
+    }
+
+    return status
   }
 
   /**
@@ -147,7 +191,6 @@ export class Number extends React.Component {
                type="number"
                placeholder={this.state.placeholder}
                aria-described-by={this.errorName()}
-
                disabled={this.state.disabled}
                max={this.state.max}
                maxlength={this.state.maxlength}
@@ -156,10 +199,10 @@ export class Number extends React.Component {
                required={this.state.required}
                step={this.state.step}
                value={this.state.value}
-
                onChange={this.handleChange}
                onFocus={this.handleFocus}
-               onBlur={this.handleBlur} />
+               onBlur={this.handleBlur}
+               />
       </div>
     )
   }

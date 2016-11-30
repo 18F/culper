@@ -10,26 +10,25 @@ export class DateControl extends React.Component {
       label: props.label,
       placeholder: props.placeholder,
       help: props.help,
-
       disabled: props.disabled,
       pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
       value: props.value,
-
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
-
       month: this.datePart('m', props.value),
       day: this.datePart('d', props.value),
       year: this.datePart('y', props.value),
-      focii: [false, false, false]
+      foci: [false, false, false],
+      validity: [null, null, null]
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   /**
@@ -95,15 +94,19 @@ export class DateControl extends React.Component {
       year: year,
       value: new Date(year, month, day)
     })
+
+    if (this.props.onChange) {
+      this.props.onChange(event)
+    }
   }
 
   /**
    * Handle the focus event.
    */
   handleFocus (event) {
-    let month = this.state.focii[0]
-    let day = this.state.focii[1]
-    let year = this.state.focii[2]
+    let month = this.state.foci[0]
+    let day = this.state.foci[1]
+    let year = this.state.foci[2]
 
     if (event.target.id.indexOf('-month') !== -1) {
       month = true
@@ -117,17 +120,21 @@ export class DateControl extends React.Component {
 
     this.setState({
       focus: month || day || year,
-      focii: [month, day, year]
+      foci: [month, day, year]
     })
+
+    if (this.props.onFocus) {
+      this.props.onFocus(event)
+    }
   }
 
   /**
    * Handle the blur event.
    */
   handleBlur (event) {
-    let month = this.state.focii[0]
-    let day = this.state.focii[1]
-    let year = this.state.focii[2]
+    let month = this.state.foci[0]
+    let day = this.state.foci[1]
+    let year = this.state.foci[2]
 
     if (event.target.id.indexOf('-month') !== -1) {
       month = false
@@ -141,8 +148,54 @@ export class DateControl extends React.Component {
 
     this.setState({
       focus: month || day || year,
-      focii: [month, day, year]
+      foci: [month, day, year]
     })
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event)
+    }
+  }
+
+  /**
+   * Handle the validation event.
+   */
+  handleValidation (event, status) {
+    let month = this.state.validity[0]
+    let day = this.state.validity[1]
+    let year = this.state.validity[2]
+
+    if (event.target.id.indexOf('-month') !== -1) {
+      month = status != null ? status : null
+    }
+    if (event.target.id.indexOf('-day') !== -1) {
+      day = status != null ? status : null
+    }
+    if (event.target.id.indexOf('-year') !== -1) {
+      year = status != null ? status : null
+    }
+
+    this.setState({
+      error: month === false && day === false && year === false,
+      valid: month === true && day === true && year === true,
+      validity: [month, day, year]
+    })
+
+    // To calculate the overall status of the component we need to consider
+    // what is valid when comparing all three child components.
+    //
+    //  1. If all of the children are in a neutral state then so is this component
+    //  2. If all of the children are in a valid state then so is this component
+    //  3. All other permutations assume an invalid state
+    let s = false
+    if (month === null && day === null && year === null) {
+      s = null
+    } else if (month === true && day === true && year === true) {
+      s = true
+    }
+
+    if (this.props.onValidation) {
+      this.props.onValidation(event, s)
+    }
   }
 
   /**
@@ -188,10 +241,12 @@ export class DateControl extends React.Component {
                   required={this.state.required}
                   step="1"
                   value={this.state.month}
-                  focus={this.state.focii[0]}
+                  focus={this.state.foci[0]}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
-                  onBlur={this.handleBlur} />
+                  onBlur={this.handleBlur}
+                  onValidation={this.handleValidation}
+                  />
         </div>
         <div className="usa-form-group usa-form-group-day">
           <Number id={this.partName('day')}
@@ -206,10 +261,12 @@ export class DateControl extends React.Component {
                   required={this.state.required}
                   step="1"
                   value={this.state.day}
-                  focus={this.state.focii[1]}
+                  focus={this.state.foci[1]}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
-                  onBlur={this.handleBlur} />
+                  onBlur={this.handleBlur}
+                  onValidation={this.handleValidation}
+                  />
         </div>
         <div className="usa-form-group usa-form-group-year">
           <Number id={this.partName('year')}
@@ -224,10 +281,12 @@ export class DateControl extends React.Component {
                   readonly={this.state.readonly}
                   step="1"
                   value={this.state.year}
-                  focus={this.state.focii[2]}
+                  focus={this.state.foci[2]}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
-                  onBlur={this.handleBlur} />
+                  onBlur={this.handleBlur}
+                  onValidation={this.handleValidation}
+                  />
         </div>
       </div>
     )

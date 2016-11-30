@@ -8,14 +8,12 @@ export class Textarea extends React.Component {
       name: props.name,
       label: props.label,
       help: props.help,
-
       disabled: props.disabled,
       maxlength: props.maxlength,
       pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
       value: props.value,
-
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
@@ -30,7 +28,13 @@ export class Textarea extends React.Component {
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value })
+    this.setState({ value: event.target.value }, () => {
+      this.validate(event)
+    })
+
+    if (this.props.onChange) {
+      this.props.onChange(event)
+    }
   }
 
   /**
@@ -38,6 +42,9 @@ export class Textarea extends React.Component {
    */
   handleFocus (event) {
     this.setState({ focus: true })
+    if (this.props.onFocus) {
+      this.props.onFocus(event)
+    }
   }
 
   /**
@@ -45,6 +52,57 @@ export class Textarea extends React.Component {
    */
   handleBlur (event) {
     this.setState({ focus: false })
+    if (this.props.onBlur) {
+      this.props.onBlur(event)
+    }
+  }
+
+  /**
+   * Execute validation checks on the value.
+   *
+   * Possible return values:
+   *  1. null: In a neutral state
+   *  2. false: Does not meet criterion and is deemed invalid
+   *  3. true: Meets all specified criterion
+   */
+  validate (event) {
+    let hits = 0
+    let status = true
+
+    if (this.state.value) {
+      if (this.state.maxlength && this.state.maxlength > 0) {
+        status = status && this.state.value.length > this.state.maxlength
+        hits++
+      }
+
+      if (this.state.pattern && this.state.pattern.length > 0) {
+        try {
+          let re = new RegExp(this.state.pattern)
+          status = status && re.exec(this.state.value) ? true : false
+          hits++
+        } catch (e) {
+          // Not a valid regular expression
+        }
+      }
+    }
+
+    // If nothing was tested then go back to neutral
+    if (hits === 0) {
+      status = null
+    }
+
+    // Set the internal state
+    this.setState({
+      error: status === false,
+      valid: status === true
+    })
+
+    // Bubble up to subscribers
+    if (this.props.onValidate) {
+      this.props.onValidate(event, status)
+    }
+
+    return status
   }
 
   /**
@@ -128,13 +186,16 @@ export class Textarea extends React.Component {
                   id={this.state.name}
                   name={this.state.name}
                   aria-described-by={this.errorName()}
-
                   disabled={this.state.disabled}
                   maxlength={this.state.maxlength}
                   pattern={this.state.pattern}
                   readonly={this.state.readonly}
                   required={this.state.required}
-                  value={this.state.value}>
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                  >
           {this.state.value}
         </textarea>
       </div>
