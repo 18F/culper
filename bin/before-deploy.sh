@@ -1,6 +1,6 @@
 echo "Running before-deploy script"
 
-npm install -g gulp
+npm install
 npm run build
 
 export PATH=$HOME:$PATH
