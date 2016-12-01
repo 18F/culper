@@ -14,11 +14,11 @@ trim_trailing_whitespace = true
 charset = utf-8
 
 # 4 space indentation
-[*.{js,scss,html}]
+[*.{scss,html}]
 indent_style = space
 indent_size = 4
 
 # 2 space indention
-[*.{json,yml,md}]
+[*.{js,json,yml,md}]
 indent_style = space
 indent_size = 2

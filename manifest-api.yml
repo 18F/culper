@@ -1,0 +1,10 @@
+---
+applications:
+- name: eqip-prototype-api
+  memory: 1G
+  instances: 2
+  domain: fr.cloud.gov
+  host: eqip-prototype-api
+  buildpack: https://github.com/cloudfoundry/go-buildpack.git
+  path: api
+  command: ./run.sh

@@ -1,0 +1,10 @@
+---
+applications:
+- name: eqip-prototype-api-staging
+  memory: 1G
+  instances: 2
+  domain: fr.cloud.gov
+  host: eqip-prototype-api-staging
+  buildpack: go_buildpack
+  path: api
+  command: ./run.sh

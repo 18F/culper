@@ -1,14 +1,21 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router'
+import AuthenticatedView from '../AuthenticatedView'
 
-export default class Home extends React.Component {
+class Home extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor (props) {
+    super(props)
+  }
 
-    render() {
-        return (
-            <strong>Home</strong>
-        );
-    }
+  render () {
+    return (
+      <div>
+        <h2>Home</h2>
+        <div><Link to="/help">Help</Link></div>
+      </div>
+    )
+  }
 }
+
+export default AuthenticatedView(Home)
