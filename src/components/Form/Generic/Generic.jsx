@@ -11,7 +11,8 @@ export default class Generic extends React.Component {
       help: props.help,
       type: props.type,
       disabled: props.disabled,
-      maxlength: props.maxlength,
+      minlength: props.minlength || 0,
+      maxlength: props.maxlength || 256,
       pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
@@ -72,15 +73,19 @@ export default class Generic extends React.Component {
     let status = true
 
     if (this.state.value) {
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
+      if (this.state.value && this.state.value.length > 0) {
+        // console.log('min length', this.state.minlength)
+        // console.log('max length', this.state.maxlength)
+        // console.log('length', this.state.value.length)
+        // console.log('status', status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength)))
+        status = status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength))
         hits++
       }
 
       if (this.state.pattern && this.state.pattern.length > 0) {
         try {
           let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value) ? true : false
+          status = status && re.exec(this.state.value)
           hits++
         } catch (e) {
           // Not a valid regular expression

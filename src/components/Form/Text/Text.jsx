@@ -11,6 +11,7 @@ export default class Text extends React.Component {
       placeholder: props.placeholder,
       help: props.help,
       disabled: props.disabled,
+      minlength: props.minlength,
       maxlength: props.maxlength,
       pattern: props.pattern,
       readonly: props.readonly,
@@ -79,6 +80,7 @@ export default class Text extends React.Component {
                help={this.state.help}
                type="text"
                disabled={this.state.disabled}
+               minlength={this.state.minlength}
                maxlength={this.state.maxlength}
                pattern={this.state.pattern}
                readonly={this.state.readonly}
