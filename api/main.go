@@ -6,15 +6,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/truetandem/e-QIP-prototype/api/handlers"
 	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
-)
-
-var (
-	// APIName ...
-	APIName = "equip"
-
-	// APIVersion ...
-	APIVersion = "v1"
 )
 
 func getPort() string {
@@ -26,25 +19,30 @@ func getPort() string {
 }
 
 func main() {
-	r := middleware.NewRouter().Inject(LoggerHandler)
-	r.HandleFunc("/", rootHandler)
+	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
+	r.HandleFunc("/", handlers.RootHandler)
 
 	s := r.PathPrefix("/").Subrouter()
-	s.HandleFunc("/2fa/{account}", twofactorHandler)
-	s.HandleFunc("/2fa/{account}/verify", twofactorVerifyHandler)
-	s.HandleFunc("/2fa/{account}/email", twofactorEmailHandler)
-	s.HandleFunc("/form", rootHandler)
+	s.HandleFunc("/2fa/{account}", handlers.TwofactorHandler)
+	s.HandleFunc("/2fa/{account}/verify", handlers.TwofactorVerifyHandler)
+	s.HandleFunc("/2fa/{account}/email", handlers.TwofactorEmailHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
-	o.HandleFunc("/basic", basicAuthHandler).Methods("POST")
-	o.HandleFunc("/{service}", authServiceHandler)
-	o.HandleFunc("/{service}/callback", authCallbackHandler)
+	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
+	o.HandleFunc("/{service}", handlers.AuthServiceHandler)
+	o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
 
-	a := r.PathPrefix("/account").Subrouter().Inject(JwtTokenValidatorHandler)
-	a.HandleFunc("/{id}", func(w http.ResponseWriter, r *http.Request) {
-		EncodeJSON(w, "Testing JwtToken")
-	}).Methods("GET")
+	// Validation
+	v := r.PathPrefix("/validate").Subrouter()
+	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN).Methods("GET")
+	v.HandleFunc("/passport/{passport}", handlers.ValidatePassport).Get("GET")
+
+	// Address Validation
+	v.HandleFunc("/address/city/{city}", handlers.ValidateCity).Methods("GET")
+	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode).Methods("GET")
+	v.HandleFunc("/address/state/{state}", handlers.ValidateState).Methods("GET")
+	v.HandleFunc("/address", handlers.ValidateAddress).Methods("POST")
 
 	log.Println("Starting API mock server")
-	fmt.Println(http.ListenAndServe(":"+getPort(), CORS(r)))
+	fmt.Println(http.ListenAndServe(":"+getPort(), handlers.CORS(r)))
 }
