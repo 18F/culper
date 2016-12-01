@@ -60,6 +60,30 @@ class Api {
   login (username, password) {
     return this.proxy.post('/auth/basic', { username: username, password: password })
   }
+
+  validateSSN (ssn) {
+    return this.proxySecured.get(`/validate/ssn/${ssn}`)
+  }
+
+  validatePassport (passport) {
+    return this.proxySecured.get(`/validate/passport/${passport}`)
+  }
+
+  validateCity (city) {
+    return this.proxySecured.get(`/validate/address/${city}`)
+  }
+
+  validateZipcode (zipcode) {
+    return this.proxySecured.get(`/validate/address/${zipcode}`)
+  }
+
+  validateState (state) {
+    return this.proxySecured.get(`/validate/address/${state}`)
+  }
+
+  validateAddress (address) {
+    return this.proxySecured.post('/validate/address', address)
+  }
 }
 
 const api = new Api()
