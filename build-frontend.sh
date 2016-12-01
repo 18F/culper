@@ -1,3 +1,3 @@
 #! /bin/sh
-yarn install
-yarn watch
+npm install --silent
+npm run watch
