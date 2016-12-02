@@ -25,6 +25,7 @@ before_deploy:
   - cf install-plugin autopilot -f -r CF-Community
   - docker-compose run frontend npm install --silent
   - docker-compose run frontend npm run build --silent
+
 deploy:
   - provider: script
     script: "./bin/deploy.sh staging"

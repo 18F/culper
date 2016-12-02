@@ -1,14 +1,15 @@
 import axios from 'axios'
+import { env } from '../config'
 
 class Api {
   constructor () {
     this.proxy = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: env.ApiBaseURL(),
       timeout: 1000
     })
 
     this.proxySecured = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: env.ApiBaseURL(),
       timeout: 1000,
       headers: {
         'Authorization': ''
@@ -16,9 +17,9 @@ class Api {
     })
   }
 
-    /**
-     * Helper method to extract query parameters from the url
-     */
+  /**
+   * Helper method to extract query parameters from the url
+   */
   getQueryValue (key) {
     let query = window.location.search.substring(1)
     let vars = query.split('&')
@@ -51,38 +52,38 @@ class Api {
   twoFactor (account, token) {
     // TODO: Fix secure proxy
     if (token) {
-      return this.proxy.post('/2fa/' + account + '/verify', { token: token })
+      return this.proxy.post(env.EndpointTwoFactorVerify(account), { token: token })
     }
 
-    return this.proxy.get('/2fa/' + account)
+    return this.proxy.get(env.EndpointTwoFactor(account))
   }
 
   login (username, password) {
-    return this.proxy.post('/auth/basic', { username: username, password: password })
+    return this.proxy.post(env.EndpointBasicAuthentication(), { username: username, password: password })
   }
 
   validateSSN (ssn) {
-    return this.proxySecured.get(`/validate/ssn/${ssn}`)
+    return this.proxySecured.get(env.EndpointValidateSSN(ssn))
   }
 
   validatePassport (passport) {
-    return this.proxySecured.get(`/validate/passport/${passport}`)
+    return this.proxySecured.get(env.EndpointValidatePassport(passport))
   }
 
   validateCity (city) {
-    return this.proxySecured.get(`/validate/address/${city}`)
+    return this.proxySecured.get(env.EndpointValidateCity(city))
   }
 
   validateZipcode (zipcode) {
-    return this.proxySecured.get(`/validate/address/${zipcode}`)
+    return this.proxySecured.get(env.EndpointValidateZipcode(zipcode))
   }
 
   validateState (state) {
-    return this.proxySecured.get(`/validate/address/${state}`)
+    return this.proxySecured.get(env.EndpointValidateState(state))
   }
 
   validateAddress (address) {
-    return this.proxySecured.post('/validate/address', address)
+    return this.proxySecured.post(env.EndpointValidateAddress(), address)
   }
 }
 

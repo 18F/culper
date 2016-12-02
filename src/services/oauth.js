@@ -1,6 +1,8 @@
+import { env } from '../config'
+
 class OAuth {
   constructor (service) {
-    this.url = 'http://localhost:3000/auth/' + service
+    this.url = env.ApiBaseURL() + env.EndpointOAuth(service)
     this.token = ''
     this.expiration = null
   }
