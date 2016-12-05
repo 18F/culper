@@ -55,9 +55,15 @@ export default class Address extends ValidationElement {
           Country: this.state.country
         })
         .then((response) => {
+          // TODO: Display and assign the errors as necessary
           if (response.Errors) {
+            this.setState({
+              error: response.Error.length > 0,
+              valid: response.Errors.length === 0
+            })
           }
 
+          // TODO: Display suggestions
           if (response.Suggestions) {
           }
         })
