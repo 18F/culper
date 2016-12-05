@@ -28,6 +28,7 @@ export default class Textarea extends React.Component {
    * Handle the change event.
    */
   handleChange (event) {
+    console.log(event)
     this.setState({ value: event.target.value }, () => {
       this.validate(event)
     })
@@ -195,9 +196,7 @@ export default class Textarea extends React.Component {
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
-                  >
-          {this.state.value}
-        </textarea>
+                  />
       </div>
     )
   }

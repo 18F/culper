@@ -1,13 +1,10 @@
 import React from 'react'
 import Street from '../Street'
-import State from '../State'
 import MilitaryState from '../MilitaryState'
-import City from '../City'
-import Country from '../Country'
 import ZipCode from '../ZipCode'
 import ApoFpo from '../ApoFpo'
 
-export default class Address extends React.Component {
+export default class ApoFpoAddress extends React.Component {
   constructor (props) {
     super(props)
 
@@ -68,14 +65,8 @@ export default class Address extends React.Component {
                 onChange={this.handleChange}
                 onValidation={this.handleValidation}
                 />
-        <City name={this.partName('city')}
-              label="City"
-              onChange={this.handleChange}
-              onValidation={this.handleValidation}
-              />
         <MilitaryState name={this.partName('state')}
                        label="State"
-                       includeStates="true"
                        onChange={this.handleChange}
                        onValidation={this.handleValidation}
                        />
@@ -84,11 +75,11 @@ export default class Address extends React.Component {
                  onChange={this.handleChange}
                  onValidation={this.handleValidation}
                  />
-        <Country name={this.partName('country')}
-                 label="Country"
-                 onChange={this.handleChange}
-                 onValidation={this.handleValidation}
-                 />
+        <ApoFpo name={this.partName('apofpo')}
+                label="APO/FPO"
+                onChange={this.handleChange}
+                onValidation={this.handleValidation}
+                />
       </div>
     )
   }

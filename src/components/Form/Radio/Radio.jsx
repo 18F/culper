@@ -7,7 +7,7 @@ export default class Radio extends React.Component {
     this.state = {
       name: props.name,
       label: props.label,
-      checked: false,
+      checked: props.checked,
       help: props.help,
       disabled: props.disabled,
       maxlength: props.maxlength,
@@ -28,13 +28,13 @@ export default class Radio extends React.Component {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      this.validate(event)
+  handleChange () {
+    this.setState({ checked: !this.state.checked }, () => {
+      this.validate(this.state.checked)
     })
 
     if (this.props.onChange) {
-      this.props.onChange(event)
+      this.props.onChange(this.state.checked)
     }
   }
 
