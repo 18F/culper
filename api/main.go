@@ -34,13 +34,13 @@ func main() {
 
 	// Validation
 	v := r.PathPrefix("/validate").Subrouter()
-	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN).Methods("GET")
-	v.HandleFunc("/passport/{passport}", handlers.ValidatePassport).Get("GET")
+	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
+	v.HandleFunc("/passport/{passport}", handlers.ValidatePassport)
 
 	// Address Validation
-	v.HandleFunc("/address/city/{city}", handlers.ValidateCity).Methods("GET")
-	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode).Methods("GET")
-	v.HandleFunc("/address/state/{state}", handlers.ValidateState).Methods("GET")
+	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
+	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode)
+	v.HandleFunc("/address/state/{state}", handlers.ValidateState)
 	v.HandleFunc("/address", handlers.ValidateAddress).Methods("POST")
 
 	log.Println("Starting API mock server")
