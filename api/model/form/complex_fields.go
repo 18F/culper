@@ -2,18 +2,48 @@ package form
 
 // AddressField contains complete address information for an entity
 type AddressField struct {
-	Address1 TextField
-	Address2 TextField
-	Street   TextField
-	City     TextField
-	State    StateField
-	Zipcode  ZipcodeField
-	County   TextField
-	Country  CountryField
+	Address TextField
+	Street  TextField
+	City    TextField
+	State   StateField
+	Zipcode ZipcodeField
+	County  TextField
+	Country CountryField
 }
 
 func (a AddressField) Valid() (bool, error) {
-	return true, nil
+
+	var stack ErrorStack
+
+	if ok, err := a.Address.Valid(); !ok {
+		stack.Append("Address", err)
+	}
+
+	if ok, err := a.Street.Valid(); !ok {
+		stack.Append("Street", err)
+	}
+
+	if ok, err := a.City.Valid(); !ok {
+		stack.Append("City", err)
+	}
+
+	if ok, err := a.State.Valid(); !ok {
+		stack.Append("State", err)
+	}
+
+	if ok, err := a.Zipcode.Valid(); !ok {
+		stack.Append("Zipcode", err)
+	}
+
+	if ok, err := a.County.Valid(); !ok {
+		stack.Append("County", err)
+	}
+
+	if ok, err := a.Country.Valid(); !ok {
+		stack.Append("Country", err)
+	}
+
+	return !stack.HasErrors(), stack
 }
 
 // BirthAddress contains the birth location for a person. This contains a
@@ -31,12 +61,6 @@ func (f BirthAddressField) Valid() (bool, error) {
 	stack.Append("City", ErrFieldRequired{"Field is required"})
 	stack.Append("State", ErrFieldRequired{"State is required"})
 
-	// TODO Demonstration
-	err := ErrInvalidLocation{
-		Message:     "Invalid Country",
-		Suggestions: []string{"United States", "United Kingdom"},
-	}
-	stack.Append("Country", err)
 	return !stack.HasErrors(), stack
 }
 

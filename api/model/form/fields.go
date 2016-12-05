@@ -3,6 +3,7 @@ package form
 import (
 	"fmt"
 	"net/mail"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -85,7 +86,7 @@ func (d DateField) Time() (time.Time, error) {
 	return time.Parse("1/2/2006", formatted)
 }
 
-// SSN stores a person social security number
+// SSN stores a persons social security number
 // https://www.ssa.gov/employer/randomization.html
 type SSNField struct {
 	First         string
@@ -94,6 +95,7 @@ type SSNField struct {
 	NotApplicable bool
 }
 
+// Valid validates the format of a Social Security Number if it is applicable
 func (s SSNField) Valid() (bool, error) {
 	if s.NotApplicable {
 		return true, nil
@@ -102,16 +104,45 @@ func (s SSNField) Valid() (bool, error) {
 	var stack ErrorStack
 	if s.First == "" {
 		stack.Append("First", ErrFieldRequired{"First is a required field"})
+	} else {
+		if ok, _ := regexp.MatchString("^\\d{3}$", s.First); !ok {
+			stack.Append("First", ErrFieldInvalid{fmt.Sprintf("`%s` is an invalid First value", s.First)})
+		}
 	}
 
 	if s.Middle == "" {
 		stack.Append("Middle", ErrFieldRequired{"Middle is a required field"})
+	} else {
+		if ok, _ := regexp.MatchString("^\\d{2}$", s.First); !ok {
+			stack.Append("Middle", ErrFieldInvalid{fmt.Sprintf("`%s` is an invalid Middle value", s.Middle)})
+		}
 	}
 
 	if s.Last == "" {
 		stack.Append("Last", ErrFieldRequired{"Last is a required field"})
+	} else {
+		if ok, _ := regexp.MatchString("^\\d{4}$", s.First); !ok {
+			stack.Append("Last", ErrFieldInvalid{fmt.Sprintf("`%s` is an invalid Last value", s.Last)})
+		}
 	}
+
+	// Make sure values are accurate
 	return !stack.HasErrors(), stack
+}
+
+// PassportField validates a passport number
+type PassportField string
+
+func (f PassportField) Valid() (bool, error) {
+	pass := string(f)
+	if pass == "" {
+		return false, ErrFieldRequired{"Passport field is required"}
+	}
+
+	if len(pass) < 3 {
+		return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid Passport number", pass)}
+	}
+	return true, nil
 }
 
 // Represents a person suffix if applicable
@@ -246,6 +277,15 @@ func (f WeightField) Valid() (bool, error) {
 type ZipcodeField string
 
 func (f ZipcodeField) Valid() (bool, error) {
+	zip := string(f)
+	if string(zip) == "" {
+		return false, ErrFieldRequired{"Zipcode is required"}
+	} else {
+		if ok, _ := regexp.MatchString("^\\d{5}$", zip); !ok {
+			return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid Zipcode", zip)}
+		}
+	}
+
 	return true, nil
 }
 
@@ -253,6 +293,29 @@ func (f ZipcodeField) Valid() (bool, error) {
 type StateField string
 
 func (f StateField) Valid() (bool, error) {
+	state := string(f)
+	if state == "" {
+		return false, ErrFieldRequired{"State is required"}
+	}
+
+	if len(state) < 2 {
+		return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid state", state)}
+	}
+	return true, nil
+}
+
+// StateField stores a state location
+type CityField string
+
+func (f CityField) Valid() (bool, error) {
+	s := string(f)
+	if s == "" {
+		return false, ErrFieldRequired{"City is required"}
+	}
+	// TODO Just forcing more characters for testing purposes
+	if len(s) < 3 {
+		return false, ErrFieldRequired{fmt.Sprintf("`%v` is an invalid city", s)}
+	}
 	return true, nil
 }
 
@@ -260,6 +323,10 @@ func (f StateField) Valid() (bool, error) {
 type CountryField string
 
 func (f CountryField) Valid() (bool, error) {
+
+	if strings.TrimSpace(string(f)) == "" {
+		return false, ErrInvalidLocation{"Country is required", nil}
+	}
 	return true, nil
 }
 

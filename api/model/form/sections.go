@@ -5,6 +5,7 @@ import "fmt"
 // IdentifyingInfoSection stores personal identifying data for a person
 type IdentifyingInfoSection struct {
 	Person          PersonField
+	Address         AddressField
 	PlaceOfBirth    BirthAddressField
 	DateOfBirth     DateField
 	SSN             SSNField
@@ -42,6 +43,7 @@ type OtherNamesUsedSection struct {
 	OptionalComment TextField
 }
 
+// Valid validates the information for Other names used section
 func (s OtherNamesUsedSection) Valid() (bool, error) {
 	var stack ErrorStack
 	if ok, err := s.Person.Valid(); !ok {
@@ -93,6 +95,7 @@ func (s YourIdentifyingInfoSection) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// EmployerActivitiesSection stores a persons employement activity
 type EmploymentActivitySection struct {
 	Status       EmploymentStatusField
 	EmployerName TextField
