@@ -1,7 +1,5 @@
 package form
 
-import "fmt"
-
 // IdentifyingInfoSection stores personal identifying data for a person
 type IdentifyingInfoSection struct {
 	Person          PersonField
@@ -92,6 +90,7 @@ func (s YourIdentifyingInfoSection) Valid() (bool, error) {
 	if ok, err := s.Sex.Valid(); !ok {
 		stack.Append("Sex", err)
 	}
+
 	return !stack.HasErrors(), stack
 }
 
@@ -106,16 +105,31 @@ type EmploymentActivitySection struct {
 }
 
 func (e EmploymentActivitySection) Valid() (bool, error) {
+	var stack ErrorStack
+
 	if ok, err := e.Status.Valid(); !ok {
-		// do stuff
-		fmt.Println(err)
+		stack.Append("Status", err)
 	}
 
 	if ok, err := e.EmployerName.Valid(); !ok {
-		fmt.Println(err)
+		stack.Append("EmployerName", err)
 	}
 
-	// etc etc
+	if ok, err := e.Address.Valid(); !ok {
+		stack.Append("Address", err)
+	}
 
-	return true, nil
+	if ok, err := e.Phone.Valid(); !ok {
+		stack.Append("Phone", err)
+	}
+
+	if ok, err := e.StartDate.Valid(); !ok {
+		stack.Append("StartDate", err)
+	}
+
+	if ok, err := e.EndDate.Valid(); !ok {
+		stack.Append("EndDate", err)
+	}
+
+	return !stack.HasErrors(), stack
 }

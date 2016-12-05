@@ -49,17 +49,30 @@ func (a AddressField) Valid() (bool, error) {
 // BirthAddress contains the birth location for a person. This contains a
 // subset of the Address information
 type BirthAddressField struct {
-	City    TextField
+	City    CityField
 	State   StateField
-	County  CountryField
+	County  TextField
 	Country CountryField
 }
 
 // Valid validates information for a person Birth Address
 func (f BirthAddressField) Valid() (bool, error) {
 	var stack ErrorStack
-	stack.Append("City", ErrFieldRequired{"Field is required"})
-	stack.Append("State", ErrFieldRequired{"State is required"})
+	if ok, err := f.City.Valid(); !ok {
+		stack.Append("City", err)
+	}
+
+	if ok, err := f.State.Valid(); !ok {
+		stack.Append("State", err)
+	}
+
+	if ok, err := f.County.Valid(); !ok {
+		stack.Append("County", err)
+	}
+
+	if ok, err := f.Country.Valid(); !ok {
+		stack.Append("Country", err)
+	}
 
 	return !stack.HasErrors(), stack
 }
@@ -86,6 +99,10 @@ func (f PersonField) Valid() (bool, error) {
 	if ok, err := f.Middlename.Valid(); !ok {
 		stack.Append("Middlename", err)
 	}
+
+	if ok, err := f.Suffix.Valid(); !ok {
+		stack.Append("Middlename", err)
+	}
 	return !stack.HasErrors(), stack
 }
 
@@ -95,16 +112,15 @@ type DateRangeField struct {
 	To   DateField
 }
 
-func (d DateRangeField) Valid() (bool, error) {
-	return true, nil
-}
+func (f DateRangeField) Valid() (bool, error) {
+	var stack ErrorStack
 
-// EmployerActivity stores when a person has worked during a specific period of time for a particular
-// position and supervisor
-type EmployerActivity struct {
-	PositionTitle     TextField
-	Supervisor        TextField
-	DatesOfEmployment DateRangeField
-}
+	if ok, err := f.From.Valid(); !ok {
+		stack.Append("From", err)
+	}
 
-type EmployerActivities []EmployerActivity
+	if ok, err := f.To.Valid(); !ok {
+		stack.Append("From", err)
+	}
+	return !stack.HasErrors(), stack
+}
