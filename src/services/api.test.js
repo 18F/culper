@@ -52,7 +52,6 @@ describe('The API', () => {
       .twoFactor('123456')
       .then(function (response) {
         actual = response.data
-        console.log('expected: ' + expected + ', actual: ' + actual)
         expect(actual).toEqual(expected)
       })
   })

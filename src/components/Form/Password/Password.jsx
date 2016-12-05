@@ -1,7 +1,8 @@
 import React from 'react'
+import ValidationElement from '../validationElement'
 import Generic from '../Generic'
 
-export default class Password extends React.Component {
+export default class Password extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -20,55 +21,42 @@ export default class Password extends React.Component {
       error: props.error || false,
       valid: props.valid || false
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleFocus = this.handleFocus.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value })
-    if (this.props.onChange) {
-      this.props.onChange(event)
-    }
+    this.setState({ value: event.target.value }, () => {
+      super.handleChange(event)
+    })
   }
 
   /**
    * Handle the focus event.
    */
   handleFocus (event) {
-    this.setState({ focus: true })
-    if (this.props.onFocus) {
-      this.props.onFocus(event)
-    }
+    this.setState({ focus: true }, () => {
+      super.handleFocus(event)
+    })
   }
 
   /**
    * Handle the blur event.
    */
   handleBlur (event) {
-    this.setState({ focus: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(event)
-    }
+    this.setState({ focus: false }, () => {
+      super.handleBlur(event)
+    })
   }
 
   /**
    * Handle the validation event.
    */
   handleValidation (event, status) {
-    this.setState({
-      error: status === false,
-      valid: status === true
+    this.setState({error: status === false, valid: status === true}, () => {
+      super.handleValidation(event, status)
     })
-
-    if (this.props.onValidation) {
-      this.props.onValidation(status)
-    }
   }
 
   render () {
@@ -90,7 +78,7 @@ export default class Password extends React.Component {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
-               onValidation={this.handleValidation}
+               onValidate={this.handleValidation}
                />
     )
   }
