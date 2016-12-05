@@ -15,8 +15,9 @@ export class App extends React.Component {
   }
 
   render () {
-    let logoutButton = this.props.authenticated ?
-        (<button onClick={this.logout}>Logout</button>) : null
+    let logoutButton = this.props.authenticated
+        ? (<button onClick={this.logout}>Logout</button>)
+        : null
 
     return (
       <div>

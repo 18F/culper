@@ -1,13 +1,14 @@
 import React from 'react'
+import ValidationElement from '../validationElement'
 
-export default class Radio extends React.Component {
+export default class Radio extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
       name: props.name,
       label: props.label,
-      checked: false,
+      checked: props.checked,
       help: props.help,
       disabled: props.disabled,
       maxlength: props.maxlength,
@@ -19,91 +20,33 @@ export default class Radio extends React.Component {
       error: props.error || false,
       valid: props.valid || false
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleFocus = this.handleFocus.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      this.validate(event)
+    this.setState({ checked: !this.state.checked }, () => {
+      super.handleChange(event)
     })
-
-    if (this.props.onChange) {
-      this.props.onChange(event)
-    }
   }
 
   /**
    * Handle the focus event.
    */
   handleFocus (event) {
-    this.setState({ focus: true })
-    if (this.props.onFocus) {
-      this.props.onFocus(event)
-    }
+    this.setState({ focus: true }, () => {
+      super.handleFocus(event)
+    })
   }
 
   /**
    * Handle the blur event.
    */
   handleBlur (event) {
-    this.setState({ focus: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(event)
-    }
-  }
-
-  /**
-   * Execute validation checks on the value.
-   *
-   * Possible return values:
-   *  1. null: In a neutral state
-   *  2. false: Does not meet criterion and is deemed invalid
-   *  3. true: Meets all specified criterion
-   */
-  validate (event) {
-    let hits = 0
-    let status = true
-
-    if (this.state.value) {
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
-        hits++
-      }
-
-      if (this.state.pattern && this.state.pattern.length > 0) {
-        try {
-          let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value) ? true : false
-          hits++
-        } catch (e) {
-          // Not a valid regular expression
-        }
-      }
-    }
-
-    // If nothing was tested then go back to neutral
-    if (hits === 0) {
-      status = null
-    }
-
-    // Set the internal state
-    this.setState({
-      error: status === false,
-      valid: status === true
+    this.setState({ focus: false }, () => {
+      super.handleBlur(event)
     })
-
-    // Bubble up to subscribers
-    if (this.props.onValidate) {
-      this.props.onValidate(event, status)
-    }
-
-    return status
   }
 
   /**
