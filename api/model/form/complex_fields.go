@@ -4,13 +4,14 @@ package form
 type AddressField struct {
 	Address TextField
 	Street  TextField
-	City    TextField
+	City    CityField
 	State   StateField
 	Zipcode ZipcodeField
 	County  TextField
 	Country CountryField
 }
 
+// Valid validates the location fields for an address
 func (a AddressField) Valid() (bool, error) {
 
 	var stack ErrorStack

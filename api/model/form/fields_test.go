@@ -4,10 +4,37 @@ import "testing"
 
 func TestTextField(t *testing.T) {
 
+	tests := []struct {
+		Field    TextField
+		Expected bool
+	}{
+		{"", false},
+		{"hello", true},
+	}
+
+	for _, test := range tests {
+		if ok, _ := test.Field.Valid(); ok != test.Expected {
+			t.Errorf("Expected [%v] to be [%v]\n", ok, test.Expected)
+		}
+	}
 }
 
 func TestEmailField(t *testing.T) {
 
+	tests := []struct {
+		Field    EmailField
+		Expected bool
+	}{
+		{"", false},
+		{"test", false},
+		{"test@local.dev", true},
+	}
+
+	for _, test := range tests {
+		if ok, _ := test.Field.Valid(); ok != test.Expected {
+			t.Errorf("Expected [%v] to be [%v]\n", ok, test.Expected)
+		}
+	}
 }
 
 func TestURLField(t *testing.T) {
@@ -67,15 +94,55 @@ func TestWeightField(t *testing.T) {
 }
 
 func TestZipcodeField(t *testing.T) {
+	tests := []struct {
+		Field    ZipcodeField
+		Expected bool
+	}{
+		{"", false},
+		{"212", false},
+		{"22310", true},
+		{"22310-2", false},
+	}
+
+	for _, test := range tests {
+		if ok, _ := test.Field.Valid(); ok != test.Expected {
+			t.Errorf("Expected [%v] to be [%v]\n", ok, test.Expected)
+		}
+	}
 
 }
 
 func TestStateField(t *testing.T) {
+	tests := []struct {
+		Field    StateField
+		Expected bool
+	}{
+		{"", false},
+		{"VA", true},
+		{"Virginia", true},
+	}
 
+	for _, test := range tests {
+		if ok, _ := test.Field.Valid(); ok != test.Expected {
+			t.Errorf("Expected [%v] to be [%v]\n", ok, test.Expected)
+		}
+	}
 }
 
 func TestCountryField(t *testing.T) {
+	tests := []struct {
+		Field    CountryField
+		Expected bool
+	}{
+		{"", false},
+		{"United States", true},
+	}
 
+	for _, test := range tests {
+		if ok, _ := test.Field.Valid(); ok != test.Expected {
+			t.Errorf("Expected [%v] to be [%v]\n", ok, test.Expected)
+		}
+	}
 }
 
 func TestMaritalStatusField(t *testing.T) {
