@@ -40,8 +40,8 @@ export default class ApoFpoAddress extends React.Component {
       valid: status === true
     })
 
-    if (this.props.onValidation) {
-      this.props.onValidation(status)
+    if (this.props.onValidate) {
+      this.props.onValidate(status)
     }
   }
 
@@ -58,27 +58,27 @@ export default class ApoFpoAddress extends React.Component {
         <Street name={this.partName('address1')}
                 label="Mailing Address"
                 onChange={this.handleChange}
-                onValidation={this.handleValidation}
+                onValidate={this.handleValidation}
                 />
         <Street name={this.partName('address2')}
                 label="Mailing Address 2"
                 onChange={this.handleChange}
-                onValidation={this.handleValidation}
+                onValidate={this.handleValidation}
                 />
         <MilitaryState name={this.partName('state')}
                        label="State"
                        onChange={this.handleChange}
-                       onValidation={this.handleValidation}
+                       onValidate={this.handleValidation}
                        />
         <ZipCode name={this.partName('zipcode')}
                  label="Zipcode"
                  onChange={this.handleChange}
-                 onValidation={this.handleValidation}
+                 onValidate={this.handleValidation}
                  />
         <ApoFpo name={this.partName('apofpo')}
                 label="APO/FPO"
                 onChange={this.handleChange}
-                onValidation={this.handleValidation}
+                onValidate={this.handleValidation}
                 />
       </div>
     )

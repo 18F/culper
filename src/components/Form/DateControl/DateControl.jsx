@@ -193,8 +193,8 @@ export default class DateControl extends React.Component {
       s = true
     }
 
-    if (this.props.onValidation) {
-      this.props.onValidation(event, s)
+    if (this.props.onValidate) {
+      this.props.onValidate(event, s)
     }
   }
 
@@ -245,7 +245,7 @@ export default class DateControl extends React.Component {
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
-                  onValidation={this.handleValidation}
+                  onValidate={this.handleValidation}
                   />
         </div>
         <div className="usa-form-group usa-form-group-day">
@@ -265,7 +265,7 @@ export default class DateControl extends React.Component {
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
-                  onValidation={this.handleValidation}
+                  onValidate={this.handleValidation}
                   />
         </div>
         <div className="usa-form-group usa-form-group-year">
@@ -285,7 +285,7 @@ export default class DateControl extends React.Component {
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
-                  onValidation={this.handleValidation}
+                  onValidate={this.handleValidation}
                   />
         </div>
       </div>

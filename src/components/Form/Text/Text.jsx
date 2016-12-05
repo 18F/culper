@@ -67,8 +67,8 @@ export default class Text extends React.Component {
       valid: status === true
     })
 
-    if (this.props.onValidation) {
-      this.props.onValidation(status)
+    if (this.props.onValidate) {
+      this.props.onValidate(status)
     }
   }
 
@@ -92,7 +92,7 @@ export default class Text extends React.Component {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
-               onValidation={this.handleValidation}
+               onValidate={this.handleValidation}
                />
     )
   }

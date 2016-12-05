@@ -39,8 +39,8 @@ export default class ZipCode extends React.Component {
       valid: status === true
     })
 
-    if (this.props.onValidation) {
-      this.props.onValidation(status)
+    if (this.props.onValidate) {
+      this.props.onValidate(status)
     }
   }
 
@@ -58,7 +58,7 @@ export default class ZipCode extends React.Component {
             error={this.state.error}
             valid={this.state.valid}
             onChange={this.handleChange}
-            onValidation={this.handleValidation}
+            onValidate={this.handleValidation}
             />
     )
   }

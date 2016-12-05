@@ -6,6 +6,7 @@ import City from '../City'
 import Country from '../Country'
 import ZipCode from '../ZipCode'
 import ApoFpo from '../ApoFpo'
+import { api } from '../../../services/api'
 
 export default class Address extends React.Component {
   constructor (props) {
@@ -15,6 +16,12 @@ export default class Address extends React.Component {
       name: props.name,
       label: props.label,
       value: props.value,
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      country: '',
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
@@ -43,9 +50,26 @@ export default class Address extends React.Component {
       valid: status === true
     })
 
-    if (this.props.onValidation) {
-      this.props.onValidation(status)
-    }
+    api
+      .validateAddress({
+        Address: [this.state.address1, this.state.address2].join(', '),
+        City: this.state.city,
+        State: this.state.state,
+        Zipcode: this.state.zipcode,
+        Country: this.state.country
+      })
+      .then((response) => {
+        if (response.Errors) {
+        }
+
+        if (response.Suggestions) {
+        }
+      })
+      .finally(() => {
+        if (this.props.onValidate) {
+          this.props.onValidate(status)
+        }
+      })
   }
 
   /**
@@ -60,34 +84,40 @@ export default class Address extends React.Component {
       <div>
         <Street name={this.partName('address1')}
                 label="Mailing Address"
+                value={this.state.address1}
                 onChange={this.handleChange}
-                onValidation={this.handleValidation}
+                onValidate={this.handleValidation}
                 />
         <Street name={this.partName('address2')}
                 label="Mailing Address 2"
+                value={this.state.address2}
                 onChange={this.handleChange}
-                onValidation={this.handleValidation}
+                onValidate={this.handleValidation}
                 />
         <City name={this.partName('city')}
               label="City"
+              value={this.state.city}
               onChange={this.handleChange}
-              onValidation={this.handleValidation}
+              onValidate={this.handleValidation}
               />
         <MilitaryState name={this.partName('state')}
                        label="State"
+                       value={this.state.state}
                        includeStates="true"
                        onChange={this.handleChange}
-                       onValidation={this.handleValidation}
+                       onValidate={this.handleValidation}
                        />
         <ZipCode name={this.partName('zipcode')}
                  label="Zipcode"
+                 value={this.state.zipcode}
                  onChange={this.handleChange}
-                 onValidation={this.handleValidation}
+                 onValidate={this.handleValidation}
                  />
         <Country name={this.partName('country')}
                  label="Country"
+                 value={this.state.country}
                  onChange={this.handleChange}
-                 onValidation={this.handleValidation}
+                 onValidate={this.handleValidation}
                  />
       </div>
     )
