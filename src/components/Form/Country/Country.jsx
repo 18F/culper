@@ -1,7 +1,8 @@
 import React from 'react'
+import ValidationElement from '../validationElement'
 import Dropdown from '../Dropdown'
 
-export default class Country extends React.Component {
+export default class Country extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -15,33 +16,42 @@ export default class Country extends React.Component {
       error: props.error || false,
       valid: props.valid || false
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value })
-    if (this.props.onChange) {
-      this.props.onChange(event)
-    }
+    this.setState({ value: event.target.value }, () => {
+      super.handleChange(event)
+    })
   }
 
   /**
    * Handle the validation event.
    */
   handleValidation (event, status) {
-    this.setState({
-      error: status === false,
-      valid: status === true
+    this.setState({error: status === false, valid: status === true}, () => {
+      super.handleValidation(event, status)
     })
+  }
 
-    if (this.props.onValidate) {
-      this.props.onValidate(status)
-    }
+  /**
+   * Handle the focus event.
+   */
+  handleFocus (event) {
+    this.setState({ focus: true }, () => {
+      super.handleFocus(event)
+    })
+  }
+
+  /**
+   * Handle the blur event.
+   */
+  handleBlur (event) {
+    this.setState({ focus: false }, () => {
+      super.handleBlur(event)
+    })
   }
 
   render () {
@@ -50,9 +60,9 @@ export default class Country extends React.Component {
                 label={this.props.label}
                 help={this.props.help}
                 onChange={this.handleChange}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
                 onValidate={this.handleValidation}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
                 >
         { this.props.children }
         <option value="">{this.props.placeholder}</option>

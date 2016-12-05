@@ -1,8 +1,9 @@
 import React from 'react'
+import ValidationElement from '../validationElement'
 import Dropdown from '../Dropdown'
 import State from '../State'
 
-export default class MilitaryState extends React.Component {
+export default class MilitaryState extends ValidationElement {
   constructor (props) {
     super(props)
 

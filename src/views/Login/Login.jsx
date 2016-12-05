@@ -37,7 +37,6 @@ class Login extends React.Component {
 
   login () {
     // TODO Validation rules
-    console.debug('Logging in: ', this.state.username, this.state.password)
     this.props.dispatch(login(this.state.username, this.state.password))
   }
 
