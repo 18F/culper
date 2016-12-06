@@ -29,11 +29,6 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "OPTIONS" {
-		fmt.Fprintf(w, "")
-		return
-	}
-
 	var body struct {
 		Token string
 	}
