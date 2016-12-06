@@ -65,6 +65,7 @@ func (d DateField) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// MonthYearField is a subset of the DateField
 type MonthYearField struct {
 	Month     int64
 	Year      int64
@@ -86,7 +87,7 @@ func (d DateField) Time() (time.Time, error) {
 	return time.Parse("1/2/2006", formatted)
 }
 
-// SSN stores a persons social security number
+// SSNField stores a persons social security number
 // https://www.ssa.gov/employer/randomization.html
 type SSNField struct {
 	First         string

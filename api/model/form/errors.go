@@ -2,12 +2,19 @@ package form
 
 import "fmt"
 
-// Validator is an interface to be used by components that require validation
+// Validator is an interface to be used by components that require validation.
 type Validator interface {
 	Valid() (bool, error)
 }
 
-// ErrorStackResults contains a collection of validation results
+// ValidationResult is an interface to be used by errors that return a properly formatted struct
+// to be used to send for client-side validation requests
+type ValidationResult interface {
+	Result(fieldname string) interface{}
+}
+
+// ErrorStackResults is an interface to be used to represent a collection of interfaces.
+// This currently has no additional methods
 type ErrorStackResults interface{}
 
 // ErrorStack contains a list of ErrorStackResults that have been captured
@@ -19,37 +26,35 @@ func (stack ErrorStack) HasErrors() bool {
 }
 
 // Error is string representation of an ErrorStack and displays
-// the total number of errors
+// the total number of errors. This is to implement the error type
 func (stack ErrorStack) Error() string {
 	return fmt.Sprintf("%d Errors \n", len(stack))
 }
 
-// Append adds an error to the list of errors. A different validation result
-// type is used based on the number of errors contained within the results.
-func (stack *ErrorStack) Append(name string, err error) {
+// Result creates a struct that is properly formatted for the client-validation
+func (stack ErrorStack) Result(fieldname string) interface{} {
+	return struct {
+		Fieldname string
+		Errors    ErrorStack
+	}{
+		fieldname, stack,
+	}
+}
+
+// Append adds an error to the list of errors. For those that implement the ValidationResult interface,
+// the return value for Result(fieldname) will be used to populate the stack. This is to  properly format
+// error/validation information that is to be returned to the client-side
+func (stack *ErrorStack) Append(fieldname string, err error) {
 	if err == nil {
 		return
 	}
-	switch errType := err.(type) {
-	// If we have an error that contains many errors, use ValidationResults (note plural s)
-	case ErrorStack:
-		*stack = append(*stack, ValidationResults{
-			Fieldname: name,
-			Errors:    errType,
-		})
-	// If we have an error dealing with locations, use the LocationValidationResult
-	case ErrInvalidLocation:
-		*stack = append(*stack, LocationValidationResult{
-			Fieldname:   name,
-			Error:       err.Error(),
-			Suggestions: errType.Suggestions,
-		})
-	// For all other errors, simply grab string representation of the error
+	switch t := err.(type) {
+	case ValidationResult:
+		*stack = append(*stack, t.Result(fieldname))
+
 	default:
-		*stack = append(*stack, ValidationResult{
-			Fieldname: name,
-			Error:     err.Error(),
-		})
+		fmt.Printf("Error [%v] has no Result(string) field implemented\n", err)
+		*stack = append(*stack, err)
 	}
 }
 
@@ -60,33 +65,25 @@ func NewErrorStack(fieldname string, err error) ErrorStack {
 	return stack
 }
 
-// ValidationResult returns one error for a particular field
-type ValidationResult struct {
-	Fieldname string
-	Error     string
-}
-
-// ValidationResults returns one or more errors for a particular field. This result
-// contains a slice of additional errors
-type ValidationResults struct {
-	Fieldname string
-	Errors    ErrorStack
-}
-
-// ValidationResults returns an error and possible suggestions for a particular field
-type LocationValidationResult struct {
-	Fieldname   string
-	Error       string
-	Suggestions []string
-}
-
 // ErrFieldInvalid represents an error for a field with an invalid value
 type ErrFieldInvalid struct {
 	Message string
 }
 
+// Error returns the string representation of a Field Invalid error
 func (e ErrFieldInvalid) Error() string {
 	return e.Message
+}
+
+// Result creates a struct that is properly formatted for the client-side validation
+func (e ErrFieldInvalid) Result(fieldname string) interface{} {
+	return struct {
+		Fieldname string
+		Error     string
+	}{
+		fieldname,
+		e.Error(),
+	}
 }
 
 // ErrFieldRequired represents an error for a field that requires data
@@ -99,7 +96,18 @@ func (e ErrFieldRequired) Error() string {
 	return e.Message
 }
 
-// TODO Just for demonstration purposes
+// Result creates a struct that is properly formatted for the client-side validation
+func (e ErrFieldRequired) Result(fieldname string) interface{} {
+	return struct {
+		Fieldname string
+		Error     string
+	}{
+		fieldname,
+		e.Error(),
+	}
+}
+
+// ErrInvalidLocation represents an error for location information with additional options
 type ErrInvalidLocation struct {
 	Message     string
 	Suggestions []string
@@ -107,4 +115,17 @@ type ErrInvalidLocation struct {
 
 func (e ErrInvalidLocation) Error() string {
 	return e.Message
+}
+
+// Result creates a struct that is properly formatted for the client-side validation
+func (e ErrInvalidLocation) Result(fieldname string) interface{} {
+	return struct {
+		Fieldname   string
+		Error       string
+		Suggestions []string
+	}{
+		fieldname,
+		e.Error(),
+		e.Suggestions,
+	}
 }
