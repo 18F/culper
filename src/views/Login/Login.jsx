@@ -61,20 +61,31 @@ class Login extends React.Component {
               Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.
             </p>
             <div>
-              <input type="text" placeholder="Username" value={this.state.username} onChange={this.onUsernameChange}/>
+              <label htmlFor="username">Username</label>
+              <input id="username"
+                     type="text"
+                     placeholder="Username"
+                     value={this.state.username}
+                     onChange={this.onUsernameChange}/>
             </div>
             <div>
-              <input type="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
+              <label htmlFor="password">Password</label>
+              <input id="password"
+                     type="password"
+                     placeholder="Password"
+                     value={this.state.password}
+                     onChange={this.onPasswordChange} />
             </div>
             <div>
               <button onClick={this.login}>Submit</button>
-              <button>Cancel</button>
             </div>
           </div>
 
-          <div>
-            <div>Login using OAuth Provider</div>
-            <LoginOAuth authenticated={this.state.authenticated} />
+          <div className="oauth-providers">
+            <div>Sign in with</div>
+            <LoginOAuth authenticated={this.state.authenticated}>
+              <i className="fa fa-github" aria-hidden="true"></i>
+            </LoginOAuth>
           </div>
         </div>
       )

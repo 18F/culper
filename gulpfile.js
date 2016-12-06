@@ -11,14 +11,20 @@ var paths = {
     './src/**/*.js*'
   ],
   sass: [
+    './node_modules/font-awesome/**/*.scss',
     './node_modules/uswds/src/stylesheets/**/*.scss',
     './src/sass/**/*.scss'
   ],
   html: ['./src/**/*.html'],
+  fonts: [
+    './node_modules/font-awesome/fonts/**/*',
+    './node_modules/uswds/dist/fonts/**/*'
+  ],
   css: 'eqip.css',
   destination: {
     root: './dist',
-    css: './dist/css'
+    css: './dist/css',
+    fonts: './dist/fonts'
   },
   webpack: './webpack.config.js'
 }
@@ -26,8 +32,9 @@ var paths = {
 gulp.task('setup', setup)
 gulp.task('clean', clean)
 gulp.task('copy', ['clean'], copy)
+gulp.task('fonts', ['clean'], fonts)
 gulp.task('sass', convert)
-gulp.task('build', ['setup', 'clean', 'copy', 'sass'], compile)
+gulp.task('build', ['setup', 'clean', 'copy', 'fonts', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
 
@@ -67,6 +74,13 @@ function copy () {
   return gulp
     .src(paths.html)
     .pipe(gulp.dest(paths.destination.root))
+}
+
+function fonts () {
+  'use strict'
+  return gulp
+    .src(paths.fonts)
+    .pipe(gulp.dest(paths.destination.fonts))
 }
 
 function compile () {

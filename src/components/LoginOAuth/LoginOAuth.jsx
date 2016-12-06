@@ -30,7 +30,7 @@ export default class LoginOAuth extends React.Component {
       )
     } else {
       return (
-        <button type="button" onClick={this.login}>Login</button>
+        <button type="button" onClick={this.login}>{this.props.children}</button>
       )
     }
   }
