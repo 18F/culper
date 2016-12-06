@@ -41,10 +41,6 @@ class Login extends React.Component {
   }
 
   render () {
-    const panelStyle = {
-      marginBottom: '20px'
-    }
-
     if (this.props.authenticated && !this.props.twofactor) {
       return (
         <div>
@@ -54,12 +50,15 @@ class Login extends React.Component {
       )
     } else {
       return (
-        <div>
-          <h2>Login</h2>
-          <div style={panelStyle}>
+        <div id="login" className="usa-grid">
+          <div id="info" className="usa-width-one-whole">
+            <h2>Login</h2>
             <p>
               Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.
             </p>
+          </div>
+
+          <div id="basic" className="usa-width-one-whole">
             <div>
               <label htmlFor="username">Username</label>
               <input id="username"
@@ -77,12 +76,15 @@ class Login extends React.Component {
                      onChange={this.onPasswordChange} />
             </div>
             <div>
+              <a id="forgot-password" href="#" title="Forgot password">Forgot Password?</a>
+            </div>
+            <div>
               <button onClick={this.login}>Submit</button>
             </div>
           </div>
 
-          <div className="oauth-providers">
-            <div>Sign in with</div>
+          <div id="oauth" className="usa-width-one-whole">
+            <span>Sign in with</span>
             <LoginOAuth authenticated={this.state.authenticated}>
               <i className="fa fa-github" aria-hidden="true"></i>
             </LoginOAuth>
