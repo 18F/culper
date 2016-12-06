@@ -43,9 +43,20 @@ class Login extends React.Component {
   render () {
     if (this.props.authenticated && !this.props.twofactor) {
       return (
-        <div>
-          <div>Two-factor authentication</div>
-          <TwoFactor username={this.state.username} />
+        <div id="login" className="usa-grid">
+          <div id="info" className="usa-width-one-whole">
+            <h2>Two-factor authentication</h2>
+            <p>
+              Two-factor authentication (also known as 2FA) is a method of confirming a user's claimed identity by utilizing a combination of two different components.
+            </p>
+            <ul>
+              <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
+              <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
+            </ul>
+          </div>
+          <div id="twofactor" className="usa-width-one-whole">
+            <TwoFactor username={this.state.username} />
+          </div>
         </div>
       )
     } else {
@@ -59,28 +70,30 @@ class Login extends React.Component {
           </div>
 
           <div id="basic" className="usa-width-one-whole">
-            <div>
-              <label htmlFor="username">Username</label>
-              <input id="username"
-                     type="text"
-                     placeholder="Username"
-                     value={this.state.username}
-                     onChange={this.onUsernameChange}/>
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input id="password"
-                     type="password"
-                     placeholder="Password"
-                     value={this.state.password}
-                     onChange={this.onPasswordChange} />
-            </div>
-            <div>
-              <a id="forgot-password" href="#" title="Forgot password">Forgot Password?</a>
-            </div>
-            <div>
-              <button onClick={this.login}>Submit</button>
-            </div>
+            <form onSubmit={this.login}>
+              <div>
+                <label htmlFor="username">Username</label>
+                <input id="username"
+                       type="text"
+                       placeholder="Username"
+                       value={this.state.username}
+                       onChange={this.onUsernameChange}/>
+              </div>
+              <div>
+                <label htmlFor="password">Password</label>
+                <input id="password"
+                       type="password"
+                       placeholder="Password"
+                       value={this.state.password}
+                       onChange={this.onPasswordChange} />
+              </div>
+              <div>
+                <a id="forgot-password" href="#" title="Forgot password">Forgot Password?</a>
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+            </form>
           </div>
 
           <div id="oauth" className="usa-width-one-whole">

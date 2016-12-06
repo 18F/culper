@@ -12,7 +12,7 @@ var (
 	secret = twofactor.Secret()
 )
 
-// twofactorHandler is the initial entry and subscription for two-factor
+// TwofactorHandler is the initial entry and subscription for two-factor
 // authentication.
 func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -27,8 +27,13 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, png)
 }
 
-// twofactorVerifyHandler verifies a token provided by the end user.
+// TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "OPTIONS" {
+		fmt.Fprintf(w, "")
+		return
+	}
+
 	var body struct {
 		Token string
 	}
@@ -48,6 +53,7 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "")
 }
 
+// TwofactorEmailHandler sends a token to the user by email.
 func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 	err := twofactor.Email("fake@mail.gov", secret)
 	if err != nil {
