@@ -9,7 +9,7 @@ describe('The login button', () => {
     GithubOAuth.expiration = null
     GithubOAuth.url = window.location.href
 
-    const login = shallow(<LoginOAuth />)
+    const login = shallow(<LoginOAuth>Login</LoginOAuth>)
     expect(login.text()).toEqual('Login')
 
     GithubOAuth.token = 'faketoken'
@@ -22,7 +22,7 @@ describe('The login button', () => {
     GithubOAuth.token = 'faketoken'
     GithubOAuth.expiration = new Date('2017-12-01')
 
-    const logout = shallow(<LoginOAuth />)
+    const logout = shallow(<LoginOAuth>Login</LoginOAuth>)
     expect(logout.text()).toEqual('Logout')
 
     logout.find('button').simulate('click')
