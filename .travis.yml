@@ -10,7 +10,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - "sed -i 's/NODE_ENV=/NODE_ENV=$(echo $NODE_ENV)/' .env"
+  - sed -i "s/NODE_ENV=/NODE_ENV=$(echo $NODE_ENV)/" .env
   - cat .env
   - docker-compose build
   - docker-compose run api ./test.sh
