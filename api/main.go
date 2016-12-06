@@ -22,10 +22,10 @@ func main() {
 	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
 	r.HandleFunc("/", handlers.RootHandler)
 
-	s := r.PathPrefix("/").Subrouter()
-	s.HandleFunc("/2fa/{account}", handlers.TwofactorHandler)
-	s.HandleFunc("/2fa/{account}/verify", handlers.TwofactorVerifyHandler)
-	s.HandleFunc("/2fa/{account}/email", handlers.TwofactorEmailHandler)
+	s := r.PathPrefix("/2fa").Subrouter()
+	s.HandleFunc("/{account}", handlers.TwofactorHandler)
+	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
+	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")

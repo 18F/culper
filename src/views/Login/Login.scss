@@ -1,0 +1,51 @@
+#login {
+    #info {
+        margin-bottom: 1rem;
+    }
+
+    #basic {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #eee;
+        max-width: 48rem;
+        margin-right: auto;
+        margin-left: auto;
+        clear: both;
+        float: none;
+
+        #forgot-password {
+            float: right;
+        }
+
+        button {
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    #oauth {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #eee;
+        max-width: 48rem;
+        margin-right: auto;
+        margin-left: auto;
+        clear: both;
+        float: none;
+
+        button {
+            margin-left: 1rem;
+        }
+    }
+
+    #twofactor {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #eee;
+        max-width: 48rem;
+        margin-right: auto;
+        margin-left: auto;
+        clear: both;
+        float: none;
+    }
+}

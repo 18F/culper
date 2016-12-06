@@ -17,6 +17,7 @@
     "axios": "^0.15.2",
     "esdoc": "^0.4.8",
     "eslint-plugin-react": "^6.7.1",
+    "font-awesome": "^4.7.0",
     "global": "^4.3.1",
     "history": "^4.4.0",
     "react": "^15.3.2",
