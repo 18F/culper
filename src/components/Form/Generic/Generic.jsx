@@ -1,6 +1,7 @@
 import React from 'react'
+import ValidationElement from '../validationElement'
 
-export default class Generic extends React.Component {
+export default class Generic extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -11,7 +12,8 @@ export default class Generic extends React.Component {
       help: props.help,
       type: props.type,
       disabled: props.disabled,
-      maxlength: props.maxlength,
+      minlength: props.minlength || 0,
+      maxlength: props.maxlength || 256,
       pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
@@ -20,10 +22,6 @@ export default class Generic extends React.Component {
       error: props.error || false,
       valid: props.valid || false
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleFocus = this.handleFocus.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
   }
 
   /**
@@ -31,32 +29,26 @@ export default class Generic extends React.Component {
    */
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
-      this.validate(event)
+      super.handleChange(event)
     })
-
-    if (this.props.onChange) {
-      this.props.onChange(event)
-    }
   }
 
   /**
    * Handle the focus event.
    */
   handleFocus (event) {
-    this.setState({ focus: true })
-    if (this.props.onFocus) {
-      this.props.onFocus(event)
-    }
+    this.setState({ focus: true }, () => {
+      super.handleFocus(event)
+    })
   }
 
   /**
    * Handle the blur event.
    */
   handleBlur (event) {
-    this.setState({ focus: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(event)
-    }
+    this.setState({ focus: false }, () => {
+      super.handleBlur(event)
+    })
   }
 
   /**
@@ -67,20 +59,25 @@ export default class Generic extends React.Component {
    *  2. false: Does not meet criterion and is deemed invalid
    *  3. true: Meets all specified criterion
    */
-  validate (event) {
+  handleValidation (event, status) {
+    if (!event || !event.target) {
+      super.handleValidation(event, status)
+      return
+    }
+
     let hits = 0
-    let status = true
+    status = true
 
     if (this.state.value) {
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
+      if (this.state.value && this.state.value.length > 0) {
+        status = status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength))
         hits++
       }
 
       if (this.state.pattern && this.state.pattern.length > 0) {
         try {
           let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value) ? true : false
+          status = status && re.exec(this.state.value)
           hits++
         } catch (e) {
           // Not a valid regular expression
@@ -94,17 +91,9 @@ export default class Generic extends React.Component {
     }
 
     // Set the internal state
-    this.setState({
-      error: status === false,
-      valid: status === true
+    this.setState({error: status === false, valid: status === true}, () => {
+      super.handleValidation(event, status)
     })
-
-    // Bubble up to subscribers
-    if (this.props.onValidate) {
-      this.props.onValidate(event, status)
-    }
-
-    return status
   }
 
   /**

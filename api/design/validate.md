@@ -19,7 +19,28 @@ FORMAT: 1A
 
     + Body
 
-        application/json
+      {
+        "Errors": [
+          {
+            "Fieldname": "SSN",
+            "Errors": [
+              {
+                "Fieldname": "First",
+                "Error": "First is a required field"
+              },
+              {
+                "Fieldname": "Middle",
+                "Error": "Middle is a required field"
+              },
+              {
+                "Fieldname": "Last",
+                "Error": "Last is a required field"
+              }
+            ]
+          }
+        ]
+      }
+
 
 + Response 500
 
@@ -40,7 +61,14 @@ FORMAT: 1A
 
     + Body
 
-        application/json
+      {
+        "Errors": [
+          {
+            "Fieldname": "Passport",
+            "Error": ""
+          }
+        ]
+      }
 
 + Response 500
 
@@ -61,7 +89,39 @@ FORMAT: 1A
 
     + Body
 
-        application/json
+      {
+        "Errors": [
+          {
+            "Fieldname": "Address",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Street",
+            "Error": ""
+          },
+          {
+            "Fieldname": "City",
+            "Error": ""
+          },
+          {
+            "Fieldname": "State",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Zipcode",
+            "Error": ""
+          },
+          {
+            "Fieldname": "County",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Country",
+            "Error": "",
+            "Suggestions": []
+          }
+        ]
+      }
 
 + Response 500
 
@@ -81,8 +141,14 @@ FORMAT: 1A
         X-Eqip-Media-Type: eqip.v1
 
     + Body
-
-        application/json
+      {
+        "Errors": [
+          {
+            "Fieldname": "City",
+            "Error": ""
+          }
+        ]
+      }
 
 + Response 500
 
@@ -103,7 +169,15 @@ FORMAT: 1A
 
     + Body
 
-        application/json
+    {
+      "Errors": [
+        {
+          "Fieldname": "Zipcode",
+          "Error": ""
+        }
+      ]
+    }
+
 
 + Response 500
 
@@ -124,6 +198,13 @@ FORMAT: 1A
 
     + Body
 
-        application/json
+    {
+      "Errors": [
+        {
+          "Fieldname": "State",
+          "Error": ""
+        }
+      ]
+    }
 
 + Response 500

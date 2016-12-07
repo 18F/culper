@@ -1,13 +1,14 @@
 import React from 'react'
+import ValidationElement from '../validationElement'
 
-export default class Checkbox extends React.Component {
+export default class Checkbox extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
       name: props.name,
       label: props.label,
-      checked: false,
+      checked: props.checked,
       help: props.help,
       disabled: props.disabled,
       maxlength: props.maxlength,
@@ -19,43 +20,33 @@ export default class Checkbox extends React.Component {
       error: props.error || false,
       valid: props.valid || false
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleFocus = this.handleFocus.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      this.validate(event)
+    this.setState({ checked: !this.state.checked }, () => {
+      super.handleChange(event)
     })
-
-    if (this.props.onChange) {
-      this.props.onChange(event)
-    }
   }
 
   /**
    * Handle the focus event.
    */
   handleFocus (event) {
-    this.setState({ focus: true })
-    if (this.props.onFocus) {
-      this.props.onFocus(event)
-    }
+    this.setState({ focus: true }, () => {
+      super.handleFocus(event)
+    })
   }
 
   /**
    * Handle the blur event.
    */
   handleBlur (event) {
-    this.setState({ focus: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(event)
-    }
+    this.setState({ focus: false }, () => {
+      super.handleBlur(event)
+    })
   }
 
   /**
@@ -66,9 +57,14 @@ export default class Checkbox extends React.Component {
    *  2. false: Does not meet criterion and is deemed invalid
    *  3. true: Meets all specified criterion
    */
-  validate (event) {
+  handleValidate (event, status) {
+    if (!event || !event.target) {
+      super.handleValidate(event, status)
+      return
+    }
+
     let hits = 0
-    let status = true
+    status = true
 
     if (this.state.value) {
       if (this.state.maxlength && this.state.maxlength > 0) {
@@ -93,17 +89,9 @@ export default class Checkbox extends React.Component {
     }
 
     // Set the internal state
-    this.setState({
-      error: status === false,
-      valid: status === true
+    this.setState({error: status === false, valid: status === true}, () => {
+      super.handleValidation(event, status)
     })
-
-    // Bubble up to subscribers
-    if (this.props.onValidate) {
-      this.props.onValidate(event, status)
-    }
-
-    return status
   }
 
   /**

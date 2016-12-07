@@ -1,3 +1,4 @@
+// Basic form elements
 import Generic from './Generic'
 import Text from './Text'
 import Email from './Email'
@@ -10,4 +11,10 @@ import Dropdown from './Dropdown'
 import Checkbox from './Checkbox'
 import Radio from './Radio'
 import DateControl from './DateControl'
-export { Generic, Text, Email, Password, Telephone, Url, Number, Textarea, Dropdown, Checkbox, Radio, DateControl }
+
+// Composite components
+import Type from './Type'
+import Service from './Service'
+import Address from './Address'
+
+export { Generic, Text, Email, Password, Telephone, Url, Number, Textarea, Dropdown, Checkbox, Radio, DateControl, Type, Service, Address }

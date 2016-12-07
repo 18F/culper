@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { qrcode, twofactor } from '../../actions/AuthActions'
-import { api } from '../../services/api'
 
 class TwoFactor extends React.Component {
   constructor (props) {
@@ -41,18 +40,22 @@ class TwoFactor extends React.Component {
   render () {
     if (this.state.isVerified) {
       return (
-        <div>
-          <input type="text" value={this.state.token} onChange={this.handleChange} />
-          <button type="button" onClick={this.handleSubmit}>Verify</button>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <div id="twofactor-component">
+            <input type="text" value={this.state.token} onChange={this.handleChange} />
+            <button type="submit">Verify</button>
+          </div>
+        </form>
       )
     } else {
       return (
-        <div>
-          <img width="256" height="256" alt="Two factor authentication" src={this.base64png()} />
-          <input type="text" value={this.state.token} onChange={this.handleChange} />
-          <button type="button" onClick={this.handleSubmit}>Verify</button>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <div id="twofactor-component">
+            <img width="256" height="256" alt="Two factor authentication" src={this.base64png()} />
+            <input type="text" value={this.state.token} onChange={this.handleChange} />
+            <button type="submit">Verify</button>
+          </div>
+        </form>
       )
     }
   }

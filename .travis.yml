@@ -10,6 +10,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
+  - sed -i "s/NODE_ENV=/NODE_ENV=$(echo $NODE_ENV)/" .env
   - docker-compose build
   - docker-compose run api ./test.sh
   - docker-compose run frontend npm test
@@ -25,6 +26,7 @@ before_deploy:
   - cf install-plugin autopilot -f -r CF-Community
   - docker-compose run frontend npm install --silent
   - docker-compose run frontend npm run build --silent
+
 deploy:
   - provider: script
     script: "./bin/deploy.sh staging"

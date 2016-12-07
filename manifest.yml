@@ -8,4 +8,5 @@ applications:
   buildpack: https://github.com/cloudfoundry/go-buildpack.git
   command: api/run.sh
   env:
+    GOVERSION: go1.7.4
     GOPACKAGENAME: main
