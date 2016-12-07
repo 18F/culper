@@ -32,7 +32,7 @@ deploy:
     script: "./bin/deploy.sh staging"
     skip_cleanup: true
     on:
-      branch: deploy-golang-1.7
+      branch: master
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh production"
