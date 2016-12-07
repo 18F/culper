@@ -35,7 +35,8 @@ class Login extends React.Component {
     this.setState({password: e.target.value})
   }
 
-  login () {
+  login (event) {
+    event.preventDefault()
     // TODO Validation rules
     this.props.dispatch(login(this.state.username, this.state.password))
   }
