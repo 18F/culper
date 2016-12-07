@@ -5,6 +5,8 @@ applications:
   instances: 2
   domain: fr.cloud.gov
   host: eqip-prototype-api-staging
-  buildpack: go_buildpack
+  buildpack: https://github.com/cloudfoundry/go-buildpack
   path: api
   command: ./run.sh
+  env:
+    GOVERSION: go1.7.4

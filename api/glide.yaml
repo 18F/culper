@@ -24,3 +24,5 @@ import:
   - linkedin
 - package: gopkg.in/pg.v5
   version: v5.1.2
+- package: github.com/cloudfoundry-community/go-cfenv
+  version: ^1.14.0
