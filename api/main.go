@@ -4,19 +4,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
+	"github.com/truetandem/e-QIP-prototype/api/cf"
 	"github.com/truetandem/e-QIP-prototype/api/handlers"
 	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
 )
-
-func getPort() string {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
-	return port
-}
 
 func main() {
 	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
@@ -44,5 +36,5 @@ func main() {
 	v.HandleFunc("/address", handlers.ValidateAddress).Methods("POST")
 
 	log.Println("Starting API mock server")
-	fmt.Println(http.ListenAndServe(":"+getPort(), handlers.CORS(r)))
+	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))
 }

@@ -13,6 +13,7 @@ import (
 	"golang.org/x/oauth2/linkedin"
 
 	"github.com/gorilla/mux"
+	"github.com/truetandem/e-QIP-prototype/api/cf"
 )
 
 var (
@@ -20,7 +21,7 @@ var (
 	redirectTo       = os.Getenv("API_REDIRECT")
 )
 
-// authServiceHandler is the initial entry point for authentication.
+// AuthServiceHandler is the initial entry point for authentication.
 func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	service := vars["service"]
@@ -33,10 +34,11 @@ func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, config.AuthCodeURL(oauthStateString), http.StatusTemporaryRedirect)
 }
 
-// authCallbackHandler handles responses from the authentication provider.
+// AuthCallbackHandler handles responses from the authentication provider.
 func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	service := vars["service"]
+
 	config, ok := configureAuthentication(service)
 	if !ok {
 		fmt.Printf("Could not determine service with '%s'\n", service)
@@ -62,14 +64,14 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, redirectToWithToken, http.StatusTemporaryRedirect)
 }
 
-// configureAuthentication takes a service name and configures the OAuth 2.0 with
+// ConfigureAuthentication takes a service name and configures the OAuth 2.0 with
 // appropriate endpoints and scopes.
 func configureAuthentication(service string) (*oauth2.Config, bool) {
 	ok := true
 	config := &oauth2.Config{
-		RedirectURL:  fmt.Sprintf("http://localhost:3000/auth/%s/callback", strings.ToLower(service)),
-		ClientID:     os.Getenv(fmt.Sprintf("%s_CLIENT_ID", strings.ToUpper(service))),
-		ClientSecret: os.Getenv(fmt.Sprintf("%s_CLIENT_SECRET", strings.ToUpper(service))),
+		RedirectURL:  fmt.Sprintf("%s/auth/%s/callback", cf.PublicURI(), strings.ToLower(service)),
+		ClientID:     cf.UserService("github-client", "id"),
+		ClientSecret: cf.UserService("github-client", "secret"),
 	}
 
 	switch service {
