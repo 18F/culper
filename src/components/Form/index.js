@@ -16,5 +16,23 @@ import DateControl from './DateControl'
 import Type from './Type'
 import Service from './Service'
 import Address from './Address'
+import ApplicantName from './ApplicantName'
 
-export { Generic, Text, Email, Password, Telephone, Url, Number, Textarea, Dropdown, Checkbox, Radio, DateControl, Type, Service, Address }
+export {
+  Generic,
+  Text,
+  Email,
+  Password,
+  Telephone,
+  Url,
+  Number,
+  Textarea,
+  Dropdown,
+  Checkbox,
+  Radio,
+  DateControl,
+  Type,
+  Service,
+  Address,
+  ApplicantName
+}
