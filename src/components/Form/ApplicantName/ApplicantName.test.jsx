@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Address from './Address'
+import ApplicantName from './ApplicantName'
 
-describe('The Address component', () => {
+describe('The ApplicantName component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'input-focus',
@@ -10,9 +10,59 @@ describe('The Address component', () => {
       help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<Address name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name + '-address1').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(6)
+    const component = mount(<ApplicantName name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
+    component.find('input#' + expected.name + '-last').simulate('change')
+    expect(component.find('span.hidden').length).toEqual(5)
+  })
+
+  it('handles last name patterns', () => {
+    const expected = [
+      {
+        name: 'applicant-name',
+        last: 'X- Mc. O\'Leary',
+        valid: true
+      },
+      {
+        name: 'applicant-numbers',
+        last: 'abc 123',
+        valid: false
+      }
+    ]
+
+    expected.forEach((ex) => {
+      const component = mount(<ApplicantName name={ex.name} last={ex.last} />)
+      component.find('input#' + ex.name + '-last').simulate('change')
+      expect(component.find('span.hidden').length === component.find('span').length).toEqual(ex.valid)
+    })
+  })
+
+  it('handles maximum lengths', () => {
+    const expected = [
+      {
+        name: 'applicant-long-first',
+        first: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
+        part: 'first',
+        valid: false
+      },
+      {
+        name: 'applicant-long-last',
+        last: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
+        part: 'last',
+        valid: false
+      },
+      {
+        name: 'applicant-long-middle',
+        middle: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
+        part: 'middle',
+        valid: false
+      }
+    ]
+
+    expected.forEach((ex) => {
+      const component = mount(<ApplicantName name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
+      component.find('input#' + ex.name + '-' + ex.part).simulate('change')
+      expect(component.find('span.hidden').length === component.find('span').length).toEqual(ex.valid)
+    })
   })
 
   it('bubbles up validate event', () => {
@@ -28,7 +78,7 @@ describe('The Address component', () => {
         validations++
       }
     }
-    const component = mount(<Address name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<ApplicantName name={expected.name} onValidate={expected.handleValidation} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
@@ -46,7 +96,7 @@ describe('The Address component', () => {
         changes++
       }
     }
-    const component = mount(<Address name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<ApplicantName name={expected.name} onChange={expected.handleChange} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })
@@ -64,7 +114,7 @@ describe('The Address component', () => {
         foci++
       }
     }
-    const component = mount(<Address name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(<ApplicantName name={expected.name} onFocus={expected.handleFocus} />)
     component.find('input').first().simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -82,7 +132,7 @@ describe('The Address component', () => {
         blurs++
       }
     }
-    const component = mount(<Address name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(<ApplicantName name={expected.name} onBlur={expected.handleBlur} />)
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
   })

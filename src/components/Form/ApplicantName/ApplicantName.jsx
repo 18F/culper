@@ -2,7 +2,7 @@ import React from 'react'
 import ValidationElement from '../validationElement'
 import Text from '../Text'
 import Dropdown from '../Dropdown'
-// import { api } from '../../../services/api'
+import { api } from '../../../services/api'
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -12,11 +12,11 @@ export default class Address extends ValidationElement {
       name: props.name,
       label: props.label,
       value: props.value,
-      firstname: '',
-      lastname: '',
-      middlename: '',
-      suffix: '',
-      suffixOther: '',
+      first: props.first,
+      last: props.last,
+      middle: props.middle,
+      suffix: props.suffix,
+      suffixOther: props.suffixOther,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
@@ -63,6 +63,25 @@ export default class Address extends ValidationElement {
         super.handleValidation(event, status)
         return
       }
+
+      api
+        .validateApplicantName({
+          First: this.state.first,
+          Middle: this.state.middle,
+          Last: this.state.last,
+          Suffix: this.state.suffix
+        })
+        .then((response) => {
+          // TODO: Display and assign the errors as necessary
+          if (response.Errors) {
+          }
+
+          if (response.Suggestions) {
+          }
+        })
+        .then(() => {
+          super.handleValidation(event, status)
+        })
     })
   }
 
@@ -95,9 +114,9 @@ export default class Address extends ValidationElement {
         <Text name={this.partName('last')}
               label="Last name"
               maxlength="100"
-              pattern="^[a-zA-Z\-\.\' ]*$"
+              pattern="^[a-zA-Z\-\.' ]*$"
               help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
-              value={this.state.lastname}
+              value={this.state.last}
               onChange={this.handleChange}
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
@@ -107,7 +126,7 @@ export default class Address extends ValidationElement {
               label="First name"
               maxlength="100"
               help="The first name (or initial) is optional but cannot exceed 100 characters"
-              value={this.state.firstname}
+              value={this.state.first}
               onChange={this.handleChange}
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
@@ -118,7 +137,7 @@ export default class Address extends ValidationElement {
               minlength="0"
               maxlength="100"
               help="The middle name (or initial) is optional but cannot exceed 100 characters"
-              value={this.state.middlename}
+              value={this.state.middle}
               onChange={this.handleChange}
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
