@@ -1,6 +1,6 @@
 {
   "name": "e-qip-prototype",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Prototype for the e-QIP web application",
   "main": "index.js",
   "repository": {
