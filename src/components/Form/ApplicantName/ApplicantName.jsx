@@ -2,7 +2,7 @@ import React from 'react'
 import ValidationElement from '../validationElement'
 import Text from '../Text'
 import Dropdown from '../Dropdown'
-import { api } from '../../../services/api'
+// import { api } from '../../../services/api'
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -80,93 +80,44 @@ export default class Address extends ValidationElement {
     return id.split('-').pop()
   }
 
-  render () {
-    if (this.state.suffix === 'Other') {
-      return (
-        <div>
-          <Text name={this.partName('first')}
-                label="First name"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-          <Text name={this.partName('last')}
-                label="Last name"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-          <Text name={this.partName('middle')}
-                label="Middle initial"
-                value={this.state.middlename}
-                minlength="0"
-                maxlength="1"
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-          <Dropdown name={this.partName('suffix')}
-                    label="Suffix"
-                    value={this.state.suffix}
-                    onChange={this.handleChange}
-                    onValidate={this.handleValidation}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    >
-            <option value=""></option>
-            <option value="Jr">Jr</option>
-            <option value="Sr">Sr</option>
-            <option value="I">I</option>
-            <option value="II">II</option>
-            <option value="III">III</option>
-            <option value="IV">IV</option>
-            <option value="V">V</option>
-            <option value="VI">VI</option>
-            <option value="VII">VII</option>
-            <option value="VIII">VIII</option>
-            <option value="IX">IX</option>
-            <option value="X">X</option>
-            <option value="Other">Other</option>
-          </Dropdown>
-          <Text name={this.partName('suffixOther')}
-                label="Other"
-                value={this.state.suffixOther}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-        </div>
-      )
-    }
+  /**
+   * Toggles visibility class for the extended suffix element.
+   */
+  suffixOtherClass () {
+    return this.state.suffix === 'Other'
+      ? ''
+      : 'hidden'
+  }
 
+  render () {
     return (
       <div>
-        <Text name={this.partName('first')}
-              label="First name"
-              value={this.state.firstname}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
         <Text name={this.partName('last')}
               label="Last name"
+              maxlength="100"
+              pattern="^[a-zA-Z\-\.\' ]*$"
+              help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
               value={this.state.lastname}
               onChange={this.handleChange}
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
+        <Text name={this.partName('first')}
+              label="First name"
+              maxlength="100"
+              help="The first name (or initial) is optional but cannot exceed 100 characters"
+              value={this.state.firstname}
+              onChange={this.handleChange}
+              onValidate={this.handleValidation}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              />
         <Text name={this.partName('middle')}
-              label="Middle initial"
+              label="Middle name or initial"
               minlength="0"
-              maxlength="1"
+              maxlength="100"
+              help="The middle name (or initial) is optional but cannot exceed 100 characters"
               value={this.state.middlename}
               onChange={this.handleChange}
               onValidate={this.handleValidation}
@@ -196,6 +147,17 @@ export default class Address extends ValidationElement {
           <option value="X">X</option>
           <option value="Other">Other</option>
         </Dropdown>
+        <div className={this.suffixOtherClass()}>
+          <Text name={this.partName('suffixOther')}
+                label="Other"
+                maxlength="100"
+                value={this.state.suffixOther}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+        </div>
       </div>
     )
   }

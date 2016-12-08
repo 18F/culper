@@ -81,7 +81,7 @@ export default class Generic extends ValidationElement {
       if (this.state.pattern && this.state.pattern.length > 0) {
         try {
           let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value)
+          status = status && re.test(this.state.value)
           hits++
         } catch (e) {
           // Not a valid regular expression
