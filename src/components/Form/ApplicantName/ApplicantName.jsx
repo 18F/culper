@@ -11,7 +11,6 @@ export default class Address extends ValidationElement {
     this.state = {
       name: props.name,
       label: props.label,
-      value: props.value,
       first: props.first,
       last: props.last,
       middle: props.middle,
@@ -66,10 +65,11 @@ export default class Address extends ValidationElement {
 
       api
         .validateApplicantName({
+          Last: this.state.last,
           First: this.state.first,
           Middle: this.state.middle,
-          Last: this.state.last,
-          Suffix: this.state.suffix
+          Suffix: this.state.suffix,
+          SuffixOther: this.state.suffixOther
         })
         .then((response) => {
           // TODO: Display and assign the errors as necessary
