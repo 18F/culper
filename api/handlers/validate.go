@@ -69,3 +69,13 @@ func ValidatePassport(w http.ResponseWriter, r *http.Request) {
 	stack := form.NewErrorStack("Passport", err)
 	EncodeErrJSON(w, stack)
 }
+
+// ValidateApplicantName validates information for a persons name
+func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
+	log.Println(fmt.Sprintf("Validating Applicant Name\n"))
+
+	var person form.NameField
+	DecodeJSON(r.Body, &person)
+	_, err := person.Valid()
+	EncodeErrJSON(w, err)
+}
