@@ -2,15 +2,16 @@ package db
 
 import (
 	"log"
-	"os"
 
+	"github.com/truetandem/e-QIP-prototype/api/cf"
 	pg "gopkg.in/pg.v5"
 )
 
+// NewDB establishes a new database connection
 func NewDB() *pg.DB {
-	user := os.Getenv("DATABASE_USER")
-	database := os.Getenv("DATABASE_NAME")
-	host := os.Getenv("DATABASE_HOST")
+	user := cf.UserService("database", "user")
+	database := cf.UserService("database", "name")
+	host := cf.UserService("database", "host")
 
 	if user == "" {
 		log.Println("WARNING: `DATABASE_USER` env variable has not been set. Setting default")
