@@ -4,7 +4,7 @@ import Text from '../Text'
 import Dropdown from '../Dropdown'
 import { api } from '../../../services/api'
 
-export default class Address extends ValidationElement {
+export default class ApplicantName extends ValidationElement {
   constructor (props) {
     super(props)
 
