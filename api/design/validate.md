@@ -24,20 +24,7 @@ FORMAT: 1A
         "Errors": [
           {
             "Fieldname": "SSN",
-            "Errors": [
-              {
-                "Fieldname": "First",
-                "Error": "First is a required field"
-              },
-              {
-                "Fieldname": "Middle",
-                "Error": "Middle is a required field"
-              },
-              {
-                "Fieldname": "Last",
-                "Error": "Last is a required field"
-              }
-            ]
+            "Error": ""
           }
         ]
       }
