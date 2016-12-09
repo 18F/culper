@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { Home, Login, Help } from './views'
+import { Home, Login, Help, Demo } from './views'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import store from './store'
@@ -18,6 +18,7 @@ ReactDOM.render(
         <IndexRoute component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
+        <Route path="/demo" component={Demo} />
       </Route>
     </Router>
   </Provider>
