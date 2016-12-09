@@ -82,15 +82,17 @@ export default class ApplicantSSN extends ValidationElement {
       }
 
       api
-        .validateApplicantSSN({
+        .validateSSN({
           SSN: this.state.value
         })
         .then((response) => {
-          // TODO: Display and assign the errors as necessary
+          // Display and assign the errors as necessary
           if (response.Errors) {
-          }
-
-          if (response.Suggestions) {
+            response.Errors.forEach((e) => {
+              if (e.Fieldname === 'SSN' && e.Error) {
+                this.setState({help: e.Error})
+              }
+            })
           }
         })
         .then(() => {
