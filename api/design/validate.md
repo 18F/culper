@@ -227,6 +227,17 @@ FORMAT: 1A
 
         Authorization: Bearer
         Accept: application/json
+    + Body
+
+```json
+      {
+        "Last": "",
+        "First": "",
+        "Middle": "",
+        "Suffix": "",
+        "SuffixOther": ""
+      }
+```
 
 + Response 200 (application/json)
     + Headers
@@ -236,35 +247,30 @@ FORMAT: 1A
     + Body
 
 ```json
-    {
-      "Errors": [
-        {
-          "Fieldname": "Firstname",
-          "Error": ""
-        },
-        {
-          "Fieldname": "Lastname",
-          "Error": ""
-        },
-        {
-          "Fieldname": "Middlename",
-          "Error": ""
-        },
-        {
-          "Fieldname": "Suffix",
-          "Errors": [
-            {
-              "Fieldname": "Suffix",
-              "Error": ""
-            },
-            {
-              "Fieldname": "SuffixOther",
-              "Error": ""
-            }
-          ]
-        }
-      ]
-    }
+      {
+        "Errors": [
+          {
+            "Fieldname": "First",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Last",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Middle",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Suffix",
+            "Error": ""
+          },
+          {
+            "Fieldname": "SuffixOther",
+            "Error": ""
+          }
+        ]
+      }
 ```
 
 + Response 500
