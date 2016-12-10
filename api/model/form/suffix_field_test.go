@@ -8,39 +8,20 @@ func TestSuffixField(t *testing.T) {
 		Expected bool
 	}{
 		{
-			SuffixField{
-				Suffix:      "II",
-				SuffixOther: "",
-			},
+			"Jr",
 			true,
 		},
 		{
-			SuffixField{
-				Suffix:      "Fake",
-				SuffixOther: "",
-			},
+			"Other",
+			true,
+		},
+		{
+			"",
+			true,
+		},
+		{
+			"Unknown",
 			false,
-		},
-		{
-			SuffixField{
-				Suffix:      "Other",
-				SuffixOther: "",
-			},
-			false,
-		},
-		{
-			SuffixField{
-				Suffix:      "Other",
-				SuffixOther: "Hellooooo",
-			},
-			true,
-		},
-		{
-			SuffixField{
-				Suffix:      "",
-				SuffixOther: "",
-			},
-			true,
 		},
 	}
 
