@@ -2,6 +2,8 @@ package cf
 
 import (
 	"fmt"
+	"log"
+	"net/url"
 	"os"
 
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
@@ -20,6 +22,11 @@ func PublicURI() string {
 	uri := getURI(current)
 	port := getPort(current)
 	return fmt.Sprintf("%s://%s:%s", proto, uri, port)
+}
+
+func DatabaseURI(label string) string {
+	current, _ := cfenv.Current()
+	return getDatabase(current, label)
 }
 
 func getProtocol(current *cfenv.App) string {
@@ -48,4 +55,55 @@ func getURI(current *cfenv.App) string {
 	}
 
 	return "localhost"
+}
+
+func getDatabase(current *cfenv.App, label string) string {
+	// Attempt to pull from CloudFoundry settings first
+	if current != nil {
+		service, err := current.Services.WithName(label)
+		if err == nil {
+			return service.Credentials["uri"].(string)
+		}
+		log.Printf("Could not parse VCAP_SERVICES for %s. Error: %s", label, err)
+	}
+
+	// If the URI is set then use this as it is preferred
+	addr := UserService("database", "uri")
+	if addr != "" {
+		return addr
+	}
+
+	// Or, by user (+ password) + database + host
+	uri := &url.URL{Scheme: "postgres"}
+	username := UserService("database", "user")
+	if username == "" {
+		username = "postgres"
+	}
+
+	// Check if there is a password set. If not then we need to create
+	// the Userinfo structure in a different way so we don't include
+	// exta colons (:).
+	pw := UserService("database", "password")
+	if pw == "" {
+		uri.User = url.User(username)
+	} else {
+		uri.User = url.UserPassword(username, pw)
+	}
+
+	// The database name will be part of the URI path so it needs
+	// a prefix of "/"
+	database := UserService("database", "name")
+	if database == "" {
+		database = "postgres"
+	}
+	uri.Path = fmt.Sprintf("/%s", database)
+
+	// Host can be either "address + port" or just "address"
+	host := UserService("database", "host")
+	if host == "" {
+		host = "localhost:5432"
+	}
+	uri.Host = host
+
+	return uri.String()
 }
