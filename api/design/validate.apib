@@ -1,0 +1,310 @@
+FORMAT: 1A
+
+# E-QIP API
+
+# Validate SSN [/validate/ssn/{ssn}]
+
+## Validates Social Security Number [GET]
+
++ Request
+  + Parameters
+    + ssn: `012345678` - Social Security Number for a person
+
+  + Headers
+
+    Authorization: Bearer
+    Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "SSN",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate Passport [/validate/passport/{passport}]
+
+## Validates Passport Number [GET]
+
++ Request
+  + Parameters
+    + passport: `TODO` - Passport number for a person
+
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Passport",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate Adddress [/validate/address]
+
+## Validates complete address [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Address",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Street",
+          "Error": ""
+        },
+        {
+          "Fieldname": "City",
+          "Error": ""
+        },
+        {
+          "Fieldname": "State",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Zipcode",
+          "Error": ""
+        },
+        {
+          "Fieldname": "County",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Country",
+          "Error": "",
+          "Suggestions": []
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate City [/validate/address/city/{city}]
+
+## Validates a city entry [GET]
+
++ Request
+  + Parameters
+    + city: `Arlington` - City of address to be validated
+
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "City",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate Zipcode [/validate/address/zipcode/{zipcode}]
+
+## Validates a zipcode entry [GET]
+
++ Request
+  + Parameters
+    + zipcode: `22202` - Zipcode of address to be validated
+
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+  {
+    "Errors": [
+      {
+        "Fieldname": "Zipcode",
+        "Error": ""
+      }
+    ]
+  }
+
++ Response 500
+
+# Validate State [/validate/address/state/{state}]
+
+## Validates a state entry [GET]
+
++ Request
+  + Parameters
+    state: `VA` - State of address to be validated
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+  {
+    "Errors": [
+      {
+        "Fieldname": "State",
+        "Error": ""
+      }
+    ]
+  }
+
++ Response 500
+
+# Validate Applicant Name [/validate/applicant/name]
+
+## Validates a persons name entry [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "Last": "",
+      "First": "",
+      "Middle": "",
+      "Suffix": "",
+      "SuffixOther": ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "First",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Last",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Middle",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Suffix",
+          "Error": ""
+        },
+        {
+          "Fieldname": "SuffixOther",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+#
+# Validate Applicant Birthdate [/validate/applicant/birthdate]
+
+## Validates a persons birthdate [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "Month": "",
+      "Day": "",
+      "Year": "",
+      "Estimated" : ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Month",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Day",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Year",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
