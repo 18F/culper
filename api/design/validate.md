@@ -7,6 +7,9 @@ FORMAT: 1A
 ## Validates Social Security Number [GET]
 
 + Request
+    + parameters
+      + ssn: `012345678` - Social Security Number for a person
+
     + Headers
 
         Authorization: Bearer
@@ -24,20 +27,7 @@ FORMAT: 1A
         "Errors": [
           {
             "Fieldname": "SSN",
-            "Errors": [
-              {
-                "Fieldname": "First",
-                "Error": "First is a required field"
-              },
-              {
-                "Fieldname": "Middle",
-                "Error": "Middle is a required field"
-              },
-              {
-                "Fieldname": "Last",
-                "Error": "Last is a required field"
-              }
-            ]
+            "Error": ""
           }
         ]
       }

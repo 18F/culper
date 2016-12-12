@@ -52,10 +52,13 @@ func ValidateState(w http.ResponseWriter, r *http.Request) {
 
 // ValidateSSN checks if a social security number is valid
 func ValidateSSN(w http.ResponseWriter, r *http.Request) {
-	//ssn := mux.Vars(r)["ssn"]
-	ssn := form.SSNField{}
+	ssn := mux.Vars(r)["ssn"]
+	field := form.SSNField{
+		SSN:        ssn,
+		Applicable: true,
+	}
 
-	_, err := ssn.Valid()
+	_, err := field.Valid()
 	stack := form.NewErrorStack("SSN", err)
 	EncodeErrJSON(w, stack)
 }

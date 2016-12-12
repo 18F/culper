@@ -81,6 +81,8 @@ export default class Text extends ValidationElement {
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                onValidate={this.handleValidation}
+               onKeyDown={this.props.onKeyDown}
+               ref="text"
                />
     )
   }
