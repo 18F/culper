@@ -6,10 +6,10 @@ FORMAT: 1A
 
 ## Validates Social Security Number [GET]
 
-+ Request
-  + Parameters
++ Parameters
     + ssn: `012345678` - Social Security Number for a person
 
++ Request
   + Headers
 
     Authorization: Bearer
@@ -36,11 +36,10 @@ FORMAT: 1A
 # Validate Passport [/validate/passport/{passport}]
 
 ## Validates Passport Number [GET]
++ Parameters
+  + passport: `TODO` - Passport number for a person
 
 + Request
-  + Parameters
-    + passport: `TODO` - Passport number for a person
-
   + Headers
 
       Authorization: Bearer
@@ -122,10 +121,10 @@ FORMAT: 1A
 
 ## Validates a city entry [GET]
 
-+ Request
-  + Parameters
-    + city: `Arlington` - City of address to be validated
++ Parameters
+  + city: `Arlington` - City of address to be validated
 
++ Request
   + Headers
 
       Authorization: Bearer
@@ -153,10 +152,10 @@ FORMAT: 1A
 
 ## Validates a zipcode entry [GET]
 
-+ Request
-  + Parameters
-    + zipcode: `22202` - Zipcode of address to be validated
++ Parameters
+  + zipcode: `22202` - Zipcode of address to be validated
 
++ Request
   + Headers
 
       Authorization: Bearer
@@ -184,11 +183,11 @@ FORMAT: 1A
 
 ## Validates a state entry [GET]
 
-+ Request
-  + Parameters
-    state: `VA` - State of address to be validated
-  + Headers
++ Parameters
+  + state: `VA` - State of address to be validated
 
++ Request
+  + Headers
       Authorization: Bearer
       Accept: text/plain
 
