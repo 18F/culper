@@ -241,11 +241,12 @@ export default class DateControl extends ValidationElement {
    * Determine if a date is valid with leap years considered
    */
   validDate (month, day, year) {
+    // Setup for upperbounds of days in months
     let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     if (this.leapYear(year)) {
       upperBounds[1] = 29
     }
-    return day > 0 && day <= upperBounds[month - 1]
+    return (month > 0 && month < 13) && (day > 0 && day <= upperBounds[month - 1])
   }
 
   render () {
