@@ -293,7 +293,12 @@ export default class DateControl extends ValidationElement {
                     />
           </div>
         </div>
-        <Checkbox />
+        <Checkbox name="estimated"
+                  label="Estimated"
+                  help=""
+                  value={this.state.estimated}
+                  onChange={this.handleChange}
+                  />
       </div>
     )
   }
