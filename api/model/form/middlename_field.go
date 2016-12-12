@@ -1,23 +1,14 @@
 package form
 
-import "fmt"
-
 // MiddlenameField stores and validates a persons Middle Name
-type MiddlenameField struct {
-	Name string
-	// Initial Only || No Middle Name
-	Type string
-}
+type MiddlenameField string
 
-func (m MiddlenameField) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if m.Type == "" && m.Name == "" {
-		stack.Append("Name", ErrFieldRequired{"Middlename is required"})
+// Valid ensures that a middle name, if entered, matches the validation rules for a generic name text field
+func (f MiddlenameField) Valid() (bool, error) {
+	n := GenericNameField(f)
+	if ok, err := n.Valid(); !ok {
+		return false, err
 	}
 
-	if m.Type != "Initial Only" || m.Type != "No Middle Name" {
-		stack.Append("Type", ErrFieldInvalid{fmt.Sprintf("%v is not a valid Middlename Type", m.Type)})
-	}
-	return !stack.HasErrors(), stack
+	return true, nil
 }
