@@ -33,8 +33,7 @@ func (f NameField) Valid() (bool, error) {
 
 		// Suffix option is valid. Now make sure that if `Other` Suffix is selected
 		// that SuffixOther contains a valid value
-		switch suffix {
-		case "Other":
+		if suffix == "Other" {
 			switch suffixOther {
 			// Empty SuffixOthe
 			case "":
