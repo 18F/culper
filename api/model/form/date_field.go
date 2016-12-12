@@ -5,6 +5,10 @@ import (
 	"time"
 )
 
+const (
+	dateFieldParser = "1/2/2006"
+)
+
 // DateField stores date information by month, day and year. It also
 // contains a flag to indicate if the date is estimated
 type DateField struct {
@@ -14,33 +18,73 @@ type DateField struct {
 	Estimated bool
 }
 
-// Valid determines if field is valid
-// TODO Figure out exactly how estimated affects overall validation
+// Valid determines if the provided date values are valid. The time.Time
+// package properly takes into account leap years. If a date field is out of
+// range, an error is returned
 func (d DateField) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if d.Month < 1 || d.Month > 12 {
-		stack.Append("Month", ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid month", d.Month)})
+	formatted := fmt.Sprintf("%v/%v/%v", d.Month, d.Day, d.Year)
+	if _, err := time.Parse(dateFieldParser, formatted); err != nil {
+		return false, ErrFieldInvalid{err.Error()}
 	}
-
-	if d.Day < 1 || d.Day > 31 {
-		stack.Append("Day", ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid day", d.Month)})
-	}
-
-	if d.Year < 1900 {
-		stack.Append("Year", ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid year", d.Month)})
-	}
-
-	return !stack.HasErrors(), stack
+	return true, nil
 }
 
 // Time creates a time.Time based off of the values entered
-// TODO this will be affected by how estimated is calculated
 func (d DateField) Time() (time.Time, error) {
 	if ok, err := d.Valid(); !ok {
 		return time.Time{}, err
 	}
 
 	formatted := fmt.Sprintf("%v/%v/%v", d.Month, d.Day, d.Year)
-	return time.Parse("1/2/2006", formatted)
+	return time.Parse(dateFieldParser, formatted)
+}
+
+// YearDiff finds the difference in years between two dates.
+// This was obtained from a stack overflow post.  http://stackoverflow.com/a/36531443/464064
+// Finding the difference in years is not as trivial since it has to take into account leap years
+func (d DateField) YearDiff(a, b time.Time) int {
+	if a.Location() != b.Location() {
+		b = b.In(a.Location())
+	}
+	if a.After(b) {
+		a, b = b, a
+	}
+	y1, M1, d1 := a.Date()
+	y2, M2, d2 := b.Date()
+
+	h1, m1, s1 := a.Clock()
+	h2, m2, s2 := b.Clock()
+
+	year := int(y2 - y1)
+	month := int(M2 - M1)
+	day := int(d2 - d1)
+	hour := int(h2 - h1)
+	min := int(m2 - m1)
+	sec := int(s2 - s1)
+
+	// Normalize negative values
+	if sec < 0 {
+		sec += 60
+		min--
+	}
+	if min < 0 {
+		min += 60
+		hour--
+	}
+	if hour < 0 {
+		hour += 24
+		day--
+	}
+	if day < 0 {
+		// days in month:
+		t := time.Date(y1, M1, 32, 0, 0, 0, 0, time.UTC)
+		day += 32 - t.Day()
+		month--
+	}
+	if month < 0 {
+		month += 12
+		year--
+	}
+
+	return year
 }
