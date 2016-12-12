@@ -1,6 +1,7 @@
 import React from 'react'
 import ValidationElement from '../validationElement'
 import Number from '../Number'
+import Checkbox from '../Checkbox'
 
 export default class DateControl extends ValidationElement {
   constructor (props) {
@@ -16,6 +17,7 @@ export default class DateControl extends ValidationElement {
       readonly: props.readonly,
       required: props.required,
       value: props.value,
+      estimated: props.estimated,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
@@ -228,67 +230,70 @@ export default class DateControl extends ValidationElement {
 
   render () {
     return (
-      <div className={this.divClass()}>
-        <div className="usa-form-group usa-form-group-month">
-          <Number id={this.partName('month')}
-                  name={this.partName('month')}
-                  placeholder={this.state.placeholder}
-                  aria-described-by={this.errorName('month')}
-                  disabled={this.state.disabled}
-                  max="12"
-                  maxlength="2"
-                  min="1"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
-                  step="1"
-                  value={this.state.month}
-                  focus={this.state.foci[0]}
-                  onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onBlur={this.handleBlur}
-                  onValidate={this.handleValidation}
-                  />
+      <div>
+        <div className={this.divClass()}>
+          <div className="usa-form-group usa-form-group-month">
+            <Number id={this.partName('month')}
+                    name={this.partName('month')}
+                    placeholder={this.state.placeholder}
+                    aria-described-by={this.errorName('month')}
+                    disabled={this.state.disabled}
+                    max="12"
+                    maxlength="2"
+                    min="1"
+                    readonly={this.state.readonly}
+                    required={this.state.required}
+                    step="1"
+                    value={this.state.month}
+                    focus={this.state.foci[0]}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    onValidate={this.handleValidation}
+                    />
+          </div>
+          <div className="usa-form-group usa-form-group-day">
+            <Number id={this.partName('day')}
+                    name={this.partName('day')}
+                    placeholder={this.state.placeholder}
+                    aria-described-by={this.errorName('day')}
+                    disabled={this.state.disabled}
+                    max="1"
+                    maxlength="2"
+                    min="31"
+                    readonly={this.state.readonly}
+                    required={this.state.required}
+                    step="1"
+                    value={this.state.day}
+                    focus={this.state.foci[1]}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    onValidate={this.handleValidation}
+                    />
+          </div>
+          <div className="usa-form-group usa-form-group-year">
+            <Number id={this.partName('year')}
+                    name={this.partName('year')}
+                    placeholder={this.state.placeholder}
+                    aria-described-by={this.errorName('year')}
+                    disabled={this.state.disabled}
+                    max={this.state.max}
+                    maxlength="4"
+                    min="1775"
+                    pattern={this.state.pattern}
+                    readonly={this.state.readonly}
+                    step="1"
+                    value={this.state.year}
+                    focus={this.state.foci[2]}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    onValidate={this.handleValidation}
+                    />
+          </div>
         </div>
-        <div className="usa-form-group usa-form-group-day">
-          <Number id={this.partName('day')}
-                  name={this.partName('day')}
-                  placeholder={this.state.placeholder}
-                  aria-described-by={this.errorName('day')}
-                  disabled={this.state.disabled}
-                  max="1"
-                  maxlength="2"
-                  min="31"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
-                  step="1"
-                  value={this.state.day}
-                  focus={this.state.foci[1]}
-                  onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onBlur={this.handleBlur}
-                  onValidate={this.handleValidation}
-                  />
-        </div>
-        <div className="usa-form-group usa-form-group-year">
-          <Number id={this.partName('year')}
-                  name={this.partName('year')}
-                  placeholder={this.state.placeholder}
-                  aria-described-by={this.errorName('year')}
-                  disabled={this.state.disabled}
-                  max={this.state.max}
-                  maxlength="4"
-                  min="1775"
-                  pattern={this.state.pattern}
-                  readonly={this.state.readonly}
-                  step="1"
-                  value={this.state.year}
-                  focus={this.state.foci[2]}
-                  onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onBlur={this.handleBlur}
-                  onValidate={this.handleValidation}
-                  />
-        </div>
+        <Checkbox />
       </div>
     )
   }
