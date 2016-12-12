@@ -101,6 +101,14 @@ export default class Generic extends ValidationElement {
   }
 
   /**
+   * Handle the key down event.
+   */
+  handleKeyDown (event) {
+    event.persist()
+    super.handleKeyDown(event)
+  }
+
+  /**
    * Generated name for the error message.
    */
   errorName () {
@@ -203,6 +211,7 @@ export default class Generic extends ValidationElement {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
+               onKeyDown={this.handleKeyDown}
                ref="input"
                />
       </div>

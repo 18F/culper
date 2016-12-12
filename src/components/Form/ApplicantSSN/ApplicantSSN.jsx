@@ -40,6 +40,7 @@ export default class ApplicantSSN extends ValidationElement {
           this.refs.middle.refs.text.refs.input.focus()
         }
         break
+
       case 'middle':
         updated = {
           middle: value,
@@ -49,12 +50,14 @@ export default class ApplicantSSN extends ValidationElement {
           this.refs.last.refs.text.refs.input.focus()
         }
         break
+
       case 'last':
         updated = {
           last: value,
           value: '' + this.state.first + this.state.middle + value
         }
         break
+
       case 'notAapplicable':
         updated = {
           notAapplicable: value
@@ -69,6 +72,32 @@ export default class ApplicantSSN extends ValidationElement {
     } else {
       super.handleChange(event)
     }
+  }
+
+  /**
+   * Handle the key down event.
+   */
+  handleKeyDown (event) {
+    let input = event.target
+    let part = this.extractPart(input.id)
+    let value = input.value
+
+    // 8  => backspace
+    // 46 => delete
+    let backspace = event.keyCode === 8 || event.keyCode === 46
+    if (backspace && value.length < 1) {
+      switch (part) {
+        case 'last':
+          this.refs.middle.refs.text.refs.input.focus()
+          break
+
+        case 'middle':
+          this.refs.first.refs.text.refs.input.focus()
+          break
+      }
+    }
+
+    super.handleKeyDown(event)
   }
 
   /**
@@ -153,6 +182,7 @@ export default class ApplicantSSN extends ValidationElement {
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              onKeyDown={this.handleKeyDown}
               />
         <Text name={this.partName('last')}
               ref="last"
@@ -165,6 +195,7 @@ export default class ApplicantSSN extends ValidationElement {
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              onKeyDown={this.handleKeyDown}
               />
         <Checkbox name={this.partName('notApplicable')}
                   label="Not applicable"
