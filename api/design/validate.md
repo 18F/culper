@@ -7,6 +7,9 @@ FORMAT: 1A
 ## Validates Social Security Number [GET]
 
 + Request
+    + parameters
+      + ssn: `012345678` - Social Security Number for a person
+
     + Headers
 
         Authorization: Bearer
