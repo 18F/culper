@@ -177,10 +177,12 @@ export default class DateControl extends ValidationElement {
       year = status != null ? status : null
     }
 
+    let valid = this.validDate(month, day, year)
+
     this.setState(
       {
-        error: month === false && day === false && year === false,
-        valid: month === true && day === true && year === true,
+        error: !valid && month === false && day === false && year === false,
+        valid: valid && month === true && day === true && year === true,
         validity: [month, day, year]
       },
       () => {
@@ -226,6 +228,24 @@ export default class DateControl extends ValidationElement {
     }
 
     return klass.trim()
+  }
+
+  /**
+   * Determine if a specified year is considered a leap year
+   */
+  leapYear (year) {
+    return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)
+  }
+
+  /**
+   * Determine if a date is valid with leap years considered
+   */
+  validDate (month, day, year) {
+    let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if (this.leapYear(year)) {
+      upperBounds[1] = 29
+    }
+    return day > 0 && day <= upperBounds[month - 1]
   }
 
   render () {
