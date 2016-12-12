@@ -17,6 +17,7 @@ import Type from './Type'
 import Service from './Service'
 import Address from './Address'
 import ApplicantName from './ApplicantName'
+import ApplicantSSN from './ApplicantSSN'
 
 export {
   Generic,
@@ -34,5 +35,6 @@ export {
   Type,
   Service,
   Address,
-  ApplicantName
+  ApplicantName,
+  ApplicantSSN
 }
