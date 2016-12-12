@@ -19,6 +19,7 @@ FORMAT: 1A
 
     + Body
 
+```json
       {
         "Errors": [
           {
@@ -40,7 +41,7 @@ FORMAT: 1A
           }
         ]
       }
-
+```
 
 + Response 500
 
@@ -60,7 +61,7 @@ FORMAT: 1A
         X-Eqip-Media-Type: eqip.v1
 
     + Body
-
+```json
       {
         "Errors": [
           {
@@ -69,6 +70,7 @@ FORMAT: 1A
           }
         ]
       }
+```
 
 + Response 500
 
@@ -89,6 +91,7 @@ FORMAT: 1A
 
     + Body
 
+```json
       {
         "Errors": [
           {
@@ -122,6 +125,7 @@ FORMAT: 1A
           }
         ]
       }
+```
 
 + Response 500
 
@@ -141,6 +145,8 @@ FORMAT: 1A
         X-Eqip-Media-Type: eqip.v1
 
     + Body
+
+```json
       {
         "Errors": [
           {
@@ -149,6 +155,7 @@ FORMAT: 1A
           }
         ]
       }
+```
 
 + Response 500
 
@@ -168,7 +175,7 @@ FORMAT: 1A
         X-Eqip-Media-Type: eqip.v1
 
     + Body
-
+```json
     {
       "Errors": [
         {
@@ -177,7 +184,7 @@ FORMAT: 1A
         }
       ]
     }
-
+```
 
 + Response 500
 
@@ -198,6 +205,7 @@ FORMAT: 1A
 
     + Body
 
+```json
     {
       "Errors": [
         {
@@ -206,5 +214,63 @@ FORMAT: 1A
         }
       ]
     }
+```
+
++ Response 500
+
+# Validate Applicant Name [/validate/applicant/name]
+
+## Validates a persons name entry [POST]
+
++ Request
+    + Headers
+
+        Authorization: Bearer
+        Accept: application/json
+    + Body
+
+```json
+      {
+        "Last": "",
+        "First": "",
+        "Middle": "",
+        "Suffix": "",
+        "SuffixOther": ""
+      }
+```
+
++ Response 200 (application/json)
+    + Headers
+
+        X-Eqip-Media-Type: eqip.v1
+
+    + Body
+
+```json
+      {
+        "Errors": [
+          {
+            "Fieldname": "First",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Last",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Middle",
+            "Error": ""
+          },
+          {
+            "Fieldname": "Suffix",
+            "Error": ""
+          },
+          {
+            "Fieldname": "SuffixOther",
+            "Error": ""
+          }
+        ]
+      }
+```
 
 + Response 500
