@@ -7,11 +7,6 @@ export default class Country extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
       valid: props.valid || false
@@ -59,6 +54,7 @@ export default class Country extends ValidationElement {
       <Dropdown name={this.props.name}
                 label={this.props.label}
                 help={this.props.help}
+                disabled={this.props.disabled}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.handleFocus}

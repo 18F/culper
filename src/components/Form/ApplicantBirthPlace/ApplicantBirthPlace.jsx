@@ -16,7 +16,9 @@ export default class ApplicantBirthPlace extends ValidationElement {
       city: props.city,
       state: props.state,
       county: props.county,
-      country: props.country
+      country: props.country,
+      disabledState: false,
+      disabledCountry: false
     }
   }
 
@@ -30,19 +32,25 @@ export default class ApplicantBirthPlace extends ValidationElement {
 
     switch (part) {
       case 'city':
-        updated = { first: value }
+        updated = { city: value }
         break
 
       case 'state':
-        updated = { last: value }
+        updated = {
+          state: value,
+          disabledCountry: value !== ''
+        }
         break
 
       case 'county':
-        updated = { middle: value }
+        updated = { county: value }
         break
 
       case 'country':
-        updated = { suffix: value }
+        updated = {
+          country: value,
+          disabledState: !(value === '' || value === 'United States')
+        }
         break
     }
 
@@ -106,6 +114,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <City name={this.partName('city')}
               label="City"
               value={this.state.city}
+              maxlength="100"
               onChange={this.handleChange}
               onValidate={this.handleValidation}
               onFocus={this.props.onFocus}
@@ -115,6 +124,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                        label="State"
                        value={this.state.state}
                        includeStates="true"
+                       disabled={this.state.disabledState}
                        onChange={this.handleChange}
                        onValidate={this.handleValidation}
                        onFocus={this.props.onFocus}
@@ -123,6 +133,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <County name={this.partName('county')}
                 label="County"
                 value={this.state.county}
+                maxlength="255"
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -131,6 +142,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <Country name={this.partName('country')}
                  label="Country"
                  value={this.state.country}
+                 disabled={this.state.disabledCountry}
                  onChange={this.handleChange}
                  onValidate={this.handleValidation}
                  onFocus={this.props.onFocus}
