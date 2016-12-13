@@ -10,13 +10,13 @@ export default class Number extends ValidationElement {
       label: props.label,
       placeholder: props.placeholder,
       help: props.help,
-      disabled: false,
-      min: 0,
-      max: 9999,
-      maxlength: 0,
-      readonly: false,
-      required: false,
-      step: 1,
+      disabled: props.disabled,
+      min: props.min,
+      max: props.max,
+      maxlength: props.maxlength,
+      readonly: props.readonly,
+      required: props.required,
+      step: props.step,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -73,17 +73,17 @@ export default class Number extends ValidationElement {
 
     if (this.state.value) {
       if (this.state.min) {
-        status = status && this.state.value >= this.state.min
+        status = status && parseInt(this.state.value) >= parseInt(this.state.min)
         hits++
       }
 
       if (this.state.max) {
-        status = status && this.state.value <= this.state.max
+        status = status && parseInt(this.state.value) <= parseInt(this.state.max)
         hits++
       }
 
       if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
+        status = status && this.state.value.length <= parseInt(this.state.maxlength)
         hits++
       }
     }
@@ -184,7 +184,7 @@ export default class Number extends ValidationElement {
                aria-described-by={this.errorName()}
                disabled={this.state.disabled}
                max={this.state.max}
-               maxlength={this.state.maxlength}
+               maxLength={this.state.maxlength}
                min={this.state.min}
                readonly={this.state.readonly}
                required={this.state.required}

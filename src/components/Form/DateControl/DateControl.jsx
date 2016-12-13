@@ -34,7 +34,7 @@ export default class DateControl extends ValidationElement {
    */
   datePart (part, date) {
     if (date === undefined) {
-      return undefined
+      return ''
     }
 
     let d = new Date(date)
@@ -42,10 +42,10 @@ export default class DateControl extends ValidationElement {
     // Make sure it is a valid date
     if (Object.prototype.toString.call(d) === '[object Date]') {
       if (isNaN(d.getTime())) {
-        return undefined
+        return ''
       }
     } else {
-      return undefined
+      return ''
     }
 
     switch (part) {
@@ -65,7 +65,7 @@ export default class DateControl extends ValidationElement {
         return d.getFullYear()
     }
 
-    return undefined
+    return ''
   }
 
   /**
@@ -76,14 +76,23 @@ export default class DateControl extends ValidationElement {
     let day = this.state.day
     let year = this.state.year
 
-    if (event.target.id.indexOf('-month') !== -1) {
-      month = event.target.value
+    if (event.target.value.length > 0) {
+      if (event.target.id.indexOf('-month') !== -1) {
+        month = event.target.value
+      }
+      if (event.target.id.indexOf('-day') !== -1) {
+        day = event.target.value
+      }
+      if (event.target.id.indexOf('-year') !== -1) {
+        year = event.target.value
+      }
     }
-    if (event.target.id.indexOf('-day') !== -1) {
-      day = event.target.value
-    }
-    if (event.target.id.indexOf('-year') !== -1) {
-      year = event.target.value
+
+    let d
+    if (year && month && day) {
+      d = new Date(year, month - 1, day)
+    } else {
+      d = ''
     }
 
     this.setState(
@@ -91,9 +100,10 @@ export default class DateControl extends ValidationElement {
         month: month,
         day: day,
         year: year,
-        value: new Date(year, month, day)
+        value: d
       },
       () => {
+        event.target.date = d
         super.handleChange(event)
       })
   }
@@ -177,7 +187,7 @@ export default class DateControl extends ValidationElement {
       year = status != null ? status : null
     }
 
-    let valid = this.validDate(month, day, year)
+    let valid = this.validDate(this.state.month, this.state.day, this.state.year)
 
     this.setState(
       {
@@ -279,9 +289,9 @@ export default class DateControl extends ValidationElement {
                     placeholder={this.state.placeholder}
                     aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
-                    max="1"
+                    max="31"
                     maxlength="2"
-                    min="31"
+                    min="1"
                     readonly={this.state.readonly}
                     required={this.state.required}
                     step="1"
@@ -299,7 +309,7 @@ export default class DateControl extends ValidationElement {
                     placeholder={this.state.placeholder}
                     aria-described-by={this.errorName('year')}
                     disabled={this.state.disabled}
-                    max={this.state.max}
+                    max="9999"
                     maxlength="4"
                     min="1775"
                     pattern={this.state.pattern}

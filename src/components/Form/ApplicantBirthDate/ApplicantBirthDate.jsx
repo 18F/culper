@@ -1,6 +1,7 @@
 import React from 'react'
 import ValidationElement from '../validationElement'
 import DateControl from '../DateControl'
+import { api } from '../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
   constructor (props) {
@@ -18,7 +19,7 @@ export default class ApplicantBirthDate extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
+    this.setState({ value: event.target.date }, () => {
       super.handleChange(event)
     })
   }
@@ -46,8 +47,69 @@ export default class ApplicantBirthDate extends ValidationElement {
     }
 
     this.setState({error: status === false, valid: status === true, help: help}, () => {
-      super.handleValidation(event, status)
+      if (this.state.error === false || this.state.valid === true) {
+        super.handleValidation(event, status)
+        return
+      }
+
+      api
+        .validateApplicantBirthdate({
+          Month: this.datePart('m', this.state.value),
+          Day: this.datePart('d', this.state.value),
+          Year: this.datePart('y', this.state.value),
+          Estimated: this.state.estimated
+        })
+        .then((response) => {
+          // Display and assign the errors as necessary
+          if (response.Errors) {
+            response.Errors.forEach((e) => {
+              this.setState({help: e.Error})
+            })
+          }
+        })
+        .then(() => {
+          super.handleValidation(event, status)
+        })
     })
+  }
+
+  /**
+   * Retrieve the part of the date requested.
+   */
+  datePart (part, date) {
+    if (date === undefined) {
+      return ''
+    }
+
+    let d = new Date(date)
+
+    // Make sure it is a valid date
+    if (Object.prototype.toString.call(d) === '[object Date]') {
+      if (isNaN(d.getTime())) {
+        return ''
+      }
+    } else {
+      return ''
+    }
+
+    switch (part) {
+      case 'month':
+      case 'mm':
+      case 'm':
+        return d.getMonth() + 1
+
+      case 'day':
+      case 'dd':
+      case 'd':
+        return d.getDate()
+
+      case 'year':
+      case 'yy':
+      case 'y':
+        return d.getFullYear()
+    }
+
+    return ''
   }
 
   /**
