@@ -7,7 +7,9 @@ export default class ApplicantBirthDate extends ValidationElement {
     super(props)
 
     this.state = {
+      name: props.name,
       value: props.value,
+      help: props.help,
       estimated: props.estimated
     }
   }
@@ -38,15 +40,49 @@ export default class ApplicantBirthDate extends ValidationElement {
       status = age > 16 && age < 131
     }
 
-    this.setState({error: status === false, valid: status === true}, () => {
+    let help = this.state.help
+    if (status === false) {
+      help = 'Applicants must be older than 16 and less than 130 years of age'
+    }
+
+    this.setState({error: status === false, valid: status === true, help: help}, () => {
       super.handleValidation(event, status)
     })
+  }
+
+  /**
+   * Generated name for the error message.
+   */
+  errorName () {
+    return '' + this.state.name + '-error'
+  }
+
+  /**
+   * Style classes applied to the span element.
+   */
+  spanClass () {
+    let klass = ''
+
+    if (this.state.error) {
+      klass += ' usa-input-error-message'
+    } else {
+      klass += ' hidden'
+    }
+
+    return klass.trim()
   }
 
   render () {
     return (
       <div>
-        <DateControl name={this.props.name}
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert"
+              ref="error"
+              >
+          {this.state.help}
+        </span>
+        <DateControl name={this.state.name}
                      value={this.state.value}
                      estimated={this.state.estimated}
                      onChange={this.handleChange}
