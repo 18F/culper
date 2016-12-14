@@ -11,8 +11,6 @@ import (
 
 // ValidateAddress checks if an entire address is valid
 func ValidateAddress(w http.ResponseWriter, r *http.Request) {
-	log.Println(fmt.Sprintf("Validating Full Address: [%v]\n"))
-
 	var address form.AddressField
 	DecodeJSON(r.Body, &address)
 	log.Println(fmt.Sprintf("Validating Full Address: [%v]\n", address))
@@ -75,7 +73,7 @@ func ValidatePassport(w http.ResponseWriter, r *http.Request) {
 
 // ValidateApplicantName validates information for a persons name
 func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
-	log.Println(fmt.Sprintf("Validating Applicant Name\n"))
+	log.Println("Validating Applicant Name")
 
 	var name form.NameField
 	DecodeJSON(r.Body, &name)
@@ -85,7 +83,7 @@ func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
 
 // ValidateApplicantBirthdate validates a persons birthdate
 func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
-	log.Println(fmt.Sprintf("Validating Applicant Birthdate\n"))
+	log.Println("Validating Applicant Birthdate")
 
 	var name form.BirthdateField
 	DecodeJSON(r.Body, &name)

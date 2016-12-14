@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var (
+const (
 	dateFieldParser = "1/2/2006"
 )
 
