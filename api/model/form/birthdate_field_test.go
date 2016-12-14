@@ -9,6 +9,15 @@ func TestBirthdateField(t *testing.T) {
 	}{
 		{
 			BirthdateField{
+				Month:     10,
+				Day:       4,
+				Year:      1986,
+				Estimated: true,
+			},
+			true,
+		},
+		{
+			BirthdateField{
 				Month:     1,
 				Day:       1,
 				Year:      2010,

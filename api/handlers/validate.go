@@ -82,3 +82,13 @@ func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
 	_, err := name.Valid()
 	EncodeErrJSON(w, err)
 }
+
+// ValidateApplicantBirthdate validates a persons birthdate
+func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
+	log.Println(fmt.Sprintf("Validating Applicant Birthdate\n"))
+
+	var name form.BirthdateField
+	DecodeJSON(r.Body, &name)
+	_, err := name.Valid()
+	EncodeErrJSON(w, err)
+}
