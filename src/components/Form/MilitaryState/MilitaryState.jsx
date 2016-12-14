@@ -4,31 +4,18 @@ import Dropdown from '../Dropdown'
 import State from '../State'
 
 export default class MilitaryState extends ValidationElement {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      name: props.name,
-      label: props.label,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
-      value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false
-    }
-  }
-
   render () {
     if (this.props.includeStates) {
       return (
         <State name={this.props.name}
                label={this.props.label}
-               help={this.props.help}>
+               help={this.props.help}
+               disabled={this.props.disabled}
+               onChange={this.props.onChange}
+               onValidation={this.props.onValidation}
+               onBlur={this.props.onBlur}
+               onFocus={this.props.onFocus}
+               >
           <option value="AA">AA</option>
           <option value="AE">AE</option>
           <option value="AP">AP</option>
@@ -38,7 +25,13 @@ export default class MilitaryState extends ValidationElement {
       return (
         <Dropdown name={this.props.name}
                   label={this.props.label}
-                  help={this.props.help}>
+                  help={this.props.help}
+                  disabled={this.props.disabled}
+                  onChange={this.props.onChange}
+                  onValidation={this.props.onValidation}
+                  onBlur={this.props.onBlur}
+                  onFocus={this.props.onFocus}
+                  >
           <option value="">{this.props.placeholder}</option>
           <option value="AA">AA</option>
           <option value="AE">AE</option>
