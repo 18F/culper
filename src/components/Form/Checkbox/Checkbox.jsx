@@ -15,7 +15,6 @@ export default class Checkbox extends ValidationElement {
       pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
-      value: props.value,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
