@@ -90,5 +90,6 @@ func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
 	var name form.BirthdateField
 	DecodeJSON(r.Body, &name)
 	_, err := name.Valid()
-	EncodeErrJSON(w, err)
+	stack := form.NewErrorStack("Birthdate", err)
+	EncodeErrJSON(w, stack)
 }
