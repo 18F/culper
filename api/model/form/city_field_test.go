@@ -2,15 +2,16 @@ package form
 
 import "testing"
 
-func TestStateField(t *testing.T) {
+func TestCityField(t *testing.T) {
 	tests := []struct {
-		Field    StateField
+		Field    CityField
 		Expected bool
 	}{
 		{"", true},
-		{"VA", true},
-		{"V", false},
-		{"123", false},
+		{"Arlington", true},
+		{"unknown", false},
+		{"Unknown", false},
+		{"UnkNown", false},
 	}
 
 	for _, test := range tests {
