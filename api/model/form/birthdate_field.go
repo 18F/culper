@@ -2,7 +2,9 @@ package form
 
 import "time"
 
-// BirthDateField represents an applicants birthdate
+// BirthdateField represents an applicants birthdate. We create this based
+// off of the DateField type to reuse its fields. Note that the Valid() method
+// is NOT inherited.
 type BirthdateField DateField
 
 // Valid ensures the an applicants birthdate meets the following criteria:
@@ -11,8 +13,8 @@ type BirthdateField DateField
 // - Maximum date difference is 130 years
 func (f BirthdateField) Valid() (bool, error) {
 
-	d := DateField(f)
 	// Use generic DateField validation to ensure date values are valid
+	d := DateField(f)
 	if ok, err := d.Valid(); !ok {
 		return false, err
 	}

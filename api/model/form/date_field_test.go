@@ -53,6 +53,15 @@ var tests = []struct {
 		},
 		false,
 	},
+	{
+		DateField{
+			Month:     10,
+			Day:       4,
+			Year:      1988,
+			Estimated: true,
+		},
+		true,
+	},
 }
 
 func TestDateField(t *testing.T) {
