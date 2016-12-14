@@ -18,8 +18,8 @@ import Service from './Service'
 import Address from './Address'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
-import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
+import ApplicantBirthDate from './ApplicantBirthDate'
 
 export {
   Generic,
@@ -39,6 +39,6 @@ export {
   Address,
   ApplicantName,
   ApplicantSSN,
-  ApplicantBirthDate,
-  ApplicantBirthPlace
+  ApplicantBirthPlace,
+  ApplicantBirthDate
 }

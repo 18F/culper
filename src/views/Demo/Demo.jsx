@@ -1,5 +1,5 @@
 import React from 'react'
-import { ApplicantName, ApplicantSSN, ApplicantBirthPlace } from '../../components/Form'
+import { ApplicantName, ApplicantSSN, ApplicantBirthDate, ApplicantBirthPlace } from '../../components/Form'
 
 class Demo extends React.Component {
   render () {
