@@ -85,6 +85,14 @@ class Api {
   validateAddress (address) {
     return this.proxySecured.post(env.EndpointValidateAddress(), address)
   }
+
+  validateApplicantName (name) {
+    return this.proxySecured.post(env.EndpointValidateApplicantName(), name)
+  }
+
+  validateApplicantBirthdate (birthdate) {
+    return this.proxySecured.post(env.EndpointValidateApplicantBirthdate(), birthdate)
+  }
 }
 
 const api = new Api()

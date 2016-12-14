@@ -77,8 +77,8 @@ func ValidatePassport(w http.ResponseWriter, r *http.Request) {
 func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
 	log.Println(fmt.Sprintf("Validating Applicant Name\n"))
 
-	var person form.NameField
-	DecodeJSON(r.Body, &person)
-	_, err := person.Valid()
+	var name form.NameField
+	DecodeJSON(r.Body, &name)
+	_, err := name.Valid()
 	EncodeErrJSON(w, err)
 }

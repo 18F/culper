@@ -28,6 +28,7 @@ export default class Generic extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
     })
@@ -37,6 +38,7 @@ export default class Generic extends ValidationElement {
    * Handle the focus event.
    */
   handleFocus (event) {
+    event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
     })
@@ -46,6 +48,7 @@ export default class Generic extends ValidationElement {
    * Handle the blur event.
    */
   handleBlur (event) {
+    event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
@@ -60,6 +63,7 @@ export default class Generic extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidation (event, status) {
+    event.persist()
     if (!event || !event.target) {
       super.handleValidation(event, status)
       return
@@ -77,7 +81,7 @@ export default class Generic extends ValidationElement {
       if (this.state.pattern && this.state.pattern.length > 0) {
         try {
           let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value)
+          status = status && re.test(this.state.value)
           hits++
         } catch (e) {
           // Not a valid regular expression
@@ -94,6 +98,14 @@ export default class Generic extends ValidationElement {
     this.setState({error: status === false, valid: status === true}, () => {
       super.handleValidation(event, status)
     })
+  }
+
+  /**
+   * Handle the key down event.
+   */
+  handleKeyDown (event) {
+    event.persist()
+    super.handleKeyDown(event)
   }
 
   /**
@@ -172,12 +184,16 @@ export default class Generic extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
+               htmlFor={this.state.name}
+               ref="label"
+               >
           {this.state.label}
         </label>
         <span className={this.spanClass()}
               id={this.errorName()}
-              role="alert">
+              role="alert"
+              ref="error"
+              >
           {this.state.help}
         </span>
         <input className={this.inputClass()}
@@ -195,6 +211,8 @@ export default class Generic extends ValidationElement {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
+               onKeyDown={this.handleKeyDown}
+               ref="input"
                />
       </div>
     )

@@ -22,11 +22,11 @@ func (s SSNField) Valid() (bool, error) {
 
 	// If Applicable, a SSN must be provided
 	if s.SSN == "" {
-		return false, ErrFieldRequired{"If Applicable is marked, a Social Security Number must be provided"}
+		return false, ErrFieldRequired{"if Applicable is marked, a Social Security Number must be provided"}
 	}
 
 	if ok := SSNRegexp.MatchString(s.SSN); !ok {
-		return false, ErrFieldInvalid{"Social Security Number is not a proper format"}
+		return false, ErrFieldInvalid{"is not a valid formatted Social Security Number"}
 	}
 
 	return true, nil
