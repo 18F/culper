@@ -1,5 +1,5 @@
 import React from 'react'
-import { ApplicantName, ApplicantSSN, ApplicantBirthPlace } from '../../components/Form'
+import { ApplicantName, ApplicantSSN, ApplicantBirthDate, ApplicantBirthPlace } from '../../components/Form'
 
 class Demo extends React.Component {
   render () {
@@ -12,6 +12,9 @@ class Demo extends React.Component {
         <hr />
 
         <ApplicantSSN name="applicant-ssn" value="123456789" notApplicable="true" />
+        <hr />
+
+        <ApplicantBirthDate name="applicant-pod" />
         <hr />
 
         <ApplicantBirthPlace name="applicant-birthplace" />

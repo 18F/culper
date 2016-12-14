@@ -9,19 +9,19 @@ Two-factor authentication endpoints
 ## Retrieve a QR code [GET]
 
 + Request
-    + Headers
+  + Headers
 
-        Authorization: Bearer
-        Accept: text/plain
+    Authorization: Bearer
+    Accept: text/plain
 
 + Response 200 (text/plain)
-    + Headers
+  + Headers
 
-        X-Eqip-Media-Type: eqip.v1
+    X-Eqip-Media-Type: eqip.v1
 
-    + Body
+  + Body
 
-        image/png;base64
+    image/png;base64
 
 + Response 500
 
@@ -30,15 +30,15 @@ Two-factor authentication endpoints
 ## Verify two-factor token [POST]
 
 + Request
-    + Headers
+  + Headers
 
-        Authorization: Bearer
-        Accept: text/plain
+    Authorization: Bearer
+    Accept: text/plain
 
 + Response 200 (text/plain)
-    + Headers
+  + Headers
 
-        X-Eqip-Media-Type: eqip.v1
+    X-Eqip-Media-Type: eqip.v1
 
 + Response 500
 
@@ -49,14 +49,14 @@ Two-factor authentication endpoints
 ## Request two-factor token by e-mail [POST]
 
 + Request
-    + Headers
+  + Headers
 
-        Authorization: Bearer
-        Accept: text/plain
+    Authorization: Bearer
+    Accept: text/plain
 
 + Response 200 (text/plain)
-    + Headers
+  + Headers
 
-        X-Eqip-Media-Type: eqip.v1
+    X-Eqip-Media-Type: eqip.v1
 
 + Response 500
