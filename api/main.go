@@ -37,6 +37,7 @@ func main() {
 
 	// Applicant Validation
 	v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
+	v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
 
 	log.Println("Starting API mock server")
 	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))
