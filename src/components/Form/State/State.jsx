@@ -2,31 +2,18 @@ import React from 'react'
 import ValidationElement from '../validationElement'
 import Dropdown from '../Dropdown'
 
-export default class State extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      name: props.name,
-      label: props.label,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
-      value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false
-    }
-  }
-
+export default class State extends ValidationElement {
   render () {
     return (
       <Dropdown name={this.props.name}
                 label={this.props.label}
-                help={this.props.help}>
+                help={this.props.help}
+                disabled={this.props.disabled}
+                onChange={this.props.onChange}
+                onValidation={this.props.onValidation}
+                onBlur={this.props.onBlur}
+                onFocus={this.props.onFocus}
+                >
         <option value="">{this.props.placeholder}</option>
         <option value="AL">AL</option>
         <option value="AK">AK</option>

@@ -9,7 +9,6 @@ export default class Dropdown extends ValidationElement {
       name: props.name,
       label: props.label,
       help: props.help,
-      disabled: props.disabled,
       maxlength: props.maxlength,
       pattern: props.pattern,
       readonly: props.readonly,
@@ -132,7 +131,7 @@ export default class Dropdown extends ValidationElement {
                 id={this.state.name}
                 name={this.state.name}
                 aria-described-by={this.errorName()}
-                disabled={this.state.disabled}
+                disabled={this.props.disabled}
                 maxlength={this.state.maxlength}
                 pattern={this.state.pattern}
                 readonly={this.state.readonly}

@@ -18,6 +18,7 @@ import Service from './Service'
 import Address from './Address'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
+import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 
 export {
@@ -38,5 +39,6 @@ export {
   Address,
   ApplicantName,
   ApplicantSSN,
+  ApplicantBirthPlace,
   ApplicantBirthDate
 }
