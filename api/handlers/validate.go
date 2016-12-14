@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -13,7 +12,7 @@ import (
 func ValidateAddress(w http.ResponseWriter, r *http.Request) {
 	var address form.AddressField
 	DecodeJSON(r.Body, &address)
-	log.Println(fmt.Sprintf("Validating Full Address: [%v]\n", address))
+	log.Printf("Validating Full Address: [%v]\n", address)
 
 	_, err := address.Valid()
 	EncodeErrJSON(w, err)
@@ -22,7 +21,8 @@ func ValidateAddress(w http.ResponseWriter, r *http.Request) {
 // ValidateCity checks if a city is valid
 func ValidateCity(w http.ResponseWriter, r *http.Request) {
 	city := mux.Vars(r)["city"]
-	log.Println(fmt.Sprintf("Validating City: [%v]\n", city))
+	log.Printf("Validating City: [%v]\n", city)
+
 	_, err := form.CityField(city).Valid()
 	stack := form.NewErrorStack("City", err)
 	EncodeErrJSON(w, stack)
@@ -31,7 +31,7 @@ func ValidateCity(w http.ResponseWriter, r *http.Request) {
 // ValidateZipcode checks if a zipcode is valid
 func ValidateZipcode(w http.ResponseWriter, r *http.Request) {
 	zipcode := mux.Vars(r)["zipcode"]
-	log.Println(fmt.Sprintf("Validating Zipcode: [%v]\n", zipcode))
+	log.Printf("Validating Zipcode: [%v]\n", zipcode)
 
 	_, err := form.ZipcodeField(zipcode).Valid()
 	stack := form.NewErrorStack("Zipcode", err)
@@ -41,7 +41,7 @@ func ValidateZipcode(w http.ResponseWriter, r *http.Request) {
 // ValidateState checks if a state is valid
 func ValidateState(w http.ResponseWriter, r *http.Request) {
 	state := mux.Vars(r)["state"]
-	log.Println(fmt.Sprintf("Validating State: [%v]\n", state))
+	log.Printf("Validating State: [%v]\n", state)
 
 	_, err := form.StateField(state).Valid()
 	stack := form.NewErrorStack("State", err)
@@ -64,7 +64,7 @@ func ValidateSSN(w http.ResponseWriter, r *http.Request) {
 // ValidatePassport checks if a passport number is valid
 func ValidatePassport(w http.ResponseWriter, r *http.Request) {
 	passport := mux.Vars(r)["passport"]
-	log.Println(fmt.Sprintf("Validating Passport Number: [%v]\n", passport))
+	log.Printf("Validating Passport Number: [%v]\n", passport)
 
 	_, err := form.PassportField(passport).Valid()
 	stack := form.NewErrorStack("Passport", err)
