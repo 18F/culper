@@ -7,6 +7,6 @@ applications:
   host: eqip-prototype-api-staging
   buildpack: https://github.com/cloudfoundry/go-buildpack
   path: api
-  command: ./run.sh
+  command: ./api
   env:
     GOVERSION: go1.7.4
