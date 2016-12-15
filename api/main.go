@@ -37,6 +37,7 @@ func main() {
 
 	// Applicant Validation
 	v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
+	v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
 	v.HandleFunc("/applicant/birthdate", handlers.ValidateApplicantBirthdate)
 
 	log.Println("Starting API mock server")

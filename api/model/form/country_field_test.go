@@ -7,8 +7,10 @@ func TestCountryField(t *testing.T) {
 		Field    CountryField
 		Expected bool
 	}{
-		{"", false},
+		{"", true},
 		{"United States", true},
+		{"Finleys States", false},
+		{"12", false},
 	}
 
 	for _, test := range tests {

@@ -4,7 +4,7 @@ package form
 type IdentifyingInfoSection struct {
 	Person          NameField
 	Address         AddressField
-	PlaceOfBirth    BirthAddressField
+	PlaceOfBirth    BirthPlaceField
 	DateOfBirth     DateField
 	SSN             SSNField
 	OptionalComment TextField

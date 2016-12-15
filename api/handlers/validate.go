@@ -81,6 +81,17 @@ func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
 	EncodeErrJSON(w, err)
 }
 
+// ValidateApplicantBirthplace validates information for a persons birthplace
+func ValidateApplicantBirthplace(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Applicant Birthplace")
+
+	var birthplace form.BirthPlaceField
+	DecodeJSON(r.Body, &birthplace)
+	_, err := birthplace.Valid()
+	stack := form.NewErrorStack("Birthplace", err)
+	EncodeErrJSON(w, stack)
+}
+
 // ValidateApplicantBirthdate validates a persons birthdate
 func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
 	log.Println("Validating Applicant Birthdate")

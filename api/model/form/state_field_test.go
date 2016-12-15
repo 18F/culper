@@ -7,9 +7,10 @@ func TestStateField(t *testing.T) {
 		Field    StateField
 		Expected bool
 	}{
-		{"", false},
+		{"", true},
 		{"VA", true},
-		{"Virginia", true},
+		{"V", false},
+		{"123", false},
 	}
 
 	for _, test := range tests {

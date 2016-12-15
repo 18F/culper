@@ -11,12 +11,12 @@ var (
 type GenericNameField string
 
 func (f GenericNameField) Valid() (bool, error) {
-
-	if NameRegex.MatchString(string(f)) {
+	s := string(f)
+	if NameRegex.MatchString(s) {
 		return false, ErrFieldInvalid{"contains invalid characters"}
 	}
 
-	if len(f) > 100 {
+	if len([]rune(s)) > 100 {
 		return false, ErrFieldInvalid{"exceeded the maximum number of characters"}
 	}
 	return true, nil

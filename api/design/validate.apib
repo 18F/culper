@@ -262,7 +262,7 @@ FORMAT: 1A
     }
 
 + Response 500
-#
+
 # Validate Applicant Birthdate [/validate/applicant/birthdate]
 
 ## Validates a persons birthdate [POST]
@@ -293,6 +293,43 @@ FORMAT: 1A
       "Errors": [
         "Fieldname": "Birthdate",
         "Error": ""
+      ]
+    }
+
++ Response 500
+
+# Validate Birthplace [/validate/applicant/birthplace]
+
+## Validates a persons birthplace [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "City": "",
+      "State": "",
+      "County": "",
+      "Country" : ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Birthplace",
+          "Error": ""
+        }
       ]
     }
 
