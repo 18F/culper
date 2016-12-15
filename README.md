@@ -46,15 +46,22 @@ truetandem/e-QIP-prototype#issue_number Commit description
 
 ### Clone all things
 
-First you are going to want to clone the repository
+Clone the repository and `cd` into it:
 
 ```
 git clone https://github.com/18F/e-QIP-prototype
+cd e-QIP-prototype
+```
+
+Then to develop locally, create a `.env` file:
+
+```
+cp .env.example .env
 ```
 
 ### Docker/docker-compose setup
 
-`cd` into the repo and run:
+Once `cd`'d into the cloned repository (and having created a `.env` file):
 
 ```
 $ docker-compose up

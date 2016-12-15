@@ -9,7 +9,6 @@ export default class Dropdown extends ValidationElement {
       name: props.name,
       label: props.label,
       help: props.help,
-      disabled: props.disabled,
       maxlength: props.maxlength,
       pattern: props.pattern,
       readonly: props.readonly,
@@ -25,6 +24,7 @@ export default class Dropdown extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
     })
@@ -34,6 +34,7 @@ export default class Dropdown extends ValidationElement {
    * Handle the focus event.
    */
   handleFocus (event) {
+    event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
     })
@@ -43,6 +44,7 @@ export default class Dropdown extends ValidationElement {
    * Handle the blur event.
    */
   handleBlur (event) {
+    event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
@@ -129,7 +131,7 @@ export default class Dropdown extends ValidationElement {
                 id={this.state.name}
                 name={this.state.name}
                 aria-described-by={this.errorName()}
-                disabled={this.state.disabled}
+                disabled={this.props.disabled}
                 maxlength={this.state.maxlength}
                 pattern={this.state.pattern}
                 readonly={this.state.readonly}

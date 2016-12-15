@@ -8,14 +8,13 @@ export default class Checkbox extends ValidationElement {
     this.state = {
       name: props.name,
       label: props.label,
-      checked: props.checked,
+      value: props.value,
       help: props.help,
       disabled: props.disabled,
       maxlength: props.maxlength,
       pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
-      value: props.value,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
@@ -26,7 +25,8 @@ export default class Checkbox extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ checked: !this.state.checked }, () => {
+    event.persist()
+    this.setState({ value: !this.state.value }, () => {
       super.handleChange(event)
     })
   }
@@ -35,6 +35,7 @@ export default class Checkbox extends ValidationElement {
    * Handle the focus event.
    */
   handleFocus (event) {
+    event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
     })
@@ -44,6 +45,7 @@ export default class Checkbox extends ValidationElement {
    * Handle the blur event.
    */
   handleBlur (event) {
+    event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
@@ -58,6 +60,7 @@ export default class Checkbox extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidate (event, status) {
+    event.persist()
     if (!event || !event.target) {
       super.handleValidate(event, status)
       return

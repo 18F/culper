@@ -2,9 +2,9 @@ package form
 
 // IdentifyingInfoSection stores personal identifying data for a person
 type IdentifyingInfoSection struct {
-	Person          PersonField
+	Person          NameField
 	Address         AddressField
-	PlaceOfBirth    BirthAddressField
+	PlaceOfBirth    BirthPlaceField
 	DateOfBirth     DateField
 	SSN             SSNField
 	OptionalComment TextField
@@ -35,7 +35,7 @@ func (s IdentifyingInfoSection) Valid() (bool, error) {
 
 // OtherNamesUsedSection stores information about a persons alternative names
 type OtherNamesUsedSection struct {
-	Person          PersonField
+	Person          NameField
 	DatesUsed       DateRangeField
 	Reasons         TextField
 	OptionalComment TextField

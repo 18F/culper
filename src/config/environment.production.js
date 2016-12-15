@@ -10,6 +10,8 @@ class Env {
   EndpointValidateZipcode (zipcode) { return `/validate/zipcode/${zipcode}` }
   EndpointValidateState (state) { return `/validate/state/${state}` }
   EndpointValidateAddress () { return '/validate/address' }
+  EndpointValidateApplicantName () { return '/validate/applicant/name' }
+  EndpointValidateApplicantBirthdate () { return '/validate/applicant/birthdate' }
 }
 
 const env = new Env()

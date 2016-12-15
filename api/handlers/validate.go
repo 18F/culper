@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -11,11 +10,9 @@ import (
 
 // ValidateAddress checks if an entire address is valid
 func ValidateAddress(w http.ResponseWriter, r *http.Request) {
-	log.Println(fmt.Sprintf("Validating Full Address: [%v]\n"))
-
 	var address form.AddressField
 	DecodeJSON(r.Body, &address)
-	log.Println(fmt.Sprintf("Validating Full Address: [%v]\n", address))
+	log.Printf("Validating Full Address: [%v]\n", address)
 
 	_, err := address.Valid()
 	EncodeErrJSON(w, err)
@@ -24,7 +21,8 @@ func ValidateAddress(w http.ResponseWriter, r *http.Request) {
 // ValidateCity checks if a city is valid
 func ValidateCity(w http.ResponseWriter, r *http.Request) {
 	city := mux.Vars(r)["city"]
-	log.Println(fmt.Sprintf("Validating City: [%v]\n", city))
+	log.Printf("Validating City: [%v]\n", city)
+
 	_, err := form.CityField(city).Valid()
 	stack := form.NewErrorStack("City", err)
 	EncodeErrJSON(w, stack)
@@ -33,7 +31,7 @@ func ValidateCity(w http.ResponseWriter, r *http.Request) {
 // ValidateZipcode checks if a zipcode is valid
 func ValidateZipcode(w http.ResponseWriter, r *http.Request) {
 	zipcode := mux.Vars(r)["zipcode"]
-	log.Println(fmt.Sprintf("Validating Zipcode: [%v]\n", zipcode))
+	log.Printf("Validating Zipcode: [%v]\n", zipcode)
 
 	_, err := form.ZipcodeField(zipcode).Valid()
 	stack := form.NewErrorStack("Zipcode", err)
@@ -43,7 +41,7 @@ func ValidateZipcode(w http.ResponseWriter, r *http.Request) {
 // ValidateState checks if a state is valid
 func ValidateState(w http.ResponseWriter, r *http.Request) {
 	state := mux.Vars(r)["state"]
-	log.Println(fmt.Sprintf("Validating State: [%v]\n", state))
+	log.Printf("Validating State: [%v]\n", state)
 
 	_, err := form.StateField(state).Valid()
 	stack := form.NewErrorStack("State", err)
@@ -52,10 +50,13 @@ func ValidateState(w http.ResponseWriter, r *http.Request) {
 
 // ValidateSSN checks if a social security number is valid
 func ValidateSSN(w http.ResponseWriter, r *http.Request) {
-	//ssn := mux.Vars(r)["ssn"]
-	ssn := form.SSNField{}
+	ssn := mux.Vars(r)["ssn"]
+	field := form.SSNField{
+		SSN:        ssn,
+		Applicable: true,
+	}
 
-	_, err := ssn.Valid()
+	_, err := field.Valid()
 	stack := form.NewErrorStack("SSN", err)
 	EncodeErrJSON(w, stack)
 }
@@ -63,9 +64,41 @@ func ValidateSSN(w http.ResponseWriter, r *http.Request) {
 // ValidatePassport checks if a passport number is valid
 func ValidatePassport(w http.ResponseWriter, r *http.Request) {
 	passport := mux.Vars(r)["passport"]
-	log.Println(fmt.Sprintf("Validating Passport Number: [%v]\n", passport))
+	log.Printf("Validating Passport Number: [%v]\n", passport)
 
 	_, err := form.PassportField(passport).Valid()
 	stack := form.NewErrorStack("Passport", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateApplicantName validates information for a persons name
+func ValidateApplicantName(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Applicant Name")
+
+	var name form.NameField
+	DecodeJSON(r.Body, &name)
+	_, err := name.Valid()
+	EncodeErrJSON(w, err)
+}
+
+// ValidateApplicantBirthplace validates information for a persons birthplace
+func ValidateApplicantBirthplace(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Applicant Birthplace")
+
+	var birthplace form.BirthPlaceField
+	DecodeJSON(r.Body, &birthplace)
+	_, err := birthplace.Valid()
+	stack := form.NewErrorStack("Birthplace", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateApplicantBirthdate validates a persons birthdate
+func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Applicant Birthdate")
+
+	var name form.BirthdateField
+	DecodeJSON(r.Body, &name)
+	_, err := name.Valid()
+	stack := form.NewErrorStack("Birthdate", err)
 	EncodeErrJSON(w, stack)
 }

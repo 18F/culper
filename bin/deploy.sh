@@ -1,3 +1,5 @@
+#! /bin/bash
+
 set -e
 
 API="https://api.fr.cloud.gov"
@@ -24,6 +26,24 @@ else
   exit
 fi
 
-cf login -a $API -u $CF_USERNAME -p $CF_PASSWORD -o $ORG -s $SPACE
-cf zero-downtime-push $API_NAME -f $API_MANIFEST
-cf zero-downtime-push $FRONTEND_NAME -f $FRONTEND_MANIFEST
+# This directory is used to persist the CF credentials
+mkdir -p $HOME/.cf
+
+# This wonderful image pulls the `cf` tool along with the
+# `autopilot` plugin
+docker pull adelevie/cf-cli:latest
+
+# For some reason, aliases aren't working here
+# so we're using this function instead
+cf_run() {
+  docker run \
+    --rm \
+    -v $HOME/.cf:/root/.cf \
+    -v $PWD:/app \
+    adelevie/cf-cli \
+    cf "$@"
+}
+
+cf_run login -a $API -u $CF_USERNAME -p $CF_PASSWORD -o $ORG -s $SPACE
+cf_run zero-downtime-push $API_NAME -f $API_MANIFEST
+cf_run zero-downtime-push $FRONTEND_NAME -f $FRONTEND_MANIFEST

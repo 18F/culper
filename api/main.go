@@ -33,7 +33,12 @@ func main() {
 	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
 	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode)
 	v.HandleFunc("/address/state/{state}", handlers.ValidateState)
-	v.HandleFunc("/address", handlers.ValidateAddress).Methods("POST")
+	v.HandleFunc("/address", handlers.ValidateAddress)
+
+	// Applicant Validation
+	v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
+	v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
+	v.HandleFunc("/applicant/birthdate", handlers.ValidateApplicantBirthdate)
 
 	log.Println("Starting API mock server")
 	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))

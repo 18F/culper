@@ -2,57 +2,44 @@ package form
 
 import "testing"
 
-func TestAddressField(t *testing.T) {
-
+func TestBirthPlaceField(t *testing.T) {
 	tests := []struct {
-		Field    AddressField
+		Field    BirthPlaceField
 		Expected bool
 	}{
 		{
-			AddressField{
-				Address: "12345",
-				Street:  "Some rd",
+			BirthPlaceField{
 				City:    "Arlington",
 				State:   "VA",
-				Zipcode: "22202",
-				County:  "Arlington",
+				County:  "",
 				Country: "United States",
 			},
 			true,
 		},
 		{
-			AddressField{
-				Address: "",
-				Street:  "",
+			BirthPlaceField{
 				City:    "",
-				State:   "",
-				Zipcode: "",
+				State:   "MD",
 				County:  "",
-				Country: "",
+				Country: "United States",
+			},
+			true,
+		},
+		{
+			BirthPlaceField{
+				City:    "",
+				State:   "M",
+				County:  "",
+				Country: "United States",
 			},
 			false,
 		},
 		{
-			AddressField{
-				Address: "Some Address",
-				Street:  "",
+			BirthPlaceField{
 				City:    "",
 				State:   "",
-				Zipcode: "",
 				County:  "",
-				Country: "",
-			},
-			false,
-		},
-		{
-			AddressField{
-				Address: "Some Address",
-				Street:  "1234",
-				City:    "",
-				State:   "",
-				Zipcode: "",
-				County:  "",
-				Country: "",
+				Country: "United",
 			},
 			false,
 		},
