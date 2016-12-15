@@ -9,11 +9,11 @@ type CityField string
 // the maximum number of characters is not exceeded
 func (f CityField) Valid() (bool, error) {
 	s := string(f)
-	if strings.ToLower(s) == "unknown" {
+	if strings.EqualFold(s, "unknown") {
 		return false, ErrFieldInvalid{"unknown is an invalid value"}
 	}
 
-	if len(s) > 100 {
+	if len([]rune(s)) > 100 {
 		return false, ErrFieldInvalid{"exeeded the maximum number of characters"}
 	}
 

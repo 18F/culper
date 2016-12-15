@@ -17,7 +17,7 @@ func (f StateField) Valid() (bool, error) {
 	return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid state", s)}
 }
 
-var stateList = []string{
+var stateList = [...]string{
 	"",
 	"AL",
 	"AK",

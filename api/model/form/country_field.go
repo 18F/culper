@@ -16,7 +16,7 @@ func (f CountryField) Valid() (bool, error) {
 	return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid country", s)}
 }
 
-var countryList = []string{
+var countryList = [...]string{
 	"",
 	"United States",
 	"Afghanistan",
