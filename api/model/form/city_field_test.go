@@ -12,6 +12,7 @@ func TestCityField(t *testing.T) {
 		{"unknown", false},
 		{"Unknown", false},
 		{"UnkNown", false},
+		{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nibh, lacinia vel nulla vitae nullam.", false},
 	}
 
 	for _, test := range tests {
