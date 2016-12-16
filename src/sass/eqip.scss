@@ -11,3 +11,9 @@ h1 {
     display: none;
     visibility: hidden;
 }
+
+.no-gutter {
+    margin-left: initial;
+    margin-right: initial;
+    max-width: 100%;
+}

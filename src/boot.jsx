@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { Home, Login, Help, Demo } from './views'
+import { Home, Login, Help, Demo, Form } from './views'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess } from './actions/AuthActions'
-import { push } from './middleware/history'
+// import { push } from './middleware/history'
 
 const app = document.getElementById('app')
 
@@ -19,6 +19,7 @@ ReactDOM.render(
         <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
         <Route path="/demo" component={Demo} />
+        <Route path="/form" component={Form} />
       </Route>
     </Router>
   </Provider>
