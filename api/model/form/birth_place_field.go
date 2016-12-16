@@ -1,5 +1,7 @@
 package form
 
+import "github.com/truetandem/e-QIP-prototype/api/geo"
+
 // BirthPlaceField contains the birth location for a person. This contains a
 // subset of the Address information
 type BirthPlaceField struct {
@@ -24,5 +26,25 @@ func (f BirthPlaceField) Valid() (bool, error) {
 		return false, err
 	}
 
-	return true, nil
+	// Geocode information and determine if any results are found
+	partial, results, err := geo.Geocode.BirthPlace(
+		geo.Values{
+			City:    string(f.City),
+			State:   string(f.State),
+			County:  string(f.County),
+			Country: string(f.Country),
+		})
+
+	if err != nil {
+		return false, ErrFieldInvalid{err.Error()}
+	}
+
+	if !partial {
+		return true, nil
+	}
+
+	return false, ErrInvalidLocation{
+		Message:     "Geocode result is a partial match. Suggestions are available",
+		Suggestions: results,
+	}
 }
