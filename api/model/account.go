@@ -3,7 +3,6 @@ package model
 import (
 	"errors"
 	"fmt"
-	"log"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -17,9 +16,11 @@ var (
 	BasicAuthAudience = "Basic"
 	Expiration        = time.Minute * 20
 
-	// Errors
+	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
-	ErrAccoundDoesNotExist  = errors.New("Account does not exist")
+
+	// ErrAccoundDoesNotExist is an error when a users account does not exist
+	ErrAccoundDoesNotExist = errors.New("Account does not exist")
 )
 
 // Account represents a user account
@@ -36,7 +37,7 @@ func (a *Account) WithContext(ctx *pg.DB) {
 	a.db = ctx
 }
 
-// BasicAuth checks if the username and password are valid and returns the users account
+// BasicAuthentication checks if the username and password are valid and returns the users account
 func (a *Account) BasicAuthentication(password string) error {
 	var basicMembership BasicAuthMembership
 
@@ -48,8 +49,12 @@ func (a *Account) BasicAuthentication(password string) error {
 		Select()
 
 	if err != nil {
-		log.Println(err)
-		return ErrAccoundDoesNotExist
+		switch err {
+		case pg.ErrNoRows:
+			return ErrAccoundDoesNotExist
+		default:
+			return err
+		}
 	}
 
 	// Check if plaintext password matches hashed password

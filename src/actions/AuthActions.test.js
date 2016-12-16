@@ -3,7 +3,7 @@ import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { login, logout, redirectToLogin, handleLoginSuccess, twofactor, qrcode, handleTwoFactorSuccess } from './AuthActions'
+import { login, logout, redirectToLogin, handleLoginSuccess, twofactor, qrcode, handleTwoFactorSuccess, handleLoginError } from './AuthActions'
 import AuthConstants from './AuthConstants'
 
 const middlewares = [ thunk ]
@@ -40,8 +40,8 @@ describe('Auth actions', function () {
   it('should create an action to handle logout', function () {
     const store = mockStore({ authentication: [] })
     const expectedAction = [
-            { type: AuthConstants.LOGOUT},
-            { type: 'PUSH', to: '/login'}
+      { type: AuthConstants.LOGOUT },
+      { type: 'PUSH', to: '/login' }
     ]
     store.dispatch(logout('john', 'admin'))
     expect(store.getActions()).toEqual(expectedAction)
@@ -52,13 +52,36 @@ describe('Auth actions', function () {
     mock.onGet('/2fa/john').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
     const store = mockStore({ authentication: [] })
     const expectedAction = [
-        {
-            qrcode: 'aernstiaenstieanstieansitenaiestnaientsi',
-            type: AuthConstants.TWOFACTOR_QRCODE
-        }
+      {
+        qrcode: 'aernstiaenstieanstieansitenaiestnaientsi',
+        type: AuthConstants.TWOFACTOR_QRCODE
+      }
     ]
     return store
             .dispatch(qrcode('john'))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedAction)
+            })
+  })
+
+  it('should create an action an unsuccessful login action', function () {
+    const error = 'Invalid account'
+    const expectedAction = { type: AuthConstants.LOGIN_ERROR, error: 'Invalid account' }
+    expect(handleLoginError(error)).toEqual(expectedAction)
+  })
+
+  it('should create an action to handle unsuccessful login when login credentials fail', function () {
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/auth/basic').reply(500, 'Invalid account')
+    const store = mockStore({ authentication: {} })
+    const expectedAction = [
+      {
+        error: 'Invalid account',
+        type: AuthConstants.LOGIN_ERROR
+      }
+    ]
+    return store
+            .dispatch(login('john', 'doe'))
             .then(() => {
               expect(store.getActions()).toEqual(expectedAction)
             })
