@@ -8,10 +8,26 @@ import ApplicantSSN from './ApplicantSSN'
 
 // Mapping section identifiers to the associated components.
 const sectionMap = {
-  'name': () => { return (<ApplicantName />) },
-  'birthdate': () => { return (<ApplicantBirthDate />) },
-  'birthplace': () => { return (<ApplicantBirthPlace />) },
-  'ssn': () => { return (<ApplicantSSN />) }
+  'name': {
+    'prev': () => { return '' },
+    'next': () => { return '' },
+    'render': () => { return (<ApplicantName />) }
+  },
+  'birthdate': {
+    'prev': () => { return '' },
+    'next': () => { return '' },
+    'render': () => { return (<ApplicantBirthDate />) }
+  },
+  'birthplace': {
+    'prev': () => { return '' },
+    'next': () => { return '' },
+    'render': () => { return (<ApplicantBirthPlace />) }
+  },
+  'ssn': {
+    'prev': () => { return '' },
+    'next': () => { return '' },
+    'render': () => { return (<ApplicantSSN />) }
+  }
 }
 
 class Identification extends React.Component {
@@ -81,7 +97,9 @@ class Identification extends React.Component {
 
     return (
       <div className="identification">
-        {sectionMap[this.state.subsection]()}
+        {sectionMap[this.state.subsection].render()}
+        {sectionMap[this.state.subsection].prev()}
+        {sectionMap[this.state.subsection].next()}
       </div>
     )
   }

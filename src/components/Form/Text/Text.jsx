@@ -67,6 +67,7 @@ export default class Text extends ValidationElement {
                placeholder={this.state.placeholder}
                help={this.state.help}
                type="text"
+               className={this.props.className}
                disabled={this.state.disabled}
                minlength={this.state.minlength}
                maxlength={this.state.maxlength}

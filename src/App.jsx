@@ -89,9 +89,7 @@ export class App extends React.Component {
                 {logoutButton}
               </div>
             </div>
-
             <SectionTitle />
-
           </div>
         </header>
         <div className="usa-overlay"></div>

@@ -156,10 +156,11 @@ export default class ApplicantSSN extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="ssn">
         <h2>U.S. Social Security Number</h2>
         <Text name={this.partName('first')}
               ref="first"
+              className="first"
               placeholder="000"
               maxlength="3"
               pattern="^[0-9]*$"
@@ -172,6 +173,7 @@ export default class ApplicantSSN extends ValidationElement {
               />
         <Text name={this.partName('middle')}
               ref="middle"
+              className="middle"
               placeholder="00"
               maxlength="2"
               pattern="^[0-9]*$"
@@ -185,6 +187,7 @@ export default class ApplicantSSN extends ValidationElement {
               />
         <Text name={this.partName('last')}
               ref="last"
+              className="last"
               placeholder="0000"
               maxlength="4"
               pattern="^[0-9]*$"

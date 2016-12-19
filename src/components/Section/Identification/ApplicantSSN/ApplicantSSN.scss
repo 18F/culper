@@ -1,0 +1,32 @@
+.identification {
+    .ssn {
+        .first {
+            width: 6rem;
+            display: inline-block;
+
+            input {
+                text-align: center;
+            }
+        }
+
+        .middle {
+            width: 5rem;
+            display: inline-block;
+            margin-left: 2rem;
+            margin-right: 2rem;
+
+            input {
+                text-align: center;
+            }
+        }
+
+        .last {
+            width: 8rem;
+            display: inline-block;
+
+            input {
+                text-align: center;
+            }
+        }
+    }
+}

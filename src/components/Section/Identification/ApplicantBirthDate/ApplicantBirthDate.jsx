@@ -135,7 +135,7 @@ export default class ApplicantBirthDate extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="birthdate">
         <h2>Date of birth</h2>
         <span className={this.spanClass()}
               id={this.errorName()}
