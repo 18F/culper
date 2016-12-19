@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 
 export default class Textarea extends ValidationElement {
   constructor (props) {

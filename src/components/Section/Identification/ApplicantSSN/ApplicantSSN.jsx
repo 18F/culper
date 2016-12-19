@@ -1,8 +1,6 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
-import Text from '../Text'
-import Checkbox from '../Checkbox'
-import { api } from '../../../services/api'
+import { ValidationElement, Text, Checkbox } from '../../../Form'
+import { api } from '../../../../services/api'
 
 export default class ApplicantSSN extends ValidationElement {
   constructor (props) {
@@ -159,6 +157,7 @@ export default class ApplicantSSN extends ValidationElement {
   render () {
     return (
       <div>
+        <h2>U.S. Social Security Number</h2>
         <Text name={this.partName('first')}
               ref="first"
               placeholder="000"

@@ -1,10 +1,6 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
-import City from '../City'
-import MilitaryState from '../MilitaryState'
-import County from '../County'
-import Country from '../Country'
-import { api } from '../../../services/api'
+import { ValidationElement, City, MilitaryState, County, Country } from '../../../Form'
+import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
   constructor (props) {
@@ -109,8 +105,14 @@ export default class ApplicantBirthPlace extends ValidationElement {
   }
 
   render () {
+    console.log('in it')
+    console.log('city:', City)
+    console.log('state:', MilitaryState)
+    console.log('county:', County)
+    console.log('country:', Country)
     return (
       <div>
+        <h2>Place of birth</h2>
         <City name={this.partName('city')}
               label="City"
               value={this.state.city}

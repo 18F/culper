@@ -47,7 +47,7 @@ export function twofactor (account, token) {
             .twoFactor(account, token)
             .then(response => {
               dispatch(handleTwoFactorSuccess())
-              dispatch(push('/'))
+              dispatch(push('/form'))
             })
             .catch(function (error) {
               if (error.response) {

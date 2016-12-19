@@ -1,11 +1,10 @@
 import React from 'react'
-import { Login, ScoreCard, Navigation } from './components'
-import { GithubOAuth } from './services'
+import { SectionTitle, ScoreCard, Navigation } from './components'
 import { connect } from 'react-redux'
 import { login, logout } from './actions/AuthActions'
 
 /*
-           1/4-ish                                 1/2-ish                               1/4-ish
+           1/6-ish                                 2/3-ish                               1/6-ish
   ------------------------------------------------------------------------------------------------
   |                       |
   | Title                 | <Page title />
@@ -39,8 +38,8 @@ export class App extends React.Component {
   }
 
   render () {
-    let logoutButton = this.props.authenticated
-        ? (<button onClick={this.logout}>Logout</button>)
+    let logoutButton = this.props.authenticated && this.props.twofactor
+        ? (<a href="#" onClick={this.logout} className="logout">Logout</a>)
         : null
 
     return (
@@ -83,27 +82,31 @@ export class App extends React.Component {
             <div className="usa-navbar">
               <div className="usa-logo" id="logo">
                 <em className="usa-logo-text">
-                  <a href="#" accessKey="1" title="Home" aria-label="Home">eApp</a>
+                  eApp
                 </em>
               </div>
-              {logoutButton}
+              <div>
+                {logoutButton}
+              </div>
             </div>
-            <div className="title"></div>
+
+            <SectionTitle />
+
           </div>
         </header>
         <div className="usa-overlay"></div>
         <main id="main-content">
           <div className="usa-grid-full no-gutter">
-            <div className="usa-width-one-fourth">
+            <div className="usa-width-one-sixth">
               <ScoreCard />
               <Navigation />
               &nbsp;
             </div>
-            <div className="usa-width-one-half">
+            <div className="usa-width-two-thirds">
               {this.props.children}
               &nbsp;
             </div>
-            <div className="usa-width-one-fourth">
+            <div className="usa-width-one-sixth">
               &nbsp;
             </div>
           </div>

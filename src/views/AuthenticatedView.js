@@ -32,9 +32,6 @@ function AuthenticatedView (WrappedComponent) {
     }
 
     render () {
-      console.log('authenticated:', this.props.authenticated || '<nil>')
-      console.log('twofactor:', this.props.twofactor || '<nil>')
-
       if (this.props.authenticated && this.props.twofactor) {
         return (
           <WrappedComponent {...this.props} />

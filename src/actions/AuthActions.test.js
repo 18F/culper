@@ -11,7 +11,7 @@ const mockStore = configureMockStore(middlewares)
 
 describe('Auth actions', function () {
   it('should create an action to login using username and password', function () {
-        // Mock POST response
+    // Mock POST response
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/auth/basic').reply(200, 'faketoken')
 
@@ -25,10 +25,10 @@ describe('Auth actions', function () {
     const store = mockStore({ authentication: [] })
 
     return store
-            .dispatch(login('john', 'admin'))
-            .then(function () {
-              expect(store.getActions()).toEqual(expectedActions)
-            })
+          .dispatch(login('john', 'admin'))
+          .then(function () {
+            expect(store.getActions()).toEqual(expectedActions)
+          })
   })
 
   it('should create an action to handle a successful login', function () {
@@ -40,8 +40,8 @@ describe('Auth actions', function () {
   it('should create an action to handle logout', function () {
     const store = mockStore({ authentication: [] })
     const expectedAction = [
-            { type: AuthConstants.LOGOUT},
-            { type: 'PUSH', to: '/login'}
+      { type: AuthConstants.LOGOUT},
+      { type: 'PUSH', to: '/login'}
     ]
     store.dispatch(logout('john', 'admin'))
     expect(store.getActions()).toEqual(expectedAction)
@@ -52,20 +52,20 @@ describe('Auth actions', function () {
     mock.onGet('/2fa/john').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
     const store = mockStore({ authentication: [] })
     const expectedAction = [
-        {
-            qrcode: 'aernstiaenstieanstieansitenaiestnaientsi',
-            type: AuthConstants.TWOFACTOR_QRCODE
-        }
+      {
+        qrcode: 'aernstiaenstieanstieansitenaiestnaientsi',
+        type: AuthConstants.TWOFACTOR_QRCODE
+      }
     ]
     return store
-            .dispatch(qrcode('john'))
-            .then(() => {
-              expect(store.getActions()).toEqual(expectedAction)
-            })
+      .dispatch(qrcode('john'))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedAction)
+      })
   })
 
   it('should create an action to handle twofactor auth', function () {
-        // Mock POST response
+    // Mock POST response
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/2fa/john/verify').reply(200, '')
 
@@ -75,16 +75,16 @@ describe('Auth actions', function () {
       },
       {
         type: 'PUSH',
-        to: '/'
+        to: '/form'
       }
     ]
 
     const store = mockStore({ authentication: [] })
 
     return store
-            .dispatch(twofactor('john', '123456'))
-            .then(function () {
-              expect(store.getActions()).toEqual(expectedActions)
-            })
+      .dispatch(twofactor('john', '123456'))
+      .then(function () {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
   })
 })

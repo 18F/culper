@@ -20,6 +20,6 @@ describe('The identification section', () => {
   it('visible when authenticated', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><Identification /></Provider>)
-    expect(component.find('div').length).toEqual(1)
+    expect(component.find('div').length).toEqual(10)
   })
 })

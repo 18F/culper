@@ -1,8 +1,6 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
-import Text from '../Text'
-import Dropdown from '../Dropdown'
-import { api } from '../../../services/api'
+import { ValidationElement, Text, Dropdown } from '../../../Form'
+import { api } from '../../../../services/api'
 
 export default class ApplicantName extends ValidationElement {
   constructor (props) {
@@ -111,6 +109,7 @@ export default class ApplicantName extends ValidationElement {
   render () {
     return (
       <div>
+        <h2>Your full name</h2>
         <Text name={this.partName('last')}
               label="Last name"
               maxlength="100"
