@@ -105,11 +105,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
   }
 
   render () {
-    console.log('in it')
-    console.log('city:', City)
-    console.log('state:', MilitaryState)
-    console.log('county:', County)
-    console.log('country:', Country)
     return (
       <div>
         <h2>Place of birth</h2>
