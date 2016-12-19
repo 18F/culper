@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess } from './actions/AuthActions'
-// import { push } from './middleware/history'
 
 const app = document.getElementById('app')
 
@@ -19,7 +18,7 @@ ReactDOM.render(
         <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
         <Route path="/demo" component={Demo} />
-        <Route path="/form" component={Form} />
+        <Route path="/form(/:section(/:subsection))" component={Form} />
       </Route>
     </Router>
   </Provider>
