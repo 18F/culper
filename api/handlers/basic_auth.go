@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/truetandem/e-QIP-prototype/api/db"
 	"github.com/truetandem/e-QIP-prototype/api/model"
 )
 
@@ -33,15 +32,6 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 
 	account := &model.Account{
 		Username: respBody.Username,
-	}
-
-	// Add db connection
-	account.WithContext(db.NewDB())
-
-	// Make sure username and password are valid
-	if err := account.BasicAuthentication(respBody.Password); err != nil {
-		Error(w, r, err)
-		return
 	}
 
 	// Generate jwt token
