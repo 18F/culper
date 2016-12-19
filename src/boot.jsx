@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
-import { handleLoginSuccess } from './actions/AuthActions'
+import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthActions'
 
 const app = document.getElementById('app')
 
@@ -29,8 +29,9 @@ ReactDOM.render(
  * when a page renders.
  */
 function onEnter () {
-  const token = api.getQueryValue('token')
+  const token = api.getToken()
   if (token) {
     store.dispatch(handleLoginSuccess(token))
+    store.dispatch(handleTwoFactorSuccess())
   }
 }
