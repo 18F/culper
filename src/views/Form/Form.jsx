@@ -1,5 +1,6 @@
 import React from 'react'
 import AuthenticatedView from '../AuthenticatedView'
+import Section from '../../components/Section'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -9,15 +10,21 @@ import AuthenticatedView from '../AuthenticatedView'
 //     display the subsection only.
 class Form extends React.Component {
   render () {
-    console.log(this.props.params)
     return (
       <div id="eapp-form" className="usa-grid">
         <div id="info" className="usa-width-one-whole">
-          <h2>This is the form yo</h2>
+          <Section section={this.props.params.section} subsection={this.props.params.subsection} />
         </div>
       </div>
     )
   }
+}
+
+Form.propTypes = {
+  params: React.PropTypes.shape({
+    section: React.PropTypes.string,
+    subsection: React.PropTypes.string
+  })
 }
 
 export default AuthenticatedView(Form)

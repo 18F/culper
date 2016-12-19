@@ -37,7 +37,7 @@ function AuthenticatedView (WrappedComponent) {
 
       if (this.props.authenticated && this.props.twofactor) {
         return (
-          <WrappedComponent />
+          <WrappedComponent {...this.props} />
         )
       }
       return null
