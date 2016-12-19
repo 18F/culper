@@ -27,7 +27,7 @@ func (f BirthPlaceField) Valid() (bool, error) {
 	}
 
 	// Geocode information and determine if any results are found
-	partial, results, err := geo.Geocode.BirthPlace(
+	_, results, err := geo.Geocode.BirthPlace(
 		geo.Values{
 			City:    string(f.City),
 			State:   string(f.State),
@@ -39,9 +39,13 @@ func (f BirthPlaceField) Valid() (bool, error) {
 		return false, ErrFieldInvalid{err.Error()}
 	}
 
-	if !partial {
-		return true, nil
+	if results.Empty() {
+		return false, ErrFieldInvalid{"No valid result was found matching your location"}
 	}
+
+	//if !partial {
+	//return true, nil
+	//}
 
 	return false, ErrInvalidLocation{
 		Message:     "Geocode result is a partial match. Suggestions are available",

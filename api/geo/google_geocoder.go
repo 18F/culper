@@ -9,6 +9,7 @@ import (
 )
 
 const (
+	// GmapsURI is the Google Geolocation API base URI
 	GmapsURI = "https://maps.googleapis.com/maps/api/geocode/json"
 )
 
@@ -17,9 +18,42 @@ type GoogleGeocoder struct {
 	apiKey string
 }
 
-// BirthPlace geocodes a person birth place
-func (g GoogleGeocoder) BirthPlace(geoValues Values) (bool, []Result, error) {
+// BirthPlace geocodes the location information for a person birthplace. The relevant fields
+// include the City, State, County and Country
+func (g GoogleGeocoder) BirthPlace(geoValues Values) (bool, Results, error) {
+	results, err := g.Geocode(geoValues)
+
+	switch err {
+	// If no results are found, attempt to search by single City in case
+	// there was a City/County mismatch
+	case ErrNoResultsFound:
+		fmt.Println("Geocoding additional parts of location")
+		cityResults, err := g.Geocode(Values{
+			City: geoValues.City,
+		})
+		if err == nil {
+			results = append(results, cityResults...)
+		}
+		return true, results, err
+	}
+
+	return results.HasPartial(), results, nil
+}
+
+// Geocode geocodes a set of geo values
+func (g GoogleGeocoder) Geocode(geoValues Values) (Results, error) {
 	gmapValues := GmapValues{}
+
+	// Handle County and State since they utilize the same field
+	switch {
+	case geoValues.County != "" && geoValues.State != "":
+		admin := fmt.Sprintf("%v %v", geoValues.County, geoValues.State)
+		gmapValues.AddAdminArea(admin)
+	case geoValues.County != "":
+		gmapValues.AddAdminArea(geoValues.County)
+	case geoValues.State != "":
+		gmapValues.AddAdminArea(geoValues.State)
+	}
 
 	if geoValues.County != "" {
 		gmapValues.AddAdminArea(geoValues.County)
@@ -27,10 +61,6 @@ func (g GoogleGeocoder) BirthPlace(geoValues Values) (bool, []Result, error) {
 
 	if geoValues.City != "" {
 		gmapValues.AddLocality(geoValues.City)
-	}
-
-	if geoValues.State != "" {
-		gmapValues.AddAdminArea(geoValues.State)
 	}
 
 	if geoValues.Country != "" {
@@ -44,25 +74,22 @@ func (g GoogleGeocoder) BirthPlace(geoValues Values) (bool, []Result, error) {
 }
 
 // query executes a query using the url parameters
-func (g GoogleGeocoder) query(v url.Values) (partial bool, results []Result, err error) {
+func (g GoogleGeocoder) query(v url.Values) (results Results, err error) {
 	v.Set("key", g.apiKey)
 	// Execute query
 	gResp, err := queryGmapGeocoder(v)
 	if err != nil {
-		return false, nil, err
+		return results, err
 	}
 
 	for _, r := range gResp.Results {
 		result := r.Result()
 		result.Formatted = r.FormattedAddress
+		result.Partial = r.PartialMatch
 		results = append(results, result)
-
-		if r.PartialMatch {
-			partial = true
-		}
 	}
 
-	return partial, results, err
+	return results, err
 }
 
 // GmapValues stores component parameters that are defined for component filtering
@@ -96,8 +123,8 @@ type GmapResponse struct {
 	Status  string
 }
 
-// AddressComponent contains the structure for a Google Geocoding API address component
-type AddressComponent struct {
+// GmapAddressComponent contains the structure for a Google Geocoding API address component
+type GmapAddressComponent struct {
 	LongName  string `json:"long_name"`
 	ShortName string `json:"short_name"`
 	Types     []string
@@ -105,9 +132,9 @@ type AddressComponent struct {
 
 // GmapResult contains the structure for a google maps geocoding response
 type GmapResult struct {
-	AddressComponents []AddressComponent `json:"address_components"`
-	FormattedAddress  string             `json:"formatted_address"`
-	PartialMatch      bool               `json:"partial_match"`
+	AddressComponents []GmapAddressComponent `json:"address_components"`
+	FormattedAddress  string                 `json:"formatted_address"`
+	PartialMatch      bool                   `json:"partial_match"`
 }
 
 // Result converts the Google result into a geo Result. The address types can be found at
@@ -140,6 +167,8 @@ func NewGoogleGeocoder(apiKey string) *GoogleGeocoder {
 	}
 }
 
+// queryGmapGeocoder is a helper to execute http requests and properly handle
+// the response codes for google geocoding requests
 func queryGmapGeocoder(v url.Values) (gResp GmapResponse, err error) {
 	uri := fmt.Sprintf("%v?%v", GmapsURI, v.Encode())
 	fmt.Println(uri)
@@ -156,7 +185,7 @@ func queryGmapGeocoder(v url.Values) (gResp GmapResponse, err error) {
 	case "OK":
 		return gResp, nil
 	case "ZERO_RESULTS":
-		return gResp, fmt.Errorf("No results found")
+		return gResp, ErrNoResultsFound
 	case "OVER_QUERY_LIMIT":
 		return gResp, fmt.Errorf("Over query limit")
 	case "REQUEST_DENIED":
