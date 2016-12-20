@@ -4,6 +4,9 @@ var gulp = require('gulp')
 var concat = require('gulp-concat')
 var sass = require('gulp-sass')
 var rename = require('gulp-rename')
+var envify = require('gulp-envify');
+
+require('dotenv').config();
 
 var paths = {
   entry: './src/boot.jsx',
@@ -61,6 +64,7 @@ function setup () {
     default:
       return gulp
         .src('./src/config/environment.dev.js')
+        .pipe(envify(process.env))
         .pipe(rename('./src/config/environment.js'))
         .pipe(gulp.dest('.', { overwrite: true }))
   }
