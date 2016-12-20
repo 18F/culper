@@ -1,0 +1,30 @@
+.datecontrol {
+    .usa-form-group-month {
+        width: 7rem;
+
+        input {
+            text-align: center;
+        }
+    }
+
+    .usa-form-group-day {
+        width: 7rem;
+
+        input {
+            text-align: center;
+        }
+    }
+
+    .usa-form-group-year {
+        width: 8.5rem;
+
+        input {
+            text-align: center;
+        }
+    }
+
+    .coupled-flags {
+        clear: both;
+        /* text-align: right; */
+    }
+}

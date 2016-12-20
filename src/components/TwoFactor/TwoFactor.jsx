@@ -42,7 +42,7 @@ class TwoFactor extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}>
           <div id="twofactor-component">
-            <input type="text" value={this.state.token} onChange={this.handleChange} />
+            <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
             <button type="submit">Verify</button>
           </div>
         </form>
@@ -52,7 +52,7 @@ class TwoFactor extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div id="twofactor-component">
             <img width="256" height="256" alt="Two factor authentication" src={this.base64png()} />
-            <input type="text" value={this.state.token} onChange={this.handleChange} />
+            <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
             <button type="submit">Verify</button>
           </div>
         </form>

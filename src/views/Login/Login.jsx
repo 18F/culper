@@ -23,7 +23,7 @@ class Login extends React.Component {
   componentWillMount () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/'))
+      this.props.dispatch(push('/form'))
     }
   }
 
@@ -77,6 +77,7 @@ class Login extends React.Component {
                 <input id="username"
                        type="text"
                        placeholder="Username"
+                       autoFocus
                        value={this.state.username}
                        onChange={this.onUsernameChange}/>
               </div>
@@ -88,6 +89,7 @@ class Login extends React.Component {
                        value={this.state.password}
                        onChange={this.onPasswordChange} />
               </div>
+              {this.props.error ? (<div>{this.props.error}</div>) : ''}
               <div>
                 <a id="forgot-password" href="#" title="Forgot password">Forgot Password?</a>
               </div>
@@ -120,7 +122,8 @@ function mapStateToProps (state) {
   return {
     authenticated: auth.authenticated,
     twofactor: auth.twofactor,
-    token: auth.token
+    token: auth.token,
+    error: auth.error
   }
 }
 

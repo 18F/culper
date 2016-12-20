@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 
 export default class Generic extends ValidationElement {
   constructor (props) {
@@ -119,7 +119,7 @@ export default class Generic extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = (this.props.className || '')
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -201,7 +201,7 @@ export default class Generic extends ValidationElement {
                name={this.state.name}
                type={this.state.type}
                placeholder={this.state.placeholder}
-               aria-described-by={this.errorName()}
+               aria-describedby={this.errorName()}
                disabled={this.redundant(this.state.disabled, 'disabled')}
                maxLength={this.state.maxlength}
                pattern={this.state.pattern}
