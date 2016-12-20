@@ -48,3 +48,9 @@ h1 {
     margin-right: initial;
     max-width: 100%;
 }
+
+select, input {
+    &[disabled], &[readonly] {
+        background-color: #ddd;
+    }
+}

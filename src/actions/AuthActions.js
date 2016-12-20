@@ -1,6 +1,5 @@
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
-import { hashHistory } from 'react-router'
 import { push } from '../middleware/history'
 
 /**
@@ -14,6 +13,12 @@ export function login (username, password) {
       .login(username, password)
       .then(r => {
         dispatch(handleLoginSuccess(r.data))
+      })
+      .catch(error => {
+        switch (error.response.status) {
+          case 500:
+            dispatch(handleLoginError(error.response.data))
+        }
       })
   }
 }
@@ -74,6 +79,13 @@ export function handleLoginSuccess (token) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,
     token: token
+  }
+}
+
+export function handleLoginError (error) {
+  return {
+    type: AuthConstants.LOGIN_ERROR,
+    error: error
   }
 }
 
