@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthenticatedView from '../AuthenticatedView'
 import Section from '../../components/Section'
+import { push } from '../../middleware/history'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -9,7 +10,26 @@ import Section from '../../components/Section'
 //  3. The section and subsection are known so the section will
 //     display the subsection only.
 class Form extends React.Component {
+
+  componentWillMount () {
+    this.defaultRedirect()
+  }
+
+  componentDidUpdate () {
+    this.defaultRedirect()
+  }
+
+  defaultRedirect () {
+    if (!this.props.params.section) {
+      this.props.dispatch(push('form/identification'))
+    }
+  }
+
   render () {
+    if (!this.props.params.section) {
+      return null
+    }
+
     return (
       <div id="eapp-form" className="usa-grid">
         <div id="info" className="usa-width-one-whole">
