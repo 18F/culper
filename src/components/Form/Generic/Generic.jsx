@@ -201,7 +201,7 @@ export default class Generic extends ValidationElement {
                name={this.state.name}
                type={this.state.type}
                placeholder={this.state.placeholder}
-               aria-described-by={this.errorName()}
+               aria-describedby={this.errorName()}
                disabled={this.redundant(this.state.disabled, 'disabled')}
                maxLength={this.state.maxlength}
                pattern={this.state.pattern}

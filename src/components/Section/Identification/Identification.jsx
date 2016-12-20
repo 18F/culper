@@ -1,34 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ApplicantName from './ApplicantName'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
-
-// Mapping section identifiers to the associated components.
-const sectionMap = {
-  'name': {
-    'prev': () => { return '' },
-    'next': () => { return '' },
-    'render': () => { return (<ApplicantName />) }
-  },
-  'birthdate': {
-    'prev': () => { return '' },
-    'next': () => { return '' },
-    'render': () => { return (<ApplicantBirthDate />) }
-  },
-  'birthplace': {
-    'prev': () => { return '' },
-    'next': () => { return '' },
-    'render': () => { return (<ApplicantBirthPlace />) }
-  },
-  'ssn': {
-    'prev': () => { return '' },
-    'next': () => { return '' },
-    'render': () => { return (<ApplicantSSN />) }
-  }
-}
+import { push } from '../../../middleware/history'
 
 class Identification extends React.Component {
   constructor (props) {
@@ -43,15 +19,47 @@ class Identification extends React.Component {
   }
 
   handleTour (event) {
-    this.setState({ subsection: 'name' })
+    this.props.dispatch(push('/form/identification/name'))
   }
 
   handleReview (event) {
-    this.setState({ subsection: 'review' })
+    this.props.dispatch(push('/form/identification/review'))
+  }
+
+  handleTransition (nextSection, event) {
+    this.props.dispatch(push(`/form/identification/${nextSection}`))
+  }
+
+  // Mapping section identifiers to the associated components.
+  sectionMap (section) {
+    let map = {
+      'name': {
+        'prev': () => { return '' },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Next Section</button>) },
+        'render': () => { return (<ApplicantName />) }
+      },
+      'birthdate': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Next Section</button>) },
+        'render': () => { return (<ApplicantBirthDate />) }
+      },
+      'birthplace': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Previous Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'ssn')}>Next Section</button>) },
+        'render': () => { return (<ApplicantBirthPlace />) }
+      },
+      'ssn': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Previous Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
+        'render': () => { return (<ApplicantSSN />) }
+      }
+    }
+    return map[section]
   }
 
   render () {
-    if (!this.state.subsection) {
+    const subsection = this.props.subsection
+    if (!subsection) {
       return (
         <div className="identification">
           <div id="titles" className="usa-grid-full">
@@ -84,7 +92,7 @@ class Identification extends React.Component {
       )
     }
 
-    if (this.state.subsection === 'review') {
+    if (subsection === 'review') {
       return (
         <div className="identification">
           <ApplicantName />
@@ -97,9 +105,9 @@ class Identification extends React.Component {
 
     return (
       <div className="identification">
-        {sectionMap[this.state.subsection].render()}
-        {sectionMap[this.state.subsection].prev()}
-        {sectionMap[this.state.subsection].next()}
+        {this.sectionMap(subsection).render()}
+        {this.sectionMap(subsection).prev()}
+        {this.sectionMap(subsection).next()}
       </div>
     )
   }

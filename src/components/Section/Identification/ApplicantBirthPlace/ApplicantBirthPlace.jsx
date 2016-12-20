@@ -111,6 +111,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <City name={this.partName('city')}
               label="City"
               value={this.state.city}
+              placeholder="Please enter your city of birth"
               maxlength="100"
               onChange={this.handleChange}
               onValidate={this.handleValidation}
@@ -130,6 +131,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <County name={this.partName('county')}
                 label="County"
                 value={this.state.county}
+                placeholder="Please enter your county of birth"
                 maxlength="255"
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}

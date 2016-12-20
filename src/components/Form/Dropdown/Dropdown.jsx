@@ -130,11 +130,11 @@ export default class Dropdown extends ValidationElement {
         <select className={this.inputClass()}
                 id={this.state.name}
                 name={this.state.name}
-                aria-described-by={this.errorName()}
+                aria-describedby={this.errorName()}
                 disabled={this.props.disabled}
-                maxlength={this.state.maxlength}
+                maxLength={this.state.maxlength}
                 pattern={this.state.pattern}
-                readonly={this.state.readonly}
+                readOnly={this.state.readonly}
                 required={this.state.required}
                 value={this.state.value}
                 onChange={this.handleChange}

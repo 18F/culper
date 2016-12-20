@@ -114,6 +114,7 @@ export default class ApplicantName extends ValidationElement {
               label="Last name"
               maxlength="100"
               pattern="^[a-zA-Z\-\.' ]*$"
+              placeholder="Please enter your last name"
               help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
               value={this.state.last}
               onChange={this.handleChange}
@@ -124,6 +125,7 @@ export default class ApplicantName extends ValidationElement {
         <Text name={this.partName('first')}
               label="First name"
               maxlength="100"
+              placeholder="Please enter your first name or initial"
               help="The first name (or initial) is optional but cannot exceed 100 characters"
               value={this.state.first}
               onChange={this.handleChange}
@@ -135,6 +137,7 @@ export default class ApplicantName extends ValidationElement {
               label="Middle name or initial"
               minlength="0"
               maxlength="100"
+              placeholder="Please enter your middle name or initial"
               help="The middle name (or initial) is optional but cannot exceed 100 characters"
               value={this.state.middle}
               onChange={this.handleChange}
