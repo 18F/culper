@@ -1,5 +1,5 @@
 class Env {
-  ApiBaseURL () { return 'http://localhost:3000' }
+  ApiBaseURL () { return process.env.API_BASE_URL }
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
