@@ -33,6 +33,7 @@ export function logout () {
     dispatch({
       type: AuthConstants.LOGOUT
     })
+    api.setToken('')
     dispatch(push('/login'))
   }
 }

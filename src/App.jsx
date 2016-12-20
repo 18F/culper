@@ -34,6 +34,7 @@ export class App extends React.Component {
   }
 
   logout () {
+    this.props.dispatch(logout())
     window.location = window.location.pathname
   }
 
