@@ -3,7 +3,6 @@ package geo
 import (
 	"errors"
 	"fmt"
-	"os"
 	"regexp"
 	"strings"
 )
@@ -21,9 +20,9 @@ var (
 )
 
 func init() {
-	gmapAPIKey := os.Getenv("GOOGLE_MAPS_KEY")
-	Geocode = NewGoogleGeocoder(gmapAPIKey)
-	//Geocode = NewBingGeocoder("Aqijj8kKIT4hcDklhz3R-8QIQtkqFNA8lF8LKXAfHQrwh5o2MX9c0uOfAvWCdAse")
+	//gmapAPIKey := os.Getenv("GOOGLE_MAPS_KEY")
+	//Geocode = NewGoogleGeocoder(gmapAPIKey)
+	Geocode = NewBingGeocoder("Aqijj8kKIT4hcDklhz3R-8QIQtkqFNA8lF8LKXAfHQrwh5o2MX9c0uOfAvWCdAse")
 }
 
 // Geocoder is an interface for geocoding implementations
@@ -45,6 +44,11 @@ type Result struct {
 	Partial   bool
 }
 
+// CountyEqual compares the County value against a passed in county.
+// This strips out variations of county which include the following:
+// - <county name> County
+// - <county name> Co
+// - <county name> Co.
 func (r Result) CountyEqual(county string) bool {
 	// Clean result county
 	rCounty := strings.TrimSpace(

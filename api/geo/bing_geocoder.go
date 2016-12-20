@@ -20,6 +20,21 @@ type BingGeocoder struct {
 // BirthPlace geocodes a person birthplace attributes
 func (g BingGeocoder) BirthPlace(geoValues Values) (bool, Results, error) {
 	results, err := g.Geocode(geoValues)
+
+	switch err {
+	// If we don't get any results, check if we can perform a search just based off a city
+	// in case the City/State combo did not yield any results
+	case ErrNoResultsFound:
+		fmt.Println("Geocoding additional parts of location")
+		cityResults, err := g.Geocode(Values{
+			City: geoValues.City,
+		})
+		if err == nil {
+			results = append(results, cityResults...)
+		}
+		return true, results, nil
+	}
+
 	return results.HasPartial(), results, err
 
 }
@@ -35,6 +50,11 @@ func (g BingGeocoder) Geocode(geoValues Values) (results Results, err error) {
 	if geoValues.City != "" {
 		v.Set("locality", geoValues.City)
 	}
+
+	if geoValues.Country != "" {
+		v.Set("countryRegion", geoValues.Country)
+	}
+
 	return g.query(v, geoValues)
 }
 
@@ -57,6 +77,11 @@ func (g BingGeocoder) query(v url.Values, geoValues Values) (results Results, er
 	}
 
 	for _, r := range bingResp.ResourceSets {
+
+		if r.EstimatedTotal == 0 {
+			return nil, ErrNoResultsFound
+		}
+
 		for _, resource := range r.Resources {
 			result := resource.Result(geoValues)
 			results = append(results, result)
