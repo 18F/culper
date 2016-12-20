@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
 export default class Text extends ValidationElement {
@@ -67,6 +67,7 @@ export default class Text extends ValidationElement {
                placeholder={this.state.placeholder}
                help={this.state.help}
                type="text"
+               className={this.props.className}
                disabled={this.state.disabled}
                minlength={this.state.minlength}
                maxlength={this.state.maxlength}

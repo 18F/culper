@@ -9,11 +9,11 @@ import { shallow, mount } from 'enzyme'
 
 describe('The two factor authenictaction component', () => {
   // Setup
-  const mockProxy = new MockAdapter(api.proxy),
-        mockProxySecured = new MockAdapter(api.proxySecured),
-        middlewares = [ thunk ],
-        mockStore = configureMockStore(middlewares),
-        store = mockStore({ authentication: [] })
+  const mockProxy = new MockAdapter(api.proxy)
+  const mockProxySecured = new MockAdapter(api.proxySecured)
+  const middlewares = [ thunk ]
+  const mockStore = configureMockStore(middlewares)
+  const store = mockStore({ authentication: [] })
 
   mockProxy.onGet('/2fa/test').reply(200, 'my-fake-base64')
   mockProxySecured.onPost('/2fa/test/verify').reply(200, '')

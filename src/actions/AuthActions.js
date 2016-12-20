@@ -1,6 +1,5 @@
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
-import { hashHistory } from 'react-router'
 import { push } from '../middleware/history'
 
 /**
@@ -11,16 +10,16 @@ import { push } from '../middleware/history'
 export function login (username, password) {
   return function (dispatch, getState) {
     return api
-            .login(username, password)
-            .then(r => {
-              dispatch(handleLoginSuccess(r.data))
-            })
-            .catch(error => {
-              switch (error.response.status) {
-                case 500:
-                  dispatch(handleLoginError(error.response.data))
-              }
-            })
+      .login(username, password)
+      .then(r => {
+        dispatch(handleLoginSuccess(r.data))
+      })
+      .catch(error => {
+        switch (error.response.status) {
+          case 500:
+            dispatch(handleLoginError(error.response.data))
+        }
+      })
   }
 }
 
@@ -29,7 +28,8 @@ export function login (username, password) {
  */
 export function logout () {
   return function (dispatch, getState) {
-        // TODO server side call to invalidate token
+    api.setToken('')
+    // TODO server side call to invalidate token
     dispatch({
       type: AuthConstants.LOGOUT
     })
@@ -40,34 +40,38 @@ export function logout () {
 export function qrcode (account) {
   return function (dispatch) {
     return api
-        .twoFactor(account)
-        .then(response => {
-          dispatch(handleTwoFactorQrCode(response.data))
-        })
+      .twoFactor(account)
+      .then(response => {
+        dispatch(handleTwoFactorQrCode(response.data))
+      })
   }
 }
 
 export function twofactor (account, token) {
   return function (dispatch, getState) {
     return api
-            .twoFactor(account, token)
-            .then(response => {
-              dispatch(handleTwoFactorSuccess())
-              dispatch(push('/'))
-            })
-            .catch(function (error) {
-              if (error.response) {
-                switch (error.response.status) {
-                  case 500:
-                        // Internal Server Error
-                    break
+      .twoFactor(account, token)
+      .then(response => {
+        api.setToken(getState().authentication.token)
+        dispatch(handleTwoFactorSuccess())
+        dispatch(push('/form'))
+      })
+      .catch(function (error) {
+        // Invalidate any previously acquired token
+        api.setToken('')
 
-                  case 401:
-                        // Unauthorized
-                    break
-                }
-              }
-            })
+        if (error.response) {
+          switch (error.response.status) {
+            case 500:
+              // Internal Server Error
+              break
+
+            case 401:
+              // Unauthorized
+              break
+          }
+        }
+      })
   }
 }
 

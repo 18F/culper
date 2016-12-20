@@ -1,10 +1,20 @@
 import React from 'react'
 import { App } from '../src/App'
 import renderer from 'react-test-renderer'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
 
 test('Renders homepage', () => {
+  // Setup
+  const middlewares = [ thunk ]
+  const mockStore = configureMockStore(middlewares)
+  const store = mockStore({ authentication: [] })
+
   const component = renderer.create(
-    <App/>
+    <Provider store={store}>
+      <App/>
+    </Provider>
   )
 
   let tree = component.toJSON()

@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
 export default class Email extends ValidationElement {

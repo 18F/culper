@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 
 export default class Radio extends ValidationElement {
   constructor (props) {
