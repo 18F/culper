@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 
 export default class ApoFpo extends ValidationElement {

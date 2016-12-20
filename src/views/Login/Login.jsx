@@ -23,7 +23,7 @@ class Login extends React.Component {
   componentWillMount () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/'))
+      this.props.dispatch(push('/form'))
     }
   }
 
@@ -77,6 +77,7 @@ class Login extends React.Component {
                 <input id="username"
                        type="text"
                        placeholder="Username"
+                       autoFocus
                        value={this.state.username}
                        onChange={this.onUsernameChange}/>
               </div>

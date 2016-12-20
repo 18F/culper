@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 
 export default class County extends ValidationElement {
@@ -61,7 +61,7 @@ export default class County extends ValidationElement {
             placeholder={this.state.placeholder}
             help={this.state.help}
             minlength="2"
-            maxlength="2"
+            maxlength="100"
             required="true"
             value={this.state.value}
             error={this.state.error}

@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 import Dropdown from '../Dropdown'
 
 export default class Country extends ValidationElement {

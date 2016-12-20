@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 
 export default class Checkbox extends ValidationElement {
   constructor (props) {
@@ -169,11 +169,11 @@ export default class Checkbox extends ValidationElement {
                id={this.state.name}
                name={this.state.name}
                type="checkbox"
-               aria-described-by={this.errorName()}
+               aria-describedby={this.errorName()}
                disabled={this.state.disabled}
-               maxlength={this.state.maxlength}
+               maxLength={this.state.maxlength}
                pattern={this.state.pattern}
-               readonly={this.state.readonly}
+               readOnly={this.state.readonly}
                required={this.state.required}
                value={this.state.value}
                onChange={this.handleChange}

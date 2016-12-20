@@ -1,7 +1,6 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
-import DateControl from '../DateControl'
-import { api } from '../../../services/api'
+import { ValidationElement, DateControl } from '../../../Form'
+import { api } from '../../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
   constructor (props) {
@@ -136,7 +135,8 @@ export default class ApplicantBirthDate extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="birthdate">
+        <h2>Date of birth</h2>
         <span className={this.spanClass()}
               id={this.errorName()}
               role="alert"
