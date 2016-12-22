@@ -17,7 +17,14 @@ const authentication = function (state = defaultState, action) {
         token: action.token,
         qrcode: action.qrcode
       }
-
+    case AuthConstants.LOGIN_ERROR:
+      return {
+        ...state,
+        authenticated: false,
+        twofactor: false,
+        token: null,
+        error: action.error
+      }
     case AuthConstants.TWOFACTOR_QRCODE:
       return {
         ...state,

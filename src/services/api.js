@@ -41,8 +41,63 @@ class Api {
     return values
   }
 
+  getCookieValue (key) {
+    let cookies = document.cookie
+    let vars = cookies.split(';')
+    let values = []
+
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split('=')
+      if (pair[0].trim() === key) {
+        values.push(pair[1].trim())
+      }
+    }
+
+    if (values.length === 0) {
+      return null
+    } else if (values.length === 1) {
+      return values[0]
+    }
+
+    return values
+  }
+
+  getToken () {
+    // Look for token in local storage
+    let token = null
+    if (this.supportForLocalStorage()) {
+      token = window.localStorage.getItem('token')
+    }
+
+    // Look for token as cookie
+    if (token === null) {
+      token = this.getCookieValue('token')
+    }
+
+    // Look for token in query string
+    if (token === null) {
+      token = this.getQueryValue('token')
+    }
+
+    return token
+  }
+
   setToken (token) {
     this.proxySecured.defaults.headers.common.Authorization = token
+
+    if (this.supportForLocalStorage()) {
+      window.localStorage.setItem('token', token)
+    } else {
+      document.cookie = 'token=' + token
+    }
+  }
+
+  supportForLocalStorage () {
+    try {
+      return 'localStorage' in window && window['localStorage'] !== null
+    } catch (e) {
+      return false
+    }
   }
 
   information () {

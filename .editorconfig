@@ -19,6 +19,6 @@ indent_style = space
 indent_size = 4
 
 # 2 space indention
-[*.{js,json,yml,md,apib}]
+[*.{js,json,yml,md,apib,jsx}]
 indent_style = space
 indent_size = 2

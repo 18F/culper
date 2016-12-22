@@ -1,8 +1,31 @@
 import React from 'react'
-import { Login } from './components'
-import { GithubOAuth } from './services'
+import { SectionTitle, ScoreCard, Navigation } from './components'
 import { connect } from 'react-redux'
 import { login, logout } from './actions/AuthActions'
+
+/*
+           1/6-ish                                 2/3-ish                               1/6-ish
+  ------------------------------------------------------------------------------------------------
+  |                       |
+  | Title                 | <Page title />
+  | <Logout button />     |
+  |                       |
+  ------------------------------------------------------------------------------------------------
+  |                       |
+  | <Score />             | <View />
+  | <Nav />               |  - This will be where the main content lies
+  |                       |
+  |                       |
+  |                       |
+  |                       |
+  |                       |
+  |                       |
+  ------------------------------------------------------------------------------------------------
+  |
+  | <Footer />
+  |
+  ------------------------------------------------------------------------------------------------
+*/
 
 export class App extends React.Component {
   constructor (props) {
@@ -11,12 +34,13 @@ export class App extends React.Component {
   }
 
   logout () {
+    this.props.dispatch(logout())
     window.location = window.location.pathname
   }
 
   render () {
-    let logoutButton = this.props.authenticated
-        ? (<button onClick={this.logout}>Logout</button>)
+    let logoutButton = this.props.authenticated && this.props.twofactor
+        ? (<a href="#" onClick={this.logout} className="logout">Logout</a>)
         : null
 
     return (
@@ -55,26 +79,36 @@ export class App extends React.Component {
               </div>
             </div>
           </div>
-          <div className="usa-nav-container">
+          <div className="usa-nav-container no-gutter">
             <div className="usa-navbar">
-              <button className="usa-menu-btn">Menu</button>
               <div className="usa-logo" id="logo">
                 <em className="usa-logo-text">
-                  <a href="#" accessKey="1" title="Home" aria-label="Home">eApp Prototype</a>
+                  eApp
                 </em>
               </div>
+              <div>
+                {logoutButton}
+              </div>
             </div>
-            <nav role="navigation" className="usa-nav">
-              <button className="usa-nav-close">
-                <img src="/img/close.svg" alt="close" />
-              </button>
-              {logoutButton}
-            </nav>
+            <SectionTitle />
           </div>
         </header>
         <div className="usa-overlay"></div>
         <main id="main-content">
-          {this.props.children}
+          <div className="usa-grid-full no-gutter">
+            <div className="usa-width-one-sixth">
+              <ScoreCard />
+              <Navigation />
+              &nbsp;
+            </div>
+            <div className="usa-width-two-thirds">
+              {this.props.children}
+              &nbsp;
+            </div>
+            <div className="usa-width-one-sixth">
+              &nbsp;
+            </div>
+          </div>
         </main>
       </div>
     )

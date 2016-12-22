@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../validationElement'
+import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 
@@ -261,12 +261,12 @@ export default class DateControl extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="datecontrol">
         <div className={this.divClass()}>
           <div className="usa-form-group usa-form-group-month">
             <Number id={this.partName('month')}
                     name={this.partName('month')}
-                    placeholder={this.state.placeholder}
+                    placeholder="00"
                     aria-described-by={this.errorName('month')}
                     disabled={this.state.disabled}
                     max="12"
@@ -286,7 +286,7 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group usa-form-group-day">
             <Number id={this.partName('day')}
                     name={this.partName('day')}
-                    placeholder={this.state.placeholder}
+                    placeholder="00"
                     aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
                     max="31"
@@ -306,7 +306,7 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group usa-form-group-year">
             <Number id={this.partName('year')}
                     name={this.partName('year')}
-                    placeholder={this.state.placeholder}
+                    placeholder="0000"
                     aria-described-by={this.errorName('year')}
                     disabled={this.state.disabled}
                     max="9999"

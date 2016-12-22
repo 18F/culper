@@ -3,6 +3,37 @@ h1 {
     color: #000;
 }
 
+.usa-header {
+    background-color: #0070bb;
+
+    .usa-nav-container {
+        padding-left: 0;
+        max-height: 10.5rem;
+
+        .usa-navbar {
+            padding-left: 3rem;
+            color: #9bdaf0;
+            background-color: #016ab0;
+            margin-bottom: -0.5rem;
+
+            .logout {
+                position: absolute;
+                bottom: .5rem;
+                font-size: smaller;
+                color: #d6d7d9;
+                text-decoration: none;
+            }
+        }
+
+        .title {
+            display: inline-block;
+            color: #fff;
+            padding-left: 2rem;
+            font-size: 5rem;
+        }
+    }
+}
+
 #main-content {
     padding-top: 1rem;
 }
@@ -10,4 +41,16 @@ h1 {
 .hidden {
     display: none;
     visibility: hidden;
+}
+
+.no-gutter {
+    margin-left: initial;
+    margin-right: initial;
+    max-width: 100%;
+}
+
+select, input {
+    &[disabled], &[readonly] {
+        background-color: #ddd;
+    }
 }
