@@ -1,5 +1,6 @@
 import React from 'react'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { MaidenName, Name, Textarea } from '../../Form'
 import { push } from '../../../middleware/history'
 
 class OtherNamesUsed extends React.Component {
@@ -75,7 +76,9 @@ class OtherNamesUsed extends React.Component {
     if (subsection === 'review') {
       return (
         <div className="other-names-used">
-          Other name components go here
+          <Name />
+          <MaidenName />
+          <Textarea label={'Provide the reasons why the name changed'} />
         </div>
       )
     }
