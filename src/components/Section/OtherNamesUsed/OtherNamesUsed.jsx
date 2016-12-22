@@ -16,6 +16,7 @@ class OtherNamesUsed extends React.Component {
   }
 
   handleTour (event) {
+    this.props.dispatch(push('/form/othernames/name'))
   }
 
   handleReview (event) {
@@ -23,7 +24,7 @@ class OtherNamesUsed extends React.Component {
   }
 
   handleTransition (nextSection, event) {
-    this.props.dispatch(push(`/form/identification/${nextSection}`))
+    this.props.dispatch(push(`/form/othernames/${nextSection}`))
   }
 
   // Mapping section identifiers to the associated components.
@@ -31,8 +32,18 @@ class OtherNamesUsed extends React.Component {
     let map = {
       'name': {
         'prev': () => { return '' },
-        'next': () => { return '' },
-        'render': () => { return '' }
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Next Section</button>) },
+        'render': () => { return (<Name />) }
+      },
+      'maidenname': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'reasons')}>Next Section</button>) },
+        'render': () => { return (<MaidenName />) }
+      },
+      'reasons': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Preview Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Next Section</button>) },
+        'render': () => { return (<Textarea label={'Provide the reasons why the name changed'} />) }
       }
     }
     return map[section]

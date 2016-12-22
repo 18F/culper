@@ -25,6 +25,7 @@ export default class Textarea extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
     })
@@ -34,6 +35,7 @@ export default class Textarea extends ValidationElement {
    * Handle the focus event.
    */
   handleFocus (event) {
+    event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
     })
@@ -43,6 +45,7 @@ export default class Textarea extends ValidationElement {
    * Handle the blur event.
    */
   handleBlur (event) {
+    event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
@@ -57,6 +60,7 @@ export default class Textarea extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidation (event, status) {
+    event.persist()
     if (!event || !event.target) {
       super.handleValidation(event, status)
       return

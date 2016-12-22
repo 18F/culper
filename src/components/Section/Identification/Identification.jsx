@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import ApplicantName from './ApplicantName'
+import ApplicantName from '../../Form/Name'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
