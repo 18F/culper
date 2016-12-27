@@ -29,6 +29,12 @@ func main() {
 	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
 	v.HandleFunc("/passport/{passport}", handlers.ValidatePassport)
 
+	v.HandleFunc("/height", handlers.ValidateHeight)
+	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
+	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
+	v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
+	v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
+
 	// Address Validation
 	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
 	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode)

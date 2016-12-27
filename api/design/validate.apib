@@ -334,3 +334,156 @@ FORMAT: 1A
     }
 
 + Response 500
+
+# Validate Height [/validate/height]
+
+## Validates a persons height [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "Feet": "",
+      "Inches": "",
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Feet",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Inches",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Weight [/validate/weight/{weight}]
+
+## Validates a persons weight [GET]
+
++ Parameters
+    + weight: `4` - Weight for a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Weight",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Hair Color [/validate/haircolor/{haircolor}]
+
+## Validates a persons hair color [GET]
+
++ Parameters
+    + weight: `Black` - Weight for a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "HairColor",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Eye Color [/validate/eyecolor/{eyecolor}]
+
+## Validates a persons eye color [GET]
+
++ Parameters
+    + eyecolor: `Black` - Eye color for a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "EyeColor",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Sex [/validate/eyecolor/{eyecolor}]
+
+## Validates a persons sex [GET]
+
++ Parameters
+    + sex: `Female` - Sex of a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Sex",
+          "Error": ""
+        }
+      ]
+    }
