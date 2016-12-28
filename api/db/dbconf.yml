@@ -1,6 +1,6 @@
 development:
   driver: postgres
   open: user=postgres dbname=postgres sslmode=disable
-test:
+environment:
   driver: postgres
   open: $DATABASE_URI
