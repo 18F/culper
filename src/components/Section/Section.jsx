@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import { updateTitle } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
+import Identifying from './Identifying'
 
 // Mapping section identifiers to the associated components.
 const sectionMap = {
   'identification': {
     'title': 'Identification',
     'render': (subsection) => { return (<Identification subsection={subsection} />) }
+  },
+  'identifying': {
+    'title': 'Your Identifying Information',
+    'render': (subsection) => { return (<Identifying subsection={subsection} />) }
   }
 }
 
