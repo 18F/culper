@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/truetandem/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/db"
 
 	pg "gopkg.in/pg.v5"
 )

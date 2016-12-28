@@ -4,9 +4,9 @@ var gulp = require('gulp')
 var concat = require('gulp-concat')
 var sass = require('gulp-sass')
 var rename = require('gulp-rename')
-var envify = require('gulp-envify');
+var envify = require('gulp-envify')
 
-require('dotenv').config();
+require('dotenv').config()
 
 var paths = {
   entry: './src/boot.jsx',

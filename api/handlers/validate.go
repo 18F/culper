@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/18F/e-QIP-prototype/api/model/form"
 	"github.com/gorilla/mux"
-	"github.com/truetandem/e-QIP-prototype/api/model/form"
 )
 
 // ValidateAddress checks if an entire address is valid

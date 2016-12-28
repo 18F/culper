@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api/twofactor"
 	"github.com/gorilla/mux"
-	"github.com/truetandem/e-QIP-prototype/api/twofactor"
 )
 
 var (
