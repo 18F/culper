@@ -1,0 +1,11 @@
+
+-- +goose Up
+-- SQL in section 'Up' is executed when this migration is applied
+INSERT INTO ACCOUNTS (USERNAME, FIRSTNAME, LASTNAME) VALUES ('admin', 'Sudo', 'McSudoson');
+INSERT INTO BASIC_AUTH_MEMBERSHIPS (ACCOUNT_ID, PASSWORD_HASH, CREATED) VALUES (LASTVAL(), '$2a$10$s4IjNKAwwWSOJWMYRe5LK.ZRJr8pFRfIXtdJpQrJaYGjTKk/W6Kt6', CURRENT_TIMESTAMP);
+
+
+-- +goose Down
+-- SQL section 'Down' is executed when this migration is rolled back
+DELETE FROM BASIC_AUTH_MEMBERSHIPS WHERE ACCOUNT_ID = (SELECT ID FROM ACCOUNTS WHERE USERNAME = 'admin')
+DELETE FROM ACCOUNTS WHERE USERNAME = 'admin'
