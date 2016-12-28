@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/truetandem/e-QIP-prototype/api/cf"
-	"github.com/truetandem/e-QIP-prototype/api/handlers"
-	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
+	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/handlers"
+	middleware "github.com/18F/e-QIP-prototype/api/middleware"
 )
 
 func main() {
