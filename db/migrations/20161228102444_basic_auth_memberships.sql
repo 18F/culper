@@ -6,9 +6,9 @@ CREATE TABLE BASIC_AUTH_MEMBERSHIPS (
     ACCOUNT_ID      INTEGER      REFERENCES ACCOUNTS (ID),
     PASSWORD_HASH   VARCHAR(400),
     CREATED         TIMESTAMP
-)
+);
 
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
-DROP TABLE BASIC_AUTH_MEMBERSHIPS
+DROP TABLE BASIC_AUTH_MEMBERSHIPS;
