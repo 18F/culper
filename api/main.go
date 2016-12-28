@@ -17,6 +17,7 @@ var (
 )
 
 func main() {
+	flag.Parse()
 	if !*flagSkipMigration {
 		if err := db.MigrateUp("db", "environment", ""); err != nil {
 			log.Println("Failed to migrate database:", err)
