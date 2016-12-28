@@ -23,6 +23,9 @@ import City from './City'
 import County from './County'
 import Country from './Country'
 import MilitaryState from './MilitaryState'
+import MaidenName from './MaidenName'
+import Name from './Name'
+import DateRange from './DateRange'
 
 export {
   ValidationElement,
@@ -44,5 +47,8 @@ export {
   City,
   County,
   Country,
-  MilitaryState
+  MilitaryState,
+  MaidenName,
+  Name,
+  DateRange
 }

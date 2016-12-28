@@ -1,8 +1,10 @@
 import React from 'react'
-import { ValidationElement, Text, Dropdown } from '../../../Form'
-import { api } from '../../../../services/api'
+import ValidationElement from '../ValidationElement'
+import Text from '../Text'
+import Dropdown from '../Dropdown'
+import { api } from '../../../services/api'
 
-export default class ApplicantName extends ValidationElement {
+export default class Name extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -62,7 +64,7 @@ export default class ApplicantName extends ValidationElement {
       }
 
       api
-        .validateApplicantName({
+        .validateName({
           Last: this.state.last,
           First: this.state.first,
           Middle: this.state.middle,
