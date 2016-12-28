@@ -5,9 +5,10 @@ import "fmt"
 // WeightField stores a persons weight
 type WeightField int64
 
+// Valid validates that a person weight is within the specified range
 func (f WeightField) Valid() (bool, error) {
-	if f < 0 || f > 2000 {
-		return false, fmt.Errorf("Invalid weight")
+	if f < 10 || f > 999 {
+		return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid weight value. Weight must be between 10 and 999")}
 	}
 
 	return true, nil

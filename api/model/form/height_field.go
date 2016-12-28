@@ -8,14 +8,16 @@ type HeightField struct {
 	Inches int64
 }
 
+// Valid validates that a persons height in feet is between 1 and 9 and that a person height in inches is between 0 and 11
 func (f HeightField) Valid() (bool, error) {
+	var stack ErrorStack
 	if f.Feet < 1 || f.Feet > 9 {
-		return false, fmt.Errorf("Invalid Feet")
+		stack.Append("Feet", ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid value. Feet must be between 1 and 9", f.Feet)})
 	}
 
 	if f.Inches < 0 || f.Inches > 11 {
-		return false, fmt.Errorf("Invalid Inches")
+		stack.Append("Feet", ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid value. Inches must be between 0 and 11", f.Inches)})
 	}
 
-	return true, nil
+	return !stack.HasErrors(), stack
 }
