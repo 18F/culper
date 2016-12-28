@@ -8,13 +8,21 @@ import (
 // SexField stores a person sex
 type SexField string
 
+// Valid validates that a valid sex was inputted
 func (f SexField) Valid() (bool, error) {
-	switch strings.ToLower(string(f)) {
-	case "male":
-		return true, nil
-	case "female":
-		return true, nil
-	default:
-		return false, fmt.Errorf("Invalid sex field")
+	s := string(f)
+	for _, sex := range sexList {
+		if strings.EqualFold(s, sex) {
+			return true, nil
+		}
 	}
+	return false, ErrFieldInvalid{fmt.Sprintf("`%v` is an invalid sex field", s)}
+}
+
+var sexList = [...]string{
+	"",
+	"female",
+	"f",
+	"male",
+	"m",
 }
