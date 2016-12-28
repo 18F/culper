@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/truetandem/e-QIP-prototype/api/model"
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // BasicAuth processes a users request to login with a Username and Password
