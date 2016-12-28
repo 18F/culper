@@ -1,12 +1,9 @@
 import React from 'react'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import ApplicantName from '../../Form/Name'
-import ApplicantBirthDate from './ApplicantBirthDate'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
-import ApplicantSSN from './ApplicantSSN'
+import { MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
 
-class Identification extends React.Component {
+class OtherNamesUsed extends React.Component {
   constructor (props) {
     super(props)
 
@@ -19,15 +16,15 @@ class Identification extends React.Component {
   }
 
   handleTour (event) {
-    this.props.dispatch(push('/form/identification/name'))
+    this.props.dispatch(push('/form/othernames/name'))
   }
 
   handleReview (event) {
-    this.props.dispatch(push('/form/identification/review'))
+    this.props.dispatch(push('/form/othernames/review'))
   }
 
   handleTransition (nextSection, event) {
-    this.props.dispatch(push(`/form/identification/${nextSection}`))
+    this.props.dispatch(push(`/form/othernames/${nextSection}`))
   }
 
   // Mapping section identifiers to the associated components.
@@ -35,23 +32,23 @@ class Identification extends React.Component {
     let map = {
       'name': {
         'prev': () => { return '' },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Next Section</button>) },
-        'render': () => { return (<ApplicantName />) }
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Next Section</button>) },
+        'render': () => { return (<Name />) }
       },
-      'birthdate': {
+      'maidenname': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Next Section</button>) },
-        'render': () => { return (<ApplicantBirthDate />) }
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Next Section</button>) },
+        'render': () => { return (<MaidenName />) }
       },
-      'birthplace': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'ssn')}>Next Section</button>) },
-        'render': () => { return (<ApplicantBirthPlace />) }
+      'datesused': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Previous Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'reasons')}>Next Section</button>) },
+        'render': () => { return (<DateRange title="Provide dates used" />) }
       },
-      'ssn': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
-        'render': () => { return (<ApplicantSSN />) }
+      'reasons': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Preview Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Next Section</button>) },
+        'render': () => { return (<Textarea label={'Provide the reasons why the name changed'} />) }
       }
     }
     return map[section]
@@ -76,7 +73,7 @@ class Identification extends React.Component {
               <p>Take a guided tour through the section</p>
             </div>
             <div className="usa-width-one-half">
-              <p>View all the sections associated with <strong>Identification</strong> at once</p>
+              <p>View all the sections associated with <strong>Other Names Used</strong> at once</p>
             </div>
           </div>
 
@@ -94,11 +91,11 @@ class Identification extends React.Component {
 
     if (subsection === 'review') {
       return (
-        <div className="identification">
-          <ApplicantName />
-          <ApplicantBirthDate />
-          <ApplicantBirthPlace />
-          <ApplicantSSN />
+        <div className="other-names-used">
+          <Name />
+          <MaidenName />
+          <DateRange title="Provide dates used" />
+          <Textarea label={'Provide the reasons why the name changed'} />
         </div>
       )
     }
@@ -113,4 +110,4 @@ class Identification extends React.Component {
   }
 }
 
-export default AuthenticatedView(Identification)
+export default AuthenticatedView(OtherNamesUsed)
