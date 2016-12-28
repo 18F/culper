@@ -25,6 +25,7 @@ import Country from './Country'
 import MilitaryState from './MilitaryState'
 import MaidenName from './MaidenName'
 import Name from './Name'
+import DateRange from './DateRange'
 
 export {
   ValidationElement,
@@ -48,5 +49,6 @@ export {
   Country,
   MilitaryState,
   MaidenName,
-  Name
+  Name,
+  DateRange
 }

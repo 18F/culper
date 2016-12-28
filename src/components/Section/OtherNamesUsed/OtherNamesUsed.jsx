@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { MaidenName, Name, Textarea } from '../../Form'
+import { MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
 
 class OtherNamesUsed extends React.Component {
@@ -37,11 +37,16 @@ class OtherNamesUsed extends React.Component {
       },
       'maidenname': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'reasons')}>Next Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Next Section</button>) },
         'render': () => { return (<MaidenName />) }
       },
+      'datesused': {
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Previous Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'reasons')}>Next Section</button>) },
+        'render': () => { return (<DateRange title="Provide dates used" />) }
+      },
       'reasons': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Preview Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Preview Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Next Section</button>) },
         'render': () => { return (<Textarea label={'Provide the reasons why the name changed'} />) }
       }
@@ -89,6 +94,7 @@ class OtherNamesUsed extends React.Component {
         <div className="other-names-used">
           <Name />
           <MaidenName />
+          <DateRange title="Provide dates used" />
           <Textarea label={'Provide the reasons why the name changed'} />
         </div>
       )
