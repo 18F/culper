@@ -3,10 +3,6 @@ var del = require('del')
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var sass = require('gulp-sass')
-var rename = require('gulp-rename')
-var envify = require('gulp-envify')
-
-require('dotenv').config()
 
 var paths = {
   entry: './src/boot.jsx',
@@ -36,24 +32,14 @@ var paths = {
   webpack: './webpack.config.js'
 }
 
-gulp.task('setup', setup)
 gulp.task('clean', clean)
 gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
 gulp.task('sass', ['clean'], convert)
-gulp.task('build', ['clean', 'copy', 'setup', 'fonts', 'images', 'sass'], compile)
+gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
-
-function setup () {
-  'use strict'
-  return gulp
-    .src('./src/config/environment.config.js')
-    .pipe(envify(process.env))
-    .pipe(rename('./src/config/environment.js'))
-    .pipe(gulp.dest('.', { overwrite: true }))
-}
 
 function clean () {
   'use strict'
@@ -102,5 +88,5 @@ function convert () {
 
 function watchdog () {
   'use strict'
-  return gulp.watch([paths.js, paths.sass, '!./src/config/environment.js'], ['build'])
+  return gulp.watch([paths.js, paths.sass], ['build'])
 }
