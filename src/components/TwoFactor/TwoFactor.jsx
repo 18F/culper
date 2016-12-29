@@ -29,7 +29,9 @@ class TwoFactor extends React.Component {
   handleSubmit (event) {
     // Send request to API to validate token
     event.preventDefault()
-    this.props.dispatch(twofactor(this.props.username, this.state.token))
+    if (this.state.token !== '') {
+      this.props.dispatch(twofactor(this.props.username, this.state.token))
+    }
   }
 
   render () {
