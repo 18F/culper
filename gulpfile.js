@@ -3,6 +3,7 @@ var del = require('del')
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var sass = require('gulp-sass')
+require('dotenv').config()
 
 var paths = {
   entry: './src/boot.jsx',
