@@ -41,41 +41,23 @@ gulp.task('clean', clean)
 gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
-gulp.task('sass', convert)
-gulp.task('build', ['setup', 'clean', 'copy', 'fonts', 'images', 'sass'], compile)
+gulp.task('sass', ['clean'], convert)
+gulp.task('build', ['clean', 'copy', 'setup', 'fonts', 'images', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
 
 function setup () {
   'use strict'
-  switch (process.env.NODE_ENV) {
-    case 'production':
-      return gulp
-        .src('./src/config/environment.production.js')
-        .pipe(rename('./src/config/environment.js'))
-        .pipe(gulp.dest('.', { overwrite: true }))
-
-    case 'staging':
-      return gulp
-        .src('./src/config/environment.staging.js')
-        .pipe(rename('./src/config/environment.js'))
-        .pipe(gulp.dest('.', { overwrite: true }))
-
-    default:
-      return gulp
-        .src('./src/config/environment.dev.js')
-        .pipe(envify(process.env))
-        .pipe(rename('./src/config/environment.js'))
-        .pipe(gulp.dest('.', { overwrite: true }))
-  }
+  return gulp
+    .src('./src/config/environment.config.js')
+    .pipe(envify(process.env))
+    .pipe(rename('./src/config/environment.js'))
+    .pipe(gulp.dest('.', { overwrite: true }))
 }
 
 function clean () {
   'use strict'
   return del([
-    paths.destination.css + '/*',
-    paths.destination.images + '/*',
-    paths.destination.fonts + '/*',
     paths.destination.root + '/*'
   ])
 }
@@ -120,5 +102,5 @@ function convert () {
 
 function watchdog () {
   'use strict'
-  return gulp.watch([paths.js, paths.sass], ['build'])
+  return gulp.watch([paths.js, paths.sass, '!./src/config/environment.js'], ['build'])
 }
