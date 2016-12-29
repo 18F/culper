@@ -1,7 +1,5 @@
 # config files
 .env
-src/config/environment.js
-
 
 # Logs
 logs
