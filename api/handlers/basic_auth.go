@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // BasicAuth processes a users request to login with a Username and Password
 func BasicAuth(w http.ResponseWriter, r *http.Request) {
-
 	var respBody struct {
 		Username string
 		Password string
@@ -32,6 +32,15 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 
 	account := &model.Account{
 		Username: respBody.Username,
+	}
+
+	// Associate with a database context.
+	account.WithContext(db.NewDB())
+
+	// Validate the user name and password combination
+	if err := account.BasicAuthentication(respBody.Password); err != nil {
+		Error(w, r, err)
+		return
 	}
 
 	// Generate jwt token
