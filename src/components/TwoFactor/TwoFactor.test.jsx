@@ -21,7 +21,7 @@ describe('The two factor authenictaction component', () => {
 
   it('renders with QR code if user is not verified', () => {
     const component = mount(<Provider store={store}><TwoFactor username="test" /></Provider>)
-    expect(component.find('img').length).toEqual(1)
+    expect(component.find('img').length).toEqual(0)
     expect(component.find('input[type="text"]').length).toEqual(1)
     expect(component.find('button').length).toEqual(1)
   })
