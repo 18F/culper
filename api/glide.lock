@@ -1,10 +1,9 @@
 hash: b1321c4dae34982ffbba7a328f985dab74c500d97cd4716a86e93b43ee38387b
-updated: 2016-12-28T15:41:41.99179508-05:00
+updated: 2016-12-29T20:11:12.435953045Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
   subpackages:
-  - cmd/goose
   - lib/goose
 - name: cloud.google.com/go
   version: a2e776edd7c5463ed144b91a28640db71619ae3c
