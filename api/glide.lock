@@ -1,6 +1,10 @@
-hash: d800bb1dfaacb29d1e3c58eeae4917c2debaec98844f5eac212e397109e4bf88
-updated: 2016-12-06T23:32:17.13670183-05:00
+hash: b1321c4dae34982ffbba7a328f985dab74c500d97cd4716a86e93b43ee38387b
+updated: 2016-12-29T20:11:12.435953045Z
 imports:
+- name: bitbucket.org/liamstask/goose
+  version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
+  subpackages:
+  - lib/goose
 - name: cloud.google.com/go
   version: a2e776edd7c5463ed144b91a28640db71619ae3c
   subpackages:
@@ -12,6 +16,8 @@ imports:
   version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
+- name: github.com/go-sql-driver/mysql
+  version: 2e00b5cd70399450106cec6431c2e2ce3cae5034
 - name: github.com/golang/protobuf
   version: 8ee79997227bf9b34611aee7946ae64735e6fd93
   subpackages:
@@ -28,6 +34,16 @@ imports:
   version: 74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff
 - name: github.com/keighl/mandrill
   version: 5d7133fb578a9504f8ab549737c993422f65a000
+- name: github.com/kylelemons/go-gypsy
+  version: 08cad365cd28a7fba23bb1e57aa43c5e18ad8bb8
+  subpackages:
+  - yaml
+- name: github.com/lib/pq
+  version: 5bf161122cd640c2a5a2c1d7fa49ea9befff31dd
+  subpackages:
+  - oid
+- name: github.com/mattn/go-sqlite3
+  version: 2d44decb4941c9cdf72c22297b7890faf7da9bcb
 - name: github.com/microcosm-cc/bluemonday
   version: f77f16ffc87a6a58814e64ae72d55f9c41374e6d
 - name: github.com/mitchellh/mapstructure
@@ -41,6 +57,12 @@ imports:
   subpackages:
   - bitset
   - reedsolomon
+- name: github.com/ziutek/mymysql
+  version: 501176fc99be4b4fb0fd01ae8d6af5d8bb408e44
+  subpackages:
+  - godrv
+  - mysql
+  - native
 - name: golang.org/x/crypto
   version: ede567c8e044a5913dad1d1af3696d9da953104c
   subpackages:

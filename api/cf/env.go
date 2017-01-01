@@ -27,7 +27,10 @@ func PublicURI() string {
 
 // DatabaseURI is the URI used to establish the database connection
 func DatabaseURI(label string) string {
-	current, _ := cfenv.Current()
+	current, err := cfenv.Current()
+	if err != nil {
+		log.Printf("Error retrieving the current Cloud Foundry environment: %v", err)
+	}
 	return getDatabase(current, label)
 }
 
@@ -62,10 +65,22 @@ func getURI(current *cfenv.App) string {
 func getDatabase(current *cfenv.App, label string) string {
 	// Attempt to pull from CloudFoundry settings first
 	if current != nil {
+		// First, try finding it by name
 		service, err := current.Services.WithName(label)
 		if err == nil {
 			return service.Credentials["uri"].(string)
 		}
+
+		// Next, try finding it by label
+		services, err := current.Services.WithLabel(label)
+		if err == nil {
+			for _, s := range services {
+				log.Println(s.Credentials["uri"].(string))
+				return s.Credentials["uri"].(string)
+			}
+		}
+
+		// Anything else log the error and continue
 		log.Printf("Could not parse VCAP_SERVICES for %s. Error: %s", label, err)
 	}
 
