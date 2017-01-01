@@ -13,6 +13,7 @@ export default class State extends ValidationElement {
                 onValidation={this.props.onValidation}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
+                value={this.props.value}
                 >
         <option value="">{this.props.placeholder}</option>
         <option value="AL">AL</option>

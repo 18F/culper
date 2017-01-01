@@ -33,7 +33,7 @@ export default class DateControl extends ValidationElement {
    * Retrieve the part of the date requested.
    */
   datePart (part, date) {
-    if (date === undefined) {
+    if (!date) {
       return ''
     }
 
