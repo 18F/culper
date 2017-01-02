@@ -15,3 +15,27 @@
         width: 100%;
     }
 }
+
+.form-navigation {
+    .section {
+        .number {
+            margin-right: 1rem;
+        }
+        padding: 2rem;
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        .title {
+            font-weight: bold;
+        }
+        .subsection {
+            margin-left: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #000;
+            .active {
+                color: #0071bc;
+            }
+        }
+    }
+}

@@ -23,23 +23,29 @@ const sectionMap = {
 
 class Section extends React.Component {
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      section: !sectionMap[this.props.section] ? 'identification' : this.props.section
-    }
+  /**
+   * Used when routes are updated and render is called for different sections. On initial page load,
+   * the componentDidMount() is rendered. However, subsequent path changes trigger componentWillReceiveProps()
+   */
+  componentWillReceiveProps (updatedProps) {
+    var sec = this.section(updatedProps.section)
+    this.props.dispatch(updateTitle(sec.title))
   }
 
   componentDidMount () {
-    var sec = sectionMap[this.state.section]
+    var sec = this.section(this.props.section)
     this.props.dispatch(updateTitle(sec.title))
+  }
+
+  section (section) {
+    return sectionMap[section] || sectionMap['identification']
   }
 
   /**
    * Provides the appropriate section to render. Defaults to `identification`.
    */
   getSection () {
-    var sec = sectionMap[this.state.section]
+    var sec = this.section(this.props.section)
     return sec.render(this.props.subsection)
   }
 
