@@ -59,9 +59,7 @@ class Identification extends React.Component {
           if (this.props.ApplicantBirthDate) {
             const { month, day, year } = this.props.ApplicantBirthDate
             if (month && day && year) {
-              console.log('date')
               d = new Date(year, month - 1, day)
-              console.log(d)
             }
           }
           return (
@@ -156,11 +154,13 @@ class Identification extends React.Component {
 }
 
 function mapStateToProps (state) {
+  let app = state.application || {}
+  let identification = app.Identification || {}
   return {
-    ApplicantName: state.application.Identification.ApplicantName || {},
-    ApplicantBirthDate: state.application.Identification.ApplicantBirthDate || {},
-    ApplicantBirthPlace: state.application.Identification.ApplicantBirthPlace || {},
-    ApplicantSSN: state.application.Identification.ApplicantSSN || {}
+    ApplicantName: identification.ApplicantName || {},
+    ApplicantBirthDate: identification.ApplicantBirthDate || {},
+    ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
+    ApplicantSSN: identification.ApplicantSSN || {}
   }
 }
 

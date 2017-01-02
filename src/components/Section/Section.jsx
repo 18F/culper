@@ -22,17 +22,24 @@ const sectionMap = {
 }
 
 class Section extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      section: !sectionMap[this.props.section] ? 'identification' : this.props.section
+    }
+  }
+
+  componentDidMount () {
+    var sec = sectionMap[this.state.section]
+    this.props.dispatch(updateTitle(sec.title))
+  }
+
   /**
    * Provides the appropriate section to render. Defaults to `identification`.
    */
   getSection () {
-    let s = this.props.section
-    if (!sectionMap[this.props.section]) {
-      s = 'identification'
-    }
-
-    var sec = sectionMap[s]
-    this.props.dispatch(updateTitle(sec.title))
+    var sec = sectionMap[this.state.section]
     return sec.render(this.props.subsection)
   }
 
