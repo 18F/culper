@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { push } from '../../../middleware/history'
 import Height from '../../Form/Height'
@@ -6,6 +7,7 @@ import Weight from '../../Form/Weight'
 import HairColor from '../../Form/HairColor'
 import EyeColor from '../../Form/EyeColor'
 import Sex from '../../Form/Sex'
+import { updateApplication } from '../../../actions/ApplicationActions'
 
 class Identifying extends React.Component {
   constructor (props) {
@@ -31,33 +33,72 @@ class Identifying extends React.Component {
     this.props.dispatch(push(`/form/identifying/${nextSection}`))
   }
 
+  onUpdate (field, values) {
+    this.props.dispatch(updateApplication('YourIdentification', field, values))
+  }
+
   // Mapping section identifiers to the associated components.
   sectionMap (section) {
     let map = {
       'height': {
         'prev': () => { return '' },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')}>Next Section</button>) },
-        'render': () => { return (<Height />) }
+        'render': () => {
+          return (
+            <Height
+              {...this.props.Height}
+              onUpdate={this.onUpdate.bind(this, 'Height')}
+            />
+          )
+        }
       },
       'weight': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'height')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')}>Next Section</button>) },
-        'render': () => { return (<Weight />) }
+        'render': () => {
+          return (
+            <Weight
+              value={this.props.Weight}
+              onUpdate={this.onUpdate.bind(this, 'Weight')}
+            />
+          )
+        }
       },
       'haircolor': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')}>Next Section</button>) },
-        'render': () => { return (<HairColor />) }
+        'render': () => {
+          return (
+            <HairColor
+              value={this.props.HairColor}
+              onUpdate={this.onUpdate.bind(this, 'HairColor')}
+            />
+          )
+        }
       },
       'eyecolor': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'sex')}>Next Section</button>) },
-        'render': () => { return (<EyeColor />) }
+        'render': () => {
+          return (
+            <EyeColor
+              value={this.props.EyeColor}
+              onUpdate={this.onUpdate.bind(this, 'EyeColor')}
+            />
+          )
+        }
       },
       'sex': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
-        'render': () => { return (<Sex />) }
+        'render': () => {
+          return (
+            <Sex
+              value={this.props.Sex}
+              onUpdate={this.onUpdate.bind(this, 'Sex')}
+            />
+          )
+        }
       }
     }
     return map[section]
@@ -101,7 +142,7 @@ class Identifying extends React.Component {
     if (subsection === 'review') {
       return (
         <div className="identifying">
-          <Height />
+          {this.sectionMap('height').render()}
           <Weight />
           <HairColor />
           <EyeColor />
@@ -120,4 +161,17 @@ class Identifying extends React.Component {
   }
 }
 
-export default AuthenticatedView(Identifying)
+function mapStateToProps (state) {
+  let app = state.application || {}
+  let identification = app.YourIdentification || {}
+  return {
+    Height: identification.Height || {},
+    Weight: identification.Weight || 0,
+    HairColor: identification.HairColor || '',
+    EyeColor: identification.EyeColor || '',
+    Sex: identification.Sex || '',
+
+  }
+}
+
+export default connect(mapStateToProps)(AuthenticatedView(Identifying))
