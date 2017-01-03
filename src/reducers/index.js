@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import authentication from './authentication'
 import section from './section'
-import { applicationReducers } from './application'
+import application from './application'
 
 const rootReducer = combineReducers({
   authentication: authentication,
   section: section,
-  application: applicationReducers
+  application: application
 })
 
 export default rootReducer

@@ -20,6 +20,6 @@ describe('The navigation component', () => {
   it('visible when authenticated', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><Navigation /></Provider>)
-    expect(component.find('div').length).toEqual(1)
+    expect(component.find('div').length).toBeGreaterThan(0)
   })
 })

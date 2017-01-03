@@ -20,16 +20,16 @@ const reducer = function (sectionName) {
 }
 
 // High level pre-defined sub-state tree
-export const applicationReducers = combineReducers({
+export default combineReducers({
   Identification: reducer('Identification'),
   YourIdentification: reducer('YourIdentification')
 })
 
 // Or alternative...
-export const appReducer = function (state = defaultState, action) {
-  return merge(state, {
-    [action.section]: {
-      [action.property]: action.values
-    }
-  })
-}
+// export const appReducer = function (state = defaultState, action) {
+  // return merge(state, {
+    // [action.section]: {
+      // [action.property]: action.values
+    // }
+  // })
+// }
