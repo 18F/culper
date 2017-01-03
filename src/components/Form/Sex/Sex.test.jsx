@@ -1,21 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import DateRange from './DateRange'
+import Sex from './Sex'
 
-describe('The date range component', () => {
-  it('renders appropriately without an error', () => {
-    const component = mount(<DateRange />)
-    expect(component.find('select#fromMonth').length).toEqual(1)
-
-    expect(component.find('input#fromYear').length).toEqual(1)
-    expect(component.find('select#fromMonth').length).toEqual(1)
-    expect(component.find('input#fromEstimated').length).toEqual(1)
-
-    expect(component.find('input#toYear').length).toEqual(1)
-    expect(component.find('select#toMonth').length).toEqual(1)
-    expect(component.find('input#toEstimated').length).toEqual(1)
-  })
-
+describe('The Sex component', () => {
   it('bubbles up validate event', () => {
     let validations = 0
     const expected = {
@@ -29,7 +16,7 @@ describe('The date range component', () => {
         validations++
       }
     }
-    const component = mount(<DateRange name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<Sex name={expected.name} onValidate={expected.handleValidation} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
@@ -47,7 +34,7 @@ describe('The date range component', () => {
         changes++
       }
     }
-    const component = mount(<DateRange name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Sex name={expected.name} onChange={expected.handleChange} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })
