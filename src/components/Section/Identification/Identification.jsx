@@ -91,7 +91,8 @@ class Identification extends React.Component {
               {...this.props.ApplicantSSN}
               onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
             />
-          ) }
+          )
+        }
       }
     }
     return map[section]
