@@ -143,10 +143,10 @@ class Identifying extends React.Component {
       return (
         <div className="identifying">
           {this.sectionMap('height').render()}
-          <Weight />
-          <HairColor />
-          <EyeColor />
-          <Sex />
+          {this.sectionMap('weight').render()}
+          {this.sectionMap('haircolor').render()}
+          {this.sectionMap('eyecolor').render()}
+          {this.sectionMap('sex').render()}
         </div>
       )
     }

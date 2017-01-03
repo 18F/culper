@@ -54,7 +54,7 @@ class OtherNamesUsed extends React.Component {
         'render': () => {
           return (
             <MaidenName
-              value={this.props.MaidenName}
+              checked={this.props.MaidenName}
               onUpdate={this.onUpdate.bind(this, 'MaidenName')}
             />
           )
@@ -130,7 +130,7 @@ class OtherNamesUsed extends React.Component {
         <div className="other-names-used">
           {this.sectionMap('name').render()}
           {this.sectionMap('maidenname').render()}
-          {this.sectionMap('daterange').render()}
+          {this.sectionMap('datesused').render()}
           {this.sectionMap('reasons').render()}
         </div>
       )
