@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Telephone from './Telephone'
 
-describe('The URL component', () => {
+describe('The Telephone component', () => {
   it('renders appropriately with an error', () => {
     const expected = {
       name: 'input-error',
