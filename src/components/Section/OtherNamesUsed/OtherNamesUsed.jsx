@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
+import { updateApplication } from '../../../actions/ApplicationActions'
 
 class OtherNamesUsed extends React.Component {
   constructor (props) {
@@ -27,28 +29,62 @@ class OtherNamesUsed extends React.Component {
     this.props.dispatch(push(`/form/othernames/${nextSection}`))
   }
 
+  onUpdate (field, values) {
+    this.props.dispatch(updateApplication('OtherNames', field, values))
+  }
+
   // Mapping section identifiers to the associated components.
   sectionMap (section) {
     let map = {
       'name': {
         'prev': () => { return '' },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Next Section</button>) },
-        'render': () => { return (<Name />) }
+        'render': () => {
+          return (
+            <Name
+              {...this.props.Name}
+              onUpdate={this.onUpdate.bind(this, 'Name')}
+            />
+          )
+        }
       },
       'maidenname': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Next Section</button>) },
-        'render': () => { return (<MaidenName />) }
+        'render': () => {
+          return (
+            <MaidenName
+              value={this.props.MaidenName}
+              onUpdate={this.onUpdate.bind(this, 'MaidenName')}
+            />
+          )
+        }
       },
       'datesused': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'reasons')}>Next Section</button>) },
-        'render': () => { return (<DateRange title="Provide dates used" />) }
+        'render': () => {
+          return (
+            <DateRange
+              {...this.props.DatesUsed}
+              onUpdate={this.onUpdate.bind(this, 'DatesUsed')}
+              title="Provide dates used"
+            />
+          )
+        }
       },
       'reasons': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Preview Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Next Section</button>) },
-        'render': () => { return (<Textarea label={'Provide the reasons why the name changed'} />) }
+        'render': () => {
+          return (
+            <Textarea
+              value={this.props.Reasons}
+              onUpdate={this.onUpdate.bind(this, 'Reasons')}
+              label={'Provide the reasons why the name changed'}
+            />
+          )
+        }
       }
     }
     return map[section]
@@ -92,10 +128,10 @@ class OtherNamesUsed extends React.Component {
     if (subsection === 'review') {
       return (
         <div className="other-names-used">
-          <Name />
-          <MaidenName />
-          <DateRange title="Provide dates used" />
-          <Textarea label={'Provide the reasons why the name changed'} />
+          {this.sectionMap('name').render()}
+          {this.sectionMap('maidenname').render()}
+          {this.sectionMap('daterange').render()}
+          {this.sectionMap('reasons').render()}
         </div>
       )
     }
@@ -110,4 +146,16 @@ class OtherNamesUsed extends React.Component {
   }
 }
 
-export default AuthenticatedView(OtherNamesUsed)
+function mapStateToProps (state) {
+  let app = state.application || {}
+  let othernames = app.OtherNames || {}
+  return {
+    Name: othernames.Name || {},
+    MaidenName: othernames.MaidenName || {},
+    DatesUsed: othernames.DatesUsed || {},
+    Reasons: othernames.Reasons || ''
+
+  }
+}
+
+export default connect(mapStateToProps)(AuthenticatedView(OtherNamesUsed))
