@@ -30,6 +30,9 @@ export default class MaidenName extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
     })
   }
 
