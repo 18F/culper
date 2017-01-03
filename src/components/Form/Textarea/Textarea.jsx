@@ -28,6 +28,9 @@ export default class Textarea extends ValidationElement {
     event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
     })
   }
 

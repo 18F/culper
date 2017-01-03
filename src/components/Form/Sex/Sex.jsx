@@ -5,7 +5,7 @@ import Radio from '../Radio'
 export default class Sex extends ValidationElement {
   constructor (props) {
     super(props)
-
+    this.handleChange = this.handleChange.bind(this)
     this.state = {
       name: "sex",
       placeholder: props.placeholder,
@@ -23,6 +23,9 @@ export default class Sex extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
     })
   }
 
@@ -36,28 +39,31 @@ export default class Sex extends ValidationElement {
   }
 
   render () {
+    console.log(this.state.value)
     return (
       <div>
         <h2>Sex</h2>
         <Radio
-          name={this.state.name}
+          name="female"
           label="Female"
           placeholder={this.state.placeholder}
           help={this.state.help}
           required="true"
-          value={this.state.value}
+          value="female"
+          checked={this.state.value === 'female'}
           error={this.state.error}
           valid={this.state.valid}
           onChange={this.handleChange}
           onValidate={this.handleValidation}
         />
         <Radio
-          name={this.state.name}
+          name="male"
           label="Male"
           placeholder={this.state.placeholder}
           help={this.state.help}
           required="true"
-          value={this.state.value}
+          value="male"
+          checked={this.state.value === 'male'}
           error={this.state.error}
           valid={this.state.valid}
           onChange={this.handleChange}

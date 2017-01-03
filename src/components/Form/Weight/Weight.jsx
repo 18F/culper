@@ -24,6 +24,9 @@ export default class Weight extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(parseInt(this.state.value))
+      }
     })
   }
 
@@ -86,7 +89,7 @@ export default class Weight extends ValidationElement {
             readonly={this.state.readonly}
             required={this.state.required}
             step="1"
-            value={this.state.height}
+            value={this.state.value}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
