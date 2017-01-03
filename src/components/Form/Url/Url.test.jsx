@@ -172,7 +172,6 @@ describe('The URL component', () => {
     ]
 
     tests.forEach((t) => {
-      console.log(t.url)
       const component = mount(<Url name="test-urls" label="URL" value={t.url} />)
       component.find('input').simulate('change')
       expect(component.find('span.hidden').length).toEqual(t.valid ? 1 : 0)
