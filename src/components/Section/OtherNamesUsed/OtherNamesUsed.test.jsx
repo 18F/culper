@@ -21,4 +21,20 @@ describe('The other names used section', () => {
     const component = mount(<Provider store={store}><OtherNamesUsed /></Provider>)
     expect(component.find('div').length).toEqual(10)
   })
+
+  it('can review all subsections', () => {
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const component = mount(<Provider store={store}><OtherNamesUsed subsection="review" /></Provider>)
+    expect(component.find('div').length).toEqual(27)
+  })
+
+  it('can go to each subsection', () => {
+    const sections = ['name', 'maidenname', 'datesused', 'reasons']
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+
+    sections.forEach((section) => {
+      const component = mount(<Provider store={store}><OtherNamesUsed subsection={section} /></Provider>)
+      expect(component.find('div').length).toBeGreaterThan(0)
+    })
+  })
 })
