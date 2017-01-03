@@ -20,6 +20,14 @@ export default class ApplicantBirthDate extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.date }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          month: this.datePart('m', this.state.value),
+          day: this.datePart('d', this.state.value),
+          year: this.datePart('y', this.state.value),
+          estimated: this.state.estimated
+        })
+      }
     })
   }
 

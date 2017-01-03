@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ApplicantName from '../../Form/Name'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import { push } from '../../../middleware/history'
+import { updateApplication } from '../../../actions/ApplicationActions'
 
 class Identification extends React.Component {
   constructor (props) {
@@ -30,28 +32,66 @@ class Identification extends React.Component {
     this.props.dispatch(push(`/form/identification/${nextSection}`))
   }
 
+  onUpdate (field, values) {
+    this.props.dispatch(updateApplication('Identification', field, values))
+  }
+
   // Mapping section identifiers to the associated components.
   sectionMap (section) {
     let map = {
       'name': {
         'prev': () => { return '' },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Next Section</button>) },
-        'render': () => { return (<ApplicantName />) }
+        'render': () => {
+          return (
+            <ApplicantName
+              onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+              {...this.props.ApplicantName }
+            />
+          )
+        }
       },
       'birthdate': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Next Section</button>) },
-        'render': () => { return (<ApplicantBirthDate />) }
+        'render': () => {
+          let d = null
+          if (this.props.ApplicantBirthDate) {
+            const { month, day, year } = this.props.ApplicantBirthDate
+            if (month && day && year) {
+              d = new Date(year, month - 1, day)
+            }
+          }
+          return (
+            <ApplicantBirthDate
+              onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
+              value={d}
+            />
+          )
+        }
       },
       'birthplace': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, 'ssn')}>Next Section</button>) },
-        'render': () => { return (<ApplicantBirthPlace />) }
+        'render': () => {
+          return (
+            <ApplicantBirthPlace
+              {...this.props.ApplicantBirthPlace}
+              onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
+            />
+          )
+        }
       },
       'ssn': {
         'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Previous Section</button>) },
         'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
-        'render': () => { return (<ApplicantSSN />) }
+        'render': () => {
+          return (
+            <ApplicantSSN
+              {...this.props.ApplicantSSN}
+              onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
+            />
+          ) }
       }
     }
     return map[section]
@@ -95,10 +135,10 @@ class Identification extends React.Component {
     if (subsection === 'review') {
       return (
         <div className="identification">
-          <ApplicantName />
-          <ApplicantBirthDate />
-          <ApplicantBirthPlace />
-          <ApplicantSSN />
+        {this.sectionMap('name').render()}
+        {this.sectionMap('birthplace').render()}
+        {this.sectionMap('birthdate').render()}
+        {this.sectionMap('ssn').render()}
         </div>
       )
     }
@@ -113,4 +153,15 @@ class Identification extends React.Component {
   }
 }
 
-export default AuthenticatedView(Identification)
+function mapStateToProps (state) {
+  let app = state.application || {}
+  let identification = app.Identification || {}
+  return {
+    ApplicantName: identification.ApplicantName || {},
+    ApplicantBirthDate: identification.ApplicantBirthDate || {},
+    ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
+    ApplicantSSN: identification.ApplicantSSN || {}
+  }
+}
+
+export default connect(mapStateToProps)(AuthenticatedView(Identification))

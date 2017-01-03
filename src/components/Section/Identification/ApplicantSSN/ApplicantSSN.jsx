@@ -5,15 +5,14 @@ import { api } from '../../../../services/api'
 export default class ApplicantSSN extends ValidationElement {
   constructor (props) {
     super(props)
-
     this.state = {
       name: props.name,
       label: props.label,
       value: props.value,
-      first: this.ripper(props.value, 0, 3),
-      middle: this.ripper(props.value, 3, 5),
-      last: this.ripper(props.value, 5, 9),
-      notApplicable: props.notApplicable,
+      first: this.props.first || this.ripper(props.value, 0, 3),
+      middle: this.props.middle || this.ripper(props.value, 3, 5),
+      last: this.props.last || this.ripper(props.value, 5, 9),
+      notApplicable: !!props.notApplicable,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
@@ -56,7 +55,7 @@ export default class ApplicantSSN extends ValidationElement {
         }
         break
 
-      case 'notAapplicable':
+      case 'notApplicable':
         updated = {
           notAapplicable: value
         }
@@ -66,6 +65,14 @@ export default class ApplicantSSN extends ValidationElement {
     if (updated != null) {
       this.setState(updated, () => {
         super.handleChange(event)
+        if (this.props.onUpdate) {
+          this.props.onUpdate({
+            first: this.state.first,
+            middle: this.state.middle,
+            last: this.state.last,
+            notApplicable: this.state.notApplicable
+          })
+        }
       })
     } else {
       super.handleChange(event)

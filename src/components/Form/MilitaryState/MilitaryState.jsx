@@ -15,6 +15,7 @@ export default class MilitaryState extends ValidationElement {
                onValidation={this.props.onValidation}
                onBlur={this.props.onBlur}
                onFocus={this.props.onFocus}
+               value={this.props.value}
                >
           <option value="AA">AA</option>
           <option value="AE">AE</option>

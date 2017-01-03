@@ -50,6 +50,17 @@ export default class Name extends ValidationElement {
 
     this.setState(updated, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        const { first, last, middle, suffix, suffixOther } = this.state
+
+        this.props.onUpdate({
+          first: first,
+          last: last,
+          middle: middle,
+          suffix: suffix,
+          suffixOther: suffixOther
+        })
+      }
     })
   }
 
