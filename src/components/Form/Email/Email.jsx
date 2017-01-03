@@ -28,7 +28,7 @@ export default class Email extends ValidationElement {
    */
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
-      this.handleChange(event)
+      super.handleChange(event)
     })
   }
 
