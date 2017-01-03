@@ -53,10 +53,10 @@ const sectionNavMap = [
     name: 'Other Names',
     url: 'othernames',
     subsections: [
-      { name: 'Name', url: 'name' },
-      { name: 'Maiden Name', url: 'maidenname' },
-      { name: 'Dates Used', url: 'datesused' },
-      { name: 'Reasons', url: 'reasons' }
+      // { name: 'Name', url: 'name' },
+      // { name: 'Maiden Name', url: 'maidenname' },
+      // { name: 'Dates Used', url: 'datesused' },
+      // { name: 'Reasons', url: 'reasons' }
     ]
   },
   {
