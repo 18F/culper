@@ -79,29 +79,30 @@ export class App extends React.Component {
               </div>
             </div>
           </div>
-          <div className="usa-nav-container no-gutter">
-            <div className="usa-navbar">
-              <div className="usa-logo" id="logo">
-                <em className="usa-logo-text">
-                  eApp
-                </em>
+          <div className="usa-grid-full no-gutter eapp-header">
+              <div className="usa-width-one-fourth eapp-logo" id="logo">
+                <span className="eapp-logo-text">
+                  SF86
+                </span>
               </div>
-              <div>
+              <div className="eapp-logout">
                 {logoutButton}
               </div>
-            </div>
             <SectionTitle />
           </div>
         </header>
         <div className="usa-overlay"></div>
+		<div className="eapp-progress">
+		  <div id="progress-bar" className="eapp-progress-current"></div>
+		</div>
         <main id="main-content">
           <div className="usa-grid-full no-gutter">
-            <div className="usa-width-one-sixth">
+            <div className="usa-width-one-fourth eapp-navigation">
               <ScoreCard />
               <Navigation />
               &nbsp;
             </div>
-            <div className="usa-width-two-thirds">
+            <div className="usa-width-seven-twelfths">
               {this.props.children}
               &nbsp;
             </div>

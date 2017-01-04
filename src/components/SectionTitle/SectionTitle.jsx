@@ -16,8 +16,10 @@ import { connect } from 'react-redux'
 class SectionTitle extends React.Component {
   render () {
     return (
-      <div className="title">
-        {this.props.title}
+      <div className="usa-width-three-fourths title">
+        <span className="title-text">
+          {this.props.title}
+        </span>
       </div>
     )
   }
