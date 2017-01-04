@@ -12,7 +12,8 @@ export default class Height extends ValidationElement {
       placeholder: props.placeholder,
       help: props.help,
       required: props.required,
-      value: props.value,
+      feet: props.feet,
+      inches: props.inches,
       error: props.error || false,
       valid: props.valid || false
     }
@@ -21,9 +22,18 @@ export default class Height extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
+  handleChange (field, event) {
+    console.log(field)
+    console.log(event.target.value)
+    this.setState({ [field]: event.target.value }, () => {
       super.handleChange(event)
+
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          feet: parseInt(this.state.feet),
+          inches: parseInt(this.state.inches)
+        })
+      }
     })
   }
 
@@ -86,8 +96,8 @@ export default class Height extends ValidationElement {
             readonly={this.state.readonly}
             required={this.state.required}
             step="1"
-            value={this.state.height}
-            onChange={this.handleChange}
+            value={this.state.feet}
+            onChange={this.handleChange.bind(this, 'feet')}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onValidate={this.handleValidation}
@@ -108,7 +118,7 @@ export default class Height extends ValidationElement {
             required={this.state.required}
             step="1"
             value={this.state.inches}
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(this, 'inches')}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onValidate={this.handleValidation}

@@ -8,7 +8,7 @@ describe('The Weight component', () => {
       name: 'input-focus',
       label: 'pounds',
       help: 'Helpful error message',
-      value: 0
+      value: 10
     }
     const component = mount(<Weight name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#' + expected.name).simulate('change')

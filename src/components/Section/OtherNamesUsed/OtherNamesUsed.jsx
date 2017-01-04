@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
+import { updateApplication } from '../../../actions/ApplicationActions'
 
 class OtherNamesUsed extends React.Component {
   constructor (props) {
@@ -27,87 +29,84 @@ class OtherNamesUsed extends React.Component {
     this.props.dispatch(push(`/form/othernames/${nextSection}`))
   }
 
-  // Mapping section identifiers to the associated components.
-  sectionMap (section) {
-    let map = {
-      'name': {
-        'prev': () => { return '' },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Next Section</button>) },
-        'render': () => { return (<Name />) }
-      },
-      'maidenname': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Next Section</button>) },
-        'render': () => { return (<MaidenName />) }
-      },
-      'datesused': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'maidenname')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'reasons')}>Next Section</button>) },
-        'render': () => { return (<DateRange title="Provide dates used" />) }
-      },
-      'reasons': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'datesused')}>Preview Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Next Section</button>) },
-        'render': () => { return (<Textarea label={'Provide the reasons why the name changed'} />) }
+  onUpdate (id, field, values) {
+    let list = this.props.List
+    for (let x = 0; x < list.length; x++) {
+      if (list[x].ID === id) {
+        list[x][field] = values
       }
     }
-    return map[section]
+    this.props.dispatch(updateApplication('OtherNames', 'List', [...list]))
+  }
+
+  addOtherName () {
+    let list = this.props.List
+    list.push({
+      ID: new Date().getTime(),
+      Name: '',
+      MaidenName: '',
+      Used: '',
+      Reason: ''
+    })
+    this.props.dispatch(updateApplication('OtherNames', 'List', [...list]))
+  }
+
+  keyName (id, bit) {
+    return '' + id + '-' + bit
   }
 
   render () {
-    const subsection = this.props.subsection
-    if (!subsection) {
-      return (
-        <div className="identification">
-          <div id="titles" className="usa-grid-full">
-            <div className="usa-width-one-half">
-              <h3>One piece at a time</h3>
-            </div>
-            <div className="usa-width-one-half">
-              <h3>Full section view</h3>
-            </div>
-          </div>
-
-          <div id="dialogs" className="usa-grid-full">
-            <div className="usa-width-one-half">
-              <p>Take a guided tour through the section</p>
-            </div>
-            <div className="usa-width-one-half">
-              <p>View all the sections associated with <strong>Other Names Used</strong> at once</p>
-            </div>
-          </div>
-
-          <div id="actions" className="usa-grid-full">
-            <div className="usa-width-one-half">
-              <button onClick={this.handleTour}>Take me on the tour!</button>
-            </div>
-            <div className="usa-width-one-half">
-              <button onClick={this.handleReview}>Show me the full section</button>
-            </div>
-          </div>
-        </div>
-      )
-    }
-
-    if (subsection === 'review') {
-      return (
-        <div className="other-names-used">
-          <Name />
-          <MaidenName />
-          <DateRange title="Provide dates used" />
-          <Textarea label={'Provide the reasons why the name changed'} />
-        </div>
-      )
-    }
-
     return (
-      <div className="identification">
-        {this.sectionMap(subsection).render()}
-        {this.sectionMap(subsection).prev()}
-        {this.sectionMap(subsection).next()}
+      <div className="other-names-used">
+        {
+          this.props.List.map((x) => {
+            return (
+              <div key={x.ID}>
+                <Name
+                  key={this.keyName(x.ID, 'name')}
+                  {...x.Name}
+                  onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
+                />
+
+                <MaidenName
+                  key={this.keyName(x.ID, 'maiden')}
+                  value={x.MaidenName}
+                  onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
+                />
+
+                <DateRange
+                  key={this.keyName(x.ID, 'used')}
+                  {...x.DatesUsed}
+                  onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
+                  title="Provide dates used"
+                />
+
+                <Textarea
+                  key={this.keyName(x.ID, 'reason')}
+                  value={x.Reasons}
+                  onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
+                  label={'Provide the reasons why the name changed'}
+                />
+            </div>
+            )
+          })
+        }
+
+        <div className="text-center">
+          <button onClick={this.addOtherName.bind(this)}>Add another name</button>
+        </div>
       </div>
     )
   }
 }
 
-export default AuthenticatedView(OtherNamesUsed)
+function mapStateToProps (state) {
+  console.log('mapStateToProps')
+  let app = state.application || {}
+  let othernames = app.OtherNames || {}
+  return {
+    List: othernames.List || []
+  }
+}
+
+export default connect(mapStateToProps)(AuthenticatedView(OtherNamesUsed))

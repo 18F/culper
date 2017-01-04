@@ -22,7 +22,8 @@ const reducer = function (sectionName) {
 // High level pre-defined sub-state tree
 export default combineReducers({
   Identification: reducer('Identification'),
-  YourIdentification: reducer('YourIdentification')
+  YourIdentification: reducer('YourIdentification'),
+  OtherNames: reducer('OtherNames')
 })
 
 // Or alternative...

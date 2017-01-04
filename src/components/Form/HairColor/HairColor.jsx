@@ -3,6 +3,22 @@ import ValidationElement from '../ValidationElement'
 import Dropdown from '../Dropdown'
 
 export default class HairColor extends ValidationElement {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      value: props.value
+    }
+  }
+
+  handleChange (event) {
+    this.setState({value: event.target.value}, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
+    })
+  }
+
   render () {
     return (
       <div>
@@ -11,10 +27,11 @@ export default class HairColor extends ValidationElement {
           label={this.props.label}
           help={this.props.help}
           disabled={this.props.disabled}
-          onChange={this.props.onChange}
+          onChange={this.handleChange}
           onValidation={this.props.onValidation}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}
+          value={this.state.value}
         >
           <option value="">{this.props.placeholder}</option>
           <option value="Bald">Bald</option>
