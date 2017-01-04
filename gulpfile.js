@@ -10,6 +10,7 @@ var paths = {
   js: [
     './src/**/*.js*'
   ],
+  sassvars: './src/sass',
   sass: [
     './node_modules/font-awesome/**/*.scss',
     './node_modules/uswds/src/stylesheets/**/*.scss',
@@ -21,7 +22,8 @@ var paths = {
     './node_modules/uswds/dist/fonts/**/*'
   ],
   images: [
-    './node_modules/uswds/dist/img/**/*'
+    './node_modules/uswds/dist/img/**/*',
+    './src/img/*'
   ],
   css: 'eqip.css',
   destination: {
@@ -82,7 +84,9 @@ function convert () {
   'use strict'
   return gulp
     .src(paths.sass)
-    .pipe(sass())
+    .pipe(sass({
+	    includePaths: [ paths.sassvars ]
+	}))
     .pipe(concat(paths.css))
     .pipe(gulp.dest(paths.destination.css))
 }

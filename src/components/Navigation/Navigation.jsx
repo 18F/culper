@@ -13,8 +13,7 @@ class Navigation extends React.Component {
       return (
         <div key={section.name} className="section">
           <span className="title">
-            <span className="number">{sectionNum}</span>
-            <Link to={url} activeClassName="active">{section.name}</Link>
+            <Link to={url} activeClassName="active"><span className="number">{sectionNum}</span> {section.name}</Link>
           </span>
           {
             section.subsections.map(subsection => {

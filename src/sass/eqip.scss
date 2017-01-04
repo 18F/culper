@@ -1,42 +1,90 @@
+@import 'eqip-colors';
+@import 'eqip-fonts';
+
 h1 {
     /* Test for conversion to CSS */
     color: #000;
 }
 
+h3 {
+	font-size:2.3rem;
+}
 .usa-header {
-    background-color: #0070bb;
+    font-family: $eapp-serif;
+    background-color: $eapp-blue;
+    min-height:16.7rem;
 
-    .usa-nav-container {
-        padding-left: 0;
-        max-height: 10.5rem;
+    .eapp-header {
+        min-height:14.5rem;
 
-        .usa-navbar {
-            padding-left: 3rem;
-            color: #9bdaf0;
-            background-color: #016ab0;
-            margin-bottom: -0.5rem;
+        .eapp-logo {
+            height:14.5rem;
+            background: $eapp-blue-dark url('../img/eapp-logo.png') 12% center no-repeat;
+            color:#9bdaf0;
 
-            .logout {
-                position: absolute;
-                bottom: .5rem;
-                font-size: smaller;
-                color: #d6d7d9;
-                text-decoration: none;
+            span {
+                display:block;
+                margin-left:38%;
+            }
+            .eapp-logo-text {
+                font-size:3rem;
+                font-weight:$eapp-bold;
+                margin-top:4.4rem;
+            }
+            .eapp-logo-sf86 {
+                font-size:1.7rem;
             }
         }
 
+        .eapp-logout {
+            position:absolute;
+            right:0;
+            top:2.2rem;
+            font-family:$eapp-sans;
+            font-size:1.6rem;
+            a {
+                display:block;
+                padding:1rem 1.5rem;
+                color:$eapp-grey;
+                text-decoration:none;
+            }
+        }
+
+        /* section title styling, trying to be flexible for long section titles, text should flow up into header */
         .title {
-            display: inline-block;
+            display:block;
+            position:relative;
+            height:14.5rem;
             color: #fff;
-            padding-left: 2rem;
             font-size: 5rem;
+            font-weight:$eapp-bold;
+            .title-text {
+                display:block;
+                position:absolute;
+                bottom:2.4rem;
+                left:6rem;
+                width:auto;
+                line-height:1;
+            }
         }
     }
 }
-
-#main-content {
-    padding-top: 1rem;
+/* horizontal progress bar, inner div width to be adjusted via JS */
+.eapp-progress {
+    position:relative;
+    height:0.7rem;
+    background:$eapp-grey-lightest;
+    .eapp-progress-current {
+        position:absolute;
+        top:0;
+        left:0;
+        height:100%;
+        background:$eapp-green;
+        width:15%;
+    }
 }
+
+#main-content {}
 
 .hidden {
     display: none;

@@ -31,7 +31,7 @@ class Form extends React.Component {
     }
 
     return (
-      <div id="eapp-form" className="usa-grid">
+      <div id="eapp-form" className="usa-grid eapp-form">
         <div id="info" className="usa-width-one-whole">
           <Section section={this.props.params.section} subsection={this.props.params.subsection} />
         </div>
