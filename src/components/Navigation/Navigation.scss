@@ -1,41 +1,58 @@
-#twofactor-component {
-    text-align: center;
+@import 'eqip-colors';
+@import 'eqip-fonts';
 
-    img {
-        width: 256px;
-        height: 256px;
-    }
-
-    input {
-        text-align: center;
-    }
-
-    button {
-        text-align: center;
-        width: 100%;
-    }
+/* handle inner-application navigation */
+.eapp-navigation {
+	background:$eapp-grey-light;
+	padding:2.5rem 0;
+	> * {
+		margin:0 10%;
+	}
 }
-
 .form-navigation {
+	margin-top:1.9rem;
+	margin-bottom:1.9rem;
+	
+    a {
+	    color:$eapp-grey-dark;
+    }
+    .active, a:hover {
+        color:$eapp-blue;
+        font-weight:$eapp-bold;
+    }
     .section {
+        font-size:1.9rem;
         .number {
-            margin-right: 1rem;
+            margin-right:0.4rem;
         }
-        padding: 2rem;
+		> span > a {
+            border-bottom:1px solid #5b616b;
+		}
         a {
-            color: #000;
+            display:block;
+            width:100%;
+			min-height:5.1rem;
+			padding:1.7rem 2rem;
+            line-height:1.2;
             text-decoration: none;
+            border-left:4px solid $eapp-grey-light;
         }
         .title {
-            font-weight: bold;
-        }
-        .subsection {
-            margin-left: 1rem;
-            padding: 1rem;
-            border-bottom: 1px solid #000;
             .active {
-                color: #0071bc;
+	            border-color:$eapp-blue;
+	            
             }
         }
+        .subsection {
+            font-size: 1.6rem;
+			a {
+				border:none;
+				padding: 1.2rem 1rem 1.2rem 5.4rem;
+				line-height:1.3;
+			}
+        }
+        .subsection:last-child {
+            border-bottom:1px solid #5b616b;
+		}
     }
 }

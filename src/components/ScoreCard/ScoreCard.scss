@@ -1,17 +1,22 @@
-#twofactor-component {
-    text-align: center;
+@import 'eqip-colors';
+@import 'eqip-fonts';
 
-    img {
-        width: 256px;
-        height: 256px;
-    }
-
-    input {
-        text-align: center;
-    }
-
-    button {
-        text-align: center;
-        width: 100%;
-    }
+.score-card {
+	height:10rem;
+	background:$eapp-green;
+	font-size:4.8rem;
+	font-weight:$eapp-bold;
+	color:$eapp-green-dark;
+	text-align:center;
+	padding-top:0.4rem;
+	.score-card-done {
+		color:#fefefe;
+	}
+	.score-card-text {
+		display:block;
+		font-size:1.7rem;
+		font-weight:$eapp-book;
+		color:#fefefe;
+		line-height:0.5;
+	}
 }
