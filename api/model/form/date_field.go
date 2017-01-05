@@ -39,6 +39,19 @@ func (d DateField) Time() (time.Time, error) {
 	return time.Parse(dateFieldParser, formatted)
 }
 
+// Parse converts a date string and populates the date field values
+func (d *DateField) Parse(date string) error {
+	t, err := time.Parse(dateFieldParser, date)
+	if err != nil {
+		return err
+	}
+	d.Day = int64(t.Day())
+	d.Month = int64(t.Month())
+	d.Year = int64(t.Year())
+
+	return nil
+}
+
 // YearDiff finds the difference in years between two dates.
 // This was obtained from a stack overflow post.  http://stackoverflow.com/a/36531443/464064
 // Finding the difference in years is not as trivial since it has to take into account leap years
