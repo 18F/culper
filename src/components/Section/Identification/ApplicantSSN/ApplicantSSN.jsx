@@ -151,7 +151,7 @@ export default class ApplicantSSN extends ValidationElement {
    * Generated name for the part of the address elements.
    */
   partName (part) {
-    return '' + this.state.name + '-' + part
+    return '' + this.props.name + '-' + part
   }
 
   /**

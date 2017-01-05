@@ -165,24 +165,24 @@ export default class Checkbox extends ValidationElement {
   render () {
     return (
       <div className={this.divClass()}>
-        <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
-               type="checkbox"
-               aria-describedby={this.errorName()}
-               disabled={this.state.disabled}
-               maxLength={this.state.maxlength}
-               pattern={this.state.pattern}
-               readOnly={this.state.readonly}
-               required={this.state.required}
-               value={this.state.value}
-               onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               />
         <label className={this.labelClass()}
                htmlFor={this.state.name}>
-          {this.state.label}
+          <input className={this.inputClass()}
+                 id={this.state.name}
+                 name={this.state.name}
+                 type="checkbox"
+                 aria-describedby={this.errorName()}
+                 disabled={this.state.disabled}
+                 maxLength={this.state.maxlength}
+                 pattern={this.state.pattern}
+                 readOnly={this.state.readonly}
+                 required={this.state.required}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 />
+          <span>{this.state.label}</span>
         </label>
         <span className={this.spanClass()}
               id={this.errorName()}
