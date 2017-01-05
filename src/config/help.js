@@ -9,7 +9,11 @@ const messages = {
 class Help {
   ById (id) {
     try {
-      return id.split('.').reduce((o, i) => o[i], messages) || ''
+      let text = id.split('.').reduce((o, i) => o[i], messages) || ''
+      if (!text || text === '') {
+        throw 'No text found'
+      }
+      return text
     } catch (e) {
       return 'No help text found for "' + id + '"'
     }

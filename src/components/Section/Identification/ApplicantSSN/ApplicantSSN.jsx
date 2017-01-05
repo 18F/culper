@@ -1,5 +1,5 @@
 import React from 'react'
-import { ValidationElement, Text, Checkbox } from '../../../Form'
+import { ValidationElement, Help, Text, Checkbox } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantSSN extends ValidationElement {
@@ -165,57 +165,59 @@ export default class ApplicantSSN extends ValidationElement {
     return (
       <div className="ssn">
         <h2>U.S. Social Security Number</h2>
-        <Text name={this.partName('first')}
-              ref="first"
-              className="first"
-              placeholder="000"
-              maxlength="3"
-              pattern="^[0-9]*$"
-              help=""
-              value={this.state.first}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
-        <Text name={this.partName('middle')}
-              ref="middle"
-              className="middle"
-              placeholder="00"
-              maxlength="2"
-              pattern="^[0-9]*$"
-              help=""
-              value={this.state.middle}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              onKeyDown={this.handleKeyDown}
-              />
-        <Text name={this.partName('last')}
-              ref="last"
-              className="last"
-              placeholder="0000"
-              maxlength="4"
-              pattern="^[0-9]*$"
-              help=""
-              value={this.state.last}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              onKeyDown={this.handleKeyDown}
-              />
-        <Checkbox name={this.partName('notApplicable')}
-                  label="Not applicable"
-                  ref="notAapplicable"
-                  help=""
-                  value={this.state.notApplicable}
-                  onChange={this.handleChange}
-                  onValidate={this.handleValidation}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
+        <Help id="identification.ssn">
+          <Text name={this.partName('first')}
+                ref="first"
+                className="first"
+                placeholder="000"
+                maxlength="3"
+                pattern="^[0-9]*$"
+                help=""
+                value={this.state.first}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+          <Text name={this.partName('middle')}
+                ref="middle"
+                className="middle"
+                placeholder="00"
+                maxlength="2"
+                pattern="^[0-9]*$"
+                help=""
+                value={this.state.middle}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                />
+          <Text name={this.partName('last')}
+                ref="last"
+                className="last"
+                placeholder="0000"
+                maxlength="4"
+                pattern="^[0-9]*$"
+                help=""
+                value={this.state.last}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                />
+          <Checkbox name={this.partName('notApplicable')}
+                    label="Not applicable"
+                    ref="notAapplicable"
+                    help=""
+                    value={this.state.notApplicable}
+                    onChange={this.handleChange}
+                    onValidate={this.handleValidation}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.props.onBlur}
+                    />
+        </Help>
       </div>
     )
   }

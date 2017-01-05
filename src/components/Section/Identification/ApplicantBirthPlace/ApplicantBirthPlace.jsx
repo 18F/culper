@@ -1,5 +1,5 @@
 import React from 'react'
-import { ValidationElement, Radio, City, MilitaryState, County, Country } from '../../../Form'
+import { ValidationElement, Help, Radio, City, MilitaryState, County, Country } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
@@ -145,16 +145,18 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Radio name={this.partName('domestic')}
-                 label="Yes"
-                 value="yes"
-                 onChange={this.handleChange}
-                 />
-          <Radio name={this.partName('domestic')}
-                 label="No"
-                 value="no"
-                 onChange={this.handleChange}
-                 />
+          <Help id="identification.birthplace">
+            <Radio name={this.partName('domestic')}
+                   label="Yes"
+                   value="yes"
+                   onChange={this.handleChange}
+                   />
+            <Radio name={this.partName('domestic')}
+                   label="No"
+                   value="no"
+                   onChange={this.handleChange}
+                   />
+          </Help>
         </div>
       )
     } else if (this.state.disabledCountry) {
@@ -162,16 +164,18 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Radio name={this.partName('domestic')}
-                 label="Yes"
-                 value="yes"
-                 onChange={this.handleChange}
-                 />
-          <Radio name={this.partName('domestic')}
-                 label="No"
-                 value="no"
-                 onChange={this.handleChange}
-                 />
+          <Help id="identification.birthplace">
+            <Radio name={this.partName('domestic')}
+                   label="Yes"
+                   value="yes"
+                   onChange={this.handleChange}
+                   />
+            <Radio name={this.partName('domestic')}
+                   label="No"
+                   value="no"
+                   onChange={this.handleChange}
+                   />
+          </Help>
           <MilitaryState name={this.partName('state')}
                          label="State"
                          value={this.state.state}
@@ -210,16 +214,18 @@ export default class ApplicantBirthPlace extends ValidationElement {
       <div>
         <h2>Place of birth</h2>
         <label>Were you born in the United States of America</label>
-        <Radio name={this.partName('domestic')}
-               label="Yes"
-               value="yes"
-               onChange={this.handleChange}
-               />
-        <Radio name={this.partName('domestic')}
-               label="No"
-               value="no"
-               onChange={this.handleChange}
-               />
+        <Help id="identification.birthplace">
+          <Radio name={this.partName('domestic')}
+                 label="Yes"
+                 value="yes"
+                 onChange={this.handleChange}
+                 />
+          <Radio name={this.partName('domestic')}
+                 label="No"
+                 value="no"
+                 onChange={this.handleChange}
+                 />
+        </Help>
         <City name={this.partName('city')}
               label="City"
               value={this.state.city}
