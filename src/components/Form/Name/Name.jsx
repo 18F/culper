@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 import Dropdown from '../Dropdown'
+import Radio from '../Radio'
 import { api } from '../../../services/api'
 
 export default class Name extends ValidationElement {
@@ -158,29 +159,121 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
-        <Dropdown name={this.partName('suffix')}
-                  label="Suffix"
-                  value={this.state.suffix}
-                  onChange={this.handleChange}
-                  onValidate={this.handleValidation}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  >
-          <option value=""></option>
-          <option value="Jr">Jr</option>
-          <option value="Sr">Sr</option>
-          <option value="I">I</option>
-          <option value="II">II</option>
-          <option value="III">III</option>
-          <option value="IV">IV</option>
-          <option value="V">V</option>
-          <option value="VI">VI</option>
-          <option value="VII">VII</option>
-          <option value="VIII">VIII</option>
-          <option value="IX">IX</option>
-          <option value="X">X</option>
-          <option value="Other">Other</option>
-        </Dropdown>
+        <label>Suffix</label>
+        <div className="option-list">
+          <Radio name={this.partName('suffix')}
+                 label="None"
+                 value=""
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="Jr"
+                 value="Jr"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="Sr"
+                 value="Sr"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="I"
+                 value="I"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="II"
+                 value="II"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="III"
+                 value="III"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="IV"
+                 value="IV"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="V"
+                 value="V"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="VI"
+                 value="VI"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="VII"
+                 value="VII"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="VIII"
+                 value="VIII"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="IX"
+                 value="IX"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="X"
+                 value="X"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+          <Radio name={this.partName('suffix')}
+                 label="Other"
+                 value="Other"
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
+        </div>
         <div className={this.suffixOtherClass()}>
           <Text name={this.partName('suffixOther')}
                 label="Other"
