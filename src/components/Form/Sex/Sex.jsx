@@ -7,7 +7,7 @@ export default class Sex extends ValidationElement {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      name: "sex",
+      name: 'sex',
       placeholder: props.placeholder,
       help: props.help,
       required: props.required,
@@ -39,12 +39,11 @@ export default class Sex extends ValidationElement {
   }
 
   render () {
-    console.log(this.state.value)
     return (
       <div>
         <h2>Sex</h2>
         <Radio
-          name="female"
+          name="sex"
           label="Female"
           placeholder={this.state.placeholder}
           help={this.state.help}
@@ -57,7 +56,7 @@ export default class Sex extends ValidationElement {
           onValidate={this.handleValidation}
         />
         <Radio
-          name="male"
+          name="sex"
           label="Male"
           placeholder={this.state.placeholder}
           help={this.state.help}
