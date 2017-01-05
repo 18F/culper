@@ -1,5 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import Help from '../Help'
 import Text from '../Text'
 import Dropdown from '../Dropdown'
 import Radio from '../Radio'
@@ -124,6 +125,7 @@ export default class Name extends ValidationElement {
     return (
       <div>
         <h2>Your full name</h2>
+        <Help id="identification.name.last">
         <Text name={this.partName('last')}
               label="Last name"
               maxlength="100"
@@ -136,6 +138,8 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
+        </Help>
+        <Help id="identification.name.first">
         <Text name={this.partName('first')}
               label="First name"
               maxlength="100"
@@ -147,6 +151,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
+        </Help>
         <Text name={this.partName('middle')}
               label="Middle name or initial"
               minlength="0"
