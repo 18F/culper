@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 
 describe('The ApplicantBirthPlace component', () => {
-  const children = 4
+  const children = 5
 
   it('no error on empty', () => {
     const expected = {
@@ -49,7 +49,7 @@ describe('The ApplicantBirthPlace component', () => {
       }
     }
     const component = mount(<ApplicantBirthPlace name={expected.name} onChange={expected.handleChange} />)
-    component.find('input').first().simulate('change')
+    component.find('input[type="text"]').first().simulate('change')
     expect(changes).toEqual(1)
   })
 
@@ -67,7 +67,7 @@ describe('The ApplicantBirthPlace component', () => {
       }
     }
     const component = mount(<ApplicantBirthPlace name={expected.name} onFocus={expected.handleFocus} />)
-    component.find('input').first().simulate('focus')
+    component.find('input[type="text"]').first().simulate('focus')
     expect(foci).toEqual(1)
   })
 
@@ -85,7 +85,7 @@ describe('The ApplicantBirthPlace component', () => {
       }
     }
     const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} />)
-    component.find('input').first().simulate('blur')
+    component.find('input[type="text"]').first().simulate('blur')
     expect(blurs).toEqual(1)
   })
 })

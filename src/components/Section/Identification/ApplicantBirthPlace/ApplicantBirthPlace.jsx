@@ -1,11 +1,12 @@
 import React from 'react'
-import { ValidationElement, City, MilitaryState, County, Country } from '../../../Form'
+import { ValidationElement, Radio, City, MilitaryState, County, Country } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
   constructor (props) {
     super(props)
 
+    let domestic = props.country === 'United States'
     this.state = {
       name: props.name,
       label: props.label,
@@ -13,8 +14,9 @@ export default class ApplicantBirthPlace extends ValidationElement {
       state: props.state,
       county: props.county,
       country: props.country,
-      disabledState: false,
-      disabledCountry: false
+      domestic: domestic ? 'yes' : 'no',
+      disabledState: !domestic,
+      disabledCountry: domestic
     }
   }
 
@@ -27,6 +29,31 @@ export default class ApplicantBirthPlace extends ValidationElement {
     let updated = null
 
     switch (part) {
+      case 'domestic':
+        if (value === 'no') {
+          updated = {
+            country: '',
+            state: '',
+            disabledCountry: false,
+            disabledState: true
+          }
+        } else if (value === 'yes') {
+          updated = {
+            country: 'United States',
+            state: '',
+            disabledCountry: true,
+            disabledState: false
+          }
+        } else {
+          updated = {
+            country: '',
+            state: '',
+            disabledCountry: true,
+            disabledState: true
+          }
+        }
+        break
+
       case 'city':
         updated = { city: value }
         break
@@ -113,9 +140,86 @@ export default class ApplicantBirthPlace extends ValidationElement {
   }
 
   render () {
+    if (this.state.disabledCountry && this.state.disabledState) {
+      return (
+        <div>
+          <h2>Place of birth</h2>
+          <label>Were you born in the United States of America</label>
+          <Radio name={this.partName('domestic')}
+                 label="Yes"
+                 value="yes"
+                 onChange={this.handleChange}
+                 />
+          <Radio name={this.partName('domestic')}
+                 label="No"
+                 value="no"
+                 onChange={this.handleChange}
+                 />
+        </div>
+      )
+    } else if (this.state.disabledCountry) {
+      return (
+        <div>
+          <h2>Place of birth</h2>
+          <label>Were you born in the United States of America</label>
+          <Radio name={this.partName('domestic')}
+                 label="Yes"
+                 value="yes"
+                 onChange={this.handleChange}
+                 />
+          <Radio name={this.partName('domestic')}
+                 label="No"
+                 value="no"
+                 onChange={this.handleChange}
+                 />
+          <MilitaryState name={this.partName('state')}
+                         label="State"
+                         value={this.state.state}
+                         includeStates="true"
+                         disabled={this.state.disabledState}
+                         onChange={this.handleChange}
+                         onValidate={this.handleValidation}
+                         onFocus={this.props.onFocus}
+                         onBlur={this.props.onBlur}
+                         />
+          <City name={this.partName('city')}
+                label="City"
+                value={this.state.city}
+                placeholder="Please enter your city of birth"
+                maxlength="100"
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+          <County name={this.partName('county')}
+                  label="County"
+                  value={this.state.county}
+                  placeholder="Please enter your county of birth"
+                  maxlength="255"
+                  onChange={this.handleChange}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  />
+        </div>
+      )
+    }
+
     return (
       <div>
         <h2>Place of birth</h2>
+        <label>Were you born in the United States of America</label>
+        <Radio name={this.partName('domestic')}
+               label="Yes"
+               value="yes"
+               onChange={this.handleChange}
+               />
+        <Radio name={this.partName('domestic')}
+               label="No"
+               value="no"
+               onChange={this.handleChange}
+               />
         <City name={this.partName('city')}
               label="City"
               value={this.state.city}
@@ -126,16 +230,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
-        <MilitaryState name={this.partName('state')}
-                       label="State"
-                       value={this.state.state}
-                       includeStates="true"
-                       disabled={this.state.disabledState}
-                       onChange={this.handleChange}
-                       onValidate={this.handleValidation}
-                       onFocus={this.props.onFocus}
-                       onBlur={this.props.onBlur}
-                       />
         <County name={this.partName('county')}
                 label="County"
                 value={this.state.county}
