@@ -102,7 +102,7 @@ export class App extends React.Component {
               <Navigation />
               &nbsp;
             </div>
-            <div className="usa-width-seven-twelfths">
+            <div className="usa-width-one-half eapp-core">
               {this.props.children}
               &nbsp;
             </div>
