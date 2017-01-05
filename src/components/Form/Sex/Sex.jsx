@@ -1,5 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import Help from '../Help'
 import Radio from '../Radio'
 
 export default class Sex extends ValidationElement {
@@ -7,7 +8,7 @@ export default class Sex extends ValidationElement {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      name: "sex",
+      name: 'sex',
       placeholder: props.placeholder,
       help: props.help,
       required: props.required,
@@ -39,36 +40,41 @@ export default class Sex extends ValidationElement {
   }
 
   render () {
-    console.log(this.state.value)
     return (
-      <div>
+      <div className="sex">
         <h2>Sex</h2>
-        <Radio
-          name="female"
-          label="Female"
-          placeholder={this.state.placeholder}
-          help={this.state.help}
-          required="true"
-          value="female"
-          checked={this.state.value === 'female'}
-          error={this.state.error}
-          valid={this.state.valid}
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-        />
-        <Radio
-          name="male"
-          label="Male"
-          placeholder={this.state.placeholder}
-          help={this.state.help}
-          required="true"
-          value="male"
-          checked={this.state.value === 'male'}
-          error={this.state.error}
-          valid={this.state.valid}
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-        />
+        <Help id="traits.sex">
+          <div className="options-list">
+            <Radio name="sex"
+                   label="Female"
+                   placeholder={this.state.placeholder}
+                   help={this.state.help}
+                   required="true"
+                   value="female"
+                   checked={this.state.value === 'female'}
+                   error={this.state.error}
+                   valid={this.state.valid}
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   >
+              <i className="fa fa-venus" aria-hidden="true"></i>
+            </Radio>
+            <Radio name="sex"
+                   label="Male"
+                   placeholder={this.state.placeholder}
+                   help={this.state.help}
+                   required="true"
+                   value="male"
+                   checked={this.state.value === 'male'}
+                   error={this.state.error}
+                   valid={this.state.valid}
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   >
+              <i className="fa fa-mars" aria-hidden="true"></i>
+            </Radio>
+          </div>
+        </Help>
       </div>
     )
   }

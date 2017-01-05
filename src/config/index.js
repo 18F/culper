@@ -1,2 +1,3 @@
 import env from './environment'
-export { env }
+import help from './help'
+export { env, help }

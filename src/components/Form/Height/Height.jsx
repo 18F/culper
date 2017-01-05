@@ -85,7 +85,7 @@ export default class Height extends ValidationElement {
         <div className="usa-form-group">
           <Number id={this.partName('feet')}
             name={this.partName('feet')}
-            label="feet"
+            label="Feet"
             placeholder="0"
             help="Feet must be a number between 1 and 9"
             aria-describedby={this.errorName('feet')}
@@ -106,7 +106,7 @@ export default class Height extends ValidationElement {
         <div className="usa-form-group">
           <Number id={this.partName('inches')}
             name={this.partName('inches')}
-            label="inches"
+            label="Inches"
             placeholder="0"
             help="Inches must be a number between 0 and 11"
             aria-describedby={this.errorName('inches')}

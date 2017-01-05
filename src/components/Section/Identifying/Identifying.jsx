@@ -169,8 +169,7 @@ function mapStateToProps (state) {
     Weight: identification.Weight || 0,
     HairColor: identification.HairColor || '',
     EyeColor: identification.EyeColor || '',
-    Sex: identification.Sex || '',
-
+    Sex: identification.Sex || ''
   }
 }
 

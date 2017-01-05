@@ -1,7 +1,7 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
-import Checkbox from '../Checkbox'
+import Radio from '../Radio'
 
 export default class MaidenName extends ValidationElement {
   constructor (props) {
@@ -65,9 +65,11 @@ export default class MaidenName extends ValidationElement {
 
   render () {
     return (
-      <Checkbox name={this.state.name}
-               label={this.state.label}
-               placeholder={this.state.placeholder}
+      <div className="maiden-name">
+        <label>Maiden Name</label>
+        <Radio name="maiden-name"
+               label="Yes"
+               value="Yes"
                help={this.state.help}
                disabled={this.state.disabled}
                readonly={this.state.readonly}
@@ -81,6 +83,23 @@ export default class MaidenName extends ValidationElement {
                onBlur={this.handleBlur}
                onValidate={this.handleValidation}
                />
+        <Radio name="maiden-name"
+               label="No"
+               value="No"
+               help={this.state.help}
+               disabled={this.state.disabled}
+               readonly={this.state.readonly}
+               required={this.state.required}
+               value={this.state.value}
+               focus={this.state.focus}
+               error={this.state.error}
+               valid={this.state.valid}
+               onChange={this.handleChange}
+               onFocus={this.handleFocus}
+               onBlur={this.handleBlur}
+               onValidate={this.handleValidation}
+               />
+      </div>
     )
   }
 }

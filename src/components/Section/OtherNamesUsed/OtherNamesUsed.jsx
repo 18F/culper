@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { MaidenName, Name, Textarea, DateRange } from '../../Form'
+import { Help, MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication } from '../../../actions/ApplicationActions'
 
@@ -62,32 +62,30 @@ class OtherNamesUsed extends React.Component {
           this.props.List.map((x) => {
             return (
               <div key={x.ID}>
-                <Name
-                  key={this.keyName(x.ID, 'name')}
-                  {...x.Name}
-                  onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
-                />
+                <Name key={this.keyName(x.ID, 'name')}
+                      {...x.Name}
+                      onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
+                      />
 
-                <MaidenName
-                  key={this.keyName(x.ID, 'maiden')}
-                  value={x.MaidenName}
-                  onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
-                />
+                <MaidenName key={this.keyName(x.ID, 'maiden')}
+                            value={x.MaidenName}
+                            onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
+                            />
 
-                <DateRange
-                  key={this.keyName(x.ID, 'used')}
-                  {...x.DatesUsed}
-                  onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
-                  title="Provide dates used"
-                />
+                <DateRange key={this.keyName(x.ID, 'used')}
+                           {...x.DatesUsed}
+                           onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
+                           title="Provide dates used"
+                           />
 
-                <Textarea
-                  key={this.keyName(x.ID, 'reason')}
-                  value={x.Reasons}
-                  onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
-                  label={'Provide the reasons why the name changed'}
-                />
-            </div>
+                <Help id="alias.reason">
+                  <Textarea key={this.keyName(x.ID, 'reason')}
+                            value={x.Reasons}
+                            onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
+                            label={'Provide the reasons why the name changed'}
+                            />
+                </Help>
+              </div>
             )
           })
         }
