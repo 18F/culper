@@ -42,32 +42,34 @@ export default class Sex extends ValidationElement {
     return (
       <div>
         <h2>Sex</h2>
-        <Radio
-          name="sex"
-          label="Female"
-          placeholder={this.state.placeholder}
-          help={this.state.help}
-          required="true"
-          value="female"
-          checked={this.state.value === 'female'}
-          error={this.state.error}
-          valid={this.state.valid}
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-        />
-        <Radio
-          name="sex"
-          label="Male"
-          placeholder={this.state.placeholder}
-          help={this.state.help}
-          required="true"
-          value="male"
-          checked={this.state.value === 'male'}
-          error={this.state.error}
-          valid={this.state.valid}
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-        />
+        <Radio name="sex"
+               label="Female"
+               placeholder={this.state.placeholder}
+               help={this.state.help}
+               required="true"
+               value="female"
+               checked={this.state.value === 'female'}
+               error={this.state.error}
+               valid={this.state.valid}
+               onChange={this.handleChange}
+               onValidate={this.handleValidation}
+               >
+          <i className="fa fa-venus" aria-hidden="true"></i>
+        </Radio>
+        <Radio name="sex"
+               label="Male"
+               placeholder={this.state.placeholder}
+               help={this.state.help}
+               required="true"
+               value="male"
+               checked={this.state.value === 'male'}
+               error={this.state.error}
+               valid={this.state.valid}
+               onChange={this.handleChange}
+               onValidate={this.handleValidation}
+               >
+          <i className="fa fa-mars" aria-hidden="true"></i>
+        </Radio>
       </div>
     )
   }
