@@ -135,6 +135,7 @@ export default class Radio extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  />
+          {this.props.children}
           <span>{this.state.label}</span>
         </label>
           <span className={this.spanClass()}
