@@ -47,6 +47,7 @@ func main() {
 	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
 	v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
 	v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
+	v.HandleFunc("/daterange", handlers.ValidateDateRange)
 
 	// Address Validation
 	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
