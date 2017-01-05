@@ -1,15 +1,50 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-.eapp-form {
-	padding:0;
-	margin-left:6rem;
-	margin-top:5.4rem;
-	button {
-		width:25rem;
-		text-align:center;
-		padding:1.9rem 1rem;
+// .eapp-form {
+// 	padding:0;
+
+.eapp-core {
+
+	label, input, textarea, select {
+		max-width:64rem;
 	}
+	label {
+		margin-top:0;
+		color:$eapp-grey-dark;
+	}
+	button {
+		position:relative;
+		width:24rem;
+		min-height:5.5rem;
+		line-height:5.5rem;
+		padding:2rem 1rem;
+		margin-top:4rem;
+		.button-icon {
+			display:inline-block;
+			line-height:inherit;
+		}
+		> span {
+			line-height:1.2;
+		}
+		.eapp-nav-label {}
+	}
+	.eapp-prev {
+		text-align:left;
+		.button-icon {
+
+		}
+	}
+	.eapp-next {
+		text-align:right;
+		float:right;
+		margin-right:4rem;
+		.button-icon {
+			
+		}
+
+	}
+
 	#titles {
 		margin-bottom:1.2rem;
 	}

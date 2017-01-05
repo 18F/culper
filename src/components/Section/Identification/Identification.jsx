@@ -41,7 +41,7 @@ class Identification extends React.Component {
     let map = {
       'name': {
         'prev': () => { return '' },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Next Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
         'render': () => {
           return (
             <ApplicantName
@@ -52,8 +52,8 @@ class Identification extends React.Component {
         }
       },
       'birthdate': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Next Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'name')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Previous</span> Section</span></button>) },
         'render': () => {
           let d = null
           if (this.props.ApplicantBirthDate) {
@@ -71,8 +71,8 @@ class Identification extends React.Component {
         }
       },
       'birthplace': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'ssn')}>Next Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthdate')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'ssn')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Previous</span> Section</span></button>) },
         'render': () => {
           return (
             <ApplicantBirthPlace
@@ -83,8 +83,8 @@ class Identification extends React.Component {
         }
       },
       'ssn': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'birthplace')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Finish</span> Section</span></button>) },
         'render': () => {
           return (
             <ApplicantSSN

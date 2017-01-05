@@ -42,7 +42,7 @@ class Identifying extends React.Component {
     let map = {
       'height': {
         'prev': () => { return '' },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')}>Next Section</button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
         'render': () => {
           return (
             <Height
@@ -53,8 +53,8 @@ class Identifying extends React.Component {
         }
       },
       'weight': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'height')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')}>Next Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'height')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Previous</span> Section</span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
         'render': () => {
           return (
             <Weight
@@ -65,8 +65,8 @@ class Identifying extends React.Component {
         }
       },
       'haircolor': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')}>Next Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Previous</span> Section</span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
         'render': () => {
           return (
             <HairColor
@@ -77,8 +77,8 @@ class Identifying extends React.Component {
         }
       },
       'eyecolor': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'sex')}>Next Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Previous</span> Section</span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'sex')} className="eapp-next"><span><span className="eapp-nav-label">Next</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
         'render': () => {
           return (
             <EyeColor
@@ -89,8 +89,8 @@ class Identifying extends React.Component {
         }
       },
       'sex': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
+        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')} className="eapp-prev"><span className="fa fa-arrow-circle-left button-icon"></span><span><span className="eapp-nav-label">Previous</span> Section</span></button>) },
+        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')} className="eapp-next"><span><span className="eapp-nav-label">Finish</span> Section</span><span className="fa fa-arrow-circle-right button-icon"></span></button>) },
         'render': () => {
           return (
             <Sex
