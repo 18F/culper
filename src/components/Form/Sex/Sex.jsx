@@ -40,7 +40,7 @@ export default class Sex extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="sex">
         <h2>Sex</h2>
         <Radio name="sex"
                label="Female"

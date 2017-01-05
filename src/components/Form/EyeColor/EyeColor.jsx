@@ -21,7 +21,7 @@ export default class EyeColor extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="eye-colors">
         <h2>Eye Color</h2>
         <div className="option-list">
           <Radio name="eye-color"
