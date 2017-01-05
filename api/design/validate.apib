@@ -487,3 +487,40 @@ FORMAT: 1A
         }
       ]
     }
+
+# Validate Daterange [/validate/daterange]
+
+## Validates a date range [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "To": "",
+      "From": ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "To",
+          "Error": ""
+        },
+        {
+          "Fieldname": "From",
+          "Error": ""
+        }
+      ]
+    }
