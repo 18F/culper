@@ -1,5 +1,6 @@
 // Validation
 import ValidationElement from './ValidationElement'
+import Help from './Help'
 
 // Basic form elements
 import Generic from './Generic'
@@ -29,6 +30,7 @@ import DateRange from './DateRange'
 
 export {
   ValidationElement,
+  Help,
   Generic,
   Text,
   Email,

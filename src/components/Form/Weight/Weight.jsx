@@ -78,7 +78,7 @@ export default class Weight extends ValidationElement {
         <div className="usa-form-group">
           <Number id={this.partName('feet')}
             name={this.state.name}
-            label="pounds"
+            label="Pounds"
             placeholder="0"
             aria-describedby={this.errorName('weight')}
             help="Weight must be a number between 10 and 999"

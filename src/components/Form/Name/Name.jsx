@@ -1,7 +1,8 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import Help from '../Help'
 import Text from '../Text'
-import Dropdown from '../Dropdown'
+import Radio from '../Radio'
 import { api } from '../../../services/api'
 
 export default class Name extends ValidationElement {
@@ -123,75 +124,175 @@ export default class Name extends ValidationElement {
     return (
       <div>
         <h2>Your full name</h2>
-        <Text name={this.partName('last')}
-              label="Last name"
-              maxlength="100"
-              pattern="^[a-zA-Z\-\.' ]*$"
-              placeholder="Please enter your last name"
-              help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
-              value={this.state.last}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
-        <Text name={this.partName('first')}
-              label="First name"
-              maxlength="100"
-              placeholder="Please enter your first name or initial"
-              help="The first name (or initial) is optional but cannot exceed 100 characters"
-              value={this.state.first}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
-        <Text name={this.partName('middle')}
-              label="Middle name or initial"
-              minlength="0"
-              maxlength="100"
-              placeholder="Please enter your middle name or initial"
-              help="The middle name (or initial) is optional but cannot exceed 100 characters"
-              value={this.state.middle}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
-        <Dropdown name={this.partName('suffix')}
-                  label="Suffix"
-                  value={this.state.suffix}
-                  onChange={this.handleChange}
-                  onValidate={this.handleValidation}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  >
-          <option value=""></option>
-          <option value="Jr">Jr</option>
-          <option value="Sr">Sr</option>
-          <option value="I">I</option>
-          <option value="II">II</option>
-          <option value="III">III</option>
-          <option value="IV">IV</option>
-          <option value="V">V</option>
-          <option value="VI">VI</option>
-          <option value="VII">VII</option>
-          <option value="VIII">VIII</option>
-          <option value="IX">IX</option>
-          <option value="X">X</option>
-          <option value="Other">Other</option>
-        </Dropdown>
-        <div className={this.suffixOtherClass()}>
-          <Text name={this.partName('suffixOther')}
-                label="Other"
+        <Help id="identification.name.last">
+          <Text name={this.partName('last')}
+                label="Last name"
                 maxlength="100"
-                value={this.state.suffixOther}
+                pattern="^[a-zA-Z\-\.' ]*$"
+                placeholder="Please enter your last name"
+                help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
+                value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-        </div>
+        </Help>
+        <Help id="identification.name.first">
+          <Text name={this.partName('first')}
+                label="First name"
+                maxlength="100"
+                placeholder="Please enter your first name or initial"
+                help="The first name (or initial) is optional but cannot exceed 100 characters"
+                value={this.state.first}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+        </Help>
+        <Help id="identification.name.middle">
+          <Text name={this.partName('middle')}
+                label="Middle name or initial"
+                minlength="0"
+                maxlength="100"
+                placeholder="Please enter your middle name or initial"
+                help="The middle name (or initial) is optional but cannot exceed 100 characters"
+                value={this.state.middle}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+        </Help>
+        <Help id="identification.name.suffix">
+          <label>Suffix</label>
+          <div className="option-list">
+            <Radio name={this.partName('suffix')}
+                   label="None"
+                   value=""
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="Jr"
+                   value="Jr"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="Sr"
+                   value="Sr"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="I"
+                   value="I"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="II"
+                   value="II"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="III"
+                   value="III"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="IV"
+                   value="IV"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="V"
+                   value="V"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="VI"
+                   value="VI"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="VII"
+                   value="VII"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="VIII"
+                   value="VIII"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="IX"
+                   value="IX"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="X"
+                   value="X"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+            <Radio name={this.partName('suffix')}
+                   label="Other"
+                   value="Other"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
+          </div>
+          <div className={this.suffixOtherClass()}>
+            <Text name={this.partName('suffixOther')}
+                  label="Other"
+                  maxlength="100"
+                  value={this.state.suffixOther}
+                  onChange={this.handleChange}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  />
+          </div>
+        </Help>
       </div>
     )
   }

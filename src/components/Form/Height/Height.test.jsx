@@ -6,7 +6,7 @@ describe('The Height component', () => {
   it('no error on empty', () => {
     let expected = {
       name: 'height',
-      label: 'feet',
+      label: 'Feet',
       help: 'Helpful error message',
       value: ''
     }
@@ -16,10 +16,9 @@ describe('The Height component', () => {
     expect(component.find('input#height-feet').length).toEqual(1)
     expect(component.find('span#height-feet-error').length).toEqual(1)
 
-
     expected = {
       name: 'height',
-      label: 'inches',
+      label: 'Inches',
       help: 'Helpful error message',
       value: ''
     }

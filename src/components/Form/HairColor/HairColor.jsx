@@ -1,55 +1,216 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import Dropdown from '../Dropdown'
+import Help from '../Help'
+import Checkbox from '../Checkbox'
 
 export default class HairColor extends ValidationElement {
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      value: props.value
+      value: props.value || []
     }
   }
 
   handleChange (event) {
-    this.setState({value: event.target.value}, () => {
+    let color = event.target.id.split('-')[1]
+    let selected = [...this.state.value]
+
+    if (selected.includes(color)) {
+      // Remove the color if it was previously selected
+      selected.splice(selected.indexOf(color), 1)
+    } else {
+      // Add the color if it wasn't already
+      selected.push(color)
+    }
+
+    this.setState({value: selected}, () => {
       if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
+        this.props.onUpdate(selected)
       }
     })
   }
 
+  hasColor (color) {
+    return this.state.value.includes(color)
+  }
+
   render () {
     return (
-      <div>
+      <div className="hair-colors">
         <h2>Hair Color</h2>
-        <Dropdown name={this.props.name}
-          label={this.props.label}
-          help={this.props.help}
-          disabled={this.props.disabled}
-          onChange={this.handleChange}
-          onValidation={this.props.onValidation}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
-          value={this.state.value}
-        >
-          <option value="">{this.props.placeholder}</option>
-          <option value="Bald">Bald</option>
-          <option value="Black">Black</option>
-          <option value="Blonde or Strawberry">Blonde or Strawberry</option>
-          <option value="Brown">Brown</option>
-          <option value="Gray or Partially Gray">Gray or Partially Gray</option>
-          <option value="Red or Auburn">Red or Auburn</option>
-          <option value="Sandy">Sandy</option>
-          <option value="White">White</option>
-          <option value="Blue">Blue</option>
-          <option value="Green">Green</option>
-          <option value="Orange">Orange</option>
-          <option value="Pink">Pink</option>
-          <option value="Purple">Purple</option>
-          <option value="Unspecified or unknown">Unspecified or unknown</option>
-          { this.props.children }
-        </Dropdown>
+        <Help id="traits.hair">
+          <div className="option-list">
+            <Checkbox name="hair-bald"
+                      label="Bald"
+                      value="Bald"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-ban" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-black"
+                      label="Black"
+                      value="Black"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-blonde"
+                      label="Blonde or strawberry"
+                      value="Blonde"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-brown"
+                      label="Brown"
+                      value="Brown"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-gray"
+                      label="Gray or partially gray"
+                      value="Gray"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-red"
+                      label="Red or auburn"
+                      value="Red"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-sandy"
+                      label="Sandy"
+                      value="Sandy"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-white"
+                      label="White"
+                      value="White"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-blue"
+                      label="Blue"
+                      value="Blue"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-green"
+                      label="Green"
+                      value="Green"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-orange"
+                      label="Orange"
+                      value="Orange"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-pink"
+                      label="Pink"
+                      value="Pink"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-purple"
+                      label="Purple"
+                      value="Purple"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-fire" aria-hidden="true"></i>
+            </Checkbox>
+            <Checkbox name="hair-unknown"
+                      label="Unspecified or unknown"
+                      value="Unknown"
+                      help={this.props.help}
+                      disabled={this.props.disabled}
+                      onChange={this.handleChange}
+                      onValidation={this.props.onValidation}
+                      onBlur={this.props.onBlur}
+                      onFocus={this.props.onFocus}
+                      >
+              <i className="fa fa-question-circle" aria-hidden="true"></i>
+            </Checkbox>
+          </div>
+        </Help>
       </div>
     )
   }

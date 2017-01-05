@@ -11,9 +11,8 @@ describe('The EyeColor component', () => {
       value: ''
     }
     const component = mount(<EyeColor name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('select#' + expected.name).simulate('change')
-    expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('select#' + expected.name).length).toEqual(1)
-    expect(component.find('span.hidden').length).toEqual(1)
+    component.find('input#eye-color').first().simulate('change')
+    expect(component.find('input#eye-color').length).toEqual(10)
+    expect(component.find('span.hidden').length).toEqual(10)
   })
 })
