@@ -51,6 +51,27 @@
 	#actions {
 		margin-top:5.7rem;
 	}
+
+	/* handle option list blocks, basic structure */
+	.option-list {
+		max-width:64rem;
+		/* handle generic options */
+		> div {
+			display:inline-block;
+			min-width:7.6rem;
+			line-height:4rem;
+			margin-bottom:1.2rem;
+			margin-right:1.6rem;
+			text-align:center;
+			background:$eapp-grey-light;
+			border:1px solid $eapp-grey-dark;
+			&:hover {
+				color:#fff;
+				border: 1px solid $eapp-green-dark;
+				background:$eapp-green;
+			}
+		}
+	}
 }
 #login {
     #info {
