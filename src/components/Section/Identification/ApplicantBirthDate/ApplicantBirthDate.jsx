@@ -1,5 +1,5 @@
 import React from 'react'
-import { ValidationElement, DateControl } from '../../../Form'
+import { ValidationElement, DateControl, Help } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
@@ -152,12 +152,14 @@ export default class ApplicantBirthDate extends ValidationElement {
               >
           {this.state.help}
         </span>
-        <DateControl name={this.state.name}
-                     value={this.state.value}
-                     estimated={this.state.estimated}
-                     onChange={this.handleChange}
-                     onValidate={this.handleValidation}
-                     />
+        <Help id="identification.birthdate">
+          <DateControl name={this.state.name}
+                       value={this.state.value}
+                       estimated={this.state.estimated}
+                       onChange={this.handleChange}
+                       onValidate={this.handleValidation}
+                       />
+        </Help>
       </div>
     )
   }

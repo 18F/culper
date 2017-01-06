@@ -1,0 +1,49 @@
+@import 'eqip-colors';
+
+.help {
+    .content {
+//         display: inline-block;
+    }
+
+    .toggle {
+        display: inline-block;
+        max-width: 5rem;
+        margin-left: 1rem;
+        
+    }
+}
+.eapp-help-toggle {
+	display:inline-block;
+	border-radius:50%;
+	padding:1px 5px;
+	background:$eapp-blue-light;
+	color:$eapp-blue-lightest;
+	&:hover, &:active {
+		color:#fff;
+		background:$eapp-blue;
+	}
+}
+.eapp-help-message {
+	position:relative;
+	max-width:64rem;
+	padding:3.5rem 3rem;
+	background:$eapp-blue-lightest;
+	border:2px solid $eapp-blue-lighter;
+	> i {
+		display:block;
+		position:absolute;
+		top:-0.8rem;
+		left:-0.8rem;
+		height:1.6rem;
+		width:1.6rem;
+		color:#fff;
+		font-size:1.3rem;
+		line-height:1.6rem;
+		text-align:center;
+		background:$eapp-blue-light;
+		border-radius:50%;
+	}
+	.eapp-help-close {
+		display:block;
+	}
+}

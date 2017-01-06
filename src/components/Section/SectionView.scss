@@ -1,35 +1,44 @@
 .section-view {
     .btn-container {
         margin-top: 8rem;
-    }
 
-    button {
-        height: 8rem;
-    }
+        button {
+            line-height: normal !important;
+            width: 25rem;
+        }
 
-    .actions {
-        display: table;
-        width: 100%;
-        .direction {
-            font-weight: 600;
+        button.next {
+            float: right;
         }
-        .text, .icon {
-            display: table-cell;
-            vertical-align: middle;
+        button.back {
+            float: left;
         }
-        .icon {
-            width: 2.4rem;
-        }
-    }
 
-    .actions.next {
-        text-align: right;
-    }
-    .actions.back {
-        text-align: left;
-    }
-    .label {
-        font-weight: normal;
-        min-height: 2rem;
+        .actions {
+
+            display: table;
+            width: 100%;
+            .direction {
+                font-weight: 600;
+            }
+            .text, .icon {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .icon {
+                width: 2.4rem;
+            }
+        }
+
+        .actions.next {
+            text-align: right;
+        }
+        .actions.back {
+            text-align: left;
+        }
+        .label {
+            font-weight: normal;
+            min-height: 2rem;
+        }
     }
 }
