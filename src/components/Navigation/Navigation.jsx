@@ -76,9 +76,7 @@ class Navigation extends React.Component {
    *  - has-errors
    *  - is-valid
    */
-  getClassName (route) {
-    let location = hashHistory.getCurrentLocation()
-    let pathname = location.pathname
+  getClassName (route, pathname) {
     let klass = ''
 
     if (this.isActive(route, pathname)) {
@@ -94,24 +92,44 @@ class Navigation extends React.Component {
     return klass
   }
 
+  getIcon (klass) {
+    if (klass.indexOf('is-valid') > -1) {
+      return <i className="fa fa-check-circle"></i>
+    } else if (klass.indexOf('has-errors') > -1) {
+      return <i className="fa fa-exclamation-circle"></i>
+    }
+    return ''
+  }
+
   render () {
+    let location = hashHistory.getCurrentLocation()
+    let pathname = location.pathname
     let sectionNum = 0
     let nav = sectionNavMap.map((section) => {
       const url = `/form/${section.url}`
+      const sectionClass = this.getClassName(url, pathname)
+      const sectionIcon = this.getIcon(sectionClass)
       sectionNum++
       return (
         <div key={section.name} className="section">
           <span className="title">
-            <Link to={url} className={this.getClassName(url)}>
-              <span className="number">{sectionNum}</span> {section.name}
+            <Link to={url} className={sectionClass}>
+              <span className="number">{sectionNum}</span>
+              <span className="name">{section.name}</span>
+              {sectionIcon}
             </Link>
           </span>
           {
             section.subsections.map(subsection => {
-              const secUrl = `/form/${section.url}/${subsection.url}`
+              const subUrl = `/form/${section.url}/${subsection.url}`
+              const subClass = this.getClassName(subUrl, pathname)
+              const subIcon = this.getIcon(subClass)
               return (
                 <div key={subsection.name} className="subsection" >
-                  <Link to={secUrl} className={this.getClassName(secUrl)}>{subsection.name}</Link>
+                  <Link to={subUrl} className={subClass}>
+                    <span className="name">{subsection.name}</span>
+                    {subIcon}
+                  </Link>
                 </div>
               )
             })
