@@ -15,10 +15,32 @@ class Navigation extends React.Component {
 
   /**
    * Determine if the route has any errors
+   *
+   * example:
+   *  route => /form/identification/name
+   *  error => identification.name.*
    */
   hasErrors (route, pathname) {
-    // TODO: Pull this from true error state
-    return route.indexOf('birth') !== -1
+    let crumbs = route.replace('/form/', '').split('/')
+    let error = crumbs[0]
+    if (crumbs.length > 1) {
+      error += '.' + crumbs[1] + '.'
+    }
+
+    let count = 0
+    for (let section in this.props.errors) {
+      if (section !== crumbs[0]) {
+        continue
+      }
+
+      this.props.errors[section].forEach((e) => {
+        if (e.indexOf(error) === 0) {
+          count++
+        }
+      })
+    }
+
+    return count > 0
   }
 
   /**
@@ -122,10 +144,12 @@ const sectionNavMap = [
 ]
 
 function mapStateToProps (state) {
-  // TODO: Grab error states
   let section = state.section || {}
+  let app = state.application || {}
+  let errors = app.Errors || {}
   return {
-    section: section
+    section: section,
+    errors: errors
   }
 }
 
