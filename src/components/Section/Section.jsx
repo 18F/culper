@@ -4,6 +4,8 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import OtherNamesUsed from './OtherNamesUsed'
 import Identifying from './Identifying'
+import { push } from '../../middleware/history'
+import { SectionView, SectionViews } from './SectionView'
 
 // Mapping section identifiers to the associated components.
 const sectionMap = {
@@ -51,9 +53,17 @@ class Section extends React.Component {
 
   render () {
     return (
-      <div className="section">
-        {this.getSection()}
-      </div>
+      <SectionViews current={this.props.section} dispatch={this.props.dispatch}>
+        <SectionView name="identification">
+          <Identification subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="othernames">
+          <OtherNamesUsed subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="identifying">
+          <Identifying subsection={this.props.subsection} />
+        </SectionView>
+      </SectionViews>
     )
   }
 }

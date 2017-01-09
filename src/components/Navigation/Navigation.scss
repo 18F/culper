@@ -16,17 +16,20 @@
     a {
 	    color:$eapp-grey-dark;
     }
-    .active, a:hover {
+    .active {
         color:$eapp-blue;
         font-weight:$eapp-bold;
     }
+	a:hover {
+		background:$eapp-grey;
+	}
     .section {
         font-size:1.9rem;
         .number {
             margin-right:0.4rem;
         }
 		> span > a {
-            border-bottom:1px solid #5b616b;
+            border-bottom:1px solid $eapp-grey-dark;
 		}
         a {
             display:block;
@@ -35,11 +38,11 @@
 			padding:1.7rem 2rem;
             line-height:1.2;
             text-decoration: none;
-            border-left:4px solid $eapp-grey-light;
+//             border-left:4px solid $eapp-grey-light;
         }
         .title {
             .active {
-	            border-color:$eapp-blue;
+	            border-left:4px solid $eapp-blue;
 	            
             }
         }
@@ -52,7 +55,7 @@
 			}
         }
         .subsection:last-child {
-            border-bottom:1px solid #5b616b;
+            border-bottom:1px solid $eapp-grey-dark;
 		}
     }
 }

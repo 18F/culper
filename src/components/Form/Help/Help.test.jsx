@@ -10,23 +10,23 @@ describe('The Help component', () => {
 
   it('renders with message when active', () => {
     const component = mount(<Help id="identification.name.last" />)
-    component.find('button.toggle').simulate('click')
+    component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
     expect(component.find('div.message').text().length).toBeGreaterThan(0)
   })
 
   it('can toggle', () => {
     const component = mount(<Help id="identification.name.last" />)
-    component.find('button.toggle').simulate('click')
+    component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
-    component.find('button.toggle').simulate('click')
+    component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(0)
   })
 
   it('does not error when given an invalid identification', () => {
     const component = mount(<Help id="this.should.not.exist" />)
-    component.find('button.toggle').simulate('click')
+    component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
-    expect(component.find('div.message').text()).toEqual('No help text found for "this.should.not.exist"')
+    expect(component.find('div.message').text()).toEqual('No help text found for "this.should.not.exist"Close info Block')
   })
 })
