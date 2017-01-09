@@ -47,8 +47,27 @@ class Navigation extends React.Component {
    * Determine if the route is considered complete and valid
    */
   isValid (route, pathname) {
-    // TODO: Pull this from true error state
-    return route.indexOf('ssn') !== -1
+    let crumbs = route.replace('/form/', '').split('/')
+
+    for (let section in this.props.completed) {
+      if (section !== crumbs[0]) {
+        continue
+      }
+
+      if (crumbs.length === 1) {
+        return this.props.completed[section].status === 'complete'
+      } else {
+        for (let sub in this.props.completed[section]) {
+          if (sub !== crumbs[1]) {
+            continue
+          }
+
+          return this.props.completed[section][sub].status === 'complete'
+        }
+      }
+    }
+
+    return false
   }
 
   /**
@@ -147,9 +166,11 @@ function mapStateToProps (state) {
   let section = state.section || {}
   let app = state.application || {}
   let errors = app.Errors || {}
+  let completed = app.Completed || {}
   return {
     section: section,
-    errors: errors
+    errors: errors,
+    completed: completed
   }
 }
 
