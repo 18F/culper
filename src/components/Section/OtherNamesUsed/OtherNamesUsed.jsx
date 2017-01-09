@@ -1,105 +1,67 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Help, MaidenName, Name, Textarea, DateRange } from '../../Form'
-import { push } from '../../../middleware/history'
+import { Help, Collection, MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { updateApplication } from '../../../actions/ApplicationActions'
 
 class OtherNamesUsed extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = {
       subsection: props.subsection
     }
-
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
   }
 
-  handleTour (event) {
-    this.props.dispatch(push('/form/othernames/name'))
-  }
+  onUpdate (props) {
+    let index = props.index
+    let field = props.name
+    let value = props
 
-  handleReview (event) {
-    this.props.dispatch(push('/form/othernames/review'))
-  }
-
-  handleTransition (nextSection, event) {
-    this.props.dispatch(push(`/form/othernames/${nextSection}`))
-  }
-
-  onUpdate (id, field, values) {
-    let list = this.props.List
-    for (let x = 0; x < list.length; x++) {
-      if (list[x].ID === id) {
-        list[x][field] = values
+    let collection = this.props.List
+    collection.forEach((x) => {
+      if (x.index === index) {
+        x[field] = value
       }
-    }
-    this.props.dispatch(updateApplication('OtherNames', 'List', [...list]))
-  }
-
-  addOtherName () {
-    let list = this.props.List
-    list.push({
-      ID: new Date().getTime(),
-      Name: '',
-      MaidenName: '',
-      Used: '',
-      Reason: ''
     })
-    this.props.dispatch(updateApplication('OtherNames', 'List', [...list]))
+
+    this.myDispatch(collection)
   }
 
-  keyName (id, bit) {
-    return '' + id + '-' + bit
+  myDispatch (collection) {
+    this.props.dispatch(updateApplication('OtherNames', 'List', [...collection]))
   }
 
   render () {
     return (
-      <div className="other-names-used">
-        {
-          this.props.List.map((x) => {
-            return (
-              <div key={x.ID}>
-                <Name key={this.keyName(x.ID, 'name')}
-                      {...x.Name}
-                      onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
-                      />
-
-                <MaidenName key={this.keyName(x.ID, 'maiden')}
-                            value={x.MaidenName}
-                            onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
-                            />
-
-                <DateRange key={this.keyName(x.ID, 'used')}
-                           {...x.DatesUsed}
-                           onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
-                           title="Provide dates used"
-                           />
-
-                <Help id="alias.reason">
-                  <Textarea key={this.keyName(x.ID, 'reason')}
-                            value={x.Reasons}
-                            onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
-                            label={'Provide the reasons why the name changed'}
-                            />
-                </Help>
-              </div>
-            )
-          })
-        }
-
-        <div className="text-center">
-          <button onClick={this.addOtherName.bind(this)}>Add another name</button>
-        </div>
-      </div>
+      <Collection min="0"
+                  items={this.props.List}
+                  dispatch={this.myDispatch.bind(this)}
+                  appendLabel="Add another name">
+        <Name name="Name"
+              key="name"
+              onUpdate={this.onUpdate.bind(this)}
+              />
+        <MaidenName name="MaidenName"
+                    key="maidenName"
+                    onUpdate={this.onUpdate.bind(this)}
+                    />
+        <DateRange name="DatesUsed"
+                   key="datesUsed"
+                   title="Provide dates used"
+                   onUpdate={this.onUpdate.bind(this)}
+                   />
+        <Help name="help" id="alias.reason">
+          <Textarea name="Reasons"
+                    label="Provide the reasons why the name changed"
+                    onUpdate={this.onUpdate.bind(this)}
+                    />
+        </Help>
+      </Collection>
     )
   }
 }
 
 function mapStateToProps (state) {
-  console.log('mapStateToProps')
   let app = state.application || {}
   let othernames = app.OtherNames || {}
   return {

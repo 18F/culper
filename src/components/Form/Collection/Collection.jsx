@@ -9,50 +9,143 @@ export default class Collection extends ValidationElement {
     this.state = {
       minimum: min,
       length: min,
-      items: this.factory(min)
+      items: []
     }
 
-    this.add = this.add.bind(this)
+    this.append = this.append.bind(this)
   }
 
+  componentDidMount () {
+    this.setState({items: this.factory(this.state.minimum)})
+  }
+
+  /**
+   * Generate a unique-ish key to be used as the item identifier
+   */
   generateKey () {
-    return new Date().getTime()
+    return '' + new Date().getTime()
   }
 
+  /**
+   * Factory to generate the initial amount of items in the collection
+   */
   factory (min) {
     let collection = []
-    for (let i = 0; i < min; i++) {
-      collection.push({
-        id: this.generateKey(),
-        children: [...React.Children.toArray(this.props.children)]
-      })
+
+    this.props.items.forEach((p) => {
+      collection.push(this.createItem(p))
+    })
+
+    for (let i = collection.length; i < min; i++) {
+      collection.push(this.createItem())
     }
+
     return collection
   }
 
-  append () {
-    let collection = this.state.items
-    collection.push({
-      id: this.generateKey(),
-      children: [...React.Children.toArray(this.props.children)]
+  /**
+   * Create a new item for the collection
+   */
+  createItem (props) {
+    let index = props ? props.index : this.generateKey()
+    let orphans = this.cloneChildren(this.props.children, {
+      ...props,
+      index: index
     })
-    this.setState({ items: collection })
+
+    return {
+      index: index,
+      children: orphans
+    }
   }
 
-  remove (id) {
+  /**
+   * Append a new item to the end of the collection
+   */
+  append () {
+    let item = this.createItem()
+    let collection = this.state.items
+    collection.push(item)
+
+    this.setState({ items: collection }, () => {
+      this.dispatcher(this.state.items)
+    })
+  }
+
+  /**
+   * Remove an item by its index
+   */
+  remove (index) {
     let collection = []
     this.state.items.forEach((item) => {
-      if (item.id !== id) {
+      if (item.index !== index) {
         collection.push(item)
       }
     })
-    this.setState({ items: collection })
+
+    this.setState({ items: collection }, () => {
+      this.dispatcher(this.state.items)
+    })
+  }
+
+  /**
+   * Notify any subscribers of updates to the collection of items.
+   */
+  dispatcher (collection) {
+    if (this.props.dispatch) {
+      this.props.dispatch(this.normalize(collection))
+    }
+  }
+
+  /**
+   * Normalize the collection so persisted data does not contain deep objects
+   */
+  normalize (collection) {
+    let items = []
+    collection.forEach((item) => {
+      let x = { index: item.index }
+
+      item.children.forEach((child) => {
+        x[child.props.name] = {}
+
+        for (let key in child.props) {
+          x[child.props.name] = {
+            ...x[child.props.name],
+            [key]: child.props[key]
+          }
+        }
+      })
+
+      items.push(x)
+    })
+
+    return items
+  }
+
+  cloneChildren (children, props) {
+    return React.Children.map(children, (child) => {
+      let localProps = { index: props.index }
+
+      // If there has been data persisted attempt to hydrate the child
+      // with previously applied values.
+      if (props) {
+        for (let key in props) {
+          if (key === child.props.name) {
+            localProps = props[key]
+          }
+        }
+      }
+
+      return React.cloneElement(child, {
+        ...localProps
+      })
+    })
   }
 
   render () {
     let content = this.state.items.map((item) => {
       return (
-        <div key={item.id}>
+        <div key={item.index}>
           {item.children}
         </div>
       )
@@ -62,7 +155,7 @@ export default class Collection extends ValidationElement {
       <div className="collection">
         {content}
         <div className="text-center">
-          <button onClick={this.add}>{this.props.textAppend}</button>
+          <button onClick={this.append}>{this.props.appendLabel}</button>
         </div>
       </div>
     )

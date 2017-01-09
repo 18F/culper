@@ -1,6 +1,5 @@
 import React from 'react'
 import { help } from '../../../config'
-import ValidationElement from '../ValidationElement'
 
 export default class Help extends React.Component {
   constructor (props) {
@@ -25,12 +24,25 @@ export default class Help extends React.Component {
     return help.ById(this.state.id)
   }
 
+  children () {
+    if (this.props.index) {
+      return React.Children.map(this.props.children, (child) => {
+        return React.cloneElement(child, {
+          ...child.props,
+          index: this.props.index
+        })
+      })
+    }
+
+    return this.props.children
+  }
+
   render () {
     if (this.state.active) {
       return (
         <div className="help">
           <div className="content">
-            {this.props.children}
+            {this.children()}
             <div className="message">
               {this.getText()}
             </div>
@@ -45,7 +57,7 @@ export default class Help extends React.Component {
     return (
       <div className="help">
         <div className="content">
-          {this.props.children}
+          {this.children()}
         </div>
         <button className="toggle" onClick={this.handleClick}>
           <i className="fa fa-info-circle"></i>

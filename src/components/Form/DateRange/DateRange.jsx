@@ -43,6 +43,7 @@ export default class DateRange extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
+          ...this.props,
           fromMonth: this.state.fromMonth,
           fromYear: this.state.fromYear,
           toMonth: this.state.toMonth,
