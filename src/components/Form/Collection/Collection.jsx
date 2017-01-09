@@ -13,6 +13,7 @@ export default class Collection extends ValidationElement {
     }
 
     this.append = this.append.bind(this)
+    this.onUpdate = this.onUpdate.bind(this)
   }
 
   componentDidMount () {
@@ -32,8 +33,8 @@ export default class Collection extends ValidationElement {
   factory (min) {
     let collection = []
 
-    this.props.items.forEach((p) => {
-      collection.push(this.createItem(p))
+    this.props.items.forEach((item) => {
+      collection.push(this.createItem(item))
     })
 
     for (let i = collection.length; i < min; i++) {
@@ -105,16 +106,24 @@ export default class Collection extends ValidationElement {
     collection.forEach((item) => {
       let x = { index: item.index }
 
-      item.children.forEach((child) => {
-        x[child.props.name] = {}
+      for (let child in item) {
+        if (['index', 'children'].includes(child)) {
+          continue
+        }
 
-        for (let key in child.props) {
-          x[child.props.name] = {
-            ...x[child.props.name],
-            [key]: child.props[key]
+        x[child] = {}
+        for (let key in item[child]) {
+          let what = Object.prototype.toString.call(item[child][key])
+          if (!['[object String]'].includes(what)) {
+            continue
+          }
+
+          x[child] = {
+            ...x[child],
+            [key]: item[child][key]
           }
         }
-      })
+      }
 
       items.push(x)
     })
@@ -122,16 +131,41 @@ export default class Collection extends ValidationElement {
     return items
   }
 
+  onUpdate (props) {
+    let index = props.index
+    let field = props.name
+    let value = props
+    let collection = []
+
+    this.state.items.forEach((item) => {
+      if (item.index === index) {
+        item[field] = value
+      }
+      collection.push(item)
+    })
+
+    this.setState({ items: collection }, () => {
+      this.dispatcher(this.state.items)
+    })
+  }
+
   cloneChildren (children, props) {
+    let self = this
     return React.Children.map(children, (child) => {
-      let localProps = { index: props.index }
+      let localProps = {
+        index: props.index,
+        onUpdate: self.onUpdate
+      }
 
       // If there has been data persisted attempt to hydrate the child
       // with previously applied values.
       if (props) {
         for (let key in props) {
           if (key === child.props.name) {
-            localProps = props[key]
+            localProps = {
+              ...localProps,
+              ...props[key]
+            }
           }
         }
       }
