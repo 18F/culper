@@ -33,6 +33,52 @@ class Identification extends React.Component {
     this.props.dispatch(updateApplication('Identification', field, values))
   }
 
+  onValidate (event, status, errorCodes) {
+    if (!event) {
+      return
+    }
+    console.log('Identification ErrorCodes: ', errorCodes)
+    let arr = []
+    for (var prop in errorCodes) {
+      // skip loop if the property is from prototype
+      if(!errorCodes.hasOwnProperty(prop)) continue;
+      if (errorCodes[prop]) {
+        arr.push(`identification.name.${prop}.${errorCodes[prop]}`)
+      }
+    }
+    console.log(arr)
+    this.props.dispatch(updateApplication('Errors', "Identification", arr))
+  }
+
+  onError () {
+    const data = [
+      {
+        Fieldname: 'ApplicantName',
+        Errors: [
+          {
+            Fieldname: 'first',
+            Error: 'Invalid character'
+          },
+          {
+            Fieldname: 'last',
+            Error: 'Invalid length'
+          }
+        ]
+      },
+      {
+        Fieldname: 'ApplicantBirthDate',
+        Errors: [
+          {
+            Fieldname: 'month',
+            Error: 'Invalid month'
+          }
+        ]
+      }
+    ]
+
+    this.props.dispatch(updateApplication('Errors', 'Identification', [...data]))
+  }
+
   intro () {
     return (
       <div className="identification">
@@ -71,6 +117,7 @@ class Identification extends React.Component {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
+            <button onClick={this.onError.bind(this)}>Simulate Error</button>
             {this.intro()}
           </SectionView>
 
@@ -80,6 +127,7 @@ class Identification extends React.Component {
             nextLabel="Other Names">
             <ApplicantName
               onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+              onValidate={this.onValidate.bind(this)}
               {...this.props.ApplicantName }
             />
             <ApplicantBirthDate
@@ -98,6 +146,7 @@ class Identification extends React.Component {
             nextLabel="Birth Date">
             <ApplicantName
               onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+              onValidate={this.onValidate.bind(this)}
               {...this.props.ApplicantName }
             />
           </SectionView>

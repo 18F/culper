@@ -19,7 +19,8 @@ export default class Name extends ValidationElement {
       suffixOther: props.suffixOther,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCodes: {}
     }
   }
 
@@ -68,32 +69,42 @@ export default class Name extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (field, event, status, errorCodes) {
+    if (!field || !event) {
+      return
+    }
+
+    const codes = {
+      ...this.state.errorCodes,
+      [field]: errorCodes || ''
+    }
+
+    this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
+      console.log('errorCodes:', codes)
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, status, codes)
         return
       }
+      super.handleValidation(event, status, codes)
+      //api
+        //.validateName({
+          //Last: this.state.last,
+          //First: this.state.first,
+          //Middle: this.state.middle,
+          //Suffix: this.state.suffix,
+          //SuffixOther: this.state.suffixOther
+        //})
+        //.then((response) => {
+          //// TODO: Display and assign the errors as necessary
+          //if (response.Errors) {
+          //}
 
-      api
-        .validateName({
-          Last: this.state.last,
-          First: this.state.first,
-          Middle: this.state.middle,
-          Suffix: this.state.suffix,
-          SuffixOther: this.state.suffixOther
-        })
-        .then((response) => {
-          // TODO: Display and assign the errors as necessary
-          if (response.Errors) {
-          }
-
-          if (response.Suggestions) {
-          }
-        })
-        .then(() => {
-          super.handleValidation(event, status)
-        })
+          //if (response.Suggestions) {
+          //}
+        //})
+        //.then(() => {
+          //super.handleValidation(event, status)
+        //})
     })
   }
 
@@ -133,7 +144,7 @@ export default class Name extends ValidationElement {
                 help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
                 value={this.state.last}
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onValidate={this.handleValidation.bind(this, 'last')}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -141,12 +152,13 @@ export default class Name extends ValidationElement {
         <Help id="identification.name.first">
           <Text name={this.partName('first')}
                 label="First name"
+                pattern="^[a-zA-Z\-\.' ]*$"
                 maxlength="100"
                 placeholder="Please enter your first name or initial"
                 help="The first name (or initial) is optional but cannot exceed 100 characters"
                 value={this.state.first}
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onValidate={this.handleValidation.bind(this, 'first')}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -160,7 +172,7 @@ export default class Name extends ValidationElement {
                 help="The middle name (or initial) is optional but cannot exceed 100 characters"
                 value={this.state.middle}
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onValidate={this.handleValidation.bind(this, 'middle')}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -287,7 +299,7 @@ export default class Name extends ValidationElement {
                   maxlength="100"
                   value={this.state.suffixOther}
                   onChange={this.handleChange}
-                  onValidate={this.handleValidation}
+                  onValidate={this.handleValidation.bind(this, 'middle')}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   />

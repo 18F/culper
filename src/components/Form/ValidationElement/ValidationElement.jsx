@@ -42,9 +42,9 @@ export default class ValidationElement extends React.Component {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, errorCodes) {
     if (this.props.onValidate) {
-      this.props.onValidate(status)
+      this.props.onValidate(event, status, errorCodes)
     }
   }
 
