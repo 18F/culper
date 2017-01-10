@@ -29,7 +29,7 @@ class Navigation extends React.Component {
 
     let count = 0
     for (let section in this.props.errors) {
-      if (section !== crumbs[0]) {
+      if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
         continue
       }
 

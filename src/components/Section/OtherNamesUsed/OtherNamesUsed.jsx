@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import ValidationElement from '../../Form/ValidationElement'
 import { Help, MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
-import { updateApplication } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 
-class OtherNamesUsed extends React.Component {
+class OtherNamesUsed extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -34,6 +35,15 @@ class OtherNamesUsed extends React.Component {
       }
     }
     this.props.dispatch(updateApplication('OtherNames', 'List', [...list]))
+  }
+
+  onValidate (event, status, errorCodes) {
+    if (!event) {
+      return
+    }
+
+    let errors = super.triageErrors('othernames', [...this.props.Errors], errorCodes)
+    this.props.dispatch(reportErrors('othernames', '', errors))
   }
 
   addOtherName () {
@@ -78,28 +88,37 @@ class OtherNamesUsed extends React.Component {
                 return (
                   <div key={x.ID}>
                     <Name
-                      key={this.keyName(x.ID, 'name')}
                       {...x.Name}
+                      key={this.keyName(x.ID, 'name')}
+                      name="name"
                       onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
+                      onValidate={this.onValidate.bind(this)}
                     />
 
                     <MaidenName
                       key={this.keyName(x.ID, 'maiden')}
+                      name="maiden"
                       value={x.MaidenName}
                       onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
+                      onValidate={this.onValidate.bind(this)}
                     />
 
                     <DateRange
-                      key={this.keyName(x.ID, 'used')}
                       {...x.DatesUsed}
+                      key={this.keyName(x.ID, 'used')}
+                      name="dates"
                       onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
                       title="Provide dates used"
+                      onValidate={this.onValidate.bind(this)}
                     />
-                    <Help id="alias.reason">
+
+                    <Help id="alias.reason.help">
                       <Textarea
+                        name="reason"
                         key={this.keyName(x.ID, 'reason')}
                         value={x.Reasons}
                         onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
+                        onValidate={this.onValidate.bind(this)}
                         label={'Provide the reasons why the name changed'}
                       />
                     </Help>
@@ -117,8 +136,10 @@ class OtherNamesUsed extends React.Component {
 function mapStateToProps (state) {
   let app = state.application || {}
   let othernames = app.OtherNames || {}
+  let errors = app.Errors || {}
   return {
-    List: othernames.List || []
+    List: othernames.List || [],
+    Errors: errors.othernames || []
   }
 }
 

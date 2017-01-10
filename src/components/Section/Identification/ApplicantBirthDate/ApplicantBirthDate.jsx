@@ -10,7 +10,8 @@ export default class ApplicantBirthDate extends ValidationElement {
       name: props.name,
       value: props.value,
       help: props.help,
-      estimated: props.estimated
+      estimated: props.estimated,
+      errorCodes: []
     }
   }
 
@@ -34,7 +35,11 @@ export default class ApplicantBirthDate extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
     if (status !== false) {
       // Calculation to get the age of something compared to now.
       let now = new Date()
@@ -46,16 +51,20 @@ export default class ApplicantBirthDate extends ValidationElement {
       }
 
       status = age > 16 && age < 131
+      console.log('age: ' + age)
     }
 
     let help = this.state.help
     if (status === false) {
       help = 'Applicants must be older than 16 and less than 130 years of age'
+      error = 'age'
     }
 
-    this.setState({error: status === false, valid: status === true, help: help}, () => {
+    const codes = super.mergeError(this.state.errorCodes, error)
+    this.setState({error: status === false, valid: status === true, help: help, errorCodes: codes}, () => {
+      let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, status, e)
         return
       }
 
@@ -75,7 +84,7 @@ export default class ApplicantBirthDate extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, status, e)
         })
     })
   }
@@ -152,7 +161,7 @@ export default class ApplicantBirthDate extends ValidationElement {
               >
           {this.state.help}
         </span>
-        <Help id="identification.birthdate">
+        <Help id="identification.birthdate.help">
           <DateControl name={this.state.name}
                        value={this.state.value}
                        estimated={this.state.estimated}

@@ -14,7 +14,8 @@ export default class Weight extends ValidationElement {
       required: props.required,
       value: props.value,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errors: []
     }
   }
 
@@ -33,9 +34,10 @@ export default class Weight extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+  handleValidation (event, status, errors) {
+    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
+      let e = { [this.state.name]: errors }
+      super.handleValidation(event, status, e)
     })
   }
 
@@ -76,8 +78,8 @@ export default class Weight extends ValidationElement {
       <div className="weight">
         <h2>Weight</h2>
         <div className="usa-form-group">
-          <Number id={this.partName('feet')}
-            name={this.state.name}
+          <Number id={this.partName('pounds')}
+            name="pounds"
             label="Pounds"
             placeholder="0"
             aria-describedby={this.errorName('weight')}
