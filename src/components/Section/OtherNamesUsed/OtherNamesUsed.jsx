@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import ValidationElement from '../../Form/ValidationElement'
 import { Help, MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
-import { updateApplication } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 
-class OtherNamesUsed extends React.Component {
+class OtherNamesUsed extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -34,6 +35,26 @@ class OtherNamesUsed extends React.Component {
       }
     }
     this.props.dispatch(updateApplication('OtherNames', 'List', [...list]))
+  }
+
+  onValidate (event, status, errorCodes) {
+    if (!event) {
+      return
+    }
+
+    for (let subsection in errorCodes) {
+      // skip loop if the property is from prototype
+      if (!errorCodes.hasOwnProperty(subsection)) continue
+
+      if (errorCodes[subsection]) {
+        let arr = []
+        for (let prop in errorCodes[subsection]) {
+          if (!errorCodes[subsection].hasOwnProperty(prop)) continue
+          arr.push(super.flattenObject(errorCodes[subsection][prop]))
+        }
+        this.props.dispatch(reportErrors('othernames', subsection, arr))
+      }
+    }
   }
 
   addOtherName () {
@@ -81,12 +102,14 @@ class OtherNamesUsed extends React.Component {
                       key={this.keyName(x.ID, 'name')}
                       {...x.Name}
                       onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
+                      onValidate={this.onValidate.bind(this)}
                     />
 
                     <MaidenName
                       key={this.keyName(x.ID, 'maiden')}
                       value={x.MaidenName}
                       onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
+                      onValidate={this.onValidate.bind(this)}
                     />
 
                     <DateRange
@@ -94,12 +117,15 @@ class OtherNamesUsed extends React.Component {
                       {...x.DatesUsed}
                       onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
                       title="Provide dates used"
+                      onValidate={this.onValidate.bind(this)}
                     />
+
                     <Help id="alias.reason.help">
                       <Textarea
                         key={this.keyName(x.ID, 'reason')}
                         value={x.Reasons}
                         onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
+                        onValidate={this.onValidate.bind(this)}
                         label={'Provide the reasons why the name changed'}
                       />
                     </Help>
