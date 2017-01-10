@@ -106,7 +106,9 @@ export default class Generic extends ValidationElement {
 
     // Set the internal state
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      super.handleValidation(event, status, errorCode)
+      let prop = this.state.name || 'input'
+      let e = { [prop]: errorCode }
+      super.handleValidation(event, status, super.flattenObject(e))
     })
   }
 

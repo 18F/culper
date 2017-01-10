@@ -56,4 +56,49 @@ export default class ValidationElement extends React.Component {
       this.props.onKeyDown(event)
     }
   }
+
+  flattenObject (obj) {
+    let s = ''
+    let what = Object.prototype.toString.call(obj)
+    switch (what) {
+      case '[object Object]':
+        for (let p in obj) {
+          if (!obj.hasOwnProperty(p)) {
+            continue
+          }
+          s += (s.length === 0 ? '' : '.') + p + '.' + this.flattenObject(obj[p])
+        }
+        break
+      case '[object String]':
+        s += (s.length === 0 ? '' : '.') + obj
+        break
+      case '[object Array]':
+        obj.forEach((x) => {
+          s += (s.length === 0 ? '' : '.') + this.flattenObject(x)
+        })
+        break
+    }
+
+    return s
+  }
+
+  mergeError (previous, error) {
+    let codes = []
+
+    // Clean up any errors which are no longer valid
+    previous.forEach((c) => {
+      if (error && error.endsWith('.') && c.indexOf(error) > -1) {
+        return
+      }
+
+      codes.push(c)
+    })
+
+    // Add the error if it does not already exist
+    if (error && error.length && !error.endsWith('.') && !codes.includes(error)) {
+      codes.push(error)
+    }
+
+    return codes
+  }
 }

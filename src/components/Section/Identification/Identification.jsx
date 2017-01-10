@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import ValidationElement from '../../Form/ValidationElement'
 import ApplicantName from '../../Form/Name'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
@@ -9,7 +10,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 
-class Identification extends React.Component {
+class Identification extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -41,11 +42,12 @@ class Identification extends React.Component {
     for (let subsection in errorCodes) {
       // skip loop if the property is from prototype
       if (!errorCodes.hasOwnProperty(subsection)) continue
+
       if (errorCodes[subsection]) {
         let arr = []
         for (let prop in errorCodes[subsection]) {
           if (!errorCodes[subsection].hasOwnProperty(prop)) continue
-          arr.push(`${prop}.${errorCodes[subsection][prop]}`)
+          arr.push(super.flattenObject(errorCodes[subsection][prop]))
         }
         this.props.dispatch(reportErrors('identification', subsection, arr))
       }
