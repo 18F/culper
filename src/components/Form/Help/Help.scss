@@ -4,13 +4,6 @@
     .content {
 //         display: inline-block;
     }
-
-    .toggle {
-        display: inline-block;
-        max-width: 5rem;
-        margin-left: 1rem;
-        
-    }
 }
 .eapp-help-toggle {
 	display:inline-block;
@@ -29,6 +22,7 @@
 	padding:3.5rem 3rem;
 	background:$eapp-blue-lightest;
 	border:2px solid $eapp-blue-lighter;
+	margin:2rem 0 0;
 	> i {
 		display:block;
 		position:absolute;
