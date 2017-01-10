@@ -28,31 +28,27 @@ export default class Help extends React.Component {
   render () {
     if (this.state.active) {
       return (
-        <div className="help">
-          <div className="content eapp-element-wrapper">
+          <div className="eapp-field-wrap">
             {this.props.children}
             <a href="javascript:;" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
               <i className="fa fa-info-circle"></i>
             </a>
+            <div className="message eapp-help-message">
+              <i className="fa fa-info"></i>
+              {this.getText()}
+              <a href="javascript:;" className="eapp-help-close" onClick={this.handleClick}>Close info Block</a>
+            </div>
           </div>
-          <div className="message eapp-help-message">
-            <i className="fa fa-info"></i>
-            {this.getText()}
-            <a href="javascript:;" className="eapp-help-close">Close info Block</a>
-          </div>
-        </div>
       )
     }
 
     return (
-      <div className="help">
-        <div className="content">
+        <div className="eapp-field-wrap">
           {this.props.children}
           <a href="javascript:;" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
             <i className="fa fa-info-circle"></i>
           </a>
         </div>
-      </div>
     )
   }
 }

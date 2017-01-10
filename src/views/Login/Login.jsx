@@ -72,7 +72,7 @@ class Login extends React.Component {
 
           <div id="basic" className="usa-width-one-whole">
             <form onSubmit={this.login}>
-              <div>
+              <div className="eapp-field-wrap">
                 <label htmlFor="username">Username</label>
                 <input id="username"
                        type="text"
@@ -81,7 +81,7 @@ class Login extends React.Component {
                        value={this.state.username}
                        onChange={this.onUsernameChange}/>
               </div>
-              <div>
+              <div className="eapp-field-wrap">
                 <label htmlFor="password">Password</label>
                 <input id="password"
                        type="password"

@@ -9,17 +9,34 @@
 	label, input, textarea, select {
 		max-width:64rem;
 	}
+
+	.eapp-field-wrap {
+		position:relative;
+		margin-bottom:2.9rem;
+		>div {
+			display:inline-block;
+			min-width:95%;
+		}
+	}
+
 	label {
 		margin-top:0;
 		color:$eapp-grey-dark;
+		> input[type="radio"] {
+			max-width:0;
+		}
 	}
 	button {
 		position:relative;
 		width:24rem;
+		margin-top:4rem;
+	}
+
+	/* previous / next in form buttons */
+	.eapp-prev, .eapp-next {
 		min-height:5.5rem;
 		line-height:5.5rem;
 		padding:2rem 1rem;
-		margin-top:4rem;
 		.button-icon {
 			display:inline-block;
 			line-height:inherit;
@@ -55,6 +72,7 @@
 	/* handle option list blocks, basic structure */
 	.option-list {
 		max-width:64rem;
+		padding-top:0.3rem;
 		/* handle generic options */
 		> div {
 			display:inline-block;
