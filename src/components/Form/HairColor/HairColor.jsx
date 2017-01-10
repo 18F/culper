@@ -39,7 +39,7 @@ export default class HairColor extends ValidationElement {
     return (
       <div className="hair-colors">
         <h2>Hair Color</h2>
-        <Help id="traits.hair">
+        <Help id="traits.hair.help">
           <div className="option-list">
             <Checkbox name="hair-bald"
                       label="Bald"

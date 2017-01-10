@@ -1,3 +1,3 @@
 import env from './environment'
-import help from './help'
-export { env, help }
+import i18n from './locales'
+export { env, i18n }

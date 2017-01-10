@@ -145,7 +145,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Help id="identification.birthplace">
+          <Help id="identification.birthplace.help">
             <Radio name={this.partName('domestic')}
                    label="Yes"
                    value="yes"
@@ -164,7 +164,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Help id="identification.birthplace">
+          <Help id="identification.birthplace.help">
             <Radio name={this.partName('domestic')}
                    label="Yes"
                    value="yes"
@@ -214,7 +214,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
       <div>
         <h2>Place of birth</h2>
         <label>Were you born in the United States of America</label>
-        <Help id="identification.birthplace">
+        <Help id="identification.birthplace.help">
           <Radio name={this.partName('domestic')}
                  label="Yes"
                  value="yes"

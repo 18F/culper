@@ -137,7 +137,7 @@ export default class Name extends ValidationElement {
     return (
       <div>
         <h2>Your full name</h2>
-        <Help id="identification.name.last">
+        <Help id="identification.name.last.help">
           <Text name={this.partName('last')}
                 label="Last name"
                 maxlength="100"
@@ -151,7 +151,7 @@ export default class Name extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Help>
-        <Help id="identification.name.first">
+        <Help id="identification.name.first.help">
           <Text name={this.partName('first')}
                 label="First name"
                 pattern="^[a-zA-Z\-\.' ]*$"
@@ -165,7 +165,7 @@ export default class Name extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Help>
-        <Help id="identification.name.middle">
+        <Help id="identification.name.middle.help">
           <Text name={this.partName('middle')}
                 label="Middle name or initial"
                 minlength="0"
@@ -179,7 +179,7 @@ export default class Name extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Help>
-        <Help id="identification.name.suffix">
+        <Help id="identification.name.suffix.help">
           <label>Suffix</label>
           <div className="option-list">
             <Radio name={this.partName('suffix')}

@@ -95,7 +95,7 @@ class OtherNamesUsed extends React.Component {
                       onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
                       title="Provide dates used"
                     />
-                    <Help id="alias.reason">
+                    <Help id="alias.reason.help">
                       <Textarea
                         key={this.keyName(x.ID, 'reason')}
                         value={x.Reasons}

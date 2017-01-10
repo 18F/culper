@@ -80,7 +80,7 @@ export default class Generic extends ValidationElement {
       if (this.state.value && this.state.value.length > 0) {
         status = status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength))
         if (!status) {
-          errorCode = 'maxlength'
+          errorCode = 'length'
         }
         hits++
       }

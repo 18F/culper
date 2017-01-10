@@ -165,7 +165,7 @@ export default class ApplicantSSN extends ValidationElement {
     return (
       <div className="ssn">
         <h2>U.S. Social Security Number</h2>
-        <Help id="identification.ssn">
+        <Help id="identification.ssn.help">
           <Text name={this.partName('first')}
                 ref="first"
                 className="first"

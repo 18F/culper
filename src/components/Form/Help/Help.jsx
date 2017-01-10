@@ -1,5 +1,5 @@
 import React from 'react'
-import { help } from '../../../config'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 
 export default class Help extends React.Component {
@@ -22,7 +22,7 @@ export default class Help extends React.Component {
   }
 
   getText () {
-    return help.ById(this.state.id)
+    return i18n.t(this.state.id)
   }
 
   render () {
