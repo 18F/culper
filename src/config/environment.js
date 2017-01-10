@@ -1,5 +1,5 @@
 class Env {
-  ApiBaseURL () { return 'http://localhost:3000' }
+  ApiBaseURL () { return process.env.API_BASE_URL }
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
@@ -10,7 +10,7 @@ class Env {
   EndpointValidateZipcode (zipcode) { return `/validate/zipcode/${zipcode}` }
   EndpointValidateState (state) { return `/validate/state/${state}` }
   EndpointValidateAddress () { return '/validate/address' }
-  EndpointValidateApplicantName () { return '/validate/applicant/name' }
+  EndpointValidateName () { return '/validate/name' }
   EndpointValidateApplicantBirthdate () { return '/validate/applicant/birthdate' }
 }
 

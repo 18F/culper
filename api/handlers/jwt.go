@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"regexp"
 
-	"github.com/truetandem/e-QIP-prototype/api/db"
-	"github.com/truetandem/e-QIP-prototype/api/model"
+	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 var (

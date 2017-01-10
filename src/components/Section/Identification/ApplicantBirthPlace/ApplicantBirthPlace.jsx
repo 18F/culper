@@ -53,6 +53,14 @@ export default class ApplicantBirthPlace extends ValidationElement {
     if (updated !== null) {
       this.setState(updated, () => {
         super.handleChange(event)
+        if (this.props.onUpdate) {
+          this.props.onUpdate({
+            city: this.state.city,
+            state: this.state.state,
+            county: this.state.county,
+            country: this.state.country
+          })
+        }
       })
     } else {
       super.handleChange(event)

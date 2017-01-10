@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/truetandem/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/cf"
 	pg "gopkg.in/pg.v5"
 )
 

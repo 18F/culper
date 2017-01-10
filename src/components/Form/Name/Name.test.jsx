@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import ApplicantName from './ApplicantName'
+import Name from './Name'
 
-describe('The ApplicantName component', () => {
+describe('The Name component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'input-focus',
@@ -10,7 +10,7 @@ describe('The ApplicantName component', () => {
       help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<ApplicantName name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
+    const component = mount(<Name name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#' + expected.name + '-last').simulate('change')
     expect(component.find('span.hidden').length).toEqual(5)
   })
@@ -30,7 +30,7 @@ describe('The ApplicantName component', () => {
     ]
 
     expected.forEach((ex) => {
-      const component = mount(<ApplicantName name={ex.name} last={ex.last} />)
+      const component = mount(<Name name={ex.name} last={ex.last} />)
       component.find('input#' + ex.name + '-last').simulate('change')
       expect(component.find('span.hidden').length === component.find('span').length).toEqual(ex.valid)
     })
@@ -59,7 +59,7 @@ describe('The ApplicantName component', () => {
     ]
 
     expected.forEach((ex) => {
-      const component = mount(<ApplicantName name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
+      const component = mount(<Name name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
       component.find('input#' + ex.name + '-' + ex.part).simulate('change')
       expect(component.find('span.hidden').length === component.find('span').length).toEqual(ex.valid)
     })
@@ -78,7 +78,7 @@ describe('The ApplicantName component', () => {
         validations++
       }
     }
-    const component = mount(<ApplicantName name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<Name name={expected.name} onValidate={expected.handleValidation} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
@@ -96,7 +96,7 @@ describe('The ApplicantName component', () => {
         changes++
       }
     }
-    const component = mount(<ApplicantName name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Name name={expected.name} onChange={expected.handleChange} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })
@@ -114,7 +114,7 @@ describe('The ApplicantName component', () => {
         foci++
       }
     }
-    const component = mount(<ApplicantName name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(<Name name={expected.name} onFocus={expected.handleFocus} />)
     component.find('input').first().simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -132,7 +132,7 @@ describe('The ApplicantName component', () => {
         blurs++
       }
     }
-    const component = mount(<ApplicantName name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(<Name name={expected.name} onBlur={expected.handleBlur} />)
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
   })

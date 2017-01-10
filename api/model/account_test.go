@@ -2,11 +2,20 @@ package model
 
 import (
 	"fmt"
+	"log"
 	"testing"
 	"time"
+
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 func TestBasicAuthentication(t *testing.T) {
+	// Here we are actually hitting the database. We need to make sure our
+	// test database is sync'd to avoid any unexpected outcomes.
+	if err := db.MigrateUp("../db", "environment", ""); err != nil {
+		log.Println("Failed to migrate database:", err)
+	}
+
 	db := NewTestDB()
 	username := fmt.Sprintf("user-%v", time.Now().Unix())
 	pw := "admin"

@@ -1,16 +1,29 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/truetandem/e-QIP-prototype/api/cf"
-	"github.com/truetandem/e-QIP-prototype/api/handlers"
-	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
+	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/handlers"
+	middleware "github.com/18F/e-QIP-prototype/api/middleware"
+)
+
+var (
+	flagSkipMigration = flag.Bool("skip-migration", false, "skip any pending database migrations")
 )
 
 func main() {
+	flag.Parse()
+	if !*flagSkipMigration {
+		if err := db.MigrateUp("db", "environment", ""); err != nil {
+			log.Println("Failed to migrate database:", err)
+		}
+	}
+
 	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
 	r.HandleFunc("/", handlers.RootHandler)
 
@@ -28,6 +41,12 @@ func main() {
 	v := r.PathPrefix("/validate").Subrouter()
 	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
 	v.HandleFunc("/passport/{passport}", handlers.ValidatePassport)
+
+	v.HandleFunc("/height", handlers.ValidateHeight)
+	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
+	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
+	v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
+	v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
 
 	// Address Validation
 	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)

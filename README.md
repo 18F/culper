@@ -49,6 +49,8 @@ truetandem/e-QIP-prototype#issue_number Commit description
 Clone the repository and `cd` into it:
 
 ```
+mkdir -p $GOPATH/src/github.com/18F
+cd $GOPATH/src/github.com/18F
 git clone https://github.com/18F/e-QIP-prototype
 cd e-QIP-prototype
 ```
@@ -74,6 +76,12 @@ this has been installed we execute a single command:
 
 ```
 npm install
+```
+
+For dependencies on the backend use [glide][17]:
+
+```
+glide install
 ```
 
 ### Building the application
@@ -159,6 +167,10 @@ For command-line alternatives there are the following:
  - For JavaScript, [JSHint][14] which may be installed with ```npm install -g jshint```
  - For HTML, [html-lint][15] which may be installed with ```npm install -g html-lint```
 
+### Contributing
+
+Please refer to the [contributing documentation][18].
+
 
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
 [badge_ci_18f]: https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master
@@ -183,3 +195,5 @@ For command-line alternatives there are the following:
 [14]: http://jshint.com
 [15]: https://github.com/curtisj44/HTML-Lint
 [16]: https://www.npmjs.com
+[17]: https://github.com/Masterminds/glide
+[18]: CONTRIBUTING.md

@@ -6,10 +6,7 @@ class TwoFactor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isVerified: false,
-      username: this.props.username,
-      token: '',
-      png: ''
+      token: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -17,10 +14,8 @@ class TwoFactor extends React.Component {
   }
 
   componentDidMount () {
-    if (!this.state.isVerified) {
-      // Get the QR code from the API
-      this.props.dispatch(qrcode(this.state.username))
-    }
+    // Get the QR code from the API
+    this.props.dispatch(qrcode(this.props.username))
   }
 
   base64png () {
@@ -34,15 +29,18 @@ class TwoFactor extends React.Component {
   handleSubmit (event) {
     // Send request to API to validate token
     event.preventDefault()
-    this.props.dispatch(twofactor(this.state.username, this.state.token))
+    if (this.state.token !== '') {
+      this.props.dispatch(twofactor(this.props.username, this.state.token))
+    }
   }
 
   render () {
-    if (this.state.isVerified) {
+    if (!this.props.qrcode) {
       return (
         <form onSubmit={this.handleSubmit}>
           <div id="twofactor-component">
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
+            { this.props.error ? (<div>{this.props.error}</div>) : '' }
             <button type="submit">Verify</button>
           </div>
         </form>
@@ -53,6 +51,7 @@ class TwoFactor extends React.Component {
           <div id="twofactor-component">
             <img width="256" height="256" alt="Two factor authentication" src={this.base64png()} />
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
+            { this.props.error ? (<div>{this.props.error}</div>) : '' }
             <button type="submit">Verify</button>
           </div>
         </form>
@@ -73,7 +72,8 @@ function mapStateToProps (state) {
     authenticated: auth.authenticated,
     twofactor: auth.twofactor,
     token: auth.token,
-    qrcode: auth.qrcode
+    qrcode: auth.qrcode,
+    error: auth.error
   }
 }
 

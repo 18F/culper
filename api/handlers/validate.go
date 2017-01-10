@@ -3,9 +3,10 @@ package handlers
 import (
 	"log"
 	"net/http"
+	"strconv"
 
+	"github.com/18F/e-QIP-prototype/api/model/form"
 	"github.com/gorilla/mux"
-	"github.com/truetandem/e-QIP-prototype/api/model/form"
 )
 
 // ValidateAddress checks if an entire address is valid
@@ -100,5 +101,56 @@ func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
 	DecodeJSON(r.Body, &name)
 	_, err := name.Valid()
 	stack := form.NewErrorStack("Birthdate", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateHeight validates a persons height
+func ValidateHeight(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Height")
+
+	var height form.HeightField
+	DecodeJSON(r.Body, &height)
+	_, err := height.Valid()
+	EncodeErrJSON(w, err)
+}
+
+// ValidateWeight validates a persons weight
+func ValidateWeight(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Weight")
+
+	weightVar := mux.Vars(r)["weight"]
+	i, _ := strconv.ParseInt(weightVar, 10, 64)
+	_, err := form.WeightField(i).Valid()
+	stack := form.NewErrorStack("Weight", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateHairColor validates a persons hair color
+func ValidateHairColor(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Hair Color")
+
+	hairVar := mux.Vars(r)["haircolor"]
+	_, err := form.HairColorField(hairVar).Valid()
+	stack := form.NewErrorStack("HairColor", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateEyeColor validates a person eye color
+func ValidateEyeColor(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Eye Color")
+
+	eyeVar := mux.Vars(r)["eyecolor"]
+	_, err := form.EyeColorField(eyeVar).Valid()
+	stack := form.NewErrorStack("EyeColor", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateSex validates a persons sex
+func ValidateSex(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Sex")
+
+	sexVar := mux.Vars(r)["sex"]
+	_, err := form.SexField(sexVar).Valid()
+	stack := form.NewErrorStack("Sex", err)
 	EncodeErrJSON(w, stack)
 }

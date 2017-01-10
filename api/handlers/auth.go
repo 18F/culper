@@ -12,8 +12,8 @@ import (
 	"golang.org/x/oauth2/google"
 	"golang.org/x/oauth2/linkedin"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/gorilla/mux"
-	"github.com/truetandem/e-QIP-prototype/api/cf"
 )
 
 var (
