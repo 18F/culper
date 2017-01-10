@@ -80,12 +80,14 @@ export default class Name extends ValidationElement {
     }
 
     this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
-      console.log('errorCodes:', codes)
+      let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, codes)
+        super.handleValidation(event, status, e)
         return
       }
-      super.handleValidation(event, status, codes)
+
+      super.handleValidation(event, status, e)
+
       // api
       // .validateName({
       // Last: this.state.last,

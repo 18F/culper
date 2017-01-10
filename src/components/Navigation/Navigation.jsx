@@ -185,7 +185,6 @@ function mapStateToProps (state) {
   let app = state.application || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
-  console.log(errors)
   return {
     section: section,
     errors: errors,

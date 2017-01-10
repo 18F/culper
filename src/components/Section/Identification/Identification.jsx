@@ -6,7 +6,7 @@ import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import { push } from '../../../middleware/history'
-import { updateApplication } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 
 class Identification extends React.Component {
@@ -37,46 +37,19 @@ class Identification extends React.Component {
     if (!event) {
       return
     }
-    console.log('Identification ErrorCodes: ', errorCodes)
-    let arr = []
-    for (var prop in errorCodes) {
+
+    for (let subsection in errorCodes) {
       // skip loop if the property is from prototype
-      if(!errorCodes.hasOwnProperty(prop)) continue;
-      if (errorCodes[prop]) {
-        arr.push(`identification.name.${prop}.${errorCodes[prop]}`)
+      if (!errorCodes.hasOwnProperty(subsection)) continue
+      if (errorCodes[subsection]) {
+        let arr = []
+        for (let prop in errorCodes[subsection]) {
+          if (!errorCodes[subsection].hasOwnProperty(prop)) continue
+          arr.push(`${prop}.${errorCodes[subsection][prop]}`)
+        }
+        this.props.dispatch(reportErrors('identification', subsection, arr))
       }
     }
-    console.log(arr)
-    this.props.dispatch(updateApplication('Errors', "Identification", arr))
-  }
-
-  onError () {
-    const data = [
-      {
-        Fieldname: 'ApplicantName',
-        Errors: [
-          {
-            Fieldname: 'first',
-            Error: 'Invalid character'
-          },
-          {
-            Fieldname: 'last',
-            Error: 'Invalid length'
-          }
-        ]
-      },
-      {
-        Fieldname: 'ApplicantBirthDate',
-        Errors: [
-          {
-            Fieldname: 'month',
-            Error: 'Invalid month'
-          }
-        ]
-      }
-    ]
-
-    this.props.dispatch(updateApplication('Errors', 'Identification', [...data]))
   }
 
   intro () {
@@ -117,7 +90,6 @@ class Identification extends React.Component {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            <button onClick={this.onError.bind(this)}>Simulate Error</button>
             {this.intro()}
           </SectionView>
 
@@ -126,17 +98,25 @@ class Identification extends React.Component {
             next="othernames"
             nextLabel="Other Names">
             <ApplicantName
+              {...this.props.ApplicantName }
+              name="name"
               onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
               onValidate={this.onValidate.bind(this)}
-              {...this.props.ApplicantName }
             />
             <ApplicantBirthDate
+              name="birthdate"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
               value={this.props.ApplicantBirthDate}
             />
             <ApplicantBirthPlace
               {...this.props.ApplicantBirthPlace}
+              name="birthplace"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
+            />
+            <ApplicantSSN
+              {...this.props.ApplicantSSN}
+              name="ssn"
+              onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
             />
           </SectionView>
 
@@ -145,9 +125,10 @@ class Identification extends React.Component {
             next="identification/birthdate"
             nextLabel="Birth Date">
             <ApplicantName
+              {...this.props.ApplicantName }
+              name="name"
               onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
               onValidate={this.onValidate.bind(this)}
-              {...this.props.ApplicantName }
             />
           </SectionView>
 
@@ -158,6 +139,7 @@ class Identification extends React.Component {
             back="identification/name"
             backLabel="Applicant Name">
             <ApplicantBirthDate
+              name="birthdate"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
               value={this.props.ApplicantBirthDate}
             />
@@ -171,6 +153,7 @@ class Identification extends React.Component {
             backLabel="Applicant Birthdate">
             <ApplicantBirthPlace
               {...this.props.ApplicantBirthPlace}
+              name="birthplace"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
             />
           </SectionView>
@@ -183,6 +166,7 @@ class Identification extends React.Component {
             backLabel="Applicant Birthplace">
             <ApplicantSSN
               {...this.props.ApplicantSSN}
+              name="ssn"
               onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
             />
           </SectionView>
