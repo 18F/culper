@@ -42,19 +42,8 @@ class OtherNamesUsed extends ValidationElement {
       return
     }
 
-    for (let subsection in errorCodes) {
-      // skip loop if the property is from prototype
-      if (!errorCodes.hasOwnProperty(subsection)) continue
-
-      if (errorCodes[subsection]) {
-        let arr = []
-        for (let prop in errorCodes[subsection]) {
-          if (!errorCodes[subsection].hasOwnProperty(prop)) continue
-          arr.push(super.flattenObject(errorCodes[subsection][prop]))
-        }
-        this.props.dispatch(reportErrors('othernames', subsection, arr))
-      }
-    }
+    let errors = super.triageErrors('othernames', [...this.props.Errors], errorCodes)
+    this.props.dispatch(reportErrors('othernames', '', errors))
   }
 
   addOtherName () {
@@ -99,22 +88,25 @@ class OtherNamesUsed extends ValidationElement {
                 return (
                   <div key={x.ID}>
                     <Name
-                      key={this.keyName(x.ID, 'name')}
                       {...x.Name}
+                      key={this.keyName(x.ID, 'name')}
+                      name="name"
                       onUpdate={this.onUpdate.bind(this, x.ID, 'Name')}
                       onValidate={this.onValidate.bind(this)}
                     />
 
                     <MaidenName
                       key={this.keyName(x.ID, 'maiden')}
+                      name="maiden"
                       value={x.MaidenName}
                       onUpdate={this.onUpdate.bind(this, x.ID, 'MaidenName')}
                       onValidate={this.onValidate.bind(this)}
                     />
 
                     <DateRange
-                      key={this.keyName(x.ID, 'used')}
                       {...x.DatesUsed}
+                      key={this.keyName(x.ID, 'used')}
+                      name="dates"
                       onUpdate={this.onUpdate.bind(this, x.ID, 'DatesUsed')}
                       title="Provide dates used"
                       onValidate={this.onValidate.bind(this)}
@@ -122,6 +114,7 @@ class OtherNamesUsed extends ValidationElement {
 
                     <Help id="alias.reason.help">
                       <Textarea
+                        name="reason"
                         key={this.keyName(x.ID, 'reason')}
                         value={x.Reasons}
                         onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
@@ -143,8 +136,10 @@ class OtherNamesUsed extends ValidationElement {
 function mapStateToProps (state) {
   let app = state.application || {}
   let othernames = app.OtherNames || {}
+  let errors = app.Errors || {}
   return {
-    List: othernames.List || []
+    List: othernames.List || [],
+    Errors: errors.othernames || []
   }
 }
 

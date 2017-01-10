@@ -101,4 +101,37 @@ export default class ValidationElement extends React.Component {
 
     return codes
   }
+
+  triageErrors (section, previous, codes) {
+    let arr = []
+
+    // First we need to persist any error messages stored in the same section
+    // but not necessarily within the same scope
+    previous.forEach((e) => {
+      for (let subsection in codes) {
+        if (!codes.hasOwnProperty(subsection)) continue
+        if (e.indexOf(`${subsection}.`) === -1) {
+          arr.push(e.replace(`${section}.`, ''))
+        }
+      }
+    })
+
+    for (let subsection in codes) {
+      // skip loop if the property is from prototype
+      if (!codes.hasOwnProperty(subsection)) continue
+
+      if (codes[subsection]) {
+        for (let prop in codes[subsection]) {
+          if (!codes[subsection].hasOwnProperty(prop)) continue
+
+          let e = `${subsection}.` + this.flattenObject(codes[subsection][prop])
+          if (!arr.includes(e)) {
+            arr.push(e)
+          }
+        }
+      }
+    }
+
+    return arr
+  }
 }

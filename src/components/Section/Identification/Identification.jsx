@@ -39,19 +39,8 @@ class Identification extends ValidationElement {
       return
     }
 
-    for (let subsection in errorCodes) {
-      // skip loop if the property is from prototype
-      if (!errorCodes.hasOwnProperty(subsection)) continue
-
-      if (errorCodes[subsection]) {
-        let arr = []
-        for (let prop in errorCodes[subsection]) {
-          if (!errorCodes[subsection].hasOwnProperty(prop)) continue
-          arr.push(super.flattenObject(errorCodes[subsection][prop]))
-        }
-        this.props.dispatch(reportErrors('identification', subsection, arr))
-      }
-    }
+    let errors = super.triageErrors('identification', [...this.props.Errors], errorCodes)
+    this.props.dispatch(reportErrors('identification', '', errors))
   }
 
   intro () {
@@ -187,11 +176,13 @@ class Identification extends ValidationElement {
 function mapStateToProps (state) {
   let app = state.application || {}
   let identification = app.Identification || {}
+  let errors = app.Errors || {}
   return {
     ApplicantName: identification.ApplicantName || {},
     ApplicantBirthDate: processApplicantBirthDate(identification.ApplicantBirthDate) || {},
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
-    ApplicantSSN: identification.ApplicantSSN || {}
+    ApplicantSSN: identification.ApplicantSSN || {},
+    Errors: errors.identification || []
   }
 }
 

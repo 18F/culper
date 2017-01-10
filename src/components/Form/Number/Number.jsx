@@ -108,7 +108,7 @@ export default class Number extends ValidationElement {
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
       let prop = this.state.name || 'input'
       let e = { [prop]: errorCode }
-      super.handleValidation(event, status, super.flattenObject(e))
+      super.handleValidation(event, status, e)
     })
   }
 
