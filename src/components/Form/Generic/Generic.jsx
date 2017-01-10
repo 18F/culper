@@ -90,7 +90,7 @@ export default class Generic extends ValidationElement {
           let re = new RegExp(this.state.pattern)
           status = status && re.test(this.state.value)
           if (!status) {
-          errorCode = 'pattern'
+            errorCode = 'pattern'
           }
           hits++
         } catch (e) {
