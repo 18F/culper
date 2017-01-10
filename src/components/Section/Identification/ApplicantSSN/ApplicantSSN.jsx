@@ -15,7 +15,8 @@ export default class ApplicantSSN extends ValidationElement {
       notApplicable: !!props.notApplicable,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCodes: []
     }
   }
 
@@ -108,10 +109,16 @@ export default class ApplicantSSN extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    const codes = super.mergeError(this.state.errorCodes, error)
+    this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
+      let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, status, e)
         return
       }
 
@@ -130,7 +137,7 @@ export default class ApplicantSSN extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, status, e)
         })
     })
   }

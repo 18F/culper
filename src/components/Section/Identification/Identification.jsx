@@ -108,17 +108,20 @@ class Identification extends ValidationElement {
             <ApplicantBirthDate
               name="birthdate"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
+              onValidate={this.onValidate.bind(this)}
               value={this.props.ApplicantBirthDate}
             />
             <ApplicantBirthPlace
               {...this.props.ApplicantBirthPlace}
               name="birthplace"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
+              onValidate={this.onValidate.bind(this)}
             />
             <ApplicantSSN
               {...this.props.ApplicantSSN}
               name="ssn"
               onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
+              onValidate={this.onValidate.bind(this)}
             />
           </SectionView>
 
@@ -143,6 +146,7 @@ class Identification extends ValidationElement {
             <ApplicantBirthDate
               name="birthdate"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
+              onValidate={this.onValidate.bind(this)}
               value={this.props.ApplicantBirthDate}
             />
           </SectionView>
@@ -157,6 +161,7 @@ class Identification extends ValidationElement {
               {...this.props.ApplicantBirthPlace}
               name="birthplace"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
+              onValidate={this.onValidate.bind(this)}
             />
           </SectionView>
 
@@ -170,6 +175,7 @@ class Identification extends ValidationElement {
               {...this.props.ApplicantSSN}
               name="ssn"
               onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
+              onValidate={this.onValidate.bind(this)}
             />
           </SectionView>
         </SectionViews>

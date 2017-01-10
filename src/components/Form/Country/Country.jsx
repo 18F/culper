@@ -9,7 +9,8 @@ export default class Country extends ValidationElement {
     this.state = {
       value: props.value,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errors: []
     }
   }
 
@@ -25,9 +26,9 @@ export default class Country extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+  handleValidation (event, status, errors) {
+    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
+      super.handleValidation(event, status, errors)
     })
   }
 
