@@ -65,7 +65,7 @@ export default class MaidenName extends ValidationElement {
 
   render () {
     return (
-      <div className="maiden-name">
+      <div className="maiden-name eapp-field-wrap">
         <label>Maiden Name</label>
         <Radio name="maiden-name"
                label="Yes"
