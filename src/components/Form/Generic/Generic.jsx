@@ -201,13 +201,6 @@ export default class Generic extends ValidationElement {
                >
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert"
-              ref="error"
-              >
-          {this.state.help}
-        </span>
         <input className={this.inputClass()}
                id={this.state.name}
                name={this.state.name}
@@ -226,6 +219,13 @@ export default class Generic extends ValidationElement {
                onKeyDown={this.handleKeyDown}
                ref="input"
                />
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert"
+              ref="error"
+              >
+          {this.state.help}
+        </span>
       </div>
     )
   }

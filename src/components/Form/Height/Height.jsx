@@ -84,7 +84,7 @@ export default class Height extends ValidationElement {
     return (
       <div className="height">
         <h2>Height</h2>
-        <div className="usa-form-group">
+        <div className="eapp-field-wrap">
           <Number id={this.partName('feet')}
             name="feet"
             label="Feet"
@@ -105,7 +105,7 @@ export default class Height extends ValidationElement {
             onValidate={this.handleValidation}
           />
         </div>
-        <div className="usa-form-group">
+        <div className="eapp-field-wrap">
           <Number id={this.partName('inches')}
             name="inches"
             label="Inches"

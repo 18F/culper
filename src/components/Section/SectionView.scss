@@ -4,7 +4,9 @@
 
         button {
             line-height: normal !important;
-            width: 25rem;
+            width: 33%;
+            max-width:25rem;
+            padding:2rem;
         }
 
         button.next {
