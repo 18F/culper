@@ -138,11 +138,11 @@ export default class Radio extends ValidationElement {
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
-          <span className={this.spanClass()}
-                id={this.errorName()}
-                role="alert">
-            {this.state.help}
-          </span>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
       </div>
     )
   }
