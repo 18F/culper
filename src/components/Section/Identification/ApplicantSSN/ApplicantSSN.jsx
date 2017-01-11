@@ -58,7 +58,7 @@ export default class ApplicantSSN extends ValidationElement {
 
       case 'notApplicable':
         updated = {
-          notAapplicable: value
+          notApplicable: event.target.checked
         }
         break
     }
@@ -66,6 +66,7 @@ export default class ApplicantSSN extends ValidationElement {
     if (updated != null) {
       this.setState(updated, () => {
         super.handleChange(event)
+        super.handleValidation(event, null, this.state.errorCodes)
         if (this.props.onUpdate) {
           this.props.onUpdate({
             first: this.state.first,
@@ -115,10 +116,20 @@ export default class ApplicantSSN extends ValidationElement {
     }
 
     const codes = super.mergeError(this.state.errorCodes, error)
-    this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.notApplicable) {
+      complexStatus = true
+    } else if (this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       let e = { [this.state.name]: codes }
+      let s = { [this.state.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, e)
+        super.handleValidation(event, s, e)
         return
       }
 
@@ -137,7 +148,7 @@ export default class ApplicantSSN extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status, e)
+          super.handleValidation(event, s, e)
         })
     })
   }
@@ -217,7 +228,7 @@ export default class ApplicantSSN extends ValidationElement {
           <div className="coupled-flags">
             <Checkbox name={this.partName('notApplicable')}
                       label="Not applicable"
-                      ref="notAapplicable"
+                      ref="notApplicable"
                       help=""
                       value={this.state.notApplicable}
                       onChange={this.handleChange}

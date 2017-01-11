@@ -12,6 +12,6 @@ describe('The ApoFpoAddress component', () => {
     }
     const component = mount(<ApoFpoAddress name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#' + expected.name + '-address1').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(5)
+    expect(component.find('div.hidden').length).toEqual(5)
   })
 })

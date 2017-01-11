@@ -86,11 +86,11 @@ export default class Dropdown extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
     if (this.state.error) {
-      klass += ' usa-input-error-message'
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -138,11 +138,10 @@ export default class Dropdown extends ValidationElement {
                 >
           {this.props.children}
         </select>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
           {this.state.help}
-        </span>
+        </div>
       </div>
     )
   }

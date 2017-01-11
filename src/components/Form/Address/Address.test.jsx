@@ -12,7 +12,7 @@ describe('The Address component', () => {
     }
     const component = mount(<Address name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#' + expected.name + '-address1').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(6)
+    expect(component.find('div.hidden').length).toEqual(6)
   })
 
   it('bubbles up validate event', () => {

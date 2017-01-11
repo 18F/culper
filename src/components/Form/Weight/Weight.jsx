@@ -37,7 +37,8 @@ export default class Weight extends ValidationElement {
   handleValidation (event, status, errors) {
     this.setState({error: status === false, valid: status === true, errors: errors}, () => {
       let e = { [this.state.name]: errors }
-      super.handleValidation(event, status, e)
+      let s = { [this.state.name]: { status: status } }
+      super.handleValidation(event, s, e)
     })
   }
 

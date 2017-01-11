@@ -62,7 +62,7 @@ class Navigation extends React.Component {
             continue
           }
 
-          return this.props.completed[section][sub].status === 'complete'
+          return this.props.completed[section][sub].status === true
         }
       }
     }
