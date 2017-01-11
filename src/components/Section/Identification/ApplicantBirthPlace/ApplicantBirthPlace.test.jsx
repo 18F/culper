@@ -14,7 +14,7 @@ describe('The ApplicantBirthPlace component', () => {
     }
     const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#city').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(children)
+    expect(component.find('div.hidden').length).toEqual(children)
   })
 
   it('bubbles up validate event', () => {

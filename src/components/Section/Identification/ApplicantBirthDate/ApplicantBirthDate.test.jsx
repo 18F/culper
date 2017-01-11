@@ -14,6 +14,6 @@ describe('The applicant birth date component', () => {
     }
     const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#month').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(children)
+    expect(component.find('div.hidden').length).toEqual(children)
   })
 })

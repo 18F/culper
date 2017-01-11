@@ -94,7 +94,7 @@ describe('The Email component', () => {
     tests.forEach((t) => {
       const component = mount(<Email name="test-emails" label="Email" value={t.address} />)
       component.find('input').simulate('change')
-      expect(component.find('span.hidden').length).toEqual(t.valid ? 1 : 0)
+      expect(component.find('div.hidden').length).toEqual(t.valid ? 1 : 0)
     })
   })
 })

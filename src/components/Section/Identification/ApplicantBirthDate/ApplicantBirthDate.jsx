@@ -138,7 +138,7 @@ export default class ApplicantBirthDate extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  divClass () {
+  errorClass () {
     let klass = 'eapp-error-message'
 
     if (this.state.error) {
@@ -162,7 +162,7 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </Help>
-        <div className={this.divClass()}>
+        <div className={this.errorClass()}>
           <i className="fa fa-exclamation"></i>
           {this.state.help}
         </div>
