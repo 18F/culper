@@ -13,6 +13,6 @@ describe('The EyeColor component', () => {
     const component = mount(<EyeColor name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input[name="eye-color"]').first().simulate('change')
     expect(component.find('input[name="eye-color"]').length).toEqual(10)
-    expect(component.find('span.hidden').length).toEqual(10)
+    expect(component.find('div.hidden').length).toEqual(10)
   })
 })
