@@ -25,7 +25,6 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    console.log(event.target.value)
     let valid = true
     if (this.props.required) {
       if (event.target.value === '') {
