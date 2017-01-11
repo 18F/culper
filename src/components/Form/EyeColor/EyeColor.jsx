@@ -27,7 +27,7 @@ export default class EyeColor extends ValidationElement {
         <Help id="traits.eye.help">
           <label>&nbsp;</label>
           <div className="option-list eapp-extend-labels">
-            <Radio name="eye-black"
+            <Radio name="eye-color"
                    label="Black"
                    value="Black"
                    help={this.props.help}
@@ -39,7 +39,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye black" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-blue"
+            <Radio name="eye-color"
                    label="Blue"
                    value="Blue"
                    help={this.props.help}
@@ -51,7 +51,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye blue" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-brown"
+            <Radio name="eye-color"
                    label="Brown"
                    value="Brown"
                    help={this.props.help}
@@ -63,7 +63,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye brown" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-gray"
+            <Radio name="eye-color"
                    label="Gray"
                    value="Gray"
                    help={this.props.help}
@@ -75,7 +75,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye gray" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-green"
+            <Radio name="eye-color"
                    label="Green"
                    value="Green"
                    help={this.props.help}
@@ -87,7 +87,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye green" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-hazel"
+            <Radio name="eye-color"
                    label="Hazel"
                    value="Hazel"
                    help={this.props.help}
@@ -99,7 +99,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye hazel" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-maroon"
+            <Radio name="eye-color"
                    label="Maroon"
                    value="Maroon"
                    help={this.props.help}
@@ -111,7 +111,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye maroon" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-multicolored"
+            <Radio name="eye-color"
                    label="Multicolored"
                    value="Multicolored"
                    help={this.props.help}
@@ -123,7 +123,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye multi" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-pink"
+            <Radio name="eye-color"
                    label="Pink"
                    value="Pink"
                    help={this.props.help}
@@ -135,7 +135,7 @@ export default class EyeColor extends ValidationElement {
                    >
               <i className="fa fa-eye pink" aria-hidden="true"></i>
             </Radio>
-            <Radio name="eye-unknown"
+            <Radio name="eye-color"
                    label="Unknown"
                    value="Unknown"
                    help={this.props.help}
