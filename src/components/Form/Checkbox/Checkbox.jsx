@@ -108,7 +108,7 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = 'eapp-blocks-checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error'

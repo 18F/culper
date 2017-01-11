@@ -122,11 +122,6 @@ export default class Dropdown extends ValidationElement {
                htmlFor={this.state.name}>
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
         <select className={this.inputClass()}
                 id={this.state.name}
                 name={this.state.name}
@@ -143,6 +138,11 @@ export default class Dropdown extends ValidationElement {
                 >
           {this.props.children}
         </select>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
       </div>
     )
   }

@@ -41,10 +41,11 @@ export default class HairColor extends ValidationElement {
       <div className="hair-colors">
         <h2>Hair Color</h2>
         <Help id="traits.hair.help">
-          <div className="option-list">
+          <div className="option-list eapp-extend-labels">
             <Checkbox name="hair-bald"
                       label="Bald"
                       value="Bald"
+					  labelClass="black"
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}

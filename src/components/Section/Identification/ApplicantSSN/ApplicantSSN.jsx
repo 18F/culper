@@ -175,7 +175,7 @@ export default class ApplicantSSN extends ValidationElement {
         <Help id="identification.ssn.help">
           <Text name={this.partName('first')}
                 ref="first"
-                className="first"
+                className="first eapp-short-input"
                 placeholder="000"
                 maxlength="3"
                 pattern="^[0-9]*$"
@@ -188,7 +188,7 @@ export default class ApplicantSSN extends ValidationElement {
                 />
           <Text name={this.partName('middle')}
                 ref="middle"
-                className="middle"
+                className="middle eapp-short-input"
                 placeholder="00"
                 maxlength="2"
                 pattern="^[0-9]*$"
@@ -202,7 +202,7 @@ export default class ApplicantSSN extends ValidationElement {
                 />
           <Text name={this.partName('last')}
                 ref="last"
-                className="last"
+                className="last eapp-short-input"
                 placeholder="0000"
                 maxlength="4"
                 pattern="^[0-9]*$"
