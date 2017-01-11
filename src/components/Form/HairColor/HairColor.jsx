@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Help from '../Help'
 import Checkbox from '../Checkbox'
+import CheckboxGroup from '../CheckboxGroup'
 
 export default class HairColor extends ValidationElement {
   constructor (props) {
@@ -14,7 +15,7 @@ export default class HairColor extends ValidationElement {
   }
 
   handleChange (event) {
-    let color = event.target.id.split('-')[1]
+    let color = event.target.value
     let selected = [...this.state.value]
 
     if (selected.includes(color)) {
@@ -42,11 +43,11 @@ export default class HairColor extends ValidationElement {
         <h2>Hair Color</h2>
         <Help id="traits.hair.help">
           <label>&nbsp;</label>
-          <div className="option-list eapp-extend-labels">
+          <CheckboxGroup className="option-list eapp-extend-labels" selectedValues={this.state.value}>
             <Checkbox name="hair-bald"
                       label="Bald"
                       value="Bald"
-					  labelClass="black"
+                      labelClass="black"
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
@@ -212,7 +213,7 @@ export default class HairColor extends ValidationElement {
                       >
               <i className="fa fa-question-circle unknown" aria-hidden="true"></i>
             </Checkbox>
-          </div>
+          </CheckboxGroup>
         </Help>
       </div>
     )
