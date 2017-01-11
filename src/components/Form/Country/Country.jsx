@@ -60,6 +60,7 @@ export default class Country extends ValidationElement {
                 onValidate={this.handleValidation}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
+                value={this.props.value}
                 >
         { this.props.children }
         <option value="">{this.props.placeholder}</option>
