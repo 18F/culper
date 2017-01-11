@@ -1,10 +1,9 @@
 import React from 'react'
-import { updateTitle } from '../../actions/SectionActions'
+import { updateSection } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import OtherNamesUsed from './OtherNamesUsed'
 import Identifying from './Identifying'
-import { push } from '../../middleware/history'
 import { SectionView, SectionViews } from './SectionView'
 
 // Mapping section identifiers to the associated components.
@@ -30,13 +29,17 @@ class Section extends React.Component {
    * the componentDidMount() is rendered. However, subsequent path changes trigger componentWillReceiveProps()
    */
   componentWillReceiveProps (updatedProps) {
-    var sec = this.section(updatedProps.section)
-    this.props.dispatch(updateTitle(sec.title))
+    let name = updatedProps.section
+    let sub = updatedProps.subsection
+    let sec = this.section(name)
+    this.props.dispatch(updateSection(name, sub, sec.title))
   }
 
   componentDidMount () {
-    var sec = this.section(this.props.section)
-    this.props.dispatch(updateTitle(sec.title))
+    let name = this.props.section
+    let sub = this.props.subsection
+    let sec = this.section(name)
+    this.props.dispatch(updateSection(name, sub, sec.title))
   }
 
   section (section) {

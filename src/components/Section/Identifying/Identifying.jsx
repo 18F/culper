@@ -1,16 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import ValidationElement from '../../Form/ValidationElement'
 import { push } from '../../../middleware/history'
 import Height from '../../Form/Height'
 import Weight from '../../Form/Weight'
 import HairColor from '../../Form/HairColor'
 import EyeColor from '../../Form/EyeColor'
 import Sex from '../../Form/Sex'
-import { updateApplication } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
 import { SectionView, SectionViews } from '../SectionView'
 
-class Identifying extends React.Component {
+class Identifying extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -32,6 +33,15 @@ class Identifying extends React.Component {
 
   onUpdate (field, values) {
     this.props.dispatch(updateApplication('YourIdentification', field, values))
+  }
+
+  onValidate (event, status, errorCodes) {
+    if (!event) {
+      return
+    }
+
+    let errors = super.triageErrors('identifying', [...this.props.Errors], errorCodes)
+    this.props.dispatch(reportErrors('identifying', '', errors))
   }
 
   intro () {
@@ -79,23 +89,33 @@ class Identifying extends React.Component {
           backLabel="Other names">
           <Height
             {...this.props.Height}
+            name="height"
             onUpdate={this.onUpdate.bind(this, 'Height')}
+            onValidate={this.onValidate.bind(this)}
           />
           <Weight
+            name="weight"
             value={this.props.Weight}
             onUpdate={this.onUpdate.bind(this, 'Weight')}
+            onValidate={this.onValidate.bind(this)}
           />
           <HairColor
+            name="hair"
             value={this.props.HairColor}
             onUpdate={this.onUpdate.bind(this, 'HairColor')}
+            onValidate={this.onValidate.bind(this)}
           />
           <EyeColor
+            name="eye"
             value={this.props.EyeColor}
             onUpdate={this.onUpdate.bind(this, 'EyeColor')}
+            onValidate={this.onValidate.bind(this)}
           />
           <Sex
+            name="sex"
             value={this.props.Sex}
             onUpdate={this.onUpdate.bind(this, 'Sex')}
+            onValidate={this.onValidate.bind(this)}
           />
         </SectionView>
         <SectionView
@@ -104,7 +124,9 @@ class Identifying extends React.Component {
           nextLabel="Weight">
           <Height
             {...this.props.Height}
+            name="height"
             onUpdate={this.onUpdate.bind(this, 'Height')}
+            onValidate={this.onValidate.bind(this)}
           />
         </SectionView>
         <SectionView
@@ -114,8 +136,10 @@ class Identifying extends React.Component {
           back="identifying/height"
           backLabel="Height">
           <Weight
+            name="weight"
             value={this.props.Weight}
             onUpdate={this.onUpdate.bind(this, 'Weight')}
+            onValidate={this.onValidate.bind(this)}
           />
         </SectionView>
         <SectionView
@@ -125,8 +149,10 @@ class Identifying extends React.Component {
           back="identifying/weight"
           backLabel="Weight">
           <HairColor
+            name="hair"
             value={this.props.HairColor}
             onUpdate={this.onUpdate.bind(this, 'HairColor')}
+            onValidate={this.onValidate.bind(this)}
           />
         </SectionView>
         <SectionView
@@ -136,8 +162,10 @@ class Identifying extends React.Component {
           back="identifying/haircolor"
           backLabel="Hair color">
           <EyeColor
+            name="eye"
             value={this.props.EyeColor}
             onUpdate={this.onUpdate.bind(this, 'EyeColor')}
+            onValidate={this.onValidate.bind(this)}
           />
         </SectionView>
         <SectionView
@@ -145,8 +173,10 @@ class Identifying extends React.Component {
           back="identifying/eyecolor"
           backLabel="Eye color">
           <Sex
+            name="sex"
             value={this.props.Sex}
             onUpdate={this.onUpdate.bind(this, 'Sex')}
+            onValidate={this.onValidate.bind(this)}
           />
         </SectionView>
       </SectionViews>
@@ -157,12 +187,14 @@ class Identifying extends React.Component {
 function mapStateToProps (state) {
   let app = state.application || {}
   let identification = app.YourIdentification || {}
+  let errors = app.Errors || {}
   return {
     Height: identification.Height || {},
     Weight: identification.Weight || 0,
     HairColor: identification.HairColor || '',
     EyeColor: identification.EyeColor || '',
-    Sex: identification.Sex || ''
+    Sex: identification.Sex || '',
+    Errors: errors.identifying || []
   }
 }
 

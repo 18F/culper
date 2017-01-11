@@ -16,7 +16,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
       country: props.country,
       domestic: domestic ? 'yes' : 'no',
       disabledState: !domestic,
-      disabledCountry: domestic
+      disabledCountry: domestic,
+      errorCodes: []
     }
   }
 
@@ -97,31 +98,39 @@ export default class ApplicantBirthPlace extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    const codes = super.mergeError(this.state.errorCodes, error)
+    this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
+      let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, status, e)
         return
       }
 
-      api
-        .validateApplicantBirthplace({
-          City: this.state.city,
-          State: this.state.state,
-          County: this.state.county,
-          Country: this.state.country
-        })
-        .then((response) => {
-          // TODO: Display and assign the errors as necessary
-          if (response.Errors) {
-          }
+      super.handleValidation(event, status, e)
 
-          if (response.Suggestions) {
-          }
-        })
-        .then(() => {
-          super.handleValidation(event, status)
-        })
+      // api
+      //   .validateApplicantBirthplace({
+      //     City: this.state.city,
+      //     State: this.state.state,
+      //     County: this.state.county,
+      //     Country: this.state.country
+      //   })
+      //   .then((response) => {
+      //     // TODO: Display and assign the errors as necessary
+      //     if (response.Errors) {
+      //     }
+
+      //     if (response.Suggestions) {
+      //     }
+      //   })
+      //   .then(() => {
+      //     super.handleValidation(event, status)
+      //   })
     })
   }
 
@@ -145,13 +154,13 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Help id="identification.birthplace">
-            <Radio name={this.partName('domestic')}
+          <Help id="identification.birthplace.help">
+            <Radio name="domestic"
                    label="Yes"
                    value="yes"
                    onChange={this.handleChange}
                    />
-            <Radio name={this.partName('domestic')}
+            <Radio name="domestic"
                    label="No"
                    value="no"
                    onChange={this.handleChange}
@@ -164,19 +173,19 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Help id="identification.birthplace">
-            <Radio name={this.partName('domestic')}
+          <Help id="identification.birthplace.help">
+            <Radio name="domestic"
                    label="Yes"
                    value="yes"
                    onChange={this.handleChange}
                    />
-            <Radio name={this.partName('domestic')}
+            <Radio name="domestic"
                    label="No"
                    value="no"
                    onChange={this.handleChange}
                    />
           </Help>
-          <MilitaryState name={this.partName('state')}
+          <MilitaryState name="state"
                          label="State"
                          value={this.state.state}
                          includeStates="true"
@@ -186,7 +195,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
                          />
-          <City name={this.partName('city')}
+          <City name="city"
                 label="City"
                 value={this.state.city}
                 placeholder="Please enter your city of birth"
@@ -196,7 +205,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <County name={this.partName('county')}
+          <County name="country"
                   label="County"
                   value={this.state.county}
                   placeholder="Please enter your county of birth"
@@ -214,19 +223,19 @@ export default class ApplicantBirthPlace extends ValidationElement {
       <div>
         <h2>Place of birth</h2>
         <label>Were you born in the United States of America</label>
-        <Help id="identification.birthplace">
-          <Radio name={this.partName('domestic')}
+        <Help id="identification.birthplace.help">
+          <Radio name="domestic"
                  label="Yes"
                  value="yes"
                  onChange={this.handleChange}
                  />
-          <Radio name={this.partName('domestic')}
+          <Radio name="domestic"
                  label="No"
                  value="no"
                  onChange={this.handleChange}
                  />
         </Help>
-        <City name={this.partName('city')}
+        <City name="city"
               label="City"
               value={this.state.city}
               placeholder="Please enter your city of birth"
@@ -236,7 +245,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
-        <County name={this.partName('county')}
+        <County name="county"
                 label="County"
                 value={this.state.county}
                 placeholder="Please enter your county of birth"
@@ -246,7 +255,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-        <Country name={this.partName('country')}
+        <Country name="country"
                  label="Country"
                  value={this.state.country}
                  disabled={this.state.disabledCountry}

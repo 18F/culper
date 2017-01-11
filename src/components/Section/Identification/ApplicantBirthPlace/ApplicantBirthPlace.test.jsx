@@ -13,7 +13,7 @@ describe('The ApplicantBirthPlace component', () => {
       value: ''
     }
     const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name + '-city').simulate('change')
+    component.find('input#city').simulate('change')
     expect(component.find('span.hidden').length).toEqual(children)
   })
 

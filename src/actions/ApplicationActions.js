@@ -7,6 +7,26 @@ export function updateApplication (section, property, values) {
   }
 }
 
+/**
+ * This is a generic function to report any errors for a particular
+ * section.
+ */
+export function reportErrors (section, subsection, codes) {
+  let prefix = subsection.length
+      ? [section, subsection].join('.')
+      : section
+
+  let expandedCodes = []
+  codes.forEach((code) => {
+    let c = (prefix + '.' + code).toLowerCase()
+    if (!c.endsWith('.')) {
+      expandedCodes.push(c)
+    }
+  })
+
+  return updateApplication('Errors', section, expandedCodes)
+}
+
 export function updateIdentificationApplicantName (values) {
   return updateApplication('Identification', 'ApplicantName', values)
 }
@@ -22,4 +42,3 @@ export function updateIdentificationBirthDate (values) {
 export function updateIdentificationSSN (values) {
   return updateApplication('Identification', 'ApplicantSSN', values)
 }
-
