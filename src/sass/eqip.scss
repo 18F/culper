@@ -156,8 +156,7 @@ a:focus {
 }
 
 .hidden {
-    display: none;
-    visibility: hidden;
+    display: none !important;
 }
 
 .text-center {

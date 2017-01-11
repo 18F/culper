@@ -5,7 +5,6 @@ import { api } from '../../../../services/api'
 export default class ApplicantBirthPlace extends ValidationElement {
   constructor (props) {
     super(props)
-    console.log(props)
     let domestic = (props.country === undefined ? null : (props.country === 'United States' ? 'yes' : 'no'))
     let disabledCountry = null
     let disabledState = null
@@ -169,11 +168,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
   }
 
   options () {
-    let selected = null
-    if (this.state.country != null) {
-      selected = (this.state.country === 'United States' ? 'yes' : 'no')
-    }
-    console.log('domestic: ', this.state.domestic)
     return (
           <Help id="identification.birthplace.help">
             <RadioGroup selectedValue={this.state.domestic}>
