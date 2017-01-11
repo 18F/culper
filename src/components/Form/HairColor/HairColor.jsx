@@ -8,7 +8,8 @@ export default class HairColor extends ValidationElement {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      value: props.value || []
+      value: props.value || [],
+      errors: []
     }
   }
 
@@ -39,7 +40,7 @@ export default class HairColor extends ValidationElement {
     return (
       <div className="hair-colors">
         <h2>Hair Color</h2>
-        <Help id="traits.hair">
+        <Help id="traits.hair.help">
           <div className="option-list">
             <Checkbox name="hair-bald"
                       label="Bald"

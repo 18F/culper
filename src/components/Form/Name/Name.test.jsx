@@ -13,7 +13,7 @@ describe('The Name component', () => {
       value: ''
     }
     const component = mount(<Name name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name + '-last').simulate('change')
+    component.find('input#last').simulate('change')
     expect(component.find('span.hidden').length).toEqual(validatedElements)
   })
 
@@ -33,7 +33,7 @@ describe('The Name component', () => {
 
     expected.forEach((ex) => {
       const component = mount(<Name name={ex.name} last={ex.last} />)
-      component.find('input#' + ex.name + '-last').simulate('change')
+      component.find('input#last').simulate('change')
       // expect(component.find('span.hidden').length === component.find('span').length).toEqual(ex.valid)
       expect(component.find('span.hidden').length === validatedElements).toEqual(ex.valid)
     })
@@ -63,7 +63,7 @@ describe('The Name component', () => {
 
     expected.forEach((ex) => {
       const component = mount(<Name name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
-      component.find('input#' + ex.name + '-' + ex.part).simulate('change')
+      component.find('input#' + ex.part).simulate('change')
       expect(component.find('span.hidden').length === component.find('span').length).toEqual(ex.valid)
     })
   })
