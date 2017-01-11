@@ -5,7 +5,6 @@
 // 	padding:0;
 
 .eapp-core {
-
 	label, input, textarea, select {
 		max-width:64rem;
 	}
@@ -26,6 +25,7 @@
 			max-width:0;
 		}
 	}
+
 	button {
 		position:relative;
 		width:24rem;
@@ -46,51 +46,52 @@
 		}
 		.eapp-nav-label {}
 	}
+
 	.eapp-prev {
 		text-align:left;
-		.button-icon {
-
-		}
+		.button-icon {}
 	}
+
 	.eapp-next {
 		text-align:right;
 		float:right;
 		margin-right:4rem;
-		.button-icon {
-			
-		}
-
+		.button-icon {}
 	}
 
 	#titles {
 		margin-bottom:1.2rem;
 	}
+
 	#actions {
 		margin-top:5.7rem;
 	}
 
 	/* handle option list blocks, basic structure */
 	.option-list {
-		max-width:64rem;
-		padding-top:0.3rem;
+		max-width: 64rem;
+		padding-top: 0.3rem;
 		/* handle generic options */
 		> div {
-			display:inline-block;
-			min-width:7.6rem;
-			line-height:4rem;
-			margin-bottom:1.2rem;
-			margin-right:1.6rem;
-			text-align:center;
-			background:$eapp-grey-light;
-			border:1px solid $eapp-grey-dark;
+			display: inline-block;
+            width: 8rem;
+			// min-width: 7.6rem;
+			line-height: 4rem;
+			margin-bottom: 1.2rem;
+			margin-right: 1.6rem;
+			text-align: center;
+            vertical-align: top;
+			background: $eapp-grey-light;
+			border: 1px solid $eapp-grey-dark;
 			&:hover {
-				color:#fff;
+				color: #fff;
 				border: 1px solid $eapp-green-dark;
-				background:$eapp-green;
+				background: $eapp-green;
 			}
 		}
 	}
 }
+
 #login {
     #info {
         margin-bottom: 1rem;

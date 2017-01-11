@@ -44,7 +44,8 @@ export default class Sex extends ValidationElement {
       <div className="sex">
         <h2>Sex</h2>
         <Help id="traits.sex">
-          <div className="options-list">
+          <label>&nbsp;</label>
+          <div className="option-list">
             <Radio name="sex"
                    label="Female"
                    placeholder={this.state.placeholder}

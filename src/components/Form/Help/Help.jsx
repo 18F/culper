@@ -29,10 +29,10 @@ export default class Help extends React.Component {
     if (this.state.active) {
       return (
           <div className="eapp-field-wrap">
-            {this.props.children}
             <a href="javascript:;" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
               <i className="fa fa-info-circle"></i>
             </a>
+            {this.props.children}
             <div className="message eapp-help-message">
               <i className="fa fa-info"></i>
               {this.getText()}
@@ -44,10 +44,10 @@ export default class Help extends React.Component {
 
     return (
         <div className="eapp-field-wrap">
-          {this.props.children}
           <a href="javascript:;" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
             <i className="fa fa-info-circle"></i>
           </a>
+          {this.props.children}
         </div>
     )
   }

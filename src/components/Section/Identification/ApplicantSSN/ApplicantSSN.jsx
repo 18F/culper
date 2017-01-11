@@ -207,16 +207,19 @@ export default class ApplicantSSN extends ValidationElement {
                 onBlur={this.props.onBlur}
                 onKeyDown={this.handleKeyDown}
                 />
-          <Checkbox name={this.partName('notApplicable')}
-                    label="Not applicable"
-                    ref="notAapplicable"
-                    help=""
-                    value={this.state.notApplicable}
-                    onChange={this.handleChange}
-                    onValidate={this.handleValidation}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    />
+          <div className="coupled-flags">
+            <Checkbox name={this.partName('notApplicable')}
+                      label="Not applicable"
+                      outside="true"
+                      ref="notAapplicable"
+                      help=""
+                      value={this.state.notApplicable}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
+          </div>
         </Help>
       </div>
     )

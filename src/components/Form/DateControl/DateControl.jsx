@@ -327,6 +327,7 @@ export default class DateControl extends ValidationElement {
         <div className="coupled-flags">
           <Checkbox name="estimated"
                     label="Estimated"
+                    outside="true"
                     help=""
                     value={this.state.estimated}
                     onChange={this.handleChange}
