@@ -217,7 +217,6 @@ export default class ApplicantSSN extends ValidationElement {
           <div className="coupled-flags">
             <Checkbox name={this.partName('notApplicable')}
                       label="Not applicable"
-                      outside="true"
                       ref="notAapplicable"
                       help=""
                       value={this.state.notApplicable}
