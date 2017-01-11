@@ -163,26 +163,25 @@ export default class Checkbox extends ValidationElement {
   }
 
   render () {
-    const checkbox = (<input className={this.inputClass()}
-                             id={this.state.name}
-                             name={this.state.name}
-                             type="checkbox"
-                             aria-describedby={this.errorName()}
-                             disabled={this.state.disabled}
-                             maxLength={this.state.maxlength}
-                             pattern={this.state.pattern}
-                             readOnly={this.state.readonly}
-                             required={this.state.required}
-                             value={this.state.value}
-                             onChange={this.handleChange}
-                             onFocus={this.handleFocus}
-                             onBlur={this.handleBlur} />)
     return (
       <div className={this.divClass()}>
-        {this.props.outside ? checkbox : ''}
         <label className={this.labelClass()}
                htmlFor={this.state.name}>
-          {!this.props.outside ? checkbox : ''}
+          <input className={this.inputClass()}
+                 id={this.state.name}
+                 name={this.state.name}
+                 type="checkbox"
+                 aria-describedby={this.errorName()}
+                 disabled={this.state.disabled}
+                 maxLength={this.state.maxlength}
+                 pattern={this.state.pattern}
+                 readOnly={this.state.readonly}
+                 required={this.state.required}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 />
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
