@@ -154,13 +154,6 @@ export default class ApplicantBirthDate extends ValidationElement {
     return (
       <div className="birthdate">
         <h2>Date of birth</h2>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert"
-              ref="error"
-              >
-          {this.state.help}
-        </span>
         <Help id="identification.birthdate.help">
           <DateControl name={this.state.name}
                        value={this.state.value}
@@ -169,6 +162,13 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </Help>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert"
+              ref="error"
+              >
+          {this.state.help}
+        </span>
       </div>
     )
   }

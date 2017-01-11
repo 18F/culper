@@ -61,7 +61,7 @@ export default class Radio extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = 'eapp-blocks-radio'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -138,11 +138,11 @@ export default class Radio extends ValidationElement {
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
-          <span className={this.spanClass()}
-                id={this.errorName()}
-                role="alert">
-            {this.state.help}
-          </span>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
       </div>
     )
   }

@@ -25,7 +25,8 @@ export default class EyeColor extends ValidationElement {
       <div className="eye-colors">
         <h2>Eye Color</h2>
         <Help id="traits.eye.help">
-          <div className="option-list">
+          <label>&nbsp;</label>
+          <div className="option-list eapp-extend-labels">
             <Radio name="eye-color"
                    label="Black"
                    value="Black"
@@ -36,7 +37,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye black" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Blue"
@@ -48,7 +49,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye blue" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Brown"
@@ -60,7 +61,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye brown" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Gray"
@@ -72,7 +73,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye gray" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Green"
@@ -84,7 +85,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye green" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Hazel"
@@ -96,7 +97,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye hazel" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Maroon"
@@ -108,7 +109,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye maroon" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Multicolored"
@@ -120,7 +121,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye multi" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Pink"
@@ -132,7 +133,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye pink" aria-hidden="true"></i>
             </Radio>
             <Radio name="eye-color"
                    label="Unknown"
@@ -144,7 +145,7 @@ export default class EyeColor extends ValidationElement {
                    onBlur={this.props.onBlur}
                    onFocus={this.props.onFocus}
                    >
-              <i className="fa fa-question-circle" aria-hidden="true"></i>
+              <i className="fa fa-question-circle unknown" aria-hidden="true"></i>
             </Radio>
           </div>
         </Help>
