@@ -1,12 +1,19 @@
 import React from 'react'
-import { ValidationElement, Help, Radio, City, MilitaryState, County, Country } from '../../../Form'
+import { ValidationElement, Help, Radio, City, MilitaryState, County, Country, RadioGroup } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
   constructor (props) {
     super(props)
+    let domestic = (props.country === undefined ? null : (props.country === 'United States' ? 'yes' : 'no'))
+    let disabledCountry = null
+    let disabledState = null
 
-    let domestic = props.country === 'United States'
+    if (domestic !== null) {
+      disabledCountry = props.country === 'United States'
+      disabledState = !disabledCountry
+    }
+
     this.state = {
       name: props.name,
       label: props.label,
@@ -14,9 +21,9 @@ export default class ApplicantBirthPlace extends ValidationElement {
       state: props.state,
       county: props.county,
       country: props.country,
-      domestic: domestic ? 'yes' : 'no',
-      disabledState: !domestic,
-      disabledCountry: domestic,
+      domestic: domestic,
+      disabledState: disabledState,
+      disabledCountry: disabledCountry,
       errorCodes: []
     }
   }
@@ -36,14 +43,16 @@ export default class ApplicantBirthPlace extends ValidationElement {
             country: '',
             state: '',
             disabledCountry: false,
-            disabledState: true
+            disabledState: true,
+            domestic: value
           }
         } else if (value === 'yes') {
           updated = {
             country: 'United States',
             state: '',
             disabledCountry: true,
-            disabledState: false
+            disabledState: false,
+            domestic: value
           }
         } else {
           updated = {
@@ -158,24 +167,32 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return id.split('-').pop()
   }
 
+  options () {
+    return (
+          <Help id="identification.birthplace.help">
+            <RadioGroup selectedValue={this.state.domestic}>
+              <Radio name="domestic"
+                label="Yes"
+                value="yes"
+                onChange={this.handleChange}
+              />
+              <Radio name="domestic"
+                label="No"
+                value="no"
+                onChange={this.handleChange}
+              />
+            </RadioGroup>
+          </Help>
+    )
+  }
+
   render () {
-    if (this.state.disabledCountry && this.state.disabledState) {
+    if (this.state.disabledCountry === null && this.state.disabledState === null) {
       return (
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Help id="identification.birthplace.help">
-            <Radio name="domestic"
-                   label="Yes"
-                   value="yes"
-                   onChange={this.handleChange}
-                   />
-            <Radio name="domestic"
-                   label="No"
-                   value="no"
-                   onChange={this.handleChange}
-                   />
-          </Help>
+          {this.options()}
         </div>
       )
     } else if (this.state.disabledCountry) {
@@ -183,48 +200,37 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <div>
           <h2>Place of birth</h2>
           <label>Were you born in the United States of America</label>
-          <Help id="identification.birthplace.help">
-            <Radio name="domestic"
-                   label="Yes"
-                   value="yes"
-                   onChange={this.handleChange}
-                   />
-            <Radio name="domestic"
-                   label="No"
-                   value="no"
-                   onChange={this.handleChange}
-                   />
-          </Help>
+          {this.options()}
           <MilitaryState name="state"
-                         label="State"
-                         value={this.state.state}
-                         includeStates="true"
-                         disabled={this.state.disabledState}
-                         onChange={this.handleChange}
-                         onValidate={this.handleValidation}
-                         onFocus={this.props.onFocus}
-                         onBlur={this.props.onBlur}
-                         />
+            label="State"
+            value={this.state.state}
+            includeStates="true"
+            disabled={this.state.disabledState}
+            onChange={this.handleChange}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
           <City name="city"
-                label="City"
-                value={this.state.city}
-                placeholder="Please enter your city of birth"
-                maxlength="100"
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-          <County name="country"
-                  label="County"
-                  value={this.state.county}
-                  placeholder="Please enter your county of birth"
-                  maxlength="255"
-                  onChange={this.handleChange}
-                  onValidate={this.handleValidation}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
+            label="City"
+            value={this.state.city}
+            placeholder="Please enter your city of birth"
+            maxlength="100"
+            onChange={this.handleChange}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
+          <County name="county"
+            label="County"
+            value={this.state.county}
+            placeholder="Please enter your county of birth"
+            maxlength="255"
+            onChange={this.handleChange}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
         </div>
       )
     }
@@ -233,47 +239,36 @@ export default class ApplicantBirthPlace extends ValidationElement {
       <div>
         <h2>Place of birth</h2>
         <label>Were you born in the United States of America</label>
-        <Help id="identification.birthplace.help">
-          <Radio name="domestic"
-                 label="Yes"
-                 value="yes"
-                 onChange={this.handleChange}
-                 />
-          <Radio name="domestic"
-                 label="No"
-                 value="no"
-                 onChange={this.handleChange}
-                 />
-        </Help>
+        {this.options()}
         <City name="city"
-              label="City"
-              value={this.state.city}
-              placeholder="Please enter your city of birth"
-              maxlength="100"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
+          label="City"
+          value={this.state.city}
+          placeholder="Please enter your city of birth"
+          maxlength="100"
+          onChange={this.handleChange}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
         <County name="county"
-                label="County"
-                value={this.state.county}
-                placeholder="Please enter your county of birth"
-                maxlength="255"
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
+          label="County"
+          value={this.state.county}
+          placeholder="Please enter your county of birth"
+          maxlength="255"
+          onChange={this.handleChange}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
         <Country name="country"
-                 label="Country"
-                 value={this.state.country}
-                 disabled={this.state.disabledCountry}
-                 onChange={this.handleChange}
-                 onValidate={this.handleValidation}
-                 onFocus={this.props.onFocus}
-                 onBlur={this.props.onBlur}
-                 />
+          label="Country"
+          value={this.state.country}
+          disabled={this.state.disabledCountry}
+          onChange={this.handleChange}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
       </div>
     )
   }
