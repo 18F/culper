@@ -25,6 +25,7 @@
 		input[type="text"], textarea, select {
 			background:url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
 			box-shadow:none;
+			width:calc(100% * 1);
 		}
 	}
 	input[type="text"], textarea, select {
@@ -34,6 +35,7 @@
 		&.usa-input-success {
 			box-shadow:none;
 			background:url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
+			width:calc(100% * 1);
 		}
 	}
 	.eapp-field-wrap {
