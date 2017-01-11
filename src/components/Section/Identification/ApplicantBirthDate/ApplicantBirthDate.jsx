@@ -40,7 +40,7 @@ export default class ApplicantBirthDate extends ValidationElement {
       return
     }
 
-    if (status !== false) {
+    if (status !== false && status === true) {
       // Calculation to get the age of something compared to now.
       let now = new Date()
       let then = new Date(this.state.value)
@@ -64,7 +64,7 @@ export default class ApplicantBirthDate extends ValidationElement {
     this.setState({error: status === false, valid: status === true, help: help, errorCodes: codes}, () => {
       let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, e)
+        super.handleValidation(event, { birthdate: { status: status }}, e)
         return
       }
 
@@ -84,7 +84,7 @@ export default class ApplicantBirthDate extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status, e)
+          super.handleValidation(event, { birthdate: { status: status }}, e)
         })
     })
   }

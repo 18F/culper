@@ -7,7 +7,7 @@ import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 
 class Identification extends ValidationElement {
@@ -40,7 +40,31 @@ class Identification extends ValidationElement {
     }
 
     let errors = super.triageErrors('identification', [...this.props.Errors], errorCodes)
-    this.props.dispatch(reportErrors('identification', '', errors))
+    this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+
+    let cstatus = 'neutral'
+    if (this.hasStatus('name', true)
+        && this.hasStatus('birthdate', true)
+        && this.hasStatus('birthplace', true)
+        && this.hasStatus('ssn', true)) {
+      cstatus = 'complete'
+    } else if (this.hasStatus('name', false)
+               || this.hasStatus('birthdate', false)
+               || this.hasStatus('birthplace', false)
+               || this.hasStatus('ssn', false)) {
+      cstatus = 'incomplete'
+    }
+
+    let completed = {
+      ...this.props.Completed,
+      ...status,
+      status: cstatus
+    }
+    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  }
+
+  hasStatus (property, val) {
+    return this.props.Completed[property] && this.props.Completed[property].status === val
   }
 
   intro () {
@@ -93,25 +117,25 @@ class Identification extends ValidationElement {
               name="name"
               onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
               onValidate={this.onValidate.bind(this)}
-            />
+              />
             <ApplicantBirthDate
               name="birthdate"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
               onValidate={this.onValidate.bind(this)}
               value={this.props.ApplicantBirthDate}
-            />
+              />
             <ApplicantBirthPlace
               {...this.props.ApplicantBirthPlace}
               name="birthplace"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
               onValidate={this.onValidate.bind(this)}
-            />
+              />
             <ApplicantSSN
               {...this.props.ApplicantSSN}
               name="ssn"
               onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
               onValidate={this.onValidate.bind(this)}
-            />
+              />
           </SectionView>
 
           <SectionView
@@ -123,7 +147,7 @@ class Identification extends ValidationElement {
               name="name"
               onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
               onValidate={this.onValidate.bind(this)}
-            />
+              />
           </SectionView>
 
           <SectionView
@@ -137,7 +161,7 @@ class Identification extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
               onValidate={this.onValidate.bind(this)}
               value={this.props.ApplicantBirthDate}
-            />
+              />
           </SectionView>
 
           <SectionView
@@ -151,7 +175,7 @@ class Identification extends ValidationElement {
               name="birthplace"
               onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
               onValidate={this.onValidate.bind(this)}
-            />
+              />
           </SectionView>
 
           <SectionView
@@ -165,7 +189,7 @@ class Identification extends ValidationElement {
               name="ssn"
               onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
               onValidate={this.onValidate.bind(this)}
-            />
+              />
           </SectionView>
         </SectionViews>
       </div>
@@ -174,15 +198,19 @@ class Identification extends ValidationElement {
 }
 
 function mapStateToProps (state) {
+  let section = state.section || {}
   let app = state.application || {}
   let identification = app.Identification || {}
   let errors = app.Errors || {}
+  let completed = app.Completed || {}
   return {
+    Section: section,
     ApplicantName: identification.ApplicantName || {},
     ApplicantBirthDate: processApplicantBirthDate(identification.ApplicantBirthDate) || {},
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
     ApplicantSSN: identification.ApplicantSSN || {},
-    Errors: errors.identification || []
+    Errors: errors.identification || [],
+    Completed: completed.identification || []
   }
 }
 

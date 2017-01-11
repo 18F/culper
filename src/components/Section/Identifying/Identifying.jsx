@@ -8,7 +8,7 @@ import Weight from '../../Form/Weight'
 import HairColor from '../../Form/HairColor'
 import EyeColor from '../../Form/EyeColor'
 import Sex from '../../Form/Sex'
-import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionView, SectionViews } from '../SectionView'
 
 class Identifying extends ValidationElement {
@@ -42,6 +42,28 @@ class Identifying extends ValidationElement {
 
     let errors = super.triageErrors('identifying', [...this.props.Errors], errorCodes)
     this.props.dispatch(reportErrors('identifying', '', errors))
+
+    let cstatus = 'neutral'
+    if (this.hasStatus('height', true)
+        && this.hasStatus('weight', true)
+        && this.hasStatus('hair', true)
+        && this.hasStatus('eye', true)
+        && this.hasStatus('sex', true)) {
+      cstatus = 'complete'
+    } else if (this.hasStatus('height', false)
+               || this.hasStatus('weight', false)
+               || this.hasStatus('hair', false)
+               || this.hasStatus('eye', false)
+               || this.hasStatus('sex', false)) {
+      cstatus = 'incomplete'
+    }
+
+    let completed = {
+      ...this.props.Completed,
+      ...status,
+      status: cstatus
+    }
+    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
   intro () {
@@ -185,16 +207,20 @@ class Identifying extends ValidationElement {
 }
 
 function mapStateToProps (state) {
+  let section = state.section || {}
   let app = state.application || {}
   let identification = app.YourIdentification || {}
   let errors = app.Errors || {}
+  let completed = app.Completed || {}
   return {
+    Section: section,
     Height: identification.Height || {},
     Weight: identification.Weight || 0,
     HairColor: identification.HairColor || '',
     EyeColor: identification.EyeColor || '',
     Sex: identification.Sex || '',
-    Errors: errors.identifying || []
+    Errors: errors.identifying || [],
+    Completed: completed.identifying || []
   }
 }
 

@@ -107,11 +107,11 @@ export default class ApplicantBirthPlace extends ValidationElement {
     this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
       let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, e)
+        super.handleValidation(event, { birthplace: { status: status } }, e)
         return
       }
 
-      super.handleValidation(event, status, e)
+      super.handleValidation(event, { birthplace: { status: status }}, e)
 
       // api
       //   .validateApplicantBirthplace({

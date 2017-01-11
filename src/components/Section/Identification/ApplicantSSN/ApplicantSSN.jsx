@@ -118,7 +118,7 @@ export default class ApplicantSSN extends ValidationElement {
     this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
       let e = { [this.state.name]: codes }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, e)
+        super.handleValidation(event, { ssn: { status: status } }, e)
         return
       }
 
@@ -137,7 +137,7 @@ export default class ApplicantSSN extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status, e)
+          super.handleValidation(event, { ssn: { status: status } }, e)
         })
     })
   }
