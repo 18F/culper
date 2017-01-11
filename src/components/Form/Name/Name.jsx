@@ -143,20 +143,6 @@ export default class Name extends ValidationElement {
     return (
       <div>
         <h2>Your full name</h2>
-        <Help id="identification.name.last.help">
-          <Text name="last"
-                label="Last name"
-                maxlength="100"
-                pattern="^[a-zA-Z\-\.' ]*$"
-                placeholder="Please enter your last name"
-                help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
-                value={this.state.last}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-        </Help>
         <Help id="identification.name.first.help">
           <Text name="first"
                 label="First name"
@@ -179,6 +165,20 @@ export default class Name extends ValidationElement {
                 placeholder="Please enter your middle name or initial"
                 help="The middle name (or initial) is optional but cannot exceed 100 characters"
                 value={this.state.middle}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+        </Help>
+        <Help id="identification.name.last.help">
+          <Text name="last"
+                label="Last name"
+                maxlength="100"
+                pattern="^[a-zA-Z\-\.' ]*$"
+                placeholder="Please enter your last name"
+                help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
+                value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
