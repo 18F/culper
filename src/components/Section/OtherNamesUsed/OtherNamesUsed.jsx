@@ -60,6 +60,10 @@ class OtherNamesUsed extends ValidationElement {
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
+  hasStatus (property, val) {
+    return this.props.Completed[property] && this.props.Completed[property].status === val
+  }
+
   addOtherName () {
     let list = this.props.List
     list.push({

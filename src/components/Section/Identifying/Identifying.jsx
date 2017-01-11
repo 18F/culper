@@ -66,6 +66,10 @@ class Identifying extends ValidationElement {
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
+  hasStatus (property, val) {
+    return this.props.Completed[property] && this.props.Completed[property].status === val
+  }
+
   intro () {
     return (
       <div className="identification">

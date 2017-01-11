@@ -46,7 +46,7 @@ export default class Sex extends ValidationElement {
         <Help id="traits.sex.help">
           <label>&nbsp;</label>
           <div className="options-list eapp-extend-labels">
-            <Radio name="sex"
+            <Radio name={this.props.name}
                    label="Female"
                    placeholder={this.state.placeholder}
                    help={this.state.help}
@@ -60,7 +60,7 @@ export default class Sex extends ValidationElement {
                    >
               <i className="fa fa-venus" aria-hidden="true"></i>
             </Radio>
-            <Radio name="sex"
+            <Radio name={this.props.name}
                    label="Male"
                    placeholder={this.state.placeholder}
                    help={this.state.help}
