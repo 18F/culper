@@ -25,9 +25,6 @@ const en = {
       },
       suffix: {
         help: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field'
-      },
-      ssn: {
-        help: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable'
       }
     },
     birthdate: {
@@ -35,6 +32,9 @@ const en = {
     },
     birthplace: {
       help: 'Provide the place of birth'
+    },
+    ssn: {
+      help: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable'
     }
   },
   traits: {
