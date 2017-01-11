@@ -16,6 +16,6 @@ export default function RadioGroup (props) {
   })
 
   return (
-    <div className="option-list">{children}</div>
+    <div className={props.className}>{children}</div>
   )
 }

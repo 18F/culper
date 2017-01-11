@@ -21,12 +21,18 @@ export default class Checkbox extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      checked: newProps.checked
+    })
+  }
+
   /**
    * Handle the change event.
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: !this.state.value }, () => {
+    this.setState({ value: event.target.checked }, () => {
       super.handleChange(event)
     })
   }
@@ -108,7 +114,7 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = 'eapp-blocks-checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -127,6 +133,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' usa-input-error-label'
     }
 
+    if (this.state.checked) {
+      klass += ' checked'
+    }
+
     return klass.trim()
   }
 
@@ -140,6 +150,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' usa-input-error-message'
     } else {
       klass += ' hidden'
+    }
+
+    if (this.state.checked) {
+      klass += ' checked'
     }
 
     return klass.trim()
@@ -163,25 +177,26 @@ export default class Checkbox extends ValidationElement {
   }
 
   render () {
+    const checkbox = (<input className={this.inputClass()}
+                             id={this.state.name}
+                             name={this.state.name}
+                             type="checkbox"
+                             aria-describedby={this.errorName()}
+                             disabled={this.state.disabled}
+                             maxLength={this.state.maxlength}
+                             pattern={this.state.pattern}
+                             readOnly={this.state.readonly}
+                             required={this.state.required}
+                             value={this.state.value}
+                             onChange={this.handleChange}
+                             onFocus={this.handleFocus}
+                             onBlur={this.handleBlur} />)
     return (
       <div className={this.divClass()}>
+        {this.props.outside ? checkbox : ''}
         <label className={this.labelClass()}
                htmlFor={this.state.name}>
-          <input className={this.inputClass()}
-                 id={this.state.name}
-                 name={this.state.name}
-                 type="checkbox"
-                 aria-describedby={this.errorName()}
-                 disabled={this.state.disabled}
-                 maxLength={this.state.maxlength}
-                 pattern={this.state.pattern}
-                 readOnly={this.state.readonly}
-                 required={this.state.required}
-                 value={this.state.value}
-                 onChange={this.handleChange}
-                 onFocus={this.handleFocus}
-                 onBlur={this.handleBlur}
-                 />
+          {!this.props.outside ? checkbox : ''}
           {this.props.children}
           <span>{this.state.label}</span>
         </label>

@@ -184,11 +184,6 @@ export default class Number extends ValidationElement {
                htmlFor={this.state.name}>
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
         <input className={this.inputClass()}
                id={this.state.name}
                name={this.state.name}
@@ -207,6 +202,11 @@ export default class Number extends ValidationElement {
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                />
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
       </div>
     )
   }

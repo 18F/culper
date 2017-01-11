@@ -64,6 +64,7 @@ export default class City extends ValidationElement {
             minlength="2"
             maxlength="100"
             required="true"
+            className="eapp-field-wrap"
             value={this.state.value}
             error={this.state.error}
             valid={this.state.valid}

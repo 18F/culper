@@ -79,34 +79,33 @@ export class App extends React.Component {
               </div>
             </div>
           </div>
-          <div className="usa-grid-full no-gutter eapp-header">
-              <div className="usa-width-one-fourth eapp-logo" id="logo">
-                <span className="eapp-logo-text">
-                  SF86
-                </span>
+          <div className="eapp-structure-wrap eapp-header">
+            <div className="eapp-structure-row">
+              <div className="eapp-structure-left eapp-logo" id="logo">
+                <span className="eapp-logo-text">SF86</span>
               </div>
-              <div className="eapp-logout">
-                {logoutButton}
+              <div className="eapp-structure-right eapp-title">
+                <div className="eapp-logout">
+                  {logoutButton}
+                </div>
+                <SectionTitle />
               </div>
-            <SectionTitle />
+            </div>
           </div>
         </header>
         <div className="usa-overlay"></div>
-		<div className="eapp-progress">
-		  <div id="progress-bar" className="eapp-progress-current"></div>
-		</div>
-        <main id="main-content">
-          <div className="usa-grid-full no-gutter">
-            <div className="usa-width-one-fourth eapp-navigation">
+        <div className="eapp-progress">
+          <div id="progress-bar" className="eapp-progress-current"></div>
+        </div>
+        <main id="main-content" className="eapp-structure-wrap">
+          <div className="eapp-structure-row">
+            <div className="eapp-structure-left eapp-navigation">
               <ScoreCard />
               <Navigation />
               &nbsp;
             </div>
-            <div className="usa-width-one-half eapp-core">
+            <div className="eapp-structure-right eapp-core">
               {this.props.children}
-              &nbsp;
-            </div>
-            <div className="usa-width-one-sixth">
               &nbsp;
             </div>
           </div>
