@@ -56,6 +56,11 @@ export default class Radio extends ValidationElement {
     })
   }
 
+  handleValidation (event, status, errors) {
+    event.persist()
+    super.handleValidation(event, { [this.state.name]: { status: true }}, errors)
+  }
+
   /**
    * Generated name for the error message.
    */

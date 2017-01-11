@@ -4,7 +4,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
 import { Help, MaidenName, Name, Textarea, DateRange } from '../../Form'
 import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors } from '../../../actions/ApplicationActions'
+import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 
 class OtherNamesUsed extends ValidationElement {
@@ -44,6 +44,24 @@ class OtherNamesUsed extends ValidationElement {
 
     let errors = super.triageErrors('othernames', [...this.props.Errors], errorCodes)
     this.props.dispatch(reportErrors('othernames', '', errors))
+
+    let cstatus = 'neutral'
+    if (this.hasStatus('name', true)) {
+      cstatus = 'complete'
+    } else if (this.hasStatus('name', false)) {
+      cstatus = 'incomplete'
+    }
+
+    let completed = {
+      ...this.props.Completed,
+      ...status,
+      status: cstatus
+    }
+    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  }
+
+  hasStatus (property, val) {
+    return this.props.Completed[property] && this.props.Completed[property].status === val
   }
 
   addOtherName () {
@@ -134,12 +152,16 @@ class OtherNamesUsed extends ValidationElement {
 }
 
 function mapStateToProps (state) {
+  let section = state.section || {}
   let app = state.application || {}
   let othernames = app.OtherNames || {}
   let errors = app.Errors || {}
+  let completed = app.Completed || {}
   return {
+    Section: section,
     List: othernames.List || [],
-    Errors: errors.othernames || []
+    Errors: errors.othernames || [],
+    Completed: completed.othernames || []
   }
 }
 
