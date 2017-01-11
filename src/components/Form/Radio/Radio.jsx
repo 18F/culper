@@ -22,12 +22,18 @@ export default class Radio extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      checked: newProps.checked
+    })
+  }
+
   /**
    * Handle the change event.
    */
   handleChange (event) {
     event.persist()
-    this.setState({ checked: !this.state.checked }, () => {
+    this.setState({checked: event.target.checked}, () => {
       super.handleChange(event)
     })
   }
@@ -80,6 +86,10 @@ export default class Radio extends ValidationElement {
       klass += ' usa-input-error-label'
     }
 
+    if (this.state.checked) {
+      klass += ' checked'
+    }
+
     return klass.trim()
   }
 
@@ -93,6 +103,10 @@ export default class Radio extends ValidationElement {
       klass += ' usa-input-error-message'
     } else {
       klass += ' hidden'
+    }
+
+    if (this.state.checked) {
+      klass += ' checked'
     }
 
     return klass.trim()
@@ -112,37 +126,46 @@ export default class Radio extends ValidationElement {
       klass += ' usa-input-success'
     }
 
+    if (this.state.checked) {
+      klass += ' selected'
+    }
+
     return klass.trim()
   }
 
+  getId () {
+    return (this.state.value || 'input') + '-' + (this.state.name || 'empty')
+  }
+
   render () {
+    const id = this.getId()
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.state.name}>
+        <label
+          className={this.labelClass()}
+          htmlFor={id}>
           <input className={this.inputClass()}
-                 id={this.state.name}
+                 id={id}
                  name={this.state.name}
                  type="radio"
                  aria-describedby={this.errorName()}
                  disabled={this.state.disabled}
-                 maxLength={this.state.maxlength}
-                 pattern={this.state.pattern}
                  readOnly={this.state.readonly}
                  required={this.state.required}
                  value={this.state.value}
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
+                 checked={this.state.checked}
                  />
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
-          <span className={this.spanClass()}
-                id={this.errorName()}
-                role="alert">
-            {this.state.help}
-          </span>
+        <span className={this.spanClass()}
+              id={this.errorName()}
+              role="alert">
+          {this.state.help}
+        </span>
       </div>
     )
   }
