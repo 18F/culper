@@ -180,7 +180,7 @@ export default class Name extends ValidationElement {
         <Help id="identification.name.suffix.help">
           <label>Suffix</label>
 
-          <RadioGroup selectedValue={this.state.suffix}>
+          <RadioGroup className="option-list" selectedValue={this.state.suffix}>
             <Radio name="suffix"
               label="None"
               value="None"
