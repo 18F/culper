@@ -28,7 +28,7 @@
 			width:calc(100% * 1);
 		}
 	}
-	input[type="text"], textarea, select {
+	input[type="text"], input[type="number"], textarea, select {
 		&:focus {
 			box-shadow:3px 1px 16px 22px 12px black;
 		}

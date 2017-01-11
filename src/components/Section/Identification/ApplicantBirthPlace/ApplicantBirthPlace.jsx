@@ -70,8 +70,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
 
       case 'state':
         updated = {
-          state: value,
-          disabledCountry: value !== ''
+          state: value
         }
         break
 
@@ -205,6 +204,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
             label="State"
             value={this.state.state}
             includeStates="true"
+            required="true"
             disabled={this.state.disabledState}
             onChange={this.handleChange}
             onValidate={this.handleValidation}
@@ -263,6 +263,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
         <Country name="country"
           label="Country"
           value={this.state.country}
+          required="true"
           disabled={this.state.disabledCountry}
           onChange={this.handleChange}
           onValidate={this.handleValidation}

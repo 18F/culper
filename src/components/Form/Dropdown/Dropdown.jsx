@@ -25,7 +25,14 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
+    console.log(event.target.value)
+    let valid = true
+    if (this.props.required) {
+      if (event.target.value === '') {
+        valid = false
+      }
+    }
+    this.setState({value: event.target.value, error: !valid, valid: valid}, () => {
       super.handleChange(event)
     })
   }
