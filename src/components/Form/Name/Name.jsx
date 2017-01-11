@@ -77,14 +77,22 @@ export default class Name extends ValidationElement {
     }
 
     const codes = super.mergeError(this.state.errorCodes, error)
-    this.setState({error: status === false, valid: status === true, errorCodes: codes}, () => {
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.first && this.state.last) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       let e = { [this.state.name]: codes }
+      let s = { [this.state.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, { name: { status: status }}, e)
+        super.handleValidation(event, s, e)
         return
       }
 
-      super.handleValidation(event, { name: { status: status }}, e)
+      super.handleValidation(event, s, e)
 
       // api
       // .validateName({

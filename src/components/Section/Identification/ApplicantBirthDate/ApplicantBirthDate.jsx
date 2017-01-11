@@ -40,7 +40,15 @@ export default class ApplicantBirthDate extends ValidationElement {
       return
     }
 
-    if (status !== false && status === true) {
+    let errorCodes = []
+    this.state.errorCodes.forEach((e) => {
+      if (e !== 'age') {
+        errorCodes.push(e)
+      }
+    })
+
+    let help = this.state.help
+    if (status === true && this.state.value !== '') {
       // Calculation to get the age of something compared to now.
       let now = new Date()
       let then = new Date(this.state.value)
@@ -50,21 +58,26 @@ export default class ApplicantBirthDate extends ValidationElement {
         age--
       }
 
-      status = age > 16 && age < 131
-      console.log('age: ' + age)
+      if (age < 17 || age > 129) {
+        status = false
+        help = 'Applicants must be older than 16 and less than 130 years of age'
+        error = 'age'
+      }
     }
 
-    let help = this.state.help
-    if (status === false) {
-      help = 'Applicants must be older than 16 and less than 130 years of age'
-      error = 'age'
+    const codes = super.mergeError(errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.value && this.state.value !== '') {
+      complexStatus = true
     }
 
-    const codes = super.mergeError(this.state.errorCodes, error)
-    this.setState({error: status === false, valid: status === true, help: help, errorCodes: codes}, () => {
+    this.setState({error: complexStatus === false, valid: complexStatus === true, help: help, errorCodes: codes}, () => {
       let e = { [this.state.name]: codes }
+      let s = { [this.state.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, { birthdate: { status: status }}, e)
+        super.handleValidation(event, s, e)
         return
       }
 
@@ -84,7 +97,7 @@ export default class ApplicantBirthDate extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, { birthdate: { status: status }}, e)
+          super.handleValidation(event, s, e)
         })
     })
   }

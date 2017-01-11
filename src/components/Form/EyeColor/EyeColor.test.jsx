@@ -5,7 +5,7 @@ import EyeColor from './EyeColor'
 describe('The EyeColor component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'input-focus',
+      name: 'eye-color',
       label: 'Text input focused',
       help: 'Helpful error message',
       value: ''
