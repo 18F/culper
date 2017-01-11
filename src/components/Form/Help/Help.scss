@@ -19,7 +19,7 @@
 		background:$eapp-blue;
 	}
 }
-.eapp-help-message {
+.eapp-help-message, .eapp-error-message {
 	position:relative;
 	max-width:64rem;
 	padding:3.5rem 3rem;
@@ -43,5 +43,13 @@
 	.eapp-help-close {
 		display:block;
 		margin-top:1rem;
+	}
+}
+.eapp-error-message {
+	background:$eapp-red-lightest;
+	border:2px solid $eapp-red-light;
+	min-width:95%;
+	> i {
+		background:$eapp-red;
 	}
 }

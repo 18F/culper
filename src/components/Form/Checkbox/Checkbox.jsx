@@ -21,12 +21,18 @@ export default class Checkbox extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      checked: newProps.checked
+    })
+  }
+
   /**
    * Handle the change event.
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: !this.state.value }, () => {
+    this.setState({ value: event.target.checked }, () => {
       super.handleChange(event)
     })
   }
@@ -127,6 +133,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' usa-input-error-label'
     }
 
+    if (this.state.checked) {
+      klass += ' checked'
+    }
+
     return klass.trim()
   }
 
@@ -140,6 +150,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' usa-input-error-message'
     } else {
       klass += ' hidden'
+    }
+
+    if (this.state.checked) {
+      klass += ' checked'
     }
 
     return klass.trim()
