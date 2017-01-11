@@ -51,9 +51,15 @@ function plugins () {
   }
 
   // Plugins used by all environments
-  plugins.push(new webpack.EnvironmentPlugin([
-    'API_BASE_URL'
-  ]))
+  [
+    new webpack.EnvironmentPlugin(['API_BASE_URL']),
+    new webpack.ProvidePlugin({
+      'Promise': 'es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
+  ].forEach((p) => {
+    plugins.push(p)
+  })
 
   return plugins
 }
