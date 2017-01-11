@@ -56,14 +56,6 @@ class Navigation extends React.Component {
 
       if (crumbs.length === 1) {
         return this.props.completed[section].status === 'complete'
-      } else {
-        for (let sub in this.props.completed[section]) {
-          if (sub !== crumbs[1]) {
-            continue
-          }
-
-          return this.props.completed[section][sub].status === true
-        }
       }
     }
 

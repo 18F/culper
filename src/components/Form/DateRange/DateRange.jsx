@@ -63,7 +63,7 @@ export default class DateRange extends ValidationElement {
         {error}
         <div className="usa-grid">
           <div className="usa-width-one-fourth from-label">
-            From
+            From date
           </div>
           <div className="usa-width-one-fourth">
             <Dropdown
@@ -112,7 +112,7 @@ export default class DateRange extends ValidationElement {
         </div>
         <div className="usa-grid">
           <div className="usa-width-one-fourth from-label">
-            To
+            To date
           </div>
           <div className="usa-width-one-fourth">
             <Dropdown

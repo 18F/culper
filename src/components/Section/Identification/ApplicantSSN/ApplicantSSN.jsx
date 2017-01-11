@@ -190,7 +190,6 @@ export default class ApplicantSSN extends ValidationElement {
                 placeholder="000"
                 maxlength="3"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.first}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -203,7 +202,6 @@ export default class ApplicantSSN extends ValidationElement {
                 placeholder="00"
                 maxlength="2"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.middle}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -217,7 +215,6 @@ export default class ApplicantSSN extends ValidationElement {
                 placeholder="0000"
                 maxlength="4"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}

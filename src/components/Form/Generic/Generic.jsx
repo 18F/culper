@@ -159,7 +159,7 @@ export default class Generic extends ValidationElement {
   errorClass () {
     let klass = 'eapp-error-message'
 
-    if (this.state.error) {
+    if (this.state.error && this.state.help) {
       klass += ' message'
     } else {
       klass += ' hidden'

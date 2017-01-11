@@ -15,7 +15,6 @@ export default class ValidationElement extends React.Component {
    * Handle the change event.
    */
   handleChange (event) {
-    this.handleValidation(event)
     if (this.props.onChange) {
       this.props.onChange(event)
     }
@@ -34,6 +33,7 @@ export default class ValidationElement extends React.Component {
    * Handle the blur event.
    */
   handleBlur (event) {
+    this.handleValidation(event)
     if (this.props.onBlur) {
       this.props.onBlur(event)
     }

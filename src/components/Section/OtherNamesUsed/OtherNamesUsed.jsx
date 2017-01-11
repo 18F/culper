@@ -12,7 +12,8 @@ class OtherNamesUsed extends ValidationElement {
     super(props)
 
     this.state = {
-      subsection: props.subsection
+      subsection: props.subsection,
+      yesNo: ''
     }
 
     this.handleTour = this.handleTour.bind(this)
@@ -77,7 +78,22 @@ class OtherNamesUsed extends ValidationElement {
   }
 
   noOtherName () {
+    this.props.dispatch(updateApplication('OtherNames', 'List', []))
     this.props.dispatch(push('/form/identifying'))
+  }
+
+  yesNoClicked (val) {
+    this.setState({ yesNo: val }, () => {
+      if (val === 'yes') {
+        if (this.props.List.length === 0) {
+          this.addOtherName()
+        }
+      } else if (val === 'no') {
+        if (this.props.List.length > 0) {
+          this.props.dispatch(updateApplication('OtherNames', 'List', []))
+        }
+      }
+    })
   }
 
   keyName (id, bit) {
@@ -85,6 +101,29 @@ class OtherNamesUsed extends ValidationElement {
   }
 
   render () {
+    if (this.state.yesNo !== 'yes') {
+      return (
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+          <SectionView
+            name=""
+            next="identifying"
+            nextLabel="Your Identifying Information">
+            <div className="other-names-used">
+              <h2>Other names used</h2>
+              <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
+              <div>
+                Have you used any other names?
+              </div>
+              <div>
+                <button onClick={this.yesNoClicked.bind(this, 'yes')}>Yes</button>
+                <button onClick={this.yesNoClicked.bind(this, 'no')}>No</button>
+              </div>
+            </div>
+          </SectionView>
+        </SectionViews>
+      )
+    }
+
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView
@@ -98,8 +137,8 @@ class OtherNamesUsed extends ValidationElement {
               Have you used any other names?
             </div>
             <div>
-              <button onClick={this.addOtherName.bind(this)}>Yes</button>
-              <button onClick={this.noOtherName.bind(this)}>No</button>
+              <button onClick={this.yesNoClicked.bind(this, 'yes')}>Yes</button>
+              <button onClick={this.yesNoClicked.bind(this, 'no')}>No</button>
             </div>
             {
               this.props.List.map((x) => {
@@ -130,20 +169,29 @@ class OtherNamesUsed extends ValidationElement {
                       onValidate={this.onValidate.bind(this)}
                     />
 
-                    <Help id="alias.reason.help">
-                      <Textarea
-                        name="reason"
-                        key={this.keyName(x.ID, 'reason')}
-                        value={x.Reasons}
-                        onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
-                        onValidate={this.onValidate.bind(this)}
-                        label={'Provide the reasons why the name changed'}
-                      />
-                    </Help>
+                    <div>
+                      <h2>Reason for change</h2>
+                      <Help id="alias.reason.help">
+                        <Textarea
+                          name="reason"
+                          key={this.keyName(x.ID, 'reason')}
+                          value={x.Reasons}
+                          onUpdate={this.onUpdate.bind(this, x.ID, 'Reasons')}
+                          onValidate={this.onValidate.bind(this)}
+                          label={'Provide the reasons why the name changed'}
+                        />
+                      </Help>
+                    </div>
                   </div>
                 )
               })
             }
+            <div className="text-center">
+              <button onClick={this.addOtherName.bind(this)}>
+                <span>Add another name used</span>
+                <i className="fa fa-plus-circle"></i>
+              </button>
+            </div>
           </div>
         </SectionView>
       </SectionViews>

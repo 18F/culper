@@ -180,8 +180,8 @@ class Identification extends ValidationElement {
 
           <SectionView
             name="ssn"
-            next="othernames"
-            nextLabel="Other Names"
+            next="identification/review"
+            nextLabel="Review"
             back="identification/birthplace"
             backLabel="Applicant Birthplace">
             <ApplicantSSN

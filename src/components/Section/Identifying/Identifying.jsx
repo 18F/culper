@@ -196,6 +196,8 @@ class Identifying extends ValidationElement {
         </SectionView>
         <SectionView
           name="sex"
+          next="identifying/review"
+          nextLabel="Review"
           back="identifying/eyecolor"
           backLabel="Eye color">
           <Sex
