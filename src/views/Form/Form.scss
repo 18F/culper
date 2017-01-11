@@ -9,7 +9,33 @@
 		max-width:64rem;
 		margin-top:0;
 	}
+	/* bring in USWD validation classes and alter for our design */
+	input[type="text"], textarea, select {
+		padding-right:3rem;
+	}
 
+	.usa-input-error {
+		border:none;
+		padding:0;
+		margin-top:0;
+		right:auto;
+		.usa-input-error-message {
+			display:none;
+		}
+		input[type="text"], textarea, select {
+			background:url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
+			box-shadow:none;
+		}
+	}
+	input[type="text"], textarea, select {
+		&:focus {
+			box-shadow:3px 1px 16px 22px 12px black;
+		}
+		&.usa-input-success {
+			box-shadow:none;
+			background:url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
+		}
+	}
 	.eapp-field-wrap {
 		position:relative;
 		margin-bottom:2.9rem;
@@ -121,35 +147,37 @@
 				label[for="hair-unknown"] i {
 					color:#5b606b;
 				}
-				label[for="eye-black"] i {
-					color:#000000;
-				}
-				label[for="eye-blue"] i {
-					color:#79b8d9;
-				}
-				label[for="eye-brown"] i {
-					color:#4f3424;
-				}
-				label[for="eye-gray"] i {
-					color:#c7c7c7;
-				}
-				label[for="eye-green"] i {
-					color:#469f3c;
-				}
-				label[for="eye-hazel"] i {
-					color:#737953;
-				}
-				label[for="eye-maroon"] i {
-					color:#6c171b;
-				}
-				label[for="eye-multicolored"] i {
-					color:#5b606b;
-				}
-				label[for="eye-pink"] i {
-					color:#e87e9c;
-				}
-				label[for="eye-unknown"] i {
-					color:#5b606b;
+				label[for="eye-color"] {
+					i.black {
+						color:#000000;
+					}
+					i.blue {
+						color:#79b8d9;
+					}
+					i.brown {
+						color:#4f3424;
+					}
+					i.gray {
+						color:#c7c7c7;
+					}
+					i.green {
+						color:#469f3c;
+					}
+					i.hazel {
+						color:#737953;
+					}
+					i.maroon {
+						color:#6c171b;
+					}
+					i.multi {
+						color:#5b606b;
+					}
+					i.pink {
+						color:#e87e9c;
+					}
+					i.unknown {
+						color:#5b606b;
+					}
 				}
 			}
 		}
