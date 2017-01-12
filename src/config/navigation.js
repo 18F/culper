@@ -26,9 +26,9 @@ const navigation = [
     ]
   },
   {
-    name: 'Citenzenship',
-    title: 'Citenzenship',
-    url: 'citenzenship',
+    name: 'Citizenship',
+    title: 'Citizenship',
+    url: 'citizenship',
     hidden: true,
     subsections: [
       { name: 'Citizenship Status', url: 'status' },
