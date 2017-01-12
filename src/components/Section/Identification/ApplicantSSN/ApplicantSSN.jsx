@@ -184,6 +184,7 @@ export default class ApplicantSSN extends ValidationElement {
       <div className="ssn">
         <h2>U.S. Social Security Number</h2>
         <Help id="identification.ssn.help">
+          <label>&nbsp;</label>
           <Text name={this.partName('first')}
                 ref="first"
                 className="first eapp-short-input"

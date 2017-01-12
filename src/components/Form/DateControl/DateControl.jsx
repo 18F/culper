@@ -263,6 +263,7 @@ export default class DateControl extends ValidationElement {
     return (
       <div className="datecontrol">
         <div className={this.divClass()}>
+          <label>&nbsp;</label>
           <div className="usa-form-group usa-form-group-month">
             <Number id={this.partName('month')}
                     name="month"
