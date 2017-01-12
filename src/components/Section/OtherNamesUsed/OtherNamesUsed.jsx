@@ -89,11 +89,23 @@ class OtherNamesUsed extends ValidationElement {
         if (this.props.List.length === 0) {
           this.addOtherName()
         }
+
+        let completed = {
+          ...this.props.Completed,
+          status: 'neutral'
+        }
+        this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
       } else if (val === 'No') {
         this.props.dispatch(updateApplication('OtherNames', 'HasOtherNames', 'No'))
         if (this.props.List.length > 0) {
           this.props.dispatch(updateApplication('OtherNames', 'List', []))
         }
+
+        let completed = {
+          ...this.props.Completed,
+          status: 'complete'
+        }
+        this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
       }
     })
   }

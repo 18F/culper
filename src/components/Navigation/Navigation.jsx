@@ -108,8 +108,8 @@ class Navigation extends React.Component {
         return (
           <div key={subsection.name} className="subsection" >
             <Link to={subUrl} className={subClass}>
-              <span className="name">{subsection.name}</span>
               {subIcon}
+              <span className="name">{subsection.name}</span>
             </Link>
           </div>
         )
@@ -122,9 +122,9 @@ class Navigation extends React.Component {
         <div key={section.name} className="section">
           <span className="title">
             <Link to={url} className={sectionClass}>
+              {sectionIcon}
               <span className="number">{sectionNum}</span>
               <span className="name">{section.name}</span>
-              {sectionIcon}
             </Link>
           </span>
           { this.isActive(url, pathname) ? subsections : '' }
@@ -167,8 +167,8 @@ const sectionNavMap = [
     subsections: [
       { name: 'Height', url: 'height' },
       { name: 'Weight', url: 'weight' },
-      { name: 'Hair Color', url: 'haircolor' },
-      { name: 'Eye Color', url: 'eyecolor' },
+      { name: 'Hair Color', url: 'hair' },
+      { name: 'Eye Color', url: 'eye' },
       { name: 'Gender', url: 'sex' }
     ]
   }

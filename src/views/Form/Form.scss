@@ -41,9 +41,11 @@
 	.eapp-field-wrap {
 		position:relative;
 		margin-bottom:2.9rem;
+
 		> div {
 			display:inline-block;
-			min-width:95%;
+			/* min-width:95%; */
+            width: calc(100% - 3.5rem);
 		}
 		.eapp-short-input {
 			min-width:0;

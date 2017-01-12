@@ -11,6 +11,21 @@ export default class ValidationElement extends React.Component {
     this.handleValidation = this.handleValidation.bind(this)
   }
 
+  componentDidMount () {
+    let event = {
+      target: {
+        id: this.props.id || '',
+        name: this.props.name,
+        value: this.props.value,
+        checked: this.props.checked
+      },
+      persist: function () {},
+      fake: true
+    }
+
+    this.handleValidation(event)
+  }
+
   /**
    * Handle the change event.
    */

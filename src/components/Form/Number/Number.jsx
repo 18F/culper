@@ -91,7 +91,7 @@ export default class Number extends ValidationElement {
       }
 
       if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length <= parseInt(this.state.maxlength)
+        status = status && ('' + this.state.value).length <= parseInt(this.state.maxlength)
         if (status === false) {
           errorCode = 'length'
         }

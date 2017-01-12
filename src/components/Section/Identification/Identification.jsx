@@ -22,6 +22,13 @@ class Identification extends ValidationElement {
     this.handleReview = this.handleReview.bind(this)
   }
 
+  componentDidMount () {
+    let current = this.launch(this.props.Identification, this.props.subsection, 'name')
+    if (current !== '') {
+      this.props.dispatch(push(`/form/identification/${current}`))
+    }
+  }
+
   handleTour (event) {
     this.props.dispatch(push('/form/identification/name'))
   }
@@ -100,11 +107,25 @@ class Identification extends ValidationElement {
     )
   }
 
+  launch (storage, subsection, defaultView) {
+    subsection = subsection || ''
+    if (subsection === '') {
+      let keys = Object.keys(storage)
+      if (keys.length === 0 && storage.constructor === Object) {
+        return defaultView
+      }
+    }
+
+    return subsection
+  }
+
   render () {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
+          <SectionView name=""
+                       next="othernames"
+                       nextLabel="Other Names">
             {this.intro()}
           </SectionView>
 
@@ -205,6 +226,7 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Section: section,
+    Identification: identification,
     ApplicantName: identification.ApplicantName || {},
     ApplicantBirthDate: processApplicantBirthDate(identification.ApplicantBirthDate) || {},
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
