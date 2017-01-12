@@ -560,3 +560,37 @@ FORMAT: 1A
         }
       ]
     }
+
+# Validate Email [/validate/email]
+
+## Validates Email [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "Address": ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Email",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
