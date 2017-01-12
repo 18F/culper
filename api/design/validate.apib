@@ -594,3 +594,98 @@ FORMAT: 1A
     }
 
 + Response 500
+
+# Validate Telephone Number [/validate/telephone]
+
+## Validate Domestic Telephone Number [/validate/telephone/domestic/{number}]
+
+### Validates Domestic Telephone Number [GET]
+
++ Parameters
+    + number: `XXX-XXX-XXXX,0001` - The domestic phone number
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Telephone",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+## Validate International Telephone Number [/validate/telephone/international/{number}]
+
+### Validates International Telephone Number [GET]
+
++ Parameters
+    + number: `011-52-1-55-XXXX-XXXX,0001` - The international phone number
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Telephone",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+## Validate DSN Telephone Number [/validate/telephone/dsn/{number}]
+
+### Validates DSN Telephone Number [GET]
+
++ Parameters
+    + number: `XXX-XXXX` - The DSN phone number
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Telephone",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
