@@ -75,6 +75,7 @@ export default class DateControl extends ValidationElement {
     let month = this.state.month
     let day = this.state.day
     let year = this.state.year
+    let estimated = this.state.estimated
 
     if (event.target.value.length > 0) {
       if (event.target.id.indexOf('month') !== -1) {
@@ -85,6 +86,9 @@ export default class DateControl extends ValidationElement {
       }
       if (event.target.id.indexOf('year') !== -1) {
         year = event.target.value
+      }
+      if (event.target.id.indexOf('estimated') !== -1) {
+        estimated = event.target.checked
       }
     }
 
@@ -100,6 +104,7 @@ export default class DateControl extends ValidationElement {
         month: month,
         day: day,
         year: year,
+        estimated: estimated,
         value: d
       },
       () => {
@@ -333,6 +338,7 @@ export default class DateControl extends ValidationElement {
                     help=""
                     toggle="false"
                     value={this.state.estimated}
+                    checked={this.state.estimated}
                     onChange={this.handleChange}
                     />
         </div>
