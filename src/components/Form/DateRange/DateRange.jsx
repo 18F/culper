@@ -10,12 +10,15 @@ export default class DateRange extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      fromMonth: this.props.fromMonth,
-      fromYear: this.props.fromYear,
-      toYear: this.props.toYear,
-      toMonth: this.props.toMonth,
-      fromEstimated: this.props.fromEstimated,
-      toEstimated: this.props.toEstimated,
+      from: this.props.from,
+      from_day: '',
+      from_month: '',
+      from_year: '',
+      to: this.props.to,
+      to_day: '',
+      to_month: '',
+      to_year: '',
+      present: this.props.present,
       title: this.props.title || 'Date Range'
     }
   }
@@ -23,17 +26,25 @@ export default class DateRange extends ValidationElement {
   handleChange (field, event) {
     // Get a handle to current state values as well as set the value for the current
     // element that triggered a change
-    let state = {
-      ...this.state,
-      [field]: event.target.value
+    let state = null
+    if (field === 'present') {
+      state = {
+        ...this.state,
+        present: event.target.checked
+      }
+    } else {
+      state = {
+        ...this.state,
+        [field + '_' + event.target.name]: event.target.value
+      }
     }
 
     // Get relevant date values
-    const { fromYear, fromMonth, toYear, toMonth } = state
-    if (fromMonth && fromYear && toMonth && toYear) {
-      let from = new Date(fromYear, fromMonth, 1)
-      let to = new Date(toYear, toMonth, 1)
-      if (from > to) {
+    const { from_year, from_month, from_day, to_year, to_month, to_day } = state
+    if (from_year && from_month && from_day && to_year && to_month && to_day) {
+      state.from = new Date(from_year, from_month, from_day)
+      state.to = new Date(to_year, to_month, to_day)
+      if (state.from > state.to) {
         state.error = 'From date must come before the to date'
       } else {
         state.error = null
@@ -44,32 +55,42 @@ export default class DateRange extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          fromMonth: this.state.fromMonth,
-          fromYear: this.state.fromYear,
-          toMonth: this.state.toMonth,
-          toYear: this.state.toYear,
-          fromEstimated: this.state.fromEstimated,
-          toEstimated: this.state.toEstimated,
+          from: this.state.from,
+          to: this.state.to,
+          present: this.state.present,
           title: this.state.title
         })
       }
     })
   }
 
+  /**
+   * Style classes applied to the span element.
+   */
+  errorClass () {
+    let klass = 'eapp-error-message'
+
+    if (this.state.error) {
+      klass += ' message'
+    } else {
+      klass += ' hidden'
+    }
+
+    return klass.trim()
+  }
+
   render () {
-    const error = this.state.error ? (<div className="usa-input-error">{this.state.error}</div>) : null
     return (
       <div className="daterange usa-grid">
         <h2>{this.state.title}</h2>
-        {error}
         <div className="usa-grid">
           <div className="from-label">
             From date
           </div>
           <DateControl name="from"
-                       value={this.state.toMonth}
+                       value={this.state.from}
                        estimated={this.state.estimated}
-                       onChange={this.handleChange}
+                       onChange={this.handleChange.bind(this, 'from')}
                        onValidate={this.handleValidation}
                        />
         </div>
@@ -80,21 +101,26 @@ export default class DateRange extends ValidationElement {
             To date
           </div>
           <DateControl name="to"
-                       value={this.state.toMonth}
+                       value={this.state.to}
                        estimated={this.state.estimated}
-                       onChange={this.handleChange}
+                                 onChange={this.handleChange.bind(this, 'to')}
                        onValidate={this.handleValidation}
                        />
           <div className="from-present">
             <span className="or"> or </span>
             <Checkbox name="present"
                       label=""
-                      value={this.state.toEstimated}
-                      onChange={this.handleChange.bind(this, 'toEstimated')}
+                      value="present"
+                      checked={this.state.present}
+                      onChange={this.handleChange.bind(this, 'present')}
                       >
               <span>Present</span>
             </Checkbox>
           </div>
+        </div>
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.state.error}
         </div>
       </div>
     )
