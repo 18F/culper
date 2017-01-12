@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
-import { Help, MaidenName, Name, Textarea, DateRange } from '../../Form'
+import { Help, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -13,7 +13,7 @@ class OtherNamesUsed extends ValidationElement {
 
     this.state = {
       subsection: props.subsection,
-      yesNo: ''
+      yesNo: props.HasOtherNames
     }
 
     this.handleTour = this.handleTour.bind(this)
@@ -84,11 +84,13 @@ class OtherNamesUsed extends ValidationElement {
 
   yesNoClicked (val) {
     this.setState({ yesNo: val }, () => {
-      if (val === 'yes') {
+      if (val === 'Yes') {
+        this.props.dispatch(updateApplication('OtherNames', 'HasOtherNames', 'Yes'))
         if (this.props.List.length === 0) {
           this.addOtherName()
         }
-      } else if (val === 'no') {
+      } else if (val === 'No') {
+        this.props.dispatch(updateApplication('OtherNames', 'HasOtherNames', 'No'))
         if (this.props.List.length > 0) {
           this.props.dispatch(updateApplication('OtherNames', 'List', []))
         }
@@ -100,24 +102,42 @@ class OtherNamesUsed extends ValidationElement {
     return '' + id + '-' + bit
   }
 
+  options () {
+    return (
+      <RadioGroup className="option-list" selectedValue={this.state.yesNo}>
+        <Radio name="has_othernames"
+          label="Yes"
+          value="Yes"
+          onChange={this.yesNoClicked.bind(this, 'Yes')}
+          onValidate={this.handleValidation}
+        />
+        <Radio name="has_othernames"
+          label="No"
+          value="No"
+          onChange={this.yesNoClicked.bind(this, 'No')}
+          onValidate={this.handleValidation}
+        />
+      </RadioGroup>
+    )
+  }
+
   render () {
-    if (this.state.yesNo !== 'yes') {
+    if (this.state.yesNo !== 'Yes') {
       return (
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView
             name=""
             next="identifying"
-            nextLabel="Your Identifying Information">
-            <div className="other-names-used">
+            nextLabel="Your Identifying Information"
+            back="identification"
+            backLabel="Identification">
+            <div className="other-names-used eapp-field-wrap">
               <h2>Other names used</h2>
               <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
               <div>
                 Have you used any other names?
               </div>
-              <div>
-                <button onClick={this.yesNoClicked.bind(this, 'yes')}>Yes</button>
-                <button onClick={this.yesNoClicked.bind(this, 'no')}>No</button>
-              </div>
+              {this.options()}
             </div>
           </SectionView>
         </SectionViews>
@@ -129,17 +149,17 @@ class OtherNamesUsed extends ValidationElement {
         <SectionView
           name=""
           next="identifying"
-          nextLabel="Your Identifying Information">
-          <div className="other-names-used">
+          nextLabel="Your Identifying Information"
+          back="identification"
+          backLabel="Identification">
+
+          <div className="other-names-used eapp-field-wrap">
             <h2>Other names used</h2>
             <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
             <div>
               Have you used any other names?
             </div>
-            <div>
-              <button onClick={this.yesNoClicked.bind(this, 'yes')}>Yes</button>
-              <button onClick={this.yesNoClicked.bind(this, 'no')}>No</button>
-            </div>
+            {this.options()}
             {
               this.props.List.map((x) => {
                 return (
@@ -209,7 +229,8 @@ function mapStateToProps (state) {
     Section: section,
     List: othernames.List || [],
     Errors: errors.othernames || [],
-    Completed: completed.othernames || []
+    Completed: completed.othernames || [],
+    HasOtherNames: othernames.HasOtherNames
   }
 }
 
