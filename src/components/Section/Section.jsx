@@ -7,17 +7,14 @@ import Identifying from './Identifying'
 import { SectionView, SectionViews } from './SectionView'
 
 // Mapping section identifiers to the associated components.
-const sectionMap = {
+const renderMap = {
   'identification': {
-    'title': 'Identification',
     'render': (subsection) => { return (<Identification subsection={subsection} />) }
   },
   'othernames': {
-    'title': 'Other Names Used',
     'render': (subsection) => { return (<OtherNamesUsed subsection={subsection} />) }
   },
   'identifying': {
-    'title': 'Your Identifying Information',
     'render': (subsection) => { return (<Identifying subsection={subsection} />) }
   }
 }
@@ -31,19 +28,17 @@ class Section extends React.Component {
   componentWillReceiveProps (updatedProps) {
     let name = updatedProps.section
     let sub = updatedProps.subsection
-    let sec = this.section(name)
-    this.props.dispatch(updateSection(name, sub, sec.title))
+    this.props.dispatch(updateSection(name, sub))
   }
 
   componentDidMount () {
     let name = this.props.section
     let sub = this.props.subsection
-    let sec = this.section(name)
-    this.props.dispatch(updateSection(name, sub, sec.title))
+    this.props.dispatch(updateSection(name, sub))
   }
 
   section (section) {
-    return sectionMap[section] || sectionMap['identification']
+    return renderMap[section] || renderMap['identification']
   }
 
   /**
