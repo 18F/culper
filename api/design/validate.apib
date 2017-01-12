@@ -65,6 +65,41 @@ FORMAT: 1A
 
 + Response 500
 
+## Validate Passport Dates [/validate/passport/dates/{issued}/to/{expiration}]
+
+### Validates Passport Dates [GET]
++ Parameters
+  + issued: The timestamp when passport was issued
+  + expiration: The timestamp when passport is due to expire
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Issued",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Expiration",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
 # Validate Address [/validate/address]
 
 ## Validates complete address [POST]
