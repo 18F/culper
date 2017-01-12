@@ -28,7 +28,7 @@
 			width:calc(100% * 1);
 		}
 	}
-	input[type="text"], textarea, select {
+	input[type="text"], input[type="number"], textarea, select {
 		&:focus {
 			box-shadow:3px 1px 16px 22px 12px black;
 		}
@@ -41,9 +41,11 @@
 	.eapp-field-wrap {
 		position:relative;
 		margin-bottom:2.9rem;
+
 		> div {
 			display:inline-block;
-			min-width:95%;
+			/* min-width:95%; */
+            width: calc(100% - 3.5rem);
 		}
 		.eapp-short-input {
 			min-width:0;
@@ -72,6 +74,22 @@
 				color:#fff;
 				border: 1px solid $eapp-green-dark;
 				background:$eapp-green;
+			}
+		}
+		/* handle block style radio and checkboxes that are NOT toggles */
+		.eapp-blocks-radio, .eapp-blocks-checkbox {
+			label.no-toggle {
+				display: block;
+				margin-bottom: 1.2rem;
+				margin-right: 1.6rem;
+				text-align: center;
+				background: transparent;
+				border: none;
+			}
+			label.no-toggle.checked, label.no-toggle:hover {
+				color: initial;
+				border: none;
+				background: transparent;
 			}
 		}
 		.eapp-extend-labels {
@@ -149,7 +167,7 @@
 				label[for="hair-unknown"] i {
 					color:#5b606b;
 				}
-				label[for="eye-color"] {
+				label {
 					i.black {
 						color:#000000;
 					}

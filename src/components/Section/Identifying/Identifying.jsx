@@ -23,6 +23,13 @@ class Identifying extends ValidationElement {
     this.handleReview = this.handleReview.bind(this)
   }
 
+  componentDidMount () {
+    let current = this.launch(this.props.Identifying, this.props.subsection, 'height')
+    if (current !== '') {
+      this.props.dispatch(push(`/form/identifying/${current}`))
+    }
+  }
+
   handleTour (event) {
     this.props.dispatch(push('/form/identifying/height'))
   }
@@ -103,9 +110,21 @@ class Identifying extends ValidationElement {
     )
   }
 
+  launch (storage, subsection, defaultView) {
+    subsection = subsection || ''
+    if (subsection === '') {
+      let keys = Object.keys(storage)
+      if (keys.length === 0 && storage.constructor === Object) {
+        return defaultView
+      }
+    }
+
+    return subsection
+  }
+
   render () {
     return (
-      <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="">
           {this.intro()}
         </SectionView>
@@ -157,7 +176,7 @@ class Identifying extends ValidationElement {
         </SectionView>
         <SectionView
           name="weight"
-          next="identifying/haircolor"
+          next="identifying/hair"
           nextLabel="Hair color"
           back="identifying/height"
           backLabel="Height">
@@ -169,8 +188,8 @@ class Identifying extends ValidationElement {
           />
         </SectionView>
         <SectionView
-          name="haircolor"
-          next="identifying/eyecolor"
+          name="hair"
+          next="identifying/eye"
           nextLabel="Eye color"
           back="identifying/weight"
           backLabel="Weight">
@@ -182,10 +201,10 @@ class Identifying extends ValidationElement {
           />
         </SectionView>
         <SectionView
-          name="eyecolor"
+          name="eye"
           next="identifying/sex"
           nextLabel="Sex"
-          back="identifying/haircolor"
+          back="identifying/hair"
           backLabel="Hair color">
           <EyeColor
             name="eye"
@@ -196,7 +215,9 @@ class Identifying extends ValidationElement {
         </SectionView>
         <SectionView
           name="sex"
-          back="identifying/eyecolor"
+          next="identifying/review"
+          nextLabel="Review"
+          back="identifying/eye"
           backLabel="Eye color">
           <Sex
             name="sex"
@@ -218,6 +239,7 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Section: section,
+    Identifying: identification,
     Height: identification.Height || {},
     Weight: identification.Weight || 0,
     HairColor: identification.HairColor || '',

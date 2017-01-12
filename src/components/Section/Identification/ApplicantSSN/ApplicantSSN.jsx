@@ -184,13 +184,13 @@ export default class ApplicantSSN extends ValidationElement {
       <div className="ssn">
         <h2>U.S. Social Security Number</h2>
         <Help id="identification.ssn.help">
+          <label>&nbsp;</label>
           <Text name={this.partName('first')}
                 ref="first"
                 className="first eapp-short-input"
                 placeholder="000"
                 maxlength="3"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.first}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -203,7 +203,6 @@ export default class ApplicantSSN extends ValidationElement {
                 placeholder="00"
                 maxlength="2"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.middle}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -217,7 +216,6 @@ export default class ApplicantSSN extends ValidationElement {
                 placeholder="0000"
                 maxlength="4"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -230,6 +228,7 @@ export default class ApplicantSSN extends ValidationElement {
                       label="Not applicable"
                       ref="notApplicable"
                       help=""
+                      toggle="false"
                       value={this.state.notApplicable}
                       onChange={this.handleChange}
                       onValidate={this.handleValidation}

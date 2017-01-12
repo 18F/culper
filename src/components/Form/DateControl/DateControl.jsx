@@ -266,6 +266,7 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group usa-form-group-month">
             <Number id={this.partName('month')}
                     name="month"
+                    label="Month"
                     placeholder="00"
                     aria-described-by={this.errorName('month')}
                     disabled={this.state.disabled}
@@ -286,6 +287,7 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group usa-form-group-day">
             <Number id={this.partName('day')}
                     name="day"
+                    label="Day"
                     placeholder="00"
                     aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
@@ -306,6 +308,7 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group usa-form-group-year">
             <Number id={this.partName('year')}
                     name="year"
+                    label="Year"
                     placeholder="0000"
                     aria-described-by={this.errorName('year')}
                     disabled={this.state.disabled}
@@ -328,6 +331,7 @@ export default class DateControl extends ValidationElement {
           <Checkbox name="estimated"
                     label="Estimated"
                     help=""
+                    toggle="false"
                     value={this.state.estimated}
                     onChange={this.handleChange}
                     />

@@ -89,6 +89,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' checked'
     }
 
+    if (this.props.toggle === 'false') {
+      klass += ' no-toggle'
+    }
+
     return klass.trim()
   }
 
@@ -125,6 +129,37 @@ export default class Checkbox extends ValidationElement {
   }
 
   render () {
+    if (this.props.toggle === 'false') {
+      return (
+        <div className={this.divClass()}>
+          <input className={this.inputClass()}
+                id={this.state.name}
+                name={this.state.name}
+                type="checkbox"
+                aria-describedby={this.errorName()}
+                disabled={this.state.disabled}
+                readOnly={this.state.readonly}
+                required={this.state.required}
+                value={this.state.value}
+                onChange={this.handleChange}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+                checked={this.state.checked}
+                />
+          <label className={this.labelClass()}
+                htmlFor={this.state.name}>
+                {this.state.checked}
+            {this.props.children}
+            <span>{this.state.label}</span>
+          </label>
+          <div className={this.errorClass()}>
+            <i className="fa fa-exclamation"></i>
+            {this.state.help}
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
