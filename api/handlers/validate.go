@@ -211,3 +211,17 @@ func ValidatePassportDates(w http.ResponseWriter, r *http.Request) {
 	stack = form.NewErrorStack("Issued", form.ErrFieldInvalid{Message: "Issue must come before expiration date"})
 	EncodeErrJSON(w, stack)
 }
+
+// ValidateEmail validates an email
+func ValidateEmail(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Email")
+
+	var body struct {
+		Address string
+	}
+	DecodeJSON(r.Body, &body)
+
+	_, err := form.EmailField(body.Address).Valid()
+	stack := form.NewErrorStack("Email", err)
+	EncodeErrJSON(w, stack)
+}
