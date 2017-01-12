@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	dateFieldParser = "1/2/2006"
+	dateFieldParser = "1-2-2006"
 )
 
 // DateField stores date information by month, day and year. It also
@@ -22,8 +22,9 @@ type DateField struct {
 // package properly takes into account leap years. If a date field is out of
 // range, an error is returned
 func (d DateField) Valid() (bool, error) {
-	formatted := fmt.Sprintf("%v/%v/%v", d.Month, d.Day, d.Year)
+	formatted := fmt.Sprintf("%v-%v-%v", d.Month, d.Day, d.Year)
 	if _, err := time.Parse(dateFieldParser, formatted); err != nil {
+		fmt.Println(err)
 		return false, ErrFieldInvalid{err.Error()}
 	}
 	return true, nil
@@ -35,7 +36,7 @@ func (d DateField) Time() (time.Time, error) {
 		return time.Time{}, err
 	}
 
-	formatted := fmt.Sprintf("%v/%v/%v", d.Month, d.Day, d.Year)
+	formatted := fmt.Sprintf("%v-%v-%v", d.Month, d.Day, d.Year)
 	return time.Parse(dateFieldParser, formatted)
 }
 
@@ -43,7 +44,7 @@ func (d DateField) Time() (time.Time, error) {
 func (d *DateField) Parse(date string) error {
 	t, err := time.Parse(dateFieldParser, date)
 	if err != nil {
-		return err
+		return ErrFieldInvalid{err.Error()}
 	}
 	d.Day = int64(t.Day())
 	d.Month = int64(t.Month())

@@ -176,3 +176,38 @@ func ValidateDateRange(w http.ResponseWriter, r *http.Request) {
 	stack := form.NewErrorStack("DateRange", err)
 	EncodeErrJSON(w, stack)
 }
+
+// ValidatePassportDates validates that expiration and issue dates are valid and
+// within the appropriate range
+func ValidatePassportDates(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Passport Issued and Expiration Date")
+	var stack form.ErrorStack
+	issued := mux.Vars(r)["issued"]
+	expiration := mux.Vars(r)["expiration"]
+
+	issuedDate := form.DateField{}
+	err := issuedDate.Parse(issued)
+	if err != nil {
+		stack.Append("Issued", err)
+	}
+
+	expirationDate := form.DateField{}
+	err = expirationDate.Parse(expiration)
+	if err != nil {
+		stack.Append("Expiration", err)
+	}
+
+	if stack.HasErrors() {
+		EncodeErrJSON(w, stack)
+		return
+	}
+
+	df := form.DateRangeField{
+		From: issuedDate,
+		To:   expirationDate,
+	}
+
+	_, err = df.Valid()
+	stack = form.NewErrorStack("Issued", form.ErrFieldInvalid{Message: "Issue must come before expiration date"})
+	EncodeErrJSON(w, stack)
+}
