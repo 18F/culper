@@ -8,6 +8,7 @@ import HairColor from '../../Form/HairColor'
 import EyeColor from '../../Form/EyeColor'
 import Sex from '../../Form/Sex'
 import { updateApplication } from '../../../actions/ApplicationActions'
+import { SectionView, SectionViews } from '../SectionView'
 
 class Identifying extends React.Component {
   constructor (props) {
@@ -29,134 +30,126 @@ class Identifying extends React.Component {
     this.props.dispatch(push('/form/identifying/review'))
   }
 
-  handleTransition (nextSection, event) {
-    this.props.dispatch(push(`/form/identifying/${nextSection}`))
-  }
-
   onUpdate (field, values) {
     this.props.dispatch(updateApplication('YourIdentification', field, values))
   }
 
-  // Mapping section identifiers to the associated components.
-  sectionMap (section) {
-    let map = {
-      'height': {
-        'prev': () => { return '' },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')}>Next Section</button>) },
-        'render': () => {
-          return (
-            <Height
-              {...this.props.Height}
-              onUpdate={this.onUpdate.bind(this, 'Height')}
-            />
-          )
-        }
-      },
-      'weight': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'height')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')}>Next Section</button>) },
-        'render': () => {
-          return (
-            <Weight
-              value={this.props.Weight}
-              onUpdate={this.onUpdate.bind(this, 'Weight')}
-            />
-          )
-        }
-      },
-      'haircolor': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'weight')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')}>Next Section</button>) },
-        'render': () => {
-          return (
-            <HairColor
-              value={this.props.HairColor}
-              onUpdate={this.onUpdate.bind(this, 'HairColor')}
-            />
-          )
-        }
-      },
-      'eyecolor': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'haircolor')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, 'sex')}>Next Section</button>) },
-        'render': () => {
-          return (
-            <EyeColor
-              value={this.props.EyeColor}
-              onUpdate={this.onUpdate.bind(this, 'EyeColor')}
-            />
-          )
-        }
-      },
-      'sex': {
-        'prev': () => { return (<button onClick={this.handleTransition.bind(this, 'eyecolor')}>Previous Section</button>) },
-        'next': () => { return (<button onClick={this.handleTransition.bind(this, '')}>Finish Section</button>) },
-        'render': () => {
-          return (
-            <Sex
-              value={this.props.Sex}
-              onUpdate={this.onUpdate.bind(this, 'Sex')}
-            />
-          )
-        }
-      }
-    }
-    return map[section]
+  intro () {
+    return (
+      <div className="identification">
+        <div id="titles" className="usa-grid-full">
+          <div className="usa-width-one-half">
+            <h3>One piece at a time</h3>
+          </div>
+          <div className="usa-width-one-half">
+            <h3>Full section view</h3>
+          </div>
+        </div>
+
+        <div id="dialogs" className="usa-grid-full">
+          <div className="usa-width-one-half">
+            <p>Take a guided tour through the section</p>
+          </div>
+          <div className="usa-width-one-half">
+            <p>View all the sections associated with <strong>Your Identifying Information</strong> at once</p>
+          </div>
+        </div>
+
+        <div id="actions" className="usa-grid-full">
+          <div className="usa-width-one-half">
+            <button onClick={this.handleTour}>Take me on the tour!</button>
+          </div>
+          <div className="usa-width-one-half">
+            <button onClick={this.handleReview}>Show me the full section</button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   render () {
-    const subsection = this.props.subsection
-    if (!subsection) {
-      return (
-        <div className="identification">
-          <div id="titles" className="usa-grid-full">
-            <div className="usa-width-one-half">
-              <h3>One piece at a time</h3>
-            </div>
-            <div className="usa-width-one-half">
-              <h3>Full section view</h3>
-            </div>
-          </div>
-
-          <div id="dialogs" className="usa-grid-full">
-            <div className="usa-width-one-half">
-              <p>Take a guided tour through the section</p>
-            </div>
-            <div className="usa-width-one-half">
-              <p>View all the sections associated with <strong>Identifying</strong> at once</p>
-            </div>
-          </div>
-
-          <div id="actions" className="usa-grid-full">
-            <div className="usa-width-one-half">
-              <button onClick={this.handleTour}>Take me on the tour!</button>
-            </div>
-            <div className="usa-width-one-half">
-              <button onClick={this.handleReview}>Show me the full section</button>
-            </div>
-          </div>
-        </div>
-      )
-    }
-
-    if (subsection === 'review') {
-      return (
-        <div className="identifying">
-          {this.sectionMap('height').render()}
-          {this.sectionMap('weight').render()}
-          {this.sectionMap('haircolor').render()}
-          {this.sectionMap('eyecolor').render()}
-          {this.sectionMap('sex').render()}
-        </div>
-      )
-    }
-
     return (
-      <div className="identifying">
-        {this.sectionMap(subsection).render()}
-        {this.sectionMap(subsection).prev()}
-        {this.sectionMap(subsection).next()}
-      </div>
+      <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionView name="">
+          {this.intro()}
+        </SectionView>
+        <SectionView
+          name="review"
+          back="othernames"
+          backLabel="Other names">
+          <Height
+            {...this.props.Height}
+            onUpdate={this.onUpdate.bind(this, 'Height')}
+          />
+          <Weight
+            value={this.props.Weight}
+            onUpdate={this.onUpdate.bind(this, 'Weight')}
+          />
+          <HairColor
+            value={this.props.HairColor}
+            onUpdate={this.onUpdate.bind(this, 'HairColor')}
+          />
+          <EyeColor
+            value={this.props.EyeColor}
+            onUpdate={this.onUpdate.bind(this, 'EyeColor')}
+          />
+          <Sex
+            value={this.props.Sex}
+            onUpdate={this.onUpdate.bind(this, 'Sex')}
+          />
+        </SectionView>
+        <SectionView
+          name="height"
+          next="identifying/weight"
+          nextLabel="Weight">
+          <Height
+            {...this.props.Height}
+            onUpdate={this.onUpdate.bind(this, 'Height')}
+          />
+        </SectionView>
+        <SectionView
+          name="weight"
+          next="identifying/haircolor"
+          nextLabel="Hair color"
+          back="identifying/height"
+          backLabel="Height">
+          <Weight
+            value={this.props.Weight}
+            onUpdate={this.onUpdate.bind(this, 'Weight')}
+          />
+        </SectionView>
+        <SectionView
+          name="haircolor"
+          next="identifying/eyecolor"
+          nextLabel="Eye color"
+          back="identifying/weight"
+          backLabel="Weight">
+          <HairColor
+            value={this.props.HairColor}
+            onUpdate={this.onUpdate.bind(this, 'HairColor')}
+          />
+        </SectionView>
+        <SectionView
+          name="eyecolor"
+          next="identifying/sex"
+          nextLabel="Sex"
+          back="identifying/haircolor"
+          backLabel="Hair color">
+          <EyeColor
+            value={this.props.EyeColor}
+            onUpdate={this.onUpdate.bind(this, 'EyeColor')}
+          />
+        </SectionView>
+        <SectionView
+          name="sex"
+          back="identifying/eyecolor"
+          backLabel="Eye color">
+          <Sex
+            value={this.props.Sex}
+            onUpdate={this.onUpdate.bind(this, 'Sex')}
+          />
+        </SectionView>
+      </SectionViews>
     )
   }
 }
@@ -169,8 +162,7 @@ function mapStateToProps (state) {
     Weight: identification.Weight || 0,
     HairColor: identification.HairColor || '',
     EyeColor: identification.EyeColor || '',
-    Sex: identification.Sex || '',
-
+    Sex: identification.Sex || ''
   }
 }
 

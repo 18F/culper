@@ -1,18 +1,39 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-h1 {
-    /* Test for conversion to CSS */
-    color: #000;
+h1 {}
+h2 {
+	font-size:4rem;
+	margin-top:0;
+	margin-bottom:0.4em;
 }
 
 h3 {
 	font-size:2.3rem;
 }
+
+/* design needs a touch more line height than standards */
+p {
+	line-height:1.6;
+}
+
+a:focus {
+	box-shadow:none;
+}
+
 .usa-header {
     font-family: $eapp-serif;
     background-color: $eapp-blue;
     min-height:16.7rem;
+
+	.usa-banner-inner {
+		margin:0;
+		max-width:none;
+		.usa-banner-button {
+			display:inline-block;
+			width:auto;
+		}
+	}
 
     .eapp-header {
         min-height:14.5rem;
@@ -29,17 +50,16 @@ h3 {
             .eapp-logo-text {
                 font-size:3rem;
                 font-weight:$eapp-bold;
-                margin-top:4.4rem;
-            }
-            .eapp-logo-sf86 {
-                font-size:1.7rem;
+                margin-top:5.2rem;
             }
         }
 
+        /* logout control */
         .eapp-logout {
             position:absolute;
             right:0;
             top:2.2rem;
+            z-index:100;
             font-family:$eapp-sans;
             font-size:1.6rem;
             a {
@@ -80,15 +100,35 @@ h3 {
         left:0;
         height:100%;
         background:$eapp-green;
-        width:15%;
+        width:0;
     }
 }
 
 #main-content {}
 
+/* frame out the live form area for consistency */
+.eapp-core {
+	padding:5.5rem 0 2rem 6.5rem;
+	> * {
+		padding:0;
+	}
+}
+
 .hidden {
     display: none;
     visibility: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .no-gutter {

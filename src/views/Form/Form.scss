@@ -1,20 +1,94 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-.eapp-form {
-	padding:0;
-	margin-left:6rem;
-	margin-top:5.4rem;
-	button {
-		width:25rem;
-		text-align:center;
-		padding:1.9rem 1rem;
+// .eapp-form {
+// 	padding:0;
+
+.eapp-core {
+
+	label, input, textarea, select {
+		max-width:64rem;
 	}
+
+	.eapp-field-wrap {
+		position:relative;
+		margin-bottom:2.9rem;
+		>div {
+			display:inline-block;
+			min-width:95%;
+		}
+	}
+
+	label {
+		margin-top:0;
+		color:$eapp-grey-dark;
+		> input[type="radio"] {
+			max-width:0;
+		}
+	}
+	button {
+		position:relative;
+		width:24rem;
+		margin-top:4rem;
+	}
+
+	/* previous / next in form buttons */
+	.eapp-prev, .eapp-next {
+		min-height:5.5rem;
+		line-height:5.5rem;
+		padding:2rem 1rem;
+		.button-icon {
+			display:inline-block;
+			line-height:inherit;
+		}
+		> span {
+			line-height:1.2;
+		}
+		.eapp-nav-label {}
+	}
+	.eapp-prev {
+		text-align:left;
+		.button-icon {
+
+		}
+	}
+	.eapp-next {
+		text-align:right;
+		float:right;
+		margin-right:4rem;
+		.button-icon {
+			
+		}
+
+	}
+
 	#titles {
 		margin-bottom:1.2rem;
 	}
 	#actions {
 		margin-top:5.7rem;
+	}
+
+	/* handle option list blocks, basic structure */
+	.option-list {
+		max-width:64rem;
+		padding-top:0.3rem;
+		/* handle generic options */
+		> div {
+			display:inline-block;
+			min-width:7.6rem;
+			line-height:4rem;
+			margin-bottom:1.2rem;
+			margin-right:1.6rem;
+			text-align:center;
+			background:$eapp-grey-light;
+			border:1px solid $eapp-grey-dark;
+			&:hover {
+				color:#fff;
+				border: 1px solid $eapp-green-dark;
+				background:$eapp-green;
+			}
+		}
 	}
 }
 #login {

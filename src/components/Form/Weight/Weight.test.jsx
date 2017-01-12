@@ -6,7 +6,7 @@ describe('The Weight component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'input-focus',
-      label: 'pounds',
+      label: 'Pounds',
       help: 'Helpful error message',
       value: 10
     }

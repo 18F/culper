@@ -154,3 +154,25 @@ func ValidateSex(w http.ResponseWriter, r *http.Request) {
 	stack := form.NewErrorStack("Sex", err)
 	EncodeErrJSON(w, stack)
 }
+
+// ValidateDateRange validates a date range
+func ValidateDateRange(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating DateRange")
+
+	var respBody struct {
+		From string
+		To   string
+	}
+	DecodeJSON(r.Body, &respBody)
+	df := form.DateRangeField{}
+	err := df.Parse(respBody.From, respBody.To)
+	if err != nil {
+		stack := form.NewErrorStack("DateRange", err)
+		EncodeErrJSON(w, stack)
+		return
+	}
+
+	_, err = df.Valid()
+	stack := form.NewErrorStack("DateRange", err)
+	EncodeErrJSON(w, stack)
+}

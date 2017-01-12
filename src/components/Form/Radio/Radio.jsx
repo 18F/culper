@@ -26,6 +26,7 @@ export default class Radio extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ checked: !this.state.checked }, () => {
       super.handleChange(event)
     })
@@ -117,30 +118,31 @@ export default class Radio extends ValidationElement {
   render () {
     return (
       <div className={this.divClass()}>
-        <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
-               type="radio"
-               aria-describedby={this.errorName()}
-               disabled={this.state.disabled}
-               maxLength={this.state.maxlength}
-               pattern={this.state.pattern}
-               readOnly={this.state.readonly}
-               required={this.state.required}
-               value={this.state.value}
-               onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               />
         <label className={this.labelClass()}
                htmlFor={this.state.name}>
-          {this.state.label}
+          <input className={this.inputClass()}
+                 id={this.state.name}
+                 name={this.state.name}
+                 type="radio"
+                 aria-describedby={this.errorName()}
+                 disabled={this.state.disabled}
+                 maxLength={this.state.maxlength}
+                 pattern={this.state.pattern}
+                 readOnly={this.state.readonly}
+                 required={this.state.required}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 />
+          {this.props.children}
+          <span>{this.state.label}</span>
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
+          <span className={this.spanClass()}
+                id={this.errorName()}
+                role="alert">
+            {this.state.help}
+          </span>
       </div>
     )
   }
