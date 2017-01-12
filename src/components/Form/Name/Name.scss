@@ -1,6 +1,13 @@
+@import 'eqip-colors';
+
 .name {
     .inline {
         display: inline-block;
         margin-left: 1rem;
+    }
+
+    .optional {
+        color: $eapp-grey;
+        font-style: italic;
     }
 }
