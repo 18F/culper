@@ -2,15 +2,30 @@
     margin-top: 2rem;
     padding-left: 0;
     padding-right: 0;
+
     .usa-grid {
         padding-left:0;
         padding-right:0;
     }
+
     .from-label {
-        margin-top: 3.5rem !important;
-        width: 5rem;
+        display: inline-block;
+        margin-top: 1.5rem !important;
+        width: 8rem;
+        vertical-align: top;
     }
-    .from-estimated {
-        margin-top: 3.5rem;
+
+    .datecontrol {
+        display: inline-block;
+    }
+
+    .from-present {
+        display: inline-block;
+        margin-top: 0.5rem;
+        vertical-align: top;
+
+        .or {
+            margin-right: 1rem;
+        }
     }
 }

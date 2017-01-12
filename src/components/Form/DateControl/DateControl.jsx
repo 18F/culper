@@ -328,6 +328,7 @@ export default class DateControl extends ValidationElement {
           <Checkbox name="estimated"
                     label="Estimated"
                     help=""
+                    toggle="false"
                     value={this.state.estimated}
                     onChange={this.handleChange}
                     />

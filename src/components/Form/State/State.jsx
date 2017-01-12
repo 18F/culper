@@ -10,7 +10,7 @@ export default class State extends ValidationElement {
                 help="State is required"
                 disabled={this.props.disabled}
                 onChange={this.props.onChange}
-                onValidation={this.props.onValidation}
+                onValidate={this.props.onValidate}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 value={this.props.value}

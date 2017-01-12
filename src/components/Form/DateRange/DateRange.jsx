@@ -1,6 +1,7 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Dropdown from '../Dropdown'
+import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
 import Number from '../Number'
 
@@ -62,101 +63,36 @@ export default class DateRange extends ValidationElement {
         <h2>{this.state.title}</h2>
         {error}
         <div className="usa-grid">
-          <div className="usa-width-one-fourth from-label">
+          <div className="from-label">
             From date
           </div>
-          <div className="usa-width-one-fourth">
-            <Dropdown
-              name="fromMonth"
-              label="Month"
-              value={this.state.fromMonth}
-              disabled={this.props.disabled}
-              onChange={this.handleChange.bind(this, 'fromMonth')}
-              onBlur={this.props.onBlur}
-              onFocus={this.props.onFocus}>
-              <option value=""></option>
-              <option value="1"> Jan(01) </option>
-              <option value="2"> Feb(02) </option>
-              <option value="3"> Mar(03) </option>
-              <option value="4"> Apr(04) </option>
-              <option value="5"> May(05) </option>
-              <option value="6"> Jun(06) </option>
-              <option value="7"> Jul(07) </option>
-              <option value="8"> Aug(08) </option>
-              <option value="9"> Sep(09) </option>
-              <option value="10"> Oct(10) </option>
-              <option value="11"> Nov(11) </option>
-              <option value="12"> Dec(12) </option>
-            </Dropdown>
-          </div>
-          <div className="usa-width-one-fourth">
-            <Number
-              name="fromYear"
-              min="1900"
-              max="3000"
-              label="Year"
-              value={this.state.fromYear}
-              onChange={this.handleChange.bind(this, 'fromYear')}
-            >
-            </Number>
-          </div>
-          <div className="usa-width-one-fourth from-estimated">
-            <Checkbox
-              name="fromEstimated"
-              label="Estimated"
-              value={this.state.fromEstimated}
-              onChange={this.handleChange.bind(this, 'fromEstimated')}
-            >
-            </Checkbox>
-          </div>
+          <DateControl name="from"
+                       value={this.state.toMonth}
+                       estimated={this.state.estimated}
+                       onChange={this.handleChange}
+                       onValidate={this.handleValidation}
+                       />
         </div>
         <div className="usa-grid">
-          <div className="usa-width-one-fourth from-label">
+        </div>
+        <div className="usa-grid">
+          <div className="from-label">
             To date
           </div>
-          <div className="usa-width-one-fourth">
-            <Dropdown
-              name="toMonth"
-              label="Month"
-              help={this.props.help}
-              onChange={this.handleChange.bind(this, 'toMonth')}
-              value={this.state.toMonth}
-              disabled={this.props.disabled}
-              onBlur={this.props.onBlur}
-              onFocus={this.props.onFocus}>
-              <option value=""></option>
-              <option value="1"> Jan(01) </option>
-              <option value="2"> Feb(02) </option>
-              <option value="3"> Mar(03) </option>
-              <option value="4"> Apr(04) </option>
-              <option value="5"> May(05) </option>
-              <option value="6"> Jun(06) </option>
-              <option value="7"> Jul(07) </option>
-              <option value="8"> Aug(08) </option>
-              <option value="9"> Sep(09) </option>
-              <option value="10"> Oct(10) </option>
-              <option value="11"> Nov(11) </option>
-              <option value="12"> Dec(12) </option>
-            </Dropdown>
-          </div>
-          <div className="usa-width-one-fourth">
-            <Number
-              name="toYear"
-              min="1900"
-              max="3000"
-              label="Year"
-              value={this.state.toYear}
-              onChange={this.handleChange.bind(this, 'toYear')}
-            >
-            </Number>
-          </div>
-          <div className="usa-width-one-fourth from-estimated">
-            <Checkbox
-              name="toEstimated"
-              label="Estimated"
-              value={this.state.toEstimated}
-              onChange={this.handleChange.bind(this, 'toEstimated')}
-            >
+          <DateControl name="to"
+                       value={this.state.toMonth}
+                       estimated={this.state.estimated}
+                       onChange={this.handleChange}
+                       onValidate={this.handleValidation}
+                       />
+          <div className="from-present">
+            <span className="or"> or </span>
+            <Checkbox name="present"
+                      label=""
+                      value={this.state.toEstimated}
+                      onChange={this.handleChange.bind(this, 'toEstimated')}
+                      >
+              <span>Present</span>
             </Checkbox>
           </div>
         </div>

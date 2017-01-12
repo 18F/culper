@@ -207,7 +207,7 @@ class OtherNamesUsed extends ValidationElement {
               })
             }
             <div className="text-center">
-              <button onClick={this.addOtherName.bind(this)}>
+              <button className="add" onClick={this.addOtherName.bind(this)}>
                 <span>Add another name used</span>
                 <i className="fa fa-plus-circle"></i>
               </button>

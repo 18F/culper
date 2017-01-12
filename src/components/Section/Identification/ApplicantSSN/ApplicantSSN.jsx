@@ -227,6 +227,7 @@ export default class ApplicantSSN extends ValidationElement {
                       label="Not applicable"
                       ref="notApplicable"
                       help=""
+                      toggle="false"
                       value={this.state.notApplicable}
                       onChange={this.handleChange}
                       onValidate={this.handleValidation}
