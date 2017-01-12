@@ -14,8 +14,11 @@ export default class Name extends ValidationElement {
       name: props.name,
       label: props.label,
       first: props.first,
+      firstInitialOnly: props.firstInitialOnly,
       last: props.last,
+      lastInitialOnly: props.lastInitialOnly,
       middle: props.middle,
+      middleInitialOnly: props.middleInitialOnly,
       suffix: props.suffix,
       suffixOther: props.suffixOther,
       focus: props.focus || false,
@@ -50,17 +53,39 @@ export default class Name extends ValidationElement {
       case 'suffixOther':
         updated = { suffixOther: value }
         break
+      case 'firstInitialOnly':
+        updated = { firstInitialOnly: event.target.checked }
+        break
+      case 'lastInitialOnly':
+        updated = { lastInitialOnly: event.target.checked }
+        break
+      case 'middleInitialOnly':
+        updated = { middleInitialOnly: event.target.checked }
+        break
+
     }
 
     this.setState(updated, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
-        const { first, last, middle, suffix, suffixOther } = this.state
+        const {
+          first,
+          firstInitialOnly,
+          last,
+          lastInitialOnly,
+          middle,
+          middleInitialOnly,
+          suffix,
+          suffixOther
+        } = this.state
 
         this.props.onUpdate({
           first: first,
+          firstInitialOnly: firstInitialOnly,
           last: last,
+          lastInitialOnly: lastInitialOnly,
           middle: middle,
+          middleInitialOnly: middleInitialOnly,
           suffix: suffix,
           suffixOther: suffixOther
         })
@@ -141,7 +166,7 @@ export default class Name extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="name">
         <h2>Your full name</h2>
         <Help id="identification.name.first.help">
           <Text name="first"
@@ -156,6 +181,15 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
+                <div className="text-right">
+                  <input
+                    id="firstInitialOnly"
+                    type="checkbox"
+                    value="firstInitial"
+                    checked={this.props.firstInitialOnly}
+                    onChange={this.handleChange} />
+                  <label>Initial Only</label>
+                </div>
         </Help>
         <Help id="identification.name.middle.help">
           <Text name="middle"
@@ -170,6 +204,15 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
+                <div className="text-right">
+                  <input
+                    id="middleInitialOnly"
+                    type="checkbox"
+                    value="middleInitial"
+                    checked={this.props.middleInitialOnly}
+                    onChange={this.handleChange} />
+                  <label>Initial Only</label>
+                </div>
         </Help>
         <Help id="identification.name.last.help">
           <Text name="last"
@@ -184,6 +227,15 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
+                <div className="text-right">
+                  <input
+                    id="lastInitialOnly"
+                    type="checkbox"
+                    value="lastInitial"
+                    checked={this.props.lastInitialOnly}
+                    onChange={this.handleChange} />
+                  <label>Initial Only</label>
+                </div>
         </Help>
         <Help id="identification.name.suffix.help">
           <label>Suffix</label>
