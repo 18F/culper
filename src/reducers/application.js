@@ -11,7 +11,7 @@ const reducer = function (sectionName) {
     // perform for the relevant section
     if (action.section === sectionName) {
       // copy current state
-      const updated = {...state}
+      let updated = {...state}
 
       // Override all values for the particular reducer key
       updated[action.property] = action.values
