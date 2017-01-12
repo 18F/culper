@@ -29,7 +29,7 @@ class Navigation extends React.Component {
 
     let count = 0
     for (let section in this.props.errors) {
-      if (section !== crumbs[0]) {
+      if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
         continue
       }
 
@@ -56,14 +56,6 @@ class Navigation extends React.Component {
 
       if (crumbs.length === 1) {
         return this.props.completed[section].status === 'complete'
-      } else {
-        for (let sub in this.props.completed[section]) {
-          if (sub !== crumbs[1]) {
-            continue
-          }
-
-          return this.props.completed[section][sub].status === 'complete'
-        }
       }
     }
 
@@ -109,31 +101,33 @@ class Navigation extends React.Component {
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
       const sectionIcon = this.getIcon(sectionClass)
+      const subsections = section.subsections.map(subsection => {
+        const subUrl = `/form/${section.url}/${subsection.url}`
+        const subClass = this.getClassName(subUrl, pathname)
+        const subIcon = this.getIcon(subClass)
+        return (
+          <div key={subsection.name} className="subsection" >
+            <Link to={subUrl} className={subClass}>
+              {subIcon}
+              <span className="name">{subsection.name}</span>
+            </Link>
+          </div>
+        )
+      })
+
+      // Increment the section number
       sectionNum++
+
       return (
         <div key={section.name} className="section">
           <span className="title">
             <Link to={url} className={sectionClass}>
+              {sectionIcon}
               <span className="number">{sectionNum}</span>
               <span className="name">{section.name}</span>
-              {sectionIcon}
             </Link>
           </span>
-          {
-            section.subsections.map(subsection => {
-              const subUrl = `/form/${section.url}/${subsection.url}`
-              const subClass = this.getClassName(subUrl, pathname)
-              const subIcon = this.getIcon(subClass)
-              return (
-                <div key={subsection.name} className="subsection" >
-                  <Link to={subUrl} className={subClass}>
-                    <span className="name">{subsection.name}</span>
-                    {subIcon}
-                  </Link>
-                </div>
-              )
-            })
-          }
+          { this.isActive(url, pathname) ? subsections : '' }
         </div>
       )
     })
@@ -173,8 +167,8 @@ const sectionNavMap = [
     subsections: [
       { name: 'Height', url: 'height' },
       { name: 'Weight', url: 'weight' },
-      { name: 'Hair Color', url: 'haircolor' },
-      { name: 'Eye Color', url: 'eyecolor' },
+      { name: 'Hair Color', url: 'hair' },
+      { name: 'Eye Color', url: 'eye' },
       { name: 'Gender', url: 'sex' }
     ]
   }

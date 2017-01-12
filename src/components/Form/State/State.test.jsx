@@ -14,6 +14,6 @@ describe('The State component', () => {
     component.find('select#' + expected.name).simulate('change')
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('select#' + expected.name).length).toEqual(1)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('div.hidden').length).toEqual(1)
   })
 })

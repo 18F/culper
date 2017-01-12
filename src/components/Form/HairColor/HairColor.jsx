@@ -2,18 +2,20 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Help from '../Help'
 import Checkbox from '../Checkbox'
+import CheckboxGroup from '../CheckboxGroup'
 
 export default class HairColor extends ValidationElement {
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      value: props.value || []
+      value: props.value || [],
+      errors: []
     }
   }
 
   handleChange (event) {
-    let color = event.target.id.split('-')[1]
+    let color = event.target.value
     let selected = [...this.state.value]
 
     if (selected.includes(color)) {
@@ -25,10 +27,20 @@ export default class HairColor extends ValidationElement {
     }
 
     this.setState({value: selected}, () => {
+      this.handleValidation(event, null, this.state.errors)
       if (this.props.onUpdate) {
         this.props.onUpdate(selected)
       }
     })
+  }
+
+  handleValidation (event, status, errors) {
+    event.persist()
+    let s = null
+    if (this.state.value.length > 0) {
+      s = true
+    }
+    super.handleValidation(event, { [this.props.name]: { status: s }}, errors)
   }
 
   hasColor (color) {
@@ -39,19 +51,21 @@ export default class HairColor extends ValidationElement {
     return (
       <div className="hair-colors">
         <h2>Hair Color</h2>
-        <Help id="traits.hair">
-          <div className="option-list">
+        <Help id="traits.hair.help">
+          <label>&nbsp;</label>
+          <CheckboxGroup className="option-list eapp-extend-labels" selectedValues={this.state.value}>
             <Checkbox name="hair-bald"
                       label="Bald"
                       value="Bald"
+                      labelClass="black"
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-ban" aria-hidden="true"></i>
+              <i className="fa fa-ban bald" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-black"
                       label="Black"
@@ -59,11 +73,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire black" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-blonde"
                       label="Blonde or strawberry"
@@ -71,11 +85,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire blonde" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-brown"
                       label="Brown"
@@ -83,11 +97,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire brown" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-gray"
                       label="Gray or partially gray"
@@ -95,11 +109,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire gray" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-red"
                       label="Red or auburn"
@@ -107,11 +121,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire red" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-sandy"
                       label="Sandy"
@@ -119,11 +133,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire sandy" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-white"
                       label="White"
@@ -131,11 +145,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire white" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-blue"
                       label="Blue"
@@ -143,11 +157,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire blue" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-green"
                       label="Green"
@@ -155,11 +169,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire green" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-orange"
                       label="Orange"
@@ -167,11 +181,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire orange" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-pink"
                       label="Pink"
@@ -179,11 +193,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire pink" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-purple"
                       label="Purple"
@@ -191,11 +205,11 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-fire" aria-hidden="true"></i>
+              <i className="fa fa-fire purple" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-unknown"
                       label="Unspecified or unknown"
@@ -203,13 +217,13 @@ export default class HairColor extends ValidationElement {
                       help={this.props.help}
                       disabled={this.props.disabled}
                       onChange={this.handleChange}
-                      onValidation={this.props.onValidation}
+                      onValidate={this.handleValidation}
                       onBlur={this.props.onBlur}
                       onFocus={this.props.onFocus}
                       >
-              <i className="fa fa-question-circle" aria-hidden="true"></i>
+              <i className="fa fa-question-circle unknown" aria-hidden="true"></i>
             </Checkbox>
-          </div>
+          </CheckboxGroup>
         </Help>
       </div>
     )

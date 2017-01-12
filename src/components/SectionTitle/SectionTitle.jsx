@@ -8,15 +8,15 @@ import { connect } from 'react-redux'
  * Using `react-redux` and the `dispatch()` function use the following snippet:
  *
  * ```js
- * this.props.dispatch(updateTitle('Chunky Monkey'))
+ * this.props.dispatch(updateSection('section', 'subsection', 'Chunky Monkey'))
  * ```
  *
- * `updateTitle()` can be found in `SectionActions`
+ * `updateSection()` can be found in `SectionActions`
  */
 class SectionTitle extends React.Component {
   render () {
     return (
-      <div className="usa-width-three-fourths title">
+      <div className="title">
         <span className="title-text">
           {this.props.title}
         </span>

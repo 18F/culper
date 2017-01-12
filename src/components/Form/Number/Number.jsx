@@ -20,7 +20,8 @@ export default class Number extends ValidationElement {
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCode: null
     }
   }
 
@@ -64,26 +65,36 @@ export default class Number extends ValidationElement {
    */
   handleValidation (event, status) {
     if (status === false) {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, errorCode)
       return
     }
 
+    let errorCode = null
     let hits = 0
     status = true
 
     if (this.state.value) {
       if (this.state.min) {
         status = status && parseInt(this.state.value) >= parseInt(this.state.min)
+        if (status === false) {
+          errorCode = 'min'
+        }
         hits++
       }
 
       if (this.state.max) {
         status = status && parseInt(this.state.value) <= parseInt(this.state.max)
+        if (status === false) {
+          errorCode = 'max'
+        }
         hits++
       }
 
       if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length <= parseInt(this.state.maxlength)
+        status = status && ('' + this.state.value).length <= parseInt(this.state.maxlength)
+        if (status === false) {
+          errorCode = 'length'
+        }
         hits++
       }
     }
@@ -94,8 +105,10 @@ export default class Number extends ValidationElement {
     }
 
     // Set the internal state
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
+      let prop = this.state.name || 'input'
+      let e = { [prop]: errorCode }
+      super.handleValidation(event, status, e)
     })
   }
 
@@ -135,11 +148,11 @@ export default class Number extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
+    if (this.state.error && this.state.help) {
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -171,11 +184,6 @@ export default class Number extends ValidationElement {
                htmlFor={this.state.name}>
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
         <input className={this.inputClass()}
                id={this.state.name}
                name={this.state.name}
@@ -194,6 +202,10 @@ export default class Number extends ValidationElement {
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                />
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.state.help}
+        </div>
       </div>
     )
   }

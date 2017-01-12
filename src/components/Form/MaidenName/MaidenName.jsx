@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 import Radio from '../Radio'
+import RadioGroup from '../RadioGroup'
 
 export default class MaidenName extends ValidationElement {
   constructor (props) {
@@ -65,40 +66,44 @@ export default class MaidenName extends ValidationElement {
 
   render () {
     return (
-      <div className="maiden-name">
+      <div className="maiden-name eapp-field-wrap">
         <label>Maiden Name</label>
-        <Radio name="maiden-name"
-               label="Yes"
-               value="Yes"
-               help={this.state.help}
-               disabled={this.state.disabled}
-               readonly={this.state.readonly}
-               required={this.state.required}
-               value={this.state.value}
-               focus={this.state.focus}
-               error={this.state.error}
-               valid={this.state.valid}
-               onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               onValidate={this.handleValidation}
-               />
-        <Radio name="maiden-name"
-               label="No"
-               value="No"
-               help={this.state.help}
-               disabled={this.state.disabled}
-               readonly={this.state.readonly}
-               required={this.state.required}
-               value={this.state.value}
-               focus={this.state.focus}
-               error={this.state.error}
-               valid={this.state.valid}
-               onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               onValidate={this.handleValidation}
-               />
+        <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>
+          <Radio name="maiden-name"
+                 label=""
+                 value="Yes"
+                 help={this.state.help}
+                 disabled={this.state.disabled}
+                 readonly={this.state.readonly}
+                 required={this.state.required}
+                 focus={this.state.focus}
+                 error={this.state.error}
+                 valid={this.state.valid}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 onValidate={this.handleValidation}
+                 >
+            Yes
+          </Radio>
+          <Radio name="maiden-name"
+                 label=""
+                 value="No"
+                 help={this.state.help}
+                 disabled={this.state.disabled}
+                 readonly={this.state.readonly}
+                 required={this.state.required}
+                 focus={this.state.focus}
+                 error={this.state.error}
+                 valid={this.state.valid}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 onValidate={this.handleValidation}
+                 >
+            No
+          </Radio>
+        </RadioGroup>
       </div>
     )
   }

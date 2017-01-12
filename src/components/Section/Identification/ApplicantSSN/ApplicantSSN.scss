@@ -1,32 +1,28 @@
-.identification {
-    .ssn {
-        .first {
-            width: 6rem;
-            display: inline-block;
+.ssn {
+    .first {
+        width: 9rem !important;
+        display: inline-block;
 
-            input {
-                text-align: center;
-            }
-        }
+        input {}
+    }
 
-        .middle {
-            width: 5rem;
-            display: inline-block;
-            margin-left: 2rem;
-            margin-right: 2rem;
+    .middle {
+        width: 8rem !important;
+        display: inline-block;
+        margin-left: 2rem;
+        margin-right: 2rem;
 
-            input {
-                text-align: center;
-            }
-        }
+        input {}
+    }
 
-        .last {
-            width: 8rem;
-            display: inline-block;
+    .last {
+        width: 10rem !important;
+        display: inline-block;
 
-            input {
-                text-align: center;
-            }
-        }
+        input {}
+    }
+
+    .coupled-flags {
+        padding-left: 18rem;
     }
 }

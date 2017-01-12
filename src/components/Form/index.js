@@ -27,6 +27,8 @@ import MilitaryState from './MilitaryState'
 import MaidenName from './MaidenName'
 import Name from './Name'
 import DateRange from './DateRange'
+import RadioGroup from './RadioGroup'
+import CheckboxGroup from './CheckboxGroup'
 
 export {
   ValidationElement,
@@ -52,5 +54,7 @@ export {
   MilitaryState,
   MaidenName,
   Name,
-  DateRange
+  DateRange,
+  RadioGroup,
+  CheckboxGroup
 }
