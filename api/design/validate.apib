@@ -33,11 +33,13 @@ FORMAT: 1A
 
 + Response 500
 
-# Validate Passport [/validate/passport/{passport}]
+# Validate Passport [/validate/passport]
 
-## Validates Passport Number [GET]
+## Validate Passport Number [/validate/passport/number/{passport}]
+
+### Validates Passport Number [GET]
 + Parameters
-  + passport: `TODO` - Passport number for a person
+  + passport: The passport number provided by a government source
 
 + Request
   + Headers
@@ -55,7 +57,7 @@ FORMAT: 1A
     {
       "Errors": [
         {
-          "Fieldname": "Passport",
+          "Fieldname": "Number",
           "Error": ""
         }
       ]
@@ -63,7 +65,7 @@ FORMAT: 1A
 
 + Response 500
 
-# Validate Adddress [/validate/address]
+# Validate Address [/validate/address]
 
 ## Validates complete address [POST]
 
@@ -79,7 +81,6 @@ FORMAT: 1A
       X-Eqip-Media-Type: eqip.v1
 
   + Body
-
 
     {
       "Errors": [
