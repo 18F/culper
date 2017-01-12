@@ -19,6 +19,7 @@ export default class Name extends ValidationElement {
       lastInitialOnly: props.lastInitialOnly,
       middle: props.middle,
       middleInitialOnly: props.middleInitialOnly,
+      noMiddleName: props.noMiddleName,
       suffix: props.suffix,
       suffixOther: props.suffixOther,
       focus: props.focus || false,
@@ -62,6 +63,9 @@ export default class Name extends ValidationElement {
       case 'middleInitialOnly':
         updated = { middleInitialOnly: event.target.checked }
         break
+      case 'noMiddleName':
+        updated = { noMiddleName: event.target.checked }
+        break
 
     }
 
@@ -75,6 +79,7 @@ export default class Name extends ValidationElement {
           lastInitialOnly,
           middle,
           middleInitialOnly,
+          noMiddleName,
           suffix,
           suffixOther
         } = this.state
@@ -86,6 +91,7 @@ export default class Name extends ValidationElement {
           lastInitialOnly: lastInitialOnly,
           middle: middle,
           middleInitialOnly: middleInitialOnly,
+          noMiddleName: noMiddleName,
           suffix: suffix,
           suffixOther: suffixOther
         })
@@ -204,15 +210,24 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-                <div className="text-right">
-                  <input
-                    id="middleInitialOnly"
-                    type="checkbox"
-                    value="middleInitial"
-                    checked={this.props.middleInitialOnly}
-                    onChange={this.handleChange} />
-                  <label>Initial Only</label>
-                </div>
+          <div className="text-right">
+            <div className="inline">
+            <input id="noMiddleName"
+                   type="checkbox"
+                   value="noMiddleName"
+                   checked={this.props.noMiddleName}
+                   onChange={this.handleChange} />
+            <label>No middle name</label>
+            </div>
+            <div className="inline">
+            <input id="middleInitialOnly"
+                   type="checkbox"
+                   value="middleInitial"
+                   checked={this.props.middleInitialOnly}
+                   onChange={this.handleChange} />
+            <label>Initial Only</label>
+            </div>
+          </div>
         </Help>
         <Help id="identification.name.last.help">
           <Text name="last"
@@ -227,132 +242,132 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-                <div className="text-right">
-                  <input
-                    id="lastInitialOnly"
-                    type="checkbox"
-                    value="lastInitial"
-                    checked={this.props.lastInitialOnly}
-                    onChange={this.handleChange} />
-                  <label>Initial Only</label>
-                </div>
+          <div className="text-right">
+            <input
+              id="lastInitialOnly"
+              type="checkbox"
+              value="lastInitial"
+              checked={this.props.lastInitialOnly}
+              onChange={this.handleChange} />
+            <label>Initial Only</label>
+          </div>
         </Help>
         <Help id="identification.name.suffix.help">
           <label>Suffix</label>
 
           <RadioGroup className="option-list" selectedValue={this.state.suffix}>
             <Radio name="suffix"
-              label="None"
-              value="None"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="None"
+                   value="None"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="Jr"
-              value="Jr"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="Jr"
+                   value="Jr"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="Sr"
-              value="Sr"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="Sr"
+                   value="Sr"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="I"
-              value="I"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="I"
+                   value="I"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="II"
-              value="II"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="II"
+                   value="II"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="III"
-              value="III"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="III"
+                   value="III"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="IV"
-              value="IV"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="IV"
+                   value="IV"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="V"
-              value="V"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="V"
+                   value="V"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="VI"
-              value="VI"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="VI"
+                   value="VI"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="VII"
-              value="VII"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="VII"
+                   value="VII"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="VIII"
-              value="VIII"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="VIII"
+                   value="VIII"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="IX"
-              value="IX"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="IX"
+                   value="IX"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="X"
-              value="X"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="X"
+                   value="X"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
             <Radio name="suffix"
-              label="Other"
-              value="Other"
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
+                   label="Other"
+                   value="Other"
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
           </RadioGroup>
           <div className={this.suffixOtherClass()}>
             <Text name="suffixOther"
