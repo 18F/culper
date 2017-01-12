@@ -12,7 +12,7 @@ export default class ApplicantSSN extends ValidationElement {
       first: this.props.first || this.ripper(props.value, 0, 3),
       middle: this.props.middle || this.ripper(props.value, 3, 5),
       last: this.props.last || this.ripper(props.value, 5, 9),
-      notApplicable: !!props.notApplicable,
+      notApplicable: props.notApplicable,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
@@ -230,6 +230,7 @@ export default class ApplicantSSN extends ValidationElement {
                       help=""
                       toggle="false"
                       value={this.state.notApplicable}
+                      checked={this.state.notApplicable}
                       onChange={this.handleChange}
                       onValidate={this.handleValidation}
                       onFocus={this.props.onFocus}
