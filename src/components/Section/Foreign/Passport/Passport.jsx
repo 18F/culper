@@ -6,6 +6,8 @@ export default class Passport extends ValidationElement {
     super(props)
     this.state = {
       Name: this.props.Name || {},
+      Issued: this.props.Issued || {},
+      Expiration: this.props.Expiration || {},
       yesNo: props.HasPassport,
       error: false,
       valid: false,
@@ -26,8 +28,6 @@ export default class Passport extends ValidationElement {
     if (!event) {
       return
     }
-
-    console.log(this.state.Name)
 
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
@@ -56,7 +56,9 @@ export default class Passport extends ValidationElement {
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          Name: this.state.Name
+          Name: this.state.Name,
+          Issued: this.state.Issued,
+          Expiration: this.state.Expiration
         })
       }
     })
@@ -66,6 +68,9 @@ export default class Passport extends ValidationElement {
     if (!this.state.Name.first || !this.state.Name.last) {
       return false
     }
+
+    // TODO: Issued
+    // TODO: Expiration
 
     return true
   }
@@ -89,11 +94,23 @@ export default class Passport extends ValidationElement {
     }
 
     return (
-      <Name name="name"
-            {...this.state.Name}
-            onUpdate={this.handleUpdate.bind(this, 'Name')}
-            onValidate={this.handleValidation}
-            />
+      <div>
+        <Name name="name"
+              {...this.state.Name}
+              onUpdate={this.handleUpdate.bind(this, 'Name')}
+              onValidate={this.handleValidation}
+              />
+        <DateControl name="issued"
+                     {...this.state.Issued}
+                     onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                     onValidate={this.handleValidation}
+                     />
+        <DateControl name="expiration"
+                     {...this.state.Expiration}
+                     onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                     onValidate={this.handleValidation}
+                     />
+      </div>
     )
   }
 
