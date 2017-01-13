@@ -175,7 +175,7 @@ export default class Passport extends ValidationElement {
   render () {
     return (
       <div className="passport eapp-field-wrap">
-        <h2>U.S. passsport information</h2>
+        <h2>U.S. passport information</h2>
         <p>
           Provide the following information for the most recent U.S. passport you currently possess.<br />
           <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
