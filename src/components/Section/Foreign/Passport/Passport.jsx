@@ -1,5 +1,5 @@
 import React from 'react'
-import { ValidationElement, Name, RadioGroup, Radio } from '../../../Form'
+import { ValidationElement, Name, DateControl, RadioGroup, Radio } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -69,8 +69,38 @@ export default class Passport extends ValidationElement {
       return false
     }
 
-    // TODO: Issued
-    // TODO: Expiration
+    if (!this.isValidEstimatedDate(this.state.Issued)) {
+      return false
+    }
+
+    if (!this.isValidEstimatedDate(this.state.Expiration)) {
+      return false
+    }
+
+    if (this.state.Expiration.date < this.state.Issued.date) {
+      return false
+    }
+
+    return true
+  }
+
+  isValidEstimatedDate (obj) {
+    let month = parseInt(obj.month || '1')
+    let day = parseInt(obj.day || '1')
+    let year = parseInt(obj.year)
+    // let estimated = obj.estimated
+
+    if (month < 1 && month > 12) {
+      return false
+    }
+
+    if (day < 1 && day > 31) {
+      return false
+    }
+
+    if (year < 1) {
+      return false
+    }
 
     return true
   }
@@ -100,11 +130,13 @@ export default class Passport extends ValidationElement {
               onUpdate={this.handleUpdate.bind(this, 'Name')}
               onValidate={this.handleValidation}
               />
+        <h2>Provide the issue date of the passport</h2>
         <DateControl name="issued"
                      {...this.state.Issued}
                      onUpdate={this.handleUpdate.bind(this, 'Issued')}
                      onValidate={this.handleValidation}
                      />
+        <h2>Provide the expiration date of the passport</h2>
         <DateControl name="expiration"
                      {...this.state.Expiration}
                      onUpdate={this.handleUpdate.bind(this, 'Expiration')}
