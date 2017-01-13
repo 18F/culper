@@ -50,13 +50,12 @@ const navigation = [
     name: 'Foreign activities',
     title: 'Foreign activities',
     url: 'foreign',
-    hidden: true,
     subsections: [
       { name: 'U.S. passport information', url: 'passport' },
-      { name: 'Foreign contacs', url: 'contacts' },
-      { name: 'Foreign activities', url: 'activities' },
-      { name: 'Foreign business, professional activities, and government contacts', url: 'business' },
-      { name: 'Foreign countries you have visited', url: 'travel' }
+      { hidden: true, name: 'Foreign contacs', url: 'contacts' },
+      { hidden: true, name: 'Foreign activities', url: 'activities' },
+      { hidden: true, name: 'Foreign business, professional activities, and government contacts', url: 'business' },
+      { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }
     ]
   },
   {

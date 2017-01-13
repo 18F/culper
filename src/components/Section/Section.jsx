@@ -4,20 +4,8 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import OtherNamesUsed from './OtherNamesUsed'
 import Identifying from './Identifying'
+import Foreign from './Foreign'
 import { SectionView, SectionViews } from './SectionView'
-
-// Mapping section identifiers to the associated components.
-const renderMap = {
-  'identification': {
-    'render': (subsection) => { return (<Identification subsection={subsection} />) }
-  },
-  'othernames': {
-    'render': (subsection) => { return (<OtherNamesUsed subsection={subsection} />) }
-  },
-  'identifying': {
-    'render': (subsection) => { return (<Identifying subsection={subsection} />) }
-  }
-}
 
 class Section extends React.Component {
 
@@ -37,18 +25,6 @@ class Section extends React.Component {
     this.props.dispatch(updateSection(name, sub))
   }
 
-  section (section) {
-    return renderMap[section] || renderMap['identification']
-  }
-
-  /**
-   * Provides the appropriate section to render. Defaults to `identification`.
-   */
-  getSection () {
-    var sec = this.section(this.props.section)
-    return sec.render(this.props.subsection)
-  }
-
   render () {
     return (
       <SectionViews current={this.props.section} dispatch={this.props.dispatch}>
@@ -60,6 +36,9 @@ class Section extends React.Component {
         </SectionView>
         <SectionView name="identifying">
           <Identifying subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="foreign">
+          <Foreign subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
     )

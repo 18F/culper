@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
-// import Passport from '../../Form/Passport'
+import Passport from './Passport'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -34,10 +34,49 @@ class Foreign extends ValidationElement {
     this.props.dispatch(push('/form/foreign/review'))
   }
 
+  /**
+   * Report errors and completion status
+   */
+  onValidate (event, status, errorCodes) {
+    if (!event) {
+      return
+    }
+
+    let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
+    this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+
+    let cstatus = 'neutral'
+    if (this.hasStatus('passport', true)) {
+      cstatus = 'complete'
+    } else if (this.hasStatus('passport', false)) {
+      cstatus = 'incomplete'
+    }
+    let completed = {
+      ...this.props.Completed,
+      ...status,
+      status: cstatus
+    }
+    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  }
+
+  /**
+   * Update storage values for a subsection
+   */
   onUpdate (field, values) {
     this.props.dispatch(updateApplication('Foreign', field, values))
   }
 
+  /**
+   * Helper to test whether a subsection is complete
+   */
+  hasStatus (property, val) {
+    return this.props.Completed[property] && this.props.Completed[property].status === val
+  }
+
+  /**
+   * Determine the desired behaviour when visiting the
+   * root of a route
+   */
   launch (storage, subsection, defaultView) {
     subsection = subsection || ''
     if (subsection === '') {
@@ -48,6 +87,42 @@ class Foreign extends ValidationElement {
     }
 
     return subsection
+  }
+
+  /**
+   * Intro to the section when information is present
+   */
+  intro () {
+    return (
+      <div className="foreign">
+        <div id="titles" className="usa-grid-full">
+          <div className="usa-width-one-half">
+            <h3>One piece at a time</h3>
+          </div>
+          <div className="usa-width-one-half">
+            <h3>Full section view</h3>
+          </div>
+        </div>
+
+        <div id="dialogs" className="usa-grid-full">
+          <div className="usa-width-one-half">
+            <p>Take a guided tour through the section</p>
+          </div>
+          <div className="usa-width-one-half">
+            <p>View all the sections associated with <strong>foreign activities</strong> at once</p>
+          </div>
+        </div>
+
+        <div id="actions" className="usa-grid-full">
+          <div className="usa-width-one-half">
+            <button onClick={this.handleTour}>Take me on the tour!</button>
+          </div>
+          <div className="usa-width-one-half">
+            <button onClick={this.handleReview}>Show me the full section</button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   render () {
@@ -66,12 +141,22 @@ class Foreign extends ValidationElement {
                        backLabel="Your History"
                        next="tbd"
                        nextLabel="TBD">
+            <Passport name="passport"
+                      {...this.props.Passport}
+                      onUpdate={this.onUpdate.bind(this, 'Passport')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
           </SectionView>
           <SectionView name="passport"
                        back="history"
                        backLabel="Your History"
                        next="contacts"
                        nextLabel="Foreign contacts">
+            <Passport name="passport"
+                      {...this.props.Passport}
+                      onUpdate={this.onUpdate.bind(this, 'Passport')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
           </SectionView>
           <SectionView name="contacts"
                        back="passport"
