@@ -6,6 +6,8 @@ import ApplicantName from '../../Form/Name'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
+import OtherNames from './OtherNames'
+import Physical from './Physical'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -124,93 +126,128 @@ class Identification extends ValidationElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name=""
-                       next="othernames"
-                       nextLabel="Other Names">
+                       next="family"
+                       nextLabel="Family & friends">
             {this.intro()}
           </SectionView>
 
-          <SectionView
-            name="review"
-            next="othernames"
-            nextLabel="Other Names">
-            <ApplicantName
-              {...this.props.ApplicantName }
-              name="name"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-              onValidate={this.onValidate.bind(this)}
-              />
-            <ApplicantBirthDate
-              name="birthdate"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
-              onValidate={this.onValidate.bind(this)}
-              value={this.props.ApplicantBirthDate}
-              />
-            <ApplicantBirthPlace
-              {...this.props.ApplicantBirthPlace}
-              name="birthplace"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
-              onValidate={this.onValidate.bind(this)}
-              />
-            <ApplicantSSN
-              {...this.props.ApplicantSSN}
-              name="ssn"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
-              onValidate={this.onValidate.bind(this)}
-              />
+          <SectionView name="review"
+                       next="family"
+                       nextLabel="Family & friends">
+            <ApplicantName name="name"
+                           {...this.props.ApplicantName }
+                           onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+                           onValidate={this.onValidate.bind(this)}
+                           />
+            <OtherNames name="othernames"
+                        {...this.props.OtherNames}
+                        onUpdate={this.onUpdate.bind(this, 'OtherNames')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
+            <ApplicantBirthDate name="birthdate"
+                                onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
+                                onValidate={this.onValidate.bind(this)}
+                                value={this.props.ApplicantBirthDate}
+                                />
+            <ApplicantBirthPlace name="birthplace"
+                                 {...this.props.ApplicantBirthPlace}
+                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onValidate={this.onValidate.bind(this)}
+                                 />
+            <ApplicantSSN name="ssn"
+                          {...this.props.ApplicantSSN}
+                          onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
+                          onValidate={this.onValidate.bind(this)}
+                          />
+            <Physical name="physical"
+                      {...this.props.Physical}
+                      onUpdate={this.onUpdate.bind(this, 'Physical')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
           </SectionView>
 
-          <SectionView
-            name="name"
-            next="identification/birthdate"
-            nextLabel="Birth Date">
-            <ApplicantName
-              {...this.props.ApplicantName }
-              name="name"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-              onValidate={this.onValidate.bind(this)}
-              />
+          <SectionView name="name"
+                       next="identification/othernames"
+                       nextLabel="Other names used">
+            <ApplicantName name="name"
+                           {...this.props.ApplicantName }
+                           onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+                           onValidate={this.onValidate.bind(this)}
+                           />
           </SectionView>
 
-          <SectionView
-            name="birthdate"
-            next="identification/birthplace"
-            nextLabel="Birth Place"
-            back="identification/name"
-            backLabel="Applicant Name">
-            <ApplicantBirthDate
-              name="birthdate"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
-              onValidate={this.onValidate.bind(this)}
-              value={this.props.ApplicantBirthDate}
-              />
+          <SectionView name="othernames"
+                       back="identification/name"
+                       backLabel="Full name"
+                       next="identification/birthdate"
+                       nextLabel="Birth date">
+            <OtherNames name="othernames"
+                        {...this.props.OtherNames}
+                        onUpdate={this.onUpdate.bind(this, 'OtherNames')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
 
-          <SectionView
-            name="birthplace"
-            next="identification/ssn"
-            nextLabel="Social Security Number"
-            back="identification/birthdate"
-            backLabel="Applicant Birthdate">
-            <ApplicantBirthPlace
-              {...this.props.ApplicantBirthPlace}
-              name="birthplace"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
-              onValidate={this.onValidate.bind(this)}
-              />
+          <SectionView name="birthdate"
+                       next="identification/birthplace"
+                       nextLabel="Birth Place"
+                       back="identification/othernames"
+                       backLabel="Other names used">
+            <ApplicantBirthDate name="birthdate"
+                                onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
+                                onValidate={this.onValidate.bind(this)}
+                                value={this.props.ApplicantBirthDate}
+                                />
           </SectionView>
 
-          <SectionView
-            name="ssn"
-            next="identification/review"
-            nextLabel="Review"
-            back="identification/birthplace"
-            backLabel="Applicant Birthplace">
-            <ApplicantSSN
-              {...this.props.ApplicantSSN}
-              name="ssn"
-              onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
-              onValidate={this.onValidate.bind(this)}
-              />
+          <SectionView name="birthplace"
+                       next="identification/contacts"
+                       nextLabel="Contacts"
+                       back="identification/birthdate"
+                       backLabel="Birth date">
+            <ApplicantBirthPlace name="birthplace"
+                                 {...this.props.ApplicantBirthPlace}
+                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onValidate={this.onValidate.bind(this)}
+                                 />
+          </SectionView>
+
+          <SectionView name="contacts"
+                       back="identification/birthplace"
+                       backLabel="Birth place"
+                       next="identification/ssn"
+                       nextLabel="Social security number">
+          </SectionView>
+
+          <SectionView name="ssn"
+                       back="identification/contacts"
+                       backLabel="Contacts"
+                       next="identification/physical"
+                       nextLabel="Physical attributes">
+            <ApplicantSSN name="ssn"
+                          {...this.props.ApplicantSSN}
+                          onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
+                          onValidate={this.onValidate.bind(this)}
+                          />
+          </SectionView>
+
+          <SectionView name="physical"
+                       back="identification/ssn"
+                       backLabel="Social security number"
+                       next="identification/psychological"
+                       nextLabel="Psychological and emotional health">
+            <Physical name="physical"
+                      {...this.props.Physical}
+                      onUpdate={this.onUpdate.bind(this, 'Physical')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
+          </SectionView>
+
+          <SectionView name="psychological"
+                       back="identification/physical"
+                       backLabel="Physical attributes"
+                       next="identification/review"
+                       nextLabel="Review">
           </SectionView>
         </SectionViews>
       </div>
@@ -231,6 +268,8 @@ function mapStateToProps (state) {
     ApplicantBirthDate: processApplicantBirthDate(identification.ApplicantBirthDate) || {},
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
     ApplicantSSN: identification.ApplicantSSN || {},
+    OtherNames: identification.OtherNames || {},
+    Physical: identification.Physical || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []
   }

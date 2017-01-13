@@ -30,6 +30,11 @@ import DateRange from './DateRange'
 import RadioGroup from './RadioGroup'
 import CheckboxGroup from './CheckboxGroup'
 import Comments from './Comments'
+import Height from './Height'
+import Weight from './Weight'
+import HairColor from './HairColor'
+import EyeColor from './EyeColor'
+import Sex from './Sex'
 
 export {
   ValidationElement,
@@ -58,5 +63,10 @@ export {
   DateRange,
   RadioGroup,
   CheckboxGroup,
-  Comments
+  Comments,
+  Height,
+  Weight,
+  HairColor,
+  EyeColor,
+  Sex
 }

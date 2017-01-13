@@ -5,11 +5,11 @@ export default class Passport extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      Name: this.props.Name || {},
-      Number: this.props.Number || '',
-      Issued: this.props.Issued || {},
-      Expiration: this.props.Expiration || {},
-      Comments: this.props.Comments || '',
+      Name: props.Name || {},
+      Number: props.Number || '',
+      Issued: props.Issued || {},
+      Expiration: props.Expiration || {},
+      Comments: props.Comments || '',
       yesNo: props.HasPassport,
       re: '^([a-zA-Z0-9]{6,9})+$',
       error: false,
