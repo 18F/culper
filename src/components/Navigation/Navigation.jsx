@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, hashHistory } from 'react-router'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
+import { navigation } from '../../config'
 
 class Navigation extends React.Component {
 
@@ -97,11 +98,19 @@ class Navigation extends React.Component {
     let location = hashHistory.getCurrentLocation()
     let pathname = location.pathname
     let sectionNum = 0
-    let nav = sectionNavMap.map((section) => {
+    let nav = navigation.map((section) => {
+      if (section.hidden) {
+        return ''
+      }
+
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
       const sectionIcon = this.getIcon(sectionClass)
       const subsections = section.subsections.map(subsection => {
+        if (subsection.hidden) {
+          return ''
+        }
+
         const subUrl = `/form/${section.url}/${subsection.url}`
         const subClass = this.getClassName(subUrl, pathname)
         const subIcon = this.getIcon(subClass)
@@ -139,40 +148,6 @@ class Navigation extends React.Component {
     )
   }
 }
-
-const sectionNavMap = [
-  {
-    name: 'Identification',
-    url: 'identification',
-    subsections: [
-      { name: 'Name', url: 'name' },
-      { name: 'Birth Date', url: 'birthdate' },
-      { name: 'Birth Place', url: 'birthplace' },
-      { name: 'Social Security Number', url: 'ssn' }
-    ]
-  },
-  {
-    name: 'Other Names',
-    url: 'othernames',
-    subsections: [
-      // { name: 'Name', url: 'name' },
-      // { name: 'Maiden Name', url: 'maidenname' },
-      // { name: 'Dates Used', url: 'datesused' },
-      // { name: 'Reasons', url: 'reasons' }
-    ]
-  },
-  {
-    name: 'Your Identifying Information',
-    url: 'identifying',
-    subsections: [
-      { name: 'Height', url: 'height' },
-      { name: 'Weight', url: 'weight' },
-      { name: 'Hair Color', url: 'hair' },
-      { name: 'Eye Color', url: 'eye' },
-      { name: 'Gender', url: 'sex' }
-    ]
-  }
-]
 
 function mapStateToProps (state) {
   let section = state.section || {}
