@@ -1,12 +1,17 @@
 import React from 'react'
-import { ValidationElement, Name, RadioGroup, Radio } from '../../../Form'
+import { ValidationElement, Text, Name, DateControl, RadioGroup, Radio, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      Name: this.props.Name || {},
+      Name: props.Name || {},
+      Number: props.Number || '',
+      Issued: props.Issued || {},
+      Expiration: props.Expiration || {},
+      Comments: props.Comments || '',
       yesNo: props.HasPassport,
+      re: '^([a-zA-Z0-9]{6,9})+$',
       error: false,
       valid: false,
       errorCodes: []
@@ -26,8 +31,6 @@ export default class Passport extends ValidationElement {
     if (!event) {
       return
     }
-
-    console.log(this.state.Name)
 
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
@@ -56,7 +59,11 @@ export default class Passport extends ValidationElement {
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          Name: this.state.Name
+          Name: this.state.Name,
+          Number: this.state.Number,
+          Issued: this.state.Issued,
+          Expiration: this.state.Expiration,
+          Comments: this.state.Comments
         })
       }
     })
@@ -64,6 +71,44 @@ export default class Passport extends ValidationElement {
 
   isValid () {
     if (!this.state.Name.first || !this.state.Name.last) {
+      return false
+    }
+
+    let re = new RegExp(this.state.re)
+    if (!re.test(this.state.Number)) {
+      return false
+    }
+
+    if (!this.isValidEstimatedDate(this.state.Issued)) {
+      return false
+    }
+
+    if (!this.isValidEstimatedDate(this.state.Expiration)) {
+      return false
+    }
+
+    if (this.state.Expiration.date < this.state.Issued.date) {
+      return false
+    }
+
+    return true
+  }
+
+  isValidEstimatedDate (obj) {
+    let month = parseInt(obj.month || '1')
+    let day = parseInt(obj.day || '1')
+    let year = parseInt(obj.year)
+    // let estimated = obj.estimated
+
+    if (month < 1 && month > 12) {
+      return false
+    }
+
+    if (day < 1 && day > 31) {
+      return false
+    }
+
+    if (year < 1) {
       return false
     }
 
@@ -89,22 +134,57 @@ export default class Passport extends ValidationElement {
     }
 
     return (
-      <Name name="name"
-            {...this.state.Name}
-            onUpdate={this.handleUpdate.bind(this, 'Name')}
-            onValidate={this.handleValidation}
-            />
+      <div>
+        <Name name="name"
+              {...this.state.Name}
+              onUpdate={this.handleUpdate.bind(this, 'Name')}
+              onValidate={this.handleValidation}
+              />
+        <h2>Provide your U.S. passport number</h2>
+        <Text name="number"
+              value={this.state.Number}
+              pattern={this.state.re}
+              maxlength="9"
+              onUpdate={this.handleUpdate.bind(this, 'Number')}
+              onValidate={this.handleValidation}
+              />
+        <h2>Provide the issue date of the passport</h2>
+        <DateControl name="issued"
+                     {...this.state.Issued}
+                     onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                     onValidate={this.handleValidation}
+                     />
+        <h2>Provide the expiration date of the passport</h2>
+        <DateControl name="expiration"
+                     {...this.state.Expiration}
+                     onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                     onValidate={this.handleValidation}
+                     />
+        <h2>Add optional comment</h2>
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  label="If you need to provide any additional comments about this information enter them below"
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  />
+
+      </div>
     )
   }
 
   render () {
     return (
       <div className="passport eapp-field-wrap">
-        <h2>U.S. passsport information</h2>
-        <p>Provide information related to your current passport.</p>
-        <div>
-          Do you have a passport?
-        </div>
+        <h2>U.S. passport information</h2>
+        <p>
+          Provide the following information for the most recent U.S. passport you currently possess.<br />
+          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
+            U.S. State Department passport help
+          </a>
+        </p>
+        <p>
+          Do you possess a U.S. passport (current or expired)?
+        </p>
         <RadioGroup className="option-list" selectedValue={this.state.yesNo}>
           <Radio name="has_passport"
                  label="Yes"
