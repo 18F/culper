@@ -28,7 +28,6 @@ func (f DateRangeField) Valid() (bool, error) {
 
 	from, _ := f.From.Time()
 	to, _ := f.To.Time()
-
 	if from.After(to) {
 		var stack ErrorStack
 		stack.Append("From", ErrFieldInvalid{fmt.Sprintf("From date `%v` must come before To date `%v`", from, to)})

@@ -40,7 +40,11 @@ func main() {
 	// Validation
 	v := r.PathPrefix("/validate").Subrouter()
 	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
+	v.HandleFunc("/email", handlers.ValidateEmail)
+
+	// Passport validation
 	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
+	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
 
 	v.HandleFunc("/height", handlers.ValidateHeight)
 	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)

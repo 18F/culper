@@ -78,11 +78,11 @@ func TestDateFieldParse(t *testing.T) {
 		Expected bool
 	}{
 		{
-			"01/01/2001",
+			"01-01-2001",
 			true,
 		},
 		{
-			"01/2001",
+			"01-2001",
 			false,
 		},
 		{
