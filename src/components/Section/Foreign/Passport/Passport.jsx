@@ -1,5 +1,5 @@
 import React from 'react'
-import { ValidationElement, Text, Name, DateControl, RadioGroup, Radio } from '../../../Form'
+import { ValidationElement, Text, Name, DateControl, RadioGroup, Radio, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -9,6 +9,7 @@ export default class Passport extends ValidationElement {
       Number: this.props.Number || '',
       Issued: this.props.Issued || {},
       Expiration: this.props.Expiration || {},
+      Comments: this.props.Comments || '',
       yesNo: props.HasPassport,
       re: '^([a-zA-Z0-9]{6,9})+$',
       error: false,
@@ -61,7 +62,8 @@ export default class Passport extends ValidationElement {
           Name: this.state.Name,
           Number: this.state.Number,
           Issued: this.state.Issued,
-          Expiration: this.state.Expiration
+          Expiration: this.state.Expiration,
+          Comments: this.state.Comments
         })
       }
     })
@@ -158,6 +160,14 @@ export default class Passport extends ValidationElement {
                      onUpdate={this.handleUpdate.bind(this, 'Expiration')}
                      onValidate={this.handleValidation}
                      />
+        <h2>Add optional comment</h2>
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  label="If you need to provide any additional comments about this information enter them below"
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  />
+
       </div>
     )
   }
