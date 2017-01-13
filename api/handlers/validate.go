@@ -63,12 +63,12 @@ func ValidateSSN(w http.ResponseWriter, r *http.Request) {
 }
 
 // ValidatePassport checks if a passport number is valid
-func ValidatePassport(w http.ResponseWriter, r *http.Request) {
+func ValidatePassportNumber(w http.ResponseWriter, r *http.Request) {
 	passport := mux.Vars(r)["passport"]
 	log.Printf("Validating Passport Number: [%v]\n", passport)
 
-	_, err := form.PassportField(passport).Valid()
-	stack := form.NewErrorStack("Passport", err)
+	_, err := form.PassportNumberField(passport).Valid()
+	stack := form.NewErrorStack("Number", err)
 	EncodeErrJSON(w, stack)
 }
 
