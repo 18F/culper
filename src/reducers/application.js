@@ -40,6 +40,7 @@ export default combineReducers({
   Identification: reducer('Identification'),
   YourIdentification: reducer('YourIdentification'),
   OtherNames: reducer('OtherNames'),
+  Foreign: reducer('Foreign'),
   Completed: reducer('Completed'),
   Errors: errorReducer('Errors')
 })
