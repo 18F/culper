@@ -25,6 +25,19 @@ export default class Help extends React.Component {
     return i18n.t(this.state.id)
   }
 
+  children () {
+    if (this.props.index) {
+      return React.Children.map(this.props.children, (child) => {
+        return React.cloneElement(child, {
+          ...child.props,
+          index: this.props.index
+        })
+      })
+    }
+
+    return this.props.children
+  }
+
   render () {
     if (this.state.active) {
       return (

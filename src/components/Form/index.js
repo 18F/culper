@@ -1,6 +1,7 @@
 // Validation
 import ValidationElement from './ValidationElement'
 import Help from './Help'
+import Collection from './Collection'
 
 // Basic form elements
 import Generic from './Generic'
@@ -29,10 +30,17 @@ import Name from './Name'
 import DateRange from './DateRange'
 import RadioGroup from './RadioGroup'
 import CheckboxGroup from './CheckboxGroup'
+import Comments from './Comments'
+import Height from './Height'
+import Weight from './Weight'
+import HairColor from './HairColor'
+import EyeColor from './EyeColor'
+import Sex from './Sex'
 
 export {
   ValidationElement,
   Help,
+  Collection,
   Generic,
   Text,
   Email,
@@ -56,5 +64,11 @@ export {
   Name,
   DateRange,
   RadioGroup,
-  CheckboxGroup
+  CheckboxGroup,
+  Comments,
+  Height,
+  Weight,
+  HairColor,
+  EyeColor,
+  Sex
 }

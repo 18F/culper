@@ -150,7 +150,7 @@ class Foreign extends ValidationElement {
           <SectionView name="passport"
                        back="history"
                        backLabel="Your History"
-                       next="contacts"
+                       next="foreign/contacts"
                        nextLabel="Foreign contacts">
             <Passport name="passport"
                       {...this.props.Passport}
@@ -159,27 +159,27 @@ class Foreign extends ValidationElement {
                       />
           </SectionView>
           <SectionView name="contacts"
-                       back="passport"
+                       back="foreign/passport"
                        backLabel="U.S. passport information"
-                       next="activities"
+                       next="foreign/activities"
                        nextLabel="Foreign activities">
           </SectionView>
           <SectionView name="activites"
-                       back="contacts"
+                       back="foreign/contacts"
                        backLabel="Foreign contacts"
-                       next="business"
+                       next="foreign/business"
                        nextLabel="Foreign business, professional activities, and government contacts">
           </SectionView>
           <SectionView name="business"
-                       back="activities"
+                       back="foreign/activities"
                        backLabel="Foreign activities"
-                       next="travel"
+                       next="foreign/travel"
                        nextLabel="Foreign countries you have visited">
           </SectionView>
           <SectionView name="travel"
-                       back="business"
+                       back="foreign/business"
                        backLabel="Foreign business, professional activities, and government contacts"
-                       next="review"
+                       next="foreign/review"
                        nextLabel="Review">
           </SectionView>
         </SectionViews>

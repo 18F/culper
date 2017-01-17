@@ -110,6 +110,15 @@ export default class DateControl extends ValidationElement {
       () => {
         event.target.date = d
         super.handleChange(event)
+        if (this.props.onUpdate) {
+          this.props.onUpdate({
+            month: this.state.month,
+            day: this.state.day,
+            year: this.state.year,
+            estimated: this.state.estimated,
+            date: this.state.value
+          })
+        }
       })
   }
 
