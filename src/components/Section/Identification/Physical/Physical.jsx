@@ -7,7 +7,7 @@ export default class Physical extends ValidationElement {
     super(props)
     this.state = {
       Height: props.Height || {},
-      Weight: props.Weight || {},
+      Weight: props.Weight || 0,
       HairColor: props.HairColor || {},
       EyeColor: props.EyeColor || {},
       Sex: props.Sex || {},

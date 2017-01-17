@@ -103,7 +103,7 @@ export default class OtherNames extends ValidationElement {
 
   options () {
     return (
-      <RadioGroup className="option-list" selectedValue={this.state.yesNo}>
+      <RadioGroup className="option-list branch" selectedValue={this.state.yesNo}>
         <Radio name="has_othernames"
                label="Yes"
                value="Yes"

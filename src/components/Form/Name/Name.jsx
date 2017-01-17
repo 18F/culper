@@ -172,7 +172,7 @@ export default class Name extends ValidationElement {
 
   render () {
     return (
-      <div className="name">
+      <div className="eapp-field-wrap name">
         <h2>Your full name</h2>
         <Help id="identification.name.first.help">
           <Text name="first"
@@ -210,24 +210,24 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <div className="text-right">
-            <div className="inline">
-            <input id="noMiddleName"
-                   type="checkbox"
-                   value="noMiddleName"
-                   checked={this.props.noMiddleName}
-                   onChange={this.handleChange} />
-            <label>No middle name</label>
-            </div>
-            <div className="inline">
-            <input id="middleInitialOnly"
-                   type="checkbox"
-                   value="middleInitial"
-                   checked={this.props.middleInitialOnly}
-                   onChange={this.handleChange} />
-            <label>Initial Only</label>
-            </div>
-          </div>
+                <div className="middle-options text-right">
+                  <div className="inline">
+                    <input id="noMiddleName"
+                      type="checkbox"
+                      value="noMiddleName"
+                      checked={this.props.noMiddleName}
+                      onChange={this.handleChange} />
+                    <label>No middle name</label>
+                  </div>
+                  <div className="inline">
+                    <input id="middleInitialOnly"
+                      type="checkbox"
+                      value="middleInitial"
+                      checked={this.props.middleInitialOnly}
+                      onChange={this.handleChange} />
+                    <label>Initial Only</label>
+                  </div>
+                </div>
         </Help>
         <Help id="identification.name.last.help">
           <Text name="last"

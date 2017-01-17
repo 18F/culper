@@ -170,7 +170,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
           <Help id="identification.birthplace.help">
             <label>&nbsp;</label>
-            <RadioGroup selectedValue={this.state.domestic}>
+            <RadioGroup className="option-list branch" selectedValue={this.state.domestic}>
               <Radio name="domestic"
                 label="Yes"
                 value="yes"
