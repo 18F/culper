@@ -230,6 +230,8 @@ class Identification extends ValidationElement {
                        nextLabel="Social security number">
                        <ContactInformation name="contact"
                          {...this.props.ContactInformation}
+                         onUpdate={this.onUpdate.bind(this, 'ContactInformation')}
+                         onValidate={this.onValidate.bind(this)}
                        />
           </SectionView>
 
@@ -283,6 +285,7 @@ function mapStateToProps (state) {
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
     ApplicantSSN: identification.ApplicantSSN || {},
     OtherNames: identification.OtherNames || {},
+    ContactInformation: identification.ContactInformation || {},
     Physical: identification.Physical || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []
