@@ -17,7 +17,6 @@ ReactDOM.render(
         <IndexRoute component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
-        <Route path="/demo" component={Demo} />
         <Route path="/form(/:section(/:subsection))" component={Form} />
       </Route>
     </Router>

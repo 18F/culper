@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Help from '../Help'
 import Radio from '../Radio'
@@ -42,12 +43,12 @@ export default class Sex extends ValidationElement {
   render () {
     return (
       <div className="sex">
-        <h2>Sex</h2>
+        <h2>{this.props.label}</h2>
         <Help id="traits.sex.help">
           <label>&nbsp;</label>
           <div className="options-list eapp-extend-labels">
             <Radio name={this.props.name}
-                   label="Female"
+                   label={i18n.t('identification.traits.sex.female')}
                    placeholder={this.state.placeholder}
                    help={this.state.help}
                    required="true"
@@ -61,7 +62,7 @@ export default class Sex extends ValidationElement {
               <i className="fa fa-venus" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Male"
+                   label={i18n.t('identification.traits.sex.male')}
                    placeholder={this.state.placeholder}
                    help={this.state.help}
                    required="true"
