@@ -12,10 +12,11 @@ export default class ApplicantSSN extends ValidationElement {
       first: this.props.first || this.ripper(props.value, 0, 3),
       middle: this.props.middle || this.ripper(props.value, 3, 5),
       last: this.props.last || this.ripper(props.value, 5, 9),
-      notApplicable: !!props.notApplicable,
+      notApplicable: props.notApplicable,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCodes: []
     }
   }
 
@@ -57,7 +58,7 @@ export default class ApplicantSSN extends ValidationElement {
 
       case 'notApplicable':
         updated = {
-          notAapplicable: value
+          notApplicable: event.target.checked
         }
         break
     }
@@ -65,6 +66,7 @@ export default class ApplicantSSN extends ValidationElement {
     if (updated != null) {
       this.setState(updated, () => {
         super.handleChange(event)
+        super.handleValidation(event, null, this.state.errorCodes)
         if (this.props.onUpdate) {
           this.props.onUpdate({
             first: this.state.first,
@@ -108,10 +110,26 @@ export default class ApplicantSSN extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    const codes = super.mergeError(this.state.errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.notApplicable) {
+      complexStatus = true
+    } else if (this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      let e = { [this.state.name]: codes }
+      let s = { [this.state.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, s, e)
         return
       }
 
@@ -130,7 +148,7 @@ export default class ApplicantSSN extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, s, e)
         })
     })
   }
@@ -165,14 +183,14 @@ export default class ApplicantSSN extends ValidationElement {
     return (
       <div className="ssn">
         <h2>U.S. Social Security Number</h2>
-        <Help id="identification.ssn">
+        <Help id="identification.ssn.help">
+          <label>&nbsp;</label>
           <Text name={this.partName('first')}
                 ref="first"
-                className="first"
+                className="first eapp-short-input"
                 placeholder="000"
                 maxlength="3"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.first}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -181,11 +199,10 @@ export default class ApplicantSSN extends ValidationElement {
                 />
           <Text name={this.partName('middle')}
                 ref="middle"
-                className="middle"
+                className="middle eapp-short-input"
                 placeholder="00"
                 maxlength="2"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.middle}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -195,11 +212,10 @@ export default class ApplicantSSN extends ValidationElement {
                 />
           <Text name={this.partName('last')}
                 ref="last"
-                className="last"
+                className="last eapp-short-input"
                 placeholder="0000"
                 maxlength="4"
                 pattern="^[0-9]*$"
-                help=""
                 value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -207,16 +223,20 @@ export default class ApplicantSSN extends ValidationElement {
                 onBlur={this.props.onBlur}
                 onKeyDown={this.handleKeyDown}
                 />
-          <Checkbox name={this.partName('notApplicable')}
-                    label="Not applicable"
-                    ref="notAapplicable"
-                    help=""
-                    value={this.state.notApplicable}
-                    onChange={this.handleChange}
-                    onValidate={this.handleValidation}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    />
+          <div className="coupled-flags">
+            <Checkbox name={this.partName('notApplicable')}
+                      label="Not applicable"
+                      ref="notApplicable"
+                      help=""
+                      toggle="false"
+                      value={this.state.notApplicable}
+                      checked={this.state.notApplicable}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
+          </div>
         </Help>
       </div>
     )

@@ -28,6 +28,14 @@ import MilitaryState from './MilitaryState'
 import MaidenName from './MaidenName'
 import Name from './Name'
 import DateRange from './DateRange'
+import RadioGroup from './RadioGroup'
+import CheckboxGroup from './CheckboxGroup'
+import Comments from './Comments'
+import Height from './Height'
+import Weight from './Weight'
+import HairColor from './HairColor'
+import EyeColor from './EyeColor'
+import Sex from './Sex'
 
 export {
   ValidationElement,
@@ -54,5 +62,13 @@ export {
   MilitaryState,
   MaidenName,
   Name,
-  DateRange
+  DateRange,
+  RadioGroup,
+  CheckboxGroup,
+  Comments,
+  Height,
+  Weight,
+  HairColor,
+  EyeColor,
+  Sex
 }

@@ -75,16 +75,20 @@ export default class DateControl extends ValidationElement {
     let month = this.state.month
     let day = this.state.day
     let year = this.state.year
+    let estimated = this.state.estimated
 
     if (event.target.value.length > 0) {
-      if (event.target.id.indexOf('-month') !== -1) {
+      if (event.target.id.indexOf('month') !== -1) {
         month = event.target.value
       }
-      if (event.target.id.indexOf('-day') !== -1) {
+      if (event.target.id.indexOf('day') !== -1) {
         day = event.target.value
       }
-      if (event.target.id.indexOf('-year') !== -1) {
+      if (event.target.id.indexOf('year') !== -1) {
         year = event.target.value
+      }
+      if (event.target.id.indexOf('estimated') !== -1) {
+        estimated = event.target.checked
       }
     }
 
@@ -100,11 +104,21 @@ export default class DateControl extends ValidationElement {
         month: month,
         day: day,
         year: year,
+        estimated: estimated,
         value: d
       },
       () => {
         event.target.date = d
         super.handleChange(event)
+        if (this.props.onUpdate) {
+          this.props.onUpdate({
+            month: this.state.month,
+            day: this.state.day,
+            year: this.state.year,
+            estimated: this.state.estimated,
+            date: this.state.value
+          })
+        }
       })
   }
 
@@ -116,13 +130,13 @@ export default class DateControl extends ValidationElement {
     let day = this.state.foci[1]
     let year = this.state.foci[2]
 
-    if (event.target.id.indexOf('-month') !== -1) {
+    if (event.target.id.indexOf('month') !== -1) {
       month = true
     }
-    if (event.target.id.indexOf('-day') !== -1) {
+    if (event.target.id.indexOf('day') !== -1) {
       day = true
     }
-    if (event.target.id.indexOf('-year') !== -1) {
+    if (event.target.id.indexOf('year') !== -1) {
       year = true
     }
 
@@ -144,13 +158,13 @@ export default class DateControl extends ValidationElement {
     let day = this.state.foci[1]
     let year = this.state.foci[2]
 
-    if (event.target.id.indexOf('-month') !== -1) {
+    if (event.target.id.indexOf('month') !== -1) {
       month = false
     }
-    if (event.target.id.indexOf('-day') !== -1) {
+    if (event.target.id.indexOf('day') !== -1) {
       day = false
     }
-    if (event.target.id.indexOf('-year') !== -1) {
+    if (event.target.id.indexOf('year') !== -1) {
       year = false
     }
 
@@ -167,9 +181,9 @@ export default class DateControl extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, error) {
     if (!event || !event.target) {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, error)
       return
     }
 
@@ -177,13 +191,13 @@ export default class DateControl extends ValidationElement {
     let day = this.state.validity[1]
     let year = this.state.validity[2]
 
-    if (event.target.id.indexOf('-month') !== -1) {
+    if (event.target.id.indexOf('month') !== -1) {
       month = status != null ? status : null
     }
-    if (event.target.id.indexOf('-day') !== -1) {
+    if (event.target.id.indexOf('day') !== -1) {
       day = status != null ? status : null
     }
-    if (event.target.id.indexOf('-year') !== -1) {
+    if (event.target.id.indexOf('year') !== -1) {
       year = status != null ? status : null
     }
 
@@ -209,7 +223,7 @@ export default class DateControl extends ValidationElement {
           s = true
         }
 
-        super.handleValidation(event, s)
+        super.handleValidation(event, s, error)
       })
   }
 
@@ -265,7 +279,8 @@ export default class DateControl extends ValidationElement {
         <div className={this.divClass()}>
           <div className="usa-form-group usa-form-group-month">
             <Number id={this.partName('month')}
-                    name={this.partName('month')}
+                    name="month"
+                    label="Month"
                     placeholder="00"
                     aria-described-by={this.errorName('month')}
                     disabled={this.state.disabled}
@@ -285,7 +300,8 @@ export default class DateControl extends ValidationElement {
           </div>
           <div className="usa-form-group usa-form-group-day">
             <Number id={this.partName('day')}
-                    name={this.partName('day')}
+                    name="day"
+                    label="Day"
                     placeholder="00"
                     aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
@@ -305,7 +321,8 @@ export default class DateControl extends ValidationElement {
           </div>
           <div className="usa-form-group usa-form-group-year">
             <Number id={this.partName('year')}
-                    name={this.partName('year')}
+                    name="year"
+                    label="Year"
                     placeholder="0000"
                     aria-described-by={this.errorName('year')}
                     disabled={this.state.disabled}
@@ -328,7 +345,9 @@ export default class DateControl extends ValidationElement {
           <Checkbox name="estimated"
                     label="Estimated"
                     help=""
+                    toggle="false"
                     value={this.state.estimated}
+                    checked={this.state.estimated}
                     onChange={this.handleChange}
                     />
         </div>

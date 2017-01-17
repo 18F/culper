@@ -15,7 +15,8 @@ export default class Height extends ValidationElement {
       feet: props.feet,
       inches: props.inches,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errors: []
     }
   }
 
@@ -40,9 +41,11 @@ export default class Height extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+  handleValidation (event, status, errors) {
+    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
+      let e = { [this.state.name]: errors }
+      let s = { [this.state.name]: { status: status } }
+      super.handleValidation(event, s, e)
     })
   }
 
@@ -82,9 +85,9 @@ export default class Height extends ValidationElement {
     return (
       <div className="height">
         <h2>Height</h2>
-        <div className="usa-form-group">
+        <div className="eapp-field-wrap feet">
           <Number id={this.partName('feet')}
-            name={this.partName('feet')}
+            name="feet"
             label="Feet"
             placeholder="0"
             help="Feet must be a number between 1 and 9"
@@ -103,9 +106,9 @@ export default class Height extends ValidationElement {
             onValidate={this.handleValidation}
           />
         </div>
-        <div className="usa-form-group">
+        <div className="eapp-field-wrap inches">
           <Number id={this.partName('inches')}
-            name={this.partName('inches')}
+            name="inches"
             label="Inches"
             placeholder="0"
             help="Inches must be a number between 0 and 11"

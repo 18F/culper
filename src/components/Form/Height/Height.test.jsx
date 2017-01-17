@@ -11,10 +11,10 @@ describe('The Height component', () => {
       value: ''
     }
     const component = mount(<Height name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#height-feet').simulate('change')
-    expect(component.find('label[htmlFor="height-feet"]').text()).toEqual(expected.label)
-    expect(component.find('input#height-feet').length).toEqual(1)
-    expect(component.find('span#height-feet-error').length).toEqual(1)
+    component.find('input#feet').simulate('change')
+    expect(component.find('label[htmlFor="feet"]').text()).toEqual(expected.label)
+    expect(component.find('input[name="feet"]').length).toEqual(1)
+    expect(component.find('div.hidden').length).toEqual(2)
 
     expected = {
       name: 'height',
@@ -22,9 +22,9 @@ describe('The Height component', () => {
       help: 'Helpful error message',
       value: ''
     }
-    component.find('input#height-inches').simulate('change')
-    expect(component.find('label[htmlFor="height-inches"]').text()).toEqual(expected.label)
-    expect(component.find('input#height-inches').length).toEqual(1)
-    expect(component.find('span#height-inches-error').length).toEqual(1)
+    component.find('input#inches').simulate('change')
+    expect(component.find('label[htmlFor="inches"]').text()).toEqual(expected.label)
+    expect(component.find('input[name="inches"]').length).toEqual(1)
+    expect(component.find('div.hidden').length).toEqual(2)
   })
 })

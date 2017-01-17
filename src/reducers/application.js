@@ -19,11 +19,33 @@ const reducer = function (sectionName) {
   }
 }
 
+const errorReducer = function (sectionName) {
+  return function (state = defaultState, action) {
+    // Check that section matches intended section reducer. This is to prevent
+    // merging of everything every time an action is dispatched. We only
+    // perform for the relevant section
+    if (action.section === sectionName) {
+      return {
+        ...state,
+        [action.property]: action.values
+      }
+    }
+
+    return state
+  }
+}
+
 // High level pre-defined sub-state tree
 export default combineReducers({
   Identification: reducer('Identification'),
-  YourIdentification: reducer('YourIdentification'),
-  OtherNames: reducer('OtherNames')
+  Family: reducer('family'),
+  Citizenship: reducer('citizenship'),
+  History: reducer('history'),
+  Foreign: reducer('Foreign'),
+  TBD: reducer('tbd'),
+  Legal: reducer('legal'),
+  Completed: reducer('Completed'),
+  Errors: errorReducer('Errors')
 })
 
 // Or alternative...

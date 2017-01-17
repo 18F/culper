@@ -10,7 +10,8 @@ export default class ApplicantBirthDate extends ValidationElement {
       name: props.name,
       value: props.value,
       help: props.help,
-      estimated: props.estimated
+      estimated: props.estimated,
+      errorCodes: []
     }
   }
 
@@ -34,8 +35,20 @@ export default class ApplicantBirthDate extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    if (status !== false) {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let errorCodes = []
+    this.state.errorCodes.forEach((e) => {
+      if (e !== 'age') {
+        errorCodes.push(e)
+      }
+    })
+
+    let help = this.state.help
+    if (status === true && this.state.value !== '') {
       // Calculation to get the age of something compared to now.
       let now = new Date()
       let then = new Date(this.state.value)
@@ -45,17 +58,26 @@ export default class ApplicantBirthDate extends ValidationElement {
         age--
       }
 
-      status = age > 16 && age < 131
+      if (age < 17 || age > 129) {
+        status = false
+        help = 'Applicants must be older than 16 and less than 130 years of age'
+        error = 'age'
+      }
     }
 
-    let help = this.state.help
-    if (status === false) {
-      help = 'Applicants must be older than 16 and less than 130 years of age'
+    const codes = super.mergeError(errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.value && this.state.value !== '') {
+      complexStatus = true
     }
 
-    this.setState({error: status === false, valid: status === true, help: help}, () => {
+    this.setState({error: complexStatus === false, valid: complexStatus === true, help: help, errorCodes: codes}, () => {
+      let e = { [this.state.name]: codes }
+      let s = { [this.state.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, s, e)
         return
       }
 
@@ -75,7 +97,7 @@ export default class ApplicantBirthDate extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, s, e)
         })
     })
   }
@@ -129,11 +151,11 @@ export default class ApplicantBirthDate extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
     if (this.state.error) {
-      klass += ' usa-input-error-message'
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -145,14 +167,7 @@ export default class ApplicantBirthDate extends ValidationElement {
     return (
       <div className="birthdate">
         <h2>Date of birth</h2>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert"
-              ref="error"
-              >
-          {this.state.help}
-        </span>
-        <Help id="identification.birthdate">
+        <Help id="identification.birthdate.help">
           <DateControl name={this.state.name}
                        value={this.state.value}
                        estimated={this.state.estimated}
@@ -160,6 +175,10 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </Help>
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.state.help}
+        </div>
       </div>
     )
   }

@@ -3,6 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Help from '../Help'
 import Text from '../Text'
 import Radio from '../Radio'
+import RadioGroup from '../RadioGroup'
 import { api } from '../../../services/api'
 
 export default class Name extends ValidationElement {
@@ -13,13 +14,18 @@ export default class Name extends ValidationElement {
       name: props.name,
       label: props.label,
       first: props.first,
+      firstInitialOnly: props.firstInitialOnly,
       last: props.last,
+      lastInitialOnly: props.lastInitialOnly,
       middle: props.middle,
+      middleInitialOnly: props.middleInitialOnly,
+      noMiddleName: props.noMiddleName,
       suffix: props.suffix,
       suffixOther: props.suffixOther,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCodes: []
     }
   }
 
@@ -30,6 +36,7 @@ export default class Name extends ValidationElement {
     let part = this.extractPart(event.target.id)
     let value = event.target.value
     let updated = null
+    console.log(part)
 
     switch (part) {
       case 'first':
@@ -47,18 +54,45 @@ export default class Name extends ValidationElement {
       case 'suffixOther':
         updated = { suffixOther: value }
         break
+      case 'firstInitialOnly':
+        updated = { firstInitialOnly: event.target.checked }
+        break
+      case 'lastInitialOnly':
+        updated = { lastInitialOnly: event.target.checked }
+        break
+      case 'middleInitialOnly':
+        updated = { middleInitialOnly: event.target.checked }
+        break
+      case 'noMiddleName':
+        updated = { noMiddleName: event.target.checked }
+        break
+
     }
 
     this.setState(updated, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
-        const { first, last, middle, suffix, suffixOther } = this.state
+        const {
+          first,
+          firstInitialOnly,
+          last,
+          lastInitialOnly,
+          middle,
+          middleInitialOnly,
+          noMiddleName,
+          suffix,
+          suffixOther
+        } = this.state
 
         this.props.onUpdate({
           ...this.props,
           first: first,
+          firstInitialOnly: firstInitialOnly,
           last: last,
+          lastInitialOnly: lastInitialOnly,
           middle: middle,
+          middleInitialOnly: middleInitialOnly,
+          noMiddleName: noMiddleName,
           suffix: suffix,
           suffixOther: suffixOther
         })
@@ -69,32 +103,48 @@ export default class Name extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    const codes = super.mergeError(this.state.errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.first && this.state.last) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      let e = { [this.state.name]: codes }
+      let s = { [this.state.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, s, e)
         return
       }
 
-      api
-        .validateName({
-          Last: this.state.last,
-          First: this.state.first,
-          Middle: this.state.middle,
-          Suffix: this.state.suffix,
-          SuffixOther: this.state.suffixOther
-        })
-        .then((response) => {
-          // TODO: Display and assign the errors as necessary
-          if (response.Errors) {
-          }
+      super.handleValidation(event, s, e)
 
-          if (response.Suggestions) {
-          }
-        })
-        .then(() => {
-          super.handleValidation(event, status)
-        })
+      // api
+      // .validateName({
+      // Last: this.state.last,
+      // First: this.state.first,
+      // Middle: this.state.middle,
+      // Suffix: this.state.suffix,
+      // SuffixOther: this.state.suffixOther
+      // })
+      // .then((response) => {
+      // // TODO: Display and assign the errors as necessary
+      // if (response.Errors) {
+      // }
+
+      // if (response.Suggestions) {
+      // }
+      // })
+      // .then(() => {
+      // super.handleValidation(event, status)
+      // })
     })
   }
 
@@ -123,25 +173,12 @@ export default class Name extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="name">
         <h2>Your full name</h2>
-        <Help id="identification.name.last">
-          <Text name={this.partName('last')}
-                label="Last name"
-                maxlength="100"
-                pattern="^[a-zA-Z\-\.' ]*$"
-                placeholder="Please enter your last name"
-                help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
-                value={this.state.last}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-        </Help>
-        <Help id="identification.name.first">
-          <Text name={this.partName('first')}
+        <Help id="identification.name.first.help">
+          <Text name="first"
                 label="First name"
+                pattern="^[a-zA-Z\-\.' ]*$"
                 maxlength="100"
                 placeholder="Please enter your first name or initial"
                 help="The first name (or initial) is optional but cannot exceed 100 characters"
@@ -151,9 +188,18 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
+                <div className="text-right">
+                  <input
+                    id="firstInitialOnly"
+                    type="checkbox"
+                    value="firstInitial"
+                    checked={this.props.firstInitialOnly}
+                    onChange={this.handleChange} />
+                  <label>Initial Only</label>
+                </div>
         </Help>
-        <Help id="identification.name.middle">
-          <Text name={this.partName('middle')}
+        <Help id="identification.name.middle.help">
+          <Text name="middle"
                 label="Middle name or initial"
                 minlength="0"
                 maxlength="100"
@@ -165,19 +211,61 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
+          <div className="text-right">
+            <div className="inline">
+            <input id="noMiddleName"
+                   type="checkbox"
+                   value="noMiddleName"
+                   checked={this.props.noMiddleName}
+                   onChange={this.handleChange} />
+            <label>No middle name</label>
+            </div>
+            <div className="inline">
+            <input id="middleInitialOnly"
+                   type="checkbox"
+                   value="middleInitial"
+                   checked={this.props.middleInitialOnly}
+                   onChange={this.handleChange} />
+            <label>Initial Only</label>
+            </div>
+          </div>
         </Help>
-        <Help id="identification.name.suffix">
-          <label>Suffix</label>
-          <div className="option-list">
-            <Radio name={this.partName('suffix')}
+        <Help id="identification.name.last.help">
+          <Text name="last"
+                label="Last name"
+                maxlength="100"
+                pattern="^[a-zA-Z\-\.' ]*$"
+                placeholder="Please enter your last name"
+                help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
+                value={this.state.last}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+          <div className="text-right">
+            <input
+              id="lastInitialOnly"
+              type="checkbox"
+              value="lastInitial"
+              checked={this.props.lastInitialOnly}
+              onChange={this.handleChange} />
+            <label>Initial Only</label>
+          </div>
+        </Help>
+        <Help id="identification.name.suffix.help">
+          <label>Suffix <span className="optional">(Optional)</span></label>
+
+          <RadioGroup className="option-list" selectedValue={this.state.suffix}>
+            <Radio name="suffix"
                    label="None"
-                   value=""
+                   value="None"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="Jr"
                    value="Jr"
                    onChange={this.handleChange}
@@ -185,7 +273,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="Sr"
                    value="Sr"
                    onChange={this.handleChange}
@@ -193,7 +281,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="I"
                    value="I"
                    onChange={this.handleChange}
@@ -201,7 +289,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="II"
                    value="II"
                    onChange={this.handleChange}
@@ -209,7 +297,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="III"
                    value="III"
                    onChange={this.handleChange}
@@ -217,7 +305,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="IV"
                    value="IV"
                    onChange={this.handleChange}
@@ -225,7 +313,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="V"
                    value="V"
                    onChange={this.handleChange}
@@ -233,7 +321,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="VI"
                    value="VI"
                    onChange={this.handleChange}
@@ -241,7 +329,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="VII"
                    value="VII"
                    onChange={this.handleChange}
@@ -249,7 +337,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="VIII"
                    value="VIII"
                    onChange={this.handleChange}
@@ -257,7 +345,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="IX"
                    value="IX"
                    onChange={this.handleChange}
@@ -265,7 +353,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="X"
                    value="X"
                    onChange={this.handleChange}
@@ -273,7 +361,7 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-            <Radio name={this.partName('suffix')}
+            <Radio name="suffix"
                    label="Other"
                    value="Other"
                    onChange={this.handleChange}
@@ -281,9 +369,9 @@ export default class Name extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-          </div>
+          </RadioGroup>
           <div className={this.suffixOtherClass()}>
-            <Text name={this.partName('suffixOther')}
+            <Text name="suffixOther"
                   label="Other"
                   maxlength="100"
                   value={this.state.suffixOther}

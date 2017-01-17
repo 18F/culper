@@ -5,14 +5,14 @@ import EyeColor from './EyeColor'
 describe('The EyeColor component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'input-focus',
+      name: 'eye-color',
       label: 'Text input focused',
       help: 'Helpful error message',
       value: ''
     }
     const component = mount(<EyeColor name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#eye-color').first().simulate('change')
-    expect(component.find('input#eye-color').length).toEqual(10)
-    expect(component.find('span.hidden').length).toEqual(10)
+    component.find('input[name="eye-color"]').first().simulate('change')
+    expect(component.find('input[name="eye-color"]').length).toEqual(10)
+    expect(component.find('div.hidden').length).toEqual(10)
   })
 })

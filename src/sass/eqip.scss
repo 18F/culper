@@ -12,14 +12,65 @@ h3 {
 	font-size:2.3rem;
 }
 
+/* design needs a touch more line height than standards */
+p {
+	line-height:1.6;
+}
+
 a:focus {
 	box-shadow:none;
+}
+
+/* set up structure to go from a table-style to floated block style */
+.eapp-structure-wrap {
+	display:table;
+	width:100%;
+
+	.eapp-structure-row {
+		display:table-row;
+
+		.eapp-structure-left, .eapp-structure-right {
+			display:table-cell;
+			vertical-align:top;
+		}
+		.eapp-structure-left {
+			width:24.8%;
+			@media screen and (max-width:768px) {
+				width:29.8%;
+			}
+		}
+		.eapp-structure-right {
+			width:75.2%;
+			padding-left:10rem;
+			@media screen and (max-width:1024px) {
+				padding-left:8rem;
+			}
+			@media screen and (max-width:768px) {
+				width:70.2%;
+				padding-left:5rem;
+			}
+			&.eapp-title {
+				vertical-align:bottom;
+				padding-right:11rem;
+				padding-bottom:2rem;
+			}
+		}
+	}
 }
 
 .usa-header {
     font-family: $eapp-serif;
     background-color: $eapp-blue;
     min-height:16.7rem;
+
+	.usa-banner-inner {
+		margin:0;
+		max-width:none;
+		.usa-banner-button {
+			display:inline-block;
+			width:auto;
+		}
+	}
 
     .eapp-header {
         min-height:14.5rem;
@@ -58,19 +109,15 @@ a:focus {
 
         /* section title styling, trying to be flexible for long section titles, text should flow up into header */
         .title {
-            display:block;
-            position:relative;
-            height:14.5rem;
+            max-height:14.5rem;
+			overflow:hidden;
             color: #fff;
             font-size: 5rem;
             font-weight:$eapp-bold;
             .title-text {
                 display:block;
-                position:absolute;
-                bottom:2.4rem;
-                left:6rem;
                 width:auto;
-                line-height:1;
+                line-height:1.2;
             }
         }
     }
@@ -94,15 +141,22 @@ a:focus {
 
 /* frame out the live form area for consistency */
 .eapp-core {
-	padding:5.5rem 0 2rem 6.5rem;
+	padding-top:5.5rem;
+	padding-bottom:4rem;
+	padding-right:23rem;
+	@media screen and (max-width:1024px) {
+		padding-right:12rem;
+	}
+	@media screen and (max-width:768px) {
+		padding-right:8rem;
+	}
 	> * {
 		padding:0;
 	}
 }
 
 .hidden {
-    display: none;
-    visibility: hidden;
+    display: none !important;
 }
 
 .text-center {

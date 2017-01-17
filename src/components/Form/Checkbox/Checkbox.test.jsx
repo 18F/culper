@@ -15,8 +15,8 @@ describe('The checkbox component', () => {
     const component = mount(<Checkbox name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('span.usa-input-error-message').text()).toEqual(expected.help)
-    expect(component.find('span.hidden').length).toEqual(0)
+    expect(component.find('div.message').text()).toEqual(expected.help)
+    expect(component.find('div.hidden').length).toEqual(0)
   })
 
   it('renders appropriately with focus', () => {
@@ -32,7 +32,7 @@ describe('The checkbox component', () => {
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('div.hidden').length).toEqual(1)
   })
 
   it('renders appropriately with validity checks', () => {
@@ -48,7 +48,7 @@ describe('The checkbox component', () => {
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('div.hidden').length).toEqual(1)
   })
 
   it('renders sane defaults', () => {
@@ -63,7 +63,7 @@ describe('The checkbox component', () => {
     const component = mount(<Checkbox name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('div.hidden').length).toEqual(1)
   })
 
   it('bubbles up validate event', () => {

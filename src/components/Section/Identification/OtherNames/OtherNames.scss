@@ -1,0 +1,25 @@
+.other-names {
+    h2 {
+        margin-top: 2rem;
+    }
+
+    button.add {
+        line-height: normal !important;
+        width: 25rem;
+        max-width: 25rem;
+        padding: 2rem;
+        display: table;
+        margin-right: auto;
+        margin-left: auto;
+
+        span {
+            display: table-cell;
+        }
+
+        i {
+            width: 3.25rem;
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}

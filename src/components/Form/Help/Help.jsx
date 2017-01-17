@@ -1,5 +1,6 @@
 import React from 'react'
-import { help } from '../../../config'
+import { i18n } from '../../../config'
+import ValidationElement from '../ValidationElement'
 
 export default class Help extends React.Component {
   constructor (props) {
@@ -21,7 +22,7 @@ export default class Help extends React.Component {
   }
 
   getText () {
-    return help.ById(this.state.id)
+    return i18n.t(this.state.id)
   }
 
   children () {
@@ -40,31 +41,27 @@ export default class Help extends React.Component {
   render () {
     if (this.state.active) {
       return (
-        <div className="help">
-          <div className="content eapp-element-wrapper">
-            {this.children()}
-            <a href="javascript:;" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
+          <div className="eapp-field-wrap">
+            <a href="javascript:;" tabIndex="-1" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
               <i className="fa fa-info-circle"></i>
             </a>
+            {this.props.children}
+            <div className="message eapp-help-message">
+              <i className="fa fa-info"></i>
+              {this.getText()}
+              <a href="javascript:;" tabIndex="-1" className="eapp-help-close" onClick={this.handleClick}>Close info Block</a>
+            </div>
           </div>
-          <div className="message eapp-help-message">
-            <i className="fa fa-info"></i>
-            {this.getText()}
-            <a href="javascript:;" className="eapp-help-close">Close info Block</a>
-          </div>
-        </div>
       )
     }
 
     return (
-      <div className="help">
-        <div className="content">
-          {this.children()}
-          <a href="javascript:;" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
+        <div className="eapp-field-wrap">
+          <a href="javascript:;" tabIndex="-1" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
             <i className="fa fa-info-circle"></i>
           </a>
+          {this.props.children}
         </div>
-      </div>
     )
   }
 }
