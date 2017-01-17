@@ -44,7 +44,7 @@ func main() {
 	v.HandleFunc("/email", handlers.ValidateEmail)
 
 	// Passport validation
-	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassport)
+	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
 	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
 
 	// Phonenumber validation
