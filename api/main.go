@@ -46,6 +46,11 @@ func main() {
 	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassport)
 	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
 
+	// Phonenumber validation
+	v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber("Domestic"))
+	v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber("DSN"))
+	v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber("International"))
+
 	v.HandleFunc("/height", handlers.ValidateHeight)
 	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
 	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)

@@ -7,15 +7,17 @@ import (
 )
 
 var (
-	domesticRegexp   = regexp.MustCompile("\\d{3}-\\d{3}-\\d{4}")
-	dsnRegexp        = regexp.MustCompile("\\d{3}-\\d{4}")
-	phoneNumberTypes = [...]string{"DSN", "International", "Domestic"}
-	timeToCall       = [...]string{"Day", "Night", "Both"}
+	domesticRegexp = regexp.MustCompile("\\d{3}-\\d{3}-\\d{4}")
+	// first three are for the country code
+	internationalRegexp = regexp.MustCompile("\\d{3}-\\d{4}-\\d{4}")
+	dsnRegexp           = regexp.MustCompile("\\d{3}-\\d{4}")
+	phoneNumberTypes    = [...]string{"DSN", "International", "Domestic"}
+	timeToCall          = [...]string{"Day", "Night", "Both"}
 )
 
 // PhoneNumberField contains the contents for a Phone Number
 // TimeToCall = {Day, Night, Both}
-// DSN = Check box if International or DSN phone number
+// Type = Dsn, International or Domestic
 type PhoneNumberField struct {
 	Number     string
 	Extension  string
@@ -41,6 +43,9 @@ func (p PhoneNumberField) Valid() (bool, error) {
 			return false, ErrFieldInvalid{fmt.Sprintf("DSN number `%v` is not properly formatted", p.Number)}
 		}
 	case "international":
+		if ok := internationalRegexp.MatchString(p.Number); !ok {
+			return false, ErrFieldInvalid{fmt.Sprintf("International number `%v` is not properly formatted", p.Number)}
+		}
 	}
 
 	// Make sure a valid time to call value is used
