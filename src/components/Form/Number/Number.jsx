@@ -30,6 +30,11 @@ export default class Number extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
+    // Prevent non-numerical values from being entered
+    if (!event.target.value.match(/^(\s*|\d+)$/)) {
+      return
+    }
+
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
     })
@@ -187,7 +192,7 @@ export default class Number extends ValidationElement {
         <input className={this.inputClass()}
                id={this.state.name}
                name={this.state.name}
-               type="number"
+               type="text"
                placeholder={this.state.placeholder}
                aria-describedby={this.errorName()}
                disabled={this.state.disabled}

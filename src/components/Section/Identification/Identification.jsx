@@ -56,12 +56,14 @@ class Identification extends ValidationElement {
     if (this.hasStatus('name', true)
         && this.hasStatus('birthdate', true)
         && this.hasStatus('birthplace', true)
-        && this.hasStatus('ssn', true)) {
+        && this.hasStatus('ssn', true)
+        && this.hasStatus('othernames', true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('name', false)
                || this.hasStatus('birthdate', false)
                || this.hasStatus('birthplace', false)
-               || this.hasStatus('ssn', false)) {
+               || this.hasStatus('ssn', false)
+               || this.hasStatus('othernames', false)) {
       cstatus = 'incomplete'
     }
 

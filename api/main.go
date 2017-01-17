@@ -10,6 +10,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
 	middleware "github.com/18F/e-QIP-prototype/api/middleware"
+	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
 var (
@@ -43,8 +44,13 @@ func main() {
 	v.HandleFunc("/email", handlers.ValidateEmail)
 
 	// Passport validation
-	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassport)
+	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
 	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
+
+	// Phonenumber validation
+	v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber(form.DomesticPhoneNumberKey))
+	v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber(form.DSNPhoneNumberKey))
+	v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber(form.InternationalPhoneNumberKey))
 
 	v.HandleFunc("/height", handlers.ValidateHeight)
 	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
