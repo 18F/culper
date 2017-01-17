@@ -33,7 +33,7 @@ export default class Collection extends ValidationElement {
   factory (min) {
     let collection = []
 
-    this.props.items.forEach((item) => {
+    this.state.items.forEach((item) => {
       collection.push(this.createItem(item))
     })
 
@@ -114,7 +114,7 @@ export default class Collection extends ValidationElement {
         x[child] = {}
         for (let key in item[child]) {
           let what = Object.prototype.toString.call(item[child][key])
-          if (!['[object String]'].includes(what)) {
+          if (!['[object String]', '[object Date]', '[object Boolean]'].includes(what)) {
             continue
           }
 
@@ -189,7 +189,10 @@ export default class Collection extends ValidationElement {
       <div className="collection">
         {content}
         <div className="text-center">
-          <button onClick={this.append}>{this.props.appendLabel}</button>
+          <button className="add" onClick={this.append}>
+            <span>{this.props.appendLabel}</span>
+            <i className="fa fa-plus-circle"></i>
+          </button>
         </div>
       </div>
     )
