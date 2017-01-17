@@ -36,6 +36,7 @@ import Weight from './Weight'
 import HairColor from './HairColor'
 import EyeColor from './EyeColor'
 import Sex from './Sex'
+import IntroHeader from './IntroHeader'
 
 export {
   ValidationElement,

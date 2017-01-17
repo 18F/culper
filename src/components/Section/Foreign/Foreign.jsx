@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
 import Passport from './Passport'
+import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -94,7 +95,10 @@ class Foreign extends ValidationElement {
    */
   intro () {
     return (
-      <div className="foreign">
+      <div className="foreign intro">
+        <div className="usa-grid-full eapp-field-wrap">
+          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
+        </div>
         <div id="titles" className="usa-grid-full">
           <div className="usa-width-one-half">
             <h3>One piece at a time</h3>
@@ -113,7 +117,7 @@ class Foreign extends ValidationElement {
           </div>
         </div>
 
-        <div id="actions" className="usa-grid-full">
+        <div id="actions" className="usa-grid-full review-btns">
           <div className="usa-width-one-half">
             <button onClick={this.handleTour}>Take me on the tour!</button>
           </div>
@@ -129,11 +133,7 @@ class Foreign extends ValidationElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name=""
-                       back="history"
-                       backLabel="Your History"
-                       next="tbd"
-                       nextLabel="TBD">
+          <SectionView name="">
             {this.intro()}
           </SectionView>
           <SectionView name="review"
@@ -148,8 +148,8 @@ class Foreign extends ValidationElement {
                       />
           </SectionView>
           <SectionView name="passport"
-                       back="history"
-                       backLabel="Your History"
+                       back="identification/physical"
+                       backLabel="Physical attributes"
                        next="foreign/contacts"
                        nextLabel="Foreign contacts">
             <Passport name="passport"

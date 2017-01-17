@@ -9,6 +9,7 @@ import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
+import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -81,7 +82,10 @@ class Identification extends ValidationElement {
 
   intro () {
     return (
-      <div className="identification">
+      <div className="identification intro">
+        <div className="usa-grid-full eapp-field-wrap">
+          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
+        </div>
         <div id="titles" className="usa-grid-full">
           <div className="usa-width-one-half">
             <h3>One piece at a time</h3>
@@ -100,7 +104,7 @@ class Identification extends ValidationElement {
           </div>
         </div>
 
-        <div id="actions" className="usa-grid-full">
+        <div id="actions" className="usa-grid-full review-btns">
           <div className="usa-width-one-half">
             <button onClick={this.handleTour}>Take me on the tour!</button>
           </div>
@@ -129,14 +133,19 @@ class Identification extends ValidationElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name=""
-                       next="family"
-                       nextLabel="Family & friends">
+            title="Let's make sure everything looks right."
+            showTop="true">
             {this.intro()}
           </SectionView>
 
           <SectionView name="review"
-                       next="family"
-                       nextLabel="Family & friends">
+                       title="Let's make sure everything looks right"
+                       showTop="true"
+                       next="foreign"
+                       nextLabel="Foreign Activities"
+                       back="identification/physical"
+                       backLabel="Physical Attributes">
+            <h2>Your full name</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
@@ -170,13 +179,14 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="name"
-                       next="identification/othernames"
-                       nextLabel="Other names used">
+            next="identification/othernames"
+            nextLabel="Other names used">
+            <h2>Your full name</h2>
             <ApplicantName name="name"
-                           {...this.props.ApplicantName }
-                           onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-                           onValidate={this.onValidate.bind(this)}
-                           />
+              {...this.props.ApplicantName }
+              onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+              onValidate={this.onValidate.bind(this)}
+            />
           </SectionView>
 
           <SectionView name="othernames"
@@ -240,8 +250,8 @@ class Identification extends ValidationElement {
           <SectionView name="physical"
                        back="identification/ssn"
                        backLabel="Social security number"
-                       next="identification/psychological"
-                       nextLabel="Psychological and emotional health">
+                       next="identification/review"
+                       nextLabel="Review Identification">
             <Physical name="physical"
                       {...this.props.Physical}
                       onUpdate={this.onUpdate.bind(this, 'Physical')}

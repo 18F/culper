@@ -264,6 +264,22 @@
             width: 20rem;
         }
     }
+
+    .review-btns {
+        button {
+            height: 5.5rem;
+        }
+    }
+
+    .intro {
+        i {
+            font-size: 15rem;
+            color: $eapp-green;
+        }
+        h1 {
+            margin-top: 2rem;
+        }
+    }
 }
 
 #login {
