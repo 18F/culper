@@ -173,7 +173,7 @@ export default class Name extends ValidationElement {
   render () {
     return (
       <div className="eapp-field-wrap name">
-        <h2>Your full name</h2>
+        {this.props.title && <h2>{this.props.title}</h2>}
         <Help id="identification.name.first.help">
           <Text name="first"
                 label="First name"

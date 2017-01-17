@@ -1,5 +1,5 @@
 import React from 'react'
-import { ValidationElement, Text, DateControl, RadioGroup, Radio, Comments } from '../../../Form'
+import { ValidationElement, Text, DateControl, Name, RadioGroup, Radio, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -134,6 +134,13 @@ export default class Passport extends ValidationElement {
     return (
       <div>
         <div className="eapp-field-wrap">
+          <h2>Provide the name in which passport was first issued</h2>
+          <Name name="name"
+            {...this.props.Name }
+            onUpdate={this.handleUpdate.bind(this, 'Name')}
+            onValidate={this.handleValidation}
+          />
+
           <h2>Provide your U.S. passport number</h2>
           <Text name="number"
             value={this.state.Number}

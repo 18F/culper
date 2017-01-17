@@ -8,6 +8,7 @@ import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
+import ContactInformation from './ContactInformation'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -219,6 +220,9 @@ class Identification extends ValidationElement {
                        backLabel="Birth place"
                        next="identification/ssn"
                        nextLabel="Social security number">
+                       <ContactInformation name="contact"
+                         {...this.props.ContactInformation}
+                       />
           </SectionView>
 
           <SectionView name="ssn"
