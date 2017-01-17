@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ValidationElement, Help, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Help, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
   constructor (props) {
@@ -10,24 +10,8 @@ export default class OtherNames extends ValidationElement {
       yesNo: props.HasOtherNames,
       errorCodes: []
     }
-  }
 
-  handleUpdate (id, field, values) {
-    let list = this.state.List
-    for (let x = 0; x < list.length; x++) {
-      if (list[x].ID === id) {
-        list[x][field] = values
-      }
-    }
-
-    this.setState({ List: list }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.yesNo
-        })
-      }
-    })
+    this.myDispatch = this.myDispatch.bind(this)
   }
 
   handleValidation (event, status, error) {
@@ -57,15 +41,15 @@ export default class OtherNames extends ValidationElement {
 
   isValid () {
     for (let item of this.state.List) {
-      if (!item.Name.first || !item.Name.last) {
+      if (!item.Name || !item.Name.first || !item.Name.last) {
         return false
       }
 
-      if (!item.MaidenName.first || !item.MaidenName.last) {
+      if (!item.MaidenName || !item.MaidenName.value) {
         return false
       }
 
-      if (!item.DatesUsed.from || (!item.DatesUsed.to && !item.DatesUsed.present)) {
+      if (!item.DatesUsed || !item.DatesUsed.from || (!item.DatesUsed.to && !item.DatesUsed.present)) {
         return false
       }
     }
@@ -75,7 +59,7 @@ export default class OtherNames extends ValidationElement {
   addOtherName () {
     let list = this.state.List
     list.push({
-      ID: new Date().getTime(),
+      index: new Date().getTime(),
       Name: {},
       MaidenName: '',
       DatesUsed: {},
@@ -117,10 +101,6 @@ export default class OtherNames extends ValidationElement {
     })
   }
 
-  keyName (id, bit) {
-    return '' + id + '-' + bit
-  }
-
   options () {
     return (
       <RadioGroup className="option-list" selectedValue={this.state.yesNo}>
@@ -140,6 +120,17 @@ export default class OtherNames extends ValidationElement {
     )
   }
 
+  myDispatch (collection) {
+    this.setState({ List: collection }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          List: this.state.List,
+          HasOtherNames: this.state.yesNo
+        })
+      }
+    })
+  }
+
   /**
    * Render children only when we explicit state there are aliases
    */
@@ -148,46 +139,31 @@ export default class OtherNames extends ValidationElement {
       return ''
     }
 
-    return this.state.List.map((x) => {
-      return (
-        <div key={x.ID}>
-          <Name name="name"
-                {...x.Name}
-                key={this.keyName(x.ID, 'name')}
-                onUpdate={this.handleUpdate.bind(this, x.ID, 'Name')}
-                onValidate={this.handleValidation.bind(this)}
-                />
-
-          <MaidenName name="maiden"
-                      key={this.keyName(x.ID, 'maiden')}
-                      value={x.MaidenName}
-                      onUpdate={this.handleUpdate.bind(this, x.ID, 'MaidenName')}
-                      onValidate={this.handleValidation.bind(this)}
+    return (
+      <Collection minimum="1"
+                  items={this.state.List}
+                  dispatch={this.myDispatch}
+                  appendLabel="Add another name">
+        <Name name="Name"
+              onValidate={this.handleValidation}
+              />
+        <MaidenName name="MaidenName"
+                    onValidate={this.handleValidation}
+                    />
+        <DateRange name="DatesUsed"
+                   onValidate={this.handleValidation}
+                   />
+        <div>
+          <h2>Reason for change</h2>
+          <Help id="alias.reason.help">
+            <Textarea name="Reason"
+                      onValidate={this.handleValidation}
+                      label={'Provide the reasons why the name changed'}
                       />
-
-          <DateRange name="dates"
-                     {...x.DatesUsed}
-                     key={this.keyName(x.ID, 'used')}
-                     title="Provide dates used"
-                     onUpdate={this.handleUpdate.bind(this, x.ID, 'DatesUsed')}
-                     onValidate={this.handleValidation.bind(this)}
-                     />
-
-          <div>
-            <h2>Reason for change</h2>
-            <Help id="alias.reason.help">
-              <Textarea name="reason"
-                        key={this.keyName(x.ID, 'reason')}
-                        value={x.Reasons}
-                        onUpdate={this.handleUpdate.bind(this, x.ID, 'Reasons')}
-                        onValidate={this.handleValidation.bind(this)}
-                        label={'Provide the reasons why the name changed'}
-                        />
-            </Help>
-          </div>
+          </Help>
         </div>
-      )
-    })
+      </Collection>
+    )
   }
 
   render () {
@@ -200,12 +176,6 @@ export default class OtherNames extends ValidationElement {
         </div>
         {this.options()}
         {this.visibleComponents()}
-        <div className="text-center">
-          <button className="add" onClick={this.addOtherName.bind(this)}>
-            <span>Add another name used</span>
-            <i className="fa fa-plus-circle"></i>
-          </button>
-        </div>
       </div>
     )
   }

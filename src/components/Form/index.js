@@ -1,6 +1,7 @@
 // Validation
 import ValidationElement from './ValidationElement'
 import Help from './Help'
+import Collection from './Collection'
 
 // Basic form elements
 import Generic from './Generic'
@@ -39,6 +40,7 @@ import Sex from './Sex'
 export {
   ValidationElement,
   Help,
+  Collection,
   Generic,
   Text,
   Email,
