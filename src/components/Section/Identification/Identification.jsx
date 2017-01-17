@@ -132,9 +132,7 @@ class Identification extends ValidationElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name=""
-            title="Let's make sure everything looks right."
-            showTop="true">
+          <SectionView name="">
             {this.intro()}
           </SectionView>
 

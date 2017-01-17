@@ -15,7 +15,7 @@ export default function IntroHeader (props) {
     )
   }
 
-  if (props.Completed.status === 'completed') {
+  if (props.Completed.status === 'complete') {
     return (
       <div>
         <div className="text-center"><i className="fa fa-check-circle"></i></div>
