@@ -36,7 +36,6 @@ export default class Name extends ValidationElement {
     let part = this.extractPart(event.target.id)
     let value = event.target.value
     let updated = null
-    console.log(part)
 
     switch (part) {
       case 'first':
@@ -85,6 +84,7 @@ export default class Name extends ValidationElement {
         } = this.state
 
         this.props.onUpdate({
+          ...this.props,
           first: first,
           firstInitialOnly: firstInitialOnly,
           last: last,
