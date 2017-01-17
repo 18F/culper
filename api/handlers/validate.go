@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model/form"
 	"github.com/gorilla/mux"
@@ -224,4 +225,39 @@ func ValidateEmail(w http.ResponseWriter, r *http.Request) {
 	_, err := form.EmailField(body.Address).Valid()
 	stack := form.NewErrorStack("Email", err)
 	EncodeErrJSON(w, stack)
+}
+
+// ValidatePhoneNumber validates a phone number based on the phone number type
+func ValidatePhoneNumber(numberType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Validating Phone Number")
+		number := mux.Vars(r)["number"]
+
+		var p form.PhoneNumberField
+		switch numberType {
+		case "Domestic", "International":
+			var num, ext string
+			// Check if a number and an extension were passed through
+			split := strings.Split(number, ",")
+			num = split[0]
+			if len(split) == 2 {
+				ext = split[1]
+			}
+
+			p = form.PhoneNumberField{
+				Number:    num,
+				Type:      form.PhoneNumberTypeField(numberType),
+				Extension: ext,
+			}
+		case "DSN":
+			p = form.PhoneNumberField{
+				Number: number,
+				Type:   form.PhoneNumberTypeField(numberType),
+			}
+		}
+
+		_, err := p.Valid()
+		stack := form.NewErrorStack("Number", err)
+		EncodeErrJSON(w, stack)
+	}
 }

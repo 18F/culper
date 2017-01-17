@@ -1,8 +1,4 @@
-.other-names-used {
-    h2 {
-        margin-top: 2rem;
-    }
-
+.collection {
     button.add {
         line-height: normal !important;
         width: 25rem;
@@ -14,6 +10,7 @@
 
         span {
             display: table-cell;
+            width: 100%;
         }
 
         i {
