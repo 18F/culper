@@ -12,6 +12,10 @@ export default class ApplicantSSN extends ValidationElement {
       first: this.props.first || this.ripper(props.value, 0, 3),
       middle: this.props.middle || this.ripper(props.value, 3, 5),
       last: this.props.last || this.ripper(props.value, 5, 9),
+      verifyFirst: '',
+      verifyMiddle: '',
+      verifyLast: '',
+      verified: this.props.verified || false,
       notApplicable: props.notApplicable,
       focus: props.focus || false,
       error: props.error || false,
@@ -56,6 +60,33 @@ export default class ApplicantSSN extends ValidationElement {
         }
         break
 
+      case 'verifyFirst':
+        updated = {
+          verifyFirst: value,
+          verified: ('' + value + this.state.verifyMiddle + this.state.veriyLast) === this.state.value
+        }
+        if (value.length === 3) {
+          this.refs.verifyMiddle.refs.text.refs.input.focus()
+        }
+        break
+
+      case 'verifyMiddle':
+        updated = {
+          verifyMiddle: value,
+          verified: ('' + this.state.verifyFirst + value + this.state.verifyLast) === this.state.value
+        }
+        if (value.length === 2) {
+          this.refs.verifyLast.refs.text.refs.input.focus()
+        }
+        break
+
+      case 'verifyLast':
+        updated = {
+          verifyLast: value,
+          verified: ('' + this.state.verifyFirst + this.state.verifyMiddle + value) === this.state.value
+        }
+        break
+
       case 'notApplicable':
         updated = {
           notApplicable: event.target.checked
@@ -72,6 +103,7 @@ export default class ApplicantSSN extends ValidationElement {
             first: this.state.first,
             middle: this.state.middle,
             last: this.state.last,
+            verified: this.state.verified,
             notApplicable: this.state.notApplicable
           })
         }
@@ -101,6 +133,14 @@ export default class ApplicantSSN extends ValidationElement {
         case 'middle':
           this.refs.first.refs.text.refs.input.focus()
           break
+
+        case 'verifyLast':
+          this.refs.verifyMiddle.refs.text.refs.input.focus()
+          break
+
+        case 'verifyMiddle':
+          this.refs.verifyFirst.refs.text.refs.input.focus()
+          break
       }
     }
 
@@ -121,7 +161,7 @@ export default class ApplicantSSN extends ValidationElement {
       complexStatus = false
     } else if (this.state.notApplicable) {
       complexStatus = true
-    } else if (this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
+    } else if (this.state.verified && this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
       complexStatus = true
     }
 
@@ -177,6 +217,56 @@ export default class ApplicantSSN extends ValidationElement {
    */
   extractPart (id) {
     return id.split('-').pop()
+  }
+
+  verify () {
+    if (this.state.value && this.state.value.length === 9 && this.state.errorCodes && this.state.errorCodes.length === 0) {
+      return (
+        <div>
+          <label>Please verify your social security number</label>
+          <Text name={this.partName('verifyFirst')}
+                ref="verifyFirst"
+                className="first eapp-short-input"
+                placeholder="000"
+                maxlength="3"
+                pattern="^[0-9]*$"
+                value={this.state.verifyFirst}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
+          <Text name={this.partName('verifyMiddle')}
+                ref="verifyMiddle"
+                className="middle eapp-short-input"
+                placeholder="00"
+                maxlength="2"
+                pattern="^[0-9]*$"
+                value={this.state.verifyMiddle}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                />
+          <Text name={this.partName('verifyLast')}
+                ref="verifyLast"
+                className="last eapp-short-input"
+                placeholder="0000"
+                maxlength="4"
+                pattern="^[0-9]*$"
+                value={this.state.verifyLast}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                />
+        </div>
+      )
+    }
+
+    return ''
   }
 
   render () {
@@ -237,6 +327,7 @@ export default class ApplicantSSN extends ValidationElement {
                       onBlur={this.props.onBlur}
                       />
           </div>
+          {this.verify()}
         </Help>
       </div>
     )
