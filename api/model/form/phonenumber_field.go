@@ -13,6 +13,15 @@ var (
 	dsnRegexp           = regexp.MustCompile("\\d{3}-\\d{4}")
 	phoneNumberTypes    = [...]string{"DSN", "International", "Domestic"}
 	timeToCall          = [...]string{"Day", "Night", "Both"}
+
+	// DomesticPhoneNumberVar contains expected constant for domestic number
+	DomesticPhoneNumberKey = "Domestic"
+
+	// InternationalPhoneNumberVar contains expected constant for international numbers
+	InternationalPhoneNumberKey = "International"
+
+	// DSNPhoneNumberVar contains expected constant for DSN numbers
+	DSNPhoneNumberKey = "DSN"
 )
 
 // PhoneNumberField contains the contents for a Phone Number
