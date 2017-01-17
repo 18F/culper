@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { i18n } from '../../config'
 import { GithubOAuth } from '../../services'
 
 export default class LoginOAuth extends React.Component {
@@ -26,7 +27,7 @@ export default class LoginOAuth extends React.Component {
   render () {
     if (this.state.authenticated) {
       return (
-        <button type="button" onClick={this.logout}>Logout</button>
+        <button type="button" onClick={this.logout}>{i18n.t('app.logout')}</button>
       )
     } else {
       return (

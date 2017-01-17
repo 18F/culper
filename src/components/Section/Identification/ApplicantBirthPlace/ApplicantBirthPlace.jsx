@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../../config'
 import { ValidationElement, Help, Radio, City, MilitaryState, County, Country, RadioGroup } from '../../../Form'
 import { api } from '../../../../services/api'
 
@@ -172,15 +173,15 @@ export default class ApplicantBirthPlace extends ValidationElement {
             <label>&nbsp;</label>
             <RadioGroup selectedValue={this.state.domestic}>
               <Radio name="domestic"
-                label="Yes"
-                value="yes"
-                onChange={this.handleChange}
-              />
+                     label={i18n.t('identification.birthplace.question.yes')}
+                     value="yes"
+                     onChange={this.handleChange}
+                     />
               <Radio name="domestic"
-                label="No"
-                value="no"
-                onChange={this.handleChange}
-              />
+                     label={i18n.t('identification.birthplace.question.no')}
+                     value="no"
+                     onChange={this.handleChange}
+                     />
             </RadioGroup>
           </Help>
     )
@@ -190,87 +191,87 @@ export default class ApplicantBirthPlace extends ValidationElement {
     if (this.state.disabledCountry === null && this.state.disabledState === null) {
       return (
         <div>
-          <h2>Place of birth</h2>
-          <label>Were you born in the United States of America</label>
+          <h2>{i18n.t('identification.birthplace.title')}</h2>
+          <label>{i18n.t('identification.birthplace.question.label')}</label>
           {this.options()}
         </div>
       )
     } else if (this.state.disabledCountry) {
       return (
         <div>
-          <h2>Place of birth</h2>
-          <label>Were you born in the United States of America</label>
+          <h2>{i18n.t('identification.birthplace.title')}</h2>
+          <label>{i18n.t('identification.birthplace.question.label')}</label>
           {this.options()}
           <MilitaryState name="state"
-            label="State"
-            value={this.state.state}
-            includeStates="true"
-            required="true"
-            disabled={this.state.disabledState}
-            onChange={this.handleChange}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-          />
+                         label={i18n.t('identification.birthplace.label.state')}
+                         value={this.state.state}
+                         includeStates="true"
+                         required="true"
+                         disabled={this.state.disabledState}
+                         onChange={this.handleChange}
+                         onValidate={this.handleValidation}
+                         onFocus={this.props.onFocus}
+                         onBlur={this.props.onBlur}
+                         />
           <City name="city"
-            label="City"
-            value={this.state.city}
-            placeholder="Please enter your city of birth"
-            maxlength="100"
-            onChange={this.handleChange}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-          />
+                label={i18n.t('identification.birthplace.label.city')}
+                value={this.state.city}
+                placeholder={i18n.t('identification.birthplace.placeholder.city')}
+                maxlength="100"
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
           <County name="county"
-            label="County"
-            value={this.state.county}
-            placeholder="Please enter your county of birth"
-            maxlength="255"
-            onChange={this.handleChange}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-          />
+                  label={i18n.t('identification.birthplace.label.county')}
+                  value={this.state.county}
+                  placeholder={i18n.t('identification.birthplace.placeholder.county')}
+                  maxlength="255"
+                  onChange={this.handleChange}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  />
         </div>
       )
     }
 
     return (
       <div>
-        <h2>Place of birth</h2>
-        <label>Were you born in the United States of America</label>
+        <h2>{i18n.t('identification.birthplace.title')}</h2>
+        <label>{i18n.t('identification.birthplace.question.label')}</label>
         {this.options()}
         <City name="city"
-          label="City"
-          value={this.state.city}
-          placeholder="Please enter your city of birth"
-          maxlength="100"
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+              label={i18n.t('identification.birthplace.label.city')}
+              value={this.state.city}
+              placeholder={i18n.t('identification.birthplace.placeholder.city')}
+              maxlength="100"
+              onChange={this.handleChange}
+              onValidate={this.handleValidation}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              />
         <County name="county"
-          label="County"
-          value={this.state.county}
-          placeholder="Please enter your county of birth"
-          maxlength="255"
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+                label={i18n.t('identification.birthplace.label.county')}
+                value={this.state.county}
+                placeholder={i18n.t('identification.birthplace.placeholder.county')}
+                maxlength="255"
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
         <Country name="country"
-          label="Country"
-          value={this.state.country}
-          required="true"
-          disabled={this.state.disabledCountry}
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+                 label={i18n.t('identification.birthplace.label.country')}
+                 value={this.state.country}
+                 required="true"
+                 disabled={this.state.disabledCountry}
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
       </div>
     )
   }
