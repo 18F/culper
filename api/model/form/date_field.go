@@ -24,7 +24,6 @@ type DateField struct {
 func (d DateField) Valid() (bool, error) {
 	formatted := fmt.Sprintf("%v-%v-%v", d.Month, d.Day, d.Year)
 	if _, err := time.Parse(dateFieldParser, formatted); err != nil {
-		fmt.Println(err)
 		return false, ErrFieldInvalid{err.Error()}
 	}
 	return true, nil
