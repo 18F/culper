@@ -48,9 +48,9 @@ class Foreign extends ValidationElement {
     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
 
     let cstatus = 'neutral'
-    if (this.hasStatus('passport', true)) {
+    if (this.hasStatus('passport', status, true)) {
       cstatus = 'complete'
-    } else if (this.hasStatus('passport', false)) {
+    } else if (this.hasStatus('passport', status, false)) {
       cstatus = 'incomplete'
     }
     let completed = {
@@ -71,8 +71,9 @@ class Foreign extends ValidationElement {
   /**
    * Helper to test whether a subsection is complete
    */
-  hasStatus (property, val) {
-    return this.props.Completed[property] && this.props.Completed[property].status === val
+  hasStatus (property, status, val) {
+    return (this.props.Completed[property] && this.props.Completed[property].status === val)
+      || (status && status[property] && status[property].status === val)
   }
 
   /**
