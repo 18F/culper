@@ -22,13 +22,23 @@
 		.usa-input-error-message {
 			display:none;
 		}
-		input[type="text"], textarea, select {
+
+		input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        textarea,
+        select {
 			background:url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
 			box-shadow:none;
 			width:calc(100% * 1);
 		}
 	}
-	input[type="text"], input[type="number"], textarea, select {
+
+	input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    textarea,
+    select {
 		&:focus {
 			box-shadow:3px 1px 16px 22px 12px black;
 		}
