@@ -137,8 +137,8 @@ class Foreign extends ValidationElement {
             {this.intro()}
           </SectionView>
           <SectionView name="review"
-                       back="history"
-                       backLabel="Your History"
+                       back="identification"
+                       backLabel="Information about you"
                        next="tbd"
                        nextLabel="TBD">
             <Passport name="passport"
@@ -150,8 +150,8 @@ class Foreign extends ValidationElement {
           <SectionView name="passport"
                        back="identification/physical"
                        backLabel="Physical attributes"
-                       next="foreign/contacts"
-                       nextLabel="Foreign contacts">
+                       next="foreign/review"
+                       nextLabel="Review Foreign activities">
             <Passport name="passport"
                       {...this.props.Passport}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
