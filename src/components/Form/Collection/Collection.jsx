@@ -9,7 +9,7 @@ export default class Collection extends ValidationElement {
     this.state = {
       minimum: min,
       length: min,
-      items: []
+      items: this.props.items || []
     }
 
     this.append = this.append.bind(this)
