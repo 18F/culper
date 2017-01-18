@@ -236,7 +236,7 @@ class Identification extends ValidationElement {
                        next="identification/ssn"
                        nextLabel={i18n.t('identification.destination.ssn')}>
             <ContactInformation name="contact"
-                                {...this.props.ContactInformation}
+                                {...this.props.Contacts}
                                 onUpdate={this.onUpdate.bind(this, 'Contacts')}
                                 onValidate={this.onValidate.bind(this)}
                                 />
