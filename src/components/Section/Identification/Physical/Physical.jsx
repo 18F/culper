@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
-import { ValidationElement, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
+import { ValidationElement, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'
 
 export default class Physical extends ValidationElement {
   constructor (props) {
@@ -12,11 +12,16 @@ export default class Physical extends ValidationElement {
       HairColor: props.HairColor || {},
       EyeColor: props.EyeColor || {},
       Sex: props.Sex || {},
+      Comments: props.Comments || '',
       errorCodes: []
     }
   }
 
   handleUpdate (field, values) {
+    if (field === 'Comments') {
+      values = values.value
+    }
+
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -24,7 +29,8 @@ export default class Physical extends ValidationElement {
           Weight: this.state.Weight,
           HairColor: this.state.HairColor,
           EyeColor: this.state.EyeColor,
-          Sex: this.state.Sex
+          Sex: this.state.Sex,
+          Comments: this.state.Comments
         })
       }
     })
@@ -112,6 +118,13 @@ export default class Physical extends ValidationElement {
              onUpdate={this.handleUpdate.bind(this, 'Sex')}
              onValidate={this.handleValidation.bind(this)}
              />
+        <h2>{i18n.t('identification.traits.heading.comments')}</h2>
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  label={i18n.t('identification.traits.label.comments')}
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  />
       </div>
     )
   }

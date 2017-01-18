@@ -7,7 +7,7 @@ export default function CheckboxGroup (props) {
     // Handle empty array case so that .find() doesn't error
     if (!props.selectedValues || props.selectedValues.length === 0) {
       checked = false
-    } else {
+    } else if (props.selectedValues.find) {
       // Check if current value matches one of the checkbox options. Boolify it
       // if a value is found
       checked = !!(props.selectedValues.find(v => {
