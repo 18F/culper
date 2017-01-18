@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Help from '../Help'
 import Radio from '../Radio'
@@ -24,12 +25,12 @@ export default class EyeColor extends ValidationElement {
   render () {
     return (
       <div className="eye-colors">
-        <h2>Eye Color</h2>
+        <h2>{this.props.label}</h2>
         <Help id="traits.eye.help">
           <label>&nbsp;</label>
           <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>
             <Radio name={this.props.name}
-                   label="Black"
+                   label={i18n.t('identification.traits.eye.black')}
                    value="Black"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -41,7 +42,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye black" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Blue"
+                   label={i18n.t('identification.traits.eye.blue')}
                    value="Blue"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -53,7 +54,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye blue" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Brown"
+                   label={i18n.t('identification.traits.eye.brown')}
                    value="Brown"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -65,7 +66,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye brown" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Gray"
+                   label={i18n.t('identification.traits.eye.gray')}
                    value="Gray"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -77,7 +78,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye gray" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Green"
+                   label={i18n.t('identification.traits.eye.green')}
                    value="Green"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -89,7 +90,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye green" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Hazel"
+                   label={i18n.t('identification.traits.eye.hazel')}
                    value="Hazel"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -101,7 +102,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye hazel" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Maroon"
+                   label={i18n.t('identification.traits.eye.maroon')}
                    value="Maroon"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -113,7 +114,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye maroon" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Multicolored"
+                   label={i18n.t('identification.traits.eye.multi')}
                    value="Multicolored"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -125,7 +126,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye multi" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Pink"
+                   label={i18n.t('identification.traits.eye.pink')}
                    value="Pink"
                    help={this.props.help}
                    disabled={this.props.disabled}
@@ -137,7 +138,7 @@ export default class EyeColor extends ValidationElement {
               <i className="fa fa-eye pink" aria-hidden="true"></i>
             </Radio>
             <Radio name={this.props.name}
-                   label="Unknown"
+                   label={i18n.t('identification.traits.eye.unknown')}
                    value="Unknown"
                    help={this.props.help}
                    disabled={this.props.disabled}

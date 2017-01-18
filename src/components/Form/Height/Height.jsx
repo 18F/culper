@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 
@@ -84,48 +85,48 @@ export default class Height extends ValidationElement {
   render () {
     return (
       <div className="height">
-        <h2>Height</h2>
+        <h2>{this.props.label}</h2>
         <div className="eapp-field-wrap feet">
           <Number id={this.partName('feet')}
-            name="feet"
-            label="Feet"
-            placeholder="0"
-            help="Feet must be a number between 1 and 9"
-            aria-describedby={this.errorName('feet')}
-            disabled={this.state.disabled}
-            max="9"
-            maxlength="1"
-            min="1"
-            readonly={this.state.readonly}
-            required={this.state.required}
-            step="1"
-            value={this.state.feet}
-            onChange={this.handleChange.bind(this, 'feet')}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            onValidate={this.handleValidation}
-          />
+                  name="feet"
+                  label={i18n.t('identification.traits.label.feet')}
+                  placeholder={i18n.t('identification.traits.placeholder.feet')}
+                  help={i18n.t('identification.traits.help.feet')}
+                  aria-describedby={this.errorName('feet')}
+                  disabled={this.state.disabled}
+                  max="9"
+                  maxlength="1"
+                  min="1"
+                  readonly={this.state.readonly}
+                  required={this.state.required}
+                  step="1"
+                  value={this.state.feet}
+                  onChange={this.handleChange.bind(this, 'feet')}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                  onValidate={this.handleValidation}
+                  />
         </div>
         <div className="eapp-field-wrap inches">
           <Number id={this.partName('inches')}
-            name="inches"
-            label="Inches"
-            placeholder="0"
-            help="Inches must be a number between 0 and 11"
-            aria-describedby={this.errorName('inches')}
-            disabled={this.state.disabled}
-            max="11"
-            maxlength="2"
-            min="0"
-            readonly={this.state.readonly}
-            required={this.state.required}
-            step="1"
-            value={this.state.inches}
-            onChange={this.handleChange.bind(this, 'inches')}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            onValidate={this.handleValidation}
-          />
+                  name="inches"
+                  label={i18n.t('identification.traits.label.inches')}
+                  placeholder={i18n.t('identification.traits.placeholder.inches')}
+                  help={i18n.t('identification.traits.help.inches')}
+                  aria-describedby={this.errorName('inches')}
+                  disabled={this.state.disabled}
+                  max="11"
+                  maxlength="2"
+                  min="0"
+                  readonly={this.state.readonly}
+                  required={this.state.required}
+                  step="1"
+                  value={this.state.inches}
+                  onChange={this.handleChange.bind(this, 'inches')}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                  onValidate={this.handleValidation}
+                  />
         </div>
       </div>
     )

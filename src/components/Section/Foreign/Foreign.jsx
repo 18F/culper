@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
 import Passport from './Passport'
@@ -101,28 +102,28 @@ class Foreign extends ValidationElement {
         </div>
         <div id="titles" className="usa-grid-full">
           <div className="usa-width-one-half">
-            <h3>One piece at a time</h3>
+            <h3>{i18n.t('foreign.tour.title')}</h3>
           </div>
           <div className="usa-width-one-half">
-            <h3>Full section view</h3>
+            <h3>{i18n.t('foreign.review.title')}</h3>
           </div>
         </div>
 
         <div id="dialogs" className="usa-grid-full">
           <div className="usa-width-one-half">
-            <p>Take a guided tour through the section</p>
+            <p>{i18n.t('foreign.tour.para')}</p>
           </div>
           <div className="usa-width-one-half">
-            <p>View all the sections associated with <strong>foreign activities</strong> at once</p>
+            <p>{i18n.t('foreign.review.para')}</p>
           </div>
         </div>
 
         <div id="actions" className="usa-grid-full review-btns">
           <div className="usa-width-one-half">
-            <button onClick={this.handleTour}>Take me on the tour!</button>
+            <button onClick={this.handleTour}>{i18n.t('foreign.tour.button')}</button>
           </div>
           <div className="usa-width-one-half">
-            <button onClick={this.handleReview}>Show me the full section</button>
+            <button onClick={this.handleReview}>{i18n.t('foreign.review.button')}</button>
           </div>
         </div>
       </div>
@@ -137,10 +138,10 @@ class Foreign extends ValidationElement {
             {this.intro()}
           </SectionView>
           <SectionView name="review"
-                       back="identification"
-                       backLabel="Information about you"
+                       back="history"
+                       backLabel={i18n.t('foreign.destination.history')}
                        next="tbd"
-                       nextLabel="TBD">
+                       nextLabel={i18n.t('foreign.destination.tbd')}>
             <Passport name="passport"
                       {...this.props.Passport}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
@@ -149,9 +150,9 @@ class Foreign extends ValidationElement {
           </SectionView>
           <SectionView name="passport"
                        back="identification/physical"
-                       backLabel="Physical attributes"
+                       backLabel={i18n.t('identification.destination.physical')}
                        next="foreign/review"
-                       nextLabel="Review Foreign activities">
+                       nextLabel={i18n.t('foreign.destination.review')}>
             <Passport name="passport"
                       {...this.props.Passport}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
@@ -160,27 +161,27 @@ class Foreign extends ValidationElement {
           </SectionView>
           <SectionView name="contacts"
                        back="foreign/passport"
-                       backLabel="U.S. passport information"
+                       backLabel={i18n.t('foreign.destination.passport')}
                        next="foreign/activities"
-                       nextLabel="Foreign activities">
+                       nextLabel={i18n.t('foreign.destination.activities')}>
           </SectionView>
           <SectionView name="activites"
                        back="foreign/contacts"
-                       backLabel="Foreign contacts"
+                       backLabel={i18n.t('foreign.destination.contacts')}
                        next="foreign/business"
-                       nextLabel="Foreign business, professional activities, and government contacts">
+                       nextLabel={i18n.t('foreign.destination.business')}>
           </SectionView>
           <SectionView name="business"
                        back="foreign/activities"
-                       backLabel="Foreign activities"
+                       backLabel={i18n.t('foreign.destination.activities')}
                        next="foreign/travel"
-                       nextLabel="Foreign countries you have visited">
+                       nextLabel={i18n.t('foreign.destination.travel')}>
           </SectionView>
           <SectionView name="travel"
                        back="foreign/business"
-                       backLabel="Foreign business, professional activities, and government contacts"
+                       backLabel={i18n.t('foreign.destination.business')}
                        next="foreign/review"
-                       nextLabel="Review">
+                       nextLabel={i18n.t('foreign.destination.review')}>
           </SectionView>
         </SectionViews>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { i18n } from '../../../../config'
 import { ValidationElement, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
 
 export default class Physical extends ValidationElement {
@@ -82,26 +83,31 @@ export default class Physical extends ValidationElement {
     return (
       <div className="physical">
         <Height name="height"
+                label={i18n.t('identification.traits.label.height')}
                 {...this.props.Height}
                 onUpdate={this.handleUpdate.bind(this, 'Height')}
                 onValidate={this.handleValidation.bind(this)}
                 />
         <Weight name="weight"
+                label={i18n.t('identification.traits.label.weight')}
                 value={this.props.Weight}
                 onUpdate={this.handleUpdate.bind(this, 'Weight')}
                 onValidate={this.handleValidation.bind(this)}
                 />
         <HairColor name="hair"
+                   label={i18n.t('identification.traits.label.hair')}
                    value={this.props.HairColor}
                    onUpdate={this.handleUpdate.bind(this, 'HairColor')}
                    onValidate={this.handleValidation.bind(this)}
                    />
         <EyeColor name="eye"
+                  label={i18n.t('identification.traits.label.eye')}
                   value={this.props.EyeColor}
                   onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
                   onValidate={this.handleValidation.bind(this)}
                   />
         <Sex name="sex"
+             label={i18n.t('identification.traits.label.sex')}
              value={this.props.Sex}
              onUpdate={this.handleUpdate.bind(this, 'Sex')}
              onValidate={this.handleValidation.bind(this)}

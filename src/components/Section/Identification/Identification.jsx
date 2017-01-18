@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
 import ApplicantName from '../../Form/Name'
@@ -88,28 +89,28 @@ class Identification extends ValidationElement {
         </div>
         <div id="titles" className="usa-grid-full">
           <div className="usa-width-one-half">
-            <h3>One piece at a time</h3>
+            <h3>{i18n.t('identification.tour.title')}</h3>
           </div>
           <div className="usa-width-one-half">
-            <h3>Full section view</h3>
+            <h3>{i18n.t('identification.review.title')}</h3>
           </div>
         </div>
 
         <div id="dialogs" className="usa-grid-full">
           <div className="usa-width-one-half">
-            <p>Take a guided tour through the section</p>
+            <p>{i18n.t('identification.tour.para')}</p>
           </div>
           <div className="usa-width-one-half">
-            <p>View all the sections associated with <strong>Identification</strong> at once</p>
+            <p>{i18n.t('identification.review.para')}</p>
           </div>
         </div>
 
         <div id="actions" className="usa-grid-full review-btns">
           <div className="usa-width-one-half">
-            <button onClick={this.handleTour}>Take me on the tour!</button>
+            <button onClick={this.handleTour}>{i18n.t('identification.tour.button')}</button>
           </div>
           <div className="usa-width-one-half">
-            <button onClick={this.handleReview}>Show me the full section</button>
+            <button onClick={this.handleReview}>{i18n.t('identification.review.button')}</button>
           </div>
         </div>
       </div>
@@ -140,9 +141,9 @@ class Identification extends ValidationElement {
                        title="Let's make sure everything looks right"
                        showTop="true"
                        next="foreign"
-                       nextLabel="Foreign Activities"
+                       nextLabel={i18n.t('foreign.destination.passport')}
                        back="identification/physical"
-                       backLabel="Physical Attributes">
+                       backLabel={i18n.t('identification.destination.physical')}>
             <h2>Your full name</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
@@ -177,21 +178,21 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="name"
-            next="identification/othernames"
-            nextLabel="Other names used">
+                       next="identification/othernames"
+                       nextLabel={i18n.t('identification.destination.othernames')}>
             <h2>Your full name</h2>
             <ApplicantName name="name"
-              {...this.props.ApplicantName }
-              onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-              onValidate={this.onValidate.bind(this)}
-            />
+                           {...this.props.ApplicantName }
+                           onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+                           onValidate={this.onValidate.bind(this)}
+                           />
           </SectionView>
 
           <SectionView name="othernames"
                        back="identification/name"
-                       backLabel="Full name"
+                       backLabel={i18n.t('identification.destination.name')}
                        next="identification/birthdate"
-                       nextLabel="Birth date">
+                       nextLabel={i18n.t('identification.destination.birthdate')}>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         onUpdate={this.onUpdate.bind(this, 'OtherNames')}
@@ -201,9 +202,9 @@ class Identification extends ValidationElement {
 
           <SectionView name="birthdate"
                        next="identification/birthplace"
-                       nextLabel="Birth Place"
+                       nextLabel={i18n.t('identification.destination.birthplace')}
                        back="identification/othernames"
-                       backLabel="Other names used">
+                       backLabel={i18n.t('identification.destination.othernames')}>
             <ApplicantBirthDate name="birthdate"
                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
                                 onValidate={this.onValidate.bind(this)}
@@ -213,9 +214,9 @@ class Identification extends ValidationElement {
 
           <SectionView name="birthplace"
                        next="identification/contacts"
-                       nextLabel="Contacts"
+                       nextLabel={i18n.t('identification.destination.contacts')}
                        back="identification/birthdate"
-                       backLabel="Birth date">
+                       backLabel={i18n.t('identification.destination.birthdate')}>
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
                                  onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
@@ -225,21 +226,21 @@ class Identification extends ValidationElement {
 
           <SectionView name="contacts"
                        back="identification/birthplace"
-                       backLabel="Birth place"
+                       backLabel={i18n.t('identification.destination.birthplace')}
                        next="identification/ssn"
-                       nextLabel="Social security number">
-                       <ContactInformation name="contact"
-                         {...this.props.ContactInformation}
-                         onUpdate={this.onUpdate.bind(this, 'ContactInformation')}
-                         onValidate={this.onValidate.bind(this)}
-                       />
+                       nextLabel={i18n.t('identification.destination.ssn')}>
+            <ContactInformation name="contact"
+                                {...this.props.ContactInformation}
+                                onUpdate={this.onUpdate.bind(this, 'ContactInformation')}
+                                onValidate={this.onValidate.bind(this)}
+                                />
           </SectionView>
 
           <SectionView name="ssn"
                        back="identification/contacts"
-                       backLabel="Contacts"
+                       backLabel={i18n.t('identification.destination.contacts')}
                        next="identification/physical"
-                       nextLabel="Physical attributes">
+                       nextLabel={i18n.t('identification.destination.physical')}>
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
                           onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
@@ -249,9 +250,9 @@ class Identification extends ValidationElement {
 
           <SectionView name="physical"
                        back="identification/ssn"
-                       backLabel="Social security number"
+                       backLabel={i18n.t('identification.destination.ssn')}
                        next="identification/review"
-                       nextLabel="Review Identification">
+                       nextLabel={i18n.t('identification.destination.review')}>
             <Physical name="physical"
                       {...this.props.Physical}
                       onUpdate={this.onUpdate.bind(this, 'Physical')}
@@ -261,9 +262,9 @@ class Identification extends ValidationElement {
 
           <SectionView name="psychological"
                        back="identification/physical"
-                       backLabel="Physical attributes"
+                       backLabel={i18n.t('identification.destination.physical')}
                        next="identification/review"
-                       nextLabel="Review">
+                       nextLabel={i18n.t('identification.destination.review')}>
           </SectionView>
         </SectionViews>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Help from '../Help'
 import Checkbox from '../Checkbox'
@@ -40,7 +41,7 @@ export default class HairColor extends ValidationElement {
     if (this.state.value.length > 0) {
       s = true
     }
-    super.handleValidation(event, { [this.props.name]: { status: s }}, errors)
+    super.handleValidation(event, {[this.props.name]: { status: s }}, errors)
   }
 
   hasColor (color) {
@@ -50,12 +51,12 @@ export default class HairColor extends ValidationElement {
   render () {
     return (
       <div className="hair-colors">
-        <h2>Hair Color</h2>
+        <h2>{this.props.label}</h2>
         <Help id="traits.hair.help">
           <label>&nbsp;</label>
           <CheckboxGroup className="option-list eapp-extend-labels" selectedValues={this.state.value}>
             <Checkbox name="hair-bald"
-                      label="Bald"
+                      label={i18n.t('identification.traits.hair.bald')}
                       value="Bald"
                       labelClass="black"
                       help={this.props.help}
@@ -68,7 +69,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-ban bald" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-black"
-                      label="Black"
+                      label={i18n.t('identification.traits.hair.black')}
                       value="Black"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -80,7 +81,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire black" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-blonde"
-                      label="Blonde or strawberry"
+                      label={i18n.t('identification.traits.hair.blonde')}
                       value="Blonde"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -92,7 +93,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire blonde" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-brown"
-                      label="Brown"
+                      label={i18n.t('identification.traits.hair.brown')}
                       value="Brown"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -104,7 +105,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire brown" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-gray"
-                      label="Gray or partially gray"
+                      label={i18n.t('identification.traits.hair.gray')}
                       value="Gray"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -116,7 +117,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire gray" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-red"
-                      label="Red or auburn"
+                      label={i18n.t('identification.traits.hair.red')}
                       value="Red"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -128,7 +129,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire red" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-sandy"
-                      label="Sandy"
+                      label={i18n.t('identification.traits.hair.sandy')}
                       value="Sandy"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -140,7 +141,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire sandy" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-white"
-                      label="White"
+                      label={i18n.t('identification.traits.hair.white')}
                       value="White"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -152,7 +153,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire white" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-blue"
-                      label="Blue"
+                      label={i18n.t('identification.traits.hair.blue')}
                       value="Blue"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -164,7 +165,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire blue" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-green"
-                      label="Green"
+                      label={i18n.t('identification.traits.hair.green')}
                       value="Green"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -176,7 +177,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire green" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-orange"
-                      label="Orange"
+                      label={i18n.t('identification.traits.hair.orange')}
                       value="Orange"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -188,7 +189,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire orange" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-pink"
-                      label="Pink"
+                      label={i18n.t('identification.traits.hair.pink')}
                       value="Pink"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -200,7 +201,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire pink" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-purple"
-                      label="Purple"
+                      label={i18n.t('identification.traits.hair.purple')}
                       value="Purple"
                       help={this.props.help}
                       disabled={this.props.disabled}
@@ -212,7 +213,7 @@ export default class HairColor extends ValidationElement {
               <i className="fa fa-fire purple" aria-hidden="true"></i>
             </Checkbox>
             <Checkbox name="hair-unknown"
-                      label="Unspecified or unknown"
+                      label={i18n.t('identification.traits.hair.unknown')}
                       value="Unknown"
                       help={this.props.help}
                       disabled={this.props.disabled}
