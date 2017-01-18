@@ -12,7 +12,7 @@
 .form-navigation {
 	margin-top:1.9rem;
 	margin-bottom:1.9rem;
-	
+
     a {
 	    color:$eapp-grey-dark;
 		&:hover {
@@ -85,9 +85,9 @@
             .has-errors {
 	            border-left-color:$eapp-red;
             }
-            .is-valid {
-	            border-left-color:$eapp-green;
-            }
+            // .is-valid {
+	        //     border-left-color:$eapp-green;
+            // }
         }
         .subsection {
             font-size: 1.6rem;

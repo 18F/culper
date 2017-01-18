@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 
 describe('The ApplicantBirthPlace component', () => {
-  const children = 5
+  const children = 4
 
   it('no error on empty', () => {
     const expected = {
@@ -13,7 +13,7 @@ describe('The ApplicantBirthPlace component', () => {
       value: ''
     }
     const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} help={expected.help} value={expected.value} country=''/>)
-    component.find('input#city').simulate('change')
+    component.find('input#city').simulate('blur')
     expect(component.find('div.hidden').length).toEqual(children)
   })
 

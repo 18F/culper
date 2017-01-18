@@ -9,6 +9,8 @@ import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
+import ContactInformation from './ContactInformation'
+import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -53,17 +55,19 @@ class Identification extends ValidationElement {
     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
 
     let cstatus = 'neutral'
-    if (this.hasStatus('name', true)
-        && this.hasStatus('birthdate', true)
-        && this.hasStatus('birthplace', true)
-        && this.hasStatus('ssn', true)
-        && this.hasStatus('othernames', true)) {
+    if (this.hasStatus('name', status, true)
+        && this.hasStatus('birthdate', status, true)
+        && this.hasStatus('birthplace', status, true)
+        && this.hasStatus('contacts', status, true)
+        && this.hasStatus('ssn', status, true)
+        && this.hasStatus('othernames', status, true)) {
       cstatus = 'complete'
-    } else if (this.hasStatus('name', false)
-               || this.hasStatus('birthdate', false)
-               || this.hasStatus('birthplace', false)
-               || this.hasStatus('ssn', false)
-               || this.hasStatus('othernames', false)) {
+    } else if (this.hasStatus('name', status, false)
+               || this.hasStatus('birthdate', status, false)
+               || this.hasStatus('birthplace', status, false)
+               || this.hasStatus('contacts', status, false)
+               || this.hasStatus('ssn', status, false)
+               || this.hasStatus('othernames', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -75,13 +79,20 @@ class Identification extends ValidationElement {
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
-  hasStatus (property, val) {
-    return this.props.Completed[property] && this.props.Completed[property].status === val
+  /**
+   * Helper to test whether a subsection is complete
+   */
+  hasStatus (property, status, val) {
+    return (this.props.Completed[property] && this.props.Completed[property].status === val)
+      || (status && status[property] && status[property].status === val)
   }
 
   intro () {
     return (
-      <div className="identification">
+      <div className="identification intro">
+        <div className="usa-grid-full eapp-field-wrap">
+          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
+        </div>
         <div id="titles" className="usa-grid-full">
           <div className="usa-width-one-half">
             <h3>{i18n.t('identification.tour.title')}</h3>
@@ -100,7 +111,7 @@ class Identification extends ValidationElement {
           </div>
         </div>
 
-        <div id="actions" className="usa-grid-full">
+        <div id="actions" className="usa-grid-full review-btns">
           <div className="usa-width-one-half">
             <button onClick={this.handleTour}>{i18n.t('identification.tour.button')}</button>
           </div>
@@ -128,15 +139,18 @@ class Identification extends ValidationElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name=""
-                       next="family"
-                       nextLabel={i18n.t('identification.destination.family')}>
+          <SectionView name="">
             {this.intro()}
           </SectionView>
 
           <SectionView name="review"
-                       next="family"
-                       nextLabel={i18n.t('identification.destination.family')}>
+                       title="Let's make sure everything looks right"
+                       showTop="true"
+                       next="foreign"
+                       nextLabel={i18n.t('foreign.destination.activities')}
+                       back="identification/physical"
+                       backLabel={i18n.t('identification.destination.physical')}>
+            <h2>Your full name</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
@@ -172,6 +186,7 @@ class Identification extends ValidationElement {
           <SectionView name="name"
                        next="identification/othernames"
                        nextLabel={i18n.t('identification.destination.othernames')}>
+            <h2>Your full name</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
@@ -220,6 +235,11 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.birthplace')}
                        next="identification/ssn"
                        nextLabel={i18n.t('identification.destination.ssn')}>
+            <ContactInformation name="contact"
+                                {...this.props.ContactInformation}
+                                onUpdate={this.onUpdate.bind(this, 'Contacts')}
+                                onValidate={this.onValidate.bind(this)}
+                                />
           </SectionView>
 
           <SectionView name="ssn"
@@ -237,8 +257,8 @@ class Identification extends ValidationElement {
           <SectionView name="physical"
                        back="identification/ssn"
                        backLabel={i18n.t('identification.destination.ssn')}
-                       next="identification/psychological"
-                       nextLabel={i18n.t('identification.destination.psychological')}>
+                       next="identification/review"
+                       nextLabel={i18n.t('identification.destination.review')}>
             <Physical name="physical"
                       {...this.props.Physical}
                       onUpdate={this.onUpdate.bind(this, 'Physical')}
@@ -272,6 +292,7 @@ function mapStateToProps (state) {
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
     ApplicantSSN: identification.ApplicantSSN || {},
     OtherNames: identification.OtherNames || {},
+    Contacts: identification.Contacts || {},
     Physical: identification.Physical || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []

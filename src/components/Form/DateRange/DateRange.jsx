@@ -40,10 +40,20 @@ export default class DateRange extends ValidationElement {
     }
 
     // Get relevant date values
-    const { from_year, from_month, from_day, to_year, to_month, to_day } = state
+    let { from_year, from_month, from_day, to_year, to_month, to_day } = state
+
+    // If present is true then make the "to" date equal to today
+    if (state.present) {
+      state.to = new Date()
+      state.to_year = state.to.getFullYear()
+      state.to_month = state.to.getMonth() + 1
+      state.to_day = state.to.getDate()
+    }
+
     if (from_year && from_month && from_day && to_year && to_month && to_day) {
       state.from = new Date(from_year, from_month, from_day)
       state.to = new Date(to_year, to_month, to_day)
+
       if (state.from > state.to) {
         state.error = 'From date must come before the to date'
       } else {
@@ -104,7 +114,7 @@ export default class DateRange extends ValidationElement {
           <DateControl name="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
-                                 onChange={this.handleChange.bind(this, 'to')}
+                       onChange={this.handleChange.bind(this, 'to')}
                        onValidate={this.handleValidation}
                        />
           <div className="from-present">

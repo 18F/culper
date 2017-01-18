@@ -50,7 +50,7 @@ const en = {
       button: 'Show me the full section'
     },
     destination: {
-      review: 'Review',
+      review: 'Review Identification',
       family: 'Family & friends',
       othernames: 'Other names used',
       name: 'Full name',
@@ -132,6 +132,9 @@ const en = {
       }
     },
     traits: {
+      heading: {
+        comments: 'Add your comment about sex'
+      },
       help: {
         hair: 'Select the hair color that most closely represents your hair color',
         eye: 'Select an eye color that most closely represents your eye color',
@@ -148,7 +151,8 @@ const en = {
         sex: 'Sex',
         feet: 'Feet',
         inches: 'Inches',
-        pounds: 'Pounds'
+        pounds: 'Pounds',
+        comments: 'Put your comment/explanation in the box below'
       },
       placeholder: {
         feet: '0',
@@ -201,7 +205,7 @@ const en = {
       button: 'Show me the full section'
     },
     destination: {
-      review: 'Review',
+      review: 'Review Foreign Actitivies',
       history: 'Your History',
       tbd: 'TBD',
       contacts: 'Foreign Contacts',

@@ -67,7 +67,7 @@ export default class Dropdown extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = 'eapp-field-wrap'
 
     if (this.state.error) {
       klass += ' usa-input-error'

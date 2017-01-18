@@ -11,7 +11,7 @@ export default class Passport extends ValidationElement {
       Issued: props.Issued || {},
       Expiration: props.Expiration || {},
       Comments: props.Comments || '',
-      yesNo: props.HasPassport,
+      HasPassport: props.HasPassport,
       re: '^([a-zA-Z0-9]{6,9})+$',
       error: false,
       valid: false,
@@ -64,7 +64,8 @@ export default class Passport extends ValidationElement {
           Number: this.state.Number,
           Issued: this.state.Issued,
           Expiration: this.state.Expiration,
-          Comments: this.state.Comments
+          Comments: this.state.Comments,
+          HasPassport: this.state.HasPassport
         })
       }
     })
@@ -120,55 +121,83 @@ export default class Passport extends ValidationElement {
    * Handle when the yes/no option has been changed
    */
   yesNoClicked (val) {
-    this.setState({ yesNo: val }, () => {
-      if (val === 'Yes') {
-      }
-    })
+    this.handleUpdate('HasPassport', val)
   }
 
   /**
    * Render children only when we explicit state there is passport information
    */
   visibleComponents () {
-    if (this.state.yesNo !== 'Yes') {
+    if (this.state.HasPassport !== 'Yes') {
       return ''
     }
 
     return (
       <div>
-        <Name name="name"
-              {...this.state.Name}
-              onUpdate={this.handleUpdate.bind(this, 'Name')}
-              onValidate={this.handleValidation}
-              />
-        <h2>{i18n.t('foreign.passport.number')}</h2>
-        <Text name="number"
-              value={this.state.Number}
-              pattern={this.state.re}
-              maxlength="9"
-              onUpdate={this.handleUpdate.bind(this, 'Number')}
-              onValidate={this.handleValidation}
-              />
-        <h2>{i18n.t('foreign.passport.issued')}</h2>
-        <DateControl name="issued"
-                     {...this.state.Issued}
-                     onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                     onValidate={this.handleValidation}
-                     />
-        <h2>{i18n.t('foreign.passport.expiration')}</h2>
-        <DateControl name="expiration"
-                     {...this.state.Expiration}
-                     onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                     onValidate={this.handleValidation}
-                     />
-        <h2>{i18n.t('foreign.passport.comment.title')}</h2>
-        <Comments name="comments"
-                  value={this.state.Comments}
-                  label={i18n.t('foreign.passport.comment.label')}
-                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                  onValidate={this.handleValidation}
-                  />
+        <div className="eapp-field-wrap">
+          <h2>Provide the name in which passport was first issued</h2>
+          <Name name="name"
+                {...this.state.Name}
+                onUpdate={this.handleUpdate.bind(this, 'Name')}
+                onValidate={this.handleValidation}
+                />
 
+          <h2>{i18n.t('foreign.passport.number')}</h2>
+          <Text name="number"
+                value={this.state.Number}
+                pattern={this.state.re}
+                maxlength="9"
+                onUpdate={this.handleUpdate.bind(this, 'Number')}
+                onValidate={this.handleValidation}
+                />
+        </div>
+
+        <div className="eapp-field-wrap">
+          <h2>{i18n.t('foreign.passport.issued')}</h2>
+          <DateControl name="issued"
+                       {...this.state.Issued}
+                       onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                       onValidate={this.handleValidation}
+                       />
+        </div>
+        <div className="eapp-field-wrap">
+          <h2>{i18n.t('foreign.passport.expiration')}</h2>
+          <DateControl name="expiration"
+                       {...this.state.Expiration}
+                       onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                       onValidate={this.handleValidation}
+                       />
+        </div>
+        <div className="eapp-field-wrap">
+          <h2>{i18n.t('foreign.passport.comment.title')}</h2>
+          <Comments name="comments"
+                    value={this.state.Comments}
+                    label={i18n.t('foreign.passport.comment.label')}
+                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                    onValidate={this.handleValidation}
+                    />
+        </div>
+      </div>
+    )
+  }
+
+  options () {
+    return (
+      <div className="eapp-field-wrap">
+        <RadioGroup className="option-list branch" selectedValue={this.state.HasPassport}>
+          <Radio name="has_passport"
+                 label={i18n.t('foreign.passport.question.yes')}
+                 value="Yes"
+                 onChange={this.yesNoClicked.bind(this, 'Yes')}
+                 onValidate={this.handleValidation}
+                 />
+          <Radio name="has_passport"
+                 label={i18n.t('foreign.passport.question.no')}
+                 value="No"
+                 onChange={this.yesNoClicked.bind(this, 'No')}
+                 onValidate={this.handleValidation}
+                 />
+        </RadioGroup>
       </div>
     )
   }
@@ -186,20 +215,7 @@ export default class Passport extends ValidationElement {
         <p>
           {i18n.t('foreign.passport.question.title')}
         </p>
-        <RadioGroup className="option-list" selectedValue={this.state.yesNo}>
-          <Radio name="has_passport"
-                 label={i18n.t('foreign.passport.question.yes')}
-                 value="Yes"
-                 onChange={this.yesNoClicked.bind(this, 'Yes')}
-                 onValidate={this.handleValidation}
-                 />
-          <Radio name="has_passport"
-                 label={i18n.t('foreign.passport.question.no')}
-                 value="No"
-                 onChange={this.yesNoClicked.bind(this, 'No')}
-                 onValidate={this.handleValidation}
-                 />
-        </RadioGroup>
+        {this.options()}
         {this.visibleComponents()}
       </div>
     )

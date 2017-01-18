@@ -171,7 +171,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
           <Help id="identification.birthplace.help">
             <label>&nbsp;</label>
-            <RadioGroup selectedValue={this.state.domestic}>
+            <RadioGroup className="option-list branch" selectedValue={this.state.domestic}>
               <Radio name="domestic"
                      label={i18n.t('identification.birthplace.question.yes')}
                      value="yes"
@@ -252,16 +252,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               />
-        <County name="county"
-                label={i18n.t('identification.birthplace.label.county')}
-                value={this.state.county}
-                placeholder={i18n.t('identification.birthplace.placeholder.county')}
-                maxlength="255"
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
         <Country name="country"
                  label={i18n.t('identification.birthplace.label.country')}
                  value={this.state.country}

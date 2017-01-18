@@ -4,6 +4,7 @@ import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
 import Passport from './Passport'
+import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -47,9 +48,9 @@ class Foreign extends ValidationElement {
     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
 
     let cstatus = 'neutral'
-    if (this.hasStatus('passport', true)) {
+    if (this.hasStatus('passport', status, true)) {
       cstatus = 'complete'
-    } else if (this.hasStatus('passport', false)) {
+    } else if (this.hasStatus('passport', status, false)) {
       cstatus = 'incomplete'
     }
     let completed = {
@@ -70,8 +71,9 @@ class Foreign extends ValidationElement {
   /**
    * Helper to test whether a subsection is complete
    */
-  hasStatus (property, val) {
-    return this.props.Completed[property] && this.props.Completed[property].status === val
+  hasStatus (property, status, val) {
+    return (this.props.Completed[property] && this.props.Completed[property].status === val)
+      || (status && status[property] && status[property].status === val)
   }
 
   /**
@@ -95,7 +97,10 @@ class Foreign extends ValidationElement {
    */
   intro () {
     return (
-      <div className="foreign">
+      <div className="foreign intro">
+        <div className="usa-grid-full eapp-field-wrap">
+          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
+        </div>
         <div id="titles" className="usa-grid-full">
           <div className="usa-width-one-half">
             <h3>{i18n.t('foreign.tour.title')}</h3>
@@ -114,7 +119,7 @@ class Foreign extends ValidationElement {
           </div>
         </div>
 
-        <div id="actions" className="usa-grid-full">
+        <div id="actions" className="usa-grid-full review-btns">
           <div className="usa-width-one-half">
             <button onClick={this.handleTour}>{i18n.t('foreign.tour.button')}</button>
           </div>
@@ -130,11 +135,7 @@ class Foreign extends ValidationElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name=""
-                       back="history"
-                       backLabel={i18n.t('foreign.destination.history')}
-                       next="tbd"
-                       nextLabel={i18n.t('foreign.destination.tbd')}>
+          <SectionView name="">
             {this.intro()}
           </SectionView>
           <SectionView name="review"
@@ -149,10 +150,10 @@ class Foreign extends ValidationElement {
                       />
           </SectionView>
           <SectionView name="passport"
-                       back="history"
-                       backLabel={i18n.t('foreign.destination.history')}
-                       next="foreign/contacts"
-                       nextLabel={i18n.t('foreign.destination.contacts')}>
+                       back="identification/physical"
+                       backLabel={i18n.t('identification.destination.physical')}
+                       next="foreign/review"
+                       nextLabel={i18n.t('foreign.destination.review')}>
             <Passport name="passport"
                       {...this.props.Passport}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}

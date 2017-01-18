@@ -26,7 +26,7 @@ export default class Comments extends ValidationElement {
     if (!this.state.visible) {
       return (
         <div className="comments">
-          <a href="javascript:;;" onClick={this.toggle}>
+          <a href="javascript:;;" onClick={this.toggle} className="add">
             <span>Add comment</span>
             <i className="fa fa-plus-circle"></i>
           </a>
@@ -41,7 +41,7 @@ export default class Comments extends ValidationElement {
                   {...this.props}
                   value={this.state.value}
                   />
-        <a href="javascript:;;" onClick={this.toggle}>
+        <a href="javascript:;;" onClick={this.toggle} className="remove">
           <span>Remove comment</span>
           <i className="fa fa-times-circle"></i>
         </a>
