@@ -58,12 +58,14 @@ class Identification extends ValidationElement {
     if (this.hasStatus('name', true)
         && this.hasStatus('birthdate', true)
         && this.hasStatus('birthplace', true)
+        && this.hasStatus('contacts', true)
         && this.hasStatus('ssn', true)
         && this.hasStatus('othernames', true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('name', false)
                || this.hasStatus('birthdate', false)
                || this.hasStatus('birthplace', false)
+               || this.hasStatus('contacts', false)
                || this.hasStatus('ssn', false)
                || this.hasStatus('othernames', false)) {
       cstatus = 'incomplete'
@@ -141,7 +143,7 @@ class Identification extends ValidationElement {
                        title="Let's make sure everything looks right"
                        showTop="true"
                        next="foreign"
-                       nextLabel={i18n.t('foreign.destination.passport')}
+                       nextLabel={i18n.t('foreign.destination.activities')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
             <h2>Your full name</h2>
@@ -231,7 +233,7 @@ class Identification extends ValidationElement {
                        nextLabel={i18n.t('identification.destination.ssn')}>
             <ContactInformation name="contact"
                                 {...this.props.ContactInformation}
-                                onUpdate={this.onUpdate.bind(this, 'ContactInformation')}
+                                onUpdate={this.onUpdate.bind(this, 'Contacts')}
                                 onValidate={this.onValidate.bind(this)}
                                 />
           </SectionView>
@@ -286,7 +288,7 @@ function mapStateToProps (state) {
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
     ApplicantSSN: identification.ApplicantSSN || {},
     OtherNames: identification.OtherNames || {},
-    ContactInformation: identification.ContactInformation || {},
+    Contacts: identification.Contacts || {},
     Physical: identification.Physical || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []

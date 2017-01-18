@@ -14,7 +14,7 @@ export default class ContactInformation extends ValidationElement {
       valid: props.valid || false,
       errorCodes: [],
       Comments: props.Comments,
-      EmailList: []
+      Emails: []
     }
   }
 
@@ -31,14 +31,14 @@ export default class ContactInformation extends ValidationElement {
   }
 
   emailDispatch (collection) {
-    this.handleUpdate('EmailList', collection)
+    this.handleUpdate('Emails', collection)
   }
 
   handleUpdate (field, values) {
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          EmailList: this.state.EmailList,
+          Emails: this.state.Emails,
           Comments: this.state.Comments
         })
       }
@@ -83,24 +83,24 @@ export default class ContactInformation extends ValidationElement {
         <div className="eapp-field-wrap">
           <h2>Your e-mail addresses</h2>
           <Collection minimum="1"
-            items={this.state.EmailList}
-            dispatch={this.emailDispatch.bind(this)}
-            appendLabel="Add another email">
+                      items={this.state.Emails}
+                      dispatch={this.emailDispatch.bind(this)}
+                      appendLabel="Add another email">
             <Email name="Email"
-              onValidate={this.handleValidation}
-              placeholder="Enter an email address"
-            />
+                   onValidate={this.handleValidation}
+                   placeholder="Enter an email address"
+                   />
           </Collection>
         </div>
 
         <div className="eapp-field-wrap">
           <h2>Add optional comment</h2>
           <Comments name="comments"
-            {...this.state.Comments}
-            label="If you need to provide any additional comments about this information enter them below"
-            onUpdate={this.handleUpdate.bind(this, 'Comments')}
-            onValidate={this.handleValidation}
-          />
+                    {...this.state.Comments}
+                    label="If you need to provide any additional comments about this information enter them below"
+                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                    onValidate={this.handleValidation}
+                    />
         </div>
 
       </div>

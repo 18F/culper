@@ -50,7 +50,7 @@ const en = {
       button: 'Show me the full section'
     },
     destination: {
-      review: 'Review',
+      review: 'Review Identification',
       family: 'Family & friends',
       othernames: 'Other names used',
       name: 'Full name',
@@ -200,7 +200,7 @@ const en = {
       button: 'Show me the full section'
     },
     destination: {
-      review: 'Review',
+      review: 'Review Foreign Actitivies',
       history: 'Your History',
       tbd: 'TBD',
       contacts: 'Foreign Contacts',
