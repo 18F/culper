@@ -217,6 +217,9 @@ export default class Generic extends ValidationElement {
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                onKeyDown={this.handleKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="input"
                />
         <div className={this.errorClass()}>

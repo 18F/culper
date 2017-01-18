@@ -86,6 +86,9 @@ export default class Text extends ValidationElement {
                onBlur={this.handleBlur}
                onValidate={this.handleValidation.bind(this)}
                onKeyDown={this.props.onKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="text"
                />
     )

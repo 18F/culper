@@ -23,6 +23,8 @@ export default class ApplicantSSN extends ValidationElement {
       valid: props.valid || false,
       errorCodes: []
     }
+
+    this.disallowClipboard = this.disallowClipboard.bind(this)
   }
 
   /**
@@ -220,6 +222,13 @@ export default class ApplicantSSN extends ValidationElement {
     return id.split('-').pop()
   }
 
+  /**
+   * Prevents clipboard events from making changes to the value of the elements
+   */
+  disallowClipboard (event) {
+    event.preventDefault()
+  }
+
   verify () {
     if (this.state.value && this.state.value.length === 9 && this.state.errorCodes && this.state.errorCodes.length === 0) {
       return (
@@ -236,6 +245,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
                 />
           <Text name={this.partName('verifyMiddle')}
                 ref="verifyMiddle"
@@ -249,6 +261,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
                 />
           <Text name={this.partName('verifyLast')}
                 ref="verifyLast"
@@ -262,6 +277,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
                 />
         </div>
       )
@@ -287,6 +305,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
                 />
           <Text name={this.partName('middle')}
                 ref="middle"
@@ -300,6 +321,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
                 />
           <Text name={this.partName('last')}
                 ref="last"
@@ -313,6 +337,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
                 />
           <div className="coupled-flags">
             <Checkbox name={this.partName('notApplicable')}
