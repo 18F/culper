@@ -14,6 +14,26 @@
 		padding-right:3rem;
 	}
 
+    /* placeholder should be a light gray and italics */
+    ::-webkit-input-placeholder {
+        font-style: italic;
+        color: $eapp-grey;
+    }
+    ::-ms-input-placeholder {
+        font-style: italic;
+        color: $eapp-grey;
+    }
+    ::-moz-placeholder {
+        font-style: italic;
+        color: $eapp-grey;
+        opacity: 1;
+    }
+    :-moz-placeholder {
+        font-style: italic;
+        color: $eapp-grey;
+        opacity: 1;
+    }
+
 	.usa-input-error {
 		border:none;
 		padding:0;
