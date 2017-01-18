@@ -224,11 +224,11 @@ export default class ApplicantSSN extends ValidationElement {
     if (this.state.value && this.state.value.length === 9 && this.state.errorCodes && this.state.errorCodes.length === 0) {
       return (
         <div>
-          <label>Please verify your social security number</label>
+          <label>{i18n.t('identification.ssn.label.verify')}</label>
           <Text name={this.partName('verifyFirst')}
                 ref="verifyFirst"
                 className="first eapp-short-input"
-                placeholder="000"
+                placeholder={i18n.t('identification.ssn.placeholder.first')}
                 maxlength="3"
                 pattern="^[0-9]*$"
                 value={this.state.verifyFirst}
@@ -240,7 +240,7 @@ export default class ApplicantSSN extends ValidationElement {
           <Text name={this.partName('verifyMiddle')}
                 ref="verifyMiddle"
                 className="middle eapp-short-input"
-                placeholder="00"
+                placeholder={i18n.t('identification.ssn.placeholder.middle')}
                 maxlength="2"
                 pattern="^[0-9]*$"
                 value={this.state.verifyMiddle}
@@ -253,7 +253,7 @@ export default class ApplicantSSN extends ValidationElement {
           <Text name={this.partName('verifyLast')}
                 ref="verifyLast"
                 className="last eapp-short-input"
-                placeholder="0000"
+                placeholder={i18n.t('identification.ssn.placeholder.last')}
                 maxlength="4"
                 pattern="^[0-9]*$"
                 value={this.state.verifyLast}
