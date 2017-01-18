@@ -14,7 +14,7 @@ export default class ContactInformation extends ValidationElement {
       valid: props.valid || false,
       errorCodes: [],
       Comments: props.Comments,
-      Emails: props.Emails
+      Emails: props.Emails || []
     }
   }
 
