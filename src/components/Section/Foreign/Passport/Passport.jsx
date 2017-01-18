@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../../config'
 import { ValidationElement, Text, Name, DateControl, RadioGroup, Radio, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
@@ -140,7 +141,7 @@ export default class Passport extends ValidationElement {
               onUpdate={this.handleUpdate.bind(this, 'Name')}
               onValidate={this.handleValidation}
               />
-        <h2>Provide your U.S. passport number</h2>
+        <h2>{i18n.t('foreign.passport.number')}</h2>
         <Text name="number"
               value={this.state.Number}
               pattern={this.state.re}
@@ -148,22 +149,22 @@ export default class Passport extends ValidationElement {
               onUpdate={this.handleUpdate.bind(this, 'Number')}
               onValidate={this.handleValidation}
               />
-        <h2>Provide the issue date of the passport</h2>
+        <h2>{i18n.t('foreign.passport.issued')}</h2>
         <DateControl name="issued"
                      {...this.state.Issued}
                      onUpdate={this.handleUpdate.bind(this, 'Issued')}
                      onValidate={this.handleValidation}
                      />
-        <h2>Provide the expiration date of the passport</h2>
+        <h2>{i18n.t('foreign.passport.expiration')}</h2>
         <DateControl name="expiration"
                      {...this.state.Expiration}
                      onUpdate={this.handleUpdate.bind(this, 'Expiration')}
                      onValidate={this.handleValidation}
                      />
-        <h2>Add optional comment</h2>
+        <h2>{i18n.t('foreign.passport.comment.title')}</h2>
         <Comments name="comments"
                   value={this.state.Comments}
-                  label="If you need to provide any additional comments about this information enter them below"
+                  label={i18n.t('foreign.passport.comment.label')}
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
                   />
@@ -175,25 +176,25 @@ export default class Passport extends ValidationElement {
   render () {
     return (
       <div className="passport eapp-field-wrap">
-        <h2>U.S. passport information</h2>
+        <h2>{i18n.t('foreign.passport.title')}</h2>
         <p>
-          Provide the following information for the most recent U.S. passport you currently possess.<br />
+          {i18n.t('foreign.passport.info.text')}<br />
           <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
-            U.S. State Department passport help
+            {i18n.t('foreign.passport.info.link')}
           </a>
         </p>
         <p>
-          Do you possess a U.S. passport (current or expired)?
+          {i18n.t('foreign.passport.question.title')}
         </p>
         <RadioGroup className="option-list" selectedValue={this.state.yesNo}>
           <Radio name="has_passport"
-                 label="Yes"
+                 label={i18n.t('foreign.passport.question.yes')}
                  value="Yes"
                  onChange={this.yesNoClicked.bind(this, 'Yes')}
                  onValidate={this.handleValidation}
                  />
           <Radio name="has_passport"
-                 label="No"
+                 label={i18n.t('foreign.passport.question.no')}
                  value="No"
                  onChange={this.yesNoClicked.bind(this, 'No')}
                  onValidate={this.handleValidation}

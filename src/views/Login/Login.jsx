@@ -1,6 +1,7 @@
 import React from 'react'
 import { LoginOAuth, TwoFactor } from '../../components'
 import { connect } from 'react-redux'
+import { i18n } from '../../config'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 
@@ -46,10 +47,8 @@ class Login extends React.Component {
       return (
         <div id="login" className="usa-grid">
           <div id="info" className="usa-width-one-whole">
-            <h2>Two-factor authentication</h2>
-            <p>
-              Two-factor authentication (also known as 2FA) is a method of confirming a user's claimed identity by utilizing a combination of two different components.
-            </p>
+            <h2>{i18n.t('login.twofactor.title')}</h2>
+            <p>{i18n.t('login.twofactor.para')}</p>
             <ul>
               <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
               <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
@@ -64,10 +63,8 @@ class Login extends React.Component {
       return (
         <div id="login" className="usa-grid">
           <div id="info" className="usa-width-one-whole">
-            <h2>Login</h2>
-            <p>
-              Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.
-            </p>
+            <h2>{i18n.t('login.title')}</h2>
+            <p>{i18n.t('login.para')}</p>
           </div>
 
           <div id="basic" className="usa-width-one-whole">
@@ -76,7 +73,7 @@ class Login extends React.Component {
                 <label htmlFor="username">Username</label>
                 <input id="username"
                        type="text"
-                       placeholder="Username"
+                       placeholder={i18n.t('login.placeholder.username')}
                        autoFocus
                        value={this.state.username}
                        onChange={this.onUsernameChange}/>
@@ -85,21 +82,21 @@ class Login extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input id="password"
                        type="password"
-                       placeholder="Password"
+                       placeholder={i18n.t('login.placeholder.password')}
                        value={this.state.password}
                        onChange={this.onPasswordChange} />
               </div>
               {this.props.error ? (<div>{this.props.error}</div>) : ''}
               <div>
-                <a id="forgot-password" href="#" title="Forgot password">Forgot Password?</a>
+                <a id="forgot-password" href="#" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
               </div>
               <div>
-                <button type="submit">Submit</button>
+                <button type="submit">{i18n.t('login.submit')}</button>
               </div>
             </form>
           </div>
 
-          <div id="oauth" className="usa-width-one-whole">
+          <div id="oauth" className="usa-width-one-whole hidden">
             <span>Sign in with</span>
             <LoginOAuth authenticated={this.state.authenticated}>
               <i className="fa fa-github" aria-hidden="true"></i>

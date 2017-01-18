@@ -1,5 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
+import { i18n } from '../../config'
 
 export class SectionViews extends React.Component {
 
@@ -27,7 +28,7 @@ export class SectionViews extends React.Component {
                         <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
                       </div>
                       <div className="text">
-                        <div className="direction">Back</div>
+                        <div className="direction">{i18n.t('section.back')}</div>
                         <div className="label">{child.props.backLabel}</div>
                       </div>
                     </div>
@@ -38,7 +39,7 @@ export class SectionViews extends React.Component {
                   <button className="next" onClick={this.handleTransition.bind(this, child.props.next)}>
                     <div className="actions next">
                       <div className="text">
-                        <div className="direction">Next</div>
+                        <div className="direction">{i18n.t('section.next')}</div>
                         <div className="label">{child.props.nextLabel}</div>
                       </div>
                       <div className="icon">

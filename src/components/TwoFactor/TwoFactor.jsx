@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { i18n } from '../../config'
 import { qrcode, twofactor } from '../../actions/AuthActions'
 
 class TwoFactor extends React.Component {
@@ -41,7 +42,7 @@ class TwoFactor extends React.Component {
           <div id="twofactor-component">
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
             { this.props.error ? (<div>{this.props.error}</div>) : '' }
-            <button type="submit">Verify</button>
+            <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>
         </form>
       )
@@ -49,10 +50,10 @@ class TwoFactor extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}>
           <div id="twofactor-component">
-            <img width="256" height="256" alt="Two factor authentication" src={this.base64png()} />
+            <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={this.base64png()} />
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
             { this.props.error ? (<div>{this.props.error}</div>) : '' }
-            <button type="submit">Verify</button>
+            <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>
         </form>
       )

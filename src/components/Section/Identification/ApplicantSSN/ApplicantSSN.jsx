@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../../config'
 import { ValidationElement, Help, Text, Checkbox } from '../../../Form'
 import { api } from '../../../../services/api'
 
@@ -272,13 +273,13 @@ export default class ApplicantSSN extends ValidationElement {
   render () {
     return (
       <div className="ssn">
-        <h2>U.S. Social Security Number</h2>
+        <h2>{i18n.t('identification.ssn.title')}</h2>
         <Help id="identification.ssn.help">
           <label>&nbsp;</label>
           <Text name={this.partName('first')}
                 ref="first"
                 className="first eapp-short-input"
-                placeholder="000"
+                placeholder={i18n.t('identification.ssn.placeholder.first')}
                 maxlength="3"
                 pattern="^[0-9]*$"
                 value={this.state.first}
@@ -290,7 +291,7 @@ export default class ApplicantSSN extends ValidationElement {
           <Text name={this.partName('middle')}
                 ref="middle"
                 className="middle eapp-short-input"
-                placeholder="00"
+                placeholder={i18n.t('identification.ssn.placeholder.middle')}
                 maxlength="2"
                 pattern="^[0-9]*$"
                 value={this.state.middle}
@@ -303,7 +304,7 @@ export default class ApplicantSSN extends ValidationElement {
           <Text name={this.partName('last')}
                 ref="last"
                 className="last eapp-short-input"
-                placeholder="0000"
+                placeholder={i18n.t('identification.ssn.placeholder.last')}
                 maxlength="4"
                 pattern="^[0-9]*$"
                 value={this.state.last}
@@ -315,9 +316,8 @@ export default class ApplicantSSN extends ValidationElement {
                 />
           <div className="coupled-flags">
             <Checkbox name={this.partName('notApplicable')}
-                      label="Not applicable"
+                      label={i18n.t('identification.ssn.label.notApplicable')}
                       ref="notApplicable"
-                      help=""
                       toggle="false"
                       value={this.state.notApplicable}
                       checked={this.state.notApplicable}

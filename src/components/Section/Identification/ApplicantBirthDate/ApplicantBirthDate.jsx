@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../../config'
 import { ValidationElement, DateControl, Help } from '../../../Form'
 import { api } from '../../../../services/api'
 
@@ -60,7 +61,7 @@ export default class ApplicantBirthDate extends ValidationElement {
 
       if (age < 17 || age > 129) {
         status = false
-        help = 'Applicants must be older than 16 and less than 130 years of age'
+        help = i18n.t('identification.birthplace.error.age')
         error = 'age'
       }
     }
@@ -166,7 +167,7 @@ export default class ApplicantBirthDate extends ValidationElement {
   render () {
     return (
       <div className="birthdate">
-        <h2>Date of birth</h2>
+        <h2>{i18n.t('identification.birthdate.title')}</h2>
         <Help id="identification.birthdate.help">
           <DateControl name={this.state.name}
                        value={this.state.value}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
 const sections = ['identification', 'othernames', 'identifying']
@@ -27,7 +28,7 @@ class ScoreCard extends React.Component {
         <span className="score-card-done">{this.completed()}</span>
         /
         <span className="score-card-total">{this.total()}</span>
-        <span className="score-card-text">Sections complete</span>
+        <span className="score-card-text">{i18n.t('scorecard.complete')}</span>
       </div>
     )
   }
