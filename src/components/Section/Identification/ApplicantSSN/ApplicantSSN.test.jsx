@@ -44,7 +44,7 @@ describe('The ApplicantSSN component', () => {
     expected.forEach((ex) => {
       const component = mount(<ApplicantSSN name={ex.name} value={ex.value} />)
       component.find('input[name="' + ex.name + '-first"]').simulate('blur')
-      expect(component.find('div.hidden').length).toEqual(ex.valid ? validElements : validElements)
+      expect(component.find('div.hidden').length).toBeGreaterThan(ex.valid ? 4 : 0)
     })
   })
 
