@@ -257,14 +257,6 @@ export default class Name extends ValidationElement {
 
           <RadioGroup className="option-list" selectedValue={this.state.suffix}>
             <Radio name="suffix"
-                   label="None"
-                   value="None"
-                   onChange={this.handleChange}
-                   onValidate={this.handleValidation}
-                   onFocus={this.props.onFocus}
-                   onBlur={this.props.onBlur}
-                   />
-            <Radio name="suffix"
                    label="Jr"
                    value="Jr"
                    onChange={this.handleChange}

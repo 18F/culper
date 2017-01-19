@@ -20,6 +20,8 @@ export default class Radio extends ValidationElement {
       error: props.error || false,
       valid: props.valid || false
     }
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -36,6 +38,15 @@ export default class Radio extends ValidationElement {
     this.setState({checked: event.target.checked}, () => {
       super.handleChange(event)
     })
+  }
+
+  /**
+   * Handle the click event.
+   */
+  handleClick (event) {
+    let futureChecked = !this.state.checked
+    let futureValue = futureChecked ? this.props.value : ''
+    this.setState({checked: futureChecked, value: futureValue})
   }
 
   /**
@@ -161,6 +172,7 @@ export default class Radio extends ValidationElement {
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
+                 onClick={this.handleClick}
                  checked={this.state.checked}
                  />
           {this.props.children}
