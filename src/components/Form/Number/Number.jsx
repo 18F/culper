@@ -25,6 +25,13 @@ export default class Number extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (next) {
+    this.setState({
+      disabled: next.disabled,
+      value: next.value
+    })
+  }
+
   /**
    * Handle the change event.
    */

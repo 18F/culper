@@ -1,9 +1,7 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import Dropdown from '../Dropdown'
 import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
-import Number from '../Number'
 
 export default class DateRange extends ValidationElement {
 
@@ -44,10 +42,11 @@ export default class DateRange extends ValidationElement {
 
     // If present is true then make the "to" date equal to today
     if (state.present) {
-      state.to = new Date()
-      state.to_year = state.to.getFullYear()
-      state.to_month = state.to.getMonth() + 1
-      state.to_day = state.to.getDate()
+      let now = new Date()
+      state.to = now
+      state.to_year = now.getFullYear()
+      state.to_month = now.getMonth() + 1
+      state.to_day = now.getDate()
     }
 
     if (from_year && from_month && from_day && to_year && to_month && to_day) {
@@ -106,6 +105,7 @@ export default class DateRange extends ValidationElement {
                        />
         </div>
         <div className="usa-grid">
+          <img src="../img/date-down-arrow.svg" />
         </div>
         <div className="usa-grid">
           <div className="from-label">
@@ -114,6 +114,7 @@ export default class DateRange extends ValidationElement {
           <DateControl name="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
+                       disabled={this.state.present}
                        onChange={this.handleChange.bind(this, 'to')}
                        onValidate={this.handleValidation}
                        />
