@@ -41,12 +41,17 @@ export default class DateRange extends ValidationElement {
     let { from_year, from_month, from_day, to_year, to_month, to_day } = state
 
     // If present is true then make the "to" date equal to today
-    if (state.present) {
+    if (!this.state.present && state.present) {
       let now = new Date()
       state.to = now
       state.to_year = now.getFullYear()
       state.to_month = now.getMonth() + 1
       state.to_day = now.getDate()
+    } else if (this.state.present && !state.present) {
+      state.to = null
+      state.to_year = null
+      state.to_month = null
+      state.to_day = null
     }
 
     if (from_year && from_month && from_day && to_year && to_month && to_day) {
