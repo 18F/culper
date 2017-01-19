@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
-import Help from '../Help'
 import Radio from '../Radio'
 
 export default class Sex extends ValidationElement {
@@ -40,42 +39,44 @@ export default class Sex extends ValidationElement {
     })
   }
 
+  divClass () {
+    return (this.props.className || '') + ' sex'
+  }
+
   render () {
     return (
-      <div className="sex">
-        <Help id="traits.sex.help">
-          <label>&nbsp;</label>
-          <div className="options-list eapp-extend-labels">
-            <Radio name={this.props.name}
-                   label={i18n.t('identification.traits.sex.female')}
-                   placeholder={this.state.placeholder}
-                   help={this.state.help}
-                   required="true"
-                   value="female"
-                   checked={this.state.value === 'female'}
-                   error={this.state.error}
-                   valid={this.state.valid}
-                   onChange={this.handleChange}
-                   onValidate={this.handleValidation}
-                   >
-              <i className="fa fa-venus" aria-hidden="true"></i>
-            </Radio>
-            <Radio name={this.props.name}
-                   label={i18n.t('identification.traits.sex.male')}
-                   placeholder={this.state.placeholder}
-                   help={this.state.help}
-                   required="true"
-                   value="male"
-                   checked={this.state.value === 'male'}
-                   error={this.state.error}
-                   valid={this.state.valid}
-                   onChange={this.handleChange}
-                   onValidate={this.handleValidation}
-                   >
-              <i className="fa fa-mars" aria-hidden="true"></i>
-            </Radio>
-          </div>
-        </Help>
+      <div className={this.divClass()}>
+        <label>&nbsp;</label>
+        <div className="options-list eapp-extend-labels">
+          <Radio name={this.props.name}
+                 label={i18n.t('identification.traits.sex.female')}
+                 placeholder={this.state.placeholder}
+                 help={this.state.help}
+                 required="true"
+                 value="female"
+                 checked={this.state.value === 'female'}
+                 error={this.state.error}
+                 valid={this.state.valid}
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 >
+            <i className="fa fa-venus" aria-hidden="true"></i>
+          </Radio>
+          <Radio name={this.props.name}
+                 label={i18n.t('identification.traits.sex.male')}
+                 placeholder={this.state.placeholder}
+                 help={this.state.help}
+                 required="true"
+                 value="male"
+                 checked={this.state.value === 'male'}
+                 error={this.state.error}
+                 valid={this.state.valid}
+                 onChange={this.handleChange}
+                 onValidate={this.handleValidation}
+                 >
+            <i className="fa fa-mars" aria-hidden="true"></i>
+          </Radio>
+        </div>
       </div>
     )
   }

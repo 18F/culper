@@ -21,47 +21,47 @@ export default class Help extends React.Component {
     this.setState({ active: !this.state.active })
   }
 
-  getText () {
-    return i18n.t(this.state.id)
+  getMessage () {
+    if (this.state.active) {
+      return (
+        <div className="message eapp-help-message">
+          <i className="fa fa-info"></i>
+          {i18n.t(this.props.id)}
+        </div>
+      )
+    }
+    return ''
   }
 
   children () {
-    if (this.props.index) {
-      return React.Children.map(this.props.children, (child) => {
-        return React.cloneElement(child, {
-          ...child.props,
-          index: this.props.index
-        })
-      })
-    }
+    return React.Children.map(this.props.children, (child) => {
+      let extendedProps = {}
 
-    return this.props.children
+      if (child.type) {
+        let what = Object.prototype.toString.call(child.type)
+        if (what === '[object Function]' && child.type.name === 'HelpIcon') {
+          extendedProps.onClick = this.handleClick
+          extendedProps.active = this.state.active
+        }
+      }
+
+      if (this.props.index) {
+        extendedProps.index = this.props.index
+      }
+
+      return React.cloneElement(child, {
+        ...child.props,
+        ...extendedProps
+      })
+    })
   }
 
   render () {
-    if (this.state.active) {
-      return (
-          <div className="eapp-field-wrap">
-            <a href="javascript:;" tabIndex="-1" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
-              <i className="fa fa-info-circle"></i>
-            </a>
-            {this.props.children}
-            <div className="message eapp-help-message">
-              <i className="fa fa-info"></i>
-              {this.getText()}
-              <a href="javascript:;" tabIndex="-1" className="eapp-help-close" onClick={this.handleClick}>Close info Block</a>
-            </div>
-          </div>
-      )
-    }
-
     return (
-        <div className="eapp-field-wrap">
-          <a href="javascript:;" tabIndex="-1" title="Show help" className="toggle eapp-help-toggle" onClick={this.handleClick}>
-            <i className="fa fa-info-circle"></i>
-          </a>
-          {this.props.children}
-        </div>
+      <div className="help">
+        {this.children()}
+        {this.getMessage()}
+      </div>
     )
   }
 }

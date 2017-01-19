@@ -49,7 +49,7 @@
         select {
 			background: url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
 			box-shadow: none;
-			width: calc(100% * 1);
+			/* width: calc(100% * 1); */
 		}
 	}
 
@@ -70,13 +70,13 @@
 	}
 
 	.eapp-field-wrap {
-		position: relative;
+		/* position: relative; */
 		margin-bottom: 4.9rem;
 
 		> div {
-			display: inline-block;
+			/* display: inline-block; */
 			/* min-width: 95%; */
-            width: calc(100% - 3.5rem);
+            /* width: calc(100% - 3.5rem); */
 		}
 
 		.eapp-short-input {
@@ -102,6 +102,7 @@
 				display: block;
 				margin-bottom: 1.2rem;
 				margin-right: 1.6rem;
+                margin-top: 0;
 				text-align: center;
 				background: $eapp-grey-light;
 				border: 1px solid $eapp-grey-dark;
@@ -282,7 +283,7 @@
 	}
 
 	label {
-		margin-top: 0;
+		margin-top: 2rem;
 		margin-bottom: 0.4rem;
 		color: $eapp-grey-dark;
 

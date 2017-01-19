@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, Text, Checkbox } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Text, Checkbox } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantSSN extends ValidationElement {
@@ -164,7 +164,7 @@ export default class ApplicantSSN extends ValidationElement {
       complexStatus = false
     } else if (this.state.notApplicable) {
       complexStatus = true
-    } else if (this.state.verified && this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
+    } else if (/* this.state.verified && */ this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
       complexStatus = true
     }
 
@@ -296,7 +296,7 @@ export default class ApplicantSSN extends ValidationElement {
       )
     }
 
-    return ''
+    return null
   }
 
   render () {
@@ -352,6 +352,7 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
+          <HelpIcon />
           <div className="coupled-flags">
             <Checkbox name="notApplicable"
                       label={i18n.t('identification.ssn.label.notApplicable')}
@@ -365,7 +366,6 @@ export default class ApplicantSSN extends ValidationElement {
                       onBlur={this.props.onBlur}
                       />
           </div>
-          {this.verify()}
           <div className={this.errorClass()}>
             <i className="fa fa-exclamation"></i>
             <ul>{this.errorMessage()}</ul>

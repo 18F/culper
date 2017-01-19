@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ValidationElement, Help, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
   constructor (props) {
@@ -141,31 +141,37 @@ export default class OtherNames extends ValidationElement {
 
     return (
       <Collection minimum="1"
-        items={this.state.List}
-        dispatch={this.myDispatch}
-        appendLabel="Add another name">
+                  items={this.state.List}
+                  dispatch={this.myDispatch}
+                  appendLabel="Add another name">
 
         <h3>Provide other name used</h3>
         <Name name="Name"
-          onValidate={this.handleValidation}
-        />
-        <h3>Maiden Name</h3>
-        <MaidenName name="MaidenName"
-          onValidate={this.handleValidation}
-        />
-        <h3>Dates Used</h3>
-        <DateRange name="DatesUsed"
-          onValidate={this.handleValidation}
-        />
-        <div>
-          <h3>Reason for change</h3>
-          <Help id="alias.reason.help">
-            <Textarea name="Reason"
               onValidate={this.handleValidation}
-              label={'Provide the reasons why the name changed'}
-            />
-          </Help>
-        </div>
+              />
+        <h3>Maiden Name</h3>
+        <Help id="alias.maiden.help">
+          <MaidenName name="MaidenName"
+                      onValidate={this.handleValidation}
+                      />
+          <HelpIcon className="maiden-help-icon" />
+        </Help>
+        <h3>Dates Used</h3>
+        <Help id="alias.used.help">
+          <DateRange name="DatesUsed"
+                     onValidate={this.handleValidation}
+                     />
+          <HelpIcon className="used-help-icon" />
+        </Help>
+        <h3>Reason for change</h3>
+        <Help id="alias.reason.help">
+          <Textarea name="Reason"
+                    className="reason"
+                    onValidate={this.handleValidation}
+                    label={'Provide the reasons why the name changed'}
+                    />
+          <HelpIcon className="reason-help-icon" />
+        </Help>
       </Collection>
     )
   }
