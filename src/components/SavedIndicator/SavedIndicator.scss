@@ -1,0 +1,13 @@
+@import 'eqip-colors';
+
+.saved-indicator {
+    text-align: center;
+    clear: both;
+    color: $eapp-grey-darker;
+    font-size: smaller;
+    margin-top: 1rem;
+
+    i {
+        margin-right: 0.5rem;
+    }
+}

@@ -34,6 +34,19 @@ const en = {
   scorecard: {
     complete: 'Sections complete'
   },
+  saved: {
+    saved: 'Saved',
+    now: 'now',
+    second: 'second',
+    seconds: 'seconds',
+    minute: 'minute',
+    minutes: 'minutes',
+    hour: 'hour',
+    hours: 'hours',
+    day: 'day',
+    days: 'days',
+    ago: 'ago'
+  },
   section: {
     back: 'Back',
     next: 'Next'
@@ -129,6 +142,26 @@ const en = {
         last: '0000',
         middle: '00',
         first: '000'
+      },
+      error: {
+        first: {
+          pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        },
+        middle: {
+          pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        },
+        last: {
+          pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        },
+        verifyFirst: {
+          pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        },
+        verifyMiddle: {
+          pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        },
+        verifyLast: {
+          pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        }
       }
     },
     traits: {

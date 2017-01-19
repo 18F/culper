@@ -8,6 +8,7 @@ export default class State extends ValidationElement {
       <Dropdown name={this.props.name}
                 label={this.props.label}
                 help="State is required"
+                className={this.props.className}
                 disabled={this.props.disabled}
                 onChange={this.props.onChange}
                 onValidate={this.props.onValidate}

@@ -29,6 +29,16 @@ export default class DateControl extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (next) {
+    this.setState({
+      disabled: next.disabled,
+      value: next.value,
+      month: this.datePart('m', next.value),
+      day: this.datePart('d', next.value),
+      year: this.datePart('y', next.value)
+    })
+  }
+
   /**
    * Retrieve the part of the date requested.
    */
@@ -245,7 +255,7 @@ export default class DateControl extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = this.props.className || ''
 
     if (this.state.error) {
       klass += ' usa-input-error'

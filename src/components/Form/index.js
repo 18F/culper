@@ -1,6 +1,6 @@
 // Validation
 import ValidationElement from './ValidationElement'
-import Help from './Help'
+import { Help, HelpIcon } from './Help'
 import Collection from './Collection'
 
 // Basic form elements
@@ -41,6 +41,7 @@ import IntroHeader from './IntroHeader'
 export {
   ValidationElement,
   Help,
+  HelpIcon,
   Collection,
   Generic,
   Text,

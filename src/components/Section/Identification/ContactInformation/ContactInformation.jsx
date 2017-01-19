@@ -79,28 +79,29 @@ export default class ContactInformation extends ValidationElement {
   render () {
     return (
       <div className="contact">
+        <h2>Your contact information</h2>
 
+        <h3>Your e-mail addresses</h3>
         <div className="eapp-field-wrap">
-          <h2>Your e-mail addresses</h2>
           <Collection minimum="1"
-                      items={this.state.Emails}
-                      dispatch={this.emailDispatch.bind(this)}
-                      appendLabel="Add another email">
+            items={this.state.Emails}
+            dispatch={this.emailDispatch.bind(this)}
+            appendLabel="Add another email">
             <Email name="Email"
-                   onValidate={this.handleValidation}
-                   placeholder="Enter an email address"
-                   />
+              onValidate={this.handleValidation}
+              placeholder="Enter an email address"
+            />
           </Collection>
         </div>
 
         <div className="eapp-field-wrap">
-          <h2>Add optional comment</h2>
+          <h3>Add optional comment</h3>
           <Comments name="comments"
-                    {...this.state.Comments}
-                    label="If you need to provide any additional comments about this information enter them below"
-                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                    onValidate={this.handleValidation}
-                    />
+            {...this.state.Comments}
+            label="If you need to provide any additional comments about this information enter them below"
+            onUpdate={this.handleUpdate.bind(this, 'Comments')}
+            onValidate={this.handleValidation}
+          />
         </div>
 
       </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateControl, Help } from '../../../Form'
+import { ValidationElement, DateControl, Help, HelpIcon } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
@@ -175,6 +175,7 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onChange={this.handleChange}
                        onValidate={this.handleValidation}
                        />
+          <HelpIcon />
         </Help>
         <div className={this.errorClass()}>
           <i className="fa fa-exclamation"></i>

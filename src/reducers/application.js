@@ -45,7 +45,12 @@ export default combineReducers({
   TBD: reducer('tbd'),
   Legal: reducer('legal'),
   Completed: reducer('Completed'),
-  Errors: errorReducer('Errors')
+  Errors: errorReducer('Errors'),
+  Saved: (state = {}) => {
+    // Store when things were last saved
+    state.date = new Date()
+    return state
+  }
 })
 
 // Or alternative...

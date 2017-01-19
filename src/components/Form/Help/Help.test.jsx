@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Help from './Help'
+import HelpIcon from './HelpIcon'
 
 describe('The Help component', () => {
   it('renders with default state closed', () => {
@@ -9,14 +10,14 @@ describe('The Help component', () => {
   })
 
   it('renders with message when active', () => {
-    const component = mount(<Help id="identification.name.last.help" />)
+    const component = mount(<Help id="identification.name.last.help"><HelpIcon /></Help>)
     component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
     expect(component.find('div.message').text().length).toBeGreaterThan(0)
   })
 
   it('can toggle', () => {
-    const component = mount(<Help id="identification.name.last.help" />)
+    const component = mount(<Help id="identification.name.last.help"><HelpIcon /></Help>)
     component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
     component.find('a.toggle').simulate('click')
@@ -24,9 +25,9 @@ describe('The Help component', () => {
   })
 
   it('does not error when given an invalid identification', () => {
-    const component = mount(<Help id="this.should.not.exist" />)
+    const component = mount(<Help id="this.should.not.exist"><HelpIcon /></Help>)
     component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
-    expect(component.find('div.message').text()).toEqual('en.this.should.not.existClose info Block')
+    expect(component.find('div.message').text()).toEqual('en.this.should.not.exist')
   })
 })

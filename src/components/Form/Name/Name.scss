@@ -19,4 +19,23 @@
     .option-list {
         max-width: 70rem;
     }
+
+    .first,
+    .middle,
+    .last,
+    .suffix,
+    .suffix-other {
+        display: inline-block;
+        width: 90%;
+        max-width: 64rem !important;
+
+        input {
+            width: 100% !important;
+            max-width: 64rem !important;
+        }
+    }
+
+    .suffix-help-icon {
+        vertical-align: top;
+    }
 }

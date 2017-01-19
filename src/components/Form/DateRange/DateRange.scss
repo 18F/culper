@@ -21,11 +21,17 @@
 
     .from-present {
         display: inline-block;
-        margin-top: 3rem;
+        margin-top: 4.6rem;
         vertical-align: top;
 
         .or {
             margin-right: 1rem;
         }
+    }
+
+    img {
+        width: 1rem;
+        height: width;
+        margin-left: 3rem;
     }
 }
