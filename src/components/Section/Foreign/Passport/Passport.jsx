@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Text, Name, DateControl, RadioGroup, Radio, Comments } from '../../../Form'
+import { ValidationElement, Text, Name, DateControl, Branch, RadioGroup, Radio, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -181,41 +181,26 @@ export default class Passport extends ValidationElement {
     )
   }
 
-  options () {
-    return (
-      <div className="eapp-field-wrap">
-        <RadioGroup className="option-list branch" selectedValue={this.state.HasPassport}>
-          <Radio name="has_passport"
-                 label={i18n.t('foreign.passport.question.yes')}
-                 value="Yes"
-                 onChange={this.yesNoClicked.bind(this, 'Yes')}
-                 onValidate={this.handleValidation}
-                 />
-          <Radio name="has_passport"
-                 label={i18n.t('foreign.passport.question.no')}
-                 value="No"
-                 onChange={this.yesNoClicked.bind(this, 'No')}
-                 onValidate={this.handleValidation}
-                 />
-        </RadioGroup>
-      </div>
-    )
-  }
-
   render () {
     return (
       <div className="passport eapp-field-wrap">
         <h2>{i18n.t('foreign.passport.title')}</h2>
-        <p>
-          {i18n.t('foreign.passport.info.text')}<br />
-          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
-            {i18n.t('foreign.passport.info.link')}
-          </a>
-        </p>
-        <p>
-          {i18n.t('foreign.passport.question.title')}
-        </p>
-        {this.options()}
+        <Branch
+          name="has_passport"
+          value={this.state.HasPassport}
+          onUpdate={this.yesNoClicked.bind(this)}
+          yesLabel={i18n.t('foreign.passport.question.yes')}
+          noLabel={i18n.t('foreign.passport.question.no')}>
+          <p>
+            {i18n.t('foreign.passport.info.text')}<br />
+            <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
+              {i18n.t('foreign.passport.info.link')}
+            </a>
+          </p>
+          <p>
+            {i18n.t('foreign.passport.question.title')}
+          </p>
+        </Branch>
         {this.visibleComponents()}
       </div>
     )
