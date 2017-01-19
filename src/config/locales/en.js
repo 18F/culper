@@ -34,6 +34,19 @@ const en = {
   scorecard: {
     complete: 'Sections complete'
   },
+  saved: {
+    saved: 'Saved',
+    now: 'now',
+    second: 'second',
+    seconds: 'seconds',
+    minute: 'minute',
+    minutes: 'minutes',
+    hour: 'hour',
+    hours: 'hours',
+    day: 'day',
+    days: 'days',
+    ago: 'ago'
+  },
   section: {
     back: 'Back',
     next: 'Next'
