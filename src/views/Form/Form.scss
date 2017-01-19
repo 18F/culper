@@ -105,6 +105,9 @@
 				border: 1px solid $eapp-green;
 				background:$eapp-green;
 			}
+            label.usa-input-focus {
+                box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf
+            }
 		}
 		/* handle block style radio and checkboxes that are NOT toggles */
 		.eapp-blocks-radio, .eapp-blocks-checkbox {

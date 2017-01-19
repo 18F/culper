@@ -93,6 +93,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' no-toggle'
     }
 
+    if (this.state.focus) {
+      klass += ' usa-input-focus'
+    }
+
     return klass.trim()
   }
 

@@ -95,6 +95,10 @@ export default class Radio extends ValidationElement {
       klass += ' checked'
     }
 
+    if (this.state.focus) {
+      klass += ' usa-input-focus'
+    }
+
     return klass.trim()
   }
 
