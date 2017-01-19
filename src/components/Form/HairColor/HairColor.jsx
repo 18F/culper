@@ -51,7 +51,6 @@ export default class HairColor extends ValidationElement {
   render () {
     return (
       <div className="hair-colors">
-        <h2>{this.props.label}</h2>
         <Help id="traits.hair.help">
           <label>&nbsp;</label>
           <CheckboxGroup className="option-list eapp-extend-labels" selectedValues={this.state.value}>

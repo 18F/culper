@@ -93,7 +93,6 @@ export default class DateRange extends ValidationElement {
   render () {
     return (
       <div className="daterange usa-grid">
-        <h2>{this.state.title}</h2>
         <div className="usa-grid">
           <div className="from-label">
             From date

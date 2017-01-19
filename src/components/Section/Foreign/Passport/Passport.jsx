@@ -135,14 +135,14 @@ export default class Passport extends ValidationElement {
     return (
       <div>
         <div className="eapp-field-wrap">
-          <h2>Provide the name in which passport was first issued</h2>
+          <h3>Provide the name in which passport was first issued</h3>
           <Name name="name"
                 {...this.state.Name}
                 onUpdate={this.handleUpdate.bind(this, 'Name')}
                 onValidate={this.handleValidation}
                 />
 
-          <h2>{i18n.t('foreign.passport.number')}</h2>
+          <h3>{i18n.t('foreign.passport.number')}</h3>
           <Text name="number"
                 value={this.state.Number}
                 pattern={this.state.re}
@@ -153,7 +153,7 @@ export default class Passport extends ValidationElement {
         </div>
 
         <div className="eapp-field-wrap">
-          <h2>{i18n.t('foreign.passport.issued')}</h2>
+          <h3>{i18n.t('foreign.passport.issued')}</h3>
           <DateControl name="issued"
                        {...this.state.Issued}
                        onUpdate={this.handleUpdate.bind(this, 'Issued')}
@@ -161,7 +161,7 @@ export default class Passport extends ValidationElement {
                        />
         </div>
         <div className="eapp-field-wrap">
-          <h2>{i18n.t('foreign.passport.expiration')}</h2>
+          <h3>{i18n.t('foreign.passport.expiration')}</h3>
           <DateControl name="expiration"
                        {...this.state.Expiration}
                        onUpdate={this.handleUpdate.bind(this, 'Expiration')}
@@ -169,7 +169,7 @@ export default class Passport extends ValidationElement {
                        />
         </div>
         <div className="eapp-field-wrap">
-          <h2>{i18n.t('foreign.passport.comment.title')}</h2>
+          <h3>{i18n.t('foreign.passport.comment.title')}</h3>
           <Comments name="comments"
                     value={this.state.Comments}
                     label={i18n.t('foreign.passport.comment.label')}

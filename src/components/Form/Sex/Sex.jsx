@@ -43,7 +43,6 @@ export default class Sex extends ValidationElement {
   render () {
     return (
       <div className="sex">
-        <h2>{this.props.label}</h2>
         <Help id="traits.sex.help">
           <label>&nbsp;</label>
           <div className="options-list eapp-extend-labels">

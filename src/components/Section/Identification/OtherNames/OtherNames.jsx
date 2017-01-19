@@ -141,25 +141,29 @@ export default class OtherNames extends ValidationElement {
 
     return (
       <Collection minimum="1"
-                  items={this.state.List}
-                  dispatch={this.myDispatch}
-                  appendLabel="Add another name">
+        items={this.state.List}
+        dispatch={this.myDispatch}
+        appendLabel="Add another name">
+
+        <h3>Provide other name used</h3>
         <Name name="Name"
-              onValidate={this.handleValidation}
-              />
+          onValidate={this.handleValidation}
+        />
+        <h3>Maiden Name</h3>
         <MaidenName name="MaidenName"
-                    onValidate={this.handleValidation}
-                    />
+          onValidate={this.handleValidation}
+        />
+        <h3>Dates Used</h3>
         <DateRange name="DatesUsed"
-                   onValidate={this.handleValidation}
-                   />
+          onValidate={this.handleValidation}
+        />
         <div>
-          <h2>Reason for change</h2>
+          <h3>Reason for change</h3>
           <Help id="alias.reason.help">
             <Textarea name="Reason"
-                      onValidate={this.handleValidation}
-                      label={'Provide the reasons why the name changed'}
-                      />
+              onValidate={this.handleValidation}
+              label={'Provide the reasons why the name changed'}
+            />
           </Help>
         </div>
       </Collection>

@@ -88,43 +88,53 @@ export default class Physical extends ValidationElement {
   render () {
     return (
       <div className="physical">
+        <h2>Physical attributes</h2>
+
+        <h3>Height</h3>
         <Height name="height"
-                label={i18n.t('identification.traits.label.height')}
-                {...this.props.Height}
-                onUpdate={this.handleUpdate.bind(this, 'Height')}
-                onValidate={this.handleValidation.bind(this)}
-                />
+          label={i18n.t('identification.traits.label.height')}
+          {...this.props.Height}
+          onUpdate={this.handleUpdate.bind(this, 'Height')}
+          onValidate={this.handleValidation.bind(this)}
+        />
+
+        <h3>Weight</h3>
         <Weight name="weight"
-                label={i18n.t('identification.traits.label.weight')}
-                value={this.props.Weight}
-                onUpdate={this.handleUpdate.bind(this, 'Weight')}
-                onValidate={this.handleValidation.bind(this)}
-                />
+          label={i18n.t('identification.traits.label.weight')}
+          value={this.props.Weight}
+          onUpdate={this.handleUpdate.bind(this, 'Weight')}
+          onValidate={this.handleValidation.bind(this)}
+        />
+
+        <h3>Hair Color</h3>
         <HairColor name="hair"
-                   label={i18n.t('identification.traits.label.hair')}
-                   value={this.props.HairColor}
-                   onUpdate={this.handleUpdate.bind(this, 'HairColor')}
-                   onValidate={this.handleValidation.bind(this)}
-                   />
+          label={i18n.t('identification.traits.label.hair')}
+          value={this.props.HairColor}
+          onUpdate={this.handleUpdate.bind(this, 'HairColor')}
+          onValidate={this.handleValidation.bind(this)}
+        />
+
+        <h3>Eye Color</h3>
         <EyeColor name="eye"
-                  label={i18n.t('identification.traits.label.eye')}
-                  value={this.props.EyeColor}
-                  onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
-                  onValidate={this.handleValidation.bind(this)}
-                  />
+          label={i18n.t('identification.traits.label.eye')}
+          value={this.props.EyeColor}
+          onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
+          onValidate={this.handleValidation.bind(this)}
+        />
+
+        <h3>Sex</h3>
         <Sex name="sex"
-             label={i18n.t('identification.traits.label.sex')}
-             value={this.props.Sex}
-             onUpdate={this.handleUpdate.bind(this, 'Sex')}
-             onValidate={this.handleValidation.bind(this)}
-             />
-        <h2>{i18n.t('identification.traits.heading.comments')}</h2>
+          label={i18n.t('identification.traits.label.sex')}
+          value={this.props.Sex}
+          onUpdate={this.handleUpdate.bind(this, 'Sex')}
+          onValidate={this.handleValidation.bind(this)}
+        />
         <Comments name="comments"
-                  value={this.state.Comments}
-                  label={i18n.t('identification.traits.label.comments')}
-                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                  onValidate={this.handleValidation}
-                  />
+          value={this.state.Comments}
+          label={i18n.t('identification.traits.label.comments')}
+          onUpdate={this.handleUpdate.bind(this, 'Comments')}
+          onValidate={this.handleValidation}
+        />
       </div>
     )
   }

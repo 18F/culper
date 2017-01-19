@@ -25,7 +25,6 @@ export default class EyeColor extends ValidationElement {
   render () {
     return (
       <div className="eye-colors">
-        <h2>{this.props.label}</h2>
         <Help id="traits.eye.help">
           <label>&nbsp;</label>
           <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>

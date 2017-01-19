@@ -25,11 +25,8 @@ export default class Height extends ValidationElement {
    * Handle the change event.
    */
   handleChange (field, event) {
-    console.log(field)
-    console.log(event.target.value)
     this.setState({ [field]: event.target.value }, () => {
       super.handleChange(event)
-
       if (this.props.onUpdate) {
         this.props.onUpdate({
           feet: parseInt(this.state.feet),
@@ -85,7 +82,6 @@ export default class Height extends ValidationElement {
   render () {
     return (
       <div className="height">
-        <h2>{this.props.label}</h2>
         <div className="eapp-field-wrap feet">
           <Number id={this.partName('feet')}
                   name="feet"
