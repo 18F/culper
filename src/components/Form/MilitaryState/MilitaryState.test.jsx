@@ -1,19 +1,14 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import MilitaryState from './MilitaryState'
 
 describe('The MilitaryState component', () => {
-  it('no error on empty', () => {
+  it('renders', () => {
     const expected = {
-      name: 'input-focus',
-      label: 'Text input focused',
-      help: 'Helpful error message',
+      name: 'militaryState',
       value: ''
     }
-    const component = mount(<MilitaryState name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('select#' + expected.name).simulate('change')
-    expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('select#' + expected.name).length).toEqual(1)
-    expect(component.find('div.hidden').length).toEqual(1)
+    const component = shallow(<MilitaryState {...expected} />).dive()
+    expect(component.find('div').length).toBeGreaterThan(0)
   })
 })
