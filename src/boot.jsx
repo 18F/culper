@@ -15,10 +15,10 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={App} onEnter={onEnter}>
         <IndexRoute component={Home} />
-        <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
         <Route path="/form(/:section(/:subsection))" component={Form} />
       </Route>
+      <Route path="/login" component={Login} />
     </Router>
   </Provider>
     , app)
