@@ -42,5 +42,12 @@
             display: block;
             margin-top: 1rem;
         }
+        &.eapp-error-message {
+	        background:$eapp-red-lightest;
+			border-color:$eapp-red-light;
+			> i {
+				background-color:$eapp-red;
+			}
+        }
     }
 }

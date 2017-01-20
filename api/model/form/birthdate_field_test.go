@@ -48,15 +48,6 @@ func TestBirthdateField(t *testing.T) {
 			BirthdateField{
 				Month:     1,
 				Day:       20,
-				Year:      2005,
-				Estimated: true,
-			},
-			false,
-		},
-		{
-			BirthdateField{
-				Month:     1,
-				Day:       20,
 				Year:      1800,
 				Estimated: true,
 			},
