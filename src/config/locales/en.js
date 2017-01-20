@@ -111,7 +111,7 @@ const en = {
     birthplace: {
       title: 'Place of birth',
       question: {
-        label: 'Were you born in the United States of America',
+        label: 'Were you born in the United States of America?',
         yes: 'Yes',
         no: 'No'
       },
