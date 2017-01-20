@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
+import ReactMarkdown from 'react-markdown'
 
 export default class Help extends React.Component {
   constructor (props) {
@@ -27,7 +28,7 @@ export default class Help extends React.Component {
       return (
         <div ref="message" className="message eapp-help-message">
           <i className="fa fa-info"></i>
-          {i18n.t(this.props.id)}
+          <ReactMarkdown source={i18n.t(this.props.id)} />
         </div>
       )
     }
