@@ -18,10 +18,6 @@ export default class Physical extends ValidationElement {
   }
 
   handleUpdate (field, values) {
-    if (field === 'Comments') {
-      values = values.value
-    }
-
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({

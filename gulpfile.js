@@ -86,7 +86,7 @@ function convert () {
     .src(paths.sass)
     .pipe(sass({
 	    includePaths: [ paths.sassvars ]
-	}))
+    }))
     .pipe(concat(paths.css))
     .pipe(gulp.dest(paths.destination.css))
 }

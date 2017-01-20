@@ -15,7 +15,8 @@ const authentication = function (state = defaultState, action) {
         authenticated: true,
         twofactor: false,
         token: action.token,
-        qrcode: action.qrcode
+        qrcode: action.qrcode,
+        error: ''
       }
 
     case AuthConstants.LOGIN_ERROR:

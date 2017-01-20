@@ -1,22 +1,68 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import ReactMarkdown from 'react-markdown'
+import Autosuggest from 'react-autosuggest'
+
+const getSuggestionValue = suggestion => suggestion.name
+
+const renderSuggestion = (suggestion, search) => {
+  let text = `${suggestion.name}`
+
+  // If the value is different than the name then display that
+  // as well
+  if (suggestion.name !== suggestion.value) {
+    text += ` (${suggestion.value})`
+  }
+
+  // Highlight what was matched
+  if (search.query) {
+    let rx = new RegExp(search.query, 'ig')
+    if (rx.test(text)) {
+      let lastIndex = rx.lastIndex
+      let firstIndex = lastIndex - search.query.length
+      text = text.slice(0, lastIndex) + '**' + text.slice(lastIndex + Math.abs(0))
+      text = text.slice(0, firstIndex) + '**' + text.slice(firstIndex + Math.abs(0))
+    }
+  }
+
+  return (
+    <div>
+      <ReactMarkdown source={text} />
+    </div>
+  )
+}
 
 export default class Dropdown extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      help: props.help,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
+      options: [],
+      suggestions: [],
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
+    }
+
+    this.onSuggestionChange = this.onSuggestionChange.bind(this)
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
+  }
+
+  componentDidMount () {
+    if (this.props.children) {
+      let arr = []
+      for (let child of this.props.children) {
+        if (child && child.type === 'option') {
+          arr.push({
+            name: child.props.children || '',
+            value: child.props.value
+          })
+        }
+      }
+
+      this.setState({options: arr})
     }
   }
 
@@ -25,14 +71,39 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    let valid = true
-    if (this.props.required) {
-      if (event.target.value === '') {
-        valid = false
-      }
-    }
-    this.setState({value: event.target.value, error: !valid, valid: valid}, () => {
+    // let valid = true
+    // if (this.props.required) {
+    //   if (event.target.value === '') {
+    //     valid = false
+    //   }
+    // }
+
+    // this.setState({value: event.target.value, error: !valid, valid: valid}, () => {
+    //   super.handleChange(event)
+    // })
+
+    this.setState({value: event.target.value}, () => {
       super.handleChange(event)
+    })
+  }
+
+  handleValidation (event, status, errorCodes) {
+    let value = this.state.value
+    let valid = value.length > 0 ? false : null
+    this.state.options.forEach(x => {
+      if (x.name.toLowerCase() === value.toLowerCase()) {
+        valid = true
+        value = x.name
+      }
+    })
+
+    this.setState({
+      value: value,
+      error: valid === false,
+      valid: valid === true
+    },
+    () => {
+      super.handleValidation(event, status, errorCodes)
     })
   }
 
@@ -56,11 +127,37 @@ export default class Dropdown extends ValidationElement {
     })
   }
 
+  getSuggestions (value) {
+    const inputValue = value.trim().toLowerCase()
+    const inputLength = inputValue.length
+    return inputLength === 0
+      ? []
+      : this.state.options.filter(opt => opt.name.toLowerCase().slice(0, inputLength) === inputValue || opt.value.toLowerCase().slice(0, inputLength) === inputValue)
+  }
+
+  onSuggestionChange (event, change) {
+    this.setState({value: change.newValue}, () => {
+      super.handleChange(event)
+    })
+  }
+
+  onSuggestionsFetchRequested (query) {
+    this.setState({
+      suggestions: this.getSuggestions(query.value)
+    })
+  }
+
+  onSuggestionsClearRequested (value) {
+    this.setState({
+      suggestions: []
+    })
+  }
+
   /**
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
@@ -68,6 +165,7 @@ export default class Dropdown extends ValidationElement {
    */
   divClass () {
     let klass = this.props.className || ''
+    klass += ' dropdown'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -122,31 +220,36 @@ export default class Dropdown extends ValidationElement {
   }
 
   render () {
+    const inputProps = {
+      value: this.state.value,
+      className: this.inputClass(),
+      id: this.props.name,
+      name: this.props.name,
+      placeholder: this.props.placeholder,
+      disabled: this.props.disabled,
+      pattern: this.props.pattern,
+      readOnly: this.props.readOnly,
+      required: this.props.required,
+      onChange: this.onSuggestionChange,
+      onBlur: this.handleBlur
+    }
+
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.props.name}>
+          {this.props.label}
         </label>
-        <select className={this.inputClass()}
-                id={this.state.name}
-                name={this.state.name}
-                aria-describedby={this.errorName()}
-                disabled={this.props.disabled}
-                maxLength={this.state.maxlength}
-                pattern={this.state.pattern}
-                readOnly={this.state.readonly}
-                required={this.state.required}
-                value={this.state.value}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                >
-          {this.props.children}
-        </select>
+        <Autosuggest suggestions={this.state.suggestions}
+                     onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                     onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                     getSuggestionValue={getSuggestionValue}
+                     renderSuggestion={renderSuggestion}
+                     inputProps={inputProps}
+                     />
         <div className={this.errorClass()}>
           <i className="fa fa-exclamation"></i>
-          {this.state.help}
+          {this.props.help}
         </div>
       </div>
     )

@@ -111,11 +111,16 @@ const en = {
     birthplace: {
       title: 'Place of birth',
       question: {
-        label: 'Were you born in the United States of America',
+        label: 'Were you born in the United States of America?',
         yes: 'Yes',
         no: 'No'
       },
-      help: 'Provide the place of birth',
+      help: {
+        city: 'City where you were born',
+        state: 'State where you were born',
+        country: 'Country where you were born',
+        county: 'County where you were born'
+      },
       label: {
         state: 'State',
         city: 'City',
@@ -123,9 +128,10 @@ const en = {
         country: 'Country'
       },
       placeholder: {
-        state: 'State',
+        state: 'Please enter state within the United States',
         city: 'Please enter your city of birth',
-        county: 'Please enter your county of birth'
+        county: 'Please enter your county or province of birth',
+        country: 'Please enter your country of birth'
       }
     },
     ssn: {
@@ -174,7 +180,8 @@ const en = {
         sex: 'Select your sex at the time of birth',
         feet: 'Feet must be a number between 1 and 9',
         inches: 'Inches must be a number between 0 and 11',
-        pounds: 'Weight must be a number between 10 and 999'
+        height: 'Height must be a number between 1 and 9',
+        weight: 'Weight must be a number between 10 and 999'
       },
       label: {
         height: 'Height',
@@ -268,8 +275,14 @@ const en = {
     }
   },
   alias: {
+    maiden: {
+      help: 'Provide if this is your maiden name'
+    },
     reason: {
       help: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc...'
+    },
+    used: {
+      help: 'Provide dates this name was used'
     }
   }
 }

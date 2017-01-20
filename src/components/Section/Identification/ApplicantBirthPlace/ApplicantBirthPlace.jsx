@@ -208,6 +208,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                            label={i18n.t('identification.birthplace.label.state')}
                            value={this.state.state}
                            className="state"
+                           placeholder={i18n.t('identification.birthplace.placeholder.state')}
                            includeStates="true"
                            required="true"
                            disabled={this.state.disabledState}
@@ -216,7 +217,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
                            />
-            <HelpIcon className="" />
+            <HelpIcon className="state-help-icon" />
           </Help>
           <Help id="identification.birthplace.help.city">
             <City name="city"
@@ -274,6 +275,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                    label={i18n.t('identification.birthplace.label.country')}
                    value={this.state.country}
                    className="country"
+                   placeholder={i18n.t('identification.birthplace.placeholder.country')}
                    required="true"
                    disabled={this.state.disabledCountry}
                    onChange={this.handleChange}
@@ -281,7 +283,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-          <HelpIcon className="" />
+          <HelpIcon className="country-help-icon" />
         </Help>
       </div>
     )
