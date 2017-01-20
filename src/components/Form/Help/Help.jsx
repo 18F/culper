@@ -88,5 +88,5 @@ export default class Help extends React.Component {
 
 Help.defaultProps = {
   // Flag that allows a help message to be scrolled into view
-  scrollIntoView: false
+  scrollIntoView: true
 }

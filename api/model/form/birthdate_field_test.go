@@ -48,7 +48,7 @@ func TestBirthdateField(t *testing.T) {
 			BirthdateField{
 				Month:     1,
 				Day:       20,
-				Year:      2000,
+				Year:      2005,
 				Estimated: true,
 			},
 			false,
