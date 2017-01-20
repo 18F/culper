@@ -97,7 +97,7 @@ export default class ContactInformation extends ValidationElement {
         <div className="eapp-field-wrap">
           <h3>Add optional comment</h3>
           <Comments name="comments"
-            {...this.state.Comments}
+            value={this.state.Comments}
             label="If you need to provide any additional comments about this information enter them below"
             onUpdate={this.handleUpdate.bind(this, 'Comments')}
             onValidate={this.handleValidation}

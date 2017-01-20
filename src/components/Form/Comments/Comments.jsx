@@ -22,6 +22,15 @@ export default class Comments extends ValidationElement {
     })
   }
 
+  handleChange (event) {
+    this.setState({ value: event.target.value }, () => {
+      super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
+    })
+  }
+
   render () {
     if (!this.state.visible) {
       return (
@@ -39,6 +48,7 @@ export default class Comments extends ValidationElement {
       <div className="comments">
         <Textarea name="comments"
                   {...this.props}
+                  onChange={this.handleChange}
                   value={this.state.value}
                   />
         <a href="javascript:;;" onClick={this.toggle} className="remove">
