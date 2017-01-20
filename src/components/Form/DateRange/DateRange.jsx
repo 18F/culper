@@ -17,6 +17,7 @@ export default class DateRange extends ValidationElement {
       to_month: '',
       to_year: '',
       present: this.props.present,
+      presentClicked: false,
       title: this.props.title || 'Date Range'
     }
   }
@@ -28,11 +29,13 @@ export default class DateRange extends ValidationElement {
     if (field === 'present') {
       state = {
         ...this.state,
-        present: event.target.checked
+        present: event.target.checked,
+        presentClicked: true
       }
     } else {
       state = {
         ...this.state,
+        presentClicked: false,
         [field + '_' + event.target.name]: event.target.value
       }
     }
@@ -118,6 +121,7 @@ export default class DateRange extends ValidationElement {
           <DateControl name="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
+                       receiveProps={this.state.presentClicked}
                        disabled={this.state.present}
                        onChange={this.handleChange.bind(this, 'to')}
                        onValidate={this.handleValidation}
