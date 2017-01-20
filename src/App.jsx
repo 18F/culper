@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from './config'
-import { SectionTitle, ScoreCard, Navigation } from './components'
+import { SectionTitle, ProgressBar, ScoreCard, Navigation } from './components'
 import { connect } from 'react-redux'
 import { login, logout } from './actions/AuthActions'
 
@@ -95,9 +95,7 @@ export class App extends React.Component {
           </div>
         </header>
         <div className="usa-overlay"></div>
-        <div className="eapp-progress">
-          <div id="progress-bar" className="eapp-progress-current"></div>
-        </div>
+        <ProgressBar />
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className="eapp-structure-left eapp-navigation">
