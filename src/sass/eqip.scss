@@ -66,7 +66,7 @@ a:focus {
 
 .usa-header {
     font-family: $eapp-serif;
-    background-color: $eapp-blue;
+    background-color: $eapp-blue-dark;
     min-height:16.7rem;
 
 	.usa-banner-inner {
@@ -83,7 +83,7 @@ a:focus {
 
         .eapp-logo {
             height:14.5rem;
-            background: $eapp-blue-dark url('../img/eapp-logo.png') 12% center no-repeat;
+            background: $eapp-blue-darkest url('../img/eapp-logo.png') 12% center no-repeat;
             color:#9bdaf0;
 
             span {

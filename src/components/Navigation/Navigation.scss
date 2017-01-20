@@ -17,41 +17,67 @@
 
     a {
 	    color: $eapp-grey-dark;
+	    transition:border-left-color 0.3s, color 0.3s, background-color 0.3s;
 
 		&:hover {
 			background: $eapp-grey;
 		}
 
         .fa-check-circle, .fa-exclamation-circle {
-	        display: block;
-	        float: right;
-	        width: 1.7rem;
-	        width: 1.7rem;
-	        color: inherit;
+	        display: none;
         }
+		.eapp-status-icon-valid, .eapp-status-icon-error {
+			position:absolute;
+			top:0;
+			right:0;
+			display:block;
+			height:100%;
+			width:1.7rem;
+			background:center center no-repeat;
+			background-size:contain;
+			opacity:0;
+			transition:opacity 0.5s;
+		}
+		.eapp-status-icon-valid {
+			background-image:url('../img/checkmark.svg');
+		}
+		.eapp-status-icon-error {
+			background-image:url('../img/exclamation-point-white-bg.svg');
+		}
     }
 
     .active {
         color: $eapp-blue;
         font-weight: $eapp-bold;
 
-        > .name, .number {
+        > .name {
+	        color: $eapp-blue;
+        }
+        .number {
 	        color: inherit;
         }
     }
 
     .has-errors {
         color: $eapp-red;
-
+        > i {
+	        opacity:1;
+        }
         .number {
 	        color: inherit;
         }
+		.eapp-status-icon-error {
+			opacity:1;
+		}
     }
 
     .is-valid {
         .number, i {
             color: $eapp-green !important;
         }
+		.eapp-status-icon-valid {
+			opacity:1;
+		}
     }
 
     .name {

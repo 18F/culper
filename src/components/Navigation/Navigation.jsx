@@ -119,6 +119,7 @@ class Navigation extends React.Component {
             <Link to={subUrl} className={subClass}>
               {subIcon}
               <span className="name">{subsection.name}</span>
+              <span className="eapp-status-icon-error"></span>
             </Link>
           </div>
         )
@@ -134,6 +135,8 @@ class Navigation extends React.Component {
               {sectionIcon}
               <span className="number">{sectionNum}</span>
               <span className="name">{section.name}</span>
+              <span className="eapp-status-icon-valid"></span>
+              <span className="eapp-status-icon-error"></span>
             </Link>
           </span>
           { this.isActive(url, pathname) ? subsections : '' }
