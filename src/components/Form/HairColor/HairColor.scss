@@ -1,41 +1,46 @@
-/*
-.hair-colors {
-    .option-list {
-        div {
-            margin-right: 10rem !important;
-            margin-bottom: 7rem !important;
-        }
-
-        label {
-            height: 4rem;
-            padding-top: 1rem;
-
-            i {
-                display: block;
-            }
-
-            span {
-                display: block;
-                margin-top: 1.5rem;
-                line-height: initial;
-                font-size: smaller;
-            }
-        }
-
-        i.bald    { color: #5a5e6a; }
-        i.black   { color: #000000; }
-        i.blonde  { color: #e5e198; }
-        i.brown   { color: #4f3325; }
-        i.gray    { color: #c7c7c7; }
-        i.red     { color: #b04a33; }
-        i.sandy   { color: #b29877; }
-        i.white   { color: #ffffff; }
-        i.blue    { color: #79b8d9; }
-        i.green   { color: #479e3d; }
-        i.orange  { color: #ce6a38; }
-        i.pink    { color: #eb7e9d; }
-        i.purple  { color: #945793; }
-        i.unknown { color: #5a5e6a; }
-    }
+#hair-color-bald {
+	
 }
-*/
+#hair-color-black {
+	fill:#000;
+}
+#hair-color-blonde {
+	fill:#e6e199;
+    stroke:#aeac8c;
+    stroke-linecap:round;
+}
+#hair-color-brown {
+	fill:#4f3424;
+}
+#hair-color-gray {
+	fill:#c7c7c7;
+}
+#hair-color-red {
+	fill:#b54934;
+}
+#hair-color-sandy {
+	fill:#b29877;
+}
+#hair-color-white {
+	fill:#fff;
+    stroke:#c4c4c4;
+    stroke-linecap:round;
+}
+#hair-color-blue {
+	fill:#79b8d9;
+}
+#hair-color-green {
+	fill:#469f3c;
+}
+#hair-color-orange {
+	fill:#d06a33;
+}
+#hair-color-pink {
+	fill:#e87e9c;
+}
+#hair-color-purple {
+	fill:purple;
+}
+#hair-color-unknown {
+	
+}
