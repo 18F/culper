@@ -240,6 +240,10 @@ const en = {
     },
     gambling: {
       title: 'Gambling debt',
+      branch: {
+        para: 'Provide any outstanding gambling debt',
+        question: 'Do you have any gambling debt?'
+      },
       collection: {
         append: 'Add another gambling debt'
       },
