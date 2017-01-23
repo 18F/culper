@@ -1,0 +1,42 @@
+.gambling {
+    .daterange,
+    .losses,
+    .description,
+    .actions {
+        display: inline-block;
+    }
+
+    .description,
+    .actions {
+        width: 90%;
+        max-width: 64rem !important;
+
+        input {
+            width: 100% !important;
+            max-width: 64rem !important;
+        }
+    }
+
+    .losses {
+        max-width: 10rem;
+    }
+
+    .fa.fa-dollar {
+        margin-right: 1rem;
+    }
+
+    .dates-help-icon {
+        vertical-align: top;
+        margin-top: 15rem;
+    }
+
+    .losses-help-icon {
+        margin-top: 2.6rem;
+    }
+
+    .description-help-icon,
+    .actions-help-icon {
+        vertical-align: top;
+        margin-top: 8rem;
+    }
+}

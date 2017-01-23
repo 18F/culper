@@ -170,6 +170,13 @@ export default class Collection extends ValidationElement {
         }
       }
 
+      if (child.props.children && child.type) {
+        let what = Object.prototype.toString.call(child.type)
+        if (what === '[object Function]') {
+          localProps.children = this.cloneChildren(child.props.children, props)
+        }
+      }
+
       return React.cloneElement(child, {
         ...localProps
       })
@@ -186,7 +193,7 @@ export default class Collection extends ValidationElement {
     })
 
     return (
-      <div className="collection">
+      <div className={`collection ${this.props.className}`}>
         {content}
         <div className="text-center">
           <button className="add" onClick={this.append}>
