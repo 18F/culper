@@ -169,13 +169,14 @@ export default class Passport extends ValidationElement {
                        />
         </div>
         <div className="eapp-field-wrap">
-          <h3>{i18n.t('foreign.passport.comment.title')}</h3>
           <Comments name="comments"
                     value={this.state.Comments}
                     label={i18n.t('foreign.passport.comment.label')}
                     onUpdate={this.handleUpdate.bind(this, 'Comments')}
                     onValidate={this.handleValidation}
-                    />
+                    >
+            <h3>{i18n.t('foreign.passport.comment.title')}</h3>
+          </Comments>
         </div>
       </div>
     )

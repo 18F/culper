@@ -47,6 +47,10 @@ const en = {
     days: 'days',
     ago: 'ago'
   },
+  comments: {
+    add: 'Add comment',
+    remove: 'Remove comment'
+  },
   section: {
     back: 'Back',
     next: 'Next'

@@ -132,23 +132,25 @@ export default class Physical extends ValidationElement {
           <HelpIcon className="eye-help-icon" />
         </Help>
 
-        <h3>Sex</h3>
-        <Help id="identification.traits.help.sex">
-          <Sex name="sex"
-               label={i18n.t('identification.traits.label.sex')}
-               className="eapp-field-wrap"
-               value={this.props.Sex}
-               onUpdate={this.handleUpdate.bind(this, 'Sex')}
-               onValidate={this.handleValidation.bind(this)}
-               />
-          <HelpIcon className="sex-help-icon" />
-          <Comments name="comments"
-                    value={this.state.Comments}
-                    label={i18n.t('identification.traits.label.comments')}
-                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                    onValidate={this.handleValidation}
-                    />
-        </Help>
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  title={i18n.t('identification.traits.heading.comments')}
+                  label={i18n.t('identification.traits.label.comments')}
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  >
+          <h3>Sex</h3>
+          <Help id="identification.traits.help.sex">
+            <Sex name="sex"
+                 label={i18n.t('identification.traits.label.sex')}
+                 className="eapp-field-wrap"
+                 value={this.props.Sex}
+                 onUpdate={this.handleUpdate.bind(this, 'Sex')}
+                 onValidate={this.handleValidation.bind(this)}
+                 />
+            <HelpIcon className="sex-help-icon" />
+          </Help>
+        </Comments>
       </div>
     )
   }
