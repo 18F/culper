@@ -1,37 +1,28 @@
-/*
-.eye-colors {
-    .option-list {
-        div {
-            margin-right: 10rem !important;
-            margin-bottom: 7rem !important;
-        }
-
-        label {
-            height: 4rem;
-            padding-top: 1rem;
-
-            i {
-                display: block;
-            }
-
-            span {
-                display: block;
-                margin-top: 1.5rem;
-                line-height: initial;
-                font-size: smaller;
-            }
-        }
-
-        i.black   { color: #000000; }
-        i.brown   { color: #4f3325; }
-        i.gray    { color: #c7c7c7; }
-        i.blue    { color: #79b8d9; }
-        i.green   { color: #479e3d; }
-        i.hazel   { color: #ce6a38; }
-        i.maroon  { color: #945793; }
-        i.pink    { color: #eb7e9d; }
-        i.multi   { color: #000000; }
-        i.unknown { color: #5a5e6a; }
-    }
+#eye-color-black {
+	fill:#000;
 }
-*/
+#eye-color-blue {
+	fill:#79b8d9;
+}
+#eye-color-brown {
+	fill:#4f3424;
+}
+#eye-color-gray {
+	fill:#c7c7c7;
+}
+#eye-color-green {
+	fill:#469f3c;
+}
+#eye-color-hazel {
+	fill:#737953;
+}
+#eye-color-maroon {
+	fill:#6c171b;
+}
+#eye-color-multi {
+}
+#eye-color-pink {
+	fill:#e87e9c;
+}
+#eye-color-unknown {
+}
