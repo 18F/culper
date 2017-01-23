@@ -152,7 +152,7 @@
 					min-width: 14rem;
 					cursor:pointer;
 
-					input[type="checkbox"] input[type="radio"] {
+					input[type="checkbox"], input[type="radio"] {
 						height:1px;
 						width:1px;
 					}					
