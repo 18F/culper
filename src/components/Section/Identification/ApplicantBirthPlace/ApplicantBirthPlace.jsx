@@ -1,12 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Radio, City, MilitaryState, County, Country, RadioGroup } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Radio, City, MilitaryState, County, Country, RadioGroup, Branch } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
   constructor (props) {
     super(props)
-    let domestic = (props.country === undefined ? null : (props.country === 'United States' ? 'yes' : 'no'))
+    let domestic = (props.country === undefined ? null : (props.country === 'United States' ? 'Yes' : 'No'))
     let disabledCountry = null
     let disabledState = null
 
@@ -33,36 +33,16 @@ export default class ApplicantBirthPlace extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    if (!event || !event.target) {
+      return
+    }
+
     let part = this.extractPart(event.target.id)
     let value = event.target.value
     let updated = null
 
     switch (part) {
       case 'domestic':
-        if (value === 'no') {
-          updated = {
-            country: '',
-            state: '',
-            disabledCountry: false,
-            disabledState: true,
-            domestic: value
-          }
-        } else if (value === 'yes') {
-          updated = {
-            country: 'United States',
-            state: '',
-            disabledCountry: true,
-            disabledState: false,
-            domestic: value
-          }
-        } else {
-          updated = {
-            country: '',
-            state: '',
-            disabledCountry: true,
-            disabledState: true
-          }
-        }
         break
 
       case 'city':
@@ -167,24 +147,52 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return id.split('-').pop()
   }
 
+  onUpdate (value) {
+    let updated = null
+    if (value === 'No') {
+      updated = {
+        country: '',
+        state: '',
+        disabledCountry: false,
+        disabledState: true,
+        domestic: value
+      }
+    } else if (value === 'Yes') {
+      updated = {
+        country: 'United States',
+        state: '',
+        disabledCountry: true,
+        disabledState: false,
+        domestic: value
+      }
+    } else {
+      updated = {
+        country: '',
+        state: '',
+        disabledCountry: true,
+        disabledState: true,
+        domestic: value
+      }
+    }
+
+    if (updated !== null) {
+      this.setState(updated, () => {
+        if (this.props.onUpdate) {
+          this.props.onUpdate(updated)
+        }
+      })
+    }
+  }
+
   options () {
     return (
-      <Help id="identification.birthplace.help">
-        <label>&nbsp;</label>
-        <RadioGroup className="option-list branch eapp-field-wrap" selectedValue={this.state.domestic}>
-          <Radio name="domestic"
-                 label={i18n.t('identification.birthplace.question.yes')}
-                 value="yes"
-                 onChange={this.handleChange}
-                 />
-          <Radio name="domestic"
-                 label={i18n.t('identification.birthplace.question.no')}
-                 value="no"
-                 onChange={this.handleChange}
-                 />
-        </RadioGroup>
-        <HelpIcon className="branch-help-icon" />
-      </Help>
+      <div className="eapp-field-wrap">
+        <Help id="identification.birthplace.help">
+          <label>&nbsp;</label>
+          <Branch name="is_domestic" value={this.state.domestic} onUpdate={this.onUpdate.bind(this)} />
+          <HelpIcon className="branch-help-icon" />
+        </Help>
+      </div>
     )
   }
 
