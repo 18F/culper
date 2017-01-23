@@ -241,8 +241,8 @@ const en = {
     gambling: {
       title: 'Gambling debt',
       branch: {
-        para: 'Provide any outstanding gambling debt',
-        question: 'Do you have any gambling debt?'
+        para: '',
+        question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
         append: 'Add another gambling debt'
