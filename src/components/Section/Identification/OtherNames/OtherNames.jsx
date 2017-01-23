@@ -1,16 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup, Branch } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
       List: props.List || [],
-      yesNo: props.HasOtherNames,
+      HasOtherNames: props.HasOtherNames,
       errorCodes: []
     }
-
     this.myDispatch = this.myDispatch.bind(this)
   }
 
@@ -70,7 +69,7 @@ export default class OtherNames extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
-          HasOtherNames: this.state.yesNo
+          HasOtherNames: this.state.HasOtherNames
         })
       }
     })
@@ -81,14 +80,14 @@ export default class OtherNames extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
-          HasOtherNames: this.state.yesNo
+          HasOtherNames: this.state.HasOtherNames
         })
       }
     })
   }
 
-  yesNoClicked (val) {
-    this.setState({ yesNo: val }, () => {
+  onUpdate (val) {
+    this.setState({ HasOtherNames: val }, () => {
       if (val === 'Yes') {
         if (this.state.List.length === 0) {
           this.addOtherName()
@@ -98,26 +97,11 @@ export default class OtherNames extends ValidationElement {
           this.clear()
         }
       }
+      this.props.onUpdate({
+        List: this.state.List,
+        HasOtherNames: this.state.HasOtherNames
+      })
     })
-  }
-
-  options () {
-    return (
-      <RadioGroup className="option-list branch" selectedValue={this.state.yesNo}>
-        <Radio name="has_othernames"
-               label="Yes"
-               value="Yes"
-               onChange={this.yesNoClicked.bind(this, 'Yes')}
-               onValidate={this.handleValidation}
-               />
-        <Radio name="has_othernames"
-               label="No"
-               value="No"
-               onChange={this.yesNoClicked.bind(this, 'No')}
-               onValidate={this.handleValidation}
-               />
-      </RadioGroup>
-    )
   }
 
   myDispatch (collection) {
@@ -125,7 +109,7 @@ export default class OtherNames extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
-          HasOtherNames: this.state.yesNo
+          HasOtherNames: this.state.HasOtherNames
         })
       }
     })
@@ -135,7 +119,7 @@ export default class OtherNames extends ValidationElement {
    * Render children only when we explicit state there are aliases
    */
   visibleComponents () {
-    if (this.state.yesNo !== 'Yes') {
+    if (this.state.HasOtherNames !== 'Yes') {
       return ''
     }
 
@@ -180,11 +164,12 @@ export default class OtherNames extends ValidationElement {
     return (
       <div className="other-names eapp-field-wrap">
         <h2>Other names used</h2>
-        <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
-        <div>
-          Have you used any other names?
-        </div>
-        {this.options()}
+        <Branch name="has_othernames" value={this.state.HasOtherNames} onUpdate={this.onUpdate.bind(this)}>
+          <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
+          <div>
+            Have you used any other names?
+          </div>
+        </Branch>
         {this.visibleComponents()}
       </div>
     )
