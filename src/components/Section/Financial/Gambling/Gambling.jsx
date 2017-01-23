@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Collection, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
 
 export default class Gambling extends ValidationElement {
   constructor (props) {
@@ -97,45 +97,51 @@ export default class Gambling extends ValidationElement {
                   dispatch={this.myDispatch}
                   appendLabel={i18n.t('financial.gambling.collection.append')}>
 
-        <h3>{i18n.t('financial.gambling.label.dates')}</h3>
-        <Help id="financial.gambling.help.dates">
-          <DateRange name="Dates"
-                     onValidate={this.handleValidation}
-                     />
-          <HelpIcon className="dates-help-icon" />
-        </Help>
-
-        <h3>{i18n.t('financial.gambling.label.losses')}</h3>
-        <Help id="financial.gambling.help.losses">
-          <i className="fa fa-dollar"></i>
-          <Number name="Losses"
-                  className="losses"
-                  placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                  min="0"
+        <Comments name="Comments"
+                  title={i18n.t('financial.gambling.label.comments')}
+                  label={i18n.t('financial.gambling.help.comments')}
                   onValidate={this.handleValidation}
-                  />
-          <HelpIcon className="losses-help-icon" />
-        </Help>
+                  >
+          <h3>{i18n.t('financial.gambling.label.dates')}</h3>
+          <Help id="financial.gambling.help.dates">
+            <DateRange name="Dates"
+                       onValidate={this.handleValidation}
+                       />
+            <HelpIcon className="dates-help-icon" />
+          </Help>
 
-        <h3>{i18n.t('financial.gambling.label.description')}</h3>
-        <Help id="financial.gambling.help.description">
-          <Textarea name="Description"
-                    className="description"
+          <h3>{i18n.t('financial.gambling.label.losses')}</h3>
+          <Help id="financial.gambling.help.losses">
+            <i className="fa fa-dollar"></i>
+            <Number name="Losses"
+                    className="losses"
+                    placeholder={i18n.t('financial.gambling.placeholder.losses')}
+                    min="0"
                     onValidate={this.handleValidation}
-                    label={''}
                     />
-          <HelpIcon className="description-help-icon" />
-        </Help>
+            <HelpIcon className="losses-help-icon" />
+          </Help>
 
-        <h3>{i18n.t('financial.gambling.label.actions')}</h3>
-        <Help id="financial.gambling.help.actions">
-          <Textarea name="Actions"
-                    className="actions"
-                    onValidate={this.handleValidation}
-                    label={''}
-                    />
-          <HelpIcon className="actions-help-icon" />
-        </Help>
+          <h3>{i18n.t('financial.gambling.label.description')}</h3>
+          <Help id="financial.gambling.help.description">
+            <Textarea name="Description"
+                      className="description"
+                      onValidate={this.handleValidation}
+                      label={''}
+                      />
+            <HelpIcon className="description-help-icon" />
+          </Help>
+
+          <h3>{i18n.t('financial.gambling.label.actions')}</h3>
+          <Help id="financial.gambling.help.actions">
+            <Textarea name="Actions"
+                      className="actions"
+                      onValidate={this.handleValidation}
+                      label={''}
+                      />
+            <HelpIcon className="actions-help-icon" />
+          </Help>
+        </Comments>
       </Collection>
     )
   }
