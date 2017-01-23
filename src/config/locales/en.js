@@ -241,7 +241,6 @@ const en = {
     gambling: {
       title: 'Gambling debt',
       branch: {
-        para: '',
         question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
