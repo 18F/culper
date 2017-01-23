@@ -96,7 +96,7 @@
 
 			label {
 				display: block;
-				height:7.4rem;
+				height:4rem;
 				margin-bottom: 1.2rem;
 				margin-right: 1.6rem;
                 margin-top: 0;
@@ -104,6 +104,7 @@
 				background: $eapp-grey-light;
 				border: 1px solid $eapp-grey-dark;
                 cursor: pointer;
+				transition:background-color 0.3s, color 0.3s, border-color 0.3s;
 			}
 
 			label.checked, label:hover {
@@ -147,9 +148,14 @@
 				label {
 					position: relative;
 					margin-bottom:5.5rem;
+					height:7.4rem;
 					min-width: 14rem;
 					cursor:pointer;
 
+					input[type="checkbox"] input[type="radio"] {
+						height:1px;
+						width:1px;
+					}					
 					span {
 						display: block;
 						position: absolute;
@@ -169,7 +175,7 @@
 						width:100%;
 						transition:all 0.3s;
 						border-radius:0;
-						svg {
+						svg, img {
 							position:absolute;
 							top:1.4rem;
 							left:50%;
@@ -187,7 +193,7 @@
 						height:4.6rem;
 						background-color:#f7f7f7;
 						margin-left:-2.3rem;
-						svg {
+						svg, img {
 							top:0.8rem;
 							height:3rem;
 							width:3rem;
@@ -250,8 +256,6 @@
 		text-align: right;
 		float: right;
 		margin-right: 4rem;
-
-		.button-icon {}
 	}
 
 	#titles {
@@ -264,7 +268,7 @@
 
     .option-list.branch {
         label {
-            width: 20rem;
+            width: 15rem;
         }
     }
 
