@@ -37,6 +37,7 @@ import HairColor from './HairColor'
 import EyeColor from './EyeColor'
 import Sex from './Sex'
 import IntroHeader from './IntroHeader'
+import Branch from './Branch'
 
 export {
   ValidationElement,
@@ -72,5 +73,7 @@ export {
   Weight,
   HairColor,
   EyeColor,
-  Sex
+  Sex,
+  IntroHeader,
+  Branch
 }
