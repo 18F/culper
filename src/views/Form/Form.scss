@@ -107,15 +107,23 @@
 				transition:background-color 0.3s, color 0.3s, border-color 0.3s;
 			}
 
+            label.usa-input-focus {
+                box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf
+            }
+
 			label.checked, label:hover {
 				color: #fff;
 				border: 1px solid $eapp-green;
 				background: $eapp-green;
 			}
 
-            label.usa-input-focus {
-                box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf
+            label.checked.usa-input-focus,
+            label.checked:focus,
+            input [type="checkbox"].usa-input-focus,
+            input [type="checkbox"]:focus {
+                box-shadow: none;
             }
+
 		}
 
 		/* handle block style radio and checkboxes that are NOT toggles */
@@ -155,7 +163,7 @@
 					input[type="checkbox"], input[type="radio"] {
 						height:1px;
 						width:1px;
-					}					
+					}
 					span {
 						display: block;
 						position: absolute;
@@ -199,7 +207,7 @@
 							width:3rem;
 							margin-left:-1.5rem;
 						}
-						
+
 					}
 				}
 			}
