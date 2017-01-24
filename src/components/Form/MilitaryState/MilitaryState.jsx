@@ -19,6 +19,7 @@ export default class MilitaryState extends ValidationElement {
                onFocus={this.props.onFocus}
                value={this.props.value}
                required={this.props.required}
+               onUpdate={this.props.onUpdate}
                >
           <option value="AA">AA</option>
           <option value="AE">AE</option>
@@ -38,6 +39,7 @@ export default class MilitaryState extends ValidationElement {
                   onBlur={this.props.onBlur}
                   onFocus={this.props.onFocus}
                   required={this.props.required}
+                  onUpdate={this.props.onUpdate}
                   >
           <option value="">{this.props.placeholder}</option>
           <option value="AA">U.S. Armed Forces - Americas</option>
