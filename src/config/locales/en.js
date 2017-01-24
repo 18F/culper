@@ -48,7 +48,8 @@ const en = {
     ago: 'ago'
   },
   collection: {
-    summary: 'Summary'
+    summary: 'Summary',
+    remove: 'Remove'
   },
   comments: {
     add: 'Add comment',

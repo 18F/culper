@@ -57,4 +57,26 @@
             vertical-align: middle;
         }
     }
+
+    .details {
+        padding-left: 4rem;
+        padding-right: 4rem;
+
+        .byline {
+            text-align: right;
+            margin-top: 4.9rem;
+            padding-top: 1rem;
+            border-top: 2px solid $eapp-grey-light;
+
+            a.remove {
+                display: inline-block;
+                text-decoration: none;
+                color: $eapp-red;
+
+                span {
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
 }

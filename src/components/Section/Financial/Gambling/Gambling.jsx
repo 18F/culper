@@ -12,6 +12,7 @@ export default class Gambling extends ValidationElement {
     }
 
     this.myDispatch = this.myDispatch.bind(this)
+    this.summary = this.summary.bind(this)
   }
 
   /**
@@ -42,6 +43,10 @@ export default class Gambling extends ValidationElement {
     })
   }
 
+  /**
+   * Determine if all items in the collection are considered to be in
+   * a valid state.
+   */
   isValid () {
     for (let item of this.state.List) {
       if (!item.Losses || parseInt(item.Losses.value) < 1) {
@@ -64,6 +69,9 @@ export default class Gambling extends ValidationElement {
     return true
   }
 
+  /**
+   * Updates triggered by the branching component.
+   */
   onUpdate (val) {
     this.setState({ HasGamblingDebt: val }, () => {
       if (val === 'No') {
@@ -72,6 +80,10 @@ export default class Gambling extends ValidationElement {
     })
   }
 
+  /**
+   * Dispatch callback initiated from the collection to notify of any new
+   * updates to the items.
+   */
   myDispatch (collection) {
     this.setState({ List: collection }, () => {
       if (this.props.onUpdate) {
@@ -81,6 +93,48 @@ export default class Gambling extends ValidationElement {
         })
       }
     })
+  }
+
+  /**
+   * Takes a value such as "1000" and converts it to "1,000".
+   */
+  fancyNumber (value) {
+    const n = new window.Number(value)
+    return n.toLocaleString()
+  }
+
+  /**
+   * Assists in rendering the summary section.
+   */
+  summary (item, index) {
+    let losses = i18n.t('financial.gambling.collection.summary.unknownlosses')
+    if (item.Losses && item.Losses.value) {
+      losses = '$' + this.fancyNumber(item.Losses.value)
+    }
+
+    let from = ''
+    if (item.Dates && item.Dates.from) {
+      from = '' + item.Dates.from.getFullYear()
+    }
+
+    let to = ''
+    if (item.Dates && item.Dates.to) {
+      to = '' + item.Dates.to.getFullYear()
+    } else if (item.Dates && item.Dates.present) {
+      to = i18n.t('financial.gambling.collection.summary.present')
+    }
+
+    const dates = from === '' && to === ''
+      ? i18n.t('financial.gambling.collection.summary.nodates')
+      : `${from} - ${to}`
+
+    return (
+      <div className="table">
+        <div className="table-cell index">{i18n.t('financial.gambling.collection.summary.debt')} {index + 1}:</div>
+        <div className="table-cell losses"><strong>{losses}</strong></div>
+        <div className="table-cell dates"><strong>{dates}</strong></div>
+      </div>
+    )
   }
 
   /**
@@ -95,6 +149,8 @@ export default class Gambling extends ValidationElement {
       <Collection minimum="1"
                   items={this.state.List}
                   dispatch={this.myDispatch}
+                  summary={this.summary}
+                  summaryTitle={i18n.t('financial.gambling.collection.summary.title')}
                   appendLabel={i18n.t('financial.gambling.collection.append')}>
 
         <Comments name="Comments"

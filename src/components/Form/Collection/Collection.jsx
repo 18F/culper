@@ -239,6 +239,12 @@ export default class Collection extends ValidationElement {
         return (
           <div className="item" key={item.index}>
             <div className="details">
+              <div className="byline">
+                <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
+                  <span>{i18n.t('collection.remove')}</span>
+                  <i className="fa fa-times-circle" aria-hidden="true"></i>
+                </a>
+              </div>
               {item.children}
             </div>
           </div>
@@ -270,6 +276,12 @@ export default class Collection extends ValidationElement {
               </a>
             </div>
             <div className="details">
+              <div className="byline">
+                <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
+                  <span>{i18n.t('collection.remove')}</span>
+                  <i className="fa fa-times-circle" aria-hidden="true"></i>
+                </a>
+              </div>
               {item.children}
             </div>
           </div>

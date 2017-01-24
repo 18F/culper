@@ -61,4 +61,11 @@ describe('The Collection component', () => {
     expect(component.find('.summary').length).toEqual(1)
     expect(i).toEqual(2)
   })
+
+  it('can remove item from collection', () => {
+    const component = mount(<Collection minimum="1"><div className="hello">hello</div></Collection>)
+    expect(component.find('div.hello').length).toEqual(1)
+    component.find('a.remove').simulate('click')
+    expect(component.find('div.hello').length).toEqual(0)
+  })
 })
