@@ -33,11 +33,11 @@ describe('The Collection component', () => {
       )
     }
 
-    const component = mount(<Collection minimum="1" summary={summaryCallback}><div className="hello">hello</div></Collection>)
-    expect(component.find('div.hello').length).toEqual(1)
-    expect(component.find('.details').length).toEqual(1)
-    expect(component.find('.summary').length).toEqual(1)
-    expect(i).toEqual(1)
+    const component = mount(<Collection minimum="2" summary={summaryCallback}><div className="hello">hello</div></Collection>)
+    expect(component.find('div.hello').length).toBeGreaterThan(0)
+    expect(component.find('.details').length).toBeGreaterThan(0)
+    expect(component.find('.summary').length).toBeGreaterThan(0)
+    expect(i).toEqual(2)
   })
 
   it('can toggle summary item', () => {
@@ -49,23 +49,36 @@ describe('The Collection component', () => {
       )
     }
 
-    const component = mount(<Collection minimum="1" summary={summaryCallback}><div className="hello">hello</div></Collection>)
-    expect(component.find('div.hello').length).toEqual(1)
-    expect(component.find('.details').length).toEqual(1)
-    expect(component.find('.summary').length).toEqual(1)
-    expect(i).toEqual(1)
+    const component = mount(
+      <Collection minimum="2" summary={summaryCallback}>
+        <div className="hello">hello</div>
+      </Collection>
+    )
+    expect(component.find('div.hello').length).toBeGreaterThan(0)
+    expect(component.find('.details').length).toBeGreaterThan(0)
+    expect(component.find('.summary').length).toBeGreaterThan(0)
+    expect(i).toEqual(2)
 
-    component.find('.toggle').simulate('click')
+    component.find('.toggle').first().simulate('click')
     expect(component.find('div.hello').length).toEqual(0)
     expect(component.find('.details').length).toEqual(0)
     expect(component.find('.summary').length).toEqual(1)
-    expect(i).toEqual(2)
+    expect(i).toEqual(4)
   })
 
   it('can remove item from collection', () => {
-    const component = mount(<Collection minimum="1"><div className="hello">hello</div></Collection>)
-    expect(component.find('div.hello').length).toEqual(1)
-    component.find('a.remove').simulate('click')
-    expect(component.find('div.hello').length).toEqual(0)
+    let i = 0
+    const summaryCallback = (item, index) => {
+      i++
+      return (
+        <div className="table">Item {index}</div>
+      )
+    }
+
+    const component = mount(<Collection minimum="2" summary={summaryCallback}><div className="hello">hello</div></Collection>)
+    expect(component.find('.summary').length).toBeGreaterThan(0)
+    component.find('a.remove').first().simulate('click')
+    expect(component.find('.summary').length).toEqual(0)
+    expect(i).toEqual(2)
   })
 })

@@ -111,7 +111,7 @@ export default class DateRange extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </div>
-        <div className="usa-grid">
+        <div className="arrow">
           <img src="../img/date-down-arrow.svg" />
         </div>
         <div className="usa-grid">
