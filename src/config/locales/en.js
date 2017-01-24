@@ -262,11 +262,19 @@ const en = {
         },
         append: 'Add another gambling debt'
       },
-      label: {
+      heading: {
+        details: 'Enter your gambling debt',
         dates: 'Provide the date range of your financial problems due to gambling',
         losses: 'Provide an estimate of the amount (in U.S. dollars) of gambling losses incurred',
         description: 'Provide a description of your financial problems due to gambling',
         actions: 'If you have taken any action(s) to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
+        comments: 'Add optional comment'
+      },
+      label: {
+        dates: 'Dates of debt',
+        losses: 'Losses',
+        description: 'Description',
+        actions: 'Action(s) taken or explanation',
         comments: 'Add optional comment'
       },
       help: {
