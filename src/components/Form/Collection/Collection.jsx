@@ -237,7 +237,7 @@ export default class Collection extends ValidationElement {
     //
     // Also, if there are less than two items in the list skip the summary
     if (!this.props.summary || this.state.items.length < 2) {
-      const byline = () => {
+      const byline = (item) => {
         if (this.state.items.length < 2) {
           return ''
         }
@@ -256,7 +256,7 @@ export default class Collection extends ValidationElement {
         return (
           <div className="item" key={item.index}>
             <div className="details">
-              {byline()}
+              {byline(item)}
               {item.children}
             </div>
           </div>
