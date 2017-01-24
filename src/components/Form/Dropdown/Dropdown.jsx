@@ -25,7 +25,13 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
+    let valid = true
+    if (this.props.required) {
+      if (event.target.value === '') {
+        valid = false
+      }
+    }
+    this.setState({value: event.target.value, error: !valid, valid: valid}, () => {
       super.handleChange(event)
     })
   }
@@ -61,7 +67,7 @@ export default class Dropdown extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = 'eapp-field-wrap'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -86,11 +92,11 @@ export default class Dropdown extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
     if (this.state.error) {
-      klass += ' usa-input-error-message'
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -122,11 +128,6 @@ export default class Dropdown extends ValidationElement {
                htmlFor={this.state.name}>
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
         <select className={this.inputClass()}
                 id={this.state.name}
                 name={this.state.name}
@@ -143,6 +144,10 @@ export default class Dropdown extends ValidationElement {
                 >
           {this.props.children}
         </select>
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.state.help}
+        </div>
       </div>
     )
   }

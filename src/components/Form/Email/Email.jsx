@@ -13,7 +13,7 @@ export default class Email extends ValidationElement {
       help: props.help,
       disabled: props.disabled,
       maxlength: props.maxlength,
-      pattern: props.pattern || '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$',
+      pattern: props.pattern || '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.+([a-z\.]{2,6})$',
       readonly: props.readonly,
       required: props.required,
       value: props.value,
@@ -29,6 +29,12 @@ export default class Email extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          ...this.props,
+          value: this.state.value
+        })
+      }
     })
   }
 

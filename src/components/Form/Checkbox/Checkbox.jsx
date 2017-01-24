@@ -4,21 +4,25 @@ import ValidationElement from '../ValidationElement'
 export default class Checkbox extends ValidationElement {
   constructor (props) {
     super(props)
-
     this.state = {
       name: props.name,
       label: props.label,
       value: props.value,
       help: props.help,
       disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
       readonly: props.readonly,
       required: props.required,
+      checked: props.checked,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      checked: newProps.checked
+    })
   }
 
   /**
@@ -26,7 +30,7 @@ export default class Checkbox extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: !this.state.value }, () => {
+    this.setState({ checked: event.target.checked }, () => {
       super.handleChange(event)
     })
   }
@@ -52,52 +56,6 @@ export default class Checkbox extends ValidationElement {
   }
 
   /**
-   * Execute validation checks on the value.
-   *
-   * Possible return values:
-   *  1. null: In a neutral state
-   *  2. false: Does not meet criterion and is deemed invalid
-   *  3. true: Meets all specified criterion
-   */
-  handleValidate (event, status) {
-    event.persist()
-    if (!event || !event.target) {
-      super.handleValidate(event, status)
-      return
-    }
-
-    let hits = 0
-    status = true
-
-    if (this.state.value) {
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
-        hits++
-      }
-
-      if (this.state.pattern && this.state.pattern.length > 0) {
-        try {
-          let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value) ? true : false
-          hits++
-        } catch (e) {
-          // Not a valid regular expression
-        }
-      }
-    }
-
-    // If nothing was tested then go back to neutral
-    if (hits === 0) {
-      status = null
-    }
-
-    // Set the internal state
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
-    })
-  }
-
-  /**
    * Generated name for the error message.
    */
   errorName () {
@@ -108,7 +66,7 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = 'eapp-blocks-checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -127,17 +85,25 @@ export default class Checkbox extends ValidationElement {
       klass += ' usa-input-error-label'
     }
 
+    if (this.state.checked) {
+      klass += ' checked'
+    }
+
+    if (this.props.toggle === 'false') {
+      klass += ' no-toggle'
+    }
+
     return klass.trim()
   }
 
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
     if (this.state.error) {
-      klass += ' usa-input-error-message'
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -163,6 +129,36 @@ export default class Checkbox extends ValidationElement {
   }
 
   render () {
+    if (this.props.toggle === 'false') {
+      return (
+        <div className={this.divClass()}>
+          <input className={this.inputClass()}
+                 id={this.state.name}
+                 name={this.state.name}
+                 type="checkbox"
+                 aria-describedby={this.errorName()}
+                 disabled={this.state.disabled}
+                 readOnly={this.state.readonly}
+                 required={this.state.required}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 checked={this.state.checked}
+                 />
+          <label className={this.labelClass()}
+                 htmlFor={this.state.name}>
+            {this.props.children}
+            <span>{this.state.label}</span>
+          </label>
+          <div className={this.errorClass()}>
+            <i className="fa fa-exclamation"></i>
+            {this.state.help}
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
@@ -173,23 +169,21 @@ export default class Checkbox extends ValidationElement {
                  type="checkbox"
                  aria-describedby={this.errorName()}
                  disabled={this.state.disabled}
-                 maxLength={this.state.maxlength}
-                 pattern={this.state.pattern}
                  readOnly={this.state.readonly}
                  required={this.state.required}
                  value={this.state.value}
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
+                 checked={this.state.checked}
                  />
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
           {this.state.help}
-        </span>
+        </div>
       </div>
     )
   }

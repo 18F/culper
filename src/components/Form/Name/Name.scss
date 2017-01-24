@@ -1,0 +1,22 @@
+@import 'eqip-colors';
+
+.name {
+    .inline {
+        display: inline-block;
+        margin-left: 1rem;
+    }
+
+    .optional {
+        color: $eapp-grey-darker;
+        font-style: italic;
+        padding-left: 0.5rem;
+    }
+
+    .middle-options {
+        max-width: 64rem;
+    }
+
+    .option-list {
+        max-width: 70rem;
+    }
+}

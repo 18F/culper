@@ -1,0 +1,31 @@
+@import 'eqip-colors';
+
+.comments {
+    a {
+        margin-top: 1rem;
+
+        i {
+            margin-left: 1rem;
+        }
+
+        &.add,
+        &.add:link,
+        &.add:visited,
+        &.add:hover,
+        &.add:active {
+            color: $eapp-blue;
+            text-decoration: none;
+            border-bottom: none;
+        }
+
+        &.remove,
+        &.remove:link,
+        &.remove:visited,
+        &.remove:hover,
+        &.remove:active {
+            color: $eapp-red;
+            text-decoration: none;
+            border-bottom: 1px $eapp-red dashed;
+        }
+    }
+}

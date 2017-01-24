@@ -7,13 +7,14 @@ export default class State extends ValidationElement {
     return (
       <Dropdown name={this.props.name}
                 label={this.props.label}
-                help={this.props.help}
+                help="State is required"
                 disabled={this.props.disabled}
                 onChange={this.props.onChange}
-                onValidation={this.props.onValidation}
+                onValidate={this.props.onValidate}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 value={this.props.value}
+                required={this.props.required}
                 >
         <option value="">{this.props.placeholder}</option>
         <option value="AL">AL</option>

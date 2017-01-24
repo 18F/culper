@@ -5,7 +5,6 @@
 .eapp-navigation {
 	background:$eapp-grey-light;
 	padding:2.5rem 0;
-	min-height:110rem;
 	> * {
 		margin:0 10%;
 	}
@@ -13,7 +12,7 @@
 .form-navigation {
 	margin-top:1.9rem;
 	margin-bottom:1.9rem;
-	
+
     a {
 	    color:$eapp-grey-dark;
 		&:hover {
@@ -51,9 +50,10 @@
 	    color:$eapp-grey-dark;
     }
     .number {
-        display:inline-block;
+		position:absolute;
+		left:0.4rem;
+        display:block;
         width:2.5rem;
-        margin-right:1.1rem;
 		font-weight:$eapp-bold;
 		text-align:right;
 		color:#adafb5;
@@ -61,16 +61,22 @@
     .section {
         font-size:1.9rem;
 		> span > a {
+            position:relative;
             border-bottom:1px solid $eapp-grey-dark;
             border-left:4px solid transparent;
+            padding-left:3.7rem;
 		}
         a {
+			position:relative;
             display:block;
-            width:100%;
 			min-height:5.1rem;
 			padding:1.7rem 2rem 1.7rem 0;
             line-height:1.2;
             text-decoration: none;
+            i {
+	            position:absolute;
+	            right:0;
+            }
         }
         .title {
             .active {
@@ -79,9 +85,9 @@
             .has-errors {
 	            border-left-color:$eapp-red;
             }
-            .is-valid {
-	            border-left-color:$eapp-green;
-            }
+            // .is-valid {
+	        //     border-left-color:$eapp-green;
+            // }
         }
         .subsection {
             font-size: 1.6rem;

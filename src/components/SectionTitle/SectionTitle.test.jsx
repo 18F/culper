@@ -19,9 +19,9 @@ describe('The title section', () => {
   })
 
   it('can handle title', () => {
-    const store = mockStore({ section: { title: 'This is a test' } })
+    const store = mockStore({ section: { section: 'identification' } })
     const component = mount(<Provider store={store}><SectionTitle /></Provider>)
     expect(component.find('div').length).toEqual(1)
-    expect(component.find('div').text()).toEqual('This is a test')
+    expect(component.find('div').text()).toEqual('Information about you')
   })
 })

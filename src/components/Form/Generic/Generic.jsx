@@ -20,6 +20,7 @@ export default class Generic extends ValidationElement {
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
+      errorCode: null,
       valid: props.valid || false
     }
   }
@@ -63,6 +64,9 @@ export default class Generic extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidation (event, status) {
+    let errorCode = null
+    let name = this.props.name || ''
+
     event.persist()
     if (!event || !event.target) {
       super.handleValidation(event, status)
@@ -75,6 +79,9 @@ export default class Generic extends ValidationElement {
     if (this.state.value) {
       if (this.state.value && this.state.value.length > 0) {
         status = status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength))
+        if (!status) {
+          errorCode = 'length'
+        }
         hits++
       }
 
@@ -82,6 +89,9 @@ export default class Generic extends ValidationElement {
         try {
           let re = new RegExp(this.state.pattern)
           status = status && re.test(this.state.value)
+          if (!status) {
+            errorCode = 'pattern'
+          }
           hits++
         } catch (e) {
           // Not a valid regular expression
@@ -95,8 +105,10 @@ export default class Generic extends ValidationElement {
     }
 
     // Set the internal state
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
+      let prop = this.state.name || 'input'
+      let e = { [prop]: errorCode }
+      super.handleValidation(event, status, super.flattenObject(e))
     })
   }
 
@@ -144,11 +156,11 @@ export default class Generic extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
+    if (this.state.error && this.state.help) {
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -189,13 +201,6 @@ export default class Generic extends ValidationElement {
                >
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert"
-              ref="error"
-              >
-          {this.state.help}
-        </span>
         <input className={this.inputClass()}
                id={this.state.name}
                name={this.state.name}
@@ -212,8 +217,15 @@ export default class Generic extends ValidationElement {
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                onKeyDown={this.handleKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="input"
                />
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.state.help}
+        </div>
       </div>
     )
   }

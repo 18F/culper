@@ -30,6 +30,9 @@ export default class Text extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
     })
   }
 
@@ -54,9 +57,9 @@ export default class Text extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, errorCodes) {
     this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, errorCodes)
     })
   }
 
@@ -81,8 +84,11 @@ export default class Text extends ValidationElement {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
-               onValidate={this.handleValidation}
+               onValidate={this.handleValidation.bind(this)}
                onKeyDown={this.props.onKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="text"
                />
     )

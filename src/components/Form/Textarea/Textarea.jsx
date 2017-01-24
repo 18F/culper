@@ -29,7 +29,10 @@ export default class Textarea extends ValidationElement {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
+        this.props.onUpdate({
+          ...this.props,
+          value: this.state.value
+        })
       }
     })
   }
@@ -136,11 +139,11 @@ export default class Textarea extends ValidationElement {
   /**
    * Style classes applied to the span element.
    */
-  spanClass () {
-    let klass = ''
+  errorClass () {
+    let klass = 'eapp-error-message'
 
     if (this.state.error) {
-      klass += ' usa-input-error-message'
+      klass += ' message'
     } else {
       klass += ' hidden'
     }
@@ -172,11 +175,6 @@ export default class Textarea extends ValidationElement {
                htmlFor={this.state.name}>
           {this.state.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
         <textarea className={this.inputClass()}
                   id={this.state.name}
                   name={this.state.name}
@@ -191,6 +189,10 @@ export default class Textarea extends ValidationElement {
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
                   />
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.state.help}
+        </div>
       </div>
     )
   }

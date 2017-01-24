@@ -14,7 +14,7 @@ describe('The ApplicantSSN component', () => {
     }
     const component = mount(<ApplicantSSN name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
     component.find('input#' + expected.name + '-last').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(validElements)
+    expect(component.find('div.hidden').length).toEqual(validElements)
   })
 
   it('handles patterns', () => {
@@ -43,8 +43,8 @@ describe('The ApplicantSSN component', () => {
 
     expected.forEach((ex) => {
       const component = mount(<ApplicantSSN name={ex.name} value={ex.value} />)
-      component.find('input#' + ex.name + '-first').simulate('change')
-      expect(component.find('span.hidden').length).toEqual(ex.valid ? validElements : validElements - 1)
+      component.find('input[name="' + ex.name + '-first"]').simulate('blur')
+      expect(component.find('div.hidden').length).toBeGreaterThan(ex.valid ? 4 : 0)
     })
   })
 
