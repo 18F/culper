@@ -47,6 +47,9 @@ const en = {
     days: 'days',
     ago: 'ago'
   },
+  collection: {
+    summary: 'Summary'
+  },
   comments: {
     add: 'Add comment',
     remove: 'Remove comment'
@@ -248,6 +251,13 @@ const en = {
         question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
+        summary: {
+          title: 'Summary of gambling debt',
+          unknownlosses: 'Unknown losses',
+          present: 'Now',
+          nodates: 'No dates',
+          debt: 'Debt'
+        },
         append: 'Add another gambling debt'
       },
       label: {
