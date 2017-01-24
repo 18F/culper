@@ -5,14 +5,21 @@ import { ValidationElement, Text, Name, DateControl, Branch, RadioGroup, Radio, 
 export default class Passport extends ValidationElement {
   constructor (props) {
     super(props)
+
+    // Regular expressions were based on the information provided by
+    // U.S. Citizenship and Immigration Services (USCIS) at:
+    //
+    // https://e-verify-uscis.gov/esp/help/EvHelpPassportandPassportCardNbr.htm
     this.state = {
       Name: props.Name || {},
       Number: props.Number || '',
+      Card: props.Card || false,
       Issued: props.Issued || {},
       Expiration: props.Expiration || {},
       Comments: props.Comments || '',
       HasPassport: props.HasPassport,
-      re: '^([a-zA-Z0-9]{6,9})+$',
+      reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
+      reCard: '^[cC]{1}[0-9]{8}$',
       error: false,
       valid: false,
       errorCodes: []
@@ -23,6 +30,12 @@ export default class Passport extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    this.handleUpdate('Card', event.target.checked, () => {
+      // This allows us to force a blur/validation using
+      // the new regular expression
+      this.refs.number.refs.text.refs.input.focus()
+      this.refs.number.refs.text.refs.input.blur()
+    })
   }
 
   /**
@@ -56,12 +69,17 @@ export default class Passport extends ValidationElement {
   /**
    * Handle the update event.
    */
-  handleUpdate (field, values) {
+  handleUpdate (field, values, callback) {
     this.setState({ [field]: values }, () => {
+      if (callback) {
+        callback()
+      }
+
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Name: this.state.Name,
           Number: this.state.Number,
+          Card: this.state.Card,
           Issued: this.state.Issued,
           Expiration: this.state.Expiration,
           Comments: this.state.Comments,
@@ -76,7 +94,7 @@ export default class Passport extends ValidationElement {
       return false
     }
 
-    let re = new RegExp(this.state.re)
+    let re = this.state.Card ? new RegExp(this.state.reBook) : new RegExp(this.state.reCard)
     if (!re.test(this.state.Number)) {
       return false
     }
@@ -132,6 +150,11 @@ export default class Passport extends ValidationElement {
       return ''
     }
 
+    let re = this.state.reBook
+    if (this.state.Card) {
+      re = this.state.reCard
+    }
+
     return (
       <div>
         <div className="eapp-field-wrap">
@@ -145,11 +168,20 @@ export default class Passport extends ValidationElement {
           <h3>{i18n.t('foreign.passport.number')}</h3>
           <Text name="number"
                 value={this.state.Number}
-                pattern={this.state.re}
+                pattern={re}
                 maxlength="9"
+                ref="number"
                 onUpdate={this.handleUpdate.bind(this, 'Number')}
                 onValidate={this.handleValidation}
                 />
+          <div className="text-right">
+            <input id="lastInitialOnly"
+                   type="checkbox"
+                   value="card"
+                   checked={this.state.Card}
+                   onChange={this.handleChange} />
+            <label>{i18n.t('foreign.passport.card')}</label>
+          </div>
         </div>
 
         <div className="eapp-field-wrap">
