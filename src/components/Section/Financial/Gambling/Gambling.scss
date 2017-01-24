@@ -1,0 +1,65 @@
+.gambling {
+    .summary {
+        .brief {
+            .table {
+                display: table;
+                width: 100%
+            }
+
+            .table-cell {
+                display: table-cell;
+            }
+
+            .index {
+                width: 6rem;
+            }
+
+            .dates {
+                width: 10rem;
+            }
+        }
+    }
+
+    .details {
+        .daterange,
+        .losses,
+        .description,
+        .actions {
+            display: inline-block;
+        }
+
+        .description,
+        .actions {
+            width: 90%;
+            max-width: 64rem !important;
+
+            input {
+                width: 100% !important;
+                max-width: 64rem !important;
+            }
+        }
+
+        .losses {
+            max-width: 10rem;
+        }
+
+        .fa.fa-dollar {
+            margin-right: 1rem;
+        }
+
+        .dates-help-icon {
+            vertical-align: top;
+            margin-top: 15rem;
+        }
+
+        .losses-help-icon {
+            margin-top: 2.6rem;
+        }
+
+        .description-help-icon,
+        .actions-help-icon {
+            vertical-align: top;
+            margin-top: 8rem;
+        }
+    }
+}

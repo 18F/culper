@@ -38,12 +38,13 @@ const errorReducer = function (sectionName) {
 // High level pre-defined sub-state tree
 export default combineReducers({
   Identification: reducer('Identification'),
-  Family: reducer('family'),
-  Citizenship: reducer('citizenship'),
-  History: reducer('history'),
+  Financial: reducer('Financial'),
+  Family: reducer('Family'),
+  Citizenship: reducer('Citizenship'),
+  History: reducer('History'),
   Foreign: reducer('Foreign'),
-  TBD: reducer('tbd'),
-  Legal: reducer('legal'),
+  TBD: reducer('Tbd'),
+  Legal: reducer('Legal'),
   Completed: reducer('Completed'),
   Errors: errorReducer('Errors'),
   Saved: (state = {}) => {

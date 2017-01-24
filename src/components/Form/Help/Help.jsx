@@ -51,6 +51,10 @@ export default class Help extends React.Component {
         extendedProps.index = this.props.index
       }
 
+      if (this.props.onUpdate) {
+        extendedProps.onUpdate = this.props.onUpdate
+      }
+
       return React.cloneElement(child, {
         ...child.props,
         ...extendedProps
