@@ -34,6 +34,27 @@ const en = {
   scorecard: {
     complete: 'Sections complete'
   },
+  saved: {
+    saved: 'Saved',
+    now: 'now',
+    second: 'second',
+    seconds: 'seconds',
+    minute: 'minute',
+    minutes: 'minutes',
+    hour: 'hour',
+    hours: 'hours',
+    day: 'day',
+    days: 'days',
+    ago: 'ago'
+  },
+  collection: {
+    summary: 'Summary',
+    remove: 'Remove'
+  },
+  comments: {
+    add: 'Add comment',
+    remove: 'Remove comment'
+  },
   section: {
     back: 'Back',
     next: 'Next'
@@ -98,11 +119,16 @@ const en = {
     birthplace: {
       title: 'Place of birth',
       question: {
-        label: 'Were you born in the United States of America',
+        label: 'Were you born in the United States of America?',
         yes: 'Yes',
         no: 'No'
       },
-      help: 'Provide the place of birth',
+      help: {
+        city: 'City where you were born',
+        state: 'State where you were born',
+        country: 'Country where you were born',
+        county: 'County where you were born'
+      },
       label: {
         state: 'State',
         city: 'City',
@@ -110,9 +136,10 @@ const en = {
         country: 'Country'
       },
       placeholder: {
-        state: 'State',
+        state: 'Please enter state within the United States',
         city: 'Please enter your city of birth',
-        county: 'Please enter your county of birth'
+        county: 'Please enter your county or province of birth',
+        country: 'Please enter your country of birth'
       }
     },
     ssn: {
@@ -129,6 +156,26 @@ const en = {
         last: '0000',
         middle: '00',
         first: '000'
+      },
+      error: {
+        first: {
+          pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        },
+        middle: {
+          pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        },
+        last: {
+          pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        },
+        verifyFirst: {
+          pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        },
+        verifyMiddle: {
+          pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        },
+        verifyLast: {
+          pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        }
       }
     },
     traits: {
@@ -141,7 +188,8 @@ const en = {
         sex: 'Select your sex at the time of birth',
         feet: 'Feet must be a number between 1 and 9',
         inches: 'Inches must be a number between 0 and 11',
-        pounds: 'Weight must be a number between 10 and 999'
+        height: 'Height must be a number between 1 and 9',
+        weight: 'Weight must be a number between 10 and 999'
       },
       label: {
         height: 'Height',
@@ -193,6 +241,53 @@ const en = {
       }
     }
   },
+  financial: {
+    destination: {
+      gambling: 'Gambling debts',
+      bankruptcy: 'Bankruptcy'
+    },
+    gambling: {
+      title: 'Gambling debt',
+      branch: {
+        question: 'Have your ever experienced financial problems due to gambling?'
+      },
+      collection: {
+        summary: {
+          title: 'Summary of gambling debt',
+          unknownlosses: 'Unknown losses',
+          present: 'Now',
+          nodates: 'No dates',
+          debt: 'Debt'
+        },
+        append: 'Add another gambling debt'
+      },
+      heading: {
+        details: 'Enter your gambling debt',
+        dates: 'Provide the date range of your financial problems due to gambling',
+        losses: 'Provide an estimate of the amount (in U.S. dollars) of gambling losses incurred',
+        description: 'Provide a description of your financial problems due to gambling',
+        actions: 'If you have taken any action(s) to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
+        comments: 'Add optional comment'
+      },
+      label: {
+        dates: 'Dates of debt',
+        losses: 'Losses',
+        description: 'Description',
+        actions: 'Action(s) taken or explanation',
+        comments: 'Add optional comment'
+      },
+      help: {
+        dates: '',
+        losses: '',
+        description: '',
+        actions: '',
+        comments: 'If you need to provide any additional comments about this information enter them below'
+      },
+      placeholder: {
+        losses: '1000'
+      }
+    }
+  },
   foreign: {
     tour: {
       title: 'One piece at a time',
@@ -226,6 +321,7 @@ const en = {
         no: 'No'
       },
       number: 'Provide your U.S. passport number',
+      card: 'Passport card',
       issued: 'Provide the issue date of the passport',
       expiration: 'Provide the expiration date of the passport',
       comment: {
@@ -235,8 +331,14 @@ const en = {
     }
   },
   alias: {
+    maiden: {
+      help: 'Provide if this is your maiden name'
+    },
     reason: {
       help: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc...'
+    },
+    used: {
+      help: 'Provide dates this name was used'
     }
   }
 }

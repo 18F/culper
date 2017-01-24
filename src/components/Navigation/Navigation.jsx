@@ -85,15 +85,6 @@ class Navigation extends React.Component {
     return klass
   }
 
-  getIcon (klass) {
-    if (klass.indexOf('is-valid') > -1) {
-      return <i className="fa fa-check-circle"></i>
-    } else if (klass.indexOf('has-errors') > -1) {
-      return <i className="fa fa-exclamation-circle"></i>
-    }
-    return ''
-  }
-
   render () {
     let location = hashHistory.getCurrentLocation()
     let pathname = location.pathname
@@ -105,7 +96,6 @@ class Navigation extends React.Component {
 
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
-      const sectionIcon = this.getIcon(sectionClass)
       const subsections = section.subsections.map(subsection => {
         if (subsection.hidden) {
           return ''
@@ -113,12 +103,11 @@ class Navigation extends React.Component {
 
         const subUrl = `/form/${section.url}/${subsection.url}`
         const subClass = this.getClassName(subUrl, pathname)
-        const subIcon = this.getIcon(subClass)
         return (
           <div key={subsection.name} className="subsection" >
             <Link to={subUrl} className={subClass}>
-              {subIcon}
               <span className="name">{subsection.name}</span>
+              <span className="eapp-status-icon-error"></span>
             </Link>
           </div>
         )
@@ -131,9 +120,10 @@ class Navigation extends React.Component {
         <div key={section.name} className="section">
           <span className="title">
             <Link to={url} className={sectionClass}>
-              {sectionIcon}
               <span className="number">{sectionNum}</span>
               <span className="name">{section.name}</span>
+              <span className="eapp-status-icon-valid"></span>
+              <span className="eapp-status-icon-error"></span>
             </Link>
           </span>
           { this.isActive(url, pathname) ? subsections : '' }

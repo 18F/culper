@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, Text, Checkbox } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Text, Checkbox } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantSSN extends ValidationElement {
@@ -31,7 +31,7 @@ export default class ApplicantSSN extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = this.extractPart(event.target.id)
+    let part = event.target.id
     let value = event.target.value
     let updated = null
 
@@ -66,7 +66,7 @@ export default class ApplicantSSN extends ValidationElement {
       case 'verifyFirst':
         updated = {
           verifyFirst: value,
-          verified: ('' + value + this.state.verifyMiddle + this.state.veriyLast) === this.state.value
+          verified: ('' + value + this.state.verifyMiddle + this.state.verifyLast) === this.state.value
         }
         if (value.length === 3) {
           this.refs.verifyMiddle.refs.text.refs.input.focus()
@@ -121,7 +121,7 @@ export default class ApplicantSSN extends ValidationElement {
    */
   handleKeyDown (event) {
     let input = event.target
-    let part = this.extractPart(input.id)
+    let part = input.id
     let value = input.value
 
     // 8  => backspace
@@ -164,7 +164,7 @@ export default class ApplicantSSN extends ValidationElement {
       complexStatus = false
     } else if (this.state.notApplicable) {
       complexStatus = true
-    } else if (this.state.verified && this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
+    } else if (/* this.state.verified && */ this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
       complexStatus = true
     }
 
@@ -209,17 +209,28 @@ export default class ApplicantSSN extends ValidationElement {
   }
 
   /**
-   * Generated name for the part of the address elements.
+   * Style classes applied to the span element.
    */
-  partName (part) {
-    return '' + this.props.name + '-' + part
+  errorClass () {
+    let klass = 'eapp-error-message'
+
+    if (this.state.errorCodes.length > 0) {
+      klass += ' message'
+    } else {
+      klass += ' hidden'
+    }
+
+    return klass.trim()
   }
 
-  /**
-   * Returns the part name from the pull generated identifier.
-   */
-  extractPart (id) {
-    return id.split('-').pop()
+  errorMessage () {
+    return this.state.errorCodes.map(e => {
+      return (
+        <li>
+          {i18n.t(`identification.ssn.error.${e}`)}
+        </li>
+      )
+    })
   }
 
   /**
@@ -234,7 +245,7 @@ export default class ApplicantSSN extends ValidationElement {
       return (
         <div>
           <label>{i18n.t('identification.ssn.label.verify')}</label>
-          <Text name={this.partName('verifyFirst')}
+          <Text name="verifyFirst"
                 ref="verifyFirst"
                 className="first eapp-short-input"
                 placeholder={i18n.t('identification.ssn.placeholder.first')}
@@ -249,7 +260,7 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
-          <Text name={this.partName('verifyMiddle')}
+          <Text name="verifyMiddle"
                 ref="verifyMiddle"
                 className="middle eapp-short-input"
                 placeholder={i18n.t('identification.ssn.placeholder.middle')}
@@ -265,7 +276,7 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
-          <Text name={this.partName('verifyLast')}
+          <Text name="verifyLast"
                 ref="verifyLast"
                 className="last eapp-short-input"
                 placeholder={i18n.t('identification.ssn.placeholder.last')}
@@ -285,7 +296,7 @@ export default class ApplicantSSN extends ValidationElement {
       )
     }
 
-    return ''
+    return null
   }
 
   render () {
@@ -294,7 +305,7 @@ export default class ApplicantSSN extends ValidationElement {
         <h2>{i18n.t('identification.ssn.title')}</h2>
         <Help id="identification.ssn.help">
           <label>&nbsp;</label>
-          <Text name={this.partName('first')}
+          <Text name="first"
                 ref="first"
                 className="first eapp-short-input"
                 placeholder={i18n.t('identification.ssn.placeholder.first')}
@@ -309,7 +320,7 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
-          <Text name={this.partName('middle')}
+          <Text name="middle"
                 ref="middle"
                 className="middle eapp-short-input"
                 placeholder={i18n.t('identification.ssn.placeholder.middle')}
@@ -325,7 +336,7 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
-          <Text name={this.partName('last')}
+          <Text name="last"
                 ref="last"
                 className="last eapp-short-input"
                 placeholder={i18n.t('identification.ssn.placeholder.last')}
@@ -341,8 +352,9 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
+          <HelpIcon />
           <div className="coupled-flags">
-            <Checkbox name={this.partName('notApplicable')}
+            <Checkbox name="notApplicable"
                       label={i18n.t('identification.ssn.label.notApplicable')}
                       ref="notApplicable"
                       toggle="false"
@@ -354,7 +366,10 @@ export default class ApplicantSSN extends ValidationElement {
                       onBlur={this.props.onBlur}
                       />
           </div>
-          {this.verify()}
+          <div className={this.errorClass()}>
+            <i className="fa fa-exclamation"></i>
+            <ul>{this.errorMessage()}</ul>
+          </div>
         </Help>
       </div>
     )

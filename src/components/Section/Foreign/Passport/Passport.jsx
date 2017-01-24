@@ -1,18 +1,25 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Text, Name, DateControl, RadioGroup, Radio, Comments } from '../../../Form'
+import { ValidationElement, Text, Name, DateControl, Branch, RadioGroup, Radio, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
     super(props)
+
+    // Regular expressions were based on the information provided by
+    // U.S. Citizenship and Immigration Services (USCIS) at:
+    //
+    // https://e-verify-uscis.gov/esp/help/EvHelpPassportandPassportCardNbr.htm
     this.state = {
       Name: props.Name || {},
       Number: props.Number || '',
+      Card: props.Card || false,
       Issued: props.Issued || {},
       Expiration: props.Expiration || {},
       Comments: props.Comments || '',
       HasPassport: props.HasPassport,
-      re: '^([a-zA-Z0-9]{6,9})+$',
+      reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
+      reCard: '^[cC]{1}[0-9]{8}$',
       error: false,
       valid: false,
       errorCodes: []
@@ -23,6 +30,12 @@ export default class Passport extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    this.handleUpdate('Card', event.target.checked, () => {
+      // This allows us to force a blur/validation using
+      // the new regular expression
+      this.refs.number.refs.text.refs.input.focus()
+      this.refs.number.refs.text.refs.input.blur()
+    })
   }
 
   /**
@@ -56,12 +69,17 @@ export default class Passport extends ValidationElement {
   /**
    * Handle the update event.
    */
-  handleUpdate (field, values) {
+  handleUpdate (field, values, callback) {
     this.setState({ [field]: values }, () => {
+      if (callback) {
+        callback()
+      }
+
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Name: this.state.Name,
           Number: this.state.Number,
+          Card: this.state.Card,
           Issued: this.state.Issued,
           Expiration: this.state.Expiration,
           Comments: this.state.Comments,
@@ -76,7 +94,7 @@ export default class Passport extends ValidationElement {
       return false
     }
 
-    let re = new RegExp(this.state.re)
+    let re = this.state.Card ? new RegExp(this.state.reBook) : new RegExp(this.state.reCard)
     if (!re.test(this.state.Number)) {
       return false
     }
@@ -132,28 +150,42 @@ export default class Passport extends ValidationElement {
       return ''
     }
 
+    let re = this.state.reBook
+    if (this.state.Card) {
+      re = this.state.reCard
+    }
+
     return (
       <div>
         <div className="eapp-field-wrap">
-          <h2>Provide the name in which passport was first issued</h2>
+          <h3>Provide the name in which passport was first issued</h3>
           <Name name="name"
                 {...this.state.Name}
                 onUpdate={this.handleUpdate.bind(this, 'Name')}
                 onValidate={this.handleValidation}
                 />
 
-          <h2>{i18n.t('foreign.passport.number')}</h2>
+          <h3>{i18n.t('foreign.passport.number')}</h3>
           <Text name="number"
                 value={this.state.Number}
-                pattern={this.state.re}
+                pattern={re}
                 maxlength="9"
+                ref="number"
                 onUpdate={this.handleUpdate.bind(this, 'Number')}
                 onValidate={this.handleValidation}
                 />
+          <div className="text-right">
+            <input id="lastInitialOnly"
+                   type="checkbox"
+                   value="card"
+                   checked={this.state.Card}
+                   onChange={this.handleChange} />
+            <label>{i18n.t('foreign.passport.card')}</label>
+          </div>
         </div>
 
         <div className="eapp-field-wrap">
-          <h2>{i18n.t('foreign.passport.issued')}</h2>
+          <h3>{i18n.t('foreign.passport.issued')}</h3>
           <DateControl name="issued"
                        {...this.state.Issued}
                        onUpdate={this.handleUpdate.bind(this, 'Issued')}
@@ -161,7 +193,7 @@ export default class Passport extends ValidationElement {
                        />
         </div>
         <div className="eapp-field-wrap">
-          <h2>{i18n.t('foreign.passport.expiration')}</h2>
+          <h3>{i18n.t('foreign.passport.expiration')}</h3>
           <DateControl name="expiration"
                        {...this.state.Expiration}
                        onUpdate={this.handleUpdate.bind(this, 'Expiration')}
@@ -169,35 +201,15 @@ export default class Passport extends ValidationElement {
                        />
         </div>
         <div className="eapp-field-wrap">
-          <h2>{i18n.t('foreign.passport.comment.title')}</h2>
           <Comments name="comments"
                     value={this.state.Comments}
                     label={i18n.t('foreign.passport.comment.label')}
                     onUpdate={this.handleUpdate.bind(this, 'Comments')}
                     onValidate={this.handleValidation}
-                    />
+                    >
+            <h3>{i18n.t('foreign.passport.comment.title')}</h3>
+          </Comments>
         </div>
-      </div>
-    )
-  }
-
-  options () {
-    return (
-      <div className="eapp-field-wrap">
-        <RadioGroup className="option-list branch" selectedValue={this.state.HasPassport}>
-          <Radio name="has_passport"
-                 label={i18n.t('foreign.passport.question.yes')}
-                 value="Yes"
-                 onChange={this.yesNoClicked.bind(this, 'Yes')}
-                 onValidate={this.handleValidation}
-                 />
-          <Radio name="has_passport"
-                 label={i18n.t('foreign.passport.question.no')}
-                 value="No"
-                 onChange={this.yesNoClicked.bind(this, 'No')}
-                 onValidate={this.handleValidation}
-                 />
-        </RadioGroup>
       </div>
     )
   }
@@ -206,16 +218,22 @@ export default class Passport extends ValidationElement {
     return (
       <div className="passport eapp-field-wrap">
         <h2>{i18n.t('foreign.passport.title')}</h2>
-        <p>
-          {i18n.t('foreign.passport.info.text')}<br />
-          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
-            {i18n.t('foreign.passport.info.link')}
-          </a>
-        </p>
-        <p>
-          {i18n.t('foreign.passport.question.title')}
-        </p>
-        {this.options()}
+        <Branch
+          name="has_passport"
+          value={this.state.HasPassport}
+          onUpdate={this.yesNoClicked.bind(this)}
+          yesLabel={i18n.t('foreign.passport.question.yes')}
+          noLabel={i18n.t('foreign.passport.question.no')}>
+          <p>
+            {i18n.t('foreign.passport.info.text')}<br />
+            <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
+              {i18n.t('foreign.passport.info.link')}
+            </a>
+          </p>
+          <p>
+            {i18n.t('foreign.passport.question.title')}
+          </p>
+        </Branch>
         {this.visibleComponents()}
       </div>
     )

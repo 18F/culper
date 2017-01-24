@@ -1,0 +1,38 @@
+.physical {
+    .height,
+    .weight,
+    .hair-colors,
+    .eye-colors,
+    .sex {
+        display: inline-block;
+    }
+
+    .hair-colors,
+    .eye-colors {
+        width: 90%;
+        max-width: 64rem !important;
+
+        input {
+            width: 100% !important;
+            max-width: 64rem !important;
+        }
+    }
+
+    .height-help-icon {
+        vertical-align: top;
+        margin-top: 5.4rem;
+    }
+
+    .hair-help-icon,
+    .eye-help-icon {
+        vertical-align: top;
+        margin-top: 7rem;
+        margin-left: -3.2rem;
+    }
+
+    .sex-help-icon {
+        vertical-align: top;
+        margin-top: 7rem;
+        margin-left: -1.5rem;
+    }
+}

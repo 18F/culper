@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
-import { ValidationElement, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'
 
 export default class Physical extends ValidationElement {
   constructor (props) {
@@ -18,10 +18,6 @@ export default class Physical extends ValidationElement {
   }
 
   handleUpdate (field, values) {
-    if (field === 'Comments') {
-      values = values.value
-    }
-
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -88,43 +84,73 @@ export default class Physical extends ValidationElement {
   render () {
     return (
       <div className="physical">
-        <Height name="height"
-                label={i18n.t('identification.traits.label.height')}
-                {...this.props.Height}
-                onUpdate={this.handleUpdate.bind(this, 'Height')}
-                onValidate={this.handleValidation.bind(this)}
-                />
-        <Weight name="weight"
-                label={i18n.t('identification.traits.label.weight')}
-                value={this.props.Weight}
-                onUpdate={this.handleUpdate.bind(this, 'Weight')}
-                onValidate={this.handleValidation.bind(this)}
-                />
-        <HairColor name="hair"
-                   label={i18n.t('identification.traits.label.hair')}
-                   value={this.props.HairColor}
-                   onUpdate={this.handleUpdate.bind(this, 'HairColor')}
-                   onValidate={this.handleValidation.bind(this)}
-                   />
-        <EyeColor name="eye"
-                  label={i18n.t('identification.traits.label.eye')}
-                  value={this.props.EyeColor}
-                  onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
+        <h2>Physical attributes</h2>
+
+        <h3>Height</h3>
+        <Help id="identification.traits.help.height">
+          <Height name="height"
+                  label={i18n.t('identification.traits.label.height')}
+                  {...this.props.Height}
+                  onUpdate={this.handleUpdate.bind(this, 'Height')}
                   onValidate={this.handleValidation.bind(this)}
                   />
-        <Sex name="sex"
-             label={i18n.t('identification.traits.label.sex')}
-             value={this.props.Sex}
-             onUpdate={this.handleUpdate.bind(this, 'Sex')}
-             onValidate={this.handleValidation.bind(this)}
-             />
-        <h2>{i18n.t('identification.traits.heading.comments')}</h2>
+          <HelpIcon className="height-help-icon" />
+        </Help>
+
+        <h3>Weight</h3>
+        <Help id="identification.traits.help.weight">
+          <Weight name="weight"
+                  label={i18n.t('identification.traits.label.weight')}
+                  value={this.props.Weight}
+                  onUpdate={this.handleUpdate.bind(this, 'Weight')}
+                  onValidate={this.handleValidation.bind(this)}
+                  />
+          <HelpIcon className="weight-help-icon" />
+        </Help>
+
+        <h3>Hair Color</h3>
+        <Help id="identification.traits.help.hair">
+          <HairColor name="hair"
+                     label={i18n.t('identification.traits.label.hair')}
+                     className="eapp-field-wrap"
+                     value={this.props.HairColor}
+                     onUpdate={this.handleUpdate.bind(this, 'HairColor')}
+                     onValidate={this.handleValidation.bind(this)}
+                     />
+          <HelpIcon className="hair-help-icon" />
+        </Help>
+
+        <h3>Eye Color</h3>
+        <Help id="identification.traits.help.eye">
+          <EyeColor name="eye"
+                    label={i18n.t('identification.traits.label.eye')}
+                    className="eapp-field-wrap"
+                    value={this.props.EyeColor}
+                    onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
+                    onValidate={this.handleValidation.bind(this)}
+                    />
+          <HelpIcon className="eye-help-icon" />
+        </Help>
+
         <Comments name="comments"
                   value={this.state.Comments}
+                  title={i18n.t('identification.traits.heading.comments')}
                   label={i18n.t('identification.traits.label.comments')}
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
-                  />
+                  >
+          <h3>Sex</h3>
+          <Help id="identification.traits.help.sex">
+            <Sex name="sex"
+                 label={i18n.t('identification.traits.label.sex')}
+                 className="eapp-field-wrap"
+                 value={this.props.Sex}
+                 onUpdate={this.handleUpdate.bind(this, 'Sex')}
+                 onValidate={this.handleValidation.bind(this)}
+                 />
+            <HelpIcon className="sex-help-icon" />
+          </Help>
+        </Comments>
       </div>
     )
   }

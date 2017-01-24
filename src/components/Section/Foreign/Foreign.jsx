@@ -44,8 +44,10 @@ class Foreign extends ValidationElement {
       return
     }
 
-    let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-    this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+    if (!event.fake) {
+      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
+      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+    }
 
     let cstatus = 'neutral'
     if (this.hasStatus('passport', status, true)) {

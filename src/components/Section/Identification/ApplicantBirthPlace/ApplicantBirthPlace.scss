@@ -1,0 +1,30 @@
+.birthplace {
+    .branch {
+        display: inline-block;
+    }
+
+    .branch-help-icon {
+        margin-left: -1.6rem;
+        margin-top: 0.5rem;
+    }
+
+    .state,
+    .city,
+    .county,
+    .country {
+        display: inline-block;
+        width: 90%;
+        max-width: 64rem !important;
+
+        input {
+            width: 100% !important;
+            max-width: 64rem !important;
+        }
+    }
+
+    .state-help-icon,
+    .country-help-icon {
+        vertical-align: top;
+        margin-top: 5.3rem;
+    }
+}

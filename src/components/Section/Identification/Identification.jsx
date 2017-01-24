@@ -51,8 +51,10 @@ class Identification extends ValidationElement {
       return
     }
 
-    let errors = super.triageErrors('identification', [...this.props.Errors], errorCodes)
-    this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+    if (!event.fake) {
+      let errors = super.triageErrors('identification', [...this.props.Errors], errorCodes)
+      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+    }
 
     let cstatus = 'neutral'
     if (this.hasStatus('name', status, true)

@@ -25,6 +25,13 @@ export default class Number extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (next) {
+    this.setState({
+      disabled: next.disabled,
+      value: next.value
+    })
+  }
+
   /**
    * Handle the change event.
    */
@@ -37,6 +44,13 @@ export default class Number extends ValidationElement {
 
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          index: this.props.index,
+          name: this.props.name,
+          value: this.state.value
+        })
+      }
     })
   }
 
@@ -128,7 +142,7 @@ export default class Number extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = this.props.className || ''
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -196,12 +210,9 @@ export default class Number extends ValidationElement {
                placeholder={this.state.placeholder}
                aria-describedby={this.errorName()}
                disabled={this.state.disabled}
-               max={this.state.max}
                maxLength={this.state.maxlength}
-               min={this.state.min}
                readOnly={this.state.readonly}
                required={this.state.required}
-               step={this.state.step}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}

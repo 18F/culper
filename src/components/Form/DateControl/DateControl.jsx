@@ -29,6 +29,18 @@ export default class DateControl extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (next) {
+    if (next.receiveProps) {
+      this.setState({
+        disabled: next.disabled,
+        value: next.value,
+        month: this.datePart('m', next.value),
+        day: this.datePart('d', next.value),
+        year: this.datePart('y', next.value)
+      })
+    }
+  }
+
   /**
    * Retrieve the part of the date requested.
    */
@@ -77,19 +89,14 @@ export default class DateControl extends ValidationElement {
     let year = this.state.year
     let estimated = this.state.estimated
 
-    if (event.target.value.length > 0) {
-      if (event.target.id.indexOf('month') !== -1) {
-        month = event.target.value
-      }
-      if (event.target.id.indexOf('day') !== -1) {
-        day = event.target.value
-      }
-      if (event.target.id.indexOf('year') !== -1) {
-        year = event.target.value
-      }
-      if (event.target.id.indexOf('estimated') !== -1) {
-        estimated = event.target.checked
-      }
+    if (event.target.id.indexOf('month') !== -1) {
+      month = event.target.value
+    } else if (event.target.id.indexOf('day') !== -1) {
+      day = event.target.value
+    } else if (event.target.id.indexOf('year') !== -1) {
+      year = event.target.value
+    } else if (event.target.id.indexOf('estimated') !== -1) {
+      estimated = event.target.checked
     }
 
     let d
@@ -235,17 +242,10 @@ export default class DateControl extends ValidationElement {
   }
 
   /**
-   * Generated name for the part of the date elements.
-   */
-  partName (part) {
-    return '' + this.state.name + '-' + part
-  }
-
-  /**
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = this.props.className || ''
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -278,7 +278,7 @@ export default class DateControl extends ValidationElement {
       <div className="datecontrol">
         <div className={this.divClass()}>
           <div className="usa-form-group usa-form-group-month">
-            <Number id={this.partName('month')}
+            <Number id="month"
                     name="month"
                     label="Month"
                     placeholder="00"
@@ -299,7 +299,7 @@ export default class DateControl extends ValidationElement {
                     />
           </div>
           <div className="usa-form-group usa-form-group-day">
-            <Number id={this.partName('day')}
+            <Number id="day"
                     name="day"
                     label="Day"
                     placeholder="00"
@@ -320,7 +320,7 @@ export default class DateControl extends ValidationElement {
                     />
           </div>
           <div className="usa-form-group usa-form-group-year">
-            <Number id={this.partName('year')}
+            <Number id="year"
                     name="year"
                     label="Year"
                     placeholder="0000"

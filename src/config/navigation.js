@@ -15,6 +15,20 @@ const navigation = [
     ]
   },
   {
+    name: 'Financial record',
+    title: 'Financial record',
+    url: 'financial',
+    subsections: [
+      { name: 'Gambling debt', url: 'gambling' },
+      { name: 'Bankruptcy', url: 'bankruptcy' },
+      { hidden: true, name: 'Taxes', url: 'taxes' },
+      { hidden: true, name: 'Employer card abuse', url: 'card' },
+      { hidden: true, name: 'Credit counseling', url: 'credit' },
+      { hidden: true, name: 'Deliquent payments', url: 'deliquent' },
+      { hidden: true, name: 'Non-payment consequence', url: 'nonpayment' }
+    ]
+  },
+  {
     name: 'Family & friends',
     title: 'Family & friends',
     url: 'family',
@@ -33,6 +47,16 @@ const navigation = [
     subsections: [
       { name: 'Citizenship Status', url: 'status' },
       { name: 'Dual/Multiple Citizenship', url: 'multiple' }
+    ]
+  },
+  {
+    name: 'Military history',
+    title: 'Military history',
+    url: 'military',
+    hidden: true,
+    subsections: [
+      { name: 'Selective Service Record', url: 'selective' },
+      { name: 'Military history details', url: 'history' }
     ]
   },
   {

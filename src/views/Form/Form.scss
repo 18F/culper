@@ -1,17 +1,15 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-// .eapp-form {
-// 	padding:0;
-
 .eapp-core {
 	label, input, textarea, select {
-		max-width:64rem;
-		margin-top:0;
+		max-width: 64rem;
+		margin-top: 0;
 	}
+
 	/* bring in USWD validation classes and alter for our design */
 	input[type="text"], textarea, select {
-		padding-right:3rem;
+		padding-right: 3rem;
 	}
 
     /* placeholder should be a light gray and italics */
@@ -35,12 +33,13 @@
     }
 
 	.usa-input-error {
-		border:none;
-		padding:0;
-		margin-top:0;
-		right:auto;
+		border: none;
+		padding: 0;
+		margin-top: 0;
+		right: auto;
+
 		.usa-input-error-message {
-			display:none;
+			display: none;
 		}
 
 		input[type="text"],
@@ -48,9 +47,9 @@
         input[type="email"],
         textarea,
         select {
-			background:url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
-			box-shadow:none;
-			width:calc(100% * 1);
+			background: url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
+			box-shadow: none;
+			/* width: calc(100% * 1); */
 		}
 	}
 
@@ -60,52 +59,73 @@
     textarea,
     select {
 		&:focus {
-			box-shadow:3px 1px 16px 22px 12px black;
+			box-shadow: 3px 1px 16px 22px 12px black;
 		}
+
 		&.usa-input-success {
-			box-shadow:none;
-			background:url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
-			width:calc(100% * 1);
+			box-shadow: none;
+			background: url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
+			width: calc(100% * 1);
 		}
 	}
-	.eapp-field-wrap {
-		position:relative;
-		margin-bottom:4.9rem;
 
-		> div {
-			display:inline-block;
-			/* min-width:95%; */
-            width: calc(100% - 3.5rem);
-		}
+	.eapp-field-wrap {
+		/* position: relative; */
+		margin-bottom: 4.9rem;
+
+		> div {}
+
 		.eapp-short-input {
-			min-width:0;
+			min-width: 0;
+
 			input, select, textarea {
-				max-width:none;
+				max-width: none;
 			}
 		}
+
 		/* handle option list blocks, basic structure */
 		.option-list {
-			padding-top:0.3rem;
+			padding-top: 0.3rem;
 		}
+
 		/* handle block style radio and checkboxes */
 		.eapp-blocks-radio, .eapp-blocks-checkbox {
-			display:inline-block;
-			min-width:10.6rem;
-			line-height:4rem;
+			display: inline-block;
+			min-width: 10.6rem;
+			line-height: 4rem;
+
 			label {
-				display:block;
-				margin-bottom:1.2rem;
-				margin-right:1.6rem;
-				text-align:center;
-				background:$eapp-grey-light;
-				border:1px solid $eapp-grey-dark;
+				display: block;
+				height:4rem;
+				margin-bottom: 1.2rem;
+				margin-right: 1.6rem;
+                margin-top: 0;
+				text-align: center;
+				background: $eapp-grey-light;
+				border: 1px solid $eapp-grey-dark;
+                cursor: pointer;
+				transition:background-color 0.3s, color 0.3s, border-color 0.3s;
 			}
+
+            label.usa-input-focus {
+                box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf
+            }
+
 			label.checked, label:hover {
-				color:#fff;
+				color: #fff;
 				border: 1px solid $eapp-green;
-				background:$eapp-green;
+				background: $eapp-green;
 			}
+
+            label.checked.usa-input-focus,
+            label.checked:focus,
+            input [type="checkbox"].usa-input-focus,
+            input [type="checkbox"]:focus {
+                box-shadow: none;
+            }
+
 		}
+
 		/* handle block style radio and checkboxes that are NOT toggles */
 		.eapp-blocks-radio, .eapp-blocks-checkbox {
 			label.no-toggle {
@@ -116,117 +136,78 @@
 				background: transparent;
 				border: none;
 			}
+
 			label.no-toggle.checked, label.no-toggle:hover {
 				color: initial;
 				border: none;
 				background: transparent;
 			}
 		}
+
 		.eapp-extend-labels {
 			.eapp-blocks-radio, .eapp-blocks-checkbox {
-				min-width:14rem;
-				line-height:1;
+				min-width: 14rem;
+				line-height: 1;
+
 				i {
-					display:inline-block;
-					width:5rem;
-					height:5rem;
-					font-size:5rem;
+					display:none;
 				}
+
 				label {
-					position:relative;
-					margin-bottom:4rem;
-					min-width:14rem;
-					padding:1.2rem 0;
+					position: relative;
+					margin-bottom:5.5rem;
+					height:7.4rem;
+					min-width: 14rem;
+					cursor:pointer;
+
+					input[type="checkbox"], input[type="radio"] {
+						height:1px;
+						width:1px;
+					}
 					span {
-						display:block;
-						position:absolute;
-						top:100%;
-						left:0;
-						width:100%;
-						line-height:1.1;
-						font-size:1.7rem;
+						display: block;
+						position: absolute;
+						top: 100%;
+						left: 0;
+						width: 100%;
+						line-height: 1.1;
+						font-size: 1.7rem;
 						color: $eapp-grey-dark;
 					}
-				}
-				label.checked, label:hover {
-					i {
+
+					.hair-icon, .eye-icon, .sex-icon {
+						position:absolute;
+						top:0;
+						left:0;
+						height:100%;
+						width:100%;
+						transition:all 0.3s;
+						border-radius:0;
+						svg, img {
+							position:absolute;
+							top:1.4rem;
+							left:50%;
+							height:4.6rem;
+							width:4.6rem;
+							margin-left:-2.3rem;
+							transition:all 0.3s;
+						}
+					}
+					&:hover .hair-icon, &.checked .hair-icon, &:hover .eye-icon, &.checked .eye-icon, &:hover .sex-icon, &.checked .sex-icon {
 						border-radius:50%;
-						background:$eapp-grey-light;
-					}
-				}
-				/* hair colors & eye colors */
-				label[for="hair-bald"] i {
-					color:#5b606b;
-				}
-				label[for="hair-black"] i {
-					color:#000;
-				}
-				label[for="hair-blonde"] i {
-					color:#e6e199;
-				}
-				label[for="hair-brown"] i {
-					color:#4f3424;
-				}
-				label[for="hair-gray"] i {
-					color:#c7c7c7;
-				}
-				label[for="hair-red"] i {
-					color:#b54934;
-				}
-				label[for="hair-sandy"] i {
-					color:#b29877;
-				}
-				label[for="hair-white"] i {
-					color:#ffffff;
-				}
-				label[for="hair-blue"] i {
-					color:#79b8d9;
-				}
-				label[for="hair-green"] i {
-					color:#469f3c;
-				}
-				label[for="hair-orange"] i {
-					color:#d06a33;
-				}
-				label[for="hair-pink"] i {
-					color:#e87e9c;
-				}
-				label[for="hair-purple"] i {
-					color:#945692;
-				}
-				label[for="hair-unknown"] i {
-					color:#5b606b;
-				}
-				label {
-					i.black {
-						color:#000000;
-					}
-					i.blue {
-						color:#79b8d9;
-					}
-					i.brown {
-						color:#4f3424;
-					}
-					i.gray {
-						color:#c7c7c7;
-					}
-					i.green {
-						color:#469f3c;
-					}
-					i.hazel {
-						color:#737953;
-					}
-					i.maroon {
-						color:#6c171b;
-					}
-					i.multi {
-						color:#5b606b;
-					}
-					i.pink {
-						color:#e87e9c;
-					}
-					i.unknown {
-						color:#5b606b;
+						top:1.4rem;
+						left:50%;
+						width:4.6rem;
+						height:4.6rem;
+						background-color:#f7f7f7;
+						margin-left:-2.3rem;
+						svg, img {
+							top:0.8rem;
+							height:3rem;
+							width:3rem;
+							margin-left:-1.5rem;
+						}
+
 					}
 				}
 			}
@@ -236,62 +217,66 @@
 	/* temporary fix for sex icon coloration */
 	/* @todo create more permanent fix */
 	.sex .eapp-blocks-radio label:hover i, .sex .eapp-blocks-radio label.checked i {
-		color:$eapp-grey-dark!important;
+		color: $eapp-grey-dark !important;
 	}
 
 	label {
-		margin-top:0;
-		margin-bottom:0.4rem;
-		color:$eapp-grey-dark;
+		margin-top: 2rem;
+		margin-bottom: 0.4rem;
+		color: $eapp-grey-dark;
+
 		> input[type="radio"] {
-			max-width:0;
+			max-width: 0;
 		}
 	}
 
 	button {
-		position:relative;
-		width:24rem;
-		margin-top:4rem;
+		position: relative;
+		width: 24rem;
+		margin-top: 4rem;
 	}
 
 	/* previous / next in form buttons */
 	.eapp-prev, .eapp-next {
-		min-height:5.5rem;
-		line-height:5.5rem;
-		padding:2rem 1rem;
+		min-height: 5.5rem;
+		line-height: 5.5rem;
+		padding: 2rem 1rem;
+
 		.button-icon {
-			display:inline-block;
-			line-height:inherit;
+			display: inline-block;
+			line-height: inherit;
 		}
+
 		> span {
-			line-height:1.2;
+			line-height: 1.2;
 		}
+
 		.eapp-nav-label {}
 	}
 
 	.eapp-prev {
-		text-align:left;
+		text-align: left;
+
 		.button-icon {}
 	}
 
 	.eapp-next {
-		text-align:right;
-		float:right;
-		margin-right:4rem;
-		.button-icon {}
+		text-align: right;
+		float: right;
+		margin-right: 4rem;
 	}
 
 	#titles {
-		margin-bottom:1.2rem;
+		margin-bottom: 1.2rem;
 	}
 
 	#actions {
-		margin-top:5.7rem;
+		margin-top: 5.7rem;
 	}
 
     .option-list.branch {
         label {
-            width: 20rem;
+            width: 15rem;
         }
     }
 
@@ -306,6 +291,7 @@
             font-size: 15rem;
             color: $eapp-green;
         }
+
         h1 {
             margin-top: 2rem;
         }

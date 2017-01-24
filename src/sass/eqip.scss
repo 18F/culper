@@ -33,8 +33,11 @@ a:focus {
 			display:table-cell;
 			vertical-align:top;
 		}
+
 		.eapp-structure-left {
 			width:24.8%;
+            height: 100vh;
+
 			@media screen and (max-width:768px) {
 				width:29.8%;
 			}
@@ -42,13 +45,16 @@ a:focus {
 		.eapp-structure-right {
 			width:75.2%;
 			padding-left:10rem;
+
 			@media screen and (max-width:1024px) {
 				padding-left:8rem;
 			}
+
 			@media screen and (max-width:768px) {
 				width:70.2%;
 				padding-left:5rem;
 			}
+
 			&.eapp-title {
 				vertical-align:bottom;
 				padding-right:11rem;
@@ -60,7 +66,7 @@ a:focus {
 
 .usa-header {
     font-family: $eapp-serif;
-    background-color: $eapp-blue;
+    background-color: $eapp-blue-dark;
     min-height:16.7rem;
 
 	.usa-banner-inner {
@@ -77,7 +83,7 @@ a:focus {
 
         .eapp-logo {
             height:14.5rem;
-            background: $eapp-blue-dark url('../img/eapp-logo.png') 12% center no-repeat;
+            background: $eapp-blue-darkest url('../img/eapp-logo.png') 12% center no-repeat;
             color:#9bdaf0;
 
             span {

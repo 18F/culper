@@ -1,6 +1,6 @@
 // Validation
 import ValidationElement from './ValidationElement'
-import Help from './Help'
+import { Help, HelpIcon } from './Help'
 import Collection from './Collection'
 
 // Basic form elements
@@ -37,10 +37,12 @@ import HairColor from './HairColor'
 import EyeColor from './EyeColor'
 import Sex from './Sex'
 import IntroHeader from './IntroHeader'
+import Branch from './Branch'
 
 export {
   ValidationElement,
   Help,
+  HelpIcon,
   Collection,
   Generic,
   Text,
@@ -71,5 +73,7 @@ export {
   Weight,
   HairColor,
   EyeColor,
-  Sex
+  Sex,
+  IntroHeader,
+  Branch
 }

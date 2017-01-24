@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import Textarea from '../Textarea'
 import ValidationElement from '../ValidationElement'
 
@@ -22,27 +23,49 @@ export default class Comments extends ValidationElement {
     })
   }
 
+  handleChange (event) {
+    this.setState({ value: event.target.value }, () => {
+      super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
+    })
+  }
+
+  getTitle () {
+    if (!this.props.title) {
+      return ''
+    }
+
+    return (
+      <h4>{this.props.title}</h4>
+    )
+  }
+
   render () {
     if (!this.state.visible) {
       return (
         <div className="comments">
+          {this.props.children}
           <a href="javascript:;;" onClick={this.toggle} className="add">
-            <span>Add comment</span>
+            <span>{i18n.t(this.props.addLabel || 'comments.add')}</span>
             <i className="fa fa-plus-circle"></i>
           </a>
         </div>
-
       )
     }
 
     return (
-      <div className="comments">
+      <div className="comments active">
+        {this.props.children}
+        {this.getTitle()}
         <Textarea name="comments"
                   {...this.props}
+                  onChange={this.handleChange}
                   value={this.state.value}
                   />
         <a href="javascript:;;" onClick={this.toggle} className="remove">
-          <span>Remove comment</span>
+          <span>{i18n.t(this.props.removeLabel || 'comments.remove')}</span>
           <i className="fa fa-times-circle"></i>
         </a>
       </div>

@@ -30,7 +30,8 @@ export default class Textarea extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          ...this.props,
+          index: this.props.index,
+          name: this.props.name,
           value: this.state.value
         })
       }
@@ -66,6 +67,8 @@ export default class Textarea extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidation (event, status) {
+    let errorCode = null
+
     event.persist()
     if (!event || !event.target) {
       super.handleValidation(event, status)
@@ -76,19 +79,20 @@ export default class Textarea extends ValidationElement {
     status = true
 
     if (this.state.value) {
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
-        hits++
-      }
-
+      hits++
       if (this.state.pattern && this.state.pattern.length > 0) {
         try {
           let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value)
-          hits++
+          status = status && re.test(this.state.value)
+          if (!status) {
+            errorCode = 'pattern'
+          }
         } catch (e) {
           // Not a valid regular expression
         }
+      }
+      if (this.state.maxlength && parseInt(this.state.maxlength) > this.state.value.length) {
+        status = false
       }
     }
 
@@ -98,8 +102,10 @@ export default class Textarea extends ValidationElement {
     }
 
     // Set the internal state
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
+      let prop = this.state.name || 'textarea'
+      let e = { [prop]: errorCode }
+      super.handleValidation(event, status, super.flattenObject(e))
     })
   }
 
@@ -114,7 +120,7 @@ export default class Textarea extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = this.props.className || ''
 
     if (this.state.error) {
       klass += ' usa-input-error'

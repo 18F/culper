@@ -2,4 +2,36 @@
     h2 {
         margin-top: 2rem;
     }
+
+    .maiden-name,
+    .daterange,
+    .reason {
+        display: inline-block;
+    }
+
+    .reason {
+        width: 90%;
+        max-width: 64rem !important;
+
+        input {
+            width: 100% !important;
+            max-width: 64rem !important;
+        }
+    }
+
+    .maiden-help-icon {
+        margin-left: -1.6rem;
+        margin-top: 1rem;
+    }
+    
+    .used-help-icon {
+        vertical-align: top;
+        margin-top: 7.3rem;
+        margin-left: -15rem;
+    }
+
+    .reason-help-icon {
+        vertical-align: top;
+        margin-top: 10rem;
+    }
 }
