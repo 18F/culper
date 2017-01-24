@@ -186,13 +186,12 @@ export default class ApplicantBirthPlace extends ValidationElement {
 
   options () {
     return (
-      <div className="eapp-field-wrap">
-        <Help id="identification.birthplace.help">
-          <label>&nbsp;</label>
-          <Branch name="is_domestic" value={this.state.domestic} onUpdate={this.onUpdate.bind(this)} />
-          <HelpIcon className="branch-help-icon" />
-        </Help>
-      </div>
+      <Branch name="is_domestic"
+              value={this.state.domestic}
+              help="identification.birthplace.help"
+              onUpdate={this.onUpdate.bind(this)}>
+        <div>{i18n.t('identification.birthplace.question.label')}</div>
+      </Branch>
     )
   }
 
@@ -201,7 +200,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
       return (
         <div className="birthplace">
           <h2>{i18n.t('identification.birthplace.title')}</h2>
-          <label>{i18n.t('identification.birthplace.question.label')}</label>
           {this.options()}
         </div>
       )
@@ -209,7 +207,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
       return (
         <div className="birthplace">
           <h2>{i18n.t('identification.birthplace.title')}</h2>
-          <label>{i18n.t('identification.birthplace.question.label')}</label>
           {this.options()}
           <Help id="identification.birthplace.help.state">
             <MilitaryState name="state"
@@ -262,7 +259,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className="birthplace">
         <h2>{i18n.t('identification.birthplace.title')}</h2>
-        <label>{i18n.t('identification.birthplace.question.label')}</label>
         {this.options()}
         <Help id="identification.birthplace.help.city">
           <City name="city"
