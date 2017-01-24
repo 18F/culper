@@ -244,7 +244,8 @@ const en = {
   financial: {
     destination: {
       gambling: 'Gambling debts',
-      bankruptcy: 'Bankruptcy'
+      bankruptcy: 'Bankruptcy',
+      review: 'Review Financial record'
     },
     gambling: {
       title: 'Gambling debt',
@@ -277,6 +278,12 @@ const en = {
       },
       placeholder: {
         losses: '1000'
+      }
+    },
+    bankruptcy: {
+      title: 'Bankruptcy',
+      branch: {
+        question: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?'
       }
     }
   },

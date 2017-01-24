@@ -8,6 +8,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Gambling from './Gambling'
+import Bankruptcy from './Bankruptcy'
 
 class Financial extends ValidationElement {
   constructor (props) {
@@ -166,9 +167,14 @@ class Financial extends ValidationElement {
           </SectionView>
           <SectionView name="bankruptcy"
                        back="financial/gambling"
-                       backLabel={i18n.t('financial.destination.gambling')}
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
+                       <Bankruptcy name="bankruptcy"
+                         {...this.props.Bankruptcy}
+                         onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+                         onValidate={this.onValidate.bind(this)}
+                       />
           </SectionView>
         </SectionViews>
       </div>
@@ -186,6 +192,7 @@ function mapStateToProps (state) {
     Section: section,
     Financial: financial,
     Gambling: financial.Gambling || {},
+    Bankruptcy: financial.Bankruptcy || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
