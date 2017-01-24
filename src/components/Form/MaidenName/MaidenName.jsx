@@ -70,7 +70,7 @@ export default class MaidenName extends ValidationElement {
   render () {
     return (
       <div className="maiden-name eapp-field-wrap">
-        <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>
+        <RadioGroup className="option-list" selectedValue={this.state.value}>
           <Radio name="maiden-name"
                  label=""
                  value="Yes"

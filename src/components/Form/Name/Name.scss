@@ -23,7 +23,6 @@
     .first,
     .middle,
     .last,
-    .suffix,
     .suffix-other {
         display: inline-block;
         width: 90%;
@@ -35,7 +34,19 @@
         }
     }
 
+    .suffix {
+        display: inline-block;
+        width: 90%;
+        max-width: 64rem !important;
+
+        input {
+            display: inline-block;
+        }
+    }
+
     .suffix-help-icon {
         vertical-align: top;
+        margin-top: 1rem;
+        margin-left: -1.9rem;
     }
 }
