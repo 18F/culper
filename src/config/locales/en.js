@@ -313,6 +313,7 @@ const en = {
         no: 'No'
       },
       number: 'Provide your U.S. passport number',
+      card: 'Passport card',
       issued: 'Provide the issue date of the passport',
       expiration: 'Provide the expiration date of the passport',
       comment: {
