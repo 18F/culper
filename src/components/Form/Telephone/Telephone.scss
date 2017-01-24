@@ -1,0 +1,19 @@
+.telephone {
+    .number.three {
+        width: 10rem;
+    }
+    .number.four {
+        width: 14rem;
+    }
+
+    .separator {
+        font-size: 2rem;
+        line-height: 2rem;
+    }
+
+    .number, .separator {
+        display: inline-block;
+        padding-right: 0.8rem;
+    }
+
+}
