@@ -2,6 +2,7 @@ import React from 'react'
 import { updateSection } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
+import Financial from './Financial'
 import Foreign from './Foreign'
 import { SectionView, SectionViews } from './SectionView'
 
@@ -28,6 +29,9 @@ class Section extends React.Component {
       <SectionViews current={this.props.section} dispatch={this.props.dispatch}>
         <SectionView name="identification">
           <Identification subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="financial">
+          <Financial subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="foreign">
           <Foreign subsection={this.props.subsection} />

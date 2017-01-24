@@ -67,7 +67,11 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-ban bald" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 30.9 36.8">
+					<path id="hair-color-bald" d="M0,18.8C0,10.3,6.9,3.4,15.4,3.4s15.4,6.9,15.4,15.4H0z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-black"
                     label={i18n.t('identification.traits.hair.black')}
@@ -79,7 +83,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire black" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-black"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-blonde"
                     label={i18n.t('identification.traits.hair.blonde')}
@@ -91,7 +101,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire blonde" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-blonde"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-brown"
                     label={i18n.t('identification.traits.hair.brown')}
@@ -103,7 +119,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire brown" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-brown"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-gray"
                     label={i18n.t('identification.traits.hair.gray')}
@@ -115,7 +137,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire gray" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-gray"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-red"
                     label={i18n.t('identification.traits.hair.red')}
@@ -127,7 +155,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire red" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-red"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-sandy"
                     label={i18n.t('identification.traits.hair.sandy')}
@@ -139,7 +173,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire sandy" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-sandy"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-white"
                     label={i18n.t('identification.traits.hair.white')}
@@ -151,7 +191,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire white" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-white"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-blue"
                     label={i18n.t('identification.traits.hair.blue')}
@@ -163,7 +209,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire blue" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-blue"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-green"
                     label={i18n.t('identification.traits.hair.green')}
@@ -175,7 +227,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire green" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-green"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-orange"
                     label={i18n.t('identification.traits.hair.orange')}
@@ -187,7 +245,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire orange" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-orange"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-pink"
                     label={i18n.t('identification.traits.hair.pink')}
@@ -199,7 +263,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire pink" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-pink"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-purple"
                     label={i18n.t('identification.traits.hair.purple')}
@@ -211,7 +281,13 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-fire purple" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+					<path id="hair-color-purple"
+						d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
+						C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
+				</svg>
+			</div>
           </Checkbox>
           <Checkbox name="hair-unknown"
                     label={i18n.t('identification.traits.hair.unknown')}
@@ -223,7 +299,17 @@ export default class HairColor extends ValidationElement {
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     >
-            <i className="fa fa-question-circle unknown" aria-hidden="true"></i>
+            <div className="hair-icon">
+				<svg viewBox="0 0 30.86 36.84">
+					<path id="hair-color-unknown" d="M15.43,34.25C6.91,34.25,0,27.34,0,18.82C0,10.3,6.91,3.39,15.43,3.39s15.43,6.91,15.43,15.43
+						C30.87,27.34,23.95,34.25,15.43,34.25z M15.84,8.53c-3.28,0-5.73,1.41-7.46,4.28c-0.18,0.28-0.1,0.64,0.16,0.84l2.65,2.01
+						c0.1,0.08,0.24,0.12,0.38,0.12c0.18,0,0.38-0.08,0.5-0.24c0.94-1.21,1.35-1.57,1.73-1.85c0.34-0.24,1-0.48,1.73-0.48
+						c1.29,0,2.47,0.82,2.47,1.71c0,1.04-0.54,1.57-1.77,2.13c-1.43,0.64-3.38,2.31-3.38,4.26v0.72c0,0.36,0.28,0.64,0.64,0.64h3.86
+						c0.36,0,0.64-0.28,0.64-0.64c0-0.46,0.58-1.45,1.53-1.99c1.53-0.87,3.62-2.03,3.62-5.08C23.15,11.28,19.29,8.53,15.84,8.53z
+						 M18.01,24.61c0-0.36-0.28-0.64-0.64-0.64H13.5c-0.36,0-0.64,0.28-0.64,0.64v3.86c0,0.36,0.28,0.64,0.64,0.64h3.86
+						c0.36,0,0.64-0.28,0.64-0.64V24.61z"/>
+				</svg>
+			</div>
           </Checkbox>
         </CheckboxGroup>
       </div>

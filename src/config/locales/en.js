@@ -47,6 +47,14 @@ const en = {
     days: 'days',
     ago: 'ago'
   },
+  collection: {
+    summary: 'Summary',
+    remove: 'Remove'
+  },
+  comments: {
+    add: 'Add comment',
+    remove: 'Remove comment'
+  },
   section: {
     back: 'Back',
     next: 'Next'
@@ -233,6 +241,45 @@ const en = {
       }
     }
   },
+  financial: {
+    destination: {
+      gambling: 'Gambling debts',
+      bankruptcy: 'Bankruptcy'
+    },
+    gambling: {
+      title: 'Gambling debt',
+      branch: {
+        question: 'Have your ever experienced financial problems due to gambling?'
+      },
+      collection: {
+        summary: {
+          title: 'Summary of gambling debt',
+          unknownlosses: 'Unknown losses',
+          present: 'Now',
+          nodates: 'No dates',
+          debt: 'Debt'
+        },
+        append: 'Add another gambling debt'
+      },
+      label: {
+        dates: 'Provide the date range of your financial problems due to gambling',
+        losses: 'Provide an estimate of the amount (in U.S. dollars) of gambling losses incurred',
+        description: 'Provide a description of your financial problems due to gambling',
+        actions: 'If you have taken any action(s) to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
+        comments: 'Add optional comment'
+      },
+      help: {
+        dates: '',
+        losses: '',
+        description: '',
+        actions: '',
+        comments: 'If you need to provide any additional comments about this information enter them below'
+      },
+      placeholder: {
+        losses: '1000'
+      }
+    }
+  },
   foreign: {
     tour: {
       title: 'One piece at a time',
@@ -266,6 +313,7 @@ const en = {
         no: 'No'
       },
       number: 'Provide your U.S. passport number',
+      card: 'Passport card',
       issued: 'Provide the issue date of the passport',
       expiration: 'Provide the expiration date of the passport',
       comment: {
