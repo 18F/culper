@@ -290,6 +290,7 @@ const en = {
     },
     bankruptcy: {
       title: 'Bankruptcy',
+      help: 'Note: If you need to provide any additional comments about this information, enter them below.',
       branch: {
         question: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?'
       }

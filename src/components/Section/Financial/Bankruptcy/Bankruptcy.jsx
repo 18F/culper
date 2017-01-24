@@ -139,10 +139,16 @@ export default class Bankruptcy extends ValidationElement {
     return (
       <div className="bankruptcy eapp-field-wrap">
         <h2>{i18n.t('financial.bankruptcy.title')}</h2>
-        <Branch name="has_bankruptcydebt" value={this.state.HasBankruptcy} onUpdate={this.onUpdate.bind(this)}>
-          <div>{i18n.t('financial.bankruptcy.branch.question')}</div>
-        </Branch>
-        {this.visibleComponents()}
+        <Comments name="Comments"
+          title="Add Optional Comment">
+          <Branch name="has_bankruptcydebt"
+            value={this.state.HasBankruptcy}
+            help="financial.bankruptcy.help"
+            onUpdate={this.onUpdate.bind(this)}>
+            <div>{i18n.t('financial.bankruptcy.branch.question')}</div>
+          </Branch>
+          {this.visibleComponents()}
+        </Comments>
       </div>
     )
   }
