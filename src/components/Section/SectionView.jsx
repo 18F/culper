@@ -50,7 +50,7 @@ export class SectionViews extends React.Component {
         return (
           <div className="section-view">
             {
-              child.props.title && <h1 className="title">{child.props.title}</h1>
+              child.props.title && <h2 className="title">{child.props.title}</h2>
             }
             {
               child.props.showTop === 'true' && <div className="top-btns">{buttons}</div>
