@@ -1,7 +1,9 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-h1 {}
+h1, h2, h3, h4, h5, h6 {
+	line-height:1.2;
+}
 h2 {
 	font-size:4rem;
 	margin-top:0;
@@ -44,7 +46,7 @@ a:focus {
 		}
 		.eapp-structure-right {
 			width:75.2%;
-			padding-left:10rem;
+			padding-left:8rem;
 
 			@media screen and (max-width:1024px) {
 				padding-left:8rem;
@@ -147,7 +149,7 @@ a:focus {
 
 /* frame out the live form area for consistency */
 .eapp-core {
-	padding-top:5.5rem;
+	padding-top:3.2rem;
 	padding-bottom:4rem;
 	padding-right:23rem;
 	@media screen and (max-width:1024px) {

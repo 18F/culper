@@ -146,7 +146,7 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let's make sure everything looks right"
+                       title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
                        next="foreign"
                        nextLabel={i18n.t('foreign.destination.activities')}

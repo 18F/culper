@@ -2,6 +2,11 @@
 @import 'eqip-fonts';
 
 .eapp-core {
+
+	.eapp-form {
+		max-width:67.4rem;
+		padding:0 4rem 0 3rem;
+	}
 	label, input, textarea, select {
 		max-width: 64rem;
 		margin-top: 0;
@@ -10,6 +15,7 @@
 	/* bring in USWD validation classes and alter for our design */
 	input[type="text"], textarea, select {
 		padding-right: 3rem;
+		transition:border-color 0.4s, border-width 0.4s,background-position 0.4s;
 	}
 
     /* placeholder should be a light gray and italics */
@@ -58,6 +64,8 @@
     input[type="email"],
     textarea,
     select {
+		background-position:100% center;
+
 		&:focus {
 			box-shadow: 3px 1px 16px 22px 12px black;
 		}

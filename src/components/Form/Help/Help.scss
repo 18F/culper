@@ -3,17 +3,31 @@
 .help {
     .toggle {
         display: inline-block;
-        margin-top: 5.3rem;
         vertical-align: top;
-
-        &:hover, &:active {
-            color: #fff;
+		line-height: 4.3rem;
+		svg {
+			display:inline;
+            height:3rem;
+            width:3rem;
+	    	.eapp-help-icon, .eapp-help-circle {
+			    transition:fill 0.3s;
+			}
+	    	.eapp-help-icon {
+	        	fill:$eapp-blue-light;
+        	}   
+	    	.eapp-help-circle {
+			    fill:$eapp-blue-lightest;
+		    }
         }
-
-        img {
-            width: 4rem;
-            height: auto;
-            vertical-align: middle;
+        &:hover, &.active {
+            svg {
+		    	.eapp-help-icon {
+		        	fill:$eapp-blue-lightest;
+	        	}   
+		    	.eapp-help-circle {
+				    fill:$eapp-blue-light;
+			    }
+            }
         }
     }
 
