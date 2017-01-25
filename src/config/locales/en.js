@@ -289,10 +289,31 @@ const en = {
       }
     },
     bankruptcy: {
+      collection: {
+        append: 'Add bankruptcy'
+      },
+      heading: {
+        petitionType: 'Petition Type',
+        courtNumber: 'Provide the bankruptcy court docket/account number',
+        totalAmount: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+        nameDebt: 'Provide the name debt is recorded under',
+        courtInvolved: 'Provide the name of the court involved',
+        courtAddress: 'Provide the address of the court involved'
+      },
       title: 'Bankruptcy',
       help: 'Note: If you need to provide any additional comments about this information, enter them below.',
       branch: {
         question: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?'
+      },
+      petitionType: {
+        help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
+      },
+      courtNumber: {
+        title: 'Court docket/account number',
+        placeholder: 'Court docket/account number'
+      },
+      totalAmount: {
+        placeholder: 'Total amount'
       }
     }
   },
