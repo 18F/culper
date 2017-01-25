@@ -40,3 +40,26 @@ api:
     DATABASE_USER: postgres
     DATABASE_NAME: postgres
     DATABASE_HOST: db:5432
+hub:
+  image: selenium/hub:latest
+  ports:
+    - "4444:4444"
+chrome:
+  image: selenium/node-chrome:latest
+  links:
+    - hub
+nightwatch:
+  build: .
+  dockerfile: Dockerfile.nightwatch
+  env_file:
+    - .env
+  environment:
+    WEB_ADDR: web
+    WEB_PORT: '2015'
+    SELENIUM_ADDR: hub
+    SELENIUM_PORT: '4444'
+  links:
+    - hub
+    - web
+  volumes:
+    - ./specs:/usr/src/app
