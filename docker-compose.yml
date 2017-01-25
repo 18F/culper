@@ -10,6 +10,7 @@ web:
     - "8080:2015"
   links:
     - db
+    - api
   environment:
     DATABASE_USER: postgres
     DATABASE_NAME: postgres
@@ -61,5 +62,6 @@ nightwatch:
   links:
     - hub
     - web
+    - api
   volumes:
     - ./specs:/usr/src/app

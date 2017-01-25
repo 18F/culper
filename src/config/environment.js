@@ -1,8 +1,10 @@
 class Env {
   ApiBaseURL () { return process.env.API_BASE_URL }
+  AllowTwoFactorReset () { return process.env.ALLOW_2FA_RESET || false }
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
+  EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
   EndpointValidateSSN (ssn) { return `/validate/ssn/${ssn}` }
   EndpointValidatePassport (passport) { return `/validate/passport/${passport}` }

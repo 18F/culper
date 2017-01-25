@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
@@ -74,6 +75,43 @@ func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err = twofactor.Email(account.Email, account.Token); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, "")
+}
+
+func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
+	if os.Getenv("ALLOW_2FA_RESET") == "" {
+		http.Error(w, "Reset two-factor authentication not allowed on this server", http.StatusUnauthorized)
+		return
+	}
+
+	// Sanity check for username
+	vars := mux.Vars(r)
+	username := vars["account"]
+	if username == "" {
+		http.Error(w, "No username provided", http.StatusInternalServerError)
+		return
+	}
+
+	// Retrieve the current account information
+	account := &model.Account{
+		Username: username,
+	}
+
+	dbContext := db.NewDB()
+	account.WithContext(dbContext)
+	if err := account.Get(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Make sure the account does not have a token assigned
+	account.Token = ""
+	account.TokenUsed = false
+	if err := account.Save(); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

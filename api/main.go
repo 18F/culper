@@ -32,6 +32,7 @@ func main() {
 	s.HandleFunc("/{account}", handlers.TwofactorHandler)
 	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
 	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
+	s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")

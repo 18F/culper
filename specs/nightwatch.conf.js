@@ -22,14 +22,17 @@ module.exports = {
   },
   test_settings: {
     default: {
-      launch_url: 'http://' + process.env.WEB_ADDR + ':' + process.env.WEB_PORT,
+      launch_url: 'http://' + process.env.WEB_PORT_2015_TCP_ADDR + ':' + process.env.WEB_PORT,
       selenium_host: process.env.SELENIUM_ADDR,
       selenium_port: process.env.SELENIUM_PORT,
       silent: true,
       desiredCapabilities: {
         browserName: 'chrome',
         javascriptEnabled: true,
-        acceptSslCerts: true
+        acceptSslCerts: true,
+        chromeOptions: {
+          args: ['disable-web-security', 'test-type']
+        }
       },
       screenshots: {
         enabled: true,
