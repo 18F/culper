@@ -1,5 +1,5 @@
 import React from 'react'
-import { Radio, RadioGroup } from '../../Form'
+import { Help, HelpIcon, Radio, RadioGroup } from '../../Form'
 
 /**
  * Branch is a component that stores whether Yes/No options were selected. It contains a callback
@@ -23,12 +23,37 @@ export default class Branch extends React.Component {
   }
 
   render () {
+    if (this.props.help) {
+      return (
+        <div className="branch">
+          <div className="content">
+            {this.props.children}
+          </div>
+          <Help id={this.props.help}>
+            <RadioGroup className="option-list branch eapp-field-wrap" selectedValue={this.state.value}>
+              <Radio name={this.props.name}
+                label={this.props.yesLabel}
+                value={this.props.yesValue}
+                onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+              />
+              <Radio name={this.props.name}
+                label={this.props.noLabel}
+                value={this.props.noValue}
+                onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+              />
+            </RadioGroup>
+            <HelpIcon className="branch-help-icon" />
+          </Help>
+        </div>
+      )
+    }
+
     return (
       <div className="branch">
         <div className="content">
           {this.props.children}
         </div>
-        <RadioGroup className="option-list branch" selectedValue={this.state.value}>
+        <RadioGroup className="option-list branch eapp-field-wrap" selectedValue={this.state.value}>
           <Radio name={this.props.name}
             label={this.props.yesLabel}
             value={this.props.yesValue}

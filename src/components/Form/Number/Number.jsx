@@ -210,12 +210,9 @@ export default class Number extends ValidationElement {
                placeholder={this.state.placeholder}
                aria-describedby={this.errorName()}
                disabled={this.state.disabled}
-               max={this.state.max}
                maxLength={this.state.maxlength}
-               min={this.state.min}
                readOnly={this.state.readonly}
                required={this.state.required}
-               step={this.state.step}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}

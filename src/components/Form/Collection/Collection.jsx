@@ -234,17 +234,29 @@ export default class Collection extends ValidationElement {
   getContent () {
     // If no summary details are provided then we do a simple display of everything
     // without worrying about the accordion look and feel.
-    if (!this.props.summary) {
+    //
+    // Also, if there are less than two items in the list skip the summary
+    if (!this.props.summary || this.state.items.length < 2) {
+      const byline = (item) => {
+        if (this.state.items.length < 2) {
+          return ''
+        }
+
+        return (
+          <div className="byline">
+            <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
+              <span>{i18n.t('collection.remove')}</span>
+              <i className="fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+          </div>
+        )
+      }
+
       return this.state.items.map((item) => {
         return (
           <div className="item" key={item.index}>
             <div className="details">
-              <div className="byline">
-                <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
-                  <span>{i18n.t('collection.remove')}</span>
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </div>
+              {byline(item)}
               {item.children}
             </div>
           </div>
@@ -275,7 +287,7 @@ export default class Collection extends ValidationElement {
                 </div>
               </a>
             </div>
-            <div className="details">
+            <div className="details gutters">
               <div className="byline">
                 <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
                   <span>{i18n.t('collection.remove')}</span>

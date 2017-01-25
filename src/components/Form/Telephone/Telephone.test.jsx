@@ -3,56 +3,36 @@ import { mount } from 'enzyme'
 import Telephone from './Telephone'
 
 describe('The Telephone component', () => {
-  it('renders appropriately with an error', () => {
-    const expected = {
-      name: 'telephone',
-      label: 'Telephone input error',
-      help: 'Helpful error message',
-      type: 'text',
-      error: true,
-      focus: false,
-      valid: false,
-      readonly: true
-    }
-    const component = mount(<Telephone name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} readonly={expected.readonly} />)
-    // expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
-    expect(component.find('input[name="telephone"]').length).toEqual(1)
-    // expect(component.find('div.message').text()).toEqual(expected.help)
-    expect(component.find('div.hidden').length).toEqual(1)
+  it('renders DSN fields', () => {
+    const component = mount(<Telephone name="phone" type="DSN" />)
+    expect(component.find('input#DSN-phonetype').length).toEqual(1)
+    expect(component.find('input#DSN-phonetype').hasClass('selected')).toEqual(true)
+    expect(component.find('input[name="dsn_first"]').length).toEqual(1)
+    expect(component.find('input[name="dsn_second"]').length).toEqual(1)
   })
 
-  it('renders appropriately with focus', () => {
-    const expected = {
-      name: 'input-focus',
-      label: 'Telephone input focused',
-      help: 'Helpful error message',
-      type: 'text',
-      error: false,
-      focus: true,
-      valid: false
-    }
-    const component = mount(<Telephone name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
-    expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
-    expect(component.find('div.hidden').length).toEqual(1)
+  it('renders international fields', () => {
+    const component = mount(<Telephone name="phone" type="International" />)
+    expect(component.find('input#International-phonetype').length).toEqual(1)
+    expect(component.find('input#International-phonetype').hasClass('selected')).toEqual(true)
+    expect(component.find('input[name="int_first"]').length).toEqual(1)
+    expect(component.find('input[name="int_second"]').length).toEqual(1)
+    expect(component.find('input[name="int_third"]').length).toEqual(1)
   })
 
-  it('renders appropriately with validity checks', () => {
-    const expected = {
-      name: 'input-success',
-      label: 'Telephone input success',
-      help: 'Helpful error message',
-      type: 'text',
-      error: false,
-      focus: false,
-      valid: true
-    }
-    const component = mount(<Telephone name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
-    expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    // expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
-    expect(component.find('div.hidden').length).toEqual(1)
+  it('populates domestic fields using number', () => {
+    const component = mount(<Telephone name="phone" type="Domestic" number="7031234567" />)
+    expect(component.find('input[name="domestic_first"]').length).toEqual(1)
+    expect(component.find('input[name="domestic_first"]').props().value).toEqual('703')
+    expect(component.find('input[name="domestic_second"]').props().value).toEqual('123')
+    expect(component.find('input[name="domestic_third"]').props().value).toEqual('4567')
+  })
+
+  it('populates dsn fields using number', () => {
+    const component = mount(<Telephone name="phone" type="DSN" number="1234567" />)
+    expect(component.find('input[name="dsn_first"]').length).toEqual(1)
+    expect(component.find('input[name="dsn_first"]').props().value).toEqual('123')
+    expect(component.find('input[name="dsn_second"]').props().value).toEqual('4567')
   })
 
   it('renders sane defaults', () => {
@@ -65,10 +45,11 @@ describe('The Telephone component', () => {
       focus: false,
       valid: false
     }
-    const component = mount(<Telephone name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
-    expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('div.hidden').length).toEqual(1)
+    const component = mount(<Telephone name={expected.name} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} domestic={true} />)
+    expect(component.find('input#Domestic-phonetype').length).toEqual(1)
+    expect(component.find('input[name="domestic_first"]').length).toEqual(1)
+    expect(component.find('input[name="domestic_second"]').length).toEqual(1)
+    expect(component.find('input[name="domestic_third"]').length).toEqual(1)
   })
 
   it('bubbles up validate event', () => {
@@ -102,7 +83,7 @@ describe('The Telephone component', () => {
         changes++
       }
     }
-    const component = mount(<Telephone name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Telephone name={expected.name} onUpdate={expected.handleChange} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })
