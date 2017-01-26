@@ -82,7 +82,7 @@ export default class Height extends ValidationElement {
   render () {
     return (
       <div className="height">
-        <div className="eapp-field-wrap feet">
+        <div className="feet">
           <Number id={this.partName('feet')}
                   name="feet"
                   label={i18n.t('identification.traits.label.feet')}
@@ -103,7 +103,7 @@ export default class Height extends ValidationElement {
                   onValidate={this.handleValidation}
                   />
         </div>
-        <div className="eapp-field-wrap inches">
+        <div className="inches">
           <Number id={this.partName('inches')}
                   name="inches"
                   label={i18n.t('identification.traits.label.inches')}

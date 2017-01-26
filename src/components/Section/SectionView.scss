@@ -17,7 +17,6 @@
 	    &.back {}
     }
     .actions {
-
         display: table;
         width: 100%;
         .direction {
@@ -30,14 +29,14 @@
         .icon {
             width: 2.4rem;
         }
+	    &.next {
+	        text-align: right;
+	    }
+	    &.back {
+	        text-align: left;
+	    }
     }
 
-    .actions.next {
-        text-align: right;
-    }
-    .actions.back {
-        text-align: left;
-    }
     .label {
         font-weight: normal;
         min-height: 2rem;

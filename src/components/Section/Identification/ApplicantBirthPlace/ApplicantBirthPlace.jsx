@@ -207,51 +207,53 @@ export default class ApplicantBirthPlace extends ValidationElement {
       return (
         <div className="birthplace">
           <h2>{i18n.t('identification.birthplace.title')}</h2>
-          {this.options()}
-          <Help id="identification.birthplace.help.state">
-            <MilitaryState name="state"
-                           label={i18n.t('identification.birthplace.label.state')}
-                           value={this.state.state}
-                           className="state"
-                           placeholder={i18n.t('identification.birthplace.placeholder.state')}
-                           includeStates="true"
-                           required="true"
-                           disabled={this.state.disabledState}
-                           onChange={this.handleChange}
-                           onValidate={this.handleValidation}
-                           onFocus={this.props.onFocus}
-                           onBlur={this.props.onBlur}
-                           />
-            <HelpIcon className="state-help-icon" />
-          </Help>
-          <Help id="identification.birthplace.help.city">
-            <City name="city"
-                  label={i18n.t('identification.birthplace.label.city')}
-                  value={this.state.city}
-                  className="city"
-                  placeholder={i18n.t('identification.birthplace.placeholder.city')}
-                  maxlength="100"
-                  onChange={this.handleChange}
-                  onValidate={this.handleValidation}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
-            <HelpIcon className="" />
-          </Help>
-          <Help id="identification.birthplace.help.county">
-            <County name="county"
-                    label={i18n.t('identification.birthplace.label.county')}
-                    value={this.state.county}
-                    className="county"
-                    placeholder={i18n.t('identification.birthplace.placeholder.county')}
-                    maxlength="255"
-                    onChange={this.handleChange}
-                    onValidate={this.handleValidation}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    />
-            <HelpIcon className="" />
-          </Help>
+          <div className="eapp-field-wrap">
+              {this.options()}
+              <Help id="identification.birthplace.help.state">
+                <MilitaryState name="state"
+                               label={i18n.t('identification.birthplace.label.state')}
+                               value={this.state.state}
+                               className="state"
+                               placeholder={i18n.t('identification.birthplace.placeholder.state')}
+                               includeStates="true"
+                               required="true"
+                               disabled={this.state.disabledState}
+                               onChange={this.handleChange}
+                               onValidate={this.handleValidation}
+                               onFocus={this.props.onFocus}
+                               onBlur={this.props.onBlur}
+                               />
+                <HelpIcon className="state-help-icon" />
+              </Help>
+              <Help id="identification.birthplace.help.city">
+                <City name="city"
+                      label={i18n.t('identification.birthplace.label.city')}
+                      value={this.state.city}
+                      className="city"
+                      placeholder={i18n.t('identification.birthplace.placeholder.city')}
+                      maxlength="100"
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
+                <HelpIcon className="" />
+              </Help>
+              <Help id="identification.birthplace.help.county">
+                <County name="county"
+                        label={i18n.t('identification.birthplace.label.county')}
+                        value={this.state.county}
+                        className="county"
+                        placeholder={i18n.t('identification.birthplace.placeholder.county')}
+                        maxlength="255"
+                        onChange={this.handleChange}
+                        onValidate={this.handleValidation}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
+                <HelpIcon className="" />
+              </Help>
+            </div>
         </div>
       )
     }
@@ -259,36 +261,38 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className="birthplace">
         <h2>{i18n.t('identification.birthplace.title')}</h2>
-        {this.options()}
-        <Help id="identification.birthplace.help.city">
-          <City name="city"
-                label={i18n.t('identification.birthplace.label.city')}
-                value={this.state.city}
-                className="city"
-                placeholder={i18n.t('identification.birthplace.placeholder.city')}
-                maxlength="100"
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-          <HelpIcon className="" />
-        </Help>
-        <Help id="identification.birthplace.help.country">
-          <Country name="country"
-                   label={i18n.t('identification.birthplace.label.country')}
-                   value={this.state.country}
-                   className="country"
-                   placeholder={i18n.t('identification.birthplace.placeholder.country')}
-                   required="true"
-                   disabled={this.state.disabledCountry}
-                   onChange={this.handleChange}
-                   onValidate={this.handleValidation}
-                   onFocus={this.props.onFocus}
-                   onBlur={this.props.onBlur}
-                   />
-          <HelpIcon className="country-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+            {this.options()}
+            <Help id="identification.birthplace.help.city">
+              <City name="city"
+                    label={i18n.t('identification.birthplace.label.city')}
+                    value={this.state.city}
+                    className="city"
+                    placeholder={i18n.t('identification.birthplace.placeholder.city')}
+                    maxlength="100"
+                    onChange={this.handleChange}
+                    onValidate={this.handleValidation}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.props.onBlur}
+                    />
+              <HelpIcon className="" />
+            </Help>
+            <Help id="identification.birthplace.help.country">
+              <Country name="country"
+                       label={i18n.t('identification.birthplace.label.country')}
+                       value={this.state.country}
+                       className="country"
+                       placeholder={i18n.t('identification.birthplace.placeholder.country')}
+                       required="true"
+                       disabled={this.state.disabledCountry}
+                       onChange={this.handleChange}
+                       onValidate={this.handleValidation}
+                       onFocus={this.props.onFocus}
+                       onBlur={this.props.onBlur}
+                       />
+              <HelpIcon className="country-help-icon" />
+            </Help>
+         </div>
       </div>
     )
   }
