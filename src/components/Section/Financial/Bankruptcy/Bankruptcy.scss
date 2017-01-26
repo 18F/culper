@@ -14,6 +14,7 @@
     .amount,
     .fa-dollar,
     .namedebt,
+    .trustee,
     .courtinvolved {
         display: table-cell;
     }
@@ -25,7 +26,7 @@
     a.petition-type {
         padding-top: 0.6rem;
     }
-    a.courtnumber, a.amount, a.courtinvolved {
+    a.courtnumber, a.amount, a.courtinvolved, a.trustee {
         padding-top: 2.6rem;
     }
     a.datefiled, a.datedischarged {

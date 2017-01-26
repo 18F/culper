@@ -136,8 +136,14 @@ export default class Dropdown extends ValidationElement {
   }
 
   onSuggestionChange (event, change) {
+    let e = {
+      ...event,
+      target: {
+        value: change.newValue
+      }
+    }
     this.setState({value: change.newValue}, () => {
-      super.handleChange(event)
+      super.handleChange(e)
     })
   }
 

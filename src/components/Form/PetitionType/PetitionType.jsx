@@ -1,8 +1,10 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import Text from '../Text'
+import { Help, HelpIcon } from '../Help'
 import Address from '../Address'
 
 export default class PetitionType extends ValidationElement {
@@ -116,14 +118,19 @@ export default class PetitionType extends ValidationElement {
       return (
         <div className="petition-type">
           {options}
-          <h3>Provide the trustee</h3>
-          <Text
-            name="chapter13Trustee"
-            value={this.state.trustee}
-            onChange={this.handleFieldChange.bind(this, 'trustee')}
-          />
+          <h4>Provide the trustee</h4>
+          <Help id="financial.bankruptcy.trustee.help">
+            <Text
+              className="trustee"
+              name="chapter13Trustee"
+              value={this.state.trustee}
+              placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
+              onChange={this.handleFieldChange.bind(this, 'trustee')}
+            />
+            <HelpIcon className="trustee"/>
+          </Help>
 
-          <h3>Provide the address of the trustee for this bankruptcy</h3>
+          <h4>Provide the address of the trustee for this bankruptcy</h4>
           <Address
             {...this.props.address}
             name="trusteeAddress"

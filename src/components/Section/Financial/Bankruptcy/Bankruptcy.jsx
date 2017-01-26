@@ -155,6 +155,7 @@ export default class Bankruptcy extends ValidationElement {
           <Help id="financial.bankruptcy.courtNumber.help">
             <Text name="courtNumber"
               className="courtnumber"
+              placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
               title={i18n.t('financial.bankruptcy.courtNumber.title')}
               onValidate={this.handleValidation}
               placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
@@ -199,6 +200,7 @@ export default class Bankruptcy extends ValidationElement {
           <Help id="financial.bankruptcy.courtInvolved.help">
             <Text name="courtInvolved"
               title={i18n.t('financial.bankruptcy.courtInvolved.title')}
+              placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
               className="courtinvolved"
             />
             <HelpIcon className="courtinvolved"/>

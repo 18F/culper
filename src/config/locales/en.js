@@ -311,13 +311,26 @@ const en = {
         help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
       },
       dateDischarged: {
+        help: 'Provide the date of bankruptcy discharge'
+      },
+      dateFiled: {
+        help: 'Provide the date bankruptcy was filed'
       },
       courtNumber: {
         title: 'Court docket/account number',
-        placeholder: 'Court docket/account number'
+        placeholder: 'Court docket/account number',
+        help: 'Provide the docket/account number'
       },
       totalAmount: {
-        placeholder: 'Total amount'
+        placeholder: 'Total amount',
+        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
+      },
+      courtInvolved: {
+        help: 'Provide the name of the court involved',
+        placeholder: 'Provide court involved'
+      },
+      trustee: {
+        placeholder: 'Provide name of trustee'
       }
     }
   },

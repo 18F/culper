@@ -276,9 +276,9 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    let dayCss = this.props.hideDay === true ? 'hidden' : ''
+    let dayCss = this.props.hideDay === true ? 'day-hidden' : ''
     return (
-      <div className="datecontrol">
+      <div className={`datecontrol ${dayCss}`}>
         <div className={this.divClass()}>
           <div className="usa-form-group usa-form-group-month">
             <Number id="month"
@@ -301,7 +301,7 @@ export default class DateControl extends ValidationElement {
                     onValidate={this.handleValidation}
                     />
           </div>
-          <div className={`"usa-form-group usa-form-group-day ${dayCss}`}>
+          <div className="usa-form-group usa-form-group-day">
             <Number id="day"
                     name="day"
                     label="Day"

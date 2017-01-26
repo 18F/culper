@@ -112,6 +112,7 @@ export default class Address extends ValidationElement {
         <Street name="address"
           className="address"
           label="Mailing Address"
+          placeholder="Enter mailing address"
           value={this.state.address}
           onChange={this.handleChange.bind(this, 'address')}
           onValidate={this.handleValidation}
@@ -120,6 +121,7 @@ export default class Address extends ValidationElement {
         />
         <City name="city"
           label="City"
+          placeholder="Enter city"
           value={this.state.city}
           onChange={this.handleChange.bind(this, 'city')}
           onValidate={this.handleValidation}
@@ -130,6 +132,7 @@ export default class Address extends ValidationElement {
           <MilitaryState name="state"
             className="state"
             label="State"
+            placeholder="Enter state"
             value={this.state.state}
             includeStates="true"
             onChange={this.handleChange.bind(this, 'state')}
@@ -140,6 +143,7 @@ export default class Address extends ValidationElement {
           <ZipCode name="zipcode"
             className="zipcode"
             label="Zipcode"
+            placeholder="Enter zipcode"
             value={this.state.zipcode}
             onChange={this.handleChange.bind(this, 'zipcode')}
             onValidate={this.handleValidation}
@@ -157,6 +161,7 @@ export default class Address extends ValidationElement {
         <Street name="address"
           label="Mailing Address"
           className="address"
+          placeholder="Enter mailing address"
           value={this.state.address}
           onChange={this.handleChange.bind(this, 'address')}
           onValidate={this.handleValidation}
@@ -165,6 +170,7 @@ export default class Address extends ValidationElement {
         />
         <City name="city"
           label="City"
+          placeholder="Enter city"
           value={this.state.city}
           onChange={this.handleChange.bind(this, 'city')}
           onValidate={this.handleValidation}
@@ -173,8 +179,9 @@ export default class Address extends ValidationElement {
         />
         <Country name="country"
           label="Country"
+          placeholder="Enter country"
           value={this.state.country}
-          onChange={this.handleChange}
+          onChange={this.handleChange.bind(this, 'country')}
           onValidate={this.handleValidation}
           onFocus={this.props.onFocus}
           onBlur={this.props.onBlur}
