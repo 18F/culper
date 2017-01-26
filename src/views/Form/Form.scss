@@ -2,6 +2,10 @@
 @import 'eqip-fonts';
 
 .eapp-core {
+
+	.eapp-form {
+		max-width:72.4rem;
+	}
 	label, input, textarea, select {
 		max-width: 64rem;
 		margin-top: 0;
@@ -10,6 +14,10 @@
 	/* bring in USWD validation classes and alter for our design */
 	input[type="text"], textarea, select {
 		padding-right: 3rem;
+		transition:border-color 0.4s, border-width 0.4s,background-position 0.4s;
+	}
+	input[type="checkbox"], input[type="radio"] {
+		margin-left:0;
 	}
 
     /* placeholder should be a light gray and italics */
@@ -58,6 +66,8 @@
     input[type="email"],
     textarea,
     select {
+		background-position:100% center;
+
 		&:focus {
 			box-shadow: 3px 1px 16px 22px 12px black;
 		}
@@ -232,38 +242,6 @@
 
 	button {
 		position: relative;
-		width: 24rem;
-		margin-top: 4rem;
-	}
-
-	/* previous / next in form buttons */
-	.eapp-prev, .eapp-next {
-		min-height: 5.5rem;
-		line-height: 5.5rem;
-		padding: 2rem 1rem;
-
-		.button-icon {
-			display: inline-block;
-			line-height: inherit;
-		}
-
-		> span {
-			line-height: 1.2;
-		}
-
-		.eapp-nav-label {}
-	}
-
-	.eapp-prev {
-		text-align: left;
-
-		.button-icon {}
-	}
-
-	.eapp-next {
-		text-align: right;
-		float: right;
-		margin-right: 4rem;
 	}
 
 	#titles {
