@@ -87,50 +87,58 @@ export default class Physical extends ValidationElement {
         <h2>Physical attributes</h2>
 
         <h3>Height</h3>
-        <Help id="identification.traits.help.height">
-          <Height name="height"
-                  label={i18n.t('identification.traits.label.height')}
-                  {...this.props.Height}
-                  onUpdate={this.handleUpdate.bind(this, 'Height')}
-                  onValidate={this.handleValidation.bind(this)}
-                  />
-          <HelpIcon className="height-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+            <Help id="identification.traits.help.height">
+              <Height name="height"
+                      label={i18n.t('identification.traits.label.height')}
+                      {...this.props.Height}
+                      onUpdate={this.handleUpdate.bind(this, 'Height')}
+                      onValidate={this.handleValidation.bind(this)}
+                      />
+              <HelpIcon className="height-help-icon" />
+            </Help>
+        </div>
 
         <h3>Weight</h3>
-        <Help id="identification.traits.help.weight">
-          <Weight name="weight"
-                  label={i18n.t('identification.traits.label.weight')}
-                  value={this.props.Weight}
-                  onUpdate={this.handleUpdate.bind(this, 'Weight')}
-                  onValidate={this.handleValidation.bind(this)}
-                  />
-          <HelpIcon className="weight-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+            <Help id="identification.traits.help.weight">
+              <Weight name="weight"
+                      label={i18n.t('identification.traits.label.weight')}
+                      value={this.props.Weight}
+                      onUpdate={this.handleUpdate.bind(this, 'Weight')}
+                      onValidate={this.handleValidation.bind(this)}
+                      />
+              <HelpIcon className="weight-help-icon" />
+            </Help>
+        </div>
 
         <h3>Hair Color</h3>
-        <Help id="identification.traits.help.hair">
-          <HairColor name="hair"
-                     label={i18n.t('identification.traits.label.hair')}
-                     className="eapp-field-wrap"
-                     value={this.props.HairColor}
-                     onUpdate={this.handleUpdate.bind(this, 'HairColor')}
-                     onValidate={this.handleValidation.bind(this)}
-                     />
-          <HelpIcon className="hair-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+            <Help id="identification.traits.help.hair">
+              <HairColor name="hair"
+                         label={i18n.t('identification.traits.label.hair')}
+                         className=""
+                         value={this.props.HairColor}
+                         onUpdate={this.handleUpdate.bind(this, 'HairColor')}
+                         onValidate={this.handleValidation.bind(this)}
+                         />
+              <HelpIcon className="hair-help-icon" />
+            </Help>
+        </div>
 
         <h3>Eye Color</h3>
-        <Help id="identification.traits.help.eye">
-          <EyeColor name="eye"
-                    label={i18n.t('identification.traits.label.eye')}
-                    className="eapp-field-wrap"
-                    value={this.props.EyeColor}
-                    onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
-                    onValidate={this.handleValidation.bind(this)}
-                    />
-          <HelpIcon className="eye-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+            <Help id="identification.traits.help.eye">
+              <EyeColor name="eye"
+                        label={i18n.t('identification.traits.label.eye')}
+                        className=""
+                        value={this.props.EyeColor}
+                        onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
+                        onValidate={this.handleValidation.bind(this)}
+                        />
+              <HelpIcon className="eye-help-icon" />
+            </Help>
+        </div>
 
         <Comments name="comments"
                   value={this.state.Comments}
@@ -139,17 +147,18 @@ export default class Physical extends ValidationElement {
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
                   >
-          <h3>Sex</h3>
-          <Help id="identification.traits.help.sex">
-            <Sex name="sex"
-                 label={i18n.t('identification.traits.label.sex')}
-                 className="eapp-field-wrap"
-                 value={this.props.Sex}
-                 onUpdate={this.handleUpdate.bind(this, 'Sex')}
-                 onValidate={this.handleValidation.bind(this)}
-                 />
-            <HelpIcon className="sex-help-icon" />
-          </Help>
+            <h3>Sex</h3>
+            <div className="eapp-field-wrap">
+              <Help id="identification.traits.help.sex">
+                <Sex name="sex"
+                     label={i18n.t('identification.traits.label.sex')}
+                     value={this.props.Sex}
+                     onUpdate={this.handleUpdate.bind(this, 'Sex')}
+                     onValidate={this.handleValidation.bind(this)}
+                     />
+                <HelpIcon className="sex-help-icon" />
+              </Help>
+          </div>
         </Comments>
       </div>
     )

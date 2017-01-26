@@ -168,18 +168,20 @@ export default class ApplicantBirthDate extends ValidationElement {
     return (
       <div className="birthdate">
         <h2>{i18n.t('identification.birthdate.title')}</h2>
-        <Help id="identification.birthdate.help">
-          <DateControl name={this.state.name}
-                       value={this.state.value}
-                       estimated={this.state.estimated}
-                       onChange={this.handleChange}
-                       onValidate={this.handleValidation}
-                       />
-          <HelpIcon />
-        </Help>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
+        <div className="eapp-field-wrap">
+            <Help id="identification.birthdate.help">
+              <DateControl name={this.state.name}
+                           value={this.state.value}
+                           estimated={this.state.estimated}
+                           onChange={this.handleChange}
+                           onValidate={this.handleValidation}
+                           />
+              <HelpIcon />
+            </Help>
+            <div className={this.errorClass()}>
+              <i className="fa fa-exclamation"></i>
+              {this.state.help}
+            </div>
         </div>
       </div>
     )
