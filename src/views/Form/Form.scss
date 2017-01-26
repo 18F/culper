@@ -5,6 +5,19 @@
 
 	.eapp-form {
 		max-width:72.4rem;
+
+		/* moving lower DOM elements in to design safe area */
+		h2,
+		h3,
+		h4,
+		p {
+			padding:0 8rem 0 4rem;
+		}
+
+		.text-right {
+			padding-right:4rem;
+		}
+
 	}
 	label, input, textarea, select {
 		max-width: 64rem;
@@ -57,6 +70,7 @@
         select {
 			background: url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
 			box-shadow: none;
+			border-width:2px;
 			/* width: calc(100% * 1); */
 		}
 	}
@@ -75,6 +89,7 @@
 		&.usa-input-success {
 			box-shadow: none;
 			background: url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
+			border-width:2px;
 			width: calc(100% * 1);
 		}
 	}
@@ -82,6 +97,19 @@
 	.eapp-field-wrap {
 		/* position: relative; */
 		margin-bottom: 4.9rem;
+		padding:0 4rem;
+		border:1px solid #090;
+
+		/* fix for nested field wrappers */
+		.eapp-field-wrap {
+			margin-bottom:0;
+			padding:0;
+			background-color:#fcfca4;
+
+			h2, h3, h4, h5, h6 {
+				padding:0; 
+			}
+		}
 
 		> div {}
 
