@@ -295,6 +295,8 @@ const en = {
       heading: {
         petitionType: 'Petition Type',
         courtNumber: 'Provide the bankruptcy court docket/account number',
+        dateFiled: 'Provide the date bankruptcy was filed',
+        dateDischarged: 'Provide the date of bankruptcy discharge',
         totalAmount: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
         nameDebt: 'Provide the name debt is recorded under',
         courtInvolved: 'Provide the name of the court involved',
@@ -307,6 +309,8 @@ const en = {
       },
       petitionType: {
         help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
+      },
+      dateDischarged: {
       },
       courtNumber: {
         title: 'Court docket/account number',

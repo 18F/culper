@@ -21,9 +21,9 @@ export default class DateControl extends ValidationElement {
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
-      month: this.datePart('m', props.value),
-      day: this.datePart('d', props.value),
-      year: this.datePart('y', props.value),
+      month: props.month || this.datePart('m', props.value),
+      day: props.day || this.datePart('d', props.value),
+      year: props.year || this.datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null]
     }
@@ -119,6 +119,8 @@ export default class DateControl extends ValidationElement {
         super.handleChange(event)
         if (this.props.onUpdate) {
           this.props.onUpdate({
+            name: this.props.name,
+            index: this.props.index,
             month: this.state.month,
             day: this.state.day,
             year: this.state.year,
@@ -274,6 +276,7 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
+    let dayCss = this.props.hideDay === true ? 'hidden' : ''
     return (
       <div className="datecontrol">
         <div className={this.divClass()}>
@@ -298,7 +301,7 @@ export default class DateControl extends ValidationElement {
                     onValidate={this.handleValidation}
                     />
           </div>
-          <div className="usa-form-group usa-form-group-day">
+          <div className={`"usa-form-group usa-form-group-day ${dayCss}`}>
             <Number id="day"
                     name="day"
                     label="Day"

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, Number, Textarea, Help, HelpIcon, RadioGroup, Radio,
+import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Textarea, Help, HelpIcon, RadioGroup, Radio,
 Text, Name, Address, PetitionType } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
@@ -138,61 +138,77 @@ export default class Bankruptcy extends ValidationElement {
     }
 
     return (
-      <Collection minimum="1"
-        items={this.state.List}
-        dispatch={this.myDispatch}
-        summaryTitle=""
-        appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
+      <div>
+        <Collection minimum="1"
+          items={this.state.List}
+          dispatch={this.myDispatch}
+          summaryTitle=""
+          appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
 
-        <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
-        <Help id="financial.bankruptcy.petitionType.help">
-          <PetitionType name="PetitionType" />
-          <HelpIcon />
-        </Help>
+          <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
+          <Help id="financial.bankruptcy.petitionType.help">
+            <PetitionType name="PetitionType" />
+            <HelpIcon className="petition-type" />
+          </Help>
 
-        <h3>{i18n.t('financial.bankruptcy.heading.courtNumber')}</h3>
-        <Help id="financial.bankruptcy.courtNumber.help">
-          <Text name="courtNumber"
-            title={i18n.t('financial.bankruptcy.courtNumber.title')}
-            onValidate={this.handleValidation}
-            placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+          <h3>{i18n.t('financial.bankruptcy.heading.courtNumber')}</h3>
+          <Help id="financial.bankruptcy.courtNumber.help">
+            <Text name="courtNumber"
+              className="courtnumber"
+              title={i18n.t('financial.bankruptcy.courtNumber.title')}
+              onValidate={this.handleValidation}
+              placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+            />
+            <HelpIcon className="courtnumber" />
+          </Help>
+
+          <h3>{i18n.t('financial.bankruptcy.heading.dateFiled')}</h3>
+          <Help id="financial.bankruptcy.dateFiled.help">
+            <DateControl name="dateFiled"
+              className="datefiled"
+              hideDay={true} />
+            <HelpIcon className="datefiled" />
+          </Help>
+
+          <h3>{i18n.t('financial.bankruptcy.heading.dateDischarged')}</h3>
+          <Help id="financial.bankruptcy.dateDischarged.help">
+            <DateControl name="dateDischarged"
+              className="datedischarged"
+              hideDay={true} />
+            <HelpIcon className="datedischarged" />
+          </Help>
+
+          <h3>{i18n.t('financial.bankruptcy.heading.totalAmount')}</h3>
+          <Help id="financial.bankruptcy.totalAmount.help">
+            <i className="fa fa-dollar"></i>
+            <Number name="totalAmount"
+              className="amount"
+              min="0"
+              placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
+              onValidate={this.handleValidation}
+            />
+            <HelpIcon className="amount" />
+          </Help>
+
+          <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
+          <Name name="nameDebt"
+            className="namedebt"
           />
-          <HelpIcon />
-        </Help>
 
-        <h3>{i18n.t('financial.bankruptcy.heading.totalAmount')}</h3>
-        <Help id="financial.bankruptcy.totalAmount.help">
-          <i className="fa fa-dollar"></i>
-          <Number name="totalAmount"
-            className="losses"
-            min="0"
-            placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
-            onValidate={this.handleValidation}
-          />
-          <HelpIcon />
-        </Help>
+          <h3>{i18n.t('financial.bankruptcy.heading.courtInvolved')}</h3>
+          <Help id="financial.bankruptcy.courtInvolved.help">
+            <Text name="courtInvolved"
+              title={i18n.t('financial.bankruptcy.courtInvolved.title')}
+              className="courtinvolved"
+            />
+            <HelpIcon className="courtinvolved"/>
+          </Help>
 
-        <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
-        <Help id="financial.bankruptcy.nameDebt.help">
-          <i className="fa fa-dollar"></i>
-          <Name name="nameDebt" />
-          <HelpIcon />
-        </Help>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.courtInvolved')}</h3>
-        <Help id="financial.bankruptcy.courtInvolved.help">
-          <Text name="courtInvolved"
-            title={i18n.t('financial.bankruptcy.courtInvolved.title')}
-          />
-          <HelpIcon />
-        </Help>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
-        <Help id="financial.bankruptcy.courtAddress.help">
+          <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
           <Address name="courtAddress" />
-          <HelpIcon />
-        </Help>
-      </Collection>
+
+        </Collection>
+      </div>
     )
   }
 
@@ -203,6 +219,7 @@ export default class Bankruptcy extends ValidationElement {
         <Comments name="Comments"
           title="Add Optional Comment">
           <Branch name="has_bankruptcydebt"
+            className="bankruptcy-branch"
             value={this.state.HasBankruptcy}
             help="financial.bankruptcy.help"
             onUpdate={this.onUpdate.bind(this)}>

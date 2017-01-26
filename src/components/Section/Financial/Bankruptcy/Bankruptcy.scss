@@ -1,5 +1,34 @@
 .bankruptcy {
-    .branch, .eapp-help-toggle {
+    .bankruptcy-branch {
+        .help {
+            .branch-help-icon, .option-list {
+                display: table-cell;
+            }
+        }
+    }
+    .petition-type,
+    .courtnumber,
+    .datecontrol,
+    .datedischarged,
+    .datefiled,
+    .amount,
+    .fa-dollar,
+    .namedebt,
+    .courtinvolved {
         display: table-cell;
+    }
+
+    .amount {
+        padding-left: 1rem;
+    }
+
+    a.petition-type {
+        padding-top: 0.6rem;
+    }
+    a.courtnumber, a.amount, a.courtinvolved {
+        padding-top: 2.6rem;
+    }
+    a.datefiled, a.datedischarged {
+        padding-top: 4.6rem;
     }
 }

@@ -1,40 +1,52 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import Generic from '../Generic'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import Text from '../Text'
+import Address from '../Address'
 
 export default class PetitionType extends ValidationElement {
   constructor (props) {
     super(props)
-
     this.state = {
-      value: this.props.value,
-      trustee: this.props.trustee
+      value: props.value,
+      trustee: props.trustee,
+      address: props.address
     }
   }
 
   /**
    * Handle the change event.
    */
-  handleChange (field, event) {
+  handleFieldChange (field, event) {
     let value = event.target.value
     this.setState({ [field]: value }, () => {
       super.handleChange(event)
-      if (this.props.onUpdate) {
-        let update = {
-          name: this.props.name,
-          value: this.state.value,
-          index: this.props.index
-        }
-        if (this.state.value === 'Chapter13') {
-          update.trustee = this.state.trustee
-        } else {
-          update.trustee = ''
-        }
-        this.props.onUpdate(update)
+      this.doUpdate()
+    })
+  }
+
+  doUpdate () {
+    if (this.props.onUpdate) {
+      let update = {
+        name: this.props.name,
+        value: this.state.value,
+        index: this.props.index,
+        address: this.state.address
       }
+      if (this.state.value === 'Chapter13') {
+        update.trustee = this.state.trustee
+      } else {
+        update.trustee = ''
+      }
+      this.props.onUpdate(update)
+    }
+  }
+
+  handleAddressChange (value) {
+    console.log('handleChange')
+    this.setState({ address: value }, () => {
+      this.doUpdate()
     })
   }
 
@@ -72,7 +84,7 @@ export default class PetitionType extends ValidationElement {
           label="Chapter 7"
           value="Chapter7"
           disabled={this.props.disabled}
-          onChange={this.handleChange.bind(this, 'value')}
+          onChange={this.handleFieldChange.bind(this, 'value')}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}
@@ -81,7 +93,7 @@ export default class PetitionType extends ValidationElement {
           label="Chapter 11"
           value="Chapter11"
           disabled={this.props.disabled}
-          onChange={this.handleChange.bind(this, 'value')}
+          onChange={this.handleFieldChange.bind(this, 'value')}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}
@@ -90,7 +102,7 @@ export default class PetitionType extends ValidationElement {
           label="Chapter 13"
           value="Chapter13"
           disabled={this.props.disabled}
-          onChange={this.handleChange.bind(this, 'value')}
+          onChange={this.handleFieldChange.bind(this, 'value')}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}
@@ -102,19 +114,27 @@ export default class PetitionType extends ValidationElement {
     let options = this.options()
     if (this.state.value === 'Chapter13') {
       return (
-        <div>
+        <div className="petition-type">
           {options}
+          <h3>Provide the trustee</h3>
           <Text
             name="chapter13Trustee"
             value={this.state.trustee}
-            onChange={this.handleChange.bind(this, 'trustee')}
+            onChange={this.handleFieldChange.bind(this, 'trustee')}
+          />
+
+          <h3>Provide the address of the trustee for this bankruptcy</h3>
+          <Address
+            {...this.props.address}
+            name="trusteeAddress"
+            onUpdate={this.handleAddressChange.bind(this)}
           />
         </div>
       )
     }
 
     return (
-        <div>
+        <div className="petition-type">
           {options}
         </div>
     )
