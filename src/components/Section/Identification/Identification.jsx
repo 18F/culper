@@ -240,6 +240,7 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.othernames')}>
             <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
+                                className="eapp-field-wrap"
                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
                                 onValidate={this.onValidate.bind(this)}
                                 value={this.props.ApplicantBirthDate}
@@ -254,6 +255,7 @@ class Identification extends ValidationElement {
             <h2>{i18n.t('identification.birthplace.title')}</h2>
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
+                                 className="eapp-field-wrap"
                                  onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onValidate={this.onValidate.bind(this)}
                                  />
@@ -280,6 +282,7 @@ class Identification extends ValidationElement {
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
+                          className="eapp-field-wrap"
                           onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
                           onValidate={this.onValidate.bind(this)}
                           />
@@ -293,6 +296,7 @@ class Identification extends ValidationElement {
             <h2>Physical attributes</h2>
             <Physical name="physical"
                       {...this.props.Physical}
+                      className="eapp-field-wrap"
                       onUpdate={this.onUpdate.bind(this, 'Physical')}
                       onValidate={this.onValidate.bind(this)}
                       />

@@ -82,7 +82,7 @@ export default class Physical extends ValidationElement {
   }
 
   render () {
-    const klass = `physical ${this.props.className}`.trim()
+    const klass = `physical ${this.props.className || ''}`.trim()
 
     return (
       <div>

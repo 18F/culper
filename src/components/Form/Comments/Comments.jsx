@@ -43,7 +43,7 @@ export default class Comments extends ValidationElement {
   }
 
   render () {
-    const klass = `${this.props.className || ''}`.trim()
+    const klass = `comments ${this.props.className || ''}`.trim()
 
     if (!this.state.visible) {
       return (

@@ -157,59 +157,57 @@ export default class Passport extends ValidationElement {
 
     return (
       <div>
-        <div>
-          <h3>Provide the name in which passport was first issued</h3>
-          <Name name="name"
-                {...this.state.Name}
-                onUpdate={this.handleUpdate.bind(this, 'Name')}
-                onValidate={this.handleValidation}
-                />
+        <h3>Provide the name in which passport was first issued</h3>
+        <Name name="name"
+              {...this.state.Name}
+              className="eapp-field-wrap"
+              onUpdate={this.handleUpdate.bind(this, 'Name')}
+              onValidate={this.handleValidation}
+              />
 
-          <h3>{i18n.t('foreign.passport.number')}</h3>
-          <Text name="number"
-                value={this.state.Number}
-                pattern={re}
-                maxlength="9"
-                ref="number"
-                onUpdate={this.handleUpdate.bind(this, 'Number')}
-                onValidate={this.handleValidation}
-                />
-          <div className="text-right">
-            <input id="lastInitialOnly"
-                   type="checkbox"
-                   value="card"
-                   checked={this.state.Card}
-                   onChange={this.handleChange} />
-            <label>{i18n.t('foreign.passport.card')}</label>
-          </div>
+        <h3>{i18n.t('foreign.passport.number')}</h3>
+        <Text name="number"
+              value={this.state.Number}
+              pattern={re}
+              maxlength="9"
+              ref="number"
+              className="eapp-field-wrap"
+              onUpdate={this.handleUpdate.bind(this, 'Number')}
+              onValidate={this.handleValidation}
+              />
+        <div className="text-right eapp-field-wrap">
+          <input id="passportCard"
+                 type="checkbox"
+                 value="card"
+                 checked={this.state.Card}
+                 onChange={this.handleChange} />
+          <label>{i18n.t('foreign.passport.card')}</label>
         </div>
 
-        <div>
-          <h3>{i18n.t('foreign.passport.issued')}</h3>
-          <DateControl name="issued"
-                       {...this.state.Issued}
-                       onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                       onValidate={this.handleValidation}
-                       />
-        </div>
-        <div>
-          <h3>{i18n.t('foreign.passport.expiration')}</h3>
-          <DateControl name="expiration"
-                       {...this.state.Expiration}
-                       onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                       onValidate={this.handleValidation}
-                       />
-        </div>
-        <div>
-          <Comments name="comments"
-                    value={this.state.Comments}
-                    label={i18n.t('foreign.passport.comment.label')}
-                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                    onValidate={this.handleValidation}
-                    >
-            <h3>{i18n.t('foreign.passport.comment.title')}</h3>
-          </Comments>
-        </div>
+        <h3>{i18n.t('foreign.passport.issued')}</h3>
+        <DateControl name="issued"
+                     {...this.state.Issued}
+                     className="eapp-field-wrap"
+                     onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                     onValidate={this.handleValidation}
+                     />
+        <h3>{i18n.t('foreign.passport.expiration')}</h3>
+        <DateControl name="expiration"
+                     {...this.state.Expiration}
+                     className="eapp-field-wrap"
+                     onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                     onValidate={this.handleValidation}
+                     />
+
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  label={i18n.t('foreign.passport.comment.label')}
+                  className="eapp-field-wrap"
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  >
+          <h3>{i18n.t('foreign.passport.comment.title')}</h3>
+        </Comments>
       </div>
     )
   }
@@ -217,26 +215,23 @@ export default class Passport extends ValidationElement {
   render () {
     return (
       <div className="passport">
-        <h2>{i18n.t('foreign.passport.title')}</h2>
-        <div>
-	        <Branch
-	          name="has_passport"
-	          value={this.state.HasPassport}
-	          onUpdate={this.yesNoClicked.bind(this)}
-	          yesLabel={i18n.t('foreign.passport.question.yes')}
-	          noLabel={i18n.t('foreign.passport.question.no')}>
-	          <p>
-	            {i18n.t('foreign.passport.info.text')}<br />
-	            <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
-	              {i18n.t('foreign.passport.info.link')}
-	            </a>
-	          </p>
-	          <p>
-	            {i18n.t('foreign.passport.question.title')}
-	          </p>
-	        </Branch>
+        <p>
+          {i18n.t('foreign.passport.info.text')}<br />
+          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
+            {i18n.t('foreign.passport.info.link')}
+          </a>
+        </p>
+        <Branch name="has_passport"
+                value={this.state.HasPassport}
+                onUpdate={this.yesNoClicked.bind(this)}
+                className="eapp-field-wrap"
+                yesLabel={i18n.t('foreign.passport.question.yes')}
+                noLabel={i18n.t('foreign.passport.question.no')}>
+          <div>
+            {i18n.t('foreign.passport.question.title')}
+          </div>
+        </Branch>
         {this.visibleComponents()}
-        </div>
       </div>
     )
   }
