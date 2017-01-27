@@ -1,7 +1,6 @@
 @import 'eqip-colors';
 
 .help {
-    border:1px solid #009;
     .toggle {
         display: inline-block;
         vertical-align: top;
@@ -15,7 +14,7 @@
 			}
 	    	.eapp-help-icon {
 	        	fill:$eapp-blue-light;
-        	}   
+        	}
 	    	.eapp-help-circle {
 			    fill:$eapp-blue-lightest;
 		    }
@@ -24,7 +23,7 @@
             svg {
 		    	.eapp-help-icon {
 		        	fill:$eapp-blue-lightest;
-	        	}   
+	        	}
 		    	.eapp-help-circle {
 				    fill:$eapp-blue-light;
 			    }
