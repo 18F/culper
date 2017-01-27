@@ -1,5 +1,18 @@
 class Env {
-  ApiBaseURL () { return process.env.API_BASE_URL || `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}/api` }
+  ApiBaseURL () {
+    let url = process.env.API_BASE_URL || ''
+
+    if (url === '' && window) {
+      const loc = window.location || {}
+      const protocol = loc.protocol || 'http:'
+      const hostname = loc.hostname || 'localhost'
+      const port = loc.port || '8080'
+      return `${protocol}//${hostname}${port ? ':' + port : ''}/api`
+    }
+
+    return url
+  }
+
   AllowTwoFactorReset () { return process.env.ALLOW_2FA_RESET || false }
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
