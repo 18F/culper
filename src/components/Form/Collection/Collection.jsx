@@ -322,8 +322,10 @@ export default class Collection extends ValidationElement {
   }
 
   render () {
+    const klass = `collection ${this.props.className || ''}`.trim()
+
     return (
-      <div className={`collection ${this.props.className || ''}`}>
+      <div className={klass}>
         {this.getContent()}
         <div className="text-center">
           <button className="add usa-button-outline" onClick={this.append}>

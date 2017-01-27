@@ -131,26 +131,32 @@ export default class OtherNames extends ValidationElement {
 
         <h3>Provide other name used</h3>
         <Name name="Name"
+              className="eapp-field-wrap"
               onValidate={this.handleValidation}
               />
+
         <h3>Maiden Name</h3>
         <Help id="alias.maiden.help">
           <MaidenName name="MaidenName"
+                      className="eapp-field-wrap"
                       onValidate={this.handleValidation}
                       />
           <HelpIcon className="maiden-help-icon" />
         </Help>
+
         <h3>Dates Used</h3>
         <Help id="alias.used.help">
           <DateRange name="DatesUsed"
+                     className="eapp-field-wrap"
                      onValidate={this.handleValidation}
                      />
           <HelpIcon className="used-help-icon" />
         </Help>
+
         <h3>Reason for change</h3>
         <Help id="alias.reason.help">
           <Textarea name="Reason"
-                    className="reason"
+                    className="reason eapp-field-wrap"
                     onValidate={this.handleValidation}
                     label={'Provide the reasons why the name changed'}
                     />
@@ -163,16 +169,16 @@ export default class OtherNames extends ValidationElement {
   render () {
     return (
       <div className="other-names">
-        <h2>Other names used</h2>
         <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
-        <div>
-            <Branch name="has_othernames" value={this.state.HasOtherNames} onUpdate={this.onUpdate.bind(this)}>
-              <div>
-                Have you used any other names?
-              </div>
-            </Branch>
-            {this.visibleComponents()}
+        <Branch name="has_othernames"
+                className="eapp-field-wrap"
+                value={this.state.HasOtherNames}
+                onUpdate={this.onUpdate.bind(this)}>
+          <div>
+            Have you used any other names?
           </div>
+        </Branch>
+        {this.visibleComponents()}
       </div>
     )
   }

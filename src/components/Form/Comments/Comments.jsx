@@ -43,14 +43,18 @@ export default class Comments extends ValidationElement {
   }
 
   render () {
+    const klass = `${this.props.className || ''}`.trim()
+
     if (!this.state.visible) {
       return (
-        <div className="comments">
+        <div class="comments">
           {this.props.children}
-          <a href="javascript:;;" onClick={this.toggle} className="add">
-            <span>{i18n.t(this.props.addLabel || 'comments.add')}</span>
-            <i className="fa fa-plus-circle"></i>
-          </a>
+          <div className={klass}>
+            <a href="javascript:;;" onClick={this.toggle} className="add">
+              <span>{i18n.t(this.props.addLabel || 'comments.add')}</span>
+              <i className="fa fa-plus-circle"></i>
+            </a>
+          </div>
         </div>
       )
     }
@@ -64,10 +68,12 @@ export default class Comments extends ValidationElement {
                   onChange={this.handleChange}
                   value={this.state.value}
                   />
-        <a href="javascript:;;" onClick={this.toggle} className="remove">
-          <span>{i18n.t(this.props.removeLabel || 'comments.remove')}</span>
-          <i className="fa fa-times-circle"></i>
-        </a>
+        <div className={klass}>
+          <a href="javascript:;;" onClick={this.toggle} className="remove">
+            <span>{i18n.t(this.props.removeLabel || 'comments.remove')}</span>
+            <i className="fa fa-times-circle"></i>
+          </a>
+        </div>
       </div>
     )
   }

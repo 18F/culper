@@ -23,9 +23,11 @@ export default class Branch extends React.Component {
   }
 
   render () {
+    const klass = `branch ${this.props.className || ''}`.trim()
+
     if (this.props.help) {
       return (
-        <div className={`branch ${this.props.className}`}>
+        <div className={klass}>
           <div className="content">
             {this.props.children}
           </div>
@@ -51,7 +53,7 @@ export default class Branch extends React.Component {
     }
 
     return (
-      <div className={`branch ${this.props.className}`}>
+      <div className={klass}>
         <div className="content">
           {this.props.children}
         </div>
