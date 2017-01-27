@@ -167,7 +167,7 @@ class Financial extends ValidationElement {
           </SectionView>
           <SectionView name="bankruptcy"
                        back="financial/gambling"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       backLabel={i18n.t('financial.destination.gambling')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
                        <Bankruptcy name="bankruptcy"

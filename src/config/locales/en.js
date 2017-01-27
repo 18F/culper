@@ -242,6 +242,16 @@ const en = {
     }
   },
   financial: {
+    tour: {
+      title: 'One piece at a time',
+      para: 'Take a guided tour through the section',
+      button: 'Take me on the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      para: 'View all the sections associated with identification at once',
+      button: 'Show me the full section'
+    },
     destination: {
       gambling: 'Gambling debts',
       bankruptcy: 'Bankruptcy',
