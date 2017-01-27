@@ -44,8 +44,10 @@ export class App extends React.Component {
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
 
+    const designClass = this.props.location.query.design || window.location.search.indexOf('design') !== -1 ? 'design' : ''
+
     return (
-      <div>
+      <div className={designClass}>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
           <div className="usa-banner">
