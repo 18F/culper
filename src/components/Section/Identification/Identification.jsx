@@ -92,7 +92,7 @@ class Identification extends ValidationElement {
   intro () {
     return (
       <div className="identification intro">
-        <div className="usa-grid-full eapp-field-wrap">
+        <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
         <div id="titles" className="usa-grid-full">
@@ -155,6 +155,7 @@ class Identification extends ValidationElement {
             <h2>Your full name</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
+                           className="eapp-field-wrap"
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
                            onValidate={this.onValidate.bind(this)}
                            />
@@ -191,6 +192,7 @@ class Identification extends ValidationElement {
             <h2>Your full name</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
+                           className="eapp-field-wrap"
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
                            onValidate={this.onValidate.bind(this)}
                            />

@@ -303,7 +303,7 @@ export default class ApplicantSSN extends ValidationElement {
     return (
       <div className="ssn">
         <h2>{i18n.t('identification.ssn.title')}</h2>
-        <div className="eapp-field-wrap">
+        <div>
             <Help id="identification.ssn.help">
               <label>&nbsp;</label>
               <Text name="first"

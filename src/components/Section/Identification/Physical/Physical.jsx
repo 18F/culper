@@ -87,7 +87,7 @@ export default class Physical extends ValidationElement {
         <h2>Physical attributes</h2>
 
         <h3>Height</h3>
-        <div className="eapp-field-wrap">
+        <div>
             <Help id="identification.traits.help.height">
               <Height name="height"
                       label={i18n.t('identification.traits.label.height')}
@@ -100,7 +100,7 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>Weight</h3>
-        <div className="eapp-field-wrap">
+        <div>
             <Help id="identification.traits.help.weight">
               <Weight name="weight"
                       label={i18n.t('identification.traits.label.weight')}
@@ -113,7 +113,7 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>Hair Color</h3>
-        <div className="eapp-field-wrap">
+        <div>
             <Help id="identification.traits.help.hair">
               <HairColor name="hair"
                          label={i18n.t('identification.traits.label.hair')}
@@ -127,7 +127,7 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>Eye Color</h3>
-        <div className="eapp-field-wrap">
+        <div>
             <Help id="identification.traits.help.eye">
               <EyeColor name="eye"
                         label={i18n.t('identification.traits.label.eye')}
@@ -148,7 +148,7 @@ export default class Physical extends ValidationElement {
                   onValidate={this.handleValidation}
                   >
             <h3>Sex</h3>
-            <div className="eapp-field-wrap">
+            <div>
               <Help id="identification.traits.help.sex">
                 <Sex name="sex"
                      label={i18n.t('identification.traits.label.sex')}

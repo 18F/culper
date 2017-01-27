@@ -157,7 +157,7 @@ export default class Passport extends ValidationElement {
 
     return (
       <div>
-        <div className="eapp-field-wrap">
+        <div>
           <h3>Provide the name in which passport was first issued</h3>
           <Name name="name"
                 {...this.state.Name}
@@ -184,7 +184,7 @@ export default class Passport extends ValidationElement {
           </div>
         </div>
 
-        <div className="eapp-field-wrap">
+        <div>
           <h3>{i18n.t('foreign.passport.issued')}</h3>
           <DateControl name="issued"
                        {...this.state.Issued}
@@ -192,7 +192,7 @@ export default class Passport extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </div>
-        <div className="eapp-field-wrap">
+        <div>
           <h3>{i18n.t('foreign.passport.expiration')}</h3>
           <DateControl name="expiration"
                        {...this.state.Expiration}
@@ -200,7 +200,7 @@ export default class Passport extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </div>
-        <div className="eapp-field-wrap">
+        <div>
           <Comments name="comments"
                     value={this.state.Comments}
                     label={i18n.t('foreign.passport.comment.label')}
@@ -218,7 +218,7 @@ export default class Passport extends ValidationElement {
     return (
       <div className="passport">
         <h2>{i18n.t('foreign.passport.title')}</h2>
-        <div className="eapp-field-wrap">
+        <div>
 	        <Branch
 	          name="has_passport"
 	          value={this.state.HasPassport}

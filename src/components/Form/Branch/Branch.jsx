@@ -29,7 +29,7 @@ export default class Branch extends React.Component {
           <div className="content">
             {this.props.children}
           </div>
-          <div className="eapp-field-wrap">
+          <div>
               <Help id={this.props.help}>
                 <RadioGroup className="option-list branch" selectedValue={this.state.value}>
                   <Radio name={this.props.name}

@@ -103,7 +103,7 @@ class Financial extends ValidationElement {
   intro () {
     return (
       <div className="financial intro">
-        <div className="usa-grid-full eapp-field-wrap">
+        <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
         <div id="titles" className="usa-grid-full">

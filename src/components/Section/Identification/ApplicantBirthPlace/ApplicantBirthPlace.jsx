@@ -207,7 +207,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
       return (
         <div className="birthplace">
           <h2>{i18n.t('identification.birthplace.title')}</h2>
-          <div className="eapp-field-wrap">
+          <div>
               {this.options()}
               <Help id="identification.birthplace.help.state">
                 <MilitaryState name="state"
@@ -261,7 +261,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className="birthplace">
         <h2>{i18n.t('identification.birthplace.title')}</h2>
-        <div className="eapp-field-wrap">
+        <div>
             {this.options()}
             <Help id="identification.birthplace.help.city">
               <City name="city"

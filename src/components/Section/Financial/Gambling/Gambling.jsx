@@ -207,7 +207,7 @@ export default class Gambling extends ValidationElement {
 
   render () {
     return (
-      <div className="gambling eapp-field-wrap">
+      <div className="gambling">
         <h2>{i18n.t('financial.gambling.title')}</h2>
         <Branch name="has_gamblingdebt" value={this.state.HasGamblingDebt} onUpdate={this.onUpdate.bind(this)}>
           <div>{i18n.t('financial.gambling.branch.question')}</div>

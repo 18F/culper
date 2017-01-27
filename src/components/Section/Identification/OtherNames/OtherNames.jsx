@@ -165,7 +165,7 @@ export default class OtherNames extends ValidationElement {
       <div className="other-names">
         <h2>Other names used</h2>
         <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
-        <div className="eapp-field-wrap">
+        <div>
             <Branch name="has_othernames" value={this.state.HasOtherNames} onUpdate={this.onUpdate.bind(this)}>
               <div>
                 Have you used any other names?

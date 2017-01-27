@@ -82,7 +82,7 @@ export default class ContactInformation extends ValidationElement {
         <h2>Your contact information</h2>
 
         <h3>Your e-mail addresses</h3>
-        <div className="eapp-field-wrap">
+        <div>
           <Collection minimum="1"
             items={this.state.Emails}
             dispatch={this.emailDispatch.bind(this)}
@@ -94,7 +94,7 @@ export default class ContactInformation extends ValidationElement {
           </Collection>
         </div>
 
-        <div className="eapp-field-wrap">
+        <div>
           <Comments name="comments"
                     value={this.state.Comments}
                     label="If you need to provide any additional comments about this information enter them below"
