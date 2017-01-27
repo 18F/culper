@@ -39,13 +39,25 @@ export class App extends React.Component {
     window.location = window.location.pathname
   }
 
+  designClass () {
+    if (this.props.location && this.props.location.query && this.props.location.query.design) {
+      return 'design'
+    }
+
+    if (window && window.location && window.location.search && window.location.search.indexOf('design') !== -1) {
+      return 'design'
+    }
+
+    return ''
+  }
+
   render () {
     let logoutButton = this.props.authenticated && this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
 
     return (
-      <div>
+      <div className={this.designClass()}>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
           <div className="usa-banner">
