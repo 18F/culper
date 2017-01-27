@@ -1,6 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import Text from '../Text'
+import Textarea from '../Textarea'
 
 export default class Street extends ValidationElement {
   constructor (props) {
@@ -56,12 +56,11 @@ export default class Street extends ValidationElement {
 
   render () {
     return (
-      <Text name={this.state.name}
+      <Textarea name={this.state.name}
+            className={this.props.className}
             label={this.state.label}
             placeholder={this.state.placeholder}
             help={this.state.help}
-            minlength="2"
-            maxlength="2"
             required="true"
             value={this.state.value}
             error={this.state.error}

@@ -5,34 +5,63 @@ import MilitaryState from '../MilitaryState'
 import City from '../City'
 import Country from '../Country'
 import ZipCode from '../ZipCode'
+import RadioGroup from '../RadioGroup'
+import Radio from '../Radio'
+import ApoFpo from '../ApoFpo'
 import { api } from '../../../services/api'
 
 export default class Address extends ValidationElement {
   constructor (props) {
     super(props)
+    let addressType = this.addressType()
 
     this.state = {
       name: props.name,
       label: props.label,
       value: props.value,
-      address1: '',
-      address2: '',
-      city: '',
-      state: '',
-      zipcode: '',
-      country: '',
+      address: props.address,
+      city: props.city,
+      state: props.state,
+      zipcode: props.zipcode,
+      apoFpo: props.apoFpo,
+      country: props.country,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      addressType: addressType
     }
+  }
+
+  addressType () {
+    let addressType = this.props.addressType
+    if (!addressType && this.props.country === 'United States') {
+      addressType = this.props.country
+    }
+    if (!addressType) {
+      addressType = 'United States'
+    }
+    return addressType
   }
 
   /**
    * Handle the change event.
    */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
+  handleChange (field, event) {
+    this.setState({ [field]: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          index: this.props.index,
+          name: this.props.name,
+          address: this.state.address,
+          city: this.state.city,
+          state: this.state.state,
+          zipcode: this.state.zipcode,
+          country: this.state.country,
+          addressType: this.state.addressType,
+          apoFpo: this.state.apoFpo
+        })
+      }
     })
   }
 
@@ -80,58 +109,182 @@ export default class Address extends ValidationElement {
     return '' + this.state.name + '-' + part
   }
 
-  render () {
+  usAddress () {
     return (
       <div>
-        <Street name={this.partName('address1')}
-                label="Mailing Address"
-                value={this.state.address1}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-        <Street name={this.partName('address2')}
-                label="Mailing Address 2"
-                value={this.state.address2}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                />
-        <City name={this.partName('city')}
-              label="City"
-              value={this.state.city}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
-        <MilitaryState name={this.partName('state')}
-                       label="State"
-                       value={this.state.state}
-                       includeStates="true"
-                       onChange={this.handleChange}
-                       onValidate={this.handleValidation}
-                       onFocus={this.props.onFocus}
-                       onBlur={this.props.onBlur}
-                       />
-        <ZipCode name={this.partName('zipcode')}
-                 label="Zipcode"
-                 value={this.state.zipcode}
-                 onChange={this.handleChange}
-                 onValidate={this.handleValidation}
-                 onFocus={this.props.onFocus}
-                 onBlur={this.props.onBlur}
-                 />
-        <Country name={this.partName('country')}
-                 label="Country"
-                 value={this.state.country}
-                 onChange={this.handleChange}
-                 onValidate={this.handleValidation}
-                 onFocus={this.props.onFocus}
-                 onBlur={this.props.onBlur}
-                 />
+        <Street name="address"
+          className="address"
+          label="Mailing Address"
+          placeholder="Enter mailing address"
+          value={this.state.address}
+          onChange={this.handleChange.bind(this, 'address')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+        <City name="city"
+          label="City"
+          placeholder="Enter city"
+          value={this.state.city}
+          onChange={this.handleChange.bind(this, 'city')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+        <div className="state-zip-wrap">
+          <MilitaryState name="state"
+            className="state"
+            label="State"
+            placeholder="Enter state"
+            value={this.state.state}
+            includeStates="true"
+            onChange={this.handleChange.bind(this, 'state')}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
+          <ZipCode name="zipcode"
+            className="zipcode"
+            label="Zipcode"
+            placeholder="Enter zipcode"
+            value={this.state.zipcode}
+            onChange={this.handleChange.bind(this, 'zipcode')}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  internationalAddress () {
+    return (
+      <div>
+        <Street name="address"
+          label="Mailing Address"
+          className="address"
+          placeholder="Enter mailing address"
+          value={this.state.address}
+          onChange={this.handleChange.bind(this, 'address')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+        <City name="city"
+          label="City"
+          placeholder="Enter city"
+          value={this.state.city}
+          onChange={this.handleChange.bind(this, 'city')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+        <Country name="country"
+          label="Country"
+          placeholder="Enter country"
+          value={this.state.country}
+          onChange={this.handleChange.bind(this, 'country')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+      </div>
+    )
+  }
+
+  apoFpoAddress () {
+    return (
+      <div>
+        <Street name="address"
+          className="address"
+          label="Mailing Address"
+          placeholder="Enter mailing address"
+          value={this.state.address}
+          onChange={this.handleChange.bind(this, 'address')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+        <City name="city"
+          label="City"
+          placeholder="Enter city"
+          value={this.state.city}
+          onChange={this.handleChange.bind(this, 'city')}
+          onValidate={this.handleValidation}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+        <div className="state-zip-wrap">
+          <MilitaryState name="state"
+            className="state"
+            label="State"
+            placeholder="Enter state"
+            value={this.state.state}
+            includeStates="true"
+            onChange={this.handleChange.bind(this, 'state')}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
+          <ZipCode name="zipcode"
+            className="zipcode"
+            label="Zipcode"
+            placeholder="Enter zipcode"
+            value={this.state.zipcode}
+            onChange={this.handleChange.bind(this, 'zipcode')}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
+          <ApoFpo name="apoFpo"
+            label="APO/FPO"
+            value={this.state.apoFpo}
+            onChange={this.handleChange.bind(this, 'apoFpo')}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  render () {
+    return (
+      <div className="address">
+        <RadioGroup className="address-options" selectedValue={this.state.addressType}>
+          <Radio name="addressType"
+            label="In the United States"
+            value="United States"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'addressType')}
+            onValidate={this.props.onValidate}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+          />
+          <Radio name="addressType"
+            label="APO/FPO"
+            value="APOFPO"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'addressType')}
+            onValidate={this.props.onValidate}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+          />
+          <Radio name="addressType"
+            label="Outside of the United States"
+            value="International"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'addressType')}
+            onValidate={this.props.onValidate}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+          />
+        </RadioGroup>
+        {this.state.addressType === 'United States' && this.usAddress()}
+        {this.state.addressType === 'International' && this.internationalAddress()}
+        {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
       </div>
     )
   }

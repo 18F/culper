@@ -60,6 +60,7 @@ export default class ZipCode extends ValidationElement {
             label={this.state.label}
             placeholder={this.state.placeholder}
             help={this.state.help}
+            className={this.props.className}
             minlength="5"
             maxlength="10"
             pattern="^\d{5}(?:[-\s]\d{4})?$"

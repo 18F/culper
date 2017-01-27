@@ -242,9 +242,20 @@ const en = {
     }
   },
   financial: {
+    tour: {
+      title: 'One piece at a time',
+      para: 'Take a guided tour through the section',
+      button: 'Take me on the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      para: 'View all the sections associated with identification at once',
+      button: 'Show me the full section'
+    },
     destination: {
       gambling: 'Gambling debts',
-      bankruptcy: 'Bankruptcy'
+      bankruptcy: 'Bankruptcy',
+      review: 'Review Financial record'
     },
     gambling: {
       title: 'Gambling debt',
@@ -285,6 +296,52 @@ const en = {
       },
       placeholder: {
         losses: '1000'
+      }
+    },
+    bankruptcy: {
+      collection: {
+        summaryTitle: 'Summary of Bankruptcy',
+        append: 'Add bankruptcy'
+      },
+      heading: {
+        petitionType: 'Petition Type',
+        courtNumber: 'Provide the bankruptcy court docket/account number',
+        dateFiled: 'Provide the date bankruptcy was filed',
+        dateDischarged: 'Provide the date of bankruptcy discharge',
+        totalAmount: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+        nameDebt: 'Provide the name debt is recorded under',
+        courtInvolved: 'Provide the name of the court involved',
+        courtAddress: 'Provide the address of the court involved'
+      },
+      title: 'Bankruptcy',
+      help: 'Note: If you need to provide any additional comments about this information, enter them below.',
+      branch: {
+        question: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?'
+      },
+      petitionType: {
+        help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
+      },
+      dateDischarged: {
+        help: 'Provide the date of bankruptcy discharge'
+      },
+      dateFiled: {
+        help: 'Provide the date bankruptcy was filed'
+      },
+      courtNumber: {
+        title: 'Court docket/account number',
+        placeholder: 'Court docket/account number',
+        help: 'Provide the docket/account number'
+      },
+      totalAmount: {
+        placeholder: 'Total amount',
+        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
+      },
+      courtInvolved: {
+        help: 'Provide the name of the court involved',
+        placeholder: 'Provide court involved'
+      },
+      trustee: {
+        placeholder: 'Provide name of trustee'
       }
     }
   },
