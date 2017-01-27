@@ -37,7 +37,7 @@ export default class Dropdown extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: props.value || '',
       options: [],
       suggestions: [],
       focus: props.focus || false,
