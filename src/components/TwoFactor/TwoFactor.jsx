@@ -38,7 +38,9 @@ class TwoFactor extends React.Component {
 
   handleReset (event) {
     event.preventDefault()
-    this.props.dispatch(twofactorreset(this.props.username))
+    this.setState({ token: '' }, () => {
+      this.props.dispatch(twofactorreset(this.props.username))
+    })
   }
 
   render () {

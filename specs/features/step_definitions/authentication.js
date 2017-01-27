@@ -31,15 +31,15 @@ defineSupportCode(({Given, Then, When}) => {
       .setValue('input[type="password"]', credentials.password)
       .click('#basic button[type="submit"]')
       .pause(3000)
-      .getLog('browser', (entries) => {
-        if (!entries) {
-          return
-        }
+      // .getLog('browser', (entries) => {
+      //   if (!entries) {
+      //     return
+      //   }
 
-        entries.forEach(e => {
-          console.log('[' + e.level + '] ' + e.timestamp + ' : ' + e.message)
-        })
-      })
+      //   entries.forEach(e => {
+      //     console.log('[' + e.level + '] ' + e.timestamp + ' : ' + e.message)
+      //   })
+      // })
   })
 
   Then(/^I should be presented with a request for two factor authentication$/, () => {

@@ -17,14 +17,14 @@ module.exports = {
   selenium: {
     start_process: false,
     start_session: true,
-    host: process.env.SELENIUM_ADDR,
-    port: process.env.SELENIUM_PORT
+    host: 'hub',
+    port: '4444'
   },
   test_settings: {
     default: {
-      launch_url: 'http://' + process.env.WEB_PORT_2015_TCP_ADDR + ':' + process.env.WEB_PORT,
-      selenium_host: process.env.SELENIUM_ADDR,
-      selenium_port: process.env.SELENIUM_PORT,
+      launch_url: 'http://web:2015',
+      selenium_host: 'hub',
+      selenium_port: '4444',
       silent: true,
       desiredCapabilities: {
         browserName: 'chrome',
