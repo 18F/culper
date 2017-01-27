@@ -121,7 +121,7 @@ export default class Collection extends ValidationElement {
 
         x[child] = {}
         for (let key in item[child]) {
-          let what = Object.prototype.toString.call(item[child][key])
+          //let what = Object.prototype.toString.call(item[child][key])
           //if (!['[object String]', '[object Date]', '[object Boolean]'].includes(what)) {
             //continue
           //}

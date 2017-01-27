@@ -50,6 +50,37 @@ export default class Bankruptcy extends ValidationElement {
    */
   isValid () {
     for (let item of this.state.List) {
+      if (!item.PetitionType || !item.PetitionType.value) {
+        return false
+      }
+
+      if (!item.CourtAddress) {
+        return false
+      }
+
+      if (!item.CourtInvolved || !item.CourtInvolved.value) {
+        return false
+      }
+
+      if (!item.CourtNumber || !item.CourtNumber.value) {
+        return false
+      }
+
+      if (!item.DateDischarged || !item.DateDischarged.month || !item.DateDischarged.year) {
+        return false
+      }
+
+      if (!item.DateFiled || !item.DateFiled.month || !item.DateFiled.year) {
+        return false
+      }
+
+      if (!item.NameDebt || !item.NameDebt.first || !item.NameDebt.last || !item.NameDebt.middle) {
+        return false
+      }
+
+      if (!item.TotalAmount || !item.TotalAmount.value) {
+        return false
+      }
     }
 
     return true
@@ -88,43 +119,12 @@ export default class Bankruptcy extends ValidationElement {
   }
 
   /**
-   * Takes a value such as "1000" and converts it to "1,000".
-   */
-  fancyNumber (value) {
-    const n = new window.Number(value)
-    return n.toLocaleString()
-  }
-
-  /**
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    let losses = i18n.t('financial.bankruptcy.collection.summary.unknownlosses')
-    if (item.Losses && item.Losses.value) {
-      losses = '$' + this.fancyNumber(item.Losses.value)
-    }
-
-    let from = ''
-    if (item.Dates && item.Dates.from) {
-      from = '' + item.Dates.from.getFullYear()
-    }
-
-    let to = ''
-    if (item.Dates && item.Dates.to) {
-      to = '' + item.Dates.to.getFullYear()
-    } else if (item.Dates && item.Dates.present) {
-      to = i18n.t('financial.bankruptcy.collection.summary.present')
-    }
-
-    const dates = from === '' && to === ''
-      ? i18n.t('financial.bankruptcy.collection.summary.nodates')
-      : `${from} - ${to}`
-
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summary.debt')} {index + 1}:</div>
-        <div className="table-cell losses"><strong>{losses}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
+        <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summaryTitle')} {index + 1}:</div>
       </div>
     )
   }
@@ -142,7 +142,7 @@ export default class Bankruptcy extends ValidationElement {
         <Collection minimum="1"
           items={this.state.List}
           dispatch={this.myDispatch}
-          summaryTitle=""
+          summary={this.summary}
           appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
 
           <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
@@ -153,7 +153,7 @@ export default class Bankruptcy extends ValidationElement {
 
           <h3>{i18n.t('financial.bankruptcy.heading.courtNumber')}</h3>
           <Help id="financial.bankruptcy.courtNumber.help">
-            <Text name="courtNumber"
+            <Text name="CourtNumber"
               className="courtnumber"
               placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
               title={i18n.t('financial.bankruptcy.courtNumber.title')}
@@ -165,16 +165,18 @@ export default class Bankruptcy extends ValidationElement {
 
           <h3>{i18n.t('financial.bankruptcy.heading.dateFiled')}</h3>
           <Help id="financial.bankruptcy.dateFiled.help">
-            <DateControl name="dateFiled"
+            <DateControl name="DateFiled"
               className="datefiled"
+              onValidate={this.handleValidation}
               hideDay={true} />
             <HelpIcon className="datefiled" />
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.dateDischarged')}</h3>
           <Help id="financial.bankruptcy.dateDischarged.help">
-            <DateControl name="dateDischarged"
+            <DateControl name="DateDischarged"
               className="datedischarged"
+              onValidate={this.handleValidation}
               hideDay={true} />
             <HelpIcon className="datedischarged" />
           </Help>
@@ -182,7 +184,7 @@ export default class Bankruptcy extends ValidationElement {
           <h3>{i18n.t('financial.bankruptcy.heading.totalAmount')}</h3>
           <Help id="financial.bankruptcy.totalAmount.help">
             <i className="fa fa-dollar"></i>
-            <Number name="totalAmount"
+            <Number name="TotalAmount"
               className="amount"
               min="0"
               placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
@@ -192,22 +194,26 @@ export default class Bankruptcy extends ValidationElement {
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
-          <Name name="nameDebt"
+          <Name name="NameDebt"
+            onValidate={this.handleValidation}
             className="namedebt"
           />
 
           <h3>{i18n.t('financial.bankruptcy.heading.courtInvolved')}</h3>
           <Help id="financial.bankruptcy.courtInvolved.help">
-            <Text name="courtInvolved"
+            <Text name="CourtInvolved"
               title={i18n.t('financial.bankruptcy.courtInvolved.title')}
               placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
+              onValidate={this.handleValidation}
               className="courtinvolved"
             />
             <HelpIcon className="courtinvolved"/>
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
-          <Address name="courtAddress" />
+          <Address name="CourtAddress"
+            onValidate={this.handleValidation}
+          />
 
         </Collection>
       </div>
@@ -216,7 +222,7 @@ export default class Bankruptcy extends ValidationElement {
 
   render () {
     return (
-      <div className="bankruptcy eapp-field-wrap">
+      <div className="bankruptcy">
         <h2>{i18n.t('financial.bankruptcy.title')}</h2>
         <Comments name="Comments"
           title="Add Optional Comment">

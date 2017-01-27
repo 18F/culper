@@ -290,6 +290,7 @@ const en = {
     },
     bankruptcy: {
       collection: {
+        summaryTitle: 'Summary of Bankruptcy',
         append: 'Add bankruptcy'
       },
       heading: {
