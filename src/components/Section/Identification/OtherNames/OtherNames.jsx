@@ -127,6 +127,7 @@ export default class OtherNames extends ValidationElement {
       <Collection minimum="1"
                   items={this.state.List}
                   dispatch={this.myDispatch}
+                  appendClass="eapp-field-wrap"
                   appendLabel="Add another name">
 
         <h3>Provide other name used</h3>

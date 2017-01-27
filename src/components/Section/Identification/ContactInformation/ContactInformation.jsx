@@ -86,6 +86,7 @@ export default class ContactInformation extends ValidationElement {
           <Collection minimum="1"
                       items={this.state.Emails}
                       dispatch={this.emailDispatch.bind(this)}
+                      appendClass="eapp-field-wrap"
                       appendLabel="Add another email">
             <Email name="Email"
                    className="eapp-field-wrap"
