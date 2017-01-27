@@ -78,7 +78,7 @@ export default class Weight extends ValidationElement {
   render () {
     return (
       <div className="weight">
-        <div className="eapp-field-wrap pounds">
+        <div className="pounds">
           <Number id={this.partName('pounds')}
                   name="pounds"
                   label={i18n.t('identification.traits.label.pounds')}

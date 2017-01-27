@@ -2,6 +2,23 @@
 @import 'eqip-fonts';
 
 .eapp-core {
+
+	.eapp-form {
+		max-width:72.4rem;
+
+		/* moving lower DOM elements in to design safe area */
+		h2,
+		h3,
+		h4,
+		p {
+			padding:0 8rem 0 4rem;
+		}
+
+		.text-right {
+			padding-right:4rem;
+		}
+
+	}
 	label, input, textarea, select {
 		max-width: 64rem;
 		margin-top: 0;
@@ -10,6 +27,10 @@
 	/* bring in USWD validation classes and alter for our design */
 	input[type="text"], textarea, select {
 		padding-right: 3rem;
+		transition:border-color 0.4s, border-width 0.4s,background-position 0.4s;
+	}
+	input[type="checkbox"], input[type="radio"] {
+		margin-left:0;
 	}
 
     /* placeholder should be a light gray and italics */
@@ -49,6 +70,7 @@
         select {
 			background: url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
 			box-shadow: none;
+			border-width:2px;
 			/* width: calc(100% * 1); */
 		}
 	}
@@ -58,6 +80,8 @@
     input[type="email"],
     textarea,
     select {
+		background-position:100% center;
+
 		&:focus {
 			box-shadow: 3px 1px 16px 22px 12px black;
 		}
@@ -65,6 +89,7 @@
 		&.usa-input-success {
 			box-shadow: none;
 			background: url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
+			border-width:2px;
 			width: calc(100% * 1);
 		}
 	}
@@ -72,6 +97,19 @@
 	.eapp-field-wrap {
 		/* position: relative; */
 		margin-bottom: 4.9rem;
+		padding:0 4rem;
+		border:1px solid #090;
+
+		/* fix for nested field wrappers */
+		.eapp-field-wrap {
+			margin-bottom:0;
+			padding:0;
+			background-color:#fcfca4;
+
+			h2, h3, h4, h5, h6 {
+				padding:0; 
+			}
+		}
 
 		> div {}
 
@@ -232,38 +270,6 @@
 
 	button {
 		position: relative;
-		width: 24rem;
-		margin-top: 4rem;
-	}
-
-	/* previous / next in form buttons */
-	.eapp-prev, .eapp-next {
-		min-height: 5.5rem;
-		line-height: 5.5rem;
-		padding: 2rem 1rem;
-
-		.button-icon {
-			display: inline-block;
-			line-height: inherit;
-		}
-
-		> span {
-			line-height: 1.2;
-		}
-
-		.eapp-nav-label {}
-	}
-
-	.eapp-prev {
-		text-align: left;
-
-		.button-icon {}
-	}
-
-	.eapp-next {
-		text-align: right;
-		float: right;
-		margin-right: 4rem;
 	}
 
 	#titles {

@@ -38,6 +38,7 @@ import EyeColor from './EyeColor'
 import Sex from './Sex'
 import IntroHeader from './IntroHeader'
 import Branch from './Branch'
+import PetitionType from './PetitionType'
 
 export {
   ValidationElement,
@@ -75,5 +76,6 @@ export {
   EyeColor,
   Sex,
   IntroHeader,
-  Branch
+  Branch,
+  PetitionType
 }

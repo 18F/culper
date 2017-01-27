@@ -162,15 +162,17 @@ export default class OtherNames extends ValidationElement {
 
   render () {
     return (
-      <div className="other-names eapp-field-wrap">
+      <div className="other-names">
         <h2>Other names used</h2>
-        <Branch name="has_othernames" value={this.state.HasOtherNames} onUpdate={this.onUpdate.bind(this)}>
-          <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
-          <div>
-            Have you used any other names?
+        <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
+        <div className="eapp-field-wrap">
+            <Branch name="has_othernames" value={this.state.HasOtherNames} onUpdate={this.onUpdate.bind(this)}>
+              <div>
+                Have you used any other names?
+              </div>
+            </Branch>
+            {this.visibleComponents()}
           </div>
-        </Branch>
-        {this.visibleComponents()}
       </div>
     )
   }
