@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Textarea, Help, HelpIcon, RadioGroup, Radio,
-Text, Name, Address, PetitionType } from '../../../Form'
+         Text, Name, Address, PetitionType } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -140,81 +140,84 @@ export default class Bankruptcy extends ValidationElement {
     return (
       <div>
         <Collection minimum="1"
-          items={this.state.List}
-          dispatch={this.myDispatch}
-          summary={this.summary}
-          appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
+                    items={this.state.List}
+                    dispatch={this.myDispatch}
+                    summary={this.summary}
+                    appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
 
           <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
           <Help id="financial.bankruptcy.petitionType.help">
-            <PetitionType name="PetitionType" />
+            <PetitionType name="PetitionType"
+                          className="eapp-field-wrap" />
             <HelpIcon className="petition-type" />
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.courtNumber')}</h3>
           <Help id="financial.bankruptcy.courtNumber.help">
             <Text name="CourtNumber"
-              className="courtnumber"
-              placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
-              title={i18n.t('financial.bankruptcy.courtNumber.title')}
-              onValidate={this.handleValidation}
-              placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
-            />
+                  className="courtnumber eapp-field-wrap"
+                  placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+                  title={i18n.t('financial.bankruptcy.courtNumber.title')}
+                  onValidate={this.handleValidation}
+                  placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+                  />
             <HelpIcon className="courtnumber" />
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.dateFiled')}</h3>
           <Help id="financial.bankruptcy.dateFiled.help">
             <DateControl name="DateFiled"
-              className="datefiled"
-              onValidate={this.handleValidation}
-              hideDay={true} />
+                         className="datefiled eapp-field-wrap"
+                         onValidate={this.handleValidation}
+                         hideDay={true} />
             <HelpIcon className="datefiled" />
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.dateDischarged')}</h3>
           <Help id="financial.bankruptcy.dateDischarged.help">
             <DateControl name="DateDischarged"
-              className="datedischarged"
-              onValidate={this.handleValidation}
-              hideDay={true} />
+                         className="datedischarged eapp-field-wrap"
+                         onValidate={this.handleValidation}
+                         hideDay={true} />
             <HelpIcon className="datedischarged" />
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.totalAmount')}</h3>
           <Help id="financial.bankruptcy.totalAmount.help">
-            <i className="fa fa-dollar"></i>
-            <Number name="TotalAmount"
-              className="amount"
-              min="0"
-              placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
-              onValidate={this.handleValidation}
-            />
+            <div className="eapp-field-wrap">
+              <i className="fa fa-dollar"></i>
+              <Number name="TotalAmount"
+                      className="amount"
+                      min="0"
+                      placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
+                      onValidate={this.handleValidation}
+                      />
+            </div>
             <HelpIcon className="amount" />
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
           <Name name="NameDebt"
-            onValidate={this.handleValidation}
-            className="namedebt"
-          />
+                onValidate={this.handleValidation}
+                className="namedebt eapp-field-wrap"
+                />
 
           <h3>{i18n.t('financial.bankruptcy.heading.courtInvolved')}</h3>
           <Help id="financial.bankruptcy.courtInvolved.help">
             <Text name="CourtInvolved"
-              title={i18n.t('financial.bankruptcy.courtInvolved.title')}
-              placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
-              onValidate={this.handleValidation}
-              className="courtinvolved"
-            />
+                  title={i18n.t('financial.bankruptcy.courtInvolved.title')}
+                  placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
+                  onValidate={this.handleValidation}
+                  className="courtinvolved eapp-field-wrap"
+                  />
             <HelpIcon className="courtinvolved"/>
           </Help>
 
           <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
           <Address name="CourtAddress"
-            onValidate={this.handleValidation}
-          />
-
+                   className="eapp-field-wrap"
+                   onValidate={this.handleValidation}
+                   />
         </Collection>
       </div>
     )
@@ -223,14 +226,12 @@ export default class Bankruptcy extends ValidationElement {
   render () {
     return (
       <div className="bankruptcy">
-        <h2>{i18n.t('financial.bankruptcy.title')}</h2>
-        <Comments name="Comments"
-          title="Add Optional Comment">
+        <Comments name="Comments" title="Add Optional Comment">
           <Branch name="has_bankruptcydebt"
-            className="bankruptcy-branch"
-            value={this.state.HasBankruptcy}
-            help="financial.bankruptcy.help"
-            onUpdate={this.onUpdate.bind(this)}>
+                  className="bankruptcy-branch eapp-field-wrap"
+                  value={this.state.HasBankruptcy}
+                  help="financial.bankruptcy.help"
+                  onUpdate={this.onUpdate.bind(this)}>
             <div>{i18n.t('financial.bankruptcy.branch.question')}</div>
           </Branch>
           {this.visibleComponents()}

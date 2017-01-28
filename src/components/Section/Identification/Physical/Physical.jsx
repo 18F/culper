@@ -82,12 +82,12 @@ export default class Physical extends ValidationElement {
   }
 
   render () {
-    return (
-      <div className="physical">
-        <h2>Physical attributes</h2>
+    const klass = `physical ${this.props.className || ''}`.trim()
 
+    return (
+      <div>
         <h3>Height</h3>
-        <div className="eapp-field-wrap">
+        <div className={klass}>
             <Help id="identification.traits.help.height">
               <Height name="height"
                       label={i18n.t('identification.traits.label.height')}
@@ -100,7 +100,7 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>Weight</h3>
-        <div className="eapp-field-wrap">
+        <div className={klass}>
             <Help id="identification.traits.help.weight">
               <Weight name="weight"
                       label={i18n.t('identification.traits.label.weight')}
@@ -113,7 +113,7 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>Hair Color</h3>
-        <div className="eapp-field-wrap">
+        <div className={klass}>
             <Help id="identification.traits.help.hair">
               <HairColor name="hair"
                          label={i18n.t('identification.traits.label.hair')}
@@ -127,7 +127,7 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>Eye Color</h3>
-        <div className="eapp-field-wrap">
+        <div className={klass}>
             <Help id="identification.traits.help.eye">
               <EyeColor name="eye"
                         label={i18n.t('identification.traits.label.eye')}
@@ -144,21 +144,21 @@ export default class Physical extends ValidationElement {
                   value={this.state.Comments}
                   title={i18n.t('identification.traits.heading.comments')}
                   label={i18n.t('identification.traits.label.comments')}
+                  className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
                   >
             <h3>Sex</h3>
-            <div className="eapp-field-wrap">
-              <Help id="identification.traits.help.sex">
-                <Sex name="sex"
-                     label={i18n.t('identification.traits.label.sex')}
-                     value={this.props.Sex}
-                     onUpdate={this.handleUpdate.bind(this, 'Sex')}
-                     onValidate={this.handleValidation.bind(this)}
-                     />
-                <HelpIcon className="sex-help-icon" />
-              </Help>
-          </div>
+            <Help id="identification.traits.help.sex">
+              <Sex name="sex"
+                    label={i18n.t('identification.traits.label.sex')}
+                    value={this.props.Sex}
+                    className="eapp-field-wrap"
+                    onUpdate={this.handleUpdate.bind(this, 'Sex')}
+                    onValidate={this.handleValidation.bind(this)}
+                    />
+              <HelpIcon className="sex-help-icon" />
+            </Help>
         </Comments>
       </div>
     )

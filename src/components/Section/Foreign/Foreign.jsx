@@ -100,7 +100,7 @@ class Foreign extends ValidationElement {
   intro () {
     return (
       <div className="foreign intro">
-        <div className="usa-grid-full eapp-field-wrap">
+        <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
         <div id="titles" className="usa-grid-full">
@@ -140,46 +140,54 @@ class Foreign extends ValidationElement {
           <SectionView name="">
             {this.intro()}
           </SectionView>
+
           <SectionView name="review"
                        back="history"
                        backLabel={i18n.t('foreign.destination.history')}
                        next="tbd"
                        nextLabel={i18n.t('foreign.destination.tbd')}>
+            <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
                       onValidate={this.onValidate.bind(this)}
                       />
           </SectionView>
+
           <SectionView name="passport"
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}
                        next="foreign/review"
                        nextLabel={i18n.t('foreign.destination.review')}>
+            <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
                       onValidate={this.onValidate.bind(this)}
                       />
           </SectionView>
+
           <SectionView name="contacts"
                        back="foreign/passport"
                        backLabel={i18n.t('foreign.destination.passport')}
                        next="foreign/activities"
                        nextLabel={i18n.t('foreign.destination.activities')}>
           </SectionView>
+
           <SectionView name="activites"
                        back="foreign/contacts"
                        backLabel={i18n.t('foreign.destination.contacts')}
                        next="foreign/business"
                        nextLabel={i18n.t('foreign.destination.business')}>
           </SectionView>
+
           <SectionView name="business"
                        back="foreign/activities"
                        backLabel={i18n.t('foreign.destination.activities')}
                        next="foreign/travel"
                        nextLabel={i18n.t('foreign.destination.travel')}>
           </SectionView>
+
           <SectionView name="travel"
                        back="foreign/business"
                        backLabel={i18n.t('foreign.destination.business')}

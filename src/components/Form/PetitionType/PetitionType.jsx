@@ -83,67 +83,74 @@ export default class PetitionType extends ValidationElement {
     return (
       <RadioGroup className="option-list" selectedValue={this.state.value}>
         <Radio name="petition_type"
-          label="Chapter 7"
-          value="Chapter7"
-          disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this, 'value')}
-          onValidate={this.props.onValidate}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
-        />
+               label="Chapter 7"
+               value="Chapter7"
+               disabled={this.props.disabled}
+               onChange={this.handleFieldChange.bind(this, 'value')}
+               onValidate={this.props.onValidate}
+               onBlur={this.props.onBlur}
+               onFocus={this.props.onFocus}
+               />
         <Radio name="petition_type"
-          label="Chapter 11"
-          value="Chapter11"
-          disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this, 'value')}
-          onValidate={this.props.onValidate}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
-        />
+               label="Chapter 11"
+               value="Chapter11"
+               disabled={this.props.disabled}
+               onChange={this.handleFieldChange.bind(this, 'value')}
+               onValidate={this.props.onValidate}
+               onBlur={this.props.onBlur}
+               onFocus={this.props.onFocus}
+               />
         <Radio name="petition_type"
-          label="Chapter 13"
-          value="Chapter13"
-          disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this, 'value')}
-          onValidate={this.props.onValidate}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
-        />
+               label="Chapter 13"
+               value="Chapter13"
+               disabled={this.props.disabled}
+               onChange={this.handleFieldChange.bind(this, 'value')}
+               onValidate={this.props.onValidate}
+               onBlur={this.props.onBlur}
+               onFocus={this.props.onFocus}
+               />
       </RadioGroup>
     )
   }
   render () {
+    const klass = `petition-type ${this.props.className || ''}`.trim()
     let options = this.options()
+
     if (this.state.value === 'Chapter13') {
       return (
-        <div className="petition-type">
-          {options}
+        <div>
+          <div className={klass}>
+            {options}
+          </div>
+
           <h4>Provide the trustee</h4>
-          <Help id="financial.bankruptcy.trustee.help">
-            <Text
-              className="trustee"
-              name="chapter13Trustee"
-              value={this.state.trustee}
-              placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
-              onChange={this.handleFieldChange.bind(this, 'trustee')}
-            />
-            <HelpIcon className="trustee"/>
-          </Help>
+          <div className={klass}>
+            <Help id="financial.bankruptcy.trustee.help">
+              <Text name="chapter13Trustee"
+                    className="trustee"
+                    value={this.state.trustee}
+                    placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
+                    onChange={this.handleFieldChange.bind(this, 'trustee')}
+                    />
+              <HelpIcon className="trustee"/>
+            </Help>
+          </div>
 
           <h4>Provide the address of the trustee for this bankruptcy</h4>
-          <Address
-            {...this.props.address}
-            name="trusteeAddress"
-            onUpdate={this.handleAddressChange.bind(this)}
-          />
+          <div className={klass}>
+            <Address name="trusteeAddress"
+                     {...this.props.address}
+                     onUpdate={this.handleAddressChange.bind(this)}
+                     />
+          </div>
         </div>
       )
     }
 
     return (
-        <div className="petition-type">
-          {options}
-        </div>
+      <div className={klass}>
+        {options}
+      </div>
     )
   }
 }

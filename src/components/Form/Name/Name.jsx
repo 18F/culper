@@ -171,8 +171,10 @@ export default class Name extends ValidationElement {
   }
 
   render () {
+    const klass = `name ${this.props.className || ''}`.trim()
+
     return (
-      <div className="eapp-field-wrap name">
+      <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
         <Help id="identification.name.first.help">
           <Text name="first"

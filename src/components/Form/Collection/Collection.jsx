@@ -121,10 +121,10 @@ export default class Collection extends ValidationElement {
 
         x[child] = {}
         for (let key in item[child]) {
-          //let what = Object.prototype.toString.call(item[child][key])
-          //if (!['[object String]', '[object Date]', '[object Boolean]'].includes(what)) {
-            //continue
-          //}
+          // let what = Object.prototype.toString.call(item[child][key])
+          // if (!['[object String]', '[object Date]', '[object Boolean]'].includes(what)) {
+            // continue
+          // }
 
           x[child] = {
             ...x[child],
@@ -322,10 +322,13 @@ export default class Collection extends ValidationElement {
   }
 
   render () {
+    const klass = `collection ${this.props.className || ''}`.trim()
+    const klassAppend = `text-center ${this.props.appendClass || ''}`.trim()
+
     return (
-      <div className={`collection ${this.props.className}`}>
+      <div className={klass}>
         {this.getContent()}
-        <div className="text-center">
+        <div className={klassAppend}>
           <button className="add usa-button-outline" onClick={this.append}>
             <span>{this.props.appendLabel}</span>
             <i className="fa fa-plus-circle"></i>
