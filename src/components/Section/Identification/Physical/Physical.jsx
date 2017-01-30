@@ -149,16 +149,17 @@ export default class Physical extends ValidationElement {
                   onValidate={this.handleValidation}
                   >
             <h3>Sex</h3>
+          <div className={klass}>
             <Help id="identification.traits.help.sex">
               <Sex name="sex"
                     label={i18n.t('identification.traits.label.sex')}
                     value={this.props.Sex}
-                    className="eapp-field-wrap"
                     onUpdate={this.handleUpdate.bind(this, 'Sex')}
                     onValidate={this.handleValidation.bind(this)}
                     />
               <HelpIcon className="sex-help-icon" />
             </Help>
+            </div>
         </Comments>
       </div>
     )

@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../../config'
 import { ValidationElement, Help, Text, Checkbox, Email, Collection, Comments } from '../../../Form'
 import { api } from '../../../../services/api'
 
@@ -76,34 +77,54 @@ export default class ContactInformation extends ValidationElement {
     return true
   }
 
+  /**
+   * Assists in rendering the summary section.
+   */
+  summary (item, index) {
+    let addr = i18n.t('identification.contacts.collection.summary.unknown')
+    if (item.Email && item.Email.value) {
+      addr = item.Email.value
+    }
+
+    return (
+      <div className="table">
+        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</div>
+        <div className="table-cell"><strong>{addr}</strong></div>
+      </div>
+    )
+  }
+
   render () {
     const klass = `${this.props.className || ''}`.trim()
 
     return (
       <div className="contact">
-        <h3>Your e-mail addresses</h3>
+        <h3>{i18n.t('identification.contacts.heading.email')}</h3>
         <div className={klass}>
           <Collection minimum="1"
                       items={this.state.Emails}
                       dispatch={this.emailDispatch.bind(this)}
+                      summary={this.summary}
+                      summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
                       appendClass="eapp-field-wrap"
-                      appendLabel="Add another email">
+                      appendLabel={i18n.t('identification.contacts.collection.append')}>
             <Email name="Email"
                    className="eapp-field-wrap"
+                   label={i18n.t('identification.contacts.label.email')}
                    onValidate={this.handleValidation}
-                   placeholder="Enter an email address"
+                   placeholder={i18n.t('identification.contacts.placeholder.email')}
                    />
           </Collection>
         </div>
 
         <Comments name="comments"
                   value={this.state.Comments}
-                  label="If you need to provide any additional comments about this information enter them below"
+                  label={i18n.t('identification.contacts.label.comments')}
                   className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
                   >
-          <h3>Add optional comment</h3>
+          <h3>{i18n.t('identification.contacts.heading.comments')}</h3>
         </Comments>
 
       </div>

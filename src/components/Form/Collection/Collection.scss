@@ -28,6 +28,21 @@
         .brief {
             display: table-cell;
             color: $eapp-blue-light;
+
+            .table {
+                display: table;
+                width: 100%
+            }
+
+            .table-cell {
+                display: table-cell;
+            }
+
+            .index {}
+
+            .dates {
+                width: 10rem;
+            }
         }
 
         .expander {

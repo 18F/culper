@@ -106,31 +106,15 @@ class Financial extends ValidationElement {
         <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
-        <div id="titles" className="usa-grid-full">
-          <div className="usa-width-one-half">
-            <h3>{i18n.t('financial.tour.title')}</h3>
-          </div>
-          <div className="usa-width-one-half">
-            <h3>{i18n.t('financial.review.title')}</h3>
-          </div>
+        <div className="review-column">
+          <h3>{i18n.t('financial.tour.title')}</h3>
+          <p>{i18n.t('financial.tour.para')}</p>
+          <button onClick={this.handleTour}>{i18n.t('financial.tour.button')}</button>
         </div>
-
-        <div id="dialogs" className="usa-grid-full">
-          <div className="usa-width-one-half">
-            <p>{i18n.t('financial.tour.para')}</p>
-          </div>
-          <div className="usa-width-one-half">
-            <p>{i18n.t('financial.review.para')}</p>
-          </div>
-        </div>
-
-        <div id="actions" className="usa-grid-full review-btns">
-          <div className="usa-width-one-half">
-            <button onClick={this.handleTour}>{i18n.t('financial.tour.button')}</button>
-          </div>
-          <div className="usa-width-one-half">
-            <button onClick={this.handleReview}>{i18n.t('financial.review.button')}</button>
-          </div>
+        <div className="review-column">
+          <h3>{i18n.t('financial.review.title')}</h3>
+          <p>{i18n.t('financial.review.para')}</p>
+          <button onClick={this.handleReview}>{i18n.t('financial.review.button')}</button>
         </div>
       </div>
     )

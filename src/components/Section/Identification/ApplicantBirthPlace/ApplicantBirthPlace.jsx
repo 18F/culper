@@ -189,8 +189,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
       <Branch name="is_domestic"
               value={this.state.domestic}
               help="identification.birthplace.help"
+              label={i18n.t('identification.birthplace.question.label')}
               onUpdate={this.onUpdate.bind(this)}>
-        <div>{i18n.t('identification.birthplace.question.label')}</div>
       </Branch>
     )
   }
