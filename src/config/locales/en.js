@@ -168,6 +168,28 @@ const en = {
         country: 'Please enter your country of birth'
       }
     },
+    contacts: {
+      title: 'Your contact information',
+      collection: {
+        summary: {
+          title: 'Summary of e-mail addresses',
+          email: 'E-mail',
+          unknown: 'Unknown'
+        },
+        append: 'Add another e-mail'
+      },
+      heading: {
+        email: 'Your e-mail addresses',
+        comments: 'Add optional comments'
+      },
+      label: {
+        email: 'Email address',
+        comments: 'If you need to provide any additional comments about this information enter them below'
+      },
+      placeholder: {
+        email: 'Enter an email address'
+      }
+    },
     ssn: {
       title: 'U.S. Social Security Number',
       help: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
