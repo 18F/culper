@@ -122,9 +122,31 @@ export default class Bankruptcy extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
+    let petition = i18n.t('financial.bankruptcy.collection.summary.unknown')
+    if (item.PetitionType) {
+      switch (item.PetitionType.value) {
+        case 'Chapter7':
+          petition = `${i18n.t('financial.bankruptcy.collection.summary.chapter')} 7`
+          break
+        case 'Chapter11':
+          petition = `${i18n.t('financial.bankruptcy.collection.summary.chapter')} 11`
+          break
+        case 'Chapter13':
+          petition = `${i18n.t('financial.bankruptcy.collection.summary.chapter')} 13`
+          break
+      }
+    }
+
+    let from = i18n.t('financial.bankruptcy.collection.summary.unknown')
+    if (item.DateFiled && item.DateFiled.month && item.DateFiled.year) {
+      from = '' + item.DateFiled.month + '/' + item.DateFiled.year
+    }
+
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summaryTitle')} {index + 1}:</div>
+        <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</div>
+        <div className="table-cell">{petition}</div>
+        <div className="table-cell dates">{from}</div>
       </div>
     )
   }
@@ -143,6 +165,7 @@ export default class Bankruptcy extends ValidationElement {
                     items={this.state.List}
                     dispatch={this.myDispatch}
                     summary={this.summary}
+                    summaryTitle={i18n.t('financial.bankruptcy.collection.summary.title')}
                     appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
 
           <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>

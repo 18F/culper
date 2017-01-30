@@ -348,7 +348,12 @@ const en = {
     },
     bankruptcy: {
       collection: {
-        summaryTitle: 'Summary of Bankruptcy',
+        summary: {
+          title: 'Summary of Bankruptcy',
+          item: 'Bankruptcy',
+          unknown: 'Unknown',
+          chapter: 'Chapter'
+        },
         append: 'Add bankruptcy'
       },
       heading: {
