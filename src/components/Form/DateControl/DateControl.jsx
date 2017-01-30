@@ -247,7 +247,7 @@ export default class DateControl extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = this.props.className || ''
+    let klass = ''
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -276,11 +276,12 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    let dayCss = this.props.hideDay === true ? 'day-hidden' : ''
+    let klass = `datecontrol ${this.props.className || ''}`.trim()
+
     return (
-      <div className={`datecontrol ${dayCss}`}>
+      <div className={klass}>
         <div className={this.divClass()}>
-          <div className="usa-form-group usa-form-group-month">
+          <div className="usa-form-group month">
             <Number id="month"
                     name="month"
                     label="Month"
@@ -301,7 +302,7 @@ export default class DateControl extends ValidationElement {
                     onValidate={this.handleValidation}
                     />
           </div>
-          <div className="usa-form-group usa-form-group-day">
+          <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
             <Number id="day"
                     name="day"
                     label="Day"
@@ -322,7 +323,7 @@ export default class DateControl extends ValidationElement {
                     onValidate={this.handleValidation}
                     />
           </div>
-          <div className="usa-form-group usa-form-group-year">
+          <div className="usa-form-group year">
             <Number id="year"
                     name="year"
                     label="Year"
