@@ -31,7 +31,7 @@ describe('The checkbox component', () => {
     const component = mount(<Checkbox name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(false)
     expect(component.find('div.hidden').length).toEqual(1)
   })
 

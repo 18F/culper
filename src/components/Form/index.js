@@ -1,6 +1,7 @@
 // Validation
 import ValidationElement from './ValidationElement'
-import Help from './Help'
+import { Help, HelpIcon } from './Help'
+import Collection from './Collection'
 
 // Basic form elements
 import Generic from './Generic'
@@ -29,10 +30,21 @@ import Name from './Name'
 import DateRange from './DateRange'
 import RadioGroup from './RadioGroup'
 import CheckboxGroup from './CheckboxGroup'
+import Comments from './Comments'
+import Height from './Height'
+import Weight from './Weight'
+import HairColor from './HairColor'
+import EyeColor from './EyeColor'
+import Sex from './Sex'
+import IntroHeader from './IntroHeader'
+import Branch from './Branch'
+import PetitionType from './PetitionType'
 
 export {
   ValidationElement,
   Help,
+  HelpIcon,
+  Collection,
   Generic,
   Text,
   Email,
@@ -56,5 +68,14 @@ export {
   Name,
   DateRange,
   RadioGroup,
-  CheckboxGroup
+  CheckboxGroup,
+  Comments,
+  Height,
+  Weight,
+  HairColor,
+  EyeColor,
+  Sex,
+  IntroHeader,
+  Branch,
+  PetitionType
 }

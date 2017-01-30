@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { navigation } from '../../config'
 
 /**
  * Provides the section title.
@@ -15,10 +16,17 @@ import { connect } from 'react-redux'
  */
 class SectionTitle extends React.Component {
   render () {
+    let title = ''
+    navigation.forEach(s => {
+      if (s.url === this.props.section.section) {
+        title = s.title
+      }
+    })
+
     return (
       <div className="title">
         <span className="title-text">
-          {this.props.title}
+          {title}
         </span>
       </div>
     )
@@ -34,7 +42,7 @@ class SectionTitle extends React.Component {
 function mapStateToProps (state) {
   const section = state.section || {}
   return {
-    title: section.title
+    section: section
   }
 }
 

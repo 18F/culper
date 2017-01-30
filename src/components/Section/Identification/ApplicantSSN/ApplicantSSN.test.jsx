@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import ApplicantSSN from './ApplicantSSN'
 
 describe('The ApplicantSSN component', () => {
-  const validElements = 4
+  const validElements = 5
 
   it('no error on empty', () => {
     const expected = {
@@ -13,7 +13,7 @@ describe('The ApplicantSSN component', () => {
       value: ''
     }
     const component = mount(<ApplicantSSN name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name + '-last').simulate('change')
+    component.find('input#last').simulate('change')
     expect(component.find('div.hidden').length).toEqual(validElements)
   })
 
@@ -43,8 +43,8 @@ describe('The ApplicantSSN component', () => {
 
     expected.forEach((ex) => {
       const component = mount(<ApplicantSSN name={ex.name} value={ex.value} />)
-      component.find('input[name="' + ex.name + '-first"]').simulate('blur')
-      expect(component.find('div.hidden').length).toEqual(ex.valid ? validElements : validElements)
+      component.find('input[name="first"]').simulate('blur')
+      expect(component.find('div.hidden').length).toBeGreaterThan(ex.valid ? 4 : 0)
     })
   })
 

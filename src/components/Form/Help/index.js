@@ -1,2 +1,3 @@
 import Help from './Help'
-export default Help
+import HelpIcon from './HelpIcon'
+export { Help, HelpIcon }

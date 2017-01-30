@@ -32,7 +32,10 @@ export default class MaidenName extends ValidationElement {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
+        this.props.onUpdate({
+          ...this.props,
+          value: this.state.value
+        })
       }
     })
   }
@@ -65,10 +68,11 @@ export default class MaidenName extends ValidationElement {
   }
 
   render () {
+    const klass = `maiden-name ${this.props.className || ''}`.trim()
+
     return (
-      <div className="maiden-name eapp-field-wrap">
-        <label>Maiden Name</label>
-        <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>
+      <div className={klass}>
+        <RadioGroup className="option-list" selectedValue={this.state.value}>
           <Radio name="maiden-name"
                  label=""
                  value="Yes"

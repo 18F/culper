@@ -3,107 +3,150 @@
 
 /* handle inner-application navigation */
 .eapp-navigation {
-	background:$eapp-grey-light;
-	padding:2.5rem 0;
+	background: $eapp-grey-light;
+	padding: 2.5rem 0;
+
 	> * {
 		margin:0 10%;
 	}
 }
+
 .form-navigation {
-	margin-top:1.9rem;
-	margin-bottom:1.9rem;
-	
+	margin-top: 1.9rem;
+	margin-bottom: 1.9rem;
+
     a {
-	    color:$eapp-grey-dark;
+	    color: $eapp-grey-dark;
+	    transition:border-left-color 0.3s, color 0.3s, background-color 0.3s;
+
 		&:hover {
-			background:$eapp-grey;
+			background: $eapp-grey;
 		}
-        .fa-check-circle, fa-exclamation-circle {
-	        display:block;
-	        float:right;
-	        width:1.7rem;
-	        width:1.7rem;
-	        color:inherit;
+
+        .fa-check-circle, .fa-exclamation-circle {
+	        display: none;
+        }
+		.eapp-status-icon-valid, .eapp-status-icon-error {
+			position:absolute;
+			top:0;
+			right:0;
+			display:block;
+			height:100%;
+			width:1.7rem;
+			background:center center no-repeat;
+			background-size:contain;
+			opacity:0;
+			transition:opacity 0.5s;
+		}
+		.eapp-status-icon-valid {
+			background-image:url('../img/checkmark.svg');
+		}
+		.eapp-status-icon-error {
+			background-image:url('../img/exclamation-point-white-bg.svg');
+		}
+    }
+
+    .active {
+        color: $eapp-blue;
+        font-weight: $eapp-bold;
+
+        > .name {
+	        color: $eapp-blue;
+        }
+        .number {
+	        color: inherit;
+        }
+    }
+
+    .has-errors {
+        color: $eapp-red;
+        > i {
+	        opacity:1;
+        }
+        .number {
+	        color: inherit;
+        }
+		.eapp-status-icon-error {
+			opacity:1;
+		}
+    }
+
+    .is-valid {
+        .number, i {
+            color: $eapp-green !important;
+        }
+		.eapp-status-icon-valid {
+			opacity:1;
+		}
+    }
+
+    .name {
+	    color: $eapp-grey-dark;
+    }
+
+    .number {
+		position: absolute;
+		left: 0.4rem;
+        display: block;
+        width: 2.5rem;
+		font-weight: $eapp-bold;
+		text-align: right;
+		color: #adafb5;
+    }
+
+    .section {
+        font-size: 1.9rem;
+
+		> span > a {
+            position: relative;
+            border-bottom: 1px solid $eapp-grey-dark;
+            border-left: 4px solid transparent;
+            padding-left: 3.7rem;
+		}
+
+        a {
+			position: relative;
+            display: block;
+			min-height: 5.1rem;
+			padding: 1.7rem 2rem 1.7rem 0;
+            line-height: 1.2;
+            text-decoration: none;
+
+            i {
+	            position: absolute;
+	            right: 0;
+            }
         }
 
-    }
-    .active {
-        color:$eapp-blue;
-        font-weight:$eapp-bold;
-        > .name, .number {
-	        color:inherit;
-        }
-    }
-    .has-errors {
-        color:$eapp-red;
-        .number {
-	        color:inherit;
-        }
-    }
-    .is-valid {
-        color:$eapp-green;
-        .number {
-	        color:inherit;
-        }
-    }
-    .name {
-	    color:$eapp-grey-dark;
-    }
-    .number {
-		position:absolute;
-		left:0.4rem;
-        display:block;
-        width:2.5rem;
-		font-weight:$eapp-bold;
-		text-align:right;
-		color:#adafb5;
-    }
-    .section {
-        font-size:1.9rem;
-		> span > a {
-            position:relative;
-            border-bottom:1px solid $eapp-grey-dark;
-            border-left:4px solid transparent;
-            padding-left:3.7rem;
-		}
-        a {
-			position:relative;
-            display:block;
-			min-height:5.1rem;
-			padding:1.7rem 2rem 1.7rem 0;
-            line-height:1.2;
-            text-decoration: none;
-            i {
-	            position:absolute;
-	            right:0;
-            }
-        }
         .title {
             .active {
-	            border-left-color:$eapp-blue;
+	            border-left-color: $eapp-blue;
             }
+
             .has-errors {
-	            border-left-color:$eapp-red;
+	            border-left-color: $eapp-red;
             }
-            .is-valid {
-	            border-left-color:$eapp-green;
-            }
+            // .is-valid {
+	        //     border-left-color: $eapp-green;
+            // }
         }
+
         .subsection {
             font-size: 1.6rem;
 			a {
-				border:none;
+				border: none;
 				padding: 1.2rem 1rem 1.2rem 1rem;
-				margin-left:4rem;
-				line-height:1.3;
-				border-left:4px solid transparent;
+				margin-left: 4rem;
+				line-height: 1.3;
+				border-left: 4px solid transparent;
 	            &.has-errors {
-		            border-left-color:$eapp-red;
+		            border-left-color: $eapp-red;
 	            }
 			}
         }
+
         .subsection:last-child {
-            border-bottom:1px solid $eapp-grey-dark;
+            border-bottom: 1px solid $eapp-grey-dark;
 		}
     }
 }

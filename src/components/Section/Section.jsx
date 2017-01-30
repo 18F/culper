@@ -2,25 +2,9 @@ import React from 'react'
 import { updateSection } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
-import OtherNamesUsed from './OtherNamesUsed'
-import Identifying from './Identifying'
+import Financial from './Financial'
+import Foreign from './Foreign'
 import { SectionView, SectionViews } from './SectionView'
-
-// Mapping section identifiers to the associated components.
-const sectionMap = {
-  'identification': {
-    'title': 'Identification',
-    'render': (subsection) => { return (<Identification subsection={subsection} />) }
-  },
-  'othernames': {
-    'title': 'Other Names Used',
-    'render': (subsection) => { return (<OtherNamesUsed subsection={subsection} />) }
-  },
-  'identifying': {
-    'title': 'Your Identifying Information',
-    'render': (subsection) => { return (<Identifying subsection={subsection} />) }
-  }
-}
 
 class Section extends React.Component {
 
@@ -31,27 +15,13 @@ class Section extends React.Component {
   componentWillReceiveProps (updatedProps) {
     let name = updatedProps.section
     let sub = updatedProps.subsection
-    let sec = this.section(name)
-    this.props.dispatch(updateSection(name, sub, sec.title))
+    this.props.dispatch(updateSection(name, sub))
   }
 
   componentDidMount () {
     let name = this.props.section
     let sub = this.props.subsection
-    let sec = this.section(name)
-    this.props.dispatch(updateSection(name, sub, sec.title))
-  }
-
-  section (section) {
-    return sectionMap[section] || sectionMap['identification']
-  }
-
-  /**
-   * Provides the appropriate section to render. Defaults to `identification`.
-   */
-  getSection () {
-    var sec = this.section(this.props.section)
-    return sec.render(this.props.subsection)
+    this.props.dispatch(updateSection(name, sub))
   }
 
   render () {
@@ -60,11 +30,11 @@ class Section extends React.Component {
         <SectionView name="identification">
           <Identification subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="othernames">
-          <OtherNamesUsed subsection={this.props.subsection} />
+        <SectionView name="financial">
+          <Financial subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="identifying">
-          <Identifying subsection={this.props.subsection} />
+        <SectionView name="foreign">
+          <Foreign subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
     )

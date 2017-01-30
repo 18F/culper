@@ -1,5 +1,6 @@
 import React from 'react'
-import { ValidationElement, DateControl, Help } from '../../../Form'
+import { i18n } from '../../../../config'
+import { ValidationElement, DateControl, Help, HelpIcon } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
@@ -60,7 +61,7 @@ export default class ApplicantBirthDate extends ValidationElement {
 
       if (age < 17 || age > 129) {
         status = false
-        help = 'Applicants must be older than 16 and less than 130 years of age'
+        help = i18n.t('identification.birthplace.error.age')
         error = 'age'
       }
     }
@@ -164,9 +165,10 @@ export default class ApplicantBirthDate extends ValidationElement {
   }
 
   render () {
+    const klass = `birthdate ${this.props.className || ''}`.trim()
+
     return (
-      <div className="birthdate">
-        <h2>Date of birth</h2>
+      <div className={klass}>
         <Help id="identification.birthdate.help">
           <DateControl name={this.state.name}
                        value={this.state.value}
@@ -174,6 +176,7 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onChange={this.handleChange}
                        onValidate={this.handleValidation}
                        />
+          <HelpIcon />
         </Help>
         <div className={this.errorClass()}>
           <i className="fa fa-exclamation"></i>

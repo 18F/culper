@@ -19,9 +19,20 @@
         display: inline-block;
     }
 
+    .arrow {
+        height: 0;
+
+        img {
+            width: 1rem;
+            height: auto;
+            margin-top: -6.8rem;
+            margin-left: 3rem;
+        }
+    }
+
     .from-present {
         display: inline-block;
-        margin-top: 3rem;
+        margin-top: 4.6rem;
         vertical-align: top;
 
         .or {

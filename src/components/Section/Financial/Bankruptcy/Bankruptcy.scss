@@ -1,0 +1,45 @@
+.bankruptcy {
+    .bankruptcy-branch {
+        .help {
+            .branch-help-icon, .option-list {
+                display: table-cell;
+            }
+        }
+    }
+    .petition-type,
+    .courtnumber,
+    .datecontrol,
+    .datedischarged,
+    .datefiled,
+    .amount,
+    .fa-dollar,
+    .namedebt,
+    .trustee,
+    .courtinvolved {
+        display: table-cell;
+    }
+
+    .amount {
+        padding-left: 1rem;
+    }
+
+    a.petition-type {
+        padding-top: 0.6rem;
+    }
+    a.courtnumber, a.amount, a.courtinvolved, a.trustee {
+        padding-top: 2.6rem;
+    }
+    a.datefiled, a.datedischarged {
+        padding-top: 4.6rem;
+    }
+
+    .collection {
+        .summary {
+            .brief {
+                .index {
+                    width: 10.5rem;
+                }
+            }
+        }
+    }
+}

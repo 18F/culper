@@ -1,9 +1,7 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import Dropdown from '../Dropdown'
 import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
-import Number from '../Number'
 
 export default class DateRange extends ValidationElement {
 
@@ -19,6 +17,7 @@ export default class DateRange extends ValidationElement {
       to_month: '',
       to_year: '',
       present: this.props.present,
+      presentClicked: false,
       title: this.props.title || 'Date Range'
     }
   }
@@ -30,20 +29,38 @@ export default class DateRange extends ValidationElement {
     if (field === 'present') {
       state = {
         ...this.state,
-        present: event.target.checked
+        present: event.target.checked,
+        presentClicked: true
       }
     } else {
       state = {
         ...this.state,
+        presentClicked: false,
         [field + '_' + event.target.name]: event.target.value
       }
     }
 
     // Get relevant date values
-    const { from_year, from_month, from_day, to_year, to_month, to_day } = state
+    let { from_year, from_month, from_day, to_year, to_month, to_day } = state
+
+    // If present is true then make the "to" date equal to today
+    if (!this.state.present && state.present) {
+      let now = new Date()
+      state.to = now
+      state.to_year = now.getFullYear()
+      state.to_month = now.getMonth() + 1
+      state.to_day = now.getDate()
+    } else if (this.state.present && !state.present) {
+      state.to = null
+      state.to_year = null
+      state.to_month = null
+      state.to_day = null
+    }
+
     if (from_year && from_month && from_day && to_year && to_month && to_day) {
       state.from = new Date(from_year, from_month, from_day)
       state.to = new Date(to_year, to_month, to_day)
+
       if (state.from > state.to) {
         state.error = 'From date must come before the to date'
       } else {
@@ -55,6 +72,7 @@ export default class DateRange extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
+          ...this.props,
           from: this.state.from,
           to: this.state.to,
           present: this.state.present,
@@ -80,9 +98,10 @@ export default class DateRange extends ValidationElement {
   }
 
   render () {
+    const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
+
     return (
-      <div className="daterange usa-grid">
-        <h2>{this.state.title}</h2>
+      <div className={klass}>
         <div className="usa-grid">
           <div className="from-label">
             From date
@@ -94,7 +113,8 @@ export default class DateRange extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </div>
-        <div className="usa-grid">
+        <div className="arrow">
+          <img src="../img/date-down-arrow.svg" />
         </div>
         <div className="usa-grid">
           <div className="from-label">
@@ -103,7 +123,9 @@ export default class DateRange extends ValidationElement {
           <DateControl name="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
-                                 onChange={this.handleChange.bind(this, 'to')}
+                       receiveProps={this.state.presentClicked}
+                       disabled={this.state.present}
+                       onChange={this.handleChange.bind(this, 'to')}
                        onValidate={this.handleValidation}
                        />
           <div className="from-present">

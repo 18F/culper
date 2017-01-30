@@ -66,7 +66,8 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = 'eapp-blocks-checkbox'
+    let klass = this.props.className || ''
+    klass += ' eapp-blocks-checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -117,10 +118,6 @@ export default class Checkbox extends ValidationElement {
   inputClass () {
     let klass = ''
 
-    if (this.state.focus) {
-      klass += ' usa-input-focus'
-    }
-
     if (this.state.valid) {
       klass += ' usa-input-success'
     }
@@ -133,22 +130,21 @@ export default class Checkbox extends ValidationElement {
       return (
         <div className={this.divClass()}>
           <input className={this.inputClass()}
-                id={this.state.name}
-                name={this.state.name}
-                type="checkbox"
-                aria-describedby={this.errorName()}
-                disabled={this.state.disabled}
-                readOnly={this.state.readonly}
-                required={this.state.required}
-                value={this.state.value}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                checked={this.state.checked}
-                />
+                 id={this.state.name}
+                 name={this.state.name}
+                 type="checkbox"
+                 aria-describedby={this.errorName()}
+                 disabled={this.state.disabled}
+                 readOnly={this.state.readonly}
+                 required={this.state.required}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 checked={this.state.checked}
+                 />
           <label className={this.labelClass()}
-                htmlFor={this.state.name}>
-                {this.state.checked}
+                 htmlFor={this.state.name}>
             {this.props.children}
             <span>{this.state.label}</span>
           </label>
@@ -164,7 +160,6 @@ export default class Checkbox extends ValidationElement {
       <div className={this.divClass()}>
         <label className={this.labelClass()}
                htmlFor={this.state.name}>
-               {this.state.checked}
           <input className={this.inputClass()}
                  id={this.state.name}
                  name={this.state.name}

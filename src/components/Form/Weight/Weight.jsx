@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 
@@ -77,27 +78,26 @@ export default class Weight extends ValidationElement {
   render () {
     return (
       <div className="weight">
-        <h2>Weight</h2>
-        <div className="eapp-field-wrap pounds">
+        <div className="pounds">
           <Number id={this.partName('pounds')}
-            name="pounds"
-            label="Pounds"
-            placeholder="0"
-            aria-describedby={this.errorName('weight')}
-            help="Weight must be a number between 10 and 999"
-            disabled={this.state.disabled}
-            max="999"
-            maxlength="3"
-            min="10"
-            readonly={this.state.readonly}
-            required={this.state.required}
-            step="1"
-            value={this.state.value}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            onValidate={this.handleValidation}
-          />
+                  name="pounds"
+                  label={i18n.t('identification.traits.label.pounds')}
+                  placeholder={i18n.t('identification.traits.placeholder.pounds')}
+                  aria-describedby={this.errorName('weight')}
+                  help={i18n.t('identification.traits.help.pounds')}
+                  disabled={this.state.disabled}
+                  max="999"
+                  maxlength="3"
+                  min="10"
+                  readonly={this.state.readonly}
+                  required={this.state.required}
+                  step="1"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                  onValidate={this.handleValidation}
+                  />
         </div>
       </div>
     )

@@ -6,22 +6,11 @@ export default class Generic extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      type: props.type,
-      disabled: props.disabled,
-      minlength: props.minlength || 0,
-      maxlength: props.maxlength || 256,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
-      errorCode: null,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCode: null
     }
   }
 
@@ -65,7 +54,6 @@ export default class Generic extends ValidationElement {
    */
   handleValidation (event, status) {
     let errorCode = null
-    let name = this.props.name || ''
 
     event.persist()
     if (!event || !event.target) {
@@ -78,16 +66,16 @@ export default class Generic extends ValidationElement {
 
     if (this.state.value) {
       if (this.state.value && this.state.value.length > 0) {
-        status = status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength))
+        status = status && (this.state.value.length >= parseInt(this.props.minlength || 0) && this.state.value.length <= parseInt(this.props.maxlength || 256))
         if (!status) {
           errorCode = 'length'
         }
         hits++
       }
 
-      if (this.state.pattern && this.state.pattern.length > 0) {
+      if (this.props.pattern && this.props.pattern.length > 0) {
         try {
-          let re = new RegExp(this.state.pattern)
+          let re = new RegExp(this.props.pattern)
           status = status && re.test(this.state.value)
           if (!status) {
             errorCode = 'pattern'
@@ -106,7 +94,7 @@ export default class Generic extends ValidationElement {
 
     // Set the internal state
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.state.name || 'input'
+      let prop = this.props.name || 'input'
       let e = { [prop]: errorCode }
       super.handleValidation(event, status, super.flattenObject(e))
     })
@@ -124,7 +112,7 @@ export default class Generic extends ValidationElement {
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
@@ -159,7 +147,7 @@ export default class Generic extends ValidationElement {
   errorClass () {
     let klass = 'eapp-error-message'
 
-    if (this.state.error && this.state.help) {
+    if (this.state.error && this.props.help) {
       klass += ' message'
     } else {
       klass += ' hidden'
@@ -196,32 +184,35 @@ export default class Generic extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}
+               htmlFor={this.props.name}
                ref="label"
                >
-          {this.state.label}
+          {this.props.label}
         </label>
         <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
-               type={this.state.type}
-               placeholder={this.state.placeholder}
+               id={this.props.name}
+               name={this.props.name}
+               type={this.props.type}
+               placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
-               disabled={this.redundant(this.state.disabled, 'disabled')}
-               maxLength={this.state.maxlength}
-               pattern={this.state.pattern}
-               readOnly={this.redundant(this.state.readonly, 'readonly')}
-               required={this.redundant(this.state.required, 'required')}
+               disabled={this.props.disabled}
+               maxLength={this.props.maxlength}
+               pattern={this.props.pattern}
+               readOnly={this.props.readonly}
+               required={this.props.required}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                onKeyDown={this.handleKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="input"
                />
         <div className={this.errorClass()}>
           <i className="fa fa-exclamation"></i>
-          {this.state.help}
+          {this.props.help}
         </div>
       </div>
     )

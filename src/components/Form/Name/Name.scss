@@ -1,13 +1,32 @@
 @import 'eqip-colors';
 
 .name {
+
+    input[type="text"] {
+        display: inline-block;
+        width: 100%;
+    }
+
     .inline {
         display: inline-block;
         margin-left: 1rem;
     }
 
     .optional {
-        color: $eapp-grey;
+        color: $eapp-grey-darker;
         font-style: italic;
+        padding-left: 0.5rem;
+    }
+
+    .middle-options {
+        max-width: 64rem;
+    }
+
+    .first,
+    .middle,
+    .last,
+    .suffix-other {
+        display: inline-block;
+        width: 93%;
     }
 }

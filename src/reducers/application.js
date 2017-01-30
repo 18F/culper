@@ -41,10 +41,20 @@ const errorReducer = function (sectionName) {
 // High level pre-defined sub-state tree
 export default combineReducers({
   Identification: reducer('Identification'),
-  YourIdentification: reducer('YourIdentification'),
-  OtherNames: reducer('OtherNames'),
+  Financial: reducer('Financial'),
+  Family: reducer('Family'),
+  Citizenship: reducer('Citizenship'),
+  History: reducer('History'),
+  Foreign: reducer('Foreign'),
+  TBD: reducer('Tbd'),
+  Legal: reducer('Legal'),
   Completed: reducer('Completed'),
-  Errors: errorReducer('Errors')
+  Errors: errorReducer('Errors'),
+  Saved: (state = {}) => {
+    // Store when things were last saved
+    state.date = new Date()
+    return state
+  }
 })
 
 // Or alternative...

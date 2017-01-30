@@ -135,4 +135,11 @@ describe('The radio component', () => {
     component.find('input').simulate('blur')
     expect(blurs).toEqual(1)
   })
+
+  it('can toggle checked state', () => {
+    const component = mount(<Radio name="toggle" value="foo" checked="true" />)
+    expect(component.find('.checked').length).toEqual(1)
+    component.find('input').simulate('click')
+    expect(component.find('.checked').length).toEqual(0)
+  })
 })

@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model/form"
 	"github.com/gorilla/mux"
@@ -63,12 +64,12 @@ func ValidateSSN(w http.ResponseWriter, r *http.Request) {
 }
 
 // ValidatePassport checks if a passport number is valid
-func ValidatePassport(w http.ResponseWriter, r *http.Request) {
+func ValidatePassportNumber(w http.ResponseWriter, r *http.Request) {
 	passport := mux.Vars(r)["passport"]
 	log.Printf("Validating Passport Number: [%v]\n", passport)
 
-	_, err := form.PassportField(passport).Valid()
-	stack := form.NewErrorStack("Passport", err)
+	_, err := form.PassportNumberField(passport).Valid()
+	stack := form.NewErrorStack("Number", err)
 	EncodeErrJSON(w, stack)
 }
 
@@ -175,4 +176,88 @@ func ValidateDateRange(w http.ResponseWriter, r *http.Request) {
 	_, err = df.Valid()
 	stack := form.NewErrorStack("DateRange", err)
 	EncodeErrJSON(w, stack)
+}
+
+// ValidatePassportDates validates that expiration and issue dates are valid and
+// within the appropriate range
+func ValidatePassportDates(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Passport Issued and Expiration Date")
+	var stack form.ErrorStack
+	issued := mux.Vars(r)["issued"]
+	expiration := mux.Vars(r)["expiration"]
+
+	issuedDate := form.DateField{}
+	err := issuedDate.Parse(issued)
+	if err != nil {
+		stack.Append("Issued", err)
+	}
+
+	expirationDate := form.DateField{}
+	err = expirationDate.Parse(expiration)
+	if err != nil {
+		stack.Append("Expiration", err)
+	}
+
+	if stack.HasErrors() {
+		EncodeErrJSON(w, stack)
+		return
+	}
+
+	df := form.DateRangeField{
+		From: issuedDate,
+		To:   expirationDate,
+	}
+
+	_, err = df.Valid()
+	stack = form.NewErrorStack("Issued", form.ErrFieldInvalid{Message: "Issue must come before expiration date"})
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateEmail validates an email
+func ValidateEmail(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Email")
+
+	var body struct {
+		Address string
+	}
+	DecodeJSON(r.Body, &body)
+
+	_, err := form.EmailField(body.Address).Valid()
+	stack := form.NewErrorStack("Email", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidatePhoneNumber validates a phone number based on the phone number type
+func ValidatePhoneNumber(numberType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Validating Phone Number")
+		number := mux.Vars(r)["number"]
+
+		var p form.PhoneNumberField
+		switch numberType {
+		case "Domestic", "International":
+			var num, ext string
+			// Check if a number and an extension were passed through
+			split := strings.Split(number, ",")
+			num = split[0]
+			if len(split) == 2 {
+				ext = split[1]
+			}
+
+			p = form.PhoneNumberField{
+				Number:    num,
+				Type:      form.PhoneNumberTypeField(numberType),
+				Extension: ext,
+			}
+		case "DSN":
+			p = form.PhoneNumberField{
+				Number: number,
+				Type:   form.PhoneNumberTypeField(numberType),
+			}
+		}
+
+		_, err := p.Valid()
+		stack := form.NewErrorStack("Number", err)
+		EncodeErrJSON(w, stack)
+	}
 }

@@ -1,0 +1,42 @@
+@import 'eqip-colors';
+
+.comments {
+    &.active {
+        border-left: 0.75rem solid $eapp-grey-light;
+        padding-left: 2.5rem;
+    }
+
+    a {
+        margin-top: 1rem;
+
+        i {
+            margin-left: 1rem;
+        }
+
+        &.add,
+        &.add:link,
+        &.add:visited,
+        &.add:hover,
+        &.add:active {
+            color: $eapp-blue;
+            text-decoration: none;
+
+            span {
+                border-bottom: 1px $eapp-blue dashed;
+            }
+        }
+
+        &.remove,
+        &.remove:link,
+        &.remove:visited,
+        &.remove:hover,
+        &.remove:active {
+            color: $eapp-red;
+            text-decoration: none;
+
+            span {
+                border-bottom: 1px $eapp-red dashed;
+            }
+        }
+    }
+}
