@@ -1,6 +1,12 @@
 @import 'eqip-colors';
 
 .name {
+
+    input[type="text"] {
+        display: inline-block;
+        width: 100%;
+    }
+
     .inline {
         display: inline-block;
         margin-left: 1rem;
@@ -16,37 +22,11 @@
         max-width: 64rem;
     }
 
-    .option-list {
-        max-width: 70rem;
-    }
-
     .first,
     .middle,
     .last,
     .suffix-other {
         display: inline-block;
-        width: 90%;
-        max-width: 64rem !important;
-
-        input {
-            width: 100% !important;
-            max-width: 64rem !important;
-        }
-    }
-
-    .suffix {
-        display: inline-block;
-        width: 90%;
-        max-width: 64rem !important;
-
-        input {
-            display: inline-block;
-        }
-    }
-
-    .suffix-help-icon {
-        vertical-align: top;
-        margin-top: 1rem;
-        margin-left: -1.9rem;
+        width: 93%;
     }
 }
