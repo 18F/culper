@@ -1,14 +1,22 @@
 @import 'eqip-colors';
 
 .help {
+    border:1px solid #009;
+    padding-top:4.6rem;
+    line-height:4.6rem;
+
+	> label {
+		top:0 !important;
+	}
     .toggle {
         display: inline-block;
         vertical-align: top;
-		line-height: 4.3rem;
+		margin-left: 0.8rem;
+
 		svg {
-			display:inline;
-            height:3rem;
-            width:3rem;
+			display:inline-block;
+            height:3.7rem;
+			vertical-align:middle;
 	    	.eapp-help-icon, .eapp-help-circle {
 			    transition:fill 0.3s;
 			}
@@ -32,11 +40,11 @@
     }
 
     .message {
-        max-width: 64rem;
+		width:93%;
         padding: 2rem 3rem 3.5rem 3rem;
         background: $eapp-blue-lightest;
         border: 2px solid $eapp-blue-lighter;
-        margin: 2rem 0;
+        margin: 1.3rem 0;
 
         > i {
             display: block;
@@ -60,6 +68,7 @@
         &.eapp-error-message {
 	        background:$eapp-red-lightest;
 			border-color:$eapp-red-light;
+			width:100%;
 			> i {
 				background-color:$eapp-red;
 			}
