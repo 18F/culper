@@ -47,7 +47,7 @@ export default class Comments extends ValidationElement {
 
     if (!this.state.visible) {
       return (
-        <div class="comments">
+        <div className="comments">
           {this.props.children}
           <div className={klass}>
             <a href="javascript:;;" onClick={this.toggle} className="add">
