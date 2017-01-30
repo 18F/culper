@@ -126,7 +126,7 @@ export default class Gambling extends ValidationElement {
 
     const dates = from === '' && to === ''
           ? i18n.t('financial.gambling.collection.summary.nodates')
-      : `${from} - ${to}`
+          : `${from} - ${to}`
 
     return (
       <div className="table">
