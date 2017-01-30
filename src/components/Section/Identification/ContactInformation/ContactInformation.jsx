@@ -77,33 +77,34 @@ export default class ContactInformation extends ValidationElement {
   }
 
   render () {
+    const klass = `${this.props.className || ''}`.trim()
+
     return (
       <div className="contact">
-        <h2>Your contact information</h2>
-
         <h3>Your e-mail addresses</h3>
-        <div className="eapp-field-wrap">
+        <div className={klass}>
           <Collection minimum="1"
-            items={this.state.Emails}
-            dispatch={this.emailDispatch.bind(this)}
-            appendLabel="Add another email">
+                      items={this.state.Emails}
+                      dispatch={this.emailDispatch.bind(this)}
+                      appendClass="eapp-field-wrap"
+                      appendLabel="Add another email">
             <Email name="Email"
-              onValidate={this.handleValidation}
-              placeholder="Enter an email address"
-            />
+                   className="eapp-field-wrap"
+                   onValidate={this.handleValidation}
+                   placeholder="Enter an email address"
+                   />
           </Collection>
         </div>
 
-        <div className="eapp-field-wrap">
-          <Comments name="comments"
-                    value={this.state.Comments}
-                    label="If you need to provide any additional comments about this information enter them below"
-                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                    onValidate={this.handleValidation}
-                    >
-            <h3>Add optional comment</h3>
-          </Comments>
-        </div>
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  label="If you need to provide any additional comments about this information enter them below"
+                  className="eapp-field-wrap"
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  >
+          <h3>Add optional comment</h3>
+        </Comments>
 
       </div>
     )

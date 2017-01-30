@@ -1,0 +1,14 @@
+.address {
+    .state-zip-wrap {
+        display: table;
+        .state, .zipcode {
+            display: table-cell;
+            padding-right: 2rem;
+        }
+    }
+    .address {
+        textarea {
+            height: 10rem;
+        }
+    }
+}

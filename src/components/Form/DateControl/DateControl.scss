@@ -22,3 +22,12 @@
         padding-left: 22.5rem;
     }
 }
+
+.datecontrol.day-hidden {
+    .usa-form-group-day {
+        display: none;
+    }
+    .coupled-flags {
+        padding-left: 14rem;
+    }
+}

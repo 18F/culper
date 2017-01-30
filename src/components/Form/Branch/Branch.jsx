@@ -23,13 +23,15 @@ export default class Branch extends React.Component {
   }
 
   render () {
+    const klass = `branch ${this.props.className || ''}`.trim()
+
     if (this.props.help) {
       return (
-        <div className="branch">
+        <div className={klass}>
           <div className="content">
             {this.props.children}
           </div>
-          <div className="eapp-field-wrap">
+          <div>
               <Help id={this.props.help}>
                 <RadioGroup className="option-list branch" selectedValue={this.state.value}>
                   <Radio name={this.props.name}
@@ -51,7 +53,7 @@ export default class Branch extends React.Component {
     }
 
     return (
-      <div className="branch">
+      <div className={klass}>
         <div className="content">
           {this.props.children}
         </div>

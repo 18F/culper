@@ -68,8 +68,10 @@ export default class MaidenName extends ValidationElement {
   }
 
   render () {
+    const klass = `maiden-name ${this.props.className || ''}`.trim()
+
     return (
-      <div className="maiden-name eapp-field-wrap">
+      <div className={klass}>
         <RadioGroup className="option-list" selectedValue={this.state.value}>
           <Radio name="maiden-name"
                  label=""

@@ -119,10 +119,9 @@
 		.eapp-field-wrap {
 			margin-bottom:0;
 			padding:0;
-			background-color:#fcfca4;
 
 			h2, h3, h4, h5, h6 {
-				padding:0; 
+				padding:0;
 			}
 		}
 
@@ -331,5 +330,19 @@
 #login {
     #info {
         margin-bottom: 1rem;
+    }
+}
+
+.design {
+    .eapp-field-wrap {
+        border: 1px solid #090 !important;
+
+        .eapp-field-wrap {
+            background-color: #fcfca4 !important;
+        }
+    }
+
+    .help {
+        border: 1px solid #009 !important;
     }
 }
