@@ -251,8 +251,10 @@ export default class Address extends ValidationElement {
   }
 
   render () {
+    const klass = `address ${this.props.className || ''}`.trim()
+
     return (
-      <div className="address">
+      <div className={klass}>
         <RadioGroup className="address-options" selectedValue={this.state.addressType}>
           <Radio name="addressType"
             label="In the United States"

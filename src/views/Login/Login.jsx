@@ -44,10 +44,11 @@ class Login extends React.Component {
 
   loginForm () {
     const authValid = this.props.error === undefined || this.props.error === ''
-    let pwClass = 'eapp-field-wrap help'
+    let pwClass = 'help'
     if (!authValid) {
       pwClass += ' usa-input-error'
     }
+
     return (
       <div>
         <div id="info" className="usa-width-one-whole">

@@ -126,7 +126,7 @@ export default class Gambling extends ValidationElement {
 
     const dates = from === '' && to === ''
           ? i18n.t('financial.gambling.collection.summary.nodates')
-      : `${from} - ${to}`
+          : `${from} - ${to}`
 
     return (
       <div className="table">
@@ -151,6 +151,7 @@ export default class Gambling extends ValidationElement {
                   dispatch={this.myDispatch}
                   summary={this.summary}
                   summaryTitle={i18n.t('financial.gambling.collection.summary.title')}
+                  appendClass="eapp-field-wrap"
                   appendLabel={i18n.t('financial.gambling.collection.append')}>
 
         <h3>{i18n.t('financial.gambling.heading.details')}</h3>
@@ -159,6 +160,7 @@ export default class Gambling extends ValidationElement {
         <Help id="financial.gambling.help.dates">
           <DateRange name="Dates"
                      label={i18n.t('financial.gambling.label.dates')}
+                     className="eapp-field-wrap"
                      onValidate={this.handleValidation}
                      />
           <HelpIcon className="dates-help-icon" />
@@ -166,21 +168,23 @@ export default class Gambling extends ValidationElement {
 
         <h4>{i18n.t('financial.gambling.heading.losses')}</h4>
         <Help id="financial.gambling.help.losses">
-          <i className="fa fa-dollar"></i>
-          <Number name="Losses"
-                  className="losses"
-                  placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                  label={i18n.t('financial.gambling.label.losses')}
-                  min="0"
-                  onValidate={this.handleValidation}
-                  />
+          <div className="eapp-field-wrap">
+            <i className="fa fa-dollar"></i>
+            <Number name="Losses"
+                    className="losses"
+                    placeholder={i18n.t('financial.gambling.placeholder.losses')}
+                    label={i18n.t('financial.gambling.label.losses')}
+                    min="0"
+                    onValidate={this.handleValidation}
+                    />
+          </div>
           <HelpIcon className="losses-help-icon" />
         </Help>
 
         <h4>{i18n.t('financial.gambling.heading.description')}</h4>
         <Help id="financial.gambling.help.description">
           <Textarea name="Description"
-                    className="description"
+                    className="description eapp-field-wrap"
                     onValidate={this.handleValidation}
                     label={i18n.t('financial.gambling.label.description')}
                     />
@@ -190,11 +194,12 @@ export default class Gambling extends ValidationElement {
         <Comments name="Comments"
                   title={i18n.t('financial.gambling.label.comments')}
                   label={i18n.t('financial.gambling.help.comments')}
+                  className="eapp-field-wrap"
                   onValidate={this.handleValidation}>
           <h4>{i18n.t('financial.gambling.heading.actions')}</h4>
           <Help id="financial.gambling.help.actions">
             <Textarea name="Actions"
-                      className="actions"
+                      className="actions eapp-field-wrap"
                       onValidate={this.handleValidation}
                       label={i18n.t('financial.gambling.label.actions')}
                       />
@@ -207,9 +212,11 @@ export default class Gambling extends ValidationElement {
 
   render () {
     return (
-      <div className="gambling eapp-field-wrap">
-        <h2>{i18n.t('financial.gambling.title')}</h2>
-        <Branch name="has_gamblingdebt" value={this.state.HasGamblingDebt} onUpdate={this.onUpdate.bind(this)}>
+      <div className="gambling">
+        <Branch name="has_gamblingdebt"
+                className="eapp-field-wrap"
+                value={this.state.HasGamblingDebt}
+                onUpdate={this.onUpdate.bind(this)}>
           <div>{i18n.t('financial.gambling.branch.question')}</div>
         </Branch>
         {this.visibleComponents()}

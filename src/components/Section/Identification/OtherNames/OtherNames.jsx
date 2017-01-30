@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { i18n } from '../../../../config'
 import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup, Branch } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
@@ -116,6 +117,46 @@ export default class OtherNames extends ValidationElement {
   }
 
   /**
+   * Assists in rendering the summary section.
+   */
+  summary (item, index) {
+    let name = i18n.t('identification.othernames.collection.summary.unknown')
+    if (item.Name) {
+      name = `${item.Name.first} ${item.Name.middle} ${item.Name.last}`.trim()
+    }
+
+    let from = ''
+    if (item.DatesUsed && item.DatesUsed.from) {
+      from = '' + item.DatesUsed.from.getFullYear()
+    }
+
+    let to = ''
+    if (item.DatesUsed && item.DatesUsed.present) {
+      to = i18n.t('identification.othernames.collection.summary.present')
+    } else if (item.DatesUsed && item.DatesUsed.to) {
+      to = '' + item.DatesUsed.to.getFullYear()
+    }
+
+    const dates = from === '' && to === ''
+          ? i18n.t('identification.othernames.collection.summary.nodates')
+          : `${from} - ${to}`
+
+    return (
+      <div className="table">
+        <div className="table-cell index">
+          {i18n.t('identification.othernames.collection.summary.name')} {index + 1}:
+        </div>
+        <div className="table-cell index">
+          {name}
+        </div>
+        <div className="table-cell dates">
+          {dates}
+        </div>
+      </div>
+    )
+  }
+
+  /**
    * Render children only when we explicit state there are aliases
    */
   visibleComponents () {
@@ -127,32 +168,41 @@ export default class OtherNames extends ValidationElement {
       <Collection minimum="1"
                   items={this.state.List}
                   dispatch={this.myDispatch}
-                  appendLabel="Add another name">
+                  summary={this.summary}
+                  summaryTitle={i18n.t('identification.othernames.collection.summary.title')}
+                  appendClass="eapp-field-wrap"
+                  appendLabel={i18n.t('identification.othernames.collection.append')}>
 
-        <h3>Provide other name used</h3>
+        <h3>{i18n.t('identification.othernames.heading.name')}</h3>
         <Name name="Name"
+              className="eapp-field-wrap"
               onValidate={this.handleValidation}
               />
-        <h3>Maiden Name</h3>
+
+        <h3>{i18n.t('identification.othernames.heading.maiden')}</h3>
         <Help id="alias.maiden.help">
           <MaidenName name="MaidenName"
+                      className="eapp-field-wrap"
                       onValidate={this.handleValidation}
                       />
           <HelpIcon className="maiden-help-icon" />
         </Help>
-        <h3>Dates Used</h3>
+
+        <h3>{i18n.t('identification.othernames.heading.used')}</h3>
         <Help id="alias.used.help">
           <DateRange name="DatesUsed"
+                     className="eapp-field-wrap"
                      onValidate={this.handleValidation}
                      />
           <HelpIcon className="used-help-icon" />
         </Help>
-        <h3>Reason for change</h3>
+
+        <h3>{i18n.t('identification.othernames.heading.reason')}</h3>
         <Help id="alias.reason.help">
           <Textarea name="Reason"
-                    className="reason"
+                    className="reason eapp-field-wrap"
                     onValidate={this.handleValidation}
-                    label={'Provide the reasons why the name changed'}
+                    label={i18n.t('identification.othernames.label.reason')}
                     />
           <HelpIcon className="reason-help-icon" />
         </Help>
@@ -163,16 +213,14 @@ export default class OtherNames extends ValidationElement {
   render () {
     return (
       <div className="other-names">
-        <h2>Other names used</h2>
-        <p>Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).</p>
-        <div className="eapp-field-wrap">
-            <Branch name="has_othernames" value={this.state.HasOtherNames} onUpdate={this.onUpdate.bind(this)}>
-              <div>
-                Have you used any other names?
-              </div>
-            </Branch>
-            {this.visibleComponents()}
-          </div>
+        <p>{i18n.t('identification.othernames.info')}</p>
+        <Branch name="has_othernames"
+                className="eapp-field-wrap"
+                value={this.state.HasOtherNames}
+                onUpdate={this.onUpdate.bind(this)}>
+          <div>{i18n.t('identification.othernames.branch.question')}</div>
+        </Branch>
+        {this.visibleComponents()}
       </div>
     )
   }

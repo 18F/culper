@@ -103,7 +103,7 @@ class Financial extends ValidationElement {
   intro () {
     return (
       <div className="financial intro">
-        <div className="usa-grid-full eapp-field-wrap">
+        <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
         <div id="titles" className="usa-grid-full">
@@ -148,33 +148,45 @@ class Financial extends ValidationElement {
                        backLabel={i18n.t('financial.destination.nonpayment')}
                        next="family"
                        nextLabel={i18n.t('financial.destination.family')}>
+            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       onUpdate={this.onUpdate.bind(this, 'Gambling')}
                       onValidate={this.onValidate.bind(this)}
                       />
+
+            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+            <Bankruptcy name="bankruptcy"
+                        {...this.props.Bankruptcy}
+                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
+
           <SectionView name="gambling"
                        back="identification"
                        backLabel={i18n.t('identification.destination.physical')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
+            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       onUpdate={this.onUpdate.bind(this, 'Gambling')}
                       onValidate={this.onValidate.bind(this)}
                       />
           </SectionView>
+
           <SectionView name="bankruptcy"
                        back="financial/gambling"
                        backLabel={i18n.t('financial.destination.gambling')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
-                       <Bankruptcy name="bankruptcy"
-                         {...this.props.Bankruptcy}
-                         onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
-                         onValidate={this.onValidate.bind(this)}
-                       />
+            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+            <Bankruptcy name="bankruptcy"
+                        {...this.props.Bankruptcy}
+                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
         </SectionViews>
       </div>

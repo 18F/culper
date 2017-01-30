@@ -109,6 +109,32 @@ const en = {
         help: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field'
       }
     },
+    othernames: {
+      title: 'Other names used',
+      info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
+      branch: {
+        question: 'Have you used any other names?'
+      },
+      collection: {
+        summary: {
+          title: 'Summary of other names used',
+          name: 'Name',
+          present: 'Now',
+          nodates: 'No dates',
+          unknown: 'Unknown'
+        },
+        append: 'Add another name'
+      },
+      heading: {
+        name: 'Provide other name used',
+        maiden: 'Maiden name',
+        used: 'Dates used',
+        reason: 'Reason for change'
+      },
+      label: {
+        reason: 'Provide the reasons why the name changed'
+      }
+    },
     birthdate: {
       title: 'Date of birth',
       help: 'Provide your date of birth, or the closest possible estimate you can provide',
@@ -140,6 +166,28 @@ const en = {
         city: 'Please enter your city of birth',
         county: 'Please enter your county or province of birth',
         country: 'Please enter your country of birth'
+      }
+    },
+    contacts: {
+      title: 'Your contact information',
+      collection: {
+        summary: {
+          title: 'Summary of e-mail addresses',
+          email: 'E-mail',
+          unknown: 'Unknown'
+        },
+        append: 'Add another e-mail'
+      },
+      heading: {
+        email: 'Your e-mail addresses',
+        comments: 'Add optional comments'
+      },
+      label: {
+        email: 'Email address',
+        comments: 'If you need to provide any additional comments about this information enter them below'
+      },
+      placeholder: {
+        email: 'Enter an email address'
       }
     },
     ssn: {
@@ -300,7 +348,12 @@ const en = {
     },
     bankruptcy: {
       collection: {
-        summaryTitle: 'Summary of Bankruptcy',
+        summary: {
+          title: 'Summary of Bankruptcy',
+          item: 'Bankruptcy',
+          unknown: 'Unknown',
+          chapter: 'Chapter'
+        },
         append: 'Add bankruptcy'
       },
       heading: {

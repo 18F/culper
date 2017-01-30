@@ -98,8 +98,10 @@ export default class DateRange extends ValidationElement {
   }
 
   render () {
+    const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
+
     return (
-      <div className="daterange usa-grid">
+      <div className={klass}>
         <div className="usa-grid">
           <div className="from-label">
             From date

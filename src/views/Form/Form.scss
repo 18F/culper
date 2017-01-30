@@ -1,8 +1,15 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-.eapp-core {
+/* setting a blanket positioning for field wrap internals */
+/* placing outside eapp-core to ease overrides */
+.eapp-field-wrap {
+	* {
+		position:relative;
+	}
+}
 
+.eapp-core {
 	.eapp-form {
 		max-width:72.4rem;
 
@@ -15,7 +22,10 @@
 		}
 
 		.text-right {
-			padding-right:4rem;
+			width:93%i;
+			input[type="checkbox"], input[type="radio"] {
+				position:absolute;
+			}
 		}
 
 	}
@@ -31,6 +41,11 @@
 	}
 	input[type="checkbox"], input[type="radio"] {
 		margin-left:0;
+		+ label {
+			position:relative;
+			top:auto;
+			left:auto;
+		}
 	}
 
     /* placeholder should be a light gray and italics */
@@ -97,17 +112,16 @@
 	.eapp-field-wrap {
 		/* position: relative; */
 		margin-bottom: 4.9rem;
-		padding:0 4rem;
+		padding:0 3rem 0 4rem;
 		border:1px solid #090;
 
 		/* fix for nested field wrappers */
 		.eapp-field-wrap {
 			margin-bottom:0;
 			padding:0;
-			background-color:#fcfca4;
 
 			h2, h3, h4, h5, h6 {
-				padding:0; 
+				padding:0;
 			}
 		}
 
@@ -123,18 +137,20 @@
 
 		/* handle option list blocks, basic structure */
 		.option-list {
+			display:inline-block;
 			padding-top: 0.3rem;
+			max-width: 93%;
 		}
 
 		/* handle block style radio and checkboxes */
 		.eapp-blocks-radio, .eapp-blocks-checkbox {
 			display: inline-block;
-			min-width: 10.6rem;
-			line-height: 4rem;
 
 			label {
 				display: block;
-				height:4rem;
+				position:relative;
+				top:0;
+				min-width: 7.7rem;
 				margin-bottom: 1.2rem;
 				margin-right: 1.6rem;
                 margin-top: 0;
@@ -143,6 +159,10 @@
 				border: 1px solid $eapp-grey-dark;
                 cursor: pointer;
 				transition:background-color 0.3s, color 0.3s, border-color 0.3s;
+				z-index:1;
+				input {
+					position:absolute;
+				}
 			}
 
             label.usa-input-focus {
@@ -259,8 +279,11 @@
 	}
 
 	label {
-		margin-top: 2rem;
-		margin-bottom: 0.4rem;
+		display:block;
+		position:absolute;
+		top:-3.9rem;
+		left:0;
+		z-index:-1;
 		color: $eapp-grey-dark;
 
 		> input[type="radio"] {
@@ -307,5 +330,19 @@
 #login {
     #info {
         margin-bottom: 1rem;
+    }
+}
+
+.design {
+    .eapp-field-wrap {
+        border: 1px solid #090 !important;
+
+        .eapp-field-wrap {
+            background-color: #fcfca4 !important;
+        }
+    }
+
+    .help {
+        border: 1px solid #009 !important;
     }
 }
