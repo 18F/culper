@@ -22,7 +22,7 @@
 		}
 
 		.text-right {
-			width:93%i;
+			width:93%;
 			input[type="checkbox"], input[type="radio"] {
 				position:absolute;
 			}
@@ -40,6 +40,7 @@
 		transition:border-color 0.4s, border-width 0.4s,background-position 0.4s;
 	}
 	input[type="checkbox"], input[type="radio"] {
+		position:absolute;
 		margin-left:0;
 		+ label {
 			position:relative;
@@ -140,6 +141,12 @@
 			display:inline-block;
 			padding-top: 0.3rem;
 			max-width: 93%;
+		}
+		.branch {
+			line-height:4rem;
+	        label {
+	            width: 15rem;
+	        }
 		}
 
 		/* handle block style radio and checkboxes */
@@ -302,12 +309,6 @@
 	#actions {
 		margin-top: 5.7rem;
 	}
-
-    .option-list.branch {
-        label {
-            width: 15rem;
-        }
-    }
 
     .review-btns {
         button {
