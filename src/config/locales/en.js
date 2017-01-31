@@ -419,6 +419,88 @@ const en = {
       }
     }
   },
+  address: {
+    options: {
+      us: {
+        label: 'In the United States'
+      },
+      apoFpo: {
+        label: 'APO/FPO'
+      },
+      international: {
+        label: 'Outside of the United States'
+      }
+    },
+    us: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      state: {
+        label: 'State',
+        placeholder: 'Enter state'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      }
+    },
+    international: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      country: {
+        label: 'Country',
+        placeholder: 'Enter country'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      }
+    },
+    apoFpo: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      state: {
+        label: 'State',
+        placeholder: 'Enter state'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      },
+      apoFpo: {
+        label: 'APO/FPO'
+      },
+      apoFpoType: {
+        apo: {
+          label: 'APO'
+        },
+        fpo: {
+          label: 'FPO'
+        },
+        apoFpo: {
+          label: 'APO/FPO',
+          placeholder: 'Enter APO/FPO'
+        }
+      }
+    }
+  },
   foreign: {
     tour: {
       title: 'One piece at a time',
