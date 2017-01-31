@@ -12,4 +12,14 @@
             max-width: 64rem !important;
         }
     }
+
+    .branch {
+        .help {
+            padding-top: 0;
+            label {
+                display: inline;
+                position: relative;
+            }
+        }
+    }
 }
