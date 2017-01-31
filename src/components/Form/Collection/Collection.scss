@@ -12,6 +12,10 @@
             background-color: $eapp-grey-light;
             padding: 0 4rem;
 
+            h4 {
+                padding: 0;
+            }
+
             hr {
                 border: 0;
                 height: 0;
@@ -42,6 +46,7 @@
 
             .dates {
                 width: 10rem;
+                text-align: right;
             }
         }
 
@@ -77,6 +82,10 @@
         &.gutters {
             padding-left: 4rem;
             padding-right: 4rem;
+
+            .eapp-field-wrap {
+                padding: 0;
+            }
         }
 
         .byline {

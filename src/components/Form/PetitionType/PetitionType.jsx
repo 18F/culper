@@ -33,7 +33,6 @@ export default class PetitionType extends ValidationElement {
       let update = {
         name: this.props.name,
         value: this.state.value,
-        index: this.props.index,
         address: this.state.address
       }
       if (this.state.value === 'Chapter13') {

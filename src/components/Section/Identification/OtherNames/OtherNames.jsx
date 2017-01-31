@@ -56,48 +56,13 @@ export default class OtherNames extends ValidationElement {
     return true
   }
 
-  addOtherName () {
-    let list = this.state.List
-    list.push({
-      index: new Date().getTime(),
-      Name: {},
-      MaidenName: '',
-      DatesUsed: {},
-      Reason: ''
-    })
-
-    this.setState({ List: [...list] }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.HasOtherNames
-        })
-      }
-    })
-  }
-
-  clear () {
-    this.setState({ List: [] }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.HasOtherNames
-        })
-      }
-    })
-  }
-
   onUpdate (val) {
-    this.setState({ HasOtherNames: val }, () => {
-      if (val === 'Yes') {
-        if (this.state.List.length === 0) {
-          this.addOtherName()
-        }
-      } else if (val === 'No') {
-        if (this.state.List.length > 0) {
-          this.clear()
-        }
-      }
+    let list = [...this.state.List]
+    if (val === 'No') {
+      list = []
+    }
+
+    this.setState({ HasOtherNames: val, List: list }, () => {
       this.props.onUpdate({
         List: this.state.List,
         HasOtherNames: this.state.HasOtherNames
@@ -122,7 +87,7 @@ export default class OtherNames extends ValidationElement {
   summary (item, index) {
     let name = i18n.t('identification.othernames.collection.summary.unknown')
     if (item.Name) {
-      name = `${item.Name.first} ${item.Name.middle} ${item.Name.last}`.trim()
+      name = `${item.Name.first || ''} ${item.Name.middle || ''} ${item.Name.last || ''}`.trim()
     }
 
     let from = ''
@@ -175,6 +140,7 @@ export default class OtherNames extends ValidationElement {
 
         <h3>{i18n.t('identification.othernames.heading.name')}</h3>
         <Name name="Name"
+              key="name"
               className="eapp-field-wrap"
               onValidate={this.handleValidation}
               />
