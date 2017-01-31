@@ -194,7 +194,7 @@ export default class Passport extends ValidationElement {
 
         <h3>{i18n.t('foreign.passport.issued')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="foriegn.passport.help.issued">
+          <Help id="foreign.passport.help.issued">
             <DateControl name="issued"
                          {...this.state.Issued}
                          onUpdate={this.handleUpdate.bind(this, 'Issued')}
@@ -206,7 +206,7 @@ export default class Passport extends ValidationElement {
 
         <h3>{i18n.t('foreign.passport.expiration')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="foriegn.passport.help.expiration">
+          <Help id="foreign.passport.help.expiration">
             <DateControl name="expiration"
                          {...this.state.Expiration}
                          onUpdate={this.handleUpdate.bind(this, 'Expiration')}

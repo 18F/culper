@@ -315,6 +315,7 @@ const en = {
     gambling: {
       title: 'Gambling debt',
       branch: {
+        help: 'Select whether you have experienced any financial problems due to gambling',
         question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
@@ -343,10 +344,10 @@ const en = {
         comments: 'Add optional comment'
       },
       help: {
-        dates: '',
-        losses: '',
-        description: '',
-        actions: '',
+        dates: 'Provide the date range of your financial problems due to gambling',
+        losses: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
+        description: 'Enter description of your financial problems due to gambling',
+        actions: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
         comments: 'If you need to provide any additional comments about this information enter them below'
       },
       placeholder: {
@@ -549,6 +550,14 @@ const en = {
       comment: {
         title: 'Add optional comment',
         label: 'If you need to provide any additional comments about this information enter them below'
+      },
+      help: {
+        number: 'Enter your passport number. If you possess a card, check the Passport card option',
+        issued: 'Enter the date your passport was issued',
+        expiration: 'Enter the date your passport expired'
+      },
+      branch: {
+        help: 'Select whether you possess a U.S. passport'
       }
     }
   },
