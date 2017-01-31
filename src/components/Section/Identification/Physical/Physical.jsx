@@ -111,10 +111,9 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>{i18n.t('identification.traits.heading.hair')}</h3>
-        <div className={klass}>
+        <div className={klass + ' no-label hair-colors'}>
           <Help id="identification.traits.help.hair">
             <HairColor name="hair"
-                       label={i18n.t('identification.traits.label.hair')}
                        help={i18n.t('identification.traits.help.hair')}
                        className=""
                        value={this.props.HairColor}
@@ -126,10 +125,9 @@ export default class Physical extends ValidationElement {
         </div>
 
         <h3>{i18n.t('identification.traits.heading.eye')}</h3>
-        <div className={klass}>
+        <div className={klass + ' no-label eye-colors'}>
           <Help id="identification.traits.help.eye">
             <EyeColor name="eye"
-                      label={i18n.t('identification.traits.label.eye')}
                       className=""
                       value={this.props.EyeColor}
                       onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
@@ -148,7 +146,7 @@ export default class Physical extends ValidationElement {
                   onValidate={this.handleValidation}
                   >
           <h3>{i18n.t('identification.traits.heading.sex')}</h3>
-          <div className={klass}>
+          <div className={klass + 'sex'}>
             <Help id="identification.traits.help.sex">
               <Sex name="sex"
                    label={i18n.t('identification.traits.label.sex')}
