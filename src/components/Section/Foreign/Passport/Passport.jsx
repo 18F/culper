@@ -94,8 +94,8 @@ export default class Passport extends ValidationElement {
       return false
     }
 
-    let re = this.state.Card ? new RegExp(this.state.reBook) : new RegExp(this.state.reCard)
-    if (!re.test(this.state.Number)) {
+    let re = this.state.Card ? new RegExp(this.state.reCard) : new RegExp(this.state.reBook)
+    if (!re.test(this.state.Number.value)) {
       return false
     }
 
