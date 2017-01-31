@@ -139,6 +139,7 @@ export default class Dropdown extends ValidationElement {
     let e = {
       ...event,
       target: {
+        id: this.props.name,
         value: change.newValue
       }
     }
@@ -235,7 +236,6 @@ export default class Dropdown extends ValidationElement {
       disabled: this.props.disabled,
       pattern: this.props.pattern,
       readOnly: this.props.readOnly,
-      required: this.props.required,
       onChange: this.onSuggestionChange,
       onBlur: this.handleBlur
     }

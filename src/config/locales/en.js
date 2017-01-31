@@ -164,7 +164,7 @@ const en = {
       label: {
         state: 'State',
         city: 'City',
-        county: 'County',
+        county: 'County or providence',
         country: 'Country'
       },
       placeholder: {
@@ -246,7 +246,8 @@ const en = {
         feet: 'Feet must be a number between 1 and 9',
         inches: 'Inches must be a number between 0 and 11',
         height: 'Height must be a number between 1 and 9',
-        weight: 'Weight must be a number between 10 and 999'
+        weight: 'Weight must be a number between 10 and 999',
+        eye: 'Select an eye color'
       },
       label: {
         hair: 'Select the hair color that most closely represents your hair color',
@@ -429,7 +430,7 @@ const en = {
         label: 'APO/FPO'
       },
       international: {
-        label: 'Outside of the United States'
+        label: 'International'
       }
     },
     us: {

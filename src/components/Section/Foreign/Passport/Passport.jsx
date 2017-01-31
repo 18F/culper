@@ -170,7 +170,7 @@ export default class Passport extends ValidationElement {
           <Help id="foreign.passport.help.number">
             <div className="number">
               <Text name="number"
-                    value={this.state.Number}
+                    value={this.state.Number.value}
                     label={i18n.t('foreign.passport.label.number')}
                     placeholder={i18n.t('foreign.passport.placeholder.number')}
                     pattern={re}

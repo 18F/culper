@@ -41,10 +41,15 @@
 
         .losses {
             max-width: 10rem;
+            padding-left: 1rem;
+
+            label {
+                margin-left: 1rem;
+            }
         }
 
         .fa.fa-dollar {
-            margin-right: 1rem;
+            margin-left: -2rem;
         }
 
         .dates-help-icon {

@@ -118,7 +118,7 @@ export default class PetitionType extends ValidationElement {
     if (this.state.value === 'Chapter13') {
       return (
         <div>
-          <div className={klass}>
+          <div className={klass + ' no-label'}>
             <Help id="financial.bankruptcy.petitionType.help">
               {options}
               <HelpIcon className="petition-type" />
@@ -155,7 +155,7 @@ export default class PetitionType extends ValidationElement {
     }
 
     return (
-      <div className={klass}>
+      <div className={klass + ' no-label'}>
         <Help id="financial.bankruptcy.petitionType.help">
           {options}
           <HelpIcon className="petition-type" />
