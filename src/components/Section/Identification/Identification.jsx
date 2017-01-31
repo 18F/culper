@@ -132,12 +132,12 @@ class Identification extends ValidationElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       next="foreign"
-                       nextLabel={i18n.t('foreign.destination.activities')}
+                       next="financial"
+                       nextLabel={i18n.t('financial.destination.gambling')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
 
-            <h2>Your full name</h2>
+            <h2>{i18n.t('identification.name.title')}</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
                            className="eapp-field-wrap"
@@ -145,7 +145,7 @@ class Identification extends ValidationElement {
                            onValidate={this.onValidate.bind(this)}
                            />
 
-            <h2>Other names used</h2>
+            <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         onUpdate={this.onUpdate.bind(this, 'OtherNames')}
@@ -168,7 +168,7 @@ class Identification extends ValidationElement {
                                  onValidate={this.onValidate.bind(this)}
                                  />
 
-            <h2>Your contact information</h2>
+            <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contact"
                                 {...this.props.Contacts}
                                 onUpdate={this.onUpdate.bind(this, 'Contacts')}
@@ -183,7 +183,7 @@ class Identification extends ValidationElement {
                           onValidate={this.onValidate.bind(this)}
                           />
 
-            <h2>Physical attributes</h2>
+            <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
                       className="eapp-field-wrap"
@@ -195,7 +195,7 @@ class Identification extends ValidationElement {
           <SectionView name="name"
                        next="identification/othernames"
                        nextLabel={i18n.t('identification.destination.othernames')}>
-            <h2>Your full name</h2>
+            <h2>{i18n.t('identification.name.title')}</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
                            className="eapp-field-wrap"
@@ -209,7 +209,7 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.name')}
                        next="identification/birthdate"
                        nextLabel={i18n.t('identification.destination.birthdate')}>
-            <h2>Other names used</h2>
+            <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         onUpdate={this.onUpdate.bind(this, 'OtherNames')}
@@ -250,7 +250,7 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.birthplace')}
                        next="identification/ssn"
                        nextLabel={i18n.t('identification.destination.ssn')}>
-            <h2>Your contact information</h2>
+            <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contact"
                                 {...this.props.Contacts}
                                 onUpdate={this.onUpdate.bind(this, 'Contacts')}
@@ -277,7 +277,7 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.ssn')}
                        next="identification/review"
                        nextLabel={i18n.t('identification.destination.review')}>
-            <h2>Physical attributes</h2>
+            <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
                       className="eapp-field-wrap"

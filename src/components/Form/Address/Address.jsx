@@ -16,8 +16,6 @@ export default class Address extends ValidationElement {
     let addressType = this.addressType()
 
     this.state = {
-      name: props.name,
-      label: props.label,
       value: props.value,
       address: props.address,
       city: props.city,
@@ -105,7 +103,7 @@ export default class Address extends ValidationElement {
    * Generated name for the part of the address elements.
    */
   partName (part) {
-    return '' + this.state.name + '-' + part
+    return '' + this.props.name + '-' + part
   }
 
   usAddress () {
@@ -254,6 +252,7 @@ export default class Address extends ValidationElement {
 
     return (
       <div className={klass}>
+        <label>{this.props.label}</label>
         <RadioGroup className="address-options" selectedValue={this.state.addressType}>
           <Radio name="addressType"
             label="In the United States"

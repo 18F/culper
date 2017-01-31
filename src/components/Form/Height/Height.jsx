@@ -8,11 +8,6 @@ export default class Height extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name || 'height',
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       feet: props.feet,
       inches: props.inches,
       error: props.error || false,
@@ -69,14 +64,46 @@ export default class Height extends ValidationElement {
    * Generated name for the error message.
    */
   errorName (part) {
-    return '' + this.state.name + '-' + part + '-error'
+    return '' + this.props.name + '-' + part + '-error'
   }
 
   /**
    * Generated name for the part of the address elements.
    */
   partName (part) {
-    return '' + this.state.name + '-' + part
+    return '' + this.props.name + '-' + part
+  }
+
+  /**
+   * Style classes applied to the span element.
+   */
+  errorClass () {
+    let klass = 'eapp-error-message'
+
+    if (this.state.errors && (this.state.errors.inches || this.state.errors.feet)) {
+      klass += ' message'
+    } else {
+      klass += ' hidden'
+    }
+
+    return klass.trim()
+  }
+
+  errorMessage () {
+    let message = ''
+    if (!this.state.errors) {
+      return message
+    }
+
+    for (let e in this.state.errors) {
+      console.log('e', e)
+      console.log('e-more', this.state.errors[e])
+      if (this.state.errors[e]) {
+        message += i18n.t(`identification.traits.help.${e}`)
+      }
+    }
+
+    return message
   }
 
   render () {
@@ -87,14 +114,13 @@ export default class Height extends ValidationElement {
                   name="feet"
                   label={i18n.t('identification.traits.label.feet')}
                   placeholder={i18n.t('identification.traits.placeholder.feet')}
-                  help={i18n.t('identification.traits.help.feet')}
                   aria-describedby={this.errorName('feet')}
-                  disabled={this.state.disabled}
+                  disabled={this.props.disabled}
                   max="9"
                   maxlength="1"
                   min="1"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
+                  readonly={this.props.readonly}
+                  required={this.props.required}
                   step="1"
                   value={this.state.feet}
                   onChange={this.handleChange.bind(this, 'feet')}
@@ -108,14 +134,13 @@ export default class Height extends ValidationElement {
                   name="inches"
                   label={i18n.t('identification.traits.label.inches')}
                   placeholder={i18n.t('identification.traits.placeholder.inches')}
-                  help={i18n.t('identification.traits.help.inches')}
                   aria-describedby={this.errorName('inches')}
-                  disabled={this.state.disabled}
+                  disabled={this.props.disabled}
                   max="11"
                   maxlength="2"
                   min="0"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
+                  readonly={this.props.readonly}
+                  required={this.props.required}
                   step="1"
                   value={this.state.inches}
                   onChange={this.handleChange.bind(this, 'inches')}
@@ -123,6 +148,10 @@ export default class Height extends ValidationElement {
                   onBlur={this.handleBlur}
                   onValidate={this.handleValidation}
                   />
+        </div>
+        <div className={this.errorClass()}>
+          <i className="fa fa-exclamation"></i>
+          {this.errorMessage()}
         </div>
       </div>
     )
