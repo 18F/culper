@@ -70,6 +70,7 @@ a:focus {
     font-family: $eapp-serif;
     background-color: $eapp-blue-dark;
     min-height:16.7rem;
+	border-bottom:none;
 
 	.usa-banner-inner {
 		margin:0;
@@ -143,10 +144,9 @@ a:focus {
         height:100%;
         background:$eapp-green;
         width:0;
+        transition:width 0.8s;
     }
 }
-
-#main-content {}
 
 /* frame out the live form area for consistency */
 .eapp-core {
@@ -163,7 +163,10 @@ a:focus {
 .hidden {
     display: none !important;
 }
-
+.clear {
+	float:none;
+	clear:both;
+}
 .text-center {
     text-align: center;
 }

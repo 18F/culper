@@ -22,7 +22,15 @@ class Login extends React.Component {
     this.login = this.login.bind(this)
   }
 
+  componentDidMount () {
+    this.redirect()
+  }
+
   componentWillMount () {
+    this.redirect()
+  }
+
+  redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
       this.props.dispatch(push('/form'))

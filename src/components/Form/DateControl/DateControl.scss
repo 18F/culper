@@ -1,20 +1,21 @@
 .datecontrol {
-    .usa-form-group-month {
+    display: inline-block;
+
+    .month {
         width: 14rem;
-
-        input {}
+        display: inline-block;
+        margin-right: 1rem;
     }
 
-    .usa-form-group-day {
+    .day {
         width: 7rem;
-
-        input {}
+        display: inline-block;
+        margin-right: 1rem;
     }
 
-    .usa-form-group-year {
+    .year {
         width: 8.5rem;
-
-        input {}
+        display: inline-block;
     }
 
     .coupled-flags {
@@ -27,6 +28,7 @@
     .usa-form-group-day {
         display: none;
     }
+
     .coupled-flags {
         padding-left: 14rem;
     }

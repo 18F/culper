@@ -27,7 +27,7 @@ export default class Help extends React.Component {
     if (this.state.active) {
       return (
         <div ref="message" className="message eapp-help-message">
-          <i className="fa fa-info"></i>
+          <i className="fa fa-question"></i>
           <ReactMarkdown source={i18n.t(this.props.id)} />
         </div>
       )
@@ -82,8 +82,9 @@ export default class Help extends React.Component {
   }
 
   render () {
+    const klass = `help ${this.props.className || ''}`.trim()
     return (
-      <div className="help" ref="help">
+      <div className={klass} ref="help">
         {this.children()}
         {this.getMessage()}
       </div>

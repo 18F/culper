@@ -199,7 +199,6 @@ export default class Generic extends ValidationElement {
                maxLength={this.props.maxlength}
                pattern={this.props.pattern}
                readOnly={this.props.readonly}
-               required={this.props.required}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}

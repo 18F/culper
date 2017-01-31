@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Text, Name, DateControl, Branch, RadioGroup, Radio, Comments } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Text, Name, DateControl, Branch, Comments } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -166,38 +166,55 @@ export default class Passport extends ValidationElement {
               />
 
         <h3>{i18n.t('foreign.passport.number')}</h3>
-        <Text name="number"
-              value={this.state.Number}
-              pattern={re}
-              maxlength="9"
-              ref="number"
-              className="eapp-field-wrap"
-              onUpdate={this.handleUpdate.bind(this, 'Number')}
-              onValidate={this.handleValidation}
-              />
-        <div className="text-right eapp-field-wrap">
-          <input id="passportCard"
-                 type="checkbox"
-                 value="card"
-                 checked={this.state.Card}
-                 onChange={this.handleChange} />
-          <label>{i18n.t('foreign.passport.card')}</label>
+        <div className="eapp-field-wrap">
+          <Help id="foreign.passport.help.number">
+            <div className="number">
+              <Text name="number"
+                    value={this.state.Number.value}
+                    label={i18n.t('foreign.passport.label.number')}
+                    placeholder={i18n.t('foreign.passport.placeholder.number')}
+                    pattern={re}
+                    maxlength="9"
+                    ref="number"
+                    onUpdate={this.handleUpdate.bind(this, 'Number')}
+                    onValidate={this.handleValidation}
+                    />
+              <div className="text-right">
+                <input id="passportCard"
+                      type="checkbox"
+                      value="card"
+                      checked={this.state.Card}
+                      onChange={this.handleChange} />
+                <label>{i18n.t('foreign.passport.card')}</label>
+              </div>
+            </div>
+            <HelpIcon />
+          </Help>
         </div>
 
         <h3>{i18n.t('foreign.passport.issued')}</h3>
-        <DateControl name="issued"
-                     {...this.state.Issued}
-                     className="eapp-field-wrap"
-                     onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                     onValidate={this.handleValidation}
-                     />
+        <div className="eapp-field-wrap">
+          <Help id="foreign.passport.help.issued">
+            <DateControl name="issued"
+                         {...this.state.Issued}
+                         onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                         onValidate={this.handleValidation}
+                         />
+            <HelpIcon />
+          </Help>
+        </div>
+
         <h3>{i18n.t('foreign.passport.expiration')}</h3>
-        <DateControl name="expiration"
-                     {...this.state.Expiration}
-                     className="eapp-field-wrap"
-                     onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                     onValidate={this.handleValidation}
-                     />
+        <div className="eapp-field-wrap">
+          <Help id="foreign.passport.help.expiration">
+            <DateControl name="expiration"
+                         {...this.state.Expiration}
+                         onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                         onValidate={this.handleValidation}
+                         />
+            <HelpIcon />
+          </Help>
+        </div>
 
         <Comments name="comments"
                   value={this.state.Comments}
@@ -225,11 +242,9 @@ export default class Passport extends ValidationElement {
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
                 className="eapp-field-wrap"
-                yesLabel={i18n.t('foreign.passport.question.yes')}
-                noLabel={i18n.t('foreign.passport.question.no')}>
-          <div>
-            {i18n.t('foreign.passport.question.title')}
-          </div>
+                label={i18n.t('foreign.passport.question.title')}
+                help="foreign.passport.branch.help"
+                >
         </Branch>
         {this.visibleComponents()}
       </div>

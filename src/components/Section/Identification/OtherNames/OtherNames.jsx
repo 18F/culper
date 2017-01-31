@@ -56,48 +56,13 @@ export default class OtherNames extends ValidationElement {
     return true
   }
 
-  addOtherName () {
-    let list = this.state.List
-    list.push({
-      index: new Date().getTime(),
-      Name: {},
-      MaidenName: '',
-      DatesUsed: {},
-      Reason: ''
-    })
-
-    this.setState({ List: [...list] }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.HasOtherNames
-        })
-      }
-    })
-  }
-
-  clear () {
-    this.setState({ List: [] }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.HasOtherNames
-        })
-      }
-    })
-  }
-
   onUpdate (val) {
-    this.setState({ HasOtherNames: val }, () => {
-      if (val === 'Yes') {
-        if (this.state.List.length === 0) {
-          this.addOtherName()
-        }
-      } else if (val === 'No') {
-        if (this.state.List.length > 0) {
-          this.clear()
-        }
-      }
+    let list = [...this.state.List]
+    if (val === 'No') {
+      list = []
+    }
+
+    this.setState({ HasOtherNames: val, List: list }, () => {
       this.props.onUpdate({
         List: this.state.List,
         HasOtherNames: this.state.HasOtherNames
@@ -122,7 +87,7 @@ export default class OtherNames extends ValidationElement {
   summary (item, index) {
     let name = i18n.t('identification.othernames.collection.summary.unknown')
     if (item.Name) {
-      name = `${item.Name.first} ${item.Name.middle} ${item.Name.last}`.trim()
+      name = `${item.Name.first || ''} ${item.Name.middle || ''} ${item.Name.last || ''}`.trim()
     }
 
     let from = ''
@@ -175,37 +140,43 @@ export default class OtherNames extends ValidationElement {
 
         <h3>{i18n.t('identification.othernames.heading.name')}</h3>
         <Name name="Name"
+              key="name"
               className="eapp-field-wrap"
               onValidate={this.handleValidation}
               />
 
         <h3>{i18n.t('identification.othernames.heading.maiden')}</h3>
-        <Help id="alias.maiden.help">
-          <MaidenName name="MaidenName"
-                      className="eapp-field-wrap"
-                      onValidate={this.handleValidation}
-                      />
-          <HelpIcon className="maiden-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+          <Help id="alias.maiden.help">
+            <MaidenName name="MaidenName"
+                        label={i18n.t('identification.othernames.label.maiden')}
+                        onValidate={this.handleValidation}
+                        />
+            <HelpIcon className="maiden-help-icon" />
+          </Help>
+        </div>
 
         <h3>{i18n.t('identification.othernames.heading.used')}</h3>
-        <Help id="alias.used.help">
-          <DateRange name="DatesUsed"
-                     className="eapp-field-wrap"
-                     onValidate={this.handleValidation}
-                     />
-          <HelpIcon className="used-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+          <Help id="alias.used.help">
+            <DateRange name="DatesUsed"
+                      onValidate={this.handleValidation}
+                      />
+            <HelpIcon className="used-help-icon" />
+          </Help>
+        </div>
 
         <h3>{i18n.t('identification.othernames.heading.reason')}</h3>
-        <Help id="alias.reason.help">
-          <Textarea name="Reason"
-                    className="reason eapp-field-wrap"
-                    onValidate={this.handleValidation}
-                    label={i18n.t('identification.othernames.label.reason')}
-                    />
-          <HelpIcon className="reason-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+          <Help id="alias.reason.help">
+            <Textarea name="Reason"
+                      className="reason"
+                      onValidate={this.handleValidation}
+                      label={i18n.t('identification.othernames.label.reason')}
+                      />
+            <HelpIcon className="reason-help-icon" />
+          </Help>
+        </div>
       </Collection>
     )
   }
@@ -217,8 +188,9 @@ export default class OtherNames extends ValidationElement {
         <Branch name="has_othernames"
                 className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
+                help="identification.othernames.branch.help"
+                label={i18n.t('identification.othernames.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
-          <div>{i18n.t('identification.othernames.branch.question')}</div>
         </Branch>
         {this.visibleComponents()}
       </div>

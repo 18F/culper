@@ -10,9 +10,12 @@ const reducer = function (sectionName) {
     // merging of everything every time an action is dispatched. We only
     // perform for the relevant section
     if (action.section === sectionName) {
-      return merge(state, {
-        [action.property]: action.values
-      })
+      // copy current state
+      let updated = {...state}
+
+      // Override all values for the particular reducer key
+      updated[action.property] = action.values
+      return updated
     }
 
     return state

@@ -84,7 +84,7 @@ export default class Name extends ValidationElement {
         } = this.state
 
         this.props.onUpdate({
-          ...this.props,
+          name: this.props.name,
           first: first,
           firstInitialOnly: firstInitialOnly,
           last: last,

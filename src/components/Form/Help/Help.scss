@@ -1,7 +1,6 @@
 @import 'eqip-colors';
 
 .help {
-    border:1px solid #009;
     padding-top:4.6rem;
     line-height:4.6rem;
 
@@ -60,7 +59,9 @@
             background: $eapp-blue-light;
             border-radius: 50%;
         }
-
+		div * {
+			padding:0 !important;
+		}
         .eapp-help-close {
             display: block;
             margin-top: 1rem;
@@ -74,4 +75,9 @@
 			}
         }
     }
+}
+.no-label {
+	.help {
+		padding-top:0;
+	}
 }
