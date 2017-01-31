@@ -99,7 +99,7 @@ class Foreign extends ValidationElement {
    */
   intro () {
     return (
-      <div className="foreign intro">
+      <div className="foreign intro review-screen">
         <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>

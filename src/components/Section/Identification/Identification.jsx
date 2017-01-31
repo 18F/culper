@@ -91,7 +91,7 @@ class Identification extends ValidationElement {
 
   intro () {
     return (
-      <div className="identification intro">
+      <div className="identification intro review-screen">
         <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
