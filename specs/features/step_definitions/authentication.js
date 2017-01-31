@@ -31,15 +31,6 @@ defineSupportCode(({Given, Then, When}) => {
       .setValue('input[type="password"]', credentials.password)
       .click('#basic button[type="submit"]')
       .pause(3000)
-      // .getLog('browser', (entries) => {
-      //   if (!entries) {
-      //     return
-      //   }
-
-      //   entries.forEach(e => {
-      //     console.log('[' + e.level + '] ' + e.timestamp + ' : ' + e.message)
-      //   })
-      // })
   })
 
   Then(/^I should be presented with a request for two factor authentication$/, () => {
@@ -49,14 +40,23 @@ defineSupportCode(({Given, Then, When}) => {
       .assert.urlContains('/login')
       .assert.visible('#twofactor-component')
       .isVisible('#twofactor-component', (result) => {
-        // If the QR code is not present then we need to reset two factor
-        // authentication to continue with our flow.
-        client.click('.reset').pause(2000)
+        // Two factor token key is taken from an environment variable called `FEATURE_SPEC_2FA`
+        credentials.token = process.env.FEATURE_SPEC_2FA || ''
+
+        // If there is no value, which in most cases this is ideal, then we need to scan the
+        // QR code and retrieve the token each time.
+        //
+        // For feature spec testing we want to reset the two-factor authentication
+        // on each scenario so it is a true test as well as reduces the possibilities
+        // of sensitive data stored within the commit history.
+        if (!credentials.token) {
+          client.click('.reset').pause(2000)
+        }
       })
       .saveScreenshot(screenshot, () => {
-        var token = process.env.FEATURE_SPEC_2FA || ''
-
-        if (!token) {
+        // If we do not have the token (i.e. they were not provided via environment
+        // variable) then we need to take a screenshot to scan the QR code.
+        if (!credentials.token) {
           let c = fs.readFileSync(screenshot)
           let p = new Png(c)
 
@@ -67,21 +67,21 @@ defineSupportCode(({Given, Then, When}) => {
                 return
               }
 
+              // The QR code returns a URI with the information we are looking for
+              // found as a query parameter that is Base32 encoded.
               credentials.token = base32.decode(decodeURI(url.parse(t, true).query['secret']))
             }
             qr.decode(p, data)
           })
         } else {
-          credentials.token = base32.decode(token)
+          // The token should come Base32 encoded.
+          credentials.token = base32.decode(credentials.token)
         }
       })
       .pause(1000)
   })
 
   Then(/^provide my token$/, () => {
-    // Two factor token key is taken from an environment variable called `FEATURE_SPEC_2FA`
-    // It is also not persisted in the `credentials` object to reduce risk of storing sensitive
-    // data in memory.
     return client
       .setValue('#twofactor-component input[type="text"]', notp.totp.gen(credentials.token))
       .click('#twofactor-component button[type="submit"]')
