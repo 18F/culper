@@ -44,6 +44,7 @@ export class SectionViews extends React.Component {
                           </div>
                       </button>
                     }
+          <div className="clear"></div>
           </div>
         )
 
