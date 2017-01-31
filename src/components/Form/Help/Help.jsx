@@ -82,7 +82,7 @@ export default class Help extends React.Component {
   }
 
   render () {
-    const klass = `help ${this.props.className}`.trim()
+    const klass = `help ${this.props.className || ''}`.trim()
     return (
       <div className={klass} ref="help">
         {this.children()}
