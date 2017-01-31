@@ -164,7 +164,7 @@ const en = {
       label: {
         state: 'State',
         city: 'City',
-        county: 'County',
+        county: 'County or providence',
         country: 'Country'
       },
       placeholder: {
@@ -246,7 +246,8 @@ const en = {
         feet: 'Feet must be a number between 1 and 9',
         inches: 'Inches must be a number between 0 and 11',
         height: 'Height must be a number between 1 and 9',
-        weight: 'Weight must be a number between 10 and 999'
+        weight: 'Weight must be a number between 10 and 999',
+        eye: 'Select an eye color'
       },
       label: {
         hair: 'Select the hair color that most closely represents your hair color',
@@ -315,6 +316,7 @@ const en = {
     gambling: {
       title: 'Gambling debt',
       branch: {
+        help: 'Select whether you have experienced any financial problems due to gambling',
         question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
@@ -343,10 +345,10 @@ const en = {
         comments: 'Add optional comment'
       },
       help: {
-        dates: '',
-        losses: '',
-        description: '',
-        actions: '',
+        dates: 'Provide the date range of your financial problems due to gambling',
+        losses: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
+        description: 'Enter description of your financial problems due to gambling',
+        actions: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
         comments: 'If you need to provide any additional comments about this information enter them below'
       },
       placeholder: {
@@ -416,6 +418,10 @@ const en = {
       },
       comments: {
         label: 'Add comment'
+      },
+      courtAddress: {
+        label: 'This address is',
+        help: 'Enter the address of the court involved'
       }
     }
   },
@@ -428,7 +434,7 @@ const en = {
         label: 'APO/FPO'
       },
       international: {
-        label: 'Outside of the United States'
+        label: 'International'
       }
     },
     us: {
@@ -549,6 +555,14 @@ const en = {
       comment: {
         title: 'Add optional comment',
         label: 'If you need to provide any additional comments about this information enter them below'
+      },
+      help: {
+        number: 'Enter your passport number. If you possess a card, check the Passport card option',
+        issued: 'Enter the date your passport was issued',
+        expiration: 'Enter the date your passport expired'
+      },
+      branch: {
+        help: 'Select whether you possess a U.S. passport'
       }
     }
   },

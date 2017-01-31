@@ -167,7 +167,6 @@ export default class Radio extends ValidationElement {
                  aria-describedby={this.errorName()}
                  disabled={this.state.disabled}
                  readOnly={this.state.readonly}
-                 required={this.state.required}
                  value={this.state.value}
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}

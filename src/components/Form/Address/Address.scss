@@ -1,4 +1,6 @@
 .address {
+    display: inline-block;
+
     .state-zip-wrap {
         display: table;
         .state, .zipcode {
@@ -35,5 +37,9 @@
             display: inline !important;
             top: 0 !important;
         }
+    }
+
+    label.bold {
+        font-weight: 600;
     }
 }

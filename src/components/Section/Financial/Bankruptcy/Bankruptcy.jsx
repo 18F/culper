@@ -259,8 +259,9 @@ export default class Bankruptcy extends ValidationElement {
 
         <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="financial.bankruptcy.help.court">
+          <Help id="financial.bankruptcy.courtAddress.help">
             <Address name="CourtAddress"
+                     label={i18n.t('financial.bankruptcy.courtAddress.label')}
                      onValidate={this.handleValidation}
                      />
             <HelpIcon />

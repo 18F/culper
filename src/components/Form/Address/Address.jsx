@@ -268,7 +268,7 @@ export default class Address extends ValidationElement {
 
     return (
       <div className={klass}>
-        <label>{this.props.label}</label>
+        <label className="bold">{this.props.label}</label>
         <RadioGroup className="address-options" selectedValue={this.state.addressType}>
           <Radio name="addressType"
             label={i18n.t('address.options.us.label')}

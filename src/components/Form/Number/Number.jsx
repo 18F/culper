@@ -211,7 +211,6 @@ export default class Number extends ValidationElement {
                disabled={this.state.disabled}
                maxLength={this.state.maxlength}
                readOnly={this.state.readonly}
-               required={this.state.required}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
