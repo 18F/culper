@@ -120,7 +120,6 @@ export default class DateControl extends ValidationElement {
         if (this.props.onUpdate) {
           this.props.onUpdate({
             name: this.props.name,
-            index: this.props.index,
             month: this.state.month,
             day: this.state.day,
             year: this.state.year,
@@ -276,7 +275,7 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    let klass = `datecontrol ${this.props.className || ''}`.trim()
+    let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
     return (
       <div className={klass}>

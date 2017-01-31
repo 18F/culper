@@ -23,7 +23,6 @@ export default class Text extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           value: this.state.value,
-          index: this.props.index,
           name: this.props.name
         })
       }
