@@ -20,7 +20,9 @@ export default class Comments extends ValidationElement {
     let future = !this.state.visible
     let value = future ? this.state.value : ''
     this.setState({ visible: future, value: value }, () => {
-      this.props.onUpdate(this.state.value)
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
     })
   }
 

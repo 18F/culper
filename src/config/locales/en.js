@@ -418,6 +418,10 @@ const en = {
       },
       comments: {
         label: 'Add comment'
+      },
+      courtAddress: {
+        label: 'This address is',
+        help: 'Enter the address of the court involved'
       }
     }
   },
