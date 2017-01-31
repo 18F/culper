@@ -9,6 +9,7 @@ import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
 import { api } from '../../../services/api'
+import { Help, HelpIcon } from '../Help'
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -112,7 +113,7 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          className="address"
+          className="mailing"
           label="Mailing Address"
           placeholder="Enter mailing address"
           value={this.state.address}
@@ -122,6 +123,7 @@ export default class Address extends ValidationElement {
           onBlur={this.props.onBlur}
         />
         <City name="city"
+          className="city"
           label="City"
           placeholder="Enter city"
           value={this.state.city}
@@ -162,7 +164,7 @@ export default class Address extends ValidationElement {
       <div>
         <Street name="address"
           label="Mailing Address"
-          className="address"
+          className="mailing"
           placeholder="Enter mailing address"
           value={this.state.address}
           onChange={this.handleChange.bind(this, 'address')}
@@ -196,7 +198,7 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          className="address"
+          className="mailing"
           label="Mailing Address"
           placeholder="Enter mailing address"
           value={this.state.address}
@@ -215,7 +217,7 @@ export default class Address extends ValidationElement {
           onBlur={this.props.onBlur}
         />
         <div>Select APO or FPO</div>
-        <RadioGroup className="" selectedValue={this.state.apoFpoType}>
+        <RadioGroup className="apofpo" selectedValue={this.state.apoFpoType}>
           <Radio name="addressType"
             label="APO"
             value="APO"
@@ -294,9 +296,11 @@ export default class Address extends ValidationElement {
             onFocus={this.props.onFocus}
           />
         </RadioGroup>
-        {this.state.addressType === 'United States' && this.usAddress()}
-        {this.state.addressType === 'International' && this.internationalAddress()}
-        {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+        <div className="fields">
+          {this.state.addressType === 'United States' && this.usAddress()}
+          {this.state.addressType === 'International' && this.internationalAddress()}
+          {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+        </div>
       </div>
     )
   }

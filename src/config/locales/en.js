@@ -114,7 +114,7 @@ const en = {
       title: 'Other names used',
       info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
       branch: {
-        help: '',
+        help: 'Provide your other names used and the period of time you used them',
         question: 'Have you used any other names?'
       },
       collection: {
@@ -151,6 +151,9 @@ const en = {
         label: 'Were you born in the United States of America?',
         yes: 'Yes',
         no: 'No'
+      },
+      branch: {
+        help: 'Enter information regarding your place of birth'
       },
       help: {
         city: 'City where you were born',
