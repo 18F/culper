@@ -128,10 +128,10 @@ class Financial extends ValidationElement {
             {this.intro()}
           </SectionView>
           <SectionView name="review"
-                       back="financial/nonpayment"
-                       backLabel={i18n.t('financial.destination.nonpayment')}
-                       next="family"
-                       nextLabel={i18n.t('financial.destination.family')}>
+                       back="financial/bankruptcy"
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       next="foreign"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}

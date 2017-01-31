@@ -14,10 +14,25 @@
             max-width: 64rem !important;
         }
     }
-    .maiden-help-icon {
+
+    .maiden-name {
+        .option-list {
+            max-width: none !important;
+        }
     }
+
     .used-help-icon {
+        margin-top: 1.5rem;
+        margin-left: -13.8rem;
     }
-    .reason-help-icon {
+
+    .collection {
+        .summary {
+            .brief {
+                .index {
+                    width: 7rem;
+                }
+            }
+        }
     }
 }

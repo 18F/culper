@@ -126,10 +126,9 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       back="history"
-                       backLabel={i18n.t('foreign.destination.history')}
-                       next="tbd"
-                       nextLabel={i18n.t('foreign.destination.tbd')}>
+                       back="foreign/passport"
+                       backLabel={i18n.t('foreign.destination.passport')}
+                       >
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
@@ -139,8 +138,8 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="passport"
-                       back="identification/physical"
-                       backLabel={i18n.t('identification.destination.physical')}
+                       back="financial/bankruptcy"
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="foreign/review"
                        nextLabel={i18n.t('foreign.destination.review')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>

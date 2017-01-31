@@ -83,6 +83,7 @@ const en = {
       psychological: 'Psychological and emotional health'
     },
     name: {
+      title: 'Your full name',
       last: {
         help: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
         error: {
@@ -113,6 +114,7 @@ const en = {
       title: 'Other names used',
       info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
       branch: {
+        help: '',
         question: 'Have you used any other names?'
       },
       collection: {
@@ -132,6 +134,7 @@ const en = {
         reason: 'Reason for change'
       },
       label: {
+        maiden: 'Was this your maiden name?',
         reason: 'Provide the reasons why the name changed'
       }
     },
@@ -227,24 +230,25 @@ const en = {
       }
     },
     traits: {
+      title: 'Physical attributes',
       heading: {
+        hair: 'Hair color',
+        eye: 'Eye color',
+        height: 'Height',
+        weight: 'Weight',
+        sex: 'Sex',
         comments: 'Add your comment about sex'
       },
       help: {
-        hair: 'Select the hair color that most closely represents your hair color',
-        eye: 'Select an eye color that most closely represents your eye color',
-        sex: 'Select your sex at the time of birth',
         feet: 'Feet must be a number between 1 and 9',
         inches: 'Inches must be a number between 0 and 11',
         height: 'Height must be a number between 1 and 9',
         weight: 'Weight must be a number between 10 and 999'
       },
       label: {
-        height: 'Height',
-        weight: 'Weight',
-        hair: 'Hair color',
-        eye: 'Eye color',
-        sex: 'Sex',
+        hair: 'Select the hair color that most closely represents your hair color',
+        eye: 'Select an eye color that most closely represents your eye color',
+        sex: 'Select your sex at the time of birth',
         feet: 'Feet',
         inches: 'Inches',
         pounds: 'Pounds',
@@ -364,7 +368,8 @@ const en = {
         totalAmount: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
         nameDebt: 'Provide the name debt is recorded under',
         courtInvolved: 'Provide the name of the court involved',
-        courtAddress: 'Provide the address of the court involved'
+        courtAddress: 'Provide the address of the court involved',
+        comments: 'Add optional comments'
       },
       title: 'Bankruptcy',
       help: 'Note: If you need to provide any additional comments about this information, enter them below.',
@@ -382,19 +387,32 @@ const en = {
       },
       courtNumber: {
         title: 'Court docket/account number',
+        label: 'Number',
         placeholder: 'Court docket/account number',
         help: 'Provide the docket/account number'
       },
       totalAmount: {
+        label: 'Amount',
         placeholder: 'Total amount',
         help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
       },
       courtInvolved: {
+        label: 'Court name',
         help: 'Provide the name of the court involved',
         placeholder: 'Provide court involved'
       },
       trustee: {
-        placeholder: 'Provide name of trustee'
+        title: 'Provide the trustee',
+        label: 'Trustee name',
+        placeholder: 'Provide name of trustee',
+        help: '',
+        address: {
+          title: 'Provide the address of the trustee for this bankruptcy',
+          label: 'Trustee address'
+        }
+      },
+      comments: {
+        label: 'Add comment'
       }
     }
   },
@@ -429,6 +447,12 @@ const en = {
         title: 'Do you possess a U.S. passport (current or expired)?',
         yes: 'Yes',
         no: 'No'
+      },
+      label: {
+        number: 'Passport number'
+      },
+      placeholder: {
+        number: 'A########'
       },
       number: 'Provide your U.S. passport number',
       card: 'Passport card',

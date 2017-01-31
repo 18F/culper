@@ -108,12 +108,16 @@ export default class ContactInformation extends ValidationElement {
                       summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
                       appendClass="eapp-field-wrap"
                       appendLabel={i18n.t('identification.contacts.collection.append')}>
-            <Email name="Email"
-                   className="eapp-field-wrap"
-                   label={i18n.t('identification.contacts.label.email')}
-                   onValidate={this.handleValidation}
-                   placeholder={i18n.t('identification.contacts.placeholder.email')}
-                   />
+
+            <div className="eapp-field-wrap">
+              <Help>
+                <Email name="Email"
+                       label={i18n.t('identification.contacts.label.email')}
+                       onValidate={this.handleValidation}
+                       placeholder={i18n.t('identification.contacts.placeholder.email')}
+                       />
+              </Help>
+            </div>
           </Collection>
         </div>
 

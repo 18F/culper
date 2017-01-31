@@ -166,22 +166,30 @@ export default class Passport extends ValidationElement {
               />
 
         <h3>{i18n.t('foreign.passport.number')}</h3>
-        <Text name="number"
-              value={this.state.Number}
-              pattern={re}
-              maxlength="9"
-              ref="number"
-              className="eapp-field-wrap"
-              onUpdate={this.handleUpdate.bind(this, 'Number')}
-              onValidate={this.handleValidation}
-              />
-        <div className="text-right eapp-field-wrap">
-          <input id="passportCard"
-                 type="checkbox"
-                 value="card"
-                 checked={this.state.Card}
-                 onChange={this.handleChange} />
-          <label>{i18n.t('foreign.passport.card')}</label>
+        <div className="eapp-field-wrap">
+          <Help id="foreign.passport.help.number">
+            <div className="number">
+              <Text name="number"
+                    value={this.state.Number}
+                    label={i18n.t('foreign.passport.label.number')}
+                    placeholder={i18n.t('foreign.passport.placeholder.number')}
+                    pattern={re}
+                    maxlength="9"
+                    ref="number"
+                    onUpdate={this.handleUpdate.bind(this, 'Number')}
+                    onValidate={this.handleValidation}
+                    />
+              <div className="text-right">
+                <input id="passportCard"
+                      type="checkbox"
+                      value="card"
+                      checked={this.state.Card}
+                      onChange={this.handleChange} />
+                <label>{i18n.t('foreign.passport.card')}</label>
+              </div>
+            </div>
+            <HelpIcon />
+          </Help>
         </div>
 
         <h3>{i18n.t('foreign.passport.issued')}</h3>
@@ -235,8 +243,8 @@ export default class Passport extends ValidationElement {
                 onUpdate={this.yesNoClicked.bind(this)}
                 className="eapp-field-wrap"
                 label={i18n.t('foreign.passport.question.title')}
-                yesLabel={i18n.t('foreign.passport.question.yes')}
-                noLabel={i18n.t('foreign.passport.question.no')}>
+                help="foreign.passport.branch.help"
+                >
         </Branch>
         {this.visibleComponents()}
       </div>

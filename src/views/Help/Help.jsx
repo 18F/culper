@@ -3,11 +3,6 @@ import AuthenticatedView from '../AuthenticatedView'
 import { Link } from 'react-router'
 
 class Help extends React.Component {
-
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
       <div>
