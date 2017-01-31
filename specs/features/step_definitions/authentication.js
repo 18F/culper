@@ -23,14 +23,17 @@ defineSupportCode(({Given, Then, When}) => {
     return client
       .url(client.launch_url + '/#/login')
       .waitForElementVisible('body', 1000)
+      .saveScreenshot('./screenshots/Authentication/01-login.png')
   })
 
   Then(/^sign in$/, () => {
     return client
       .setValue('input[type="text"]', credentials.username)
       .setValue('input[type="password"]', credentials.password)
+      .saveScreenshot('./screenshots/Authentication/02-credentials.png')
       .click('#basic button[type="submit"]')
       .pause(3000)
+      .saveScreenshot('./screenshots/Authentication/03-submitted.png')
   })
 
   Then(/^I should be presented with a request for two factor authentication$/, () => {
@@ -39,6 +42,7 @@ defineSupportCode(({Given, Then, When}) => {
     return client
       .assert.urlContains('/login')
       .assert.visible('#twofactor-component')
+      .saveScreenshot('./screenshots/Authentication/04-twofactor.png')
       .isVisible('#twofactor-component', (result) => {
         // Two factor token key is taken from an environment variable called `FEATURE_SPEC_2FA`
         credentials.token = process.env.FEATURE_SPEC_2FA || ''
@@ -53,6 +57,7 @@ defineSupportCode(({Given, Then, When}) => {
           client.click('.reset').pause(2000)
         }
       })
+      .saveScreenshot('./screenshots/Authentication/06-twofactor-reset.png')
       .saveScreenshot(screenshot, () => {
         // If we do not have the token (i.e. they were not provided via environment
         // variable) then we need to take a screenshot to scan the QR code.
@@ -84,6 +89,7 @@ defineSupportCode(({Given, Then, When}) => {
   Then(/^provide my token$/, () => {
     return client
       .setValue('#twofactor-component input[type="text"]', notp.totp.gen(credentials.token))
+      .saveScreenshot('./screenshots/Authentication/07-insert-token.png')
       .click('#twofactor-component button[type="submit"]')
       .pause(3000)
   })
@@ -91,6 +97,6 @@ defineSupportCode(({Given, Then, When}) => {
   Then(/^I should be presented with the form$/, () => {
     return client
       .assert.urlContains('/form')
-      .saveScreenshot('./screenshots/Authentication/success.png')
+      .saveScreenshot('./screenshots/Authentication/08-logged-in.png')
   })
 })
