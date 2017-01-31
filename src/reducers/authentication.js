@@ -38,8 +38,7 @@ const authentication = function (state = defaultState, action) {
       return {
         ...state,
         authenticated: true,
-        twofactor: true,
-        token: action.token
+        twofactor: true
       }
 
     case AuthConstants.TWOFACTOR_ERROR:
