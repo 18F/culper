@@ -217,7 +217,7 @@ export default class Address extends ValidationElement {
           onFocus={this.props.onFocus}
           onBlur={this.props.onBlur}
         />
-        <label>Select APO or FPO</label>
+        <label>{i18n.t('address.apoFpo.select.label')}</label>
         <RadioGroup className="apofpo" selectedValue={this.state.apoFpoType}>
           <Radio name="apoFpoType"
             label={i18n.t('address.apoFpo.apoFpoType.apo.label')}

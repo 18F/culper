@@ -468,6 +468,9 @@ const en = {
       }
     },
     apoFpo: {
+      select: {
+        label: 'Select APO or FPO'
+      },
       street: {
         label: 'Mailing address',
         placeholder: 'Enter mailing address'
