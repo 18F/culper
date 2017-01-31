@@ -149,6 +149,7 @@ export default class OtherNames extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="alias.maiden.help">
             <MaidenName name="MaidenName"
+                        label={i18n.t('identification.othernames.label.maiden')}
                         onValidate={this.handleValidation}
                         />
             <HelpIcon className="maiden-help-icon" />
@@ -187,6 +188,7 @@ export default class OtherNames extends ValidationElement {
         <Branch name="has_othernames"
                 className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
+                help="identification.othernames.branch.help"
                 label={i18n.t('identification.othernames.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
