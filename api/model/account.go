@@ -21,6 +21,9 @@ var (
 
 	// ErrAccoundDoesNotExist is an error when a users account does not exist
 	ErrAccoundDoesNotExist = errors.New("Account does not exist")
+
+	// ErrDatastoreConnection is an error when a database connection cannot be made
+	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
 )
 
 // Account represents a user account
@@ -51,11 +54,12 @@ func (a *Account) BasicAuthentication(password string) error {
 		Select()
 
 	if err != nil {
+		fmt.Printf("Basic Authentication Error: [%v]\n", err)
 		switch err {
 		case pg.ErrNoRows:
 			return ErrAccoundDoesNotExist
 		default:
-			return err
+			return ErrDatastoreConnection
 		}
 	}
 

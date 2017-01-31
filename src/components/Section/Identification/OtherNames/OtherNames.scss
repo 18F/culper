@@ -15,19 +15,24 @@
         }
     }
 
-    .maiden-help-icon {
-        margin-left: -1.6rem;
-        margin-top: 1rem;
-    }
-    
-    .used-help-icon {
-        vertical-align: top;
-        margin-top: 7.3rem;
-        margin-left: -15rem;
+    .maiden-name {
+        .option-list {
+            max-width: none !important;
+        }
     }
 
-    .reason-help-icon {
-        vertical-align: top;
-        margin-top: 10rem;
+    .used-help-icon {
+        margin-top: 1.5rem;
+        margin-left: -13.8rem;
+    }
+
+    .collection {
+        .summary {
+            .brief {
+                .index {
+                    width: 7rem;
+                }
+            }
+        }
     }
 }

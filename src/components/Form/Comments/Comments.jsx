@@ -20,6 +20,9 @@ export default class Comments extends ValidationElement {
     let future = !this.state.visible
     let value = future ? this.state.value : ''
     this.setState({ visible: future, value: value }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate(this.state.value)
+      }
     })
   }
 
@@ -47,7 +50,7 @@ export default class Comments extends ValidationElement {
 
     if (!this.state.visible) {
       return (
-        <div class="comments">
+        <div className="comments">
           {this.props.children}
           <div className={klass}>
             <a href="javascript:;;" onClick={this.toggle} className="add">

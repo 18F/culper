@@ -33,7 +33,6 @@ export default class PetitionType extends ValidationElement {
       let update = {
         name: this.props.name,
         value: this.state.value,
-        index: this.props.index,
         address: this.state.address
       }
       if (this.state.value === 'Chapter13') {
@@ -119,16 +118,20 @@ export default class PetitionType extends ValidationElement {
     if (this.state.value === 'Chapter13') {
       return (
         <div>
-          <div className={klass}>
-            {options}
+          <div className={klass + ' no-label'}>
+            <Help id="financial.bankruptcy.petitionType.help">
+              {options}
+              <HelpIcon className="petition-type" />
+            </Help>
           </div>
 
-          <h4>Provide the trustee</h4>
+          <h3>{i18n.t('financial.bankruptcy.trustee.title')}</h3>
           <div className={klass}>
             <Help id="financial.bankruptcy.trustee.help">
               <Text name="chapter13Trustee"
                     className="trustee"
                     value={this.state.trustee}
+                    label={i18n.t('financial.bankruptcy.trustee.label')}
                     placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
                     onChange={this.handleFieldChange.bind(this, 'trustee')}
                     />
@@ -136,20 +139,27 @@ export default class PetitionType extends ValidationElement {
             </Help>
           </div>
 
-          <h4>Provide the address of the trustee for this bankruptcy</h4>
+          <h3>{i18n.t('financial.bankruptcy.trustee.address.title')}</h3>
           <div className={klass}>
-            <Address name="trusteeAddress"
-                     {...this.props.address}
-                     onUpdate={this.handleAddressChange.bind(this)}
-                     />
+            <Help id="financial.bankruptcy.trustee.address.help">
+              <Address name="trusteeAddress"
+                       {...this.props.address}
+                       label={i18n.t('financial.bankruptcy.trustee.address.label')}
+                       onUpdate={this.handleAddressChange.bind(this)}
+                       />
+              <HelpIcon className="trustee-address"/>
+            </Help>
           </div>
         </div>
       )
     }
 
     return (
-      <div className={klass}>
-        {options}
+      <div className={klass + ' no-label'}>
+        <Help id="financial.bankruptcy.petitionType.help">
+          {options}
+          <HelpIcon className="petition-type" />
+        </Help>
       </div>
     )
   }

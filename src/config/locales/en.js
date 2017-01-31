@@ -83,6 +83,7 @@ const en = {
       psychological: 'Psychological and emotional health'
     },
     name: {
+      title: 'Your full name',
       last: {
         help: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
         error: {
@@ -113,6 +114,7 @@ const en = {
       title: 'Other names used',
       info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
       branch: {
+        help: 'Provide your other names used and the period of time you used them',
         question: 'Have you used any other names?'
       },
       collection: {
@@ -132,6 +134,7 @@ const en = {
         reason: 'Reason for change'
       },
       label: {
+        maiden: 'Was this your maiden name?',
         reason: 'Provide the reasons why the name changed'
       }
     },
@@ -149,6 +152,9 @@ const en = {
         yes: 'Yes',
         no: 'No'
       },
+      branch: {
+        help: 'Enter information regarding your place of birth'
+      },
       help: {
         city: 'City where you were born',
         state: 'State where you were born',
@@ -158,7 +164,7 @@ const en = {
       label: {
         state: 'State',
         city: 'City',
-        county: 'County',
+        county: 'County or providence',
         country: 'Country'
       },
       placeholder: {
@@ -227,24 +233,26 @@ const en = {
       }
     },
     traits: {
+      title: 'Physical attributes',
       heading: {
+        hair: 'Hair color',
+        eye: 'Eye color',
+        height: 'Height',
+        weight: 'Weight',
+        sex: 'Sex',
         comments: 'Add your comment about sex'
       },
       help: {
-        hair: 'Select the hair color that most closely represents your hair color',
-        eye: 'Select an eye color that most closely represents your eye color',
-        sex: 'Select your sex at the time of birth',
         feet: 'Feet must be a number between 1 and 9',
         inches: 'Inches must be a number between 0 and 11',
         height: 'Height must be a number between 1 and 9',
-        weight: 'Weight must be a number between 10 and 999'
+        weight: 'Weight must be a number between 10 and 999',
+        eye: 'Select an eye color'
       },
       label: {
-        height: 'Height',
-        weight: 'Weight',
-        hair: 'Hair color',
-        eye: 'Eye color',
-        sex: 'Sex',
+        hair: 'Select the hair color that most closely represents your hair color',
+        eye: 'Select an eye color that most closely represents your eye color',
+        sex: 'Select your sex at the time of birth',
         feet: 'Feet',
         inches: 'Inches',
         pounds: 'Pounds',
@@ -308,6 +316,7 @@ const en = {
     gambling: {
       title: 'Gambling debt',
       branch: {
+        help: 'Select whether you have experienced any financial problems due to gambling',
         question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
@@ -336,10 +345,10 @@ const en = {
         comments: 'Add optional comment'
       },
       help: {
-        dates: '',
-        losses: '',
-        description: '',
-        actions: '',
+        dates: 'Provide the date range of your financial problems due to gambling',
+        losses: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
+        description: 'Enter description of your financial problems due to gambling',
+        actions: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
         comments: 'If you need to provide any additional comments about this information enter them below'
       },
       placeholder: {
@@ -364,7 +373,8 @@ const en = {
         totalAmount: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
         nameDebt: 'Provide the name debt is recorded under',
         courtInvolved: 'Provide the name of the court involved',
-        courtAddress: 'Provide the address of the court involved'
+        courtAddress: 'Provide the address of the court involved',
+        comments: 'Add optional comments'
       },
       title: 'Bankruptcy',
       help: 'Note: If you need to provide any additional comments about this information, enter them below.',
@@ -382,19 +392,121 @@ const en = {
       },
       courtNumber: {
         title: 'Court docket/account number',
+        label: 'Number',
         placeholder: 'Court docket/account number',
         help: 'Provide the docket/account number'
       },
       totalAmount: {
+        label: 'Amount',
         placeholder: 'Total amount',
         help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
       },
       courtInvolved: {
+        label: 'Court name',
         help: 'Provide the name of the court involved',
         placeholder: 'Provide court involved'
       },
       trustee: {
-        placeholder: 'Provide name of trustee'
+        title: 'Provide the trustee',
+        label: 'Trustee name',
+        placeholder: 'Provide name of trustee',
+        help: '',
+        address: {
+          title: 'Provide the address of the trustee for this bankruptcy',
+          label: 'Trustee address'
+        }
+      },
+      comments: {
+        label: 'Add comment'
+      },
+      courtAddress: {
+        label: 'This address is',
+        help: 'Enter the address of the court involved'
+      }
+    }
+  },
+  address: {
+    options: {
+      us: {
+        label: 'In the United States'
+      },
+      apoFpo: {
+        label: 'APO/FPO'
+      },
+      international: {
+        label: 'International'
+      }
+    },
+    us: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      state: {
+        label: 'State',
+        placeholder: 'Enter state'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      }
+    },
+    international: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      country: {
+        label: 'Country',
+        placeholder: 'Enter country'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      }
+    },
+    apoFpo: {
+      select: {
+        label: 'Select APO or FPO'
+      },
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      state: {
+        label: 'State',
+        placeholder: 'Enter state'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      },
+      apoFpo: {
+        label: 'APO/FPO'
+      },
+      apoFpoType: {
+        apo: {
+          label: 'APO'
+        },
+        fpo: {
+          label: 'FPO'
+        },
+        apoFpo: {
+          label: 'APO/FPO',
+          placeholder: 'Enter APO/FPO'
+        }
       }
     }
   },
@@ -430,6 +542,12 @@ const en = {
         yes: 'Yes',
         no: 'No'
       },
+      label: {
+        number: 'Passport number'
+      },
+      placeholder: {
+        number: 'A########'
+      },
       number: 'Provide your U.S. passport number',
       card: 'Passport card',
       issued: 'Provide the issue date of the passport',
@@ -437,6 +555,14 @@ const en = {
       comment: {
         title: 'Add optional comment',
         label: 'If you need to provide any additional comments about this information enter them below'
+      },
+      help: {
+        number: 'Enter your passport number. If you possess a card, check the Passport card option',
+        issued: 'Enter the date your passport was issued',
+        expiration: 'Enter the date your passport expired'
+      },
+      branch: {
+        help: 'Select whether you possess a U.S. passport'
       }
     }
   },
