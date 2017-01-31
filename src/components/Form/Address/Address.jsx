@@ -9,6 +9,8 @@ import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
 import { api } from '../../../services/api'
+import { Help, HelpIcon } from '../Help'
+import { i18n } from '../../../config'
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -26,7 +28,8 @@ export default class Address extends ValidationElement {
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
-      addressType: addressType
+      addressType: addressType,
+      apoFpoType: props.apoFpoType
     }
   }
 
@@ -56,7 +59,8 @@ export default class Address extends ValidationElement {
           zipcode: this.state.zipcode,
           country: this.state.country,
           addressType: this.state.addressType,
-          apoFpo: this.state.apoFpo
+          apoFpo: this.state.apoFpo,
+          apoFpoType: this.state.apoFpoType
         })
       }
     })
@@ -110,9 +114,9 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          className="address"
-          label="Mailing Address"
-          placeholder="Enter mailing address"
+          className="mailing"
+          label={i18n.t('address.us.street.label')}
+          placeholder={i18n.t('address.us.street.placeholder')}
           value={this.state.address}
           onChange={this.handleChange.bind(this, 'address')}
           onValidate={this.handleValidation}
@@ -120,8 +124,9 @@ export default class Address extends ValidationElement {
           onBlur={this.props.onBlur}
         />
         <City name="city"
-          label="City"
-          placeholder="Enter city"
+          className="city"
+          label={i18n.t('address.us.city.label')}
+          placeholder={i18n.t('address.us.city.placeholder')}
           value={this.state.city}
           onChange={this.handleChange.bind(this, 'city')}
           onValidate={this.handleValidation}
@@ -131,8 +136,8 @@ export default class Address extends ValidationElement {
         <div className="state-zip-wrap">
           <MilitaryState name="state"
             className="state"
-            label="State"
-            placeholder="Enter state"
+            label={i18n.t('address.us.state.label')}
+            placeholder={i18n.t('address.us.state.placeholder')}
             value={this.state.state}
             includeStates="true"
             onChange={this.handleChange.bind(this, 'state')}
@@ -142,8 +147,8 @@ export default class Address extends ValidationElement {
           />
           <ZipCode name="zipcode"
             className="zipcode"
-            label="Zipcode"
-            placeholder="Enter zipcode"
+            label={i18n.t('address.us.zipcode.label')}
+            placeholder={i18n.t('address.us.zipcode.placeholder')}
             value={this.state.zipcode}
             onChange={this.handleChange.bind(this, 'zipcode')}
             onValidate={this.handleValidation}
@@ -159,9 +164,9 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          label="Mailing Address"
-          className="address"
-          placeholder="Enter mailing address"
+          label={i18n.t('address.international.street.label')}
+          placeholder={i18n.t('address.international.street.placeholder')}
+          className="mailing"
           value={this.state.address}
           onChange={this.handleChange.bind(this, 'address')}
           onValidate={this.handleValidation}
@@ -169,8 +174,8 @@ export default class Address extends ValidationElement {
           onBlur={this.props.onBlur}
         />
         <City name="city"
-          label="City"
-          placeholder="Enter city"
+          label={i18n.t('address.international.city.label')}
+          placeholder={i18n.t('address.international.city.placeholder')}
           value={this.state.city}
           onChange={this.handleChange.bind(this, 'city')}
           onValidate={this.handleValidation}
@@ -178,8 +183,8 @@ export default class Address extends ValidationElement {
           onBlur={this.props.onBlur}
         />
         <Country name="country"
-          label="Country"
-          placeholder="Enter country"
+          label={i18n.t('address.international.country.label')}
+          placeholder={i18n.t('address.international.country.placeholder')}
           value={this.state.country}
           onChange={this.handleChange.bind(this, 'country')}
           onValidate={this.handleValidation}
@@ -194,9 +199,9 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          className="address"
-          label="Mailing Address"
-          placeholder="Enter mailing address"
+          label={i18n.t('address.apoFpo.street.label')}
+          placeholder={i18n.t('address.apoFpo.street.placeholder')}
+          className="mailing"
           value={this.state.address}
           onChange={this.handleChange.bind(this, 'address')}
           onValidate={this.handleValidation}
@@ -204,30 +209,40 @@ export default class Address extends ValidationElement {
           onBlur={this.props.onBlur}
         />
         <City name="city"
-          label="City"
-          placeholder="Enter city"
+          label={i18n.t('address.apoFpo.city.label')}
+          placeholder={i18n.t('address.apoFpo.city.placeholder')}
           value={this.state.city}
           onChange={this.handleChange.bind(this, 'city')}
           onValidate={this.handleValidation}
           onFocus={this.props.onFocus}
           onBlur={this.props.onBlur}
         />
-        <div className="state-zip-wrap">
-          <MilitaryState name="state"
-            className="state"
-            label="State"
-            placeholder="Enter state"
-            value={this.state.state}
-            includeStates="true"
-            onChange={this.handleChange.bind(this, 'state')}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
+        <label>{i18n.t('address.apoFpo.select.label')}</label>
+        <RadioGroup className="apofpo" selectedValue={this.state.apoFpoType}>
+          <Radio name="apoFpoType"
+            label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
+            value="APO"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'apoFpoType')}
+            onValidate={this.props.onValidate}
             onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
           />
+          <Radio name="addressType"
+            label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
+            value="FPO"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'apoFpoType')}
+            onValidate={this.props.onValidate}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+          />
+        </RadioGroup>
+        <div className="state-zip-wrap">
           <ZipCode name="zipcode"
             className="zipcode"
-            label="Zipcode"
-            placeholder="Enter zipcode"
+            label={i18n.t('address.apoFpo.zipcode.label')}
+            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
             value={this.state.zipcode}
             onChange={this.handleChange.bind(this, 'zipcode')}
             onValidate={this.handleValidation}
@@ -235,7 +250,8 @@ export default class Address extends ValidationElement {
             onBlur={this.props.onBlur}
           />
           <ApoFpo name="apoFpo"
-            label="APO/FPO"
+            label={i18n.t('address.apoFpo.apoFpo.label')}
+            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
             value={this.state.apoFpo}
             onChange={this.handleChange.bind(this, 'apoFpo')}
             onValidate={this.handleValidation}
@@ -255,7 +271,7 @@ export default class Address extends ValidationElement {
         <label>{this.props.label}</label>
         <RadioGroup className="address-options" selectedValue={this.state.addressType}>
           <Radio name="addressType"
-            label="In the United States"
+            label={i18n.t('address.options.us.label')}
             value="United States"
             disabled={this.props.disabled}
             onChange={this.handleChange.bind(this, 'addressType')}
@@ -264,7 +280,7 @@ export default class Address extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio name="addressType"
-            label="APO/FPO"
+            label={i18n.t('address.options.apoFpo.label')}
             value="APOFPO"
             disabled={this.props.disabled}
             onChange={this.handleChange.bind(this, 'addressType')}
@@ -273,7 +289,7 @@ export default class Address extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio name="addressType"
-            label="Outside of the United States"
+            label={i18n.t('address.options.international.label')}
             value="International"
             disabled={this.props.disabled}
             onChange={this.handleChange.bind(this, 'addressType')}
@@ -282,9 +298,11 @@ export default class Address extends ValidationElement {
             onFocus={this.props.onFocus}
           />
         </RadioGroup>
-        {this.state.addressType === 'United States' && this.usAddress()}
-        {this.state.addressType === 'International' && this.internationalAddress()}
-        {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+        <div className="fields">
+          {this.state.addressType === 'United States' && this.usAddress()}
+          {this.state.addressType === 'International' && this.internationalAddress()}
+          {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+        </div>
       </div>
     )
   }

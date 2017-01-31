@@ -6,9 +6,34 @@
             padding-right: 2rem;
         }
     }
-    .address {
+    .mailing {
         textarea {
             height: 10rem;
+        }
+    }
+    .address-options {
+        label {
+            padding-left: 3rem;
+            padding-right: 3rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+
+    .fields {
+        .apofpo {
+            label {
+                padding-left: 3rem;
+                padding-right: 3rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+        }
+
+        label {
+            position: relative !important;
+            display: inline !important;
+            top: 0 !important;
         }
     }
 }

@@ -114,7 +114,7 @@ const en = {
       title: 'Other names used',
       info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
       branch: {
-        help: '',
+        help: 'Provide your other names used and the period of time you used them',
         question: 'Have you used any other names?'
       },
       collection: {
@@ -151,6 +151,9 @@ const en = {
         label: 'Were you born in the United States of America?',
         yes: 'Yes',
         no: 'No'
+      },
+      branch: {
+        help: 'Enter information regarding your place of birth'
       },
       help: {
         city: 'City where you were born',
@@ -413,6 +416,91 @@ const en = {
       },
       comments: {
         label: 'Add comment'
+      }
+    }
+  },
+  address: {
+    options: {
+      us: {
+        label: 'In the United States'
+      },
+      apoFpo: {
+        label: 'APO/FPO'
+      },
+      international: {
+        label: 'Outside of the United States'
+      }
+    },
+    us: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      state: {
+        label: 'State',
+        placeholder: 'Enter state'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      }
+    },
+    international: {
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      country: {
+        label: 'Country',
+        placeholder: 'Enter country'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      }
+    },
+    apoFpo: {
+      select: {
+        label: 'Select APO or FPO'
+      },
+      street: {
+        label: 'Mailing address',
+        placeholder: 'Enter mailing address'
+      },
+      city: {
+        label: 'City',
+        placeholder: 'Enter city'
+      },
+      state: {
+        label: 'State',
+        placeholder: 'Enter state'
+      },
+      zipcode: {
+        label: 'Zipcode',
+        placeholder: 'Enter zipcode'
+      },
+      apoFpo: {
+        label: 'APO/FPO'
+      },
+      apoFpoType: {
+        apo: {
+          label: 'APO'
+        },
+        fpo: {
+          label: 'FPO'
+        },
+        apoFpo: {
+          label: 'APO/FPO',
+          placeholder: 'Enter APO/FPO'
+        }
       }
     }
   },
