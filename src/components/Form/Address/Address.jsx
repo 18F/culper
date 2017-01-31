@@ -26,7 +26,8 @@ export default class Address extends ValidationElement {
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
-      addressType: addressType
+      addressType: addressType,
+      apoFpoType: props.apoFpoType
     }
   }
 
@@ -56,7 +57,8 @@ export default class Address extends ValidationElement {
           zipcode: this.state.zipcode,
           country: this.state.country,
           addressType: this.state.addressType,
-          apoFpo: this.state.apoFpo
+          apoFpo: this.state.apoFpo,
+          apoFpoType: this.state.apoFpoType
         })
       }
     })
@@ -212,18 +214,28 @@ export default class Address extends ValidationElement {
           onFocus={this.props.onFocus}
           onBlur={this.props.onBlur}
         />
-        <div className="state-zip-wrap">
-          <MilitaryState name="state"
-            className="state"
-            label="State"
-            placeholder="Enter state"
-            value={this.state.state}
-            includeStates="true"
-            onChange={this.handleChange.bind(this, 'state')}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
+        <div>Select APO or FPO</div>
+        <RadioGroup className="" selectedValue={this.state.apoFpoType}>
+          <Radio name="addressType"
+            label="APO"
+            value="APO"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'apoFpoType')}
+            onValidate={this.props.onValidate}
             onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
           />
+          <Radio name="addressType"
+            label="FPO"
+            value="FPO"
+            disabled={this.props.disabled}
+            onChange={this.handleChange.bind(this, 'apoFpoType')}
+            onValidate={this.props.onValidate}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+          />
+        </RadioGroup>
+        <div className="state-zip-wrap">
           <ZipCode name="zipcode"
             className="zipcode"
             label="Zipcode"
