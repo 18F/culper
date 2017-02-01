@@ -208,15 +208,6 @@ export default class Address extends ValidationElement {
           onFocus={this.props.onFocus}
           onBlur={this.props.onBlur}
         />
-        <City name="city"
-          label={i18n.t('address.apoFpo.city.label')}
-          placeholder={i18n.t('address.apoFpo.city.placeholder')}
-          value={this.state.city}
-          onChange={this.handleChange.bind(this, 'city')}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
         <label>{i18n.t('address.apoFpo.select.label')}</label>
         <RadioGroup className="apofpo" selectedValue={this.state.apoFpoType}>
           <Radio name="apoFpoType"
@@ -239,21 +230,21 @@ export default class Address extends ValidationElement {
           />
         </RadioGroup>
         <div className="state-zip-wrap">
+          <ApoFpo name="apoFpo"
+            label={i18n.t('address.apoFpo.apoFpo.label')}
+            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
+            value={this.state.apoFpo}
+            onChange={this.handleChange.bind(this, 'apoFpo')}
+            onValidate={this.handleValidation}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+          />
           <ZipCode name="zipcode"
             className="zipcode"
             label={i18n.t('address.apoFpo.zipcode.label')}
             placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
             value={this.state.zipcode}
             onChange={this.handleChange.bind(this, 'zipcode')}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-          />
-          <ApoFpo name="apoFpo"
-            label={i18n.t('address.apoFpo.apoFpo.label')}
-            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
-            value={this.state.apoFpo}
-            onChange={this.handleChange.bind(this, 'apoFpo')}
             onValidate={this.handleValidation}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}

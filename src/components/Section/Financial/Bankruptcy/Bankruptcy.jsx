@@ -136,19 +136,21 @@ export default class Bankruptcy extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    let petition = i18n.t('financial.bankruptcy.collection.summary.unknown')
-    if (item.PetitionType) {
-      switch (item.PetitionType.value) {
-        case 'Chapter7':
-          petition = `${i18n.t('financial.bankruptcy.collection.summary.chapter')} 7`
-          break
-        case 'Chapter11':
-          petition = `${i18n.t('financial.bankruptcy.collection.summary.chapter')} 11`
-          break
-        case 'Chapter13':
-          petition = `${i18n.t('financial.bankruptcy.collection.summary.chapter')} 13`
-          break
+    let address1 = ''
+    let address2 = ''
+    if (item.CourtAddress) {
+      address1 += `${item.CourtAddress.address || ''}`.trim()
+      if (item.CourtAddress.addressType === 'United States') {
+        address2 = `${item.CourtAddress.city || ''}, ${item.CourtAddress.state || ''} ${item.CourtAddress.zipcode || ''}`.trim()
+      } else if (item.CourtAddress.addressType === 'APOFPO') {
+        address2 = `${item.CourtAddress.apoFpoType || ''}, ${item.CourtAddress.apoFpo || ''} ${item.CourtAddress.zipcode || ''}`.trim()
+      } else if (item.CourtAddress.addressType === 'International') {
+        address2 = `${item.CourtAddress.city || ''}, ${item.CourtAddress.country || ''}`.trim()
       }
+    }
+
+    if (address1.length === 0 || address2.length === 1) {
+      address1 = i18n.t('financial.bankruptcy.collection.summary.unknown')
     }
 
     let from = i18n.t('financial.bankruptcy.collection.summary.unknown')
@@ -159,7 +161,7 @@ export default class Bankruptcy extends ValidationElement {
     return (
       <div className="table">
         <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell">{petition}</div>
+        <div className="table-cell">{address1}<br />{address2}</div>
         <div className="table-cell dates">{from}</div>
       </div>
     )
