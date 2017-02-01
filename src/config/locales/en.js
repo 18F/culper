@@ -247,11 +247,11 @@ const en = {
         inches: 'Inches must be a number between 0 and 11',
         height: 'Height must be a number between 1 and 9',
         weight: 'Weight must be a number between 10 and 999',
-        eye: 'Select an eye color'
+        eye: 'Select an eye color',
+        hair: 'Select the hair color that most closely represents your hair color',
+        sex: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.'
       },
       label: {
-        hair: 'Select the hair color that most closely represents your hair color',
-        eye: 'Select an eye color that most closely represents your eye color',
         sex: 'Select your sex at the time of birth',
         feet: 'Feet',
         inches: 'Inches',
@@ -410,10 +410,11 @@ const en = {
         title: 'Provide the trustee',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
-        help: '',
+        help: 'The trustee refers to the person who holds authority or a position of trust or responsibility appointed to the bankruptcy',
         address: {
           title: 'Provide the address of the trustee for this bankruptcy',
-          label: 'Trustee address'
+          label: 'Trustee address',
+          help: 'The address of the trustee involved for this bankruptcy'
         }
       },
       comments: {
