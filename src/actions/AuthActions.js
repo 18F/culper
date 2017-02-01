@@ -63,6 +63,22 @@ export function twofactor (account, token) {
   }
 }
 
+export function twofactorreset (account) {
+  return function (dispatch, getState) {
+    return api
+      .twoFactorReset(account)
+      .then(response => {
+        api.setToken('')
+        dispatch(handleTwoFactorError('Two factor authentication reset'))
+        dispatch(qrcode(account))
+      })
+      .catch(error => {
+        api.setToken('')
+        dispatch(handleTwoFactorError(error.response.data))
+      })
+  }
+}
+
 export function handleLoginSuccess (token) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,

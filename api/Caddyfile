@@ -1,0 +1,13 @@
+0.0.0.0 {
+    tls off
+    gzip
+    log stdout
+    errors stdout
+
+    proxy /api http://api:3000 {
+          without /api
+          transparent
+    }
+
+    browse /srv
+}

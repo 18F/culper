@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../config'
-import { qrcode, twofactor } from '../../actions/AuthActions'
+import { env, i18n } from '../../config'
+import { login, qrcode, twofactor, twofactorreset } from '../../actions/AuthActions'
 
 class TwoFactor extends React.Component {
   constructor (props) {
@@ -12,6 +12,7 @@ class TwoFactor extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleReset = this.handleReset.bind(this)
   }
 
   componentDidMount () {
@@ -35,12 +36,24 @@ class TwoFactor extends React.Component {
     }
   }
 
+  handleReset (event) {
+    event.preventDefault()
+    this.setState({ token: '' }, () => {
+      this.props.dispatch(twofactorreset(this.props.username))
+    })
+  }
+
   render () {
+    const reset = env.AllowTwoFactorReset()
+          ? <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
+          : ''
+
     if (!this.props.qrcode) {
       return (
         <form onSubmit={this.handleSubmit}>
           <div id="twofactor-component">
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
+            { reset }
             { this.props.error ? (<div>{this.props.error}</div>) : '' }
             <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>
@@ -52,6 +65,7 @@ class TwoFactor extends React.Component {
           <div id="twofactor-component">
             <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={this.base64png()} />
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
+            { reset }
             { this.props.error ? (<div>{this.props.error}</div>) : '' }
             <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>

@@ -113,6 +113,10 @@ class Api {
     return this.proxy.get(env.EndpointTwoFactor(account))
   }
 
+  twoFactorReset (account) {
+    return this.proxy.get(env.EndpointTwoFactorReset(account))
+  }
+
   login (username, password) {
     return this.proxy.post(env.EndpointBasicAuthentication(), { username: username, password: password })
   }
