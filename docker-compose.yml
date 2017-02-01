@@ -90,6 +90,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nightwatch
+    command: [npm, run, docker]
     volumes:
       - ./specs:/usr/src/app
     networks:
