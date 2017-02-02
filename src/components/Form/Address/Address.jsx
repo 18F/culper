@@ -164,33 +164,34 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          label={i18n.t('address.international.street.label')}
-          placeholder={i18n.t('address.international.street.placeholder')}
-          className="mailing"
-          value={this.state.address}
-          onChange={this.handleChange.bind(this, 'address')}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+                label={i18n.t('address.international.street.label')}
+                placeholder={i18n.t('address.international.street.placeholder')}
+                className="mailing"
+                value={this.state.address}
+                onChange={this.handleChange.bind(this, 'address')}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
         <City name="city"
-          label={i18n.t('address.international.city.label')}
-          placeholder={i18n.t('address.international.city.placeholder')}
-          value={this.state.city}
-          onChange={this.handleChange.bind(this, 'city')}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+              label={i18n.t('address.international.city.label')}
+              placeholder={i18n.t('address.international.city.placeholder')}
+              value={this.state.city}
+              onChange={this.handleChange.bind(this, 'city')}
+              onValidate={this.handleValidation}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              />
         <Country name="country"
-          label={i18n.t('address.international.country.label')}
-          placeholder={i18n.t('address.international.country.placeholder')}
-          value={this.state.country}
-          onChange={this.handleChange.bind(this, 'country')}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+                 label={i18n.t('address.international.country.label')}
+                 placeholder={i18n.t('address.international.country.placeholder')}
+                 value={this.state.country}
+                 excludeUnitedStates="true"
+                 onChange={this.handleChange.bind(this, 'country')}
+                 onValidate={this.handleValidation}
+                 onFocus={this.props.onFocus}
+                 onBlur={this.props.onBlur}
+                 />
       </div>
     )
   }
@@ -199,56 +200,56 @@ export default class Address extends ValidationElement {
     return (
       <div>
         <Street name="address"
-          label={i18n.t('address.apoFpo.street.label')}
-          placeholder={i18n.t('address.apoFpo.street.placeholder')}
-          className="mailing"
-          value={this.state.address}
-          onChange={this.handleChange.bind(this, 'address')}
-          onValidate={this.handleValidation}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        />
+                label={i18n.t('address.apoFpo.street.label')}
+                placeholder={i18n.t('address.apoFpo.street.placeholder')}
+                className="mailing"
+                value={this.state.address}
+                onChange={this.handleChange.bind(this, 'address')}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                />
         <label>{i18n.t('address.apoFpo.select.label')}</label>
         <RadioGroup className="apofpo" selectedValue={this.state.apoFpoType}>
           <Radio name="apoFpoType"
-            label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
-            value="APO"
-            disabled={this.props.disabled}
-            onChange={this.handleChange.bind(this, 'apoFpoType')}
-            onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
+                 value="APO"
+                 disabled={this.props.disabled}
+                 onChange={this.handleChange.bind(this, 'apoFpoType')}
+                 onValidate={this.props.onValidate}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio name="addressType"
-            label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
-            value="FPO"
-            disabled={this.props.disabled}
-            onChange={this.handleChange.bind(this, 'apoFpoType')}
-            onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
+                 value="FPO"
+                 disabled={this.props.disabled}
+                 onChange={this.handleChange.bind(this, 'apoFpoType')}
+                 onValidate={this.props.onValidate}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
         </RadioGroup>
         <div className="state-zip-wrap">
           <ApoFpo name="apoFpo"
-            label={i18n.t('address.apoFpo.apoFpo.label')}
-            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
-            value={this.state.apoFpo}
-            onChange={this.handleChange.bind(this, 'apoFpo')}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-          />
+                  label={i18n.t('address.apoFpo.apoFpo.label')}
+                  placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
+                  value={this.state.apoFpo}
+                  onChange={this.handleChange.bind(this, 'apoFpo')}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  />
           <ZipCode name="zipcode"
-            className="zipcode"
-            label={i18n.t('address.apoFpo.zipcode.label')}
-            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
-            value={this.state.zipcode}
-            onChange={this.handleChange.bind(this, 'zipcode')}
-            onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-          />
+                   className="zipcode"
+                   label={i18n.t('address.apoFpo.zipcode.label')}
+                   placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
+                   value={this.state.zipcode}
+                   onChange={this.handleChange.bind(this, 'zipcode')}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
         </div>
       </div>
     )
@@ -262,32 +263,32 @@ export default class Address extends ValidationElement {
         <label className="bold">{this.props.label}</label>
         <RadioGroup className="address-options" selectedValue={this.state.addressType}>
           <Radio name="addressType"
-            label={i18n.t('address.options.us.label')}
-            value="United States"
-            disabled={this.props.disabled}
-            onChange={this.handleChange.bind(this, 'addressType')}
-            onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.t('address.options.us.label')}
+                 value="United States"
+                 disabled={this.props.disabled}
+                 onChange={this.handleChange.bind(this, 'addressType')}
+                 onValidate={this.props.onValidate}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio name="addressType"
-            label={i18n.t('address.options.apoFpo.label')}
-            value="APOFPO"
-            disabled={this.props.disabled}
-            onChange={this.handleChange.bind(this, 'addressType')}
-            onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.t('address.options.apoFpo.label')}
+                 value="APOFPO"
+                 disabled={this.props.disabled}
+                 onChange={this.handleChange.bind(this, 'addressType')}
+                 onValidate={this.props.onValidate}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio name="addressType"
-            label={i18n.t('address.options.international.label')}
-            value="International"
-            disabled={this.props.disabled}
-            onChange={this.handleChange.bind(this, 'addressType')}
-            onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.t('address.options.international.label')}
+                 value="International"
+                 disabled={this.props.disabled}
+                 onChange={this.handleChange.bind(this, 'addressType')}
+                 onValidate={this.props.onValidate}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
         </RadioGroup>
         <div className="fields">
           {this.state.addressType === 'United States' && this.usAddress()}
