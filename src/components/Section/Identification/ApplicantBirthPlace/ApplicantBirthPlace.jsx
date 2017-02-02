@@ -188,7 +188,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <Branch name="is_domestic"
               value={this.state.domestic}
-              help={i18n.t('identification.birthplace.branch.help')}
+              help="identification.birthplace.branch.help"
               label={i18n.t('identification.birthplace.question.label')}
               onUpdate={this.onUpdate.bind(this)}>
       </Branch>
@@ -275,17 +275,17 @@ export default class ApplicantBirthPlace extends ValidationElement {
         </Help>
         <Help id="identification.birthplace.help.country">
           <Country name="country"
-                    label={i18n.t('identification.birthplace.label.country')}
-                    value={this.state.country}
-                    className="country"
-                    placeholder={i18n.t('identification.birthplace.placeholder.country')}
-                    required="true"
-                    disabled={this.state.disabledCountry}
-                    onChange={this.handleChange}
-                    onValidate={this.handleValidation}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    />
+                   label={i18n.t('identification.birthplace.label.country')}
+                   value={this.state.country}
+                   className="country"
+                   placeholder={i18n.t('identification.birthplace.placeholder.country')}
+                   excludeUnitedStates="true"
+                   disabled={this.state.disabledCountry}
+                   onChange={this.handleChange}
+                   onValidate={this.handleValidation}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   />
           <HelpIcon className="country-help-icon" />
         </Help>
       </div>

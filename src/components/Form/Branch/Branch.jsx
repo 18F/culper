@@ -32,22 +32,22 @@ export default class Branch extends React.Component {
             {this.props.children}
           </div>
           <div>
-              <Help id={this.props.help}>
-                <label>{this.props.label || ''}</label>
-                <RadioGroup className="option-list branch" selectedValue={this.state.value}>
-                  <Radio name={this.props.name}
-                    label={this.props.yesLabel}
-                    value={this.props.yesValue}
-                    onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-                  />
-                  <Radio name={this.props.name}
-                    label={this.props.noLabel}
-                    value={this.props.noValue}
-                    onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-                  />
-                </RadioGroup>
-                <HelpIcon className="branch-help-icon" />
-              </Help>
+            <Help id={this.props.help}>
+              <label>{this.props.label || ''}</label>
+              <RadioGroup className="option-list branch" selectedValue={this.state.value}>
+                <Radio name={this.props.name}
+                       label={this.props.yesLabel}
+                       value={this.props.yesValue}
+                       onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                       />
+                <Radio name={this.props.name}
+                       label={this.props.noLabel}
+                       value={this.props.noValue}
+                       onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                       />
+              </RadioGroup>
+              <HelpIcon className="branch-help-icon" />
+            </Help>
           </div>
         </div>
       )
@@ -61,15 +61,15 @@ export default class Branch extends React.Component {
         <label>{this.props.label || ''}</label>
         <RadioGroup className="option-list branch" selectedValue={this.state.value}>
           <Radio name={this.props.name}
-            label={this.props.yesLabel}
-            value={this.props.yesValue}
-            onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-          />
+                 label={this.props.yesLabel}
+                 value={this.props.yesValue}
+                 onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                 />
           <Radio name={this.props.name}
-            label={this.props.noLabel}
-            value={this.props.noValue}
-            onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-          />
+                 label={this.props.noLabel}
+                 value={this.props.noValue}
+                 onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                 />
         </RadioGroup>
       </div>
     )
