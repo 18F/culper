@@ -4,6 +4,7 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
 import Foreign from './Foreign'
+import History from './History'
 import { SectionView, SectionViews } from './SectionView'
 
 class Section extends React.Component {
@@ -32,6 +33,9 @@ class Section extends React.Component {
         </SectionView>
         <SectionView name="financial">
           <Financial subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="history">
+          <History subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="foreign">
           <Foreign subsection={this.props.subsection} />
