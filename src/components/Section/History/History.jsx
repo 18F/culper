@@ -7,7 +7,7 @@ import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
-// import Gambling from './Gambling'
+import Residence from './Residence'
 // import Bankruptcy from './Bankruptcy'
 
 class History extends ValidationElement {
@@ -143,6 +143,12 @@ class History extends ValidationElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
+            <h2>{i18n.t('history.residence.title')}</h2>
+            <Residence name="residence"
+                       {...this.props.Residence}
+                       onUpdate={this.onUpdate.bind(this, 'Residence')}
+                       onValidate={this.onValidate.bind(this)}
+                       />
           </SectionView>
 
           <SectionView name="employment"

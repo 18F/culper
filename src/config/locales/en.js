@@ -511,6 +511,87 @@ const en = {
       }
     }
   },
+  history: {
+    tour: {
+      title: 'One piece at a time',
+      para: 'Take a guided tour through the section',
+      button: 'Take me one the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      para: 'View all the sections associated with your history at once',
+      button: 'Show me the full section'
+    },
+    destination: {
+      review: 'Review your history',
+      residence: 'Places you lived',
+      employment: 'Employment history',
+      education: 'Schools & diplomas',
+      timeline: 'Timeline'
+    },
+    residence: {
+      title: 'Places you have lived',
+      collection: {
+        summary: {
+          title: 'Summary of places you have lived',
+          item: 'Address'
+        },
+        append: 'Save and add another address'
+      },
+      heading: {
+        details: 'Enter your residence information',
+        dates: 'Provide dates of residence',
+        address: 'Provide the street address',
+        address2: 'Street address',
+        comments: 'If you need to provide additional comments about this information enter them below',
+        role: 'Is/was this residence',
+        reference: 'Add a person that knows you',
+        name: 'Provide the full name',
+        contact: 'Provide date of last contact',
+        relationship: 'Relationship',
+        correspondence: 'Their contact information',
+        phone: 'Phone numbers',
+        email: 'Email address'
+      },
+      para: {
+        details: 'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
+        reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outsied this 3-year period, and do not list your spouse, cohabitant or other relatives.',
+        correspondence: 'Provide the following contact information for this person.',
+        address2: 'Provide street address for this person (including apartment number).'
+      },
+      label: {
+        dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
+        address: 'This address is',
+        comments: 'Add optional comment',
+        role: {
+          owned: 'Owned by you',
+          rented: 'Rented or leased by you',
+          military: 'Military housing',
+          other: 'Other',
+          explanation: 'Please provide an explanation...'
+        },
+        relationship: {
+          title: 'Provide your relationship to this person (check all that apply):',
+          neighbor: 'Neighbor',
+          friend: 'Friend',
+          landlord: 'Landlord',
+          business: 'Business associate',
+          other: 'Other',
+          explanation: 'Please provide an explanation...',
+          comments: 'Add a comment to this question'
+        },
+        email: 'Provide e-mail address for this person'
+      },
+      help: {
+        dates: 'Provide the date range of your residence',
+        address: 'The address of the residence during this time period',
+        address2: 'The address of your contact during this time period at this residence',
+        role: '',
+        contact: '',
+        relationship: ''
+      }
+    }
+  },
   foreign: {
     tour: {
       title: 'One piece at a time',

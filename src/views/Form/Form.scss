@@ -14,7 +14,7 @@
 		max-width:72.4rem;
 
 		/* moving lower DOM elements in to design safe area */
-		h1, 
+		h1,
 		h2,
 		h3,
 		h4,
@@ -34,7 +34,7 @@
 
 			h1 {
 				padding:0;
-			}			
+			}
 			.review-column {
 				float:left;
 				width:45%;
@@ -266,39 +266,51 @@
 						color: $eapp-grey-dark;
 					}
 
-					.hair-icon, .eye-icon, .sex-icon {
-						position:absolute;
-						top:0;
-						left:0;
-						height:100%;
-						width:100%;
-						transition:all 0.3s;
-						border-radius:0;
+					.hair-icon,
+                    .eye-icon,
+                    .sex-icon,
+                    .relationship-icon {
+						position: absolute;
+						top: 0;
+						left: 0;
+						height: 100%;
+						width: 100%;
+						transition: all 0.3s;
+						border-radius: 0;
+
 						svg, img {
-							position:absolute;
-							top:1.4rem;
-							left:50%;
-							height:4.6rem;
-							width:4.6rem;
-							margin-left:-2.3rem;
-							transition:all 0.3s;
+							position: absolute;
+							top: 1.4rem;
+							left: 50%;
+							height: 4.6rem;
+							width: 4.6rem;
+							margin-left: -2.3rem;
+							transition: all 0.3s;
 						}
 					}
-					&:hover .hair-icon, &.checked .hair-icon, &:hover .eye-icon, &.checked .eye-icon, &:hover .sex-icon, &.checked .sex-icon {
-						border-radius:50%;
-						top:1.4rem;
-						left:50%;
-						width:4.6rem;
-						height:4.6rem;
-						background-color:#f7f7f7;
-						margin-left:-2.3rem;
-						svg, img {
-							top:0.8rem;
-							height:3rem;
-							width:3rem;
-							margin-left:-1.5rem;
-						}
 
+					&:hover .hair-icon,
+                    &.checked .hair-icon,
+                    &:hover .eye-icon,
+                    &.checked .eye-icon,
+                    &:hover .sex-icon,
+                    &.checked .sex-icon,
+                    &:hover .relationship-icon,
+                    &.checked .relationship-icon {
+						border-radius: 50%;
+						top: 1.4rem;
+						left: 50%;
+						width: 4.6rem;
+						height: 4.6rem;
+						background-color: #f7f7f7;
+						margin-left: -2.3rem;
+
+						svg, img {
+							top: 0.8rem;
+							height: 3rem;
+							width: 3rem;
+							margin-left: -1.5rem;
+						}
 					}
 				}
 			}
