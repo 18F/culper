@@ -1,17 +1,22 @@
 import React from 'react'
+import Radio from '../Radio'
 
 export default function RadioGroup (props) {
-  const children = React.Children.map(props.children, (radio) => {
-    // Check if current value matches one of the radio options
-    let checked = (radio.props.value === props.selectedValue)
+  const children = React.Children.map(props.children, (child) => {
+    // If type is not Radio, stop
+    if (child.type !== Radio) {
+      return child
+    }
+    // Check if current value matches one of the child radio options
+    let checked = (child.props.value === props.selectedValue)
 
     // Use function when you want custom behavior
     if (props.selectedValueFunc) {
-      checked = props.selectedValueFunc(radio.props)
+      checked = props.selectedValueFunc(child.props)
     }
 
     return (
-      <radio.type {...radio.props} checked={checked}></radio.type>
+      <child.type {...child.props} checked={checked}></child.type>
     )
   })
 

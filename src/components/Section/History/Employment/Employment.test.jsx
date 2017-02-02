@@ -8,7 +8,6 @@ describe('The employment component', () => {
       name: 'employment'
     }
     const component = mount(<Employment name={expected.name} />)
-    expect(component.find('.selected').length).toEqual(0)
     expect(component.find('button.add').length).toEqual(1)
   })
 })

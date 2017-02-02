@@ -1,6 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Collection, Comments, DateRange, Address, Textarea, Text, Help, HelpIcon } from '../../../Form'
+import EmploymentActivity from './EmploymentActivity'
+import EmploymentStatus from './EmploymentStatus'
+import PhysicalAddress from './PhysicalAddress'
 
 export default class Employment extends ValidationElement {
   constructor (props) {
@@ -89,6 +92,78 @@ export default class Employment extends ValidationElement {
                   summaryTitle={i18n.t('history.employment.collection.summary.title')}
                   appendClass="eapp-field-wrap"
                   appendLabel={i18n.t('history.employment.collection.append')}>
+
+                  <h3>{i18n.t('history.employment.heading.activity')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.activity.help">
+                      <EmploymentActivity name="EmploymentActivity"/>
+                      <HelpIcon className="activity"/>
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.datesEmployed')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.datesEmployed.help">
+                      <DateRange name="DatesEmployed"
+                        onValidate={this.handleValidation}
+                      />
+                      <HelpIcon className="used-help-icon" />
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.employer')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.employer.help">
+                      <Text name="Employment"
+                        label={i18n.t('history.employment.employer.label')}
+                        onValidate={this.handleValidation}
+                      />
+                      <HelpIcon className="employer" />
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.title')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.title.help">
+                      <Text name="Title"
+                        label={i18n.t('history.employment.title.label')}
+                        onValidate={this.handleValidation}
+                      />
+                      <HelpIcon className="title" />
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.status')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.status.help">
+                      <EmploymentStatus name="Status" />
+                      <HelpIcon className="status" />
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.address')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.address.help">
+                      <Address name="Address"
+                        label={i18n.t('history.employment.address.label')}
+                      />
+                      <HelpIcon className="address"/>
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.telephone')}</h3>
+                  <div className="eapp-field-wrap">
+                    <Help id="history.employment.telephone.help">
+                      <div>TODO: Telephone</div>
+                      <HelpIcon className="telephone"/>
+                    </Help>
+                  </div>
+
+                  <h3>{i18n.t('history.employment.heading.physicalAddress')}</h3>
+                  <div className="eapp-field-wrap">
+                    <PhysicalAddress name="PhysicalAddress" />
+                  </div>
+
       </Collection>
     )
   }
@@ -96,6 +171,13 @@ export default class Employment extends ValidationElement {
   render () {
     return (
       <div className="employment">
+        <h2>List where you have worked</h2>
+        <p>
+          List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.
+        </p>
+        <p>
+          Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.
+        </p>
         {this.visibleComponents()}
       </div>
     )

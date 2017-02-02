@@ -8,7 +8,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 // import Gambling from './Gambling'
-// import Bankruptcy from './Bankruptcy'
+import Employment from './Employment'
 
 class History extends ValidationElement {
   constructor (props) {
@@ -150,6 +150,10 @@ class History extends ValidationElement {
                        backLabel={i18n.t('history.destination.residence')}
                        next="history/education"
                        nextLabel={i18n.t('history.destination.education')}>
+                       <Employment
+                         {...this.props.Employment}
+                         onUpdate={this.onUpdate.bind(this, 'Employment')}
+                       />
           </SectionView>
 
           <SectionView name="education"

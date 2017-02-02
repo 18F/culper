@@ -567,6 +567,33 @@ const en = {
       }
     }
   },
+  history: {
+    employment: {
+      collection: {
+        append: 'Save and add another job'
+      },
+      address: {
+        label: 'This address is'
+      },
+      title: {
+        label: 'Title'
+      },
+      employer: {
+        label: 'Employer name'
+      },
+      heading: {
+        activity: 'Select your employment activity',
+        datesEmployed: 'Provide dates of employment',
+        employer: 'Provide the name of your employer',
+        title: 'Provide the most recent position title',
+        status: 'Select the employment status for this position',
+        address: 'Provide the address of employer',
+        telephone: 'Provide telephone number',
+        physicalAddress: 'Is/was your physical work address different than your employer\'s address?'
+
+      }
+    }
+  },
   alias: {
     maiden: {
       help: 'Provide if this is your maiden name'
