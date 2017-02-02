@@ -84,7 +84,7 @@ export default class Weight extends ValidationElement {
                   label={i18n.t('identification.traits.label.pounds')}
                   placeholder={i18n.t('identification.traits.placeholder.pounds')}
                   aria-describedby={this.errorName('weight')}
-                  help={i18n.t('identification.traits.help.pounds')}
+                  help="identification.traits.help.pounds"
                   disabled={this.state.disabled}
                   max="999"
                   maxlength="3"

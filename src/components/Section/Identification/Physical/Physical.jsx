@@ -114,7 +114,7 @@ export default class Physical extends ValidationElement {
         <div className={klass + ' no-label hair-colors'}>
           <Help id="identification.traits.help.hair">
             <HairColor name="hair"
-                       help={i18n.t('identification.traits.help.hair')}
+                       help="identification.traits.help.hair"
                        className=""
                        value={this.props.HairColor}
                        onUpdate={this.handleUpdate.bind(this, 'HairColor')}
