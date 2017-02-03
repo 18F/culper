@@ -17,20 +17,12 @@ export default class EmploymentStatus extends ValidationElement {
     let value = event.target.value
     this.setState({ [field]: value }, () => {
       super.handleChange(event)
-      this.doUpdate()
-    })
-  }
-
-  doUpdate () {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({})
-    }
-  }
-
-  handleAddressChange (value) {
-    console.log('handleChange')
-    this.setState({ address: value }, () => {
-      this.doUpdate()
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value
+        })
+      }
     })
   }
 

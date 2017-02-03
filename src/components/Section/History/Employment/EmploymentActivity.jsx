@@ -55,10 +55,10 @@ export default class EmploymentActivity extends ValidationElement {
 
   render () {
     return (
-      <div>
-        <RadioGroup className="option-list" selectedValue={this.state.value}>
+      <div className="employment-activity">
+        <RadioGroup name="employment_activity" className="option-list" selectedValue={this.state.value}>
           <div>Government employment</div>
-          <Radio name="employment_activity"
+          <Radio
             label="Active military duty station"
             value="ActiveMilitary"
             disabled={this.props.disabled}
@@ -67,7 +67,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="National Guard/Reserve"
             value="NationalGuard"
             disabled={this.props.disabled}
@@ -76,7 +76,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="USPHS Commisioned Corps"
             value="USPHS"
             disabled={this.props.disabled}
@@ -85,7 +85,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="Other federal employment"
             value="OtherFederal"
             disabled={this.props.disabled}
@@ -94,7 +94,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="State Government"
             value="StateGovernment"
             disabled={this.props.disabled}
@@ -103,7 +103,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="Federal contractor"
             value="FederalContractor"
             disabled={this.props.disabled}
@@ -113,7 +113,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <div>Other employment</div>
-          <Radio name="employment_activity"
+          <Radio
             label="Non-government employment"
             value="NonGovernment"
             disabled={this.props.disabled}
@@ -122,7 +122,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="Self-employment"
             value="SelfEmployment"
             disabled={this.props.disabled}
@@ -131,7 +131,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="Unemployment"
             value="Unemployment"
             disabled={this.props.disabled}
@@ -140,7 +140,7 @@ export default class EmploymentActivity extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
           />
-          <Radio name="employment_activity"
+          <Radio
             label="Other"
             value="Other"
             disabled={this.props.disabled}

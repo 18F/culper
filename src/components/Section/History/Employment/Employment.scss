@@ -5,4 +5,25 @@
             padding-right: 8rem;
         }
     }
+    .employment-activity {
+        label {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    .additional-activity {
+        margin-bottom: 10rem;
+        h3 {
+            padding: 0 8rem 0 0rem !important;
+        }
+    }
+
+    h4 {
+        padding: 0 8rem 0 0rem !important;
+    }
+    .daterange, .text, .employment-activity {
+        display: inline-block;
+        width: 93%;
+    }
 }

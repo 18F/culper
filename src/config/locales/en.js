@@ -569,17 +569,69 @@ const en = {
   },
   history: {
     employment: {
+      activity: {
+        help: 'Select your employment activity'
+      },
+      datesEmployed: {
+        help: 'Select the dates you were employed'
+      },
       collection: {
         append: 'Save and add another job'
       },
       address: {
-        label: 'This address is'
+        label: 'This address is',
+        help: 'Provide the address'
+      },
+      status: {
+        help: 'Select the employment status'
+      },
+      telephone: {
+        label: '',
+        help: 'Provide the telephone number'
       },
       title: {
-        label: 'Title'
+        label: 'Title',
+        help: 'Provide the name of your position title'
       },
       employer: {
-        label: 'Employer name'
+        label: 'Employer name',
+        help: 'Provide the name of your employer'
+      },
+      physicalAddress: {
+        help: 'Is/was your physical work address different than your employer\'s address?',
+        branch: {
+          label: 'This address is'
+        },
+        address: {
+          label: 'This address is'
+        },
+        heading: {
+          telephone: 'Provide telephone number',
+          address: 'Provide the address of physical location'
+        }
+      },
+      additionalActivity: {
+        help: 'Do you have any additional periods of activity to add?',
+        label: 'Do you have any additional periods of activity to add?',
+        collection: {
+          append: 'Add additional periods'
+        },
+        heading: {
+          position: 'Provide position title',
+          supervisor: 'Provide supervisor',
+          datesEmployed: 'Provide dates of employment'
+        },
+        position: {
+          label: 'Position',
+          help: 'Provide the position title'
+        },
+        supervisor: {
+          label: 'Supervisor',
+          help: 'Provide the supervisor name'
+        },
+        datesEmployed: {
+          help: 'Provide dates of employment'
+        }
       },
       heading: {
         activity: 'Select your employment activity',
