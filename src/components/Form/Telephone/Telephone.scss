@@ -1,4 +1,6 @@
 .telephone {
+    display: inline-block;
+
     .number.three {
         width: 10rem;
     }
@@ -15,5 +17,4 @@
         display: inline-block;
         padding-right: 0.8rem;
     }
-
 }

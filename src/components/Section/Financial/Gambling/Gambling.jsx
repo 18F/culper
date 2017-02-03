@@ -82,6 +82,9 @@ export default class Gambling extends ValidationElement {
     })
   }
 
+  /**
+   * Persist changes to comments
+   */
   commentsUpdated (val) {
     this.setState({ Comments: val }, () => {
       if (this.props.onUpdate) {
