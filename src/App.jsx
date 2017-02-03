@@ -106,6 +106,7 @@ export class App extends React.Component {
             </div>
           </div>
         </header>
+        <div id="scrollTo"></div>
         <div className="usa-overlay"></div>
         <ProgressBar />
         <main id="main-content" className="eapp-structure-wrap">
