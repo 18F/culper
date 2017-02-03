@@ -51,6 +51,92 @@ export default class Employment extends ValidationElement {
    * a valid state.
    */
   isValid () {
+    if (!this.state.List || !this.state.List.length) {
+      return false
+    }
+
+    for (let item of this.state.List) {
+      if (!item.EmploymentActivity || !item.EmploymentActivity.value) {
+        return false
+      }
+
+      if (item.EmploymentActivity.value === 'Other' && item.EmploymentActivity.otherExplanation === '') {
+        return false
+      }
+
+      if (!item.DatesEmployed || !item.DatesEmployed.from || !item.DatesEmployed.to) {
+        return false
+      }
+
+      const { from, to } = item.DatesEmployed
+      if (from > to) {
+        return false
+      }
+
+      if (!item.Employment || !item.Employment.value) {
+        return false
+      }
+
+      if (!item.Status || !item.Status.value) {
+        return false
+      }
+
+      if (!item.Title || !item.Title.value) {
+        return false
+      }
+
+      if (!item.Address) {
+        return false
+      }
+
+      const address = item.Address
+      switch (address.addressType) {
+        case 'United States':
+          if (!address.address || !address.city || !address.state || !address.zipcode) {
+            return false
+          }
+          break
+
+        case 'International':
+          if (!address.address || !address.city || !address.country) {
+            return false
+          }
+          break
+
+        case 'APOFPO':
+          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+            return false
+          }
+          break
+
+        default:
+          return false
+      }
+
+      if (!item.Additional && !item.Additional.HasAdditionalActivity) {
+        return false
+      }
+
+      if (item.Additional.HasAdditionalActivity === 'Yes') {
+        for (let activity of item.Additional.List) {
+          if (!activity.Position || !activity.Position.value) {
+            return false
+          }
+          if (!activity.Supervisor || !activity.Supervisor.value) {
+            return false
+          }
+
+          if (!activity.DatesEmployed || !activity.DatesEmployed.from || !activity.DatesEmployed.to) {
+            return false
+          }
+
+          const { from, to } = activity.DatesEmployed
+          if (from > to) {
+            return false
+          }
+        }
+      }
+    }
     return true
   }
 
@@ -72,7 +158,6 @@ export default class Employment extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    console.log(item)
     const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
     const dates = this.dateSummary(item)
 
@@ -85,9 +170,12 @@ export default class Employment extends ValidationElement {
     )
   }
 
+  /**
+   * Helper for renders date information
+   */
   dateSummary (item) {
     function format (d) {
-      return `${d.getMonth() + 1}/${d.getFullYear()}`
+      return `${d.getMonth()}/${d.getFullYear()}`
     }
 
     let vals = []
@@ -196,13 +284,8 @@ export default class Employment extends ValidationElement {
           <PhysicalAddress name="PhysicalAddress" />
         </div>
 
-        <h2>Additional periods of activity with this employer</h2>
-        <p>
-          List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.
-        </p>
-        <p>
-          Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.
-        </p>
+        <h3>{i18n.t('history.employment.heading.additionalActivity')}</h3>
+        <p>{i18n.t('history.employment.para.additionalActivity')}</p>
         <div className="eapp-field-wrap">
           <AdditionalActivity name="Additional"
             className="additional-activity" />
@@ -215,13 +298,8 @@ export default class Employment extends ValidationElement {
   render () {
     return (
       <div className="employment">
-        <h2>List where you have worked</h2>
-        <p>
-          List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.
-        </p>
-        <p>
-          Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.
-        </p>
+        <h2>{i18n.t('history.employment.heading.employment')}</h2>
+        <p>{i18n.t('history.employment.para.employment')}</p>
         {this.visibleComponents()}
       </div>
     )

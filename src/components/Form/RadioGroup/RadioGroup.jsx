@@ -3,7 +3,7 @@ import Radio from '../Radio'
 
 export default function RadioGroup (props) {
   let id = new Date().getTime()
-  let name = `${props.name}-${id}`
+  let name = props.name ? `${props.name}-${id}` : null
   const children = React.Children.map(props.children, (child) => {
     // If type is not Radio, stop
     if (child.type !== Radio) {
@@ -18,7 +18,7 @@ export default function RadioGroup (props) {
     }
 
     return (
-      <child.type {...child.props} name={name} checked={checked}></child.type>
+      <child.type {...child.props} name={name || child.props.name} checked={checked}></child.type>
     )
   })
 

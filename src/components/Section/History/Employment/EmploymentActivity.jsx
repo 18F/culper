@@ -1,12 +1,13 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, Address, Textarea, Help, HelpIcon, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Comments, DateRange, Address, Textarea, Help, HelpIcon, Radio, RadioGroup } from '../../../Form'
 
 export default class EmploymentActivity extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      value: props.value
+      value: props.value,
+      otherExplanation: props.otherExplanation
     }
   }
 
@@ -15,12 +16,21 @@ export default class EmploymentActivity extends ValidationElement {
    */
   handleFieldChange (field, event) {
     let value = event.target.value
-    this.setState({ [field]: value }, () => {
+    let update = {
+      [field]: value
+    }
+
+    if (field === 'value' && value !== 'Other') {
+      update.otherExplanation = ''
+    }
+
+    this.setState(update, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          value: value
+          value: this.state.value,
+          otherExplanation: this.state.otherExplanation
         })
       }
     })
@@ -150,6 +160,18 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
         </RadioGroup>
+        {
+          this.state.value === 'Other' && (
+            <Help id="history.employment.activity.other.help">
+              <Textarea name="otherExplanation"
+                value={this.state.otherExplanation}
+                label={i18n.t('history.employment.activity.other.label')}
+                onChange={this.handleFieldChange.bind(this, 'otherExplanation')}
+              />
+              <HelpIcon className="other" />
+            </Help>
+          )
+        }
       </div>
     )
   }

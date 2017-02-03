@@ -577,7 +577,11 @@ const en = {
         }
       },
       activity: {
-        help: 'Select your employment activity'
+        help: 'Select your employment activity',
+        other: {
+          label: 'Explanation for other',
+          help: ''
+        }
       },
       datesEmployed: {
         help: 'Select the dates you were employed'
@@ -639,13 +643,19 @@ const en = {
       },
       heading: {
         activity: 'Select your employment activity',
+        employment: 'List where you have worked',
         datesEmployed: 'Provide dates of employment',
         employer: 'Provide the name of your employer',
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employer',
         telephone: 'Provide telephone number',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?'
+        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        additionalActivity: 'Additional periods of activity with this employer'
+      },
+      para: {
+        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
+        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
 
       }
     }
