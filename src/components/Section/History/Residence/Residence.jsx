@@ -197,11 +197,40 @@ export default class Residence extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
+    const res = item.Residence || {}
+
+    let address1 = ''
+    let address2 = ''
+    if (res.Address) {
+      address1 += `${res.Address.address || ''}`.trim()
+      if (res.Address.addressType === 'United States') {
+        address2 = `${res.Address.city || ''}, ${res.Address.state || ''} ${res.Address.zipcode || ''}`.trim()
+      } else if (res.Address.addressType === 'APOFPO') {
+        address2 = `${res.Address.apoFpoType || ''}, ${res.Address.apoFpo || ''} ${res.Address.zipcode || ''}`.trim()
+      } else if (res.Address.addressType === 'International') {
+        address2 = `${res.Address.city || ''}, ${res.Address.country || ''}`.trim()
+      }
+    }
+
+    if (address1.length === 0 || address2.length === 1) {
+      address1 = i18n.t('history.residence.collection.summary.unknown')
+    }
+
+    const dates = res.Dates || {}
+    let from = i18n.t('history.residence.collection.summary.unknown')
+    if (dates.from) {
+      from = '' + dates.from.getMonth() + '/' + dates.from.getFullYear()
+    }
+    let to = i18n.t('history.residence.collection.summary.unknown')
+    if (dates.to) {
+      to = '' + dates.to.getMonth() + '/' + dates.to.getFullYear()
+    }
+
     return (
       <div className="table">
         <div className="table-cell index">{i18n.t('history.residence.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell"></div>
-        <div className="table-cell dates"></div>
+        <div className="table-cell">{address1}<br />{address2}</div>
+        <div className="table-cell dates">{from}-{to}</div>
       </div>
     )
   }

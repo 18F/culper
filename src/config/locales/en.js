@@ -539,7 +539,8 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of places you have lived',
-          item: 'Address'
+          item: 'Address',
+          unknown: 'Unknown'
         },
         append: 'Save and add another address'
       },

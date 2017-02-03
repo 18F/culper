@@ -44,12 +44,22 @@ export default class SummaryProgress extends ValidationElement {
     return items.map((item) => {
       const res = item.Residence || {}
       const dates = res.Dates || {}
-      const from = dates.from
-      const to = dates.to
+      let from = dates.from
+      let to = dates.to
       let left = 0
       let width = 0
 
-      if (from && to) {
+      if (from && to && (from >= tenYears || to >= tenYears)) {
+        // Precheck boundaries
+        if (to > now) {
+          to = now
+        }
+
+        if (from < tenYears) {
+          from = tenYears
+        }
+
+        // Meat of the calculations into percentages
         let right = ((to.getFullYear() - tenYears.getFullYear()) / 10) * 100
         left = ((from.getFullYear() - tenYears.getFullYear()) / 10) * 100
         width = right - left
