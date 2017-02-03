@@ -532,6 +532,10 @@ const en = {
     residence: {
       title: 'Places you have lived',
       info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
+      summary: {
+        title: 'Where you have lived',
+        unit: 'Years covered'
+      },
       collection: {
         summary: {
           title: 'Summary of places you have lived',

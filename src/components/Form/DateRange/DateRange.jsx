@@ -40,9 +40,6 @@ export default class DateRange extends ValidationElement {
       }
     }
 
-    // Get relevant date values
-    let { from_year, from_month, from_day, to_year, to_month, to_day } = state
-
     // If present is true then make the "to" date equal to today
     if (!this.state.present && state.present) {
       let now = new Date()
@@ -57,9 +54,9 @@ export default class DateRange extends ValidationElement {
       state.to_day = null
     }
 
-    if (from_year && from_month && from_day && to_year && to_month && to_day) {
-      state.from = new Date(from_year, from_month, from_day)
-      state.to = new Date(to_year, to_month, to_day)
+    if (state.from_year && state.from_month && state.from_day && state.to_year && state.to_month && state.to_day) {
+      state.from = new Date(state.from_year, state.from_month, state.from_day)
+      state.to = new Date(state.to_year, state.to_month, state.to_day)
 
       if (state.from > state.to) {
         state.error = 'From date must come before the to date'

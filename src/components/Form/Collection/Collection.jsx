@@ -209,7 +209,6 @@ export default class Collection extends ValidationElement {
    * Toggles the open/close state of an item in the accordion view
    */
   toggle (index) {
-    console.log('toggling')
     let items = [...this.state.items]
     items[index].open = !items[index].open
     this.setState({ items: items })
