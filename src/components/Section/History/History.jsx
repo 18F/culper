@@ -8,7 +8,6 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Residence from './Residence'
-// import Bankruptcy from './Bankruptcy'
 
 class History extends ValidationElement {
   constructor (props) {
@@ -144,6 +143,7 @@ class History extends ValidationElement {
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
             <h2>{i18n.t('history.residence.title')}</h2>
+            <p>{i18n.t('history.residence.info')}</p>
             <Residence name="residence"
                        {...this.props.Residence}
                        onUpdate={this.onUpdate.bind(this, 'Residence')}

@@ -2,9 +2,9 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Collection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address } from '../../../Form'
 
+// We need to determine how far back 3 years ago was
+const threeYearsAgo = new Date(new Date() - (1000 * 60 * 60 * 24 * 365 * 3))
 const withinThreeYears = (from, to) => {
-  // We need to determine how far back 3 years ago was
-  const threeYearsAgo = new Date(new Date() - (1000 * 60 * 60 * 24 * 365 * 3))
   return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
 }
 
@@ -16,9 +16,11 @@ export default class Residence extends ValidationElement {
     super(props)
     this.state = {
       List: props.List || [],
+      Comments: props.Comments,
       errorCodes: []
     }
 
+    this.commentsUpdated = this.commentsUpdated.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
   }
@@ -163,6 +165,20 @@ export default class Residence extends ValidationElement {
   }
 
   /**
+   * Persist changes to comments
+   */
+  commentsUpdated (val) {
+    this.setState({ Comments: val }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          List: this.state.List,
+          Comments: this.state.Comments
+        })
+      }
+    })
+  }
+
+  /**
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
@@ -170,7 +186,8 @@ export default class Residence extends ValidationElement {
     this.setState({ List: collection }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          List: this.state.List
+          List: this.state.List,
+          Comments: this.state.Comments
         })
       }
     })
@@ -190,18 +207,28 @@ export default class Residence extends ValidationElement {
   }
 
   render () {
+    const klass = `residences ${this.props.className || ''}`.trim()
     return (
-      <Collection minimum="1"
-                  className="residence"
-                  items={this.state.List}
-                  dispatch={this.myDispatch}
-                  summary={this.summary}
-                  summaryTitle={i18n.t('history.residence.collection.summary.title')}
-                  appendLabel={i18n.t('history.residence.collection.append')}>
-        <h3>{i18n.t('history.residence.heading.details')}</h3>
-        <p>{i18n.t('history.residence.para.details')}</p>
-        <ResidenceItem name="Residence" onValidate={this.handleValidation} />
-      </Collection>
+      <div className={klass}>
+        <Collection minimum="1"
+                    items={this.state.List}
+                    dispatch={this.myDispatch}
+                    summary={this.summary}
+                    summaryTitle={i18n.t('history.residence.collection.summary.title')}
+                    appendLabel={i18n.t('history.residence.collection.append')}>
+          <h3>{i18n.t('history.residence.heading.details')}</h3>
+          <p>{i18n.t('history.residence.para.details')}</p>
+          <ResidenceItem name="Residence" onValidate={this.handleValidation} />
+        </Collection>
+        <Comments name="Comments"
+                  value={this.state.Comments}
+                  label={i18n.t('history.residence.help.comments')}
+                  className="eapp-field-wrap"
+                  onUpdate={this.commentsUpdated}
+                  onValidate={this.handleValidation}>
+          <h3>{i18n.t('history.residence.label.comments')}</h3>
+        </Comments>
+      </div>
     )
   }
 }

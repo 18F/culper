@@ -5,9 +5,12 @@ import Residence from './Residence'
 describe('The Residence component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'residence'
+      name: 'residence',
+      List: []
     }
-    const component = mount(<Residence name={expected.name} />)
+    const component = mount(<Residence {...expected} />)
+    expect(component.find('.residence').length).toEqual(1)
+    expect(component.find('.item').length).toEqual(1)
     expect(component.find('.reference').length).toEqual(0)
   })
 
@@ -28,7 +31,7 @@ describe('The Residence component', () => {
         }
       ]
     }
-    const component = mount(<Residence name={expected.name} List={expected.List} />)
+    const component = mount(<Residence {...expected} />)
     expect(component.find('.reference').length).toEqual(1)
   })
 
@@ -44,7 +47,7 @@ describe('The Residence component', () => {
         }
       ]
     }
-    const component = mount(<Residence name={expected.name} List={expected.List} />)
+    const component = mount(<Residence {...expected} />)
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -60,7 +63,7 @@ describe('The Residence component', () => {
         }
       ]
     }
-    const component = mount(<Residence name={expected.name} List={expected.List} />)
+    const component = mount(<Residence {...expected} />)
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 })

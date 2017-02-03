@@ -531,6 +531,7 @@ const en = {
     },
     residence: {
       title: 'Places you have lived',
+      info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
       collection: {
         summary: {
           title: 'Summary of places you have lived',
@@ -548,7 +549,7 @@ const en = {
       },
       para: {
         details: 'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
-        reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outsied this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+        reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
       },
       label: {
         dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
@@ -565,7 +566,8 @@ const en = {
       help: {
         dates: 'Provide the date range of your residence',
         address: 'The address of the residence during this time period',
-        role: 'Provide your role at this residence as closely as possible'
+        role: 'Provide your role at this residence as closely as possible',
+        comments: 'If you need to provide any additional comments about this information enter them below'
       }
     }
   },
