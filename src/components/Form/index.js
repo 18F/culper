@@ -39,6 +39,7 @@ import Sex from './Sex'
 import IntroHeader from './IntroHeader'
 import Branch from './Branch'
 import PetitionType from './PetitionType'
+import Reference from './Reference'
 
 export {
   ValidationElement,
@@ -77,5 +78,6 @@ export {
   Sex,
   IntroHeader,
   Branch,
-  PetitionType
+  PetitionType,
+  Reference
 }
