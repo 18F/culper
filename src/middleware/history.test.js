@@ -8,7 +8,7 @@ describe('history middleware', function () {
 
   it('should create an action to handle a history push', function () {
     const path = '/'
-    const expectedAction = { type: PUSH_STATE, to: path }
+    const expectedAction = { type: PUSH_STATE, to: path, scrollTo: 'scrollTo' }
     expect(push(path)).toEqual(expectedAction)
   })
 
