@@ -542,22 +542,13 @@ const en = {
         details: 'Enter your residence information',
         dates: 'Provide dates of residence',
         address: 'Provide the street address',
-        address2: 'Street address',
         comments: 'If you need to provide additional comments about this information enter them below',
         role: 'Is/was this residence',
-        reference: 'Add a person that knows you',
-        name: 'Provide the full name',
-        contact: 'Provide date of last contact',
-        relationship: 'Relationship',
-        correspondence: 'Their contact information',
-        phone: 'Phone numbers',
-        email: 'Email address'
+        reference: 'Add a person that knows you'
       },
       para: {
         details: 'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
-        reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outsied this 3-year period, and do not list your spouse, cohabitant or other relatives.',
-        correspondence: 'Provide the following contact information for this person.',
-        address2: 'Provide street address for this person (including apartment number).'
+        reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outsied this 3-year period, and do not list your spouse, cohabitant or other relatives.'
       },
       label: {
         dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
@@ -569,26 +560,12 @@ const en = {
           military: 'Military housing',
           other: 'Other',
           explanation: 'Please provide an explanation...'
-        },
-        relationship: {
-          title: 'Provide your relationship to this person (check all that apply):',
-          neighbor: 'Neighbor',
-          friend: 'Friend',
-          landlord: 'Landlord',
-          business: 'Business associate',
-          other: 'Other',
-          explanation: 'Please provide an explanation...',
-          comments: 'Add a comment to this question'
-        },
-        email: 'Provide e-mail address for this person'
+        }
       },
       help: {
         dates: 'Provide the date range of your residence',
         address: 'The address of the residence during this time period',
-        address2: 'The address of your contact during this time period at this residence',
-        role: '',
-        contact: '',
-        relationship: ''
+        role: 'Provide your role at this residence as closely as possible'
       }
     }
   },
@@ -657,6 +634,42 @@ const en = {
     },
     used: {
       help: 'Provide dates this name was used'
+    }
+  },
+  reference: {
+    heading: {
+      name: 'Provide the full name',
+      contact: 'Provide date of last contact',
+      relationship: 'Relationship',
+      phone: 'Phone numbers',
+      email: 'Email address',
+      correspondence: 'Their contact information',
+      address: 'Street address'
+    },
+    para: {
+      correspondence: 'Provide the following contact information for this person.',
+      address: 'Provide street address for this person (including apartment number).'
+    },
+    label: {
+      relationship: {
+        title: 'Provide your relationship to this person (check all that apply):',
+        neighbor: 'Neighbor',
+        friend: 'Friend',
+        landlord: 'Landlord',
+        business: 'Business associate',
+        other: 'Other',
+        explanation: 'Please provide an explanation...',
+        comments: 'Add a comment to this question'
+      },
+      email: 'Provide e-mail address for this person',
+      address: 'The address of your contact during this time period'
+    },
+    help: {
+      contact: 'Please provide the date of last contact with this person',
+      relationship: 'Please define your relationship with the person during this period',
+      email: 'A current e-mail address to contact this character reference',
+      phone: 'One or more telephone numbers to contact this character reference',
+      address: 'The current address of the character reference'
     }
   }
 }
