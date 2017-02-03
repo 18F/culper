@@ -569,14 +569,18 @@ const en = {
   },
   history: {
     employment: {
+      collection: {
+        append: 'Save and add another job',
+        summary: {
+          title: 'Summary of your work history',
+          employer: 'Employer'
+        }
+      },
       activity: {
         help: 'Select your employment activity'
       },
       datesEmployed: {
         help: 'Select the dates you were employed'
-      },
-      collection: {
-        append: 'Save and add another job'
       },
       address: {
         label: 'This address is',

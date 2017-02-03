@@ -1,4 +1,13 @@
 .employment {
+    .collection {
+        .table-cell.dates {
+            width: 16rem;
+        }
+        .table-cell.employer {
+            width: 28rem;
+        }
+    }
+
     .employment-status, .physical-address {
         label {
             padding-left: 8rem;

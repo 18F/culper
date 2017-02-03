@@ -72,13 +72,42 @@ export default class Employment extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
+    console.log(item)
+    const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
+    const dates = this.dateSummary(item)
+
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('history.employment.collection.summary.debt')} {index + 1}:</div>
-        <div className="table-cell losses"></div>
-        <div className="table-cell dates"></div>
+        <div className="table-cell index">{i18n.t('history.employment.collection.summary.employer')} {index + 1}:</div>
+        <div className="table-cell employer">{ employer }</div>
+        <div className="table-cell dates">{ dates }</div>
       </div>
     )
+  }
+
+  dateSummary (item) {
+    function format (d) {
+      return `${d.getMonth() + 1}/${d.getFullYear()}`
+    }
+
+    let vals = []
+    if (!item.DatesEmployed) {
+      return ''
+    }
+
+    if (item.DatesEmployed.from) {
+      vals.push(format(item.DatesEmployed.from))
+    } else {
+      vals.push('NA')
+    }
+
+    if (item.DatesEmployed.to) {
+      vals.push(format(item.DatesEmployed.to))
+    } else {
+      vals.push('NA')
+    }
+
+    return vals.join(' - ')
   }
 
   /**
@@ -89,7 +118,7 @@ export default class Employment extends ValidationElement {
       <Collection minimum="1"
         items={this.state.List}
         dispatch={this.myDispatch}
-        summary={this.summary}
+        summary={this.summary.bind(this)}
         summaryTitle={i18n.t('history.employment.collection.summary.title')}
         appendClass="eapp-field-wrap"
         appendLabel={i18n.t('history.employment.collection.append')}>
