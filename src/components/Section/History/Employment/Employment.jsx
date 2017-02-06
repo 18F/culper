@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, Address, Textarea, Text, Help, HelpIcon, Reference, Telephone } from '../../../Form'
+import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'

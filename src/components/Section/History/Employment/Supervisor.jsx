@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Radio, RadioGroup, Email, Text, Help, HelpIcon, Address, Telephone, Comment } from '../../../Form'
+import { ValidationElement, Email, Text, Help, HelpIcon, Address, Telephone } from '../../../Form'
 
 export default class Supervisor extends ValidationElement {
   constructor (props) {

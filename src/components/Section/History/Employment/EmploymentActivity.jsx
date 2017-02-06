@@ -67,9 +67,9 @@ export default class EmploymentActivity extends ValidationElement {
     return (
       <div className="employment-activity">
         <RadioGroup name="employment_activity" className="option-list" selectedValue={this.state.value}>
-          <div>Government employment</div>
+          <div>{i18n.t('history.employment.activity.title')}</div>
           <Radio
-            label="Active military duty station"
+            label={i18n.t('history.employment.activity.type.activeMilitary')}
             value="ActiveMilitary"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -78,7 +78,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="National Guard/Reserve"
+            label={i18n.t('history.employment.activity.type.nationalGuard')}
             value="NationalGuard"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -87,7 +87,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="USPHS Commisioned Corps"
+            label={i18n.t('history.employment.activity.type.usphs')}
             value="USPHS"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -96,7 +96,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="Other federal employment"
+            label={i18n.t('history.employment.activity.type.otherFederal')}
             value="OtherFederal"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -105,7 +105,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="State Government"
+            label={i18n.t('history.employment.activity.type.stateGovernment')}
             value="StateGovernment"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -114,7 +114,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="Federal contractor"
+            label={i18n.t('history.employment.activity.type.federalContractor')}
             value="FederalContractor"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -124,7 +124,7 @@ export default class EmploymentActivity extends ValidationElement {
           />
           <div>Other employment</div>
           <Radio
-            label="Non-government employment"
+            label={i18n.t('history.employment.activity.type.nonGovernment')}
             value="NonGovernment"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -133,7 +133,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="Self-employment"
+            label={i18n.t('history.employment.activity.type.selfEmployment')}
             value="SelfEmployment"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -142,7 +142,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="Unemployment"
+            label={i18n.t('history.employment.activity.type.unemployment')}
             value="Unemployment"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
@@ -151,7 +151,7 @@ export default class EmploymentActivity extends ValidationElement {
             onFocus={this.props.onFocus}
           />
           <Radio
-            label="Other"
+            label={i18n.t('history.employment.activity.type.other')}
             value="Other"
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}

@@ -592,6 +592,18 @@ const en = {
         other: {
           label: 'Explanation for other',
           help: ''
+        },
+        type: {
+          activeMilitary: 'Active military duty station',
+          nationalGuard: 'National Guard/Reserve',
+          usphs: 'USPHS Commisioned Corps',
+          otherFederal: 'Other federal employment',
+          stateGovernment: 'State Government',
+          federalContractor: 'Federal contractor',
+          nonGovernment: 'Non-government employment',
+          selfEmployment: 'Self-employment',
+          unemployment: 'Unemployment',
+          other: 'Other'
         }
       },
       datesEmployed: {
