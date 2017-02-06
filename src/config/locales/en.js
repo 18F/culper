@@ -813,7 +813,9 @@ const en = {
         no: 'No'
       },
       label: {
-        number: 'Passport number'
+        number: 'Passport number',
+        book: 'Passport',
+        card: 'Passport card'
       },
       placeholder: {
         number: 'A########'
