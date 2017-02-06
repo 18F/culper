@@ -7,10 +7,9 @@ describe('The Name component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<Name name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
+    const component = mount(<Name name={expected.name} label={expected.label} value={expected.value} />)
     component.find('input#last').simulate('change')
     expect(component.find('div.hidden').length).toBeGreaterThan(0)
   })
@@ -61,7 +60,7 @@ describe('The Name component', () => {
     expected.forEach((ex) => {
       const component = mount(<Name name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
       component.find('input#' + ex.part).simulate('change')
-      expect(component.find('div.hidden').length === component.find('span').length).toEqual(ex.valid)
+      expect(component.find('.usa-input-error-label').length === component.find('span').length).toEqual(ex.valid)
     })
   })
 
@@ -70,7 +69,6 @@ describe('The Name component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -88,7 +86,6 @@ describe('The Name component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -106,7 +103,6 @@ describe('The Name component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -124,7 +120,6 @@ describe('The Name component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,

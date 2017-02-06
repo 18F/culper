@@ -47,7 +47,6 @@ export default class Sex extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.sex.female')}
                  placeholder={this.props.placeholder}
-                 help={this.props.help}
                  required="true"
                  value="female"
                  checked={this.state.value === 'female'}
@@ -67,7 +66,6 @@ export default class Sex extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.sex.male')}
                  placeholder={this.props.placeholder}
-                 help={this.props.help}
                  required="true"
                  value="male"
                  checked={this.state.value === 'male'}

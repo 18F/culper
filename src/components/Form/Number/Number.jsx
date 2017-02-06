@@ -164,21 +164,6 @@ export default class Number extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error && this.state.help) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  /**
    * Style classes applied to the input element.
    */
   inputClass () {
@@ -216,10 +201,6 @@ export default class Number extends ValidationElement {
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                />
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }

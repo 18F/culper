@@ -7,13 +7,12 @@ describe('The Weight component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Pounds',
-      help: 'Helpful error message',
       value: 10
     }
-    const component = mount(<Weight name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
+    const component = mount(<Weight name={expected.name} label={expected.label} value={expected.value} />)
     component.find('input#pounds').simulate('change')
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#pounds').length).toEqual(1)
-    expect(component.find('div.hidden').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 })

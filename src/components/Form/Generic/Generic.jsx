@@ -142,21 +142,6 @@ export default class Generic extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error && this.props.help) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  /**
    * Style classes applied to the input element.
    */
   inputClass () {
@@ -209,10 +194,6 @@ export default class Generic extends ValidationElement {
                onPaste={this.props.onPaste}
                ref="input"
                />
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.props.help}
-        </div>
       </div>
     )
   }
