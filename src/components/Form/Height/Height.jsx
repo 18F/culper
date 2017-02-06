@@ -36,8 +36,8 @@ export default class Height extends ValidationElement {
    */
   handleValidation (event, status, errors) {
     this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      let e = { [this.state.name]: errors }
-      let s = { [this.state.name]: { status: status } }
+      let e = { [this.props.name]: errors }
+      let s = { [this.props.name]: { status: status } }
       super.handleValidation(event, s, e)
     })
   }
@@ -61,49 +61,10 @@ export default class Height extends ValidationElement {
   }
 
   /**
-   * Generated name for the error message.
-   */
-  errorName (part) {
-    return '' + this.props.name + '-' + part + '-error'
-  }
-
-  /**
    * Generated name for the part of the address elements.
    */
   partName (part) {
     return '' + this.props.name + '-' + part
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.errors && (this.state.errors.inches || this.state.errors.feet)) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  errorMessage () {
-    let message = ''
-    if (!this.state.errors) {
-      return message
-    }
-
-    for (let e in this.state.errors) {
-      console.log('e', e)
-      console.log('e-more', this.state.errors[e])
-      if (this.state.errors[e]) {
-        message += i18n.t(`identification.traits.help.${e}`)
-      }
-    }
-
-    return message
   }
 
   render () {
@@ -114,7 +75,6 @@ export default class Height extends ValidationElement {
                   name="feet"
                   label={i18n.t('identification.traits.label.feet')}
                   placeholder={i18n.t('identification.traits.placeholder.feet')}
-                  aria-describedby={this.errorName('feet')}
                   disabled={this.props.disabled}
                   max="9"
                   maxlength="1"
@@ -134,7 +94,6 @@ export default class Height extends ValidationElement {
                   name="inches"
                   label={i18n.t('identification.traits.label.inches')}
                   placeholder={i18n.t('identification.traits.placeholder.inches')}
-                  aria-describedby={this.errorName('inches')}
                   disabled={this.props.disabled}
                   max="11"
                   maxlength="2"
@@ -148,10 +107,6 @@ export default class Height extends ValidationElement {
                   onBlur={this.handleBlur}
                   onValidate={this.handleValidation}
                   />
-        </div>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.errorMessage()}
         </div>
       </div>
     )

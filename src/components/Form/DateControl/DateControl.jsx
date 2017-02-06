@@ -8,14 +8,7 @@ export default class DateControl extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
       disabled: props.disabled,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       estimated: props.estimated,
       focus: props.focus || false,
@@ -290,8 +283,8 @@ export default class DateControl extends ValidationElement {
                     max="12"
                     maxlength="2"
                     min="1"
-                    readonly={this.state.readonly}
-                    required={this.state.required}
+                    readonly={this.props.readonly}
+                    required={this.props.required}
                     step="1"
                     value={this.state.month}
                     focus={this.state.foci[0]}
@@ -311,8 +304,8 @@ export default class DateControl extends ValidationElement {
                     max="31"
                     maxlength="2"
                     min="1"
-                    readonly={this.state.readonly}
-                    required={this.state.required}
+                    readonly={this.props.readonly}
+                    required={this.props.required}
                     step="1"
                     value={this.state.day}
                     focus={this.state.foci[1]}
@@ -332,8 +325,8 @@ export default class DateControl extends ValidationElement {
                     max="9999"
                     maxlength="4"
                     min="1775"
-                    pattern={this.state.pattern}
-                    readonly={this.state.readonly}
+                    pattern={this.props.pattern}
+                    readonly={this.props.readonly}
                     step="1"
                     value={this.state.year}
                     focus={this.state.foci[2]}
@@ -347,7 +340,6 @@ export default class DateControl extends ValidationElement {
         <div className="coupled-flags">
           <Checkbox name="estimated"
                     label="Estimated"
-                    help=""
                     toggle="false"
                     className={this.props.className}
                     value={this.state.estimated}

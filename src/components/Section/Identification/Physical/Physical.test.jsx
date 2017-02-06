@@ -19,6 +19,6 @@ describe('The physical attributes section', () => {
     expect(component.find('input#hair-bald').length).toEqual(1)
     expect(component.find('input[name="eye"]').length).toBeGreaterThan(0)
     expect(component.find('input[name="sex"]').length).toBeGreaterThan(0)
-    expect(component.find('div.hidden').length).toBeGreaterThan(0)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 })

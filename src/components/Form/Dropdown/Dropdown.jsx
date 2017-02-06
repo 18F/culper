@@ -161,13 +161,6 @@ export default class Dropdown extends ValidationElement {
   }
 
   /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.props.name + '-error'
-  }
-
-  /**
    * Style classes applied to the wrapper.
    */
   divClass () {
@@ -189,21 +182,6 @@ export default class Dropdown extends ValidationElement {
 
     if (this.state.error) {
       klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
     }
 
     return klass.trim()
@@ -253,10 +231,6 @@ export default class Dropdown extends ValidationElement {
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
                      />
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.props.help}
-        </div>
       </div>
     )
   }

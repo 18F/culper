@@ -94,7 +94,7 @@ describe('The Email component', () => {
     tests.forEach((t) => {
       const component = mount(<Email name="test-emails" label="Email" value={t.address} />)
       component.find('input').simulate('blur')
-      expect(component.find('div.hidden').length).toEqual(t.valid ? 1 : 1)
+      expect(component.find('.usa-input-error-label').length).toEqual(t.valid ? 0 : 1)
     })
   })
 })

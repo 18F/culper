@@ -68,7 +68,6 @@ export default class MaidenName extends ValidationElement {
           <Radio name="maiden-name"
                  label=""
                  value="Yes"
-                 help={this.props.help}
                  disabled={this.props.disabled}
                  readonly={this.props.readonly}
                  required={this.props.required}
@@ -85,10 +84,9 @@ export default class MaidenName extends ValidationElement {
           <Radio name="maiden-name"
                  label=""
                  value="No"
-                 help={this.state.help}
-                 disabled={this.state.disabled}
-                 readonly={this.state.readonly}
-                 required={this.state.required}
+                 disabled={this.props.disabled}
+                 readonly={this.props.readonly}
+                 required={this.props.required}
                  focus={this.state.focus}
                  error={this.state.error}
                  valid={this.state.valid}

@@ -73,13 +73,6 @@ export default class Radio extends ValidationElement {
   }
 
   /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
-  }
-
-  /**
    * Style classes applied to the wrapper.
    */
   divClass () {
@@ -108,21 +101,6 @@ export default class Radio extends ValidationElement {
 
     if (this.state.focus) {
       klass += ' usa-input-focus'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
     }
 
     return klass.trim()
@@ -164,7 +142,6 @@ export default class Radio extends ValidationElement {
                  id={id}
                  name={this.state.name}
                  type="radio"
-                 aria-describedby={this.errorName()}
                  disabled={this.state.disabled}
                  readOnly={this.state.readonly}
                  value={this.state.value}
@@ -177,10 +154,6 @@ export default class Radio extends ValidationElement {
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }

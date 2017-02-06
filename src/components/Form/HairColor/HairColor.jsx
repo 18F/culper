@@ -60,7 +60,6 @@ export default class HairColor extends ValidationElement {
                     label={i18n.t('identification.traits.hair.bald')}
                     value="Bald"
                     labelClass="black"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -76,7 +75,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-black"
                     label={i18n.t('identification.traits.hair.black')}
                     value="Black"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -94,7 +92,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-blonde"
                     label={i18n.t('identification.traits.hair.blonde')}
                     value="Blonde"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -112,7 +109,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-brown"
                     label={i18n.t('identification.traits.hair.brown')}
                     value="Brown"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -130,7 +126,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-gray"
                     label={i18n.t('identification.traits.hair.gray')}
                     value="Gray"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -148,7 +143,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-red"
                     label={i18n.t('identification.traits.hair.red')}
                     value="Red"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -166,7 +160,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-sandy"
                     label={i18n.t('identification.traits.hair.sandy')}
                     value="Sandy"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -184,7 +177,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-white"
                     label={i18n.t('identification.traits.hair.white')}
                     value="White"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -202,7 +194,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-blue"
                     label={i18n.t('identification.traits.hair.blue')}
                     value="Blue"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -220,7 +211,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-green"
                     label={i18n.t('identification.traits.hair.green')}
                     value="Green"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -238,7 +228,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-orange"
                     label={i18n.t('identification.traits.hair.orange')}
                     value="Orange"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -256,7 +245,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-pink"
                     label={i18n.t('identification.traits.hair.pink')}
                     value="Pink"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -274,7 +262,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-purple"
                     label={i18n.t('identification.traits.hair.purple')}
                     value="Purple"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
@@ -292,7 +279,6 @@ export default class HairColor extends ValidationElement {
           <Checkbox name="hair-unknown"
                     label={i18n.t('identification.traits.hair.unknown')}
                     value="Unknown"
-                    help={this.props.help}
                     disabled={this.props.disabled}
                     onChange={this.handleChange}
                     onValidate={this.handleValidation}
