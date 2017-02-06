@@ -277,7 +277,7 @@ export default class Employment extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.telephone.help">
             <Telephone name="Telephone" />
-            <HelpIcon className="telephone"/>
+            <HelpIcon className="telephone-icon"/>
           </Help>
         </div>
 

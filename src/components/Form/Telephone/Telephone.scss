@@ -1,5 +1,6 @@
 .telephone {
     display: inline-block;
+    width: 93%;
 
     .number.three {
         width: 8rem;
@@ -43,14 +44,14 @@
         margin-bottom: 4rem;
         margin-left: 1.5rem;
         .time {
-            width: 10rem;
+            min-width: 10rem;
             display: inline-block;
         }
     }
 
     .phonetype-option {
         label {
-            width: 14rem;
+            width: 12rem;
         }
     }
 
