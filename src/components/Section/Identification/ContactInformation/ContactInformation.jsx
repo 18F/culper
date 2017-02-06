@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, Email, Collection, Comments, Telephone } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Email, Collection, Comments, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
   constructor (props) {
@@ -132,19 +132,20 @@ export default class ContactInformation extends ValidationElement {
                       appendLabel={i18n.t('identification.contacts.collection.append')}>
 
             <div className="eapp-field-wrap">
-              <Help>
+              <Help id="identification.contacts.help.email">
                 <Email name="Email"
                        label={i18n.t('identification.contacts.label.email')}
                        onValidate={this.handleValidation}
                        placeholder={i18n.t('identification.contacts.placeholder.email')}
                        />
+                       <HelpIcon className="email-icon" />
               </Help>
             </div>
           </Collection>
         </div>
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
-        <div className={'telephone ' + klass}>
+        <div className={klass}>
           <Collection minimum="1"
                       items={this.state.PhoneNumbers}
                       dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
@@ -154,12 +155,13 @@ export default class ContactInformation extends ValidationElement {
                       appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
 
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="identification.contacts.help.phoneNumber">
                 <Telephone name="Telephone"
                        label={i18n.t('identification.contacts.label.telephone')}
                        onValidate={this.handleValidation}
                        placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                        />
+                       <HelpIcon className="telephone-icon" />
               </Help>
             </div>
           </Collection>

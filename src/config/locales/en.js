@@ -260,6 +260,10 @@ const en = {
     },
     contacts: {
       title: 'Your contact information',
+      help: {
+        email: 'Enter your email address',
+        phoneNumber: 'Enter your phone number'
+      },
       collection: {
         summary: {
           title: 'Summary of e-mail addresses',
