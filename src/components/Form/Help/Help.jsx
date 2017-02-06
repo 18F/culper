@@ -36,7 +36,8 @@ export default class Help extends ValidationElement {
     let e = [...this.state.errors]
     if (!errors) {
       // Let's clean out what we current have stored for this target.
-      e = this.cleanErrors(e, `.${event.target.name || 'input'}.`)
+      let name = !event.target || !event.target.name ? 'input' : event.target.name
+      e = this.cleanErrors(e, `.${name}.`)
     } else {
       let errorFlat = super.flattenObject(errors)
 
