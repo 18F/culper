@@ -2,9 +2,12 @@
     display: inline-block;
 
     .number.three {
-        width: 10rem;
+        width: 8rem;
     }
     .number.four {
+        width: 9rem;
+    }
+    .number.ten {
         width: 14rem;
     }
 
@@ -13,8 +16,48 @@
         line-height: 2rem;
     }
 
+    .separator.extension {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
     .number, .separator {
         display: inline-block;
         padding-right: 0.8rem;
+    }
+
+    .type {
+        margin-bottom: 6rem;
+        span {
+            margin-left: 1rem;
+        }
+        a {
+            font-weight: 600;
+            border-bottom: 1px #0071bc dashed;
+            text-decoration: none;
+
+        }
+    }
+
+    .timeofday {
+        margin-bottom: 4rem;
+        margin-left: 1.5rem;
+        .time {
+            width: 10rem;
+            display: inline-block;
+        }
+    }
+
+    .phonetype-option {
+        label {
+            width: 14rem;
+        }
+    }
+
+    .nonumber {
+        display: inline-block;
+        label {
+            width: 14rem;
+        }
     }
 }

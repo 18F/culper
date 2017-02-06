@@ -5,19 +5,18 @@ import Telephone from './Telephone'
 describe('The Telephone component', () => {
   it('renders DSN fields', () => {
     const component = mount(<Telephone name="phone" type="DSN" />)
-    expect(component.find('input#DSN-phonetype').length).toEqual(1)
-    expect(component.find('input#DSN-phonetype').hasClass('selected')).toEqual(true)
+    expect(component.find('a.domestic-number').length).toEqual(1)
+    expect(component.find('a.international-number').length).toEqual(1)
     expect(component.find('input[name="dsn_first"]').length).toEqual(1)
     expect(component.find('input[name="dsn_second"]').length).toEqual(1)
   })
 
   it('renders international fields', () => {
     const component = mount(<Telephone name="phone" type="International" />)
-    expect(component.find('input#International-phonetype').length).toEqual(1)
-    expect(component.find('input#International-phonetype').hasClass('selected')).toEqual(true)
+    expect(component.find('a.domestic-number').length).toEqual(1)
+    expect(component.find('a.dsn-number').length).toEqual(1)
     expect(component.find('input[name="int_first"]').length).toEqual(1)
     expect(component.find('input[name="int_second"]').length).toEqual(1)
-    expect(component.find('input[name="int_third"]').length).toEqual(1)
   })
 
   it('populates domestic fields using number', () => {
@@ -46,7 +45,7 @@ describe('The Telephone component', () => {
       valid: false
     }
     const component = mount(<Telephone name={expected.name} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} domestic={true} />)
-    expect(component.find('input#Domestic-phonetype').length).toEqual(1)
+    expect(component.find('a.dsn-number').length).toEqual(1)
     expect(component.find('input[name="domestic_first"]').length).toEqual(1)
     expect(component.find('input[name="domestic_second"]').length).toEqual(1)
     expect(component.find('input[name="domestic_third"]').length).toEqual(1)

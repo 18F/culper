@@ -7,11 +7,15 @@ export default class Text extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: props.value || '',
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({value: nextProps.value})
   }
 
   /**
