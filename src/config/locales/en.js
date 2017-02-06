@@ -59,6 +59,27 @@ const en = {
     back: 'Back',
     next: 'Next'
   },
+  telephone: {
+    domestic: {
+      label: 'United States telephone number',
+      extension: 'Extension'
+    },
+    international: {
+      label: 'International telephone number',
+      extension: 'Extension'
+    },
+    dsn: {
+      label: 'DSN telephone number'
+    },
+    noNumber: {
+      label: 'I don\'t know'
+    },
+    type: {
+      domestic: 'United States number',
+      dsn: 'DSN number',
+      international: 'International number'
+    }
+  },
   identification: {
     tour: {
       title: 'One piece at a time',
