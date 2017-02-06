@@ -69,7 +69,7 @@ export default class PhysicalAddress extends ValidationElement {
   options () {
     return (
       <Branch name="physicalAddress"
-        className="eapp-field-wrap no-label"
+        className="no-label"
         value={this.state.HasDifferentAddress}
         help="history.employment.physicalAddress.help"
         onUpdate={this.onBranchUpdate.bind(this)}>
@@ -83,7 +83,7 @@ export default class PhysicalAddress extends ValidationElement {
     if (this.state.HasDifferentAddress === 'Yes') {
       return (
         <div>
-          <div className={klass + ' physical-address no-label'}>
+          <div className={klass + ' physical-address'}>
               {options}
           </div>
 
@@ -102,7 +102,7 @@ export default class PhysicalAddress extends ValidationElement {
           </div>
 
           <h4>{i18n.t('history.employment.physicalAddress.heading.telephone')}</h4>
-          <div>
+          <div className={klass}>
             <Help id="history.employment.physicalAddress.telephone.help">
               <Telephone name="telephone"
                 {...this.props.Telephone}
