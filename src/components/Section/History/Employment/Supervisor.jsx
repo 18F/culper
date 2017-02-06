@@ -6,7 +6,7 @@ export default class Supervisor extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      Name: props.Name,
+      SupervisorName: props.SupervisorName,
       Title: props.Title,
       Email: props.Email,
       Address: props.Address,
@@ -29,7 +29,7 @@ export default class Supervisor extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         name: this.props.name,
-        Name: this.state.Name,
+        SupervisorName: this.state.SupervisorName,
         Title: this.state.Title,
         Email: this.state.Email,
         Address: this.state.Address,
@@ -78,13 +78,12 @@ export default class Supervisor extends ValidationElement {
         <h3>{i18n.t('history.employment.supervisor.heading.name')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.employment.supervisor.name.help">
-            <Text name="Name"
+            <Text name="SupervisorName"
               className="text"
-              {...this.props.Name}
+              {...this.props.SupervisorName}
               label={i18n.t('history.employment.supervisor.name.label')}
               onValidate={this.handleValidation}
-              onUpdate={this.onUpdate.bind(this, 'Name')}
-              onChange={this.handleFieldChange.bind(this, 'Name')}
+              onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
             />
             <HelpIcon className="name" />
           </Help>

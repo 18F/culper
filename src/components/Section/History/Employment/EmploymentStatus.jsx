@@ -13,9 +13,9 @@ export default class EmploymentStatus extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleFieldChange (field, event) {
+  handleFieldChange (event) {
     let value = event.target.value
-    this.setState({ [field]: value }, () => {
+    this.setState({ value: value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -60,7 +60,7 @@ export default class EmploymentStatus extends ValidationElement {
           label={i18n.t('history.employment.status.fullTime')}
           value="Fulltime"
           disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this, 'value')}
+          onChange={this.handleFieldChange.bind(this)}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}
@@ -69,7 +69,7 @@ export default class EmploymentStatus extends ValidationElement {
           label={i18n.t('history.employment.status.partTime')}
           value="Parttime"
           disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this, 'value')}
+          onChange={this.handleFieldChange.bind(this)}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}

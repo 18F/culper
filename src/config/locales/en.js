@@ -576,6 +576,9 @@ const en = {
       }
     },
     employment: {
+      noDate: {
+        label: 'NA'
+      },
       summary: {
         title: 'Where you have worked',
         unit: 'Years'

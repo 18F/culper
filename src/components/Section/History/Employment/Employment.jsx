@@ -175,6 +175,7 @@ export default class Employment extends ValidationElement {
    * Helper for renders date information
    */
   dateSummary (item) {
+    let noDateLabel = i18n.t('history.employment.noDate.label')
     function format (d) {
       return `${d.getMonth()}/${d.getFullYear()}`
     }
@@ -187,13 +188,13 @@ export default class Employment extends ValidationElement {
     if (item.DatesEmployed.from) {
       vals.push(format(item.DatesEmployed.from))
     } else {
-      vals.push('NA')
+      vals.push(noDateLabel)
     }
 
     if (item.DatesEmployed.to) {
       vals.push(format(item.DatesEmployed.to))
     } else {
-      vals.push('NA')
+      vals.push(noDateLabel)
     }
 
     return vals.join(' - ')
