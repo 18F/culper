@@ -124,6 +124,41 @@ const en = {
     back: 'Back',
     next: 'Next'
   },
+  telephone: {
+    domestic: {
+      label: 'United States telephone number',
+      extension: {
+        label: 'Extension'
+      }
+    },
+    international: {
+      label: 'International telephone number',
+      extension: {
+        label: 'Extension'
+      }
+    },
+    dsn: {
+      label: 'DSN telephone number'
+    },
+    noNumber: {
+      label: 'I don\'t know'
+    },
+    type: {
+      domestic: 'United States number',
+      dsn: 'DSN number',
+      international: 'International number'
+    },
+    timeOfDay: {
+      day: 'Day only',
+      night: 'Night only'
+    },
+    numberType: {
+      cell: 'Cell',
+      home: 'Home',
+      work: 'Work',
+      other: 'Other'
+    }
+  },
   identification: {
     tour: {
       title: 'One piece at a time',
@@ -574,8 +609,6 @@ const en = {
         append: 'Save and add another address'
       },
       heading: {
-        done: 'Done! Now let\'s add more',
-        exiting: 'Before you leave this section',
         details: 'Enter your residence information',
         dates: 'Provide dates of residence',
         address: 'Provide the street address',
@@ -584,8 +617,6 @@ const en = {
         reference: 'Add a person that knows you'
       },
       para: {
-        done: 'Use the button below to save your history entry and start another.',
-        exiting: '**The full 10 year period of residence history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
         details: 'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
         reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
       },
@@ -729,8 +760,6 @@ const en = {
         }
       },
       heading: {
-        done: 'Done! Now let\'s add more',
-        exiting: 'Before you leave this section',
         activity: 'Select your employment activity',
         employment: 'List where you have worked',
         datesEmployed: 'Provide dates of employment',
@@ -745,10 +774,9 @@ const en = {
         additionalActivity: 'Additional periods of activity with this employer'
       },
       para: {
-        done: 'Use the button below to save your history entry and start another.',
-        exiting: '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
         employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
         additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+
       }
     }
   },

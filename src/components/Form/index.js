@@ -40,6 +40,7 @@ import IntroHeader from './IntroHeader'
 import Branch from './Branch'
 import PetitionType from './PetitionType'
 import Reference from './Reference'
+import Show from './Show'
 
 export {
   ValidationElement,
@@ -79,5 +80,6 @@ export {
   IntroHeader,
   Branch,
   PetitionType,
-  Reference
+  Reference,
+  Show
 }

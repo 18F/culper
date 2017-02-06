@@ -18,7 +18,8 @@ export default class Radio extends ValidationElement {
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      native: props.native || false
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -76,10 +77,17 @@ export default class Radio extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = 'eapp-blocks-radio'
+    let klass = ''
+    if (!this.props.native) {
+      klass = 'eapp-blocks-radio'
+    }
 
     if (this.state.error) {
       klass += ' usa-input-error'
+    }
+
+    if (this.props.className) {
+      klass += ` ${this.props.className}`
     }
 
     return klass.trim()
@@ -133,6 +141,30 @@ export default class Radio extends ValidationElement {
 
   render () {
     const id = this.getId()
+    if (this.props.native) {
+      return (
+        <div className={this.divClass()}>
+          <input className={this.inputClass()}
+            id={id}
+            name={this.state.name}
+            type="radio"
+            disabled={this.state.disabled}
+            readOnly={this.state.readonly}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            onClick={this.handleClick}
+            checked={this.state.checked}
+          />
+          <label htmlFor={id}>
+            {this.state.label}
+          {this.props.children}
+          </label>
+        </div>
+      )
+    }
+
     return (
       <div className={this.divClass()}>
         <label
