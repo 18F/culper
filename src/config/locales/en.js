@@ -574,6 +574,146 @@ const en = {
         role: 'Provide your role at this residence as closely as possible',
         comments: 'If you need to provide any additional comments about this information enter them below'
       }
+    },
+    employment: {
+      noDate: {
+        label: 'NA'
+      },
+      summary: {
+        title: 'Where you have worked',
+        unit: 'Years'
+      },
+      collection: {
+        append: 'Save and add another job',
+        summary: {
+          title: 'Summary of your work history',
+          employer: 'Employer'
+        }
+      },
+      activity: {
+        title: 'Government employment',
+        help: 'Select your employment activity',
+        other: {
+          label: 'Explanation for other',
+          help: ''
+        },
+        type: {
+          activeMilitary: 'Active military duty station',
+          nationalGuard: 'National Guard/Reserve',
+          usphs: 'USPHS Commisioned Corps',
+          otherFederal: 'Other federal employment',
+          stateGovernment: 'State Government',
+          federalContractor: 'Federal contractor',
+          nonGovernment: 'Non-government employment',
+          selfEmployment: 'Self-employment',
+          unemployment: 'Unemployment',
+          other: 'Other'
+        }
+      },
+      datesEmployed: {
+        help: 'Select the dates you were employed'
+      },
+      address: {
+        label: 'This address is',
+        help: 'Provide the address'
+      },
+      status: {
+        help: 'Select the employment status',
+        fullTime: 'Full-time',
+        partTime: 'Part-time'
+      },
+      telephone: {
+        label: '',
+        help: 'Provide the telephone number'
+      },
+      title: {
+        label: 'Title',
+        help: 'Provide the name of your position title'
+      },
+      employer: {
+        label: 'Employer name',
+        help: 'Provide the name of your employer'
+      },
+      physicalAddress: {
+        help: 'Is/was your physical work address different than your employer\'s address?',
+        address: {
+          label: 'This address is'
+        },
+        heading: {
+          telephone: 'Provide telephone number',
+          address: 'Provide the address of physical location'
+        }
+      },
+      additionalActivity: {
+        help: 'Do you have any additional periods of activity to add?',
+        label: 'Do you have any additional periods of activity to add?',
+        collection: {
+          append: 'Add additional periods'
+        },
+        heading: {
+          position: 'Provide position title',
+          supervisor: 'Provide supervisor',
+          datesEmployed: 'Provide dates of employment'
+        },
+        position: {
+          label: 'Position',
+          help: 'Provide the position title'
+        },
+        supervisor: {
+          label: 'Supervisor',
+          help: 'Provide the supervisor name'
+        },
+        datesEmployed: {
+          help: 'Provide dates of employment'
+        }
+      },
+      supervisor: {
+        name: {
+          label: 'Supervisor name',
+          help: 'Provide the name of this supervisor'
+        },
+        title: {
+          label: 'Supervisor position title',
+          help: 'Provide the position title of this supervisor'
+        },
+        email: {
+          label: 'Supervisor email',
+          help: 'Provide the email of this supervisor'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address of this supervisors work location'
+        },
+        telephone: {
+          help: 'Provide the telephone number for this supervisor'
+        },
+        heading: {
+          name: 'Provide the name of your supervisor',
+          title: 'Provide the position title of your supervisor',
+          email: 'Provide the email address of your supervisor',
+          address: 'Provide the physical work location of your supervisor',
+          telephone: 'Provide the telephone number for this supervisor'
+        }
+      },
+      heading: {
+        activity: 'Select your employment activity',
+        employment: 'List where you have worked',
+        datesEmployed: 'Provide dates of employment',
+        employer: 'Provide the name of your employer',
+        title: 'Provide the most recent position title',
+        reference: 'Provide a reference',
+        status: 'Select the employment status for this position',
+        address: 'Provide the address of employer',
+        supervisor: 'Your Supervisor',
+        telephone: 'Provide your employment telephone number',
+        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        additionalActivity: 'Additional periods of activity with this employer'
+      },
+      para: {
+        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
+        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+
+      }
     }
   },
   foreign: {

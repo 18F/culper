@@ -88,6 +88,7 @@ export default class Telephone extends ValidationElement {
   onUpdate (updated) {
     if (this.props.onUpdate) {
       let toUpdate = {
+        name: this.props.name,
         timeOfDay: this.state.timeOfDay,
         type: this.state.type,
         number: this.getFormattedNumber(),

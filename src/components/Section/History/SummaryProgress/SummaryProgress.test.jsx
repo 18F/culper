@@ -6,7 +6,7 @@ describe('The SummaryProgress component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'summary',
-      List: []
+      List: () => {}
     }
     const component = mount(<SummaryProgress {...expected} />)
     expect(component.find('.progress').length).toEqual(1)
@@ -16,26 +16,18 @@ describe('The SummaryProgress component', () => {
   it('can display filled progress', () => {
     const expected = {
       name: 'summary',
-      List: [
-        {
-          open: false,
-          Residence: {
-            Dates: {
-              to: new Date(),
-              from: new Date(new Date() - 2)
-            }
+      List: () => {
+        return [
+          {
+            to: new Date(),
+            from: new Date(new Date() - 2)
+          },
+          {
+            to: new Date(new Date() - 6),
+            from: new Date(new Date() - 12)
           }
-        },
-        {
-          open: false,
-          Residence: {
-            Dates: {
-              to: new Date(new Date() - 6),
-              from: new Date(new Date() - 12)
-            }
-          }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<SummaryProgress {...expected} />)
     expect(component.find('.progress').length).toEqual(1)

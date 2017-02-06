@@ -39,11 +39,13 @@ export default class SummaryProgress extends ValidationElement {
   ranges () {
     const now = new Date()
     const tenYears = new Date(now - (1000 * 60 * 60 * 24 * 365 * 10))
-    const items = this.props.List || []
-
-    return items.map((item) => {
-      const res = item.Residence || {}
-      const dates = res.Dates || {}
+    let items = []
+    if (this.props.List) {
+      items = this.props.List() || []
+    } else {
+      console.warn('No List() function was provided for Summary Progress')
+    }
+    return items.map((dates) => {
       let from = dates.from
       let to = dates.to
       let left = 0

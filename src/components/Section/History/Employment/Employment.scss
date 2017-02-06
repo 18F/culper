@@ -1,0 +1,43 @@
+.employment {
+    .collection {
+        .table-cell.dates {
+            width: 16rem;
+        }
+        .table-cell.employer {
+            width: 28rem;
+        }
+    }
+
+    .employment-status, .physical-address {
+        label {
+            padding-left: 8rem;
+            padding-right: 8rem;
+        }
+    }
+    .employment-activity {
+        label {
+            height: 8rem;
+            width: 26rem;
+            padding-top: 2rem;
+        }
+    }
+
+    .additional-activity {
+        margin-bottom: 10rem;
+        h3 {
+            padding: 0 8rem 0 0rem !important;
+        }
+        label {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    h4 {
+        padding: 0 8rem 0 0rem !important;
+    }
+    .daterange, .text, .employment-activity {
+        display: inline-block;
+        width: 93%;
+    }
+}

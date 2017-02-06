@@ -84,7 +84,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-black"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -102,7 +102,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-blonde"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -120,7 +120,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-brown"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -138,7 +138,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-gray"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -156,7 +156,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-red"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -174,7 +174,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-sandy"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -192,7 +192,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-white"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -210,7 +210,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-blue"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -228,7 +228,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-green"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -246,7 +246,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-orange"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -264,7 +264,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-pink"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
@@ -282,7 +282,7 @@ export default class HairColor extends ValidationElement {
                     onFocus={this.props.onFocus}
                     >
             <div className="hair-icon">
-              <svg viewBox="0 0 18 32" enable-background="new 0 0 18 32">
+              <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
                 <path id="hair-color-purple"
                       d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
                          C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"/>
