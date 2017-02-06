@@ -214,7 +214,7 @@ export default class Employment extends ValidationElement {
         appendLabel={i18n.t('history.employment.collection.append')}>
 
         <h3>{i18n.t('history.employment.heading.activity')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="history.employment.activity.help">
             <EmploymentActivity name="EmploymentActivity"/>
             <HelpIcon className="activity"/>
@@ -256,7 +256,7 @@ export default class Employment extends ValidationElement {
         </div>
 
         <h3>{i18n.t('history.employment.heading.status')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="history.employment.status.help">
             <EmploymentStatus name="Status" />
             <HelpIcon className="status" />
@@ -281,29 +281,23 @@ export default class Employment extends ValidationElement {
           </Help>
         </div>
 
-
         <Supervisor name="Supervisor" />
 
         <h3>{i18n.t('history.employment.heading.reference')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="history.employment.reference.help">
-            <Reference name="Reference" />
-            <HelpIcon className="reference"/>
-          </Help>
-        </div>
+        <Reference name="Reference" />
 
         <h3>{i18n.t('history.employment.heading.physicalAddress')}</h3>
-        <div className="eapp-field-wrap">
-          <PhysicalAddress name="PhysicalAddress" />
-        </div>
+        <PhysicalAddress name="PhysicalAddress"
+                         className="eapp-field-wrap"
+                         />
 
         <h3>{i18n.t('history.employment.heading.additionalActivity')}</h3>
         <p>{i18n.t('history.employment.para.additionalActivity')}</p>
-        <div className="eapp-field-wrap">
-          <AdditionalActivity name="Additional"
-            className="additional-activity" />
-        </div>
+        <AdditionalActivity name="Additional"
+                            className="additional-activity eapp-field-wrap" />
 
+        <h2>{i18n.t('history.employment.heading.done')}</h2>
+        <p>{i18n.t('history.employment.para.done')}</p>
       </Collection>
     )
   }

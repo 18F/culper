@@ -85,7 +85,7 @@ export default class Supervisor extends ValidationElement {
               onValidate={this.handleValidation}
               onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
             />
-            <HelpIcon className="name" />
+            <HelpIcon className="name-help-icon" />
           </Help>
         </div>
 
@@ -99,7 +99,7 @@ export default class Supervisor extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'Title')}
               onValidate={this.handleValidation}
             />
-            <HelpIcon className="title" />
+            <HelpIcon className="title-help-icon" />
           </Help>
         </div>
 
@@ -113,7 +113,7 @@ export default class Supervisor extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'Email')}
               onValidate={this.handleValidation}
             />
-            <HelpIcon className="email" />
+            <HelpIcon className="email-help-icon" />
           </Help>
         </div>
 
@@ -126,7 +126,7 @@ export default class Supervisor extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'Address')}
               onValidate={this.handleValidation}
             />
-            <HelpIcon className="address" />
+            <HelpIcon className="address-help-icon" />
           </Help>
         </div>
 
@@ -139,11 +139,9 @@ export default class Supervisor extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'Telephone')}
               onValidate={this.handleValidation}
             />
-            <HelpIcon className="telephone" />
+            <HelpIcon className="telephone-help-icon" />
           </Help>
         </div>
-
-
       </div>
     )
   }
