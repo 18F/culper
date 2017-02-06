@@ -1,13 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Radio, RadioGroup, Comments, DateRange, Address, Textarea, Text, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Address, Help, HelpIcon, Telephone } from '../../../Form'
 
 export default class PhysicalAddress extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
       HasDifferentAddress: props.HasDifferentAddress,
-      Address: props.Address
+      Address: props.Address,
+      Telephone: props.Telephone
     }
   }
 
@@ -16,7 +17,6 @@ export default class PhysicalAddress extends ValidationElement {
    */
   onBranchUpdate (value) {
     this.setState({ HasDifferentAddress: value }, () => {
-      super.handleChange(event)
       this.doUpdate()
     })
   }
@@ -26,7 +26,8 @@ export default class PhysicalAddress extends ValidationElement {
       let update = {
         name: this.props.name,
         HasDifferentAddress: this.state.HasDifferentAddress,
-        Address: this.state.Address
+        Address: this.state.Address,
+        Telephone: this.state.Telephone
       }
       this.props.onUpdate(update)
     }
@@ -72,7 +73,6 @@ export default class PhysicalAddress extends ValidationElement {
         value={this.state.HasDifferentAddress}
         help="history.employment.physicalAddress.help"
         onUpdate={this.onBranchUpdate.bind(this)}>
-        <h4>{i18n.t('history.employment.physicalAddress.branch.label')}</h4>
       </Branch>
     )
   }
@@ -104,7 +104,10 @@ export default class PhysicalAddress extends ValidationElement {
           <h4>{i18n.t('history.employment.physicalAddress.heading.telephone')}</h4>
           <div>
             <Help id="history.employment.physicalAddress.telephone.help">
-              <div>TODO: Telephone</div>
+              <Telephone name="telephone"
+                {...this.props.Telephone}
+                label={i18n.t('history.employment.physicalAddress.telephone.label')}
+              />
               <HelpIcon className="telephone"/>
             </Help>
           </div>

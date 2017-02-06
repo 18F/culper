@@ -57,7 +57,7 @@ export default class EmploymentStatus extends ValidationElement {
     return (
       <RadioGroup className="employment-status option-list" selectedValue={this.state.value}>
         <Radio name="employment_status"
-          label="Full-time"
+          label={i18n.t('history.employment.status.fullTime')}
           value="Fulltime"
           disabled={this.props.disabled}
           onChange={this.handleFieldChange.bind(this, 'value')}
@@ -66,7 +66,7 @@ export default class EmploymentStatus extends ValidationElement {
           onFocus={this.props.onFocus}
         />
         <Radio name="employment_status"
-          label="Part-time"
+          label={i18n.t('history.employment.status.partTime')}
           value="Parttime"
           disabled={this.props.disabled}
           onChange={this.handleFieldChange.bind(this, 'value')}

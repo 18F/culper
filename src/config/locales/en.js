@@ -511,6 +511,195 @@ const en = {
       }
     }
   },
+  history: {
+    tour: {
+      title: 'One piece at a time',
+      para: 'Take a guided tour through the section',
+      button: 'Take me one the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      para: 'View all the sections associated with your history at once',
+      button: 'Show me the full section'
+    },
+    destination: {
+      review: 'Review your history',
+      residence: 'Places you lived',
+      employment: 'Employment history',
+      education: 'Schools & diplomas',
+      timeline: 'Timeline'
+    },
+    residence: {
+      title: 'Places you have lived',
+      info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
+      summary: {
+        title: 'Where you have lived',
+        unit: 'Years covered'
+      },
+      collection: {
+        summary: {
+          title: 'Summary of places you have lived',
+          item: 'Address',
+          unknown: 'Unknown'
+        },
+        append: 'Save and add another address'
+      },
+      heading: {
+        details: 'Enter your residence information',
+        dates: 'Provide dates of residence',
+        address: 'Provide the street address',
+        comments: 'If you need to provide additional comments about this information enter them below',
+        role: 'Is/was this residence',
+        reference: 'Add a person that knows you'
+      },
+      para: {
+        details: 'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
+        reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+      },
+      label: {
+        dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
+        address: 'This address is',
+        comments: 'Add optional comment',
+        role: {
+          owned: 'Owned by you',
+          rented: 'Rented or leased by you',
+          military: 'Military housing',
+          other: 'Other',
+          explanation: 'Please provide an explanation...'
+        }
+      },
+      help: {
+        dates: 'Provide the date range of your residence',
+        address: 'The address of the residence during this time period',
+        role: 'Provide your role at this residence as closely as possible',
+        comments: 'If you need to provide any additional comments about this information enter them below'
+      }
+    },
+    employment: {
+      summary: {
+        title: 'Where you have worked',
+        unit: 'Years'
+      },
+      collection: {
+        append: 'Save and add another job',
+        summary: {
+          title: 'Summary of your work history',
+          employer: 'Employer'
+        }
+      },
+      activity: {
+        help: 'Select your employment activity',
+        other: {
+          label: 'Explanation for other',
+          help: ''
+        }
+      },
+      datesEmployed: {
+        help: 'Select the dates you were employed'
+      },
+      address: {
+        label: 'This address is',
+        help: 'Provide the address'
+      },
+      status: {
+        help: 'Select the employment status',
+        fullTime: 'Full-time',
+        partTime: 'Part-time'
+      },
+      telephone: {
+        label: '',
+        help: 'Provide the telephone number'
+      },
+      title: {
+        label: 'Title',
+        help: 'Provide the name of your position title'
+      },
+      employer: {
+        label: 'Employer name',
+        help: 'Provide the name of your employer'
+      },
+      physicalAddress: {
+        help: 'Is/was your physical work address different than your employer\'s address?',
+        address: {
+          label: 'This address is'
+        },
+        heading: {
+          telephone: 'Provide telephone number',
+          address: 'Provide the address of physical location'
+        }
+      },
+      additionalActivity: {
+        help: 'Do you have any additional periods of activity to add?',
+        label: 'Do you have any additional periods of activity to add?',
+        collection: {
+          append: 'Add additional periods'
+        },
+        heading: {
+          position: 'Provide position title',
+          supervisor: 'Provide supervisor',
+          datesEmployed: 'Provide dates of employment'
+        },
+        position: {
+          label: 'Position',
+          help: 'Provide the position title'
+        },
+        supervisor: {
+          label: 'Supervisor',
+          help: 'Provide the supervisor name'
+        },
+        datesEmployed: {
+          help: 'Provide dates of employment'
+        }
+      },
+      supervisor: {
+        name: {
+          label: 'Supervisor name',
+          help: 'Provide the name of this supervisor'
+        },
+        title: {
+          label: 'Supervisor position title',
+          help: 'Provide the position title of this supervisor'
+        },
+        email: {
+          label: 'Supervisor email',
+          help: 'Provide the email of this supervisor'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address of this supervisors work location'
+        },
+        telephone: {
+          help: 'Provide the telephone number for this supervisor'
+        },
+        heading: {
+          name: 'Provide the name of your supervisor',
+          title: 'Provide the position title of your supervisor',
+          email: 'Provide the email address of your supervisor',
+          address: 'Provide the physical work location of your supervisor',
+          telephone: 'Provide the telephone number for this supervisor'
+        }
+      },
+      heading: {
+        activity: 'Select your employment activity',
+        employment: 'List where you have worked',
+        datesEmployed: 'Provide dates of employment',
+        employer: 'Provide the name of your employer',
+        title: 'Provide the most recent position title',
+        reference: 'Provide a reference',
+        status: 'Select the employment status for this position',
+        address: 'Provide the address of employer',
+        supervisor: 'Your Supervisor',
+        telephone: 'Provide your employment telephone number',
+        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        additionalActivity: 'Additional periods of activity with this employer'
+      },
+      para: {
+        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
+        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+
+      }
+    }
+  },
   foreign: {
     tour: {
       title: 'One piece at a time',
@@ -567,99 +756,6 @@ const en = {
       }
     }
   },
-  history: {
-    employment: {
-      collection: {
-        append: 'Save and add another job',
-        summary: {
-          title: 'Summary of your work history',
-          employer: 'Employer'
-        }
-      },
-      activity: {
-        help: 'Select your employment activity',
-        other: {
-          label: 'Explanation for other',
-          help: ''
-        }
-      },
-      datesEmployed: {
-        help: 'Select the dates you were employed'
-      },
-      address: {
-        label: 'This address is',
-        help: 'Provide the address'
-      },
-      status: {
-        help: 'Select the employment status'
-      },
-      telephone: {
-        label: '',
-        help: 'Provide the telephone number'
-      },
-      title: {
-        label: 'Title',
-        help: 'Provide the name of your position title'
-      },
-      employer: {
-        label: 'Employer name',
-        help: 'Provide the name of your employer'
-      },
-      physicalAddress: {
-        help: 'Is/was your physical work address different than your employer\'s address?',
-        branch: {
-          label: 'This address is'
-        },
-        address: {
-          label: 'This address is'
-        },
-        heading: {
-          telephone: 'Provide telephone number',
-          address: 'Provide the address of physical location'
-        }
-      },
-      additionalActivity: {
-        help: 'Do you have any additional periods of activity to add?',
-        label: 'Do you have any additional periods of activity to add?',
-        collection: {
-          append: 'Add additional periods'
-        },
-        heading: {
-          position: 'Provide position title',
-          supervisor: 'Provide supervisor',
-          datesEmployed: 'Provide dates of employment'
-        },
-        position: {
-          label: 'Position',
-          help: 'Provide the position title'
-        },
-        supervisor: {
-          label: 'Supervisor',
-          help: 'Provide the supervisor name'
-        },
-        datesEmployed: {
-          help: 'Provide dates of employment'
-        }
-      },
-      heading: {
-        activity: 'Select your employment activity',
-        employment: 'List where you have worked',
-        datesEmployed: 'Provide dates of employment',
-        employer: 'Provide the name of your employer',
-        title: 'Provide the most recent position title',
-        status: 'Select the employment status for this position',
-        address: 'Provide the address of employer',
-        telephone: 'Provide telephone number',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-        additionalActivity: 'Additional periods of activity with this employer'
-      },
-      para: {
-        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
-
-      }
-    }
-  },
   alias: {
     maiden: {
       help: 'Provide if this is your maiden name'
@@ -669,6 +765,42 @@ const en = {
     },
     used: {
       help: 'Provide dates this name was used'
+    }
+  },
+  reference: {
+    heading: {
+      name: 'Provide the full name',
+      contact: 'Provide date of last contact',
+      relationship: 'Relationship',
+      phone: 'Phone numbers',
+      email: 'Email address',
+      correspondence: 'Their contact information',
+      address: 'Street address'
+    },
+    para: {
+      correspondence: 'Provide the following contact information for this person.',
+      address: 'Provide street address for this person (including apartment number).'
+    },
+    label: {
+      relationship: {
+        title: 'Provide your relationship to this person (check all that apply):',
+        neighbor: 'Neighbor',
+        friend: 'Friend',
+        landlord: 'Landlord',
+        business: 'Business associate',
+        other: 'Other',
+        explanation: 'Please provide an explanation...',
+        comments: 'Add a comment to this question'
+      },
+      email: 'Provide e-mail address for this person',
+      address: 'The address of your contact during this time period'
+    },
+    help: {
+      contact: 'Please provide the date of last contact with this person',
+      relationship: 'Please define your relationship with the person during this period',
+      email: 'A current e-mail address to contact this character reference',
+      phone: 'One or more telephone numbers to contact this character reference',
+      address: 'The current address of the character reference'
     }
   }
 }

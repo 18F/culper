@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, Radio, RadioGroup, Comments, DateRange, Address, Textarea, Text, Help, HelpIcon, Branch } from '../../../Form'
+import { ValidationElement, Collection, DateRange, Text, Help, HelpIcon, Branch } from '../../../Form'
 
 export default class AdditionalActivity extends ValidationElement {
   constructor (props) {
@@ -16,7 +16,7 @@ export default class AdditionalActivity extends ValidationElement {
       let update = {
         name: this.props.name,
         List: this.state.List,
-        HasAdditionalActivity: this.state.HasAdditionalActivity
+        HasAdditionalActivity: this.state.HasAdditionalActivity || ''
       }
       this.props.onUpdate(update)
     }

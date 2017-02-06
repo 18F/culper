@@ -16,8 +16,9 @@
     }
     .employment-activity {
         label {
-            padding-left: 2rem;
-            padding-right: 2rem;
+            height: 8rem;
+            width: 26rem;
+            padding-top: 2rem;
         }
     }
 
@@ -25,6 +26,10 @@
         margin-bottom: 10rem;
         h3 {
             padding: 0 8rem 0 0rem !important;
+        }
+        label {
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
     }
 

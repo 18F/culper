@@ -41,7 +41,7 @@ describe('Auth actions', function () {
     const store = mockStore({ authentication: [] })
     const expectedAction = [
       { type: AuthConstants.LOGOUT },
-      { type: 'PUSH', to: '/login' }
+      { type: 'PUSH', to: '/login', scrollTo: 'scrollTo' }
     ]
     store.dispatch(logout('john', 'admin'))
     expect(store.getActions()).toEqual(expectedAction)
@@ -98,7 +98,8 @@ describe('Auth actions', function () {
       },
       {
         type: 'PUSH',
-        to: '/form'
+        to: '/form',
+        scrollTo: 'scrollTo'
       }
     ]
 

@@ -7,8 +7,9 @@ import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
-// import Gambling from './Gambling'
 import Employment from './Employment'
+import Residence from './Residence'
+import SummaryProgress from './SummaryProgress'
 
 class History extends ValidationElement {
   constructor (props) {
@@ -124,6 +125,43 @@ class History extends ValidationElement {
     )
   }
 
+  /**
+   * Extracts dates used for summary progress and gap analysis for residence
+   */
+  residenceRangeList () {
+    let dates = []
+    if (!this.props.Residence || !this.props.Residence['List']) {
+      return dates
+    }
+
+    for (let i of this.props.Residence.List) {
+      if (!i.Residence) {
+        continue
+      }
+      if (i.Residence && i.Residence.Dates) {
+        dates.push(i.Residence.Dates)
+      }
+    }
+    return dates
+  }
+
+  /**
+   * Extracts dates used for summary progress and gap analysis for employment
+   */
+  employmentRangesList () {
+    let dates = []
+    if (!this.props.Employment || !this.props.Employment['List']) {
+      return dates
+    }
+
+    for (let i of this.props.Employment.List) {
+      if (i.DatesEmployed) {
+        dates.push(i.DatesEmployed)
+      }
+    }
+    return dates
+  }
+
   render () {
     return (
       <div>
@@ -143,6 +181,36 @@ class History extends ValidationElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
+            <h2>{i18n.t('history.residence.title')}</h2>
+            <p>{i18n.t('history.residence.info')}</p>
+            <SummaryProgress className="residence eapp-field-wrap"
+                             List={this.residenceRangeList.bind(this)}
+                             title={i18n.t('history.residence.summary.title')}
+                             unit={i18n.t('history.residence.summary.unit')}
+                             total="10"
+                             >
+              <div className="summary-icon">
+                <svg viewBox="0 0 74.94 28.35">
+                  <path d="M30.54,9.79V0.78c0-0.4-0.31-0.71-0.71-0.71h-4.24c-0.4,0-0.71,0.31-0.71,0.71v4.31l-5.39-4.51
+                           c-0.93-0.77-2.43-0.77-3.36,0L0.25,13.82c-0.29,0.24-0.33,0.71-0.09,0.99l1.37,1.64c0.11,0.13,0.29,0.22,0.46,0.24
+                           c0.2,0.02,0.38-0.05,0.53-0.16L17.81,3.78L33.1,16.53c0.13,0.11,0.29,0.16,0.46,0.16c0.02,0,0.04,0,0.07,0
+                           c0.18-0.02,0.35-0.11,0.46-0.24l1.37-1.64c0.24-0.29,0.2-0.75-0.09-0.99L30.54,9.79z"/>
+                  <path d="M17.81,5.73L5.11,16.2c0,0.05-0.02,0.09-0.02,0.13v10.61c0,0.77,0.64,1.41,1.41,1.41h8.49v-8.49h5.66v8.49
+                           h8.49c0.77,0,1.41-0.64,1.41-1.41V16.33c0-0.04,0-0.09-0.02-0.13L17.81,5.73z"/>
+                  <path d="M57.12,5.73L44.42,16.2c0,0.05-0.02,0.09-0.02,0.13v10.61c0,0.77,0.64,1.41,1.41,1.41h8.49v-8.49h5.66v8.49
+                           h8.49c0.77,0,1.41-0.64,1.41-1.41V16.33c0-0.04,0-0.09-0.02-0.13L57.12,5.73z"/>
+                  <path d="M74.69,13.82l-4.84-4.02V0.78c0-0.4-0.31-0.71-0.71-0.71H64.9c-0.4,0-0.71,0.31-0.71,0.71v4.31L58.8,0.58
+                           c-0.93-0.77-2.43-0.77-3.36,0L39.56,13.82c-0.29,0.24-0.33,0.71-0.09,0.99l1.37,1.64c0.11,0.13,0.29,0.22,0.46,0.24
+                           c0.2,0.02,0.38-0.05,0.53-0.16L57.12,3.78l15.29,12.75c0.13,0.11,0.29,0.16,0.46,0.16c0.02,0,0.04,0,0.07,0
+                           c0.18-0.02,0.35-0.11,0.46-0.24l1.37-1.64C75.02,14.52,74.98,14.06,74.69,13.82z"/>
+                </svg>
+              </div>
+            </SummaryProgress>
+            <Residence name="residence"
+                       {...this.props.Residence}
+                       onUpdate={this.onUpdate.bind(this, 'Residence')}
+                       onValidate={this.onValidate.bind(this)}
+                       />
           </SectionView>
 
           <SectionView name="employment"
@@ -150,6 +218,32 @@ class History extends ValidationElement {
                        backLabel={i18n.t('history.destination.residence')}
                        next="history/education"
                        nextLabel={i18n.t('history.destination.education')}>
+                       <h2>{i18n.t('history.employment.heading.employment')}</h2>
+                       <p>{i18n.t('history.employment.para.employment')}</p>
+
+                       <SummaryProgress className="residence eapp-field-wrap"
+                         List={this.employmentRangesList.bind(this)}
+                         title={i18n.t('history.employment.summary.title')}
+                         unit={i18n.t('history.employment.summary.unit')}
+                         total="10"
+                       >
+                         <div className="summary-icon">
+                           <svg viewBox="0 0 74.94 28.35">
+                             <path d="M30.54,9.79V0.78c0-0.4-0.31-0.71-0.71-0.71h-4.24c-0.4,0-0.71,0.31-0.71,0.71v4.31l-5.39-4.51
+                               c-0.93-0.77-2.43-0.77-3.36,0L0.25,13.82c-0.29,0.24-0.33,0.71-0.09,0.99l1.37,1.64c0.11,0.13,0.29,0.22,0.46,0.24
+                               c0.2,0.02,0.38-0.05,0.53-0.16L17.81,3.78L33.1,16.53c0.13,0.11,0.29,0.16,0.46,0.16c0.02,0,0.04,0,0.07,0
+                               c0.18-0.02,0.35-0.11,0.46-0.24l1.37-1.64c0.24-0.29,0.2-0.75-0.09-0.99L30.54,9.79z"/>
+                             <path d="M17.81,5.73L5.11,16.2c0,0.05-0.02,0.09-0.02,0.13v10.61c0,0.77,0.64,1.41,1.41,1.41h8.49v-8.49h5.66v8.49
+                               h8.49c0.77,0,1.41-0.64,1.41-1.41V16.33c0-0.04,0-0.09-0.02-0.13L17.81,5.73z"/>
+                             <path d="M57.12,5.73L44.42,16.2c0,0.05-0.02,0.09-0.02,0.13v10.61c0,0.77,0.64,1.41,1.41,1.41h8.49v-8.49h5.66v8.49
+                               h8.49c0.77,0,1.41-0.64,1.41-1.41V16.33c0-0.04,0-0.09-0.02-0.13L57.12,5.73z"/>
+                             <path d="M74.69,13.82l-4.84-4.02V0.78c0-0.4-0.31-0.71-0.71-0.71H64.9c-0.4,0-0.71,0.31-0.71,0.71v4.31L58.8,0.58
+                               c-0.93-0.77-2.43-0.77-3.36,0L39.56,13.82c-0.29,0.24-0.33,0.71-0.09,0.99l1.37,1.64c0.11,0.13,0.29,0.22,0.46,0.24
+                               c0.2,0.02,0.38-0.05,0.53-0.16L57.12,3.78l15.29,12.75c0.13,0.11,0.29,0.16,0.46,0.16c0.02,0,0.04,0,0.07,0
+                               c0.18-0.02,0.35-0.11,0.46-0.24l1.37-1.64C75.02,14.52,74.98,14.06,74.69,13.82z"/>
+                           </svg>
+                         </div>
+                       </SummaryProgress>
                        <Employment
                          {...this.props.Employment}
                          onUpdate={this.onUpdate.bind(this, 'Employment')}

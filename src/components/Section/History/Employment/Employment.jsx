@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, Address, Textarea, Text, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Collection, Comments, DateRange, Address, Textarea, Text, Help, HelpIcon, Reference, Telephone } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
 import AdditionalActivity from './AdditionalActivity'
+import Supervisor from './Supervisor'
 
 export default class Employment extends ValidationElement {
   constructor (props) {
@@ -274,8 +275,19 @@ export default class Employment extends ValidationElement {
         <h3>{i18n.t('history.employment.heading.telephone')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.employment.telephone.help">
-            <div>TODO: Telephone</div>
+            <Telephone name="Telephone" />
             <HelpIcon className="telephone"/>
+          </Help>
+        </div>
+
+
+        <Supervisor name="Supervisor" />
+
+        <h3>{i18n.t('history.employment.heading.reference')}</h3>
+        <div className="eapp-field-wrap">
+          <Help id="history.employment.reference.help">
+            <Reference name="Reference" />
+            <HelpIcon className="reference"/>
           </Help>
         </div>
 
@@ -298,8 +310,6 @@ export default class Employment extends ValidationElement {
   render () {
     return (
       <div className="employment">
-        <h2>{i18n.t('history.employment.heading.employment')}</h2>
-        <p>{i18n.t('history.employment.para.employment')}</p>
         {this.visibleComponents()}
       </div>
     )
