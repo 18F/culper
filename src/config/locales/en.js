@@ -588,6 +588,7 @@ const en = {
         }
       },
       activity: {
+        title: 'Government employment',
         help: 'Select your employment activity',
         other: {
           label: 'Explanation for other',
