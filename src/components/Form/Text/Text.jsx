@@ -14,6 +14,10 @@ export default class Text extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({ value: nextProps.value })
+  }
+
   /**
    * Handle the change event.
    */

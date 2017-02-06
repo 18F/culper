@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Text, Name, DateControl, Branch, Comments } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Text, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -13,7 +13,7 @@ export default class Passport extends ValidationElement {
     this.state = {
       Name: props.Name || {},
       Number: props.Number || '',
-      Card: props.Card || false,
+      Card: props.Card || 'Book',
       Issued: props.Issued || {},
       Expiration: props.Expiration || {},
       Comments: props.Comments || '',
@@ -30,7 +30,7 @@ export default class Passport extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    this.handleUpdate('Card', event.target.checked, () => {
+    this.handleUpdate('Card', event.target.value, () => {
       // This allows us to force a blur/validation using
       // the new regular expression
       this.refs.number.refs.text.refs.input.focus()
@@ -94,7 +94,7 @@ export default class Passport extends ValidationElement {
       return false
     }
 
-    let re = this.state.Card ? new RegExp(this.state.reCard) : new RegExp(this.state.reBook)
+    let re = this.state.Card === 'Card' ? new RegExp(this.state.reCard) : new RegExp(this.state.reBook)
     if (!re.test(this.state.Number.value)) {
       return false
     }
@@ -151,7 +151,7 @@ export default class Passport extends ValidationElement {
     }
 
     let re = this.state.reBook
-    if (this.state.Card) {
+    if (this.state.Card === 'Card') {
       re = this.state.reCard
     }
 
@@ -166,9 +166,22 @@ export default class Passport extends ValidationElement {
               />
 
         <h3>{i18n.t('foreign.passport.number')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="foreign.passport.help.number">
             <div className="number">
+              <RadioGroup className="passport-card option-list"
+                          selectedValue={this.state.Card}>
+                <Radio name="passport-book"
+                      label={i18n.t('foreign.passport.label.book')}
+                      value="Book"
+                      onChange={this.handleChange}
+                      />
+                <Radio name="passport-card"
+                      label={i18n.t('foreign.passport.label.card')}
+                      value="Card"
+                      onChange={this.handleChange}
+                      />
+              </RadioGroup>
               <Text name="number"
                     value={this.state.Number.value}
                     label={i18n.t('foreign.passport.label.number')}
@@ -179,14 +192,6 @@ export default class Passport extends ValidationElement {
                     onUpdate={this.handleUpdate.bind(this, 'Number')}
                     onValidate={this.handleValidation}
                     />
-              <div className="text-right">
-                <input id="passportCard"
-                      type="checkbox"
-                      value="card"
-                      checked={this.state.Card}
-                      onChange={this.handleChange} />
-                <label>{i18n.t('foreign.passport.card')}</label>
-              </div>
             </div>
             <HelpIcon />
           </Help>

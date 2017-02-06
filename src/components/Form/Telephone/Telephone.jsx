@@ -246,6 +246,14 @@ export default class Telephone extends ValidationElement {
           onBlur={this.handleBlur}
           onValidate={this.handleValidation}
         />
+        <span className="separator extension">or</span>
+        <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+          <Radio name="nonumber"
+            label={i18n.t('telephone.noNumber.label')}
+            value={true}
+            onChange={this.handleNoNumberChange.bind(this)}
+          />
+        </RadioGroup>
       </div>
     )
   }
