@@ -55,6 +55,71 @@ const en = {
     add: 'Add comment',
     remove: 'Remove comment'
   },
+  error: {
+    name: {
+      last: {
+        required: '',
+        length: 'The last name cannot exceed 100 characters',
+        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+      },
+      first: {
+        length: 'The first name cannot exceed 100 characters',
+        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+      },
+      middle: {
+        length: 'The middle name cannot exceed 100 characters',
+        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+      }
+    },
+    birthdate: {
+      age: 'Applicants must be older than 16 and less than 130 years of age'
+    },
+    ssn: {
+      first: {
+        pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+      },
+      middle: {
+        pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+      },
+      last: {
+        pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+      },
+      verifyFirst: {
+        pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+      },
+      verifyMiddle: {
+        pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+      },
+      verifyLast: {
+        pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+      }
+    },
+    month: {
+      length: 'The month must be between 1 (January) and 12 (December)'
+    },
+    day: {
+      length: 'The day must be a valid day for the month'
+    },
+    year: {
+      length: 'The year must be a valid year'
+    },
+    weight: {
+      pounds: {
+        length: 'We only accept a value between 10 and 999 pounds'
+      }
+    },
+    height: {
+      feet: {
+        length: 'Feet must be between 1 and 9'
+      },
+      inches: {
+        length: 'Inches must be between 0 and 11'
+      }
+    },
+    zipcode: {
+      pattern: 'The zipcode can be either the 5 or 9 digit variation'
+    }
+  },
   section: {
     back: 'Back',
     next: 'Next'
@@ -120,26 +185,13 @@ const en = {
     name: {
       title: 'Your full name',
       last: {
-        help: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
-        error: {
-          required: '',
-          length: 'The last name cannot exceed 100 characters',
-          pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
-        }
+        help: 'Your last name is required.  If you have only 1 name, enter it in the last name field'
       },
       first: {
-        help: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.',
-        error: {
-          length: 'The first name cannot exceed 100 characters',
-          pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
-        }
+        help: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.'
       },
       middle: {
-        help: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.',
-        error: {
-          length: 'The middle name cannot exceed 100 characters',
-          pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
-        }
+        help: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.'
       },
       suffix: {
         help: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field'
@@ -175,10 +227,7 @@ const en = {
     },
     birthdate: {
       title: 'Date of birth',
-      help: 'Provide your date of birth, or the closest possible estimate you can provide',
-      error: {
-        age: 'Applicants must be older than 16 and less than 130 years of age'
-      }
+      help: 'Provide your date of birth, or the closest possible estimate you can provide'
     },
     birthplace: {
       title: 'Place of birth',
@@ -245,26 +294,6 @@ const en = {
         last: '0000',
         middle: '00',
         first: '000'
-      },
-      error: {
-        first: {
-          pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
-        },
-        middle: {
-          pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
-        },
-        last: {
-          pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
-        },
-        verifyFirst: {
-          pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
-        },
-        verifyMiddle: {
-          pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
-        },
-        verifyLast: {
-          pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
-        }
       }
     },
     traits: {

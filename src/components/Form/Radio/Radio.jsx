@@ -19,7 +19,7 @@ export default class Radio extends ValidationElement {
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
-      native: props.native
+      native: props.native || false
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -74,13 +74,6 @@ export default class Radio extends ValidationElement {
   }
 
   /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
-  }
-
-  /**
    * Style classes applied to the wrapper.
    */
   divClass () {
@@ -122,21 +115,6 @@ export default class Radio extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  /**
    * Style classes applied to the input element.
    */
   inputClass () {
@@ -170,7 +148,6 @@ export default class Radio extends ValidationElement {
             id={id}
             name={this.state.name}
             type="radio"
-            aria-describedby={this.errorName()}
             disabled={this.state.disabled}
             readOnly={this.state.readonly}
             value={this.state.value}
@@ -182,6 +159,7 @@ export default class Radio extends ValidationElement {
           />
           <label htmlFor={id}>
             {this.state.label}
+          {this.props.children}
           </label>
         </div>
       )
@@ -196,7 +174,6 @@ export default class Radio extends ValidationElement {
                  id={id}
                  name={this.state.name}
                  type="radio"
-                 aria-describedby={this.errorName()}
                  disabled={this.state.disabled}
                  readOnly={this.state.readonly}
                  value={this.state.value}
@@ -209,14 +186,7 @@ export default class Radio extends ValidationElement {
           {this.props.children}
           <span>{this.state.label}</span>
         </label>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }
-}
-Radio.defaultProps = {
-  native: false
 }

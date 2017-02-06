@@ -79,21 +79,6 @@ export default class DateRange extends ValidationElement {
     })
   }
 
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
   render () {
     const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
 
@@ -136,10 +121,6 @@ export default class DateRange extends ValidationElement {
               <span>Present</span>
             </Checkbox>
           </div>
-        </div>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.error}
         </div>
       </div>
     )

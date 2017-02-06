@@ -9,7 +9,6 @@ export default class MilitaryState extends ValidationElement {
       return (
         <State name={this.props.name}
                label={this.props.label}
-               help={this.props.help}
                placeholder={this.props.placeholder}
                className={this.props.className}
                disabled={this.props.disabled}
@@ -30,7 +29,6 @@ export default class MilitaryState extends ValidationElement {
       return (
         <Dropdown name={this.props.name}
                   label={this.props.label}
-                  help={this.props.help}
                   placeholder={this.props.placeholder}
                   className={this.props.className}
                   disabled={this.props.disabled}

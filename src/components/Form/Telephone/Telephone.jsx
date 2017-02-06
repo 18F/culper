@@ -251,7 +251,6 @@ export default class Telephone extends ValidationElement {
   }
 
   domestic () {
-    let first = this.state.domestic ? this.state.domestic.first : ''
     return (
       <div>
         <label>{i18n.t('telephone.domestic.label')}</label>
@@ -268,7 +267,7 @@ export default class Telephone extends ValidationElement {
           pattern="\d{3}"
           readonly={this.state.readonly}
           required={this.state.required}
-          value={first}
+          value={this.state.domestic.first}
           onChange={this.handleNumberChange('domestic', 'first').bind(this)}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
@@ -401,11 +400,11 @@ export default class Telephone extends ValidationElement {
         />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
-        <Radio name="nonumber"
-          label={i18n.t('telephone.noNumber.label')}
-          value={true}
-          onChange={this.handleNoNumberChange.bind(this)}
-        />
+          <Radio name="nonumber"
+            label={i18n.t('telephone.noNumber.label')}
+            value={true}
+            onChange={this.handleNoNumberChange.bind(this)}
+          />
       </RadioGroup>
       </div>
     )

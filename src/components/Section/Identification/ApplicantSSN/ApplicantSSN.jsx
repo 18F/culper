@@ -209,31 +209,6 @@ export default class ApplicantSSN extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.errorCodes.length > 0) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  errorMessage () {
-    return this.state.errorCodes.map(e => {
-      return (
-        <li>
-          {i18n.t(`identification.ssn.error.${e}`)}
-        </li>
-      )
-    })
-  }
-
-  /**
    * Prevents clipboard events from making changes to the value of the elements
    */
   disallowClipboard (event) {
@@ -304,7 +279,7 @@ export default class ApplicantSSN extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Help id="identification.ssn.help">
+        <Help id="identification.ssn.help" errorPrefix="ssn">
           <label>Social security number</label>
           <Text name="first"
                 ref="first"
@@ -366,10 +341,6 @@ export default class ApplicantSSN extends ValidationElement {
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
                       />
-          </div>
-          <div className={this.errorClass()}>
-            <i className="fa fa-exclamation"></i>
-            <ul>{this.errorMessage()}</ul>
           </div>
         </Help>
       </div>

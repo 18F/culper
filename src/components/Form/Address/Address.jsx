@@ -9,7 +9,6 @@ import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
 import { api } from '../../../services/api'
-import { Help, HelpIcon } from '../Help'
 import { i18n } from '../../../config'
 
 export default class Address extends ValidationElement {
@@ -29,7 +28,8 @@ export default class Address extends ValidationElement {
       error: props.error || false,
       valid: props.valid || false,
       addressType: addressType,
-      apoFpoType: props.apoFpoType
+      apoFpoType: props.apoFpoType,
+      errorCodes: []
     }
   }
 
@@ -69,10 +69,40 @@ export default class Address extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    const codes = super.mergeError(this.state.errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else {
+      switch (this.state.addressType) {
+        case 'United States':
+          if (this.state.address && this.state.city && this.state.state && this.state.zipcode) {
+            complexStatus = true
+          }
+          break
+
+        case 'International':
+          if (this.state.address && this.state.city && this.state.country) {
+            complexStatus = true
+          }
+          break
+
+        case 'APOFPO':
+          if (this.state.address && this.state.apoFpo && this.stateAddress.apoFpoType && this.state.zipcode) {
+            complexStatus = true
+          }
+          break
+      }
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, status, error)
         return
       }
 
@@ -98,7 +128,7 @@ export default class Address extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, status, error)
         })
     })
   }

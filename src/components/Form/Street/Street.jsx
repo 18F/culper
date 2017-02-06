@@ -7,11 +7,6 @@ export default class Street extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
       valid: props.valid || false
@@ -56,11 +51,10 @@ export default class Street extends ValidationElement {
 
   render () {
     return (
-      <Textarea name={this.state.name}
+      <Textarea name={this.props.name}
             className={this.props.className}
-            label={this.state.label}
-            placeholder={this.state.placeholder}
-            help={this.state.help}
+            label={this.props.label}
+            placeholder={this.props.placeholder}
             required="true"
             value={this.state.value}
             error={this.state.error}

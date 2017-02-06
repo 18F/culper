@@ -9,12 +9,11 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} help={expected.help} value={expected.value} country=''/>)
+    const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} value={expected.value} country=''/>)
     component.find('input#city').simulate('blur')
-    expect(component.find('div.hidden').length).toEqual(children)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('bubbles up validate event', () => {
@@ -22,7 +21,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -40,7 +38,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -58,7 +55,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -76,7 +72,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
