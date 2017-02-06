@@ -274,7 +274,7 @@ export default class Employment extends ValidationElement {
         </div>
 
         <h3>{i18n.t('history.employment.heading.telephone')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="history.employment.telephone.help">
             <Telephone name="Telephone" />
             <HelpIcon className="telephone"/>

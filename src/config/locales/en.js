@@ -264,20 +264,30 @@ const en = {
         summary: {
           title: 'Summary of e-mail addresses',
           email: 'E-mail',
-          unknown: 'Unknown'
+          unknown: 'Unknown',
+          phoneNumber: 'Phone number'
+        },
+        phoneNumbers: {
+          summary: {
+            title: 'Summary of phone numbers'
+          },
+          append: 'Add another phone number'
         },
         append: 'Add another e-mail'
       },
       heading: {
         email: 'Your e-mail addresses',
+        phoneNumber: 'Your phone numbers',
         comments: 'Add optional comments'
       },
       label: {
         email: 'Email address',
-        comments: 'If you need to provide any additional comments about this information enter them below'
+        comments: 'If you need to provide any additional comments about this information enter them below',
+        phoneNumber: 'Phone number'
       },
       placeholder: {
-        email: 'Enter an email address'
+        email: 'Enter an email address',
+        phoneNumber: 'Enter a phone number'
       }
     },
     ssn: {
