@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, Text, Checkbox, Email, Collection, Comments } from '../../../Form'
-import { api } from '../../../../services/api'
+import { ValidationElement, Help, Email, Collection, Comments, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
   constructor (props) {
@@ -15,7 +14,8 @@ export default class ContactInformation extends ValidationElement {
       valid: props.valid || false,
       errorCodes: [],
       Comments: props.Comments,
-      Emails: props.Emails || []
+      Emails: props.Emails || [],
+      PhoneNumbers: props.PhoneNumbers || []
     }
   }
 
@@ -35,12 +35,17 @@ export default class ContactInformation extends ValidationElement {
     this.handleUpdate('Emails', collection)
   }
 
+  contactDispatch (field, collection) {
+    this.handleUpdate(field, collection)
+  }
+
   handleUpdate (field, values) {
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Emails: this.state.Emails,
-          Comments: this.state.Comments
+          Comments: this.state.Comments,
+          PhoneNumbers: this.state.PhoneNumbers
         })
       }
     })
@@ -80,7 +85,7 @@ export default class ContactInformation extends ValidationElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
+  emailSummary (item, index) {
     let addr = i18n.t('identification.contacts.collection.summary.unknown')
     if (item.Email && item.Email.value) {
       addr = item.Email.value
@@ -94,6 +99,23 @@ export default class ContactInformation extends ValidationElement {
     )
   }
 
+  /**
+   * Assists in rendering the summary section.
+   */
+  phoneNumberSummary (item, index) {
+    let number = i18n.t('identification.contacts.collection.summary.unknown')
+    if (item.Telephone && !item.noNumber && item.Telephone.number) {
+      number = item.Telephone.number
+    }
+
+    return (
+      <div className="table">
+        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</div>
+        <div className="table-cell"><strong>{number}</strong></div>
+      </div>
+    )
+  }
+
   render () {
     const klass = `${this.props.className || ''}`.trim()
 
@@ -103,8 +125,8 @@ export default class ContactInformation extends ValidationElement {
         <div className={klass}>
           <Collection minimum="1"
                       items={this.state.Emails}
-                      dispatch={this.emailDispatch.bind(this)}
-                      summary={this.summary}
+                      dispatch={this.contactDispatch.bind(this, 'Emails')}
+                      summary={this.emailSummary}
                       summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
                       appendClass="eapp-field-wrap"
                       appendLabel={i18n.t('identification.contacts.collection.append')}>
@@ -115,6 +137,28 @@ export default class ContactInformation extends ValidationElement {
                        label={i18n.t('identification.contacts.label.email')}
                        onValidate={this.handleValidation}
                        placeholder={i18n.t('identification.contacts.placeholder.email')}
+                       />
+              </Help>
+            </div>
+          </Collection>
+        </div>
+
+        <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
+        <div className={'telephone ' + klass}>
+          <Collection minimum="1"
+                      items={this.state.PhoneNumbers}
+                      dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
+                      summary={this.phoneNumberSummary}
+                      summaryTitle={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
+                      appendClass="eapp-field-wrap"
+                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
+
+            <div className="eapp-field-wrap no-label">
+              <Help>
+                <Telephone name="Telephone"
+                       label={i18n.t('identification.contacts.label.telephone')}
+                       onValidate={this.handleValidation}
+                       placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                        />
               </Help>
             </div>
