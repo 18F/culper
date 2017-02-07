@@ -2,104 +2,106 @@
 @import 'eqip-fonts';
 
 h1, h2, h3, h4, h5, h6 {
-	line-height:1.3;
+    line-height:1.3;
 }
 h2 {
-	font-size:4rem;
-	margin-top:0;
-	margin-bottom:0.5rem;
+    font-size:4rem;
+    margin-top:0;
+    margin-bottom:0.5rem;
 }
 
 h3 {
-	font-size:2.3rem;
+    font-size:2.3rem;
 }
 
 /* design needs a touch more line height than standards */
 a:focus {
-	box-shadow:none;
+    box-shadow:none;
 }
 
 /* set up structure to go from a table-style to floated block style */
 .eapp-structure-wrap {
-	display:table;
-	width:100%;
+    display:table;
+    width:100%;
 
-	.eapp-structure-row {
-		display:table-row;
+    .eapp-structure-row {
+        display:table-row;
 
-		.eapp-structure-left, .eapp-structure-right {
-			display:table-cell;
-			vertical-align:top;
-		}
+        .eapp-structure-left, .eapp-structure-right {
+            display:table-cell;
+            vertical-align:top;
+        }
 
-		.eapp-structure-left {
-			width:24.8%;
+        .eapp-structure-left {
+            width:24.8%;
             height: 100vh;
 
-			@media screen and (max-width:768px) {
-				width:29.8%;
-			}
-		}
-		.eapp-structure-right {
-			width:75.2%;
-			padding-left:6.2rem;
+            @media screen and (max-width:768px) {
+                width:29.8%;
+            }
+        }
+        .eapp-structure-right {
+            width:75.2%;
+            padding-left:6.2rem;
 
-			@media screen and (max-width:1024px) {
-				padding-left:8rem;
-			}
+            @media screen and (max-width:1024px) {
+                padding-left:8rem;
+            }
 
-			@media screen and (max-width:768px) {
-				width:70.2%;
-				padding-left:5rem;
-			}
+            @media screen and (max-width:768px) {
+                width:70.2%;
+                padding-left:5rem;
+            }
 
-			&.eapp-title {
-				vertical-align:bottom;
-				padding-right:11rem;
-				padding-bottom:2rem;
-			}
-		}
-	}
-	p {
-		line-height:1.6;
-		margin-top:0;
-	}
+            &.eapp-title {
+                vertical-align:bottom;
+                padding-right:11rem;
+                padding-bottom:2rem;
+            }
+        }
+    }
+    p {
+        line-height:1.6;
+        margin-top:0;
+    }
 }
 
 .usa-header {
     font-family: $eapp-serif;
     background-color: $eapp-blue-dark;
     min-height:16.7rem;
-	border-bottom:none;
-
-	.usa-banner-inner {
-		margin:0;
-		max-width:none;
-		.usa-banner-button {
-			display:inline-block;
-			width:auto;
-		}
-	}
-
+    border-bottom:none;
+    .usa-banner-inner {
+        margin:0;
+        max-width:none;
+        .usa-banner-button {
+            display:inline-block;
+            width:auto;
+        }
+    }
     .eapp-header {
         min-height:14.5rem;
-
         .eapp-logo {
             height:14.5rem;
-            background: $eapp-blue-darkest url('../img/eapp-logo.png') 12% center no-repeat;
+            background: $eapp-blue-darkest;
             color:#9bdaf0;
-
+            .eapp-logo-icon {
+                display:inline-block;
+                height:8rem;
+                width:8rem;
+                margin-left:10%;
+                vertical-align:middle;
+            }
             span {
-                display:block;
-                margin-left:38%;
+                display:inline-block;
+                margin-left:2rem;
             }
             .eapp-logo-text {
                 font-size:3rem;
                 font-weight:$eapp-bold;
-                margin-top:5.2rem;
+                margin-top:4.7rem;
             }
         }
-
         /* logout control */
         .eapp-logout {
             position:absolute;
@@ -119,8 +121,8 @@ a:focus {
         /* section title styling, trying to be flexible for long section titles, text should flow up into header */
         .title {
             max-height:14.5rem;
-			overflow:hidden;
-			margin-left:4rem;
+            overflow:hidden;
+            margin-left:4rem;
             color: #fff;
             font-size: 5rem;
             font-weight:$eapp-bold;
@@ -150,22 +152,22 @@ a:focus {
 
 /* frame out the live form area for consistency */
 .eapp-core {
-	padding-top:5rem;
-	padding-bottom:4rem;
-	@media screen and (max-width:1024px) {
-		padding-right:12rem;
-	}
-	@media screen and (max-width:768px) {
-		padding-right:8rem;
-	}
+    padding-top:5rem;
+    padding-bottom:4rem;
+    @media screen and (max-width:1024px) {
+        padding-right:12rem;
+    }
+    @media screen and (max-width:768px) {
+        padding-right:8rem;
+    }
 }
 
 .hidden {
     display: none !important;
 }
 .clear {
-	float:none;
-	clear:both;
+    float:none;
+    clear:both;
 }
 .text-center {
     text-align: center;
