@@ -53,7 +53,7 @@ export default class Help extends ValidationElement {
         }
 
         name = `error.${errorFlat}`
-        if (!e.includes(name)) {
+        if (!e.includes(name) && !name.endsWith('.')) {
           e.push(name)
         }
       }
@@ -70,7 +70,7 @@ export default class Help extends ValidationElement {
   cleanErrors (old, remove) {
     let arr = []
     for (let err of old) {
-      if (err.indexOf(remove) === -1) {
+      if (err.indexOf(remove) === -1 && !err.endsWith('.')) {
         arr.push(err)
       }
     }

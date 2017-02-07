@@ -13,7 +13,7 @@ describe('The checkbox component', () => {
     }
     const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(1)
   })
 
@@ -27,8 +27,8 @@ describe('The checkbox component', () => {
     }
     const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(false)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').hasClass('usa-input-focus')).toEqual(false)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -42,8 +42,8 @@ describe('The checkbox component', () => {
     }
     const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').hasClass('usa-input-success')).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -57,7 +57,7 @@ describe('The checkbox component', () => {
     }
     const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 

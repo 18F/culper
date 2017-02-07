@@ -57,11 +57,6 @@ export default class Passport extends ValidationElement {
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       let e = { [this.props.name]: codes }
       let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
       super.handleValidation(event, s, e)
     })
   }
@@ -90,6 +85,10 @@ export default class Passport extends ValidationElement {
   }
 
   isValid () {
+    if (!this.state.HasPassport) {
+      return false
+    }
+
     if (!this.state.Name.first || !this.state.Name.last) {
       return false
     }
@@ -167,33 +166,32 @@ export default class Passport extends ValidationElement {
 
         <h3>{i18n.t('foreign.passport.number')}</h3>
         <div className="eapp-field-wrap no-label">
-          <Help id="foreign.passport.help.number">
-            <div className="number">
-              <RadioGroup className="passport-card option-list"
-                          selectedValue={this.state.Card}>
-                <Radio name="passport-book"
-                      label={i18n.t('foreign.passport.label.book')}
-                      value="Book"
-                      onChange={this.handleChange}
-                      />
-                <Radio name="passport-card"
-                      label={i18n.t('foreign.passport.label.card')}
-                      value="Card"
-                      onChange={this.handleChange}
-                      />
-              </RadioGroup>
-              <Text name="number"
-                    value={this.state.Number.value}
-                    label={i18n.t('foreign.passport.label.number')}
-                    placeholder={i18n.t('foreign.passport.placeholder.number')}
-                    pattern={re}
-                    maxlength="9"
-                    ref="number"
-                    onUpdate={this.handleUpdate.bind(this, 'Number')}
-                    onValidate={this.handleValidation}
+          <Help id="foreign.passport.help.number" errorPrefix="passport">
+            <RadioGroup className="passport-card option-list"
+                        selectedValue={this.state.Card}>
+              <Radio name="passport-book"
+                    label={i18n.t('foreign.passport.label.book')}
+                    value="Book"
+                    onChange={this.handleChange}
                     />
-            </div>
+              <Radio name="passport-card"
+                    label={i18n.t('foreign.passport.label.card')}
+                    value="Card"
+                    onChange={this.handleChange}
+                    />
+            </RadioGroup>
             <HelpIcon />
+            <Text name="number"
+                  value={this.state.Number.value}
+                  label={i18n.t('foreign.passport.label.number')}
+                  placeholder={i18n.t('foreign.passport.placeholder.number')}
+                  pattern={re}
+                  maxlength="9"
+                  className="number"
+                  ref="number"
+                  onUpdate={this.handleUpdate.bind(this, 'Number')}
+                  onValidate={this.handleValidation}
+                  />
           </Help>
         </div>
 

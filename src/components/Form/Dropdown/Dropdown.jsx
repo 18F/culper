@@ -97,13 +97,18 @@ export default class Dropdown extends ValidationElement {
       }
     })
 
+    if (valid === false) {
+      errorCodes = 'notfound'
+    }
+
     this.setState({
       value: value,
       error: valid === false,
       valid: valid === true
     },
     () => {
-      super.handleValidation(event, status, errorCodes)
+      const e = { [this.props.name]: errorCodes }
+      super.handleValidation(event, status, e)
     })
   }
 

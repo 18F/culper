@@ -51,6 +51,10 @@ export default class Bankruptcy extends ValidationElement {
    * a valid state.
    */
   isValid () {
+    if (!this.state.HasBankruptcy) {
+      return false
+    }
+
     for (let item of this.state.List) {
       if (!item.PetitionType || !item.PetitionType.value) {
         return false

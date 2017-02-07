@@ -82,13 +82,13 @@ export default class DateControl extends ValidationElement {
     let year = this.state.year
     let estimated = this.state.estimated
 
-    if (event.target.id.indexOf('month') !== -1) {
+    if (event.target.name.indexOf('month') !== -1) {
       month = event.target.value
-    } else if (event.target.id.indexOf('day') !== -1) {
+    } else if (event.target.name.indexOf('day') !== -1) {
       day = event.target.value
-    } else if (event.target.id.indexOf('year') !== -1) {
+    } else if (event.target.name.indexOf('year') !== -1) {
       year = event.target.value
-    } else if (event.target.id.indexOf('estimated') !== -1) {
+    } else if (event.target.name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
 
@@ -110,6 +110,14 @@ export default class DateControl extends ValidationElement {
       () => {
         event.target.date = d
         super.handleChange(event)
+
+        // Always make sure the day is re-validated
+        if (['month', 'year', 'estimated'].includes(event.target.name)) {
+          this.refs.day.refs.input.focus()
+          this.refs.day.refs.input.blur()
+          event.target.focus()
+        }
+
         if (this.props.onUpdate) {
           this.props.onUpdate({
             name: this.props.name,
@@ -131,13 +139,13 @@ export default class DateControl extends ValidationElement {
     let day = this.state.foci[1]
     let year = this.state.foci[2]
 
-    if (event.target.id.indexOf('month') !== -1) {
+    if (event.target.name.indexOf('month') !== -1) {
       month = true
     }
-    if (event.target.id.indexOf('day') !== -1) {
+    if (event.target.name.indexOf('day') !== -1) {
       day = true
     }
-    if (event.target.id.indexOf('year') !== -1) {
+    if (event.target.name.indexOf('year') !== -1) {
       year = true
     }
 
@@ -159,13 +167,13 @@ export default class DateControl extends ValidationElement {
     let day = this.state.foci[1]
     let year = this.state.foci[2]
 
-    if (event.target.id.indexOf('month') !== -1) {
+    if (event.target.name.indexOf('month') !== -1) {
       month = false
     }
-    if (event.target.id.indexOf('day') !== -1) {
+    if (event.target.name.indexOf('day') !== -1) {
       day = false
     }
-    if (event.target.id.indexOf('year') !== -1) {
+    if (event.target.name.indexOf('year') !== -1) {
       year = false
     }
 
@@ -192,13 +200,13 @@ export default class DateControl extends ValidationElement {
     let day = this.state.validity[1]
     let year = this.state.validity[2]
 
-    if (event.target.id.indexOf('month') !== -1) {
+    if (event.target.name.indexOf('month') !== -1) {
       month = status != null ? status : null
     }
-    if (event.target.id.indexOf('day') !== -1) {
+    if (event.target.name.indexOf('day') !== -1) {
       day = status != null ? status : null
     }
-    if (event.target.id.indexOf('year') !== -1) {
+    if (event.target.name.indexOf('year') !== -1) {
       year = status != null ? status : null
     }
 
@@ -232,7 +240,7 @@ export default class DateControl extends ValidationElement {
    * Generated name for the error message.
    */
   errorName (part) {
-    return '' + this.state.name + '-' + part + '-error'
+    return '' + this.props.name + '-' + part + '-error'
   }
 
   /**
@@ -241,8 +249,10 @@ export default class DateControl extends ValidationElement {
   divClass () {
     let klass = ''
 
-    if (this.state.error) {
-      klass += ' usa-input-error'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error'
+      }
     }
 
     return klass.trim()
@@ -255,16 +265,28 @@ export default class DateControl extends ValidationElement {
     return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)
   }
 
+  daysInMonth (month, year) {
+    const m = parseInt(month || 0)
+    const y = parseInt(year || 0)
+
+    // Setup for upperbounds of days in months
+    let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if (y > 0 && this.leapYear(y)) {
+      upperBounds[1] = 29
+    }
+
+    return upperBounds[m - 1]
+  }
+
   /**
    * Determine if a date is valid with leap years considered
    */
   validDate (month, day, year) {
-    // Setup for upperbounds of days in months
-    let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    if (this.leapYear(year)) {
-      upperBounds[1] = 29
-    }
-    return (month > 0 && month < 13) && (day > 0 && day <= upperBounds[month - 1])
+    const m = parseInt(month || 0)
+    const d = parseInt(day || 0)
+    const y = parseInt(year || 0)
+
+    return (m > 0 && m < 13) && (d > 0 && d <= this.daysInMonth(m, y))
   }
 
   render () {
@@ -276,6 +298,7 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group month">
             <Number id="month"
                     name="month"
+                    ref="month"
                     label="Month"
                     placeholder="00"
                     aria-described-by={this.errorName('month')}
@@ -297,11 +320,12 @@ export default class DateControl extends ValidationElement {
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
             <Number id="day"
                     name="day"
+                    ref="day"
                     label="Day"
                     placeholder="00"
                     aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
-                    max="31"
+                    max={this.daysInMonth(this.state.month, this.state.year)}
                     maxlength="2"
                     min="1"
                     readonly={this.props.readonly}
@@ -318,13 +342,13 @@ export default class DateControl extends ValidationElement {
           <div className="usa-form-group year">
             <Number id="year"
                     name="year"
+                    ref="year"
                     label="Year"
                     placeholder="0000"
                     aria-described-by={this.errorName('year')}
                     disabled={this.state.disabled}
                     max="9999"
                     maxlength="4"
-                    min="1775"
                     pattern={this.props.pattern}
                     readonly={this.props.readonly}
                     step="1"
@@ -339,6 +363,7 @@ export default class DateControl extends ValidationElement {
         </div>
         <div className="coupled-flags">
           <Checkbox name="estimated"
+                    ref="estimated"
                     label="Estimated"
                     toggle="false"
                     className={this.props.className}

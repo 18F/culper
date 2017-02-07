@@ -127,7 +127,10 @@ class Financial extends ValidationElement {
           <SectionView name="">
             {this.intro()}
           </SectionView>
+
           <SectionView name="review"
+                       title="Let&rsquo;s make sure everything looks right"
+                       showTop="true"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="foreign"

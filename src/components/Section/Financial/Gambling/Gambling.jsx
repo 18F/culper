@@ -50,6 +50,10 @@ export default class Gambling extends ValidationElement {
    * a valid state.
    */
   isValid () {
+    if (!this.state.HasGamblingDebt) {
+      return false
+    }
+
     for (let item of this.state.List) {
       if (!item.Losses || parseInt(item.Losses.value) < 1) {
         return false
@@ -193,7 +197,7 @@ export default class Gambling extends ValidationElement {
                     className="losses"
                     placeholder={i18n.t('financial.gambling.placeholder.losses')}
                     label={i18n.t('financial.gambling.label.losses')}
-                    min="0"
+                    min="1"
                     onValidate={this.handleValidation}
                     />
             <HelpIcon className="losses-help-icon" />

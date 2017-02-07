@@ -5,6 +5,7 @@ export default class Checkbox extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
+      uid: super.guid(),
       checked: props.checked,
       focus: props.focus || false,
       error: props.error || false,
@@ -101,9 +102,10 @@ export default class Checkbox extends ValidationElement {
       return (
         <div className={this.divClass()}>
           <input className={this.inputClass()}
-                 id={this.props.name}
+                 id={this.state.uid}
                  name={this.props.name}
                  type="checkbox"
+                 ref="checkbox"
                  disabled={this.props.disabled}
                  readOnly={this.props.readonly}
                  value={this.props.value}
@@ -113,7 +115,7 @@ export default class Checkbox extends ValidationElement {
                  checked={this.state.checked}
                  />
           <label className={this.labelClass()}
-                 htmlFor={this.props.name}>
+                 htmlFor={this.state.uid}>
             {this.props.children}
             <span>{this.props.label}</span>
           </label>
@@ -124,11 +126,12 @@ export default class Checkbox extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.props.name}>
+               htmlFor={this.state.uid}>
           <input className={this.inputClass()}
-                 id={this.props.name}
+                 id={this.state.uid}
                  name={this.props.name}
                  type="checkbox"
+                 ref="checkbox"
                  disabled={this.props.disabled}
                  readOnly={this.props.readonly}
                  value={this.props.value}

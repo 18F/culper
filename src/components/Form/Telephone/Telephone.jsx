@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
-import Generic from '../Generic'
 import Text from '../Text'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
@@ -27,15 +26,6 @@ export default class Telephone extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -83,7 +73,7 @@ export default class Telephone extends ValidationElement {
       let fieldTypeObj = { ...this.state[fieldType] }
       fieldTypeObj[field] = event.target.value
       this.setState({
-        noNumber: false,
+        noNumber: '',
         [fieldType]: fieldTypeObj
       }, () => {
         this.onUpdate()
@@ -100,7 +90,8 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  handleNumberTypeChange (type) {
+  handleNumberTypeChange (type, other) {
+    console.log(other)
     this.setState({numberType: type}, () => {
       this.onUpdate()
     })
@@ -117,7 +108,7 @@ export default class Telephone extends ValidationElement {
 
   handleNoNumberChange (e) {
     this.setState({
-      noNumber: e.target.checked,
+      noNumber: e.target.value,
       timeOfDay: '',
       numberType: '',
       extension: '',
@@ -198,9 +189,9 @@ export default class Telephone extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, error) {
     this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, error)
     })
   }
 
@@ -208,51 +199,49 @@ export default class Telephone extends ValidationElement {
     return (
       <div>
         <label>{i18n.t('telephone.dsn.label')}</label>
-        <Text
-          name="dsn_first"
-          className="number three"
-          placeholder="000"
-          pattern="\d{3}"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="3"
-          minlength="3"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.dsn.first}
-          onChange={this.handleNumberChange('dsn', 'first').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="dsn_first"
+              className="number three"
+              placeholder="000"
+              pattern="\d{3}"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="3"
+              minlength="3"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.dsn.first}
+              onChange={this.handleNumberChange('dsn', 'first').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator">-</span>
-        <Text
-          name="dsn_second"
-          className="number four"
-          placeholder="0000"
-          pattern="\d{4}"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          minlengh="4"
-          maxlength="4"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          step="1"
-          value={this.state.dsn.second}
-          onChange={this.handleNumberChange('dsn', 'second').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="dsn_second"
+              className="number four"
+              placeholder="0000"
+              pattern="\d{4}"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              minlengh="4"
+              maxlength="4"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              step="1"
+              value={this.state.dsn.second}
+              onChange={this.handleNumberChange('dsn', 'second').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
           <Radio name="nonumber"
-            label={i18n.t('telephone.noNumber.label')}
-            value={true}
-            onChange={this.handleNoNumberChange.bind(this)}
-          />
+                 label={i18n.t('telephone.noNumber.label')}
+                 value="NA"
+                 onChange={this.handleNoNumberChange.bind(this)}
+                 />
         </RadioGroup>
       </div>
     )
@@ -264,86 +253,82 @@ export default class Telephone extends ValidationElement {
         <label>{i18n.t('telephone.domestic.label')}</label>
 
         <span className="separator">(</span>
-        <Text
-          name="domestic_first"
-          className="number three"
-          placeholder="000"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="3"
-          pattern="\d{3}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.domestic.first}
-          onChange={this.handleNumberChange('domestic', 'first').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="domestic_first"
+              className="number three"
+              placeholder="000"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="3"
+              pattern="\d{3}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.domestic.first}
+              onChange={this.handleNumberChange('domestic', 'first').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator">)</span>
-        <Text
-          name="domestic_second"
-          className="number three"
-          placeholder="000"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="3"
-          pattern="\d{3}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.domestic.second}
-          onChange={this.handleNumberChange('domestic', 'second').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="domestic_second"
+              className="number three"
+              placeholder="000"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="3"
+              pattern="\d{3}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.domestic.second}
+              onChange={this.handleNumberChange('domestic', 'second').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator">-</span>
-        <Text
-          name="domestic_third"
-          className="number four"
-          placeholder="0000"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          minlengh="4"
-          maxlength="4"
-          pattern="\d{4}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.domestic.third}
-          onChange={this.handleNumberChange('domestic', 'third').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="domestic_third"
+              className="number four"
+              placeholder="0000"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              minlengh="4"
+              maxlength="4"
+              pattern="\d{4}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.domestic.third}
+              onChange={this.handleNumberChange('domestic', 'third').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator"></span>
-        <Text
-          name="domestic_extension"
-          className="number four"
-          placeholder="0000"
-          label={i18n.t('telephone.domestic.extension.label')}
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="4"
-          pattern="\d{0,4}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.extension}
-          onChange={this.handleExtensionChange.bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="domestic_extension"
+              className="number four"
+              placeholder="0000"
+              label={i18n.t('telephone.domestic.extension.label')}
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="4"
+              pattern="\d{0,4}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.extension}
+              onChange={this.handleExtensionChange.bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
-        <Radio name="nonumber"
-          label={i18n.t('telephone.noNumber.label')}
-          value={true}
-          onChange={this.handleNoNumberChange.bind(this)}
-        />
-      </RadioGroup>
+          <Radio name="nonumber"
+                 label={i18n.t('telephone.noNumber.label')}
+                 value="NA"
+                 onChange={this.handleNoNumberChange.bind(this)}
+                 />
+        </RadioGroup>
       </div>
     )
   }
@@ -353,67 +338,64 @@ export default class Telephone extends ValidationElement {
       <div className="international">
         <label>{i18n.t('telephone.international.label')}</label>
         <span className="separator">+</span>
-        <Text
-          name="int_first"
-          className="number three"
-          placeholder="000"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="3"
-          pattern="\d{3}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.international.first}
-          onChange={this.handleNumberChange('international', 'first').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="int_first"
+              className="number three"
+              placeholder="000"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="3"
+              pattern="\d{3}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.international.first}
+              onChange={this.handleNumberChange('international', 'first').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator">-</span>
-        <Text
-          name="int_second"
-          className="number ten"
-          placeholder="0000000000"
-          label=""
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="10"
-          pattern="\d{10}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.international.second}
-          onChange={this.handleNumberChange('international', 'second').bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="int_second"
+              className="number ten"
+              placeholder="0000000000"
+              label=""
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="10"
+              pattern="\d{10}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.international.second}
+              onChange={this.handleNumberChange('international', 'second').bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator"></span>
-        <Text
-          name="domestic_extension"
-          className="number four"
-          placeholder="0000"
-          label={i18n.t('telephone.international.extension.label')}
-          aria-describedby=""
-          disabled={this.state.disabled}
-          maxlength="4"
-          pattern="\d{0,4}"
-          readonly={this.state.readonly}
-          required={this.state.required}
-          value={this.state.extension}
-          onChange={this.handleExtensionChange.bind(this)}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onValidate={this.handleValidation}
-        />
+        <Text name="domestic_extension"
+              className="number four"
+              placeholder="0000"
+              label={i18n.t('telephone.international.extension.label')}
+              aria-describedby=""
+              disabled={this.props.disabled}
+              maxlength="4"
+              pattern="\d{0,4}"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              value={this.state.extension}
+              onChange={this.handleExtensionChange.bind(this)}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onValidate={this.handleValidation}
+              />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
           <Radio name="nonumber"
-            label={i18n.t('telephone.noNumber.label')}
-            value={true}
-            onChange={this.handleNoNumberChange.bind(this)}
-          />
-      </RadioGroup>
+                 label={i18n.t('telephone.noNumber.label')}
+                 value="NA"
+                 onChange={this.handleNoNumberChange.bind(this)}
+                 />
+        </RadioGroup>
       </div>
     )
   }
@@ -461,59 +443,58 @@ export default class Telephone extends ValidationElement {
         <div className="timeofday">
           <RadioGroup selectedValue={this.state.timeOfDay}>
             <Radio name="timeofday"
-              native={true}
-              className="time"
-              label={i18n.t('telephone.timeOfDay.day')}
-              value="Day"
-              onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
-              onValidate={this.handleValidation}
-            />
+                   native={true}
+                   className="time"
+                   label={i18n.t('telephone.timeOfDay.day')}
+                   value="Day"
+                   onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
+                   onValidate={this.handleValidation}
+                   />
             <Radio name="timeofday"
-              native={true}
-              className="time"
-              label={i18n.t('telephone.timeOfDay.night')}
-              value="Night"
-              onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
-              onValidate={this.handleValidation}
-            />
+                   native={true}
+                   className="time"
+                   label={i18n.t('telephone.timeOfDay.night')}
+                   value="Night"
+                   onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
+                   onValidate={this.handleValidation}
+                   />
           </RadioGroup>
         </div>
 
-        <div>
+        <div className="phonetype">
           <label>Select phone number type</label>
           <RadioGroup selectedValue={this.state.numberType}>
-            <Radio name="numbertype"
-              className="phonetype-option"
-              label={i18n.t('telephone.numberType.cell')}
-              value="Cell"
-              onChange={this.handleNumberTypeChange.bind(this, 'Cell')}
-              onValidate={this.handleValidation}
-            />
-            <Radio name="numbertype"
-              className="phonetype-option"
-              label={i18n.t('telephone.numberType.home')}
-              value="Home"
-              onChange={this.handleNumberTypeChange.bind(this, 'Home')}
-              onValidate={this.handleValidation}
-            />
-            <Radio name="numbertype"
-              className="phonetype-option"
-              label={i18n.t('telephone.numberType.work')}
-              value="Work"
-              onChange={this.handleNumberTypeChange.bind(this, 'Work')}
-              onValidate={this.handleValidation}
-            />
-            <Radio name="numbertype"
-              className="phonetype-option"
-              label={i18n.t('telephone.numberType.other')}
-              value="Other"
-              onChange={this.handleNumberTypeChange.bind(this, 'Other')}
-              onValidate={this.handleValidation}
-            />
+            <Radio name="numbertype-cell"
+                   className="phonetype-option"
+                   label={i18n.t('telephone.numberType.cell')}
+                   value="Cell"
+                   onChange={this.handleNumberTypeChange.bind(this, 'Cell')}
+                   onValidate={this.handleValidation}
+                   />
+            <Radio name="numbertype-home"
+                   className="phonetype-option"
+                   label={i18n.t('telephone.numberType.home')}
+                   value="Home"
+                   onChange={this.handleNumberTypeChange.bind(this, 'Home')}
+                   onValidate={this.handleValidation}
+                   />
+            <Radio name="numbertype-work"
+                   className="phonetype-option"
+                   label={i18n.t('telephone.numberType.work')}
+                   value="Work"
+                   onChange={this.handleNumberTypeChange.bind(this, 'Work')}
+                   onValidate={this.handleValidation}
+                   />
+            <Radio name="numbertype-other"
+                   className="phonetype-option"
+                   label={i18n.t('telephone.numberType.other')}
+                   value="Other"
+                   onChange={this.handleNumberTypeChange.bind(this, 'Other')}
+                   onValidate={this.handleValidation}
+                   />
           </RadioGroup>
         </div>
       </div>
     )
   }
 }
-
