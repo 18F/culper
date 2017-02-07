@@ -89,6 +89,10 @@ export default class Passport extends ValidationElement {
       return false
     }
 
+    if (this.state.HasPassport === 'No') {
+      return true
+    }
+
     if (!this.state.Name.first || !this.state.Name.last) {
       return false
     }
@@ -137,8 +141,10 @@ export default class Passport extends ValidationElement {
   /**
    * Handle when the yes/no option has been changed
    */
-  yesNoClicked (val) {
-    this.handleUpdate('HasPassport', val)
+  yesNoClicked (val, event) {
+    this.handleUpdate('HasPassport', val, () => {
+      this.handleValidation(event, null, null)
+    })
   }
 
   /**

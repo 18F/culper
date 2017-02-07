@@ -54,6 +54,14 @@ export default class Gambling extends ValidationElement {
       return false
     }
 
+    if (this.state.HasGamblingDebt === 'No') {
+      return true
+    }
+
+    if (this.state.HasGamblingDebt === 'Yes' && this.state.List.length === 0) {
+      return false
+    }
+
     for (let item of this.state.List) {
       if (!item.Losses || parseInt(item.Losses.value) < 1) {
         return false
@@ -78,11 +86,13 @@ export default class Gambling extends ValidationElement {
   /**
    * Updates triggered by the branching component.
    */
-  onUpdate (val) {
+  onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
       if (val === 'No') {
         this.myDispatch([])
       }
+
+      this.handleValidation(event, null, null)
     })
   }
 

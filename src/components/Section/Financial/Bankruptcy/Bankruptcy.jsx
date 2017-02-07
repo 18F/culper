@@ -55,6 +55,14 @@ export default class Bankruptcy extends ValidationElement {
       return false
     }
 
+    if (this.state.HasBankruptcy === 'No') {
+      return true
+    }
+
+    if (this.state.HasBankruptcy === 'Yes' && this.state.List.length === 0) {
+      return false
+    }
+
     for (let item of this.state.List) {
       if (!item.PetitionType || !item.PetitionType.value) {
         return false
@@ -95,17 +103,13 @@ export default class Bankruptcy extends ValidationElement {
   /**
    * Updates triggered by the branching component.
    */
-  onUpdate (val) {
+  onUpdate (val, event) {
     this.setState({ HasBankruptcy: val }, () => {
       if (val === 'No') {
         this.myDispatch([])
       }
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasBankruptcy: this.state.HasBankruptcy
-        })
-      }
+
+      this.handleValidation(event, null, null)
     })
   }
 
