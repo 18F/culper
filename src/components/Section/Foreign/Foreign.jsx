@@ -126,6 +126,8 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
+                       title="Let&rsquo;s make sure everything looks right"
+                       showTop="true"
                        back="foreign/passport"
                        backLabel={i18n.t('foreign.destination.passport')}
                        >

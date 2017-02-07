@@ -7,8 +7,6 @@ export default class ApplicantSSN extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      name: props.name,
-      label: props.label,
       value: props.value,
       first: this.props.first || this.ripper(props.value, 0, 3),
       middle: this.props.middle || this.ripper(props.value, 3, 5),
@@ -31,7 +29,7 @@ export default class ApplicantSSN extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = event.target.id
+    let part = event.target.name
     let value = event.target.value
     let updated = null
 
@@ -169,8 +167,8 @@ export default class ApplicantSSN extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.state.name]: codes }
-      let s = { [this.state.name]: { status: complexStatus } }
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
         super.handleValidation(event, s, e)
         return
@@ -288,6 +286,7 @@ export default class ApplicantSSN extends ValidationElement {
                 maxlength="3"
                 pattern="^[0-9]*$"
                 value={this.state.first}
+                disabled={this.state.notApplicable}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -303,6 +302,7 @@ export default class ApplicantSSN extends ValidationElement {
                 maxlength="2"
                 pattern="^[0-9]*$"
                 value={this.state.middle}
+                disabled={this.state.notApplicable}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -319,6 +319,7 @@ export default class ApplicantSSN extends ValidationElement {
                 maxlength="4"
                 pattern="^[0-9]*$"
                 value={this.state.last}
+                disabled={this.state.notApplicable}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}

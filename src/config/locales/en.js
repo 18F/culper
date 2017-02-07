@@ -59,15 +59,15 @@ const en = {
     name: {
       last: {
         required: '',
-        length: 'The last name cannot exceed 100 characters',
+        length: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
         pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
       },
       first: {
-        length: 'The first name cannot exceed 100 characters',
+        length: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
         pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
       },
       middle: {
-        length: 'The middle name cannot exceed 100 characters',
+        length: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
         pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
       }
     },
@@ -95,29 +95,56 @@ const en = {
       }
     },
     month: {
-      length: 'The month must be between 1 (January) and 12 (December)'
+      max: 'The month must be between 1 (January) and 12 (December)'
     },
     day: {
-      length: 'The day must be a valid day for the month'
+      length: 'The day must be a valid day for the month',
+      max: 'Cannot exceed the number of days within the month'
     },
     year: {
-      length: 'The year must be a valid year'
+      max: 'The year must be a valid year'
     },
     weight: {
       pounds: {
-        length: 'We only accept a value between 10 and 999 pounds'
+        min: 'We only accept a value between 10 and 999 pounds',
+        max: 'We only accept a value between 10 and 999 pounds'
       }
     },
     height: {
       feet: {
-        length: 'Feet must be between 1 and 9'
+        min: 'Feet must be between 1 and 9',
+        max: 'Feet must be between 1 and 9'
       },
       inches: {
-        length: 'Inches must be between 0 and 11'
+        min: 'Inches must be between 0 and 11',
+        max: 'Inches must be between 0 and 11'
       }
+    },
+    city: {
+      length: 'City name must be between 2 and 100 characters'
+    },
+    state: {
+      notfound: 'The state name must be one of the available options'
+    },
+    county: {
+      length: 'County name must be between 2 and 100 characters'
     },
     zipcode: {
       pattern: 'The zipcode can be either the 5 or 9 digit variation'
+    },
+    country: {
+      notfound: 'The country name must be one of the available options'
+    },
+    passport: {
+      number: {
+        pattern: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.'
+      }
+    },
+    Losses: {
+      min: 'Reported losses must have a value'
+    },
+    daterange: {
+      order: 'The **from** date must precede the **to** date'
     }
   },
   section: {

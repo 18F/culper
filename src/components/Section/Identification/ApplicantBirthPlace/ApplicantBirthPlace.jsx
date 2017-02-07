@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Radio, City, MilitaryState, County, Country, RadioGroup, Branch } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, City, MilitaryState, County, Country, Branch } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
@@ -131,6 +131,38 @@ export default class ApplicantBirthPlace extends ValidationElement {
       //     super.handleValidation(event, status)
       //   })
     })
+  }
+
+  isValid () {
+    if (!this.state.domestic) {
+      return false
+    }
+
+    if (!this.state.country) {
+      return false
+    }
+
+    if (this.state.country === 'United States') {
+      if (!this.state.state) {
+        return false
+      }
+
+      if (!this.state.city) {
+        return false
+      }
+    }
+
+    if (this.state.country !== 'United States') {
+      if (!this.state.city) {
+        return false
+      }
+
+      if (!this.state.county) {
+        return false
+      }
+    }
+
+    return true
   }
 
   /**

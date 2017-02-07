@@ -40,6 +40,10 @@ export default class OtherNames extends ValidationElement {
   }
 
   isValid () {
+    if (!this.state.HasOtherNames) {
+      return false
+    }
+
     for (let item of this.state.List) {
       if (!item.Name || !item.Name.first || !item.Name.last) {
         return false

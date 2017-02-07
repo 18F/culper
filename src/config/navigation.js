@@ -63,6 +63,7 @@ const navigation = [
     name: 'Your history',
     title: 'Your history',
     url: 'history',
+    hidden: true,
     subsections: [
       { name: 'Places lived', url: 'residence' },
       { name: 'Employment', url: 'employment' },

@@ -58,16 +58,32 @@ export default class Name extends ValidationElement {
         updated = { lastInitialOnly: event.target.checked }
         break
       case 'middleInitialOnly':
-        updated = { middleInitialOnly: event.target.checked }
+        updated = { middleInitialOnly: event.target.checked, noMiddleName: false }
         break
       case 'noMiddleName':
-        updated = { noMiddleName: event.target.checked }
+        updated = { noMiddleName: event.target.checked, middleInitialOnly: false, middle: '' }
         break
 
     }
 
     this.setState(updated, () => {
       super.handleChange(event)
+
+      if (part.indexOf('InitialOnly') !== -1) {
+        // Blur/validation forced
+        this.refs.first.refs.text.refs.input.focus()
+        this.refs.first.refs.text.refs.input.blur()
+        this.refs.middle.refs.text.refs.input.focus()
+        this.refs.middle.refs.text.refs.input.blur()
+        this.refs.last.refs.text.refs.input.focus()
+        this.refs.last.refs.text.refs.input.blur()
+
+        // Re-focus on the target
+        if (event.target) {
+          event.target.focus()
+        }
+      }
+
       if (this.props.onUpdate) {
         const {
           first,
@@ -109,7 +125,7 @@ export default class Name extends ValidationElement {
     let complexStatus = null
     if (codes.length > 0) {
       complexStatus = false
-    } else if (this.state.first && this.state.last) {
+    } else if (this.isValid()) {
       complexStatus = true
     }
 
@@ -145,6 +161,36 @@ export default class Name extends ValidationElement {
     })
   }
 
+  isValid () {
+    if (!this.state.first) {
+      return false
+    }
+
+    if (this.state.firstInitialOnly && this.state.first.length > 1) {
+      return false
+    }
+
+    if (!this.state.last) {
+      return false
+    }
+
+    if (this.state.lastInitialOnly && this.state.last.length > 1) {
+      return false
+    }
+
+    if (!this.state.noMiddleName) {
+      if (!this.state.middle) {
+        return false
+      }
+
+      if (this.state.middleInitialOnly && this.state.middle.length > 1) {
+        return false
+      }
+    }
+
+    return true
+  }
+
   /**
    * Generated name for the part of the address elements.
    */
@@ -176,9 +222,10 @@ export default class Name extends ValidationElement {
         {this.props.title && <h2>{this.props.title}</h2>}
         <Help id="identification.name.first.help" errorPrefix="name">
           <Text name="first"
+                ref="first"
                 label="First name"
                 pattern="^[a-zA-Z\-\.' ]*$"
-                maxlength="100"
+                maxlength={this.state.firstInitialOnly ? '1' : '100'}
                 className="first"
                 placeholder="Please enter your first name or initial"
                 value={this.state.first}
@@ -199,12 +246,14 @@ export default class Name extends ValidationElement {
         </Help>
         <Help id="identification.name.middle.help" errorPrefix="name">
           <Text name="middle"
+                ref="middle"
                 label="Middle name or initial"
                 minlength="0"
-                maxlength="100"
+                maxlength={this.state.middleInitialOnly ? '1' : '100'}
                 className="middle"
                 placeholder="Please enter your middle name or initial"
                 value={this.state.middle}
+                disabled={this.state.noMiddleName}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -232,8 +281,9 @@ export default class Name extends ValidationElement {
         </Help>
         <Help id="identification.name.last.help" errorPrefix="name">
           <Text name="last"
+                ref="last"
                 label="Last name"
-                maxlength="100"
+                maxlength={this.state.lastInitialOnly ? '1' : '100'}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
                 placeholder="Please enter your last name"

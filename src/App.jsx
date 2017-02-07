@@ -58,6 +58,7 @@ export class App extends React.Component {
 
     return (
       <div className={this.designClass()}>
+        <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
           <div className="usa-banner">
@@ -106,7 +107,6 @@ export class App extends React.Component {
             </div>
           </div>
         </header>
-        <div id="scrollTo"></div>
         <div className="usa-overlay"></div>
         <ProgressBar />
         <main id="main-content" className="eapp-structure-wrap">
