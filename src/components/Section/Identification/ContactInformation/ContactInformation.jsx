@@ -122,10 +122,11 @@ export default class ContactInformation extends ValidationElement {
     return (
       <div className="contact">
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
-        <div className={klass}>
+        <div className={klass + ' email-collection'}>
           <Collection minimum="1"
                       items={this.state.Emails}
                       dispatch={this.contactDispatch.bind(this, 'Emails')}
+                      scrollTo="self"
                       summary={this.emailSummary}
                       summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
                       appendClass="eapp-field-wrap"
@@ -145,10 +146,11 @@ export default class ContactInformation extends ValidationElement {
         </div>
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
-        <div className={klass}>
+        <div className={klass + ' telephone-collection'}>
           <Collection minimum="1"
                       items={this.state.PhoneNumbers}
                       dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
+                      scrollTo="self"
                       summary={this.phoneNumberSummary}
                       summaryTitle={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                       appendClass="eapp-field-wrap"

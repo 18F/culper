@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
+import { findPosition } from '../../../middleware/history'
 import ValidationElement from '../ValidationElement'
 
 export default class Collection extends ValidationElement {
@@ -8,6 +9,7 @@ export default class Collection extends ValidationElement {
 
     let min = this.props.minimum || 0
     this.state = {
+      id: super.guid(),
       minimum: min,
       length: min,
       items: this.props.items || [],
@@ -80,6 +82,7 @@ export default class Collection extends ValidationElement {
 
     this.setState({ items: items, children: children }, () => {
       this.dispatcher(this.state.items)
+      this.scroll()
     })
   }
 
@@ -95,7 +98,33 @@ export default class Collection extends ValidationElement {
 
     this.setState({ items: items, children: children }, () => {
       this.dispatcher(this.state.items)
+      this.scroll()
     })
+  }
+
+  /**
+   * Scroll to the element if an identifier is given.
+   *
+   *  - If you do not want to scroll pass "none" as a value.
+   *  - If you want to scroll to the top of the collection
+   *    pass "self" as a value.
+   */
+  scroll () {
+    let id = this.props.scrollTo || 'scrollToProgress'
+    if (id === '' || id.toLowerCase() === 'none') {
+      return
+    }
+
+    if (id.toLowerCase() === 'self') {
+      id = this.state.id
+    }
+
+    const el = document.getElementById(id)
+    if (!el) {
+      return
+    }
+
+    window.scroll(0, findPosition(el))
   }
 
   /**
@@ -103,37 +132,8 @@ export default class Collection extends ValidationElement {
    */
   dispatcher (items) {
     if (this.props.dispatch) {
-      // this.props.dispatch(this.normalize(items))
       this.props.dispatch(items)
     }
-  }
-
-  /**
-   * Normalize the collection so persisted data does not contain deep objects
-   */
-  normalize (collection) {
-    let items = []
-    collection.forEach((item) => {
-      let x = {}
-
-      for (let child in item) {
-        if (['index', 'children'].includes(child)) {
-          continue
-        }
-
-        x[child] = {}
-        for (let key in item[child]) {
-          x[child] = {
-            ...x[child],
-            [key]: item[child][key]
-          }
-        }
-      }
-
-      items.push(x)
-    })
-
-    return items
   }
 
   /**
@@ -294,7 +294,7 @@ export default class Collection extends ValidationElement {
     const klassAppend = `text-center ${this.props.appendClass || ''}`.trim()
 
     return (
-      <div className={klass}>
+      <div id={this.state.id} className={klass}>
         {this.getContent()}
         <div className={klassAppend}>
           <button className="add usa-button-outline" onClick={this.append}>
