@@ -4,50 +4,50 @@
     padding-top:2.6rem;
     line-height:4.6rem;
 
-	> label {
-		top:-1.2rem !important;
-	}
+    > label {
+        top:-1.2rem !important;
+    }
 
     .toggle {
         display: inline-block;
         vertical-align: top;
-		margin-left: 0.8rem;
+        margin-left: 0.8rem;
 
-		svg {
-			display: inline-block;
+        svg {
+            display: inline-block;
             height: 3.7rem;
-			vertical-align: middle;
+            vertical-align: middle;
 
-	    	.eapp-help-icon,
+            .eapp-help-icon,
             .eapp-help-circle {
-			    transition: fill 0.3s;
-			}
+                transition: fill 0.3s;
+            }
 
-	    	.eapp-help-icon {
-	        	fill: $eapp-blue-light;
-        	}
+            .eapp-help-icon {
+                fill: $eapp-blue-light;
+            }
 
-	    	.eapp-help-circle {
-			    fill: $eapp-blue-lightest;
-		    }
+            .eapp-help-circle {
+                fill: $eapp-blue-lightest;
+            }
         }
 
         &:hover,
         &.active {
             svg {
-		    	.eapp-help-icon {
-		        	fill: $eapp-blue-lightest;
-	        	}
+                .eapp-help-icon {
+                    fill: $eapp-blue-lightest;
+                }
 
-		    	.eapp-help-circle {
-				    fill: $eapp-blue-light;
-			    }
+                .eapp-help-circle {
+                    fill: $eapp-blue-light;
+                }
             }
         }
     }
 
     .message {
-		width: 93%;
+        width: 93%;
         padding: 2rem 3rem 3.5rem 3rem;
         background: $eapp-blue-lightest;
         border: 2px solid $eapp-blue-lighter;
@@ -68,9 +68,9 @@
             border-radius: 50%;
         }
 
-		div * {
-			padding: 0 !important;
-		}
+        div * {
+            padding: 0 !important;
+        }
 
         .eapp-help-close {
             display: block;
@@ -78,18 +78,18 @@
         }
 
         &.eapp-error-message {
-	        background: $eapp-red-lightest;
-			border-color: $eapp-red-light;
+            background: $eapp-red-lightest;
+            border-color: $eapp-red-light;
 
-			> i {
-				background-color: $eapp-red;
-			}
+            > i {
+                background-color: $eapp-red;
+            }
         }
     }
 }
 
 .no-label {
-	.help {
-		padding-top: 0;
-	}
+    .help {
+        padding-top: 0;
+    }
 }
