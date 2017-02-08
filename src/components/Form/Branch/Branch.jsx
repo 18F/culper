@@ -14,56 +14,62 @@ export default class Branch extends React.Component {
     }
   }
 
-  yesNoClicked (val) {
+  yesNoClicked (val, event) {
     this.setState({ value: val }, () => {
       if (this.props.onUpdate) {
-        this.props.onUpdate(val)
+        this.props.onUpdate(val, event)
       }
     })
   }
 
   render () {
+    const klass = `branch ${this.props.className || ''}`.trim()
+
     if (this.props.help) {
       return (
-        <div className="branch">
+        <div className={klass}>
           <div className="content">
             {this.props.children}
           </div>
-          <Help id={this.props.help}>
-            <RadioGroup className="option-list branch eapp-field-wrap" selectedValue={this.state.value}>
-              <Radio name={this.props.name}
-                label={this.props.yesLabel}
-                value={this.props.yesValue}
-                onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-              />
-              <Radio name={this.props.name}
-                label={this.props.noLabel}
-                value={this.props.noValue}
-                onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-              />
-            </RadioGroup>
-            <HelpIcon className="branch-help-icon" />
-          </Help>
+          <div>
+            <Help id={this.props.help}>
+              <label>{this.props.label || ''}</label>
+              <RadioGroup className="option-list branch" selectedValue={this.state.value}>
+                <Radio name={this.props.name}
+                       label={this.props.yesLabel}
+                       value={this.props.yesValue}
+                       onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                       />
+                <Radio name={this.props.name}
+                       label={this.props.noLabel}
+                       value={this.props.noValue}
+                       onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                       />
+              </RadioGroup>
+              <HelpIcon className="branch-help-icon" />
+            </Help>
+          </div>
         </div>
       )
     }
 
     return (
-      <div className="branch">
+      <div className={klass}>
         <div className="content">
           {this.props.children}
         </div>
-        <RadioGroup className="option-list branch eapp-field-wrap" selectedValue={this.state.value}>
+        <label>{this.props.label || ''}</label>
+        <RadioGroup className="option-list branch" selectedValue={this.state.value}>
           <Radio name={this.props.name}
-            label={this.props.yesLabel}
-            value={this.props.yesValue}
-            onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-          />
+                 label={this.props.yesLabel}
+                 value={this.props.yesValue}
+                 onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                 />
           <Radio name={this.props.name}
-            label={this.props.noLabel}
-            value={this.props.noValue}
-            onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-          />
+                 label={this.props.noLabel}
+                 value={this.props.noValue}
+                 onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                 />
         </RadioGroup>
       </div>
     )

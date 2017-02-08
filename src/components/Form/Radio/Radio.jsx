@@ -6,19 +6,14 @@ export default class Radio extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
+      uid: super.guid(),
       checked: props.checked,
-      help: props.help,
       disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      native: props.native || false
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -69,24 +64,24 @@ export default class Radio extends ValidationElement {
 
   handleValidation (event, status, errors) {
     event.persist()
-    super.handleValidation(event, { [this.state.name]: { status: true }}, errors)
-  }
-
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
+    super.handleValidation(event, {[this.props.name]: { status: true }}, errors)
   }
 
   /**
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = 'eapp-blocks-radio'
+    let klass = ''
+    if (!this.props.native) {
+      klass = 'eapp-blocks-radio'
+    }
 
     if (this.state.error) {
       klass += ' usa-input-error'
+    }
+
+    if (this.props.className) {
+      klass += ` ${this.props.className}`
     }
 
     return klass.trim()
@@ -114,21 +109,6 @@ export default class Radio extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  /**
    * Style classes applied to the input element.
    */
   inputClass () {
@@ -149,25 +129,41 @@ export default class Radio extends ValidationElement {
     return klass.trim()
   }
 
-  getId () {
-    return (this.state.value || 'input') + '-' + (this.state.name || 'empty')
-  }
-
   render () {
-    const id = this.getId()
+    if (this.props.native) {
+      return (
+        <div className={this.divClass()}>
+          <input className={this.inputClass()}
+                 id={this.state.uid}
+                 name={this.props.name}
+                 type="radio"
+                 disabled={this.props.disabled}
+                 readOnly={this.props.readonly}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 onClick={this.handleClick}
+                 checked={this.state.checked}
+                 />
+          <label htmlFor={this.state.uid}>
+            {this.props.label}
+            {this.props.children}
+          </label>
+        </div>
+      )
+    }
+
     return (
       <div className={this.divClass()}>
-        <label
-          className={this.labelClass()}
-          htmlFor={id}>
+        <label className={this.labelClass()}
+               htmlFor={this.state.uid}>
           <input className={this.inputClass()}
-                 id={id}
-                 name={this.state.name}
+                 id={this.state.uid}
+                 name={this.props.name}
                  type="radio"
-                 aria-describedby={this.errorName()}
-                 disabled={this.state.disabled}
-                 readOnly={this.state.readonly}
-                 required={this.state.required}
+                 disabled={this.props.disabled}
+                 readOnly={this.props.readonly}
                  value={this.state.value}
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
@@ -176,12 +172,8 @@ export default class Radio extends ValidationElement {
                  checked={this.state.checked}
                  />
           {this.props.children}
-          <span>{this.state.label}</span>
+          <span>{this.props.label}</span>
         </label>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }

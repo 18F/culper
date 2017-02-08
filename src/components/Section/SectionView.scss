@@ -1,55 +1,74 @@
-.section-view {
-    .btn-container {
-        margin-top: 8rem;
+@import 'eqip-colors';
 
-        button {
-            line-height: normal !important;
-            width: 33%;
-            max-width: 25rem;
-            padding: 2rem;
-            min-height: 12rem;
-        }
+.btn-wrap {
+	display:table;
+	margin: 0 8rem 0 4rem;
+	width:calc(100% - 12rem);
 
-        button.next {
-            float: right;
-        }
-        button.back {
-            float: left;
-        }
+	.btn-container {
+// 		padding:2rem 8rem 0 4rem;
+		display:table-row;
 
-        .actions {
+		.btn-cell,
+		.btn-spacer {
+			display:table-cell;
+			vertical-align:middle;
+		}
+	
+		.btn-cell {
+			width:40%;
+			border-radius:3px;
+			transition:background-color 0.3s;
+			background-color:$eapp-blue;
+			.next {
+				text-align:right;
+			}
+			&:hover {
+				background-color:$eapp-blue-dark;
+			}
+		    button {
+				margin:0;
+		        line-height: normal !important;
+		        width:100%;
+		        padding:2rem;
+				background:none;
+				&:hover {
+					background:none;
+				}
+			    .actions {
+			        display: table;
+			        width: 100%;
+			        .direction {
+			            font-weight: 600;
+			        }
+			        .text, .icon {
+			            display: table-cell;
+			            vertical-align: middle;
+			        }
+			        .icon {
+			            width: 2.4rem;
+			        }
+				    &.next {
+				        text-align: right;
+				    }
+				    &.back {
+				        text-align: left;
+				    }
+			    }
+			}
+	    }
+	    .label {
+	        font-weight: normal;
+	        min-height: 2rem;
+	    }
+	}	
+}
 
-            display: table;
-            width: 100%;
-            .direction {
-                font-weight: 600;
-            }
-            .text, .icon {
-                display: table-cell;
-                vertical-align: middle;
-            }
-            .icon {
-                width: 2.4rem;
-            }
-        }
-
-        .actions.next {
-            text-align: right;
-        }
-        .actions.back {
-            text-align: left;
-        }
-        .label {
-            font-weight: normal;
-            min-height: 2rem;
-        }
-    }
-    h1.title {
-        margin-top:2rem;
-    }
-    .top-btns {
-        padding-bottom: 22rem;
-        margin-bottom: 4rem;
-        border-bottom: 1px solid #e5e5e5;
-    }
+.top-btns {
+	.btn-wrap {
+	    border-bottom:2px solid #e2e7ef;
+	    padding-top:7rem;
+	    padding-bottom: 7rem;
+	    margin-bottom:7rem;
+	}
 }

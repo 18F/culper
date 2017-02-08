@@ -1,13 +1,4 @@
 .birthplace {
-    .branch {
-        display: inline-block;
-    }
-
-    .branch-help-icon {
-        margin-left: -1.6rem;
-        margin-top: 0.5rem;
-    }
-
     .state,
     .city,
     .county,
@@ -22,9 +13,13 @@
         }
     }
 
-    .state-help-icon,
-    .country-help-icon {
-        vertical-align: top;
-        margin-top: 5.3rem;
+    .branch {
+        .help {
+            padding-top: 0;
+            label {
+                display: inline;
+                position: relative;
+            }
+        }
     }
 }

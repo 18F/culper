@@ -6,12 +6,16 @@ export default class Generic extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: props.value || '',
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
       errorCode: null
     }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({ value: nextProps.value })
   }
 
   /**
@@ -65,7 +69,7 @@ export default class Generic extends ValidationElement {
     status = true
 
     if (this.state.value) {
-      if (this.state.value && this.state.value.length > 0) {
+      if (status && this.state.value && this.state.value.length > 0) {
         status = status && (this.state.value.length >= parseInt(this.props.minlength || 0) && this.state.value.length <= parseInt(this.props.maxlength || 256))
         if (!status) {
           errorCode = 'length'
@@ -73,7 +77,7 @@ export default class Generic extends ValidationElement {
         hits++
       }
 
-      if (this.props.pattern && this.props.pattern.length > 0) {
+      if (status && this.props.pattern && this.props.pattern.length > 0) {
         try {
           let re = new RegExp(this.props.pattern)
           status = status && re.test(this.state.value)
@@ -121,8 +125,10 @@ export default class Generic extends ValidationElement {
   divClass () {
     let klass = (this.props.className || '')
 
-    if (this.state.error) {
-      klass += ' usa-input-error'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error'
+      }
     }
 
     return klass.trim()
@@ -134,23 +140,10 @@ export default class Generic extends ValidationElement {
   labelClass () {
     let klass = ''
 
-    if (this.state.error) {
-      klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error && this.props.help) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error-label'
+      }
     }
 
     return klass.trim()
@@ -162,12 +155,14 @@ export default class Generic extends ValidationElement {
   inputClass () {
     let klass = ''
 
-    if (this.state.focus) {
-      klass += ' usa-input-focus'
-    }
+    if (!this.props.disabled) {
+      if (this.state.focus) {
+        klass += ' usa-input-focus'
+      }
 
-    if (this.state.valid) {
-      klass += ' usa-input-success'
+      if (this.state.valid) {
+        klass += ' usa-input-success'
+      }
     }
 
     return klass.trim()
@@ -199,7 +194,6 @@ export default class Generic extends ValidationElement {
                maxLength={this.props.maxlength}
                pattern={this.props.pattern}
                readOnly={this.props.readonly}
-               required={this.props.required}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
@@ -210,10 +204,6 @@ export default class Generic extends ValidationElement {
                onPaste={this.props.onPaste}
                ref="input"
                />
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.props.help}
-        </div>
       </div>
     )
   }

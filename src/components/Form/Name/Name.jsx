@@ -11,8 +11,6 @@ export default class Name extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
       first: props.first,
       firstInitialOnly: props.firstInitialOnly,
       last: props.last,
@@ -33,7 +31,7 @@ export default class Name extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = this.extractPart(event.target.id)
+    let part = this.extractPart(event.target.name)
     let value = event.target.value
     let updated = null
 
@@ -60,16 +58,32 @@ export default class Name extends ValidationElement {
         updated = { lastInitialOnly: event.target.checked }
         break
       case 'middleInitialOnly':
-        updated = { middleInitialOnly: event.target.checked }
+        updated = { middleInitialOnly: event.target.checked, noMiddleName: false }
         break
       case 'noMiddleName':
-        updated = { noMiddleName: event.target.checked }
+        updated = { noMiddleName: event.target.checked, middleInitialOnly: false, middle: '' }
         break
 
     }
 
     this.setState(updated, () => {
       super.handleChange(event)
+
+      if (part.indexOf('InitialOnly') !== -1) {
+        // Blur/validation forced
+        this.refs.first.refs.text.refs.input.focus()
+        this.refs.first.refs.text.refs.input.blur()
+        this.refs.middle.refs.text.refs.input.focus()
+        this.refs.middle.refs.text.refs.input.blur()
+        this.refs.last.refs.text.refs.input.focus()
+        this.refs.last.refs.text.refs.input.blur()
+
+        // Re-focus on the target
+        if (event.target) {
+          event.target.focus()
+        }
+      }
+
       if (this.props.onUpdate) {
         const {
           first,
@@ -84,7 +98,7 @@ export default class Name extends ValidationElement {
         } = this.state
 
         this.props.onUpdate({
-          ...this.props,
+          name: this.props.name,
           first: first,
           firstInitialOnly: firstInitialOnly,
           last: last,
@@ -111,13 +125,13 @@ export default class Name extends ValidationElement {
     let complexStatus = null
     if (codes.length > 0) {
       complexStatus = false
-    } else if (this.state.first && this.state.last) {
+    } else if (this.isValid()) {
       complexStatus = true
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.state.name]: codes }
-      let s = { [this.state.name]: { status: complexStatus } }
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
         super.handleValidation(event, s, e)
         return
@@ -147,11 +161,41 @@ export default class Name extends ValidationElement {
     })
   }
 
+  isValid () {
+    if (!this.state.first) {
+      return false
+    }
+
+    if (this.state.firstInitialOnly && this.state.first.length > 1) {
+      return false
+    }
+
+    if (!this.state.last) {
+      return false
+    }
+
+    if (this.state.lastInitialOnly && this.state.last.length > 1) {
+      return false
+    }
+
+    if (!this.state.noMiddleName) {
+      if (!this.state.middle) {
+        return false
+      }
+
+      if (this.state.middleInitialOnly && this.state.middle.length > 1) {
+        return false
+      }
+    }
+
+    return true
+  }
+
   /**
    * Generated name for the part of the address elements.
    */
   partName (part) {
-    return '' + this.state.name + '-' + part
+    return '' + this.props.name + '-' + part
   }
 
   /**
@@ -166,22 +210,24 @@ export default class Name extends ValidationElement {
    */
   suffixOtherClass () {
     return this.state.suffix === 'Other'
-      ? ''
+      ? 'suffix-other'
       : 'hidden'
   }
 
   render () {
+    const klass = `name ${this.props.className || ''}`.trim()
+
     return (
-      <div className="eapp-field-wrap name">
+      <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
-        <Help id="identification.name.first.help">
+        <Help id="identification.name.first.help" errorPrefix="name">
           <Text name="first"
+                ref="first"
                 label="First name"
                 pattern="^[a-zA-Z\-\.' ]*$"
-                maxlength="100"
+                maxlength={this.state.firstInitialOnly ? '1' : '100'}
                 className="first"
                 placeholder="Please enter your first name or initial"
-                help="The first name (or initial) is optional but cannot exceed 100 characters"
                 value={this.state.first}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -190,24 +236,24 @@ export default class Name extends ValidationElement {
                 />
           <HelpIcon />
           <div className="text-right">
-            <input
-              id="firstInitialOnly"
-              type="checkbox"
-              value="firstInitial"
-              checked={this.props.firstInitialOnly}
-              onChange={this.handleChange} />
+            <input id="firstInitialOnly"
+                   type="checkbox"
+                   value="firstInitial"
+                   checked={this.props.firstInitialOnly}
+                   onChange={this.handleChange} />
             <label>Initial Only</label>
           </div>
         </Help>
-        <Help id="identification.name.middle.help">
+        <Help id="identification.name.middle.help" errorPrefix="name">
           <Text name="middle"
+                ref="middle"
                 label="Middle name or initial"
                 minlength="0"
-                maxlength="100"
+                maxlength={this.state.middleInitialOnly ? '1' : '100'}
                 className="middle"
                 placeholder="Please enter your middle name or initial"
-                help="The middle name (or initial) is optional but cannot exceed 100 characters"
                 value={this.state.middle}
+                disabled={this.state.noMiddleName}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -233,14 +279,14 @@ export default class Name extends ValidationElement {
             </div>
           </div>
         </Help>
-        <Help id="identification.name.last.help">
+        <Help id="identification.name.last.help" errorPrefix="name">
           <Text name="last"
+                ref="last"
                 label="Last name"
-                maxlength="100"
+                maxlength={this.state.lastInitialOnly ? '1' : '100'}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
                 placeholder="Please enter your last name"
-                help="The last name is required, cannot exceed 100 characters, and we only support letters, hyphens (-), periods (.), apostrophes ('), and spaces."
                 value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -249,16 +295,15 @@ export default class Name extends ValidationElement {
                 />
           <HelpIcon />
           <div className="text-right">
-            <input
-              id="lastInitialOnly"
-              type="checkbox"
-              value="lastInitial"
-              checked={this.props.lastInitialOnly}
-              onChange={this.handleChange} />
+            <input id="lastInitialOnly"
+                   type="checkbox"
+                   value="lastInitial"
+                   checked={this.props.lastInitialOnly}
+                   onChange={this.handleChange} />
             <label>Initial Only</label>
           </div>
         </Help>
-        <Help id="identification.name.suffix.help" scrollIntoView="true">
+        <Help id="identification.name.suffix.help" errorPrefix="name" scrollIntoView="true">
           <label>Suffix <span className="optional">(Optional)</span></label>
 
           <RadioGroup className="option-list suffix" selectedValue={this.state.suffix}>

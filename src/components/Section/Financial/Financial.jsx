@@ -8,6 +8,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Gambling from './Gambling'
+import Bankruptcy from './Bankruptcy'
 
 class Financial extends ValidationElement {
   constructor (props) {
@@ -57,11 +58,13 @@ class Financial extends ValidationElement {
                || this.hasStatus('bankruptcy', status, false)) {
       cstatus = 'incomplete'
     }
+
     let completed = {
       ...this.props.Completed,
       ...status,
       status: cstatus
     }
+
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
@@ -101,35 +104,19 @@ class Financial extends ValidationElement {
    */
   intro () {
     return (
-      <div className="financial intro">
-        <div className="usa-grid-full eapp-field-wrap">
+      <div className="financial intro review-screen">
+        <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
-        <div id="titles" className="usa-grid-full">
-          <div className="usa-width-one-half">
-            <h3>{i18n.t('financial.tour.title')}</h3>
-          </div>
-          <div className="usa-width-one-half">
-            <h3>{i18n.t('financial.review.title')}</h3>
-          </div>
+        <div className="review-column">
+          <h3>{i18n.t('financial.tour.title')}</h3>
+          <p>{i18n.t('financial.tour.para')}</p>
+          <button onClick={this.handleTour}>{i18n.t('financial.tour.button')}</button>
         </div>
-
-        <div id="dialogs" className="usa-grid-full">
-          <div className="usa-width-one-half">
-            <p>{i18n.t('financial.tour.para')}</p>
-          </div>
-          <div className="usa-width-one-half">
-            <p>{i18n.t('financial.review.para')}</p>
-          </div>
-        </div>
-
-        <div id="actions" className="usa-grid-full review-btns">
-          <div className="usa-width-one-half">
-            <button onClick={this.handleTour}>{i18n.t('financial.tour.button')}</button>
-          </div>
-          <div className="usa-width-one-half">
-            <button onClick={this.handleReview}>{i18n.t('financial.review.button')}</button>
-          </div>
+        <div className="review-column">
+          <h3>{i18n.t('financial.review.title')}</h3>
+          <p>{i18n.t('financial.review.para')}</p>
+          <button onClick={this.handleReview}>{i18n.t('financial.review.button')}</button>
         </div>
       </div>
     )
@@ -142,33 +129,53 @@ class Financial extends ValidationElement {
           <SectionView name="">
             {this.intro()}
           </SectionView>
+
           <SectionView name="review"
-                       back="financial/nonpayment"
-                       backLabel={i18n.t('financial.destination.nonpayment')}
-                       next="family"
-                       nextLabel={i18n.t('financial.destination.family')}>
+                       title="Let&rsquo;s make sure everything looks right"
+                       showTop="true"
+                       back="financial/bankruptcy"
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       next="foreign"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
+            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       onUpdate={this.onUpdate.bind(this, 'Gambling')}
                       onValidate={this.onValidate.bind(this)}
                       />
+
+            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+            <Bankruptcy name="bankruptcy"
+                        {...this.props.Bankruptcy}
+                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
+
           <SectionView name="gambling"
                        back="identification"
                        backLabel={i18n.t('identification.destination.physical')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
+            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       onUpdate={this.onUpdate.bind(this, 'Gambling')}
                       onValidate={this.onValidate.bind(this)}
                       />
           </SectionView>
+
           <SectionView name="bankruptcy"
                        back="financial/gambling"
                        backLabel={i18n.t('financial.destination.gambling')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
+            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+            <Bankruptcy name="bankruptcy"
+                        {...this.props.Bankruptcy}
+                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
         </SectionViews>
       </div>
@@ -186,6 +193,7 @@ function mapStateToProps (state) {
     Section: section,
     Financial: financial,
     Gambling: financial.Gambling || {},
+    Bankruptcy: financial.Bankruptcy || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }

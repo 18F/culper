@@ -7,11 +7,6 @@ export default class ZipCode extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
       valid: props.valid || false
@@ -30,9 +25,9 @@ export default class ZipCode extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, error) {
     this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, error)
     })
   }
 
@@ -56,10 +51,10 @@ export default class ZipCode extends ValidationElement {
 
   render () {
     return (
-      <Text name={this.state.name}
-            label={this.state.label}
-            placeholder={this.state.placeholder}
-            help={this.state.help}
+      <Text name={this.props.name}
+            label={this.props.label}
+            placeholder={this.props.placeholder}
+            className={this.props.className}
             minlength="5"
             maxlength="10"
             pattern="^\d{5}(?:[-\s]\d{4})?$"

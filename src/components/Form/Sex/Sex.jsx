@@ -8,10 +8,6 @@ export default class Sex extends ValidationElement {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      name: 'sex',
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
       valid: props.valid || false
@@ -46,12 +42,11 @@ export default class Sex extends ValidationElement {
   render () {
     return (
       <div className={this.divClass()}>
-        <label>&nbsp;</label>
+        <label>{this.props.label}</label>
         <div className="options-list eapp-extend-labels">
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.sex.female')}
-                 placeholder={this.state.placeholder}
-                 help={this.state.help}
+                 placeholder={this.props.placeholder}
                  required="true"
                  value="female"
                  checked={this.state.value === 'female'}
@@ -70,8 +65,7 @@ export default class Sex extends ValidationElement {
           </Radio>
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.sex.male')}
-                 placeholder={this.state.placeholder}
-                 help={this.state.help}
+                 placeholder={this.props.placeholder}
                  required="true"
                  value="male"
                  checked={this.state.value === 'male'}
@@ -81,14 +75,14 @@ export default class Sex extends ValidationElement {
                  onValidate={this.handleValidation}
                  >
             <div className="sex-icon">
-              <svg viewBox="0 0 62.9 62.65">
+              <svg viewBox="-10 -10 80 80">
                 <path id="sex-icon-male" d="M62.77,0.12V0H37.69v10h8.64l-6.4,6.4c-4.35-3.04-9.43-4.56-14.52-4.56c-6.5,0-13,2.48-17.96,7.44
                                             c-9.92,9.92-9.92,26.01,0,35.93c4.96,4.96,11.46,7.44,17.96,7.44c6.5,0,13-2.48,17.96-7.44c8.58-8.58,9.73-21.76,3.48-31.58
                                             l6.05-6.05v7.64h10V0.12H62.77z M36.3,48.14c-2.91,2.91-6.78,4.51-10.89,4.51c-4.11,0-7.98-1.6-10.89-4.51
                                             C11.6,45.23,10,41.36,10,37.24c0-4.11,1.6-7.98,4.51-10.89s6.78-4.51,10.89-4.51c4.11,0,7.98,1.6,10.89,4.51s4.51,6.78,4.51,10.89
-					                                  C40.81,41.36,39.21,45.23,36.3,48.14z"/>
-				      </svg>
-			      </div>
+                                            C40.81,41.36,39.21,45.23,36.3,48.14z"/>
+              </svg>
+            </div>
           </Radio>
         </div>
       </div>

@@ -8,11 +8,6 @@ export default class Weight extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
       valid: props.valid || false,
@@ -37,8 +32,8 @@ export default class Weight extends ValidationElement {
    */
   handleValidation (event, status, errors) {
     this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      let e = { [this.state.name]: errors }
-      let s = { [this.state.name]: { status: status } }
+      let e = { [this.props.name]: errors }
+      let s = { [this.props.name]: { status: status } }
       super.handleValidation(event, s, e)
     })
   }
@@ -65,32 +60,31 @@ export default class Weight extends ValidationElement {
    * Generated name for the error message.
    */
   errorName (part) {
-    return '' + this.state.name + '-' + part + '-error'
+    return '' + this.props.name + '-' + part + '-error'
   }
 
   /**
    * Generated name for the part of the address elements.
    */
   partName (part) {
-    return '' + this.state.name + '-' + part
+    return '' + this.props.name + '-' + part
   }
 
   render () {
     return (
       <div className="weight">
-        <div className="eapp-field-wrap pounds">
+        <div className="pounds">
           <Number id={this.partName('pounds')}
                   name="pounds"
                   label={i18n.t('identification.traits.label.pounds')}
                   placeholder={i18n.t('identification.traits.placeholder.pounds')}
                   aria-describedby={this.errorName('weight')}
-                  help={i18n.t('identification.traits.help.pounds')}
-                  disabled={this.state.disabled}
+                  disabled={this.props.disabled}
                   max="999"
                   maxlength="3"
                   min="10"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
+                  readonly={this.props.readonly}
+                  required={this.props.required}
                   step="1"
                   value={this.state.value}
                   onChange={this.handleChange}

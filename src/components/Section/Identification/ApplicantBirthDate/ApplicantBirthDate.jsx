@@ -8,9 +8,7 @@ export default class ApplicantBirthDate extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
       value: props.value,
-      help: props.help,
       estimated: props.estimated,
       errorCodes: []
     }
@@ -48,7 +46,6 @@ export default class ApplicantBirthDate extends ValidationElement {
       }
     })
 
-    let help = this.state.help
     if (status === true && this.state.value !== '') {
       // Calculation to get the age of something compared to now.
       let now = new Date()
@@ -61,7 +58,6 @@ export default class ApplicantBirthDate extends ValidationElement {
 
       if (age < 17 || age > 129) {
         status = false
-        help = i18n.t('identification.birthplace.error.age')
         error = 'age'
       }
     }
@@ -74,9 +70,9 @@ export default class ApplicantBirthDate extends ValidationElement {
       complexStatus = true
     }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, help: help, errorCodes: codes}, () => {
-      let e = { [this.state.name]: codes }
-      let s = { [this.state.name]: { status: complexStatus } }
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
         super.handleValidation(event, s, e)
         return
@@ -93,7 +89,6 @@ export default class ApplicantBirthDate extends ValidationElement {
           // Display and assign the errors as necessary
           if (response.Errors) {
             response.Errors.forEach((e) => {
-              this.setState({help: e.Error})
             })
           }
         })
@@ -142,34 +137,13 @@ export default class ApplicantBirthDate extends ValidationElement {
     return ''
   }
 
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
   render () {
+    const klass = `birthdate ${this.props.className || ''}`.trim()
+
     return (
-      <div className="birthdate">
-        <h2>{i18n.t('identification.birthdate.title')}</h2>
+      <div className={klass}>
         <Help id="identification.birthdate.help">
-          <DateControl name={this.state.name}
+          <DateControl name={this.props.name}
                        value={this.state.value}
                        estimated={this.state.estimated}
                        onChange={this.handleChange}
@@ -177,10 +151,6 @@ export default class ApplicantBirthDate extends ValidationElement {
                        />
           <HelpIcon />
         </Help>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }

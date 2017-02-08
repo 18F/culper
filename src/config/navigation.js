@@ -65,9 +65,12 @@ const navigation = [
     url: 'history',
     hidden: true,
     subsections: [
-      { name: 'Timeline', url: 'timeline' },
-      { name: 'Former federal service', url: 'federal' },
-      { name: 'Employment record', url: 'employment' }
+      { name: 'Places lived', url: 'residence' },
+      { name: 'Employment', url: 'employment' },
+      { name: 'Schools & diplomas', url: 'education' },
+      { hidden: true, name: 'Timeline', url: 'timeline' },
+      { hidden: true, name: 'Former federal service', url: 'federal' },
+      { hidden: true, name: 'Employment record', url: 'employment' }
     ]
   },
   {

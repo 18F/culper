@@ -62,6 +62,7 @@ class Identification extends ValidationElement {
         && this.hasStatus('birthplace', status, true)
         && this.hasStatus('contacts', status, true)
         && this.hasStatus('ssn', status, true)
+        && this.hasStatus('physical', status, true)
         && this.hasStatus('othernames', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('name', status, false)
@@ -69,6 +70,7 @@ class Identification extends ValidationElement {
                || this.hasStatus('birthplace', status, false)
                || this.hasStatus('contacts', status, false)
                || this.hasStatus('ssn', status, false)
+               || this.hasStatus('physical', status, false)
                || this.hasStatus('othernames', status, false)) {
       cstatus = 'incomplete'
     }
@@ -91,35 +93,19 @@ class Identification extends ValidationElement {
 
   intro () {
     return (
-      <div className="identification intro">
-        <div className="usa-grid-full eapp-field-wrap">
+      <div className="identification intro review-screen">
+        <div className="usa-grid-full">
           <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
         </div>
-        <div id="titles" className="usa-grid-full">
-          <div className="usa-width-one-half">
-            <h3>{i18n.t('identification.tour.title')}</h3>
-          </div>
-          <div className="usa-width-one-half">
-            <h3>{i18n.t('identification.review.title')}</h3>
-          </div>
+        <div className="review-column">
+          <h3>{i18n.t('identification.tour.title')}</h3>
+          <p>{i18n.t('identification.tour.para')}</p>
+          <button onClick={this.handleTour}>{i18n.t('identification.tour.button')}</button>
         </div>
-
-        <div id="dialogs" className="usa-grid-full">
-          <div className="usa-width-one-half">
-            <p>{i18n.t('identification.tour.para')}</p>
-          </div>
-          <div className="usa-width-one-half">
-            <p>{i18n.t('identification.review.para')}</p>
-          </div>
-        </div>
-
-        <div id="actions" className="usa-grid-full review-btns">
-          <div className="usa-width-one-half">
-            <button onClick={this.handleTour}>{i18n.t('identification.tour.button')}</button>
-          </div>
-          <div className="usa-width-one-half">
-            <button onClick={this.handleReview}>{i18n.t('identification.review.button')}</button>
-          </div>
+        <div className="review-column">
+          <h3>{i18n.t('identification.review.title')}</h3>
+          <p>{i18n.t('identification.review.para')}</p>
+          <button onClick={this.handleReview}>{i18n.t('identification.review.button')}</button>
         </div>
       </div>
     )
@@ -146,40 +132,63 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let's make sure everything looks right"
+                       title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       next="foreign"
-                       nextLabel={i18n.t('foreign.destination.activities')}
+                       next="financial"
+                       nextLabel={i18n.t('financial.destination.gambling')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
-            <h2>Your full name</h2>
+
+            <h2>{i18n.t('identification.name.title')}</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
+                           className="eapp-field-wrap"
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
                            onValidate={this.onValidate.bind(this)}
                            />
+
+            <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         onUpdate={this.onUpdate.bind(this, 'OtherNames')}
                         onValidate={this.onValidate.bind(this)}
                         />
+
+            <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
+                                className="eapp-field-wrap"
                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
                                 onValidate={this.onValidate.bind(this)}
                                 value={this.props.ApplicantBirthDate}
                                 />
+
+            <h2>{i18n.t('identification.birthplace.title')}</h2>
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
+                                 className="eapp-field-wrap"
                                  onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onValidate={this.onValidate.bind(this)}
                                  />
+
+            <h2>{i18n.t('identification.contacts.title')}</h2>
+            <ContactInformation name="contacts"
+                                {...this.props.Contacts}
+                                onUpdate={this.onUpdate.bind(this, 'Contacts')}
+                                onValidate={this.onValidate.bind(this)}
+                                />
+
+            <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
+                          className="eapp-field-wrap"
                           onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
                           onValidate={this.onValidate.bind(this)}
                           />
+
+            <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
+                      className="eapp-field-wrap"
                       onUpdate={this.onUpdate.bind(this, 'Physical')}
                       onValidate={this.onValidate.bind(this)}
                       />
@@ -188,9 +197,10 @@ class Identification extends ValidationElement {
           <SectionView name="name"
                        next="identification/othernames"
                        nextLabel={i18n.t('identification.destination.othernames')}>
-            <h2>Your full name</h2>
+            <h2>{i18n.t('identification.name.title')}</h2>
             <ApplicantName name="name"
                            {...this.props.ApplicantName }
+                           className="eapp-field-wrap"
                            onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
                            onValidate={this.onValidate.bind(this)}
                            />
@@ -201,6 +211,7 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.name')}
                        next="identification/birthdate"
                        nextLabel={i18n.t('identification.destination.birthdate')}>
+            <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         onUpdate={this.onUpdate.bind(this, 'OtherNames')}
@@ -213,7 +224,9 @@ class Identification extends ValidationElement {
                        nextLabel={i18n.t('identification.destination.birthplace')}
                        back="identification/othernames"
                        backLabel={i18n.t('identification.destination.othernames')}>
+            <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
+                                className="eapp-field-wrap"
                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
                                 onValidate={this.onValidate.bind(this)}
                                 value={this.props.ApplicantBirthDate}
@@ -225,8 +238,10 @@ class Identification extends ValidationElement {
                        nextLabel={i18n.t('identification.destination.contacts')}
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
+            <h2>{i18n.t('identification.birthplace.title')}</h2>
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
+                                 className="eapp-field-wrap"
                                  onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onValidate={this.onValidate.bind(this)}
                                  />
@@ -237,7 +252,8 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.birthplace')}
                        next="identification/ssn"
                        nextLabel={i18n.t('identification.destination.ssn')}>
-            <ContactInformation name="contact"
+            <h2>{i18n.t('identification.contacts.title')}</h2>
+            <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 onUpdate={this.onUpdate.bind(this, 'Contacts')}
                                 onValidate={this.onValidate.bind(this)}
@@ -249,8 +265,10 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.contacts')}
                        next="identification/physical"
                        nextLabel={i18n.t('identification.destination.physical')}>
+            <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
+                          className="eapp-field-wrap"
                           onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
                           onValidate={this.onValidate.bind(this)}
                           />
@@ -261,8 +279,10 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.ssn')}
                        next="identification/review"
                        nextLabel={i18n.t('identification.destination.review')}>
+            <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
+                      className="eapp-field-wrap"
                       onUpdate={this.onUpdate.bind(this, 'Physical')}
                       onValidate={this.onValidate.bind(this)}
                       />

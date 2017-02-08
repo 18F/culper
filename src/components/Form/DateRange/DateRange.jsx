@@ -25,54 +25,66 @@ export default class DateRange extends ValidationElement {
   handleChange (field, event) {
     // Get a handle to current state values as well as set the value for the current
     // element that triggered a change
-    let state = null
+    let futureState = null
     if (field === 'present') {
-      state = {
+      futureState = {
         ...this.state,
         present: event.target.checked,
         presentClicked: true
       }
     } else {
-      state = {
+      futureState = {
         ...this.state,
         presentClicked: false,
         [field + '_' + event.target.name]: event.target.value
       }
     }
 
-    // Get relevant date values
-    let { from_year, from_month, from_day, to_year, to_month, to_day } = state
-
-    // If present is true then make the "to" date equal to today
-    if (!this.state.present && state.present) {
-      let now = new Date()
-      state.to = now
-      state.to_year = now.getFullYear()
-      state.to_month = now.getMonth() + 1
-      state.to_day = now.getDate()
-    } else if (this.state.present && !state.present) {
-      state.to = null
-      state.to_year = null
-      state.to_month = null
-      state.to_day = null
-    }
-
-    if (from_year && from_month && from_day && to_year && to_month && to_day) {
-      state.from = new Date(from_year, from_month, from_day)
-      state.to = new Date(to_year, to_month, to_day)
-
-      if (state.from > state.to) {
-        state.error = 'From date must come before the to date'
-      } else {
-        state.error = null
+    if (field === 'present') {
+      // If present is true then make the "to" date equal to today
+      if (!this.state.present && futureState.present) {
+        let now = new Date()
+        futureState.to = now
+        futureState.to_year = now.getFullYear()
+        futureState.to_month = now.getMonth() - 1
+        futureState.to_day = now.getDate()
+      } else if (this.state.present && !futureState.present) {
+        futureState.to = null
+        futureState.to_year = null
+        futureState.to_month = null
+        futureState.to_day = null
       }
     }
 
-    this.setState(state, () => {
+    if (field === 'from') {
+      if (futureState.from_year && futureState.from_month && futureState.from_day && ('' + futureState.from_year).length === 4) {
+        futureState.from = new Date(futureState.from_year, futureState.from_month, futureState.from_day)
+      }
+    }
+
+    if (field === 'to') {
+      if (futureState.to_year && futureState.to_month && futureState.to_day && ('' + futureState.to_year).length === 4) {
+        futureState.to = new Date(futureState.to_year, futureState.to_month, futureState.to_day)
+      }
+    }
+
+    this.setState(futureState, () => {
       super.handleChange(event)
+
+      // This will force a blur/validation
+      if (field === 'present') {
+        this.refs.to.refs.month.refs.input.focus()
+        this.refs.to.refs.month.refs.input.blur()
+        this.refs.to.refs.day.refs.input.focus()
+        this.refs.to.refs.day.refs.input.blur()
+        this.refs.to.refs.year.refs.input.focus()
+        this.refs.to.refs.year.refs.input.blur()
+        this.handleValidation(event, null, null)
+      }
+
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          ...this.props,
+          name: this.props.name,
           from: this.state.from,
           to: this.state.to,
           present: this.state.present,
@@ -83,23 +95,32 @@ export default class DateRange extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
+   * Handle the validation event.
    */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
     }
 
-    return klass.trim()
+    if (status !== false) {
+      if (this.state.from && this.state.to) {
+        if (this.state.from > this.state.to) {
+          status = false
+          error = { daterange: 'order' }
+        } else {
+          error = { daterange: '' }
+        }
+      }
+    }
+
+    super.handleValidation(event, status, error)
   }
 
   render () {
+    const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
+
     return (
-      <div className="daterange usa-grid">
+      <div className={klass}>
         <div className="usa-grid">
           <div className="from-label">
             From date
@@ -119,6 +140,7 @@ export default class DateRange extends ValidationElement {
             To date
           </div>
           <DateControl name="to"
+                       ref="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
                        receiveProps={this.state.presentClicked}
@@ -137,10 +159,6 @@ export default class DateRange extends ValidationElement {
               <span>Present</span>
             </Checkbox>
           </div>
-        </div>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.error}
         </div>
       </div>
     )

@@ -7,12 +7,11 @@ describe('The Address component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<Address name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name + '-address1').simulate('change')
-    expect(component.find('div.hidden').length).toEqual(6)
+    const component = mount(<Address name={expected.name} label={expected.label} value={expected.value} />)
+    component.find('textarea[name="address"]').simulate('change')
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('bubbles up validate event', () => {
@@ -20,7 +19,6 @@ describe('The Address component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -38,7 +36,6 @@ describe('The Address component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -56,7 +53,6 @@ describe('The Address component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -74,7 +70,6 @@ describe('The Address component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,

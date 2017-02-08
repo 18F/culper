@@ -7,11 +7,15 @@ export default class Text extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: props.value || '',
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({ value: nextProps.value })
   }
 
   /**
@@ -21,7 +25,10 @@ export default class Text extends ValidationElement {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
+        this.props.onUpdate({
+          value: this.state.value,
+          name: this.props.name
+        })
       }
     })
   }
@@ -58,7 +65,6 @@ export default class Text extends ValidationElement {
       <Generic name={this.props.name}
                label={this.props.label}
                placeholder={this.props.placeholder}
-               help={this.props.help}
                type="text"
                className={this.props.className}
                disabled={this.props.disabled}

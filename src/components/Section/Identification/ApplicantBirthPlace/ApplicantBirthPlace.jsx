@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Radio, City, MilitaryState, County, Country, RadioGroup, Branch } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, City, MilitaryState, County, Country, Branch } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthPlace extends ValidationElement {
@@ -133,6 +133,38 @@ export default class ApplicantBirthPlace extends ValidationElement {
     })
   }
 
+  isValid () {
+    if (!this.state.domestic) {
+      return false
+    }
+
+    if (!this.state.country) {
+      return false
+    }
+
+    if (this.state.country === 'United States') {
+      if (!this.state.state) {
+        return false
+      }
+
+      if (!this.state.city) {
+        return false
+      }
+    }
+
+    if (this.state.country !== 'United States') {
+      if (!this.state.city) {
+        return false
+      }
+
+      if (!this.state.county) {
+        return false
+      }
+    }
+
+    return true
+  }
+
   /**
    * Generated name for the part of the address elements.
    */
@@ -147,7 +179,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return id.split('-').pop()
   }
 
-  onUpdate (value) {
+  onUpdate (value, event) {
     let updated = null
     if (value === 'No') {
       updated = {
@@ -177,6 +209,10 @@ export default class ApplicantBirthPlace extends ValidationElement {
 
     if (updated !== null) {
       this.setState(updated, () => {
+        if (value === 'No' || value === 'Yes') {
+          this.handleValidation(event, null, null)
+        }
+
         if (this.props.onUpdate) {
           this.props.onUpdate(updated)
         }
@@ -188,25 +224,25 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <Branch name="is_domestic"
               value={this.state.domestic}
-              help="identification.birthplace.help"
+              help="identification.birthplace.branch.help"
+              label={i18n.t('identification.birthplace.question.label')}
               onUpdate={this.onUpdate.bind(this)}>
-        <div>{i18n.t('identification.birthplace.question.label')}</div>
       </Branch>
     )
   }
 
   render () {
+    const klass = `birthplace ${this.props.className || ''}`.trim()
+
     if (this.state.disabledCountry === null && this.state.disabledState === null) {
       return (
-        <div className="birthplace">
-          <h2>{i18n.t('identification.birthplace.title')}</h2>
+        <div className={klass}>
           {this.options()}
         </div>
       )
     } else if (this.state.disabledCountry) {
       return (
-        <div className="birthplace">
-          <h2>{i18n.t('identification.birthplace.title')}</h2>
+        <div className={klass}>
           {this.options()}
           <Help id="identification.birthplace.help.state">
             <MilitaryState name="state"
@@ -257,8 +293,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     }
 
     return (
-      <div className="birthplace">
-        <h2>{i18n.t('identification.birthplace.title')}</h2>
+      <div className={klass}>
         {this.options()}
         <Help id="identification.birthplace.help.city">
           <City name="city"
@@ -280,7 +315,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                    value={this.state.country}
                    className="country"
                    placeholder={i18n.t('identification.birthplace.placeholder.country')}
-                   required="true"
+                   excludeUnitedStates="true"
                    disabled={this.state.disabledCountry}
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}

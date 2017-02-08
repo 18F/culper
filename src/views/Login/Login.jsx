@@ -22,7 +22,15 @@ class Login extends React.Component {
     this.login = this.login.bind(this)
   }
 
+  componentDidMount () {
+    this.redirect()
+  }
+
   componentWillMount () {
+    this.redirect()
+  }
+
+  redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
       this.props.dispatch(push('/form'))
@@ -44,10 +52,11 @@ class Login extends React.Component {
 
   loginForm () {
     const authValid = this.props.error === undefined || this.props.error === ''
-    let pwClass = 'eapp-field-wrap help'
+    let pwClass = 'help'
     if (!authValid) {
       pwClass += ' usa-input-error'
     }
+
     return (
       <div>
         <div id="info" className="usa-width-one-whole">

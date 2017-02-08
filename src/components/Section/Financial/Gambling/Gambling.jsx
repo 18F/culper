@@ -8,9 +8,11 @@ export default class Gambling extends ValidationElement {
     this.state = {
       List: props.List || [],
       HasGamblingDebt: props.HasGamblingDebt,
+      Comments: props.Comments,
       errorCodes: []
     }
 
+    this.commentsUpdated = this.commentsUpdated.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
   }
@@ -48,6 +50,18 @@ export default class Gambling extends ValidationElement {
    * a valid state.
    */
   isValid () {
+    if (!this.state.HasGamblingDebt) {
+      return false
+    }
+
+    if (this.state.HasGamblingDebt === 'No') {
+      return true
+    }
+
+    if (this.state.HasGamblingDebt === 'Yes' && this.state.List.length === 0) {
+      return false
+    }
+
     for (let item of this.state.List) {
       if (!item.Losses || parseInt(item.Losses.value) < 1) {
         return false
@@ -72,10 +86,27 @@ export default class Gambling extends ValidationElement {
   /**
    * Updates triggered by the branching component.
    */
-  onUpdate (val) {
+  onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
       if (val === 'No') {
         this.myDispatch([])
+      }
+
+      this.handleValidation(event, null, null)
+    })
+  }
+
+  /**
+   * Persist changes to comments
+   */
+  commentsUpdated (val) {
+    this.setState({ Comments: val }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          List: this.state.List,
+          Comments: this.state.Comments,
+          HasGamblingDebt: this.state.HasGamblingDebt
+        })
       }
     })
   }
@@ -89,6 +120,7 @@ export default class Gambling extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          Comments: this.state.Comments,
           HasGamblingDebt: this.state.HasGamblingDebt
         })
       }
@@ -126,7 +158,7 @@ export default class Gambling extends ValidationElement {
 
     const dates = from === '' && to === ''
           ? i18n.t('financial.gambling.collection.summary.nodates')
-      : `${from} - ${to}`
+          : `${from} - ${to}`
 
     return (
       <div className="table">
@@ -151,47 +183,51 @@ export default class Gambling extends ValidationElement {
                   dispatch={this.myDispatch}
                   summary={this.summary}
                   summaryTitle={i18n.t('financial.gambling.collection.summary.title')}
+                  appendClass="eapp-field-wrap"
                   appendLabel={i18n.t('financial.gambling.collection.append')}>
 
         <h3>{i18n.t('financial.gambling.heading.details')}</h3>
 
         <h4>{i18n.t('financial.gambling.heading.dates')}</h4>
-        <Help id="financial.gambling.help.dates">
-          <DateRange name="Dates"
-                     label={i18n.t('financial.gambling.label.dates')}
-                     onValidate={this.handleValidation}
-                     />
-          <HelpIcon className="dates-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+          <Help id="financial.gambling.help.dates">
+            <DateRange name="Dates"
+                       label={i18n.t('financial.gambling.label.dates')}
+                       onValidate={this.handleValidation}
+                       />
+            <HelpIcon className="dates-help-icon" />
+          </Help>
+        </div>
 
         <h4>{i18n.t('financial.gambling.heading.losses')}</h4>
-        <Help id="financial.gambling.help.losses">
-          <i className="fa fa-dollar"></i>
-          <Number name="Losses"
-                  className="losses"
-                  placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                  label={i18n.t('financial.gambling.label.losses')}
-                  min="0"
-                  onValidate={this.handleValidation}
-                  />
-          <HelpIcon className="losses-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+          <Help id="financial.gambling.help.losses">
+            <i className="fa fa-dollar"></i>
+            <Number name="Losses"
+                    className="losses"
+                    placeholder={i18n.t('financial.gambling.placeholder.losses')}
+                    label={i18n.t('financial.gambling.label.losses')}
+                    min="1"
+                    onValidate={this.handleValidation}
+                    />
+            <HelpIcon className="losses-help-icon" />
+          </Help>
+        </div>
 
         <h4>{i18n.t('financial.gambling.heading.description')}</h4>
-        <Help id="financial.gambling.help.description">
-          <Textarea name="Description"
-                    className="description"
-                    onValidate={this.handleValidation}
-                    label={i18n.t('financial.gambling.label.description')}
-                    />
-          <HelpIcon className="description-help-icon" />
-        </Help>
+        <div className="eapp-field-wrap">
+          <Help id="financial.gambling.help.description">
+            <Textarea name="Description"
+                      className="description"
+                      onValidate={this.handleValidation}
+                      label={i18n.t('financial.gambling.label.description')}
+                      />
+            <HelpIcon className="description-help-icon" />
+          </Help>
+        </div>
 
-        <Comments name="Comments"
-                  title={i18n.t('financial.gambling.label.comments')}
-                  label={i18n.t('financial.gambling.help.comments')}
-                  onValidate={this.handleValidation}>
-          <h4>{i18n.t('financial.gambling.heading.actions')}</h4>
+        <h4>{i18n.t('financial.gambling.heading.actions')}</h4>
+        <div className="eapp-field-wrap">
           <Help id="financial.gambling.help.actions">
             <Textarea name="Actions"
                       className="actions"
@@ -200,19 +236,30 @@ export default class Gambling extends ValidationElement {
                       />
             <HelpIcon className="actions-help-icon" />
           </Help>
-        </Comments>
+        </div>
       </Collection>
     )
   }
 
   render () {
     return (
-      <div className="gambling eapp-field-wrap">
-        <h2>{i18n.t('financial.gambling.title')}</h2>
-        <Branch name="has_gamblingdebt" value={this.state.HasGamblingDebt} onUpdate={this.onUpdate.bind(this)}>
-          <div>{i18n.t('financial.gambling.branch.question')}</div>
+      <div className="gambling">
+        <Branch name="has_gamblingdebt"
+                className="eapp-field-wrap"
+                value={this.state.HasGamblingDebt}
+                help="financial.gambling.branch.help"
+                label={i18n.t('financial.gambling.branch.question')}
+                onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}
+        <Comments name="Comments"
+                  value={this.state.Comments}
+                  label={i18n.t('financial.gambling.help.comments')}
+                  className="eapp-field-wrap"
+                  onUpdate={this.commentsUpdated}
+                  onValidate={this.handleValidation}>
+          <h3>{i18n.t('financial.gambling.label.comments')}</h3>
+        </Comments>
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
+import { findPosition } from '../../../middleware/history'
 import ValidationElement from '../ValidationElement'
 
 export default class Collection extends ValidationElement {
@@ -8,9 +9,11 @@ export default class Collection extends ValidationElement {
 
     let min = this.props.minimum || 0
     this.state = {
+      id: super.guid(),
       minimum: min,
       length: min,
-      items: this.props.items || []
+      items: this.props.items || [],
+      children: []
     }
 
     this.append = this.append.bind(this)
@@ -23,61 +26,63 @@ export default class Collection extends ValidationElement {
    * are present in the collection.
    */
   componentDidMount () {
-    this.setState({items: this.factory(this.state.minimum)})
-  }
-
-  /**
-   * Generate a unique-ish key to be used as the item identifier
-   */
-  generateKey () {
-    return '' + new Date().getTime()
+    const f = this.factory(this.state.minimum, this.state.items)
+    this.setState({items: f.items, children: f.children})
   }
 
   /**
    * Factory to generate the initial amount of items in the collection
    */
-  factory (min) {
-    let collection = []
+  factory (min, localItems) {
+    let items = []
+    let children = []
 
-    this.state.items.forEach((item) => {
-      collection.push(this.createItem(item))
+    localItems.forEach((item, index) => {
+      items.push({
+        ...item,
+        open: false
+      })
+      children.push(this.createChildren(item, index))
     })
 
-    for (let i = collection.length; i < min; i++) {
-      collection.push(this.createItem(null, true))
+    for (let index = children.length; index < min; index++) {
+      items.push({open: true})
+      children.push(this.createChildren(null, index))
     }
 
-    return collection
+    return {
+      items: items,
+      children: children
+    }
   }
 
   /**
-   * Create a new item for the collection
+   * Create a new chidren for the collection
    */
-  createItem (props, open = false) {
-    let index = props ? props.index : this.generateKey()
-    let orphans = this.cloneChildren(this.props.children, {
-      ...props,
-      index: index,
-      open: open
+  createChildren (localItem, index) {
+    let orphans = this.cloneChildren(this.props.children, index, {
+      ...localItem
     })
 
-    return {
-      index: index,
-      open: open,
-      children: orphans
-    }
+    return orphans
   }
 
   /**
    * Append a new item to the end of the collection
    */
   append () {
-    let item = this.createItem(null, true)
-    let collection = this.state.items
-    collection.push(item)
+    let items = [...this.state.items]
+    for (let item of items) {
+      item.open = false
+    }
+    items.push({open: true})
 
-    this.setState({ items: collection }, () => {
+    let children = [...this.state.children]
+    children = this.factory(items.length, items).children
+
+    this.setState({ items: items, children: children }, () => {
       this.dispatcher(this.state.items)
+      this.scroll()
     })
   }
 
@@ -85,58 +90,50 @@ export default class Collection extends ValidationElement {
    * Remove an item by its index
    */
   remove (index) {
-    let collection = []
-    this.state.items.forEach((item) => {
-      if (item.index !== index) {
-        collection.push(item)
-      }
-    })
+    let items = [...this.state.items]
+    items.splice(index, 1)
 
-    this.setState({ items: collection }, () => {
+    let children = [...this.state.children]
+    children = this.factory(items.length, items).children
+
+    this.setState({ items: items, children: children }, () => {
       this.dispatcher(this.state.items)
+      this.scroll()
     })
+  }
+
+  /**
+   * Scroll to the element if an identifier is given.
+   *
+   *  - If you do not want to scroll pass "none" as a value.
+   *  - If you want to scroll to the top of the collection
+   *    pass "self" as a value.
+   */
+  scroll () {
+    let id = this.props.scrollTo || 'scrollToProgress'
+    if (id === '' || id.toLowerCase() === 'none') {
+      return
+    }
+
+    if (id.toLowerCase() === 'self') {
+      id = this.state.id
+    }
+
+    const el = document.getElementById(id)
+    if (!el) {
+      return
+    }
+
+    window.scroll(0, findPosition(el))
   }
 
   /**
    * Notify any subscribers of updates to the collection of items.
    */
-  dispatcher (collection) {
+  dispatcher (items) {
     if (this.props.dispatch) {
-      this.props.dispatch(this.normalize(collection))
+      this.props.dispatch(items)
     }
-  }
-
-  /**
-   * Normalize the collection so persisted data does not contain deep objects
-   */
-  normalize (collection) {
-    let items = []
-    collection.forEach((item) => {
-      let x = { index: item.index }
-
-      for (let child in item) {
-        if (['index', 'children'].includes(child)) {
-          continue
-        }
-
-        x[child] = {}
-        for (let key in item[child]) {
-          let what = Object.prototype.toString.call(item[child][key])
-          if (!['[object String]', '[object Date]', '[object Boolean]'].includes(what)) {
-            continue
-          }
-
-          x[child] = {
-            ...x[child],
-            [key]: item[child][key]
-          }
-        }
-      }
-
-      items.push(x)
-    })
-
-    return items
   }
 
   /**
@@ -149,20 +146,13 @@ export default class Collection extends ValidationElement {
    *  - `name`:  This is the actual name of the component which should be mapped to
    *             how it is stored
    */
-  onUpdate (props) {
-    let index = props.index
-    let field = props.name
+  onUpdate (index, props) {
+    let name = props.name
     let value = props
-    let collection = []
+    let items = [...this.state.items]
+    items[index][name] = value
 
-    this.state.items.forEach((item) => {
-      if (item.index === index) {
-        item[field] = value
-      }
-      collection.push(item)
-    })
-
-    this.setState({ items: collection }, () => {
+    this.setState({ items: items }, () => {
       this.dispatcher(this.state.items)
     })
   }
@@ -172,31 +162,40 @@ export default class Collection extends ValidationElement {
    * necessary to iterate over the array and pass down collection specific
    * properties and callbacks.
    */
-  cloneChildren (children, props) {
+  cloneChildren (children, index, props) {
     let self = this
     return React.Children.map(children, (child) => {
-      let localProps = {
-        index: props.index,
-        onUpdate: self.onUpdate
+      let localProps = {}
+
+      if (child.type) {
+        let what = Object.prototype.toString.call(child.type)
+        if (what === '[object Function]') {
+          localProps = {
+            onUpdate: self.onUpdate.bind(this, index)
+          }
+        }
+
+        what = Object.prototype.toString.call(child.props.children)
+        if (child.props.children && ['[object Object]', '[object Array]'].includes(what)) {
+          localProps.children = this.cloneChildren(child.props.children, index, props)
+        }
       }
 
       // If there has been data persisted attempt to hydrate the child
       // with previously applied values.
       if (props) {
-        for (let key in props) {
-          if (key === child.props.name) {
-            localProps = {
-              ...localProps,
-              ...props[key]
-            }
+        if (props.name && props.name === child.props.name) {
+          // If the properties are the object itself assign it directly
+          localProps = {
+            ...localProps,
+            ...props
           }
-        }
-      }
-
-      if (child.props.children && child.type) {
-        let what = Object.prototype.toString.call(child.type)
-        if (what === '[object Function]') {
-          localProps.children = this.cloneChildren(child.props.children, props)
+        } else if (child.props && props[child.props.name]) {
+          // If the properties are found by the child's name
+          localProps = {
+            ...localProps,
+            ...props[child.props.name]
+          }
         }
       }
 
@@ -210,18 +209,13 @@ export default class Collection extends ValidationElement {
    * Toggles the open/close state of an item in the accordion view
    */
   toggle (index) {
-    let collection = []
+    let items = [...this.state.items]
+    items[index].open = !items[index].open
+    this.setState({ items: items })
+  }
 
-    this.state.items.forEach((item) => {
-      if (item.index === index) {
-        item.open = !item.open
-      }
-      collection.push(item)
-    })
-
-    this.setState({ items: collection }, () => {
-      this.dispatcher(this.state.items)
-    })
+  persistedItem (index) {
+    return this.state.items[index] || {}
   }
 
   /**
@@ -232,89 +226,63 @@ export default class Collection extends ValidationElement {
    * needed for the accordion look and feel.
    */
   getContent () {
+    // Create the 'byline' which is used to separate items as well as the remove action
+    const byline = (item, index) => {
+      if (this.state.items.length < 2) {
+        return ''
+      }
+
+      return (
+        <div className="byline">
+          <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, index)}>
+            <span>{i18n.t('collection.remove')}</span>
+            <i className="fa fa-times-circle" aria-hidden="true"></i>
+          </a>
+        </div>
+      )
+    }
+
     // If no summary details are provided then we do a simple display of everything
     // without worrying about the accordion look and feel.
     //
     // Also, if there are less than two items in the list skip the summary
     if (!this.props.summary || this.state.items.length < 2) {
-      const byline = (item) => {
-        if (this.state.items.length < 2) {
-          return ''
-        }
-
+      return this.state.items.map((item, index) => {
         return (
-          <div className="byline">
-            <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
-              <span>{i18n.t('collection.remove')}</span>
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
-            </a>
-          </div>
-        )
-      }
-
-      return this.state.items.map((item) => {
-        return (
-          <div className="item" key={item.index}>
+          <div className="item" key={index}>
             <div className="details">
-              {byline(item)}
-              {item.children}
+              {byline(item, index)}
+              {this.state.children[index]}
             </div>
           </div>
         )
       })
     }
 
+    // There is a summary and it is appropriate to display at this moment
     return this.state.items.map((item, index) => {
       const title = index === 0
             ? <div><h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4><hr /></div>
             : ''
 
-      // The current item is what should be "open" so a bit more work
-      // goes in to the display.
-      if (item.open) {
-        return (
-          <div className="item" key={item.index}>
-            <div className="summary">
-              <div className="title">
-                {title}
-              </div>
-              <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, item.index)}>
-                <div className="brief">
-                  {this.props.summary(item, index)}
-                </div>
-                <div className="expander">
-                  <i className="fa fa-chevron-up fa-2" aria-hidden="true"></i>
-                </div>
-              </a>
-            </div>
-            <div className="details gutters">
-              <div className="byline">
-                <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, item.index)}>
-                  <span>{i18n.t('collection.remove')}</span>
-                  <i className="fa fa-times-circle" aria-hidden="true"></i>
-                </a>
-              </div>
-              {item.children}
-            </div>
-          </div>
-        )
-      }
-
-      // Simply put the item is "closed" and should render accordingly.
       return (
-        <div className="item" key={item.index}>
+        <div className="item" key={index}>
           <div className="summary">
             <div className="title">
               {title}
             </div>
-            <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, item.index)}>
+            <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
               <div className="brief">
                 {this.props.summary(item, index)}
               </div>
               <div className="expander">
-                <i className="fa fa-chevron-down fa-2" aria-hidden="true"></i>
+                <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
               </div>
             </a>
+          </div>
+          <div className={`details gutters ${item.open === true ? '' : 'hidden'}`}>
+            {byline(item, index)}
+            {this.state.children[index]}
           </div>
         </div>
       )
@@ -322,10 +290,13 @@ export default class Collection extends ValidationElement {
   }
 
   render () {
+    const klass = `collection ${this.props.className || ''}`.trim()
+    const klassAppend = `text-center ${this.props.appendClass || ''}`.trim()
+
     return (
-      <div className={`collection ${this.props.className}`}>
+      <div id={this.state.id} className={klass}>
         {this.getContent()}
-        <div className="text-center">
+        <div className={klassAppend}>
           <button className="add usa-button-outline" onClick={this.append}>
             <span>{this.props.appendLabel}</span>
             <i className="fa fa-plus-circle"></i>

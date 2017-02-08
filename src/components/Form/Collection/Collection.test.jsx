@@ -60,9 +60,9 @@ describe('The Collection component', () => {
     expect(i).toEqual(2)
 
     component.find('.toggle').first().simulate('click')
-    expect(component.find('div.hello').length).toEqual(0)
-    expect(component.find('.details').length).toEqual(0)
-    expect(component.find('.summary').length).toEqual(1)
+    expect(component.find('div.hello').length).toEqual(2)
+    expect(component.find('.details.hidden').length).toEqual(1)
+    expect(component.find('.summary').length).toEqual(2)
     expect(i).toEqual(4)
   })
 

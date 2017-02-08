@@ -31,8 +31,8 @@ class Form extends React.Component {
     }
 
     return (
-      <div id="eapp-form" className="usa-grid eapp-form">
-        <div id="info" className="usa-width-one-whole">
+      <div id="eapp-form" className="eapp-form">
+        <div id="info">
           <Section section={this.props.params.section} subsection={this.props.params.subsection} />
           <SavedIndicator interval="3000" />
         </div>

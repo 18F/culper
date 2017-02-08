@@ -7,13 +7,12 @@ describe('The Street component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<Street name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name).simulate('change')
+    const component = mount(<Street name={expected.name} label={expected.label} value={expected.value} />)
+    component.find('textarea#' + expected.name).simulate('change')
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('div.hidden').length).toEqual(1)
+    expect(component.find('textarea#' + expected.name).length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 })

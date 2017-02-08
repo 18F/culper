@@ -5,13 +5,7 @@ export default class Checkbox extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      name: props.name,
-      label: props.label,
-      value: props.value,
-      help: props.help,
-      disabled: props.disabled,
-      readonly: props.readonly,
-      required: props.required,
+      uid: super.guid(),
       checked: props.checked,
       focus: props.focus || false,
       error: props.error || false,
@@ -56,17 +50,11 @@ export default class Checkbox extends ValidationElement {
   }
 
   /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
-  }
-
-  /**
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = 'eapp-blocks-checkbox'
+    let klass = this.props.className || ''
+    klass += ' eapp-blocks-checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -97,21 +85,6 @@ export default class Checkbox extends ValidationElement {
   }
 
   /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  /**
    * Style classes applied to the input element.
    */
   inputClass () {
@@ -129,28 +102,23 @@ export default class Checkbox extends ValidationElement {
       return (
         <div className={this.divClass()}>
           <input className={this.inputClass()}
-                 id={this.state.name}
-                 name={this.state.name}
+                 id={this.state.uid}
+                 name={this.props.name}
                  type="checkbox"
-                 aria-describedby={this.errorName()}
-                 disabled={this.state.disabled}
-                 readOnly={this.state.readonly}
-                 required={this.state.required}
-                 value={this.state.value}
+                 ref="checkbox"
+                 disabled={this.props.disabled}
+                 readOnly={this.props.readonly}
+                 value={this.props.value}
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
                  />
           <label className={this.labelClass()}
-                 htmlFor={this.state.name}>
+                 htmlFor={this.state.uid}>
             {this.props.children}
-            <span>{this.state.label}</span>
+            <span>{this.props.label}</span>
           </label>
-          <div className={this.errorClass()}>
-            <i className="fa fa-exclamation"></i>
-            {this.state.help}
-          </div>
         </div>
       )
     }
@@ -158,28 +126,23 @@ export default class Checkbox extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
+               htmlFor={this.state.uid}>
           <input className={this.inputClass()}
-                 id={this.state.name}
-                 name={this.state.name}
+                 id={this.state.uid}
+                 name={this.props.name}
                  type="checkbox"
-                 aria-describedby={this.errorName()}
-                 disabled={this.state.disabled}
-                 readOnly={this.state.readonly}
-                 required={this.state.required}
-                 value={this.state.value}
+                 ref="checkbox"
+                 disabled={this.props.disabled}
+                 readOnly={this.props.readonly}
+                 value={this.props.value}
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
                  />
           {this.props.children}
-          <span>{this.state.label}</span>
+          <span>{this.props.label}</span>
         </label>
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }

@@ -39,13 +39,26 @@ export class App extends React.Component {
     window.location = window.location.pathname
   }
 
+  designClass () {
+    if (this.props.location && this.props.location.query && this.props.location.query.design) {
+      return 'design'
+    }
+
+    if (window && window.location && window.location.search && window.location.search.indexOf('design') !== -1) {
+      return 'design'
+    }
+
+    return ''
+  }
+
   render () {
     let logoutButton = this.props.authenticated && this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
 
     return (
-      <div>
+      <div className={this.designClass()}>
+        <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
           <div className="usa-banner">
@@ -83,6 +96,7 @@ export class App extends React.Component {
           <div className="eapp-structure-wrap eapp-header">
             <div className="eapp-structure-row">
               <div className="eapp-structure-left eapp-logo" id="logo">
+                <img className="eapp-logo-icon" src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
                 <span className="eapp-logo-text">SF86</span>
               </div>
               <div className="eapp-structure-right eapp-title">
@@ -94,6 +108,7 @@ export class App extends React.Component {
             </div>
           </div>
         </header>
+        <div id="scrollToProgress"></div>
         <div className="usa-overlay"></div>
         <ProgressBar />
         <main id="main-content" className="eapp-structure-wrap">

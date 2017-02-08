@@ -7,11 +7,10 @@ describe('The applicant birth date component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
+    const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} />)
     component.find('input#month').simulate('change')
-    expect(component.find('div.hidden').length).toBeGreaterThan(0)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 })

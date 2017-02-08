@@ -50,6 +50,14 @@ export default class Country extends ValidationElement {
     })
   }
 
+  unitedStates () {
+    if (this.props.excludeUnitedStates) {
+      return null
+    }
+
+    return <option value="United States">United States</option>
+  }
+
   render () {
     return (
       <Dropdown name={this.props.name}
@@ -67,7 +75,7 @@ export default class Country extends ValidationElement {
                 >
         { this.props.children }
         <option value="">{this.props.placeholder}</option>
-        <option value="United States">United States</option>
+        {this.unitedStates()}
         <option value="Afghanistan">Afghanistan</option>
         <option value="Akrotiri Sovereign Base Area">Akrotiri Sovereign Base Area</option>
         <option value="Albania">Albania</option>

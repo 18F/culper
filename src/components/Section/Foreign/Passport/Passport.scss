@@ -1,0 +1,15 @@
+.passport {
+    .number {
+        display: inline-block;
+        width: 93%;
+    }
+
+    .passport-card.option-list {
+        display: inline-block;
+        margin-bottom: 4.9rem;
+
+        label {
+            min-width: 15rem !important;
+        }
+    }
+}

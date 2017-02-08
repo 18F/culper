@@ -46,7 +46,6 @@ export default class Number extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          index: this.props.index,
           name: this.props.name,
           value: this.state.value
         })
@@ -93,24 +92,24 @@ export default class Number extends ValidationElement {
     status = true
 
     if (this.state.value) {
-      if (this.state.min) {
-        status = status && parseInt(this.state.value) >= parseInt(this.state.min)
+      if (status && this.props.min) {
+        status = status && parseInt(this.state.value) >= parseInt(this.props.min)
         if (status === false) {
           errorCode = 'min'
         }
         hits++
       }
 
-      if (this.state.max) {
-        status = status && parseInt(this.state.value) <= parseInt(this.state.max)
+      if (status && this.props.max) {
+        status = status && parseInt(this.state.value) <= parseInt(this.props.max)
         if (status === false) {
           errorCode = 'max'
         }
         hits++
       }
 
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && ('' + this.state.value).length <= parseInt(this.state.maxlength)
+      if (status && this.props.maxlength && this.props.maxlength > 0) {
+        status = status && ('' + this.state.value).length <= parseInt(this.props.maxlength)
         if (status === false) {
           errorCode = 'length'
         }
@@ -144,8 +143,10 @@ export default class Number extends ValidationElement {
   divClass () {
     let klass = this.props.className || ''
 
-    if (this.state.error) {
-      klass += ' usa-input-error'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error'
+      }
     }
 
     return klass.trim()
@@ -157,23 +158,10 @@ export default class Number extends ValidationElement {
   labelClass () {
     let klass = ''
 
-    if (this.state.error) {
-      klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error && this.state.help) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error-label'
+      }
     }
 
     return klass.trim()
@@ -185,12 +173,14 @@ export default class Number extends ValidationElement {
   inputClass () {
     let klass = ''
 
-    if (this.state.focus) {
-      klass += ' usa-input-focus'
-    }
+    if (!this.props.disabled) {
+      if (this.state.focus) {
+        klass += ' usa-input-focus'
+      }
 
-    if (this.state.valid) {
-      klass += ' usa-input-success'
+      if (this.state.valid) {
+        klass += ' usa-input-success'
+      }
     }
 
     return klass.trim()
@@ -207,21 +197,17 @@ export default class Number extends ValidationElement {
                id={this.state.name}
                name={this.state.name}
                type="text"
+               ref="input"
                placeholder={this.state.placeholder}
                aria-describedby={this.errorName()}
                disabled={this.state.disabled}
                maxLength={this.state.maxlength}
                readOnly={this.state.readonly}
-               required={this.state.required}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                />
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.state.help}
-        </div>
       </div>
     )
   }

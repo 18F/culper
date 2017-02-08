@@ -18,21 +18,23 @@
         }
     }
 
-    .height-help-icon {
-        vertical-align: top;
-        margin-top: 5.4rem;
+    &.hair-colors,
+    &.eye-colors,
+    &.sex {
+		/* increase line height for help toggle alignment */
+		> .help {
+			line-height:7.8rem;
+			.hair-colors,
+			.eye-colors,
+			.sex {
+				line-height:4.6rem;
+			}
+		}
+	}
+	
+    .hair-help-icon {
+	    
     }
-
-    .hair-help-icon,
     .eye-help-icon {
-        vertical-align: top;
-        margin-top: 7rem;
-        margin-left: -3.2rem;
-    }
-
-    .sex-help-icon {
-        vertical-align: top;
-        margin-top: 7rem;
-        margin-left: -1.5rem;
-    }
+	}
 }

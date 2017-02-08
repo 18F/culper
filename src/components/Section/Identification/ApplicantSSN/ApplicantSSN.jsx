@@ -7,8 +7,6 @@ export default class ApplicantSSN extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      name: props.name,
-      label: props.label,
       value: props.value,
       first: this.props.first || this.ripper(props.value, 0, 3),
       middle: this.props.middle || this.ripper(props.value, 3, 5),
@@ -31,7 +29,7 @@ export default class ApplicantSSN extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = event.target.id
+    let part = event.target.name
     let value = event.target.value
     let updated = null
 
@@ -169,8 +167,8 @@ export default class ApplicantSSN extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.state.name]: codes }
-      let s = { [this.state.name]: { status: complexStatus } }
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
         super.handleValidation(event, s, e)
         return
@@ -206,31 +204,6 @@ export default class ApplicantSSN extends ValidationElement {
     }
 
     return val.substring(start, end)
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.errorCodes.length > 0) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
-  errorMessage () {
-    return this.state.errorCodes.map(e => {
-      return (
-        <li>
-          {i18n.t(`identification.ssn.error.${e}`)}
-        </li>
-      )
-    })
   }
 
   /**
@@ -300,11 +273,12 @@ export default class ApplicantSSN extends ValidationElement {
   }
 
   render () {
+    const klass = `ssn ${this.props.className || ''}`.trim()
+
     return (
-      <div className="ssn">
-        <h2>{i18n.t('identification.ssn.title')}</h2>
-        <Help id="identification.ssn.help">
-          <label>&nbsp;</label>
+      <div className={klass}>
+        <Help id="identification.ssn.help" errorPrefix="ssn">
+          <label>Social security number</label>
           <Text name="first"
                 ref="first"
                 className="first eapp-short-input"
@@ -312,6 +286,7 @@ export default class ApplicantSSN extends ValidationElement {
                 maxlength="3"
                 pattern="^[0-9]*$"
                 value={this.state.first}
+                disabled={this.state.notApplicable}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -327,6 +302,7 @@ export default class ApplicantSSN extends ValidationElement {
                 maxlength="2"
                 pattern="^[0-9]*$"
                 value={this.state.middle}
+                disabled={this.state.notApplicable}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -343,6 +319,7 @@ export default class ApplicantSSN extends ValidationElement {
                 maxlength="4"
                 pattern="^[0-9]*$"
                 value={this.state.last}
+                disabled={this.state.notApplicable}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.props.onFocus}
@@ -365,10 +342,6 @@ export default class ApplicantSSN extends ValidationElement {
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
                       />
-          </div>
-          <div className={this.errorClass()}>
-            <i className="fa fa-exclamation"></i>
-            <ul>{this.errorMessage()}</ul>
           </div>
         </Help>
       </div>

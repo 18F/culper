@@ -9,15 +9,6 @@ export default class MaidenName extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: 'Maiden Name',
-      placeholder: props.placeholder,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -33,7 +24,7 @@ export default class MaidenName extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          ...this.props,
+          name: this.props.name,
           value: this.state.value
         })
       }
@@ -68,16 +59,18 @@ export default class MaidenName extends ValidationElement {
   }
 
   render () {
+    const klass = `maiden-name ${this.props.className || ''}`.trim()
+
     return (
-      <div className="maiden-name eapp-field-wrap">
+      <div className={klass}>
+        <label>{this.props.label}</label>
         <RadioGroup className="option-list" selectedValue={this.state.value}>
           <Radio name="maiden-name"
                  label=""
                  value="Yes"
-                 help={this.state.help}
-                 disabled={this.state.disabled}
-                 readonly={this.state.readonly}
-                 required={this.state.required}
+                 disabled={this.props.disabled}
+                 readonly={this.props.readonly}
+                 required={this.props.required}
                  focus={this.state.focus}
                  error={this.state.error}
                  valid={this.state.valid}
@@ -91,10 +84,9 @@ export default class MaidenName extends ValidationElement {
           <Radio name="maiden-name"
                  label=""
                  value="No"
-                 help={this.state.help}
-                 disabled={this.state.disabled}
-                 readonly={this.state.readonly}
-                 required={this.state.required}
+                 disabled={this.props.disabled}
+                 readonly={this.props.readonly}
+                 required={this.props.required}
                  focus={this.state.focus}
                  error={this.state.error}
                  valid={this.state.valid}

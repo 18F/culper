@@ -1,6 +1,6 @@
 import React from 'react'
-import { ValidationElement, Help, Text, Checkbox, Email, Collection, Comments } from '../../../Form'
-import { api } from '../../../../services/api'
+import { i18n } from '../../../../config'
+import { ValidationElement, Help, HelpIcon, Email, Collection, Comments, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
   constructor (props) {
@@ -14,7 +14,8 @@ export default class ContactInformation extends ValidationElement {
       valid: props.valid || false,
       errorCodes: [],
       Comments: props.Comments,
-      Emails: props.Emails || []
+      Emails: props.Emails || [],
+      PhoneNumbers: props.PhoneNumbers || []
     }
   }
 
@@ -34,12 +35,17 @@ export default class ContactInformation extends ValidationElement {
     this.handleUpdate('Emails', collection)
   }
 
+  contactDispatch (field, collection) {
+    this.handleUpdate(field, collection)
+  }
+
   handleUpdate (field, values) {
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Emails: this.state.Emails,
-          Comments: this.state.Comments
+          Comments: this.state.Comments,
+          PhoneNumbers: this.state.PhoneNumbers
         })
       }
     })
@@ -76,34 +82,102 @@ export default class ContactInformation extends ValidationElement {
     return true
   }
 
+  /**
+   * Assists in rendering the summary section.
+   */
+  emailSummary (item, index) {
+    let addr = i18n.t('identification.contacts.collection.summary.unknown')
+    if (item.Email && item.Email.value) {
+      addr = item.Email.value
+    }
+
+    return (
+      <div className="table">
+        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</div>
+        <div className="table-cell"><strong>{addr}</strong></div>
+      </div>
+    )
+  }
+
+  /**
+   * Assists in rendering the summary section.
+   */
+  phoneNumberSummary (item, index) {
+    let number = i18n.t('identification.contacts.collection.summary.unknown')
+    if (item.Telephone && !item.noNumber && item.Telephone.number) {
+      number = item.Telephone.number
+    }
+
+    return (
+      <div className="table">
+        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</div>
+        <div className="table-cell"><strong>{number}</strong></div>
+      </div>
+    )
+  }
+
   render () {
+    const klass = `${this.props.className || ''}`.trim()
+
     return (
       <div className="contact">
-        <h2>Your contact information</h2>
-
-        <h3>Your e-mail addresses</h3>
-        <div className="eapp-field-wrap">
+        <h3>{i18n.t('identification.contacts.heading.email')}</h3>
+        <div className={klass + ' email-collection'}>
           <Collection minimum="1"
-            items={this.state.Emails}
-            dispatch={this.emailDispatch.bind(this)}
-            appendLabel="Add another email">
-            <Email name="Email"
-              onValidate={this.handleValidation}
-              placeholder="Enter an email address"
-            />
+                      items={this.state.Emails}
+                      dispatch={this.contactDispatch.bind(this, 'Emails')}
+                      scrollTo="self"
+                      summary={this.emailSummary}
+                      summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
+                      appendClass="eapp-field-wrap"
+                      appendLabel={i18n.t('identification.contacts.collection.append')}>
+
+            <div className="eapp-field-wrap">
+              <Help id="identification.contacts.help.email">
+                <Email name="Email"
+                       label={i18n.t('identification.contacts.label.email')}
+                       onValidate={this.handleValidation}
+                       placeholder={i18n.t('identification.contacts.placeholder.email')}
+                       />
+                       <HelpIcon className="email-icon" />
+              </Help>
+            </div>
           </Collection>
         </div>
 
-        <div className="eapp-field-wrap">
-          <Comments name="comments"
-                    value={this.state.Comments}
-                    label="If you need to provide any additional comments about this information enter them below"
-                    onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                    onValidate={this.handleValidation}
-                    >
-            <h3>Add optional comment</h3>
-          </Comments>
+        <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
+        <div className={klass + ' telephone-collection'}>
+          <Collection minimum="1"
+                      items={this.state.PhoneNumbers}
+                      dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
+                      scrollTo="self"
+                      summary={this.phoneNumberSummary}
+                      summaryTitle={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
+                      appendClass="eapp-field-wrap"
+                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
+
+            <div className="eapp-field-wrap no-label">
+              <Help id="identification.contacts.help.phoneNumber">
+                <Telephone name="Telephone"
+                       label={i18n.t('identification.contacts.label.telephone')}
+                       onValidate={this.handleValidation}
+                       placeholder={i18n.t('identification.contacts.placeholder.telephone')}
+                       />
+                       <HelpIcon className="telephone-icon" />
+              </Help>
+            </div>
+          </Collection>
         </div>
+
+        <Comments name="comments"
+                  value={this.state.Comments}
+                  label={i18n.t('identification.contacts.label.comments')}
+                  className="eapp-field-wrap"
+                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                  onValidate={this.handleValidation}
+                  >
+          <h3>{i18n.t('identification.contacts.heading.comments')}</h3>
+        </Comments>
 
       </div>
     )

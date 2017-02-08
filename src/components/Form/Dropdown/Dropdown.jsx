@@ -37,7 +37,7 @@ export default class Dropdown extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: props.value || '',
       options: [],
       suggestions: [],
       focus: props.focus || false,
@@ -97,13 +97,18 @@ export default class Dropdown extends ValidationElement {
       }
     })
 
+    if (valid === false) {
+      errorCodes = 'notfound'
+    }
+
     this.setState({
       value: value,
       error: valid === false,
       valid: valid === true
     },
     () => {
-      super.handleValidation(event, status, errorCodes)
+      const e = { [this.props.name]: errorCodes }
+      super.handleValidation(event, status, e)
     })
   }
 
@@ -136,8 +141,15 @@ export default class Dropdown extends ValidationElement {
   }
 
   onSuggestionChange (event, change) {
+    let e = {
+      ...event,
+      target: {
+        id: this.props.name,
+        value: change.newValue
+      }
+    }
     this.setState({value: change.newValue}, () => {
-      super.handleChange(event)
+      super.handleChange(e)
     })
   }
 
@@ -151,13 +163,6 @@ export default class Dropdown extends ValidationElement {
     this.setState({
       suggestions: []
     })
-  }
-
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.props.name + '-error'
   }
 
   /**
@@ -182,21 +187,6 @@ export default class Dropdown extends ValidationElement {
 
     if (this.state.error) {
       klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  errorClass () {
-    let klass = 'eapp-error-message'
-
-    if (this.state.error) {
-      klass += ' message'
-    } else {
-      klass += ' hidden'
     }
 
     return klass.trim()
@@ -229,7 +219,6 @@ export default class Dropdown extends ValidationElement {
       disabled: this.props.disabled,
       pattern: this.props.pattern,
       readOnly: this.props.readOnly,
-      required: this.props.required,
       onChange: this.onSuggestionChange,
       onBlur: this.handleBlur
     }
@@ -247,10 +236,6 @@ export default class Dropdown extends ValidationElement {
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
                      />
-        <div className={this.errorClass()}>
-          <i className="fa fa-exclamation"></i>
-          {this.props.help}
-        </div>
       </div>
     )
   }

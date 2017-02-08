@@ -8,11 +8,6 @@ export default class Height extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name || 'height',
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       feet: props.feet,
       inches: props.inches,
       error: props.error || false,
@@ -41,8 +36,8 @@ export default class Height extends ValidationElement {
    */
   handleValidation (event, status, errors) {
     this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      let e = { [this.state.name]: errors }
-      let s = { [this.state.name]: { status: status } }
+      let e = { [this.props.name]: errors }
+      let s = { [this.props.name]: { status: status } }
       super.handleValidation(event, s, e)
     })
   }
@@ -66,35 +61,26 @@ export default class Height extends ValidationElement {
   }
 
   /**
-   * Generated name for the error message.
-   */
-  errorName (part) {
-    return '' + this.state.name + '-' + part + '-error'
-  }
-
-  /**
    * Generated name for the part of the address elements.
    */
   partName (part) {
-    return '' + this.state.name + '-' + part
+    return '' + this.props.name + '-' + part
   }
 
   render () {
     return (
       <div className="height">
-        <div className="eapp-field-wrap feet">
+        <div className="feet">
           <Number id={this.partName('feet')}
                   name="feet"
                   label={i18n.t('identification.traits.label.feet')}
                   placeholder={i18n.t('identification.traits.placeholder.feet')}
-                  help={i18n.t('identification.traits.help.feet')}
-                  aria-describedby={this.errorName('feet')}
-                  disabled={this.state.disabled}
+                  disabled={this.props.disabled}
                   max="9"
                   maxlength="1"
                   min="1"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
+                  readonly={this.props.readonly}
+                  required={this.props.required}
                   step="1"
                   value={this.state.feet}
                   onChange={this.handleChange.bind(this, 'feet')}
@@ -103,19 +89,17 @@ export default class Height extends ValidationElement {
                   onValidate={this.handleValidation}
                   />
         </div>
-        <div className="eapp-field-wrap inches">
+        <div className="inches">
           <Number id={this.partName('inches')}
                   name="inches"
                   label={i18n.t('identification.traits.label.inches')}
                   placeholder={i18n.t('identification.traits.placeholder.inches')}
-                  help={i18n.t('identification.traits.help.inches')}
-                  aria-describedby={this.errorName('inches')}
-                  disabled={this.state.disabled}
+                  disabled={this.props.disabled}
                   max="11"
                   maxlength="2"
                   min="0"
-                  readonly={this.state.readonly}
-                  required={this.state.required}
+                  readonly={this.props.readonly}
+                  required={this.props.required}
                   step="1"
                   value={this.state.inches}
                   onChange={this.handleChange.bind(this, 'inches')}

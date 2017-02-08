@@ -40,23 +40,21 @@
         }
 
         .losses {
-            max-width: 10rem;
+            max-width: 15rem;
+            padding-left: 1rem;
+
+            label {
+                margin-left: 1rem;
+            }
         }
 
         .fa.fa-dollar {
-            margin-right: 1rem;
+            margin-left: -2rem;
         }
 
         .dates-help-icon {
-            vertical-align: top;
-            margin-top: 7.3rem;
-            margin-left: -15rem;
-        }
-
-        .description-help-icon,
-        .actions-help-icon {
-            vertical-align: top;
-            margin-top: 10rem;
+            margin-top: 1.5rem;
+            margin-left: -13.8rem;
         }
     }
 }

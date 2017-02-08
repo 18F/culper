@@ -7,12 +7,11 @@ describe('The HairColor component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<HairColor name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#hair-bald').simulate('change')
+    const component = mount(<HairColor name={expected.name} label={expected.label} value={expected.value} />)
+    component.find('input[name="hair-bald"]').simulate('change')
     expect(component.find('input').length).toEqual(14)
-    expect(component.find('div.hidden').length).toEqual(14)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 })
