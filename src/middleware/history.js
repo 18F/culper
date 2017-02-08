@@ -1,6 +1,6 @@
 import { hashHistory } from 'react-router'
 
-const findPosition = (el) => {
+export const findPosition = (el) => {
   let currentTop = 0
 
   if (el && el.offsetParent) {

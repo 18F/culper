@@ -14,10 +14,10 @@ export default class Branch extends React.Component {
     }
   }
 
-  yesNoClicked (val) {
+  yesNoClicked (val, event) {
     this.setState({ value: val }, () => {
       if (this.props.onUpdate) {
-        this.props.onUpdate(val)
+        this.props.onUpdate(val, event)
       }
     })
   }

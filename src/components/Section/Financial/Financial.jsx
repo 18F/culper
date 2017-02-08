@@ -58,11 +58,13 @@ class Financial extends ValidationElement {
                || this.hasStatus('bankruptcy', status, false)) {
       cstatus = 'incomplete'
     }
+
     let completed = {
       ...this.props.Completed,
       ...status,
       status: cstatus
     }
+
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 

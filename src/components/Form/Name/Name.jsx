@@ -31,7 +31,7 @@ export default class Name extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = this.extractPart(event.target.id)
+    let part = this.extractPart(event.target.name)
     let value = event.target.value
     let updated = null
 
@@ -210,7 +210,7 @@ export default class Name extends ValidationElement {
    */
   suffixOtherClass () {
     return this.state.suffix === 'Other'
-      ? ''
+      ? 'suffix-other'
       : 'hidden'
   }
 

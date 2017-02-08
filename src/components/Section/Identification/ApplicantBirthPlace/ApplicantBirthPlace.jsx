@@ -179,7 +179,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return id.split('-').pop()
   }
 
-  onUpdate (value) {
+  onUpdate (value, event) {
     let updated = null
     if (value === 'No') {
       updated = {
@@ -209,6 +209,10 @@ export default class ApplicantBirthPlace extends ValidationElement {
 
     if (updated !== null) {
       this.setState(updated, () => {
+        if (value === 'No' || value === 'Yes') {
+          this.handleValidation(event, null, null)
+        }
+
         if (this.props.onUpdate) {
           this.props.onUpdate(updated)
         }

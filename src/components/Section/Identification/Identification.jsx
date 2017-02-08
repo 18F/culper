@@ -62,6 +62,7 @@ class Identification extends ValidationElement {
         && this.hasStatus('birthplace', status, true)
         && this.hasStatus('contacts', status, true)
         && this.hasStatus('ssn', status, true)
+        && this.hasStatus('physical', status, true)
         && this.hasStatus('othernames', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('name', status, false)
@@ -69,6 +70,7 @@ class Identification extends ValidationElement {
                || this.hasStatus('birthplace', status, false)
                || this.hasStatus('contacts', status, false)
                || this.hasStatus('ssn', status, false)
+               || this.hasStatus('physical', status, false)
                || this.hasStatus('othernames', status, false)) {
       cstatus = 'incomplete'
     }
@@ -169,7 +171,7 @@ class Identification extends ValidationElement {
                                  />
 
             <h2>{i18n.t('identification.contacts.title')}</h2>
-            <ContactInformation name="contact"
+            <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 onUpdate={this.onUpdate.bind(this, 'Contacts')}
                                 onValidate={this.onValidate.bind(this)}
@@ -251,7 +253,7 @@ class Identification extends ValidationElement {
                        next="identification/ssn"
                        nextLabel={i18n.t('identification.destination.ssn')}>
             <h2>{i18n.t('identification.contacts.title')}</h2>
-            <ContactInformation name="contact"
+            <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 onUpdate={this.onUpdate.bind(this, 'Contacts')}
                                 onValidate={this.onValidate.bind(this)}
