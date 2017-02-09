@@ -166,6 +166,7 @@ export default class Passport extends ValidationElement {
         <Name name="name"
               {...this.state.Name}
               className="eapp-field-wrap"
+              withSuggestions="true"
               onUpdate={this.handleUpdate.bind(this, 'Name')}
               onValidate={this.handleValidation}
               />

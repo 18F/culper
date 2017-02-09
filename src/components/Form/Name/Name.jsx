@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import ValidationElement from '../ValidationElement'
 import { Help, HelpIcon } from '../Help'
 import Text from '../Text'
@@ -6,7 +7,7 @@ import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import { api } from '../../../services/api'
 
-export default class Name extends ValidationElement {
+export class Name extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -23,6 +24,7 @@ export default class Name extends ValidationElement {
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
+      dismissSuggestions: false,
       errorCodes: []
     }
   }
@@ -214,8 +216,98 @@ export default class Name extends ValidationElement {
       : 'hidden'
   }
 
+  /**
+   * Return the possible suggestions or an empty value if there is nothing to present.
+   *
+   *  - Assign the property `withSuggestions` to turn this feature on
+   */
+  suggestions () {
+    // If suggestions have already been dismissed then skip
+    if (this.state.dismissSuggestions) {
+      return ''
+    }
+
+    // If it has not been turned on or there are no suggestions then skip
+    if (!this.props.withSuggestions || this.props.suggestions.length === 0) {
+      return ''
+    }
+
+    // If there is data already entered then ignore
+    const current = this.state
+    if (current && (current.first || current.last || current.middle || current.suffix || current.suffixOther)) {
+      return ''
+    }
+
+    return this.props.suggestions.map(name => {
+      return (
+        <div className="suggestion">
+          <div className="value">
+            <h5>Suggested name</h5>
+            <span>{`${name.first || ''} ${name.middle || ''} ${name.last || ''} ${name.suffix || ''}`.trim()}</span>
+          </div>
+          <div className="action">
+            <button onClick={this.useSuggestion.bind(this, name)}>
+              <span>Use this name</span>
+              <i className="fa fa-arrow-circle-right"></i>
+            </button>
+          </div>
+        </div>
+      )
+    })
+  }
+
+  /**
+   * Use a suggestion given.
+   */
+  useSuggestion (name) {
+    if (!name) {
+      return
+    }
+
+    this.setState({
+      first: name.first,
+      firstInitialOnly: name.firstInitialOnly,
+      last: name.last,
+      lastInitialOnly: name.lastInitialOnly,
+      middle: name.middle,
+      middleInitialOnly: name.middleInitialOnly,
+      noMiddleName: name.noMiddleName,
+      suffix: name.suffix,
+      suffixOther: name.suffixOther
+    })
+  }
+
+  /**
+   * This allows the user to bypass the suggestions and add something else
+   * we have never seen before.
+   */
+  dismissSuggestions () {
+    this.setState({ dismissSuggestions: true })
+  }
+
   render () {
     const klass = `name ${this.props.className || ''}`.trim()
+    const mayWeHaveAWord = this.suggestions()
+    if (mayWeHaveAWord !== '') {
+      return (
+        <div className="suggestions">
+          <h3>Alternate names found</h3>
+          <p>Please consider one of the previous names you have used.</p>
+          <p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>
+          <div className={klass}>
+            <Help>
+              {mayWeHaveAWord}
+              <div className="dismiss">
+                <a href="javascript:;;" onClick={this.dismissSuggestions.bind(this)}>
+                  <span>Use a different name instead</span>
+                  <i className="fa fa-arrow-circle-right"></i>
+                </a>
+              </div>
+            </Help>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div className={klass}>
@@ -429,3 +521,25 @@ export default class Name extends ValidationElement {
     )
   }
 }
+
+function mapStateToProps (state) {
+  let app = state.application || {}
+  let identification = app.Identification || {}
+
+  let names = []
+  if (identification.ApplicantName) {
+    names.push(identification.ApplicantName)
+  }
+
+  if (identification.OtherNames && identification.OtherNames.List) {
+    for (let item of identification.OtherNames.List) {
+      names.push(item.Name)
+    }
+  }
+
+  return {
+    suggestions: names
+  }
+}
+
+export default connect(mapStateToProps)(Name)
