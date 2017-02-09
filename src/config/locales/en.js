@@ -622,6 +622,9 @@ const en = {
       para: 'Take a guided tour through the section',
       button: 'Take me one the tour!'
     },
+	timeline: {
+		title: 'Let\'s cover your last 10 years'
+	},
     review: {
       title: 'Full section view',
       para: 'View all the sections associated with your history at once',
@@ -690,7 +693,7 @@ const en = {
       },
       summary: {
         title: 'Where you have worked',
-        unit: 'Years'
+        unit: 'Years covered'
       },
       collection: {
         append: 'Save and add another job',

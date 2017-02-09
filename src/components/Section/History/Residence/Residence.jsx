@@ -60,7 +60,7 @@ export default class Residence extends ValidationElement {
   isValid () {
     for (let item of this.state.List) {
       const residence = item.Residence
-      if (!residence.Dates || !residence.Dates.from || (!residence.Dates.to && !residence.Dates.present)) {
+      if (!residence || !residence.Dates || !residence.Dates.from || (!residence.Dates.to && !residence.Dates.present)) {
         return false
       }
 
@@ -271,7 +271,7 @@ export default class Residence extends ValidationElement {
  * This was broken apart so it could manage minor local state in determining
  * when particular portions of this should be rendered.
  */
-class ResidenceItem extends ValidationElement {
+export class ResidenceItem extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {

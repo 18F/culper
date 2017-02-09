@@ -1,0 +1,41 @@
+.history {
+    .add-options {
+        margin-bottom: 20rem;
+        .btn {
+            margin-top: 3rem;
+            .fa.fa-plus-circle {
+                margin-left: 1rem;
+            }
+        }
+        div.title {
+            font-weight: 600;
+            color: #5c606c;
+        }
+        button.add {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem
+        }
+        .fa.fa-briefcase {
+            color: #5c606c;
+            font-size: 8.5rem;
+            line-height: 9rem;
+        }
+        .fa.fa-home {
+            color: #17bdec;
+            font-size: 10rem;
+        }
+        .table {
+            display: table;
+            .table-cell {
+                display: table-cell;
+            }
+            .add-residence, .add-employment {
+                text-align: center;
+                width: 32rem;
+                height: 16rem;
+            }
+        }
+    }
+}

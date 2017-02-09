@@ -310,3 +310,126 @@ export default class Employment extends ValidationElement {
     )
   }
 }
+
+
+export class EmploymentItem extends ValidationElement {
+  constructor (props) {
+    super(props)
+    this.state = {
+      EmploymentActivity: props.EmploymentActivity,
+      Employment: props.Employment,
+      Dates: props.Dates
+    }
+  }
+
+  onUpdate (field, values) {
+    this.setState({
+      [field]: values
+    }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          EmploymentActivity: this.state.EmploymentActivity,
+          Employment: this.state.Employment,
+          Dates: this.state.Dates
+        })
+      }
+    })
+  }
+
+  render () {
+    return (
+      <div>
+        <h3>{i18n.t('history.employment.heading.activity')}</h3>
+        <div className="eapp-field-wrap no-label">
+          <Help id="history.employment.activity.help">
+            <EmploymentActivity
+              {...this.props.EmploymentActivity}
+              onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
+              name="EmploymentActivity"
+            />
+            <HelpIcon className="activity"/>
+          </Help>
+        </div>
+
+        <h3>{i18n.t('history.employment.heading.datesEmployed')}</h3>
+        <div className="eapp-field-wrap">
+          <Help id="history.employment.datesEmployed.help">
+            <DateRange name="DatesEmployed"
+              {...this.props.DatesEmployed}
+              onUpdate={this.onUpdate.bind(this, 'Dates')}
+              onValidate={this.handleValidation}
+            />
+            <HelpIcon className="used-help-icon" />
+          </Help>
+        </div>
+
+        <h3>{i18n.t('history.employment.heading.employer')}</h3>
+        <div className="eapp-field-wrap">
+          <Help id="history.employment.employer.help">
+            <Text name="Employment"
+              {...this.props.Employment}
+              onUpdate={this.onUpdate.bind(this, 'Employment')}
+              className="text"
+              label={i18n.t('history.employment.employer.label')}
+            />
+            <HelpIcon className="employer" />
+          </Help>
+        </div>
+
+        <h3>{i18n.t('history.employment.heading.title')}</h3>
+        <div className="eapp-field-wrap">
+          <Help id="history.employment.title.help">
+            <Text name="Title"
+              className="text"
+              label={i18n.t('history.employment.title.label')}
+              onValidate={this.handleValidation}
+            />
+            <HelpIcon className="title" />
+          </Help>
+        </div>
+
+        <h3>{i18n.t('history.employment.heading.status')}</h3>
+        <div className="eapp-field-wrap no-label">
+          <Help id="history.employment.status.help">
+            <EmploymentStatus name="Status" />
+            <HelpIcon className="status" />
+          </Help>
+        </div>
+
+        <h3>{i18n.t('history.employment.heading.address')}</h3>
+        <div className="eapp-field-wrap">
+          <Help id="history.employment.address.help">
+            <Address name="Address"
+              label={i18n.t('history.employment.address.label')}
+            />
+            <HelpIcon className="address"/>
+          </Help>
+        </div>
+
+        <h3>{i18n.t('history.employment.heading.telephone')}</h3>
+        <div className="eapp-field-wrap no-label">
+          <Help id="history.employment.telephone.help">
+            <Telephone name="Telephone" />
+            <HelpIcon className="telephone-icon"/>
+          </Help>
+        </div>
+
+        <Supervisor name="Supervisor" />
+
+        <h3>{i18n.t('history.employment.heading.reference')}</h3>
+        <Reference name="Reference" />
+
+        <h3>{i18n.t('history.employment.heading.physicalAddress')}</h3>
+        <PhysicalAddress name="PhysicalAddress"
+          className="eapp-field-wrap"
+        />
+
+      <h3>{i18n.t('history.employment.heading.additionalActivity')}</h3>
+      <p>{i18n.t('history.employment.para.additionalActivity')}</p>
+      <AdditionalActivity name="Additional"
+        className="additional-activity eapp-field-wrap" />
+    </div>
+    )
+    }
+}
