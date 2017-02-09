@@ -1,6 +1,5 @@
 .telephone {
   display: inline-block;
-  width: 93%;
 
   .number.three {
     width: 8rem;
@@ -24,15 +23,17 @@
 
   .number, .separator {
     display: inline-block;
-    padding-right: 0.8rem;
+    padding-right: 0.3rem;
   }
 
   .type {
     margin-bottom: 6rem;
+
     span {
       margin-left: 1rem;
       margin-right: 1.5rem;
     }
+
     a {
       font-weight: 600;
       border-bottom: 1px #0071bc dashed;
@@ -44,6 +45,7 @@
   .timeofday {
     margin-bottom: 4rem;
     margin-left: 1.5rem;
+
     .time {
       min-width: 10rem;
       display: inline-block;
@@ -58,6 +60,7 @@
 
   .nonumber {
     display: inline-block;
+
     label {
       width: 14rem;
     }
