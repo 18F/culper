@@ -227,16 +227,32 @@ export default class Collection extends ValidationElement {
    */
   getContent () {
     // Create the 'byline' which is used to separate items as well as the remove action
-    const byline = (item, index) => {
+    const bylineTop = (item, index) => {
       if (this.state.items.length < 2) {
         return ''
       }
 
       return (
-        <div className="byline">
+        <div className="byline top">
           <a href="javascript:;;" className="remove" onClick={this.remove.bind(this, index)}>
             <span>{i18n.t('collection.remove')}</span>
             <i className="fa fa-times-circle" aria-hidden="true"></i>
+          </a>
+        </div>
+      )
+    }
+
+    // Create the 'byline' which is used to separate items as well as the bottom toggle action
+    const bylineBottom = (item, index) => {
+      if (this.state.items.length < 2) {
+        return ''
+      }
+
+      return (
+        <div className="byline bottom">
+          <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
+            <span>{i18n.t('collection.close')}</span>
+            <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </a>
         </div>
       )
@@ -251,26 +267,37 @@ export default class Collection extends ValidationElement {
         return (
           <div className="item" key={index}>
             <div className="details">
-              {byline(item, index)}
+              {bylineTop(item, index)}
               {this.state.children[index]}
+              {bylineBottom(item, index)}
             </div>
           </div>
         )
       })
     }
 
-    // There is a summary and it is appropriate to display at this moment
-    return this.state.items.map((item, index) => {
-      const title = index === 0
-            ? <div><h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4><hr /></div>
-            : ''
+    const title = (item, index) => {
+      if (index !== 0) {
+        return ''
+      }
 
       return (
+        <div className="title">
+          <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
+          <hr />
+        </div>
+      )
+    }
+
+    // There is a summary and it is appropriate to display at this moment
+    const totalItems = this.state.items.length
+    return this.state.items.map((item, index) => {
+      const klassOpen = item.open === true ? 'open' : 'closed'
+      const klassLast = index + 1 === totalItems ? 'last' : ''
+      return (
         <div className="item" key={index}>
-          <div className="summary">
-            <div className="title">
-              {title}
-            </div>
+          <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
+            {title(item, index)}
             <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
               <div className="brief">
                 {this.props.summary(item, index)}
@@ -279,10 +306,14 @@ export default class Collection extends ValidationElement {
                 <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
               </div>
             </a>
+            <div className="divider">
+              <hr />
+            </div>
           </div>
-          <div className={`details gutters ${item.open === true ? '' : 'hidden'}`}>
-            {byline(item, index)}
+          <div className={`details gutters ${item.open === true ? '' : 'hidden'}`.trim()}>
+            {bylineTop(item, index)}
             {this.state.children[index]}
+            {bylineBottom(item, index)}
           </div>
         </div>
       )
