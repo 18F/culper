@@ -13,13 +13,16 @@ var paths = {
   ],
   sassvars: './src/sass',
   sass: {
+    rules: {
+      config: '../../../stylelint.config.js'
+    },
     vars: './src/sass',
     local: [
       './src/**/*.s+(a|c)ss'
     ],
     global: [
       './node_modules/font-awesome/**/*.s+(a|c)ss',
-      './node_modules/uswds/src/stylesheets/**/*.s+(a|c)css'
+      './node_modules/uswds/src/stylesheets/**/*.s+(a|c)ss'
     ]
   },
   html: ['./src/**/*.html'],
@@ -45,9 +48,9 @@ gulp.task('clean', clean)
 gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
-gulp.task('lint', ['clean'], sasslint(paths.sass.local[0]))
+gulp.task('lint', [], sasslint(paths.sass.local[0], paths.sass.rules))
 gulp.task('sass', ['clean'], convert)
-gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'lint', 'sass'], compile)
+gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
 

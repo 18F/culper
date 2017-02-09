@@ -50,6 +50,19 @@ class Login extends React.Component {
     this.props.dispatch(login(this.state.username, this.state.password))
   }
 
+  errorMessage () {
+    if (!this.props.error) {
+      return ''
+    }
+
+    return (
+      <div className="eapp-error-message message">
+        <i className="fa fa-exclamation"></i>
+        {this.props.error}
+      </div>
+    )
+  }
+
   loginForm () {
     const authValid = this.props.error === undefined || this.props.error === ''
     let pwClass = 'help'
@@ -64,14 +77,14 @@ class Login extends React.Component {
           <p>{i18n.t('login.para')}</p>
         </div>
 
-        <div id="basic" className="usa-width-one-whole">
+        <div id="basic" className="login-basic usa-width-one-whole">
           <form onSubmit={this.login}>
             <div>
               <Text name="user"
-                placeholder="Enter your username"
-                label="Username"
-                autoFocus
-                onChange={this.onUsernameChange} />
+                    placeholder="Enter your username"
+                    label="Username"
+                    autoFocus
+                    onChange={this.onUsernameChange} />
             </div>
             <div className={pwClass}>
               <label
@@ -79,17 +92,11 @@ class Login extends React.Component {
                 Password
               </label>
               <input id="password"
-                type="password"
-                placeholder={i18n.t('login.placeholder.password')}
-                value={this.state.password}
-                onChange={this.onPasswordChange} />
-              {
-                this.props.error &&
-                  <div className="eapp-error-message message">
-                    <i className="fa fa-exclamation"></i>
-                    {this.props.error}
-                  </div>
-              }
+                     type="password"
+                     placeholder={i18n.t('login.placeholder.password')}
+                     value={this.state.password}
+                     onChange={this.onPasswordChange} />
+              {this.errorMessage()}
             </div>
             <div>
               <button type="submit">{i18n.t('login.submit')}</button>
@@ -98,7 +105,7 @@ class Login extends React.Component {
           </form>
         </div>
 
-        <div id="oauth" className="usa-width-one-whole hidden">
+        <div id="oauth" className="login-oauth usa-width-one-whole hidden">
           <span>Sign in with</span>
           <LoginOAuth authenticated={this.state.authenticated}>
             <i className="fa fa-github" aria-hidden="true"></i>
@@ -111,7 +118,7 @@ class Login extends React.Component {
   twofactorForm () {
     return (
       <div>
-        <div id="info" className="usa-width-one-whole">
+        <div id="info" className="login-info usa-width-one-whole">
           <h2>{i18n.t('login.twofactor.title')}</h2>
           <p>{i18n.t('login.twofactor.para')}</p>
           <ul>
@@ -119,7 +126,7 @@ class Login extends React.Component {
             <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
           </ul>
         </div>
-        <div id="twofactor" className="usa-width-one-whole">
+        <div id="twofactor" className="login-twofactor usa-width-one-whole">
           <TwoFactor username={this.state.username} />
         </div>
       </div>
@@ -128,8 +135,8 @@ class Login extends React.Component {
 
   render () {
     return (
-      <div className="eapp-core" id="login">
-        <div id="seal-header" className="text-center">
+      <div className="login eapp-core" id="login">
+        <div id="seal-header" className="seal-header text-center">
           <div className="content">
             <img src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
             <h2>Welcome to the Questionnaire for National Security Positions</h2>

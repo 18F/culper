@@ -1,59 +1,55 @@
 @import 'eqip-colors';
 
 .dropdown {
-    .react-autosuggest__container {
+  .react-autosuggest__container.react-autosuggest__container--open {
+    box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
+
+    input {
+      border-bottom: none;
     }
 
-    .react-autosuggest__container.react-autosuggest__container--open {
-        box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
-
-        input {
-            border-bottom: none;
-        }
-
-        input:focus {
-            box-shadow: none;
-        }
-
-        input.usa-input-success {
-            border-top: 1px solid #5b616b;
-            border-left: 1px solid #5b616b;
-            border-right: 1px solid #5b616b;
-            background: none;
-        }
-
-        .react-autosuggest__suggestions-container {
-            border-bottom: 1px solid #000;
-            border-right: 1px solid #000;
-            border-left: 1px solid #000;
-
-            ul {
-                list-style: none;
-                margin-top: -0.5rem;
-                margin-bottom: 0rem;
-                margin-left: -1.7rem;
-                padding-top: 0;
-
-                li {
-                    margin-left: -1.64rem;
-                    margin-bottom: 0;
-                    padding-top: 0.1rem;
-                    padding-bottom: 0.1rem;
-                    padding-left: 1.7rem;
-
-                    p {
-                        padding: 0;
-                        margin-top: 1rem;
-                        margin-bottom: 1rem;
-                    }
-                }
-
-                li:hover,
-                .react-autosuggest__suggestion--focused {
-                    background-color: #dce2ee;
-                }
-            }
-        }
+    input:focus {
+      box-shadow: none;
     }
 
+    input.usa-input-success {
+      border-top: 1px solid #5b616b;
+      border-left: 1px solid #5b616b;
+      border-right: 1px solid #5b616b;
+      background: none;
+    }
+
+    .react-autosuggest__suggestions-container {
+      border-bottom: 1px solid #000;
+      border-right: 1px solid #000;
+      border-left: 1px solid #000;
+
+      ul {
+        list-style: none;
+        margin-top: -0.5rem;
+        margin-bottom: 0;
+        margin-left: -1.7rem;
+        padding-top: 0;
+
+        li {
+          margin-left: -1.64rem;
+          margin-bottom: 0;
+          padding-top: 0.1rem;
+          padding-bottom: 0.1rem;
+          padding-left: 1.7rem;
+        }
+
+        p {
+          padding: 0;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        li:hover,
+        .react-autosuggest__suggestion--focused {
+          background-color: #dce2ee;
+        }
+      }
+    }
+  }
 }
