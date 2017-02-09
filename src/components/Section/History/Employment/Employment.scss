@@ -1,35 +1,35 @@
 .employment {
-    .collection {
-        .table-cell.dates {
-            width: 16rem;
-        }
-
-        .table-cell.employer {
-            width: 28rem;
-        }
+  .collection {
+    .table-cell.dates {
+      width: 16rem;
     }
 
-    .employment-status {
-        label {
-            padding-left: 8rem;
-            padding-right: 8rem;
-        }
+    .table-cell.employer {
+      width: 28rem;
     }
+  }
 
-    .employment-activity {
-        label {
-            height: 8rem;
-            width: 26rem;
-            padding-top: 2rem;
-        }
+  .employment-status {
+    label {
+      padding-left: 8rem;
+      padding-right: 8rem;
     }
+  }
 
-    .additional-activity {
-        margin-bottom: 10rem;
+  .employment-activity {
+    label {
+      height: 8rem;
+      width: 26rem;
+      padding-top: 2rem;
     }
+  }
 
-    .daterange, .text, .employment-activity {
-        display: inline-block;
-        width: 93%;
-    }
+  .additional-activity {
+    margin-bottom: 10rem;
+  }
+
+  .daterange, .text, .employment-activity {
+    display: inline-block;
+    width: 93%;
+  }
 }

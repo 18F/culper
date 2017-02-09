@@ -1,25 +1,26 @@
 .birthplace {
-    .state,
-    .city,
-    .county,
-    .country {
-        display: inline-block;
-        width: 90%;
-        max-width: 64rem !important;
+  .state,
+  .city,
+  .county,
+  .country {
+    display: inline-block;
+    width: 90%;
+    max-width: 64rem !important;
 
-        input {
-            width: 100% !important;
-            max-width: 64rem !important;
-        }
+    input {
+      width: 100% !important;
+      max-width: 64rem !important;
     }
+  }
 
-    .branch {
-        .help {
-            padding-top: 0;
-            label {
-                display: inline;
-                position: relative;
-            }
-        }
+  .branch {
+    .help {
+      padding-top: 0;
+
+      label {
+        display: inline;
+        position: relative;
+      }
     }
+  }
 }
