@@ -20,7 +20,7 @@ describe('The Residence component', () => {
       List: [
         {
           open: true,
-          Residence: {
+          Item: {
             Dates: {
               to: new Date()
             },
@@ -41,7 +41,7 @@ describe('The Residence component', () => {
       List: [
         {
           open: true,
-          Residence: {
+          Item: {
             Role: 'Other'
           }
         }
@@ -57,7 +57,7 @@ describe('The Residence component', () => {
       List: [
         {
           open: true,
-          Residence: {
+          Item: {
             Role: 'Dance'
           }
         }

@@ -153,7 +153,7 @@ export default class HistoryCollection extends ValidationElement {
     let items = [...this.state.List]
     items[index] = {
       type: field,
-      ...this.funkyResidence(field, values)
+      Item: values
     }
     this.doUpdate(field, items)
   }
@@ -194,16 +194,6 @@ export default class HistoryCollection extends ValidationElement {
     })
   }
 
-  // NOTE: This will go away when we choose one path over another. However, to
-  // share data between the single and the combined we do some nasty stuff
-  // here.
-  funkyResidence (type, values) {
-    if (type === 'Residence') {
-      values = { Residence: values }
-    }
-    return values
-  }
-
   /**
    * Takes a populated entry and actually adds it to the array of items
    */
@@ -213,7 +203,7 @@ export default class HistoryCollection extends ValidationElement {
 
     items.push({
       type: type,
-      ...this.funkyResidence(type, this.state.currentNewItem.values)
+      Item: this.state.currentNewItem.values
     })
 
     this.setState({ currentNewItem: null, collectionType: null }, () => {
@@ -317,7 +307,7 @@ export default class HistoryCollection extends ValidationElement {
                onRemove={this.remove.bind(this, item.type)}
                show={item.isNew}>
             <ResidenceItem name="Residence"
-                           {...item.Residence}
+                           {...item.Item}
                            onUpdate={this.onUpdate.bind(this, 'Residence', i)}
                            onValidate={this.handleValidation}
                            />
@@ -337,7 +327,7 @@ export default class HistoryCollection extends ValidationElement {
                show={item.isNew}>
             <div className="employment">
               <EmploymentItem name="Employment"
-                              {...item}
+                              {...item.Item}
                               onUpdate={this.onUpdate.bind(this, 'Employment', i)}
                               onValidate={this.handleValidation}
                               />
@@ -394,7 +384,7 @@ export default class HistoryCollection extends ValidationElement {
  * Renders a formatted summary information for a residence row
  */
 function ResidenceSummary (props) {
-  const res = props.residence.Residence || {}
+  const res = props.residence.Item || {}
 
   let address1 = ''
   let address2 = ''
@@ -439,7 +429,7 @@ function ResidenceSummary (props) {
  * Renders a formatted summary information for an employment row
  */
 function EmploymentSummary (props) {
-  let item = props.employment
+  let item = props.employment.Item
   const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
   const dates = dateSummary(item)
 

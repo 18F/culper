@@ -139,36 +139,12 @@ class History extends ValidationElement {
     }
 
     for (let i of this.props.Residence.List) {
-      if (!i.Residence) {
+      if (!i.Item) {
         continue
       }
 
-      if (i.Residence.Dates) {
-        dates.push(i.Residence.Dates)
-      }
-    }
-
-    return dates
-  }
-
-  /**
-   * Extracts dates used for summary progress and gap analysis for residence when used
-   * in the combined history. Note that in this scenario, it does not contain a `Residence`
-   * property within the array like the residenceRangeList() func
-   */
-  combinedResidenceRangeList () {
-    let dates = []
-    if (!this.props.Residence || !this.props.Residence.List) {
-      return dates
-    }
-
-    for (let i of this.props.Residence.List) {
-      if (!i) {
-        continue
-      }
-
-      if (i.Dates) {
-        dates.push(i.Dates)
+      if (i.Item.Dates) {
+        dates.push(i.Item.Dates)
       }
     }
 
@@ -185,12 +161,12 @@ class History extends ValidationElement {
     }
 
     for (let i of this.props.Employment.List) {
-      if (!i) {
+      if (!i.Item) {
         continue
       }
 
-      if (i.Dates) {
-        dates.push(i.Dates)
+      if (i.Item.Dates) {
+        dates.push(i.Item.Dates)
       }
     }
 
@@ -198,24 +174,6 @@ class History extends ValidationElement {
   }
 
   residenceSummaryProgress () {
-    return (
-      <SummaryProgress className="residence eapp-field-wrap"
-                       List={this.residenceRangeList.bind(this)}
-                       title={i18n.t('history.residence.summary.title')}
-                       unit={i18n.t('history.residence.summary.unit')}
-                       total="10"
-                       >
-        <div className="summary-icon">
-          <Svg src="img/residence-house.svg" />
-        </div>
-      </SummaryProgress>
-    )
-  }
-
-  /**
-   * Used for the combined summary view
-   */
-  combinedResidenceSummaryProgress () {
     return (
       <SummaryProgress className="residence eapp-field-wrap"
                        List={this.residenceRangeList.bind(this)}
@@ -305,7 +263,7 @@ class History extends ValidationElement {
 
             <Show when={(this.props.Employment.List || this.props.Residence.List || this.state.addOnLoad)}>
               <div>
-                { this.combinedResidenceSummaryProgress() }
+                { this.residenceSummaryProgress() }
                 { this.employmentSummaryProgress() }
                 <HistoryCollection name="timeline"
                                    addOnLoad={this.state.addOnLoad}

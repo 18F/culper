@@ -56,7 +56,13 @@ export default class Employment extends ValidationElement {
       return false
     }
 
-    for (let item of this.state.List) {
+    for (let employment of this.state.List) {
+      const item = employment.Item
+
+      if (!item) {
+        return false
+      }
+
       if (!item.EmploymentActivity || !item.EmploymentActivity.value) {
         return false
       }
@@ -114,7 +120,7 @@ export default class Employment extends ValidationElement {
           return false
       }
 
-      if (!item.Additional && !item.Additional.HasAdditionalActivity) {
+      if (!item.Additional || !item.Additional.HasAdditionalActivity) {
         return false
       }
 
@@ -138,6 +144,7 @@ export default class Employment extends ValidationElement {
         }
       }
     }
+
     return true
   }
 
@@ -159,8 +166,9 @@ export default class Employment extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
-    const dates = this.dateSummary(item)
+    const i = item.Item
+    const employer = (i.Employment && i.Employment.value ? i.Employment.value : 'N/A')
+    const dates = this.dateSummary(i)
 
     return (
       <div className="table">
@@ -215,90 +223,10 @@ export default class Employment extends ValidationElement {
                   summaryTitle={i18n.t('history.employment.collection.summary.title')}
                   appendClass="eapp-field-wrap"
                   appendLabel={i18n.t('history.employment.collection.append')}>
-
-        <h3>{i18n.t('history.employment.heading.activity')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="history.employment.activity.help">
-            <EmploymentActivity name="EmploymentActivity"/>
-            <HelpIcon className="activity"/>
-          </Help>
-        </div>
-
-        <h3>{i18n.t('history.employment.heading.datesEmployed')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="history.employment.datesEmployed.help">
-            <DateRange name="DatesEmployed"
-                       onValidate={this.handleValidation}
-                       />
-            <HelpIcon className="used-help-icon" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('history.employment.heading.employer')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="history.employment.employer.help">
-            <Text name="Employment"
-                  className="text"
-                  label={i18n.t('history.employment.employer.label')}
-                  onValidate={this.handleValidation}
-                  />
-            <HelpIcon className="employer" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('history.employment.heading.title')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="history.employment.title.help">
-            <Text name="Title"
-                  className="text"
-                  label={i18n.t('history.employment.title.label')}
-                  onValidate={this.handleValidation}
-                  />
-            <HelpIcon className="title" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('history.employment.heading.status')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="history.employment.status.help">
-            <EmploymentStatus name="Status" />
-            <HelpIcon className="status" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('history.employment.heading.address')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="history.employment.address.help">
-            <Address name="Address"
-                     label={i18n.t('history.employment.address.label')}
-                     />
-            <HelpIcon className="address"/>
-          </Help>
-        </div>
-
-        <h3>{i18n.t('history.employment.heading.telephone')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="history.employment.telephone.help">
-            <Telephone name="Telephone" />
-            <HelpIcon className="telephone-icon"/>
-          </Help>
-        </div>
-
-        <Supervisor name="Supervisor" />
-
-        <h3>{i18n.t('history.employment.heading.reference')}</h3>
-        <Reference name="Reference" />
-
-        <h3>{i18n.t('history.employment.heading.physicalAddress')}</h3>
-        <PhysicalAddress name="PhysicalAddress"
-                         className="eapp-field-wrap"
-                         />
-
-        <h3>{i18n.t('history.employment.heading.additionalActivity')}</h3>
-        <p>{i18n.t('history.employment.para.additionalActivity')}</p>
-        <AdditionalActivity name="Additional"
-                            className="additional-activity eapp-field-wrap" />
-
+        <EmploymentItem name="Item"
+                        onUpdate={this.props.onUpdate}
+                        onValidate={this.handleValidation}
+                        />
         <h2>{i18n.t('history.employment.heading.done')}</h2>
         <p>{i18n.t('history.employment.para.done')}</p>
       </Collection>

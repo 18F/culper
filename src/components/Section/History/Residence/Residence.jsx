@@ -58,31 +58,31 @@ export default class Residence extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    for (let item of this.state.List) {
-      const residence = item.Residence
-      if (!residence || !residence.Dates || !residence.Dates.from || (!residence.Dates.to && !residence.Dates.present)) {
+    for (let residence of this.state.List) {
+      const item = residence.Item
+      if (!item || !item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
         return false
       }
 
-      if (!residence.Address) {
+      if (!item.Address) {
         return false
       }
 
-      switch (residence.Address.addressType) {
+      switch (item.Address.addressType) {
         case 'United States':
-          if (!residence.Address.address || !residence.Address.city || !residence.Address.state || !residence.Address.zipcode) {
+          if (!item.Address.address || !item.Address.city || !item.Address.state || !item.Address.zipcode) {
             return false
           }
           break
 
         case 'International':
-          if (!residence.Address.address || !residence.Address.city || !residence.Address.country) {
+          if (!item.Address.address || !item.Address.city || !item.Address.country) {
             return false
           }
           break
 
         case 'APOFPO':
-          if (!residence.Address.address || !residence.Address.apoFpo || !residence.Address.apoFpoType || !residence.Address.zipcode) {
+          if (!item.Address.address || !item.Address.apoFpo || !item.Address.apoFpoType || !item.Address.zipcode) {
             return false
           }
           break
@@ -91,66 +91,66 @@ export default class Residence extends ValidationElement {
           return false
       }
 
-      if (!residence.Role) {
+      if (!item.Role) {
         return false
       }
 
-      if (withinThreeYears(residence.Dates.from, residence.Dates.to)) {
-        if (!residence.Reference) {
+      if (withinThreeYears(item.Dates.from, item.Dates.to)) {
+        if (!item.Reference) {
           return false
         }
 
-        if (!residence.Reference.FullName) {
+        if (!item.Reference.FullName) {
           return false
         }
 
-        if (!residence.Reference.FullName.first || !residence.Reference.FullName.last) {
+        if (!item.Reference.FullName.first || !item.Reference.FullName.last) {
           return false
         }
 
-        if (!residence.Reference.LastContact) {
+        if (!item.Reference.LastContact) {
           return false
         }
 
-        if (!residence.Reference.LastContact.date) {
+        if (!item.Reference.LastContact.date) {
           return false
         }
 
-        if (!residence.Reference.Relationship) {
+        if (!item.Reference.Relationship) {
           return false
         }
 
-        if (!residence.Reference.Phone) {
+        if (!item.Reference.Phone) {
           return false
         }
 
-        if (!residence.Reference.Phone.number) {
+        if (!item.Reference.Phone.number) {
           return false
         }
 
-        if (!residence.Reference.Email) {
+        if (!item.Reference.Email) {
           return false
         }
 
-        if (!residence.Reference.Address) {
+        if (!item.Reference.Address) {
           return false
         }
 
-        switch (residence.Reference.Address.addressType) {
+        switch (item.Reference.Address.addressType) {
           case 'United States':
-            if (!residence.Reference.Address.address || !residence.Reference.Address.city || !residence.Reference.Address.state || !residence.Reference.Address.zipcode) {
+            if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.state || !item.Reference.Address.zipcode) {
               return false
             }
             break
 
           case 'International':
-            if (!residence.Reference.Address.address || !residence.Reference.Address.city || !residence.Reference.Address.country) {
+            if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.country) {
               return false
             }
             break
 
           case 'APOFPO':
-            if (!residence.Reference.Address.address || !residence.Reference.Address.apoFpo || !residence.Reference.Address.apoFpoType || !residence.Reference.Address.zipcode) {
+            if (!item.Reference.Address.address || !item.Reference.Address.apoFpo || !item.Reference.Address.apoFpoType || !item.Reference.Address.zipcode) {
               return false
             }
             break
@@ -197,7 +197,7 @@ export default class Residence extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const res = item.Residence || {}
+    const res = item.Item || {}
 
     let address1 = ''
     let address2 = ''
@@ -250,9 +250,8 @@ export default class Residence extends ValidationElement {
                     appendLabel={i18n.t('history.residence.collection.append')}>
           <h3>{i18n.t('history.residence.heading.details')}</h3>
           <p>{i18n.t('history.residence.para.details')}</p>
-          <ResidenceItem name="Residence"
+          <ResidenceItem name="Item"
                          onValidate={this.handleValidation} />
-
           <h2>{i18n.t('history.residence.heading.done')}</h2>
           <p>{i18n.t('history.residence.para.done')}</p>
         </Collection>
