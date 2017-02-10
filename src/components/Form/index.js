@@ -16,6 +16,7 @@ import Dropdown from './Dropdown'
 import Checkbox from './Checkbox'
 import Radio from './Radio'
 import DateControl from './DateControl'
+import Svg from './Svg'
 
 // Composite components
 import Type from './Type'
@@ -81,5 +82,6 @@ export {
   Branch,
   PetitionType,
   Reference,
-  Show
+  Show,
+  Svg
 }
