@@ -1,45 +1,48 @@
 .address {
-    display: inline-block;
+  display: inline-block;
 
-    .state-zip-wrap {
-        display: table;
-        .state, .zipcode {
-            display: table-cell;
-            padding-right: 2rem;
-        }
-    }
-    .mailing {
-        textarea {
-            height: 10rem;
-        }
-    }
-    .address-options {
-        label {
-            padding-left: 3rem;
-            padding-right: 3rem;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-    }
+  .state-zip-wrap {
+    display: table;
 
-    .fields {
-        .apofpo {
-            label {
-                padding-left: 3rem;
-                padding-right: 3rem;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-        }
+    .state, .zipcode {
+      display: table-cell;
+      padding-right: 2rem;
+    }
+  }
 
-        label {
-            position: relative !important;
-            display: inline !important;
-            top: 0 !important;
-        }
+  .mailing {
+    textarea {
+      height: 10rem;
+    }
+  }
+
+  .address-options {
+    label {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .fields {
+    .apofpo {
+      label {
+        padding-left: 3rem;
+        padding-right: 3rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
     }
 
-    label.bold {
-        font-weight: 600;
+    label {
+      position: relative !important;
+      display: inline !important;
+      top: 0 !important;
     }
+  }
+
+  label.bold {
+    font-weight: 600;
+  }
 }

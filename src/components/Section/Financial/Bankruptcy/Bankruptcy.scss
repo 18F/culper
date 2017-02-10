@@ -1,36 +1,36 @@
 .bankruptcy {
-    .petition-type,
-    .courtnumber,
-    .datecontrol,
-    .datedischarged,
-    .datefiled,
-    .amount,
-    .fa-dollar,
-    .namedebt,
-    .trustee,
-    .courtinvolved {
-        display: inline-block;
+  .petition-type,
+  .courtnumber,
+  .datecontrol,
+  .datedischarged,
+  .datefiled,
+  .amount,
+  .fa-dollar,
+  .namedebt,
+  .trustee,
+  .courtinvolved {
+    display: inline-block;
+  }
+
+  .amount {
+    padding-left: 1rem;
+
+    label {
+      margin-left: 1rem;
     }
+  }
 
-    .amount {
-        padding-left: 1rem;
+  .fa.fa-dollar {
+    margin-left: -2rem;
+  }
 
-        label {
-            margin-left: 1rem;
+  .collection {
+    .summary {
+      .brief {
+        .index {
+          width: 10.5rem;
         }
+      }
     }
-
-    .fa.fa-dollar {
-        margin-left: -2rem;
-    }
-
-    .collection {
-        .summary {
-            .brief {
-                .index {
-                    width: 10.5rem;
-                }
-            }
-        }
-    }
+  }
 }
