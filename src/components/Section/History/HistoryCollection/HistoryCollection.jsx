@@ -4,17 +4,32 @@ import { ValidationElement, Text, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence/Residence'
 import { EmploymentItem } from '../Employment/Employment'
 
+/**
+ * Contains a collection of Residence and Employment information. This component
+ * reconciles the information in the History redux state key and generates one
+ * single array `List`. Each item is added a type to distinguish them and to allow
+ * us to apply the approriate component and sory them by common criteria.
+ *
+ */
 export default class HistoryCollection extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      // List of history items managed by this collection
       List: [],
+
+      // Current item that user is creating (NOT editing)
       currentNewItem: null,
+
+      // Contains the type of item the user is requesting to create. This may included
+      // Residence, Employment or School
       collectionType: ''
     }
   }
 
   componentDidMount () {
+    // If user has requested to show create form for a specific type when,
+    // first loading the component, check that here and do so
     if (this.isEmpty() && this.props.addOnLoad) {
       this.selectCollectionType(this.props.addOnLoad)
       return
@@ -22,14 +37,24 @@ export default class HistoryCollection extends React.Component {
     this.prepare(this.props.history)
   }
 
+  /**
+   * Determines if any items exist in the collection. This includes residence and employer
+   * information
+   */
   isEmpty () {
     return !this.containsResidence() && !this.containsEmployment()
   }
 
+  /**
+   * Determines if any residence items exist
+   */
   containsResidence () {
     return this.props.history && this.props.history.Residence && this.props.history.Residence.List
   }
 
+  /**
+   * Determines if any employment items exist
+   */
   containsEmployment () {
     return this.props.history && this.props.history.Employment && this.props.history.Employment.List
   }
@@ -38,6 +63,12 @@ export default class HistoryCollection extends React.Component {
     this.prepare(nextProps.history)
   }
 
+  /**
+   * Creates an array of items consisting of Residence and Employment items. These items are obtained
+   * from History. For each, a type property is added to indicate the type of item it is in the collection.
+   * Since this collection can contain a mix of history objects (Residence, Employer, School), this allows
+   * us to differentiate when iterating and rendering them.
+   */
   prepare (history) {
     if (!history) {
       return
@@ -66,6 +97,10 @@ export default class HistoryCollection extends React.Component {
     })
   }
 
+  /**
+   * Default sorting of history objects. This assumes that all objects contain a `Dates` property
+   * with date range values.
+   */
   sort (a, b) {
     if (!a.Dates && !b.Dates) {
       return 0
@@ -81,6 +116,10 @@ export default class HistoryCollection extends React.Component {
     return b.Dates.to.getTime() - a.Dates.to.getTime()
   }
 
+
+  /**
+   * Updates an existing item in the collection.
+   */
   onUpdate (field, index, values) {
     let items = [...this.state.List]
     items[index] = {
@@ -90,7 +129,14 @@ export default class HistoryCollection extends React.Component {
     this.doUpdate(field, items)
   }
 
-  doUpdate (type, items) {
+  /**
+   * Helper func that takes the combined list of History items and then
+   * generates a new list containing only objects matching the `type` property
+   * passed in. When items are updated, we don't trigger all object types to be updated
+   * in redux. For instance, if a user updates a Residence, we only send up Residence objects,
+   * not Employer and School.
+   */
+  doUpdate (type, items, callback) {
     this.setState({
       List: items
     }, () => {
@@ -114,12 +160,16 @@ export default class HistoryCollection extends React.Component {
         default:
           console.warn('No update callback method was provided in HistoryCollection')
       }
-
+      if (callback) {
+        callback()
+      }
     })
   }
 
+  /**
+   * Takes a populated entry and actually adds it to the array of items
+   */
   create () {
-    console.log('Creating....')
     const type = this.state.collectionType
     let items = [...this.state.List]
     items.push({
@@ -127,13 +177,28 @@ export default class HistoryCollection extends React.Component {
       ...this.state.currentNewItem.values
     })
     this.setState({ currentNewItem: null, collectionType: null }, () => {
-      this.doUpdate(type, items)
-      this.refs.createOptions.scrollIntoView()
+      this.doUpdate(type, items, ()=> {
+        this.refs.createOptions.scrollIntoView()
+      })
     })
   }
+
+  /**
+   * Removes an item from the collection and then sends the data back out
+   * based on the type that was updated
+   */
+  remove (type, index) {
+    let items = [...this.state.List]
+    items.splice(index, 1)
+    this.doUpdate(type, items)
+  }
+
   /**
    * Keeps a temporary copy of a new item being updated. At this point, the item
    * has NOT been added to the redux store. This is being held in local state
+   * Since the flow for this collection is slightly different, the create
+   * process uses a temporary state property `currentNewItem` to store a `new` history item
+   * being worked on. This item is not added to the List until the user explicitly saves.
    */
   onNewUpdate (field, values) {
     this.setState({
@@ -144,11 +209,19 @@ export default class HistoryCollection extends React.Component {
     })
   }
 
+  /**
+   * Handles when user is choosing between which new object type to create. This includes
+   * Residence | Employment | School
+   */
   handleCollectionTypeChange(e) {
     let type = e.target.value
     this.selectCollectionType(type)
   }
 
+  /**
+   * Helper func that sets the current object type being created and then ensures to
+   * scroll the user to those options
+   */
   selectCollectionType (type) {
     this.setState({
       collectionType: type,
@@ -161,6 +234,9 @@ export default class HistoryCollection extends React.Component {
     })
   }
 
+  /**
+   * Contains the types of History objects a user can create
+   */
   createOptions () {
     return (
       <RadioGroup className="option-list eapp-extend-labels create"
@@ -187,15 +263,20 @@ export default class HistoryCollection extends React.Component {
   render () {
     return (
       <div className="history-collection collection">
-        <label>Summary of your history</label>
         {
           this.state.List.map((item, i, arr) => {
+            let firstRow = (i === 0)
+            let lastRow = arr.length === (i + 1)
             if (item.type === 'Residence') {
-              let header = (<ResidenceHeader residence={item} />)
+              let header = (<ResidenceSummary residence={item} />)
               return (
               <Row
                 header={header}
+                index={i}
                 key={i}
+                first={firstRow}
+                last={lastRow}
+                onRemove={this.remove.bind(this, item.type)}
                 show={item.isNew}>
                 <ResidenceItem name="Residence"
                   {...item}
@@ -206,13 +287,17 @@ export default class HistoryCollection extends React.Component {
             }
 
             if (item.type === 'Employment') {
-              let header = (<EmploymentHeader employment={item} />)
+              let header = (<EmploymentSummary employment={item} />)
               return (
               <Row
                 header={header}
+                index={i}
                 key={i}
+                first={firstRow}
+                last={lastRow}
+                onRemove={this.remove.bind(this, item.type)}
                 show={item.isNew}>
-                <div className="eapp-field-wrap employment">
+                <div className="employment">
                   <EmploymentItem
                     name="Employment"
                     {...item}
@@ -253,10 +338,12 @@ export default class HistoryCollection extends React.Component {
       </div>
       )
   }
-
 }
 
-function ResidenceHeader (props) {
+/**
+ * Renders a formatted summary information for a residence row
+ */
+function ResidenceSummary (props) {
   const res = props.residence || {}
 
   let address1 = ''
@@ -298,6 +385,26 @@ function ResidenceHeader (props) {
     )
 }
 
+/**
+ * Renders a formatted summary information for an employment row
+ */
+function EmploymentSummary (props) {
+  let item = props.employment
+  const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
+  const dates = dateSummary(item)
+
+  return (
+    <div className="table">
+      <div className="table-cell index">
+        <i className="fa fa-briefcase" aria-hidden="true"></i>
+        {i18n.t('history.employment.collection.summary.employer')}:
+      </div>
+      <div className="table-cell employer">{ employer }</div>
+      <div className="table-cell dates">{ dates }</div>
+    </div>
+    )
+}
+
 function dateSummary(item) {
 
     let noDateLabel = i18n.t('history.employment.noDate.label')
@@ -325,23 +432,10 @@ function dateSummary(item) {
     return vals.join('-')
 }
 
-function EmploymentHeader (props) {
-  let item = props.employment
-  const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
-  const dates = dateSummary(item)
-
-  return (
-    <div className="table">
-      <div className="table-cell index">
-        <i className="fa fa-briefcase" aria-hidden="true"></i>
-        {i18n.t('history.employment.collection.summary.employer')}:
-      </div>
-      <div className="table-cell employer">{ employer }</div>
-      <div className="table-cell dates">{ dates }</div>
-    </div>
-    )
-}
-
+/**
+ * Row represents a row of summary information as well as the form elemens when they are
+ * expanded
+ */
 class Row extends React.Component {
   constructor (props) {
     super(props)
@@ -356,10 +450,27 @@ class Row extends React.Component {
     })
   }
 
+  /**
+   * Triggers onRemove callback passing the index of the row item
+   */
+  remove () {
+    if (this.props.onRemove) {
+      this.props.onRemove(this.props.index)
+    }
+  }
+
   render () {
+    const klassOpen = this.state.show === true ? 'open' : 'closed'
+    const klassLast = this.props.last === true ? 'last' : ''
     return (
       <div className="item">
-        <div className="summary">
+          <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
+            <Show when={this.props.first === true}>
+              <div className="title">
+                <h4>{i18n.t('collection.summary')}</h4>
+                <hr />
+              </div>
+            </Show>
           <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this)}>
             <div className="brief">
               { this.props.header }
@@ -368,8 +479,17 @@ class Row extends React.Component {
               <i className={`fa fa-chevron-${this.state.show === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
             </div>
           </a>
+          <div className="divider">
+            <hr />
+          </div>
         </div>
-        <div className={`details gutters`}>
+        <div className={`details gutters ${this.state.show === true ? '' : 'hidden'}`.trim()}>
+          <div className="byline top">
+            <a href="javascript:;;" className="remove" onClick={this.remove.bind(this)}>
+              <span>{i18n.t('collection.remove')}</span>
+              <i className="fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+          </div>
           { this.state.show && this.props.children }
         </div>
       </div>
