@@ -117,6 +117,9 @@ export default class SummaryProgress extends ValidationElement {
 
   render () {
     const klass = `summary ${this.props.className || ''}`.trim()
+    const completed = this.completed()
+    const total = parseInt(this.props.total)
+    const klassFraction = `fraction ${completed === total ? 'covered' : ''}`.trim()
 
     return (
       <div className={klass}>
@@ -130,10 +133,10 @@ export default class SummaryProgress extends ValidationElement {
           </div>
         </div>
         <div className="stats">
-          <div className="fraction">
-            <span className="completed">{this.completed()}</span>
+          <div className={klassFraction}>
+            <span className="completed">{completed}</span>
             <span className="slash">/</span>
-            <span className="total">{this.props.total}</span>
+            <span className="total">{total}</span>
           </div>
           <span className="unit">{this.props.unit}</span>
         </div>
