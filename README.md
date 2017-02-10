@@ -2,10 +2,10 @@
 
 [![Slack][badge_chat]][1]
 
-|         | Builds                             | GPA                                | Accessibility                           |
-| ------- | ---------------------------------- | ---------------------------------- | --------------------------------------- |
-| Release | [![Build Status][badge_ci_18f]][2] | [![Code Climate][badge_cc_18f]][3] | [![Accessibility][badge_access_18f]][4] |
-| Staging | [![Build Status][badge_ci_tt]][5]  | [![Code Climate][badge_cc_tt]][6]  | [![Accessibility][badge_access_tt]][7]  |
+|         | Builds                             | GPA                                | Go                                              | Accessibility                           |
+| ------- | ---------------------------------- | ---------------------------------- | ----------------------------------------------- | --------------------------------------- |
+| Release | [![Build Status][badge_ci_18f]][2] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] | [![Accessibility][badge_access_18f]][4] |
+| Staging | [![Build Status][badge_ci_tt]][5]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  | [![Accessibility][badge_access_tt]][7]  |
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
 [U.S. Digital Services Playbook][8]:
@@ -71,11 +71,11 @@ $ docker-compose up
 
 ### Checking dependencies
 
-For quick development we use [npm][16]. Once
+For quick development we use [yarn][19] but you may use [npm][16] as well. Once
 this has been installed we execute a single command:
 
 ```
-npm install
+yarn install
 ```
 
 For dependencies on the backend use [glide][17]:
@@ -89,38 +89,38 @@ glide install
 Compiling all of the assets can be done simply using the command:
 
 ```
-npm run build
+yarn build
 ```
 
 This will compile JavaScript, SASS, and place all files where they need to be. Both versions of JavaScript files (minified and not) are preserved.
 
 ### Running a local server
 
-To run a local server we issue the command:
+To run a local server we are using [docker][21] containers leveraging the [docker-compose][20] tool:
 
 ```
-npm start
+docker-compose up
 ```
 
-Then direct your browser at [http://localhost:8080](http://localhost:8080)
+Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
 
 ### Executing tests and coverage reports
 
 To make a single pass through the test suite use the command:
 
 ```
-npm test
+yarn test
 ```
 
 The individual test results will be seen in the output, and the coverage
-results may be viewed after running ```npm test```.
+results may be viewed after running ```yarn test```.
 
 ### Packaging Application
 
 To package up the application, use the command:
 
 ```
-npm run build
+yarn build
 ```
 
 This will generate the following file structure:
@@ -139,22 +139,6 @@ where
  - `fonts/` contains the fonts used in the application
  - `img/` contains the images used in the application
 
-### Generating Documentation
-
-This project utilizes JSDoc 3 to generate and render Javascript documentation artifacts. An npm script `docgen` is included that triggers the generation of these artifacts and then stores them in the `doc/` directory.
-
-To generate the JSDoc, execute the following:
-
-```
-npm run docgen
-```
-
-The script specifically executes the following:
-
-```
-./node_modules/.bin/jsdoc ./src/ -r -d ./doc --readme README.md
-```
-
 ### Tooling
 
 #### Linters
@@ -164,8 +148,8 @@ For Pirates (Emacs) just install ```flycheck``` and everything should be handled
 
 For command-line alternatives there are the following:
 
- - For JavaScript, [JSHint][14] which may be installed with ```npm install -g jshint```
- - For HTML, [html-lint][15] which may be installed with ```npm install -g html-lint```
+ - For JavaScript, [JSHint][14] which may be installed with ```yarn add jshint```
+ - For HTML, [html-lint][15] which may be installed with ```yarn add html-lint```
 
 ### Contributing
 
@@ -176,9 +160,11 @@ Please refer to the [contributing documentation][18].
 [badge_ci_18f]: https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master
 [badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
 [badge_access_18f]: https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master
+[badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
 [badge_ci_tt]: https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master
 [badge_cc_tt]: https://codeclimate.com/github/truetandem/e-QIP-prototype/badges/gpa.svg
 [badge_access_tt]: https://continua11y.18f.gov/truetandem/e-QIP-prototype.svg?branch=master
+[badge_goreportcard_tt]: https://goreportcard.com/badge/github.com/truetandem/e-QIP-prototype
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
 [2]: https://travis-ci.org/18F/e-QIP-prototype
 [3]: https://codeclimate.com/github/18F/e-QIP-prototype
@@ -197,3 +183,8 @@ Please refer to the [contributing documentation][18].
 [16]: https://www.npmjs.com
 [17]: https://github.com/Masterminds/glide
 [18]: CONTRIBUTING.md
+[19]: https://yarnpkg.com
+[20]: https://docs.docker.com/compose
+[21]: https://docker.com
+[22]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
+[23]: https://goreportcard.com/report/github.com/truetandem/e-QIP-prototype
