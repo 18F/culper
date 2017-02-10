@@ -247,7 +247,8 @@ export default class Residence extends ValidationElement {
                     appendLabel={i18n.t('history.residence.collection.append')}>
           <h3>{i18n.t('history.residence.heading.details')}</h3>
           <p>{i18n.t('history.residence.para.details')}</p>
-          <ResidenceItem name="Residence" onValidate={this.handleValidation} />
+          <ResidenceItem name="Residence"
+                         onValidate={this.handleValidation} />
 
           <h2>{i18n.t('history.residence.heading.done')}</h2>
           <p>{i18n.t('history.residence.para.done')}</p>

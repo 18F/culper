@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Svg, RadioGroup, Radio, Show } from '../../../Form'
+import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence/Residence'
 import { EmploymentItem } from '../Employment/Employment'
 
@@ -9,9 +9,8 @@ import { EmploymentItem } from '../Employment/Employment'
  * reconciles the information in the History redux state key and generates one
  * single array `List`. Each item is added a type to distinguish them and to allow
  * us to apply the approriate component and sory them by common criteria.
- *
  */
-export default class HistoryCollection extends React.Component {
+export default class HistoryCollection extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
@@ -23,7 +22,10 @@ export default class HistoryCollection extends React.Component {
 
       // Contains the type of item the user is requesting to create. This may included
       // Residence, Employment or School
-      collectionType: ''
+      collectionType: '',
+
+      // Error codes for each of the child collections
+      errorCodes: []
     }
   }
 
@@ -35,6 +37,34 @@ export default class HistoryCollection extends React.Component {
       return
     }
     this.prepare(this.props.history)
+  }
+
+  /**
+   * Handle the validation event.
+   */
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    // } else if (this.isValid()) {
+    //   complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
+      if (this.state.error === false || this.state.valid === true) {
+        super.handleValidation(event, s, e)
+        return
+      }
+
+      super.handleValidation(event, s, e)
+    })
   }
 
   /**
@@ -123,7 +153,7 @@ export default class HistoryCollection extends React.Component {
     let items = [...this.state.List]
     items[index] = {
       type: field,
-      ...values
+      ...this.funkyResidence(field, values)
     }
     this.doUpdate(field, items)
   }
@@ -164,16 +194,28 @@ export default class HistoryCollection extends React.Component {
     })
   }
 
+  // NOTE: This will go away when we choose one path over another. However, to
+  // share data between the single and the combined we do some nasty stuff
+  // here.
+  funkyResidence (type, values) {
+    if (type === 'Residence') {
+      values = { Residence: values }
+    }
+    return values
+  }
+
   /**
    * Takes a populated entry and actually adds it to the array of items
    */
   create () {
     const type = this.state.collectionType
     let items = [...this.state.List]
+
     items.push({
       type: type,
-      ...this.state.currentNewItem.values
+      ...this.funkyResidence(type, this.state.currentNewItem.values)
     })
+
     this.setState({ currentNewItem: null, collectionType: null }, () => {
       this.doUpdate(type, items, () => {
         this.refs.createOptions.scrollIntoView()
@@ -267,17 +309,17 @@ export default class HistoryCollection extends React.Component {
       if (item.type === 'Residence') {
         let header = (<ResidenceSummary residence={item} />)
         return (
-          <Row
-            header={header}
-            index={i}
-            key={i}
-            first={firstRow}
-            last={lastRow}
-            onRemove={this.remove.bind(this, item.type)}
-            show={item.isNew}>
+          <Row header={header}
+               index={i}
+               key={i}
+               first={firstRow}
+               last={lastRow}
+               onRemove={this.remove.bind(this, item.type)}
+               show={item.isNew}>
             <ResidenceItem name="Residence"
-                           {...item}
+                           {...item.Residence}
                            onUpdate={this.onUpdate.bind(this, 'Residence', i)}
+                           onValidate={this.handleValidation}
                            />
           </Row>
         )
@@ -286,19 +328,19 @@ export default class HistoryCollection extends React.Component {
       if (item.type === 'Employment') {
         let header = (<EmploymentSummary employment={item} />)
         return (
-          <Row
-            header={header}
-            index={i}
-            key={i}
-            first={firstRow}
-            last={lastRow}
-            onRemove={this.remove.bind(this, item.type)}
-            show={item.isNew}>
+          <Row header={header}
+               index={i}
+               key={i}
+               first={firstRow}
+               last={lastRow}
+               onRemove={this.remove.bind(this, item.type)}
+               show={item.isNew}>
             <div className="employment">
-              <EmploymentItem
-                name="Employment"
-                {...item}
-                onUpdate={this.onUpdate.bind(this, 'Employment', i)} />
+              <EmploymentItem name="Employment"
+                              {...item}
+                              onUpdate={this.onUpdate.bind(this, 'Employment', i)}
+                              onValidate={this.handleValidation}
+                              />
             </div>
           </Row>
         )
@@ -316,11 +358,17 @@ export default class HistoryCollection extends React.Component {
             {this.createOptions()}
           </div>
           <Show when={this.state.collectionType === 'Residence'}>
-            <ResidenceItem name="Residence" onUpdate={this.onNewUpdate.bind(this, 'Residence')} />
+            <ResidenceItem name="Residence"
+                           onUpdate={this.onNewUpdate.bind(this, 'Residence')}
+                           onValidate={this.handleValidation}
+                           />
           </Show>
           <Show when={this.state.collectionType === 'Employment'}>
             <div className="employment">
-              <EmploymentItem name="Employment" onUpdate={this.onNewUpdate.bind(this, 'Employment')} />
+              <EmploymentItem name="Employment"
+                              onUpdate={this.onNewUpdate.bind(this, 'Employment')}
+                              onValidate={this.handleValidation}
+                              />
             </div>
           </Show>
 
@@ -346,7 +394,7 @@ export default class HistoryCollection extends React.Component {
  * Renders a formatted summary information for a residence row
  */
 function ResidenceSummary (props) {
-  const res = props.residence || {}
+  const res = props.residence.Residence || {}
 
   let address1 = ''
   let address2 = ''

@@ -134,7 +134,7 @@ class History extends ValidationElement {
    */
   residenceRangeList () {
     let dates = []
-    if (!this.props.Residence || !this.props.Residence['List']) {
+    if (!this.props.Residence || !this.props.Residence.List) {
       return dates
     }
 
@@ -142,10 +142,12 @@ class History extends ValidationElement {
       if (!i.Residence) {
         continue
       }
-      if (i.Residence && i.Residence.Dates) {
+
+      if (i.Residence.Dates) {
         dates.push(i.Residence.Dates)
       }
     }
+
     return dates
   }
 
@@ -156,7 +158,7 @@ class History extends ValidationElement {
    */
   combinedResidenceRangeList () {
     let dates = []
-    if (!this.props.Residence || !this.props.Residence['List']) {
+    if (!this.props.Residence || !this.props.Residence.List) {
       return dates
     }
 
@@ -164,10 +166,12 @@ class History extends ValidationElement {
       if (!i) {
         continue
       }
-      if (i && i.Dates) {
+
+      if (i.Dates) {
         dates.push(i.Dates)
       }
     }
+
     return dates
   }
 
@@ -176,15 +180,20 @@ class History extends ValidationElement {
    */
   employmentRangesList () {
     let dates = []
-    if (!this.props.Employment || !this.props.Employment['List']) {
+    if (!this.props.Employment || !this.props.Employment.List) {
       return dates
     }
 
     for (let i of this.props.Employment.List) {
+      if (!i) {
+        continue
+      }
+
       if (i.Dates) {
         dates.push(i.Dates)
       }
     }
+
     return dates
   }
 
@@ -298,12 +307,13 @@ class History extends ValidationElement {
               <div>
                 { this.combinedResidenceSummaryProgress() }
                 { this.employmentSummaryProgress() }
-                <HistoryCollection
-                  addOnLoad={this.state.addOnLoad}
-                  history={this.props.History}
-                  onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
-                  onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
-                  />
+                <HistoryCollection name="timeline"
+                                   addOnLoad={this.state.addOnLoad}
+                                   history={this.props.History}
+                                   onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
+                                   onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
+                                   onValidate={this.onValidate.bind(this)}
+                                   />
               </div>
             </Show>
           </SectionView>

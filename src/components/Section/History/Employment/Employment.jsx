@@ -206,12 +206,12 @@ export default class Employment extends ValidationElement {
   visibleComponents () {
     return (
       <Collection minimum="1"
-        items={this.state.List}
-        dispatch={this.myDispatch}
-        summary={this.summary.bind(this)}
-        summaryTitle={i18n.t('history.employment.collection.summary.title')}
-        appendClass="eapp-field-wrap"
-        appendLabel={i18n.t('history.employment.collection.append')}>
+                  items={this.state.List}
+                  dispatch={this.myDispatch}
+                  summary={this.summary.bind(this)}
+                  summaryTitle={i18n.t('history.employment.collection.summary.title')}
+                  appendClass="eapp-field-wrap"
+                  appendLabel={i18n.t('history.employment.collection.append')}>
 
         <h3>{i18n.t('history.employment.heading.activity')}</h3>
         <div className="eapp-field-wrap no-label">
@@ -225,8 +225,8 @@ export default class Employment extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.datesEmployed.help">
             <DateRange name="DatesEmployed"
-              onValidate={this.handleValidation}
-            />
+                       onValidate={this.handleValidation}
+                       />
             <HelpIcon className="used-help-icon" />
           </Help>
         </div>
@@ -235,10 +235,10 @@ export default class Employment extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.employer.help">
             <Text name="Employment"
-              className="text"
-              label={i18n.t('history.employment.employer.label')}
-              onValidate={this.handleValidation}
-            />
+                  className="text"
+                  label={i18n.t('history.employment.employer.label')}
+                  onValidate={this.handleValidation}
+                  />
             <HelpIcon className="employer" />
           </Help>
         </div>
@@ -247,10 +247,10 @@ export default class Employment extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.title.help">
             <Text name="Title"
-              className="text"
-              label={i18n.t('history.employment.title.label')}
-              onValidate={this.handleValidation}
-            />
+                  className="text"
+                  label={i18n.t('history.employment.title.label')}
+                  onValidate={this.handleValidation}
+                  />
             <HelpIcon className="title" />
           </Help>
         </div>
@@ -267,8 +267,8 @@ export default class Employment extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.address.help">
             <Address name="Address"
-              label={i18n.t('history.employment.address.label')}
-            />
+                     label={i18n.t('history.employment.address.label')}
+                     />
             <HelpIcon className="address"/>
           </Help>
         </div>
@@ -310,7 +310,6 @@ export default class Employment extends ValidationElement {
     )
   }
 }
-
 
 export class EmploymentItem extends ValidationElement {
   constructor (props) {
@@ -363,7 +362,7 @@ export class EmploymentItem extends ValidationElement {
               {...this.props.EmploymentActivity}
               onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
               name="EmploymentActivity"
-            />
+              />
             <HelpIcon className="activity"/>
           </Help>
         </div>
@@ -372,10 +371,10 @@ export class EmploymentItem extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.datesEmployed.help">
             <DateRange name="Dates"
-              {...this.props.Dates}
-              onUpdate={this.onUpdate.bind(this, 'Dates')}
-              onValidate={this.handleValidation}
-            />
+                       {...this.props.Dates}
+                       onUpdate={this.onUpdate.bind(this, 'Dates')}
+                       onValidate={this.handleValidation}
+                       />
             <HelpIcon className="used-help-icon" />
           </Help>
         </div>
@@ -384,11 +383,11 @@ export class EmploymentItem extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.employer.help">
             <Text name="Employment"
-              {...this.props.Employment}
-              onUpdate={this.onUpdate.bind(this, 'Employment')}
-              className="text"
-              label={i18n.t('history.employment.employer.label')}
-            />
+                  {...this.props.Employment}
+                  onUpdate={this.onUpdate.bind(this, 'Employment')}
+                  className="text"
+                  label={i18n.t('history.employment.employer.label')}
+                  />
             <HelpIcon className="employer" />
           </Help>
         </div>
@@ -397,12 +396,12 @@ export class EmploymentItem extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.title.help">
             <Text name="Title"
-              {...this.props.Title}
-              onUpdate={this.onUpdate.bind(this, 'Title')}
-              className="text"
-              label={i18n.t('history.employment.title.label')}
-              onValidate={this.handleValidation}
-            />
+                  {...this.props.Title}
+                  onUpdate={this.onUpdate.bind(this, 'Title')}
+                  className="text"
+                  label={i18n.t('history.employment.title.label')}
+                  onValidate={this.handleValidation}
+                  />
             <HelpIcon className="title" />
           </Help>
         </div>
@@ -411,9 +410,9 @@ export class EmploymentItem extends ValidationElement {
         <div className="eapp-field-wrap no-label">
           <Help id="history.employment.status.help">
             <EmploymentStatus name="Status"
-              {...this.props.Status}
-              onUpdate={this.onUpdate.bind(this, 'Status')}
-            />
+                              {...this.props.Status}
+                              onUpdate={this.onUpdate.bind(this, 'Status')}
+                              />
             <HelpIcon className="status" />
           </Help>
         </div>
@@ -422,10 +421,10 @@ export class EmploymentItem extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.address.help">
             <Address name="Address"
-              {...this.props.Address}
-              onUpdate={this.onUpdate.bind(this, 'Address')}
-              label={i18n.t('history.employment.address.label')}
-            />
+                     {...this.props.Address}
+                     onUpdate={this.onUpdate.bind(this, 'Address')}
+                     label={i18n.t('history.employment.address.label')}
+                     />
             <HelpIcon className="address"/>
           </Help>
         </div>
@@ -434,38 +433,38 @@ export class EmploymentItem extends ValidationElement {
         <div className="eapp-field-wrap no-label">
           <Help id="history.employment.telephone.help">
             <Telephone name="Telephone"
-              {...this.props.Telephone}
-              onUpdate={this.onUpdate.bind(this, 'Telephone')}
-            />
+                       {...this.props.Telephone}
+                       onUpdate={this.onUpdate.bind(this, 'Telephone')}
+                       />
             <HelpIcon className="telephone-icon"/>
           </Help>
         </div>
 
         <Supervisor name="Supervisor"
-          {...this.props.Supervisor}
-          onUpdate={this.onUpdate.bind(this, 'Supervisor')}
-        />
+                    {...this.props.Supervisor}
+                    onUpdate={this.onUpdate.bind(this, 'Supervisor')}
+                    />
 
         <h3>{i18n.t('history.employment.heading.reference')}</h3>
         <Reference name="Reference"
-          {...this.props.Reference}
-          onUpdate={this.onUpdate.bind(this, 'Reference')}
-        />
+                   {...this.props.Reference}
+                   onUpdate={this.onUpdate.bind(this, 'Reference')}
+                   />
 
         <h3>{i18n.t('history.employment.heading.physicalAddress')}</h3>
         <PhysicalAddress name="PhysicalAddress"
-          {...this.props.PhysicalAddress}
-          onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
-          className="eapp-field-wrap"
-        />
+                         {...this.props.PhysicalAddress}
+                         onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
+                         className="eapp-field-wrap"
+                         />
 
-      <h3>{i18n.t('history.employment.heading.additionalActivity')}</h3>
-      <p>{i18n.t('history.employment.para.additionalActivity')}</p>
-      <AdditionalActivity name="Additional"
-        {...this.props.Additional}
-        onUpdate={this.onUpdate.bind(this, 'Additional')}
-        className="additional-activity eapp-field-wrap" />
-    </div>
+        <h3>{i18n.t('history.employment.heading.additionalActivity')}</h3>
+        <p>{i18n.t('history.employment.para.additionalActivity')}</p>
+        <AdditionalActivity name="Additional"
+                            {...this.props.Additional}
+                            onUpdate={this.onUpdate.bind(this, 'Additional')}
+                            className="additional-activity eapp-field-wrap" />
+      </div>
     )
-    }
+  }
 }
