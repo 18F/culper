@@ -114,8 +114,19 @@
       padding-left: 4rem;
       padding-right: 4rem;
 
+      h1,
+      h2,
+      h3,
+      h4 {
+        padding: 0;
+      }
+
       .eapp-field-wrap {
         padding: 0;
+      }
+
+      .option-list {
+        max-width: 92%;
       }
     }
 
