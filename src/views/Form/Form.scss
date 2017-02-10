@@ -1,387 +1,390 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-/* setting a blanket positioning for field wrap internals */
-/* placing outside eapp-core to ease overrides */
+/* setting a blanket positioning for field wrap internals
+   placing outside eapp-core to ease overrides */
 .eapp-field-wrap {
-	* {
-		position:relative;
-	}
+  * {
+    position: relative;
+  }
 }
 
 .eapp-core {
-	.eapp-form {
-		max-width:72.4rem;
+  .eapp-form {
+    max-width: 72.4rem;
 
-		/* moving lower DOM elements in to design safe area */
-		h1,
-		h2,
-		h3,
-		h4,
-		p {
-			padding:0 8rem 0 4rem;
-		}
-
-		.text-right {
-			width:93%;
-			input[type="checkbox"], input[type="radio"] {
-				position:absolute;
-			}
-		}
-		/* end-of-section review options */
-		.review-screen {
-			padding:0 8rem 0 4rem;
-
-			h1 {
-				padding:0;
-			}
-			.review-column {
-				float:left;
-				width:45%;
-				h3, p {
-					padding-left:0;
-					padding-right:0;
-				}
-				+ .review-column {
-					margin-left:10%;
-				}
-			}
-		}
-
-	}
-	label, input, textarea, select {
-		max-width: 64rem;
-		margin-top: 0;
-	}
-
-	/* bring in USWD validation classes and alter for our design */
-	input[type="text"], textarea, select {
-		padding-right: 3rem;
-		transition:border-color 0.4s, border-width 0.4s,background-position 0.4s;
-	}
-	input[type="checkbox"], input[type="radio"] {
-		position:absolute;
-		margin-left:0;
-		+ label {
-			position:relative;
-			top:auto;
-			left:auto;
-		}
-	}
-
-    /* placeholder should be a light gray and italics */
-    ::-webkit-input-placeholder {
-        font-style: italic;
-        color: $eapp-grey;
-    }
-    ::-ms-input-placeholder {
-        font-style: italic;
-        color: $eapp-grey;
-    }
-    ::-moz-placeholder {
-        font-style: italic;
-        color: $eapp-grey;
-        opacity: 1;
-    }
-    :-moz-placeholder {
-        font-style: italic;
-        color: $eapp-grey;
-        opacity: 1;
+    /* moving lower DOM elements in to design safe area */
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      padding: 0 8rem 0 4rem;
     }
 
-	.usa-input-error {
-		border: none;
-		padding: 0;
-		margin-top: 0;
-		right: auto;
+    .text-right {
+      width: 93%;
 
-		/* prevent USWD standards from bolding labels on inputs with errors */
-		label {
-			font-weight:400;
-		}
+      input[type='checkbox'], input[type='radio'] {
+        position: absolute;
+      }
+    }
 
-		.usa-input-error-message {
-			display: none;
-		}
+    /* end-of-section review options */
+    .review-screen {
+      padding: 0 8rem 0 4rem;
 
-		input[type="text"],
-        input[type="number"],
-        input[type="email"],
-        textarea,
-        select {
-			background: url(../img/exclamation-point.svg) no-repeat right 0.7rem center / 1.7rem auto;
-			box-shadow: none;
-			border-width:2px;
-			width: 100%;
-		}
-	}
+      h1 {
+        padding: 0;
+      }
 
-	input[type="text"],
-    input[type="number"],
-    input[type="email"],
+      .review-column {
+        float: left;
+        width: 45%;
+
+        h3, p {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        + .review-column {
+          margin-left: 10%;
+        }
+      }
+    }
+  }
+
+  label, input, textarea, select {
+    max-width: 64rem;
+    margin-top: 0;
+  }
+
+  /* bring in USWD validation classes and alter for our design */
+  input[type='text'], textarea, select {
+    padding-right: 3rem;
+    transition: border-color 0.4s, border-width 0.4s, background-position 0.4s;
+  }
+
+  input[type='checkbox'], input[type='radio'] {
+    position: absolute;
+    margin-left: 0;
+
+    + label {
+      position: relative;
+      top: auto;
+      left: auto;
+    }
+  }
+
+  /* placeholder should be a light gray and italics */
+  ::-webkit-input-placeholder {
+    font-style: italic;
+    color: $eapp-grey;
+  }
+
+  ::-ms-input-placeholder {
+    font-style: italic;
+    color: $eapp-grey;
+  }
+
+  ::-moz-placeholder {
+    font-style: italic;
+    color: $eapp-grey;
+    opacity: 1;
+  }
+
+  :-moz-placeholder {
+    font-style: italic;
+    color: $eapp-grey;
+    opacity: 1;
+  }
+
+  .usa-input-error {
+    border: none;
+    padding: 0;
+    margin-top: 0;
+    right: auto;
+
+    /* prevent USWD standards from bolding labels on inputs with errors */
+    label {
+      font-weight: 400;
+    }
+
+    .usa-input-error-message {
+      display: none;
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='email'],
     textarea,
     select {
-		background-position:100% center;
+      background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem auto;
+      box-shadow: none;
+      border-width: 2px;
+      width: 100%;
+    }
+  }
 
-		&:focus {
-			box-shadow: 3px 1px 16px 22px 12px black;
-		}
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  textarea,
+  select {
+    background-position: 100% center;
 
-		&.usa-input-success {
-			box-shadow: none;
-			background: url(../img/checkmark.svg) no-repeat right 0.7rem center / 1.7rem auto;
-			border-width:2px;
-			width: calc(100% * 1);
-		}
-	}
-
-	.eapp-field-wrap {
-		/* position: relative; */
-		margin-bottom: 4.9rem;
-		padding:0 3rem 0 4rem;
-
-		/* fix for nested field wrappers */
-		.eapp-field-wrap {
-			margin-bottom:0;
-			padding:0;
-
-			h2, h3, h4, h5, h6 {
-				padding:0;
-			}
-		}
-
-		.datecontrol {
-			display:inline-block;
-		}
-
-		.eapp-short-input {
-			min-width: 0;
-
-			input, select, textarea {
-				max-width: none;
-			}
-		}
-
-		/* handle option list blocks, basic structure */
-		.option-list {
-			display:inline-block;
-			padding-top: 0.3rem;
-			max-width: 93%;
-		}
-		.option-list.branch {
-// 			line-height:4rem;
-	        label {
-	            width: 15rem;
-	        }
-		}
-
-		/* handle block style radio and checkboxes */
-		.eapp-blocks-radio, .eapp-blocks-checkbox {
-			display: inline-block;
-
-			label {
-				display: block;
-				position:relative;
-				top:0;
-				min-width: 7.7rem;
-				margin-bottom: 1.2rem;
-				margin-right: 1.6rem;
-                margin-top: 0;
-				text-align: center;
-				background: $eapp-grey-light;
-				border: 1px solid $eapp-grey-dark;
-                cursor: pointer;
-				transition:background-color 0.3s, color 0.3s, border-color 0.3s;
-				z-index:1;
-				input {
-					position:absolute;
-				}
-			}
-
-            label.usa-input-focus {
-                box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf
-            }
-
-			label.checked, label:hover {
-				color: #fff;
-				border: 1px solid $eapp-green;
-				background: $eapp-green;
-			}
-
-            label.checked.usa-input-focus,
-            label.checked:focus,
-            input [type="checkbox"].usa-input-focus,
-            input [type="checkbox"]:focus {
-                box-shadow: none;
-            }
-
-		}
-
-		/* handle block style radio and checkboxes that are NOT toggles */
-		.eapp-blocks-radio, .eapp-blocks-checkbox {
-			label.no-toggle {
-				display: block;
-				margin-bottom: 1.2rem;
-				margin-right: 1.6rem;
-				text-align: center;
-				background: transparent;
-				border: none;
-			}
-
-			label.no-toggle.checked, label.no-toggle:hover {
-				color: initial;
-				border: none;
-				background: transparent;
-			}
-		}
-
-		.eapp-extend-labels {
-			.eapp-blocks-radio, .eapp-blocks-checkbox {
-				min-width: 12rem;
-				line-height: 1;
-
-				i {
-					display:none;
-				}
-
-				label {
-					position: relative;
-					margin-bottom:3.3rem;
-					height:7.6rem;
-					min-width: 12rem;
-					cursor:pointer;
-
-					input[type="checkbox"], input[type="radio"] {
-						height:1px;
-						width:1px;
-					}
-					span {
-						display: block;
-						position: absolute;
-						top: 8rem;
-						left: 0;
-						width: 100%;
-						line-height: 1.1;
-						font-size: 1.7rem;
-						color: $eapp-grey-dark;
-					}
-
-					.hair-icon,
-                    .eye-icon,
-                    .sex-icon,
-                    .relationship-icon {
-						position: absolute;
-						top: 0;
-						left: 0;
-						height: 100%;
-						width: 100%;
-						transition: all 0.3s;
-						border-radius: 0;
-
-						svg, img {
-							position: absolute;
-							top: 1.4rem;
-							left: 50%;
-							height: 4.6rem;
-							width: 4.6rem;
-							margin-left: -2.3rem;
-							transition: all 0.3s;
-						}
-					}
-
-					&:hover .hair-icon,
-                    &.checked .hair-icon,
-                    &:hover .eye-icon,
-                    &.checked .eye-icon,
-                    &:hover .sex-icon,
-                    &.checked .sex-icon,
-                    &:hover .relationship-icon,
-                    &.checked .relationship-icon {
-						border-radius: 50%;
-						top: 1.4rem;
-						left: 50%;
-						width: 4.6rem;
-						height: 4.6rem;
-						background-color: #f7f7f7;
-						margin-left: -2.3rem;
-
-						svg, img {
-							top: 0.8rem;
-							height: 3rem;
-							width: 3rem;
-							margin-left: -1.5rem;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	/* temporary fix for sex icon coloration */
-	/* @todo create more permanent fix */
-	.sex .eapp-blocks-radio label:hover i, .sex .eapp-blocks-radio label.checked i {
-		color: $eapp-grey-dark !important;
-	}
-
-	label {
-		display:block;
-		position:absolute;
-		top:-3.9rem;
-		left:0;
-		z-index:-1;
-		color: $eapp-grey-dark;
-
-		> input[type="radio"] {
-			max-width: 0;
-		}
-	}
-
-	button {
-		position: relative;
-	}
-
-	#titles {
-		margin-bottom: 1.2rem;
-	}
-
-	#actions {
-		margin-top: 5.7rem;
-	}
-
-    .review-btns {
-        button {
-            height: 5.5rem;
-        }
+    &:focus {
+      box-shadow: 3px 1px 16px 22px 12px black;
     }
 
-    .intro {
+    &.usa-input-success {
+      box-shadow: none;
+      background: url('../img/checkmark.svg') no-repeat right 0.7rem center / 1.7rem auto;
+      border-width: 2px;
+      width: calc(100% * 1);
+    }
+  }
+
+  .eapp-field-wrap {
+    /* position: relative; */
+    margin-bottom: 4.9rem;
+    padding: 0 3rem 0 4rem;
+
+    /* fix for nested field wrappers */
+    .eapp-field-wrap {
+      margin-bottom: 0;
+      padding: 0;
+
+      h2, h3, h4, h5, h6 {
+        padding: 0;
+      }
+    }
+
+    .datecontrol {
+      display: inline-block;
+    }
+
+    .eapp-short-input {
+      min-width: 0;
+
+      input, select, textarea {
+        max-width: none;
+      }
+    }
+
+    /* handle option list blocks, basic structure */
+    .option-list {
+      display: inline-block;
+      padding-top: 0.3rem;
+      max-width: 93%;
+    }
+    .option-list.branch {
+      label {
+        width: 15rem;
+      }
+    }
+
+    /* handle block style radio and checkboxes */
+    .eapp-blocks-radio, .eapp-blocks-checkbox {
+      display: inline-block;
+
+      label {
+        display: block;
+        position: relative;
+        top: 0;
+        min-width: 7.7rem;
+        margin-bottom: 1.2rem;
+        margin-right: 1.6rem;
+        margin-top: 0;
+        text-align: center;
+        background: $eapp-grey-light;
+        border: 1px solid $eapp-grey-dark;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        z-index: 1;
+
+        input {
+          position: absolute;
+        }
+      }
+
+      label.usa-input-focus {
+        box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
+      }
+
+      label.checked, label:hover {
+        color: #fff;
+        border: 1px solid $eapp-green;
+        background: $eapp-green;
+      }
+
+      label.checked.usa-input-focus,
+      label.checked:focus,
+      input [type='checkbox'].usa-input-focus,
+      input [type='checkbox']:focus {
+        box-shadow: none;
+      }
+    }
+
+    /* handle block style radio and checkboxes that are NOT toggles */
+    .eapp-blocks-radio, .eapp-blocks-checkbox {
+      label.no-toggle {
+        display: block;
+        margin-bottom: 1.2rem;
+        margin-right: 1.6rem;
+        text-align: center;
+        background: transparent;
+        border: none;
+      }
+
+      label.no-toggle.checked, label.no-toggle:hover {
+        color: initial;
+        border: none;
+        background: transparent;
+      }
+    }
+
+    .eapp-extend-labels {
+      .eapp-blocks-radio, .eapp-blocks-checkbox {
+        min-width: 12rem;
+        line-height: 1;
+
         i {
-            font-size: 15rem;
-            color: $eapp-green;
+          display: none;
         }
 
-        h1 {
-            margin-top: 2rem;
+        label {
+          position: relative;
+          margin-bottom: 3.3rem;
+          height: 7.6rem;
+          min-width: 12rem;
+          cursor: pointer;
+
+          input[type='checkbox'], input[type='radio'] {
+            height: 1px;
+            width: 1px;
+          }
+
+          span {
+            display: block;
+            position: absolute;
+            top: 8rem;
+            left: 0;
+            width: 100%;
+            line-height: 1.1;
+            font-size: 1.7rem;
+            color: $eapp-grey-dark;
+          }
+
+          .hair-icon,
+          .eye-icon,
+          .sex-icon,
+          .relationship-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: all 0.3s;
+            border-radius: 0;
+
+            svg, img {
+              position: absolute;
+              top: 1.4rem;
+              left: 50%;
+              height: 4.6rem;
+              width: 4.6rem;
+              margin-left: -2.3rem;
+              transition: all 0.3s;
+            }
+          }
+
+          &:hover .hair-icon,
+          &.checked .hair-icon,
+          &:hover .eye-icon,
+          &.checked .eye-icon,
+          &:hover .sex-icon,
+          &.checked .sex-icon,
+          &:hover .relationship-icon,
+          &.checked .relationship-icon {
+            border-radius: 50%;
+            top: 1.4rem;
+            left: 50%;
+            width: 4.6rem;
+            height: 4.6rem;
+            background-color: #f7f7f7;
+            margin-left: -2.3rem;
+
+            svg, img {
+              top: 0.8rem;
+              height: 3rem;
+              width: 3rem;
+              margin-left: -1.5rem;
+            }
+          }
         }
+      }
     }
+  }
+
+  /* temporary fix for sex icon coloration
+     @todo create more permanent fix */
+  .sex .eapp-blocks-radio label:hover i,
+  .sex .eapp-blocks-radio label.checked i {
+    color: $eapp-grey-dark !important;
+  }
+
+  label {
+    display: block;
+    position: absolute;
+    top: -3.9rem;
+    left: 0;
+    z-index: -1;
+    color: $eapp-grey-dark;
+
+    > input[type='radio'] {
+      max-width: 0;
+    }
+  }
+
+  button {
+    position: relative;
+  }
+
+  .review-btns {
+    button {
+      height: 5.5rem;
+    }
+  }
+
+  .intro {
+    i {
+      font-size: 15rem;
+      color: $eapp-green;
+    }
+
+    h1 {
+      margin-top: 2rem;
+    }
+  }
 }
 
-#login {
-    #info {
-        margin-bottom: 1rem;
-    }
+.login {
+  .info {
+    margin-bottom: 1rem;
+  }
 }
 
 .design {
+  .eapp-field-wrap {
+    border: 1px solid #090 !important;
+
     .eapp-field-wrap {
-        border: 1px solid #090 !important;
-
-        .eapp-field-wrap {
-            background-color: #fcfca4 !important;
-        }
+      background-color: #fcfca4 !important;
     }
+  }
 
-    .help {
-        border: 1px solid #009 !important;
-    }
+  .help {
+    border: 1px solid #009 !important;
+  }
 }

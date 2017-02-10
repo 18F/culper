@@ -1,53 +1,52 @@
 @import 'eqip-colors';
 
 .comments {
-    &.active {
-        border-left: 0.75rem solid $eapp-grey-light;
+  &.active {
+    border-left: 0.75rem solid $eapp-grey-light;
+  }
+
+  /* these importants need removed after label-based refactoring */
+  .eapp-field-wrap {
+    margin-bottom: 0 !important;
+  }
+
+  h4 {
+    margin-top: 0;
+  }
+
+  &.eapp-field-wrap {
+    margin-bottom: 4.6rem !important;
+  }
+
+  > a {
+    i {
+      margin-left: 1rem;
     }
 
-	/* these importants need removed after label-based refactoring */
-	.eapp-field-wrap {
-		margin-bottom:0 !important;
-	}
+    &.add,
+    &.add:link,
+    &.add:visited,
+    &.add:hover,
+    &.add:active {
+      color: $eapp-blue;
+      text-decoration: none;
 
-	h4 {
-		margin-top:0;
-	}
-
-	&.eapp-field-wrap {
-		margin-bottom:4.6rem !important;
-	}
-
-    > a {
-
-        i {
-            margin-left: 1rem;
-        }
-
-        &.add,
-        &.add:link,
-        &.add:visited,
-        &.add:hover,
-        &.add:active {
-            color: $eapp-blue;
-            text-decoration: none;
-
-            span {
-                border-bottom: 1px $eapp-blue dashed;
-            }
-        }
-
-        &.remove,
-        &.remove:link,
-        &.remove:visited,
-        &.remove:hover,
-        &.remove:active {
-            color: $eapp-red;
-            text-decoration: none;
-
-            span {
-                border-bottom: 1px $eapp-red dashed;
-            }
-        }
+      span {
+        border-bottom: 1px $eapp-blue dashed;
+      }
     }
+
+    &.remove,
+    &.remove:link,
+    &.remove:visited,
+    &.remove:hover,
+    &.remove:active {
+      color: $eapp-red;
+      text-decoration: none;
+
+      span {
+        border-bottom: 1px $eapp-red dashed;
+      }
+    }
+  }
 }

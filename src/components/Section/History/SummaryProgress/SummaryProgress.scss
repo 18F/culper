@@ -1,82 +1,82 @@
 @import 'eqip-colors';
 
 .summary {
-    .content {
-        display: inline-block;
-        width: 80%;
+  .content {
+    display: inline-block;
+    width: 80%;
 
-        .summary-icon {
-            display: inline-block;
-            height: 100%;
-            width: auto;
-            transition: all 0.3s;
-            border-radius: 0;
-            vertical-align: middle;
+    .summary-icon {
+      display: inline-block;
+      height: 100%;
+      width: auto;
+      transition: all 0.3s;
+      border-radius: 0;
+      vertical-align: middle;
 
-            svg, img {
-                height: 4.6rem;
-                width: 4.6rem;
-                transition: all 0.3s;
-            }
-        }
-
-        .title {
-            padding-left: 1rem;
-            font-weight: bolder;
-        }
-
-        .progress {
-            position: relative;
-            height: 0.7rem;
-            background: $eapp-grey-lightest;
-
-            .filled {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                background: $eapp-green;
-                width: 0;
-                transition: width 0.8s;
-            }
-
-            .gap {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                background: none;
-                width: 0;
-                transition: width 0.8s;
-            }
-        }
+      svg, img {
+        height: 4.6rem;
+        width: 4.6rem;
+        transition: all 0.3s;
+      }
     }
 
-    .stats {
-        display: inline-block;
-        width: 20%;
-        text-align: center;
-        vertical-align: bottom;
-
-        .fraction {
-            .completed {
-                font-weight: bold;
-                font-size: 26pt;
-            }
-
-            .slash {
-                font-weight: bold;
-                font-size: 26pt;
-            }
-
-            .total {
-                font-weight: bold;
-                font-size: 26pt;
-            }
-        }
-
-        .unit {
-            font-weight: bold;
-        }
+    .title {
+      padding-left: 1rem;
+      font-weight: bolder;
     }
+
+    .progress {
+      position: relative;
+      height: 0.7rem;
+      background: $eapp-grey-lightest;
+
+      .filled {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: $eapp-green;
+        width: 0;
+        transition: width 0.8s;
+      }
+
+      .gap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: none;
+        width: 0;
+        transition: width 0.8s;
+      }
+    }
+  }
+
+  .stats {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    vertical-align: bottom;
+
+    .fraction {
+      .completed {
+        font-weight: bold;
+        font-size: 26pt;
+      }
+
+      .slash {
+        font-weight: bold;
+        font-size: 26pt;
+      }
+
+      .total {
+        font-weight: bold;
+        font-size: 26pt;
+      }
+    }
+
+    .unit {
+      font-weight: bold;
+    }
+  }
 }

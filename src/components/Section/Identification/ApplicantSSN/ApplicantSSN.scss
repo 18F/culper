@@ -1,28 +1,22 @@
 .ssn {
-    .first {
-        width: 9rem !important;
-        display: inline-block;
+  .first {
+    width: 9rem !important;
+    display: inline-block;
+  }
 
-        input {}
-    }
+  .middle {
+    width: 8rem !important;
+    display: inline-block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 
-    .middle {
-        width: 8rem !important;
-        display: inline-block;
-        margin-left: 2rem;
-        margin-right: 2rem;
+  .last {
+    width: 10rem !important;
+    display: inline-block;
+  }
 
-        input {}
-    }
-
-    .last {
-        width: 10rem !important;
-        display: inline-block;
-
-        input {}
-    }
-
-    .coupled-flags {
-        padding-left: 18rem;
-    }
+  .coupled-flags {
+    padding-left: 18rem;
+  }
 }

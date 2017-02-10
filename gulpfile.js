@@ -3,6 +3,7 @@ var del = require('del')
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var sass = require('gulp-sass')
+var sasslint = require('@18f/stylelint-rules')
 require('dotenv').config()
 
 var paths = {
@@ -11,11 +12,19 @@ var paths = {
     './src/**/*.js*'
   ],
   sassvars: './src/sass',
-  sass: [
-    './node_modules/font-awesome/**/*.scss',
-    './node_modules/uswds/src/stylesheets/**/*.scss',
-    './src/**/*.scss'
-  ],
+  sass: {
+    rules: {
+      config: '../../../stylelint.config.js'
+    },
+    vars: './src/sass',
+    local: [
+      './src/**/*.s+(a|c)ss'
+    ],
+    global: [
+      './node_modules/font-awesome/**/*.s+(a|c)ss',
+      './node_modules/uswds/src/stylesheets/**/*.s+(a|c)ss'
+    ]
+  },
   html: ['./src/**/*.html'],
   fonts: [
     './node_modules/font-awesome/fonts/**/*',
@@ -39,6 +48,7 @@ gulp.task('clean', clean)
 gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
+gulp.task('lint', [], sasslint(paths.sass.local[0], paths.sass.rules))
 gulp.task('sass', ['clean'], convert)
 gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
@@ -83,9 +93,9 @@ function compile () {
 function convert () {
   'use strict'
   return gulp
-    .src(paths.sass)
+    .src(paths.sass.global.concat(paths.sass.local))
     .pipe(sass({
-	    includePaths: [ paths.sassvars ]
+      includePaths: [ paths.sass.vars ]
     }))
     .pipe(concat(paths.css))
     .pipe(gulp.dest(paths.destination.css))
@@ -93,5 +103,5 @@ function convert () {
 
 function watchdog () {
   'use strict'
-  return gulp.watch([paths.js, paths.sass], ['build'])
+  return gulp.watch([paths.js, paths.sass.local], ['build'])
 }
