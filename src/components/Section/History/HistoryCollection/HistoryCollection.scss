@@ -1,17 +1,14 @@
 .history-collection {
-  .fa.fa-briefcase {
-    color: #5c606c;
-  }
-  .fa.fa-home {
-    color: #17bdec;
-  }
-
   .index {
     width: 13rem;
-    .fa {
+
+    .svg {
+      height: 1.3rem;
+      width: auto;
       margin-right: 1rem;
     }
   }
+
   .dates {
     width: 12rem !important;
   }

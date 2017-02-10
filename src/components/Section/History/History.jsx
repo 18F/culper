@@ -197,7 +197,7 @@ class History extends ValidationElement {
                        total="10"
                        >
         <div className="summary-icon">
-          <Svg src="img/neighborhood-icon.svg" />
+          <Svg src="img/residence-house.svg" />
         </div>
       </SummaryProgress>
     )
@@ -215,7 +215,7 @@ class History extends ValidationElement {
                        total="10"
                        >
         <div className="summary-icon">
-          <Svg src="img/neighborhood-icon.svg" />
+          <Svg src="img/residence-house.svg" />
         </div>
       </SummaryProgress>
     )
@@ -230,7 +230,7 @@ class History extends ValidationElement {
                        total="10"
                        >
         <div className="summary-icon">
-          <Svg src="img/neighborhood-icon.svg" />
+          <Svg src="img/employer-briefcase.svg" />
         </div>
       </SummaryProgress>
     )
@@ -267,7 +267,7 @@ class History extends ValidationElement {
               <div className="add-options">
                 <div className="table">
                   <div className="table-cell add-residence">
-                    <i className="fa fa-home" aria-hidden="true"></i>
+                    <Svg src="img/residence-house.svg" />
                     <div className="title">
                       Start with your present residence
                     </div>
@@ -279,7 +279,7 @@ class History extends ValidationElement {
                     </div>
                   </div>
                   <div className="table-cell add-employment">
-                    <i className="fa fa-briefcase" aria-hidden="true"></i>
+                    <Svg src="img/employer-briefcase.svg" />
                     <div className="title">
                       Start with your present employer
                     </div>
@@ -333,10 +333,11 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.employment.heading.employment')}</h2>
             <p>{i18n.t('history.employment.para.employment')}</p>
             { this.employmentSummaryProgress() }
-            <Employment
-              {...this.props.Employment}
-              onUpdate={this.onUpdate.bind(this, 'Employment')}
-              />
+            <Employment name="employment"
+                        {...this.props.Employment}
+                        onUpdate={this.onUpdate.bind(this, 'Employment')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
             <h2>{i18n.t('history.employment.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.employment.para.exiting')} />
           </SectionView>

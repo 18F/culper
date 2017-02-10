@@ -99,10 +99,11 @@ export default class ValidationElement extends React.Component {
 
   mergeError (previous, error) {
     let codes = []
+    let errorString = this.flattenObject(error)
 
     // Clean up any errors which are no longer valid
     previous.forEach((c) => {
-      if (error && error.endsWith('.') && c.indexOf(error) > -1) {
+      if (errorString && errorString.endsWith('.') && c.indexOf(errorString) > -1) {
         return
       }
 
@@ -110,8 +111,8 @@ export default class ValidationElement extends React.Component {
     })
 
     // Add the error if it does not already exist
-    if (error && error.length && !error.endsWith('.') && !codes.includes(error)) {
-      codes.push(error)
+    if (errorString && errorString.length && !errorString.endsWith('.') && !codes.includes(errorString)) {
+      codes.push(errorString)
     }
 
     return codes

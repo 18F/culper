@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Text, RadioGroup, Radio, Show } from '../../../Form'
+import { Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence/Residence'
 import { EmploymentItem } from '../Employment/Employment'
 
@@ -76,7 +76,7 @@ export default class HistoryCollection extends React.Component {
 
     let list = []
     if (history.Residence && history.Residence.List) {
-      let residences = history.Residence.List.map (r => {
+      let residences = history.Residence.List.map(r => {
         r.type = 'Residence'
         return r
       })
@@ -84,7 +84,7 @@ export default class HistoryCollection extends React.Component {
     }
 
     if (history.Employment && history.Employment.List) {
-      let employment = history.Employment.List.map (r => {
+      let employment = history.Employment.List.map(r => {
         r.type = 'Employment'
         return r
       })
@@ -116,7 +116,6 @@ export default class HistoryCollection extends React.Component {
     return b.Dates.to.getTime() - a.Dates.to.getTime()
   }
 
-
   /**
    * Updates an existing item in the collection.
    */
@@ -140,7 +139,6 @@ export default class HistoryCollection extends React.Component {
     this.setState({
       List: items
     }, () => {
-
       // filter list by current collection type being updated
       let filtered = this.state.List.filter(i => {
         return i.type === type
@@ -177,7 +175,7 @@ export default class HistoryCollection extends React.Component {
       ...this.state.currentNewItem.values
     })
     this.setState({ currentNewItem: null, collectionType: null }, () => {
-      this.doUpdate(type, items, ()=> {
+      this.doUpdate(type, items, () => {
         this.refs.createOptions.scrollIntoView()
       })
     })
@@ -213,7 +211,7 @@ export default class HistoryCollection extends React.Component {
    * Handles when user is choosing between which new object type to create. This includes
    * Residence | Employment | School
    */
-  handleCollectionTypeChange(e) {
+  handleCollectionTypeChange (e) {
     let type = e.target.value
     this.selectCollectionType(type)
   }
@@ -240,13 +238,14 @@ export default class HistoryCollection extends React.Component {
   createOptions () {
     return (
       <RadioGroup className="option-list eapp-extend-labels create"
-        name="createOptions"
-        selectedValue={this.state.collectionType}>
+                  name="createOptions"
+                  selectedValue={this.state.collectionType}>
         <Radio
           label="Residence"
           value="Residence"
           onChange={this.handleCollectionTypeChange.bind(this)}>
           <div className="eye-icon">
+            <Svg src="img/residence-house.svg" />
           </div>
         </Radio>
         <Radio
@@ -254,60 +253,63 @@ export default class HistoryCollection extends React.Component {
           value="Employment"
           onChange={this.handleCollectionTypeChange.bind(this)}>
           <div className="eye-icon">
+            <Svg src="img/employer-briefcase.svg" />
           </div>
         </Radio>
       </RadioGroup>
-      )
+    )
   }
 
   render () {
+    const listItems = this.state.List.map((item, i, arr) => {
+      let firstRow = (i === 0)
+      let lastRow = arr.length === (i + 1)
+      if (item.type === 'Residence') {
+        let header = (<ResidenceSummary residence={item} />)
+        return (
+          <Row
+            header={header}
+            index={i}
+            key={i}
+            first={firstRow}
+            last={lastRow}
+            onRemove={this.remove.bind(this, item.type)}
+            show={item.isNew}>
+            <ResidenceItem name="Residence"
+                           {...item}
+                           onUpdate={this.onUpdate.bind(this, 'Residence', i)}
+                           />
+          </Row>
+        )
+      }
+
+      if (item.type === 'Employment') {
+        let header = (<EmploymentSummary employment={item} />)
+        return (
+          <Row
+            header={header}
+            index={i}
+            key={i}
+            first={firstRow}
+            last={lastRow}
+            onRemove={this.remove.bind(this, item.type)}
+            show={item.isNew}>
+            <div className="employment">
+              <EmploymentItem
+                name="Employment"
+                {...item}
+                onUpdate={this.onUpdate.bind(this, 'Employment', i)} />
+            </div>
+          </Row>
+        )
+      }
+
+      return null
+    })
+
     return (
       <div className="history-collection collection">
-        {
-          this.state.List.map((item, i, arr) => {
-            let firstRow = (i === 0)
-            let lastRow = arr.length === (i + 1)
-            if (item.type === 'Residence') {
-              let header = (<ResidenceSummary residence={item} />)
-              return (
-              <Row
-                header={header}
-                index={i}
-                key={i}
-                first={firstRow}
-                last={lastRow}
-                onRemove={this.remove.bind(this, item.type)}
-                show={item.isNew}>
-                <ResidenceItem name="Residence"
-                  {...item}
-                  onUpdate={this.onUpdate.bind(this, 'Residence', i)}
-                />
-              </Row>
-              )
-            }
-
-            if (item.type === 'Employment') {
-              let header = (<EmploymentSummary employment={item} />)
-              return (
-              <Row
-                header={header}
-                index={i}
-                key={i}
-                first={firstRow}
-                last={lastRow}
-                onRemove={this.remove.bind(this, item.type)}
-                show={item.isNew}>
-                <div className="employment">
-                  <EmploymentItem
-                    name="Employment"
-                    {...item}
-                    onUpdate={this.onUpdate.bind(this, 'Employment', i)} />
-                </div>
-              </Row>
-              )
-            }
-          })
-        }
+        { listItems }
         <div>
           <h3>Add new</h3>
           <div className="eapp-field-wrap" ref="createOptions">
@@ -336,7 +338,7 @@ export default class HistoryCollection extends React.Component {
           </Show>
         </div>
       </div>
-      )
+    )
   }
 }
 
@@ -376,13 +378,13 @@ function ResidenceSummary (props) {
   return (
     <div className="table">
       <div className="table-cell index">
-        <i className="fa fa-home" aria-hidden="true"></i>
+        <Svg src="img/residence-house.svg" />
         {i18n.t('history.residence.collection.summary.item')}:
       </div>
       <div className="table-cell employer">{address1}<br />{address2}</div>
       <div className="table-cell dates">{from}-{to}</div>
     </div>
-    )
+  )
 }
 
 /**
@@ -396,40 +398,39 @@ function EmploymentSummary (props) {
   return (
     <div className="table">
       <div className="table-cell index">
-        <i className="fa fa-briefcase" aria-hidden="true"></i>
+        <Svg src="img/employer-briefcase.svg" />
         {i18n.t('history.employment.collection.summary.employer')}:
       </div>
       <div className="table-cell employer">{ employer }</div>
       <div className="table-cell dates">{ dates }</div>
     </div>
-    )
+  )
 }
 
-function dateSummary(item) {
+function dateSummary (item) {
+  let noDateLabel = i18n.t('history.employment.noDate.label')
+  function format (d) {
+    return `${d.getMonth()}/${d.getFullYear()}`
+  }
 
-    let noDateLabel = i18n.t('history.employment.noDate.label')
-    function format (d) {
-      return `${d.getMonth()}/${d.getFullYear()}`
-    }
+  let vals = []
+  if (!item.Dates) {
+    return ''
+  }
 
-    let vals = []
-    if (!item.Dates) {
-      return ''
-    }
+  if (item.Dates.from) {
+    vals.push(format(item.Dates.from))
+  } else {
+    vals.push(noDateLabel)
+  }
 
-    if (item.Dates.from) {
-      vals.push(format(item.Dates.from))
-    } else {
-      vals.push(noDateLabel)
-    }
+  if (item.Dates.to) {
+    vals.push(format(item.Dates.to))
+  } else {
+    vals.push(noDateLabel)
+  }
 
-    if (item.Dates.to) {
-      vals.push(format(item.Dates.to))
-    } else {
-      vals.push(noDateLabel)
-    }
-
-    return vals.join('-')
+  return vals.join('-')
 }
 
 /**
@@ -464,13 +465,13 @@ class Row extends React.Component {
     const klassLast = this.props.last === true ? 'last' : ''
     return (
       <div className="item">
-          <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-            <Show when={this.props.first === true}>
-              <div className="title">
-                <h4>{i18n.t('collection.summary')}</h4>
-                <hr />
-              </div>
-            </Show>
+        <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
+          <Show when={this.props.first === true}>
+            <div className="title">
+              <h4>{i18n.t('collection.summary')}</h4>
+              <hr />
+            </div>
+          </Show>
           <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this)}>
             <div className="brief">
               { this.props.header }
@@ -493,7 +494,7 @@ class Row extends React.Component {
           { this.state.show && this.props.children }
         </div>
       </div>
-      )
+    )
   }
 }
 
