@@ -1,5 +1,15 @@
 .employment {
   .collection {
+    .table-cell.index {
+      width: 10rem;
+
+      .svg {
+        height: 1.3rem;
+        width: auto;
+        margin-right: 1rem;
+      }
+    }
+
     .table-cell.dates {
       width: 16rem;
     }

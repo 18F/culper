@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone } from '../../../Form'
+import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Svg } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -164,7 +164,10 @@ export default class Employment extends ValidationElement {
 
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('history.employment.collection.summary.employer')} {index + 1}:</div>
+        <div className="table-cell index">
+          <Svg src="img/employer-briefcase.svg" />
+          {i18n.t('history.employment.collection.summary.employer')}:
+        </div>
         <div className="table-cell employer">{ employer }</div>
         <div className="table-cell dates">{ dates }</div>
       </div>

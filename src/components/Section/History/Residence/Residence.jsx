@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address } from '../../../Form'
+import { ValidationElement, Collection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Svg } from '../../../Form'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = new Date(new Date() - (1000 * 60 * 60 * 24 * 365 * 3))
@@ -228,7 +228,10 @@ export default class Residence extends ValidationElement {
 
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('history.residence.collection.summary.item')} {index + 1}:</div>
+        <div className="table-cell index">
+          <Svg src="img/residence-house.svg" />
+          {i18n.t('history.residence.collection.summary.item')} {index + 1}:
+        </div>
         <div className="table-cell">{address1}<br />{address2}</div>
         <div className="table-cell dates">{from}-{to}</div>
       </div>
