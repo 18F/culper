@@ -879,7 +879,7 @@ const en = {
         label: 'If you need to provide any additional comments about this information enter them below'
       },
       help: {
-        number: 'Enter your passport number. If you possess a card, check the Passport card option',
+        number: 'Enter your passport number. If you possess a card, select the Passport card option',
         issued: 'Enter the date your passport was issued',
         expiration: 'Enter the date your passport expired'
       },
@@ -890,13 +890,13 @@ const en = {
   },
   alias: {
     maiden: {
-      help: 'Provide if this is your maiden name'
+      help: 'Select if this is your maiden name'
     },
     reason: {
-      help: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc...'
+      help: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.'
     },
     used: {
-      help: 'Provide dates this name was used'
+      help: 'Provide the full range of dates this name was used'
     }
   },
   reference: {
