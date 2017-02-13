@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence/Residence'
 import { EmploymentItem } from '../Employment/Employment'
+import { gaps } from '../dateranges'
 
 /**
  * Contains a collection of Residence and Employment information. This component
@@ -51,8 +52,8 @@ export default class HistoryCollection extends ValidationElement {
     let complexStatus = null
     if (codes.length > 0) {
       complexStatus = false
-    // } else if (this.isValid()) {
-    //   complexStatus = true
+      // } else if (this.isValid()) {
+      //   complexStatus = true
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
@@ -132,18 +133,21 @@ export default class HistoryCollection extends ValidationElement {
    * with date range values.
    */
   sort (a, b) {
-    if (!a.Dates && !b.Dates) {
+    console.log('sort a:', a)
+    console.log('sort b:', b)
+
+    if (!a.Item.Dates && !b.Item.Dates) {
       return 0
     }
-    if (!a.Dates || !a.Dates.to) {
+    if (!a.Item.Dates || !a.Item.Dates.to) {
       return -1
     }
 
-    if (!b.Dates || !b.Dates.to) {
+    if (!b.Item.Dates || !b.Item.Dates.to) {
       return 1
     }
 
-    return b.Dates.to.getTime() - a.Dates.to.getTime()
+    return b.Item.Dates.to.getTime() - a.Item.Dates.to.getTime()
   }
 
   /**
@@ -175,18 +179,18 @@ export default class HistoryCollection extends ValidationElement {
       })
 
       switch (type) {
-        case 'Residence':
-          if (this.props.onResidenceUpdate) {
-            this.props.onResidenceUpdate({ List: filtered })
-          }
-          break
-        case 'Employment':
-          if (this.props.onEmploymentUpdate) {
-            this.props.onEmploymentUpdate({ List: filtered })
-          }
-          break
-        default:
-          console.warn('No update callback method was provided in HistoryCollection')
+      case 'Residence':
+        if (this.props.onResidenceUpdate) {
+          this.props.onResidenceUpdate({ List: filtered })
+        }
+        break
+      case 'Employment':
+        if (this.props.onEmploymentUpdate) {
+          this.props.onEmploymentUpdate({ List: filtered })
+        }
+        break
+      default:
+        console.warn('No update callback method was provided in HistoryCollection')
       }
       if (callback) {
         callback()
@@ -293,13 +297,92 @@ export default class HistoryCollection extends ValidationElement {
   }
 
   render () {
+    let residenceGaps = gaps(this.state.List.map(item => {
+      if (item.type !== 'Residence' || !item.Item || !item.Item.Dates) {
+        return {}
+      }
+
+      return item.Item.Dates
+    }))
+
+    let employmentGaps = gaps(this.state.List.map(item => {
+      if (item.type !== 'Employment' || !item.Item || !item.Item.Dates) {
+        return {}
+      }
+
+      return item.Item.Dates
+    }))
+
     const listItems = this.state.List.map((item, i, arr) => {
       let firstRow = (i === 0)
       let lastRow = arr.length === (i + 1)
+
+      // Get messages for pre-row
+      let pregaps = []
+      let postgaps = []
+      for (let i = residenceGaps.length - 1; i > -1; i--) {
+        const gap = residenceGaps[i]
+        if (gap.to === item.Item.Dates.from) {
+          let g = residenceGaps.splice(i, 1)[0]
+          postgaps.push({gap: g, type: 'Residence'})
+        } else if (gap.from === item.Item.Dates.to) {
+          let g = residenceGaps.splice(i, 1)[0]
+          pregaps.push({gap: g, type: 'Residence'})
+        }
+      }
+      for (let i = employmentGaps.length - 1; i > -1; i--) {
+        const gap = employmentGaps[i]
+        if (gap.to === item.Item.Dates.from) {
+          let g = employmentGaps.splice(i, 1)[0]
+          postgaps.push({gap: g, type: 'Employment'})
+        } else if (gap.from === item.Item.Dates.to) {
+          let g = employmentGaps.splice(i, 1)[0]
+          pregaps.push({gap: g, type: 'Employment'})
+        }
+      }
+
+      const renderGaps = (holes) => {
+        return holes.map(hole => {
+          let title = ''
+          let btnText = ''
+          let para = ''
+
+          switch (hole.type) {
+          case 'Employment':
+            title = 'Employment gap'
+            btnText = 'Add an employer'
+            para = 'There is a gap in your employment. The entire 10 year period must be covered with no gaps.'
+            break
+          case 'Residence':
+            title = 'Residence gap'
+            btnText = 'Add an address'
+            para = 'There is a gap in your residence history. The entire 10 year period must be covered with no gaps'
+            break
+          }
+
+          return (
+            <div className="help">
+              <div ref="message" className="message eapp-error-message">
+                <i className="fa fa-exclamation"></i>
+                <span className="dates">{`${hole.gap.from.getMonth()}/${hole.gap.from.getFullYear()}-${hole.gap.to.getMonth()}/${hole.gap.to.getFullYear()}`}</span>
+                <h4>{title}</h4>
+                <p>{para}</p>
+                <button className="usa-button-outline">
+                  <span>{btnText}</span>
+                  <i className="fa fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+          )
+        })
+      }
+
       if (item.type === 'Residence') {
         let header = (<ResidenceSummary residence={item} />)
         return (
           <Row header={header}
+               pre={renderGaps(pregaps)}
+               post={renderGaps(postgaps)}
                index={i}
                key={i}
                first={firstRow}
@@ -319,6 +402,8 @@ export default class HistoryCollection extends ValidationElement {
         let header = (<EmploymentSummary employment={item} />)
         return (
           <Row header={header}
+               pre={renderGaps(pregaps)}
+               post={renderGaps(postgaps)}
                index={i}
                key={i}
                first={firstRow}
@@ -503,13 +588,18 @@ class Row extends React.Component {
     const klassLast = this.props.last === true ? 'last' : ''
     return (
       <div className="item">
-        <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
+        <div className="summary caption">
           <Show when={this.props.first === true}>
             <div className="title">
               <h4>{i18n.t('collection.summary')}</h4>
               <hr />
             </div>
           </Show>
+        </div>
+        <div className="summary pre">
+          { this.props.pre }
+        </div>
+        <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
           <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this)}>
             <div className="brief">
               { this.props.header }
@@ -530,6 +620,9 @@ class Row extends React.Component {
             </a>
           </div>
           { this.state.show && this.props.children }
+        </div>
+        <div className="summary post">
+          { this.props.post }
         </div>
       </div>
     )

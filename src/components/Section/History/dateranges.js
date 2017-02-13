@@ -86,9 +86,17 @@ export const findPercentage = (max, min, value) => {
 }
 
 /**
+ * Determine how many days are between dates
+ */
+export const daysBetween = (from, to) => {
+  const diff = Math.abs(to.getTime() - from.getTime())
+  return Math.ceil(diff / (1000 * 3600 * 24))
+}
+
+/**
  * Find the gaps in the timeline
  */
-export const gaps = (ranges = [], buffer = 90) => {
+export const gaps = (ranges = [], buffer = 30) => {
   let holes = []
   let start = ten
   const fullStop = today
@@ -97,7 +105,7 @@ export const gaps = (ranges = [], buffer = 90) => {
   ranges.sort(rangeSorter).forEach((range, i) => {
     // Finds the gaps from the past to the present
     const stop = range.from
-    if (stop > start) {
+    if (stop > start && daysBetween(start, stop) > buffer) {
       holes.push({
         from: start,
         to: range.from
@@ -108,7 +116,7 @@ export const gaps = (ranges = [], buffer = 90) => {
     start = range.to
 
     // If this is the last date range check for gaps in the future
-    if (i === length && start < fullStop) {
+    if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {
       holes.push({
         from: start,
         to: fullStop
