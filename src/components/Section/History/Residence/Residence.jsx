@@ -282,6 +282,7 @@ export class ResidenceItem extends ValidationElement {
       Address: props.Address,
       Comments: props.Comments,
       Role: props.Role,
+      OtherRole: props.OtherRole,
       Reference: props.Reference
     }
 
@@ -301,6 +302,7 @@ export class ResidenceItem extends ValidationElement {
           Address: this.state.Address,
           Comments: this.state.Comments,
           Role: this.state.Role,
+          OtherRole: this.state.OtherRole,
           Reference: this.state.Reference
         })
       }
@@ -415,11 +417,11 @@ export class ResidenceItem extends ValidationElement {
             <HelpIcon className="role-help-icon" />
             <div className={this.showOther(this.state.Role) + ' role'}>
               <Text name="Role"
+                    {...this.state.OtherRole}
                     label={i18n.t('history.residence.label.role.explanation')}
                     className="other"
                     maxlength="100"
-                    value={this.state.Role}
-                    onUpdate={this.onUpdate.bind(this, 'Role')}
+                    onUpdate={this.onUpdate.bind(this, 'OtherRole')}
                     onValidate={this.props.handleValidation}
                     />
             </div>
