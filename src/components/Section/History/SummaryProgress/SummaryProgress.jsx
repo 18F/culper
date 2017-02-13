@@ -3,6 +3,17 @@ import { ValidationElement } from '../../../Form'
 
 export default class SummaryProgress extends ValidationElement {
   /**
+   * Convert date to UTC
+   */
+  utc (date) {
+    if (!date) {
+      return null
+    }
+
+    return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+  }
+
+  /**
    * Get the Julian date
    */
   julian (date) {
@@ -12,6 +23,9 @@ export default class SummaryProgress extends ValidationElement {
     return (((+date) / 86400000) + 2440587.5).toFixed(6)
   }
 
+  /**
+   * Find the percentage/position within a date range a particular value has.
+   */
   findPercentage (max, min, value) {
     const pos = ((value - min) / (max - min)) * 100
     return this.decimalAdjust('round', pos, -2)
@@ -21,7 +35,7 @@ export default class SummaryProgress extends ValidationElement {
    * Do some fancy decimal rounding allowing for different types:
    *  - round
    *  - floor
-   *  - ceiling
+   *  - ceil
    *
    * This was pulled from Mozilla Developer Network.
    */
@@ -53,7 +67,7 @@ export default class SummaryProgress extends ValidationElement {
    */
   ranges () {
     const now = new Date(new Date().toUTCString())
-    const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()))
+    const today = this.utc(now)
     const ten = new Date(today - (1000 * 60 * 60 * 24 * 365 * 10))
     const julianNow = this.julian(today)
     const julianTen = this.julian(ten)
@@ -70,8 +84,8 @@ export default class SummaryProgress extends ValidationElement {
       let width = 0
 
       if (dates.from && dates.to) {
-        let from = this.julian(new Date(Date.UTC(dates.from.getFullYear(), dates.from.getMonth(), dates.from.getDate())))
-        let to = this.julian(new Date(Date.UTC(dates.to.getFullYear(), dates.to.getMonth(), dates.to.getDate())))
+        const from = this.julian(this.utc(dates.from))
+        const to = this.julian(this.utc(dates.to))
 
         if (dates.from >= julianTen || to >= julianTen) {
           // Meat of the calculations into percentages
@@ -89,7 +103,7 @@ export default class SummaryProgress extends ValidationElement {
           }
 
           if (width > 100) {
-            width = 100
+            width = 100 - left
           }
         }
       }
@@ -97,7 +111,8 @@ export default class SummaryProgress extends ValidationElement {
       // Add the range to the collection
       return {
         left: left,
-        width: this.decimalAdjust('round', width, 0)
+        width: this.decimalAdjust('round', width, -2),
+        dates: dates
       }
     })
   }
