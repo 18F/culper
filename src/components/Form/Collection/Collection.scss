@@ -89,7 +89,7 @@
 
   button.add {
     line-height: normal !important;
-    min-width: 30rem;
+    max-width: 50%;
     padding: 2rem;
     display: table;
     margin-top: 4.9rem;
@@ -114,8 +114,19 @@
       padding-left: 4rem;
       padding-right: 4rem;
 
+      h1,
+      h2,
+      h3,
+      h4 {
+        padding: 0;
+      }
+
       .eapp-field-wrap {
         padding: 0;
+      }
+
+      .option-list {
+        max-width: 92%;
       }
     }
 
