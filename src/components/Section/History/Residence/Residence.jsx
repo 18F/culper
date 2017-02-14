@@ -20,7 +20,6 @@ export default class Residence extends ValidationElement {
       errorCodes: []
     }
 
-    this.commentsUpdated = this.commentsUpdated.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
   }
@@ -165,20 +164,6 @@ export default class Residence extends ValidationElement {
   }
 
   /**
-   * Persist changes to comments
-   */
-  commentsUpdated (val) {
-    this.setState({ Comments: val }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          Comments: this.state.Comments
-        })
-      }
-    })
-  }
-
-  /**
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
@@ -255,14 +240,6 @@ export default class Residence extends ValidationElement {
           <h2>{i18n.t('history.residence.heading.done')}</h2>
           <p>{i18n.t('history.residence.para.done')}</p>
         </Collection>
-        <Comments name="Comments"
-                  value={this.state.Comments}
-                  label={i18n.t('history.residence.help.comments')}
-                  className="eapp-field-wrap"
-                  onUpdate={this.commentsUpdated}
-                  onValidate={this.handleValidation}>
-          <h3>{i18n.t('history.residence.label.comments')}</h3>
-        </Comments>
       </div>
     )
   }
