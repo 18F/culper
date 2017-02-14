@@ -3,7 +3,8 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence/Residence'
 import { EmploymentItem } from '../Employment/Employment'
-import { gaps } from '../dateranges'
+import { Row, Gap } from './Row'
+import { InjectGaps, EmploymentSummary, ResidenceSummary, dateSummary } from './summaries'
 
 /**
  * Contains a collection of Residence and Employment information. This component
@@ -298,88 +299,18 @@ export default class HistoryCollection extends ValidationElement {
   }
 
   render () {
-    const typeWithDates = (type, item) => {
-      return item.type === type && item.Item && item.Item.Dates
-    }
+    // Inject any gaps in to our timeline
+    const list = InjectGaps(this.state.List, ['Residence', 'Employment']).sort(this.sort)
 
-    let residenceGaps = gaps(this.state.List.filter(item => typeWithDates('Residence', item)).map(item => { return item.Item.Dates }))
-    let employmentGaps = gaps(this.state.List.filter(item => typeWithDates('Employment', item)).map(item => { return item.Item.Dates }))
-
-    const listItems = this.state.List.map((item, i, arr) => {
-      // Get messages for pre-row
-      let pregaps = []
-      let postgaps = []
-      if (item.Item && item.Item.Dates) {
-        for (let i = residenceGaps.length - 1; i > -1; i--) {
-          const gap = residenceGaps[i]
-          if (gap.to === item.Item.Dates.from) {
-            let g = residenceGaps.splice(i, 1)[0]
-            postgaps.push({gap: g, type: 'Residence'})
-          } else if (gap.from === item.Item.Dates.to) {
-            let g = residenceGaps.splice(i, 1)[0]
-            pregaps.push({gap: g, type: 'Residence'})
-          }
-        }
-
-        for (let i = employmentGaps.length - 1; i > -1; i--) {
-          const gap = employmentGaps[i]
-          if (gap.to === item.Item.Dates.from) {
-            let g = employmentGaps.splice(i, 1)[0]
-            postgaps.push({gap: g, type: 'Employment'})
-          } else if (gap.from === item.Item.Dates.to) {
-            let g = employmentGaps.splice(i, 1)[0]
-            pregaps.push({gap: g, type: 'Employment'})
-          }
-        }
-      }
-      console.log('pregaps :', pregaps.length)
-      console.log('postgaps:', postgaps.length)
-
-      const renderGaps = (holes) => {
-        return holes.map(hole => {
-          let title = ''
-          let btnText = ''
-          let para = ''
-
-          switch (hole.type) {
-          case 'Employment':
-            title = 'Employment gap'
-            btnText = 'Add an employer'
-            para = 'There is a gap in your employment. The entire 10 year period must be covered with no gaps.'
-            break
-          case 'Residence':
-            title = 'Residence gap'
-            btnText = 'Add an address'
-            para = 'There is a gap in your residence history. The entire 10 year period must be covered with no gaps'
-            break
-          }
-
-          return (
-            <div className="help">
-              <div ref="message" className="message eapp-error-message">
-                <i className="fa fa-exclamation"></i>
-                <span className="dates">{`${hole.gap.from.getMonth()}/${hole.gap.from.getFullYear()}-${hole.gap.to.getMonth()}/${hole.gap.to.getFullYear()}`}</span>
-                <h4>{title}</h4>
-                <p>{para}</p>
-                <button className="usa-button-outline">
-                  <span>{btnText}</span>
-                  <i className="fa fa-plus-circle"></i>
-                </button>
-              </div>
-            </div>
-          )
-        })
-      }
-
+    // Create the list items
+    const listItems = list.map((item, i, arr) => {
       const firstRow = (i === 0)
-      const lastRow = arr.length === (i + 1) && postgaps.length === 0
+      const lastRow = arr.length === (i + 1)
 
       if (item.type === 'Residence') {
         let header = (<ResidenceSummary residence={item} />)
         return (
           <Row header={header}
-               pre={renderGaps(pregaps)}
-               post={renderGaps(postgaps)}
                index={i}
                key={i}
                first={firstRow}
@@ -399,8 +330,6 @@ export default class HistoryCollection extends ValidationElement {
         let header = (<EmploymentSummary employment={item} />)
         return (
           <Row header={header}
-               pre={renderGaps(pregaps)}
-               post={renderGaps(postgaps)}
                index={i}
                key={i}
                first={firstRow}
@@ -418,9 +347,22 @@ export default class HistoryCollection extends ValidationElement {
         )
       }
 
+      if (item.type === 'Gap') {
+        return (
+          <Gap index={i}
+               key={i}
+               first={firstRow}
+               last={lastRow}
+               dates={item.Item.Dates}
+               type={item.Item.Type}
+               />
+        )
+      }
+
       return null
     })
 
+    // Render the defaults
     return (
       <div className="history-collection collection">
         { listItems }
@@ -460,182 +402,4 @@ export default class HistoryCollection extends ValidationElement {
       </div>
     )
   }
-}
-
-/**
- * Renders a formatted summary information for a residence row
- */
-function ResidenceSummary (props) {
-  const res = props.residence.Item || {}
-
-  let address1 = ''
-  let address2 = ''
-  if (res.Address) {
-    address1 += `${res.Address.address || ''}`.trim()
-    if (res.Address.addressType === 'United States') {
-      address2 = `${res.Address.city || ''}, ${res.Address.state || ''} ${res.Address.zipcode || ''}`.trim()
-    } else if (res.Address.addressType === 'APOFPO') {
-      address2 = `${res.Address.apoFpoType || ''}, ${res.Address.apoFpo || ''} ${res.Address.zipcode || ''}`.trim()
-    } else if (res.Address.addressType === 'International') {
-      address2 = `${res.Address.city || ''}, ${res.Address.country || ''}`.trim()
-    }
-  }
-
-  if (address1.length === 0 || address2.length === 1) {
-    address1 = i18n.t('history.residence.collection.summary.unknown')
-  }
-
-  const dates = res.Dates || {}
-  let from = i18n.t('history.residence.collection.summary.unknown')
-  if (dates.from) {
-    from = '' + dates.from.getMonth() + '/' + dates.from.getFullYear()
-  }
-  let to = i18n.t('history.residence.collection.summary.unknown')
-  if (dates.to) {
-    to = '' + dates.to.getMonth() + '/' + dates.to.getFullYear()
-  }
-
-  return (
-    <div className="table">
-      <div className="table-cell index">
-        <Svg src="img/residence-house.svg" />
-        {i18n.t('history.residence.collection.summary.item')}:
-      </div>
-      <div className="table-cell employer">{address1}<br />{address2}</div>
-      <div className="table-cell dates">{from}-{to}</div>
-    </div>
-  )
-}
-
-/**
- * Renders a formatted summary information for an employment row
- */
-function EmploymentSummary (props) {
-  let item = props.employment.Item
-  const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
-  const dates = dateSummary(item)
-
-  return (
-    <div className="table">
-      <div className="table-cell index">
-        <Svg src="img/employer-briefcase.svg" />
-        {i18n.t('history.employment.collection.summary.employer')}:
-      </div>
-      <div className="table-cell employer">{ employer }</div>
-      <div className="table-cell dates">{ dates }</div>
-    </div>
-  )
-}
-
-function dateSummary (item) {
-  let noDateLabel = i18n.t('history.employment.noDate.label')
-  function format (d) {
-    return `${d.getMonth()}/${d.getFullYear()}`
-  }
-
-  let vals = []
-  if (!item.Dates) {
-    return ''
-  }
-
-  if (item.Dates.from) {
-    vals.push(format(item.Dates.from))
-  } else {
-    vals.push(noDateLabel)
-  }
-
-  if (item.Dates.to) {
-    vals.push(format(item.Dates.to))
-  } else {
-    vals.push(noDateLabel)
-  }
-
-  return vals.join('-')
-}
-
-/**
- * Row represents a row of summary information as well as the form elemens when they are
- * expanded
- */
-class Row extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      show: this.props.show
-    }
-  }
-
-  toggle () {
-    this.setState({
-      show: !this.state.show
-    })
-  }
-
-  /**
-   * Triggers onRemove callback passing the index of the row item
-   */
-  remove () {
-    if (this.props.onRemove) {
-      this.props.onRemove(this.props.index)
-    }
-  }
-
-  render () {
-    const klassOpen = this.state.show === true ? 'open' : 'closed'
-    const klassLast = this.props.last === true ? 'last' : ''
-    return (
-      <div className="item">
-        <Show when={this.props.first === true}>
-          <div className="summary caption">
-              <div className="title">
-                <h4>{i18n.t('collection.summary')}</h4>
-                <hr />
-              </div>
-          </div>
-        </Show>
-        <Show when={this.props.pre.length > 0}>
-          <div className="summary pre">
-            { this.props.pre }
-            <div className="divider">
-              <hr />
-            </div>
-          </div>
-        </Show>
-        <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-          <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this)}>
-            <div className="brief">
-              { this.props.header }
-            </div>
-            <div className="expander">
-              <i className={`fa fa-chevron-${this.state.show === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
-            </div>
-          </a>
-          <div className="divider">
-            <hr />
-          </div>
-        </div>
-        <div className={`details gutters ${this.state.show === true ? '' : 'hidden'}`.trim()}>
-          <div className="byline top">
-            <a href="javascript:;;" className="remove" onClick={this.remove.bind(this)}>
-              <span>{i18n.t('collection.remove')}</span>
-              <i className="fa fa-times-circle" aria-hidden="true"></i>
-            </a>
-          </div>
-          { this.state.show && this.props.children }
-        </div>
-        <Show when={this.props.post.length > 0}>
-          <div className="summary post">
-            { this.props.post }
-            <div className="divider">
-              <hr />
-            </div>
-          </div>
-        </Show>
-      </div>
-    )
-  }
-}
-
-Row.defaultProps = {
-  show: false
 }
