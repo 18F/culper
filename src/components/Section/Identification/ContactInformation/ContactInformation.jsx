@@ -79,6 +79,18 @@ export default class ContactInformation extends ValidationElement {
   }
 
   isValid () {
+    for (let email of this.state.Emails) {
+      if (!email.Email || !email.Email.value) {
+        return false
+      }
+    }
+
+    for (let phone of this.state.PhoneNumbers) {
+      if (!phone.Telephone || !phone.Telephone.number) {
+        return false
+      }
+    }
+
     return true
   }
 
