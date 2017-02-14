@@ -203,10 +203,6 @@ class History extends ValidationElement {
     )
   }
 
-  onHistoryUpdate (collectionName, list) {
-    this.props.dispatch(updateApplication('History', collectionName, list))
-  }
-
   addResidence () {
     this.setState({ addOnLoad: 'Residence' })
   }
@@ -268,6 +264,7 @@ class History extends ValidationElement {
                 <HistoryCollection name="timeline"
                                    addOnLoad={this.state.addOnLoad}
                                    history={this.props.History}
+                                   types={['Residence', 'Employment']}
                                    onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                    onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
                                    onValidate={this.onValidate.bind(this)}
@@ -284,11 +281,13 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.residence.title')}</h2>
             <p>{i18n.t('history.residence.info')}</p>
             { this.residenceSummaryProgress() }
-            <Residence name="residence"
-                       {...this.props.Residence}
-                       onUpdate={this.onUpdate.bind(this, 'Residence')}
-                       onValidate={this.onValidate.bind(this)}
-                       />
+            <HistoryCollection name="residence"
+                               addOnLoad={this.state.addOnLoad}
+                               history={this.props.History}
+                               types={['Residence']}
+                               onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
+                               onValidate={this.onValidate.bind(this)}
+                               />
             <h2>{i18n.t('history.residence.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.residence.para.exiting')} />
           </SectionView>
@@ -301,11 +300,13 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.employment.heading.employment')}</h2>
             <p>{i18n.t('history.employment.para.employment')}</p>
             { this.employmentSummaryProgress() }
-            <Employment name="employment"
-                        {...this.props.Employment}
-                        onUpdate={this.onUpdate.bind(this, 'Employment')}
-                        onValidate={this.onValidate.bind(this)}
-                        />
+            <HistoryCollection name="employment"
+                               addOnLoad={this.state.addOnLoad}
+                               history={this.props.History}
+                               types={['Employment']}
+                               onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
+                               onValidate={this.onValidate.bind(this)}
+                               />
             <h2>{i18n.t('history.employment.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.employment.para.exiting')} />
           </SectionView>

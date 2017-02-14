@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
-import { ResidenceItem } from '../Residence/Residence'
-import { EmploymentItem } from '../Employment/Employment'
+import { ResidenceItem } from '../Residence'
+import { EmploymentItem } from '../Employment'
 import { Row, Gap } from './Row'
 import { InjectGaps, EmploymentSummary, ResidenceSummary, dateSummary } from './summaries'
 
@@ -24,7 +24,7 @@ export default class HistoryCollection extends ValidationElement {
 
       // Contains the type of item the user is requesting to create. This may included
       // Residence, Employment or School
-      collectionType: '',
+      collectionType: props.types.length === 1 ? props.types[0] : '',
 
       // Error codes for each of the child collections
       errorCodes: []
@@ -53,8 +53,8 @@ export default class HistoryCollection extends ValidationElement {
     let complexStatus = null
     if (codes.length > 0) {
       complexStatus = false
-      // } else if (this.isValid()) {
-      //   complexStatus = true
+    } else if (this.isValid()) {
+      complexStatus = true
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
@@ -67,6 +67,214 @@ export default class HistoryCollection extends ValidationElement {
 
       super.handleValidation(event, s, e)
     })
+  }
+
+  isValid () {
+    if (!this.state.List || !this.state.List.length) {
+      return false
+    }
+
+    return this.validateEmployment(this.state.List) && this.validateResidence(this.state.List)
+  }
+
+  validateEmployment (list) {
+    for (const employment of list.filter(item => { return item.type === 'Employment' })) {
+      const item = employment.Item
+
+      if (!item) {
+        return false
+      }
+
+      if (!item.EmploymentActivity || !item.EmploymentActivity.value) {
+        return false
+      }
+
+      if (item.EmploymentActivity.value === 'Other' && item.EmploymentActivity.otherExplanation === '') {
+        return false
+      }
+
+      if (!item.DatesEmployed || !item.DatesEmployed.from || !item.DatesEmployed.to) {
+        return false
+      }
+
+      const { from, to } = item.DatesEmployed
+      if (from > to) {
+        return false
+      }
+
+      if (!item.Employment || !item.Employment.value) {
+        return false
+      }
+
+      if (!item.Status || !item.Status.value) {
+        return false
+      }
+
+      if (!item.Title || !item.Title.value) {
+        return false
+      }
+
+      if (!item.Address) {
+        return false
+      }
+
+      const address = item.Address
+      switch (address.addressType) {
+        case 'United States':
+          if (!address.address || !address.city || !address.state || !address.zipcode) {
+            return false
+          }
+          break
+
+        case 'International':
+          if (!address.address || !address.city || !address.country) {
+            return false
+          }
+          break
+
+        case 'APOFPO':
+          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+            return false
+          }
+          break
+
+        default:
+          return false
+      }
+
+      if (!item.Additional || !item.Additional.HasAdditionalActivity) {
+        return false
+      }
+
+      if (item.Additional.HasAdditionalActivity === 'Yes') {
+        for (let activity of item.Additional.List) {
+          if (!activity.Position || !activity.Position.value) {
+            return false
+          }
+          if (!activity.Supervisor || !activity.Supervisor.value) {
+            return false
+          }
+
+          if (!activity.DatesEmployed || !activity.DatesEmployed.from || !activity.DatesEmployed.to) {
+            return false
+          }
+
+          const { from, to } = activity.DatesEmployed
+          if (from > to) {
+            return false
+          }
+        }
+      }
+    }
+
+    return true
+  }
+
+  validateResidence (list) {
+    for (const residence of list.filter(item => { return item.type === 'Residence' })) {
+      const item = residence.Item
+      if (!item || !item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
+        return false
+      }
+
+      if (!item.Address) {
+        return false
+      }
+
+      switch (item.Address.addressType) {
+        case 'United States':
+          if (!item.Address.address || !item.Address.city || !item.Address.state || !item.Address.zipcode) {
+            return false
+          }
+          break
+
+        case 'International':
+          if (!item.Address.address || !item.Address.city || !item.Address.country) {
+            return false
+          }
+          break
+
+        case 'APOFPO':
+          if (!item.Address.address || !item.Address.apoFpo || !item.Address.apoFpoType || !item.Address.zipcode) {
+            return false
+          }
+          break
+
+        default:
+          return false
+      }
+
+      if (!item.Role) {
+        return false
+      }
+
+      if (withinThreeYears(item.Dates.from, item.Dates.to)) {
+        if (!item.Reference) {
+          return false
+        }
+
+        if (!item.Reference.FullName) {
+          return false
+        }
+
+        if (!item.Reference.FullName.first || !item.Reference.FullName.last) {
+          return false
+        }
+
+        if (!item.Reference.LastContact) {
+          return false
+        }
+
+        if (!item.Reference.LastContact.date) {
+          return false
+        }
+
+        if (!item.Reference.Relationship) {
+          return false
+        }
+
+        if (!item.Reference.Phone) {
+          return false
+        }
+
+        if (!item.Reference.Phone.number) {
+          return false
+        }
+
+        if (!item.Reference.Email) {
+          return false
+        }
+
+        if (!item.Reference.Address) {
+          return false
+        }
+
+        switch (item.Reference.Address.addressType) {
+          case 'United States':
+            if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.state || !item.Reference.Address.zipcode) {
+              return false
+            }
+            break
+
+          case 'International':
+            if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.country) {
+              return false
+            }
+            break
+
+          case 'APOFPO':
+            if (!item.Reference.Address.address || !item.Reference.Address.apoFpo || !item.Reference.Address.apoFpoType || !item.Reference.Address.zipcode) {
+              return false
+            }
+            break
+
+          default:
+            return false
+        }
+      }
+    }
+
+    return true
   }
 
   /**
@@ -107,25 +315,26 @@ export default class HistoryCollection extends ValidationElement {
     }
 
     let list = []
-    if (history.Residence && history.Residence.List) {
-      let residences = history.Residence.List.map(r => {
+    if (this.props.types.includes('Residence') && history.Residence && history.Residence.List) {
+      const residences = history.Residence.List.map(r => {
         r.type = 'Residence'
         return r
       })
+
       list = list.concat(residences)
     }
 
-    if (history.Employment && history.Employment.List) {
-      let employment = history.Employment.List.map(r => {
+    if (this.props.types.includes('Employment') && history.Employment && history.Employment.List) {
+      const employment = history.Employment.List.map(r => {
         r.type = 'Employment'
         return r
       })
+
       list = list.concat(employment)
     }
-    list.sort(this.sort)
 
     this.setState({
-      List: list
+      List: list.sort(this.sort)
     })
   }
 
@@ -161,6 +370,7 @@ export default class HistoryCollection extends ValidationElement {
       type: field,
       Item: values
     }
+
     this.doUpdate(field, items)
   }
 
@@ -172,28 +382,18 @@ export default class HistoryCollection extends ValidationElement {
    * not Employer and School.
    */
   doUpdate (type, items, callback) {
-    this.setState({
-      List: items
-    }, () => {
+    this.setState({ List: items }, () => {
       // filter list by current collection type being updated
-      let filtered = this.state.List.filter(i => {
-        return i.type === type
-      })
+      const filtered = this.state.List.filter(i => { return i.type === type })
 
-      switch (type) {
-      case 'Residence':
-        if (this.props.onResidenceUpdate) {
-          this.props.onResidenceUpdate({ List: filtered })
-        }
-        break
-      case 'Employment':
-        if (this.props.onEmploymentUpdate) {
-          this.props.onEmploymentUpdate({ List: filtered })
-        }
-        break
-      default:
+      if (type === 'Residence' && this.props.onResidenceUpdate) {
+        this.props.onResidenceUpdate({List: filtered})
+      } else if (type === 'Employment' && this.props.onEmploymentUpdate) {
+        this.props.onEmploymentUpdate({List: filtered})
+      } else {
         console.warn('No update callback method was provided in HistoryCollection')
       }
+
       if (callback) {
         callback()
       }
@@ -214,7 +414,12 @@ export default class HistoryCollection extends ValidationElement {
 
     this.setState({ currentNewItem: null, collectionType: null }, () => {
       this.doUpdate(type, items, () => {
-        this.refs.createOptions.scrollIntoView()
+        // Check to see if there are multiple types of items supported
+        if (this.props.types.length === 1) {
+          this.selectCollectionType(this.props.types[0])
+        } else {
+          this.refs.createOptions.scrollIntoView()
+        }
       })
     })
   }
@@ -274,27 +479,48 @@ export default class HistoryCollection extends ValidationElement {
    * Contains the types of History objects a user can create
    */
   createOptions () {
-    return (
-      <RadioGroup className="option-list eapp-extend-labels create"
-                  name="createOptions"
-                  selectedValue={this.state.collectionType}>
-        <Radio
-          label="Residence"
-          value="Residence"
-          onChange={this.handleCollectionTypeChange.bind(this)}>
+    if (this.props.types.length < 2) {
+      return (
+        <div className="eapp-field-wrap" ref="createOptions"></div>
+      )
+    }
+
+    let options = []
+    if (this.props.types.includes('Residence')) {
+      options.push(
+        <Radio label="Residence"
+               value="Residence"
+               onChange={this.handleCollectionTypeChange.bind(this)}>
           <div className="eye-icon">
             <Svg src="img/residence-house.svg" />
           </div>
         </Radio>
-        <Radio
-          label="Employer"
-          value="Employment"
-          onChange={this.handleCollectionTypeChange.bind(this)}>
+      )
+    }
+
+    if (this.props.types.includes('Employment')) {
+      options.push(
+        <Radio label="Employer"
+               value="Employment"
+               onChange={this.handleCollectionTypeChange.bind(this)}>
           <div className="eye-icon">
             <Svg src="img/employer-briefcase.svg" />
           </div>
         </Radio>
-      </RadioGroup>
+      )
+    }
+
+    return (
+      <div>
+        <h3>Add new</h3>
+        <div className="eapp-field-wrap" ref="createOptions">
+          <RadioGroup className="option-list eapp-extend-labels create"
+                      name="createOptions"
+                      selectedValue={this.state.collectionType}>
+            {options}
+          </RadioGroup>
+        </div>
+      </div>
     )
   }
 
@@ -367,16 +593,15 @@ export default class HistoryCollection extends ValidationElement {
       <div className="history-collection collection">
         { listItems }
         <div>
-          <h3>Add new</h3>
-          <div className="eapp-field-wrap" ref="createOptions">
-            {this.createOptions()}
-          </div>
+          {this.createOptions()}
+
           <Show when={this.state.collectionType === 'Residence'}>
             <ResidenceItem name="Residence"
                            onUpdate={this.onNewUpdate.bind(this, 'Residence')}
                            onValidate={this.handleValidation}
                            />
           </Show>
+
           <Show when={this.state.collectionType === 'Employment'}>
             <div className="employment">
               <EmploymentItem name="Employment"

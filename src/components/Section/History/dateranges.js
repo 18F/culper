@@ -7,7 +7,7 @@
  * This was pulled from Mozilla Developer Network.
  */
 export const decimalAdjust = (type, value, exp) => {
-  // If the exp is undefiend or zero...
+  // If the exp is undefined or zero...
   if (typeof exp === 'undefined' || +exp === 0) {
     return Math[type](value)
   }
@@ -47,6 +47,13 @@ export const rangeSorter = (a, b) => {
   }
 
   return 0
+}
+
+/**
+ * Calculate a date in the past
+ */
+export const daysAgo = (from, days) => {
+  return new Date(from - (1000 * 60 * 60 * 24 * days))
 }
 
 /**
@@ -132,6 +139,6 @@ export const gaps = (ranges = [], buffer = 30) => {
  */
 export const now = new Date(new Date().toUTCString())
 export const today = utc(now)
-export const ten = new Date(today - (1000 * 60 * 60 * 24 * 365 * 10))
+export const ten = daysAgo(today, 365 * 10)
 export const julianNow = julian(today)
 export const julianTen = julian(ten)
