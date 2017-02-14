@@ -147,7 +147,7 @@ export default class ContactInformation extends ValidationElement {
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <div className={klass + ' telephone-collection'}>
-          <Collection minimum="1"
+          <Collection minimum="2"
                       items={this.state.PhoneNumbers}
                       dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
                       scrollTo="self"
