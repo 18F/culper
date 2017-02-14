@@ -5,6 +5,12 @@ import { ResidenceItem } from '../Residence'
 import { EmploymentItem } from '../Employment'
 import { Row, Gap } from './Row'
 import { InjectGaps, EmploymentSummary, ResidenceSummary, dateSummary } from './summaries'
+import { daysAgo, today } from '../dateranges'
+
+const threeYearsAgo = daysAgo(today, 365 * 3)
+const withinThreeYears = (from, to) => {
+  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+}
 
 /**
  * Contains a collection of Residence and Employment information. This component

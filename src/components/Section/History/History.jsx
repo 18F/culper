@@ -220,8 +220,8 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="timeline"
-                       back="history/education"
-                       backLabel={i18n.t('history.destination.education')}
+                       back="financial/bankruptcy"
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="foreign"
                        nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('history.timeline.title')}</h2>
