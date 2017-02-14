@@ -167,7 +167,7 @@ export default class Employment extends ValidationElement {
    */
   summary (item, index) {
     const i = item.Item
-    const employer = (i.Employment && i.Employment.value ? i.Employment.value : 'N/A')
+    const employer = (i && i.Employment && i.Employment.value ? i.Employment.value : 'N/A')
     const dates = this.dateSummary(i)
 
     return (
@@ -186,13 +186,13 @@ export default class Employment extends ValidationElement {
    * Helper for renders date information
    */
   dateSummary (item) {
-    let noDateLabel = i18n.t('history.employment.noDate.label')
-    function format (d) {
+    const noDateLabel = i18n.t('history.employment.noDate.label')
+    const format = (d) => {
       return `${d.getMonth()}/${d.getFullYear()}`
     }
 
     let vals = []
-    if (!item.DatesEmployed) {
+    if (!item || !item.DatesEmployed) {
       return ''
     }
 

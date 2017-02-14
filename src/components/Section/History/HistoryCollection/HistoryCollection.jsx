@@ -133,21 +133,22 @@ export default class HistoryCollection extends ValidationElement {
    * with date range values.
    */
   sort (a, b) {
-    console.log('sort a:', a)
-    console.log('sort b:', b)
+    const first = ((a || {}).Item || {}).Dates
+    const second = ((b || {}).Item || {}).Dates
 
-    if (!a.Item.Dates && !b.Item.Dates) {
+    if (!first && !second) {
       return 0
     }
-    if (!a.Item.Dates || !a.Item.Dates.to) {
+
+    if (!first || !first.to) {
       return -1
     }
 
-    if (!b.Item.Dates || !b.Item.Dates.to) {
+    if (!second || !second.to) {
       return 1
     }
 
-    return b.Item.Dates.to.getTime() - a.Item.Dates.to.getTime()
+    return second.to.getTime() - first.to.getTime()
   }
 
   /**
@@ -297,49 +298,42 @@ export default class HistoryCollection extends ValidationElement {
   }
 
   render () {
-    let residenceGaps = gaps(this.state.List.map(item => {
-      if (item.type !== 'Residence' || !item.Item || !item.Item.Dates) {
-        return {}
-      }
+    const typeWithDates = (type, item) => {
+      return item.type === type && item.Item && item.Item.Dates
+    }
 
-      return item.Item.Dates
-    }))
-
-    let employmentGaps = gaps(this.state.List.map(item => {
-      if (item.type !== 'Employment' || !item.Item || !item.Item.Dates) {
-        return {}
-      }
-
-      return item.Item.Dates
-    }))
+    let residenceGaps = gaps(this.state.List.filter(item => typeWithDates('Residence', item)).map(item => { return item.Item.Dates }))
+    let employmentGaps = gaps(this.state.List.filter(item => typeWithDates('Employment', item)).map(item => { return item.Item.Dates }))
 
     const listItems = this.state.List.map((item, i, arr) => {
-      let firstRow = (i === 0)
-      let lastRow = arr.length === (i + 1)
-
       // Get messages for pre-row
       let pregaps = []
       let postgaps = []
-      for (let i = residenceGaps.length - 1; i > -1; i--) {
-        const gap = residenceGaps[i]
-        if (gap.to === item.Item.Dates.from) {
-          let g = residenceGaps.splice(i, 1)[0]
-          postgaps.push({gap: g, type: 'Residence'})
-        } else if (gap.from === item.Item.Dates.to) {
-          let g = residenceGaps.splice(i, 1)[0]
-          pregaps.push({gap: g, type: 'Residence'})
+      if (item.Item && item.Item.Dates) {
+        for (let i = residenceGaps.length - 1; i > -1; i--) {
+          const gap = residenceGaps[i]
+          if (gap.to === item.Item.Dates.from) {
+            let g = residenceGaps.splice(i, 1)[0]
+            postgaps.push({gap: g, type: 'Residence'})
+          } else if (gap.from === item.Item.Dates.to) {
+            let g = residenceGaps.splice(i, 1)[0]
+            pregaps.push({gap: g, type: 'Residence'})
+          }
+        }
+
+        for (let i = employmentGaps.length - 1; i > -1; i--) {
+          const gap = employmentGaps[i]
+          if (gap.to === item.Item.Dates.from) {
+            let g = employmentGaps.splice(i, 1)[0]
+            postgaps.push({gap: g, type: 'Employment'})
+          } else if (gap.from === item.Item.Dates.to) {
+            let g = employmentGaps.splice(i, 1)[0]
+            pregaps.push({gap: g, type: 'Employment'})
+          }
         }
       }
-      for (let i = employmentGaps.length - 1; i > -1; i--) {
-        const gap = employmentGaps[i]
-        if (gap.to === item.Item.Dates.from) {
-          let g = employmentGaps.splice(i, 1)[0]
-          postgaps.push({gap: g, type: 'Employment'})
-        } else if (gap.from === item.Item.Dates.to) {
-          let g = employmentGaps.splice(i, 1)[0]
-          pregaps.push({gap: g, type: 'Employment'})
-        }
-      }
+      console.log('pregaps :', pregaps.length)
+      console.log('postgaps:', postgaps.length)
 
       const renderGaps = (holes) => {
         return holes.map(hole => {
@@ -376,6 +370,9 @@ export default class HistoryCollection extends ValidationElement {
           )
         })
       }
+
+      const firstRow = (i === 0)
+      const lastRow = arr.length === (i + 1) && postgaps.length === 0
 
       if (item.type === 'Residence') {
         let header = (<ResidenceSummary residence={item} />)
@@ -588,17 +585,22 @@ class Row extends React.Component {
     const klassLast = this.props.last === true ? 'last' : ''
     return (
       <div className="item">
-        <div className="summary caption">
-          <Show when={this.props.first === true}>
-            <div className="title">
-              <h4>{i18n.t('collection.summary')}</h4>
+        <Show when={this.props.first === true}>
+          <div className="summary caption">
+              <div className="title">
+                <h4>{i18n.t('collection.summary')}</h4>
+                <hr />
+              </div>
+          </div>
+        </Show>
+        <Show when={this.props.pre.length > 0}>
+          <div className="summary pre">
+            { this.props.pre }
+            <div className="divider">
               <hr />
             </div>
-          </Show>
-        </div>
-        <div className="summary pre">
-          { this.props.pre }
-        </div>
+          </div>
+        </Show>
         <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
           <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this)}>
             <div className="brief">
@@ -621,9 +623,14 @@ class Row extends React.Component {
           </div>
           { this.state.show && this.props.children }
         </div>
-        <div className="summary post">
-          { this.props.post }
-        </div>
+        <Show when={this.props.post.length > 0}>
+          <div className="summary post">
+            { this.props.post }
+            <div className="divider">
+              <hr />
+            </div>
+          </div>
+        </Show>
       </div>
     )
   }

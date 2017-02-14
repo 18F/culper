@@ -22,7 +22,12 @@
   }
 
   .caption {
+    padding-top: 0;
     padding-bottom: 0;
+
+    .title {
+      display: table-row;
+    }
   }
 
   .pre, .post {
@@ -32,6 +37,7 @@
 
     .help {
       padding-top: 0;
+      margin-bottom: 2rem;
 
       .message {
         width: 100%;
