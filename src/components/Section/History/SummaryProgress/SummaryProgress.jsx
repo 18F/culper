@@ -1,77 +1,12 @@
 import React from 'react'
 import { ValidationElement } from '../../../Form'
+import { decimalAdjust, rangeSorter, utc, julian, findPercentage, now, today, julianNow, julianTen, gaps } from '../dateranges'
 
 export default class SummaryProgress extends ValidationElement {
-  /**
-   * Convert date to UTC
-   */
-  utc (date) {
-    if (!date) {
-      return null
-    }
-
-    return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-  }
-
-  /**
-   * Get the Julian date
-   */
-  julian (date) {
-    if (!date) {
-      return null
-    }
-    return (((+date) / 86400000) + 2440587.5).toFixed(6)
-  }
-
-  /**
-   * Find the percentage/position within a date range a particular value has.
-   */
-  findPercentage (max, min, value) {
-    const pos = ((value - min) / (max - min)) * 100
-    return this.decimalAdjust('round', pos, -2)
-  }
-
-  /**
-   * Do some fancy decimal rounding allowing for different types:
-   *  - round
-   *  - floor
-   *  - ceil
-   *
-   * This was pulled from Mozilla Developer Network.
-   */
-  decimalAdjust (type, value, exp) {
-    // If the exp is undefiend or zero...
-    if (typeof exp === 'undefined' || +exp === 0) {
-      return Math[type](value)
-    }
-
-    value = +value
-    exp = +exp
-
-    // If the value is not a number or the exp is not an integer...
-    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-      return NaN
-    }
-
-    // Shift
-    value = value.toString().split('e')
-    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)))
-
-    // Shift back
-    value = value.toString().split('e')
-    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp))
-  }
-
   /**
    * Compile the ranges from the list of items
    */
   ranges () {
-    const now = new Date(new Date().toUTCString())
-    const today = this.utc(now)
-    const ten = new Date(today - (1000 * 60 * 60 * 24 * 365 * 10))
-    const julianNow = this.julian(today)
-    const julianTen = this.julian(ten)
-
     let items = []
     if (this.props.List) {
       items = this.props.List() || []
@@ -79,18 +14,18 @@ export default class SummaryProgress extends ValidationElement {
       console.warn('No List() function was provided for Summary Progress')
     }
 
-    return items.map((dates) => {
+    return items.sort(rangeSorter).map((dates) => {
       let left = 0
       let width = 0
 
       if (dates.from && dates.to) {
-        const from = this.julian(this.utc(dates.from))
-        const to = this.julian(this.utc(dates.to))
+        const from = julian(dates.from)
+        const to = julian(dates.to)
 
         if (dates.from >= julianTen || to >= julianTen) {
           // Meat of the calculations into percentages
-          let right = this.findPercentage(julianNow, julianTen, to)
-          left = this.findPercentage(julianNow, julianTen, from)
+          let right = findPercentage(julianNow, julianTen, to)
+          left = findPercentage(julianNow, julianTen, from)
           width = Math.abs(right - left)
 
           // Check boundaries
@@ -111,7 +46,7 @@ export default class SummaryProgress extends ValidationElement {
       // Add the range to the collection
       return {
         left: left,
-        width: this.decimalAdjust('round', width, -2),
+        width: decimalAdjust('round', width, -2),
         dates: dates
       }
     })
@@ -124,7 +59,7 @@ export default class SummaryProgress extends ValidationElement {
   completed () {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
     const total = parseInt(this.props.total)
-    return this.decimalAdjust('floor', total * (sum / 100), 0)
+    return decimalAdjust('floor', total * (sum / 100), 0)
   }
 
   /**
@@ -142,15 +77,6 @@ export default class SummaryProgress extends ValidationElement {
       }
       return <div className="filled" style={styles}></div>
     })
-  }
-
-  gaps (ranges = [], buffer = 90) {
-    let holes = []
-
-    for (const range of ranges) {
-    }
-
-    return holes
   }
 
   render () {

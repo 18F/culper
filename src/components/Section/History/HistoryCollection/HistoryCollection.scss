@@ -1,3 +1,5 @@
+@import 'eqip-colors';
+
 .history-collection {
   .index {
     width: 13rem;
@@ -16,6 +18,53 @@
   .option-list.create {
     label {
       width: 18rem;
+    }
+  }
+
+  .caption {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .title {
+      display: table-row;
+    }
+  }
+
+  .pre, .post {
+    background-color: $eapp-grey-light;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .help {
+      padding-top: 0;
+      margin-bottom: 2rem;
+
+      .message {
+        width: 100%;
+      }
+    }
+
+    .dates {
+      float: right;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      padding: 0 !important;
+      margin-top: 0;
+      display: inline-block;
+    }
+
+    p {
+      padding: 0 !important;
+    }
+
+    button {
+      i {
+        margin-left: 1rem;
+      }
     }
   }
 }
