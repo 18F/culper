@@ -85,10 +85,18 @@ export default class ContactInformation extends ValidationElement {
       }
     }
 
+    if (this.state.Emails.length < 2) {
+      return false
+    }
+
     for (let phone of this.state.PhoneNumbers) {
       if (!phone.Telephone || !phone.Telephone.number) {
         return false
       }
+    }
+
+    if (this.state.PhoneNumbers.length < 2) {
+      return false
     }
 
     return true
