@@ -133,13 +133,6 @@ export default class Address extends ValidationElement {
     })
   }
 
-  /**
-   * Generated name for the part of the address elements.
-   */
-  partName (part) {
-    return '' + this.props.name + '-' + part
-  }
-
   usAddress () {
     return (
       <div>

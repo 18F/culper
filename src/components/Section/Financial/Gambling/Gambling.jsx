@@ -255,7 +255,7 @@ export default class Gambling extends ValidationElement {
         <Comments name="Comments"
                   value={this.state.Comments}
                   label={i18n.t('financial.gambling.help.comments')}
-                  className="eapp-field-wrap"
+                  className="eapp-field-wrap gambling-comment"
                   onUpdate={this.commentsUpdated}
                   onValidate={this.handleValidation}>
           <h3>{i18n.t('financial.gambling.label.comments')}</h3>
