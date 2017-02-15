@@ -27,7 +27,7 @@ deploy:
     script: "./bin/deploy.sh staging"
     skip_cleanup: true
     on:
-      branch: sprint6-usability-testing
+      branch: master
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh production"
