@@ -68,9 +68,10 @@ export const EmploymentSummary = (props) => {
   )
 }
 
+/**
+ * Inject new list items as `Gaps`
+ */
 export const InjectGaps = (list, types) => {
-  let gapped = [...list]
-
   for (const t of types) {
     // Find all our "holes" for this type
     let holes = gaps(
@@ -88,7 +89,7 @@ export const InjectGaps = (list, types) => {
 
         if (gap.to === item.Item.Dates.from) {
           let g = holes.splice(i, 1)[0]
-          gapped.push({
+          list.push({
             type: 'Gap',
             Item: {
               Dates: g,
@@ -97,7 +98,7 @@ export const InjectGaps = (list, types) => {
           })
         } else if (gap.from === item.Item.Dates.to) {
           let g = holes.splice(i, 1)[0]
-          gapped.push({
+          list.push({
             type: 'Gap',
             Item: {
               Dates: g,
@@ -109,13 +110,20 @@ export const InjectGaps = (list, types) => {
     }
   }
 
-  return gapped
+  return list
 }
 
+/**
+ * Helper function to determine of an item is a particular type and has
+ * a date range
+ */
 const typeWithDates = (type, item) => {
   return item.type === type && item.Item && item.Item.Dates
 }
 
+/**
+ * Helper function to create a date summary
+ */
 export const dateSummary = (item) => {
   let noDateLabel = i18n.t('history.employment.noDate.label')
   function format (d) {
