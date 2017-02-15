@@ -83,9 +83,9 @@ defineSupportCode(({Given, Then, When}) => {
   const getQrCode = (token, assignToken) => {
     return client
       .assert.urlContains('/login')
-      .assert.visible('#twofactor-component')
+      .assert.visible('.twofactor-component')
       .saveScreenshot('./screenshots/Authentication/04-twofactor.png')
-      .isVisible('#twofactor-component', (result) => {
+      .isVisible('.twofactor-component', (result) => {
         // If there is no value, which in most cases this is ideal, then we need to scan the
         // QR code and retrieve the token each time.
         //
@@ -131,9 +131,9 @@ defineSupportCode(({Given, Then, When}) => {
 
   const provideToken = (token) => {
     return client
-      .setValue('#twofactor-component input[type="text"]', notp.totp.gen(token))
+      .setValue('.twofactor-component input[type="text"]', notp.totp.gen(token))
       .saveScreenshot('./screenshots/Authentication/07-insert-token.png')
-      .click('#twofactor-component button[type="submit"]')
+      .click('.twofactor-component button[type="submit"]')
       .pause(3000)
   }
 
