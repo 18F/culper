@@ -79,6 +79,26 @@ export default class ContactInformation extends ValidationElement {
   }
 
   isValid () {
+    for (let email of this.state.Emails) {
+      if (!email.Email || !email.Email.value) {
+        return false
+      }
+    }
+
+    if (this.state.Emails.length < 2) {
+      return false
+    }
+
+    for (let phone of this.state.PhoneNumbers) {
+      if (!phone.Telephone || !phone.Telephone.number) {
+        return false
+      }
+    }
+
+    if (this.state.PhoneNumbers.length < 2) {
+      return false
+    }
+
     return true
   }
 
@@ -147,7 +167,7 @@ export default class ContactInformation extends ValidationElement {
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <div className={klass + ' telephone-collection'}>
-          <Collection minimum="1"
+          <Collection minimum="2"
                       items={this.state.PhoneNumbers}
                       dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
                       scrollTo="self"
