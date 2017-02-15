@@ -12,6 +12,9 @@ export class Row extends React.Component {
     this.state = {
       show: this.props.show
     }
+
+    this.toggle = this.toggle.bind(this)
+    this.remove = this.remove.bind(this)
   }
 
   toggle () {
@@ -44,7 +47,7 @@ export class Row extends React.Component {
           </div>
         </Show>
         <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-          <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this)}>
+          <a href="javascript:;;" className="toggle" onClick={this.toggle}>
             <div className="brief">
               { this.props.header }
             </div>
@@ -58,7 +61,7 @@ export class Row extends React.Component {
         </div>
         <div className={`details gutters ${this.state.show === true ? '' : 'hidden'}`.trim()}>
           <div className="byline top">
-            <a href="javascript:;;" className="remove" onClick={this.remove.bind(this)}>
+            <a href="javascript:;;" className="remove" onClick={this.remove}>
               <span>{i18n.t('collection.remove')}</span>
               <i className="fa fa-times-circle" aria-hidden="true"></i>
             </a>

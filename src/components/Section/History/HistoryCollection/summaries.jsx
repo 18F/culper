@@ -29,11 +29,11 @@ export const ResidenceSummary = (props) => {
   const dates = res.Dates || {}
   let from = i18n.t('history.residence.collection.summary.unknown')
   if (dates.from) {
-    from = '' + dates.from.getMonth() + '/' + dates.from.getFullYear()
+    from = `${dates.from.getMonth()}/${dates.from.getFullYear()}`
   }
   let to = i18n.t('history.residence.collection.summary.unknown')
   if (dates.to) {
-    to = '' + dates.to.getMonth() + '/' + dates.to.getFullYear()
+    to = `${dates.to.getMonth()}/${dates.to.getFullYear()}`
   }
 
   return (

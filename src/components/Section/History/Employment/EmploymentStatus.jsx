@@ -8,6 +8,8 @@ export default class EmploymentStatus extends ValidationElement {
     this.state = {
       value: props.value
     }
+
+    this.handleFieldChange = this.handleFieldChange.bind(this)
   }
 
   /**
@@ -60,7 +62,7 @@ export default class EmploymentStatus extends ValidationElement {
           label={i18n.t('history.employment.status.fullTime')}
           value="Fulltime"
           disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this)}
+          onChange={this.handleFieldChange}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}
@@ -69,7 +71,7 @@ export default class EmploymentStatus extends ValidationElement {
           label={i18n.t('history.employment.status.partTime')}
           value="Parttime"
           disabled={this.props.disabled}
-          onChange={this.handleFieldChange.bind(this)}
+          onChange={this.handleFieldChange}
           onValidate={this.props.onValidate}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}

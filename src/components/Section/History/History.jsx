@@ -25,6 +25,11 @@ class History extends ValidationElement {
 
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
+    this.residenceRangeList = this.residenceRangeList.bind(this)
+    this.employmentRangesList = this.employmentRangesList.bind(this)
+    this.addResidence = this.addResidence.bind(this)
+    this.addEmployer = this.addEmployer.bind(this)
+    this.onValidate = this.onValidate.bind(this)
   }
 
   componentDidMount () {
@@ -176,7 +181,7 @@ class History extends ValidationElement {
   residenceSummaryProgress () {
     return (
       <SummaryProgress className="residence eapp-field-wrap"
-                       List={this.residenceRangeList.bind(this)}
+                       List={this.residenceRangeList}
                        title={i18n.t('history.residence.summary.title')}
                        unit={i18n.t('history.residence.summary.unit')}
                        total="10"
@@ -191,7 +196,7 @@ class History extends ValidationElement {
   employmentSummaryProgress () {
     return (
       <SummaryProgress className="residence eapp-field-wrap"
-                       List={this.employmentRangesList.bind(this)}
+                       List={this.employmentRangesList}
                        title={i18n.t('history.employment.summary.title')}
                        unit={i18n.t('history.employment.summary.unit')}
                        total="10"
@@ -235,7 +240,7 @@ class History extends ValidationElement {
                       Start with your present residence
                     </div>
                     <div className="btn">
-                      <button className="add usa-button-outline" onClick={this.addResidence.bind(this)}>
+                      <button className="add usa-button-outline" onClick={this.addResidence}>
                         <span>Add residence</span>
                         <i className="fa fa-plus-circle"></i>
                       </button>
@@ -247,7 +252,7 @@ class History extends ValidationElement {
                       Start with your present employer
                     </div>
                     <div className="btn">
-                      <button className="add usa-button-outline" onClick={this.addEmployer.bind(this)}>
+                      <button className="add usa-button-outline" onClick={this.addEmployer}>
                         <span>Add employer</span>
                         <i className="fa fa-plus-circle"></i>
                       </button>
@@ -267,7 +272,7 @@ class History extends ValidationElement {
                                    types={['Residence', 'Employment']}
                                    onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                    onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
-                                   onValidate={this.onValidate.bind(this)}
+                                   onValidate={this.onValidate}
                                    />
               </div>
             </Show>
@@ -286,7 +291,7 @@ class History extends ValidationElement {
                                history={this.props.History}
                                types={['Residence']}
                                onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
-                               onValidate={this.onValidate.bind(this)}
+                               onValidate={this.onValidate}
                                />
             <h2>{i18n.t('history.residence.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.residence.para.exiting')} />
@@ -305,7 +310,7 @@ class History extends ValidationElement {
                                history={this.props.History}
                                types={['Employment']}
                                onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
-                               onValidate={this.onValidate.bind(this)}
+                               onValidate={this.onValidate}
                                />
             <h2>{i18n.t('history.employment.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.employment.para.exiting')} />

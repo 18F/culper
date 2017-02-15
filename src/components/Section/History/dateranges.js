@@ -4,7 +4,8 @@
  *  - floor
  *  - ceil
  *
- * This was pulled from Mozilla Developer Network.
+ * This was pulled from Mozilla Developer Network:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
  */
 export const decimalAdjust = (type, value, exp) => {
   // If the exp is undefined or zero...

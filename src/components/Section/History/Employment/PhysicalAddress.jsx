@@ -10,6 +10,8 @@ export default class PhysicalAddress extends ValidationElement {
       Address: props.Address,
       Telephone: props.Telephone
     }
+
+    this.onBranchUpdate = this.onBranchUpdate.bind(this)
   }
 
   /**
@@ -72,7 +74,7 @@ export default class PhysicalAddress extends ValidationElement {
         className="no-label"
         value={this.state.HasDifferentAddress}
         help="history.employment.physicalAddress.help"
-        onUpdate={this.onBranchUpdate.bind(this)}>
+        onUpdate={this.onBranchUpdate}>
       </Branch>
     )
   }
@@ -95,7 +97,7 @@ export default class PhysicalAddress extends ValidationElement {
                 {...this.props.Address}
                 label={i18n.t('history.employment.physicalAddress.address.label')}
                 placeholder={i18n.t('history.employment.physicalAddress.address.placeholder')}
-                onUpdate={this.handleAddressChange.bind(this)}
+                onUpdate={this.handleAddressChange}
               />
               <HelpIcon className="address"/>
             </Help>

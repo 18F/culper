@@ -9,6 +9,9 @@ export default class AdditionalActivity extends ValidationElement {
       List: props.List || [],
       HasAdditionalActivity: props.HasAdditionalActivity
     }
+
+    this.onBranchUpdate = this.onBranchUpdate.bind(this)
+    this.myDispatch = this.myDispatch.bind(this)
   }
 
   doUpdate () {
@@ -77,7 +80,7 @@ export default class AdditionalActivity extends ValidationElement {
               className="no-label"
               value={this.state.HasAdditionalActivity}
               help="history.employment.additionalActivity.help"
-              onUpdate={this.onBranchUpdate.bind(this)}>
+              onUpdate={this.onBranchUpdate}>
       </Branch>
     )
   }
@@ -96,7 +99,7 @@ export default class AdditionalActivity extends ValidationElement {
 
           <Collection minimum="1"
                       items={this.state.List}
-                      dispatch={this.myDispatch.bind(this)}
+                      dispatch={this.myDispatch}
                       appendClass="eapp-field-wrap"
                       appendLabel={i18n.t('history.employment.additionalActivity.collection.append')}>
 

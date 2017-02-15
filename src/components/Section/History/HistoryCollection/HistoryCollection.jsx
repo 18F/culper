@@ -35,6 +35,9 @@ export default class HistoryCollection extends ValidationElement {
       // Error codes for each of the child collections
       errorCodes: []
     }
+
+    this.handleCollectionTypeChange = this.handleCollectionTypeChange.bind(this)
+    this.create = this.create.bind(this)
   }
 
   componentDidMount () {
@@ -66,7 +69,7 @@ export default class HistoryCollection extends ValidationElement {
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       let e = { [this.props.name]: codes }
       let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
+      if (complexStatus === false || complexStatus === true) {
         super.handleValidation(event, s, e)
         return
       }
@@ -390,7 +393,7 @@ export default class HistoryCollection extends ValidationElement {
   doUpdate (type, items, callback) {
     this.setState({ List: items }, () => {
       // filter list by current collection type being updated
-      const filtered = this.state.List.filter(i => { return i.type === type })
+      const filtered = items.filter(i => { return i.type === type })
 
       if (type === 'Residence' && this.props.onResidenceUpdate) {
         this.props.onResidenceUpdate({List: filtered})
@@ -496,7 +499,7 @@ export default class HistoryCollection extends ValidationElement {
       options.push(
         <Radio label="Residence"
                value="Residence"
-               onChange={this.handleCollectionTypeChange.bind(this)}>
+               onChange={this.handleCollectionTypeChange}>
           <div className="eye-icon">
             <Svg src="img/residence-house.svg" />
           </div>
@@ -508,7 +511,7 @@ export default class HistoryCollection extends ValidationElement {
       options.push(
         <Radio label="Employer"
                value="Employment"
-               onChange={this.handleCollectionTypeChange.bind(this)}>
+               onChange={this.handleCollectionTypeChange}>
           <div className="eye-icon">
             <Svg src="img/employer-briefcase.svg" />
           </div>
@@ -622,7 +625,7 @@ export default class HistoryCollection extends ValidationElement {
               <h3>Done! Now let's add some more</h3>
               <p>Use the button below to save your first history entry and start another</p>
               <div className="text-center">
-                <button className="add usa-button-outline" onClick={this.create.bind(this)}>
+                <button className="add usa-button-outline" onClick={this.create}>
                   <span>Save and add another address, job, or school</span>
                   <i className="fa fa-plus-circle"></i>
                 </button>
