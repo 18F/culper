@@ -43,6 +43,16 @@ class TwoFactor extends React.Component {
     })
   }
 
+  errorMessage () {
+    if (!this.props.error) {
+      return ''
+    }
+
+    return (
+      <div>{this.props.error}</div>
+    )
+  }
+
   render () {
     const reset = env.AllowTwoFactorReset()
           ? <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
@@ -51,10 +61,10 @@ class TwoFactor extends React.Component {
     if (!this.props.qrcode) {
       return (
         <form onSubmit={this.handleSubmit}>
-          <div id="twofactor-component">
+          <div className="twofactor-component">
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
             { reset }
-            { this.props.error ? (<div>{this.props.error}</div>) : '' }
+            { this.errorMessage() }
             <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>
         </form>
@@ -62,11 +72,11 @@ class TwoFactor extends React.Component {
     } else {
       return (
         <form onSubmit={this.handleSubmit}>
-          <div id="twofactor-component">
+          <div className="twofactor-component">
             <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={this.base64png()} />
             <input type="text" value={this.state.token} onChange={this.handleChange} ref="token" autoFocus />
             { reset }
-            { this.props.error ? (<div>{this.props.error}</div>) : '' }
+            { this.errorMessage() }
             <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>
         </form>

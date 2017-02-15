@@ -1,50 +1,50 @@
 .daterange {
-    display: inline-block;
-    margin-top: 2rem;
+  display: inline-block;
+  margin-top: 2rem;
+  padding-left: 0;
+  padding-right: 0;
+
+  .usa-grid {
     padding-left: 0;
     padding-right: 0;
+  }
 
-    .usa-grid {
-        padding-left:0;
-        padding-right:0;
+  .from-label {
+    display: inline-block;
+    width: 8rem;
+    vertical-align: top;
+  }
+
+  .datecontrol {
+    display: inline-block;
+  }
+
+  .arrow {
+    height: 0;
+
+    img {
+      width: 1rem;
+      height: 11rem;
+      margin-top: -10rem;
+      margin-left: 3rem;
     }
+  }
 
-    .from-label {
-        display: inline-block;
-        width: 8rem;
-        vertical-align: top;
+  .from-present {
+    display: inline-block;
+    vertical-align: top;
+
+    .or {
+      margin-right: 1rem;
     }
-
-    .datecontrol {
-        display: inline-block;
-    }
-
-    .arrow {
-        height: 0;
-
-        img {
-            width: 1rem;
-            height: 11rem;
-            margin-top: -10rem;
-            margin-left: 3rem;
-        }
-    }
-
-    .from-present {
-        display: inline-block;
-        vertical-align: top;
-
-        .or {
-            margin-right: 1rem;
-        }
-    }
+  }
 }
 
 .help {
-    .daterange {
-        + .toggle {
-            margin-top: 1.5rem;
-            margin-left: -13.8rem;
-        }
+  .daterange {
+    + .toggle {
+      margin-top: 1.5rem;
+      margin-left: -13.8rem;
     }
+  }
 }

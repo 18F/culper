@@ -1,27 +1,27 @@
 .residences {
-    .summary {
-        .brief {
-            .index {
-                width: 10rem;
-            }
-        }
+  .summary {
+    .brief {
+      .index {
+        width: 10rem;
+      }
     }
+  }
 }
 
 .residence {
-    .info-label {
-        position: relative;
-        top: initial;
-        left: initial;
+  .info-label {
+    position: relative;
+    top: initial;
+    left: initial;
+  }
+
+  .role {
+    .eapp-blocks-radio {
+      width: 29rem;
     }
 
-    .role {
-        .eapp-blocks-radio {
-            width: 29rem;
-        }
-
-        .other {
-            margin-top: 4rem;
-        }
+    .other {
+      margin-top: 4rem;
     }
+  }
 }

@@ -1,17 +1,17 @@
 .weight {
-    .pounds {
-        input {
-            width: 20.5rem !important;
-        }
+  .pounds {
+    input {
+      width: 20.5rem !important;
     }
+  }
 
-    .eapp-field-wrap {
-        overflow-x: visible;
-        background: transparent;
-        vertical-align: top;
-    }
+  .eapp-field-wrap {
+    overflow-x: visible;
+    background: transparent;
+    vertical-align: top;
+  }
 
-    .eapp-error-message {
-        width: calc(100% * 100);
-    }
+  .eapp-error-message {
+    width: calc(100% * 100);
+  }
 }

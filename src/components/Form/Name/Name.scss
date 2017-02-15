@@ -1,36 +1,36 @@
 @import 'eqip-colors';
 
 .name {
+  input[type='text'] {
+    display: inline-block;
+    width: 100%;
+  }
 
-    input[type="text"] {
-        display: inline-block;
-        width: 100%;
-    }
+  .inline {
+    display: inline-block;
+    margin-left: 1rem;
+  }
 
-    .inline {
-        display: inline-block;
-        margin-left: 1rem;
-    }
+  .optional {
+    color: $eapp-grey-darker;
+    font-style: italic;
+    padding-left: 0.5rem;
+  }
 
-    .optional {
-        color: $eapp-grey-darker;
-        font-style: italic;
-        padding-left: 0.5rem;
-    }
+  .middle-options {
+    max-width: 64rem;
+  }
 
-    .middle-options {
-        max-width: 64rem;
-    }
+  .first,
+  .middle,
+  .last,
+  .suffix,
+  .suffix-other {
+    display: inline-block;
+    width: 92%;
+  }
 
-    .first,
-    .middle,
-    .last,
-    .suffix-other {
-        display: inline-block;
-        width: 93%;
-    }
-
-    .suffix-other {
-        padding-top: 4rem;
-    }
+  .suffix-other {
+    padding-top: 4rem;
+  }
 }
