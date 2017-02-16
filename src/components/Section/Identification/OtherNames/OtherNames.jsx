@@ -62,10 +62,7 @@ export default class OtherNames extends ValidationElement {
 
   onUpdate (val, event) {
     this.setState({ HasOtherNames: val }, () => {
-      if (val === 'No') {
-        this.myDispatch([])
-      }
-
+      this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
   }
