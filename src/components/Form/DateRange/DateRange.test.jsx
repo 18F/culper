@@ -43,11 +43,11 @@ describe('The date range component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      onUpdate: function (event) {
         changes++
       }
     }
-    const component = mount(<DateRange name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<DateRange name={expected.name} onUpdate={expected.onUpdate} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })

@@ -12,20 +12,22 @@ export default class ApplicantBirthDate extends ValidationElement {
       estimated: props.estimated,
       errorCodes: []
     }
+
+    this.onUpdate = this.onUpdate.bind(this)
   }
 
   /**
    * Handle the change event.
    */
-  handleChange (event) {
-    this.setState({ value: event.target.date }, () => {
-      super.handleChange(event)
+  onUpdate (value) {
+    this.setState({ value: value.date }, () => {
+      this.handleValidation ({}, null, null)
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          month: this.datePart('m', this.state.value),
-          day: this.datePart('d', this.state.value),
-          year: this.datePart('y', this.state.value),
-          estimated: this.state.estimated
+          month: value.month,
+          day: value.day,
+          year: value.year,
+          estimated: value.estimated
         })
       }
     })
@@ -39,38 +41,59 @@ export default class ApplicantBirthDate extends ValidationElement {
       return
     }
 
+    console.log('birth date validation triggered by: ', event.target)
+
     let errorCodes = []
     this.state.errorCodes.forEach((e) => {
-      if (e !== 'age') {
+      if (e !== 'age' && e !== 'day.max') {
         errorCodes.push(e)
       }
     })
 
-    if (status === true && this.state.value !== '') {
+    let fullYear = false
+    if (this.state.value !== '') {
       // Calculation to get the age of something compared to now.
       let now = new Date()
       let then = new Date(this.state.value)
-      let age = now.getFullYear() - then.getFullYear()
-      var m = now.getMonth() - then.getMonth()
-      if (m < 0 || (m === 0 && now.getDate() < then.getDate())) {
-        age--
-      }
 
-      if (age < 17 || age > 129) {
-        status = false
-        error = 'age'
+      // This is an additional check to delay errors being passed up prematurely
+      console.log('then:', then)
+      fullYear = then.getFullYear() > 999
+      if (fullYear) {
+        let age = now.getFullYear() - then.getFullYear()
+        var m = now.getMonth() - then.getMonth()
+        if (m < 0 || (m === 0 && now.getDate() < then.getDate())) {
+          age--
+        }
+
+        if (age < 17 || age > 129) {
+          status = false
+          error = 'age'
+        }
       }
     }
 
     const codes = super.mergeError(errorCodes, error)
     let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.state.value && this.state.value !== '') {
-      complexStatus = true
+    if (fullYear) {
+      if (codes.length > 0) {
+        complexStatus = false
+      } else {
+        complexStatus = true
+      }
     }
 
+    console.log('error:', error)
+    console.log('errorCodes:', errorCodes)
+    console.log('codes:', codes)
+    console.log('fullYear:', fullYear)
+    console.log('value:', this.state.value)
+
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      if (!fullYear) {
+        return
+      }
+
       let e = { [this.props.name]: codes }
       let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
@@ -146,7 +169,7 @@ export default class ApplicantBirthDate extends ValidationElement {
           <DateControl name={this.props.name}
                        value={this.state.value}
                        estimated={this.state.estimated}
-                       onChange={this.handleChange}
+                       onUpdate={this.onUpdate}
                        onValidate={this.handleValidation}
                        />
           <HelpIcon />

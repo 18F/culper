@@ -6,18 +6,9 @@ export default class Number extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      disabled: props.disabled,
-      min: props.min,
-      max: props.max,
-      maxlength: props.maxlength,
-      readonly: props.readonly,
-      required: props.required,
-      step: props.step,
       value: props.value,
+      disabled: props.disabled,
+      max: props.max,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
@@ -26,9 +17,17 @@ export default class Number extends ValidationElement {
   }
 
   componentWillReceiveProps (next) {
-    this.setState({
-      disabled: next.disabled,
-      value: next.value
+    const old = this.state.max
+    this.setState({ max: next.max, value: next.value }, () => {
+      if (old !== next.max) {
+        this.handleValidation(
+          {
+            fake: true,
+            target: {
+              name: this.props.name
+            }
+          }, null)
+      }
     })
   }
 
@@ -83,7 +82,7 @@ export default class Number extends ValidationElement {
    */
   handleValidation (event, status) {
     if (status === false) {
-      super.handleValidation(event, status, errorCode)
+      super.handleValidation(event, status, null)
       return
     }
 
@@ -93,7 +92,7 @@ export default class Number extends ValidationElement {
 
     if (this.state.value) {
       if (status && this.props.min) {
-        status = status && parseInt(this.state.value) >= parseInt(this.props.min)
+        status = parseInt(this.state.value) >= parseInt(this.props.min)
         if (status === false) {
           errorCode = 'min'
         }
@@ -101,7 +100,7 @@ export default class Number extends ValidationElement {
       }
 
       if (status && this.props.max) {
-        status = status && parseInt(this.state.value) <= parseInt(this.props.max)
+        status = parseInt(this.state.value) <= parseInt(this.state.max)
         if (status === false) {
           errorCode = 'max'
         }
@@ -109,7 +108,7 @@ export default class Number extends ValidationElement {
       }
 
       if (status && this.props.maxlength && this.props.maxlength > 0) {
-        status = status && ('' + this.state.value).length <= parseInt(this.props.maxlength)
+        status = ('' + this.state.value).length <= parseInt(this.props.maxlength)
         if (status === false) {
           errorCode = 'length'
         }
@@ -124,9 +123,12 @@ export default class Number extends ValidationElement {
 
     // Set the internal state
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.state.name || 'input'
+      let prop = this.props.name || 'input'
       let e = { [prop]: errorCode }
-      super.handleValidation(event, status, e)
+
+      if (!event.fake) {
+        super.handleValidation(event, status, e)
+      }
     })
   }
 
@@ -134,7 +136,7 @@ export default class Number extends ValidationElement {
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
@@ -190,19 +192,19 @@ export default class Number extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.props.name}>
+          {this.props.label}
         </label>
         <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
+               id={this.props.name}
+               name={this.props.name}
                type="text"
                ref="input"
-               placeholder={this.state.placeholder}
+               placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
-               disabled={this.state.disabled}
-               maxLength={this.state.maxlength}
-               readOnly={this.state.readonly}
+               disabled={this.props.disabled}
+               maxLength={this.props.maxlength}
+               readOnly={this.props.readonly}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}

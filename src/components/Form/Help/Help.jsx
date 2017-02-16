@@ -14,6 +14,7 @@ export default class Help extends ValidationElement {
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.onFlush = this.onFlush.bind(this)
   }
 
   /**
@@ -34,11 +35,12 @@ export default class Help extends ValidationElement {
     }
 
     let e = [...this.state.errors]
-    if (!errors) {
-      // Let's clean out what we current have stored for this target.
-      let name = !event.target || !event.target.name ? 'input' : event.target.name
-      e = this.cleanErrors(e, `.${name}.`)
-    } else {
+
+    // Let's clean out what we current have stored for this target.
+    let name = !event.target || !event.target.name ? 'input' : event.target.name
+    e = this.cleanErrors(e, `.${name}.`)
+
+    if (errors) {
       let errorFlat = super.flattenObject(errors)
 
       if (errorFlat.endsWith('.')) {
@@ -62,6 +64,10 @@ export default class Help extends ValidationElement {
     this.setState({ errors: e }, () => {
       super.handleValidation(event, status, errors)
     })
+  }
+
+  onFlush () {
+    this.setState({ errors: [] })
   }
 
   /**
@@ -137,6 +143,8 @@ export default class Help extends ValidationElement {
           child.props.onValidate(event, status, errors)
         }
       }
+
+      extendedProps.onFlush = this.onFlush
 
       return React.cloneElement(child, {
         ...child.props,

@@ -103,7 +103,8 @@ const en = {
       max: 'Cannot exceed the number of days within the month'
     },
     year: {
-      max: 'The year must be a valid year'
+      max: 'The year must be a valid year',
+      min: 'The year must be a valid year'
     },
     weight: {
       pounds: {

@@ -22,38 +22,11 @@ export default class DateRange extends ValidationElement {
     }
   }
 
-  handleChange (field, event) {
-    // Get a handle to current state values as well as set the value for the current
-    // element that triggered a change
-    let futureState = null
-    if (field === 'present') {
-      futureState = {
-        ...this.state,
-        present: event.target.checked,
-        presentClicked: true
-      }
-    } else {
-      futureState = {
-        ...this.state,
-        presentClicked: false,
-        [field + '_' + event.target.name]: event.target.value
-      }
-    }
-
-    if (field === 'present') {
-      // If present is true then make the "to" date equal to today
-      if (!this.state.present && futureState.present) {
-        let now = new Date()
-        futureState.to = now
-        futureState.to_year = now.getFullYear()
-        futureState.to_month = now.getMonth() - 1
-        futureState.to_day = now.getDate()
-      } else if (this.state.present && !futureState.present) {
-        futureState.to = null
-        futureState.to_year = null
-        futureState.to_month = null
-        futureState.to_day = null
-      }
+  onUpdate (field, value) {
+    let futureState = {
+      ...this.state,
+      presentClicked: false,
+      [field + '_' + value.name]: value
     }
 
     if (field === 'from') {
@@ -69,18 +42,52 @@ export default class DateRange extends ValidationElement {
     }
 
     this.setState(futureState, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          from: this.state.from,
+          to: this.state.to,
+          present: this.state.present,
+          title: this.state.title
+        })
+      }
+    })
+  }
+
+  handleChange (field, event) {
+    // Get a handle to current state values as well as set the value for the current
+    // element that triggered a change
+    let futureState = {
+      ...this.state,
+      present: !this.state.present,
+      presentClicked: true
+    }
+
+    // If present is true then make the "to" date equal to today
+    if (!this.state.present && futureState.present) {
+      let now = new Date()
+      futureState.to = now
+      futureState.to_year = now.getFullYear()
+      futureState.to_month = now.getMonth() - 1
+      futureState.to_day = now.getDate()
+    } else if (this.state.present && !futureState.present) {
+      futureState.to = null
+      futureState.to_year = null
+      futureState.to_month = null
+      futureState.to_day = null
+    }
+
+    this.setState(futureState, () => {
       super.handleChange(event)
 
       // This will force a blur/validation
-      if (field === 'present') {
-        this.refs.to.refs.month.refs.input.focus()
-        this.refs.to.refs.month.refs.input.blur()
-        this.refs.to.refs.day.refs.input.focus()
-        this.refs.to.refs.day.refs.input.blur()
-        this.refs.to.refs.year.refs.input.focus()
-        this.refs.to.refs.year.refs.input.blur()
-        this.handleValidation(event, null, null)
-      }
+      this.refs.to.refs.month.refs.input.focus()
+      this.refs.to.refs.month.refs.input.blur()
+      this.refs.to.refs.day.refs.input.focus()
+      this.refs.to.refs.day.refs.input.blur()
+      this.refs.to.refs.year.refs.input.focus()
+      this.refs.to.refs.year.refs.input.blur()
+      this.handleValidation(event, null, null)
 
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -128,8 +135,9 @@ export default class DateRange extends ValidationElement {
           <DateControl name="from"
                        value={this.state.from}
                        estimated={this.state.estimated}
-                       onChange={this.handleChange.bind(this, 'from')}
+                       onUpdate={this.onUpdate.bind(this, 'from')}
                        onValidate={this.handleValidation}
+                       onFlush={this.props.onFlush}
                        />
         </div>
         <div className="arrow">
@@ -145,8 +153,9 @@ export default class DateRange extends ValidationElement {
                        estimated={this.state.estimated}
                        receiveProps={this.state.presentClicked}
                        disabled={this.state.present}
-                       onChange={this.handleChange.bind(this, 'to')}
+                       onUpdate={this.onUpdate.bind(this, 'to')}
                        onValidate={this.handleValidation}
+                       onFlush={this.props.onFlush}
                        />
           <div className="from-present">
             <span className="or"> or </span>
@@ -154,7 +163,7 @@ export default class DateRange extends ValidationElement {
                       label=""
                       value="present"
                       checked={this.state.present}
-                      onChange={this.handleChange.bind(this, 'present')}
+                      onChange={this.handleChange}
                       >
               <span>Present</span>
             </Checkbox>
