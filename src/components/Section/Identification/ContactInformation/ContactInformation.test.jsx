@@ -30,6 +30,13 @@ describe('The ContactInformation component', () => {
         },
         {
           Telephone: {
+            type: 'Domestic',
+            number: '2028675309',
+            extension: ''
+          }
+        },
+        {
+          Telephone: {
             type: 'DSN',
             number: '8675309'
           }
@@ -40,13 +47,22 @@ describe('The ContactInformation component', () => {
             number: '0011234567890',
             extension: '1234'
           }
+        },
+        {
+          Telephone: {
+            type: 'International',
+            number: '0011234567890',
+            extension: ''
+          }
         }
       ]
     }
     const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.table-cell strong').length).toEqual(3)
+    expect(component.find('.table-cell strong').length).toEqual(5)
     expect(component.find('.table-cell strong').at(0).text()).toEqual('(202) 867-5309 x1234')
-    expect(component.find('.table-cell strong').at(1).text()).toEqual('867-5309')
-    expect(component.find('.table-cell strong').at(2).text()).toEqual('+001 1234567890 x1234')
+    expect(component.find('.table-cell strong').at(1).text()).toEqual('(202) 867-5309')
+    expect(component.find('.table-cell strong').at(2).text()).toEqual('867-5309')
+    expect(component.find('.table-cell strong').at(3).text()).toEqual('+001 1234567890 x1234')
+    expect(component.find('.table-cell strong').at(4).text()).toEqual('+001 1234567890')
   })
 })
