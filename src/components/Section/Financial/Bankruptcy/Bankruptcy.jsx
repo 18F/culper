@@ -105,10 +105,7 @@ export default class Bankruptcy extends ValidationElement {
    */
   onUpdate (val, event) {
     this.setState({ HasBankruptcy: val }, () => {
-      if (val === 'No') {
-        this.myDispatch([])
-      }
-
+      this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
   }
