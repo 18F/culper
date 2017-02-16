@@ -1,13 +1,13 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Gambling from './Gambling'
+import Bankruptcy from './Bankruptcy'
 
-describe('The gambling component', () => {
+describe('The bankruptcy component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'gambling'
+      name: 'bankruptcy'
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = mount(<Bankruptcy {...expected} />)
     expect(component.find('input[type="radio"]').length).toEqual(2)
     expect(component.find('.selected').length).toEqual(0)
     expect(component.find('button.add').length).toEqual(0)
@@ -15,17 +15,17 @@ describe('The gambling component', () => {
 
   it('displays fields when "yes" is selected', () => {
     const expected = {
-      HasGamblingDebt: 'Yes'
+      HasBankruptcy: 'Yes'
     }
-    const component = mount(<Gambling {...expected} />)
-    expect(component.find('.losses').length).toEqual(1)
+    const component = mount(<Bankruptcy {...expected} />)
+    expect(component.find('.amount').length).toBeGreaterThan(0)
   })
 
   it('does not display any fields when "no" is selected', () => {
     const expected = {
-      HasGamblingDebt: 'No'
+      HasBankruptcy: 'No'
     }
-    const component = mount(<Gambling {...expected} />)
-    expect(component.find('.losses').length).toEqual(0)
+    const component = mount(<Bankruptcy {...expected} />)
+    expect(component.find('.amount').length).toEqual(0)
   })
 })
