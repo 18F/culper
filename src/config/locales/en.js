@@ -831,6 +831,54 @@ const en = {
         additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
 
       }
+    },
+    education: {
+      title: 'List the places you went to school',
+      info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
+      collection: {
+        summary: {
+          title: 'Summary of education',
+          item: 'School',
+          unknown: 'Unknown'
+        },
+        append: 'Save and add another school'
+      },
+      heading: {
+        done: 'Done! Now let\'s add more',
+        exiting: 'Before you leave this section',
+        details: 'Enter your school information',
+        dates: 'Provide dates of attendance',
+        name: 'Provide the name of the school',
+        address: 'Provide the street address of the school',
+        comments: 'If you need to provide additional comments about this information enter them below',
+        type: 'Select the most appropriate code to describe your school',
+        reference: 'Add a person that knows you'
+      },
+      para: {
+        exiting: '',
+        reference: 'For any school in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for education completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+      },
+      label: {
+        attendance: 'Have you attended any schools in the last 10 years?',
+        dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
+        name: 'School name',
+        address: 'This address is',
+        comments: 'Add optional comment',
+        type: {
+          highschool: 'High school',
+          college: 'College, university, or military college',
+          vocational: 'Vocational, technical, or trade school',
+          correspondence: 'Correspondence, distance, extension, or online school'
+        }
+      },
+      help: {
+        attendance: '',
+        dates: 'Provide the dates of attendance',
+        school: 'Provide the school name',
+        address: 'Provide the street address of the school',
+        type: 'Select the most appropriate code to describe your school',
+        comments: 'If you need to provide any additional comments about this information enter them below'
+      }
     }
   },
   foreign: {

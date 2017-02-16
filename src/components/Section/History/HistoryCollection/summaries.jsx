@@ -69,6 +69,26 @@ export const EmploymentSummary = (props) => {
 }
 
 /**
+ * Renders a formatted summary information for an education row
+ */
+export const EducationSummary = (props) => {
+  let item = props.education.Item
+  const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
+  const dates = dateSummary(item)
+
+  return (
+    <div className="table">
+      <div className="table-cell index">
+        <Svg src="img/school-cap.svg" />
+        {i18n.t('history.education.collection.summary.item')}:
+      </div>
+      <div className="table-cell employer">{ school }</div>
+      <div className="table-cell dates">{ dates }</div>
+    </div>
+  )
+}
+
+/**
  * Inject new list items as `Gaps`
  */
 export const InjectGaps = (list, types) => {

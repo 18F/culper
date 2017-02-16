@@ -208,6 +208,10 @@ class History extends ValidationElement {
     )
   }
 
+  educationSummaryProgress () {
+    return null
+  }
+
   addResidence () {
     this.setState({ addOnLoad: 'Residence' })
   }
@@ -266,12 +270,14 @@ class History extends ValidationElement {
               <div>
                 { this.residenceSummaryProgress() }
                 { this.employmentSummaryProgress() }
+                { this.educationSummaryProgress() }
                 <HistoryCollection name="timeline"
                                    addOnLoad={this.state.addOnLoad}
                                    history={this.props.History}
-                                   types={['Residence', 'Employment']}
+                                   types={['Residence', 'Employment', 'Education']}
                                    onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                    onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
+                                   onEducationUpdate={this.onUpdate.bind(this, 'Education')}
                                    onValidate={this.onValidate}
                                    />
               </div>
@@ -287,7 +293,7 @@ class History extends ValidationElement {
             <p>{i18n.t('history.residence.info')}</p>
             { this.residenceSummaryProgress() }
             <HistoryCollection name="residence"
-                               addOnLoad={this.state.addOnLoad}
+                               addOnLoad="Residence"
                                history={this.props.History}
                                types={['Residence']}
                                onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
@@ -306,7 +312,7 @@ class History extends ValidationElement {
             <p>{i18n.t('history.employment.para.employment')}</p>
             { this.employmentSummaryProgress() }
             <HistoryCollection name="employment"
-                               addOnLoad={this.state.addOnLoad}
+                               addOnLoad="Employment"
                                history={this.props.History}
                                types={['Employment']}
                                onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
@@ -321,6 +327,18 @@ class History extends ValidationElement {
                        backLabel={i18n.t('history.destination.employment')}
                        next="history/review"
                        nextLabel={i18n.t('history.destination.review')}>
+            <h2>{i18n.t('history.education.title')}</h2>
+            <p>{i18n.t('history.education.info')}</p>
+            { this.educationSummaryProgress() }
+            <HistoryCollection name="education"
+                               addOnLoad="Education"
+                               history={this.props.History}
+                               types={['Education']}
+                               onEducationUpdate={this.onUpdate.bind(this, 'Education')}
+                               onValidate={this.onValidate}
+                               />
+            <h2>{i18n.t('history.education.heading.exiting')}</h2>
+            <ReactMarkdown source={i18n.t('history.education.para.exiting')} />
           </SectionView>
         </SectionViews>
       </div>

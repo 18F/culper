@@ -3,8 +3,9 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence'
 import { EmploymentItem } from '../Employment'
+import { EducationItem } from '../Education'
 import { Row, Gap } from './Row'
-import { InjectGaps, EmploymentSummary, ResidenceSummary, dateSummary } from './summaries'
+import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary, dateSummary } from './summaries'
 import { daysAgo, today } from '../dateranges'
 
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -83,7 +84,9 @@ export default class HistoryCollection extends ValidationElement {
       return false
     }
 
-    return this.validateEmployment(this.state.List) && this.validateResidence(this.state.List)
+    return this.validateEmployment(this.state.List)
+      && this.validateResidence(this.state.List)
+      && this.validateEducation(this.state.List)
   }
 
   validateEmployment (list) {
@@ -286,12 +289,16 @@ export default class HistoryCollection extends ValidationElement {
     return true
   }
 
+  validateEducation (list) {
+    return true
+  }
+
   /**
    * Determines if any items exist in the collection. This includes residence and employer
    * information
    */
   isEmpty () {
-    return !this.containsResidence() && !this.containsEmployment()
+    return !this.containsResidence() && !this.containsEmployment() && !this.containsEducation()
   }
 
   /**
@@ -306,6 +313,13 @@ export default class HistoryCollection extends ValidationElement {
    */
   containsEmployment () {
     return this.props.history && this.props.history.Employment && this.props.history.Employment.List
+  }
+
+  /**
+   * Determines if any education items exist
+   */
+  containsEducation () {
+    return this.props.history && this.props.history.Education && this.props.history.Education.List
   }
 
   componentWillReceiveProps (nextProps) {
@@ -340,6 +354,15 @@ export default class HistoryCollection extends ValidationElement {
       })
 
       list = list.concat(employment)
+    }
+
+    if (this.props.types.includes('Education') && history.Education && history.Education.List) {
+      const education = history.Education.List.map(r => {
+        r.type = 'Education'
+        return r
+      })
+
+      list = list.concat(education)
     }
 
     this.setState({
@@ -399,6 +422,8 @@ export default class HistoryCollection extends ValidationElement {
         this.props.onResidenceUpdate({List: filtered})
       } else if (type === 'Employment' && this.props.onEmploymentUpdate) {
         this.props.onEmploymentUpdate({List: filtered})
+      } else if (type === 'Education' && this.props.onEducationUpdate) {
+        this.props.onEducationUpdate({List: filtered})
       } else {
         console.warn('No update callback method was provided in HistoryCollection')
       }
@@ -461,7 +486,7 @@ export default class HistoryCollection extends ValidationElement {
 
   /**
    * Handles when user is choosing between which new object type to create. This includes
-   * Residence | Employment | School
+   * Residence | Employment | Education
    */
   handleCollectionTypeChange (e) {
     let type = e.target.value
@@ -514,6 +539,18 @@ export default class HistoryCollection extends ValidationElement {
                onChange={this.handleCollectionTypeChange}>
           <div className="eye-icon">
             <Svg src="img/employer-briefcase.svg" />
+          </div>
+        </Radio>
+      )
+    }
+
+    if (this.props.types.includes('Education')) {
+      options.push(
+        <Radio label="School/Degree"
+               value="Education"
+               onChange={this.handleCollectionTypeChange}>
+          <div className="eye-icon">
+            <Svg src="img/school-cap.svg" />
           </div>
         </Radio>
       )
@@ -582,6 +619,27 @@ export default class HistoryCollection extends ValidationElement {
         )
       }
 
+      if (item.type === 'Education') {
+        let header = (<EducationSummary education={item} />)
+        return (
+          <Row header={header}
+               index={i}
+               key={i}
+               first={firstRow}
+               last={lastRow}
+               onRemove={this.remove.bind(this, item.type)}
+               show={item.isNew}>
+            <div className="education">
+              <EducationItem name="Education"
+                              {...item.Item}
+                              onUpdate={this.onUpdate.bind(this, 'Education', i)}
+                              onValidate={this.handleValidation}
+                              />
+            </div>
+          </Row>
+        )
+      }
+
       if (item.type === 'Gap') {
         return (
           <Gap index={i}
@@ -615,6 +673,15 @@ export default class HistoryCollection extends ValidationElement {
             <div className="employment">
               <EmploymentItem name="Employment"
                               onUpdate={this.onNewUpdate.bind(this, 'Employment')}
+                              onValidate={this.handleValidation}
+                              />
+            </div>
+          </Show>
+
+          <Show when={this.state.collectionType === 'Education'}>
+            <div className="education">
+              <EducationItem name="Education"
+                              onUpdate={this.onNewUpdate.bind(this, 'Education')}
                               onValidate={this.handleValidation}
                               />
             </div>
