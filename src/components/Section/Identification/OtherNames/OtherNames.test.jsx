@@ -15,4 +15,28 @@ describe('The other names section', () => {
     const component = mount(<Provider store={store}><OtherNames /></Provider>)
     expect(component.find('input#first').length).toEqual(0)
   })
+
+  it('displays fields when "yes" is selected', () => {
+    const store = mockStore({
+      authentication: [],
+      application: {}
+    })
+    const expected = {
+      HasOtherNames: 'Yes'
+    }
+    const component = mount(<Provider store={store}><OtherNames {...expected} /></Provider>)
+    expect(component.find('input#first').length).toEqual(1)
+  })
+
+  it('does not display any fields when "no" is selected', () => {
+    const store = mockStore({
+      authentication: [],
+      application: {}
+    })
+    const expected = {
+      HasOtherNames: 'No'
+    }
+    const component = mount(<Provider store={store}><OtherNames {...expected} /></Provider>)
+    expect(component.find('input#first').length).toEqual(0)
+  })
 })
