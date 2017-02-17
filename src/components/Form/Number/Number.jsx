@@ -83,7 +83,7 @@ export default class Number extends ValidationElement {
    */
   handleValidation (event, status) {
     if (status === false) {
-      super.handleValidation(event, status, errorCode)
+      super.handleValidation(event, status, null)
       return
     }
 
@@ -91,7 +91,7 @@ export default class Number extends ValidationElement {
     let hits = 0
     status = true
 
-    if (this.state.value) {
+    if (typeof(this.state.value) !== 'undefined' && !isNaN(parseInt(this.state.value))) {
       if (status && this.props.min) {
         status = status && parseInt(this.state.value) >= parseInt(this.props.min)
         if (status === false) {
