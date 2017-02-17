@@ -236,12 +236,14 @@ export default class Name extends ValidationElement {
                 />
           <HelpIcon />
           <div className="text-right">
-            <input id="firstInitialOnly"
-                   type="checkbox"
-                   value="firstInitial"
-                   checked={this.props.firstInitialOnly}
-                   onChange={this.handleChange} />
-            <label>Initial Only</label>
+            <div className="inline">
+              <input id="firstInitialOnly"
+                    type="checkbox"
+                    value="firstInitial"
+                    checked={this.props.firstInitialOnly}
+                    onChange={this.handleChange} />
+              <label>Initial Only</label>
+            </div>
           </div>
         </Help>
         <Help id="identification.name.middle.help" errorPrefix="name">
@@ -295,12 +297,14 @@ export default class Name extends ValidationElement {
                 />
           <HelpIcon />
           <div className="text-right">
-            <input id="lastInitialOnly"
-                   type="checkbox"
-                   value="lastInitial"
-                   checked={this.props.lastInitialOnly}
-                   onChange={this.handleChange} />
-            <label>Initial Only</label>
+            <div className="inline">
+              <input id="lastInitialOnly"
+                    type="checkbox"
+                    value="lastInitial"
+                    checked={this.props.lastInitialOnly}
+                    onChange={this.handleChange} />
+              <label>Initial Only</label>
+            </div>
           </div>
         </Help>
         <Help id="identification.name.suffix.help" errorPrefix="name" scrollIntoView="true">
