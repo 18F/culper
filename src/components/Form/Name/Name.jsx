@@ -52,15 +52,19 @@ export default class Name extends ValidationElement {
         updated = { suffixOther: value }
         break
       case 'firstInitialOnly':
+        event.persist()
         updated = { firstInitialOnly: event.target.checked }
         break
       case 'lastInitialOnly':
+        event.persist()
         updated = { lastInitialOnly: event.target.checked }
         break
       case 'middleInitialOnly':
+        event.persist()
         updated = { middleInitialOnly: event.target.checked, noMiddleName: false }
         break
       case 'noMiddleName':
+        event.persist()
         updated = { noMiddleName: event.target.checked, middleInitialOnly: false, middle: '' }
         break
 
@@ -238,10 +242,11 @@ export default class Name extends ValidationElement {
           <div className="text-right">
             <div className="inline">
               <input id="firstInitialOnly"
-                    type="checkbox"
-                    value="firstInitial"
-                    checked={this.props.firstInitialOnly}
-                    onChange={this.handleChange} />
+                     name="firstInitialOnly"
+                     type="checkbox"
+                     value="firstInitial"
+                     checked={this.props.firstInitialOnly}
+                     onChange={this.handleChange} />
               <label>Initial Only</label>
             </div>
           </div>
@@ -265,6 +270,7 @@ export default class Name extends ValidationElement {
           <div className="middle-options text-right">
             <div className="inline">
               <input id="noMiddleName"
+                     name="noMiddleName"
                      type="checkbox"
                      value="noMiddleName"
                      checked={this.props.noMiddleName}
@@ -273,6 +279,7 @@ export default class Name extends ValidationElement {
             </div>
             <div className="inline">
               <input id="middleInitialOnly"
+                     name="middleInitialOnly"
                      type="checkbox"
                      value="middleInitial"
                      checked={this.props.middleInitialOnly}
@@ -299,10 +306,11 @@ export default class Name extends ValidationElement {
           <div className="text-right">
             <div className="inline">
               <input id="lastInitialOnly"
-                    type="checkbox"
-                    value="lastInitial"
-                    checked={this.props.lastInitialOnly}
-                    onChange={this.handleChange} />
+                     name="lastInitialOnly"
+                     type="checkbox"
+                     value="lastInitial"
+                     checked={this.props.lastInitialOnly}
+                     onChange={this.handleChange} />
               <label>Initial Only</label>
             </div>
           </div>
