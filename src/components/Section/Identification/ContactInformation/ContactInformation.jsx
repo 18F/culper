@@ -160,6 +160,7 @@ export default class ContactInformation extends ValidationElement {
     return (
       <div className="contact">
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
+        <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
           <Collection minimum="1"
                       items={this.state.Emails}
@@ -184,6 +185,7 @@ export default class ContactInformation extends ValidationElement {
         </div>
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
+        <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
         <div className={klass + ' telephone-collection'}>
           <Collection minimum="2"
                       items={this.state.PhoneNumbers}
