@@ -836,23 +836,37 @@ const en = {
       title: 'List the places you went to school',
       info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
       collection: {
-        summary: {
-          title: 'Summary of education',
-          item: 'School',
-          unknown: 'Unknown'
+        school: {
+          summary: {
+            title: 'Summary of education',
+            item: 'School',
+            unknown: 'Unknown'
+          },
+          append: 'Save and add another school'
         },
-        append: 'Save and add another school'
+        diploma: {
+          summary: {
+            title: 'Summary of degrees/diplomas',
+            item: 'Degree',
+            unknown: 'Unknown'
+          },
+          append: 'Add another diploma/degree'
+        }
       },
       heading: {
         done: 'Done! Now let\'s add more',
         exiting: 'Before you leave this section',
+        degrees: 'Degrees/diplomas',
+        degree: 'Did you receive a degree/diploma?',
         details: 'Enter your school information',
         dates: 'Provide dates of attendance',
         name: 'Provide the name of the school',
         address: 'Provide the street address of the school',
         comments: 'If you need to provide additional comments about this information enter them below',
         type: 'Select the most appropriate code to describe your school',
-        reference: 'Add a person that knows you'
+        reference: 'Add a person that knows you',
+        diploma: 'Provide type of degree(s)/diploma(s) received',
+        date: 'Date awarded'
       },
       para: {
         exiting: '',
@@ -860,6 +874,7 @@ const en = {
       },
       label: {
         attendance: 'Have you attended any schools in the last 10 years?',
+        degree10: 'Have you received a degree or diploma more than 10 years ago?',
         dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
         name: 'School name',
         address: 'This address is',
@@ -869,15 +884,30 @@ const en = {
           college: 'College, university, or military college',
           vocational: 'Vocational, technical, or trade school',
           correspondence: 'Correspondence, distance, extension, or online school'
+        },
+        diploma: {
+          received: 'Type of degree(s)/diploma(s) received',
+          highschool: 'High School Diploma',
+          associate: 'Associate\'s',
+          bachelor: 'Bachelor\'s',
+          master: 'Master\'s',
+          doctorate: 'Doctorate',
+          professional: 'Professional Degree (eg. MD, DVM, JD)',
+          other: 'Other',
+          otherDiploma: 'Other degree/diploma'
         }
       },
       help: {
-        attendance: '',
+        attendance: 'If you have attended within the last 10 years a high school, college, vocational, or correspondence course',
+        degree10: 'If you have received a degree or diploma within the last 10 years',
         dates: 'Provide the dates of attendance',
         school: 'Provide the school name',
         address: 'Provide the street address of the school',
         type: 'Select the most appropriate code to describe your school',
-        comments: 'If you need to provide any additional comments about this information enter them below'
+        comments: 'If you need to provide any additional comments about this information enter them below',
+        degree: 'If you have received one or more degrees or diplomas from this school please provide the required information',
+        diploma: 'Select the most appropriate degree or diploma received',
+        date: 'The date the degree or diploma was awarded'
       }
     }
   },

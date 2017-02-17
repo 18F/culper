@@ -80,7 +80,7 @@ export const EducationSummary = (props) => {
     <div className="table">
       <div className="table-cell index">
         <Svg src="img/school-cap.svg" />
-        {i18n.t('history.education.collection.summary.item')}:
+        {i18n.t('history.education.collection.school.summary.item')}:
       </div>
       <div className="table-cell employer">{ school }</div>
       <div className="table-cell dates">{ dates }</div>

@@ -505,7 +505,9 @@ export default class HistoryCollection extends ValidationElement {
         values: {}
       }
     }, () => {
-      this.refs.createOptions.scrollIntoView()
+      if (this.refs.createOptions.scrollIntoView) {
+        this.refs.createOptions.scrollIntoView()
+      }
     })
   }
 

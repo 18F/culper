@@ -337,8 +337,6 @@ class History extends ValidationElement {
                                onEducationUpdate={this.onUpdate.bind(this, 'Education')}
                                onValidate={this.onValidate}
                                />
-            <h2>{i18n.t('history.education.heading.exiting')}</h2>
-            <ReactMarkdown source={i18n.t('history.education.para.exiting')} />
           </SectionView>
         </SectionViews>
       </div>

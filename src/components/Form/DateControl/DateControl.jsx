@@ -15,7 +15,7 @@ export default class DateControl extends ValidationElement {
       error: props.error || false,
       valid: props.valid || false,
       month: props.month || this.datePart('m', props.value),
-      day: props.day || this.datePart('d', props.value),
+      day: props.day || props.hideDay ? 1 : this.datePart('d', props.value),
       year: props.year || this.datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null]
