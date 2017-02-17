@@ -27,7 +27,7 @@ deploy:
     script: "./bin/deploy.sh staging"
     skip_cleanup: true
     on:
-      branch: allow-two-factor-reset-staging
+      branch: allow-twofactor-reset-staging
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh production"
