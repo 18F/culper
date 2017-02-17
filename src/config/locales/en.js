@@ -53,7 +53,8 @@ const en = {
     close: 'Close'
   },
   comments: {
-    add: 'Add comment',
+    add: 'Add a comment',
+    addpaired: 'Add a comment to this question',
     remove: 'Remove comment'
   },
   error: {
@@ -362,7 +363,7 @@ const en = {
         feet: 'Feet',
         inches: 'Inches',
         pounds: 'Pounds',
-        comments: 'Put your comment/explanation in the box below'
+        comments: 'Add a comment about sex'
       },
       placeholder: {
         feet: '0',
