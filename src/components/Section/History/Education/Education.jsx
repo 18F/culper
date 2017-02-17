@@ -251,7 +251,7 @@ export class EducationItem extends ValidationElement {
             <Collection minimum="1"
                         items={this.state.Diplomas}
                         summary={this.diplomaSummary}
-                        summaryTitle={i18n.t('history.education.collection.diploma.title')}
+                        summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
                         appendLabel={i18n.t('history.education.collection.diploma.append')}>
               <DiplomaItem name="Diploma"
                            onUpdate={this.onUpdate}
