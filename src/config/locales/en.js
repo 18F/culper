@@ -226,8 +226,8 @@ const en = {
       }
     },
     othernames: {
-      title: 'Other names used',
-      info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
+      title: 'Provide your other names used and the period of time you used them',
+      info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: 'Provide your other names used and the period of time you used them',
         question: 'Have you used any other names?'
@@ -287,7 +287,7 @@ const en = {
       }
     },
     contacts: {
-      title: 'Your contact information',
+      title: 'Provide your contact information',
       help: {
         email: 'Enter your email address',
         phoneNumber: 'Enter your phone number'
@@ -339,7 +339,7 @@ const en = {
       }
     },
     traits: {
-      title: 'Physical attributes',
+      title: 'Provide your physical attributes',
       heading: {
         hair: 'Hair color',
         eye: 'Eye color',
