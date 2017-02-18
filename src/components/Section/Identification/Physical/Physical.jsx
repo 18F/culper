@@ -139,8 +139,7 @@ export default class Physical extends ValidationElement {
 
         <Comments name="comments"
                   value={this.state.Comments}
-                  title={i18n.t('identification.traits.heading.comments')}
-                  label={i18n.t('identification.traits.label.comments')}
+                  addLabel="identification.traits.label.comments"
                   className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
