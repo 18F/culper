@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Svg } from '../../../Form'
+import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Svg, Show } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -46,6 +46,11 @@ export class EmploymentItem extends ValidationElement {
         })
       }
     })
+  }
+
+  showSupervisor () {
+    const activity = (this.state.EmploymentActivity || {}).value
+    return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment'].includes(activity)
   }
 
   render () {
@@ -136,10 +141,12 @@ export class EmploymentItem extends ValidationElement {
           </Help>
         </div>
 
-        <Supervisor name="Supervisor"
-                    {...this.props.Supervisor}
-                    onUpdate={this.onUpdate.bind(this, 'Supervisor')}
-                    />
+        <Show when={this.showSupervisor()}>
+          <Supervisor name="Supervisor"
+                      {...this.props.Supervisor}
+                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
+                      />
+        </Show>
 
         <h3>{i18n.t('history.employment.heading.reference')}</h3>
         <Reference name="Reference"
