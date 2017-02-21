@@ -33,7 +33,7 @@ let bankruptcyData = [
   }
 ]
 
-describe('The Bankruptcy component', () => {
+describe('The bankruptcy component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'bankruptcy'
@@ -64,5 +64,21 @@ describe('The Bankruptcy component', () => {
 
     component.find('button.add').simulate('click')
     expect(component.find('.summary.open').length).toBeGreaterThan(0)
+  })
+
+  it('displays fields when "yes" is selected', () => {
+    const expected = {
+      HasBankruptcy: 'Yes'
+    }
+    const component = mount(<Bankruptcy {...expected} />)
+    expect(component.find('.amount').length).toBeGreaterThan(0)
+  })
+
+  it('does not display any fields when "no" is selected', () => {
+    const expected = {
+      HasBankruptcy: 'No'
+    }
+    const component = mount(<Bankruptcy {...expected} />)
+    expect(component.find('.amount').length).toEqual(0)
   })
 })

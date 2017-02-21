@@ -53,7 +53,8 @@ const en = {
     close: 'Close'
   },
   comments: {
-    add: 'Add comment',
+    add: 'Add a comment',
+    addpaired: 'Add a comment to this question',
     remove: 'Remove comment'
   },
   error: {
@@ -211,7 +212,7 @@ const en = {
       psychological: 'Psychological and emotional health'
     },
     name: {
-      title: 'Your full name',
+      title: 'Provide your full name',
       last: {
         help: 'Your last name is required.  If you have only 1 name, enter it in the last name field'
       },
@@ -226,8 +227,8 @@ const en = {
       }
     },
     othernames: {
-      title: 'Other names used',
-      info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
+      title: 'Provide your other names used and the period of time you used them',
+      info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: 'Provide your other names used and the period of time you used them',
         question: 'Have you used any other names?'
@@ -254,11 +255,11 @@ const en = {
       }
     },
     birthdate: {
-      title: 'Date of birth',
+      title: 'Provide your date of birth',
       help: 'Provide your date of birth, or the closest possible estimate you can provide'
     },
     birthplace: {
-      title: 'Place of birth',
+      title: 'Provide your place of birth',
       question: {
         label: 'Were you born in the United States of America?',
         yes: 'Yes',
@@ -287,7 +288,7 @@ const en = {
       }
     },
     contacts: {
-      title: 'Your contact information',
+      title: 'Provide your contact information',
       help: {
         email: 'Enter your email address',
         phoneNumber: 'Enter your phone number'
@@ -323,7 +324,7 @@ const en = {
       }
     },
     ssn: {
-      title: 'U.S. Social Security Number',
+      title: 'Provide your U.S. Social Security Number',
       help: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
       label: {
         notApplicable: 'Not applicable',
@@ -339,7 +340,7 @@ const en = {
       }
     },
     traits: {
-      title: 'Physical attributes',
+      title: 'Provide your physical attributes',
       heading: {
         hair: 'Hair color',
         eye: 'Eye color',
@@ -362,7 +363,7 @@ const en = {
         feet: 'Feet',
         inches: 'Inches',
         pounds: 'Pounds',
-        comments: 'Put your comment/explanation in the box below'
+        comments: 'Add a comment about sex'
       },
       placeholder: {
         feet: '0',

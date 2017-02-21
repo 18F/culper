@@ -12,3 +12,4 @@ applications:
     - eqip-postgres
   env:
     GOVERSION: go1.7.4
+    ALLOW_2FA_RESET: 1

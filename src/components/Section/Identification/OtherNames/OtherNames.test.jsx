@@ -35,5 +35,29 @@ describe('The other names section', () => {
     component.find({type: 'radio', name: 'has_othernames', value: 'Yes'}).simulate('change')
     component.find('.add').simulate('click')
   })
+
+  it('displays fields when "yes" is selected', () => {
+    const store = mockStore({
+      authentication: [],
+      application: {}
+    })
+    const expected = {
+      HasOtherNames: 'Yes'
+    }
+    const component = mount(<Provider store={store}><OtherNames {...expected} /></Provider>)
+    expect(component.find('input#first').length).toEqual(1)
+  })
+
+  it('does not display any fields when "no" is selected', () => {
+    const store = mockStore({
+      authentication: [],
+      application: {}
+    })
+    const expected = {
+      HasOtherNames: 'No'
+    }
+    const component = mount(<Provider store={store}><OtherNames {...expected} /></Provider>)
+    expect(component.find('input#first').length).toEqual(0)
+  })
 })
 
