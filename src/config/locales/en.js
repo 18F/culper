@@ -841,12 +841,249 @@ const en = {
       },
 
       activemilitary: {
+        heading: {
+          title: 'Provide your most recent rank/position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide address of duty station',
+          telephone: 'Provide your employment telephone number',
+          supervisor: 'Your Supervisor',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide your most recent rank/position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: 'Provide the name of this supervisor'
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: 'Provide the position title of this supervisor'
+          },
+          email: {
+            label: 'Supervisor email',
+            help: 'Provide the email of this supervisor'
+          },
+          address: {
+            label: 'This address is',
+            help: 'Provide the address of this supervisors work location'
+          },
+          telephone: {
+            help: 'Provide the telephone number for this supervisor'
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
       },
 
       nationalguard: {
+        heading: {
+          title: 'Provide your most recent rank/position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide address of duty station',
+          telephone: 'Provide your employment telephone number',
+          supervisor: 'Your Supervisor',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide your most recent rank/position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: 'Provide the name of this supervisor'
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: 'Provide the position title of this supervisor'
+          },
+          email: {
+            label: 'Supervisor email',
+            help: 'Provide the email of this supervisor'
+          },
+          address: {
+            label: 'This address is',
+            help: 'Provide the address of this supervisors work location'
+          },
+          telephone: {
+            help: 'Provide the telephone number for this supervisor'
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
       },
 
       usphs: {
+        heading: {
+          title: 'Provide your most recent rank/position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide address of duty station',
+          telephone: 'Provide your employment telephone number',
+          supervisor: 'Your Supervisor',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide your most recent rank/position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: 'Provide the name of this supervisor'
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: 'Provide the position title of this supervisor'
+          },
+          email: {
+            label: 'Supervisor email',
+            help: 'Provide the email of this supervisor'
+          },
+          address: {
+            label: 'This address is',
+            help: 'Provide the address of this supervisors work location'
+          },
+          telephone: {
+            help: 'Provide the telephone number for this supervisor'
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
       },
 
       otherfederal: {

@@ -50,12 +50,17 @@ export class EmploymentItem extends ValidationElement {
 
   showEmployer () {
     const activity = (this.state.EmploymentActivity || {}).value
-    return activity && !['Unemployment'].includes(activity)
+    return activity && !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(activity)
+  }
+
+  showPhysicalAddress () {
+    const activity = (this.state.EmploymentActivity || {}).value
+    return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other', 'SelfEmployment'].includes(activity)
   }
 
   showSupervisor () {
     const activity = (this.state.EmploymentActivity || {}).value
-    return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment'].includes(activity)
+    return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(activity)
   }
 
   localizeByActivity () {
@@ -169,7 +174,7 @@ export class EmploymentItem extends ValidationElement {
                    onUpdate={this.onUpdate.bind(this, 'Reference')}
                    />
 
-        <Show when={this.showEmployer()}>
+        <Show when={this.showPhysicalAddress()}>
           <div>
             <h3>{i18n.t(`${prefix}.heading.physicalAddress`)}</h3>
             <PhysicalAddress name="PhysicalAddress"
@@ -177,7 +182,11 @@ export class EmploymentItem extends ValidationElement {
                              onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
                              className="eapp-field-wrap"
                              />
+          </div>
+        </Show>
 
+        <Show when={this.showEmployer()}>
+          <div>
             <h3>{i18n.t(`${prefix}.heading.additionalActivity`)}</h3>
             <p>{i18n.t(`${prefix}.para.additionalActivity`)}</p>
             <AdditionalActivity name="Additional"
