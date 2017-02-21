@@ -25,6 +25,13 @@ export default class Checkbox extends ValidationElement {
   handleChange (event) {
     event.persist()
     this.setState({ checked: event.target.checked }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: event.target.checked,
+          checked: event.target.checked
+        })
+      }
       super.handleChange(event)
     })
   }
