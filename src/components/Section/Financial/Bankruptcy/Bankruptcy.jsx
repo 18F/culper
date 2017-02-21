@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Textarea, Help, HelpIcon,
-         Text, Name, Address, PetitionType } from '../../../Form'
+         Text, Name, Address, PetitionType, Checkbox } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -105,10 +105,7 @@ export default class Bankruptcy extends ValidationElement {
    */
   onUpdate (val, event) {
     this.setState({ HasBankruptcy: val }, () => {
-      if (val === 'No') {
-        this.myDispatch([])
-      }
-
+      this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
   }
@@ -245,6 +242,15 @@ export default class Bankruptcy extends ValidationElement {
                     onValidate={this.handleValidation}
                     />
             <HelpIcon className="amount" />
+            <div className="coupled-flags">
+              <Checkbox name="TotalAmountEstimated"
+                        ref="estimated"
+                        label={i18n.t('financial.bankruptcy.totalAmount.estimated')}
+                        toggle="false"
+                        checked={this.state.TotalAmountEstimated}
+                        onValidate={this.handleValidation}
+                        />
+            </div>
           </Help>
         </div>
 
@@ -288,7 +294,6 @@ export default class Bankruptcy extends ValidationElement {
                 className="bankruptcy-branch eapp-field-wrap"
                 value={this.state.HasBankruptcy}
                 help="financial.bankruptcy.help"
-                label={i18n.t('financial.bankruptcy.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}

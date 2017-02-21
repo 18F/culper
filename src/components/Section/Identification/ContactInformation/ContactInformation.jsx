@@ -6,9 +6,6 @@ export default class ContactInformation extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      name: props.name,
-      label: props.label,
-      value: props.value,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
@@ -126,6 +123,27 @@ export default class ContactInformation extends ValidationElement {
     let number = i18n.t('identification.contacts.collection.summary.unknown')
     if (item.Telephone && !item.noNumber && item.Telephone.number) {
       number = item.Telephone.number
+
+      switch (item.Telephone.type) {
+      case 'DSN':
+        number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
+        break
+
+      case 'International':
+        number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
+        if (item.Telephone.extension) {
+          number += ` x${item.Telephone.extension}`
+        }
+        break
+
+      case 'Domestic':
+      default:
+        number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
+        if (item.Telephone.extension) {
+          number += ` x${item.Telephone.extension}`
+        }
+        break
+      }
     }
 
     return (

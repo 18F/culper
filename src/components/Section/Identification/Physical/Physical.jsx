@@ -7,12 +7,12 @@ export default class Physical extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      Height: props.Height || {},
-      Weight: props.Weight || 0,
-      HairColor: props.HairColor || {},
-      EyeColor: props.EyeColor || {},
-      Sex: props.Sex || {},
-      Comments: props.Comments || '',
+      Height: props.Height,
+      Weight: props.Weight,
+      HairColor: props.HairColor,
+      EyeColor: props.EyeColor,
+      Sex: props.Sex,
+      Comments: props.Comments,
       errorCodes: []
     }
   }
@@ -58,7 +58,15 @@ export default class Physical extends ValidationElement {
   }
 
   isValid () {
+    if (!this.state.Height) {
+      return false
+    }
+
     if (this.state.Height.feet < 1 || !this.state.Height.inches) {
+      return false
+    }
+
+    if (!this.state.Weight) {
       return false
     }
 
@@ -66,11 +74,23 @@ export default class Physical extends ValidationElement {
       return false
     }
 
+    if (!this.state.HairColor) {
+      return false
+    }
+
     if (!this.state.HairColor.length) {
       return false
     }
 
+    if (!this.state.EyeColor) {
+      return false
+    }
+
     if (!this.state.EyeColor.length) {
+      return false
+    }
+
+    if (!this.state.Sex) {
       return false
     }
 
@@ -139,8 +159,7 @@ export default class Physical extends ValidationElement {
 
         <Comments name="comments"
                   value={this.state.Comments}
-                  title={i18n.t('identification.traits.heading.comments')}
-                  label={i18n.t('identification.traits.label.comments')}
+                  addLabel="identification.traits.label.comments"
                   className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
