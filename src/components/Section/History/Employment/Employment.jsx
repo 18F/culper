@@ -6,6 +6,8 @@ import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
 import AdditionalActivity from './AdditionalActivity'
 import Supervisor from './Supervisor'
+import ReasonLeft from './ReasonLeft'
+import { today, daysAgo, utc } from '../dateranges'
 
 export class EmploymentItem extends ValidationElement {
   constructor (props) {
@@ -21,7 +23,8 @@ export class EmploymentItem extends ValidationElement {
       Supervisor: props.Supervisor,
       Reference: props.Reference,
       PhysicalAddress: props.PhysicalAddress,
-      Additional: props.Additional
+      Additional: props.Additional,
+      ReasonLeft: props.ReasonLeft
     }
   }
 
@@ -42,7 +45,8 @@ export class EmploymentItem extends ValidationElement {
           Supervisor: this.state.Supervisor,
           Reference: this.state.Reference,
           PhysicalAddress: this.state.PhysicalAddress,
-          Additional: this.state.Additional
+          Additional: this.state.Additional,
+          ReasonLeft: this.state.ReasonLeft
         })
       }
     })
@@ -61,6 +65,13 @@ export class EmploymentItem extends ValidationElement {
   showSupervisor () {
     const activity = (this.state.EmploymentActivity || {}).value
     return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(activity)
+  }
+
+  showLeaving () {
+    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const from = (this.state.Dates || {}).from
+    const to = (this.state.Dates || {}).to
+    return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo)
   }
 
   localizeByActivity () {
@@ -193,6 +204,18 @@ export class EmploymentItem extends ValidationElement {
                                 {...this.props.Additional}
                                 onUpdate={this.onUpdate.bind(this, 'Additional')}
                                 className="additional-activity eapp-field-wrap" />
+          </div>
+        </Show>
+
+        <Show when={this.showLeaving()}>
+          <div>
+            <h3>{i18n.t('history.employment.default.left.title')}</h3>
+            <p>{i18n.t('history.employment.default.left.para')}</p>
+            <ReasonLeft name="ReasonLeft"
+                        {...this.props.ReasonLeft}
+                        onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
+                        className="eapp-field-wrap"
+                        />
           </div>
         </Show>
       </div>

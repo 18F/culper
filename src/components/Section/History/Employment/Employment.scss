@@ -26,6 +26,26 @@
     }
   }
 
+  .employment-left {
+    label {
+      height: 8rem;
+      width: 24rem;
+      padding-top: 2rem;
+    }
+  }
+
+  .explanation-left {
+    padding-top: 5rem !important;
+  }
+
+  .date-left {
+    padding-top: 5rem !important;
+
+    > label {
+      position: relative;
+    }
+  }
+
   .employment-activity {
     label {
       height: 8rem;

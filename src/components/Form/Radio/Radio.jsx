@@ -41,7 +41,15 @@ export default class Radio extends ValidationElement {
   handleClick (event) {
     let futureChecked = !this.state.checked
     let futureValue = futureChecked ? this.props.value : ''
-    this.setState({checked: futureChecked, value: futureValue})
+    this.setState({checked: futureChecked, value: futureValue}, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value,
+          checked: this.state.checked
+        })
+      }
+    })
   }
 
   /**

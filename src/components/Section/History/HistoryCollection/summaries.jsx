@@ -60,7 +60,7 @@ export const EmploymentSummary = (props) => {
     <div className="table">
       <div className="table-cell index">
         <Svg src="img/employer-briefcase.svg" />
-        {i18n.t('history.employment.collection.summary.employer')}:
+        {i18n.t('history.employment.default.collection.summary.employer')}:
       </div>
       <div className="table-cell employer">{ employer }</div>
       <div className="table-cell dates">{ dates }</div>
@@ -145,7 +145,7 @@ const typeWithDates = (type, item) => {
  * Helper function to create a date summary
  */
 export const dateSummary = (item) => {
-  let noDateLabel = i18n.t('history.employment.noDate.label')
+  let noDateLabel = i18n.t('history.employment.default.noDate.label')
   function format (d) {
     return `${d.getMonth()}/${d.getFullYear()}`
   }

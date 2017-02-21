@@ -731,6 +731,37 @@ const en = {
             other: 'Other'
           }
         },
+        left: {
+          title: 'Provide the reason for leaving the employment activity',
+          para: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          comments: 'Provide any additional comments for why you left this employment activity',
+          help: '',
+          fired: {
+            option: 'Fired',
+            text: 'Provide the reason for being fired',
+            date: 'Provide the date you were fired'
+          },
+          quit: {
+            option: 'Quit',
+            text: 'Provide the reason for quitting',
+            date: 'Provide the date you quit after being told you would be fired'
+          },
+          charges: {
+            option: 'Charges',
+            text: 'Provide the charges or allegations of misconduct',
+            date: 'Provide the date you left following the charges or allegations of misconduct'
+          },
+          performance: {
+            option: 'Unsatisfactory performance',
+            text: 'Provide the reason(s) for unsatisfactory performance',
+            date: 'Provide the date you left by mutual agreement following a notice of unsatisfactory performance'
+          },
+          other: {
+            option: 'Other',
+            text: 'Do you have another reason for leaving to report for this employment?',
+            date: 'Provide the date you left'
+          }
+        },
         datesEmployed: {
           help: 'Select the dates you were employed'
         },
