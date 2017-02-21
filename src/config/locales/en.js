@@ -502,7 +502,8 @@ const en = {
       totalAmount: {
         label: 'Amount',
         placeholder: 'Total amount',
-        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
+        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+        estimated: 'Estimated'
       },
       courtInvolved: {
         label: 'Court name',

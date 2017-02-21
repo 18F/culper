@@ -39,7 +39,8 @@ export default class ApplicantSSN extends ValidationElement {
           first: value,
           value: '' + value + this.state.middle + this.state.last
         }
-        if (value.length === 3) {
+
+        if (this.props.autotab && value.length === 3) {
           this.refs.middle.refs.text.refs.input.focus()
         }
         break
@@ -49,7 +50,8 @@ export default class ApplicantSSN extends ValidationElement {
           middle: value,
           value: '' + this.state.first + value + this.state.last
         }
-        if (value.length === 2) {
+
+        if (this.props.autotab && value.length === 2) {
           this.refs.last.refs.text.refs.input.focus()
         }
         break
@@ -66,7 +68,8 @@ export default class ApplicantSSN extends ValidationElement {
           verifyFirst: value,
           verified: ('' + value + this.state.verifyMiddle + this.state.verifyLast) === this.state.value
         }
-        if (value.length === 3) {
+
+        if (this.props.autotab && value.length === 3) {
           this.refs.verifyMiddle.refs.text.refs.input.focus()
         }
         break
@@ -76,7 +79,8 @@ export default class ApplicantSSN extends ValidationElement {
           verifyMiddle: value,
           verified: ('' + this.state.verifyFirst + value + this.state.verifyLast) === this.state.value
         }
-        if (value.length === 2) {
+
+        if (this.props.autotab && value.length === 2) {
           this.refs.verifyLast.refs.text.refs.input.focus()
         }
         break
@@ -118,6 +122,11 @@ export default class ApplicantSSN extends ValidationElement {
    * Handle the key down event.
    */
   handleKeyDown (event) {
+    if (!this.props.autotab) {
+      super.handleKeyDown(event)
+      return
+    }
+
     let input = event.target
     let part = input.id
     let value = input.value

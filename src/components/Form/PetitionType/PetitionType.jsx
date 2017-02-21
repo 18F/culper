@@ -81,6 +81,15 @@ export default class PetitionType extends ValidationElement {
                onFocus={this.props.onFocus}
                />
         <Radio name="petition_type"
+               label="Chapter 12"
+               value="Chapter12"
+               disabled={this.props.disabled}
+               onChange={this.handleFieldChange.bind(this, 'value')}
+               onValidate={this.props.onValidate}
+               onBlur={this.props.onBlur}
+               onFocus={this.props.onFocus}
+               />
+        <Radio name="petition_type"
                label="Chapter 13"
                value="Chapter13"
                disabled={this.props.disabled}
