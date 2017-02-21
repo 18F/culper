@@ -66,4 +66,29 @@ describe('The Residence component', () => {
     const component = mount(<Residence {...expected} />)
     expect(component.find('.role.hidden').length).toEqual(0)
   })
+
+  it('loads data', () => {
+    let updates = 0
+    const expected = {
+      name: 'residence',
+      onUpdate: () => {
+        updates++
+      },
+      List: [
+        {
+          open: true,
+          Residence: {
+            Role: 'Dance',
+            Address: {
+              address: '1234 Some Rd'
+            }
+          }
+        }
+      ]
+    }
+    const component = mount(<Residence {...expected} />)
+    let textarea = component.find('textarea[name="address"]').first()
+    textarea.simulate('change')
+    expect(updates).toBe(1)
+  })
 })
