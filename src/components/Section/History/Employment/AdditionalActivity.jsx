@@ -79,7 +79,7 @@ export default class AdditionalActivity extends ValidationElement {
       <Branch name="additionalActivity"
               className="no-label"
               value={this.state.HasAdditionalActivity}
-              help="history.employment.additionalActivity.help"
+              help="history.employment.default.additionalActivity.help"
               onUpdate={this.onBranchUpdate}>
       </Branch>
     )
@@ -92,7 +92,7 @@ export default class AdditionalActivity extends ValidationElement {
     if (this.state.HasAdditionalActivity === 'Yes') {
       return (
         <div>
-          <h4>{i18n.t('history.employment.additionalActivity.label')}</h4>
+          <h4>{i18n.t('history.employment.default.additionalActivity.label')}</h4>
           <div className={klass}>
             {options}
           </div>
@@ -101,35 +101,35 @@ export default class AdditionalActivity extends ValidationElement {
                       items={this.state.List}
                       dispatch={this.myDispatch}
                       appendClass="eapp-field-wrap"
-                      appendLabel={i18n.t('history.employment.additionalActivity.collection.append')}>
+                      appendLabel={i18n.t('history.employment.default.additionalActivity.collection.append')}>
 
-            <h4>{i18n.t('history.employment.additionalActivity.heading.position')}</h4>
+            <h4>{i18n.t('history.employment.default.additionalActivity.heading.position')}</h4>
             <div className={klass}>
-              <Help id="history.employment.additionalActivity.position.help">
+              <Help id="history.employment.default.additionalActivity.position.help">
                 <Text name="Position"
                       className="text"
-                      label={i18n.t('history.employment.additionalActivity.position.label')}
+                      label={i18n.t('history.employment.default.additionalActivity.position.label')}
                       onValidate={this.handleValidation}
                       />
                 <HelpIcon className="employer" />
               </Help>
             </div>
 
-            <h4>{i18n.t('history.employment.additionalActivity.heading.supervisor')}</h4>
+            <h4>{i18n.t('history.employment.default.additionalActivity.heading.supervisor')}</h4>
             <div className={klass}>
-              <Help id="history.employment.additionalActivity.supervisor.help">
+              <Help id="history.employment.default.additionalActivity.supervisor.help">
                 <Text name="Supervisor"
                       className="text"
-                      label={i18n.t('history.employment.additionalActivity.supervisor.label')}
+                      label={i18n.t('history.employment.default.additionalActivity.supervisor.label')}
                       onValidate={this.handleValidation}
                       />
                 <HelpIcon className="employer" />
               </Help>
             </div>
 
-            <h4>{i18n.t('history.employment.additionalActivity.heading.datesEmployed')}</h4>
+            <h4>{i18n.t('history.employment.default.additionalActivity.heading.datesEmployed')}</h4>
             <div className={klass}>
-              <Help id="history.employment.additionalActivity.datesEmployed.help">
+              <Help id="history.employment.default.additionalActivity.datesEmployed.help">
                 <DateRange name="DatesEmployed"
                            onValidate={this.handleValidation}
                            />
@@ -143,7 +143,7 @@ export default class AdditionalActivity extends ValidationElement {
 
     return (
       <div>
-        <h4>{i18n.t('history.employment.additionalActivity.label')}</h4>
+        <h4>{i18n.t('history.employment.default.additionalActivity.label')}</h4>
         <div className={klass}>
           {options}
         </div>

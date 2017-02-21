@@ -71,10 +71,10 @@ export default class PhysicalAddress extends ValidationElement {
   options () {
     return (
       <Branch name="physicalAddress"
-        className="no-label"
-        value={this.state.HasDifferentAddress}
-        help="history.employment.physicalAddress.help"
-        onUpdate={this.onBranchUpdate}>
+              className="no-label"
+              value={this.state.HasDifferentAddress}
+              help="history.employment.default.physicalAddress.help"
+              onUpdate={this.onBranchUpdate}>
       </Branch>
     )
   }
@@ -86,30 +86,30 @@ export default class PhysicalAddress extends ValidationElement {
       return (
         <div>
           <div className={klass + ' physical-address'}>
-              {options}
+            {options}
           </div>
 
-          <h4>{i18n.t('history.employment.physicalAddress.heading.address')}</h4>
+          <h4>{i18n.t('history.employment.default.physicalAddress.heading.address')}</h4>
           <div className={klass}>
-            <Help id="history.employment.physicalAddress.address.help">
+            <Help id="history.employment.default.physicalAddress.address.help">
               <Address name="address"
-                className="address"
-                {...this.props.Address}
-                label={i18n.t('history.employment.physicalAddress.address.label')}
-                placeholder={i18n.t('history.employment.physicalAddress.address.placeholder')}
-                onUpdate={this.handleAddressChange}
-              />
+                       className="address"
+                       {...this.props.Address}
+                       label={i18n.t('history.employment.default.physicalAddress.address.label')}
+                       placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
+                       onUpdate={this.handleAddressChange}
+                       />
               <HelpIcon className="address"/>
             </Help>
           </div>
 
-          <h4>{i18n.t('history.employment.physicalAddress.heading.telephone')}</h4>
+          <h4>{i18n.t('history.employment.default.physicalAddress.heading.telephone')}</h4>
           <div className={klass}>
-            <Help id="history.employment.physicalAddress.telephone.help">
+            <Help id="history.employment.default.physicalAddress.telephone.help">
               <Telephone name="telephone"
-                {...this.props.Telephone}
-                label={i18n.t('history.employment.physicalAddress.telephone.label')}
-              />
+                         {...this.props.Telephone}
+                         label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
+                         />
               <HelpIcon className="telephone"/>
             </Help>
           </div>
@@ -119,7 +119,7 @@ export default class PhysicalAddress extends ValidationElement {
 
     return (
       <div className={klass + ' physical-address no-label'}>
-          {options}
+        {options}
       </div>
     )
   }
