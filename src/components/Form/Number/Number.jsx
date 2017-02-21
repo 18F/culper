@@ -91,7 +91,7 @@ export default class Number extends ValidationElement {
     let hits = 0
     status = true
 
-    if (typeof(this.state.value) !== 'undefined' && !isNaN(parseInt(this.state.value))) {
+    if (!isNaN(parseInt(this.state.value))) {
       if (status && this.props.min) {
         status = status && parseInt(this.state.value) >= parseInt(this.props.min)
         if (status === false) {
