@@ -574,7 +574,8 @@ export default class HistoryCollection extends ValidationElement {
 
   render () {
     // Inject any gaps in to our timeline
-    const list = InjectGaps(this.state.List, ['Residence', 'Employment']).sort(this.sort)
+    const start = daysAgo(today, 365 * parseInt(this.props.total || 10))
+    const list = InjectGaps(this.state.List, ['Residence', 'Employment'], start).sort(this.sort)
 
     // Create the list items
     const listItems = list.map((item, i, arr) => {

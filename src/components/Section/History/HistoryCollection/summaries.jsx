@@ -91,13 +91,13 @@ export const EducationSummary = (props) => {
 /**
  * Inject new list items as `Gaps`
  */
-export const InjectGaps = (list, types) => {
+export const InjectGaps = (list, types, start) => {
   for (const t of types) {
     // Find all our "holes" for this type
-    let holes = gaps(
-      list
+    const ranges = list
         .filter(item => typeWithDates(t, item))
-        .map(item => { return item.Item.Dates }))
+        .map(item => { return item.Item.Dates })
+    let holes = gaps(ranges, start)
 
     for (const item of list) {
       if (!item.Item || !item.Item.Dates) {

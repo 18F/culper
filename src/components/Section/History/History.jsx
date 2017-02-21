@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, Svg } from '../../Form'
+import { ValidationElement, Svg, Show } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
@@ -13,7 +13,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import ReactMarkdown from 'react-markdown'
 import HistoryCollection from './HistoryCollection/HistoryCollection'
-import Show from '../../Form/Show'
+import { utc, today, daysAgo, daysBetween } from './dateranges'
 
 class History extends ValidationElement {
   constructor (props) {
@@ -137,6 +137,28 @@ class History extends ValidationElement {
     )
   }
 
+  totalYears () {
+    let total = 10
+    if (!this.props.Birthdate) {
+      return total
+    }
+
+    const eighteen = daysAgo(this.props.Birthdate, 365 * -18)
+    total = Math.ceil(daysBetween(eighteen, today) / 365)
+
+    // A maximum of 10 years is required
+    if (total > 10) {
+      total = 10
+    }
+
+    // A minimum of two years is required
+    if (total < 2) {
+      total = 2
+    }
+
+    return total
+  }
+
   /**
    * Extracts dates used for summary progress and gap analysis for residence
    */
@@ -233,7 +255,7 @@ class History extends ValidationElement {
                        List={this.residenceRangeList}
                        title={i18n.t('history.residence.summary.title')}
                        unit={i18n.t('history.residence.summary.unit')}
-                       total="10"
+                       total={this.totalYears()}
                        >
         <div className="summary-icon">
           <Svg src="img/residence-house.svg" />
@@ -248,7 +270,7 @@ class History extends ValidationElement {
                        List={this.employmentRangesList}
                        title={i18n.t('history.employment.summary.title')}
                        unit={i18n.t('history.employment.summary.unit')}
-                       total="10"
+                       total={this.totalYears()}
                        >
         <div className="summary-icon">
           <Svg src="img/employer-briefcase.svg" />
@@ -265,7 +287,7 @@ class History extends ValidationElement {
                       diplomas={this.diplomaRangesList}
                       schoolsLabel={i18n.t('history.education.summary.schools')}
                       diplomasLabel={i18n.t('history.education.summary.diplomas')}
-                      total="10"
+                      total={this.totalYears()}
                       >
         <div className="summary-icon">
           <Svg src="img/school-cap.svg" />
@@ -358,6 +380,7 @@ class History extends ValidationElement {
                                addOnLoad="Residence"
                                history={this.props.History}
                                types={['Residence']}
+                               total={this.totalYears()}
                                onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                onValidate={this.onValidate}
                                />
@@ -377,6 +400,7 @@ class History extends ValidationElement {
                                addOnLoad="Employment"
                                history={this.props.History}
                                types={['Employment']}
+                               total={this.totalYears()}
                                onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
                                onValidate={this.onValidate}
                                />
@@ -396,6 +420,7 @@ class History extends ValidationElement {
                                addOnLoad="Education"
                                history={this.props.History}
                                types={['Education']}
+                               total={this.totalYears()}
                                onEducationUpdate={this.onUpdate.bind(this, 'Education')}
                                onValidate={this.onValidate}
                                />
@@ -406,9 +431,23 @@ class History extends ValidationElement {
   }
 }
 
+const processDate = (date) => {
+  if (!date) {
+    return null
+  }
+
+  let d = null
+  const { month, day, year } = date
+  if (month && day && year) {
+    d = utc(new Date(year, month - 1, day))
+  }
+  return d
+}
+
 function mapStateToProps (state) {
   let section = state.section || {}
   let app = state.application || {}
+  let identification = app.Identification || {}
   let history = app.History || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
@@ -419,7 +458,8 @@ function mapStateToProps (state) {
     Employment: history.Employment || {},
     Education: history.Education || {},
     Errors: errors.history || [],
-    Completed: completed.history || []
+    Completed: completed.history || [],
+    Birthdate: processDate(identification.ApplicantBirthDate)
   }
 }
 

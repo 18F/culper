@@ -1,8 +1,12 @@
 import React from 'react'
 import { ValidationElement } from '../../../Form'
-import { decimalAdjust, rangeSorter, utc, julian, findPercentage, now, today, julianNow, julianTen, gaps } from '../dateranges'
+import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
 
 export default class SummaryProgress extends ValidationElement {
+  total () {
+    return parseInt(this.props.total || 10)
+  }
+
   /**
    * Compile the ranges from the list of items
    */
@@ -14,6 +18,8 @@ export default class SummaryProgress extends ValidationElement {
       console.warn('No List() function was provided for Summary Progress')
     }
 
+    const julianMax = julian(daysAgo(today, 365 * this.total()))
+
     return items.sort(rangeSorter).map((dates) => {
       let left = 0
       let width = 0
@@ -22,10 +28,10 @@ export default class SummaryProgress extends ValidationElement {
         const from = julian(dates.from)
         const to = julian(dates.to)
 
-        if (dates.from >= julianTen || to >= julianTen) {
+        if (dates.from >= julianMax || to >= julianMax) {
           // Meat of the calculations into percentages
-          let right = findPercentage(julianNow, julianTen, to)
-          left = findPercentage(julianNow, julianTen, from)
+          let right = findPercentage(julianNow, julianMax, to)
+          left = findPercentage(julianNow, julianMax, from)
           width = Math.abs(right - left)
 
           // Check boundaries
@@ -58,8 +64,7 @@ export default class SummaryProgress extends ValidationElement {
    */
   completed () {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
-    const total = parseInt(this.props.total)
-    return decimalAdjust('floor', total * (sum / 100), 0)
+    return decimalAdjust('floor', this.total() * (sum / 100), 0)
   }
 
   /**
@@ -82,7 +87,7 @@ export default class SummaryProgress extends ValidationElement {
   render () {
     const klass = `summary ${this.props.className || ''}`.trim()
     const completed = this.completed()
-    const total = parseInt(this.props.total)
+    const total = this.total()
     const klassFraction = `fraction ${completed === total ? 'covered' : ''}`.trim()
 
     return (

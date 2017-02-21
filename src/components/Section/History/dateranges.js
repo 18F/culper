@@ -104,9 +104,8 @@ export const daysBetween = (from, to) => {
 /**
  * Find the gaps in the timeline
  */
-export const gaps = (ranges = [], buffer = 30) => {
+export const gaps = (ranges = [], start = ten, buffer = 30) => {
   let holes = []
-  let start = ten
   const fullStop = today
 
   const length = ranges.length - 1
