@@ -28,7 +28,8 @@ export class EducationItem extends ValidationElement {
       Name: props.Name,
       Address: props.Address,
       Comments: props.Comments,
-      Reference: props.Reference
+      Reference: props.Reference,
+      Diplomas: props.Diplomas
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -41,6 +42,7 @@ export class EducationItem extends ValidationElement {
     this.updateDates = this.updateDates.bind(this)
     this.updateComments = this.updateComments.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
+    this.updateDiplomas = this.updateDiplomas.bind(this)
   }
 
   /**
@@ -59,7 +61,8 @@ export class EducationItem extends ValidationElement {
           Name: this.state.Name,
           Address: this.state.Address,
           Comments: this.state.Comments,
-          Reference: this.state.Reference
+          Reference: this.state.Reference,
+          Diplomas: this.state.Diplomas
         })
       }
     })
@@ -102,6 +105,10 @@ export class EducationItem extends ValidationElement {
 
   updateAddress (values) {
     this.onUpdate('Address', values)
+  }
+
+  updateDiplomas (values) {
+    this.onUpdate('Diplomas', values)
   }
 
   /**
@@ -252,10 +259,9 @@ export class EducationItem extends ValidationElement {
                         items={this.state.Diplomas}
                         summary={this.diplomaSummary}
                         summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
-                        appendLabel={i18n.t('history.education.collection.diploma.append')}>
-              <DiplomaItem name="Diploma"
-                           onUpdate={this.onUpdate}
-                           />
+                        appendLabel={i18n.t('history.education.collection.diploma.append')}
+                        dispatch={this.updateDiplomas}>
+              <DiplomaItem name="Diploma" />
             </Collection>
           </Show>
         </div>

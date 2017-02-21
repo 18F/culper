@@ -10,6 +10,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Employment from './Employment'
 import Residence from './Residence'
 import SummaryProgress from './SummaryProgress'
+import SummaryCounter from './SummaryCounter'
 import ReactMarkdown from 'react-markdown'
 import HistoryCollection from './HistoryCollection/HistoryCollection'
 import Show from '../../Form/Show'
@@ -27,6 +28,8 @@ class History extends ValidationElement {
     this.handleReview = this.handleReview.bind(this)
     this.residenceRangeList = this.residenceRangeList.bind(this)
     this.employmentRangesList = this.employmentRangesList.bind(this)
+    this.schoolRangesList = this.schoolRangesList.bind(this)
+    this.diplomaRangesList = this.diplomaRangesList.bind(this)
     this.addResidence = this.addResidence.bind(this)
     this.addEmployer = this.addEmployer.bind(this)
     this.onValidate = this.onValidate.bind(this)
@@ -143,7 +146,7 @@ class History extends ValidationElement {
       return dates
     }
 
-    for (let i of this.props.Residence.List) {
+    for (const i of this.props.Residence.List) {
       if (!i.Item) {
         continue
       }
@@ -165,13 +168,59 @@ class History extends ValidationElement {
       return dates
     }
 
-    for (let i of this.props.Employment.List) {
+    for (const i of this.props.Employment.List) {
       if (!i.Item) {
         continue
       }
 
       if (i.Item.Dates) {
         dates.push(i.Item.Dates)
+      }
+    }
+
+    return dates
+  }
+
+  schoolRangesList () {
+    let dates = []
+    if (!this.props.Education || !this.props.Education.List) {
+      return dates
+    }
+
+    for (const i of this.props.Education.List) {
+      if (!i.Item) {
+        continue
+      }
+
+      if (i.Item.Dates) {
+        dates.push(i.Item.Dates)
+      }
+    }
+
+    return dates
+  }
+
+  diplomaRangesList () {
+    let dates = []
+    if (!this.props.Education || !this.props.Education.List) {
+      return dates
+    }
+
+    for (const i of this.props.Education.List) {
+      if (!i.Item) {
+        continue
+      }
+
+      if (i.Item.Diplomas) {
+        for (const d of i.Item.Diplomas) {
+          if (!d.Diploma || !d.Diploma.Date) {
+            continue
+          }
+
+          if (d.Diploma.Date) {
+            dates.push(d.Diploma.Date)
+          }
+        }
       }
     }
 
@@ -209,7 +258,20 @@ class History extends ValidationElement {
   }
 
   educationSummaryProgress () {
-    return null
+    return (
+      <SummaryCounter className="education eapp-field-wrap"
+                      title={i18n.t('history.education.summary.title')}
+                      schools={this.schoolRangesList}
+                      diplomas={this.diplomaRangesList}
+                      schoolsLabel={i18n.t('history.education.summary.schools')}
+                      diplomasLabel={i18n.t('history.education.summary.diplomas')}
+                      total="10"
+                      >
+        <div className="summary-icon">
+          <Svg src="img/school-cap.svg" />
+        </div>
+      </SummaryCounter>
+    )
   }
 
   addResidence () {

@@ -621,9 +621,9 @@ const en = {
       para: 'Take a guided tour through the section',
       button: 'Take me one the tour!'
     },
-	timeline: {
-		title: 'Let\'s cover your last 10 years'
-	},
+    timeline: {
+      title: 'Let\'s cover your last 10 years'
+    },
     review: {
       title: 'Full section view',
       para: 'View all the sections associated with your history at once',
@@ -833,6 +833,11 @@ const en = {
     education: {
       title: 'List the places you went to school',
       info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
+      summary: {
+        title: 'Where you went to school',
+        schools: 'Schools attended',
+        diplomas: 'Degrees/Diplomas earned'
+      },
       collection: {
         school: {
           summary: {
