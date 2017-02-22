@@ -54,11 +54,26 @@ describe('The Name component', () => {
         middle: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'middle',
         valid: false
+      },
+      {
+        name: 'applicant-firstInitialOnly',
+        first: 'Doe',
+        firstInitialOnly: true,
+        part: 'firstInitialOnly',
+        valid: false
       }
     ]
 
     expected.forEach((ex) => {
-      const component = mount(<Name name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
+      const component = mount(
+        <Name
+          name={ex.name}
+          first={ex.first}
+          last={ex.last}
+          middle={ex.middle}
+          firstInitialOnly={ex.firstInitialOnly}
+        />
+      )
       component.find('input#' + ex.part).simulate('change')
       expect(component.find('.usa-input-error-label').length === component.find('span').length).toEqual(ex.valid)
     })
