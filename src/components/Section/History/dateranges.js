@@ -102,13 +102,54 @@ export const daysBetween = (from, to) => {
 }
 
 /**
+ * Determine if a specified year is considered a leap year
+ */
+export const leapYear = (year) => {
+  return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)
+}
+
+/**
+ * Returns how many days are in a month based on the given year
+ */
+export const daysInMonth = (month, year) => {
+  const m = parseInt(month || 0)
+  const y = parseInt(year || 0)
+
+  // Setup for upperbounds of days in months
+  let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  if (y > 0 && leapYear(y)) {
+    upperBounds[1] = 29
+  }
+
+  return upperBounds[m - 1]
+}
+
+/**
+ * Determine if a date is valid with leap years considered
+ */
+export const validDate = (month, day, year) => {
+  const m = parseInt(month || 0)
+  const d = parseInt(day || 0)
+  const y = parseInt(year || 0)
+
+  return (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
+}
+
+/**
  * Find the gaps in the timeline
  */
 export const gaps = (ranges = [], start = ten, buffer = 30) => {
   let holes = []
   const fullStop = today
-
   const length = ranges.length - 1
+
+  // Set the day to the last of the month
+  const endOfMonth = (date) => {
+    date.setDate(daysInMonth(date.getMonth() + 1, date.getFullYear()))
+    return date
+  }
+  start = endOfMonth(start)
+
   ranges.sort(rangeSorter).forEach((range, i) => {
     // Finds the gaps from the past to the present
     const stop = range.from
@@ -120,7 +161,7 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     }
 
     // Set the next start position
-    start = range.to
+    start = endOfMonth(range.to)
 
     // If this is the last date range check for gaps in the future
     if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {

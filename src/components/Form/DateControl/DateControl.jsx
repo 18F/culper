@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
+import { daysInMonth, validDate } from '../../Section/History/dateranges'
 
 export default class DateControl extends ValidationElement {
   constructor (props) {
@@ -210,7 +211,7 @@ export default class DateControl extends ValidationElement {
       year = status != null ? status : null
     }
 
-    let valid = this.validDate(this.state.month, this.state.day, this.state.year)
+    let valid = validDate(this.state.month, this.state.day, this.state.year)
 
     this.setState(
       {
@@ -258,37 +259,6 @@ export default class DateControl extends ValidationElement {
     return klass.trim()
   }
 
-  /**
-   * Determine if a specified year is considered a leap year
-   */
-  leapYear (year) {
-    return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)
-  }
-
-  daysInMonth (month, year) {
-    const m = parseInt(month || 0)
-    const y = parseInt(year || 0)
-
-    // Setup for upperbounds of days in months
-    let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    if (y > 0 && this.leapYear(y)) {
-      upperBounds[1] = 29
-    }
-
-    return upperBounds[m - 1]
-  }
-
-  /**
-   * Determine if a date is valid with leap years considered
-   */
-  validDate (month, day, year) {
-    const m = parseInt(month || 0)
-    const d = parseInt(day || 0)
-    const y = parseInt(year || 0)
-
-    return (m > 0 && m < 13) && (d > 0 && d <= this.daysInMonth(m, y))
-  }
-
   render () {
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
@@ -325,7 +295,7 @@ export default class DateControl extends ValidationElement {
                     placeholder="00"
                     aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
-                    max={this.daysInMonth(this.state.month, this.state.year)}
+                    max={daysInMonth(this.state.month, this.state.year)}
                     maxlength="2"
                     min="1"
                     readonly={this.props.readonly}
