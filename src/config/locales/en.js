@@ -313,6 +313,10 @@ const en = {
         phoneNumber: 'Your phone numbers',
         comments: 'Add optional comments'
       },
+      para: {
+        email: 'Email addresses may be used as contact method, and identify subject in records.',
+        phoneNumber: 'Provide at least two phone numbers (one is required). Additional numbers provided may assist in the completion of your background investigation.'
+      },
       label: {
         email: 'Email address',
         comments: 'If you need to provide any additional comments about this information enter them below',
