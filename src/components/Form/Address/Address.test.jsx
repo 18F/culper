@@ -81,4 +81,22 @@ describe('The Address component', () => {
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
   })
+
+  it('Renders United States Address', () => {
+    let blurs = 0
+    const expected = {
+      name: 'input-error',
+      label: 'Text input error',
+      error: true,
+      focus: false,
+      valid: false,
+      handleBlur: function (event) {
+        blurs++
+      }
+    }
+    const component = mount(<Address name={expected.name} onBlur={expected.handleBlur} />)
+    component.find({ type: 'radio', name: 'addressType', value: 'United States' }).simulate('change')
+    component.find({ type: 'radio', name: 'addressType', value: 'APOFPO' }).simulate('change')
+    component.find({ type: 'radio', name: 'addressType', value: 'International' }).simulate('change')
+  })
 })

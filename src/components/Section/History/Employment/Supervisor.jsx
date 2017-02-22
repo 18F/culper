@@ -14,17 +14,6 @@ export default class Supervisor extends ValidationElement {
     }
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleFieldChange (field, event) {
-    let value = event.target.value
-    this.setState({ [field]: value }, () => {
-      super.handleChange(event)
-      this.doUpdate()
-    })
-  }
-
   doUpdate () {
     if (this.props.onUpdate) {
       this.props.onUpdate({
@@ -82,6 +71,8 @@ export default class Supervisor extends ValidationElement {
               {...this.props.SupervisorName}
               label={i18n.t('history.employment.default.supervisor.name.label')}
               onValidate={this.handleValidation}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
             />
             <HelpIcon className="name-help-icon" />
@@ -95,6 +86,8 @@ export default class Supervisor extends ValidationElement {
               {...this.props.Title}
               className="text"
               label={i18n.t('history.employment.default.supervisor.title.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Title')}
               onValidate={this.handleValidation}
             />
@@ -109,6 +102,8 @@ export default class Supervisor extends ValidationElement {
               {...this.props.Email}
               className="text"
               label={i18n.t('history.employment.default.supervisor.email.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Email')}
               onValidate={this.handleValidation}
             />
@@ -122,6 +117,8 @@ export default class Supervisor extends ValidationElement {
             <Address name="Address"
               {...this.props.Address}
               label={i18n.t('history.employment.default.supervisor.address.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Address')}
               onValidate={this.handleValidation}
             />
@@ -135,6 +132,8 @@ export default class Supervisor extends ValidationElement {
             <Telephone name="Telephone"
               {...this.props.Telephone}
               label={i18n.t('history.employment.default.supervisor.telephone.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Telephone')}
               onValidate={this.handleValidation}
             />

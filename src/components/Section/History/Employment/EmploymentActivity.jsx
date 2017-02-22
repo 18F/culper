@@ -9,6 +9,7 @@ export default class EmploymentActivity extends ValidationElement {
       value: props.value,
       otherExplanation: props.otherExplanation
     }
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
   /**
@@ -23,7 +24,6 @@ export default class EmploymentActivity extends ValidationElement {
     if (field === 'value' && value !== 'Other') {
       update.otherExplanation = ''
     }
-
     this.setState(update, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
@@ -74,8 +74,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.nationalGuard')}
@@ -83,8 +83,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.usphs')}
@@ -92,8 +92,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.otherFederal')}
@@ -101,8 +101,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.stateGovernment')}
@@ -110,8 +110,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.federalContractor')}
@@ -119,8 +119,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <div>Other employment</div>
           <Radio
@@ -129,8 +129,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.selfEmployment')}
@@ -138,8 +138,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.unemployment')}
@@ -147,8 +147,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
           <Radio
             label={i18n.t('history.employment.default.activity.type.other')}
@@ -156,8 +156,8 @@ export default class EmploymentActivity extends ValidationElement {
             disabled={this.props.disabled}
             onChange={this.handleFieldChange.bind(this, 'value')}
             onValidate={this.props.onValidate}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
         </RadioGroup>
         {

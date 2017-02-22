@@ -64,8 +64,8 @@ export default class EmploymentStatus extends ValidationElement {
           disabled={this.props.disabled}
           onChange={this.handleFieldChange}
           onValidate={this.props.onValidate}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
         />
         <Radio name="employment_status"
           label={i18n.t('history.employment.default.status.partTime')}
@@ -73,8 +73,8 @@ export default class EmploymentStatus extends ValidationElement {
           disabled={this.props.disabled}
           onChange={this.handleFieldChange}
           onValidate={this.props.onValidate}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
         />
       </RadioGroup>
     )
