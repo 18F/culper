@@ -15,6 +15,9 @@ export default class Generic extends ValidationElement {
   }
 
   componentWillReceiveProps (nextProps) {
+    if (nextProps.value === this.state.value) {
+      return
+    }
     this.setState({ value: nextProps.value })
   }
 

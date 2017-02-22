@@ -63,12 +63,12 @@ const navigation = [
     name: 'Your history',
     title: 'Your history',
     url: 'history',
-    hidden: true,
+    hidden: false,
     subsections: [
+      { name: 'Timeline', url: 'timeline' },
       { name: 'Places lived', url: 'residence' },
       { name: 'Employment', url: 'employment' },
       { name: 'Schools & diplomas', url: 'education' },
-      { hidden: true, name: 'Timeline', url: 'timeline' },
       { hidden: true, name: 'Former federal service', url: 'federal' },
       { hidden: true, name: 'Employment record', url: 'employment' }
     ]

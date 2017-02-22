@@ -55,4 +55,3 @@ describe('The employment physical address component', () => {
     expect(focus).toBe(1)
   })
 })
-

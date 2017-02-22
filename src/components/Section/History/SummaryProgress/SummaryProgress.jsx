@@ -1,89 +1,59 @@
 import React from 'react'
 import { ValidationElement } from '../../../Form'
+import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
 
 export default class SummaryProgress extends ValidationElement {
-  /**
-   * Do some fancy decimal rounding allowing for different types:
-   *  - round
-   *  - floor
-   *  - ceiling
-   *
-   * This was pulled from Mozilla Developer Network.
-   */
-  decimalAdjust (type, value, exp) {
-    // If the exp is undefiend or zero...
-    if (typeof exp === 'undefined' || +exp === 0) {
-      return Math[type](value)
-    }
-
-    value = +value
-    exp = +exp
-
-    // If the value is not a number or the exp is not an integer...
-    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-      return NaN
-    }
-
-    // Shift
-    value = value.toString().split('e')
-    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)))
-
-    // Shift back
-    value = value.toString().split('e')
-    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp))
+  total () {
+    return parseInt(this.props.total || 10)
   }
 
   /**
    * Compile the ranges from the list of items
    */
   ranges () {
-    const now = new Date()
-    const tenYears = new Date(now - (1000 * 60 * 60 * 24 * 365 * 10))
     let items = []
     if (this.props.List) {
       items = this.props.List() || []
     } else {
       console.warn('No List() function was provided for Summary Progress')
     }
-    return items.map((dates) => {
-      let from = dates.from
-      let to = dates.to
+
+    const julianMax = julian(daysAgo(today, 365 * this.total()))
+
+    return items.sort(rangeSorter).map((dates) => {
       let left = 0
       let width = 0
 
-      if (from && to && (from >= tenYears || to >= tenYears)) {
-        // Precheck boundaries
-        if (to > now) {
-          to = now
-        }
+      if (dates.from && dates.to) {
+        const from = julian(dates.from)
+        const to = julian(dates.to)
 
-        if (from < tenYears) {
-          from = tenYears
-        }
+        if (dates.from >= julianMax || to >= julianMax) {
+          // Meat of the calculations into percentages
+          let right = findPercentage(julianNow, julianMax, to)
+          left = findPercentage(julianNow, julianMax, from)
+          width = Math.abs(right - left)
 
-        // Meat of the calculations into percentages
-        let right = ((to.getFullYear() - tenYears.getFullYear()) / 10) * 100
-        left = ((from.getFullYear() - tenYears.getFullYear()) / 10) * 100
-        width = right - left
+          // Check boundaries
+          if (left < 0) {
+            left = 0
+          }
 
-        // Check boundaries
-        if (left < 0) {
-          left = 0
-        }
+          if (width < 0) {
+            width = 0
+          }
 
-        if (width < 0) {
-          width = 0
-        }
-
-        if (width > 100) {
-          width = 100
+          if (width > 100) {
+            width = 100 - left
+          }
         }
       }
 
       // Add the range to the collection
       return {
-        left: this.decimalAdjust('round', left, -2),
-        width: this.decimalAdjust('round', width, -2)
+        left: left,
+        width: decimalAdjust('round', width, -2),
+        dates: dates
       }
     })
   }
@@ -94,8 +64,7 @@ export default class SummaryProgress extends ValidationElement {
    */
   completed () {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
-    const total = parseInt(this.props.total)
-    return this.decimalAdjust('floor', total * (sum / 100), 0)
+    return decimalAdjust('floor', this.total() * (sum / 100), 0)
   }
 
   /**
@@ -117,6 +86,9 @@ export default class SummaryProgress extends ValidationElement {
 
   render () {
     const klass = `summary ${this.props.className || ''}`.trim()
+    const completed = this.completed()
+    const total = this.total()
+    const klassFraction = `fraction ${completed === total ? 'covered' : ''}`.trim()
 
     return (
       <div className={klass}>
@@ -130,10 +102,10 @@ export default class SummaryProgress extends ValidationElement {
           </div>
         </div>
         <div className="stats">
-          <div className="fraction">
-            <span className="completed">{this.completed()}</span>
+          <div className={klassFraction}>
+            <span className="completed">{completed}</span>
             <span className="slash">/</span>
-            <span className="total">{this.props.total}</span>
+            <span className="total">{total}</span>
           </div>
           <span className="unit">{this.props.unit}</span>
         </div>

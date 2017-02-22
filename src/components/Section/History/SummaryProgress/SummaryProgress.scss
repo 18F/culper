@@ -59,6 +59,10 @@
     vertical-align: bottom;
 
     .fraction {
+      &.covered {
+        color: $eapp-green;
+      }
+
       .completed {
         font-weight: bold;
         font-size: 26pt;
