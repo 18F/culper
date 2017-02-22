@@ -4,12 +4,18 @@ import Reference from './Reference'
 
 describe('The Reference component', () => {
   it('no error on empty', () => {
+    let updates = 0
     const expected = {
-      name: 'reference'
+      name: 'reference',
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<Reference name={expected.name} />)
+    const component = mount(<Reference name={expected.name} onUpdate={expected.onUpdate} />)
     component.find('input#last').simulate('change')
     expect(component.find('div.hidden').length).toBeGreaterThan(0)
+    component.find('input[name="relationship-neighbor"]').first().simulate('change')
+    expect(updates).toBe(2)
   })
 
   it('displays text box when other is selected', () => {

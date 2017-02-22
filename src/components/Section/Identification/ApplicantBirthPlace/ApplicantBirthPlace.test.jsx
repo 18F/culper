@@ -83,4 +83,26 @@ describe('The ApplicantBirthPlace component', () => {
     component.find('input[type="text"]').first().simulate('blur')
     expect(blurs).toEqual(1)
   })
+
+  it('selects that user was born in US', () => {
+    let updates = 0
+    const expected = {
+      name: 'input-error',
+      label: 'Text input error',
+      error: true,
+      focus: false,
+      valid: false,
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} onUpdate={expected.onUpdate} country='' />)
+    component.find({type: 'radio', name: 'is_domestic', value: 'Yes'}).simulate('change')
+    expect(component.find('input').length).toBe(5)
+    expect(updates).toBe(1)
+
+    component.find({type: 'radio', name: 'is_domestic', value: 'No'}).simulate('change')
+    expect(updates).toBe(2)
+    expect(component.find('input').length).toBe(4)
+  })
 })

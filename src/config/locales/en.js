@@ -421,10 +421,9 @@ const en = {
       review: 'Review Financial record'
     },
     gambling: {
-      title: 'Gambling debt',
+      title: 'Have your ever experienced financial problems due to gambling?',
       branch: {
         help: 'Select whether you have experienced any financial problems due to gambling',
-        question: 'Have your ever experienced financial problems due to gambling?'
       },
       collection: {
         summary: {
@@ -483,11 +482,8 @@ const en = {
         courtAddress: 'Provide the address of the court involved',
         comments: 'Add optional comments'
       },
-      title: 'Bankruptcy',
+      title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
       help: 'Note: If you need to provide any additional comments about this information, enter them below.',
-      branch: {
-        question: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?'
-      },
       petitionType: {
         help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
       },
@@ -506,7 +502,8 @@ const en = {
       totalAmount: {
         label: 'Amount',
         placeholder: 'Total amount',
-        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
+        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+        estimated: 'Estimated'
       },
       courtInvolved: {
         label: 'Court name',

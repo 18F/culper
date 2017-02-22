@@ -82,7 +82,7 @@ export default class PhysicalAddress extends ValidationElement {
 
     if (this.state.HasDifferentAddress === 'Yes') {
       return (
-        <div>
+        <div className="has-different">
           <div className={klass + ' physical-address'}>
               {options}
           </div>
@@ -95,6 +95,8 @@ export default class PhysicalAddress extends ValidationElement {
                 {...this.props.Address}
                 label={i18n.t('history.employment.physicalAddress.address.label')}
                 placeholder={i18n.t('history.employment.physicalAddress.address.placeholder')}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
                 onUpdate={this.handleAddressChange.bind(this)}
               />
               <HelpIcon className="address"/>
@@ -106,6 +108,8 @@ export default class PhysicalAddress extends ValidationElement {
             <Help id="history.employment.physicalAddress.telephone.help">
               <Telephone name="telephone"
                 {...this.props.Telephone}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
                 label={i18n.t('history.employment.physicalAddress.telephone.label')}
               />
               <HelpIcon className="telephone"/>

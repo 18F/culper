@@ -14,9 +14,10 @@ describe('The MaidenName component', () => {
       valid: false,
       handleValidation: function (event) {
         validations++
-      }
+      },
+      onChange: () => {}
     }
-    const component = mount(<MaidenName name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<MaidenName name={expected.name} onValidate={expected.handleValidation} onChange={expected.onChange} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
