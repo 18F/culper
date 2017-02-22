@@ -70,4 +70,16 @@ describe('The row component', () => {
     component.find('.toggle').simulate('click')
     expect(component.find('.details').length).toEqual(1)
   })
+
+  it('can show errors', () => {
+    const expected = {
+      name: 'row',
+      first: false,
+      show: false,
+      hasErrors: true,
+      errorMessage: 'Ruh-row'
+    }
+    const component = mount(<Row {...expected} />)
+    expect(component.find('.incomplete').text()).toEqual(expected.errorMessage)
+  })
 })

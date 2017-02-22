@@ -30,6 +30,13 @@
     }
   }
 
+  .incomplete {
+    padding: 1rem 2rem;
+    background: $eapp-red-lightest;
+    border: 2px solid $eapp-red-light;
+    margin: 1.3rem -5rem 0 0;
+  }
+
   .pre, .post {
     background-color: $eapp-grey-light;
     padding-top: 0;

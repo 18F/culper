@@ -27,10 +27,12 @@ export const ResidenceSummary = (props) => {
   }
 
   const dates = dateSummary(res)
+  const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/residence-house.svg'
+
   return (
     <div className="table">
       <div className="table-cell index">
-        <Svg src="img/residence-house.svg" />
+        <Svg src={svg} />
         {i18n.t('history.residence.collection.summary.item')}:
       </div>
       <div className="table-cell employer">{address1}<br />{address2}</div>
@@ -46,11 +48,12 @@ export const EmploymentSummary = (props) => {
   let item = props.employment.Item
   const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
   const dates = dateSummary(item)
+  const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/employer-briefcase.svg'
 
   return (
     <div className="table">
       <div className="table-cell index">
-        <Svg src="img/employer-briefcase.svg" />
+        <Svg src={svg} />
         {i18n.t('history.employment.default.collection.summary.employer')}:
       </div>
       <div className="table-cell employer">{ employer }</div>
@@ -66,11 +69,12 @@ export const EducationSummary = (props) => {
   let item = props.education.Item
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
   const dates = dateSummary(item)
+  const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/school-cap.svg'
 
   return (
     <div className="table">
       <div className="table-cell index">
-        <Svg src="img/school-cap.svg" />
+        <Svg src={svg} />
         {i18n.t('history.education.collection.school.summary.item')}:
       </div>
       <div className="table-cell employer">{ school }</div>

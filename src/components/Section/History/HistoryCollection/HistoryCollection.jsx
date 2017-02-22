@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../../config'
 import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence'
 import { EmploymentItem } from '../Employment'
@@ -85,97 +86,103 @@ export default class HistoryCollection extends ValidationElement {
       return false
     }
 
-    return this.validateEmployment(this.state.List)
-      && this.validateResidence(this.state.List)
-      && this.validateEducation(this.state.List)
+    return this.validateEmploymentList(this.state.List)
+      && this.validateResidenceList(this.state.List)
+      && this.validateEducationList(this.state.List)
   }
 
-  validateEmployment (list) {
+  validateEmploymentList (list) {
     for (const employment of list.filter(item => { return item.type === 'Employment' })) {
-      const item = employment.Item
-
-      if (!item) {
+      if (!this.validateEmployment(employment.Item)) {
         return false
       }
+    }
 
-      if (!item.EmploymentActivity || !item.EmploymentActivity.value) {
-        return false
-      }
+    return true
+  }
 
-      if (item.EmploymentActivity.value === 'Other' && item.EmploymentActivity.otherExplanation === '') {
-        return false
-      }
+  validateEmployment (item) {
+    if (!item) {
+      return false
+    }
 
-      if (!item.DatesEmployed || !item.DatesEmployed.from || !item.DatesEmployed.to) {
-        return false
-      }
+    if (!item.EmploymentActivity || !item.EmploymentActivity.value) {
+      return false
+    }
 
-      const { from, to } = item.DatesEmployed
-      if (from > to) {
-        return false
-      }
+    if (item.EmploymentActivity.value === 'Other' && item.EmploymentActivity.otherExplanation === '') {
+      return false
+    }
 
-      if (!item.Employment || !item.Employment.value) {
-        return false
-      }
+    if (!item.DatesEmployed || !item.DatesEmployed.from || !item.DatesEmployed.to) {
+      return false
+    }
 
-      if (!item.Status || !item.Status.value) {
-        return false
-      }
+    const { from, to } = item.DatesEmployed
+    if (from > to) {
+      return false
+    }
 
-      if (!item.Title || !item.Title.value) {
-        return false
-      }
+    if (!item.Employment || !item.Employment.value) {
+      return false
+    }
 
-      if (!item.Address) {
-        return false
-      }
+    if (!item.Status || !item.Status.value) {
+      return false
+    }
 
-      const address = item.Address
-      switch (address.addressType) {
-        case 'United States':
-          if (!address.address || !address.city || !address.state || !address.zipcode) {
-            return false
-          }
-          break
+    if (!item.Title || !item.Title.value) {
+      return false
+    }
 
-        case 'International':
-          if (!address.address || !address.city || !address.country) {
-            return false
-          }
-          break
+    if (!item.Address) {
+      return false
+    }
 
-        case 'APOFPO':
-          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
-            return false
-          }
-          break
-
-        default:
+    const address = item.Address
+    switch (address.addressType) {
+      case 'United States':
+        if (!address.address || !address.city || !address.state || !address.zipcode) {
           return false
-      }
+        }
+        break
 
-      if (!item.Additional || !item.Additional.HasAdditionalActivity) {
+      case 'International':
+        if (!address.address || !address.city || !address.country) {
+          return false
+        }
+        break
+
+      case 'APOFPO':
+        if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+          return false
+        }
+        break
+
+      default:
         return false
-      }
+    }
 
-      if (item.Additional.HasAdditionalActivity === 'Yes') {
-        for (let activity of item.Additional.List) {
-          if (!activity.Position || !activity.Position.value) {
-            return false
-          }
-          if (!activity.Supervisor || !activity.Supervisor.value) {
-            return false
-          }
+    if (!item.Additional || !item.Additional.HasAdditionalActivity) {
+      return false
+    }
 
-          if (!activity.DatesEmployed || !activity.DatesEmployed.from || !activity.DatesEmployed.to) {
-            return false
-          }
+    if (item.Additional.HasAdditionalActivity === 'Yes') {
+      for (let activity of item.Additional.List) {
+        if (!activity.Position || !activity.Position.value) {
+          return false
+        }
+        if (!activity.Supervisor || !activity.Supervisor.value) {
+          return false
+        }
 
-          const { from, to } = activity.DatesEmployed
-          if (from > to) {
-            return false
-          }
+        if (!activity.DatesEmployed || !activity.DatesEmployed.from || !activity.DatesEmployed.to) {
+          return false
+        }
+
+        const { from, to } = activity.DatesEmployed
+        if (from > to) {
+          return false
         }
       }
     }
@@ -183,13 +190,144 @@ export default class HistoryCollection extends ValidationElement {
     return true
   }
 
-  validateResidence (list) {
+  validateResidenceList (list) {
     for (const residence of list.filter(item => { return item.type === 'Residence' })) {
-      const item = residence.Item
-      if (!item || !item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
+      if (!this.validateResidence(residence.Item)) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  validateResidence (item) {
+    if (!item || !item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
+      return false
+    }
+
+    if (!item.Address) {
+      return false
+    }
+
+    switch (item.Address.addressType) {
+      case 'United States':
+        if (!item.Address.address || !item.Address.city || !item.Address.state || !item.Address.zipcode) {
+          return false
+        }
+        break
+
+      case 'International':
+        if (!item.Address.address || !item.Address.city || !item.Address.country) {
+          return false
+        }
+        break
+
+      case 'APOFPO':
+        if (!item.Address.address || !item.Address.apoFpo || !item.Address.apoFpoType || !item.Address.zipcode) {
+          return false
+        }
+        break
+
+      default:
+        return false
+    }
+
+    if (!item.Role) {
+      return false
+    }
+
+    if (withinThreeYears(item.Dates.from, item.Dates.to)) {
+      if (!item.Reference) {
         return false
       }
 
+      if (!item.Reference.FullName) {
+        return false
+      }
+
+      if (!item.Reference.FullName.first || !item.Reference.FullName.last) {
+        return false
+      }
+
+      if (!item.Reference.LastContact) {
+        return false
+      }
+
+      if (!item.Reference.LastContact.date) {
+        return false
+      }
+
+      if (!item.Reference.Relationship) {
+        return false
+      }
+
+      if (!item.Reference.Phone) {
+        return false
+      }
+
+      if (!item.Reference.Phone.number) {
+        return false
+      }
+
+      if (!item.Reference.Email) {
+        return false
+      }
+
+      if (!item.Reference.Address) {
+        return false
+      }
+
+      switch (item.Reference.Address.addressType) {
+        case 'United States':
+          if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.state || !item.Reference.Address.zipcode) {
+            return false
+          }
+          break
+
+        case 'International':
+          if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.country) {
+            return false
+          }
+          break
+
+        case 'APOFPO':
+          if (!item.Reference.Address.address || !item.Reference.Address.apoFpo || !item.Reference.Address.apoFpoType || !item.Reference.Address.zipcode) {
+            return false
+          }
+          break
+
+        default:
+          return false
+      }
+    }
+
+    return true
+  }
+
+  validateEducationList (list) {
+    for (const education of list.filter(item => { return item.type === 'Education' })) {
+      if (!this.validateEducation(education.Item)) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  validateEducation (item) {
+    if (!item) {
+      return false
+    }
+
+    if (!(item.HasAttended === 'No' || item.HasAttended === 'Yes')) {
+      return false
+    }
+
+    if (!(item.HasDegree10 === 'No' || item.HasDegree10 === 'Yes')) {
+      return false
+    }
+
+    if (item.HasAttended === 'Yes' || item.HasDegree10 === 'Yes') {
       if (!item.Address) {
         return false
       }
@@ -217,7 +355,15 @@ export default class HistoryCollection extends ValidationElement {
           return false
       }
 
-      if (!item.Role) {
+      if (!item.Name && !item.Name.value) {
+        return false
+      }
+
+      if (!item.Type) {
+        return false
+      }
+
+      if (!item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
         return false
       }
 
@@ -285,12 +431,37 @@ export default class HistoryCollection extends ValidationElement {
             return false
         }
       }
+
+      if (!(item.HasDegree === 'No' || item.HasDegree === 'Yes')) {
+        return false
+      }
+
+      if (item.HasDegree === 'Yes') {
+        if (!item.Diplomas) {
+          return false
+        }
+
+        for (const diploma of item.Diplomas) {
+          if (!diploma.Diploma) {
+            return false
+          }
+
+          if (diploma.Diploma === 'Other' && !diploma.DiplomaOther) {
+            return false
+          }
+
+          if (!diploma.Date || !diploma.Date.from || !diploma.Date.to) {
+            return false
+          }
+
+          const { from, to } = diploma.Date
+          if (from > to) {
+            return false
+          }
+        }
+      }
     }
 
-    return true
-  }
-
-  validateEducation (list) {
     return true
   }
 
@@ -609,13 +780,18 @@ export default class HistoryCollection extends ValidationElement {
       const lastRow = arr.length === (i + 1)
 
       if (item.type === 'Residence') {
-        let header = (<ResidenceSummary residence={item} />)
+        const hasErrors = !this.validateResidence(item.Item)
+        const header = (<ResidenceSummary residence={item} hasErrors={hasErrors} />)
+        const errorMessage = i18n.t('history.residence.collection.summary.incomplete')
+
         return (
           <Row header={header}
                index={i}
                key={i}
                first={firstRow}
                last={lastRow}
+               hasErrors={hasErrors}
+               errorMessage={errorMessage}
                onRemove={this.remove.bind(this, item.type)}
                show={item.isNew}>
             <ResidenceItem name="Residence"
@@ -628,13 +804,18 @@ export default class HistoryCollection extends ValidationElement {
       }
 
       if (item.type === 'Employment') {
-        let header = (<EmploymentSummary employment={item} />)
+        const hasErrors = !this.validateEmployment(item.Item)
+        const header = (<EmploymentSummary employment={item} hasErrors={hasErrors} />)
+        const errorMessage = i18n.t('history.employment.default.collection.summary.incomplete')
+
         return (
           <Row header={header}
                index={i}
                key={i}
                first={firstRow}
                last={lastRow}
+               hasErrors={hasErrors}
+               errorMessage={errorMessage}
                onRemove={this.remove.bind(this, item.type)}
                show={item.isNew}>
             <div className="employment">
@@ -649,13 +830,18 @@ export default class HistoryCollection extends ValidationElement {
       }
 
       if (item.type === 'Education') {
-        let header = (<EducationSummary education={item} />)
+        const hasErrors = !this.validateEducation(item.Item)
+        const header = (<EducationSummary education={item} hasErrors={hasErrors} />)
+        const errorMessage = i18n.t('history.education.collection.school.summary.incomplete')
+
         return (
           <Row header={header}
                index={i}
                key={i}
                first={firstRow}
                last={lastRow}
+               hasErrors={hasErrors}
+               errorMessage={errorMessage}
                onRemove={this.remove.bind(this, item.type)}
                show={item.isNew}>
             <div className="education">

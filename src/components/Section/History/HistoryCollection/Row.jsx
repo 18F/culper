@@ -55,6 +55,9 @@ export class Row extends React.Component {
               <i className={`fa fa-chevron-${this.state.show === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
             </div>
           </a>
+          <Show when={this.props.hasErrors === true && this.props.errorMessage}>
+            <div className="incomplete">{this.props.errorMessage}</div>
+          </Show>
           <div className="divider">
             <hr />
           </div>

@@ -423,7 +423,7 @@ const en = {
     gambling: {
       title: 'Have your ever experienced financial problems due to gambling?',
       branch: {
-        help: 'Select whether you have experienced any financial problems due to gambling',
+        help: 'Select whether you have experienced any financial problems due to gambling'
       },
       collection: {
         summary: {
@@ -647,7 +647,8 @@ const en = {
         summary: {
           title: 'Summary of places you have lived',
           item: 'Address',
-          unknown: 'Unknown'
+          unknown: 'Unknown',
+          incomplete: 'This residence\'s information is complete'
         },
         append: 'Save and add another address'
       },
@@ -708,7 +709,8 @@ const en = {
           append: 'Save and add another job',
           summary: {
             title: 'Summary of your work history',
-            employer: 'Employer'
+            employer: 'Employer',
+            incomplete: 'This employer\'s information is complete'
           }
         },
         activity: {
@@ -1218,7 +1220,8 @@ const en = {
           summary: {
             title: 'Summary of education',
             item: 'School',
-            unknown: 'Unknown'
+            unknown: 'Unknown',
+            incomplete: 'This education\'s information is complete'
           },
           append: 'Save and add another school'
         },
