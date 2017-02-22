@@ -91,4 +91,63 @@ describe('The Residence component', () => {
     textarea.simulate('change')
     expect(updates).toBe(1)
   })
+
+  it('can add another residence to collection', () => {
+    let expected = {
+      name: 'residence',
+      List: [
+        {
+          open: true,
+          Residence: {
+            Role: 'Dance',
+            Address: {
+              address: '1234 Some Rd'
+            }
+          }
+        },
+        {
+          Residence: {
+            Address: {
+              address: '1234 Some Rd',
+              addressType: 'International',
+              city: 'Munich',
+              country: 'Germany'
+            },
+            Dates: {
+              from: new Date('1/1/2008'),
+              to: new Date('1/1/2012'),
+              name: 'Dates',
+              open: true
+            }
+          }
+        },
+        {
+          Residence: {
+            Address: {
+              address: '1234 Some Rd',
+              addressType: 'APOFPO',
+              zipcode: '12345'
+            },
+            Dates: {
+              from: new Date('1/1/2008'),
+              name: 'Dates',
+              open: true
+            }
+          }
+        },
+        {
+          Residence: {
+            Dates: {
+              to: new Date('1/1/2008'),
+              name: 'Dates',
+              open: true
+            }
+          }
+        }
+      ]
+    }
+    const component = mount(<Residence name={expected.name} List={expected.List} />)
+    component.find('button.add').simulate('click')
+    expect(component.find('div.item').length).toBe(5)
+  })
 })
