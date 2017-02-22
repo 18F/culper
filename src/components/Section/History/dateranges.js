@@ -145,6 +145,10 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
 
   // Set the day to the last of the month
   const endOfMonth = (date) => {
+    if (!date) {
+      return null
+    }
+
     date.setDate(daysInMonth(date.getMonth() + 1, date.getFullYear()))
     return date
   }
@@ -156,7 +160,7 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     if (stop > start && daysBetween(start, stop) > buffer) {
       holes.push({
         from: start,
-        to: range.from
+        to: stop
       })
     }
 

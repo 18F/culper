@@ -100,6 +100,7 @@ export class EmploymentItem extends ValidationElement {
           <Help id={`history.employment.default.datesEmployed.help`}>
             <DateRange name="Dates"
                        {...this.props.Dates}
+                       receiveProps={this.props.receiveProps}
                        onUpdate={this.onUpdate.bind(this, 'Dates')}
                        onValidate={this.handleValidation}
                        />

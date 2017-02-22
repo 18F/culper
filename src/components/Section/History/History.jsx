@@ -7,8 +7,6 @@ import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
-import Employment from './Employment'
-import Residence from './Residence'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import ReactMarkdown from 'react-markdown'
@@ -21,7 +19,8 @@ class History extends ValidationElement {
 
     this.state = {
       subsection: props.subsection,
-      addOnLoad: props.addOnLoad
+      addOnLoad: props.addOnLoad,
+      firstTime: true
     }
 
     this.handleTour = this.handleTour.bind(this)
@@ -36,9 +35,14 @@ class History extends ValidationElement {
   }
 
   componentDidMount () {
+    const bicycle = !!(this.props.History && this.props.History.Education && this.props.History.Education.List && this.props.History.Education.List.length > 0)
+      || !!(this.props.History && this.props.History.Employment && this.props.History.Employment.List && this.props.History.Employment.List.length > 0)
+      || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
+    this.setState({ firstTime: !bicycle })
+
     // TODO: This may need to be changed... idea may be that the review is the timeline but
     // this may not be correct.
-    let current = this.launch(this.props.History, this.props.subsection, 'timeline')
+    const current = this.launch(this.props.History, this.props.subsection, 'timeline')
     if (current !== '') {
       this.props.dispatch(push(`/form/history/${current}`))
     }
@@ -137,6 +141,9 @@ class History extends ValidationElement {
     )
   }
 
+  /**
+   * Figure the total amount of years to collect for the timeline
+   */
   totalYears () {
     let total = 10
     if (!this.props.Birthdate) {
@@ -359,6 +366,8 @@ class History extends ValidationElement {
                                    addOnLoad={this.state.addOnLoad}
                                    history={this.props.History}
                                    types={['Residence', 'Employment', 'Education']}
+                                   total={this.totalYears()}
+                                   showGaps={!this.state.firstTime}
                                    onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                    onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
                                    onEducationUpdate={this.onUpdate.bind(this, 'Education')}
@@ -381,6 +390,7 @@ class History extends ValidationElement {
                                history={this.props.History}
                                types={['Residence']}
                                total={this.totalYears()}
+                               showGaps={!this.state.firstTime}
                                onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                onValidate={this.onValidate}
                                />
@@ -401,6 +411,7 @@ class History extends ValidationElement {
                                history={this.props.History}
                                types={['Employment']}
                                total={this.totalYears()}
+                               showGaps={!this.state.firstTime}
                                onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
                                onValidate={this.onValidate}
                                />
@@ -421,6 +432,7 @@ class History extends ValidationElement {
                                history={this.props.History}
                                types={['Education']}
                                total={this.totalYears()}
+                               showGaps={!this.state.firstTime}
                                onEducationUpdate={this.onUpdate.bind(this, 'Education')}
                                onValidate={this.onValidate}
                                />

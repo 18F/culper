@@ -1,11 +1,11 @@
 import React from 'react'
-import { i18n } from '../../../../config'
 import { ValidationElement, Svg, RadioGroup, Radio, Show } from '../../../Form'
 import { ResidenceItem } from '../Residence'
 import { EmploymentItem } from '../Employment'
 import { EducationItem } from '../Education'
-import { Row, Gap } from './Row'
-import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary, dateSummary } from './summaries'
+import { Row } from './Row'
+import { Gap } from './Gap'
+import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary } from './summaries'
 import { daysAgo, today } from '../dateranges'
 
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -39,6 +39,7 @@ export default class HistoryCollection extends ValidationElement {
 
     this.handleCollectionTypeChange = this.handleCollectionTypeChange.bind(this)
     this.create = this.create.bind(this)
+    this.fillGap = this.fillGap.bind(this)
   }
 
   componentDidMount () {
@@ -512,6 +513,29 @@ export default class HistoryCollection extends ValidationElement {
   }
 
   /**
+   * Prepoulate a new item to fill in a particular gap.
+   */
+  fillGap (type, dates) {
+    this.setState({
+      collectionType: type,
+      currentNewItem: {
+        type: type,
+        force: true,
+        values: {
+          Dates: {
+            from: dates.from,
+            to: dates.to
+          }
+        }
+      }
+    }, () => {
+      if (this.refs.createOptions.scrollIntoView) {
+        this.refs.createOptions.scrollIntoView()
+      }
+    })
+  }
+
+  /**
    * Contains the types of History objects a user can create
    */
   createOptions () {
@@ -575,7 +599,9 @@ export default class HistoryCollection extends ValidationElement {
   render () {
     // Inject any gaps in to our timeline
     const start = daysAgo(today, 365 * parseInt(this.props.total || 10))
-    const list = InjectGaps(this.state.List, ['Residence', 'Employment'], start).sort(this.sort)
+    const list = this.props.showGaps
+          ? InjectGaps(this.state.List, ['Residence', 'Employment'], start).sort(this.sort)
+          : this.state.List.sort(this.sort)
 
     // Create the list items
     const listItems = list.map((item, i, arr) => {
@@ -651,12 +677,16 @@ export default class HistoryCollection extends ValidationElement {
                last={lastRow}
                dates={item.Item.Dates}
                type={item.Item.Type}
+               onClick={this.fillGap.bind(this, item.Item.Type, item.Item.Dates)}
                />
         )
       }
 
       return null
     })
+
+    const force = (this.state.currentNewItem || {}).force || false
+    const values = (this.state.currentNewItem || {}).values || {}
 
     // Render the defaults
     return (
@@ -667,6 +697,8 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType === 'Residence'}>
             <ResidenceItem name="Residence"
+                           {...values}
+                           receiveProps={force}
                            onUpdate={this.onNewUpdate.bind(this, 'Residence')}
                            onValidate={this.handleValidation}
                            />
@@ -675,6 +707,8 @@ export default class HistoryCollection extends ValidationElement {
           <Show when={this.state.collectionType === 'Employment'}>
             <div className="employment">
               <EmploymentItem name="Employment"
+                              {...values}
+                              receiveProps={force}
                               onUpdate={this.onNewUpdate.bind(this, 'Employment')}
                               onValidate={this.handleValidation}
                               />

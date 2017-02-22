@@ -53,33 +53,33 @@ export default class ReasonLeft extends ValidationElement {
 
   labelText () {
     switch (this.state.Reason) {
-    case 'Fired':
-      return i18n.t('history.employment.default.left.fired.text')
-    case 'Quit':
-      return i18n.t('history.employment.default.left.quit.text')
-    case 'Charges':
-      return i18n.t('history.employment.default.left.charges.text')
-    case 'Performance':
-      return i18n.t('history.employment.default.left.performance.text')
-    case 'Other':
-    default:
-      return i18n.t('history.employment.default.left.other.text')
+      case 'Fired':
+        return i18n.t('history.employment.default.left.fired.text')
+      case 'Quit':
+        return i18n.t('history.employment.default.left.quit.text')
+      case 'Charges':
+        return i18n.t('history.employment.default.left.charges.text')
+      case 'Performance':
+        return i18n.t('history.employment.default.left.performance.text')
+      case 'Other':
+      default:
+        return i18n.t('history.employment.default.left.other.text')
     }
   }
 
   labelDate () {
     switch (this.state.Reason) {
-    case 'Fired':
-      return i18n.t('history.employment.default.left.fired.date')
-    case 'Quit':
-      return i18n.t('history.employment.default.left.quit.date')
-    case 'Charges':
-      return i18n.t('history.employment.default.left.charges.date')
-    case 'Performance':
-      return i18n.t('history.employment.default.left.performance.date')
-    case 'Other':
-    default:
-      return i18n.t('history.employment.default.left.other.date')
+      case 'Fired':
+        return i18n.t('history.employment.default.left.fired.date')
+      case 'Quit':
+        return i18n.t('history.employment.default.left.quit.date')
+      case 'Charges':
+        return i18n.t('history.employment.default.left.charges.date')
+      case 'Performance':
+        return i18n.t('history.employment.default.left.performance.date')
+      case 'Other':
+      default:
+        return i18n.t('history.employment.default.left.other.date')
     }
   }
 

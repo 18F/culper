@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Svg, Show } from '../../../Form'
+import { Show } from '../../../Form'
 
 /**
  * Row represents a row of summary information as well as the form elemens when they are
@@ -75,56 +75,4 @@ export class Row extends React.Component {
 
 Row.defaultProps = {
   show: false
-}
-
-/**
- * Renders a formatted gap row
- */
-export const Gap = (props) => {
-  let title = ''
-  let btnText = ''
-  let para = ''
-
-  switch (props.type) {
-  case 'Employment':
-    title = 'Employment gap'
-    btnText = 'Add an employer'
-    para = 'There is a gap in your employment. The entire 10 year period must be covered with no gaps.'
-    break
-  case 'Residence':
-    title = 'Residence gap'
-    btnText = 'Add an address'
-    para = 'There is a gap in your residence history. The entire 10 year period must be covered with no gaps'
-    break
-  }
-
-  return (
-    <div className="item">
-      <Show when={props.first === true}>
-        <div className="summary caption">
-          <div className="title">
-            <h4>{i18n.t('collection.summary')}</h4>
-            <hr />
-          </div>
-        </div>
-      </Show>
-      <div className="summary pre">
-        <div className="help">
-          <div className="message eapp-error-message">
-            <i className="fa fa-exclamation"></i>
-            <span className="dates">{`${props.dates.from.getMonth()}/${props.dates.from.getFullYear()}-${props.dates.to.getMonth()}/${props.dates.to.getFullYear()}`}</span>
-            <h4>{title}</h4>
-            <p>{para}</p>
-            <button className="usa-button-outline">
-              <span>{btnText}</span>
-              <i className="fa fa-plus-circle"></i>
-            </button>
-          </div>
-        </div>
-        <div className="divider">
-          <hr />
-        </div>
-      </div>
-    </div>
-  )
 }

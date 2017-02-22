@@ -26,16 +26,7 @@ export const ResidenceSummary = (props) => {
     address1 = i18n.t('history.residence.collection.summary.unknown')
   }
 
-  const dates = res.Dates || {}
-  let from = i18n.t('history.residence.collection.summary.unknown')
-  if (dates.from) {
-    from = `${dates.from.getMonth()}/${dates.from.getFullYear()}`
-  }
-  let to = i18n.t('history.residence.collection.summary.unknown')
-  if (dates.to) {
-    to = `${dates.to.getMonth()}/${dates.to.getFullYear()}`
-  }
-
+  const dates = dateSummary(res)
   return (
     <div className="table">
       <div className="table-cell index">
@@ -43,7 +34,7 @@ export const ResidenceSummary = (props) => {
         {i18n.t('history.residence.collection.summary.item')}:
       </div>
       <div className="table-cell employer">{address1}<br />{address2}</div>
-      <div className="table-cell dates">{from}-{to}</div>
+      <div className="table-cell dates">{dates}</div>
     </div>
   )
 }
@@ -92,6 +83,9 @@ export const EducationSummary = (props) => {
  * Inject new list items as `Gaps`
  */
 export const InjectGaps = (list, types, start) => {
+  // Let us just make sure we clear any previous gaps
+  list = list.filter(item => item.type !== 'Gap')
+
   for (const t of types) {
     // Find all our "holes" for this type
     const ranges = list
@@ -147,7 +141,7 @@ const typeWithDates = (type, item) => {
 export const dateSummary = (item) => {
   let noDateLabel = i18n.t('history.employment.default.noDate.label')
   function format (d) {
-    return `${d.getMonth()}/${d.getFullYear()}`
+    return `${d.getMonth() + 1}/${d.getFullYear()}`
   }
 
   let vals = []
