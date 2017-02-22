@@ -88,7 +88,7 @@ export default class AdditionalActivity extends ValidationElement {
 
     if (this.state.HasAdditionalActivity === 'Yes') {
       return (
-        <div>
+        <div className="has-additional">
           <h4>{i18n.t('history.employment.additionalActivity.label')}</h4>
           <div className={klass}>
             {options}
@@ -106,6 +106,8 @@ export default class AdditionalActivity extends ValidationElement {
                 <Text name="Position"
                       className="text"
                       label={i18n.t('history.employment.additionalActivity.position.label')}
+                      onBlur={this.handleBlur}
+                      onFocus={this.handleFocus}
                       onValidate={this.handleValidation}
                       />
                 <HelpIcon className="employer" />
@@ -118,6 +120,8 @@ export default class AdditionalActivity extends ValidationElement {
                 <Text name="Supervisor"
                       className="text"
                       label={i18n.t('history.employment.additionalActivity.supervisor.label')}
+                      onBlur={this.handleBlur}
+                      onFocus={this.handleFocus}
                       onValidate={this.handleValidation}
                       />
                 <HelpIcon className="employer" />
@@ -128,6 +132,8 @@ export default class AdditionalActivity extends ValidationElement {
             <div className={klass}>
               <Help id="history.employment.additionalActivity.datesEmployed.help">
                 <DateRange name="DatesEmployed"
+                           onBlur={this.handleBlur}
+                           onFocus={this.handleFocus}
                            onValidate={this.handleValidation}
                            />
                 <HelpIcon className="used-help-icon" />

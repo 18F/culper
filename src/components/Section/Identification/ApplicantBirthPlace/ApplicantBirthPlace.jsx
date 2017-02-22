@@ -166,13 +166,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
   }
 
   /**
-   * Generated name for the part of the address elements.
-   */
-  partName (part) {
-    return '' + this.state.name + '-' + part
-  }
-
-  /**
    * Returns the part name from the pull generated identifier.
    */
   extractPart (id) {

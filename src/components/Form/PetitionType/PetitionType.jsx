@@ -45,27 +45,8 @@ export default class PetitionType extends ValidationElement {
   }
 
   handleAddressChange (value) {
-    console.log('handleChange')
     this.setState({ address: value }, () => {
       this.doUpdate()
-    })
-  }
-
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
     })
   }
 

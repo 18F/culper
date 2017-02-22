@@ -1,7 +1,6 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import AuthConstants from './AuthConstants'
-import { updateIdentificationApplicantName, updateIdentificationBirthPlace, updateIdentificationBirthDate, updateIdentificationSSN } from './ApplicationActions'
+import { updateIdentificationApplicantName, updateIdentificationBirthPlace, updateIdentificationBirthDate, updateIdentificationSSN, reportErrors } from './ApplicationActions'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -55,6 +54,18 @@ describe('Application actions', function () {
           section: 'Identification',
           property: 'ApplicantSSN',
           values: '123456789'
+        }
+      },
+      {
+        name: 'ApplicantNameReportError',
+        callback: function () {
+          return reportErrors('Identification', 'ApplicantName', ['minlength'])
+        },
+        expected: {
+          type: 'Errors.Identification',
+          section: 'Errors',
+          property: 'Identification',
+          values: ['identification.applicantname.minlength']
         }
       }
     ]

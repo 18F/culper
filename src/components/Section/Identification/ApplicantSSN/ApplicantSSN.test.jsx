@@ -119,4 +119,27 @@ describe('The ApplicantSSN component', () => {
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
   })
+
+  it('loads with first, middle and last values', () => {
+    const component = mount(<ApplicantSSN name={'ssn'} first="111" middle="00" last="0101" />)
+    component.find('input#first').hasClass('usa-input-success')
+    component.find('input#middle').hasClass('usa-input-success')
+    component.find('input#last').hasClass('usa-input-success')
+  })
+
+  it('loads with value and signals success', () => {
+    const component = mount(<ApplicantSSN name={'ssn'} value="111001234" />)
+    component.find('input#first').hasClass('usa-input-success')
+    component.find('input#middle').hasClass('usa-input-success')
+    component.find('input#last').hasClass('usa-input-success')
+
+    component.find('input#first').simulate('change')
+    component.find('input#middle').simulate('change')
+    component.find('input#last').simulate('change')
+  })
+
+  it('loads with invalid values and signals error', () => {
+    const component = mount(<ApplicantSSN name={'ssn'} first="abc" />)
+    component.find('input#first').simulate('change')
+  })
 })

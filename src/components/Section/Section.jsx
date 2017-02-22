@@ -14,14 +14,16 @@ class Section extends React.Component {
    * the componentDidMount() is rendered. However, subsequent path changes trigger componentWillReceiveProps()
    */
   componentWillReceiveProps (updatedProps) {
-    let name = updatedProps.section
-    let sub = updatedProps.subsection
-    this.props.dispatch(updateSection(name, sub))
+    this.update(updatedProps)
   }
 
   componentDidMount () {
-    let name = this.props.section
-    let sub = this.props.subsection
+    this.update(this.props)
+  }
+
+  update (props) {
+    let name = props.section
+    let sub = props.subsection
     this.props.dispatch(updateSection(name, sub))
   }
 
