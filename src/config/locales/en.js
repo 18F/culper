@@ -1563,10 +1563,18 @@ const en = {
     federal: {
       title: 'Provide all former federal service',
       heading: {
-        branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?'
+        branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
+        dates: 'Provide dates of federal civilian employment',
+        name: 'Provide the name of the federal agency for which you are/were employed',
+        position: 'Provide your position title',
+        address: 'Provide the location of the agency'
       },
       help: {
-        branch: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment'
+        branch: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+        dates: 'The dates you were employed',
+        name: 'The name of the federal service',
+        position: 'The most recent position title during this employment',
+        address: 'The address of the agency'
       },
       collection: {
         summary: {
