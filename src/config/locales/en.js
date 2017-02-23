@@ -1124,15 +1124,275 @@ const en = {
       },
 
       otherfederal: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: 'Provide the name of your employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide the name of your position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        physicalAddress: {
+          help: 'Is/was your physical work address different than your employer\'s address?',
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        }
       },
 
       stategovernment: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: 'Provide the name of your employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide the name of your position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        physicalAddress: {
+          help: 'Is/was your physical work address different than your employer\'s address?',
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        }
       },
 
       federalcontractor: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: 'Provide the name of your employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide the name of your position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        physicalAddress: {
+          help: 'Is/was your physical work address different than your employer\'s address?',
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        }
       },
 
       nongovernment: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: 'Provide the name of your employer'
+        },
+        title: {
+          label: 'Title',
+          help: 'Provide the name of your position title'
+        },
+        status: {
+          help: 'Select the employment status'
+        },
+        address: {
+          label: 'This address is',
+          help: 'Provide the address'
+        },
+        telephone: {
+          label: '',
+          help: 'Provide the telephone number'
+        },
+        physicalAddress: {
+          help: 'Is/was your physical work address different than your employer\'s address?',
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: 'Do you have any additional periods of activity to add?',
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: 'Provide the position title'
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: 'Provide the supervisor name'
+          },
+          datesEmployed: {
+            help: 'Provide dates of employment'
+          }
+        }
       },
 
       selfemployment: {
