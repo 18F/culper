@@ -174,7 +174,6 @@ export default class Gambling extends ValidationElement {
             <Number name="Losses"
                     className="losses"
                     placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                    label={i18n.t('financial.gambling.label.losses')}
                     min="1"
                     onValidate={this.handleValidation}
                     />
@@ -188,7 +187,6 @@ export default class Gambling extends ValidationElement {
             <Textarea name="Description"
                       className="description"
                       onValidate={this.handleValidation}
-                      label={i18n.t('financial.gambling.label.description')}
                       />
             <HelpIcon className="description-help-icon" />
           </Help>
@@ -200,7 +198,6 @@ export default class Gambling extends ValidationElement {
             <Textarea name="Actions"
                       className="actions"
                       onValidate={this.handleValidation}
-                      label={i18n.t('financial.gambling.label.actions')}
                       />
             <HelpIcon className="actions-help-icon" />
           </Help>
@@ -216,7 +213,6 @@ export default class Gambling extends ValidationElement {
                 className="eapp-field-wrap"
                 value={this.state.HasGamblingDebt}
                 help="financial.gambling.branch.help"
-                label={i18n.t('financial.gambling.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}

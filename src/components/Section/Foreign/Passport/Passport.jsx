@@ -242,16 +242,18 @@ export default class Passport extends ValidationElement {
     return (
       <div className="passport">
         <p>
-          {i18n.t('foreign.passport.info.text')}<br />
+          {i18n.t('foreign.passport.info.text')}
+        </p>
+        <p>
           <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
             {i18n.t('foreign.passport.info.link')}
           </a>
         </p>
+        <h3>{i18n.t('foreign.passport.question.title')}</h3>
         <Branch name="has_passport"
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
                 className="eapp-field-wrap"
-                label={i18n.t('foreign.passport.question.title')}
                 help="foreign.passport.branch.help"
                 >
         </Branch>

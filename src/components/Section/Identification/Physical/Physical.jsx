@@ -129,7 +129,6 @@ export default class Physical extends ValidationElement {
           <div className={klass + ' sex'}>
             <Help id="identification.traits.help.sex">
               <Sex name="sex"
-                   label={i18n.t('identification.traits.label.sex')}
                    value={this.props.Sex}
                    onUpdate={this.handleUpdate.bind(this, 'Sex')}
                    onValidate={this.handleValidation.bind(this)}
