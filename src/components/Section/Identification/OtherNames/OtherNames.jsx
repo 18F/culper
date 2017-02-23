@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
+import { OtherNamesValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup, Branch } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
@@ -40,24 +41,7 @@ export default class OtherNames extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.HasOtherNames) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.Name || !item.Name.first || !item.Name.last) {
-        return false
-      }
-
-      if (!item.MaidenName || !item.MaidenName.value) {
-        return false
-      }
-
-      if (!item.DatesUsed || !item.DatesUsed.from || (!item.DatesUsed.to && !item.DatesUsed.present)) {
-        return false
-      }
-    }
-    return true
+    return new OtherNamesValidator(this.state, null).isValid()
   }
 
   onUpdate (val, event) {
