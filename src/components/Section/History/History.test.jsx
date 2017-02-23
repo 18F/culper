@@ -34,7 +34,7 @@ describe('The History section', () => {
   })
 
   it('can go to each subsection', () => {
-    const sections = ['residence', 'employment', 'education']
+    const sections = ['residence', 'employment', 'education', 'federal']
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
     sections.forEach((section) => {

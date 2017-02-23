@@ -635,11 +635,13 @@ const en = {
     },
     destination: {
       review: 'Review your history',
+      timeline: 'Timeline',
       residence: 'Places you lived',
       employment: 'Employment history',
       education: 'Schools & diplomas',
-      timeline: 'Timeline'
+      federal: 'Former federal service'
     },
+
     residence: {
       title: 'Places you have lived',
       info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
@@ -691,6 +693,7 @@ const en = {
         comments: 'If you need to provide any additional comments about this information enter them below'
       }
     },
+
     employment: {
       summary: {
         title: 'Where you have worked',
@@ -1471,6 +1474,7 @@ const en = {
       other: {
       }
     },
+
     education: {
       title: 'List the places you went to school',
       info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
@@ -1553,6 +1557,34 @@ const en = {
         degree: 'If you have received one or more degrees or diplomas from this school please provide the required information',
         diploma: 'Select the most appropriate degree or diploma received',
         date: 'The date the degree or diploma was awarded'
+      }
+    },
+
+    federal: {
+      title: 'Provide all former federal service',
+      heading: {
+        branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
+        dates: 'Provide dates of federal civilian employment',
+        name: 'Provide the name of the federal agency for which you are/were employed',
+        position: 'Provide your position title',
+        address: 'Provide the location of the agency'
+      },
+      help: {
+        branch: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+        dates: 'The dates you were employed',
+        name: 'The name of the federal service',
+        position: 'The most recent position title during this employment',
+        address: 'The address of the agency'
+      },
+      collection: {
+        summary: {
+          title: 'Summary of former federal service',
+          item: 'Federal service',
+          present: 'Now',
+          nodates: 'No dates',
+          unknown: 'Unknown'
+        },
+        append: 'Add another former federal service'
       }
     }
   },
