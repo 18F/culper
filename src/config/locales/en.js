@@ -57,96 +57,227 @@ const en = {
     addpaired: 'Add a comment to this question',
     remove: 'Remove comment'
   },
+  help: {
+    close: 'Close info block'
+  },
   error: {
     name: {
       last: {
-        required: '',
-        length: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
-        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+        required: {
+          title: 'The last name is required',
+          message: '',
+          note: ''
+        },
+        length: {
+          title: 'The last name does not meet length requirements',
+          message: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
+          note: ''
+        },
+        pattern: {
+          title: 'The last name has unsupported characters',
+          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
+          note: ''
+        }
       },
       first: {
-        length: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
-        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+        length: {
+          title: 'The first name does not meet the length requirements',
+          message: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
+          note: ''
+        },
+        pattern: {
+          title: 'The first name has unsupported characters',
+          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
+          note: ''
+        }
       },
       middle: {
-        length: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
-        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+        length: {
+          title: 'The middle name does not meet the length requirements',
+          message: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
+          note: ''
+        },
+        pattern: {
+          title: 'The middle name has unsupported characters',
+          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
+          note: ''
+        }
       }
     },
     birthdate: {
-      age: 'Applicants must be older than 16 and less than 130 years of age'
+      age: {
+        title: 'The applicant age is not approved',
+        message: 'Applicants must be older than 16 and less than 130 years of age',
+        note: ''
+      }
     },
     ssn: {
       first: {
-        pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 3 digits',
+          message: 'The first part of the social security number must be 3 digits between 0 and 9',
+          note: ''
+        }
       },
       middle: {
-        pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 2 digits',
+          message: 'The middle part of the social security number must be 2 digits between 0 and 9',
+          note: ''
+        }
       },
       last: {
-        pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 4 digits',
+          message: 'The last part of the social security number must be 4 digits between 0 and 9',
+          note: ''
+        }
       },
       verifyFirst: {
-        pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 3 digits',
+          message: 'The first part of the social security number must be 3 digits between 0 and 9',
+          note: ''
+        }
       },
       verifyMiddle: {
-        pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 2 digits',
+          message: 'The middle part of the social security number must be 2 digits between 0 and 9',
+          note: ''
+        }
       },
       verifyLast: {
-        pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 4 digits',
+          message: 'The last part of the social security number must be 4 digits between 0 and 9',
+          note: ''
+        }
       }
     },
     month: {
-      max: 'The month must be between 1 (January) and 12 (December)'
+      max: {
+        title: 'Month is not recognized',
+        message: 'The month must be between 1 (January) and 12 (December)',
+        note: ''
+      }
     },
     day: {
-      length: 'The day must be a valid day for the month',
-      max: 'Cannot exceed the number of days within the month'
+      length: {
+        title: 'Day falls outside of allowable range',
+        message: 'The day must be a valid day for the month',
+        note: ''
+      },
+      max: {
+        title: '',
+        message: 'Cannot exceed the number of days within the month',
+        note: ''
+      }
     },
     year: {
-      max: 'The year must be a valid year'
+      max: {
+        title: 'The year must be four digits',
+        message: 'The year must be a valid year',
+        note: ''
+      }
     },
     weight: {
       pounds: {
-        min: 'We only accept a value between 10 and 999 pounds',
-        max: 'We only accept a value between 10 and 999 pounds'
+        min: {
+          title: 'Weight below accepted limits',
+          message: 'We only accept a value between 10 and 999 pounds',
+          note: ''
+        },
+        max: {
+          title: 'Weight exceeds accepted limits',
+          message: 'We only accept a value between 10 and 999 pounds',
+          note: ''
+        }
       }
     },
     height: {
       feet: {
-        min: 'Feet must be between 1 and 9',
-        max: 'Feet must be between 1 and 9'
+        min: {
+          title: 'Feet is under the accepted limits',
+          message: 'Feet must be between 1 and 9',
+          note: ''
+        },
+        max: {
+          title: 'Feet is above the accepted limits',
+          message: 'Feet must be between 1 and 9',
+          note: ''
+        }
       },
       inches: {
-        min: 'Inches must be between 0 and 11',
-        max: 'Inches must be between 0 and 11'
+        min: {
+          title: 'Inches is below the accepted limits',
+          message: 'Inches must be between 0 and 11',
+          note: ''
+        },
+        max: {
+          title: 'Inches is above the accepted limits',
+          message: 'Inches must be between 0 and 11',
+          note: ''
+        }
       }
     },
     city: {
-      length: 'City name must be between 2 and 100 characters'
+      length: {
+        title: 'City name length',
+        message: 'City name must be between 2 and 100 characters',
+        note: ''
+      }
     },
     state: {
-      notfound: 'The state name must be one of the available options'
+      notfound: {
+        title: 'State option not supported',
+        message: 'The state name must be one of the available options',
+        note: ''
+      }
     },
     county: {
-      length: 'County name must be between 2 and 100 characters'
+      length: {
+        title: 'County length',
+        message: 'County name must be between 2 and 100 characters',
+        note: ''
+      }
     },
     zipcode: {
-      pattern: 'The zipcode can be either the 5 or 9 digit variation'
+      pattern: {
+        title: 'Zipcode not in accepted format',
+        message: 'The zipcode can be either the 5 or 9 digit variation',
+        note: ''
+      }
     },
     country: {
-      notfound: 'The country name must be one of the available options'
+      notfound: {
+        title: 'Country option not supported',
+        message: 'The country name must be one of the available options',
+        note: ''
+      }
     },
     passport: {
       number: {
-        pattern: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.'
+        pattern: {
+          title: 'Passport number not in acceptable format',
+          message: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.',
+          note: ''
+        }
       }
     },
     Losses: {
-      min: 'Reported losses must have a value'
+      min: {
+        title: 'Losses below accepted limits',
+        message: 'Reported losses must have a value',
+        note: ''
+      }
     },
     daterange: {
-      order: 'The **from** date must precede the **to** date'
+      order: {
+        title: 'Date range order',
+        message: 'The **from** date must precede the **to** date',
+        note: ''
+      }
     }
   },
   section: {
@@ -214,23 +345,43 @@ const en = {
     name: {
       title: 'Provide your full name',
       last: {
-        help: 'Your last name is required.  If you have only 1 name, enter it in the last name field'
+        help: {
+          title: 'Need help with the last name?',
+          message: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
+          note: ''
+        }
       },
       first: {
-        help: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.'
+        help: {
+          title: 'Need help with the first name?',
+          message: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.',
+          note: ''
+        }
       },
       middle: {
-        help: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.'
+        help: {
+          title: 'Need help with the middle name?',
+          message: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.',
+          note: ''
+        }
       },
       suffix: {
-        help: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field'
+        help: {
+          title: 'Need help with the suffix?',
+          message: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field',
+          note: ''
+        }
       }
     },
     othernames: {
       title: 'Provide your other names used and the period of time you used them',
       info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
-        help: 'Provide your other names used and the period of time you used them',
+        help: {
+          title: 'Need information on other names?',
+          message: 'Provide your other names used and the period of time you used them',
+          note: ''
+        },
         question: 'Have you used any other names?'
       },
       collection: {
@@ -256,7 +407,11 @@ const en = {
     },
     birthdate: {
       title: 'Provide your date of birth',
-      help: 'Provide your date of birth, or the closest possible estimate you can provide'
+      help: {
+        title: 'Need help with the birthdate?',
+        message: 'Provide your date of birth, or the closest possible estimate you can provide',
+        note: ''
+      }
     },
     birthplace: {
       title: 'Provide your place of birth',
@@ -266,7 +421,11 @@ const en = {
         no: 'No'
       },
       branch: {
-        help: 'Enter information regarding your place of birth'
+        help: {
+          title: 'Need help with your place of birth?',
+          message: 'Enter information regarding your place of birth',
+          note: ''
+        }
       },
       help: {
         city: 'City where you were born',
@@ -290,8 +449,16 @@ const en = {
     contacts: {
       title: 'Provide your contact information',
       help: {
-        email: 'Enter your email address',
-        phoneNumber: 'Enter your phone number'
+        email: {
+          title: 'Need help with an email address?',
+          message: 'Enter your email address',
+          note: ''
+        },
+        phoneNumber: {
+          title: 'Need help with a phone number?',
+          message: 'Enter your phone number',
+          note: ''
+        }
       },
       collection: {
         summary: {
@@ -329,7 +496,11 @@ const en = {
     },
     ssn: {
       title: 'Provide your U.S. Social Security Number',
-      help: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+      help: {
+        title: 'Need help with your U.S. Social Security Number?',
+        message: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+        note: ''
+      },
       label: {
         notApplicable: 'Not applicable',
         last: '',
@@ -354,13 +525,41 @@ const en = {
         comments: 'Add your comment about sex'
       },
       help: {
-        feet: 'Feet must be a number between 1 and 9',
-        inches: 'Inches must be a number between 0 and 11',
-        height: 'Height must be a number between 1 and 9',
-        weight: 'Weight must be a number between 10 and 999',
-        eye: 'Select an eye color',
-        hair: 'Select the hair color that most closely represents your hair color',
-        sex: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.'
+        feet: {
+          title: 'Need help with your height?',
+          message: 'Feet must be a number between 1 and 9',
+          note: ''
+        },
+        inches: {
+          title: 'Need help with your height?',
+          message: 'Inches must be a number between 0 and 11',
+          note: ''
+        },
+        height: {
+          title: 'Need help with your height?',
+          message: 'Height must be a number between 1 and 9',
+          note: ''
+        },
+        weight: {
+          title: 'Need help with your weight?',
+          message: 'Weight must be a number between 10 and 999',
+          note: ''
+        },
+        eye: {
+          title: 'Need help with your eye color?',
+          message: 'Select an eye color',
+          note: ''
+        },
+        hair: {
+          title: 'Need help with your hair color?',
+          message: 'Select the hair color that most closely represents your hair color',
+          note: ''
+        },
+        sex: {
+          title: 'Need help with you sex?',
+          message: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.',
+          note: ''
+        }
       },
       label: {
         sex: 'Select your sex at the time of birth',
@@ -427,7 +626,11 @@ const en = {
     gambling: {
       title: 'Have your ever experienced financial problems due to gambling?',
       branch: {
-        help: 'Select whether you have experienced any financial problems due to gambling'
+        help: {
+          title: 'Need more information on gambling?',
+          message: 'Select whether you have experienced any financial problems due to gambling',
+          note: ''
+        }
       },
       collection: {
         summary: {
@@ -455,11 +658,31 @@ const en = {
         comments: 'Add optional comment'
       },
       help: {
-        dates: 'Provide the date range of your financial problems due to gambling',
-        losses: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
-        description: 'Enter description of your financial problems due to gambling',
-        actions: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
-        comments: 'If you need to provide any additional comments about this information enter them below'
+        dates: {
+          title: 'Need help with the dates?',
+          message: 'Provide the date range of your financial problems due to gambling',
+          note: ''
+        },
+        losses: {
+          title: 'Need help gambling losses?',
+          message: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
+          note: ''
+        },
+        description: {
+          title: 'Need help with the description?',
+          message: 'Enter description of your financial problems due to gambling',
+          note: ''
+        },
+        actions: {
+          title: 'Need help with the actions taken?',
+          message: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
+          note: ''
+        },
+        comments: {
+          title: 'Need help providing additional information?',
+          message: 'If you need to provide any additional comments about this information enter them below',
+          note: ''
+        }
       },
       placeholder: {
         losses: '1000'
@@ -487,42 +710,78 @@ const en = {
         comments: 'Add optional comments'
       },
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
-      help: 'Note: If you need to provide any additional comments about this information, enter them below.',
+      help: {
+        title: 'Need help with bankruptcy?',
+        message: 'Note: If you need to provide any additional comments about this information, enter them below.',
+        note: ''
+      },
       petitionType: {
-        help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
+        help: {
+          title: 'Need help with the applicable bankruptcy petition type?',
+          message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',
+          note: ''
+        }
       },
       dateDischarged: {
-        help: 'Provide the date of bankruptcy discharge'
+        help: {
+          title: 'Need help with the date of bankruptcy discharge?',
+          message: 'Provide the date of bankruptcy discharge',
+          note: ''
+        }
       },
       dateFiled: {
-        help: 'Provide the date bankruptcy was filed'
+        help: {
+          title: 'Need help with the date the bankruptcy was filed?',
+          message: 'Provide the date bankruptcy was filed',
+          note: ''
+        }
       },
       courtNumber: {
         title: 'Court docket/account number',
         label: 'Number',
         placeholder: 'Court docket/account number',
-        help: 'Provide the docket/account number'
+        help: {
+          title: 'Need help with the docker or account number?',
+          message: 'Provide the docket/account number',
+          note: ''
+        }
       },
       totalAmount: {
         label: 'Amount',
         placeholder: 'Total amount',
-        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+        help: {
+          title: 'Need help with the total amount?',
+          message: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+          note: ''
+        },
         estimated: 'Estimated'
       },
       courtInvolved: {
         label: 'Court name',
-        help: 'Provide the name of the court involved',
+        help: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court involved',
+          note: ''
+        },
         placeholder: 'Provide court involved'
       },
       trustee: {
         title: 'Provide the trustee',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
-        help: 'The trustee refers to the person who holds authority or a position of trust or responsibility appointed to the bankruptcy',
+        help: {
+          title: 'Need help with the trustee name?',
+          message: 'The trustee refers to the person who holds authority or a position of trust or responsibility appointed to the bankruptcy',
+          note: ''
+        },
         address: {
           title: 'Provide the address of the trustee for this bankruptcy',
           label: 'Trustee address',
-          help: 'The address of the trustee involved for this bankruptcy'
+          help: {
+            title: 'Need help with the trustee address?',
+            message: 'The address of the trustee involved for this bankruptcy',
+            note: ''
+          }
         }
       },
       comments: {
@@ -530,7 +789,11 @@ const en = {
       },
       courtAddress: {
         label: 'This address is',
-        help: 'Enter the address of the court involved'
+        help: {
+          title: 'Need help with the address of the court involved?',
+          message: 'Enter the address of the court involved',
+          note: ''
+        }
       }
     }
   },
@@ -687,10 +950,26 @@ const en = {
         }
       },
       help: {
-        dates: 'Provide the date range of your residence',
-        address: 'The address of the residence during this time period',
-        role: 'Provide your role at this residence as closely as possible',
-        comments: 'If you need to provide any additional comments about this information enter them below'
+        dates: {
+          title: 'Need help with the date range?',
+          message: 'Provide the date range of your residence',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the address?',
+          message: 'The address of the residence during this time period',
+          note: ''
+        },
+        role: {
+          title: 'Need help with the role?',
+          message: 'Provide your role at this residence as closely as possible',
+          note: ''
+        },
+        comments: {
+          title: 'Need help providing additional information?',
+          message: 'If you need to provide any additional comments about this information enter them below',
+          note: ''
+        }
       }
     },
 
@@ -722,10 +1001,18 @@ const en = {
         },
         activity: {
           title: 'Government employment',
-          help: 'Select your employment activity',
+          help: {
+            title: 'Need help with your employment activity?',
+            message: 'Select your employment activity',
+            note: ''
+          },
           other: {
             label: 'Explanation for other',
-            help: ''
+            help: {
+              title: '',
+              message: '',
+              note: ''
+            }
           },
           type: {
             activeMilitary: 'Active military duty station',
@@ -744,7 +1031,11 @@ const en = {
           title: 'Provide the reason for leaving the employment activity',
           para: 'For this employment have any of the following happened to you in the last seven (7) years?',
           comments: 'Provide any additional comments for why you left this employment activity',
-          help: '',
+          help: {
+            title: '',
+            message: '',
+            note: ''
+          },
           fired: {
             option: 'Fired',
             text: 'Provide the reason for being fired',
@@ -772,31 +1063,59 @@ const en = {
           }
         },
         datesEmployed: {
-          help: 'Select the dates you were employed'
+          help: {
+            title: 'Need help with the dates you were employed?',
+            message: 'Select the dates you were employed',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status',
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          },
           fullTime: 'Full-time',
           partTime: 'Part-time'
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         title: {
           label: 'Title',
-          help: 'Provide the name of your position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         employer: {
           label: 'Employer name',
-          help: 'Provide the name of your employer'
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
         },
         physicalAddress: {
-          help: 'Is/was your physical work address different than your employer\'s address?',
+          help: {
+            title: 'Need help with the physical addresss?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
           address: {
             label: 'This address is'
           },
@@ -806,7 +1125,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with any additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -818,35 +1141,67 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         },
         supervisor: {
           name: {
             label: 'Supervisor name',
-            help: 'Provide the name of this supervisor'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
           },
           title: {
             label: 'Supervisor position title',
-            help: 'Provide the position title of this supervisor'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
           },
           email: {
             label: 'Supervisor email',
-            help: 'Provide the email of this supervisor'
+            help: {
+              title: 'Need help with the email?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
           },
           address: {
             label: 'This address is',
-            help: 'Provide the address of this supervisors work location'
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
           },
           telephone: {
-            help: 'Provide the telephone number for this supervisor'
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
           },
           heading: {
             name: 'Provide the name of your supervisor',
@@ -893,38 +1248,74 @@ const en = {
         },
         title: {
           label: 'Title',
-          help: 'Provide your most recent rank/position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         supervisor: {
           name: {
             label: 'Supervisor name',
-            help: 'Provide the name of this supervisor'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
           },
           title: {
             label: 'Supervisor position title',
-            help: 'Provide the position title of this supervisor'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
           },
           email: {
             label: 'Supervisor email',
-            help: 'Provide the email of this supervisor'
+            help: {
+              title: 'Need help with the email address?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
           },
           address: {
             label: 'This address is',
-            help: 'Provide the address of this supervisors work location'
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
           },
           telephone: {
-            help: 'Provide the telephone number for this supervisor'
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
           },
           heading: {
             name: 'Provide the name of your supervisor',
@@ -935,7 +1326,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -947,14 +1342,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         },
         para: {
@@ -975,38 +1382,74 @@ const en = {
         },
         title: {
           label: 'Title',
-          help: 'Provide your most recent rank/position title'
+          help: {
+            title: 'Need help with the rank/position title?',
+            message: 'Provide your most recent rank/position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the phone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         supervisor: {
           name: {
             label: 'Supervisor name',
-            help: 'Provide the name of this supervisor'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
           },
           title: {
             label: 'Supervisor position title',
-            help: 'Provide the position title of this supervisor'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
           },
           email: {
             label: 'Supervisor email',
-            help: 'Provide the email of this supervisor'
+            help: {
+              title: 'Need help with the email address?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
           },
           address: {
             label: 'This address is',
-            help: 'Provide the address of this supervisors work location'
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
           },
           telephone: {
-            help: 'Provide the telephone number for this supervisor'
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
           },
           heading: {
             name: 'Provide the name of your supervisor',
@@ -1017,7 +1460,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1029,14 +1476,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         },
         para: {
@@ -1057,38 +1516,74 @@ const en = {
         },
         title: {
           label: 'Title',
-          help: 'Provide your most recent rank/position title'
+          help: {
+            title: 'Need help with the rank/position title?',
+            message: 'Provide your most recent rank/position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         supervisor: {
           name: {
             label: 'Supervisor name',
-            help: 'Provide the name of this supervisor'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
           },
           title: {
             label: 'Supervisor position title',
-            help: 'Provide the position title of this supervisor'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
           },
           email: {
             label: 'Supervisor email',
-            help: 'Provide the email of this supervisor'
+            help: {
+              title: 'Need help with the email address?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
           },
           address: {
             label: 'This address is',
-            help: 'Provide the address of this supervisors work location'
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
           },
           telephone: {
-            help: 'Provide the telephone number for this supervisor'
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
           },
           heading: {
             name: 'Provide the name of your supervisor',
@@ -1099,7 +1594,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1111,14 +1610,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         },
         para: {
@@ -1142,25 +1653,49 @@ const en = {
         },
         employer: {
           label: 'Employer name',
-          help: 'Provide the name of your employer'
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
         },
         title: {
           label: 'Title',
-          help: 'Provide the name of your position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         physicalAddress: {
-          help: 'Is/was your physical work address different than your employer\'s address?',
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
           address: {
             label: 'This address is'
           },
@@ -1170,7 +1705,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1182,14 +1721,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         }
       },
@@ -1210,25 +1761,49 @@ const en = {
         },
         employer: {
           label: 'Employer name',
-          help: 'Provide the name of your employer'
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
         },
         title: {
           label: 'Title',
-          help: 'Provide the name of your position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         physicalAddress: {
-          help: 'Is/was your physical work address different than your employer\'s address?',
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
           address: {
             label: 'This address is'
           },
@@ -1238,7 +1813,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1250,14 +1829,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         }
       },
@@ -1278,25 +1869,49 @@ const en = {
         },
         employer: {
           label: 'Employer name',
-          help: 'Provide the name of your employer'
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
         },
         title: {
           label: 'Title',
-          help: 'Provide the name of your position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         physicalAddress: {
-          help: 'Is/was your physical work address different than your employer\'s address?',
+          help: {
+            title: 'Need help withe the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
           address: {
             label: 'This address is'
           },
@@ -1306,7 +1921,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1318,14 +1937,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         }
       },
@@ -1346,25 +1977,49 @@ const en = {
         },
         employer: {
           label: 'Employer name',
-          help: 'Provide the name of your employer'
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
         },
         title: {
           label: 'Title',
-          help: 'Provide the name of your position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         physicalAddress: {
-          help: 'Is/was your physical work address different than your employer\'s address?',
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
           address: {
             label: 'This address is'
           },
@@ -1374,7 +2029,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1386,14 +2045,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         }
       },
@@ -1410,25 +2081,49 @@ const en = {
         },
         employer: {
           label: 'Employer name',
-          help: 'Provide the name of your employer'
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
         },
         title: {
           label: 'Title',
-          help: 'Provide the name of your position title'
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
         },
         status: {
-          help: 'Select the employment status'
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
         },
         telephone: {
           label: '',
-          help: 'Provide the telephone number'
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
         },
         physicalAddress: {
-          help: 'Is/was your physical work address different than your employer\'s address?',
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
           address: {
             label: 'This address is'
           },
@@ -1438,7 +2133,11 @@ const en = {
           }
         },
         additionalActivity: {
-          help: 'Do you have any additional periods of activity to add?',
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
           label: 'Do you have any additional periods of activity to add?',
           collection: {
             append: 'Add additional periods'
@@ -1450,14 +2149,26 @@ const en = {
           },
           position: {
             label: 'Position',
-            help: 'Provide the position title'
+            help: {
+              title: 'Need help with position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
           },
           supervisor: {
             label: 'Supervisor',
-            help: 'Provide the supervisor name'
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
           },
           datesEmployed: {
-            help: 'Provide dates of employment'
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
           }
         },
         para: {
@@ -1472,6 +2183,121 @@ const en = {
       },
 
       other: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide the name of someone who can verify your unemployment activities and means of support',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          },
+          fullTime: 'Full-time',
+          partTime: 'Part-time'
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical addresss?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with any additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
       }
     },
 
@@ -1547,16 +2373,56 @@ const en = {
         }
       },
       help: {
-        attendance: 'If you have attended within the last 10 years a high school, college, vocational, or correspondence course',
-        degree10: 'If you have received a degree or diploma within the last 10 years',
-        dates: 'Provide the dates of attendance',
-        school: 'Provide the school name',
-        address: 'Provide the street address of the school',
-        type: 'Select the most appropriate code to describe your school',
-        comments: 'If you need to provide any additional comments about this information enter them below',
-        degree: 'If you have received one or more degrees or diplomas from this school please provide the required information',
-        diploma: 'Select the most appropriate degree or diploma received',
-        date: 'The date the degree or diploma was awarded'
+        attendance: {
+          title: 'Need help the attendance of school?',
+          message: 'If you have attended within the last 10 years a high school, college, vocational, or correspondence course',
+          note: ''
+        },
+        degree10: {
+          title: 'Need help with a degree or diploma?',
+          message: 'If you have received a degree or diploma within the last 10 years',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the dates of attendance?',
+          message: 'Provide the dates of attendance',
+          note: ''
+        },
+        school: {
+          title: 'Need help with the school name?',
+          message: 'Provide the school name',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the school address?',
+          message: 'Provide the street address of the school',
+          note: ''
+        },
+        type: {
+          title: 'Need help with the school code?',
+          message: 'Select the most appropriate code to describe your school',
+          note: ''
+        },
+        comments: {
+          title: 'Need help providing more information?',
+          message: 'If you need to provide any additional comments about this information enter them below',
+          note: ''
+        },
+        degree: {
+          title: 'Need help with a degree or diploma?',
+          message: 'If you have received one or more degrees or diplomas from this school please provide the required information',
+          note: ''
+        },
+        diploma: {
+          title: 'Need help selecting a degree or diploma?',
+          message: 'Select the most appropriate degree or diploma received',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date of acheivement?',
+          message: 'The date the degree or diploma was awarded',
+          note: ''
+        }
       }
     },
 
@@ -1570,11 +2436,31 @@ const en = {
         address: 'Provide the location of the agency'
       },
       help: {
-        branch: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
-        dates: 'The dates you were employed',
-        name: 'The name of the federal service',
-        position: 'The most recent position title during this employment',
-        address: 'The address of the agency'
+        branch: {
+          title: 'Need more information about former federal service?',
+          message: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the dates employed?',
+          message: 'The dates you were employed',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the agency name?',
+          message: 'The name of the federal service',
+          note: ''
+        },
+        position: {
+          title: 'Need help with the position title?',
+          message: 'The most recent position title during this employment',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the address?',
+          message: 'The address of the agency',
+          note: ''
+        }
       },
       collection: {
         summary: {
@@ -1637,24 +2523,52 @@ const en = {
         label: 'If you need to provide any additional comments about this information enter them below'
       },
       help: {
-        number: 'Enter your passport number. If you possess a card, select the Passport card option',
-        issued: 'Enter the date your passport was issued',
-        expiration: 'Enter the date your passport expired'
+        number: {
+          title: 'Need help with the passport number?',
+          message: 'Enter your passport number. If you possess a card, select the Passport card option',
+          note: ''
+        },
+        issued: {
+          title: 'Need help with the date issued?',
+          message: 'Enter the date your passport was issued',
+          note: ''
+        },
+        expiration: {
+          title: 'Need help with the date expired?',
+          message: 'Enter the date your passport expired',
+          note: ''
+        }
       },
       branch: {
-        help: 'Select whether you possess a U.S. passport'
+        help: {
+          title: 'Need more information about the U.S. passport?',
+          message: 'Select whether you possess a U.S. passport',
+          note: ''
+        }
       }
     }
   },
   alias: {
     maiden: {
-      help: 'Select if this is your maiden name'
+      help: {
+        title: 'Need help with the maiden name?',
+        message: 'Select if this is your maiden name',
+        note: ''
+      }
     },
     reason: {
-      help: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.'
+      help: {
+        title: 'Need help with the explanation?',
+        message: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.',
+        note: ''
+      }
     },
     used: {
-      help: 'Provide the full range of dates this name was used'
+      help: {
+        title: 'Need help with the dates of use?',
+        message: 'Provide the full range of dates this name was used',
+        note: ''
+      }
     }
   },
   reference: {
@@ -1686,11 +2600,31 @@ const en = {
       address: 'The address of your contact during this time period'
     },
     help: {
-      contact: 'Please provide the date of last contact with this person',
-      relationship: 'Please define your relationship with the person during this period',
-      email: 'A current e-mail address to contact this character reference',
-      phone: 'One or more telephone numbers to contact this character reference',
-      address: 'The current address of the character reference'
+      contact: {
+        title: 'Need help with the date of last contact?',
+        message: 'Please provide the date of last contact with this person',
+        note: ''
+      },
+      relationship: {
+        title: 'Need help defining your relationship?',
+        message: 'Please define your relationship with the person during this period',
+        note: ''
+      },
+      email: {
+        title: 'Need help with the email address?',
+        message: 'A current e-mail address to contact this character reference',
+        note: ''
+      },
+      phone: {
+        title: 'Need help with a telephone number?',
+        message: 'One or more telephone numbers to contact this character reference',
+        note: ''
+      },
+      address: {
+        title: 'Need help with the address?',
+        message: 'The current address of the character reference',
+        note: ''
+      }
     }
   }
 }
