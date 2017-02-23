@@ -1,0 +1,44 @@
+.history {
+  .add-options {
+    margin-bottom: 10rem;
+
+    .btn {
+      margin-top: 3rem;
+
+      .fa.fa-plus-circle {
+        margin-left: 1rem;
+      }
+    }
+
+    div.title {
+      font-weight: 600;
+      color: #5c606c;
+    }
+
+    button.add {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .svg {
+      width: 10rem;
+      height: auto;
+    }
+
+    .table {
+      display: table;
+
+      .table-cell {
+        display: table-cell;
+      }
+
+      .add-residence, .add-employment {
+        text-align: center;
+        width: 32rem;
+        height: 16rem;
+      }
+    }
+  }
+}

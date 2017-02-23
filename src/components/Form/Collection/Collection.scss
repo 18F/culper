@@ -5,7 +5,7 @@
     display: table;
     width: 100%;
     background-color: $eapp-grey-light;
-    padding: 3rem 4rem;
+    padding: 3rem 4rem 0;
 
     .title {
       display: table-caption;
@@ -16,6 +16,15 @@
         padding: 0;
       }
 
+      hr {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid $eapp-grey;
+      }
+    }
+
+    .divider {
       hr {
         border: 0;
         height: 0;
@@ -35,12 +44,13 @@
           border-bottom: 1px solid $eapp-grey;
           margin-right: -5rem;
           margin-top: 3rem;
-          margin-bottom: -3rem;
         }
       }
     }
 
     &.closed.last {
+      padding-bottom: 3rem;
+
       .divider {
         hr {
           margin-bottom: auto;
@@ -49,6 +59,8 @@
     }
 
     &.open {
+      padding-bottom: 3rem;
+
       .divider {
         display: none;
         visibility: hidden;

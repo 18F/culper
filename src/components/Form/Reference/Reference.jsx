@@ -70,10 +70,11 @@ export default class Reference extends ValidationElement {
 
   render () {
     const klass = `reference ${this.props.className || ''}`.trim()
+    const prefix = `${this.props.localePrefix || ''}${this.props.localePrefix ? '.' : ''}`.trim()
 
     return (
       <div className={klass}>
-        <h4>{i18n.t('reference.heading.name')}</h4>
+        <h4>{i18n.t(`${prefix}reference.heading.name`)}</h4>
         <div className="eapp-field-wrap">
           <Name name="FullName"
                 {...this.state.FullName}
@@ -82,9 +83,9 @@ export default class Reference extends ValidationElement {
                 />
         </div>
 
-        <h4>{i18n.t('reference.heading.contact')}</h4>
+        <h4>{i18n.t(`${prefix}reference.heading.contact`)}</h4>
         <div className="eapp-field-wrap">
-          <Help id="reference.help.contact">
+          <Help id={`${prefix}reference.help.contact`}>
             <DateControl name="LastContact"
                          {...this.state.LastContact}
                          onUpdate={this.onUpdate.bind(this, 'LastContact')}
@@ -96,17 +97,17 @@ export default class Reference extends ValidationElement {
 
         <Comments name="Comments"
                   {...this.state.Comments}
-                  addLabel="reference.label.relationship.comments"
+                  addLabel={`${prefix}reference.label.relationship.comments`}
                   className="eapp-field-wrap"
                   onUpdate={this.onUpdate.bind(this, 'Comments')}
                   onValidate={this.onValidate}>
-          <h4>{i18n.t('reference.heading.relationship')}</h4>
+          <h4>{i18n.t(`${prefix}reference.heading.relationship`)}</h4>
           <div className="eapp-field-wrap">
-            <Help id="reference.help.relationship">
+            <Help id={`${prefix}reference.help.relationship`}>
               <RadioGroup className="relationship option-list eapp-extend-labels"
                           selectedValue={this.state.Relationship}>
                 <Radio name="relationship-neighbor"
-                       label={i18n.t('reference.label.relationship.neighbor')}
+                       label={i18n.t(`${prefix}reference.label.relationship.neighbor`)}
                        value="Neighbor"
                        onChange={this.handleRelationshipChange}
                        >
@@ -115,7 +116,7 @@ export default class Reference extends ValidationElement {
                   </div>
                 </Radio>
                 <Radio name="relationship-friend"
-                       label={i18n.t('reference.label.relationship.friend')}
+                       label={i18n.t(`${prefix}reference.label.relationship.friend`)}
                        value="Friend"
                        onChange={this.handleRelationshipChange}
                        >
@@ -124,7 +125,7 @@ export default class Reference extends ValidationElement {
                   </div>
                 </Radio>
                 <Radio name="relationship-landlord"
-                       label={i18n.t('reference.label.relationship.landlord')}
+                       label={i18n.t(`${prefix}reference.label.relationship.landlord`)}
                        value="Landlord"
                        onChange={this.handleRelationshipChange}
                        >
@@ -133,7 +134,7 @@ export default class Reference extends ValidationElement {
                   </div>
                 </Radio>
                 <Radio name="relationship-business"
-                       label={i18n.t('reference.label.relationship.business')}
+                       label={i18n.t(`${prefix}reference.label.relationship.business`)}
                        value="Business"
                        onChange={this.handleRelationshipChange}
                        >
@@ -142,7 +143,7 @@ export default class Reference extends ValidationElement {
                   </div>
                 </Radio>
                 <Radio name="relationship-other"
-                       label={i18n.t('reference.label.relationship.other')}
+                       label={i18n.t(`${prefix}reference.label.relationship.other`)}
                        value="Other"
                        onChange={this.handleRelationshipChange}
                        >
@@ -154,7 +155,7 @@ export default class Reference extends ValidationElement {
               <HelpIcon className="relationship-help-icon" />
               <div className={this.showOther(this.state.Relationship)}>
                 <Text name="Relationship"
-                      label={i18n.t('reference.label.relationship.explanation')}
+                      label={i18n.t(`${prefix}reference.label.relationship.explanation`)}
                       maxlength="100"
                       value={this.state.Relationship}
                       onUpdate={this.onUpdate.bind(this, 'Relationship')}
@@ -165,12 +166,12 @@ export default class Reference extends ValidationElement {
           </div>
         </Comments>
 
-        <h3>{i18n.t('reference.heading.correspondence')}</h3>
-        <p>{i18n.t('reference.para.correspondence')}</p>
+        <h3>{i18n.t(`${prefix}reference.heading.correspondence`)}</h3>
+        <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
 
-        <h4>{i18n.t('reference.heading.phone')}</h4>
+        <h4>{i18n.t(`${prefix}reference.heading.phone`)}</h4>
         <div className="eapp-field-wrap">
-          <Help id="reference.help.phone">
+          <Help id={`${prefix}reference.help.phone`}>
             <Telephone name="Phone"
                        {...this.state.Phone}
                        onUpdate={this.onUpdate.bind(this, 'Phone')}
@@ -180,12 +181,12 @@ export default class Reference extends ValidationElement {
           </Help>
         </div>
 
-        <h4>{i18n.t('reference.heading.email')}</h4>
+        <h4>{i18n.t(`${prefix}reference.heading.email`)}</h4>
         <div className="eapp-field-wrap">
-          <Help id="reference.help.email">
+          <Help id={`${prefix}reference.help.email`}>
             <Email name="Email"
                    {...this.state.Email}
-                   label={i18n.t('reference.label.email')}
+                   label={i18n.t(`${prefix}reference.label.email`)}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onValidate={this.props.onValidate}
                    />
@@ -193,13 +194,13 @@ export default class Reference extends ValidationElement {
           </Help>
         </div>
 
-        <h4>{i18n.t('reference.heading.address')}</h4>
-        <p>{i18n.t('reference.para.address')}</p>
+        <h4>{i18n.t(`${prefix}reference.heading.address`)}</h4>
+        <p>{i18n.t(`${prefix}reference.para.address`)}</p>
         <div className="eapp-field-wrap">
-          <Help id="reference.help.address">
+          <Help id={`${prefix}reference.help.address`}>
             <Address name="Address"
                      {...this.state.Address}
-                     label={i18n.t('reference.label.address')}
+                     label={i18n.t(`${prefix}reference.label.address`)}
                      onUpdate={this.onUpdate.bind(this, 'Address')}
                      onValidate={this.props.onValidate}
                      />

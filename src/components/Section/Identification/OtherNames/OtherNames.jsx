@@ -146,7 +146,6 @@ export default class OtherNames extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="alias.maiden.help">
             <MaidenName name="MaidenName"
-                        label={i18n.t('identification.othernames.label.maiden')}
                         onValidate={this.handleValidation}
                         />
             <HelpIcon className="maiden-help-icon" />
@@ -169,7 +168,6 @@ export default class OtherNames extends ValidationElement {
             <Textarea name="Reason"
                       className="reason"
                       onValidate={this.handleValidation}
-                      label={i18n.t('identification.othernames.label.reason')}
                       />
             <HelpIcon className="reason-help-icon" />
           </Help>
@@ -182,11 +180,11 @@ export default class OtherNames extends ValidationElement {
     return (
       <div className="other-names">
         <p>{i18n.t('identification.othernames.info')}</p>
+        <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
                 className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
-                label={i18n.t('identification.othernames.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}

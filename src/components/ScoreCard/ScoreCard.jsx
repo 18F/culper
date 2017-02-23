@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
-const sections = ['identification', 'financial', /* 'family', 'citizenship', 'history', */ 'foreign' /*, 'tbd', 'legal' */]
+const sections = ['identification', 'financial', /* 'family', 'citizenship', */ 'history', 'foreign' /*, 'tbd', 'legal' */]
 
 class ScoreCard extends React.Component {
   total () {
