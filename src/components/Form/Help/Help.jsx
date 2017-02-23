@@ -128,6 +128,11 @@ export default class Help extends ValidationElement {
           <h5>{i18n.t(`${this.props.id}.title`)}</h5>
           {markdownById(`${this.props.id}.message`)}
           {note}
+          <a href="javascript:;;"
+             className="close"
+             onClick={this.handleClick}>
+            {i18n.t('help.close')}
+          </a>
         </div>
       )
     }
