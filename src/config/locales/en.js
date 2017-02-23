@@ -635,10 +635,11 @@ const en = {
     },
     destination: {
       review: 'Review your history',
+      timeline: 'Timeline',
       residence: 'Places you lived',
       employment: 'Employment history',
       education: 'Schools & diplomas',
-      timeline: 'Timeline'
+      federal: 'Former federal service'
     },
     residence: {
       title: 'Places you have lived',
