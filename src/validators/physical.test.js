@@ -107,13 +107,13 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         state: {
-          EyeColor: ['Black']
+          EyeColor: 'Black'
         },
         expected: true
       },
       {
         state: {
-          EyeColor: []
+          EyeColor: ''
         },
         expected: false
       },
@@ -125,7 +125,7 @@ describe('Physical attributes validation', function () {
       },
       {
         state: {
-          EyeColor: ['SomethingDifferent']
+          EyeColor: 'SomethingDifferent'
         },
         expected: false
       }
@@ -173,7 +173,7 @@ describe('Physical attributes validation', function () {
           },
           Weight: 100,
           HairColor: ['Black', 'Brown'],
-          EyeColor: ['Black'],
+          EyeColor: 'Black',
           Sex: 'female'
         },
         expected: true
@@ -186,7 +186,7 @@ describe('Physical attributes validation', function () {
           },
           Weight: -1,
           HairColor: ['Black', 'Brown'],
-          EyeColor: ['Black'],
+          EyeColor: 'Black',
           Sex: 'female'
         },
         expected: false

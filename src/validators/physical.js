@@ -105,16 +105,10 @@ export default class PhysicalValidator {
       return false
     }
 
-    if (!this.eyeColor.length) {
-      return false
-    }
-
     let found = false
-    for (let selectedColor of this.eyeColor) {
-      for (let validColor of eyeColors) {
-        if (validColor === selectedColor) {
-          found = true
-        }
+    for (let validColor of eyeColors) {
+      if (validColor === this.eyeColor) {
+        found = true
       }
     }
     return found
