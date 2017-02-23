@@ -641,6 +641,7 @@ const en = {
       education: 'Schools & diplomas',
       federal: 'Former federal service'
     },
+
     residence: {
       title: 'Places you have lived',
       info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
@@ -692,6 +693,7 @@ const en = {
         comments: 'If you need to provide any additional comments about this information enter them below'
       }
     },
+
     employment: {
       summary: {
         title: 'Where you have worked',
@@ -1472,6 +1474,7 @@ const en = {
       other: {
       }
     },
+
     education: {
       title: 'List the places you went to school',
       info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
@@ -1554,6 +1557,16 @@ const en = {
         degree: 'If you have received one or more degrees or diplomas from this school please provide the required information',
         diploma: 'Select the most appropriate degree or diploma received',
         date: 'The date the degree or diploma was awarded'
+      }
+    },
+
+    federal: {
+      title: 'Provide all former federal service',
+      heading: {
+        branch: 'In addition to the 10 year maximum of employment histories, do you have any further federal employment?'
+      },
+      help: {
+        branch: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment'
       }
     }
   },

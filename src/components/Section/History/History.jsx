@@ -11,6 +11,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import ReactMarkdown from 'react-markdown'
 import HistoryCollection from './HistoryCollection/HistoryCollection'
+import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween } from './dateranges'
 
 class History extends ValidationElement {
@@ -445,6 +446,12 @@ class History extends ValidationElement {
                        backLabel={i18n.t('history.destination.education')}
                        next="history/review"
                        nextLabel={i18n.t('history.destination.review')}>
+            <h2>{i18n.t('history.federal.title')}</h2>
+            <Federal name="federal"
+                     {...this.props.Federal}
+                     onUpdate={this.onUpdate.bind(this, 'Federal')}
+                     onValidate={this.onValidate}
+                     />
           </SectionView>
         </SectionViews>
       </div>
