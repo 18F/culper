@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show } from '../../../Form'
+import { ValidationElement, Branch, Show, Collection, DateRange } from '../../../Form'
+import { dateSummary } from '../HistoryCollection/summaries'
 
 /**
  * Convenience function to send updates along their merry way
@@ -24,6 +25,7 @@ export default class Federal extends ValidationElement {
 
     this.onUpdate = this.onUpdate.bind(this)
     this.updateBranch = this.updateBranch.bind(this)
+    this.updateCollection = this.updateCollection.bind(this)
   }
 
   /**
@@ -42,6 +44,28 @@ export default class Federal extends ValidationElement {
     }
   }
 
+  updateCollection (collection) {
+    this.onUpdate('List', collection)
+  }
+
+  /**
+   * Assists in rendering the summary section.
+   */
+  summary (item, index) {
+    const agency = item && item.Name && item.Name.value
+          ? item.Name.value
+          : i18n.t('history.federal.collection.summary.unknown')
+    const dates = dateSummary(item)
+
+    return (
+      <div className="table">
+        <div className="table-cell index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</div>
+        <div className="table-cell">{agency}</div>
+        <div className="table-cell dates">{dates}</div>
+      </div>
+    )
+  }
+
   render () {
     return (
       <div className="federal">
@@ -53,7 +77,13 @@ export default class Federal extends ValidationElement {
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasFederalService === 'Yes'}>
-          <div className="collection"></div>
+          <Collection minimum="1"
+                      items={this.state.List}
+                      dispatch={this.updateCollection}
+                      summary={this.summary}
+                      summaryTitle={i18n.t('history.federal.collection.summary.title')}
+                      appendLabel={i18n.t('history.federal.collection.append')}>
+          </Collection>
         </Show>
       </div>
     )

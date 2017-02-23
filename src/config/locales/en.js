@@ -1563,10 +1563,20 @@ const en = {
     federal: {
       title: 'Provide all former federal service',
       heading: {
-        branch: 'In addition to the 10 year maximum of employment histories, do you have any further federal employment?'
+        branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?'
       },
       help: {
         branch: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment'
+      },
+      collection: {
+        summary: {
+          title: 'Summary of former federal service',
+          item: 'Federal service',
+          present: 'Now',
+          nodates: 'No dates',
+          unknown: 'Unknown'
+        },
+        append: 'Add another former federal service'
       }
     }
   },
