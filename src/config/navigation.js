@@ -69,7 +69,7 @@ const navigation = [
       { name: 'Places lived', url: 'residence' },
       { name: 'Employment', url: 'employment' },
       { name: 'Schools & diplomas', url: 'education' },
-      { hidden: true, name: 'Former federal service', url: 'federal' },
+      { name: 'Former federal service', url: 'federal' },
       { hidden: true, name: 'Employment record', url: 'employment' }
     ]
   },

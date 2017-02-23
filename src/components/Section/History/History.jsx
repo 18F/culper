@@ -11,6 +11,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import ReactMarkdown from 'react-markdown'
 import HistoryCollection from './HistoryCollection/HistoryCollection'
+import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween } from './dateranges'
 
 class History extends ValidationElement {
@@ -72,11 +73,13 @@ class History extends ValidationElement {
     let cstatus = 'neutral'
     if (this.hasStatus('residence', status, true)
         && this.hasStatus('employment', status, true)
-        && this.hasStatus('education', status, true)) {
+        && this.hasStatus('education', status, true)
+        && this.hasStatus('federal', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('residence', status, false)
                || this.hasStatus('employment', status, false)
-               || this.hasStatus('education', status, false)) {
+               || this.hasStatus('education', status, false)
+               || this.hasStatus('federal', status, false)) {
       cstatus = 'incomplete'
     }
     let completed = {
@@ -422,8 +425,8 @@ class History extends ValidationElement {
           <SectionView name="education"
                        back="history/employment"
                        backLabel={i18n.t('history.destination.employment')}
-                       next="history/review"
-                       nextLabel={i18n.t('history.destination.review')}>
+                       next="history/federal"
+                       nextLabel={i18n.t('history.destination.federal')}>
             <h2>{i18n.t('history.education.title')}</h2>
             <p>{i18n.t('history.education.info')}</p>
             { this.educationSummaryProgress() }
@@ -436,6 +439,19 @@ class History extends ValidationElement {
                                onEducationUpdate={this.onUpdate.bind(this, 'Education')}
                                onValidate={this.onValidate}
                                />
+          </SectionView>
+
+          <SectionView name="federal"
+                       back="history/education"
+                       backLabel={i18n.t('history.destination.education')}
+                       next="history/review"
+                       nextLabel={i18n.t('history.destination.review')}>
+            <h2>{i18n.t('history.federal.title')}</h2>
+            <Federal name="federal"
+                     {...this.props.Federal}
+                     onUpdate={this.onUpdate.bind(this, 'Federal')}
+                     onValidate={this.onValidate}
+                     />
           </SectionView>
         </SectionViews>
       </div>
@@ -469,6 +485,7 @@ function mapStateToProps (state) {
     Residence: history.Residence || {},
     Employment: history.Employment || {},
     Education: history.Education || {},
+    Federal: history.Federal || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
     Birthdate: processDate(identification.ApplicantBirthDate)
