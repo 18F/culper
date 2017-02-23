@@ -198,7 +198,6 @@ export default class Bankruptcy extends ValidationElement {
           <Help id="financial.bankruptcy.courtNumber.help">
             <Text name="CourtNumber"
                   className="courtnumber"
-                  label={i18n.t('financial.bankruptcy.courtNumber.label')}
                   placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
                   title={i18n.t('financial.bankruptcy.courtNumber.title')}
                   onValidate={this.handleValidation}
@@ -237,7 +236,6 @@ export default class Bankruptcy extends ValidationElement {
             <Number name="TotalAmount"
                     className="amount"
                     min="0"
-                    label={i18n.t('financial.bankruptcy.totalAmount.label')}
                     placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
                     onValidate={this.handleValidation}
                     />
@@ -264,7 +262,6 @@ export default class Bankruptcy extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="financial.bankruptcy.courtInvolved.help">
             <Text name="CourtInvolved"
-                  label={i18n.t('financial.bankruptcy.courtInvolved.label')}
                   placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
                   onValidate={this.handleValidation}
                   className="courtinvolved"
