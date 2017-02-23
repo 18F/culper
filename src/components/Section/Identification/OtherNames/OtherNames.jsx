@@ -182,11 +182,11 @@ export default class OtherNames extends ValidationElement {
     return (
       <div className="other-names">
         <p>{i18n.t('identification.othernames.info')}</p>
+        <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
                 className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
-                label={i18n.t('identification.othernames.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}
