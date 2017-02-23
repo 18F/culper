@@ -5,6 +5,7 @@ import Text from '../Text'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import { api } from '../../../services/api'
+import { NameValidator } from '../../../validators'
 
 export default class Name extends ValidationElement {
   constructor (props) {
@@ -166,33 +167,7 @@ export default class Name extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.first) {
-      return false
-    }
-
-    if (this.state.firstInitialOnly && this.state.first.length > 1) {
-      return false
-    }
-
-    if (!this.state.last) {
-      return false
-    }
-
-    if (this.state.lastInitialOnly && this.state.last.length > 1) {
-      return false
-    }
-
-    if (!this.state.noMiddleName) {
-      if (!this.state.middle) {
-        return false
-      }
-
-      if (this.state.middleInitialOnly && this.state.middle.length > 1) {
-        return false
-      }
-    }
-
-    return true
+    return new NameValidator(this.state, null).isValid()
   }
 
   /**
@@ -433,4 +408,20 @@ export default class Name extends ValidationElement {
       </div>
     )
   }
+}
+
+Name.defaultProps = {
+  first: '',
+  firstInitialOnly: false,
+  last: '',
+  lastInitialOnly: false,
+  middle: '',
+  middleInitialOnly: false,
+  noMiddleName: false,
+  suffix: '',
+  suffixOther: '',
+  focus: false,
+  error: false,
+  valid: false,
+  errorCodes: []
 }
