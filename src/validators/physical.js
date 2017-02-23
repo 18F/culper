@@ -1,3 +1,33 @@
+const eyeColors = [
+  'Black',
+  'Blue',
+  'Brown',
+  'Gray',
+  'Green',
+  'Hazel',
+  'Maroon',
+  'Multicolored',
+  'Pink',
+  'Unknown'
+]
+
+const hairColors = [
+  'Bald',
+  'Black',
+  'Blonde or Strawberry',
+  'Brown',
+  'Gray or Partially Gray',
+  'Red or Auburn',
+  'Sandy',
+  'White',
+  'Blue',
+  'Green',
+  'Orange',
+  'Pink',
+  'Purple',
+  'Unspecified or unknown'
+]
+
 export default class PhysicalValidator {
   constructor (state, props) {
     this.height = state.Height
@@ -33,6 +63,9 @@ export default class PhysicalValidator {
     return true
   }
 
+  /**
+   * Validats a users weight
+   */
   validWeight () {
     if (!this.weight) {
       return false
@@ -44,82 +77,53 @@ export default class PhysicalValidator {
     return true
   }
 
+  /**
+   * Validates a users hair color
+   */
   validHairColor () {
+    if (!this.hairColor) {
+      return false
+    }
 
+    if (!this.hairColor.length) {
+      return false
+    }
+
+    let found = false
+    for (let selectedColor of this.hairColor) {
+      for (let validColor of hairColors) {
+        if (validColor === selectedColor) {
+          found = true
+        }
+      }
+    }
+    return found
   }
 
   validEyeColor () {
+    if (!this.eyeColor) {
+      return false
+    }
 
+    if (!this.eyeColor.length) {
+      return false
+    }
+
+    let found = false
+    for (let selectedColor of this.eyeColor) {
+      for (let validColor of eyeColors) {
+        if (validColor === selectedColor) {
+          found = true
+        }
+      }
+    }
+    return found
   }
 
   validSex () {
-
+    if (!this.sex || !this.sex.length) {
+      return false
+    }
+    return true
   }
 }
-
-/**
- * Validates physical attributes within the identification section
- */
-//export const physicalValidator = (state, props) => {
-  //const validHeight = () => {
-    //if (!state.Height) {
-      //return false
-    //}
-
-    //if (state.Height.feet < 1 || !state.Height.inches) {
-      //return false
-    //}
-    //return true
-  //}
-
-  //const validWeight = () => {
-    //if (!state.Weight) {
-      //return false
-    //}
-
-    //if (state.Weight < 10) {
-      //return false
-    //}
-    //return true
-  //}
-
-  //const validHairColor = () => {
-    //if (!state.HairColor) {
-      //return false
-    //}
-
-    //if (!state.HairColor.length) {
-      //return false
-    //}
-    //return true
-  //}
-
-  //const validEyeColor = () => {
-    //if (!state.EyeColor) {
-      //return false
-    //}
-
-    //if (!state.EyeColor.length) {
-      //return false
-    //}
-    //return true
-  //}
-
-  //const validSex = () => {
-    //if (!state.Sex || !state.Sex.length) {
-      //return false
-    //}
-    //return true
-  //}
-
-  //return {
-    //isValid: () => {
-      //return validHeight() &&
-        //validWeight() &&
-        //validHairColor() &&
-        //validEyeColor() &&
-        //validSex()
-    //}
-  //}
-//}
-
