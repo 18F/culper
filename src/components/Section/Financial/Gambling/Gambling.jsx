@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { GamblingValidator } from '../../../../validators'
 import { ValidationElement, Branch, Collection, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
 
 export default class Gambling extends ValidationElement {
@@ -50,37 +51,7 @@ export default class Gambling extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    if (!this.state.HasGamblingDebt) {
-      return false
-    }
-
-    if (this.state.HasGamblingDebt === 'No') {
-      return true
-    }
-
-    if (this.state.HasGamblingDebt === 'Yes' && this.state.List.length === 0) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.Losses || parseInt(item.Losses.value) < 1) {
-        return false
-      }
-
-      if (!item.Description || !item.Description.value) {
-        return false
-      }
-
-      if (!item.Actions || !item.Actions.value) {
-        return false
-      }
-
-      if (!item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
-        return false
-      }
-    }
-
-    return true
+    return new GamblingValidator(this.state, null).isValid()
   }
 
   /**
