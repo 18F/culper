@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../config'
+import { i18n, markdown, markdownById } from '../../../config'
 import ReactMarkdown from 'react-markdown'
 import ValidationElement from '../ValidationElement'
 
@@ -88,8 +88,20 @@ export default class Help extends ValidationElement {
 
     if (this.state.errors && this.state.errors.length) {
       const markup = this.state.errors.map(err => {
+        const noteId = `${err}.note`
+        let note = i18n.t(noteId)
+        if (note.indexOf(noteId) > -1) {
+          note = ''
+        } else {
+          note = <em>{note}</em>
+        }
+
         return (
-          <ReactMarkdown source={i18n.t(err)} />
+          <div>
+            <h5>{i18n.t(`${err}.title`)}</h5>
+            {markdownById(`${err}.message`)}
+            {note}
+          </div>
         )
       })
 
@@ -102,10 +114,20 @@ export default class Help extends ValidationElement {
     }
 
     if (this.state.active) {
+      const noteId = `${this.props.id}.note`
+      let note = i18n.t(noteId)
+      if (note.indexOf(noteId) > -1) {
+        note = ''
+      } else {
+        note = <em>{note}</em>
+      }
+
       el.push(
         <div className="message eapp-help-message">
           <i className="fa fa-question"></i>
-          <ReactMarkdown source={i18n.t(this.props.id)} />
+          <h5>{i18n.t(`${this.props.id}.title`)}</h5>
+          {markdownById(`${this.props.id}.message`)}
+          {note}
         </div>
       )
     }

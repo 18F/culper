@@ -28,6 +28,7 @@ describe('The Help component', () => {
     const component = mount(<Help id="this.should.not.exist"><HelpIcon /></Help>)
     component.find('a.toggle').simulate('click')
     expect(component.find('div.message').length).toEqual(1)
-    expect(component.find('div.message').text()).toEqual('en.this.should.not.exist')
+    expect(component.find('div.message').text()).toContain('en.this.should.not.exist.title')
+    expect(component.find('div.message').text()).toContain('en.this.should.not.exist.message')
   })
 })
