@@ -245,9 +245,9 @@ const en = {
       },
       heading: {
         name: 'Provide other name used',
-        maiden: 'Maiden name',
+        maiden: 'Was this your maiden name?',
         used: 'Dates used',
-        reason: 'Reason for change'
+        reason: 'Provide the reasons why the name was changed'
       },
       label: {
         maiden: 'Was this your maiden name?',
@@ -350,7 +350,7 @@ const en = {
         eye: 'Eye color',
         height: 'Height',
         weight: 'Weight',
-        sex: 'Sex',
+        sex: 'Select your sex at the time of birth',
         comments: 'Add your comment about sex'
       },
       help: {
