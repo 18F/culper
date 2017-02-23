@@ -61,6 +61,9 @@ export default class Help extends ValidationElement {
 
     this.setState({ errors: e }, () => {
       super.handleValidation(event, status, errors)
+      if (e.length) {
+        this.scrollIntoView()
+      }
     })
   }
 
@@ -91,7 +94,7 @@ export default class Help extends ValidationElement {
       })
 
       el.push(
-        <div ref="message" className="message eapp-error-message">
+        <div className="message eapp-error-message">
           <i className="fa fa-exclamation"></i>
           {markup}
         </div>
@@ -100,7 +103,7 @@ export default class Help extends ValidationElement {
 
     if (this.state.active) {
       el.push(
-        <div ref="message" className="message eapp-help-message">
+        <div className="message eapp-help-message">
           <i className="fa fa-question"></i>
           <ReactMarkdown source={i18n.t(this.props.id)} />
         </div>
@@ -159,8 +162,10 @@ export default class Help extends ValidationElement {
     // Flag if help container bottom is within current viewport
     const notInView = (winHeight < helpBottom)
 
-    if (this.state.active && this.props.scrollIntoView && notInView) {
-      this.refs.message.scrollIntoView(false)
+    const active = this.state.active || this.state.errors.length
+
+    if (active && this.props.scrollIntoView && notInView) {
+      this.refs.messages.scrollIntoView(false)
     }
   }
 
@@ -169,7 +174,9 @@ export default class Help extends ValidationElement {
     return (
       <div className={klass} ref="help">
         {this.children()}
-        {this.getMessages()}
+        <div ref="messages">
+          {this.getMessages()}
+        </div>
       </div>
     )
   }
