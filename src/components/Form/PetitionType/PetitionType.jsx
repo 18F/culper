@@ -121,7 +121,6 @@ export default class PetitionType extends ValidationElement {
               <Text name="chapter13Trustee"
                     className="trustee"
                     value={this.state.trustee}
-                    label={i18n.t('financial.bankruptcy.trustee.label')}
                     placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
                     onChange={this.handleFieldChange.bind(this, 'trustee')}
                     />
