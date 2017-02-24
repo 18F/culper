@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
+import { i18n, markdownById } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, Svg, Show } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
@@ -328,18 +328,19 @@ class History extends ValidationElement {
                        next="foreign"
                        nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('history.timeline.title')}</h2>
-            <p>{i18n.t('history.employment.para.employment')}</p>
+            {markdownById('history.timeline.para1')}
+            {markdownById('history.timeline.para2')}
             <Show when={(!this.props.Employment.List && !this.props.Residence.List) && !this.state.addOnLoad}>
               <div className="add-options">
                 <div className="table">
                   <div className="table-cell add-residence">
                     <Svg src="img/residence-house.svg" />
                     <div className="title">
-                      Start with your present residence
+                      {i18n.t('history.timeline.start.residence.title')}
                     </div>
                     <div className="btn">
                       <button className="add usa-button-outline" onClick={this.addResidence}>
-                        <span>Add residence</span>
+                        <span>{i18n.t('history.timeline.start.residence.button')}</span>
                         <i className="fa fa-plus-circle"></i>
                       </button>
                     </div>
@@ -347,11 +348,11 @@ class History extends ValidationElement {
                   <div className="table-cell add-employment">
                     <Svg src="img/employer-briefcase.svg" />
                     <div className="title">
-                      Start with your present employer
+                      {i18n.t('history.timeline.start.employment.title')}
                     </div>
                     <div className="btn">
                       <button className="add usa-button-outline" onClick={this.addEmployer}>
-                        <span>Add employer</span>
+                        <span>{i18n.t('history.timeline.start.employment.button')}</span>
                         <i className="fa fa-plus-circle"></i>
                       </button>
                     </div>

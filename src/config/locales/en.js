@@ -889,7 +889,19 @@ const en = {
       button: 'Take me one the tour!'
     },
     timeline: {
-      title: 'Let\'s cover your last 10 years'
+      title: 'Let\'s cover your last 10 years',
+      para1: 'List the places where you have lived and worked beginning with your present residence or employer and working back 10 years. **Residences and employers for the entire period must be accounted for without breaks.**',
+      para2: 'You will also list any school attended in the last 10 years and all diplomas & degrees earned at any point in your life.',
+      start: {
+        residence: {
+          title: 'Start with your present residence',
+          button: 'Add residence'
+        },
+        employment: {
+          title: 'Start with your present employer',
+          button: 'Add employer'
+        }
+      }
     },
     review: {
       title: 'Full section view',
