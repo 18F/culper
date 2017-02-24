@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { PassportValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Text, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
@@ -85,57 +86,7 @@ export default class Passport extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.HasPassport) {
-      return false
-    }
-
-    if (this.state.HasPassport === 'No') {
-      return true
-    }
-
-    if (!this.state.Name.first || !this.state.Name.last) {
-      return false
-    }
-
-    let re = this.state.Card === 'Card' ? new RegExp(this.state.reCard) : new RegExp(this.state.reBook)
-    if (!re.test(this.state.Number.value)) {
-      return false
-    }
-
-    if (!this.isValidEstimatedDate(this.state.Issued)) {
-      return false
-    }
-
-    if (!this.isValidEstimatedDate(this.state.Expiration)) {
-      return false
-    }
-
-    if (this.state.Expiration.date < this.state.Issued.date) {
-      return false
-    }
-
-    return true
-  }
-
-  isValidEstimatedDate (obj) {
-    let month = parseInt(obj.month || '1')
-    let day = parseInt(obj.day || '1')
-    let year = parseInt(obj.year)
-    // let estimated = obj.estimated
-
-    if (month < 1 && month > 12) {
-      return false
-    }
-
-    if (day < 1 && day > 31) {
-      return false
-    }
-
-    if (year < 1) {
-      return false
-    }
-
-    return true
+    return new PassportValidator(this.state, null).isValid()
   }
 
   /**
