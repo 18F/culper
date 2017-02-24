@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n, markdownById } from '../../../config'
+import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, Svg, Show } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
@@ -328,8 +328,8 @@ class History extends ValidationElement {
                        next="foreign"
                        nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('history.timeline.title')}</h2>
-            {markdownById('history.timeline.para1')}
-            {markdownById('history.timeline.para2')}
+            {i18n.m('history.timeline.para1')}
+            {i18n.m('history.timeline.para2')}
             <Show when={(!this.props.Employment.List && !this.props.Residence.List) && !this.state.addOnLoad}>
               <div className="add-options">
                 <div className="table">
@@ -408,7 +408,8 @@ class History extends ValidationElement {
                        next="history/education"
                        nextLabel={i18n.t('history.destination.education')}>
             <h2>{i18n.t('history.employment.heading.employment')}</h2>
-            <p>{i18n.t('history.employment.para.employment')}</p>
+            {i18n.m('history.employment.para.employment')}
+            {i18n.m('history.employment.para.employment2')}
             { this.employmentSummaryProgress() }
             <HistoryCollection name="employment"
                                addOnLoad="Employment"

@@ -19,6 +19,10 @@ class I18n {
       return locale + '.' + id
     }
   }
+
+  m (id) {
+    return markdownById(id)
+  }
 }
 
 export const i18n = new I18n()
