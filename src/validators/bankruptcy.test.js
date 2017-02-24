@@ -51,7 +51,11 @@ describe('Bankruptcy component validation', function () {
               value: 'hello'
             },
             CourtAddress: {
-              address: '123 Some Rd'
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
             },
             CourtInvolved: {
               value: 'Some Court'
@@ -139,7 +143,11 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           CourtAddress: {
-            address: '123 some rd'
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
           }
         },
         expected: true
@@ -306,7 +314,11 @@ describe('Bankruptcy component validation', function () {
             value: 'Chapter7'
           },
           CourtAddress: {
-            address: '123 some rd'
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
           },
           NameDebt: {
             first: 'Foo',

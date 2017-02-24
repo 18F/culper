@@ -1,4 +1,5 @@
 import NameValidator from './name'
+import AddressValidator from './address'
 import { validGenericMonthYear, validGenericTextfield } from './helpers'
 
 /**
@@ -66,14 +67,8 @@ export class BankruptcyItemValidator {
     return true
   }
 
-  /**
-   * TODO Create validator for address
-   */
   validCourtAddress () {
-    if (!this.courtAddress) {
-      return false
-    }
-    return true
+    return new AddressValidator(this.courtAddress).isValid()
   }
 
   validCourtInvolved () {
