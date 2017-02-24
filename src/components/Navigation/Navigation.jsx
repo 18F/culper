@@ -3,6 +3,7 @@ import { Link, hashHistory } from 'react-router'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation } from '../../config'
+import { NavigationValidator } from '../../validators'
 
 class Navigation extends React.Component {
 
@@ -49,18 +50,12 @@ class Navigation extends React.Component {
    */
   isValid (route, pathname) {
     let crumbs = route.replace('/form/', '').split('/')
-
-    for (let section in this.props.completed) {
-      if (section !== crumbs[0]) {
-        continue
-      }
-
-      if (crumbs.length === 1) {
-        return this.props.completed[section].status === 'complete'
-      }
-    }
-
-    return false
+    return new NavigationValidator(null,
+      {
+        completed: this.props.completed,
+        crumbs: crumbs
+      })
+      .isValid()
   }
 
   /**
