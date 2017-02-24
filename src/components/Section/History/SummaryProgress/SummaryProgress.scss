@@ -1,6 +1,8 @@
 @import 'eqip-colors';
 
-.summary {
+.summary-progress {
+  color: $eapp-grey-darker;
+
   .content {
     display: inline-block;
     width: 80%;

@@ -882,12 +882,24 @@ export default class HistoryCollection extends ValidationElement {
           {this.createOptions()}
 
           <Show when={this.state.collectionType === 'Residence'}>
-            <ResidenceItem name="Residence"
-                           {...values}
-                           receiveProps={force}
-                           onUpdate={this.onNewUpdate.bind(this, 'Residence')}
-                           onValidate={this.handleValidation}
-                           />
+            <div>
+              <h3>{i18n.t('history.residence.heading.details')}</h3>
+              {i18n.m('history.residence.para.details')}
+              <ResidenceItem name="Residence"
+                             {...values}
+                             receiveProps={force}
+                             onUpdate={this.onNewUpdate.bind(this, 'Residence')}
+                             onValidate={this.handleValidation}
+                             />
+            </div>
+          </Show>
+
+          <Show when={this.state.collectionType === 'Employment' && this.props.types.length > 1}>
+            <div>
+              <h2>{i18n.t('history.employment.heading.employment')}</h2>
+              {i18n.m('history.employment.para.employment')}
+              {i18n.m('history.employment.para.employment2')}
+            </div>
           </Show>
 
           <Show when={this.state.collectionType === 'Employment'}>
@@ -898,6 +910,13 @@ export default class HistoryCollection extends ValidationElement {
                               onUpdate={this.onNewUpdate.bind(this, 'Employment')}
                               onValidate={this.handleValidation}
                               />
+            </div>
+          </Show>
+
+          <Show when={this.state.collectionType === 'Education' && this.props.types.length > 1}>
+            <div>
+              <h3>{i18n.t('history.education.title')}</h3>
+              {i18n.m('history.education.info')}
             </div>
           </Show>
 
