@@ -74,7 +74,7 @@ describe('The gambling component', () => {
     component.find('textarea#Comments').simulate('change')
 
     component.find('button.add').simulate('click')
-    expect(component.find('.summary.open').length).toBeGreaterThan(0)
+    expect(component.find('.row.open').length).toBeGreaterThan(0)
   })
 
   it('displays fields when "yes" is selected', () => {

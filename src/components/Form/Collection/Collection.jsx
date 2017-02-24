@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import { findPosition } from '../../../middleware/history'
 import ValidationElement from '../ValidationElement'
+import Show from '../Show'
 
 export default class Collection extends ValidationElement {
   constructor (props) {
@@ -276,19 +277,6 @@ export default class Collection extends ValidationElement {
       })
     }
 
-    const title = (item, index) => {
-      if (index !== 0) {
-        return ''
-      }
-
-      return (
-        <div className="title">
-          <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
-          <hr />
-        </div>
-      )
-    }
-
     // There is a summary and it is appropriate to display at this moment
     const totalItems = this.state.items.length
     return this.state.items.map((item, index) => {
@@ -296,17 +284,26 @@ export default class Collection extends ValidationElement {
       const klassLast = index + 1 === totalItems ? 'last' : ''
       return (
         <div className="item" key={index}>
-          <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-            {title(item, index)}
-            <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
-              <div className="brief">
-                {this.props.summary(item, index)}
+          <div className="summary">
+            <Show when={index === 0}>
+              <div className="caption gutters">
+                  <div className="title">
+                    <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
+                    <hr />
+                  </div>
               </div>
-              <div className="expander">
-                <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
-              </div>
-            </a>
-            <div className="divider">
+            </Show>
+            <div className={`row gutters ${klassOpen} ${klassLast}`.trim()}>
+              <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
+                <div className="brief">
+                  {this.props.summary(item, index)}
+                </div>
+                <div className="expander">
+                  <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
+                </div>
+              </a>
+            </div>
+            <div className={`divider gutters ${klassOpen} ${klassLast}`.trim()}>
               <hr />
             </div>
           </div>

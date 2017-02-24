@@ -38,27 +38,29 @@ export class Row extends React.Component {
 
     return (
       <div className="item">
-        <Show when={this.props.first === true}>
-          <div className="summary caption">
-              <div className="title">
-                <h4>{i18n.t('collection.summary')}</h4>
-                <hr />
-              </div>
-          </div>
-        </Show>
-        <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-          <a href="javascript:;;" className="toggle" onClick={this.toggle}>
-            <div className="brief">
-              { this.props.header }
+        <div className="summary">
+          <Show when={this.props.first === true}>
+            <div className="caption gutters">
+                <div className="title">
+                  <h4>{i18n.t('collection.summary')}</h4>
+                  <hr />
+                </div>
             </div>
-            <div className="expander">
-              <i className={`fa fa-chevron-${this.state.show === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
-            </div>
-          </a>
-          <Show when={this.props.hasErrors === true && this.props.errorMessage}>
-            <div className="incomplete">{this.props.errorMessage}</div>
           </Show>
-          <div className="divider">
+          <div className={`row gutters ${klassOpen} ${klassLast}`.trim()}>
+            <a href="javascript:;;" className="toggle" onClick={this.toggle}>
+              <div className="brief">
+                { this.props.header }
+              </div>
+              <div className="expander">
+                <i className={`fa fa-chevron-${this.state.show === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
+              </div>
+            </a>
+            <Show when={this.props.hasErrors === true && this.props.errorMessage}>
+              <div className="incomplete gutters">{this.props.errorMessage}</div>
+            </Show>
+          </div>
+          <div className={`divider gutters ${klassOpen} ${klassLast}`.trim()}>
             <hr />
           </div>
         </div>

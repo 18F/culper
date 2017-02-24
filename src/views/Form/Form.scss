@@ -225,6 +225,10 @@
       input [type='checkbox']:focus {
         box-shadow: none;
       }
+
+      svg path {
+        fill: $eapp-grey-darker;
+      }
     }
 
     /* handle block style radio and checkboxes that are NOT toggles */
@@ -350,6 +354,15 @@
 
   button {
     position: relative;
+  }
+
+  button.usa-button-outline {
+    font-size: 10pt;
+    font-weight: bold;
+    min-width: 20rem;
+    box-shadow: inset 0 0 0 3px #0071bc;
+    border-radius: 5px;
+    padding: 2rem;
   }
 
   .review-btns {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Svg } from '../../../Form'
+import { ValidationElement, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address } from '../../../Form'
 import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
