@@ -877,7 +877,28 @@ export default class HistoryCollection extends ValidationElement {
     // Render the defaults
     return (
       <div className="history-collection collection">
+
+        <Show when={listItems.length === 0}>
+          <div className="item">
+            <div className="summary">
+              <div className="caption gutters">
+                <div className="title">
+                  <h4>{i18n.t('collection.summary')}</h4>
+                  <hr />
+                </div>
+              </div>
+              <div className="gutters">
+                There hasn&rsquo;t been any history saved yet. Please add details below.
+              </div>
+              <div className="divider gutters closed last">
+                <hr />
+              </div>
+            </div>
+          </div>
+        </Show>
+
         { listItems }
+
         <div>
           {this.createOptions()}
 
@@ -923,9 +944,9 @@ export default class HistoryCollection extends ValidationElement {
           <Show when={this.state.collectionType === 'Education'}>
             <div className="education">
               <EducationItem name="Education"
-                              onUpdate={this.onNewUpdate.bind(this, 'Education')}
-                              onValidate={this.handleValidation}
-                              />
+                             onUpdate={this.onNewUpdate.bind(this, 'Education')}
+                             onValidate={this.handleValidation}
+                             />
             </div>
           </Show>
 
