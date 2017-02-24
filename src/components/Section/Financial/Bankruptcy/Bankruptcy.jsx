@@ -158,7 +158,7 @@ export default class Bankruptcy extends ValidationElement {
       address1 = i18n.t('financial.bankruptcy.collection.summary.unknown')
     }
 
-    let from = i18n.t('financial.bankruptcy.collection.summary.unknown')
+    let from = i18n.t('financial.bankruptcy.collection.summary.nodates')
     if (item.DateFiled && item.DateFiled.month && item.DateFiled.year) {
       from = '' + item.DateFiled.month + '/' + item.DateFiled.year
     }

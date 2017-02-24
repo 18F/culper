@@ -390,7 +390,7 @@ const en = {
           name: 'Name',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Unknown'
+          unknown: 'Click to provide details'
         },
         append: 'Add another name'
       },
@@ -464,7 +464,7 @@ const en = {
         summary: {
           title: 'Summary of e-mail addresses',
           email: 'E-mail',
-          unknown: 'Unknown',
+          unknown: 'Click to provide details',
           phoneNumber: 'Phone number'
         },
         phoneNumbers: {
@@ -635,7 +635,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of gambling debt',
-          unknownlosses: 'Unknown losses',
+          unknownlosses: 'Click to provide details',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
@@ -693,7 +693,8 @@ const en = {
         summary: {
           title: 'Summary of Bankruptcy',
           item: 'Bankruptcy',
-          unknown: 'Unknown',
+          unknown: 'Click to provide details',
+          nodates: 'No date',
           chapter: 'Chapter'
         },
         append: 'Add bankruptcy'
@@ -2481,7 +2482,7 @@ const en = {
           item: 'Federal service',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Unknown'
+          unknown: 'Click to provide details'
         },
         append: 'Add another former federal service'
       }

@@ -47,7 +47,10 @@ export default class Collection extends ValidationElement {
     })
 
     for (let index = children.length; index < min; index++) {
-      items.push({open: true})
+      // NOTE: Default state of `open === true` was changed for
+      // next round of usability testing. Please revert if things
+      // go ary.
+      items.push({open: false})
       children.push(this.createChildren(null, index))
     }
 
@@ -76,7 +79,10 @@ export default class Collection extends ValidationElement {
     for (let item of items) {
       item.open = false
     }
-    items.push({open: true})
+
+    // NOTE: The original state was `true` but for this round of usability testing
+    // we are modifying this behavior.
+    items.push({open: false})
 
     let children = [...this.state.children]
     children = this.factory(items.length, items).children
@@ -263,7 +269,14 @@ export default class Collection extends ValidationElement {
     // without worrying about the accordion look and feel.
     //
     // Also, if there are less than two items in the list skip the summary
-    if (!this.props.summary || this.state.items.length < 2) {
+    //
+    // NOTE: Prototyping always displaying the summaries (if one if present) for
+    // the next round of usability testing. If this doesn't work out then revert
+    // back to a check of number of items in the list as well.
+    //
+    //   if (!this.props.summary || this.state.items.length < 2) {}
+    //
+    if (!this.props.summary) {
       return this.state.items.map((item, index) => {
         return (
           <div className="item" key={index}>
