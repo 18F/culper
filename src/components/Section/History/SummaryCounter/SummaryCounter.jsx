@@ -13,7 +13,7 @@ const scan = (items, julianMax) => {
       const from = julian(dates.from)
       const to = julian(dates.to)
 
-      if (dates.from >= julianMax || to >= julianMax) {
+      if (from >= julianMax || to >= julianMax) {
         counter++
       }
     } else if (dates.date) {
@@ -42,7 +42,7 @@ export default class SummaryCounter extends React.Component {
   }
 
   render () {
-    const klass = `summary counter ${this.props.className || ''}`.trim()
+    const klass = `summary-counter ${this.props.className || ''}`.trim()
     const total = this.ranges()
     const totalSchools = total.schools
     const totalDiplomas = total.diplomas

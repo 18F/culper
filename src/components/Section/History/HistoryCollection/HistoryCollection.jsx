@@ -877,17 +877,50 @@ export default class HistoryCollection extends ValidationElement {
     // Render the defaults
     return (
       <div className="history-collection collection">
+
+        <Show when={listItems.length === 0}>
+          <div className="item">
+            <div className="summary">
+              <div className="caption gutters">
+                <div className="title">
+                  <h4>{i18n.t('collection.summary')}</h4>
+                  <hr />
+                </div>
+              </div>
+              <div className="gutters">
+                There hasn&rsquo;t been any history saved yet. Please add details below.
+              </div>
+              <div className="divider gutters closed last">
+                <hr />
+              </div>
+            </div>
+          </div>
+        </Show>
+
         { listItems }
+
         <div>
           {this.createOptions()}
 
           <Show when={this.state.collectionType === 'Residence'}>
-            <ResidenceItem name="Residence"
-                           {...values}
-                           receiveProps={force}
-                           onUpdate={this.onNewUpdate.bind(this, 'Residence')}
-                           onValidate={this.handleValidation}
-                           />
+            <div>
+              <h3>{i18n.t('history.residence.heading.details')}</h3>
+              {i18n.m('history.residence.para.details')}
+              <ResidenceItem name="Residence"
+                             {...values}
+                             receiveProps={force}
+                             onUpdate={this.onNewUpdate.bind(this, 'Residence')}
+                             onValidate={this.handleValidation}
+                             />
+            </div>
+          </Show>
+
+          <Show when={this.state.collectionType === 'Employment' && this.props.types.length > 1}>
+            <div>
+              <h2>{i18n.t('history.employment.heading.employment')}</h2>
+              {i18n.m('history.employment.para.employment')}
+              {i18n.m('history.employment.para.employment2')}
+            </div>
           </Show>
 
           <Show when={this.state.collectionType === 'Employment'}>
@@ -901,12 +934,19 @@ export default class HistoryCollection extends ValidationElement {
             </div>
           </Show>
 
+          <Show when={this.state.collectionType === 'Education' && this.props.types.length > 1}>
+            <div>
+              <h3>{i18n.t('history.education.title')}</h3>
+              {i18n.m('history.education.info')}
+            </div>
+          </Show>
+
           <Show when={this.state.collectionType === 'Education'}>
             <div className="education">
               <EducationItem name="Education"
-                              onUpdate={this.onNewUpdate.bind(this, 'Education')}
-                              onValidate={this.handleValidation}
-                              />
+                             onUpdate={this.onNewUpdate.bind(this, 'Education')}
+                             onValidate={this.handleValidation}
+                             />
             </div>
           </Show>
 

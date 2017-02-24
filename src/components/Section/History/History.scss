@@ -1,6 +1,8 @@
 .history {
   .add-options {
+    margin-top: 5rem;
     margin-bottom: 10rem;
+    margin-left: 4rem;
 
     .btn {
       margin-top: 3rem;
@@ -8,22 +10,21 @@
       .fa.fa-plus-circle {
         margin-left: 1rem;
       }
+
+      button {
+        margin-right: auto;
+        margin-left: auto;
+      }
     }
 
     div.title {
-      font-weight: 600;
+      font-weight: bolder;
       color: #5c606c;
-    }
-
-    button.add {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      margin-top: 1rem;
     }
 
     .svg {
-      width: 10rem;
+      width: 8rem;
       height: auto;
     }
 
@@ -32,12 +33,16 @@
 
       .table-cell {
         display: table-cell;
+        width: 22rem;
+        height: 16rem;
+      }
+
+      .add-employment {
+        padding-left: 8rem;
       }
 
       .add-residence, .add-employment {
         text-align: center;
-        width: 32rem;
-        height: 16rem;
       }
     }
   }

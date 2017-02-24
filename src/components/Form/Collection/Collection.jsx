@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import { findPosition } from '../../../middleware/history'
 import ValidationElement from '../ValidationElement'
+import Show from '../Show'
 
 export default class Collection extends ValidationElement {
   constructor (props) {
@@ -46,7 +47,10 @@ export default class Collection extends ValidationElement {
     })
 
     for (let index = children.length; index < min; index++) {
-      items.push({open: true})
+      // NOTE: Default state of `open === true` was changed for
+      // next round of usability testing. Please revert if things
+      // go ary.
+      items.push({open: false})
       children.push(this.createChildren(null, index))
     }
 
@@ -75,7 +79,10 @@ export default class Collection extends ValidationElement {
     for (let item of items) {
       item.open = false
     }
-    items.push({open: true})
+
+    // NOTE: The original state was `true` but for this round of usability testing
+    // we are modifying this behavior.
+    items.push({open: false})
 
     let children = [...this.state.children]
     children = this.factory(items.length, items).children
@@ -262,7 +269,14 @@ export default class Collection extends ValidationElement {
     // without worrying about the accordion look and feel.
     //
     // Also, if there are less than two items in the list skip the summary
-    if (!this.props.summary || this.state.items.length < 2) {
+    //
+    // NOTE: Prototyping always displaying the summaries (if one if present) for
+    // the next round of usability testing. If this doesn't work out then revert
+    // back to a check of number of items in the list as well.
+    //
+    //   if (!this.props.summary || this.state.items.length < 2) {}
+    //
+    if (!this.props.summary) {
       return this.state.items.map((item, index) => {
         return (
           <div className="item" key={index}>
@@ -276,19 +290,6 @@ export default class Collection extends ValidationElement {
       })
     }
 
-    const title = (item, index) => {
-      if (index !== 0) {
-        return ''
-      }
-
-      return (
-        <div className="title">
-          <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
-          <hr />
-        </div>
-      )
-    }
-
     // There is a summary and it is appropriate to display at this moment
     const totalItems = this.state.items.length
     return this.state.items.map((item, index) => {
@@ -296,17 +297,26 @@ export default class Collection extends ValidationElement {
       const klassLast = index + 1 === totalItems ? 'last' : ''
       return (
         <div className="item" key={index}>
-          <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-            {title(item, index)}
-            <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
-              <div className="brief">
-                {this.props.summary(item, index)}
+          <div className="summary">
+            <Show when={index === 0}>
+              <div className="caption gutters">
+                  <div className="title">
+                    <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
+                    <hr />
+                  </div>
               </div>
-              <div className="expander">
-                <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
-              </div>
-            </a>
-            <div className="divider">
+            </Show>
+            <div className={`row gutters ${klassOpen} ${klassLast}`.trim()}>
+              <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
+                <div className="brief">
+                  {this.props.summary(item, index)}
+                </div>
+                <div className="expander">
+                  <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
+                </div>
+              </a>
+            </div>
+            <div className={`divider gutters ${klassOpen} ${klassLast}`.trim()}>
               <hr />
             </div>
           </div>

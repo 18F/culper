@@ -63,7 +63,11 @@ describe('The bankruptcy component', () => {
     component.find('textarea#Comments').simulate('change')
 
     component.find('button.add').simulate('click')
-    expect(component.find('.summary.open').length).toBeGreaterThan(0)
+
+    // NOTE: The original state was `true` but for this round of usability testing
+    // we are modifying this behavior.
+    // expect(component.find('.row.open').length).toBeGreaterThan(0)
+    expect(component.find('.row.open').length).toBe(0)
   })
 
   it('displays fields when "yes" is selected', () => {

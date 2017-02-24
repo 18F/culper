@@ -1,11 +1,28 @@
 @import 'eqip-colors';
 
 .collection {
+  .summary .row.open:hover,
+  .summary .row.closed:hover {
+    background-color: $eapp-grey;
+  }
+
   .summary {
-    display: table;
     width: 100%;
     background-color: $eapp-grey-light;
-    padding: 3rem 4rem 0;
+    padding-bottom: 0;
+
+    .caption,
+    .closed,
+    .open {
+      display: table;
+      width: 100%;
+    }
+
+    .closed,
+    .open {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
 
     .title {
       display: table-caption;
@@ -25,6 +42,10 @@
     }
 
     .divider {
+      display: table;
+      padding-top: 0;
+      padding-bottom: 0;
+
       hr {
         border: 0;
         height: 0;
@@ -33,38 +54,13 @@
       }
     }
 
-    &.closed {
-      .divider {
-        display: table-row;
-
-        hr {
-          border: 0;
-          height: 0;
-          border-top: 1px solid rgba(0, 0, 0, 0.1);
-          border-bottom: 1px solid $eapp-grey;
-          margin-right: -5rem;
-          margin-top: 3rem;
-        }
-      }
+    .divider.closed.last {
+      padding-bottom: 1.5rem;
     }
 
-    &.closed.last {
-      padding-bottom: 3rem;
-
-      .divider {
-        hr {
-          margin-bottom: auto;
-        }
-      }
-    }
-
-    &.open {
-      padding-bottom: 3rem;
-
-      .divider {
-        display: none;
-        visibility: hidden;
-      }
+    .divider.open {
+      display: none;
+      visibility: hidden;
     }
 
     a {
@@ -120,11 +116,14 @@
     }
   }
 
+  .gutters {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   .details {
     &.gutters {
       border: 4px solid $eapp-grey-light;
-      padding-left: 4rem;
-      padding-right: 4rem;
 
       h1,
       h2,

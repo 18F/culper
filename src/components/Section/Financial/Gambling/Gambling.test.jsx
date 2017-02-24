@@ -74,7 +74,11 @@ describe('The gambling component', () => {
     component.find('textarea#Comments').simulate('change')
 
     component.find('button.add').simulate('click')
-    expect(component.find('.summary.open').length).toBeGreaterThan(0)
+
+    // NOTE: The original state was `true` but for this round of usability testing
+    // we are modifying this behavior.
+    // expect(component.find('.row.open').length).toBeGreaterThan(0)
+    expect(component.find('.row.open').length).toBe(0)
   })
 
   it('displays fields when "yes" is selected', () => {
@@ -82,7 +86,10 @@ describe('The gambling component', () => {
       HasGamblingDebt: 'Yes'
     }
     const component = mount(<Gambling {...expected} />)
-    expect(component.find('.losses').length).toEqual(1)
+    // NOTE: This was commented out due to prototyping for next usability testing.
+    // Please removed or uncomment based on results.
+    // expect(component.find('.losses').length).toEqual(1)
+    expect(component.find('.losses').length).toEqual(2)
   })
 
   it('does not display any fields when "no" is selected', () => {

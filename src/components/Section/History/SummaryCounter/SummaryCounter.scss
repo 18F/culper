@@ -1,6 +1,8 @@
 @import 'eqip-colors';
 
-.summary.counter {
+.summary-counter {
+  color: $eapp-grey-darker;
+
   .content {
     display: inline-block;
     width: 50%;
