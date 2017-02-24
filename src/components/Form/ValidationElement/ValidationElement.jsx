@@ -74,7 +74,6 @@ export default class ValidationElement extends React.Component {
 
   flattenObject (obj) {
     let o = flattenObject(obj)
-    console.log(o)
     return o
   }
 
@@ -137,12 +136,10 @@ export const mergeError = (previous, error) => {
   if (errorString && errorString.length && !errorString.endsWith('.') && !codes.includes(errorString)) {
     codes.push(errorString)
   }
-  console.log(codes)
   return codes
 }
 
 export const triageErrors = (section, previous, codes) => {
-  console.log('section: ', section, ' previous: ', previous, ' codes: ', codes)
   let arr = []
 
   // First we need to persist any error messages stored in the same section
@@ -171,7 +168,5 @@ export const triageErrors = (section, previous, codes) => {
       }
     }
   }
-  console.log('Arrrrraaaay')
-  console.log(arr)
   return arr
 }
