@@ -79,7 +79,10 @@ export default class Collection extends ValidationElement {
     for (let item of items) {
       item.open = false
     }
-    items.push({open: true})
+
+    // NOTE: The original state was `true` but for this round of usability testing
+    // we are modifying this behavior.
+    items.push({open: false})
 
     let children = [...this.state.children]
     children = this.factory(items.length, items).children
