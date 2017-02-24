@@ -1,3 +1,4 @@
+import BankruptcyValidator from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import ContactInformationValidator from './contactinformation'
 import NameValidator from './name'
@@ -8,6 +9,7 @@ import PhysicalValidator from './physical'
 import GamblingValidator from './gambling'
 
 export {
+  BankruptcyValidator,
   BirthPlaceValidator,
   ContactInformationValidator,
   NameValidator,
