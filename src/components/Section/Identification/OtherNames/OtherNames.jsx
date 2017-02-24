@@ -92,7 +92,7 @@ export default class OtherNames extends ValidationElement {
         <div className="table-cell index">
           {i18n.t('identification.othernames.collection.summary.name')} {index + 1}:
         </div>
-        <div className="table-cell index">
+        <div className="table-cell">
           {name}
         </div>
         <div className="table-cell dates">
