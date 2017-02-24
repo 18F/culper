@@ -225,6 +225,10 @@
       input [type='checkbox']:focus {
         box-shadow: none;
       }
+
+      svg path {
+        fill: $eapp-grey-darker;
+      }
     }
 
     /* handle block style radio and checkboxes that are NOT toggles */
