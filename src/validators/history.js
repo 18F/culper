@@ -10,7 +10,6 @@ export default class HistoryValidator {
   validEmployment () {
     for (let employment of this.list.filter(item => { return item.type === 'Employment' })) {
       if (!new EmploymentValidator(employment.Item).isValid()) {
-        console.log('IS NOT VALID')
         return false
       }
     }
