@@ -43,3 +43,46 @@ export const anyHasStatus = (completed) => (properties, status, val) => {
   }
   return false
 }
+
+/**
+ * Validates a phone number
+ */
+export const validPhoneNumber = (phone) => {
+  if (!phone) {
+    return false
+  }
+  if (phone.noNumber === 'NA') {
+    return true
+  }
+  if (!phone.number) {
+    return false
+  }
+  if (!phone.numberType) {
+    return false
+  }
+  if (!phone.timeOfDay) {
+    return false
+  }
+
+  return true
+}
+
+/**
+ * Validates a date
+ */
+export const validDateField = (obj) => {
+  if (!obj) {
+    return false
+  }
+  if (!obj.day) {
+    return false
+  }
+  if (!obj.month) {
+    return false
+  }
+  if (!obj.year) {
+    return false
+  }
+  return true
+}
+

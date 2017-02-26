@@ -1,6 +1,6 @@
 import GamblingValidator from './gambling'
 
-describe('Gambling debt component validation', function () {
+describe('gambling debt component validation', function () {
   it('should validate has gambling debt', function () {
     const tests = [
       {
