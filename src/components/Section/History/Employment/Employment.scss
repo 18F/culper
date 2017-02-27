@@ -47,9 +47,19 @@
   }
 
   .employment-activity {
+    .option-list {
+      max-width: 92% !important;
+    }
+
     label {
       height: 8rem;
       width: 24rem;
+      padding-top: 2rem;
+    }
+
+    .other {
+      display: inline-block;
+      width: 92%;
       padding-top: 2rem;
     }
   }
