@@ -129,23 +129,14 @@ class History extends ValidationElement {
    * Intro to the section when information is present
    */
   intro () {
-    return (
-      <div className="history intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('history.tour.title')}</h3>
-          <p>{i18n.t('history.tour.para')}</p>
-          <button onClick={this.handleTour}>{i18n.t('history.tour.button')}</button>
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('history.review.title')}</h3>
-          <p>{i18n.t('history.review.para')}</p>
-          <button onClick={this.handleReview}>{i18n.t('history.review.button')}</button>
-        </div>
-      </div>
-    )
+    const d = this.props.Section.section === 'history1'
+          ? 'timeline'
+          : 'residence'
+
+    const current = this.launch(this.props.History, this.props.subsection, d)
+    if (current !== '') {
+      this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
+    }
   }
 
   /**
