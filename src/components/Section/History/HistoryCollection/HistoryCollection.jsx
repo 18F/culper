@@ -905,7 +905,7 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType === 'Residence'}>
             <div>
-              <h3>{i18n.t('history.residence.heading.details')}</h3>
+              <h2>{i18n.t('history.residence.heading.details')}</h2>
               {i18n.m('history.residence.para.details')}
               <ResidenceItem name="Residence"
                              {...values}
@@ -937,7 +937,7 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType === 'Education' && this.props.types.length > 1}>
             <div>
-              <h3>{i18n.t('history.education.title')}</h3>
+              <h2>{i18n.t('history.education.title')}</h2>
               {i18n.m('history.education.info')}
             </div>
           </Show>
