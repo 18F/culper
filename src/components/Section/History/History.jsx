@@ -129,14 +129,14 @@ class History extends ValidationElement {
    * Intro to the section when information is present
    */
   intro () {
+    if (this.props.Section.subsection) {
+      return
+    }
+
     const d = this.props.Section.section === 'history1'
           ? 'timeline'
           : 'residence'
-
-    const current = this.launch(this.props.History, this.props.subsection, d)
-    if (current !== '') {
-      this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
-    }
+    this.props.dispatch(push(`/form/${this.props.Section.section}/${d}`))
   }
 
   /**
