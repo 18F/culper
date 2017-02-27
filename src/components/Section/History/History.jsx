@@ -398,6 +398,7 @@ class History extends ValidationElement {
                                onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                onValidate={this.onValidate}
                                />
+            <hr className="section-divider" />
             <h2>{i18n.t('history.residence.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.residence.para.exiting')} />
           </SectionView>
@@ -420,6 +421,7 @@ class History extends ValidationElement {
                                onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
                                onValidate={this.onValidate}
                                />
+            <hr className="section-divider" />
             <h2>{i18n.t('history.employment.heading.exiting')}</h2>
             <ReactMarkdown source={i18n.t('history.employment.para.exiting')} />
           </SectionView>

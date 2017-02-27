@@ -763,6 +763,7 @@ export default class HistoryCollection extends ValidationElement {
             {options}
           </RadioGroup>
         </div>
+        <hr className="section-divider" />
       </div>
     )
   }
@@ -952,9 +953,10 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType}>
             <div>
+              <hr className="section-divider" />
               <h2>Done! Now let's add some more</h2>
               <p>Use the button below to save your first history entry and start another</p>
-              <div className="text-center">
+              <div>
                 <button className="add usa-button-outline" onClick={this.create}>
                   <span>Save and add another address, job, or school</span>
                   <i className="fa fa-plus-circle"></i>

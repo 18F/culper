@@ -1,3 +1,5 @@
+@import 'eqip-colors';
+
 .history {
   .add-options {
     margin-top: 5rem;
@@ -45,5 +47,13 @@
         text-align: center;
       }
     }
+  }
+
+  hr.section-divider {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid $eapp-grey;
+    margin: 5rem 8rem 5rem 4rem;
   }
 }
