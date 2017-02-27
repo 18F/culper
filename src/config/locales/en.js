@@ -930,7 +930,7 @@ const en = {
           title: 'Summary of places you have lived',
           item: 'Address',
           unknown: 'Unknown',
-          incomplete: 'This residence\'s information is complete'
+          incomplete: 'This residence\'s information is incomplete'
         },
         append: 'Save and add another address'
       },
@@ -1010,7 +1010,7 @@ const en = {
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
-            incomplete: 'This employer\'s information is complete'
+            incomplete: 'This employer\'s information is incomplete'
           }
         },
         activity: {
@@ -2090,6 +2090,7 @@ const en = {
           status: 'Select the employment status for this position',
           address: 'Provide the address of employment',
           telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
           additionalActivity: 'Additional periods of activity with this employer'
         },
@@ -2207,6 +2208,15 @@ const en = {
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
           additionalActivity: 'Additional periods of activity with this employer'
         },
+        activity: {
+          other: {
+            help: {
+              title: 'Need help with employment activity?',
+              message: 'Please explain the type of employment activity',
+              note: ''
+            }
+          }
+        },
         employer: {
           label: 'Employer name',
           help: {
@@ -2220,14 +2230,6 @@ const en = {
           help: {
             title: 'Need help with the position title?',
             message: 'Provide the name of your position title',
-            note: ''
-          }
-        },
-        employer: {
-          label: 'Employer name',
-          help: {
-            title: 'Need help with the employer name?',
-            message: 'Provide the name of your employer',
             note: ''
           }
         },
@@ -2329,7 +2331,7 @@ const en = {
             title: 'Summary of education',
             item: 'School',
             unknown: 'Unknown',
-            incomplete: 'This education\'s information is complete'
+            incomplete: 'This education\'s information is incomplete'
           },
           append: 'Save and add another school'
         },

@@ -84,16 +84,12 @@ export class EmploymentItem extends ValidationElement {
     return (
       <div>
         <h3>{i18n.t(`history.employment.default.heading.activity`)}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id={`history.employment.default.activity.help`}>
-            <EmploymentActivity
-              {...this.props.EmploymentActivity}
-              onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
-              name="EmploymentActivity"
-              />
-            <HelpIcon className="activity"/>
-          </Help>
-        </div>
+        <EmploymentActivity
+          {...this.props.EmploymentActivity}
+          onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
+          name="EmploymentActivity"
+          className="eapp-field-wrap no-label"
+          />
 
         <h3>{i18n.t(`history.employment.default.heading.datesEmployed`)}</h3>
         <div className="eapp-field-wrap">
