@@ -46,7 +46,7 @@ export default class HistoryCollection extends ValidationElement {
   componentDidMount () {
     // If user has requested to show create form for a specific type when,
     // first loading the component, check that here and do so
-    if (this.isEmpty() && this.props.addOnLoad) {
+    if (this.isEmpty() && this.props.addOnLoad && this.props.types.length > 1) {
       this.selectCollectionType(this.props.addOnLoad)
       return
     }
