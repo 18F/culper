@@ -9,6 +9,8 @@ import OtherNamesValidator from './othernames'
 import PassportValidator from './passport'
 import PhysicalValidator from './physical'
 import GamblingValidator from './gambling'
+import ResidenceValidator from './residence'
+import EmploymentValidator from './employment'
 
 export {
   AddressValidator,
@@ -21,5 +23,7 @@ export {
   OtherNamesValidator,
   PassportValidator,
   PhysicalValidator,
-  GamblingValidator
+  GamblingValidator,
+  ResidenceValidator,
+  EmploymentValidator
 }

@@ -1,9 +1,14 @@
 import DateRangeValidator from './daterange'
 import AddressValidator from './address'
 import ReferenceValidator from './reference'
+import { daysAgo, today } from '../components/Section/History/dateranges'
 
 // Options for roles
 const roleOptions = ['Other', 'Military', 'Owned', 'Renter']
+const threeYearsAgo = daysAgo(today, 365 * 3)
+const withinThreeYears = (from, to) => {
+  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+}
 
 export default class ResidenceValidator {
   constructor (state, props) {
@@ -23,7 +28,11 @@ export default class ResidenceValidator {
   }
 
   validReference () {
-    return new ReferenceValidator(this.reference, null).isValid()
+    if (withinThreeYears(this.dates.from, this.dates.to)) {
+      return new ReferenceValidator(this.reference, null).isValid()
+    }
+
+    return true
   }
 
   /**

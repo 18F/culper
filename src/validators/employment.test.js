@@ -42,6 +42,7 @@ describe('Employment component validation', function () {
       expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
+
   it('should validate additional activity', function () {
     const tests = [
       {
