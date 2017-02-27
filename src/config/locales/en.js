@@ -283,6 +283,90 @@ const en = {
         message: 'The **from** date must precede the **to** date',
         note: ''
       }
+    },
+    domestic_first: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The area code must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The area code must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    domestic_second: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    domestic_third: {
+      pattern: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        note: ''
+      }
+    },
+    dsn_first: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    dsn_second: {
+      pattern: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        note: ''
+      }
+    },
+    int_first: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    int_second: {
+      pattern: {
+        title: 'This field must have 10 digits',
+        message: 'The international number must be 10 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 10 digits',
+        message: 'The international number must be 10 digits between 0 and 9',
+        note: ''
+      }
     }
   },
   section: {

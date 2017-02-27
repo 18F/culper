@@ -176,7 +176,7 @@ export class EmploymentItem extends ValidationElement {
                       />
         </Show>
 
-        <h3>{i18n.t(`${prefix}.heading.reference`)}</h3>
+        <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
         <Reference name="Reference"
                    {...this.props.Reference}
                    onUpdate={this.onUpdate.bind(this, 'Reference')}

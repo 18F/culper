@@ -327,7 +327,9 @@ class History extends ValidationElement {
           continue
         }
 
-        const list = this.props.History[t].List
+        const list = this.props.History[t].List.filter(item => {
+          return item.Item && item.Item.Dates
+        })
 
         // If there is no history it should still display the exiting message
         if (list.length === 0) {
