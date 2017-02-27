@@ -48,7 +48,7 @@ export class DiplomaItem extends ValidationElement {
   render () {
     return (
       <div>
-        <h4>{i18n.t('history.education.heading.diploma')}</h4>
+        <h3>{i18n.t('history.education.heading.diploma')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.education.help.diploma">
             <RadioGroup className="diploma option-list"
@@ -103,7 +103,7 @@ export class DiplomaItem extends ValidationElement {
           </Help>
         </div>
 
-        <h4>{i18n.t('history.education.heading.date')}</h4>
+        <h3>{i18n.t('history.education.heading.date')}</h3>
         <div className="eapp-field-wrap">
           <label className="info-label">{i18n.t('history.education.label.date')}</label>
           <Help id="history.education.help.date">

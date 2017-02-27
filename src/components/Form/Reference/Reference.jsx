@@ -74,7 +74,7 @@ export default class Reference extends ValidationElement {
 
     return (
       <div className={klass}>
-        <h4>{i18n.t(`${prefix}reference.heading.name`)}</h4>
+        <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
         <div className="eapp-field-wrap">
           <Name name="FullName"
                 {...this.state.FullName}
@@ -83,7 +83,7 @@ export default class Reference extends ValidationElement {
                 />
         </div>
 
-        <h4>{i18n.t(`${prefix}reference.heading.contact`)}</h4>
+        <h3>{i18n.t(`${prefix}reference.heading.contact`)}</h3>
         <div className="eapp-field-wrap">
           <Help id={`${prefix}reference.help.contact`}>
             <DateControl name="LastContact"
@@ -101,7 +101,7 @@ export default class Reference extends ValidationElement {
                   className="eapp-field-wrap"
                   onUpdate={this.onUpdate.bind(this, 'Comments')}
                   onValidate={this.onValidate}>
-          <h4>{i18n.t(`${prefix}reference.heading.relationship`)}</h4>
+          <h3>{i18n.t(`${prefix}reference.heading.relationship`)}</h3>
           <div className="eapp-field-wrap">
             <Help id={`${prefix}reference.help.relationship`}>
               <RadioGroup className="relationship option-list eapp-extend-labels"
@@ -169,7 +169,7 @@ export default class Reference extends ValidationElement {
         <h3>{i18n.t(`${prefix}reference.heading.correspondence`)}</h3>
         <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
 
-        <h4>{i18n.t(`${prefix}reference.heading.phone`)}</h4>
+        <h3>{i18n.t(`${prefix}reference.heading.phone`)}</h3>
         <div className="eapp-field-wrap">
           <Help id={`${prefix}reference.help.phone`}>
             <Telephone name="Phone"
@@ -181,7 +181,7 @@ export default class Reference extends ValidationElement {
           </Help>
         </div>
 
-        <h4>{i18n.t(`${prefix}reference.heading.email`)}</h4>
+        <h3>{i18n.t(`${prefix}reference.heading.email`)}</h3>
         <div className="eapp-field-wrap">
           <Help id={`${prefix}reference.help.email`}>
             <Email name="Email"
@@ -194,7 +194,7 @@ export default class Reference extends ValidationElement {
           </Help>
         </div>
 
-        <h4>{i18n.t(`${prefix}reference.heading.address`)}</h4>
+        <h3>{i18n.t(`${prefix}reference.heading.address`)}</h3>
         <p>{i18n.t(`${prefix}reference.para.address`)}</p>
         <div className="eapp-field-wrap">
           <Help id={`${prefix}reference.help.address`}>

@@ -46,7 +46,7 @@ export default class HistoryCollection extends ValidationElement {
   componentDidMount () {
     // If user has requested to show create form for a specific type when,
     // first loading the component, check that here and do so
-    if (this.isEmpty() && this.props.addOnLoad) {
+    if (this.isEmpty() && this.props.addOnLoad && this.props.types.length > 1) {
       this.selectCollectionType(this.props.addOnLoad)
       return
     }
@@ -114,77 +114,312 @@ export default class HistoryCollection extends ValidationElement {
       return false
     }
 
-    if (!item.DatesEmployed || !item.DatesEmployed.from || !item.DatesEmployed.to) {
+    if (!item.Dates || !item.Dates.from || !item.Dates.to) {
       return false
     }
 
-    const { from, to } = item.DatesEmployed
+    const { from, to } = item.Dates
     if (from > to) {
       return false
     }
 
-    if (!item.Employment || !item.Employment.value) {
+    // Only some portions have employment section
+    if (!['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(item.EmploymentActivity.value)) {
+      if ((!item.Employment || !item.Employment.value)) {
+        return false
+      }
+
+      if (!item.Additional || !item.Additional.HasAdditionalActivity) {
+        return false
+      }
+
+      if (item.Additional.HasAdditionalActivity === 'Yes') {
+        for (let activity of item.Additional.List) {
+          if (!activity.Position || !activity.Position.value) {
+            return false
+          }
+          if (!activity.Supervisor || !activity.Supervisor.value) {
+            return false
+          }
+
+          if (!activity.DatesEmployed || !activity.DatesEmployed.from || !activity.DatesEmployed.to) {
+            return false
+          }
+
+          const { from, to } = activity.DatesEmployed
+          if (from > to) {
+            return false
+          }
+        }
+      }
+
+      if (!item.Status || !item.Status.value) {
+        return false
+      }
+
+      if (!item.Title || !item.Title.value) {
+        return false
+      }
+
+      if (!item.Address) {
+        return false
+      }
+
+      let address = item.Address
+      switch (address.addressType) {
+        case 'United States':
+          if (!address.address || !address.city || !address.state || !address.zipcode) {
+            return false
+          }
+          break
+
+        case 'International':
+          if (!address.address || !address.city || !address.country) {
+            return false
+          }
+          break
+
+        case 'APOFPO':
+          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+            return false
+          }
+          break
+
+        default:
+          return false
+      }
+
+      let telephone = item.Telephone
+      if (!telephone) {
+        return false
+      }
+
+      if (telephone.noNumber !== 'NA') {
+        if (!telephone.number) {
+          return false
+        }
+
+        if (!telephone.numberType) {
+          return false
+        }
+
+        if (!telephone.timeOfDay) {
+          return false
+        }
+      }
+    }
+
+    // Some employment does not require physical address
+    if (['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other', 'SelfEmployment'].includes(item.EmploymentActivity.value)) {
+      if (!item.PhysicalAddress) {
+        return false
+      }
+
+      if (item.PhysicalAddress.HasDifferentAddress !== 'No' && item.PhysicalAddress.HasDifferentAddress !== 'Yes') {
+        return false
+      }
+
+      if (item.PhysicalAddress.HasDifferentAddress === 'Yes') {
+        // Checking the address fields are present
+        let address = item.PhysicalAddress.Address
+        if (!address) {
+          return false
+        }
+
+        switch (address.addressType) {
+          case 'United States':
+            if (!address.address || !address.city || !address.state || !address.zipcode) {
+              return false
+            }
+            break
+
+          case 'International':
+            if (!address.address || !address.city || !address.country) {
+              return false
+            }
+            break
+
+          case 'APOFPO':
+            if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+              return false
+            }
+            break
+
+          default:
+            return false
+        }
+
+        // Checking the telephone is present
+        let telephone = item.PhysicalAddress.Telephone
+        if (!telephone) {
+          return false
+        }
+
+        if (telephone.noNumber !== 'NA') {
+          if (!telephone.number) {
+            return false
+          }
+
+          if (!telephone.numberType) {
+            return false
+          }
+
+          if (!telephone.timeOfDay) {
+            return false
+          }
+        }
+      }
+    }
+
+    // The reason for leaving is only required if within the last seven years
+    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    if ((from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo)) {
+      if (!item.ReasonLeft) {
+        return false
+      }
+
+      if (!item.ReasonLeft.Reason) {
+        return false
+      }
+
+      if (!item.ReasonLeft.Date || !item.ReasonLeft.Date.date) {
+        return false
+      }
+
+      if (!item.ReasonLeft.Text || !item.ReasonLeft.Text.value) {
+        return false
+      }
+    }
+
+    // Some employment does not require supervisor
+    if (['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(item.EmploymentActivity.value)) {
+      if (!item.Supervisor) {
+        return false
+      }
+
+      if (!item.Supervisor.SupervisorName || !item.Supervisor.SupervisorName.value) {
+        return false
+      }
+
+      if (!item.Supervisor.Title || !item.Supervisor.Title.value) {
+        return false
+      }
+
+      if (!item.Supervisor.Email || !item.Supervisor.Email.value) {
+        return false
+      }
+
+      // Checking the address fields are present
+      let address = item.Supervisor.Address
+      if (!address) {
+        return false
+      }
+
+      switch (address.addressType) {
+        case 'United States':
+          if (!address.address || !address.city || !address.state || !address.zipcode) {
+            return false
+          }
+          break
+
+        case 'International':
+          if (!address.address || !address.city || !address.country) {
+            return false
+          }
+          break
+
+        case 'APOFPO':
+          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+            return false
+          }
+          break
+
+        default:
+          return false
+      }
+
+      // Checking the telephone is present
+      let telephone = item.Supervisor.Telephone
+      if (!telephone) {
+        return false
+      }
+
+      if (telephone.noNumber !== 'NA') {
+        if (!telephone.number) {
+          return false
+        }
+
+        if (!telephone.numberType) {
+          return false
+        }
+
+        if (!telephone.timeOfDay) {
+          return false
+        }
+      }
+    }
+
+    if (!item.Reference) {
       return false
     }
 
-    if (!item.Status || !item.Status.value) {
+    if (!item.Reference.FullName) {
       return false
     }
 
-    if (!item.Title || !item.Title.value) {
+    if (!item.Reference.FullName.first || !item.Reference.FullName.last) {
       return false
     }
 
-    if (!item.Address) {
+    if (!item.Reference.LastContact) {
       return false
     }
 
-    const address = item.Address
-    switch (address.addressType) {
+    if (!item.Reference.LastContact.date) {
+      return false
+    }
+
+    if (!item.Reference.Relationship) {
+      return false
+    }
+
+    if (!item.Reference.Phone) {
+      return false
+    }
+
+    if (!item.Reference.Phone.number) {
+      return false
+    }
+
+    if (!item.Reference.Email) {
+      return false
+    }
+
+    if (!item.Reference.Address) {
+      return false
+    }
+
+    switch (item.Reference.Address.addressType) {
       case 'United States':
-        if (!address.address || !address.city || !address.state || !address.zipcode) {
+        if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.state || !item.Reference.Address.zipcode) {
           return false
         }
         break
 
       case 'International':
-        if (!address.address || !address.city || !address.country) {
+        if (!item.Reference.Address.address || !item.Reference.Address.city || !item.Reference.Address.country) {
           return false
         }
         break
 
       case 'APOFPO':
-        if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
+        if (!item.Reference.Address.address || !item.Reference.Address.apoFpo || !item.Reference.Address.apoFpoType || !item.Reference.Address.zipcode) {
           return false
         }
         break
 
       default:
         return false
-    }
-
-    if (!item.Additional || !item.Additional.HasAdditionalActivity) {
-      return false
-    }
-
-    if (item.Additional.HasAdditionalActivity === 'Yes') {
-      for (let activity of item.Additional.List) {
-        if (!activity.Position || !activity.Position.value) {
-          return false
-        }
-        if (!activity.Supervisor || !activity.Supervisor.value) {
-          return false
-        }
-
-        if (!activity.DatesEmployed || !activity.DatesEmployed.from || !activity.DatesEmployed.to) {
-          return false
-        }
-
-        const { from, to } = activity.DatesEmployed
-        if (from > to) {
-          return false
-        }
-      }
     }
 
     return true
@@ -323,7 +558,7 @@ export default class HistoryCollection extends ValidationElement {
       return false
     }
 
-    if (!(item.HasDegree10 === 'No' || item.HasDegree10 === 'Yes')) {
+    if (item.HasAttended === 'No' && !(item.HasDegree10 === 'No' || item.HasDegree10 === 'Yes')) {
       return false
     }
 
@@ -355,7 +590,7 @@ export default class HistoryCollection extends ValidationElement {
           return false
       }
 
-      if (!item.Name && !item.Name.value) {
+      if (!item.Name || !item.Name.value) {
         return false
       }
 
@@ -441,7 +676,12 @@ export default class HistoryCollection extends ValidationElement {
           return false
         }
 
-        for (const diploma of item.Diplomas) {
+        for (const diplomaItem of item.Diplomas) {
+          if (!diplomaItem.Diploma) {
+            return false
+          }
+
+          const diploma = diplomaItem.Diploma
           if (!diploma.Diploma) {
             return false
           }
@@ -450,12 +690,7 @@ export default class HistoryCollection extends ValidationElement {
             return false
           }
 
-          if (!diploma.Date || !diploma.Date.from || !diploma.Date.to) {
-            return false
-          }
-
-          const { from, to } = diploma.Date
-          if (from > to) {
+          if (!diploma.Date || !diploma.Date.date) {
             return false
           }
         }
@@ -763,6 +998,7 @@ export default class HistoryCollection extends ValidationElement {
             {options}
           </RadioGroup>
         </div>
+        <hr className="section-divider" />
       </div>
     )
   }
@@ -904,7 +1140,7 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType === 'Residence'}>
             <div>
-              <h3>{i18n.t('history.residence.heading.details')}</h3>
+              <h2>{i18n.t('history.residence.heading.details')}</h2>
               {i18n.m('history.residence.para.details')}
               <ResidenceItem name="Residence"
                              {...values}
@@ -936,7 +1172,7 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType === 'Education' && this.props.types.length > 1}>
             <div>
-              <h3>{i18n.t('history.education.title')}</h3>
+              <h2>{i18n.t('history.education.title')}</h2>
               {i18n.m('history.education.info')}
             </div>
           </Show>
@@ -952,9 +1188,10 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType}>
             <div>
-              <h3>Done! Now let's add some more</h3>
+              <hr className="section-divider" />
+              <h2>Done! Now let's add some more</h2>
               <p>Use the button below to save your first history entry and start another</p>
-              <div className="text-center">
+              <div>
                 <button className="add usa-button-outline" onClick={this.create}>
                   <span>Save and add another address, job, or school</span>
                   <i className="fa fa-plus-circle"></i>

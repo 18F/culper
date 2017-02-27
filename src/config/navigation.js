@@ -18,6 +18,7 @@ const navigation = [
     name: 'Financial record',
     title: 'Financial record',
     url: 'financial',
+    hidden: true,
     subsections: [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
@@ -60,12 +61,21 @@ const navigation = [
     ]
   },
   {
-    name: 'Your history',
-    title: 'Your history',
-    url: 'history',
+    name: 'Your history (A)',
+    title: 'Your history (A)',
+    url: 'history1',
     hidden: false,
     subsections: [
-      { name: 'Timeline', url: 'timeline' },
+      { name: 'Former federal service', url: 'federal' },
+      { hidden: true, name: 'Employment record', url: 'employment' }
+    ]
+  },
+  {
+    name: 'Your history (B)',
+    title: 'Your history (B)',
+    url: 'history2',
+    hidden: false,
+    subsections: [
       { name: 'Places lived', url: 'residence' },
       { name: 'Employment', url: 'employment' },
       { name: 'Schools & diplomas', url: 'education' },
@@ -77,6 +87,7 @@ const navigation = [
     name: 'Foreign activities',
     title: 'Foreign activities',
     url: 'foreign',
+    hidden: true,
     subsections: [
       { name: 'U.S. passport information', url: 'passport' },
       { hidden: true, name: 'Foreign contacs', url: 'contacts' },

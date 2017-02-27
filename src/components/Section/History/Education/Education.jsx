@@ -124,7 +124,7 @@ export class EducationItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h3>{i18n.t('history.education.heading.reference')}</h3>
+          <h2>{i18n.t('history.education.heading.reference')}</h2>
           <p>{i18n.t('history.education.para.reference')}</p>
           <Reference name="Reference"
                      {...this.state.Reference}
@@ -162,7 +162,7 @@ export class EducationItem extends ValidationElement {
     return (
       <div>
         <div className="content">
-          <h4>{i18n.t('history.education.heading.dates')}</h4>
+          <h3>{i18n.t('history.education.heading.dates')}</h3>
           <div className="eapp-field-wrap">
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
             <Help id="history.education.help.dates">
@@ -176,7 +176,7 @@ export class EducationItem extends ValidationElement {
             </Help>
           </div>
 
-          <h4>{i18n.t('history.education.heading.name')}</h4>
+          <h3>{i18n.t('history.education.heading.name')}</h3>
           <div className="eapp-field-wrap">
             <Help id="history.education.help.name">
               <Text name="Name"
@@ -198,7 +198,7 @@ export class EducationItem extends ValidationElement {
                     className="eapp-field-wrap"
                     onUpdate={this.updateComments}
                     onValidate={this.props.onValidate}>
-            <h4>{i18n.t('history.education.heading.address')}</h4>
+            <h3>{i18n.t('history.education.heading.address')}</h3>
             <div className="eapp-field-wrap">
               <Help id="history.education.help.address">
                 <Address name="Address"
@@ -212,7 +212,7 @@ export class EducationItem extends ValidationElement {
             </div>
           </Comments>
 
-          <h4>{i18n.t('history.education.heading.type')}</h4>
+          <h3>{i18n.t('history.education.heading.type')}</h3>
           <div className="eapp-field-wrap">
             <Help id="history.education.help.type">
               <RadioGroup className="type option-list"
@@ -244,8 +244,8 @@ export class EducationItem extends ValidationElement {
 
           {this.reference()}
 
-          <h3>{i18n.t('history.education.heading.degrees')}</h3>
-          <h4>{i18n.t('history.education.heading.degree')}</h4>
+          <h2>{i18n.t('history.education.heading.degrees')}</h2>
+          <h3>{i18n.t('history.education.heading.degree')}</h3>
           <Branch name="branch_degree"
                   className="eapp-field-wrap"
                   value={this.state.HasDegree}
