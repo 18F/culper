@@ -952,7 +952,7 @@ export default class HistoryCollection extends ValidationElement {
 
           <Show when={this.state.collectionType}>
             <div>
-              <h3>Done! Now let's add some more</h3>
+              <h2>Done! Now let's add some more</h2>
               <p>Use the button below to save your first history entry and start another</p>
               <div className="text-center">
                 <button className="add usa-button-outline" onClick={this.create}>
