@@ -134,8 +134,8 @@ class Identification extends ValidationElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       next="financial"
-                       nextLabel={i18n.t('financial.destination.gambling')}
+                       next="history1"
+                       nextLabel={i18n.t('history.destination.timeline')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
 

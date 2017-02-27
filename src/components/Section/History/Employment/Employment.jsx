@@ -176,7 +176,7 @@ export class EmploymentItem extends ValidationElement {
                       />
         </Show>
 
-        <h3>{i18n.t(`${prefix}.heading.reference`)}</h3>
+        <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
         <Reference name="Reference"
                    {...this.props.Reference}
                    onUpdate={this.onUpdate.bind(this, 'Reference')}
@@ -195,7 +195,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployer()}>
           <div>
-            <h3>{i18n.t(`${prefix}.heading.additionalActivity`)}</h3>
+            <h2>{i18n.t(`${prefix}.heading.additionalActivity`)}</h2>
             <p>{i18n.t(`${prefix}.para.additionalActivity`)}</p>
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
@@ -206,7 +206,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showLeaving()}>
           <div>
-            <h3>{i18n.t('history.employment.default.left.title')}</h3>
+            <h2>{i18n.t('history.employment.default.left.title')}</h2>
             <p>{i18n.t('history.employment.default.left.para')}</p>
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
