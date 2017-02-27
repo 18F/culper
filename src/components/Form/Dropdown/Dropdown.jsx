@@ -62,7 +62,21 @@ export default class Dropdown extends ValidationElement {
         }
       }
 
-      this.setState({options: arr})
+      this.setState({options: arr}, () => {
+        // Force validation. Particularly on first render we need to revalidate the
+        // value.
+        let event = {
+          target: {
+            id: this.props.id || '',
+            name: this.props.name,
+            value: this.state.value
+          },
+          persist: function () {},
+          fake: true
+        }
+
+        this.handleValidation(event)
+      })
     }
   }
 
