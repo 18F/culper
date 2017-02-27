@@ -902,6 +902,12 @@ const en = {
           title: 'Start with your present employer',
           button: 'Add employer'
         }
+      },
+      heading: {
+        exiting: 'Before you leave this section'
+      },
+      para: {
+        exiting: '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
       }
     },
     review: {

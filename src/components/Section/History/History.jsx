@@ -12,7 +12,7 @@ import SummaryCounter from './SummaryCounter'
 import ReactMarkdown from 'react-markdown'
 import HistoryCollection from './HistoryCollection/HistoryCollection'
 import Federal from './Federal'
-import { utc, today, daysAgo, daysBetween } from './dateranges'
+import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
 
 class History extends ValidationElement {
   constructor (props) {
@@ -314,6 +314,35 @@ class History extends ValidationElement {
     this.setState({ addOnLoad: 'Employment' })
   }
 
+  hasGaps (types) {
+    let holes = 0
+
+    if (this.props.History) {
+      const start = daysAgo(today, 365 * this.totalYears())
+
+      for (const t of types) {
+        // If there is no history it should still display the exiting message
+        if (!this.props.History[t]) {
+          holes += 1
+          continue
+        }
+
+        const list = this.props.History[t].List
+
+        // If there is no history it should still display the exiting message
+        if (list.length === 0) {
+          holes += 1
+          continue
+        }
+
+        const ranges = list.map(item => { return item.Item.Dates })
+        holes += gaps(ranges, start).length
+      }
+    }
+
+    return holes > 0
+  }
+
   render () {
     return (
       <div className="history">
@@ -377,6 +406,13 @@ class History extends ValidationElement {
                                    onEducationUpdate={this.onUpdate.bind(this, 'Education')}
                                    onValidate={this.onValidate}
                                    />
+                <Show when={this.hasGaps(['Residence', 'Employment'])}>
+                  <div className="not-complete">
+                    <hr className="section-divider" />
+                    <h2>{i18n.t('history.timeline.heading.exiting')}</h2>
+                    {i18n.m('history.timeline.para.exiting')}
+                  </div>
+                </Show>
               </div>
             </Show>
           </SectionView>
@@ -398,9 +434,13 @@ class History extends ValidationElement {
                                onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
                                onValidate={this.onValidate}
                                />
-            <hr className="section-divider" />
-            <h2>{i18n.t('history.residence.heading.exiting')}</h2>
-            <ReactMarkdown source={i18n.t('history.residence.para.exiting')} />
+            <Show when={this.hasGaps(['Residence'])}>
+              <div className="not-complete">
+                <hr className="section-divider" />
+                <h2>{i18n.t('history.residence.heading.exiting')}</h2>
+                {i18n.m('history.residence.para.exiting')}
+              </div>
+            </Show>
           </SectionView>
 
           <SectionView name="employment"
@@ -421,9 +461,13 @@ class History extends ValidationElement {
                                onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
                                onValidate={this.onValidate}
                                />
-            <hr className="section-divider" />
-            <h2>{i18n.t('history.employment.heading.exiting')}</h2>
-            <ReactMarkdown source={i18n.t('history.employment.para.exiting')} />
+            <Show when={this.hasGaps(['Employment'])}>
+              <div className="not-complete">
+                <hr className="section-divider" />
+                <h2>{i18n.t('history.employment.heading.exiting')}</h2>
+                {i18n.m('history.employment.para.exiting')}
+              </div>
+            </Show>
           </SectionView>
 
           <SectionView name="education"
