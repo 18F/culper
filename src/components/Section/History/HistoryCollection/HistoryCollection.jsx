@@ -323,7 +323,7 @@ export default class HistoryCollection extends ValidationElement {
       return false
     }
 
-    if (!(item.HasDegree10 === 'No' || item.HasDegree10 === 'Yes')) {
+    if (item.HasAttended === 'No' && !(item.HasDegree10 === 'No' || item.HasDegree10 === 'Yes')) {
       return false
     }
 
@@ -355,7 +355,7 @@ export default class HistoryCollection extends ValidationElement {
           return false
       }
 
-      if (!item.Name && !item.Name.value) {
+      if (!item.Name || !item.Name.value) {
         return false
       }
 
@@ -441,7 +441,12 @@ export default class HistoryCollection extends ValidationElement {
           return false
         }
 
-        for (const diploma of item.Diplomas) {
+        for (const diplomaItem of item.Diplomas) {
+          if (!diplomaItem.Diploma) {
+            return false
+          }
+
+          const diploma = diplomaItem.Diploma
           if (!diploma.Diploma) {
             return false
           }
@@ -450,12 +455,7 @@ export default class HistoryCollection extends ValidationElement {
             return false
           }
 
-          if (!diploma.Date || !diploma.Date.from || !diploma.Date.to) {
-            return false
-          }
-
-          const { from, to } = diploma.Date
-          if (from > to) {
+          if (!diploma.Date || !diploma.Date.date) {
             return false
           }
         }

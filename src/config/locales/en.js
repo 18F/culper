@@ -247,6 +247,11 @@ const en = {
         title: 'Zipcode not in accepted format',
         message: 'The zipcode can be either the 5 or 9 digit variation',
         note: ''
+      },
+      length: {
+        title: 'Zipcode not in accepted format',
+        message: 'The zipcode can be either the 5 or 9 digit variation',
+        note: ''
       }
     },
     country: {
