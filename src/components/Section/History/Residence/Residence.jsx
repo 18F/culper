@@ -110,9 +110,9 @@ export class ResidenceItem extends ValidationElement {
 
         <Comments name="Comments"
                   {...this.state.Comments}
+                  className="eapp-field-wrap"
                   addLabel="history.residence.label.comments"
                   title={i18n.t('history.residence.heading.comments')}
-                  className="eapp-field-wrap"
                   onUpdate={this.onUpdate.bind(this, 'Comments')}
                   onValidate={this.props.onValidate}>
           <h3>{i18n.t('history.residence.heading.address')}</h3>
