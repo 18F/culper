@@ -91,7 +91,6 @@ export default class Telephone extends ValidationElement {
   }
 
   handleNumberTypeChange (type, other) {
-    console.log(other)
     this.setState({numberType: type}, () => {
       this.onUpdate()
     })

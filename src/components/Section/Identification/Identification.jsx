@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { IdentificationValidator } from '../../../validators'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidationElement from '../../Form/ValidationElement'
 import ApplicantName from '../../Form/Name'
@@ -56,39 +57,13 @@ class Identification extends ValidationElement {
       this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
     }
 
-    let cstatus = 'neutral'
-    if (this.hasStatus('name', status, true)
-        && this.hasStatus('birthdate', status, true)
-        && this.hasStatus('birthplace', status, true)
-        && this.hasStatus('contacts', status, true)
-        && this.hasStatus('ssn', status, true)
-        && this.hasStatus('physical', status, true)
-        && this.hasStatus('othernames', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('name', status, false)
-               || this.hasStatus('birthdate', status, false)
-               || this.hasStatus('birthplace', status, false)
-               || this.hasStatus('contacts', status, false)
-               || this.hasStatus('ssn', status, false)
-               || this.hasStatus('physical', status, false)
-               || this.hasStatus('othernames', status, false)) {
-      cstatus = 'incomplete'
-    }
-
+    let cstatus = new IdentificationValidator(null, this.props).completionStatus(status)
     let completed = {
       ...this.props.Completed,
       ...status,
       status: cstatus
     }
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
   }
 
   intro () {
@@ -321,7 +296,7 @@ function mapStateToProps (state) {
   }
 }
 
-function processApplicantBirthDate (birthDate) {
+export function processApplicantBirthDate (birthDate) {
   if (!birthDate) {
     return null
   }
