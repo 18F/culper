@@ -78,6 +78,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/gulp lint && ./node_modules/.bin/jest -u --coverage",
+    "codecov": "./node_modules/.bin/gulp lint && ./node_modules/.bin/jest -u --coverage && ./node_modules/.bin/codecov",
     "lint": "./node_modules/.bin/gulp lint",
     "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watchdog"

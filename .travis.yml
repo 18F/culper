@@ -13,7 +13,7 @@ script:
   - cp .env.test .env
   - docker-compose build
   - docker-compose run api ./test.sh
-  - docker-compose run frontend npm test && codecov
+  - docker-compose run frontend npm codecov
 
 after_script:
   - npm install -g pa11y-crawl
