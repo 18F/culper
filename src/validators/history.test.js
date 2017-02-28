@@ -12,7 +12,7 @@ describe('Employment component validation', function () {
                 EmploymentActivity: {
                   value: 'Contractor'
                 },
-                DatesEmployed: {
+                Dates: {
                   from: new Date('1/1/2010'),
                   to: new Date('1/1/2012'),
                   present: false
@@ -36,6 +36,57 @@ describe('Employment component validation', function () {
                 Additional: {
                   HasAdditionalActivity: 'No',
                   List: []
+                },
+                Telephone: {
+                  noNumber: '',
+                  number: '2028675309',
+                  numberType: 'Cell',
+                  timeOfDay: 'Day'
+                },
+                ReasonLeft: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2012')
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
+                },
+                Reference: {
+                  FullName: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  LastContact: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Relationship: 'Friend',
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  },
+                  Email: {
+                    value: 'user@local.dev'
+                  },
+                  Address: {
+                    addressType: 'United States',
+                    address: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202'
+                  }
                 }
               }
             }

@@ -21,15 +21,15 @@ export default class EmploymentValidator {
   }
 
   hasEmployment () {
-    return !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(this.employmentActivity.value)
+    return this.employmentActivity && !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(this.employmentActivity.value)
   }
 
   hasPhysicalAddress () {
-    return ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other', 'SelfEmployment'].includes(this.employmentActivity.value)
+    return this.employmentActivity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other', 'SelfEmployment'].includes(this.employmentActivity.value)
   }
 
   hasSupervisor () {
-    return ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(this.employmentActivity.value)
+    return this.employmentActivity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(this.employmentActivity.value)
   }
 
   validEmploymentActivity () {
@@ -78,16 +78,23 @@ export default class EmploymentValidator {
 
   validAdditionalActivity () {
     if (this.hasEmployment()) {
-      if (!this.additional || !this.additional.HasAdditionalActivity) {
+      if (!this.additional) {
         return false
       }
 
-      for (let activity of this.additional.List) {
-        let valid = (validGenericTextfield(activity.Position) &&
-          validGenericTextfield(activity.Supervisor) &&
-          new DateRangeValidator(activity.DatesEmployed).isValid())
-        if (!valid) {
+      if (!(this.additional.HasAdditionalActivity === 'No' || this.additional.HasAdditionalActivity === 'Yes')) {
+        return false
+      }
+
+      if (this.additional.HasAdditionalActivity === 'Yes') {
+        if (!this.additional.List || this.additional.List.length === 0) {
           return false
+        }
+
+        for (const activity of this.additional.List) {
+          return validGenericTextfield(activity.Position) &&
+            validGenericTextfield(activity.Supervisor) &&
+            new DateRangeValidator(activity.DatesEmployed).isValid()
         }
       }
     }
@@ -105,7 +112,14 @@ export default class EmploymentValidator {
 
   validPhysicalAddress () {
     if (this.hasPhysicalAddress()) {
-      return new AddressValidator(this.physicalAddress, null).isValid()
+      if (!this.physicalAddress || !(this.physicalAddress.HasDifferentAddress === 'No' || this.physicalAddress.HasDifferentAddress === 'Yes')) {
+        return false
+      }
+
+      if (this.physicalAddress.HasDifferentAddress === 'Yes') {
+        return this.physicalAddress.Address &&
+          new AddressValidator(this.physicalAddress.Address, null).isValid()
+      }
     }
 
     return true
@@ -148,7 +162,7 @@ export default class EmploymentValidator {
   }
 
   validReference () {
-    return new ReferenceValidator(this.reference, null).isValid()
+    return this.reference && new ReferenceValidator(this.reference, null).isValid()
   }
 
   isValid () {
