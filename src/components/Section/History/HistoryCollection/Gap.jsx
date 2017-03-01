@@ -34,28 +34,30 @@ export class Gap extends React.Component {
 
     return (
       <div className="item">
-        <Show when={this.props.first === true}>
-          <div className="summary caption">
-            <div className="title">
-              <h4>{i18n.t('collection.summary')}</h4>
-              <hr />
+        <div className="summary">
+          <Show when={this.props.first === true}>
+            <div className="caption gutters">
+                <div className="title">
+                  <h4>{i18n.t('collection.summary')}</h4>
+                  <hr />
+                </div>
+            </div>
+          </Show>
+          <div className="gap row gutters">
+            <div className="help">
+              <div className="message eapp-error-message">
+                <i className="fa fa-exclamation"></i>
+                <span className="dates">{`${from.getMonth() + 1}/${from.getFullYear()}-${to.getMonth() + 1}/${to.getFullYear()}`}</span>
+                <h4>{title}</h4>
+                <p>{para}</p>
+                <button className="usa-button-outline" onClick={this.props.onClick}>
+                  <span>{btnText}</span>
+                  <i className="fa fa-plus-circle"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </Show>
-        <div className="summary pre">
-          <div className="help">
-            <div className="message eapp-error-message">
-              <i className="fa fa-exclamation"></i>
-              <span className="dates">{`${from.getMonth() + 1}/${from.getFullYear()}-${to.getMonth() + 1}/${to.getFullYear()}`}</span>
-              <h4>{title}</h4>
-              <p>{para}</p>
-              <button className="usa-button-outline" onClick={this.props.onClick}>
-                <span>{btnText}</span>
-                <i className="fa fa-plus-circle"></i>
-              </button>
-            </div>
-          </div>
-          <div className="divider">
+          <div className="divider gutters">
             <hr />
           </div>
         </div>
