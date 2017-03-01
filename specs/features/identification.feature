@@ -24,13 +24,13 @@ Feature: Identification
     Then I should be in the identification birthplace section
     Then I log out
 
-  # Scenario: Birth place
-  #   Given I am a registered user
-  #   And I log in
-  #   And I fill in the identification birthplace section
-  #   And I click next
-  #   Then I should be in the identification contacts section
-  #   Then I log out
+  Scenario: Birth place
+    Given I am a registered user
+    And I log in
+    And I fill in the identification birthplace section
+    And I click next
+    Then I should be in the identification contacts section
+    Then I log out
 
   # Scenario: Contacts
   #   Given I am a registered user
