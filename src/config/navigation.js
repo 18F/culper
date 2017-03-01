@@ -18,7 +18,7 @@ const navigation = [
     name: 'Financial record',
     title: 'Financial record',
     url: 'financial',
-    hidden: true,
+    hidden: false,
     subsections: [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
@@ -87,7 +87,7 @@ const navigation = [
     name: 'Foreign activities',
     title: 'Foreign activities',
     url: 'foreign',
-    hidden: true,
+    hidden: false,
     subsections: [
       { name: 'U.S. passport information', url: 'passport' },
       { hidden: true, name: 'Foreign contacs', url: 'contacts' },
