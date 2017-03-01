@@ -135,6 +135,7 @@ export default class DateRange extends ValidationElement {
             From date
           </div>
           <DateControl name="from"
+                       className="from"
                        value={this.state.from}
                        estimated={this.state.estimated}
                        receiveProps={this.state.trickleDown}
@@ -151,6 +152,7 @@ export default class DateRange extends ValidationElement {
           </div>
           <DateControl name="to"
                        ref="to"
+                       className="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
                        receiveProps={this.state.trickleDown || this.state.presentClicked}
