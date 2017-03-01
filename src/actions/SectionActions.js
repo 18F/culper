@@ -6,7 +6,7 @@ export function updateSection (section, subsection) {
   }
 }
 
-export function handleSectionUpdate (section, subsection) {
+export function handleSectionUpdate (section, subsection, scrollTo = 'scrollTo') {
   return {
     type: SectionConstants.SECTION_UPDATE,
     section: section,

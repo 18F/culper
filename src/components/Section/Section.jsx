@@ -1,4 +1,5 @@
 import React from 'react'
+import { push } from '../../middleware/history'
 import { updateSection } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
@@ -25,6 +26,7 @@ class Section extends React.Component {
     let name = props.section
     let sub = props.subsection
     this.props.dispatch(updateSection(name, sub))
+    this.props.dispatch(push(`/form/${props.section}/${props.subsection || ''}`))
   }
 
   render () {
@@ -36,7 +38,10 @@ class Section extends React.Component {
         <SectionView name="financial">
           <Financial subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="history">
+        <SectionView name="history1">
+          <History subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="history2">
           <History subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="foreign">

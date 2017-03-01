@@ -1,6 +1,8 @@
 @import 'eqip-colors';
 
 .history-collection {
+  margin-bottom: 5rem;
+
   .index {
     width: 13rem;
 
@@ -37,15 +39,8 @@
     margin: 1.3rem -5rem 0 0;
   }
 
-  .pre, .post {
-    background-color: $eapp-grey-light;
-    padding-top: 0;
-    padding-bottom: 0;
-
+  .gap {
     .help {
-      padding-top: 0;
-      margin-bottom: 2rem;
-
       .message {
         width: 100%;
       }
@@ -73,5 +68,10 @@
         margin-left: 1rem;
       }
     }
+  }
+
+  .add {
+    display: initial !important;
+    margin-left: 4rem !important;
   }
 }

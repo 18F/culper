@@ -77,7 +77,7 @@ export class ResidenceItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h3>{i18n.t('history.residence.heading.reference')}</h3>
+          <h2>{i18n.t('history.residence.heading.reference')}</h2>
           <p>{i18n.t('history.residence.para.reference')}</p>
           <Reference name="Reference"
                      {...this.state.Reference}
@@ -94,7 +94,7 @@ export class ResidenceItem extends ValidationElement {
   render () {
     return (
       <div className="residence">
-        <h4>{i18n.t('history.residence.heading.dates')}</h4>
+        <h3>{i18n.t('history.residence.heading.dates')}</h3>
         <div className="eapp-field-wrap">
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <Help id="history.residence.help.dates">
@@ -110,12 +110,12 @@ export class ResidenceItem extends ValidationElement {
 
         <Comments name="Comments"
                   {...this.state.Comments}
+                  className="eapp-field-wrap"
                   addLabel="history.residence.label.comments"
                   title={i18n.t('history.residence.heading.comments')}
-                  className="eapp-field-wrap"
                   onUpdate={this.onUpdate.bind(this, 'Comments')}
                   onValidate={this.props.onValidate}>
-          <h4>{i18n.t('history.residence.heading.address')}</h4>
+          <h3>{i18n.t('history.residence.heading.address')}</h3>
           <div className="eapp-field-wrap">
             <Help id="history.residence.help.address">
               <Address name="Address"
@@ -129,7 +129,7 @@ export class ResidenceItem extends ValidationElement {
           </div>
         </Comments>
 
-        <h4>{i18n.t('history.residence.heading.role')}</h4>
+        <h3>{i18n.t('history.residence.heading.role')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.residence.help.role">
             <RadioGroup className="role option-list"

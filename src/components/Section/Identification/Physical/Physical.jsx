@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
+import { PhysicalValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'
 
 export default class Physical extends ValidationElement {
@@ -58,47 +59,7 @@ export default class Physical extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.Height) {
-      return false
-    }
-
-    if (this.state.Height.feet < 1 || !this.state.Height.inches) {
-      return false
-    }
-
-    if (!this.state.Weight) {
-      return false
-    }
-
-    if (this.state.Weight < 10) {
-      return false
-    }
-
-    if (!this.state.HairColor) {
-      return false
-    }
-
-    if (!this.state.HairColor.length) {
-      return false
-    }
-
-    if (!this.state.EyeColor) {
-      return false
-    }
-
-    if (!this.state.EyeColor.length) {
-      return false
-    }
-
-    if (!this.state.Sex) {
-      return false
-    }
-
-    if (!this.state.Sex.length) {
-      return false
-    }
-
-    return true
+    return new PhysicalValidator(this.state, null).isValid()
   }
 
   render () {

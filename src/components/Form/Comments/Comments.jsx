@@ -54,7 +54,7 @@ export default class Comments extends ValidationElement {
         <div className="comments">
           {this.props.children}
           <div className={klass}>
-            <a href="javascript:;;" onClick={this.toggle} className="add">
+            <a href="javascript:;;" onClick={this.toggle} className="add-comment">
               <span>{i18n.t(addLocalisation)}</span>
               <i className="fa fa-plus-circle"></i>
             </a>
@@ -73,7 +73,7 @@ export default class Comments extends ValidationElement {
                   value={this.state.value}
                   />
         <div className={klass}>
-          <a href="javascript:;;" onClick={this.toggle} className="remove">
+          <a href="javascript:;;" onClick={this.toggle} className="remove-comment">
             <span>{i18n.t(this.props.removeLabel || 'comments.remove')}</span>
             <i className="fa fa-times-circle"></i>
           </a>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { ContactInformationValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Email, Collection, Comments, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
@@ -76,27 +77,7 @@ export default class ContactInformation extends ValidationElement {
   }
 
   isValid () {
-    for (let email of this.state.Emails) {
-      if (!email.Email || !email.Email.value) {
-        return false
-      }
-    }
-
-    if (this.state.Emails.length < 2) {
-      return false
-    }
-
-    for (let phone of this.state.PhoneNumbers) {
-      if (!phone.Telephone || !phone.Telephone.number) {
-        return false
-      }
-    }
-
-    if (this.state.PhoneNumbers.length < 2) {
-      return false
-    }
-
-    return true
+    return new ContactInformationValidator(this.state, null).isValid()
   }
 
   /**

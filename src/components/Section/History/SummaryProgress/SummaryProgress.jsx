@@ -35,16 +35,17 @@ export default class SummaryProgress extends ValidationElement {
           width = Math.abs(right - left)
 
           // Check boundaries
-          if (left < 0) {
-            left = 0
-          }
-
           if (width < 0) {
             width = 0
           }
 
           if (width > 100) {
-            width = 100 - left
+            // width = 100 - Math.abs(left)
+            width -= Math.abs(left)
+          }
+
+          if (left < 0) {
+            left = 0
           }
         }
       }

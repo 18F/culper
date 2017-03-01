@@ -23,11 +23,11 @@
       margin-left: 1rem;
     }
 
-    &.add,
-    &.add:link,
-    &.add:visited,
-    &.add:hover,
-    &.add:active {
+    &.add-comment,
+    &.add-comment:link,
+    &.add-comment:visited,
+    &.add-comment:hover,
+    &.add-comment:active {
       color: $eapp-blue;
       text-decoration: none;
 
@@ -36,11 +36,11 @@
       }
     }
 
-    &.remove,
-    &.remove:link,
-    &.remove:visited,
-    &.remove:hover,
-    &.remove:active {
+    &.remove-comment,
+    &.remove-comment:link,
+    &.remove-comment:visited,
+    &.remove-comment:hover,
+    &.remove-comment:active {
       color: $eapp-red;
       text-decoration: none;
 
