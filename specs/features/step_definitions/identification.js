@@ -84,6 +84,14 @@ const completeBirthPlace = (promise) => {
 
 const completeContacts = (promise) => {
   return promise
+      .then(() => { return click('.contact .email-collection .item a.toggle') })
+      .then(() => { return setText('input[name="Email"]', 'professor@xmen.org') })
+      .then(() => { return click('.contact .telephone-collection .item a.toggle') })
+      .then(() => { return setText('input[name="domestic_first"]', '202') })
+      .then(() => { return setText('input[name="domestic_second"]', '867') })
+      .then(() => { return setText('input[name="domestic_third"]', '5309') })
+      .then(() => { return setOption('.timeofday .day label') })
+      .then(() => { return setOption('.phonetype .work label') })
 }
 
 const completeSocialSecurityNumber = (promise) => {
@@ -150,7 +158,7 @@ const click = (selector) => {
   return client
     .click(selector)
     .pause(3000)
-    .saveScreenshot('./screenshots/Identification/' + counter++ + '-click.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-click.png')
 }
 
 const setOption = (selector) => {
