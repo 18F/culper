@@ -57,7 +57,7 @@ const completeOtherNamesUsed = (promise) => {
       .then(() => { return setText('input[name="first"]', 'Professor') })
       .then(() => { return click('input[name="noMiddleName"]') })
       .then(() => { return setText('input[name="last"]', 'X') })
-      .then(() => { return setOption('input[name="maiden-name"]') })
+      .then(() => { return setOption('.maiden-name label') })
       .then(() => { return setText('.datecontrol.from .month input', '1') })
       .then(() => { return setText('.datecontrol.from .day input', '1') })
       .then(() => { return setText('.datecontrol.from .year input', '2010') })
@@ -98,9 +98,9 @@ const completePhysicalAttributes = (promise) => {
       .then(() => { return setText('input[name="feet"]', '6') })
       .then(() => { return setText('input[name="inches"]', '0') })
       .then(() => { return setText('input[name="pounds"]', '190') })
-      .then(() => { return setOption('.hair-colors .hair-bald') })
-      .then(() => { return setOption('.eye-colors .brown') })
-      .then(() => { return setOption('.sex input[value="male"]') })
+      .then(() => { return setOption('.hair-colors .bald.eapp-blocks-checkbox label') })
+      .then(() => { return setOption('.eye-colors .brown.eapp-blocks-radio label') })
+      .then(() => { return setOption('.sex .male label') })
 }
 
 const filenum = () => {
