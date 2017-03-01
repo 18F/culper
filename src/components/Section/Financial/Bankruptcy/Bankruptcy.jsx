@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { BankruptcyValidator } from '../../../../validators'
 import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Textarea, Help, HelpIcon,
          Text, Name, Address, PetitionType, Checkbox } from '../../../Form'
 
@@ -51,53 +52,7 @@ export default class Bankruptcy extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    if (!this.state.HasBankruptcy) {
-      return false
-    }
-
-    if (this.state.HasBankruptcy === 'No') {
-      return true
-    }
-
-    if (this.state.HasBankruptcy === 'Yes' && this.state.List.length === 0) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.PetitionType || !item.PetitionType.value) {
-        return false
-      }
-
-      if (!item.CourtAddress) {
-        return false
-      }
-
-      if (!item.CourtInvolved || !item.CourtInvolved.value) {
-        return false
-      }
-
-      if (!item.CourtNumber || !item.CourtNumber.value) {
-        return false
-      }
-
-      if (!item.DateDischarged || !item.DateDischarged.month || !item.DateDischarged.year) {
-        return false
-      }
-
-      if (!item.DateFiled || !item.DateFiled.month || !item.DateFiled.year) {
-        return false
-      }
-
-      if (!item.NameDebt || !item.NameDebt.first || !item.NameDebt.last || !item.NameDebt.middle) {
-        return false
-      }
-
-      if (!item.TotalAmount || !item.TotalAmount.value) {
-        return false
-      }
-    }
-
-    return true
+    return new BankruptcyValidator(this.state, null).isValid()
   }
 
   /**
