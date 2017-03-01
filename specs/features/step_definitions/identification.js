@@ -53,16 +53,17 @@ const completeFullName = (promise) => {
 const completeOtherNamesUsed = (promise) => {
   return promise
       .then(() => { return setOption('.other-names .branch .yes') })
+      .then(() => { return click('.other-names .collection .item a.toggle') })
       .then(() => { return setText('input[name="first"]', 'Professor') })
-      .then(() => { return setOption('input[name="noMiddleName"]') })
+      .then(() => { return click('input[name="noMiddleName"]') })
       .then(() => { return setText('input[name="last"]', 'X') })
       .then(() => { return setOption('input[name="maiden-name"]') })
-      .then(() => { return setText('.datecontrol .from .month input', '1') })
-      .then(() => { return setText('.datecontrol .from .day input', '1') })
-      .then(() => { return setText('.datecontrol .from .year input', '2010') })
-      .then(() => { return setText('.datecontrol .to .month input', '1') })
-      .then(() => { return setText('.datecontrol .to .day input', '1') })
-      .then(() => { return setText('.datecontrol .to .year input', '2011') })
+      .then(() => { return setText('.datecontrol.from .month input', '1') })
+      .then(() => { return setText('.datecontrol.from .day input', '1') })
+      .then(() => { return setText('.datecontrol.from .year input', '2010') })
+      .then(() => { return setText('.datecontrol.to .month input', '1') })
+      .then(() => { return setText('.datecontrol.to .day input', '1') })
+      .then(() => { return setText('.datecontrol.to .year input', '2011') })
       .then(() => { return setText('textarea[name="Reason"]', 'Just a nickname I go by') })
 }
 
@@ -98,7 +99,7 @@ const completePhysicalAttributes = (promise) => {
       .then(() => { return setText('input[name="inches"]', '0') })
       .then(() => { return setText('input[name="pounds"]', '190') })
       .then(() => { return setOption('.hair-colors .hair-bald') })
-      .then(() => { return setOption('.eye-colors input[value="Brown"]') })
+      .then(() => { return setOption('.eye-colors .brown') })
       .then(() => { return setOption('.sex input[value="male"]') })
 }
 
@@ -134,7 +135,7 @@ const navigateToSubsection = (section, subsection) => {
 
 const navigateToNext = () => {
   return client
-    .assert.visible('button.next')
+    // .assert.visible('button.next')
     .click('button.next')
     .pause(3000)
     .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-next.png')
@@ -145,9 +146,16 @@ const shouldBeInSubsection = (section, subsection) => {
     .assert.urlContains('/form/' + section + '/' + subsection)
 }
 
+const click = (selector) => {
+  return client
+    .click(selector)
+    .pause(3000)
+    .saveScreenshot('./screenshots/Identification/' + counter++ + '-click.png')
+}
+
 const setOption = (selector) => {
   return client
-    .assert.visible(selector)
+    // .assert.visible(selector)
     .click(selector)
     .pause(3000)
     .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-option.png')
@@ -155,7 +163,7 @@ const setOption = (selector) => {
 
 const setText = (selector, text) => {
   return client
-    .assert.visible(selector)
+    // .assert.visible(selector)
     .setValue(selector, text)
     .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-text.png')
 }

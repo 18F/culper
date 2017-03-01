@@ -8,13 +8,13 @@ Feature: Identification
     Then I should be in the identification othernames section
     Then I log out
 
-  # Scenario: Other names used
-  #   Given I am a registered user
-  #   And I log in
-  #   And I fill in the identification othernames used section
-  #   And I click next
-  #   Then I should be in the identification birthdate section
-  #   Then I log out
+  Scenario: Other names used
+    Given I am a registered user
+    And I log in
+    And I fill in the identification othernames section
+    And I click next
+    Then I should be in the identification birthdate section
+    Then I log out
 
   # Scenario: Birth date
   #   Given I am a registered user
