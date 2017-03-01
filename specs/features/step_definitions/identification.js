@@ -135,7 +135,7 @@ const navigateToSubsection = (section, subsection) => {
 
 const navigateToNext = () => {
   return client
-    // .assert.visible('button.next')
+    .assert.visible('button.next')
     .click('button.next')
     .pause(3000)
     .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-next.png')
@@ -155,7 +155,7 @@ const click = (selector) => {
 
 const setOption = (selector) => {
   return client
-    // .assert.visible(selector)
+    .assert.visible(selector)
     .click(selector)
     .pause(3000)
     .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-option.png')
@@ -163,7 +163,7 @@ const setOption = (selector) => {
 
 const setText = (selector, text) => {
   return client
-    // .assert.visible(selector)
+    .assert.visible(selector)
     .setValue(selector, text)
     .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-text.png')
 }
