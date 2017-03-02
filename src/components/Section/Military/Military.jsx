@@ -7,6 +7,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Selective from './Selective'
+import History from './History'
 
 class Military extends ValidationElement {
   constructor (props) {
@@ -21,6 +22,7 @@ class Military extends ValidationElement {
     this.onValidate = this.onValidate.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.updateSelective = this.updateSelective.bind(this)
+    this.updateHistory = this.updateHistory.bind(this)
   }
 
   componentDidMount () {
@@ -82,6 +84,10 @@ class Military extends ValidationElement {
 
   updateSelective (values) {
     this.onUpdate('Selective', values)
+  }
+
+  updateHistory (values) {
+    this.onUpdate('History', values)
   }
 
   /**
@@ -152,6 +158,12 @@ class Military extends ValidationElement {
                        onUpdate={this.updateSelective}
                        onValidate={this.onValidate}
                        />
+            <h2>{i18n.t('military.history.heading.served')}</h2>
+            <History name="history"
+                       {...this.props.History}
+                       onUpdate={this.updateHistory}
+                       onValidate={this.onValidate}
+                       />
           </SectionView>
 
           <SectionView name="selective"
@@ -172,6 +184,12 @@ class Military extends ValidationElement {
                        backLabel={i18n.t('military.destination.selective')}
                        next="military/disciplinary"
                        nextLabel={i18n.t('military.destination.disciplinary')}>
+            <h2>{i18n.t('military.history.heading.served')}</h2>
+            <History name="history"
+                       {...this.props.History}
+                       onUpdate={this.updateHistory}
+                       onValidate={this.onValidate}
+                       />
           </SectionView>
 
           <SectionView name="disciplinary"

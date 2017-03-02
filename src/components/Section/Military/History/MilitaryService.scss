@@ -1,0 +1,40 @@
+.military-service {
+  .service .eapp-blocks-radio label,
+  .status .eapp-blocks-radio label,
+  .officer .eapp-blocks-radio label,
+  .discharge-type .eapp-blocks-radio label {
+    width: 17rem;
+  }
+
+  .airforce-icon img,
+  .airnationalguard-icon img,
+  .army-icon img,
+  .armynationalguard-icon img,
+  .coastguard-icon img,
+  .marinecorps-icon img,
+  .navy-icon img {
+    height: 6rem;
+    padding-top: 1rem;
+  }
+
+  .service-icon,
+  .discharge-type-icon {
+    margin-left: -2rem;
+  }
+
+  .service-number,
+  .discharge-reason {
+    display: inline-block;
+    width: 92%;
+  }
+
+  .discharge-type .eapp-blocks-radio label {
+    height: 9rem;
+    padding-top: 2rem;
+  }
+
+  .long-text label {
+    padding-top: 1rem !important;
+    line-height: initial;
+  }
+}

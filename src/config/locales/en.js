@@ -1028,6 +1028,110 @@ const en = {
           note: ''
         }
       }
+    },
+    history: {
+      heading: {
+        served: 'Have you ever served in the U.S. Military?',
+        service: 'Provide the branch of service you served in',
+        status: 'Provide your status',
+        officer: 'Officer or enlisted',
+        number: 'Provide your service number',
+        dates: 'Provide your dates of service',
+        discharged: 'Were you discharged from this instance of U.S. military service, to include Reserves, or National Guard?',
+        details: 'Discharge details',
+        discharge: {
+          type: 'Provide the type of discharge you received',
+          date: 'Provide the date of discharge listed above'
+        }
+      },
+      label: {
+        airforce: 'Air Force',
+        airnationalguard: 'Air National Guard',
+        army: 'Army',
+        armynationalguard: 'Army National Guard',
+        coastguard: 'Coast Guard',
+        marinecorps: 'Marine Corps',
+        navy: 'Navy',
+        activeduty: 'Active Duty',
+        activereserve: 'Active Reserve',
+        inactivereserve: 'Inactive Reserve',
+        officer: 'Officer',
+        enlisted: 'Enlisted',
+        na: 'Not applicable',
+        discharge: {
+          type: {
+            honorable: 'Honorable',
+            dishonorable: 'Dishonorable',
+            lessthan: 'Under other than honorable conditions',
+            general: 'General',
+            badconduct: 'Bad conduct',
+            other: 'Other (provide type)'
+          },
+          reason: 'Provide the reason(s) for the discharge'
+        }
+      },
+      help: {
+        served: {
+          title: 'Need help determining if you have served?',
+          message: 'If at any point you have served with the active military then you need to report those activities',
+          note: ''
+        },
+        service: {
+          title: 'Need help with the branch of service?',
+          message: 'Please provide the branch of service you belonged to during this period',
+          note: ''
+        },
+        status: {
+          title: 'Need help with your status?',
+          message: 'Provide your current status with this service',
+          note: ''
+        },
+        officer: {
+          title: 'Need help with your enlistment?',
+          message: 'Select the most accurate option for your time in service',
+          note: ''
+        },
+        number: {
+          title: 'Need help with your service number?',
+          message: 'Depending on the time of your service you may have been assigned a service number. If not then use your social security number.',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with your dates of service?',
+          message: 'Provide the closest dates of service',
+          note: ''
+        },
+        discharged: {
+          title: 'Need help determining if you have been discharged?',
+          message: 'Provide the type of discharge and the corresponding details',
+          note: ''
+        },
+        discharge: {
+          type: {
+            title: 'Need help with the type of discharge?',
+            message: 'Please select the most appropriate type of discharge',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason for discharge?',
+            message: 'Provide the reasons or circumstances of the discharge',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of discharge?',
+            message: 'Provide the closest date of your military discharge',
+            note: ''
+          }
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of military history',
+          item: 'Branch',
+          unknown: 'Unknown'
+        },
+        append: 'Add additional military history'
+      }
     }
   },
 

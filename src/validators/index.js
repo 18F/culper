@@ -13,6 +13,7 @@ import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
 import EducationValidator from './education'
 import SelectiveServiceValidator from './selectiveservice'
+import MilitaryHistoryValidator from './militaryhistory'
 
 export {
   AddressValidator,
@@ -29,5 +30,6 @@ export {
   ResidenceValidator,
   EmploymentValidator,
   EducationValidator,
-  SelectiveServiceValidator
+  SelectiveServiceValidator,
+  MilitaryHistoryValidator
 }
