@@ -6,6 +6,7 @@ import { ValidationElement, IntroHeader } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
+import Selective from './Selective'
 
 class Military extends ValidationElement {
   constructor (props) {
@@ -17,6 +18,9 @@ class Military extends ValidationElement {
 
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
+    this.onValidate = this.onValidate.bind(this)
+    this.onUpdate = this.onUpdate.bind(this)
+    this.updateSelective = this.updateSelective.bind(this)
   }
 
   componentDidMount () {
@@ -74,6 +78,10 @@ class Military extends ValidationElement {
    */
   onUpdate (field, values) {
     this.props.dispatch(updateApplication('Military', field, values))
+  }
+
+  updateSelective (values) {
+    this.onUpdate('Selective', values)
   }
 
   /**
@@ -138,6 +146,12 @@ class Military extends ValidationElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="history1"
                        nextLabel={i18n.t('history.destination.timeline')}>
+            <h2>{i18n.t('military.selective.heading.born')}</h2>
+            <Selective name="selective"
+                       {...this.props.Selective}
+                       onUpdate={this.updateSelective}
+                       onValidate={this.onValidate}
+                       />
           </SectionView>
 
           <SectionView name="selective"
@@ -145,6 +159,12 @@ class Military extends ValidationElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="military/history"
                        nextLabel={i18n.t('military.destination.history')}>
+            <h2>{i18n.t('military.selective.heading.born')}</h2>
+            <Selective name="selective"
+                       {...this.props.Selective}
+                       onUpdate={this.updateSelective}
+                       onValidate={this.onValidate}
+                       />
           </SectionView>
 
           <SectionView name="history"

@@ -12,6 +12,7 @@ import GamblingValidator from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
 import EducationValidator from './education'
+import SelectiveServiceValidator from './selectiveservice'
 
 export {
   AddressValidator,
@@ -27,5 +28,6 @@ export {
   GamblingValidator,
   ResidenceValidator,
   EmploymentValidator,
-  EducationValidator
+  EducationValidator,
+  SelectiveServiceValidator
 }

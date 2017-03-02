@@ -972,6 +972,65 @@ const en = {
       }
     }
   },
+
+  military: {
+    tour: {
+      title: 'One piece at a time',
+      para: 'Take a guided tour through the section',
+      button: 'Take me on the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      para: 'View all the sections associated with military history at once',
+      button: 'Show me the full section'
+    },
+    destination: {
+      selective: 'Selective service record',
+      history: 'U.S. military',
+      disciplinary: 'Disciplinary procedures',
+      foreign: 'Foreign military',
+      review: 'Review military history'
+    },
+    selective: {
+      heading: {
+        born: 'Were you born a male after December 31, 1959?',
+        registered: 'Have you registered with the Selective Service System (SSS)?',
+        number: 'Provide registration number'
+      },
+      label: {
+        number: 'Note: Selective Service Number is not your Social Security Number',
+        explanation: 'Provide an explanation'
+      },
+      help: {
+        born: {
+          title: 'Need help with when you were born?',
+          message: 'The selective service only applies to males born before a cerain date.',
+          note: ''
+        },
+        registered: {
+          title: 'Need help with whether you have registered?',
+          message: 'The Selective Service website (see link below) provides additional resources which may assist in finding your registration number or eligibility',
+          note: ''
+        },
+        number: {
+          title: 'Need help with your registration number?',
+          message: 'If additional assistance in determining your registration number is required please refer to the Selective Service information below',
+          note: ''
+        },
+        explanation: {
+          title: 'Need help providing an explanation?',
+          message: 'To assist in the investigation please provide an explanation why you may be unregistered',
+          note: ''
+        },
+        remember: {
+          title: 'Can&rsquo;t remember your registration number?',
+          message: 'The Selective Service website can help provide the registration number for persons who have registered. Use this link to look up your registration number then come back and enter it above.',
+          note: ''
+        }
+      }
+    }
+  },
+
   history: {
     tour: {
       title: 'One piece at a time',
