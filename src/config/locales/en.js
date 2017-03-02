@@ -156,6 +156,11 @@ const en = {
       }
     },
     month: {
+      notfound: {
+        title: 'Month is not recognized',
+        message: 'The month must be between 1 (January) and 12 (December)',
+        note: ''
+      },
       max: {
         title: 'Month is not recognized',
         message: 'The month must be between 1 (January) and 12 (December)',
@@ -517,10 +522,26 @@ const en = {
         }
       },
       help: {
-        city: 'City where you were born',
-        state: 'State where you were born',
-        country: 'Country where you were born',
-        county: 'County where you were born'
+        city: {
+          title: 'Need help with the city?',
+          message: 'City where you were born',
+          note: ''
+        },
+        state: {
+          title: 'Need help with the state?',
+          message: 'State where you were born',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the country?',
+          message: 'Country where you were born',
+          note: ''
+        },
+        county: {
+          title: 'Need help with the county?',
+          message: 'County where you were born',
+          note: ''
+        }
       },
       label: {
         state: 'State',

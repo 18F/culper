@@ -130,11 +130,12 @@ export default class DateRange extends ValidationElement {
 
     return (
       <div className={klass}>
-        <div className="usa-grid">
+        <div className="usa-grid from-grid">
           <div className="from-label">
             From date
           </div>
           <DateControl name="from"
+                       className="from"
                        value={this.state.from}
                        estimated={this.state.estimated}
                        receiveProps={this.state.trickleDown}
@@ -145,12 +146,13 @@ export default class DateRange extends ValidationElement {
         <div className="arrow">
           <img src="../img/date-down-arrow.svg" />
         </div>
-        <div className="usa-grid">
+        <div className="usa-grid to-grid">
           <div className="from-label">
             To date
           </div>
           <DateControl name="to"
                        ref="to"
+                       className="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
                        receiveProps={this.state.trickleDown || this.state.presentClicked}
