@@ -59,7 +59,7 @@ export default class DateControl extends ValidationElement {
       case 'month':
       case 'mm':
       case 'm':
-        return d.getMonth() + 1
+        return '' + (d.getMonth() + 1)
 
       case 'day':
       case 'dd':
@@ -261,6 +261,7 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
+    console.log('month:', this.state.month)
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
     return (
@@ -268,6 +269,7 @@ export default class DateControl extends ValidationElement {
         <div className={this.divClass()}>
           <div className="usa-form-group month">
             <Dropdown name="month"
+                      ref="month"
                       label="Month"
                       placeholder="00"
                       value={this.state.month}

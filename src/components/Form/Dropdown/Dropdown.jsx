@@ -242,6 +242,7 @@ export default class Dropdown extends ValidationElement {
                      getSuggestionValue={getSuggestionValue}
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
+                     ref="autosuggest"
                      />
       </div>
     )

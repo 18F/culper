@@ -82,8 +82,8 @@ export default class DateRange extends ValidationElement {
 
       // This will force a blur/validation
       if (field === 'present') {
-        this.refs.to.refs.month.refs.input.focus()
-        this.refs.to.refs.month.refs.input.blur()
+        this.refs.to.refs.month.refs.autosuggest.input.focus()
+        this.refs.to.refs.month.refs.autosuggest.input.blur()
         this.refs.to.refs.day.refs.input.focus()
         this.refs.to.refs.day.refs.input.blur()
         this.refs.to.refs.year.refs.input.focus()
