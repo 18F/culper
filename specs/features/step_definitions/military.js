@@ -23,6 +23,8 @@ defineSupportCode(({Given, Then, When}) => {
       return completeSelectiveService(promise)
     case 'history':
       return completeMilitaryHistory(promise)
+    case 'disciplinary':
+      return completeDisciplinaryProcedures(promise)
     default:
       return promise
     }
@@ -56,6 +58,18 @@ const completeMilitaryHistory = (promise) => {
     .then(() => { return setOption('.discharge-type-honorable label') })
     .then(() => { return setText('.discharge-date .month input', '1') })
     .then(() => { return setText('.discharge-date .year input', '2005') })
+}
+
+const completeDisciplinaryProcedures = (promise) => {
+  return promise
+    .then(() => { return setOption('.branch .yes') })
+    .then(() => { return click('.collection .item a.toggle') })
+    .then(() => { return setText('.procedure-date .month input', '1') })
+    .then(() => { return setText('.procedure-date .year input', '2005') })
+    .then(() => { return setText('.procedure-offenses textarea', 'Loitering') })
+    .then(() => { return setText('.procedure-name input', 'Article 42') })
+    .then(() => { return setText('.procedure-court textarea', 'Congo') })
+    .then(() => { return setText('.procedure-outcome input', 'Reduction in rank') })
 }
 
 const filenum = () => {
