@@ -330,19 +330,37 @@ export default class Collection extends ValidationElement {
     })
   }
 
+  getAppendContext () {
+    let title = null
+    if (this.props.appendTitle) {
+      title = <h2>{this.props.appendTitle}</h2>
+    }
+
+    let message = null
+    if (this.props.appendMessage) {
+      message = this.props.appendMessage
+    }
+
+    const klassAppend = `collection-append ${this.props.appendClass || ''}`.trim()
+    return (
+      <div className={klassAppend}>
+        {title}
+        {message}
+        <button className="add usa-button-outline" onClick={this.append}>
+          <span>{this.props.appendLabel}</span>
+          <i className="fa fa-plus-circle"></i>
+        </button>
+      </div>
+    )
+  }
+
   render () {
     const klass = `collection ${this.props.className || ''}`.trim()
-    const klassAppend = `text-center ${this.props.appendClass || ''}`.trim()
 
     return (
       <div id={this.state.id} className={klass}>
         {this.getContent()}
-        <div className={klassAppend}>
-          <button className="add usa-button-outline" onClick={this.append}>
-            <span>{this.props.appendLabel}</span>
-            <i className="fa fa-plus-circle"></i>
-          </button>
-        </div>
+        {this.getAppendContext()}
       </div>
     )
   }

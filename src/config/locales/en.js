@@ -1152,10 +1152,11 @@ const en = {
           item: 'Branch',
           unknown: 'Click to provide details'
         },
+        appendTitle: 'Do you have additional military service to report?',
+        appendMessage: 'If yes use the button below to add more',
         append: 'Add additional military history'
       }
     },
-
     disciplinary: {
       heading: {
         title: 'Disciplinary procedures',
@@ -1211,10 +1212,11 @@ const en = {
           item: 'Procedure',
           unknown: 'Click to provide details'
         },
+        appendTitle: 'Additional disciplinary procedures',
+        appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         append: 'Add additional disciplinary procedures'
       }
     }
-
   },
 
   history: {

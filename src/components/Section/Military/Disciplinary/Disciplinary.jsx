@@ -125,7 +125,8 @@ export default class Disciplinary extends ValidationElement {
                       dispatch={this.updateList}
                       summary={this.summary}
                       summaryTitle={i18n.t('military.disciplinary.collection.summary.title')}
-                      appendClass="eapp-field-wrap"
+                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
+                      appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
                       appendLabel={i18n.t('military.disciplinary.collection.append')}>
             <Procedure name="Item"
                        onValidate={this.handleValidation}
