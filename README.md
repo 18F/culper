@@ -30,9 +30,9 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 
 The project team utilizes [GitHub Projects][9] as an in integrated project management tool to administer User Stories, Tasks, and Sprints.
 
- - [Board/Backlog][10]
- - [Milestones/Sprints][11]
- - [Epics/User Stories][12]
+ - [Board/Backlog][10] - The Product Backlog can be viewed in the GitHub Project Board along with the items being worked on in the current sprint
+ - [Milestones/Sprints][11] - Sprint durations are defined using GitHub Milestones, and backlog items (issues) worked on in a given sprint are tagged with a Milestone.
+ - [Epics/User Stories][12] - GitHub issues are tagged with the "Epic" tag to denote the issue as a User Story
 
 GitHub commits can be traced back to their corresponding tasks through commit comments.  Commits directly related to a task will be prefixed with the task ID:
 
@@ -41,6 +41,33 @@ truetandem/e-QIP-prototype#issue_number Commit description
 ```
 
 [Keywords][13] can be used to change the status of the associated issue
+
+## Sprint Backlogs
+To view the items completed during each development sprint and to view the burndown chart for each respective sprint, please use the links provided below. 
+
+### Sprint 1
+View Sprint 1 [backlog items][26] completed and [burndown chart][34]
+
+### Sprint 2
+View Sprint 2 [backlog items][27] completed and [burndown chart][35]
+
+### Sprint 3
+View Sprint 3 [backlog items][28] completed and [burndown chart][36]
+
+### Sprint 4
+View Sprint 4 [backlog items][29] completed and [burndown chart][37]
+
+### Sprint 5
+View Sprint 5 [backlog items][30] completed and [burndown chart][38]
+
+### Sprint 6
+View Sprint 6 [backlog items][31] completed and [burndown chart][39]
+
+### Sprint 7
+View Sprint 7 [backlog items][32] completed and [burndown chart][40]
+
+### Sprint 8 (current sprint)
+View Sprint 8 [backlog items][33] in progress 
 
 ## Getting to know the code
 
@@ -192,3 +219,18 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/truetandem/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
+[26]: https://github.com/truetandem/e-QIP-prototype/milestone/2?closed=1
+[27]: https://github.com/truetandem/e-QIP-prototype/milestone/3?closed=1
+[28]: https://github.com/truetandem/e-QIP-prototype/milestone/4?closed=1
+[29]: https://github.com/truetandem/e-QIP-prototype/milestone/5?closed=1
+[30]: https://github.com/truetandem/e-QIP-prototype/milestone/6?closed=1
+[31]: https://github.com/truetandem/e-QIP-prototype/milestone/7?closed=1
+[32]: https://github.com/truetandem/e-QIP-prototype/milestone/8?closed=1
+[33]: https://github.com/truetandem/e-QIP-prototype/milestone/9
+[34]: https://github.com/truetandem/e-QIP-prototype/issues/613
+[35]: https://github.com/truetandem/e-QIP-prototype/issues/614
+[36]: https://github.com/truetandem/e-QIP-prototype/issues/615
+[37]: https://github.com/truetandem/e-QIP-prototype/issues/616
+[38]: https://github.com/truetandem/e-QIP-prototype/issues/617
+[39]: https://github.com/truetandem/e-QIP-prototype/issues/618
+[40]: https://github.com/truetandem/e-QIP-prototype/issues/619
