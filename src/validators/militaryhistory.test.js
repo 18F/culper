@@ -34,6 +34,145 @@ describe('Military history validation', function () {
         state: {
           HasServed: 'Yes'
         },
+        expected: false
+      },
+      {
+        state: {
+          HasServed: 'Yes',
+          List: [
+            {
+              Item: {
+                Service: 'AirNationalGuard',
+                Status: 'ActiveDuty',
+                Officer: 'Enlisted',
+                ServiceNumber: '0123456789',
+                Dates: {
+                  from: new Date('1/1/2010'),
+                  to: new Date('1/1/2012'),
+                  present: false
+                },
+                HasBeenDischarged: 'Yes',
+                DischargeType: 'Other',
+                DischargeTypeOther: {
+                  value: 'Something'
+                },
+                DischargeReason: {
+                  value: 'My reason'
+                },
+                DischargeDate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2012')
+                }
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasServed: 'Yes',
+          List: [
+            {
+              Item: {
+                Service: 'AirNationalGuard',
+                Status: 'ActiveDuty',
+                Officer: 'Enlisted',
+                ServiceNumber: '0123456789',
+                Dates: {
+                  from: new Date('1/1/2010'),
+                  to: new Date('1/1/2012'),
+                  present: false
+                },
+                HasBeenDischarged: 'Yes',
+                DischargeType: 'Honorable',
+                DischargeDate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2012')
+                }
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasServed: 'Yes',
+          List: [
+            {
+              Item: {
+                Service: 'AirNationalGuard',
+                Status: 'ActiveDuty',
+                Officer: 'Enlisted',
+                ServiceNumber: '0123456789',
+                Dates: {
+                  from: new Date('1/1/2010'),
+                  to: new Date('1/1/2012'),
+                  present: false
+                },
+                HasBeenDischarged: 'Yes',
+                DischargeType: 'General',
+                DischargeReason: {
+                  value: 'My reason'
+                },
+                DischargeDate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2012')
+                }
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasServed: 'Yes',
+          List: [
+            {
+              Item: {
+                Service: 'AirNationalGuard',
+                Status: 'ActiveDuty',
+                Officer: 'Enlisted',
+                ServiceNumber: '0123456789',
+                Dates: {
+                  from: new Date('1/1/2010'),
+                  to: new Date('1/1/2012'),
+                  present: false
+                },
+                HasBeenDischarged: 'No'
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasServed: 'Yes',
+          List: [
+            {
+              Item: {
+                Service: 'Army',
+                Officer: 'Enlisted',
+                ServiceNumber: '0123456789',
+                Dates: {
+                  from: new Date('1/1/2010'),
+                  to: new Date('1/1/2012'),
+                  present: false
+                },
+                HasBeenDischarged: 'No'
+              }
+            }
+          ]
+        },
         expected: true
       }
     ]
