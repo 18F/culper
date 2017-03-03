@@ -1176,33 +1176,33 @@ const en = {
       },
       help: {
         branch: {
-          title: '',
-          message: '',
+          title: 'Need help determining disciplinary procedures?',
+          message: 'Have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?',
           note: ''
         },
         date: {
-          title: '',
-          message: '',
+          title: 'Need help with the date?',
+          message: 'Provide the date of the disciplinary procedures',
           note: ''
         },
         offenses: {
-          title: '',
-          message: '',
+          title: 'Need help with the offenses?',
+          message: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
           note: ''
         },
         name: {
-          title: '',
-          message: '',
+          title: 'Need help with the procedure name?',
+          message: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
           note: ''
         },
         court: {
-          title: '',
-          message: '',
+          title: 'Need help with the court information?',
+          message: 'Title of court or convening authority, address, to include city and state or country if overseas',
           note: ''
         },
         outcome: {
-          title: '',
-          message: '',
+          title: 'Need help with the outcome?',
+          message: 'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.',
           note: ''
         }
       },
