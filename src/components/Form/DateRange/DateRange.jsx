@@ -82,8 +82,8 @@ export default class DateRange extends ValidationElement {
 
       // This will force a blur/validation
       if (field === 'present') {
-        this.refs.to.refs.month.refs.input.focus()
-        this.refs.to.refs.month.refs.input.blur()
+        this.refs.to.refs.month.refs.autosuggest.input.focus()
+        this.refs.to.refs.month.refs.autosuggest.input.blur()
         this.refs.to.refs.day.refs.input.focus()
         this.refs.to.refs.day.refs.input.blur()
         this.refs.to.refs.year.refs.input.focus()
@@ -130,7 +130,7 @@ export default class DateRange extends ValidationElement {
 
     return (
       <div className={klass}>
-        <div className="usa-grid">
+        <div className="usa-grid from-grid">
           <div className="from-label">
             From date
           </div>
@@ -146,7 +146,7 @@ export default class DateRange extends ValidationElement {
         <div className="arrow">
           <img src="../img/date-down-arrow.svg" />
         </div>
-        <div className="usa-grid">
+        <div className="usa-grid to-grid">
           <div className="from-label">
             To date
           </div>

@@ -18,7 +18,6 @@ export default class State extends ValidationElement {
                 value={this.props.value}
                 required={this.props.required}
                 >
-        <option value="">{this.props.placeholder}</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
