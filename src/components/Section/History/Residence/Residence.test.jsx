@@ -9,7 +9,6 @@ describe('The residence component', () => {
     }
     const component = mount(<ResidenceItem {...expected} />)
     expect(component.find('.residence').length).toEqual(1)
-    // expect(component.find('.item').length).toEqual(1)
     expect(component.find('.reference').length).toEqual(0)
   })
 

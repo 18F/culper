@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
+import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 
 export default class DateControl extends ValidationElement {
@@ -58,7 +59,7 @@ export default class DateControl extends ValidationElement {
       case 'month':
       case 'mm':
       case 'm':
-        return d.getMonth() + 1
+        return '' + (d.getMonth() + 1)
 
       case 'day':
       case 'dd':
@@ -112,12 +113,12 @@ export default class DateControl extends ValidationElement {
         event.target.date = d
         super.handleChange(event)
 
-        // Always make sure the day is re-validated
-        if (['month', 'year', 'estimated'].includes(event.target.name)) {
-          this.refs.day.refs.input.focus()
-          this.refs.day.refs.input.blur()
-          event.target.focus()
-        }
+        // // Always make sure the day is re-validated
+        // if (['month', 'year', 'estimated'].includes(event.target.name)) {
+        //   this.refs.day.refs.input.focus()
+        //   this.refs.day.refs.input.blur()
+        //   event.target.focus()
+        // }
 
         if (this.props.onUpdate) {
           this.props.onUpdate({
@@ -260,32 +261,39 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
+    console.log('month:', this.state.month)
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
     return (
       <div className={klass}>
         <div className={this.divClass()}>
           <div className="usa-form-group month">
-            <Number id="month"
-                    name="month"
-                    ref="month"
-                    label="Month"
-                    placeholder="00"
-                    aria-described-by={this.errorName('month')}
-                    disabled={this.state.disabled}
-                    max="12"
-                    maxlength="2"
-                    min="1"
-                    readonly={this.props.readonly}
-                    required={this.props.required}
-                    step="1"
-                    value={this.state.month}
-                    focus={this.state.foci[0]}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
-                    onValidate={this.handleValidation}
-                    />
+            <Dropdown name="month"
+                      ref="month"
+                      label="Month"
+                      placeholder="00"
+                      value={this.state.month}
+                      disabled={this.state.disabled}
+                      readonly={this.props.readonly}
+                      required={this.props.required}
+                      onChange={this.handleChange}
+                      onFocus={this.handleFocus}
+                      onBlur={this.handleBlur}
+                      onValidate={this.handleValidation}
+                      >
+              <option value="Janurary">1</option>
+              <option value="February">2</option>
+              <option value="March">3</option>
+              <option value="April">4</option>
+              <option value="May">5</option>
+              <option value="June">6</option>
+              <option value="July">7</option>
+              <option value="August">8</option>
+              <option value="September">9</option>
+              <option value="October">10</option>
+              <option value="November">11</option>
+              <option value="December">12</option>
+            </Dropdown>
           </div>
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
             <Number id="day"

@@ -35,7 +35,7 @@ describe('The date range component', () => {
       }
     }
     const component = mount(<DateRange name={expected.name} onChange={expected.handleChange} />)
-    component.find('input').first().simulate('change')
+    component.find('input#day').first().simulate('change')
     expect(changes).toEqual(1)
   })
 
@@ -56,9 +56,6 @@ describe('The date range component', () => {
     }
     const component = mount(<DateRange name={expected.name} onChange={expected.handleChange} from={expected.from} to={expected.to} />)
     component.find('input[name="present"]').simulate('change')
-    component.find('input[name="month"]').first().simulate('change')
-    component.find('input[name="day"]').first().simulate('change')
-    component.find('input[name="year"]').first().simulate('change')
-    expect(changes).toEqual(4)
+    expect(changes).toEqual(1)
   })
 })

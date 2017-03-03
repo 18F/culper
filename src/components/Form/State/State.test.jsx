@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import State from './State'
 
 describe('The State component', () => {
@@ -9,6 +9,44 @@ describe('The State component', () => {
       value: ''
     }
     const component = shallow(<State {...expected} />).dive()
+    expect(component.find('div').length).toBeGreaterThan(0)
+  })
+
+  it('renders with short value', () => {
+    const expected = {
+      name: 'state',
+      value: 'Arizona',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+    const component = mount(<State {...expected} />)
+    component.find('input#state').simulate('change', {
+      target: {
+        value: 'AZ'
+      }
+    })
+    component.find('input#state').simulate('focus')
+    expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
+    component.find('input#state').simulate('blur')
+    expect(component.find('div').length).toBeGreaterThan(0)
+  })
+
+  it('renders with long value', () => {
+    const expected = {
+      name: 'state',
+      value: 'Arizona',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+    const component = mount(<State {...expected} />)
+    component.find('input#state').simulate('change', {
+      target: {
+        value: 'arizona'
+      }
+    })
+    component.find('input#state').simulate('focus')
+    expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
+    component.find('input#state').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 })
