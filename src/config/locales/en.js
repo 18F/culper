@@ -1154,7 +1154,67 @@ const en = {
         },
         append: 'Add additional military history'
       }
+    },
+
+    disciplinary: {
+      heading: {
+        title: 'Disciplinary procedures',
+        date: 'Provide the date of the court martial or other disciplinary procedure',
+        offenses: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
+        name: 'Provide the name of the disciplinary procedure',
+        court: 'Provide the description of the military court or other authority in which you were charged',
+        outcome: 'Provide the description of the final outcome of the disciplinary procedure'
+      },
+      para: {
+        info: '**In the last 7 years**, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+      },
+      label: {
+        name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
+        court: 'Title of court or convening authority, address, to include city and state or country if overseas',
+        outcome: 'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.'
+      },
+      help: {
+        branch: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        date: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        offenses: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        name: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        court: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        outcome: {
+          title: '',
+          message: '',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of disciplinary procedures',
+          item: 'Procedure',
+          unknown: 'Click to provide details'
+        },
+        append: 'Add additional disciplinary procedures'
+      }
     }
+
   },
 
   history: {

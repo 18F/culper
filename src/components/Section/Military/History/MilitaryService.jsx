@@ -28,8 +28,7 @@ export default class MilitaryService extends ValidationElement {
       DischargeType: props.DischargeType,
       DischargeTypeOther: props.DischargeTypeOther,
       DischargeReason: props.DischargeReason,
-      DischargeDate: props.DischargeDate,
-      errorCodes: []
+      DischargeDate: props.DischargeDate
     }
 
     this.onUpdate = this.onUpdate.bind(this)

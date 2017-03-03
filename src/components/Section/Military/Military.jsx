@@ -8,6 +8,7 @@ import { updateApplication, reportErrors, reportCompletion } from '../../../acti
 import { SectionViews, SectionView } from '../SectionView'
 import Selective from './Selective'
 import History from './History'
+import Disciplinary from './Disciplinary'
 
 class Military extends ValidationElement {
   constructor (props) {
@@ -23,6 +24,7 @@ class Military extends ValidationElement {
     this.onUpdate = this.onUpdate.bind(this)
     this.updateSelective = this.updateSelective.bind(this)
     this.updateHistory = this.updateHistory.bind(this)
+    this.updateDisciplinary = this.updateDisciplinary.bind(this)
   }
 
   componentDidMount () {
@@ -88,6 +90,10 @@ class Military extends ValidationElement {
 
   updateHistory (values) {
     this.onUpdate('History', values)
+  }
+
+  updateDisciplinary (values) {
+    this.onUpdate('Disciplinary', values)
   }
 
   /**
@@ -164,6 +170,13 @@ class Military extends ValidationElement {
                        onUpdate={this.updateHistory}
                        onValidate={this.onValidate}
                        />
+            <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
+            {i18n.m('military.disciplinary.para.info')}
+            <Disciplinary name="disciplinary"
+                          {...this.props.Disciplinary}
+                          onUpdate={this.updateDisciplinary}
+                          onValidate={this.onValidate}
+                          />
           </SectionView>
 
           <SectionView name="selective"
@@ -197,6 +210,13 @@ class Military extends ValidationElement {
                        backLabel={i18n.t('military.destination.history')}
                        next="military/foreign"
                        nextLabel={i18n.t('military.destination.foreign')}>
+            <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
+            {i18n.m('military.disciplinary.para.info')}
+            <Disciplinary name="disciplinary"
+                          {...this.props.Disciplinary}
+                          onUpdate={this.updateDisciplinary}
+                          onValidate={this.onValidate}
+                          />
           </SectionView>
 
           <SectionView name="foreign"

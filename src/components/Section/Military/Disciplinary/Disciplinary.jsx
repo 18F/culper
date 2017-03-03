@@ -1,9 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { MilitaryHistoryValidator } from '../../../../validators'
+import { MilitaryDisciplinaryValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Collection } from '../../../Form'
-import { dateSummary } from '../../History/HistoryCollection/summaries'
-import MilitaryService from './MilitaryService'
+import Procedure from './Procedure'
 
 /**
  * Convenience function to send updates along their merry way
@@ -17,17 +16,17 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class History extends ValidationElement {
+export default class Disciplinary extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasServed: props.HasServed,
+      HasDisciplinary: props.HasDisciplinary,
       List: props.List,
       errorCodes: []
     }
 
     this.onUpdate = this.onUpdate.bind(this)
-    this.updateServed = this.updateServed.bind(this)
+    this.updateDisciplinary = this.updateDisciplinary.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
@@ -37,8 +36,8 @@ export default class History extends ValidationElement {
     })
   }
 
-  updateServed (value, event) {
-    this.onUpdate('HasServed', value)
+  updateDisciplinary (value, event) {
+    this.onUpdate('HasDisciplinary', value)
 
     // If there is no history clear out any previously entered data
     if (value === 'No') {
@@ -86,7 +85,7 @@ export default class History extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    return new MilitaryHistoryValidator(this.state, null).isValid()
+    return new MilitaryDisciplinaryValidator(this.state, null).isValid()
   }
 
   /**
@@ -94,12 +93,16 @@ export default class History extends ValidationElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const service = o.Service || i18n.t('military.history.collection.summary.unknown')
-    const dates = dateSummary(o)
+    const service = o.Name && o.Name.value
+          ? o.Name.value
+          : i18n.t('military.disciplinary.collection.summary.unknown')
+    const dates = o.Date && o.Date.date
+          ? `${o.Date.month}/${o.Date.year}`
+          : ''
 
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('military.history.collection.summary.item')} {index + 1}:</div>
+        <div className="table-cell index">{i18n.t('military.disciplinary.collection.summary.item')} {index + 1}:</div>
         <div className="table-cell"><strong>{service}</strong></div>
         <div className="table-cell dates"><strong>{dates}</strong></div>
       </div>
@@ -108,25 +111,25 @@ export default class History extends ValidationElement {
 
   render () {
     return (
-      <div className="history">
-        <Branch name="has_served"
-                className="eapp-field-wrap served"
-                value={this.state.HasServed}
-                help="military.history.help.served"
-                onUpdate={this.updateServed}>
+      <div className="disciplinary">
+        <Branch name="has_disciplinary"
+                className="eapp-field-wrap"
+                value={this.state.HasDisciplinary}
+                help="military.disciplinary.help.branch"
+                onUpdate={this.updateDisciplinary}>
         </Branch>
 
-        <Show when={this.state.HasServed === 'Yes'}>
+        <Show when={this.state.HasDisciplinary === 'Yes'}>
           <Collection minimum="1"
                       items={this.state.List}
                       dispatch={this.updateList}
                       summary={this.summary}
-                      summaryTitle={i18n.t('military.history.collection.summary.title')}
+                      summaryTitle={i18n.t('military.disciplinary.collection.summary.title')}
                       appendClass="eapp-field-wrap"
-                      appendLabel={i18n.t('military.history.collection.append')}>
-            <MilitaryService name="Item"
-                             onValidate={this.handleValidation}
-                             />
+                      appendLabel={i18n.t('military.disciplinary.collection.append')}>
+            <Procedure name="Item"
+                       onValidate={this.handleValidation}
+                       />
           </Collection>
         </Show>
       </div>
