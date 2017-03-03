@@ -21,7 +21,6 @@ export default class MilitaryHistoryValidator {
     }
 
     for (const service of this.list) {
-      console.log(service)
       if (new MilitaryServiceValidator(service.Item, null).isValid() === false) {
         return false
       }

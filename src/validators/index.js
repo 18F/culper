@@ -15,6 +15,7 @@ import EducationValidator from './education'
 import SelectiveServiceValidator from './selectiveservice'
 import MilitaryHistoryValidator from './militaryhistory'
 import MilitaryDisciplinaryValidator from './militarydisciplinary'
+import MilitaryForeignValidator from './militaryforeign'
 
 export {
   AddressValidator,
@@ -33,5 +34,6 @@ export {
   EducationValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
-  MilitaryDisciplinaryValidator
+  MilitaryDisciplinaryValidator,
+  MilitaryForeignValidator
 }
