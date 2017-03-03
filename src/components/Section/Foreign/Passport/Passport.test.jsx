@@ -43,10 +43,17 @@ describe('The passport component', () => {
     const data = {
       Card: 'Book',
       Comments: 'Comment',
-      Expiration: {
-        day: '01',
+      Issued: {
+        day: '1',
         estimated: null,
-        month: '01',
+        month: '1',
+        name: 'issued',
+        year: '2003'
+      },
+      Expiration: {
+        day: '1',
+        estimated: null,
+        month: '1',
         name: 'expiration',
         year: '2004'
       },
