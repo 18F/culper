@@ -21,6 +21,8 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
     case 'selective':
       return completeSelectiveService(promise)
+    case 'history':
+      return completeMilitaryHistory(promise)
     default:
       return promise
     }
@@ -32,10 +34,29 @@ defineSupportCode(({Given, Then, When}) => {
 })
 
 const completeSelectiveService = (promise) => {
-    return promise
-      .then(() => { return setOption('.selective .branch.born .yes') })
-      .then(() => { return setOption('.selective .branch.registered .yes') })
-      .then(() => { return setText('input[name="RegistrationNumber"]', '1234567890') })
+  return promise
+    .then(() => { return setOption('.selective .branch.born .yes') })
+    .then(() => { return setOption('.selective .branch.registered .yes') })
+    .then(() => { return setText('input[name="RegistrationNumber"]', '1234567890') })
+}
+
+const completeMilitaryHistory = (promise) => {
+  return promise
+    .then(() => { return setOption('.history .branch .yes') })
+    .then(() => { return click('.history .collection .item a.toggle') })
+    .then(() => { return setOption('.military-service .service .marinecorps') })
+    .then(() => { return setOption('.military-service .status .activeduty') })
+    .then(() => { return setOption('.military-service .officer .enlisted') })
+    .then(() => { return setText('.military-service .dates .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.military-service .dates .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.military-service .dates .datecontrol.from .year input', '2001') })
+    .then(() => { return setText('.military-service .dates .datecontrol.to .month input', '1') })
+    .then(() => { return setText('.military-service .dates .datecontrol.to .day input', '1') })
+    .then(() => { return setText('.military-service .dates .datecontrol.to .year input', '2005') })
+    .then(() => { return setOption('.military-service .discharged .branch .yes') })
+    .then(() => { return setOption('.military-service .discharge-type .honorable') })
+    .then(() => { return setText('.military-service .discharge-date .month input', '1') })
+    .then(() => { return setText('.military-service .discharge-date .year input', '2005') })
 }
 
 const filenum = () => {
@@ -53,7 +74,7 @@ const filenum = () => {
 const navigateToSection = (section) => {
   const selector = '.section a[href="#/form/' + section + '"]'
   return client
-    .assert.visible(selector)
+        .assert.visible(selector)
     .click(selector)
     .pause(3000)
     .saveScreenshot('./screenshots/Military/' + filenum() + '-navigate-section.png')

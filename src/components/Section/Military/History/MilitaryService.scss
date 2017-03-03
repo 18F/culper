@@ -23,7 +23,8 @@
   }
 
   .service-number,
-  .discharge-reason {
+  .discharge-reason,
+  .discharge-type-otherex {
     display: inline-block;
     width: 92%;
   }
@@ -36,5 +37,9 @@
   .long-text label {
     padding-top: 1rem !important;
     line-height: initial;
+  }
+
+  .discharge-type-otherex {
+    margin-top: 4rem;
   }
 }

@@ -7,3 +7,11 @@ Feature: Military
     And I click next
     Then I should be in the military history section
     Then I log out
+
+  Scenario: Complete military history
+    Given I am a registered user
+    And I log in
+    And I fill in the military history section
+    And I click next
+    Then I should be in the military disciplinary section
+    Then I log out

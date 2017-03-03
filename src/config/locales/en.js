@@ -1065,7 +1065,8 @@ const en = {
             lessthan: 'Under other than honorable conditions',
             general: 'General',
             badconduct: 'Bad conduct',
-            other: 'Other (provide type)'
+            other: 'Other (provide type)',
+            otherex: 'Provide other type of discharge'
           },
           reason: 'Provide the reason(s) for the discharge'
         }
@@ -1128,7 +1129,7 @@ const en = {
         summary: {
           title: 'Summary of military history',
           item: 'Branch',
-          unknown: 'Unknown'
+          unknown: 'Click to provide details'
         },
         append: 'Add additional military history'
       }
