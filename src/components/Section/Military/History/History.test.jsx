@@ -5,50 +5,34 @@ import History from './History'
 describe('The military history component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'selective'
+      name: 'military-history'
     }
     const component = mount(<History {...expected} />)
-    expect(component.find('input[type="radio"]').length).toEqual(2)
-    expect(component.find('.selected').length).toEqual(0)
+    expect(component.find('.served').length).toEqual(1)
+    expect(component.find('.collection').length).toEqual(0)
   })
 
-  // it('selects no on born after and nothing more', () => {
-  //   const expected = {
-  //     name: 'selective'
-  //   }
-  //   const component = mount(<History {...expected} />)
-  //   component.find({type: 'radio', name: 'was_bornafter', value: 'No'}).simulate('change')
-  //   expect(component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).length).toEqual(0)
-  // })
+  it('selecting no to military service does nothing', () => {
+    const expected = {
+      name: 'military-history'
+    }
+    const component = mount(<History {...expected} />)
+    expect(component.find('.served').length).toEqual(1)
+    expect(component.find('.collection').length).toEqual(0)
+    component.find('.served .no input').simulate('change')
+    expect(component.find('.served').length).toEqual(1)
+    expect(component.find('.collection').length).toEqual(0)
+  })
 
-  // it('selects yes on born after and asks if registered', () => {
-  //   const expected = {
-  //     name: 'selective'
-  //   }
-  //   const component = mount(<History {...expected} />)
-  //   component.find({type: 'radio', name: 'was_bornafter', value: 'Yes'}).simulate('change')
-  //   expect(component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).length).toEqual(1)
-  // })
-
-  // it('selects no on registered and is presented with explanation', () => {
-  //   const expected = {
-  //     name: 'selective',
-  //     WasBornAfter: 'Yes'
-  //   }
-  //   const component = mount(<History {...expected} />)
-  //   component.find({type: 'radio', name: 'has_registered', value: 'No'}).simulate('change')
-  //   expect(component.find('.explanation').length).toBe(1)
-  //   expect(component.find('.registration-number').length).toBe(0)
-  // })
-
-  // it('selects yes on registered and is presented with registration number', () => {
-  //   const expected = {
-  //     name: 'selective',
-  //     WasBornAfter: 'Yes'
-  //   }
-  //   const component = mount(<History {...expected} />)
-  //   component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).simulate('change')
-  //   expect(component.find('.explanation').length).toBe(0)
-  //   expect(component.find('.registration-number').length).toBe(1)
-  // })
+  it('selecting yes to military service displays the form', () => {
+    const expected = {
+      name: 'military-history'
+    }
+    const component = mount(<History {...expected} />)
+    expect(component.find('.served').length).toEqual(1)
+    expect(component.find('.collection').length).toEqual(0)
+    component.find('.served .yes input').simulate('change')
+    expect(component.find('.served').length).toEqual(1)
+    expect(component.find('.collection').length).toEqual(1)
+  })
 })

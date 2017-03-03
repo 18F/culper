@@ -83,14 +83,16 @@ export default class DateControl extends ValidationElement {
     let day = this.state.day
     let year = this.state.year
     let estimated = this.state.estimated
+    const target = event.target || {}
+    const name = target.name || target.id || ''
 
-    if (event.target.name.indexOf('month') !== -1) {
+    if (name.indexOf('month') !== -1) {
       month = event.target.value
-    } else if (event.target.name.indexOf('day') !== -1) {
+    } else if (name.indexOf('day') !== -1) {
       day = event.target.value
-    } else if (event.target.name.indexOf('year') !== -1) {
+    } else if (name.indexOf('year') !== -1) {
       year = event.target.value
-    } else if (event.target.name.indexOf('estimated') !== -1) {
+    } else if (name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
 
@@ -261,7 +263,6 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    console.log('month:', this.state.month)
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
     return (

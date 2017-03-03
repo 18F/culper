@@ -90,8 +90,8 @@ export default class MilitaryService extends ValidationElement {
     this.onUpdate('DischargeTypeOther', value)
   }
 
-  updateDischargeReason (event) {
-    this.onUpdate('DischargeReason', event.target.valuealue)
+  updateDischargeReason (value) {
+    this.onUpdate('DischargeReason', value)
   }
 
   updateDischargeDate (value) {
