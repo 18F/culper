@@ -25,6 +25,8 @@ defineSupportCode(({Given, Then, When}) => {
       return completeMilitaryHistory(promise)
     case 'disciplinary':
       return completeDisciplinaryProcedures(promise)
+    case 'foreign':
+      return completeForeignMilitary(promise)
     default:
       return promise
     }
@@ -70,6 +72,41 @@ const completeDisciplinaryProcedures = (promise) => {
     .then(() => { return setText('.procedure-name input', 'Article 42') })
     .then(() => { return setText('.procedure-court textarea', 'Congo') })
     .then(() => { return setText('.procedure-outcome input', 'Reduction in rank') })
+}
+
+const completeForeignMilitary = (promise) => {
+  return promise
+    .then(() => { return setOption('.branch .yes') })
+    .then(() => { return setOption('.organization-military label') })
+    .then(() => { return setText('.foreign-service-name input', 'Army') })
+    .then(() => { return setText('.foreign-service-dates .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.foreign-service-dates .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.foreign-service-dates .datecontrol.from .year input', '2001') })
+    .then(() => { return setText('.foreign-service-dates .datecontrol.to .month input', '1') })
+    .then(() => { return setText('.foreign-service-dates .datecontrol.to .day input', '1') })
+    .then(() => { return setText('.foreign-service-dates .datecontrol.to .year input', '2005') })
+    .then(() => { return setText('.foreign-service-country input', 'Germany') })
+    .then(() => { return setText('.foreign-service-rank input', 'Captain') })
+    .then(() => { return setText('.foreign-service-division input', 'Luftwaffe') })
+    .then(() => { return setText('.foreign-service-circumstances textarea', 'Mandatory service') })
+    .then(() => { return setText('.foreign-service-left textarea', 'Moved') })
+    .then(() => { return setOption('.branch.maintainscontact .yes') })
+    .then(() => { return click('.foreign-service .foreign-contacts-collection .item a.toggle') })
+    .then(() => { return setText('.foreign-contact .first input', 'Foo') })
+    .then(() => { return setText('.foreign-contact .middle input', 'J') })
+    .then(() => { return setText('.foreign-contact .last input', 'Bar') })
+    .then(() => { return setOption('.foreign-contact-address .international label') })
+    .then(() => { return setText('.foreign-contact-address .mailing textarea', '1234 Some Rd') })
+    .then(() => { return setText('.foreign-contact-address .city input', 'Munich') })
+    .then(() => { return setText('.foreign-contact-address .country input', 'Germany') })
+    .then(() => { return setText('.foreign-contact-title input', 'Mr.') })
+    .then(() => { return setText('.foreign-contact-dates .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.foreign-contact-dates .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.foreign-contact-dates .datecontrol.from .year input', '2001') })
+    .then(() => { return setText('.foreign-contact-dates .datecontrol.to .month input', '1') })
+    .then(() => { return setText('.foreign-contact-dates .datecontrol.to .day input', '1') })
+    .then(() => { return setText('.foreign-contact-dates .datecontrol.to .year input', '2005') })
+    .then(() => { return setText('.foreign-contact-frequency input', 'Monthly') })
 }
 
 const filenum = () => {

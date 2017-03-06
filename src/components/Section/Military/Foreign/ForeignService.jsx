@@ -282,6 +282,7 @@ export default class ForeignService extends ValidationElement {
             <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
             {i18n.m('military.foreign.para.contact')}
             <Collection minimum="1"
+                        className="foreign-contacts-collection"
                         items={this.state.List}
                         dispatch={this.updateList}
                         summary={this.summary}
