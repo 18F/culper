@@ -22,7 +22,7 @@ export default class BranchCollection extends React.Component {
     items[index] = item
 
     // If it's not the first item, remove it when user selects no if `removeable` flag is turned on
-    if (index !== 0 && this.props.removable && yes === 'No') {
+    if (this.props.items.length > 1 && this.props.removable && yes === 'No') {
       items.splice(index, 1)
 
       let indices = [...this.state.indices]
