@@ -113,13 +113,6 @@ export default class DateControl extends ValidationElement {
         event.target.date = d
         super.handleChange(event)
 
-        // // Always make sure the day is re-validated
-        // if (['month', 'year', 'estimated'].includes(event.target.name)) {
-        //   this.refs.day.refs.input.focus()
-        //   this.refs.day.refs.input.blur()
-        //   event.target.focus()
-        // }
-
         if (this.props.onUpdate) {
           this.props.onUpdate({
             name: this.props.name,
@@ -261,7 +254,6 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    console.log('month:', this.state.month)
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
     return (
