@@ -111,7 +111,7 @@ export default class Reference extends ValidationElement {
                        value="Neighbor"
                        onChange={this.handleRelationshipChange}
                        >
-                  <div className="relationship-icon">
+                  <div className="relationship-icon neighbor">
                     <Svg src="img/neighbor-icon.svg" />
                   </div>
                 </Radio>
@@ -120,7 +120,7 @@ export default class Reference extends ValidationElement {
                        value="Friend"
                        onChange={this.handleRelationshipChange}
                        >
-                  <div className="relationship-icon">
+                  <div className="relationship-icon friend">
                     <Svg src="img/friend-icon.svg" />
                   </div>
                 </Radio>
@@ -129,7 +129,7 @@ export default class Reference extends ValidationElement {
                        value="Landlord"
                        onChange={this.handleRelationshipChange}
                        >
-                  <div className="relationship-icon">
+                  <div className="relationship-icon landlord">
                     <Svg src="img/landlord-icon.svg" />
                   </div>
                 </Radio>
@@ -138,7 +138,7 @@ export default class Reference extends ValidationElement {
                        value="Business"
                        onChange={this.handleRelationshipChange}
                        >
-                  <div className="relationship-icon">
+                  <div className="relationship-icon business">
                     <Svg src="img/business-associate-icon.svg" />
                   </div>
                 </Radio>
@@ -147,7 +147,7 @@ export default class Reference extends ValidationElement {
                        value="Other"
                        onChange={this.handleRelationshipChange}
                        >
-                  <div className="relationship-icon">
+                  <div className="relationship-icon other">
                     <Svg src="img/other-icon.svg" />
                   </div>
                 </Radio>
