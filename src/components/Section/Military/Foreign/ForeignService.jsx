@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Collection, RadioGroup, Radio, DateRange, Text, Textarea, Help, HelpIcon } from '../../../Form'
+import ForeignContact from './ForeignContact'
 
 /**
  * Convenience function to send updates along their merry way
@@ -101,14 +102,14 @@ export default class ForeignService extends ValidationElement {
     const o = (item || {}).Item || {}
     const name = o.Name && o.Name.value
           ? o.Name.value
-          : i18n.t('military.foreign.collection.summary.unknown')
+          : i18n.t('military.foreign.collection.contacts.summary.unknown')
     const dates = o.Date && o.Date.date
           ? `${o.Date.month}/${o.Date.year}`
           : ''
 
     return (
       <div className="table">
-        <div className="table-cell index">{i18n.t('military.foreign.collection.summary.item')} {index + 1}:</div>
+        <div className="table-cell index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</div>
         <div className="table-cell"><strong>{name}</strong></div>
         <div className="table-cell dates"><strong>{dates}</strong></div>
       </div>
@@ -277,15 +278,23 @@ export default class ForeignService extends ValidationElement {
         </Branch>
 
         <Show when={this.state.MaintainsContact === 'Yes'}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateList}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('military.foreign.collection.contacts.summary.title')}
-                      appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
-                      appendMessage={i18n.m('military.foreign.collection.contacts.appendMessage')}
-                      appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
-          </Collection>
+          <div>
+            <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
+            {i18n.m('military.foreign.para.contact')}
+            <Collection minimum="1"
+                        items={this.state.List}
+                        dispatch={this.updateList}
+                        summary={this.summary}
+                        summaryTitle={i18n.t('military.foreign.collection.contacts.summary.title')}
+                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
+                        appendMessage={i18n.m('military.foreign.collection.contacts.appendMessage')}
+                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
+              <ForeignContact name="Item"
+                              onUpdate={this.updateList}
+                              onValidate={this.props.onValidate}
+                              />
+            </Collection>
+          </div>
         </Show>
       </div>
     )

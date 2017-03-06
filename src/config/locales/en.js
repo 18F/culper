@@ -1228,10 +1228,19 @@ const en = {
         division: 'Provide the division/department/office in which you served',
         circumstances: 'Provide a description of the circumstances of your association with this organization',
         left: 'Provide a description of the reason for leaving this service',
-        maintainscontact: 'Do you maintain contact with current or former associates, colleagues, or acquaintances from your service in this organization?'
+        maintainscontact: 'Do you maintain contact with current or former associates, colleagues, or acquaintances from your service in this organization?',
+        contact: {
+          details: 'Acquaintance contact details',
+          name: 'Provide the full name',
+          address: 'Provide the contact\'s address',
+          title: 'Provide the contact\'s official title',
+          dates: 'Provide the length of your association with the contact',
+          frequency: 'Provide the frequency of contact'
+        }
       },
       para: {
-        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?'
+        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
+        contact: 'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
       },
       label: {
         organization: {
@@ -1298,17 +1307,18 @@ const en = {
       },
       collection: {
         foreign: {
-          summary: {
-          },
           appendTitle: 'Do you have an additional foreign military service to report?',
-          append: ''
+          append: 'Add another foreign military service'
         },
         contacts: {
           summary: {
+            title: 'Summary of foreign military contacts',
+            item: 'Name',
+            unknown: 'Click to provide details'
           },
-          appendTitle: 'Do you have an additional foreign military service to report?',
-          appendMessage: '',
-          append: ''
+          appendTitle: 'Do you have an additional foreign military service contact to report?',
+          appendMessage: 'If yes use the button below to add another contact',
+          append: 'Add another contact'
         }
       }
     }

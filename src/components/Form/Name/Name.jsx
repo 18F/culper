@@ -32,7 +32,7 @@ export default class Name extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = this.extractPart(event.target.name)
+    let part = event.target.name || ''
     let value = event.target.value
     let updated = null
 
@@ -168,13 +168,6 @@ export default class Name extends ValidationElement {
 
   isValid () {
     return new NameValidator(this.state, null).isValid()
-  }
-
-  /**
-   * Returns the part name from the pull generated identifier.
-   */
-  extractPart (id) {
-    return id.split('-').pop()
   }
 
   /**

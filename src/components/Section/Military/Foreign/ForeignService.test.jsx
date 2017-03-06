@@ -38,7 +38,7 @@ describe('The foreign service component', () => {
     component.find('.foreign-service-division input').simulate('change', { target: { value: 'The division' } })
     component.find('.foreign-service-circumstances textarea').simulate('change', { target: { value: 'The circumstances' } })
     component.find('.foreign-service-left textarea').simulate('change', { target: { value: 'The reasons to leave' } })
-    component.find('.foreign-service .maintainscontact .no').simulate('change')
+    component.find('.foreign-service .maintainscontact .yes label').simulate('click')
     expect(updates).toBeGreaterThan(8)
   })
 })
