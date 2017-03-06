@@ -14,6 +14,7 @@ export default class Collection extends ValidationElement {
       minimum: min,
       length: min,
       items: this.props.items || [],
+      indices: [],
       children: []
     }
 
@@ -87,7 +88,10 @@ export default class Collection extends ValidationElement {
     let children = [...this.state.children]
     children = this.factory(items.length, items).children
 
-    this.setState({ items: items, children: children }, () => {
+    let indices = [...this.state.indices]
+    indices.push(super.guid())
+
+    this.setState({ items: items, children: children, indices: indices }, () => {
       this.dispatcher(this.state.items)
       this.scroll()
     })
@@ -103,7 +107,10 @@ export default class Collection extends ValidationElement {
     let children = [...this.state.children]
     children = this.factory(items.length, items).children
 
-    this.setState({ items: items, children: children }, () => {
+    let indices = [...this.state.indices]
+    indices.splice(index, 1)
+
+    this.setState({ items: items, children: children, indices: indices }, () => {
       this.dispatcher(this.state.items)
       this.scroll()
     })
@@ -221,10 +228,6 @@ export default class Collection extends ValidationElement {
     this.setState({ items: items })
   }
 
-  persistedItem (index) {
-    return this.state.items[index] || {}
-  }
-
   /**
    * If a callback is not found for `this.props.summary` then normal rendering of every
    * item is done.
@@ -279,7 +282,7 @@ export default class Collection extends ValidationElement {
     if (!this.props.summary) {
       return this.state.items.map((item, index) => {
         return (
-          <div className="item" key={index}>
+          <div className="item" key={this.state.indices[index]}>
             <div className="details">
               {bylineTop(item, index)}
               {this.state.children[index]}
@@ -296,7 +299,7 @@ export default class Collection extends ValidationElement {
       const klassOpen = item.open === true ? 'open' : 'closed'
       const klassLast = index + 1 === totalItems ? 'last' : ''
       return (
-        <div className="item" key={index}>
+        <div className="item" key={this.state.indices[index]}>
           <div className="summary">
             <Show when={index === 0}>
               <div className="caption gutters">
