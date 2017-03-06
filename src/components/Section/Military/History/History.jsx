@@ -70,14 +70,14 @@ export default class History extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
+        super.handleValidation(event, statusObject, errorObject)
         return
       }
 
-      super.handleValidation(event, s, e)
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 

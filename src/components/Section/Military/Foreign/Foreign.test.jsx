@@ -9,26 +9,32 @@ describe('The military foreign component', () => {
     }
     const component = mount(<Foreign {...expected} />)
     expect(component.find('.branch').length).toBeGreaterThan(1)
-    expect(component.find('.collection').length).toEqual(0)
+    expect(component.find('.foreign-service').length).toEqual(0)
   })
 
   it('selecting no to military foreign does nothing', () => {
     const expected = {
-      name: 'military-foreign'
+      name: 'military-foreign',
+      List: [
+        {
+          Has: 'No'
+        }
+      ]
     }
     const component = mount(<Foreign {...expected} />)
-    expect(component.find('.collection').length).toEqual(0)
-    component.find('.branch .no input').simulate('change')
-    expect(component.find('.collection').length).toEqual(0)
+    expect(component.find('.foreign-service').length).toEqual(0)
   })
 
   it('selecting yes to military foreign displays the form', () => {
     const expected = {
-      name: 'military-foreign'
+      name: 'military-foreign',
+      List: [
+        {
+          Has: 'Yes'
+        }
+      ]
     }
     const component = mount(<Foreign {...expected} />)
-    expect(component.find('.collection').length).toEqual(0)
-    component.find('.branch .yes input').simulate('change')
-    expect(component.find('.collection').length).toEqual(1)
+    expect(component.find('.foreign-service').length).toEqual(1)
   })
 })

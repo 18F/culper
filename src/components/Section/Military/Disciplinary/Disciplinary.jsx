@@ -69,14 +69,14 @@ export default class Disciplinary extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
+      const errorObject = { [this.props.name]: codes }
+      let statusObject = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
+        super.handleValidation(event, statusObject, errorObject)
         return
       }
 
-      super.handleValidation(event, s, e)
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
@@ -92,12 +92,12 @@ export default class Disciplinary extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const o = (item || {}).Item || {}
-    const service = o.Name && o.Name.value
-          ? o.Name.value
+    const itemProperties = (item || {}).Item || {}
+    const service = itemProperties.Name && itemProperties.Name.value
+          ? itemProperties.Name.value
           : i18n.t('military.disciplinary.collection.summary.unknown')
-    const dates = o.Date && o.Date.date
-          ? `${o.Date.month}/${o.Date.year}`
+    const dates = itemProperties.Date && itemProperties.Date.date
+          ? `${itemProperties.Date.month}/${itemProperties.Date.year}`
           : ''
 
     return (

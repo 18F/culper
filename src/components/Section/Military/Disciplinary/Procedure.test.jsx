@@ -15,7 +15,7 @@ describe('The procedure component', () => {
     expect(component.find('.procedure-outcome').length).toEqual(1)
   })
 
-  it('trigger updates when chaging values', () => {
+  it('trigger updates when changing values', () => {
     let updates = 0
     const expected = {
       name: 'procedure',

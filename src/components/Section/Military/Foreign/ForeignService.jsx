@@ -99,12 +99,12 @@ export default class ForeignService extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const o = (item || {}).Item || {}
-    const name = o.Name && o.Name.value
-          ? o.Name.value
+    const itemProperties = (item || {}).Item || {}
+    const name = itemProperties.Name && itemProperties.Name.value
+          ? itemProperties.Name.value
           : i18n.t('military.foreign.collection.contacts.summary.unknown')
-    const dates = o.Date && o.Date.date
-          ? `${o.Date.month}/${o.Date.year}`
+    const dates = itemProperties.Date && itemProperties.Date.date
+          ? `${itemProperties.Date.month}/${itemProperties.Date.year}`
           : ''
 
     return (

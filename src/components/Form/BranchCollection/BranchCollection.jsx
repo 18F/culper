@@ -61,7 +61,12 @@ export default class BranchCollection extends React.Component {
           }
         }
       }
-      childProps.children = this.recursiveCloneChildren(child.props.children, item, index)
+
+      const typeOfChildren = Object.prototype.toString.call(child.props.children)
+      if (child.props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+        childProps.children = this.recursiveCloneChildren(child.props.children, item, index)
+      }
+
       return React.cloneElement(child, childProps)
     })
   }

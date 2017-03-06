@@ -18,7 +18,7 @@ describe('The foreign service component', () => {
     expect(component.find('.foreign-service-left textarea').length).toEqual(1)
   })
 
-  it('trigger updates when chaging values', () => {
+  it('trigger updates when changing values', () => {
     let updates = 0
     const expected = {
       name: 'foreign-service',

@@ -1,55 +1,23 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryForeignValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Collection } from '../../../Form'
+import { ValidationElement, BranchCollection } from '../../../Form'
 import ForeignService from './ForeignService'
-
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
 
 export default class Foreign extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasForeignMilitary: props.HasForeignMilitary,
-      List: props.List,
       errorCodes: []
     }
 
-    this.onUpdate = this.onUpdate.bind(this)
-    this.updateHasForeign = this.updateHasForeign.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-    })
-  }
-
-  updateHasForeign (value, event) {
-    this.onUpdate('HasForeignMilitary', value)
-
-    // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('List', [])
-    }
-
-    // Force validation checks
-    this.handleValidation(event, null, null)
-  }
-
   updateList (collection) {
-    this.onUpdate('List', collection)
+    if (this.props.onUpdate) {
+      this.props.onUpdate({ List: collection })
+    }
   }
 
   /**
@@ -69,14 +37,14 @@ export default class Foreign extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
+        super.handleValidation(event, statusObject, errorObject)
         return
       }
 
-      super.handleValidation(event, s, e)
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
@@ -85,30 +53,22 @@ export default class Foreign extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    return new MilitaryForeignValidator(this.state, null).isValid()
+    return new MilitaryForeignValidator(this.props, null).isValid()
   }
 
   render () {
     return (
       <div className="foreign">
-        <Branch name="has_foreign"
-                className="eapp-field-wrap"
-                value={this.state.HasForeignMilitary}
-                help="military.foreign.help.served"
-                onUpdate={this.updateHasForeign}>
-        </Branch>
-
-        <Show when={this.state.HasForeignMilitary === 'Yes'}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateList}
-                      appendTitle={i18n.t('military.foreign.collection.foreign.appendTitle')}
-                      appendLabel={i18n.t('military.foreign.collection.foreign.append')}>
-            <ForeignService name="Item"
-                            onValidate={this.handleValidation}
-                            />
-          </Collection>
-        </Show>
+        <BranchCollection items={this.props.List}
+                          branchName="has_foreign"
+                          branchHelp="military.foreign.help.served"
+                          onUpdate={this.updateList}>
+          <ForeignService name="Item"
+                          bind={true}
+                          onValidate={this.handleValidation}
+                          />
+          <h2>{i18n.t('military.foreign.collection.foreign.appendTitle')}</h2>
+        </BranchCollection>
       </div>
     )
   }

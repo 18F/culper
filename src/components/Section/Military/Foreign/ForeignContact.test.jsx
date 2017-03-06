@@ -15,7 +15,7 @@ describe('The foreign contact component', () => {
     expect(component.find('.foreign-contact-frequency input').length).toEqual(1)
   })
 
-  it('trigger updates when chaging values', () => {
+  it('trigger updates when changing values', () => {
     let updates = 0
     const expected = {
       name: 'foreign-contact',

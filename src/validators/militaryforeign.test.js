@@ -5,26 +5,38 @@ describe('Military foreign validation', function () {
     const tests = [
       {
         state: {
-          HasForeignMilitary: ''
+          List: [
+            {
+              Has: ''
+            }
+          ]
         },
         expected: false
       },
       {
         state: {
-          HasForeignMilitary: 'No'
+          List: [
+            {
+              Has: 'No'
+            }
+          ]
         },
         expected: true
       },
       {
         state: {
-          HasForeignMilitary: 'Yes'
+          List: [
+            {
+              Has: 'Yes'
+            }
+          ]
         },
-        expected: true
+        expected: false
       }
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(test.state, null).validForeignMilitary()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 
@@ -32,15 +44,19 @@ describe('Military foreign validation', function () {
     const tests = [
       {
         state: {
-          HasForeignMilitary: 'Yes'
+          List: [
+            {
+              Has: 'Yes'
+            }
+          ]
         },
         expected: false
       },
       {
         state: {
-          HasForeignMilitary: 'Yes',
           List: [
             {
+              Has: 'Yes',
               Item: {
                 Organization: 'Military',
                 Name: {

@@ -90,7 +90,7 @@ describe('The military service component', () => {
     expect(component.find('.discharge-reason').length).toEqual(0)
   })
 
-  it('trigger updates when chaging values', () => {
+  it('trigger updates when changing values', () => {
     let updates = 0
     const expected = {
       name: 'military-service',

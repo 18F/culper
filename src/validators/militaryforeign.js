@@ -5,25 +5,24 @@ import { validGenericTextfield } from './helpers'
 
 export default class MilitaryForeignValidator {
   constructor (state, props) {
-    this.hasForeignMilitary = state.HasForeignMilitary
     this.list = state.List || []
   }
 
-  validForeignMilitary () {
-    return this.hasForeignMilitary === 'Yes' || this.hasForeignMilitary === 'No'
-  }
-
   validItems () {
-    if (!this.validForeignMilitary() || this.hasForeignMilitary === 'No') {
-      return true
-    }
-
     if (this.list.length === 0) {
       return false
     }
 
-    for (const procedure of this.list) {
-      if (new ForeignServiceValidator(procedure.Item, null).isValid() === false) {
+    for (const service of this.list) {
+      if (!(service.Has === 'Yes' || service.Has === 'No')) {
+        return false
+      }
+
+      if (service.Has === 'Yes' && !service.Item) {
+        return false
+      }
+
+      if (new ForeignServiceValidator(service.Item, null).isValid() === false) {
         return false
       }
     }
@@ -32,13 +31,12 @@ export default class MilitaryForeignValidator {
   }
 
   isValid () {
-    return this.validForeignMilitary() &&
-      this.validItems()
+    return this.validItems()
   }
 }
 
 export class ForeignServiceValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.organization = state.Organization
     this.name = state.Name
     this.dates = state.Dates
