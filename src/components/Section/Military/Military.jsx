@@ -9,6 +9,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Selective from './Selective'
 import History from './History'
 import Disciplinary from './Disciplinary'
+import Foreign from './Foreign'
 
 class Military extends ValidationElement {
   constructor (props) {
@@ -25,6 +26,7 @@ class Military extends ValidationElement {
     this.updateSelective = this.updateSelective.bind(this)
     this.updateHistory = this.updateHistory.bind(this)
     this.updateDisciplinary = this.updateDisciplinary.bind(this)
+    this.updateForeign = this.updateForeign.bind(this)
   }
 
   componentDidMount () {
@@ -94,6 +96,10 @@ class Military extends ValidationElement {
 
   updateDisciplinary (values) {
     this.onUpdate('Disciplinary', values)
+  }
+
+  updateForeign (values) {
+    this.onUpdate('Foreign', values)
   }
 
   /**
@@ -177,6 +183,13 @@ class Military extends ValidationElement {
                           onUpdate={this.updateDisciplinary}
                           onValidate={this.onValidate}
                           />
+            <h2>{i18n.t('military.foreign.heading.title')}</h2>
+            {i18n.m('military.foreign.para.served')}
+            <Foreign name="foreign"
+                     {...this.props.Foreign}
+                     onUpdate={this.updateForeign}
+                     onValidate={this.onValidate}
+                     />
           </SectionView>
 
           <SectionView name="selective"
@@ -199,10 +212,10 @@ class Military extends ValidationElement {
                        nextLabel={i18n.t('military.destination.disciplinary')}>
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
-                       {...this.props.History}
-                       onUpdate={this.updateHistory}
-                       onValidate={this.onValidate}
-                       />
+                     {...this.props.History}
+                     onUpdate={this.updateHistory}
+                     onValidate={this.onValidate}
+                     />
           </SectionView>
 
           <SectionView name="disciplinary"
@@ -224,6 +237,13 @@ class Military extends ValidationElement {
                        backLabel={i18n.t('military.destination.disciplinary')}
                        next="military/review"
                        nextLabel={i18n.t('military.destination.review')}>
+            <h2>{i18n.t('military.foreign.heading.title')}</h2>
+            {i18n.m('military.foreign.para.served')}
+            <Foreign name="foreign"
+                     {...this.props.Foreign}
+                     onUpdate={this.updateForeign}
+                     onValidate={this.onValidate}
+                     />
           </SectionView>
         </SectionViews>
       </div>

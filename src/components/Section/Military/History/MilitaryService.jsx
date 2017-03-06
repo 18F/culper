@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { MilitaryHistoryValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, RadioGroup, Radio, Svg, DateRange, DateControl, Text, Textarea, Help, HelpIcon } from '../../../Form'
 
 /**

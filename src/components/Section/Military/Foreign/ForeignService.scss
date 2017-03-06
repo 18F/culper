@@ -1,0 +1,29 @@
+.foreign-service {
+  .foreign-service-name,
+  .foreign-service-dates,
+  .foreign-service-country,
+  .foreign-service-rank,
+  .foreign-service-division,
+  .foreign-service-circumstances,
+  .foreign-service-left {
+    display: inline-block;
+    width: 92%;
+  }
+
+  .organization {
+    .option-list {
+      max-width: 92% !important;
+    }
+
+    label {
+      height: 12rem;
+      width: 24rem;
+      padding-top: 4rem;
+      overflow-x: hidden;
+    }
+
+    .organization-military label {
+      padding-top: 2rem;
+    }
+  }
+}

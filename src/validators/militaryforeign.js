@@ -23,7 +23,7 @@ export default class MilitaryForeignValidator {
     }
 
     for (const procedure of this.list) {
-      if (new ForeignMilitaryValidator(procedure.Item, null).isValid() === false) {
+      if (new ForeignServiceValidator(procedure.Item, null).isValid() === false) {
         return false
       }
     }
@@ -37,7 +37,7 @@ export default class MilitaryForeignValidator {
   }
 }
 
-export class ForeignMilitaryValidator {
+export class ForeignServiceValidator {
   constructor (state, props) {
     this.organization = state.Organization
     this.name = state.Name

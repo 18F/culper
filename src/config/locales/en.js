@@ -1216,6 +1216,101 @@ const en = {
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         append: 'Add additional disciplinary procedures'
       }
+    },
+    foreign: {
+      heading: {
+        title: 'Foreign military',
+        organization: 'During your foreign service, which organization were you serving under?',
+        name: 'Provide the name of the foreign organization',
+        dates: 'Provide your period of service',
+        country: 'Provide the name of the country',
+        rank: 'Provide your highest position/rank held',
+        division: 'Provide the division/department/office in which you served',
+        circumstances: 'Provide a description of the circumstances of your association with this organization',
+        left: 'Provide a description of the reason for leaving this service',
+        maintainscontact: 'Do you maintain contact with current or former associates, colleagues, or acquaintances from your service in this organization?'
+      },
+      para: {
+        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?'
+      },
+      label: {
+        organization: {
+          military: 'Military (Army, Navy, Air Force, Marines, etc.)',
+          intelligence: 'Intelligence Service',
+          diplomatic: 'Diplomatic Service',
+          security: 'Security Forces',
+          militia: 'Militia',
+          defense: 'Other Defense Forces',
+          other: 'Other Government Agency'
+        }
+      },
+      help: {
+        served: {
+          title: 'Need help with foreign military?',
+          message: 'If you have served in a foreign military or service it will help in processing your application',
+          note: ''
+        },
+        organization: {
+          title: 'Need help with foreign service?',
+          message: 'The type of foreign service',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the foreign organization?',
+          message: 'The organization name',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the period of service?',
+          message: 'The date range you served',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the name of the country?',
+          message: 'The country name',
+          note: ''
+        },
+        rank: {
+          title: 'Need help with the highest position/rank held?',
+          message: 'The hightest rank or position held within the service',
+          note: ''
+        },
+        division: {
+          title: 'Need help with the division/department/office?',
+          message: 'The name for the division, department, or office',
+          note: ''
+        },
+        circumstances: {
+          title: 'Need help describing the circumstances?',
+          message: 'Additional information regarding the circumstances of this foreign service',
+          note: ''
+        },
+        left: {
+          title: 'Need help with the reason for leaving?',
+          message: 'Please provide any reasons for leaving this service',
+          note: ''
+        },
+        maintainscontact: {
+          title: 'Need help with contacts with current or former associates?',
+          message: 'If you maintain contact with any current or former foreign associates please provide their contact information',
+          note: ''
+        }
+      },
+      collection: {
+        foreign: {
+          summary: {
+          },
+          appendTitle: 'Do you have an additional foreign military service to report?',
+          append: ''
+        },
+        contacts: {
+          summary: {
+          },
+          appendTitle: 'Do you have an additional foreign military service to report?',
+          appendMessage: '',
+          append: ''
+        }
+      }
     }
   },
 
