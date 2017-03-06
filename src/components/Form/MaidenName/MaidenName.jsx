@@ -68,6 +68,7 @@ export default class MaidenName extends ValidationElement {
           <Radio name="maiden-name"
                  label=""
                  value="Yes"
+                 className="yes"
                  disabled={this.props.disabled}
                  readonly={this.props.readonly}
                  required={this.props.required}
@@ -84,6 +85,7 @@ export default class MaidenName extends ValidationElement {
           <Radio name="maiden-name"
                  label=""
                  value="No"
+                 className="no"
                  disabled={this.props.disabled}
                  readonly={this.props.readonly}
                  required={this.props.required}

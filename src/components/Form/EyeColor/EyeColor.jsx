@@ -34,6 +34,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.black')}
                  value="Black"
+                 className="black"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -47,6 +48,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.blue')}
                  value="Blue"
+                 className="blue"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -60,6 +62,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.brown')}
                  value="Brown"
+                 className="brown"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -73,6 +76,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.gray')}
                  value="Gray"
+                 className="gray"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -86,6 +90,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.green')}
                  value="Green"
+                 className="green"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -99,6 +104,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.hazel')}
                  value="Hazel"
+                 className="hazel"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -112,6 +118,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.maroon')}
                  value="Maroon"
+                 className="maroon"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -125,6 +132,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.multi')}
                  value="Multicolored"
+                 className="multi"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -138,6 +146,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.pink')}
                  value="Pink"
+                 className="pink"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}
@@ -151,6 +160,7 @@ export default class EyeColor extends ValidationElement {
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.eye.unknown')}
                  value="Unknown"
+                 className="unknown"
                  disabled={this.props.disabled}
                  onChange={this.handleChange}
                  onValidate={this.props.onValidate}

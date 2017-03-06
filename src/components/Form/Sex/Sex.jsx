@@ -50,6 +50,7 @@ export default class Sex extends ValidationElement {
                  placeholder={this.props.placeholder}
                  required="true"
                  value="female"
+                 className="female"
                  checked={this.state.value === 'female'}
                  error={this.state.error}
                  valid={this.state.valid}
@@ -65,6 +66,7 @@ export default class Sex extends ValidationElement {
                  placeholder={this.props.placeholder}
                  required="true"
                  value="male"
+                 className="male"
                  checked={this.state.value === 'male'}
                  error={this.state.error}
                  valid={this.state.valid}
