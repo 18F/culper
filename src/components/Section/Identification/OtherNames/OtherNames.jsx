@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
+import { OtherNamesValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup, Branch } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
@@ -40,32 +41,12 @@ export default class OtherNames extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.HasOtherNames) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.Name || !item.Name.first || !item.Name.last) {
-        return false
-      }
-
-      if (!item.MaidenName || !item.MaidenName.value) {
-        return false
-      }
-
-      if (!item.DatesUsed || !item.DatesUsed.from || (!item.DatesUsed.to && !item.DatesUsed.present)) {
-        return false
-      }
-    }
-    return true
+    return new OtherNamesValidator(this.state, null).isValid()
   }
 
   onUpdate (val, event) {
     this.setState({ HasOtherNames: val }, () => {
-      if (val === 'No') {
-        this.myDispatch([])
-      }
-
+      this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
   }
@@ -111,7 +92,7 @@ export default class OtherNames extends ValidationElement {
         <div className="table-cell index">
           {i18n.t('identification.othernames.collection.summary.name')} {index + 1}:
         </div>
-        <div className="table-cell index">
+        <div className="table-cell">
           {name}
         </div>
         <div className="table-cell dates">
@@ -149,7 +130,6 @@ export default class OtherNames extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="alias.maiden.help">
             <MaidenName name="MaidenName"
-                        label={i18n.t('identification.othernames.label.maiden')}
                         onValidate={this.handleValidation}
                         />
             <HelpIcon className="maiden-help-icon" />
@@ -172,7 +152,6 @@ export default class OtherNames extends ValidationElement {
             <Textarea name="Reason"
                       className="reason"
                       onValidate={this.handleValidation}
-                      label={i18n.t('identification.othernames.label.reason')}
                       />
             <HelpIcon className="reason-help-icon" />
           </Help>
@@ -185,11 +164,11 @@ export default class OtherNames extends ValidationElement {
     return (
       <div className="other-names">
         <p>{i18n.t('identification.othernames.info')}</p>
+        <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
                 className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
-                label={i18n.t('identification.othernames.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}

@@ -1,0 +1,34 @@
+.education {
+  .summary {
+    .brief {
+      .index {
+        width: 10rem;
+
+        .svg {
+          height: 1.3rem;
+          width: auto;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  .school-name {
+    width: 92%;
+    display: inline-block;
+  }
+
+  .type label,
+  .diploma label {
+    width: 25rem;
+    height: 10rem;
+    overflow: hidden;
+    line-height: normal;
+    display: inline-block;
+
+    span {
+      display: inline-block;
+      padding: 12% 0;
+    }
+  }
+}

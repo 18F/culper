@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../config'
+import { i18n, markdown, markdownById } from '../../../config'
 import ReactMarkdown from 'react-markdown'
 import ValidationElement from '../ValidationElement'
 
@@ -61,6 +61,9 @@ export default class Help extends ValidationElement {
 
     this.setState({ errors: e }, () => {
       super.handleValidation(event, status, errors)
+      if (e.length) {
+        this.scrollIntoView()
+      }
     })
   }
 
@@ -85,13 +88,25 @@ export default class Help extends ValidationElement {
 
     if (this.state.errors && this.state.errors.length) {
       const markup = this.state.errors.map(err => {
+        const noteId = `${err}.note`
+        let note = i18n.t(noteId)
+        if (note.indexOf(noteId) > -1) {
+          note = ''
+        } else {
+          note = <em>{note}</em>
+        }
+
         return (
-          <ReactMarkdown source={i18n.t(err)} />
+          <div>
+            <h5>{i18n.t(`${err}.title`)}</h5>
+            {markdownById(`${err}.message`)}
+            {note}
+          </div>
         )
       })
 
       el.push(
-        <div ref="message" className="message eapp-error-message">
+        <div className="message eapp-error-message">
           <i className="fa fa-exclamation"></i>
           {markup}
         </div>
@@ -99,10 +114,25 @@ export default class Help extends ValidationElement {
     }
 
     if (this.state.active) {
+      const noteId = `${this.props.id}.note`
+      let note = i18n.t(noteId)
+      if (note.indexOf(noteId) > -1) {
+        note = ''
+      } else {
+        note = <em>{note}</em>
+      }
+
       el.push(
-        <div ref="message" className="message eapp-help-message">
+        <div className="message eapp-help-message">
           <i className="fa fa-question"></i>
-          <ReactMarkdown source={i18n.t(this.props.id)} />
+          <h5>{i18n.t(`${this.props.id}.title`)}</h5>
+          {markdownById(`${this.props.id}.message`)}
+          {note}
+          <a href="javascript:;;"
+             className="close"
+             onClick={this.handleClick}>
+            {i18n.t('help.close')}
+          </a>
         </div>
       )
     }
@@ -159,8 +189,10 @@ export default class Help extends ValidationElement {
     // Flag if help container bottom is within current viewport
     const notInView = (winHeight < helpBottom)
 
-    if (this.state.active && this.props.scrollIntoView && notInView) {
-      this.refs.message.scrollIntoView(false)
+    const active = this.state.active || this.state.errors.length
+
+    if (active && this.props.scrollIntoView && notInView) {
+      this.refs.messages.scrollIntoView(false)
     }
   }
 
@@ -169,7 +201,9 @@ export default class Help extends ValidationElement {
     return (
       <div className={klass} ref="help">
         {this.children()}
-        {this.getMessages()}
+        <div ref="messages">
+          {this.getMessages()}
+        </div>
       </div>
     )
   }

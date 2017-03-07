@@ -52,6 +52,7 @@ export default class City extends ValidationElement {
   }
 
   render () {
+    const klass = `city ${this.props.className || ''}`.trim()
     return (
       <Text name={this.props.name}
             label={this.props.label}
@@ -59,7 +60,7 @@ export default class City extends ValidationElement {
             minlength="2"
             maxlength="100"
             required="true"
-            className={this.props.className}
+            className={klass}
             value={this.state.value}
             error={this.state.error}
             valid={this.state.valid}

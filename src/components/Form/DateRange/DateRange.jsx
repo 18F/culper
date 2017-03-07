@@ -8,17 +8,26 @@ export default class DateRange extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      from: this.props.from,
+      from: props.from,
       from_day: '',
       from_month: '',
       from_year: '',
-      to: this.props.to,
+      to: props.to,
       to_day: '',
       to_month: '',
       to_year: '',
-      present: this.props.present,
+      present: props.present,
       presentClicked: false,
-      title: this.props.title || 'Date Range'
+      trickleDown: false,
+      title: props.title || 'Date Range'
+    }
+  }
+
+  componentWillReceiveProps (next) {
+    if (next.receiveProps) {
+      this.setState({ from: next.from, to: next.to, trickleDown: true }, () => {
+        this.setState({ trickleDown: false })
+      })
     }
   }
 
@@ -46,7 +55,7 @@ export default class DateRange extends ValidationElement {
         let now = new Date()
         futureState.to = now
         futureState.to_year = now.getFullYear()
-        futureState.to_month = now.getMonth() - 1
+        futureState.to_month = now.getMonth() + 1
         futureState.to_day = now.getDate()
       } else if (this.state.present && !futureState.present) {
         futureState.to = null
@@ -58,13 +67,13 @@ export default class DateRange extends ValidationElement {
 
     if (field === 'from') {
       if (futureState.from_year && futureState.from_month && futureState.from_day && ('' + futureState.from_year).length === 4) {
-        futureState.from = new Date(futureState.from_year, futureState.from_month, futureState.from_day)
+        futureState.from = new Date(futureState.from_year, parseInt(futureState.from_month) - 1, futureState.from_day)
       }
     }
 
     if (field === 'to') {
       if (futureState.to_year && futureState.to_month && futureState.to_day && ('' + futureState.to_year).length === 4) {
-        futureState.to = new Date(futureState.to_year, futureState.to_month, futureState.to_day)
+        futureState.to = new Date(futureState.to_year, parseInt(futureState.to_month) - 1, futureState.to_day)
       }
     }
 
@@ -73,8 +82,8 @@ export default class DateRange extends ValidationElement {
 
       // This will force a blur/validation
       if (field === 'present') {
-        this.refs.to.refs.month.refs.input.focus()
-        this.refs.to.refs.month.refs.input.blur()
+        this.refs.to.refs.month.refs.autosuggest.input.focus()
+        this.refs.to.refs.month.refs.autosuggest.input.blur()
         this.refs.to.refs.day.refs.input.focus()
         this.refs.to.refs.day.refs.input.blur()
         this.refs.to.refs.year.refs.input.focus()
@@ -121,13 +130,15 @@ export default class DateRange extends ValidationElement {
 
     return (
       <div className={klass}>
-        <div className="usa-grid">
+        <div className="usa-grid from-grid">
           <div className="from-label">
             From date
           </div>
           <DateControl name="from"
+                       className="from"
                        value={this.state.from}
                        estimated={this.state.estimated}
+                       receiveProps={this.state.trickleDown}
                        onChange={this.handleChange.bind(this, 'from')}
                        onValidate={this.handleValidation}
                        />
@@ -135,15 +146,16 @@ export default class DateRange extends ValidationElement {
         <div className="arrow">
           <img src="../img/date-down-arrow.svg" />
         </div>
-        <div className="usa-grid">
+        <div className="usa-grid to-grid">
           <div className="from-label">
             To date
           </div>
           <DateControl name="to"
                        ref="to"
+                       className="to"
                        value={this.state.to}
                        estimated={this.state.estimated}
-                       receiveProps={this.state.presentClicked}
+                       receiveProps={this.state.trickleDown || this.state.presentClicked}
                        disabled={this.state.present}
                        onChange={this.handleChange.bind(this, 'to')}
                        onValidate={this.handleValidation}

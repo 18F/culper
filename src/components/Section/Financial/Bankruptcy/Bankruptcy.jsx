@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { BankruptcyValidator } from '../../../../validators'
 import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Textarea, Help, HelpIcon,
-         Text, Name, Address, PetitionType } from '../../../Form'
+         Text, Name, Address, PetitionType, Checkbox } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -51,53 +52,7 @@ export default class Bankruptcy extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    if (!this.state.HasBankruptcy) {
-      return false
-    }
-
-    if (this.state.HasBankruptcy === 'No') {
-      return true
-    }
-
-    if (this.state.HasBankruptcy === 'Yes' && this.state.List.length === 0) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.PetitionType || !item.PetitionType.value) {
-        return false
-      }
-
-      if (!item.CourtAddress) {
-        return false
-      }
-
-      if (!item.CourtInvolved || !item.CourtInvolved.value) {
-        return false
-      }
-
-      if (!item.CourtNumber || !item.CourtNumber.value) {
-        return false
-      }
-
-      if (!item.DateDischarged || !item.DateDischarged.month || !item.DateDischarged.year) {
-        return false
-      }
-
-      if (!item.DateFiled || !item.DateFiled.month || !item.DateFiled.year) {
-        return false
-      }
-
-      if (!item.NameDebt || !item.NameDebt.first || !item.NameDebt.last || !item.NameDebt.middle) {
-        return false
-      }
-
-      if (!item.TotalAmount || !item.TotalAmount.value) {
-        return false
-      }
-    }
-
-    return true
+    return new BankruptcyValidator(this.state, null).isValid()
   }
 
   /**
@@ -105,10 +60,7 @@ export default class Bankruptcy extends ValidationElement {
    */
   onUpdate (val, event) {
     this.setState({ HasBankruptcy: val }, () => {
-      if (val === 'No') {
-        this.myDispatch([])
-      }
-
+      this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
   }
@@ -161,7 +113,7 @@ export default class Bankruptcy extends ValidationElement {
       address1 = i18n.t('financial.bankruptcy.collection.summary.unknown')
     }
 
-    let from = i18n.t('financial.bankruptcy.collection.summary.unknown')
+    let from = i18n.t('financial.bankruptcy.collection.summary.nodates')
     if (item.DateFiled && item.DateFiled.month && item.DateFiled.year) {
       from = '' + item.DateFiled.month + '/' + item.DateFiled.year
     }
@@ -201,7 +153,6 @@ export default class Bankruptcy extends ValidationElement {
           <Help id="financial.bankruptcy.courtNumber.help">
             <Text name="CourtNumber"
                   className="courtnumber"
-                  label={i18n.t('financial.bankruptcy.courtNumber.label')}
                   placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
                   title={i18n.t('financial.bankruptcy.courtNumber.title')}
                   onValidate={this.handleValidation}
@@ -240,11 +191,19 @@ export default class Bankruptcy extends ValidationElement {
             <Number name="TotalAmount"
                     className="amount"
                     min="0"
-                    label={i18n.t('financial.bankruptcy.totalAmount.label')}
                     placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
                     onValidate={this.handleValidation}
                     />
             <HelpIcon className="amount" />
+            <div className="coupled-flags">
+              <Checkbox name="TotalAmountEstimated"
+                        ref="estimated"
+                        label={i18n.t('financial.bankruptcy.totalAmount.estimated')}
+                        toggle="false"
+                        checked={this.state.TotalAmountEstimated}
+                        onValidate={this.handleValidation}
+                        />
+            </div>
           </Help>
         </div>
 
@@ -258,7 +217,6 @@ export default class Bankruptcy extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="financial.bankruptcy.courtInvolved.help">
             <Text name="CourtInvolved"
-                  label={i18n.t('financial.bankruptcy.courtInvolved.label')}
                   placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
                   onValidate={this.handleValidation}
                   className="courtinvolved"
@@ -288,7 +246,6 @@ export default class Bankruptcy extends ValidationElement {
                 className="bankruptcy-branch eapp-field-wrap"
                 value={this.state.HasBankruptcy}
                 help="financial.bankruptcy.help"
-                label={i18n.t('financial.bankruptcy.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}

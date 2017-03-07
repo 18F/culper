@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Text, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
+import { PassportValidator } from '../../../../validators'
+import { ValidationElement, Help, HelpIcon, Text, Suggestions, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -24,6 +25,8 @@ export default class Passport extends ValidationElement {
       valid: false,
       errorCodes: []
     }
+
+    this.onSuggestion = this.onSuggestion.bind(this)
   }
 
   /**
@@ -85,57 +88,7 @@ export default class Passport extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.HasPassport) {
-      return false
-    }
-
-    if (this.state.HasPassport === 'No') {
-      return true
-    }
-
-    if (!this.state.Name.first || !this.state.Name.last) {
-      return false
-    }
-
-    let re = this.state.Card === 'Card' ? new RegExp(this.state.reCard) : new RegExp(this.state.reBook)
-    if (!re.test(this.state.Number.value)) {
-      return false
-    }
-
-    if (!this.isValidEstimatedDate(this.state.Issued)) {
-      return false
-    }
-
-    if (!this.isValidEstimatedDate(this.state.Expiration)) {
-      return false
-    }
-
-    if (this.state.Expiration.date < this.state.Issued.date) {
-      return false
-    }
-
-    return true
-  }
-
-  isValidEstimatedDate (obj) {
-    let month = parseInt(obj.month || '1')
-    let day = parseInt(obj.day || '1')
-    let year = parseInt(obj.year)
-    // let estimated = obj.estimated
-
-    if (month < 1 && month > 12) {
-      return false
-    }
-
-    if (day < 1 && day > 31) {
-      return false
-    }
-
-    if (year < 1) {
-      return false
-    }
-
-    return true
+    return new PassportValidator(this.state, null).isValid()
   }
 
   /**
@@ -145,6 +98,15 @@ export default class Passport extends ValidationElement {
     this.handleUpdate('HasPassport', val, () => {
       this.handleValidation(event, null, null)
     })
+  }
+
+  renderSuggestion (suggestion) {
+    const name = `${suggestion.first || ''} ${suggestion.middle || ''} ${suggestion.last || ''} ${suggestion.suffix || ''}`.trim()
+    return (<span>{name}</span>)
+  }
+
+  onSuggestion (suggestion) {
+    this.handleUpdate('Name', suggestion)
   }
 
   /**
@@ -163,13 +125,23 @@ export default class Passport extends ValidationElement {
     return (
       <div>
         <h3>Provide the name in which passport was first issued</h3>
-        <Name name="name"
-              {...this.state.Name}
-              className="eapp-field-wrap"
-              withSuggestions="true"
-              onUpdate={this.handleUpdate.bind(this, 'Name')}
-              onValidate={this.handleValidation}
-              />
+        <Suggestions suggestions={this.props.suggestedNames}
+                     renderSuggestion={this.renderSuggestion}
+                     onSuggestion={this.onSuggestion}
+                     withSuggestions="true"
+                     suggestionTitle={i18n.t('suggestions.name.title')}
+                     suggestionParagraph={i18n.m('suggestions.name.para')}
+                     suggestionLabel={i18n.t('suggestions.name.label')}
+                     suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
+                     suggestionUseLabel={i18n.t('suggestions.name.use')}
+                     >
+          <Name name="name"
+                {...this.state.Name}
+                className="eapp-field-wrap"
+                onUpdate={this.handleUpdate.bind(this, 'Name')}
+                onValidate={this.handleValidation}
+                />
+        </Suggestions>
 
         <h3>{i18n.t('foreign.passport.number')}</h3>
         <div className="eapp-field-wrap no-label">
@@ -243,16 +215,18 @@ export default class Passport extends ValidationElement {
     return (
       <div className="passport">
         <p>
-          {i18n.t('foreign.passport.info.text')}<br />
+          {i18n.t('foreign.passport.info.text')}
+        </p>
+        <p>
           <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
             {i18n.t('foreign.passport.info.link')}
           </a>
         </p>
+        <h3>{i18n.t('foreign.passport.question.title')}</h3>
         <Branch name="has_passport"
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
                 className="eapp-field-wrap"
-                label={i18n.t('foreign.passport.question.title')}
                 help="foreign.passport.branch.help"
                 >
         </Branch>

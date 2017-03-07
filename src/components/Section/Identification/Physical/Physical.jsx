@@ -1,18 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
+import { PhysicalValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'
 
 export default class Physical extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      Height: props.Height || {},
-      Weight: props.Weight || 0,
-      HairColor: props.HairColor || {},
-      EyeColor: props.EyeColor || {},
-      Sex: props.Sex || {},
-      Comments: props.Comments || '',
+      Height: props.Height,
+      Weight: props.Weight,
+      HairColor: props.HairColor,
+      EyeColor: props.EyeColor,
+      Sex: props.Sex,
+      Comments: props.Comments,
       errorCodes: []
     }
   }
@@ -58,27 +59,7 @@ export default class Physical extends ValidationElement {
   }
 
   isValid () {
-    if (this.state.Height.feet < 1 || !this.state.Height.inches) {
-      return false
-    }
-
-    if (this.state.Weight < 10) {
-      return false
-    }
-
-    if (!this.state.HairColor.length) {
-      return false
-    }
-
-    if (!this.state.EyeColor.length) {
-      return false
-    }
-
-    if (!this.state.Sex.length) {
-      return false
-    }
-
-    return true
+    return new PhysicalValidator(this.state, null).isValid()
   }
 
   render () {
@@ -139,8 +120,7 @@ export default class Physical extends ValidationElement {
 
         <Comments name="comments"
                   value={this.state.Comments}
-                  title={i18n.t('identification.traits.heading.comments')}
-                  label={i18n.t('identification.traits.label.comments')}
+                  addLabel="identification.traits.label.comments"
                   className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
@@ -149,7 +129,6 @@ export default class Physical extends ValidationElement {
           <div className={klass + ' sex'}>
             <Help id="identification.traits.help.sex">
               <Sex name="sex"
-                   label={i18n.t('identification.traits.label.sex')}
                    value={this.props.Sex}
                    onUpdate={this.handleUpdate.bind(this, 'Sex')}
                    onValidate={this.handleValidation.bind(this)}

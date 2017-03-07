@@ -1,9 +1,11 @@
 import React from 'react'
+import { push } from '../../middleware/history'
 import { updateSection } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
 import Foreign from './Foreign'
+import Military from './Military'
 import History from './History'
 import { SectionView, SectionViews } from './SectionView'
 
@@ -14,15 +16,18 @@ class Section extends React.Component {
    * the componentDidMount() is rendered. However, subsequent path changes trigger componentWillReceiveProps()
    */
   componentWillReceiveProps (updatedProps) {
-    let name = updatedProps.section
-    let sub = updatedProps.subsection
-    this.props.dispatch(updateSection(name, sub))
+    this.update(updatedProps)
   }
 
   componentDidMount () {
-    let name = this.props.section
-    let sub = this.props.subsection
+    this.update(this.props)
+  }
+
+  update (props) {
+    let name = props.section
+    let sub = props.subsection
     this.props.dispatch(updateSection(name, sub))
+    this.props.dispatch(push(`/form/${props.section}/${props.subsection || ''}`))
   }
 
   render () {
@@ -34,7 +39,13 @@ class Section extends React.Component {
         <SectionView name="financial">
           <Financial subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="history">
+        <SectionView name="military">
+          <Military subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="history1">
+          <History subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="history2">
           <History subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="foreign">

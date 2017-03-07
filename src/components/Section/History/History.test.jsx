@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import History from './History'
-import { mount } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 
 const applicationState = {
   History: {}
@@ -34,7 +34,7 @@ describe('The History section', () => {
   })
 
   it('can go to each subsection', () => {
-    const sections = ['residence', 'employment', 'education']
+    const sections = ['residence', 'employment', 'education', 'federal']
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
     sections.forEach((section) => {

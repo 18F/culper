@@ -21,4 +21,30 @@ describe('The physical attributes section', () => {
     expect(component.find('input[name="sex"]').length).toBeGreaterThan(0)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
+
+  it('loads data into physical section', () => {
+    let updates = 0
+    let data = {
+      Comments: 'Hello',
+      EyeColor: 'Black',
+      HairColor: [
+        'Bald'
+      ],
+      Height: {
+        feet: 5,
+        inches: 10
+      },
+      Sex: 'male',
+      Weight: 180,
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Physical name="physical" {...data} />)
+    component.find('input#pounds').simulate('change')
+    component.find('input#feet').simulate('change')
+    component.find('input#inches').simulate('change')
+    component.find('input[name="hair-bald"]').simulate('change')
+    component.find('input[name="eye"]').first().simulate('change')
+    component.find('input[name="sex"]').first().simulate('change')
+    expect(updates).toBeGreaterThan(0)
+  })
 })

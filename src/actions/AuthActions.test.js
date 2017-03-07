@@ -3,7 +3,7 @@ import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { login, logout, redirectToLogin, handleLoginSuccess, twofactor, qrcode, handleTwoFactorSuccess, handleLoginError } from './AuthActions'
+import { login, logout, redirectToLogin, handleLoginSuccess, twofactor, qrcode, handleTwoFactorSuccess, handleLoginError, twofactorreset } from './AuthActions'
 import AuthConstants from './AuthConstants'
 
 const middlewares = [ thunk ]
@@ -107,6 +107,66 @@ describe('Auth actions', function () {
 
     return store
       .dispatch(twofactor('john', '123456'))
+      .then(function () {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+  })
+
+  it('should create an action to handle twofactor auth and error out', function () {
+    // Mock POST response
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/2fa/john/verify').reply(500, '')
+
+    const expectedActions = [
+      {
+        type: AuthConstants.TWOFACTOR_ERROR,
+        error: ''
+      }
+    ]
+    const store = mockStore({ authentication: [] })
+
+    return store
+      .dispatch(twofactor('john', '123456'))
+      .then(function () {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+  })
+
+  it('should create an action to handle twofactor reset', function () {
+    // Mock POST response
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/2fa/john/reset').reply(200, '')
+
+    const expectedActions = [
+      {
+        type: AuthConstants.TWOFACTOR_ERROR,
+        error: 'Two factor authentication reset'
+      }
+    ]
+    const store = mockStore({ authentication: [] })
+
+    return store
+      .dispatch(twofactorreset('john'))
+      .then(function () {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+  })
+
+  it('should create an action to handle twofactor reset with error', function () {
+    // Mock POST response
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/2fa/john/reset').reply(500, '')
+
+    const expectedActions = [
+      {
+        type: AuthConstants.TWOFACTOR_ERROR,
+        error: undefined
+      }
+    ]
+    const store = mockStore({ authentication: [] })
+
+    return store
+      .dispatch(twofactorreset('john2'))
       .then(function () {
         expect(store.getActions()).toEqual(expectedActions)
       })

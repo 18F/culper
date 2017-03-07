@@ -2,10 +2,10 @@
 
 [![Slack][badge_chat]][1]
 
-|         | Builds                             | GPA                                | Go                                              | Accessibility                           |
-| ------- | ---------------------------------- | ---------------------------------- | ----------------------------------------------- | --------------------------------------- |
-| Release | [![Build Status][badge_ci_18f]][2] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] | [![Accessibility][badge_access_18f]][4] |
-| Staging | [![Build Status][badge_ci_tt]][5]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  | [![Accessibility][badge_access_tt]][7]  |
+|         | Builds                             | Coverage                        | GPA                                | Go                                              | Accessibility                           |
+| ------- | ---------------------------------- | ------------------------------- | ---------------------------------- | ----------------------------------------------- | --------------------------------------- |
+| Release | [![Build Status][badge_ci_18f]][2] | [![codecov][badge_cov_18f]][24] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] | [![Accessibility][badge_access_18f]][4] |
+| Staging | [![Build Status][badge_ci_tt]][5]  | [![codecov][badge_cov_tt]][25]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  | [![Accessibility][badge_access_tt]][7]  |
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
 [U.S. Digital Services Playbook][8]:
@@ -30,9 +30,9 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 
 The project team utilizes [GitHub Projects][9] as an in integrated project management tool to administer User Stories, Tasks, and Sprints.
 
- - [Board/Backlog][10]
- - [Milestones/Sprints][11]
- - [Epics/User Stories][12]
+ - [Board/Backlog][10] - The Product Backlog can be viewed in the GitHub Project Board along with the items being worked on in the current sprint
+ - [Milestones/Sprints][11] - Sprint durations are defined using GitHub Milestones, and backlog items (issues) worked on in a given sprint are tagged with a Milestone.
+ - [Epics/User Stories][12] - GitHub issues are tagged with the "Epic" tag to denote the issue as a User Story
 
 GitHub commits can be traced back to their corresponding tasks through commit comments.  Commits directly related to a task will be prefixed with the task ID:
 
@@ -41,6 +41,33 @@ truetandem/e-QIP-prototype#issue_number Commit description
 ```
 
 [Keywords][13] can be used to change the status of the associated issue
+
+## Sprint Backlogs
+To view the items completed during each development sprint and to view the burndown chart for each respective sprint, please use the links provided below. 
+
+### Sprint 1
+View Sprint 1 [backlog items][26] completed and [burndown chart][34]
+
+### Sprint 2
+View Sprint 2 [backlog items][27] completed and [burndown chart][35]
+
+### Sprint 3
+View Sprint 3 [backlog items][28] completed and [burndown chart][36]
+
+### Sprint 4
+View Sprint 4 [backlog items][29] completed and [burndown chart][37]
+
+### Sprint 5
+View Sprint 5 [backlog items][30] completed and [burndown chart][38]
+
+### Sprint 6
+View Sprint 6 [backlog items][31] completed and [burndown chart][39]
+
+### Sprint 7
+View Sprint 7 [backlog items][32] completed and [burndown chart][40]
+
+### Sprint 8 (current sprint)
+View Sprint 8 [backlog items][33] in progress 
 
 ## Getting to know the code
 
@@ -159,10 +186,12 @@ Please refer to the [contributing documentation][18].
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
 [badge_ci_18f]: https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master
 [badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
+[badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
 [badge_access_18f]: https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master
 [badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
 [badge_ci_tt]: https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master
 [badge_cc_tt]: https://codeclimate.com/github/truetandem/e-QIP-prototype/badges/gpa.svg
+[badge_cov_tt]: https://codecov.io/gh/truetandem/e-QIP-prototype/branch/master/graph/badge.svg
 [badge_access_tt]: https://continua11y.18f.gov/truetandem/e-QIP-prototype.svg?branch=master
 [badge_goreportcard_tt]: https://goreportcard.com/badge/github.com/truetandem/e-QIP-prototype
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
@@ -188,3 +217,20 @@ Please refer to the [contributing documentation][18].
 [21]: https://docker.com
 [22]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [23]: https://goreportcard.com/report/github.com/truetandem/e-QIP-prototype
+[24]: https://codecov.io/gh/18F/e-QIP-prototype
+[25]: https://codecov.io/gh/truetandem/e-QIP-prototype
+[26]: https://github.com/truetandem/e-QIP-prototype/milestone/2?closed=1
+[27]: https://github.com/truetandem/e-QIP-prototype/milestone/3?closed=1
+[28]: https://github.com/truetandem/e-QIP-prototype/milestone/4?closed=1
+[29]: https://github.com/truetandem/e-QIP-prototype/milestone/5?closed=1
+[30]: https://github.com/truetandem/e-QIP-prototype/milestone/6?closed=1
+[31]: https://github.com/truetandem/e-QIP-prototype/milestone/7?closed=1
+[32]: https://github.com/truetandem/e-QIP-prototype/milestone/8?closed=1
+[33]: https://github.com/truetandem/e-QIP-prototype/milestone/9
+[34]: https://github.com/truetandem/e-QIP-prototype/issues/613
+[35]: https://github.com/truetandem/e-QIP-prototype/issues/614
+[36]: https://github.com/truetandem/e-QIP-prototype/issues/615
+[37]: https://github.com/truetandem/e-QIP-prototype/issues/616
+[38]: https://github.com/truetandem/e-QIP-prototype/issues/617
+[39]: https://github.com/truetandem/e-QIP-prototype/issues/618
+[40]: https://github.com/truetandem/e-QIP-prototype/issues/619

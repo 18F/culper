@@ -7,9 +7,11 @@ describe('The Street component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      value: ''
+      value: '',
+      onFocus: () => {},
+      onBlur: () => {}
     }
-    const component = mount(<Street name={expected.name} label={expected.label} value={expected.value} />)
+    const component = mount(<Street name={expected.name} label={expected.label} value={expected.value} onFocus={expected.onFocus} onBlur={expected.onBlur} />)
     component.find('textarea#' + expected.name).simulate('change')
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('textarea#' + expected.name).length).toEqual(1)

@@ -14,17 +14,6 @@ export default class Supervisor extends ValidationElement {
     }
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleFieldChange (field, event) {
-    let value = event.target.value
-    this.setState({ [field]: value }, () => {
-      super.handleChange(event)
-      this.doUpdate()
-    })
-  }
-
   doUpdate () {
     if (this.props.onUpdate) {
       this.props.onUpdate({
@@ -74,28 +63,31 @@ export default class Supervisor extends ValidationElement {
   render () {
     return (
       <div>
-
-        <h3>{i18n.t('history.employment.supervisor.heading.name')}</h3>
+        <h3>{i18n.t('history.employment.default.supervisor.heading.name')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="history.employment.supervisor.name.help">
+          <Help id="history.employment.default.supervisor.name.help">
             <Text name="SupervisorName"
               className="text"
               {...this.props.SupervisorName}
-              label={i18n.t('history.employment.supervisor.name.label')}
+              label={i18n.t('history.employment.default.supervisor.name.label')}
               onValidate={this.handleValidation}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
             />
             <HelpIcon className="name-help-icon" />
           </Help>
         </div>
 
-        <h3>{i18n.t('history.employment.supervisor.heading.title')}</h3>
+        <h3>{i18n.t('history.employment.default.supervisor.heading.title')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="history.employment.supervisor.title.help">
+          <Help id="history.employment.default.supervisor.title.help">
             <Text name="Title"
               {...this.props.Title}
               className="text"
-              label={i18n.t('history.employment.supervisor.title.label')}
+              label={i18n.t('history.employment.default.supervisor.title.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Title')}
               onValidate={this.handleValidation}
             />
@@ -103,13 +95,15 @@ export default class Supervisor extends ValidationElement {
           </Help>
         </div>
 
-        <h3>{i18n.t('history.employment.supervisor.heading.email')}</h3>
+        <h3>{i18n.t('history.employment.default.supervisor.heading.email')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="history.employment.supervisor.email.help">
+          <Help id="history.employment.default.supervisor.email.help">
             <Email name="Email"
               {...this.props.Email}
               className="text"
-              label={i18n.t('history.employment.supervisor.email.label')}
+              label={i18n.t('history.employment.default.supervisor.email.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Email')}
               onValidate={this.handleValidation}
             />
@@ -117,12 +111,14 @@ export default class Supervisor extends ValidationElement {
           </Help>
         </div>
 
-        <h3>{i18n.t('history.employment.supervisor.heading.address')}</h3>
+        <h3>{i18n.t('history.employment.default.supervisor.heading.address')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="history.employment.supervisor.address.help">
+          <Help id="history.employment.default.supervisor.address.help">
             <Address name="Address"
               {...this.props.Address}
-              label={i18n.t('history.employment.supervisor.address.label')}
+              label={i18n.t('history.employment.default.supervisor.address.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Address')}
               onValidate={this.handleValidation}
             />
@@ -130,12 +126,14 @@ export default class Supervisor extends ValidationElement {
           </Help>
         </div>
 
-        <h3>{i18n.t('history.employment.supervisor.heading.telephone')}</h3>
+        <h3>{i18n.t('history.employment.default.supervisor.heading.telephone')}</h3>
         <div className="eapp-field-wrap">
-          <Help id="history.employment.supervisor.telephone.help">
+          <Help id="history.employment.default.supervisor.telephone.help">
             <Telephone name="Telephone"
               {...this.props.Telephone}
-              label={i18n.t('history.employment.supervisor.telephone.label')}
+              label={i18n.t('history.employment.default.supervisor.telephone.label')}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               onUpdate={this.onUpdate.bind(this, 'Telephone')}
               onValidate={this.handleValidation}
             />

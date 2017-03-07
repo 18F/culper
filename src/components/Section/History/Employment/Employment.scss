@@ -1,5 +1,15 @@
 .employment {
   .collection {
+    .table-cell.index {
+      width: 10rem;
+
+      .svg {
+        height: 1.3rem;
+        width: auto;
+        margin-right: 1rem;
+      }
+    }
+
     .table-cell.dates {
       width: 16rem;
     }
@@ -16,10 +26,40 @@
     }
   }
 
-  .employment-activity {
+  .employment-left {
     label {
       height: 8rem;
-      width: 26rem;
+      width: 24rem;
+      padding-top: 2rem;
+    }
+  }
+
+  .explanation-left {
+    padding-top: 5rem !important;
+  }
+
+  .date-left {
+    padding-top: 5rem !important;
+
+    > label {
+      position: relative;
+    }
+  }
+
+  .employment-activity {
+    .option-list {
+      max-width: 92% !important;
+    }
+
+    label {
+      height: 8rem;
+      width: 24rem;
+      padding-top: 2rem;
+    }
+
+    .other {
+      display: inline-block;
+      width: 92%;
       padding-top: 2rem;
     }
   }

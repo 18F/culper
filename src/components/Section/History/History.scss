@@ -1,0 +1,63 @@
+@import 'eqip-colors';
+
+.history {
+  .add-options {
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+    margin-left: 4rem;
+
+    .btn {
+      margin-top: 3rem;
+
+      .fa.fa-plus-circle {
+        margin-left: 1rem;
+      }
+
+      button {
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    div.title {
+      font-weight: bolder;
+      color: #5c606c;
+      margin-top: 1rem;
+    }
+
+    .svg {
+      width: 8rem;
+      height: auto;
+    }
+
+    .table {
+      display: table;
+
+      .table-cell {
+        display: table-cell;
+        width: 22rem;
+        height: 16rem;
+      }
+
+      .add-employment {
+        padding-left: 8rem;
+      }
+
+      .add-residence, .add-employment {
+        text-align: center;
+      }
+    }
+  }
+
+  hr.section-divider {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid $eapp-grey;
+    margin: 5rem 8rem 5rem 4rem;
+  }
+
+  .not-complete {
+    margin-bottom: 5rem;
+  }
+}

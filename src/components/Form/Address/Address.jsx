@@ -133,13 +133,6 @@ export default class Address extends ValidationElement {
     })
   }
 
-  /**
-   * Generated name for the part of the address elements.
-   */
-  partName (part) {
-    return '' + this.props.name + '-' + part
-  }
-
   usAddress () {
     return (
       <div>
@@ -295,6 +288,8 @@ export default class Address extends ValidationElement {
           <Radio name="addressType"
                  label={i18n.t('address.options.us.label')}
                  value="United States"
+                 className="domestic"
+                 ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'addressType')}
                  onValidate={this.props.onValidate}
@@ -304,6 +299,8 @@ export default class Address extends ValidationElement {
           <Radio name="addressType"
                  label={i18n.t('address.options.apoFpo.label')}
                  value="APOFPO"
+                 className="apofpo"
+                 ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'addressType')}
                  onValidate={this.props.onValidate}
@@ -313,6 +310,8 @@ export default class Address extends ValidationElement {
           <Radio name="addressType"
                  label={i18n.t('address.options.international.label')}
                  value="International"
+                 className="international"
+                 ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'addressType')}
                  onValidate={this.props.onValidate}

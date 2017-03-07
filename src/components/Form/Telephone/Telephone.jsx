@@ -91,7 +91,6 @@ export default class Telephone extends ValidationElement {
   }
 
   handleNumberTypeChange (type, other) {
-    console.log(other)
     this.setState({numberType: type}, () => {
       this.onUpdate()
     })
@@ -444,7 +443,7 @@ export default class Telephone extends ValidationElement {
           <RadioGroup selectedValue={this.state.timeOfDay}>
             <Radio name="timeofday"
                    native={true}
-                   className="time"
+                   className="time day"
                    label={i18n.t('telephone.timeOfDay.day')}
                    value="Day"
                    onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
@@ -452,7 +451,7 @@ export default class Telephone extends ValidationElement {
                    />
             <Radio name="timeofday"
                    native={true}
-                   className="time"
+                   className="time night"
                    label={i18n.t('telephone.timeOfDay.night')}
                    value="Night"
                    onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
@@ -465,28 +464,28 @@ export default class Telephone extends ValidationElement {
           <label>Select phone number type</label>
           <RadioGroup selectedValue={this.state.numberType}>
             <Radio name="numbertype-cell"
-                   className="phonetype-option"
+                   className="phonetype-option cell"
                    label={i18n.t('telephone.numberType.cell')}
                    value="Cell"
                    onChange={this.handleNumberTypeChange.bind(this, 'Cell')}
                    onValidate={this.handleValidation}
                    />
             <Radio name="numbertype-home"
-                   className="phonetype-option"
+                   className="phonetype-option home"
                    label={i18n.t('telephone.numberType.home')}
                    value="Home"
                    onChange={this.handleNumberTypeChange.bind(this, 'Home')}
                    onValidate={this.handleValidation}
                    />
             <Radio name="numbertype-work"
-                   className="phonetype-option"
+                   className="phonetype-option work"
                    label={i18n.t('telephone.numberType.work')}
                    value="Work"
                    onChange={this.handleNumberTypeChange.bind(this, 'Work')}
                    onValidate={this.handleValidation}
                    />
             <Radio name="numbertype-other"
-                   className="phonetype-option"
+                   className="phonetype-option other"
                    label={i18n.t('telephone.numberType.other')}
                    value="Other"
                    onChange={this.handleNumberTypeChange.bind(this, 'Other')}

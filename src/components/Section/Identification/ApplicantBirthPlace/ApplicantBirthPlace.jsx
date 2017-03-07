@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { BirthPlaceValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, City, MilitaryState, County, Country, Branch } from '../../../Form'
 import { api } from '../../../../services/api'
 
@@ -96,9 +97,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     let complexStatus = null
     if (codes.length > 0) {
       complexStatus = false
-    } else if (this.state.country === 'United States' && this.state.state && this.state.city) {
-      complexStatus = true
-    } else if (this.state.country !== 'United States' && this.state.city && this.state.county && this.state.country) {
+    } else if (this.isValid()) {
       complexStatus = true
     }
 
@@ -134,42 +133,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
   }
 
   isValid () {
-    if (!this.state.domestic) {
-      return false
-    }
-
-    if (!this.state.country) {
-      return false
-    }
-
-    if (this.state.country === 'United States') {
-      if (!this.state.state) {
-        return false
-      }
-
-      if (!this.state.city) {
-        return false
-      }
-    }
-
-    if (this.state.country !== 'United States') {
-      if (!this.state.city) {
-        return false
-      }
-
-      if (!this.state.county) {
-        return false
-      }
-    }
-
-    return true
-  }
-
-  /**
-   * Generated name for the part of the address elements.
-   */
-  partName (part) {
-    return '' + this.state.name + '-' + part
+    return new BirthPlaceValidator(this.state, null).isValid()
   }
 
   /**
