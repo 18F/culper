@@ -179,6 +179,32 @@ describe('Employment component validation', function () {
           }
         },
         expected: false
+      },
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'SelfEmployed'
+          },
+          Additional: {
+            HasAdditionalActivity: 'Foo',
+            List: [
+              {
+                Position: {
+                  value: ''
+                },
+                Supervisor: {
+                  value: 'Homer'
+                },
+                DatesEmployed: {
+                  from: new Date('1/1/2011'),
+                  to: new Date('3/1/2011'),
+                  present: false
+                }
+              }
+            ]
+          }
+        },
+        expected: false
       }
     ]
 
@@ -214,6 +240,105 @@ describe('Employment component validation', function () {
     })
   })
 
+  it('can validate address', () => {
+    const tests = [
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).validAddress()).toBe(test.expected)
+    })
+  })
+
+  it('can validate title', () => {
+    const tests = [
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Title: {
+            value: 'Dev'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Title: {
+            value: 'Dev'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).validTitle()).toBe(test.expected)
+    })
+  })
+
+  it('can validate status', () => {
+    const tests = [
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Status: {
+            value: 'Foo'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Title: {
+            value: 'Foo'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).validStatus()).toBe(test.expected)
+    })
+  })
+
+  it('can validate telephone', () => {
+    const tests = [
+      {
+        state: {
+          Telephone: {
+            noNumber: '',
+            number: '2028675309',
+            numberType: 'Cell',
+            timeOfDay: 'Day'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).validTelephone()).toBe(test.expected)
+    })
+  })
   it('can validate supervisor', () => {
     const tests = [
       {

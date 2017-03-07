@@ -82,7 +82,7 @@ export default class EmploymentValidator {
       if (!this.additional) {
         return false
       }
-
+      console.log(this.additional)
       if (!(this.additional.HasAdditionalActivity === 'No' || this.additional.HasAdditionalActivity === 'Yes')) {
         return false
       }
