@@ -51,6 +51,28 @@ describe('Military history validation', function () {
                   to: new Date('1/1/2012'),
                   present: false
                 },
+                HasBeenDischarged: 'Yes'
+              }
+            }
+          ]
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasServed: 'Yes',
+          List: [
+            {
+              Item: {
+                Service: 'AirNationalGuard',
+                Status: 'ActiveDuty',
+                Officer: 'Enlisted',
+                ServiceNumber: '0123456789',
+                Dates: {
+                  from: new Date('1/1/2010'),
+                  to: new Date('1/1/2012'),
+                  present: false
+                },
                 HasBeenDischarged: 'Yes',
                 DischargeType: 'Other',
                 DischargeTypeOther: {

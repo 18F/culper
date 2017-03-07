@@ -21,7 +21,7 @@ export default class MilitaryHistoryValidator {
     }
 
     for (const service of this.list) {
-      if (new MilitaryServiceValidator(service.Item, null).isValid() === false) {
+      if (new MilitaryServiceValidator(service.Item, null).isValid() !== true) {
         return false
       }
     }
@@ -38,7 +38,7 @@ export default class MilitaryHistoryValidator {
 export class MilitaryServiceValidator {
   constructor (state, props) {
     this.service = state.Service
-    this.status = state.State
+    this.status = state.Status
     this.officer = state.Officer
     this.serviceNumber = state.ServiceNumber
     this.dates = state.Dates
@@ -82,7 +82,7 @@ export class MilitaryServiceValidator {
       return true
     }
 
-    return this.dischargeType && this.dischargeType.length > 0
+    return this.validHasBeenDischarged() && this.dischargeType && this.dischargeType.length > 0
   }
 
   validDischargeTypeOther () {
@@ -94,7 +94,7 @@ export class MilitaryServiceValidator {
       return true
     }
 
-    return this.dischargeType === 'Other' && validGenericTextfield(this.dischargeTypeOther)
+    return this.validHasBeenDischarged() && this.dischargeType === 'Other' && validGenericTextfield(this.dischargeTypeOther)
   }
 
   validDischargeReason () {
@@ -102,7 +102,7 @@ export class MilitaryServiceValidator {
       return true
     }
 
-    return validGenericTextfield(this.dischargeReason)
+    return this.validHasBeenDischarged() && validGenericTextfield(this.dischargeReason)
   }
 
   validDischargeDate () {
@@ -110,7 +110,7 @@ export class MilitaryServiceValidator {
       return true
     }
 
-    return validDateField(this.dischargeDate)
+    return this.validHasBeenDischarged() && validDateField(this.dischargeDate)
   }
 
   isValid () {
