@@ -28,6 +28,12 @@ before_deploy:
 
 deploy:
   - provider: script
+    script: "./bin/deploy.sh development"
+    skip_cleanup: true
+    on:
+      condition: $TRAVIS_BRANCH = ad-deploy-branch-script
+      repo: truetandem/e-QIP-prototype
+  - provider: script
     script: "./bin/deploy.sh staging"
     skip_cleanup: true
     on:

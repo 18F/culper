@@ -21,6 +21,12 @@ elif [ $SPACE = 'staging' ]; then
   API_MANIFEST="manifest-api-staging.yml"
   FRONTEND_NAME="eqip-prototype-staging"
   FRONTEND_MANIFEST="manifest-frontend-staging.yml"
+elif [ $SPACE = 'development' ]; then
+  echo "-----------------------------"
+  echo "Pretending to deploy this PR"
+  echo "The branch is:"
+  echo $TRAVIS_BRANCH
+  echo "-----------------------------"
 else
   echo "Unknown space: $SPACE"
   exit
