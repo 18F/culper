@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Collection, RadioGroup, Radio, DateRange, Text, Textarea, Help, HelpIcon } from '../../../Form'
 import ForeignContact from './ForeignContact'
+import { dateSummary } from '../../History/HistoryCollection/summaries'
 
 /**
  * Convenience function to send updates along their merry way
@@ -103,9 +104,7 @@ export default class ForeignService extends ValidationElement {
     const name = itemProperties.Name && itemProperties.Name.value
           ? itemProperties.Name.value
           : i18n.t('military.foreign.collection.contacts.summary.unknown')
-    const dates = itemProperties.Date && itemProperties.Date.date
-          ? `${itemProperties.Date.month}/${itemProperties.Date.year}`
-          : ''
+    const dates = dateSummary(itemProperties)
 
     return (
       <div className="table">
