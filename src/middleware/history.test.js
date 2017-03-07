@@ -1,5 +1,7 @@
+import React from 'react'
 import { PUSH_STATE, historyMiddleware, push } from './history'
 import { hashHistory } from 'react-router'
+import { mount } from 'enzyme'
 
 describe('history middleware', function () {
   const dispatch = () => {}
@@ -8,7 +10,7 @@ describe('history middleware', function () {
 
   it('should create an action to handle a history push', function () {
     const path = '/'
-    const expectedAction = { type: PUSH_STATE, to: path }
+    const expectedAction = { type: PUSH_STATE, to: path, scrollTo: 'scrollTo' }
     expect(push(path)).toEqual(expectedAction)
   })
 
@@ -30,6 +32,19 @@ describe('history middleware', function () {
     const action = {
       type: PUSH_STATE,
       to: '/foo'
+    }
+    actionHandler(action)
+    expect(hashHistory.getCurrentLocation().pathname).toEqual('/foo')
+  })
+
+  it('should push new state into history and scroll to', function () {
+    let newDiv = document.createElement('div', {id: 'gohere'})
+    document.body.appendChild(newDiv)
+    const actionHandler = nextHandler(dispatch, getState)
+    const action = {
+      type: PUSH_STATE,
+      to: '/foo',
+      scrollTo: 'gohere'
     }
     actionHandler(action)
     expect(hashHistory.getCurrentLocation().pathname).toEqual('/foo')

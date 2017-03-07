@@ -1,0 +1,84 @@
+@import 'eqip-colors';
+
+.btn-wrap {
+  display: table;
+  margin: 0 8rem 0 4rem;
+  width: calc(100% - 12rem);
+
+  .btn-container {
+    display: table-row;
+
+    .btn-cell,
+    .btn-spacer {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .btn-cell {
+      width: 40%;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+      background-color: $eapp-blue;
+
+      .next {
+        text-align: right;
+      }
+
+      &:hover {
+        background-color: $eapp-blue-dark;
+      }
+
+      button {
+        margin: 0;
+        line-height: normal !important;
+        width: 100%;
+        padding: 2rem;
+        background: none;
+
+        &:hover {
+          background: none;
+        }
+
+        .actions {
+          display: table;
+          width: 100%;
+
+          .direction {
+            font-weight: 600;
+          }
+
+          .text, .icon {
+            display: table-cell;
+            vertical-align: middle;
+          }
+
+          .icon {
+            width: 2.4rem;
+          }
+
+          &.next {
+            text-align: right;
+          }
+
+          &.back {
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    .label {
+      font-weight: normal;
+      min-height: 2rem;
+    }
+  }
+}
+
+.top-btns {
+  .btn-wrap {
+    border-bottom: 2px solid #e2e7ef;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    margin-bottom: 7rem;
+  }
+}

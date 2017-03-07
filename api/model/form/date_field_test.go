@@ -72,6 +72,33 @@ func TestDateField(t *testing.T) {
 	}
 }
 
+func TestDateFieldParse(t *testing.T) {
+	tests := []struct {
+		Date     string
+		Expected bool
+	}{
+		{
+			"01-01-2001",
+			true,
+		},
+		{
+			"01-2001",
+			false,
+		},
+		{
+			"hello",
+			false,
+		},
+	}
+
+	df := DateField{}
+	for _, test := range tests {
+		if err := df.Parse(test.Date); (err != nil) == test.Expected {
+			t.Fatalf("Expected [%v] to be [%v]\n", err != nil, test.Expected)
+		}
+	}
+}
+
 func TestDateFieldTime(t *testing.T) {
 	for _, test := range tests {
 		if time, _ := test.Field.Time(); !time.IsZero() != test.Expected {

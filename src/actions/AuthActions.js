@@ -56,21 +56,25 @@ export function twofactor (account, token) {
         dispatch(handleTwoFactorSuccess())
         dispatch(push('/form'))
       })
-      .catch(function (error) {
-        // Invalidate any previously acquired token
+      .catch(error => {
         api.setToken('')
+        dispatch(handleTwoFactorError(error.response.data))
+      })
+  }
+}
 
-        if (error.response) {
-          switch (error.response.status) {
-            case 500:
-              // Internal Server Error
-              break
-
-            case 401:
-              // Unauthorized
-              break
-          }
-        }
+export function twofactorreset (account) {
+  return function (dispatch, getState) {
+    return api
+      .twoFactorReset(account)
+      .then(response => {
+        api.setToken('')
+        dispatch(handleTwoFactorError('Two factor authentication reset'))
+        dispatch(qrcode(account))
+      })
+      .catch(error => {
+        api.setToken('')
+        dispatch(handleTwoFactorError(error.response.data))
       })
   }
 }
@@ -99,5 +103,12 @@ export function handleTwoFactorQrCode (png) {
 export function handleTwoFactorSuccess () {
   return {
     type: AuthConstants.TWOFACTOR_SUCCESS
+  }
+}
+
+export function handleTwoFactorError (error) {
+  return {
+    type: AuthConstants.TWOFACTOR_ERROR,
+    error: error
   }
 }

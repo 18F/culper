@@ -1,22 +1,82 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import ReactMarkdown from 'react-markdown'
+import Autosuggest from 'react-autosuggest'
+
+const getSuggestionValue = suggestion => suggestion.name
+
+const renderSuggestion = (suggestion, search) => {
+  let text = `${suggestion.name}`
+
+  // If the value is different than the name then display that
+  // as well
+  if (suggestion.name !== suggestion.value) {
+    text += ` (${suggestion.value})`
+  }
+
+  // Highlight what was matched
+  if (search.query) {
+    let rx = new RegExp(search.query, 'ig')
+    if (rx.test(text)) {
+      let lastIndex = rx.lastIndex
+      let firstIndex = lastIndex - search.query.length
+      text = text.slice(0, lastIndex) + '**' + text.slice(lastIndex + Math.abs(0))
+      text = text.slice(0, firstIndex) + '**' + text.slice(firstIndex + Math.abs(0))
+    }
+  }
+
+  return (
+    <div>
+      <ReactMarkdown source={text} />
+    </div>
+  )
+}
 
 export default class Dropdown extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      help: props.help,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
-      value: props.value,
+      value: props.value || '',
+      options: [],
+      suggestions: [],
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
+    }
+
+    this.onSuggestionChange = this.onSuggestionChange.bind(this)
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
+  }
+
+  componentDidMount () {
+    if (this.props.children) {
+      let arr = []
+      for (let child of this.props.children) {
+        if (child && child.type === 'option') {
+          arr.push({
+            name: child.props.children || '',
+            value: child.props.value
+          })
+        }
+      }
+
+      this.setState({options: arr}, () => {
+        // Force validation. Particularly on first render we need to revalidate the
+        // value.
+        let event = {
+          target: {
+            id: this.props.id || '',
+            name: this.props.name,
+            value: this.state.value
+          },
+          persist: function () {},
+          fake: true
+        }
+
+        this.handleValidation(event)
+      })
     }
   }
 
@@ -25,8 +85,36 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
+    this.setState({value: event.target.value}, () => {
       super.handleChange(event)
+    })
+  }
+
+  handleValidation (event, status, errorCodes) {
+    let value = this.state.value
+    let valid = value.length > 0 ? false : null
+
+    if (valid !== null) {
+      this.state.options.forEach(x => {
+        if (x.name.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()) {
+          valid = true
+          value = x.name
+        }
+      })
+
+      if (valid === false) {
+        errorCodes = 'notfound'
+      }
+    }
+
+    this.setState({
+      value: value,
+      error: valid === false,
+      valid: valid === true
+    },
+    () => {
+      const e = { [this.props.name]: errorCodes }
+      super.handleValidation(event, status, e)
     })
   }
 
@@ -50,18 +138,46 @@ export default class Dropdown extends ValidationElement {
     })
   }
 
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
+  getSuggestions (value) {
+    const inputValue = value.trim().toLowerCase()
+    const inputLength = inputValue.length
+    return inputLength === 0
+      ? []
+      : this.state.options.filter(opt => opt.name.toLowerCase().slice(0, inputLength) === inputValue || opt.value.toLowerCase().slice(0, inputLength) === inputValue)
+  }
+
+  onSuggestionChange (event, change) {
+    let e = {
+      ...event,
+      target: {
+        id: this.props.name,
+        name: this.props.name,
+        value: change.newValue
+      }
+    }
+    this.setState({value: change.newValue}, () => {
+      super.handleChange(e)
+    })
+  }
+
+  onSuggestionsFetchRequested (query) {
+    this.setState({
+      suggestions: this.getSuggestions(query.value)
+    })
+  }
+
+  onSuggestionsClearRequested (value) {
+    this.setState({
+      suggestions: []
+    })
   }
 
   /**
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = this.props.className || ''
+    klass += ' dropdown'
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -78,21 +194,6 @@ export default class Dropdown extends ValidationElement {
 
     if (this.state.error) {
       klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  spanClass () {
-    let klass = ''
-
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
-    } else {
-      klass += ' hidden'
     }
 
     return klass.trim()
@@ -116,33 +217,33 @@ export default class Dropdown extends ValidationElement {
   }
 
   render () {
+    const inputProps = {
+      value: this.state.value,
+      className: this.inputClass(),
+      id: this.props.name,
+      name: this.props.name,
+      placeholder: this.props.placeholder,
+      disabled: this.props.disabled,
+      pattern: this.props.pattern,
+      readOnly: this.props.readOnly,
+      onChange: this.onSuggestionChange,
+      onBlur: this.handleBlur
+    }
+
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.props.name}>
+          {this.props.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
-        <select className={this.inputClass()}
-                id={this.state.name}
-                name={this.state.name}
-                aria-describedby={this.errorName()}
-                disabled={this.props.disabled}
-                maxLength={this.state.maxlength}
-                pattern={this.state.pattern}
-                readOnly={this.state.readonly}
-                required={this.state.required}
-                value={this.state.value}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                >
-          {this.props.children}
-        </select>
+        <Autosuggest suggestions={this.state.suggestions}
+                     onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                     onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                     getSuggestionValue={getSuggestionValue}
+                     renderSuggestion={renderSuggestion}
+                     inputProps={inputProps}
+                     ref="autosuggest"
+                     />
       </div>
     )
   }

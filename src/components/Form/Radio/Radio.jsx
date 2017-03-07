@@ -6,28 +6,53 @@ export default class Radio extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
+      uid: super.guid(),
       checked: props.checked,
-      help: props.help,
       disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      native: props.native || false
     }
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      checked: newProps.checked
+    })
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ checked: !this.state.checked }, () => {
+    event.persist()
+    this.setState({checked: event.target.checked}, () => {
       super.handleChange(event)
+    })
+  }
+
+  /**
+   * Handle the click event.
+   */
+  handleClick (event) {
+    if (this.props.ignoreDeselect) {
+      return
+    }
+
+    const futureChecked = !this.state.checked
+    const futureValue = futureChecked ? this.props.value : ''
+    this.setState({checked: futureChecked, value: futureValue}, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value,
+          checked: this.state.checked
+        })
+      }
     })
   }
 
@@ -49,11 +74,9 @@ export default class Radio extends ValidationElement {
     })
   }
 
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
+  handleValidation (event, status, errors) {
+    event.persist()
+    super.handleValidation(event, {[this.props.name]: { status: true }}, errors)
   }
 
   /**
@@ -61,9 +84,16 @@ export default class Radio extends ValidationElement {
    */
   divClass () {
     let klass = ''
+    if (!this.props.native) {
+      klass = 'eapp-blocks-radio'
+    }
 
     if (this.state.error) {
       klass += ' usa-input-error'
+    }
+
+    if (this.props.className) {
+      klass += ` ${this.props.className}`
     }
 
     return klass.trim()
@@ -79,19 +109,12 @@ export default class Radio extends ValidationElement {
       klass += ' usa-input-error-label'
     }
 
-    return klass.trim()
-  }
+    if (this.state.checked) {
+      klass += ' checked'
+    }
 
-  /**
-   * Style classes applied to the span element.
-   */
-  spanClass () {
-    let klass = ''
-
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
-    } else {
-      klass += ' hidden'
+    if (this.state.focus) {
+      klass += ' usa-input-focus'
     }
 
     return klass.trim()
@@ -111,36 +134,58 @@ export default class Radio extends ValidationElement {
       klass += ' usa-input-success'
     }
 
+    if (this.state.checked) {
+      klass += ' selected'
+    }
+
     return klass.trim()
   }
 
   render () {
+    if (this.props.native) {
+      return (
+        <div className={this.divClass()}>
+          <input className={this.inputClass()}
+                 id={this.state.uid}
+                 name={this.props.name}
+                 type="radio"
+                 disabled={this.props.disabled}
+                 readOnly={this.props.readonly}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 onClick={this.handleClick}
+                 checked={this.state.checked}
+                 />
+          <label htmlFor={this.state.uid}>
+            {this.props.label}
+            {this.props.children}
+          </label>
+        </div>
+      )
+    }
+
     return (
       <div className={this.divClass()}>
-        <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
-               type="radio"
-               aria-described-by={this.errorName()}
-               disabled={this.state.disabled}
-               maxlength={this.state.maxlength}
-               pattern={this.state.pattern}
-               readonly={this.state.readonly}
-               required={this.state.required}
-               value={this.state.value}
-               onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               />
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.state.uid}>
+          <input className={this.inputClass()}
+                 id={this.state.uid}
+                 name={this.props.name}
+                 type="radio"
+                 disabled={this.props.disabled}
+                 readOnly={this.props.readonly}
+                 value={this.state.value}
+                 onChange={this.handleChange}
+                 onFocus={this.handleFocus}
+                 onBlur={this.handleBlur}
+                 onClick={this.handleClick}
+                 checked={this.state.checked}
+                 />
+          {this.props.children}
+          <span>{this.props.label}</span>
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
       </div>
     )
   }

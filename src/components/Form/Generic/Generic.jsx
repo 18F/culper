@@ -6,22 +6,19 @@ export default class Generic extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      type: props.type,
-      disabled: props.disabled,
-      minlength: props.minlength || 0,
-      maxlength: props.maxlength || 256,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
-      value: props.value,
+      value: props.value || '',
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCode: null
     }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.value === this.state.value) {
+      return
+    }
+    this.setState({ value: nextProps.value })
   }
 
   /**
@@ -63,6 +60,8 @@ export default class Generic extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidation (event, status) {
+    let errorCode = null
+
     event.persist()
     if (!event || !event.target) {
       super.handleValidation(event, status)
@@ -73,15 +72,21 @@ export default class Generic extends ValidationElement {
     status = true
 
     if (this.state.value) {
-      if (this.state.value && this.state.value.length > 0) {
-        status = status && (this.state.value.length >= parseInt(this.state.minlength) && this.state.value.length <= parseInt(this.state.maxlength))
+      if (status && this.state.value && this.state.value.length > 0) {
+        status = status && (this.state.value.length >= parseInt(this.props.minlength || 0) && this.state.value.length <= parseInt(this.props.maxlength || 256))
+        if (!status) {
+          errorCode = 'length'
+        }
         hits++
       }
 
-      if (this.state.pattern && this.state.pattern.length > 0) {
+      if (status && this.props.pattern && this.props.pattern.length > 0) {
         try {
-          let re = new RegExp(this.state.pattern)
+          let re = new RegExp(this.props.pattern)
           status = status && re.test(this.state.value)
+          if (!status) {
+            errorCode = 'pattern'
+          }
           hits++
         } catch (e) {
           // Not a valid regular expression
@@ -95,8 +100,10 @@ export default class Generic extends ValidationElement {
     }
 
     // Set the internal state
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
+      let prop = this.props.name || 'input'
+      let e = { [prop]: errorCode }
+      super.handleValidation(event, status, super.flattenObject(e))
     })
   }
 
@@ -112,7 +119,7 @@ export default class Generic extends ValidationElement {
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
@@ -121,8 +128,10 @@ export default class Generic extends ValidationElement {
   divClass () {
     let klass = (this.props.className || '')
 
-    if (this.state.error) {
-      klass += ' usa-input-error'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error'
+      }
     }
 
     return klass.trim()
@@ -134,23 +143,10 @@ export default class Generic extends ValidationElement {
   labelClass () {
     let klass = ''
 
-    if (this.state.error) {
-      klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  spanClass () {
-    let klass = ''
-
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
-    } else {
-      klass += ' hidden'
+    if (!this.props.disabled) {
+      if (this.state.error) {
+        klass += ' usa-input-error-label'
+      }
     }
 
     return klass.trim()
@@ -162,12 +158,14 @@ export default class Generic extends ValidationElement {
   inputClass () {
     let klass = ''
 
-    if (this.state.focus) {
-      klass += ' usa-input-focus'
-    }
+    if (!this.props.disabled) {
+      if (this.state.focus) {
+        klass += ' usa-input-focus'
+      }
 
-    if (this.state.valid) {
-      klass += ' usa-input-success'
+      if (this.state.valid) {
+        klass += ' usa-input-success'
+      }
     }
 
     return klass.trim()
@@ -184,34 +182,29 @@ export default class Generic extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}
+               htmlFor={this.props.name}
                ref="label"
                >
-          {this.state.label}
+          {this.props.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert"
-              ref="error"
-              >
-          {this.state.help}
-        </span>
         <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
-               type={this.state.type}
-               placeholder={this.state.placeholder}
+               id={this.props.name}
+               name={this.props.name}
+               type={this.props.type}
+               placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
-               disabled={this.redundant(this.state.disabled, 'disabled')}
-               maxLength={this.state.maxlength}
-               pattern={this.state.pattern}
-               readOnly={this.redundant(this.state.readonly, 'readonly')}
-               required={this.redundant(this.state.required, 'required')}
+               disabled={this.props.disabled}
+               maxLength={this.props.maxlength}
+               pattern={this.props.pattern}
+               readOnly={this.props.readonly}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                onKeyDown={this.handleKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="input"
                />
       </div>

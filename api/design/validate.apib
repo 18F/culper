@@ -33,11 +33,13 @@ FORMAT: 1A
 
 + Response 500
 
-# Validate Passport [/validate/passport/{passport}]
+# Validate Passport [/validate/passport]
 
-## Validates Passport Number [GET]
+## Validate Passport Number [/validate/passport/number/{passport}]
+
+### Validates Passport Number [GET]
 + Parameters
-  + passport: `TODO` - Passport number for a person
+  + passport: The passport number provided by a government source
 
 + Request
   + Headers
@@ -55,7 +57,7 @@ FORMAT: 1A
     {
       "Errors": [
         {
-          "Fieldname": "Passport",
+          "Fieldname": "Number",
           "Error": ""
         }
       ]
@@ -63,7 +65,42 @@ FORMAT: 1A
 
 + Response 500
 
-# Validate Adddress [/validate/address]
+## Validate Passport Dates [/validate/passport/dates/{issued}/to/{expiration}]
+
+### Validates Passport Dates [GET]
++ Parameters
+  + issued: The timestamp when passport was issued
+  + expiration: The timestamp when passport is due to expire
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Issued",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Expiration",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate Address [/validate/address]
 
 ## Validates complete address [POST]
 
@@ -79,7 +116,6 @@ FORMAT: 1A
       X-Eqip-Media-Type: eqip.v1
 
   + Body
-
 
     {
       "Errors": [
@@ -328,6 +364,325 @@ FORMAT: 1A
       "Errors": [
         {
           "Fieldname": "Birthplace",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate Height [/validate/height]
+
+## Validates a persons height [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "Feet": "",
+      "Inches": "",
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Feet",
+          "Error": ""
+        },
+        {
+          "Fieldname": "Inches",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Weight [/validate/weight/{weight}]
+
+## Validates a persons weight [GET]
+
++ Parameters
+    + weight: `4` - Weight for a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Weight",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Hair Color [/validate/haircolor/{haircolor}]
+
+## Validates a persons hair color [GET]
+
++ Parameters
+    + weight: `Black` - Hair color for a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "HairColor",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Eye Color [/validate/eyecolor/{eyecolor}]
+
+## Validates a persons eye color [GET]
+
++ Parameters
+    + eyecolor: `Black` - Eye color for a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "EyeColor",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Sex [/validate/eyecolor/{eyecolor}]
+
+## Validates a persons sex [GET]
+
++ Parameters
+    + sex: `Female` - Sex of a person
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Sex",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Daterange [/validate/daterange]
+
+## Validates a date range [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "To": "",
+      "From": ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "To",
+          "Error": ""
+        },
+        {
+          "Fieldname": "From",
+          "Error": ""
+        }
+      ]
+    }
+
+# Validate Email [/validate/email]
+
+## Validates Email [POST]
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: application/json
+
+  + Body
+
+    {
+      "Address": ""
+    }
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Email",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+# Validate Telephone Number [/validate/telephone]
+
+## Validate Domestic Telephone Number [/validate/telephone/domestic/{number}]
+
+### Validates Domestic Telephone Number [GET]
+
++ Parameters
+    + number: `XXX-XXX-XXXX,0001` - The domestic phone number
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Telephone",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+## Validate International Telephone Number [/validate/telephone/international/{number}]
+
+### Validates International Telephone Number [GET]
+
++ Parameters
+    + number: `011-52-1-55-XXXX-XXXX,0001` - The international phone number
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Telephone",
+          "Error": ""
+        }
+      ]
+    }
+
++ Response 500
+
+## Validate DSN Telephone Number [/validate/telephone/dsn/{number}]
+
+### Validates DSN Telephone Number [GET]
+
++ Parameters
+    + number: `XXX-XXXX` - The DSN phone number
+
++ Request
+  + Headers
+
+      Authorization: Bearer
+      Accept: text/plain
+
++ Response 200 (application/json)
+  + Headers
+
+      X-Eqip-Media-Type: eqip.v1
+
+  + Body
+
+    {
+      "Errors": [
+        {
+          "Fieldname": "Telephone",
           "Error": ""
         }
       ]

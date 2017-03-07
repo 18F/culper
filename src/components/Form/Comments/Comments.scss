@@ -1,0 +1,52 @@
+@import 'eqip-colors';
+
+.comments {
+  &.active {
+    border-left: 0.75rem solid $eapp-grey-light;
+  }
+
+  /* these importants need removed after label-based refactoring */
+  .eapp-field-wrap {
+    margin-bottom: 0 !important;
+  }
+
+  h4 {
+    margin-top: 0;
+  }
+
+  &.eapp-field-wrap {
+    margin-bottom: 4.6rem !important;
+  }
+
+  > a {
+    i {
+      margin-left: 1rem;
+    }
+
+    &.add-comment,
+    &.add-comment:link,
+    &.add-comment:visited,
+    &.add-comment:hover,
+    &.add-comment:active {
+      color: $eapp-blue;
+      text-decoration: none;
+
+      span {
+        border-bottom: 1px $eapp-blue dashed;
+      }
+    }
+
+    &.remove-comment,
+    &.remove-comment:link,
+    &.remove-comment:visited,
+    &.remove-comment:hover,
+    &.remove-comment:active {
+      color: $eapp-red;
+      text-decoration: none;
+
+      span {
+        border-bottom: 1px $eapp-red dashed;
+      }
+    }
+  }
+}

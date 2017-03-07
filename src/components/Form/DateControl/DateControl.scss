@@ -1,30 +1,35 @@
 .datecontrol {
-    .usa-form-group-month {
-        width: 7rem;
+  display: inline-block;
 
-        input {
-            text-align: center;
-        }
-    }
+  .month {
+    width: 14rem;
+    display: inline-block;
+    margin-right: 1rem;
+  }
 
-    .usa-form-group-day {
-        width: 7rem;
+  .day {
+    width: 7rem;
+    display: inline-block;
+    margin-right: 1rem;
+  }
 
-        input {
-            text-align: center;
-        }
-    }
+  .year {
+    width: 8.5rem;
+    display: inline-block;
+  }
 
-    .usa-form-group-year {
-        width: 8.5rem;
+  .coupled-flags {
+    clear: both;
+    padding-left: 21.5rem;
+  }
+}
 
-        input {
-            text-align: center;
-        }
-    }
+.datecontrol.day-hidden {
+  .day {
+    display: none;
+  }
 
-    .coupled-flags {
-        clear: both;
-        /* text-align: right; */
-    }
+  .coupled-flags {
+    padding-left: 14rem;
+  }
 }

@@ -7,14 +7,10 @@ export default class County extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errors: []
     }
   }
 
@@ -30,9 +26,9 @@ export default class County extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+  handleValidation (event, status, errors) {
+    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
+      super.handleValidation(event, status, errors)
     })
   }
 
@@ -56,13 +52,13 @@ export default class County extends ValidationElement {
 
   render () {
     return (
-      <Text name={this.state.name}
-            label={this.state.label}
-            placeholder={this.state.placeholder}
-            help={this.state.help}
+      <Text name={this.props.name}
+            label={this.props.label}
+            placeholder={this.props.placeholder}
             minlength="2"
             maxlength="100"
             required="true"
+            className={this.props.className}
             value={this.state.value}
             error={this.state.error}
             valid={this.state.valid}

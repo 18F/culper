@@ -1,0 +1,60 @@
+.daterange {
+  display: inline-block;
+  margin-top: 2rem;
+  padding-left: 0;
+  padding-right: 0;
+
+  .usa-grid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .from-label {
+    display: inline-block;
+    width: 8rem;
+    vertical-align: top;
+    text-align: center;
+    margin-right: 2rem;
+  }
+
+  .datecontrol {
+    display: inline-block;
+  }
+
+  .to-grid {
+    margin-top: 5rem;
+  }
+
+  .arrow {
+    height: 0;
+
+    img {
+      width: 3rem;
+      height: 10.5rem;
+      margin-top: -6rem;
+      margin-left: 2.5rem;
+    }
+  }
+
+  .from-present {
+    display: inline-block;
+    vertical-align: top;
+
+    .or {
+      margin-right: 1rem;
+    }
+
+    .eapp-blocks-checkbox {
+      width: 15rem;
+    }
+  }
+}
+
+.help {
+  .daterange {
+    + .toggle {
+      margin-top: 1.5rem;
+      margin-left: -18rem;
+    }
+  }
+}

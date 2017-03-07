@@ -1,5 +1,6 @@
 import React from 'react'
-import { ValidationElement, DateControl } from '../../../Form'
+import { i18n } from '../../../../config'
+import { ValidationElement, DateControl, Help, HelpIcon } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
@@ -7,10 +8,9 @@ export default class ApplicantBirthDate extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
       value: props.value,
-      help: props.help,
-      estimated: props.estimated
+      estimated: props.estimated,
+      errorCodes: []
     }
   }
 
@@ -20,14 +20,33 @@ export default class ApplicantBirthDate extends ValidationElement {
   handleChange (event) {
     this.setState({ value: event.target.date }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          month: this.datePart('m', this.state.value),
+          day: this.datePart('d', this.state.value),
+          year: this.datePart('y', this.state.value),
+          estimated: this.state.estimated
+        })
+      }
     })
   }
 
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    if (status !== false) {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let errorCodes = []
+    this.state.errorCodes.forEach((e) => {
+      if (e !== 'age') {
+        errorCodes.push(e)
+      }
+    })
+
+    if (status === true && this.state.value !== '') {
       // Calculation to get the age of something compared to now.
       let now = new Date()
       let then = new Date(this.state.value)
@@ -37,17 +56,25 @@ export default class ApplicantBirthDate extends ValidationElement {
         age--
       }
 
-      status = age > 16 && age < 131
+      if (age < 17 || age > 129) {
+        status = false
+        error = 'age'
+      }
     }
 
-    let help = this.state.help
-    if (status === false) {
-      help = 'Applicants must be older than 16 and less than 130 years of age'
+    const codes = super.mergeError(errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.value && this.state.value !== '') {
+      complexStatus = true
     }
 
-    this.setState({error: status === false, valid: status === true, help: help}, () => {
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, s, e)
         return
       }
 
@@ -62,12 +89,11 @@ export default class ApplicantBirthDate extends ValidationElement {
           // Display and assign the errors as necessary
           if (response.Errors) {
             response.Errors.forEach((e) => {
-              this.setState({help: e.Error})
             })
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, s, e)
         })
     })
   }
@@ -111,45 +137,20 @@ export default class ApplicantBirthDate extends ValidationElement {
     return ''
   }
 
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.state.name + '-error'
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  spanClass () {
-    let klass = ''
-
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
-    } else {
-      klass += ' hidden'
-    }
-
-    return klass.trim()
-  }
-
   render () {
+    const klass = `birthdate ${this.props.className || ''}`.trim()
+
     return (
-      <div className="birthdate">
-        <h2>Date of birth</h2>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert"
-              ref="error"
-              >
-          {this.state.help}
-        </span>
-        <DateControl name={this.state.name}
-                     value={this.state.value}
-                     estimated={this.state.estimated}
-                     onChange={this.handleChange}
-                     onValidate={this.handleValidation}
-                     />
+      <div className={klass}>
+        <Help id="identification.birthdate.help">
+          <DateControl name={this.props.name}
+                       value={this.state.value}
+                       estimated={this.state.estimated}
+                       onChange={this.handleChange}
+                       onValidate={this.handleValidation}
+                       />
+          <HelpIcon />
+        </Help>
       </div>
     )
   }

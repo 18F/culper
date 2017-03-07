@@ -9,7 +9,8 @@ export default class Country extends ValidationElement {
     this.state = {
       value: props.value,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errors: []
     }
   }
 
@@ -25,9 +26,9 @@ export default class Country extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+  handleValidation (event, status, errors) {
+    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
+      super.handleValidation(event, status, errors)
     })
   }
 
@@ -49,20 +50,33 @@ export default class Country extends ValidationElement {
     })
   }
 
+  unitedStates () {
+    if (this.props.excludeUnitedStates) {
+      return null
+    }
+
+    return <option value="United States">United States</option>
+  }
+
   render () {
+    const klass = `country ${this.props.className || ''}`.trim()
     return (
       <Dropdown name={this.props.name}
                 label={this.props.label}
-                help={this.props.help}
+                help="Country is required"
+                placeholder={this.props.placeholder}
+                className={klass}
                 disabled={this.props.disabled}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
+                value={this.props.value}
+                required={this.props.required}
                 >
         { this.props.children }
         <option value="">{this.props.placeholder}</option>
-        <option value="United States">United States</option>
+        {this.unitedStates()}
         <option value="Afghanistan">Afghanistan</option>
         <option value="Akrotiri Sovereign Base Area">Akrotiri Sovereign Base Area</option>
         <option value="Albania">Albania</option>

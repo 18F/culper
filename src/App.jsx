@@ -1,5 +1,6 @@
 import React from 'react'
-import { SectionTitle, ScoreCard, Navigation } from './components'
+import { i18n } from './config'
+import { SectionTitle, ProgressBar, ScoreCard, Navigation } from './components'
 import { connect } from 'react-redux'
 import { login, logout } from './actions/AuthActions'
 
@@ -38,24 +39,37 @@ export class App extends React.Component {
     window.location = window.location.pathname
   }
 
+  designClass () {
+    if (this.props.location && this.props.location.query && this.props.location.query.design) {
+      return 'design'
+    }
+
+    if (window && window.location && window.location.search && window.location.search.indexOf('design') !== -1) {
+      return 'design'
+    }
+
+    return ''
+  }
+
   render () {
     let logoutButton = this.props.authenticated && this.props.twofactor
-        ? (<a href="#" onClick={this.logout} className="logout">Logout</a>)
+        ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
 
     return (
-      <div>
-        <a className="usa-skipnav" href="#main-content">Skip to main content</a>
+      <div className={this.designClass()}>
+        <div id="scrollTo"></div>
+        <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
           <div className="usa-banner">
             <div className="usa-accordion">
               <header className="usa-banner-header">
                 <div className="usa-grid usa-banner-inner">
                   <img src="/img/favicons/favicon-57.png" alt="U.S. flag" />
-                  <p>An official website of the United States government</p>
+                  <p>{i18n.t('app.banner.title')}</p>
                   <button className="usa-accordion-button usa-banner-button"
                           aria-expanded="false" aria-controls="gov-banner">
-                    <span className="usa-banner-button-text">Here's how you know</span>
+                    <span className="usa-banner-button-text">{i18n.t('app.banner.button')}</span>
                   </button>
                 </div>
               </header>
@@ -64,48 +78,48 @@ export class App extends React.Component {
                   <img className="usa-banner-icon usa-media_block-img" src="/img/icon-dot-gov.svg" alt="Dot gov" />
                   <div className="usa-media_block-body">
                     <p>
-                      <strong>The .gov means it’s official.</strong>
+                      <strong>{i18n.t('app.banner.witty')}</strong>
                       <br />
-                      Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you’re on a .gov or .mil site by inspecting your browser’s address (or “location”) bar.
+                      {i18n.t('app.banner.extension')}
                     </p>
                   </div>
                 </div>
                 <div className="usa-banner-guidance-ssl usa-width-one-half">
                   <img className="usa-banner-icon usa-media_block-img" src="/img/icon-https.svg" alt="SSL" />
                   <div className="usa-media_block-body">
-                    <p>This site is also protected by an SSL (Secure Sockets Layer) certificate that’s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.</p>
+                    <p>{i18n.t('app.banner.ssl')}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="usa-nav-container no-gutter">
-            <div className="usa-navbar">
-              <div className="usa-logo" id="logo">
-                <em className="usa-logo-text">
-                  eApp
-                </em>
+          <div className="eapp-structure-wrap eapp-header">
+            <div className="eapp-structure-row">
+              <div className="eapp-structure-left eapp-logo" id="logo">
+                <img className="eapp-logo-icon" src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
+                <span className="eapp-logo-text">SF86</span>
               </div>
-              <div>
-                {logoutButton}
+              <div className="eapp-structure-right eapp-title">
+                <div className="eapp-logout">
+                  {logoutButton}
+                </div>
+                <SectionTitle />
               </div>
             </div>
-            <SectionTitle />
           </div>
         </header>
+        <div id="scrollToProgress"></div>
         <div className="usa-overlay"></div>
-        <main id="main-content">
-          <div className="usa-grid-full no-gutter">
-            <div className="usa-width-one-sixth">
+        <ProgressBar />
+        <main id="main-content" className="eapp-structure-wrap">
+          <div className="eapp-structure-row">
+            <div className="eapp-structure-left eapp-navigation">
               <ScoreCard />
               <Navigation />
               &nbsp;
             </div>
-            <div className="usa-width-two-thirds">
+            <div className="eapp-structure-right eapp-core">
               {this.props.children}
-              &nbsp;
-            </div>
-            <div className="usa-width-one-sixth">
               &nbsp;
             </div>
           </div>

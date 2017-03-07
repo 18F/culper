@@ -7,29 +7,33 @@ export default class Text extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      disabled: props.disabled,
-      minlength: props.minlength,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
-      value: props.value,
+      value: props.value || '',
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (this.state.value === nextProps.value) {
+      return
+    }
+    this.setState({ value: nextProps.value })
+  }
+
   /**
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          value: this.state.value,
+          name: this.props.name
+        })
+      }
     })
   }
 
@@ -54,35 +58,37 @@ export default class Text extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, errorCodes) {
     this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, errorCodes)
     })
   }
 
   render () {
     return (
-      <Generic name={this.state.name}
-               label={this.state.label}
-               placeholder={this.state.placeholder}
-               help={this.state.help}
+      <Generic name={this.props.name}
+               label={this.props.label}
+               placeholder={this.props.placeholder}
                type="text"
                className={this.props.className}
-               disabled={this.state.disabled}
-               minlength={this.state.minlength}
-               maxlength={this.state.maxlength}
-               pattern={this.state.pattern}
-               readonly={this.state.readonly}
-               required={this.state.required}
+               disabled={this.props.disabled}
+               minlength={this.props.minlength}
+               maxlength={this.props.maxlength}
+               pattern={this.props.pattern}
+               readonly={this.props.readonly}
+               required={this.props.required}
                value={this.state.value}
-               focus={this.state.focus}
-               error={this.state.error}
-               valid={this.state.valid}
+               focus={this.props.focus}
+               error={this.props.error}
+               valid={this.props.valid}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
-               onValidate={this.handleValidation}
+               onValidate={this.handleValidation.bind(this)}
                onKeyDown={this.props.onKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
                ref="text"
                />
     )

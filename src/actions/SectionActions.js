@@ -1,14 +1,15 @@
 import SectionConstants from './SectionConstants'
 
-export function updateTitle (title) {
+export function updateSection (section, subsection) {
   return function (dispatch, getState) {
-    return dispatch(handleSectionUpdate(title))
+    return dispatch(handleSectionUpdate(section, subsection))
   }
 }
 
-export function handleSectionUpdate (title) {
+export function handleSectionUpdate (section, subsection, scrollTo = 'scrollTo') {
   return {
-    type: SectionConstants.UPDATE,
-    title: title
+    type: SectionConstants.SECTION_UPDATE,
+    section: section,
+    subsection: subsection
   }
 }

@@ -1,51 +1,83 @@
-#login {
-    #info {
-        margin-bottom: 1rem;
+@import 'eqip-colors';
+@import 'eqip-fonts';
+
+.login.eapp-core {
+  margin: 0;
+  padding: 0;
+}
+
+.login {
+  a {
+    color: $eapp-blue-light;
+    text-decoration: none;
+    border-bottom: 1px dotted $eapp-blue-light;
+  }
+
+  .content {
+    width: 64rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  h2 {
+    margin-top: 1rem;
+    font-size: 3rem;
+  }
+
+  .seal-header {
+    background-color: $eapp-blue-darkest;
+
+    h2 {
+      color: #fff;
     }
 
-    #basic {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: 1px solid #eee;
-        max-width: 48rem;
-        margin-right: auto;
-        margin-left: auto;
-        clear: both;
-        float: none;
-
-        #forgot-password {
-            float: right;
-        }
-
-        button {
-            text-align: center;
-            width: 100%;
-        }
+    img {
+      width: 15rem;
     }
+  }
 
-    #oauth {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: 1px solid #eee;
-        max-width: 48rem;
-        margin-right: auto;
-        margin-left: auto;
-        clear: both;
-        float: none;
+  .login-info {
+    margin-bottom: 1rem;
+  }
 
-        button {
-            margin-left: 1rem;
-        }
+  .login-basic {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+
+    button {
+      text-align: center;
+      width: 15rem;
+      height: 5rem;
     }
+  }
 
-    #twofactor {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: 1px solid #eee;
-        max-width: 48rem;
-        margin-right: auto;
-        margin-left: auto;
-        clear: both;
-        float: none;
+  .login-oauth {
+    margin-top: 1rem;
+    padding: 1rem;
+    max-width: 48rem;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    float: none;
+
+    button {
+      margin-left: 1rem;
     }
+  }
+
+  .login-twofactor {
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    float: none;
+  }
 }

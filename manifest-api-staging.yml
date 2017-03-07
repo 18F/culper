@@ -8,5 +8,8 @@ applications:
   buildpack: https://github.com/cloudfoundry/go-buildpack
   path: api
   command: ./api
+  services:
+    - eqip-postgres
   env:
-    GOVERSION: go1.7.4
+    GOVERSION: go1.7.5
+    ALLOW_2FA_RESET: 1

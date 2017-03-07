@@ -7,11 +7,6 @@ export default class Service extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      required: props.required,
       value: props.value,
       error: props.error || false,
       valid: props.valid || false
@@ -38,10 +33,9 @@ export default class Service extends ValidationElement {
 
   render () {
     return (
-      <Text name={this.state.name}
-            label={this.state.label}
-            placeholder={this.state.placeholder}
-            help={this.state.help}
+      <Text name={this.props.name}
+            label={this.props.label}
+            placeholder={this.props.placeholder}
             minlength="1"
             maxlength="1"
             required="true"

@@ -5,7 +5,7 @@ services:
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/1.4.2/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/1.10.0/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
@@ -14,6 +14,10 @@ script:
   - docker-compose build
   - docker-compose run api ./test.sh
   - docker-compose run frontend npm test
+
+after_success:
+  - npm install -g codecov
+  - codecov
 
 after_script:
   - npm install -g pa11y-crawl

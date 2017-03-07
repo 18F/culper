@@ -1,8 +1,7 @@
-var production = process.env.NODE_ENV === 'production'
-var staging = process.env.NODE_ENV === 'staging'
-var debug = !production && !staging
-var webpack = require('webpack')
-var pack = require('path')
+let production = process.env.NODE_ENV === 'production'
+let staging = process.env.NODE_ENV === 'staging'
+let debug = !production && !staging
+let webpack = require('webpack')
 
 module.exports = {
   devtool: debug ? 'inline-sourcemap' : null,
@@ -11,6 +10,10 @@ module.exports = {
   },
   module: {
     loaders: [
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
       {
         test: /\.jsx?$/,
         include: [
@@ -33,9 +36,34 @@ module.exports = {
   output: {
     filename: 'eqip.js'
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
-  ]
+  plugins: plugins()
+}
+
+/**
+ * Creates an array of plugins to be used by all environments
+ */
+function plugins () {
+  let plugins = []
+
+  if (!debug) {
+    // Add Prod level plugins
+    plugins = [
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
+    ]
+  }
+
+  // Plugins used by all environments
+  [
+    new webpack.EnvironmentPlugin(['API_BASE_URL', 'ALLOW_2FA_RESET']),
+    new webpack.ProvidePlugin({
+      'Promise': 'es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
+  ].forEach((p) => {
+    plugins.push(p)
+  })
+
+  return plugins
 }

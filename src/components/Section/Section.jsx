@@ -1,37 +1,57 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { updateTitle } from '../../actions/SectionActions'
+import { push } from '../../middleware/history'
+import { updateSection } from '../../actions/SectionActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
-
-// Mapping section identifiers to the associated components.
-const sectionMap = {
-  'identification': {
-    'title': 'Identification',
-    'render': (subsection) => { return (<Identification subsection={subsection} />) }
-  }
-}
+import Financial from './Financial'
+import Foreign from './Foreign'
+import Military from './Military'
+import History from './History'
+import { SectionView, SectionViews } from './SectionView'
 
 class Section extends React.Component {
-  /**
-   * Provides the appropriate section to render. Defaults to `identification`.
-   */
-  getSection () {
-    let s = this.props.section
-    if (!sectionMap[this.props.section]) {
-      s = 'identification'
-    }
 
-    var sec = sectionMap[s]
-    this.props.dispatch(updateTitle(sec.title))
-    return sec.render(this.props.subsection)
+  /**
+   * Used when routes are updated and render is called for different sections. On initial page load,
+   * the componentDidMount() is rendered. However, subsequent path changes trigger componentWillReceiveProps()
+   */
+  componentWillReceiveProps (updatedProps) {
+    this.update(updatedProps)
+  }
+
+  componentDidMount () {
+    this.update(this.props)
+  }
+
+  update (props) {
+    let name = props.section
+    let sub = props.subsection
+    this.props.dispatch(updateSection(name, sub))
+    this.props.dispatch(push(`/form/${props.section}/${props.subsection || ''}`))
   }
 
   render () {
     return (
-      <div className="section">
-        {this.getSection()}
-      </div>
+      <SectionViews current={this.props.section} dispatch={this.props.dispatch}>
+        <SectionView name="identification">
+          <Identification subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="financial">
+          <Financial subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="military">
+          <Military subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="history1">
+          <History subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="history2">
+          <History subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="foreign">
+          <Foreign subsection={this.props.subsection} />
+        </SectionView>
+      </SectionViews>
     )
   }
 }

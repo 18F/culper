@@ -1,16 +1,30 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/truetandem/e-QIP-prototype/api/cf"
-	"github.com/truetandem/e-QIP-prototype/api/handlers"
-	middleware "github.com/truetandem/e-QIP-prototype/api/middleware"
+	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/handlers"
+	middleware "github.com/18F/e-QIP-prototype/api/middleware"
+	"github.com/18F/e-QIP-prototype/api/model/form"
+)
+
+var (
+	flagSkipMigration = flag.Bool("skip-migration", false, "skip any pending database migrations")
 )
 
 func main() {
+	flag.Parse()
+	if !*flagSkipMigration {
+		if err := db.MigrateUp("db", "environment", ""); err != nil {
+			log.Println("Failed to migrate database:", err)
+		}
+	}
+
 	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
 	r.HandleFunc("/", handlers.RootHandler)
 
@@ -18,6 +32,7 @@ func main() {
 	s.HandleFunc("/{account}", handlers.TwofactorHandler)
 	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
 	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
+	s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
 
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
@@ -27,7 +42,23 @@ func main() {
 	// Validation
 	v := r.PathPrefix("/validate").Subrouter()
 	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
-	v.HandleFunc("/passport/{passport}", handlers.ValidatePassport)
+	v.HandleFunc("/email", handlers.ValidateEmail)
+
+	// Passport validation
+	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
+	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
+
+	// Phonenumber validation
+	v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber(form.DomesticPhoneNumberKey))
+	v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber(form.DSNPhoneNumberKey))
+	v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber(form.InternationalPhoneNumberKey))
+
+	v.HandleFunc("/height", handlers.ValidateHeight)
+	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
+	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
+	v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
+	v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
+	v.HandleFunc("/daterange", handlers.ValidateDateRange)
 
 	// Address Validation
 	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)

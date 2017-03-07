@@ -1,0 +1,33 @@
+.residences {
+  .summary {
+    .brief {
+      .index {
+        width: 10rem;
+
+        .svg {
+          height: 1.3rem;
+          width: auto;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.residence {
+  .info-label {
+    position: relative;
+    top: initial;
+    left: initial;
+  }
+
+  .role {
+    .eapp-blocks-radio {
+      width: 29rem;
+    }
+
+    .other {
+      margin-top: 4rem;
+    }
+  }
+}

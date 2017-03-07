@@ -1,30 +1,35 @@
 import React from 'react'
-import { ValidationElement, Text, Checkbox } from '../../../Form'
+import { i18n } from '../../../../config'
+import { ValidationElement, Help, HelpIcon, Text, Checkbox } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantSSN extends ValidationElement {
   constructor (props) {
     super(props)
-
     this.state = {
-      name: props.name,
-      label: props.label,
       value: props.value,
-      first: this.ripper(props.value, 0, 3),
-      middle: this.ripper(props.value, 3, 5),
-      last: this.ripper(props.value, 5, 9),
+      first: this.props.first || this.ripper(props.value, 0, 3),
+      middle: this.props.middle || this.ripper(props.value, 3, 5),
+      last: this.props.last || this.ripper(props.value, 5, 9),
+      verifyFirst: '',
+      verifyMiddle: '',
+      verifyLast: '',
+      verified: this.props.verified || false,
       notApplicable: props.notApplicable,
       focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid || false
+      valid: props.valid || false,
+      errorCodes: []
     }
+
+    this.disallowClipboard = this.disallowClipboard.bind(this)
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    let part = this.extractPart(event.target.id)
+    let part = event.target.name
     let value = event.target.value
     let updated = null
 
@@ -34,7 +39,8 @@ export default class ApplicantSSN extends ValidationElement {
           first: value,
           value: '' + value + this.state.middle + this.state.last
         }
-        if (value.length === 3) {
+
+        if (this.props.autotab && value.length === 3) {
           this.refs.middle.refs.text.refs.input.focus()
         }
         break
@@ -44,7 +50,8 @@ export default class ApplicantSSN extends ValidationElement {
           middle: value,
           value: '' + this.state.first + value + this.state.last
         }
-        if (value.length === 2) {
+
+        if (this.props.autotab && value.length === 2) {
           this.refs.last.refs.text.refs.input.focus()
         }
         break
@@ -56,9 +63,38 @@ export default class ApplicantSSN extends ValidationElement {
         }
         break
 
-      case 'notAapplicable':
+      case 'verifyFirst':
         updated = {
-          notAapplicable: value
+          verifyFirst: value,
+          verified: ('' + value + this.state.verifyMiddle + this.state.verifyLast) === this.state.value
+        }
+
+        if (this.props.autotab && value.length === 3) {
+          this.refs.verifyMiddle.refs.text.refs.input.focus()
+        }
+        break
+
+      case 'verifyMiddle':
+        updated = {
+          verifyMiddle: value,
+          verified: ('' + this.state.verifyFirst + value + this.state.verifyLast) === this.state.value
+        }
+
+        if (this.props.autotab && value.length === 2) {
+          this.refs.verifyLast.refs.text.refs.input.focus()
+        }
+        break
+
+      case 'verifyLast':
+        updated = {
+          verifyLast: value,
+          verified: ('' + this.state.verifyFirst + this.state.verifyMiddle + value) === this.state.value
+        }
+        break
+
+      case 'notApplicable':
+        updated = {
+          notApplicable: event.target.checked
         }
         break
     }
@@ -66,6 +102,16 @@ export default class ApplicantSSN extends ValidationElement {
     if (updated != null) {
       this.setState(updated, () => {
         super.handleChange(event)
+        super.handleValidation(event, null, this.state.errorCodes)
+        if (this.props.onUpdate) {
+          this.props.onUpdate({
+            first: this.state.first,
+            middle: this.state.middle,
+            last: this.state.last,
+            verified: this.state.verified,
+            notApplicable: this.state.notApplicable
+          })
+        }
       })
     } else {
       super.handleChange(event)
@@ -76,8 +122,13 @@ export default class ApplicantSSN extends ValidationElement {
    * Handle the key down event.
    */
   handleKeyDown (event) {
+    if (!this.props.autotab) {
+      super.handleKeyDown(event)
+      return
+    }
+
     let input = event.target
-    let part = this.extractPart(input.id)
+    let part = input.id
     let value = input.value
 
     // 8  => backspace
@@ -92,6 +143,14 @@ export default class ApplicantSSN extends ValidationElement {
         case 'middle':
           this.refs.first.refs.text.refs.input.focus()
           break
+
+        case 'verifyLast':
+          this.refs.verifyMiddle.refs.text.refs.input.focus()
+          break
+
+        case 'verifyMiddle':
+          this.refs.verifyFirst.refs.text.refs.input.focus()
+          break
       }
     }
 
@@ -101,10 +160,26 @@ export default class ApplicantSSN extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    const codes = super.mergeError(this.state.errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.state.notApplicable) {
+      complexStatus = true
+    } else if (/* this.state.verified && */ this.state.first.length === 3 && this.state.middle.length === 2 && this.state.last.length === 4) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      let e = { [this.props.name]: codes }
+      let s = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status)
+        super.handleValidation(event, s, e)
         return
       }
 
@@ -123,7 +198,7 @@ export default class ApplicantSSN extends ValidationElement {
           }
         })
         .then(() => {
-          super.handleValidation(event, status)
+          super.handleValidation(event, s, e)
         })
     })
   }
@@ -141,74 +216,142 @@ export default class ApplicantSSN extends ValidationElement {
   }
 
   /**
-   * Generated name for the part of the address elements.
+   * Prevents clipboard events from making changes to the value of the elements
    */
-  partName (part) {
-    return '' + this.state.name + '-' + part
+  disallowClipboard (event) {
+    event.preventDefault()
   }
 
-  /**
-   * Returns the part name from the pull generated identifier.
-   */
-  extractPart (id) {
-    return id.split('-').pop()
+  verify () {
+    if (this.state.value && this.state.value.length === 9 && this.state.errorCodes && this.state.errorCodes.length === 0) {
+      return (
+        <div>
+          <label>{i18n.t('identification.ssn.label.verify')}</label>
+          <Text name="verifyFirst"
+                ref="verifyFirst"
+                className="first eapp-short-input"
+                placeholder={i18n.t('identification.ssn.placeholder.first')}
+                maxlength="3"
+                pattern="^[0-9]*$"
+                value={this.state.verifyFirst}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
+                />
+          <Text name="verifyMiddle"
+                ref="verifyMiddle"
+                className="middle eapp-short-input"
+                placeholder={i18n.t('identification.ssn.placeholder.middle')}
+                maxlength="2"
+                pattern="^[0-9]*$"
+                value={this.state.verifyMiddle}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
+                />
+          <Text name="verifyLast"
+                ref="verifyLast"
+                className="last eapp-short-input"
+                placeholder={i18n.t('identification.ssn.placeholder.last')}
+                maxlength="4"
+                pattern="^[0-9]*$"
+                value={this.state.verifyLast}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
+                />
+        </div>
+      )
+    }
+
+    return null
   }
 
   render () {
+    const klass = `ssn ${this.props.className || ''}`.trim()
+
     return (
-      <div className="ssn">
-        <h2>U.S. Social Security Number</h2>
-        <Text name={this.partName('first')}
-              ref="first"
-              className="first"
-              placeholder="000"
-              maxlength="3"
-              pattern="^[0-9]*$"
-              help=""
-              value={this.state.first}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              />
-        <Text name={this.partName('middle')}
-              ref="middle"
-              className="middle"
-              placeholder="00"
-              maxlength="2"
-              pattern="^[0-9]*$"
-              help=""
-              value={this.state.middle}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              onKeyDown={this.handleKeyDown}
-              />
-        <Text name={this.partName('last')}
-              ref="last"
-              className="last"
-              placeholder="0000"
-              maxlength="4"
-              pattern="^[0-9]*$"
-              help=""
-              value={this.state.last}
-              onChange={this.handleChange}
-              onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              onKeyDown={this.handleKeyDown}
-              />
-        <Checkbox name={this.partName('notApplicable')}
-                  label="Not applicable"
-                  ref="notAapplicable"
-                  help=""
-                  value={this.state.notApplicable}
-                  onChange={this.handleChange}
-                  onValidate={this.handleValidation}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
+      <div className={klass}>
+        <Help id="identification.ssn.help" errorPrefix="ssn">
+          <Text name="first"
+                ref="first"
+                className="first eapp-short-input"
+                placeholder={i18n.t('identification.ssn.placeholder.first')}
+                maxlength="3"
+                pattern="^[0-9]*$"
+                value={this.state.first}
+                disabled={this.state.notApplicable}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
+                />
+          <Text name="middle"
+                ref="middle"
+                className="middle eapp-short-input"
+                placeholder={i18n.t('identification.ssn.placeholder.middle')}
+                maxlength="2"
+                pattern="^[0-9]*$"
+                value={this.state.middle}
+                disabled={this.state.notApplicable}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
+                />
+          <Text name="last"
+                ref="last"
+                className="last eapp-short-input"
+                placeholder={i18n.t('identification.ssn.placeholder.last')}
+                maxlength="4"
+                pattern="^[0-9]*$"
+                value={this.state.last}
+                disabled={this.state.notApplicable}
+                onChange={this.handleChange}
+                onValidate={this.handleValidation}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.handleKeyDown}
+                onCopy={this.disallowClipboard}
+                onCut={this.disallowClipboard}
+                onPaste={this.disallowClipboard}
+                />
+          <HelpIcon />
+          <div className="coupled-flags">
+            <Checkbox name="notApplicable"
+                      label={i18n.t('identification.ssn.label.notApplicable')}
+                      ref="notApplicable"
+                      toggle="false"
+                      value={this.state.notApplicable}
+                      checked={this.state.notApplicable}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
+          </div>
+        </Help>
       </div>
     )
   }

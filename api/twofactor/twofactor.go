@@ -7,14 +7,15 @@ import (
 	"encoding/base64"
 	"errors"
 	"net/url"
+	"strings"
 	"text/template"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/dgryski/dgoogauth"
 	"github.com/keighl/mandrill"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 	qr "github.com/skip2/go-qrcode"
-	"github.com/truetandem/e-QIP-prototype/api/cf"
 )
 
 const (
@@ -44,6 +45,11 @@ func Generate(account, secret string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	// Google authenticator (on iOS) does not react well to the base32 right padding
+	// of "=" runes. Removing them seems to have no adverse affect for those authenticators
+	// currently already working.
+	secret = strings.TrimRight(secret, "=")
 
 	u.Path += "/eqip:" + account
 	params := &url.Values{}

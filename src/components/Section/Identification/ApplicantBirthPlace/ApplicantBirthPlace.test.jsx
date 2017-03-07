@@ -9,12 +9,11 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       value: ''
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} help={expected.help} value={expected.value} />)
-    component.find('input#' + expected.name + '-city').simulate('change')
-    expect(component.find('span.hidden').length).toEqual(children)
+    const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} value={expected.value} country=''/>)
+    component.find('input#city').simulate('blur')
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('bubbles up validate event', () => {
@@ -22,7 +21,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -40,7 +38,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -48,8 +45,8 @@ describe('The ApplicantBirthPlace component', () => {
         changes++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onChange={expected.handleChange} />)
-    component.find('input').first().simulate('change')
+    const component = mount(<ApplicantBirthPlace name={expected.name} onChange={expected.handleChange} country=''/>)
+    component.find('input[type="text"]').first().simulate('change')
     expect(changes).toEqual(1)
   })
 
@@ -58,7 +55,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -66,8 +62,8 @@ describe('The ApplicantBirthPlace component', () => {
         foci++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onFocus={expected.handleFocus} />)
-    component.find('input').first().simulate('focus')
+    const component = mount(<ApplicantBirthPlace name={expected.name} onFocus={expected.handleFocus} country='' />)
+    component.find('input[type="text"]').first().simulate('focus')
     expect(foci).toEqual(1)
   })
 
@@ -76,7 +72,6 @@ describe('The ApplicantBirthPlace component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -84,8 +79,30 @@ describe('The ApplicantBirthPlace component', () => {
         blurs++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} />)
-    component.find('input').first().simulate('blur')
+    const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} country='' />)
+    component.find('input[type="text"]').first().simulate('blur')
     expect(blurs).toEqual(1)
+  })
+
+  it('selects that user was born in US', () => {
+    let updates = 0
+    const expected = {
+      name: 'input-error',
+      label: 'Text input error',
+      error: true,
+      focus: false,
+      valid: false,
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} onUpdate={expected.onUpdate} country='' />)
+    component.find({type: 'radio', name: 'is_domestic', value: 'Yes'}).simulate('change')
+    expect(component.find('input').length).toBe(5)
+    expect(updates).toBe(1)
+
+    component.find({type: 'radio', name: 'is_domestic', value: 'No'}).simulate('change')
+    expect(updates).toBe(2)
+    expect(component.find('input').length).toBe(4)
   })
 })

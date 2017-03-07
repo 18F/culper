@@ -3,9 +3,11 @@ package handlers
 import (
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/model/form"
 	"github.com/gorilla/mux"
-	"github.com/truetandem/e-QIP-prototype/api/model/form"
 )
 
 // ValidateAddress checks if an entire address is valid
@@ -62,12 +64,12 @@ func ValidateSSN(w http.ResponseWriter, r *http.Request) {
 }
 
 // ValidatePassport checks if a passport number is valid
-func ValidatePassport(w http.ResponseWriter, r *http.Request) {
+func ValidatePassportNumber(w http.ResponseWriter, r *http.Request) {
 	passport := mux.Vars(r)["passport"]
 	log.Printf("Validating Passport Number: [%v]\n", passport)
 
-	_, err := form.PassportField(passport).Valid()
-	stack := form.NewErrorStack("Passport", err)
+	_, err := form.PassportNumberField(passport).Valid()
+	stack := form.NewErrorStack("Number", err)
 	EncodeErrJSON(w, stack)
 }
 
@@ -101,4 +103,161 @@ func ValidateApplicantBirthdate(w http.ResponseWriter, r *http.Request) {
 	_, err := name.Valid()
 	stack := form.NewErrorStack("Birthdate", err)
 	EncodeErrJSON(w, stack)
+}
+
+// ValidateHeight validates a persons height
+func ValidateHeight(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Height")
+
+	var height form.HeightField
+	DecodeJSON(r.Body, &height)
+	_, err := height.Valid()
+	EncodeErrJSON(w, err)
+}
+
+// ValidateWeight validates a persons weight
+func ValidateWeight(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Weight")
+
+	weightVar := mux.Vars(r)["weight"]
+	i, _ := strconv.ParseInt(weightVar, 10, 64)
+	_, err := form.WeightField(i).Valid()
+	stack := form.NewErrorStack("Weight", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateHairColor validates a persons hair color
+func ValidateHairColor(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Hair Color")
+
+	hairVar := mux.Vars(r)["haircolor"]
+	_, err := form.HairColorField(hairVar).Valid()
+	stack := form.NewErrorStack("HairColor", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateEyeColor validates a person eye color
+func ValidateEyeColor(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Eye Color")
+
+	eyeVar := mux.Vars(r)["eyecolor"]
+	_, err := form.EyeColorField(eyeVar).Valid()
+	stack := form.NewErrorStack("EyeColor", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateSex validates a persons sex
+func ValidateSex(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Sex")
+
+	sexVar := mux.Vars(r)["sex"]
+	_, err := form.SexField(sexVar).Valid()
+	stack := form.NewErrorStack("Sex", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateDateRange validates a date range
+func ValidateDateRange(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating DateRange")
+
+	var respBody struct {
+		From string
+		To   string
+	}
+	DecodeJSON(r.Body, &respBody)
+	df := form.DateRangeField{}
+	err := df.Parse(respBody.From, respBody.To)
+	if err != nil {
+		stack := form.NewErrorStack("DateRange", err)
+		EncodeErrJSON(w, stack)
+		return
+	}
+
+	_, err = df.Valid()
+	stack := form.NewErrorStack("DateRange", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidatePassportDates validates that expiration and issue dates are valid and
+// within the appropriate range
+func ValidatePassportDates(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Passport Issued and Expiration Date")
+	var stack form.ErrorStack
+	issued := mux.Vars(r)["issued"]
+	expiration := mux.Vars(r)["expiration"]
+
+	issuedDate := form.DateField{}
+	err := issuedDate.Parse(issued)
+	if err != nil {
+		stack.Append("Issued", err)
+	}
+
+	expirationDate := form.DateField{}
+	err = expirationDate.Parse(expiration)
+	if err != nil {
+		stack.Append("Expiration", err)
+	}
+
+	if stack.HasErrors() {
+		EncodeErrJSON(w, stack)
+		return
+	}
+
+	df := form.DateRangeField{
+		From: issuedDate,
+		To:   expirationDate,
+	}
+
+	_, err = df.Valid()
+	stack = form.NewErrorStack("Issued", form.ErrFieldInvalid{Message: "Issue must come before expiration date"})
+	EncodeErrJSON(w, stack)
+}
+
+// ValidateEmail validates an email
+func ValidateEmail(w http.ResponseWriter, r *http.Request) {
+	log.Println("Validating Email")
+
+	var body struct {
+		Address string
+	}
+	DecodeJSON(r.Body, &body)
+
+	_, err := form.EmailField(body.Address).Valid()
+	stack := form.NewErrorStack("Email", err)
+	EncodeErrJSON(w, stack)
+}
+
+// ValidatePhoneNumber validates a phone number based on the phone number type
+func ValidatePhoneNumber(numberType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Validating Phone Number")
+		number := mux.Vars(r)["number"]
+
+		var p form.PhoneNumberField
+		switch numberType {
+		case "Domestic", "International":
+			var num, ext string
+			// Check if a number and an extension were passed through
+			split := strings.Split(number, ",")
+			num = split[0]
+			if len(split) == 2 {
+				ext = split[1]
+			}
+
+			p = form.PhoneNumberField{
+				Number:    num,
+				Type:      form.PhoneNumberTypeField(numberType),
+				Extension: ext,
+			}
+		case "DSN":
+			p = form.PhoneNumberField{
+				Number: number,
+				Type:   form.PhoneNumberTypeField(numberType),
+			}
+		}
+
+		_, err := p.Valid()
+		stack := form.NewErrorStack("Number", err)
+		EncodeErrJSON(w, stack)
+	}
 }

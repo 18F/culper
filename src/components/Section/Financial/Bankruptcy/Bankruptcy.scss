@@ -1,0 +1,41 @@
+.bankruptcy {
+  .petition-type,
+  .courtnumber,
+  .datecontrol,
+  .datedischarged,
+  .datefiled,
+  .amount,
+  .fa-dollar,
+  .namedebt,
+  .trustee,
+  .courtinvolved {
+    display: inline-block;
+  }
+
+  .amount {
+    padding-left: 1rem;
+
+    label {
+      margin-left: 1rem;
+    }
+  }
+
+  .coupled-flags {
+    clear: both;
+    padding-left: 15.5rem;
+  }
+
+  .fa.fa-dollar {
+    margin-left: -2rem;
+  }
+
+  .collection {
+    .summary {
+      .brief {
+        .index {
+          width: 10.5rem;
+        }
+      }
+    }
+  }
+}

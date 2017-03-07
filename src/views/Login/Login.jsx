@@ -1,8 +1,10 @@
 import React from 'react'
 import { LoginOAuth, TwoFactor } from '../../components'
 import { connect } from 'react-redux'
+import { i18n } from '../../config'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
+import { Text } from '../../components/Form'
 
 class Login extends React.Component {
 
@@ -20,7 +22,15 @@ class Login extends React.Component {
     this.login = this.login.bind(this)
   }
 
+  componentDidMount () {
+    this.redirect()
+  }
+
   componentWillMount () {
+    this.redirect()
+  }
+
+  redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
       this.props.dispatch(push('/form'))
@@ -37,77 +47,107 @@ class Login extends React.Component {
 
   login (event) {
     event.preventDefault()
-    // TODO Validation rules
     this.props.dispatch(login(this.state.username, this.state.password))
   }
 
-  render () {
-    if (this.props.authenticated && !this.props.twofactor) {
-      return (
-        <div id="login" className="usa-grid">
-          <div id="info" className="usa-width-one-whole">
-            <h2>Two-factor authentication</h2>
-            <p>
-              Two-factor authentication (also known as 2FA) is a method of confirming a user's claimed identity by utilizing a combination of two different components.
-            </p>
-            <ul>
-              <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
-              <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
-            </ul>
-          </div>
-          <div id="twofactor" className="usa-width-one-whole">
-            <TwoFactor username={this.state.username} />
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div id="login" className="usa-grid">
-          <div id="info" className="usa-width-one-whole">
-            <h2>Login</h2>
-            <p>
-              Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.
-            </p>
-          </div>
-
-          <div id="basic" className="usa-width-one-whole">
-            <form onSubmit={this.login}>
-              <div>
-                <label htmlFor="username">Username</label>
-                <input id="username"
-                       type="text"
-                       placeholder="Username"
-                       autoFocus
-                       value={this.state.username}
-                       onChange={this.onUsernameChange}/>
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input id="password"
-                       type="password"
-                       placeholder="Password"
-                       value={this.state.password}
-                       onChange={this.onPasswordChange} />
-              </div>
-              {this.props.error ? (<div>{this.props.error}</div>) : ''}
-              <div>
-                <a id="forgot-password" href="#" title="Forgot password">Forgot Password?</a>
-              </div>
-              <div>
-                <button type="submit">Submit</button>
-              </div>
-            </form>
-          </div>
-
-          <div id="oauth" className="usa-width-one-whole">
-            <span>Sign in with</span>
-            <LoginOAuth authenticated={this.state.authenticated}>
-              <i className="fa fa-github" aria-hidden="true"></i>
-            </LoginOAuth>
-          </div>
-        </div>
-      )
+  errorMessage () {
+    if (!this.props.error) {
+      return ''
     }
+
+    return (
+      <div className="eapp-error-message message">
+        <i className="fa fa-exclamation"></i>
+        {this.props.error}
+      </div>
+    )
+  }
+
+  loginForm () {
+    const authValid = this.props.error === undefined || this.props.error === ''
+    let pwClass = 'help'
+    if (!authValid) {
+      pwClass += ' usa-input-error'
+    }
+
+    return (
+      <div>
+        <div id="info" className="usa-width-one-whole">
+          <h2>{i18n.t('login.title')}</h2>
+          <p>{i18n.t('login.para')}</p>
+        </div>
+
+        <div id="basic" className="login-basic usa-width-one-whole">
+          <form onSubmit={this.login}>
+            <div>
+              <Text name="user"
+                    placeholder="Enter your username"
+                    label="Username"
+                    autoFocus
+                    onChange={this.onUsernameChange} />
+            </div>
+            <div className={pwClass}>
+              <label
+                htmlFor="password">
+                Password
+              </label>
+              <input id="password"
+                     type="password"
+                     placeholder={i18n.t('login.placeholder.password')}
+                     value={this.state.password}
+                     onChange={this.onPasswordChange} />
+              {this.errorMessage()}
+            </div>
+            <div>
+              <button type="submit">{i18n.t('login.submit')}</button>
+              <a id="forgot-password" href="#" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
+            </div>
+          </form>
+        </div>
+
+        <div id="oauth" className="login-oauth usa-width-one-whole hidden">
+          <span>Sign in with</span>
+          <LoginOAuth authenticated={this.state.authenticated}>
+            <i className="fa fa-github" aria-hidden="true"></i>
+          </LoginOAuth>
+        </div>
+      </div>
+    )
+  }
+
+  twofactorForm () {
+    return (
+      <div>
+        <div id="info" className="login-info usa-width-one-whole">
+          <h2>{i18n.t('login.twofactor.title')}</h2>
+          <p>{i18n.t('login.twofactor.para')}</p>
+          <ul>
+            <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
+            <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
+          </ul>
+        </div>
+        <div id="twofactor" className="login-twofactor usa-width-one-whole">
+          <TwoFactor username={this.state.username} />
+        </div>
+      </div>
+    )
+  }
+
+  render () {
+    return (
+      <div className="login eapp-core" id="login">
+        <div id="seal-header" className="seal-header text-center">
+          <div className="content">
+            <img src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
+            <h2>Welcome to the Questionnaire for National Security Positions</h2>
+          </div>
+        </div>
+        <div className="content">
+          {this.props.authenticated && !this.props.twofactor && this.twofactorForm()}
+          {!this.props.authenticated && !this.props.twofactor && this.loginForm()}
+        </div>
+      </div>
+    )
   }
 }
 

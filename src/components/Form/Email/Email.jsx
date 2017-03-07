@@ -7,15 +7,7 @@ export default class Email extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern || '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$',
-      readonly: props.readonly,
-      required: props.required,
+      pattern: props.pattern || '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.+([a-z\.]{2,6})$',
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -28,7 +20,13 @@ export default class Email extends ValidationElement {
    */
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
-      this.handleChange(event)
+      super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value
+        })
+      }
     })
   }
 
@@ -61,16 +59,16 @@ export default class Email extends ValidationElement {
 
   render () {
     return (
-      <Generic name={this.state.name}
-               label={this.state.label}
-               placeholder={this.state.placeholder}
-               help={this.state.help}
+      <Generic name={this.props.name}
+               label={this.props.label}
+               placeholder={this.props.placeholder}
+               className={`email ${this.props.className || ''}`.trim()}
                type="email"
-               disabled={this.state.disabled}
-               maxlength={this.state.maxlength}
+               disabled={this.props.disabled}
+               maxlength={this.props.maxlength}
                pattern={this.state.pattern}
-               readonly={this.state.readonly}
-               required={this.state.required}
+               readonly={this.props.readonly}
+               required={this.props.required}
                value={this.state.value}
                focus={this.state.focus}
                error={this.state.error}

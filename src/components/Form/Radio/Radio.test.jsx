@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import Radio from './Radio'
 
 describe('The radio component', () => {
@@ -7,63 +7,56 @@ describe('The radio component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false
     }
-    const component = shallow(<Radio name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('span.usa-input-error-message').text()).toEqual(expected.help)
-    expect(component.find('span.hidden').length).toEqual(0)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(1)
   })
 
   it('renders appropriately with focus', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       error: false,
       focus: true,
       valid: false
     }
-    const component = shallow(<Radio name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('renders appropriately with validity checks', () => {
     const expected = {
       name: 'input-success',
       label: 'Text input success',
-      help: 'Helpful error message',
       error: false,
       focus: false,
       valid: true
     }
-    const component = shallow(<Radio name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('renders sane defaults', () => {
     const expected = {
       name: 'input-type-text',
       label: 'Text input label',
-      help: 'Helpful error message',
       error: false,
       focus: false,
       valid: false
     }
-    const component = shallow(<Radio name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('bubbles up validate event', () => {
@@ -71,7 +64,6 @@ describe('The radio component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -79,7 +71,7 @@ describe('The radio component', () => {
         validations++
       }
     }
-    const component = shallow(<Radio name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<Radio name={expected.name} onValidate={expected.handleValidation} />)
     component.find('input').simulate('change')
     expect(validations).toEqual(1)
   })
@@ -89,7 +81,6 @@ describe('The radio component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -97,7 +88,7 @@ describe('The radio component', () => {
         changes++
       }
     }
-    const component = shallow(<Radio name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Radio name={expected.name} onChange={expected.handleChange} />)
     component.find('input').simulate('change')
     expect(changes).toEqual(1)
   })
@@ -107,7 +98,6 @@ describe('The radio component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -115,7 +105,7 @@ describe('The radio component', () => {
         foci++
       }
     }
-    const component = shallow(<Radio name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(<Radio name={expected.name} onFocus={expected.handleFocus} />)
     component.find('input').simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -125,7 +115,6 @@ describe('The radio component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       error: true,
       focus: false,
       valid: false,
@@ -133,8 +122,15 @@ describe('The radio component', () => {
         blurs++
       }
     }
-    const component = shallow(<Radio name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(<Radio name={expected.name} onBlur={expected.handleBlur} />)
     component.find('input').simulate('blur')
     expect(blurs).toEqual(1)
+  })
+
+  it('can toggle checked state', () => {
+    const component = mount(<Radio name="toggle" value="foo" checked="true" />)
+    expect(component.find('.checked').length).toEqual(1)
+    component.find('input').simulate('click')
+    expect(component.find('.checked').length).toEqual(0)
   })
 })

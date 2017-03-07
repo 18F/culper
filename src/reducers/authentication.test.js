@@ -15,7 +15,8 @@ describe('Authentication Reducer', function () {
     const expectedState = {
       authenticated: true,
       token: 'faketoken',
-      twofactor: false
+      twofactor: false,
+      error: ''
     }
 
     const action = {
@@ -37,6 +38,60 @@ describe('Authentication Reducer', function () {
       type: AuthConstants.LOGOUT
     }
 
+    expect(authentication(defaultState, action)).toEqual(expectedState)
+  })
+
+  it('should handle login error', function () {
+    const expectedState = {
+      authenticated: false,
+      token: null,
+      twofactor: false,
+      error: undefined
+    }
+
+    const action = {
+      type: AuthConstants.LOGIN_ERROR
+    }
+    expect(authentication(defaultState, action)).toEqual(expectedState)
+  })
+
+  it('should handle two factor qrcode', function () {
+    const expectedState = {
+      authenticated: false,
+      token: null,
+      qrcode: undefined
+    }
+
+    const action = {
+      type: AuthConstants.TWOFACTOR_QRCODE
+    }
+    expect(authentication(defaultState, action)).toEqual(expectedState)
+  })
+
+  it('should handle two factor success', function () {
+    const expectedState = {
+      authenticated: true,
+      token: null,
+      twofactor: true
+    }
+
+    const action = {
+      type: AuthConstants.TWOFACTOR_SUCCESS
+    }
+    expect(authentication(defaultState, action)).toEqual(expectedState)
+  })
+
+  it('should handle two factor error', function () {
+    const expectedState = {
+      authenticated: false,
+      token: null,
+      twofactor: false,
+      error: undefined
+    }
+
+    const action = {
+      type: AuthConstants.TWOFACTOR_ERROR
+    }
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 })

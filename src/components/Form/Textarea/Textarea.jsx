@@ -6,14 +6,6 @@ export default class Textarea extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -25,8 +17,15 @@ export default class Textarea extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value
+        })
+      }
     })
   }
 
@@ -34,6 +33,7 @@ export default class Textarea extends ValidationElement {
    * Handle the focus event.
    */
   handleFocus (event) {
+    event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
     })
@@ -43,6 +43,7 @@ export default class Textarea extends ValidationElement {
    * Handle the blur event.
    */
   handleBlur (event) {
+    event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
@@ -57,6 +58,9 @@ export default class Textarea extends ValidationElement {
    *  3. true: Meets all specified criterion
    */
   handleValidation (event, status) {
+    let errorCode = null
+
+    event.persist()
     if (!event || !event.target) {
       super.handleValidation(event, status)
       return
@@ -66,19 +70,21 @@ export default class Textarea extends ValidationElement {
     status = true
 
     if (this.state.value) {
-      if (this.state.maxlength && this.state.maxlength > 0) {
-        status = status && this.state.value.length > this.state.maxlength
-        hits++
-      }
-
-      if (this.state.pattern && this.state.pattern.length > 0) {
+      hits++
+      if (this.props.pattern && this.props.pattern.length > 0) {
         try {
-          let re = new RegExp(this.state.pattern)
-          status = status && re.exec(this.state.value)
-          hits++
+          let re = new RegExp(this.props.pattern)
+          status = status && re.test(this.state.value)
+          if (!status) {
+            errorCode = 'pattern'
+          }
         } catch (e) {
           // Not a valid regular expression
         }
+      }
+
+      if (this.props.maxlength && parseInt(this.props.maxlength) < this.state.value.length) {
+        status = false
       }
     }
 
@@ -88,8 +94,10 @@ export default class Textarea extends ValidationElement {
     }
 
     // Set the internal state
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
+      let prop = this.props.name || 'textarea'
+      let e = { [prop]: errorCode }
+      super.handleValidation(event, status, super.flattenObject(e))
     })
   }
 
@@ -97,14 +105,14 @@ export default class Textarea extends ValidationElement {
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = this.props.className || ''
 
     if (this.state.error) {
       klass += ' usa-input-error'
@@ -121,21 +129,6 @@ export default class Textarea extends ValidationElement {
 
     if (this.state.error) {
       klass += ' usa-input-error-label'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the span element.
-   */
-  spanClass () {
-    let klass = ''
-
-    if (this.state.error) {
-      klass += ' usa-input-error-message'
-    } else {
-      klass += ' hidden'
     }
 
     return klass.trim()
@@ -162,23 +155,18 @@ export default class Textarea extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.props.name}>
+          {this.props.label}
         </label>
-        <span className={this.spanClass()}
-              id={this.errorName()}
-              role="alert">
-          {this.state.help}
-        </span>
         <textarea className={this.inputClass()}
-                  id={this.state.name}
-                  name={this.state.name}
+                  id={this.props.name}
+                  name={this.props.name}
                   aria-describedby={this.errorName()}
-                  disabled={this.state.disabled}
-                  maxLength={this.state.maxlength}
-                  pattern={this.state.pattern}
-                  readOnly={this.state.readonly}
-                  required={this.state.required}
+                  disabled={this.props.disabled}
+                  maxLength={this.props.maxlength}
+                  pattern={this.props.pattern}
+                  readOnly={this.props.readonly}
+                  required={this.props.required}
                   value={this.state.value}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}

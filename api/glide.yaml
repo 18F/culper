@@ -1,4 +1,4 @@
-package: github.com/truetandem/e-QIP-prototype/api
+package: github.com/18F/e-QIP-prototype/api
 import:
 - package: github.com/dgrijalva/jwt-go
   version: v3.0.0
@@ -26,3 +26,6 @@ import:
   version: v5.1.2
 - package: github.com/cloudfoundry-community/go-cfenv
   version: ^1.14.0
+- package: bitbucket.org/liamstask/goose
+  subpackages:
+  - lib/goose

@@ -1,17 +1,22 @@
-#twofactor-component {
+.twofactor-component {
+  text-align: center;
+
+  img {
+    width: 256px;
+    height: 256px;
+  }
+
+  input {
     text-align: center;
+  }
 
-    img {
-        width: 256px;
-        height: 256px;
-    }
+  button {
+    text-align: center;
+    width: 100%;
+  }
 
-    input {
-        text-align: center;
-    }
-
-    button {
-        text-align: center;
-        width: 100%;
-    }
+  .reset {
+    float: right;
+    font-size: smaller;
+  }
 }

@@ -7,6 +7,8 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthActions'
+// Included so that when webpack processes this, it automatically loads necessary polyfills
+import 'babel-polyfill'
 
 const app = document.getElementById('app')
 
@@ -15,11 +17,10 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={App} onEnter={onEnter}>
         <IndexRoute component={Home} />
-        <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
-        <Route path="/demo" component={Demo} />
         <Route path="/form(/:section(/:subsection))" component={Form} />
       </Route>
+      <Route path="/login" component={Login} />
     </Router>
   </Provider>
     , app)

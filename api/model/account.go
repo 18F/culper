@@ -21,6 +21,9 @@ var (
 
 	// ErrAccoundDoesNotExist is an error when a users account does not exist
 	ErrAccoundDoesNotExist = errors.New("Account does not exist")
+
+	// ErrDatastoreConnection is an error when a database connection cannot be made
+	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
 )
 
 // Account represents a user account
@@ -29,6 +32,9 @@ type Account struct {
 	Username  string
 	Firstname string
 	Lastname  string
+	Token     string
+	TokenUsed bool
+	Email     string
 	db        *pg.DB
 }
 
@@ -41,7 +47,6 @@ func (a *Account) WithContext(ctx *pg.DB) {
 func (a *Account) BasicAuthentication(password string) error {
 	var basicMembership BasicAuthMembership
 
-	fmt.Println(a.db)
 	// Find if basic auth record exists for given account username
 	err := a.db.Model(&basicMembership).
 		Column("basic_auth_membership.*", "Account").
@@ -49,11 +54,12 @@ func (a *Account) BasicAuthentication(password string) error {
 		Select()
 
 	if err != nil {
+		fmt.Printf("Basic Authentication Error: [%v]\n", err)
 		switch err {
 		case pg.ErrNoRows:
 			return ErrAccoundDoesNotExist
 		default:
-			return err
+			return ErrDatastoreConnection
 		}
 	}
 
@@ -100,4 +106,36 @@ func (a *Account) ValidJwtToken(rawToken string) (bool, error) {
 
 	// Everything is good
 	return token.Valid, err
+}
+
+// Get account from the database
+func (a *Account) Get() error {
+	if a.db == nil {
+		return errors.New("No database context found")
+	}
+
+	if a.ID == 0 {
+		return a.db.
+			Model(a).
+			Where("Account.username = ?", a.Username).
+			Select()
+	}
+
+	return a.db.Select(a)
+}
+
+// Save a database entity
+func (a *Account) Save() error {
+	if a.db == nil {
+		return errors.New("No database context found")
+	}
+
+	var err error
+	if a.ID == 0 {
+		err = a.db.Insert(a)
+	} else {
+		err = a.db.Update(a)
+	}
+
+	return err
 }

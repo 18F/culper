@@ -7,67 +7,65 @@ describe('The text component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      help: 'Helpful error message',
       type: 'text',
       error: true,
       focus: false,
       valid: false,
       readonly: true
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} readonly={expected.readonly} />)
-    expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
+
+    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} readonly={expected.readonly} />)
     expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('span.usa-input-error-message').text()).toEqual(expected.help)
-    expect(component.find('span.hidden').length).toEqual(0)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('renders appropriately with focus', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      help: 'Helpful error message',
       type: 'text',
       error: false,
       focus: true,
       valid: false
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
   it('renders appropriately with validity checks', () => {
     const expected = {
       name: 'input-success',
       label: 'Text input success',
-      help: 'Helpful error message',
       type: 'text',
       error: false,
       focus: false,
       valid: true
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
-  it('renders sane defaults', () => {
+  it('renders sane defaults and triggers on update', () => {
+    let updates = 0
     const expected = {
       name: 'input-type-text',
       label: 'Text input label',
-      help: 'Helpful error message',
       type: 'text',
       error: false,
       focus: false,
-      valid: false
+      valid: false,
+      onUpdate: () => { updates++ }
     }
-    const component = mount(<Text name={expected.name} label={expected.label} help={expected.help} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} onUpdate={expected.onUpdate} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('span.hidden').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
+    component.find('input#' + expected.name).simulate('change')
+    expect(updates).toBeGreaterThan(0)
   })
 })
