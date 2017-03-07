@@ -54,10 +54,12 @@ const navigation = [
     name: 'Military history',
     title: 'Military history',
     url: 'military',
-    hidden: true,
+    hidden: false,
     subsections: [
-      { name: 'Selective Service Record', url: 'selective' },
-      { name: 'Military history details', url: 'history' }
+      { name: 'Selective service record', url: 'selective' },
+      { name: 'U.S. military', url: 'history' },
+      { name: 'Disciplinary procedures', url: 'disciplinary' },
+      { name: 'Foreign military', url: 'foreign' }
     ]
   },
   {

@@ -288,6 +288,7 @@ export default class Address extends ValidationElement {
           <Radio name="addressType"
                  label={i18n.t('address.options.us.label')}
                  value="United States"
+                 className="domestic"
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'addressType')}
@@ -298,6 +299,7 @@ export default class Address extends ValidationElement {
           <Radio name="addressType"
                  label={i18n.t('address.options.apoFpo.label')}
                  value="APOFPO"
+                 className="apofpo"
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'addressType')}
@@ -308,6 +310,7 @@ export default class Address extends ValidationElement {
           <Radio name="addressType"
                  label={i18n.t('address.options.international.label')}
                  value="International"
+                 className="international"
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'addressType')}

@@ -1,10 +1,25 @@
 import React from 'react'
 import { Branch } from '../../Form'
+import { newGuid } from '../ValidationElement/ValidationElement'
 
 export default class BranchCollection extends React.Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      indices: []
+    }
+
     this.content = this.content.bind(this)
+    this.updateIndices = this.updateIndices.bind(this)
+  }
+
+  updateIndices (indices, fn) {
+    this.setState({ indices: indices }, () => {
+      if (fn) {
+        fn()
+      }
+    })
   }
 
   /**
@@ -16,9 +31,14 @@ export default class BranchCollection extends React.Component {
     items[index] = item
 
     // If it's not the first item, remove it when user selects no if `removeable` flag is turned on
-    if (index !== 0 && this.props.removable && yes === 'No') {
+    if (this.props.items.length > 1 && this.props.removable && yes === 'No') {
       items.splice(index, 1)
+
+      let indices = [...this.state.indices]
+      indices.splice(index, 1)
+      this.updateIndices(indices)
     }
+
     this.props.onUpdate(items)
   }
 
@@ -30,7 +50,8 @@ export default class BranchCollection extends React.Component {
       [this.props.valueKey]: yes
     }
     let items = [item]
-    this.props.onUpdate(items)
+    let indices = [newGuid()]
+    this.updateIndices(indices, () => { this.props.onUpdate(items) })
   }
 
   /**
@@ -43,7 +64,9 @@ export default class BranchCollection extends React.Component {
     if (yes === 'Yes') {
       let items = [...this.props.items]
       items.push(item)
-      this.props.onUpdate(items)
+      let indices = [...this.state.indices]
+      indices.push(newGuid())
+      this.updateIndices(indices, () => { this.props.onUpdate(items) })
     }
   }
 
@@ -61,7 +84,12 @@ export default class BranchCollection extends React.Component {
           }
         }
       }
-      childProps.children = this.recursiveCloneChildren(child.props.children, item, index)
+
+      const typeOfChildren = Object.prototype.toString.call(child.props.children)
+      if (child.props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+        childProps.children = this.recursiveCloneChildren(child.props.children, item, index)
+      }
+
       return React.cloneElement(child, childProps)
     })
   }
@@ -107,7 +135,7 @@ export default class BranchCollection extends React.Component {
     // When more than 1 item is in
     let rows = this.props.items.map((item, index) => {
       return (
-        <div key={index}>
+        <div key={this.state.indices[index]}>
           {
             this.branch({
               value: item[this.props.valueKey],
