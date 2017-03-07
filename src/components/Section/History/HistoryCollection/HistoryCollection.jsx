@@ -10,11 +10,6 @@ import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary } fro
 import { daysAgo, today } from '../dateranges'
 import { EmploymentValidator, ResidenceValidator, EducationValidator } from '../../../../validators'
 
-const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
-}
-
 /**
  * Contains a collection of Residence and Employment information. This component
  * reconciles the information in the History redux state key and generates one
@@ -34,6 +29,8 @@ export default class HistoryCollection extends ValidationElement {
       // Contains the type of item the user is requesting to create. This may included
       // Residence, Employment or School
       collectionType: props.types.length === 1 ? props.types[0] : '',
+
+      indices: [],
 
       // Error codes for each of the child collections
       errorCodes: []
@@ -71,14 +68,14 @@ export default class HistoryCollection extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
       if (complexStatus === false || complexStatus === true) {
-        super.handleValidation(event, s, e)
+        super.handleValidation(event, statusObject, errorObject)
         return
       }
 
-      super.handleValidation(event, s, e)
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
@@ -287,7 +284,10 @@ export default class HistoryCollection extends ValidationElement {
       Item: this.state.currentNewItem.values
     })
 
-    this.setState({ currentNewItem: null, collectionType: null }, () => {
+    let indices = [...this.state.indices]
+    indices.push(super.guid())
+
+    this.setState({ currentNewItem: null, collectionType: null, indices: indices }, () => {
       this.doUpdate(type, items, () => {
         // Check to see if there are multiple types of items supported
         if (this.props.types.length === 1) {
@@ -306,7 +306,13 @@ export default class HistoryCollection extends ValidationElement {
   remove (type, index) {
     let items = [...this.state.List]
     items.splice(index, 1)
-    this.doUpdate(type, items)
+
+    let indices = [...this.state.indices]
+    indices.splice(index, 1)
+
+    this.setState({ indices: indices }, () => {
+      this.doUpdate(type, items)
+    })
   }
 
   /**
@@ -457,7 +463,7 @@ export default class HistoryCollection extends ValidationElement {
         return (
           <Row header={header}
                index={i}
-               key={i}
+               key={this.state.indices[i]}
                first={firstRow}
                last={lastRow}
                hasErrors={hasErrors}
@@ -481,7 +487,7 @@ export default class HistoryCollection extends ValidationElement {
         return (
           <Row header={header}
                index={i}
-               key={i}
+               key={this.state.indices[i]}
                first={firstRow}
                last={lastRow}
                hasErrors={hasErrors}
@@ -507,7 +513,7 @@ export default class HistoryCollection extends ValidationElement {
         return (
           <Row header={header}
                index={i}
-               key={i}
+               key={this.state.indices[i]}
                first={firstRow}
                last={lastRow}
                hasErrors={hasErrors}
@@ -528,7 +534,7 @@ export default class HistoryCollection extends ValidationElement {
       if (item.type === 'Gap') {
         return (
           <Gap index={i}
-               key={i}
+               key={this.state.indices[i]}
                first={firstRow}
                last={lastRow}
                dates={item.Item.Dates}
