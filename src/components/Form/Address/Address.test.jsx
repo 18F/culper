@@ -10,7 +10,7 @@ describe('The Address component', () => {
       value: ''
     }
     const component = mount(<Address name={expected.name} label={expected.label} value={expected.value} />)
-    component.find('textarea[name="address"]').simulate('change')
+    component.find('input[name="address"]').simulate('change')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
