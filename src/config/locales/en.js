@@ -1523,6 +1523,15 @@ const en = {
             date: 'Provide the date you left'
           }
         },
+        reprimand: {
+          para: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          description: {
+            label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
+          },
+          date: {
+            label: 'Provide the month and year you were warned, reprimanded, suspended or disciplined'
+          }
+        },
         datesEmployed: {
           help: {
             title: 'Need help with the dates you were employed?',
