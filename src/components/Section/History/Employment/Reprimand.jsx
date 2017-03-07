@@ -39,13 +39,13 @@ export default class Reprimand extends ValidationElement {
     return (
       <BranchCollection
         className="eapp-field-wrap"
-        branchHelp="history.employment.default.reasonDescription"
+        branchHelp="history.employment.default.reprimand.help"
         branch={branch}
         items={this.state.Reasons}
         onUpdate={this.updateReasons}
       >
         <div>
-          <div className={`${this.props.className} explanation-left`}>
+          <div className="explanation-left">
             <Textarea name="Text"
               bind={true}
               label={i18n.t('history.employment.default.reprimand.description.label')}
@@ -53,7 +53,7 @@ export default class Reprimand extends ValidationElement {
               onValidate={this.props.onValidate}
             />
           </div>
-          <div className={`${this.props.className} date-left`}>
+          <div className="date-left">
             <label>{i18n.t('history.employment.default.reprimand.date.label')}</label>
             <DateControl name="Date"
               bind={true}
