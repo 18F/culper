@@ -44,6 +44,7 @@ export default combineReducers({
   Financial: reducer('Financial'),
   Family: reducer('Family'),
   Citizenship: reducer('Citizenship'),
+  Military: reducer('Military'),
   History: reducer('History'),
   Foreign: reducer('Foreign'),
   TBD: reducer('Tbd'),

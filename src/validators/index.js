@@ -12,6 +12,10 @@ import GamblingValidator from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
 import EducationValidator from './education'
+import SelectiveServiceValidator from './selectiveservice'
+import MilitaryHistoryValidator from './militaryhistory'
+import MilitaryDisciplinaryValidator from './militarydisciplinary'
+import MilitaryForeignValidator from './militaryforeign'
 
 export {
   AddressValidator,
@@ -27,5 +31,9 @@ export {
   GamblingValidator,
   ResidenceValidator,
   EmploymentValidator,
-  EducationValidator
+  EducationValidator,
+  SelectiveServiceValidator,
+  MilitaryHistoryValidator,
+  MilitaryDisciplinaryValidator,
+  MilitaryForeignValidator
 }

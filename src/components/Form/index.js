@@ -42,6 +42,7 @@ import Branch from './Branch'
 import PetitionType from './PetitionType'
 import Reference from './Reference'
 import Show from './Show'
+import BranchCollection from './BranchCollection'
 
 export {
   ValidationElement,
@@ -83,5 +84,6 @@ export {
   PetitionType,
   Reference,
   Show,
-  Svg
+  Svg,
+  BranchCollection
 }
