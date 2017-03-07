@@ -10,7 +10,7 @@ describe('Employment component validation', function () {
           },
           Dates: {
             from: new Date('1/1/2010'),
-            to: new Date('1/1/2012'),
+            to: new Date('1/1/2016'),
             present: false
           },
           Employment: {
@@ -43,13 +43,21 @@ describe('Employment component validation', function () {
             timeOfDay: 'Day'
           },
           ReasonLeft: {
-            Reason: 'Fired',
-            Date: {
-              date: new Date('1/1/2012')
-            },
-            Text: {
-              value: 'Some excuse'
-            }
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
           },
           Reference: {
             FullName: {
@@ -244,6 +252,307 @@ describe('Employment component validation', function () {
 
     tests.forEach(test => {
       expect(new EmploymentValidator(test.state, null).validSupervisor()).toBe(test.expected)
+    })
+  })
+
+  it('can validate reasons left entries', () => {
+    const tests = [
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: null,
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: null,
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: {
+            Reasons: [{Has: 'No'}]
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: null
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).validReasonLeft()).toBe(test.expected)
+    })
+  })
+
+  it('can validate reprimand entries', () => {
+    const tests = [
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Foo'
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Reprimand: {
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: null
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: null
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Hello'
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Dates: {
+            from: new Date('1/1/2010'),
+            to: new Date('1/1/2016'),
+            present: false
+          },
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Has: 'No'
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).validReprimand()).toBe(test.expected)
     })
   })
 })

@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield, validPhoneNumber } from './helpers'
+import { validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField } from './helpers'
 import AddressValidator from './address'
 import ReferenceValidator from './reference'
 
@@ -16,6 +16,7 @@ export default class EmploymentValidator {
     this.telephone = state.Telephone
     this.physicalAddress = state.PhysicalAddress
     this.reasonLeft = state.ReasonLeft
+    this.reprimand = state.Reprimand
     this.supervisor = state.Supervisor
     this.reference = state.Reference
   }
@@ -131,17 +132,25 @@ export default class EmploymentValidator {
       if (!this.reasonLeft) {
         return false
       }
-
-      if (!this.reasonLeft.Reason) {
+      if (!this.reasonLeft.Reasons) {
         return false
       }
+      for (let r of this.reasonLeft.Reasons) {
+        if (r.Has === 'No') {
+          continue
+        }
 
-      if (!this.reasonLeft.Date || !this.reasonLeft.Date.date) {
-        return false
-      }
+        if (!r.Reason) {
+          return false
+        }
 
-      if (!this.reasonLeft.Text || !this.reasonLeft.Text.value) {
-        return false
+        if (!validDateField(r.Date)) {
+          return false
+        }
+
+        if (!validGenericTextfield(r.Text)) {
+          return false
+        }
       }
     }
 
@@ -163,6 +172,29 @@ export default class EmploymentValidator {
 
   validReference () {
     return this.reference && new ReferenceValidator(this.reference, null).isValid()
+  }
+
+  validReprimand () {
+    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    if ((this.dates.from && this.dates.from >= sevenYearsAgo) || (this.dates.to && this.dates.to >= sevenYearsAgo)) {
+      if (!this.reprimand.Reasons) {
+        return false
+      }
+      for (let r of this.reprimand.Reasons) {
+        if (r.Has === 'No') {
+          continue
+        }
+
+        if (!validGenericTextfield(r.Text)) {
+          return false
+        }
+        if (!validGenericMonthYear(r.Date)) {
+          return false
+        }
+      }
+    }
+
+    return true
   }
 
   isValid () {
