@@ -39,6 +39,31 @@ describe('The passport component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
+  it('displays suggested names if found', () => {
+    let first = ''
+    const expected = {
+      name: 'passport',
+      onUpdate: (values) => {
+        first = values.Name.first
+      },
+      suggestedNames: [
+        {
+          first: 'john',
+          last: 'smith'
+        },
+        {
+          first: 'jonathan',
+          last: 'smith'
+        }
+      ]
+    }
+    const component = mount(<Passport {...expected} />)
+    component.find({type: 'radio', name: 'has_passport', value: 'Yes'}).simulate('change')
+    expect(component.find('.modal').length).toEqual(1)
+    component.find('.suggestion .action button').first().simulate('click')
+    expect(first).toEqual(expected.suggestedNames[0].first)
+  })
+
   it('loads data and adds comment', () => {
     const data = {
       Card: 'Book',
