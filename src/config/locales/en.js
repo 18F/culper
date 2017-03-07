@@ -1488,9 +1488,18 @@ const en = {
             other: 'Other'
           }
         },
+        reasonDescription: {
+          title: 'Reason for leaving employment',
+          message: 'Explain why you left your last employment'
+        },
+        reasonOptions: {
+          title: 'Reason for leaving employment',
+          message: 'For this employment have any of the following happened to you in the last seven (7) years?'
+        },
         left: {
           title: 'Provide the reason for leaving the employment activity',
           para: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          list: '- Fired\n- Quit after being told you would be fired\n- Left by mutual agreement following charges or allegations of misconduct\n- Left by mutual agreement following notice of unsatisfactory performance',
           comments: 'Provide any additional comments for why you left this employment activity',
           help: {
             title: '',
@@ -1521,6 +1530,19 @@ const en = {
             option: 'Other',
             text: 'Do you have another reason for leaving to report for this employment?',
             date: 'Provide the date you left'
+          }
+        },
+        reprimand: {
+          para: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          description: {
+            label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
+          },
+          date: {
+            label: 'Provide the month and year you were warned, reprimanded, suspended or disciplined'
+          },
+          help: {
+            title: 'Have you received a written warning',
+            message: 'Explain if you have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy'
           }
         },
         datesEmployed: {

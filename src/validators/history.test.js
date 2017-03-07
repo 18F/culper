@@ -44,13 +44,21 @@ describe('Employment component validation', function () {
                   timeOfDay: 'Day'
                 },
                 ReasonLeft: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2012')
-                  },
-                  Text: {
-                    value: 'Some excuse'
-                  }
+                  Reasons: [
+                    {
+                      Has: 'Yes',
+                      Reason: 'Fired',
+                      Date: {
+                        date: new Date('1/1/2016'),
+                        day: '1',
+                        month: '1',
+                        year: '2016'
+                      },
+                      Text: {
+                        value: 'Some excuse'
+                      }
+                    }
+                  ]
                 },
                 Reference: {
                   FullName: {
