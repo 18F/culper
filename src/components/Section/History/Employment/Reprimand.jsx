@@ -38,13 +38,12 @@ export default class Reprimand extends ValidationElement {
     )
     return (
       <BranchCollection
-        className="eapp-field-wrap"
         branchHelp="history.employment.default.reprimand.help"
         branch={branch}
         items={this.state.Reasons}
         onUpdate={this.updateReasons}
       >
-        <div>
+        <div className="eapp-field-wrap">
           <div className="explanation-left">
             <Textarea name="Text"
               bind={true}

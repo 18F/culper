@@ -117,10 +117,9 @@ export class EmploymentItem extends ValidationElement {
                         />
           </div>
         </Show>
-        <Show when={this.showLeaving()}>
+        <Show when={true}>
           <div>
             <Reprimand name="Reprimand"
-              className="eapp-field-wrap"
                         {...this.props.Reprimand}
                         onUpdate={this.onUpdate.bind(this, 'Reprimand')}
                         />
