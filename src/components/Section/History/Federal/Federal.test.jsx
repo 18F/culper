@@ -36,7 +36,7 @@ describe('The federal component', () => {
     component.find({type: 'text', name: 'Position'}).simulate('change')
     component.find({type: 'text', name: 'Name'}).simulate('change')
     component.find('.collection .datecontrol #day').first().simulate('change')
-    component.find('.collection textarea').simulate('change')
+    component.find('.collection .mailing input').simulate('change')
     expect(updates).toEqual(4)
   })
 

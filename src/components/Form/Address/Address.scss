@@ -4,34 +4,44 @@
   .state-zip-wrap {
     display: table;
 
-    .state, .zipcode {
+    .state,
+    .apofpo,
+    .zipcode {
       display: table-cell;
       padding-right: 2rem;
     }
   }
 
-  .mailing {
-    textarea {
-      height: 10rem;
-    }
+  .mailing,
+  .city,
+  .country {
+    margin-right: 1.5rem;
   }
 
   .address-options {
     label {
-      padding-left: 3rem;
-      padding-right: 3rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      padding-top: 3rem;
+      width: 18rem;
+      height: 9rem;
+      overflow: hidden;
+      line-height: 2.6rem;
+    }
+
+    span p {
+      padding: 0;
+    }
+
+    .domestic label,
+    .international label {
+      padding-top: 2rem;
     }
   }
 
   .fields {
     .apofpo {
-      label {
-        padding-left: 3rem;
-        padding-right: 3rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+      .eapp-blocks-radio label {
+        display: inline-block !important;
+        width: 25.6rem;
       }
     }
 
@@ -44,5 +54,16 @@
 
   label.bold {
     font-weight: 600;
+  }
+}
+
+.help {
+  .address {
+    + .toggle {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 1.6rem;
+      margin-left: 0.8rem;
+    }
   }
 }
