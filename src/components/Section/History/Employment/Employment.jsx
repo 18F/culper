@@ -110,7 +110,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showLeaving()}>
           <div>
-            <h2>{i18n.t('history.employment.default.left.title')}</h2>
+            <h3>{i18n.t('history.employment.default.left.title')}</h3>
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
                         onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
