@@ -911,18 +911,18 @@ const en = {
   address: {
     options: {
       us: {
-        label: 'In the United States'
+        label: 'In the<br>United States'
       },
       apoFpo: {
         label: 'APO/FPO'
       },
       international: {
-        label: 'International'
+        label: 'Outside of the<br>United States'
       }
     },
     us: {
       street: {
-        label: 'Mailing address',
+        label: 'Street',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -934,13 +934,13 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
     international: {
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -952,7 +952,7 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
@@ -961,7 +961,7 @@ const en = {
         label: 'Select APO or FPO'
       },
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -973,11 +973,11 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO State Code'
       },
       apoFpoType: {
         apo: {
