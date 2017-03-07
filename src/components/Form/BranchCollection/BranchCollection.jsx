@@ -11,6 +11,15 @@ export default class BranchCollection extends React.Component {
     }
 
     this.content = this.content.bind(this)
+    this.updateIndices = this.updateIndices.bind(this)
+  }
+
+  updateIndices (indices, fn) {
+    this.setState({ indices: indices }, () => {
+      if (fn) {
+        fn()
+      }
+    })
   }
 
   /**
@@ -27,8 +36,9 @@ export default class BranchCollection extends React.Component {
 
       let indices = [...this.state.indices]
       indices.splice(index, 1)
-      this.setState({ indices: indices })
+      this.updateIndices(indices)
     }
+
     this.props.onUpdate(items)
   }
 
@@ -41,9 +51,7 @@ export default class BranchCollection extends React.Component {
     }
     let items = [item]
     let indices = [newGuid()]
-    this.setState({ indices: indices }, () => {
-      this.props.onUpdate(items)
-    })
+    this.updateIndices(indices, () => { this.props.onUpdate(items) })
   }
 
   /**
@@ -58,9 +66,7 @@ export default class BranchCollection extends React.Component {
       items.push(item)
       let indices = [...this.state.indices]
       indices.push(newGuid())
-      this.setState({ indices: indices }, () => {
-        this.props.onUpdate(items)
-      })
+      this.updateIndices(indices, () => { this.props.onUpdate(items) })
     }
   }
 

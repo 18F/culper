@@ -38,7 +38,51 @@ describe('The foreign service component', () => {
     component.find('.foreign-service-division input').simulate('change', { target: { value: 'The division' } })
     component.find('.foreign-service-circumstances textarea').simulate('change', { target: { value: 'The circumstances' } })
     component.find('.foreign-service-left textarea').simulate('change', { target: { value: 'The reasons to leave' } })
-    component.find('.foreign-service .maintainscontact .yes label').simulate('click')
+    component.find('.foreign-service .maintainscontact .yes input').simulate('change')
+    component.find('.foreign-service .maintainscontact .no input').simulate('change')
     expect(updates).toBeGreaterThan(8)
+  })
+
+  it('can display summary with values', () => {
+    const tests = [
+      {
+        props: {
+          name: 'foreign-service',
+          MaintainsContact: 'Yes',
+          List: [
+            {
+              Item: {
+                Name: null,
+                Dates: null
+              }
+            }
+          ]
+        },
+        expected: ''
+      },
+      {
+        props: {
+          name: 'foreign-service',
+          MaintainsContact: 'Yes',
+          List: [
+            {
+              Item: {
+                Name: null,
+                Dates: {
+                  from: new Date('1/1/2015'),
+                  to: new Date('1/1/2016')
+                }
+              }
+            }
+          ]
+        },
+        expected: '1/2015-1/2016'
+      }
+    ]
+
+    for (const test of tests) {
+      const component = mount(<ForeignService {...test.props} />)
+      expect(component.find('.brief .dates strong').text()).toBe(test.expected)
+    }
   })
 })
