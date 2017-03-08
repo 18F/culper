@@ -415,14 +415,10 @@ const en = {
   },
   identification: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       review: 'Review Identification',
@@ -719,14 +715,10 @@ const en = {
   },
   financial: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me on the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       gambling: 'Gambling debts',
@@ -1012,16 +1004,26 @@ const en = {
     }
   },
 
-  military: {
+  intro: {
     tour: {
       title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
       button: 'Take me on the tour!'
     },
     review: {
       title: 'Full section view',
-      para: 'View all the sections associated with military history at once',
       button: 'Show me the full section'
+    },
+    errors: 'Looks like we have a few issues, here is how to fix them.',
+    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    complete: 'Everything looks good here but you can still review your answers.'
+  },
+
+  military: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with military history at once'
     },
     destination: {
       selective: 'Selective service record',
@@ -1344,9 +1346,7 @@ const en = {
 
   history: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -2979,14 +2979,10 @@ const en = {
   },
   foreign: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with foreign activities at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
       review: 'Review Foreign Actitivies',

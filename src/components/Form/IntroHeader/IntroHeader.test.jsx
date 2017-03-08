@@ -20,6 +20,6 @@ describe('The IntroHeader component', () => {
       status: 'complete'
     }
     const component = mount(<IntroHeader Completed={status}/>)
-    expect(component.find('h1').text()).toEqual('Everything looks good here but you can still review your answers')
+    expect(component.find('h1').text()).toEqual('Everything looks good here but you can still review your answers.')
   })
 })
