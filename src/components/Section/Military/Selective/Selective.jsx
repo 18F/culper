@@ -115,7 +115,7 @@ export default class Selective extends ValidationElement {
     return (
       <div className="selective">
         <Branch name="was_bornafter"
-                className="eapp-field-wrap born"
+                className="eapp-field-wrap no-label born"
                 value={this.state.WasBornAfter}
                 help="military.selective.help.born"
                 onUpdate={this.updateBornAfter}>
@@ -125,7 +125,7 @@ export default class Selective extends ValidationElement {
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="eapp-field-wrap registered"
+                    className="eapp-field-wrap no-label registered"
                     value={this.state.HasRegistered}
                     help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}>
