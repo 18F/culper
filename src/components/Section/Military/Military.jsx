@@ -156,10 +156,10 @@ class Military extends ValidationElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="history1"
-                       nextLabel={i18n.t('history.destination.timeline')}>
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="history"
+                       nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}

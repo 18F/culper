@@ -1348,6 +1348,9 @@ const en = {
     tour: {
       para: 'Take a guided tour through the section'
     },
+    review: {
+      para: 'View all the sections associated with your history at once'
+    },
     timeline: {
       title: 'Let\'s cover your last 10 years',
       para1: 'List the places where you have lived and worked beginning with your present residence or employer and working back 10 years. **Residences and employers for the entire period must be accounted for without breaks.**',
