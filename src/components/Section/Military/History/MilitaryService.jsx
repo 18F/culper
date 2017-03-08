@@ -100,7 +100,7 @@ export default class MilitaryService extends ValidationElement {
     return (
       <div className="military-service">
         <h3>{i18n.t('military.history.heading.service')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.history.help.service">
             <RadioGroup className="service option-list eapp-extend-labels"
                         selectedValue={this.state.Service}>
@@ -182,7 +182,7 @@ export default class MilitaryService extends ValidationElement {
         <Show when={this.state.Service === 'AirNationalGuard' || this.state.Service === 'ArmyNationalGuard'}>
           <div>
             <h3>{i18n.t('military.history.heading.status')}</h3>
-            <div className="eapp-field-wrap">
+            <div className="eapp-field-wrap no-label">
               <Help id="military.history.help.status">
                 <RadioGroup className="status option-list"
                             selectedValue={this.state.Status}>
@@ -212,7 +212,7 @@ export default class MilitaryService extends ValidationElement {
         </Show>
 
         <h3>{i18n.t('military.history.heading.officer')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.history.help.officer">
             <RadioGroup className="officer option-list"
                         selectedValue={this.state.Officer}>
@@ -240,7 +240,7 @@ export default class MilitaryService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.history.heading.number')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.history.help.number">
             <Text name="ServiceNumber"
                   {...this.state.ServiceNumber}
@@ -253,7 +253,7 @@ export default class MilitaryService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.history.heading.dates')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.history.help.dates">
             <DateRange name="Dates"
                        className="dates"
@@ -268,7 +268,7 @@ export default class MilitaryService extends ValidationElement {
 
         <h3>{i18n.t('military.history.heading.discharged')}</h3>
         <Branch name="has_beendischarged"
-                className="eapp-field-wrap discharged"
+                className="eapp-field-wrap no-label discharged"
                 value={this.state.HasBeenDischarged}
                 help="military.history.help.discharged"
                 onUpdate={this.updateDischarged}
@@ -280,7 +280,7 @@ export default class MilitaryService extends ValidationElement {
             <h2>{i18n.t('military.history.heading.details')}</h2>
 
             <h3>{i18n.t('military.history.heading.discharge.type')}</h3>
-            <div className="eapp-field-wrap">
+            <div className="eapp-field-wrap no-label">
               <Help id="military.history.help.discharge.type">
                 <RadioGroup className="discharge-type option-list"
                             selectedValue={this.state.DischargeType}>
