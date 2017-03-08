@@ -100,7 +100,7 @@ export default class BranchCollection extends React.Component {
   branch (props) {
     return (
       <Branch
-        className="eapp-field-wrap"
+        helpClassName="eapp-field-wrap"
         name={this.props.branchName}
         help={this.props.branchHelp}
         {...props}
@@ -149,7 +149,7 @@ export default class BranchCollection extends React.Component {
             // Render the branch question at the very end
             this.props.items.length - 1 === index &&
             this.branch({
-              className: 'eapp-field-wrap last-branch',
+              className: 'last-branch',
               onUpdate: this.onLastBranchClick.bind(this)
             })
           }

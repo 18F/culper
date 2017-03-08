@@ -22,7 +22,7 @@ describe('The petition type component', () => {
       address: '1234 Some Rd'
     }
     const component = mount(<PetitionType name={'petition'} value="Chapter13" address={address}/>)
-    component.find('textarea#address').simulate('change')
+    component.find('input#address').simulate('change')
     expect(component.find('.trustee').length).toBeGreaterThan(0)
   })
 })
