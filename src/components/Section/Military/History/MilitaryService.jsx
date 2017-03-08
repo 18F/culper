@@ -220,19 +220,19 @@ export default class MilitaryService extends ValidationElement {
                      className="officer-officer"
                      label={i18n.t('military.history.label.officer')}
                      value="Officer"
-                     onChange={this.updateStatus}
+                     onChange={this.updateOfficer}
                      />
               <Radio name="officer-enlisted"
                      className="officer-enlisted"
                      label={i18n.t('military.history.label.enlisted')}
                      value="Enlisted"
-                     onChange={this.updateStatus}
+                     onChange={this.updateOfficer}
                      />
               <Radio name="officer-na"
                      className="officer-na"
                      label={i18n.t('military.history.label.na')}
                      value="NotApplicable"
-                     onChange={this.updateStatus}
+                     onChange={this.updateOfficer}
                      />
             </RadioGroup>
             <HelpIcon />
