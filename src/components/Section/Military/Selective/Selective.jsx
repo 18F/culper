@@ -115,7 +115,7 @@ export default class Selective extends ValidationElement {
     return (
       <div className="selective">
         <Branch name="was_bornafter"
-                className="eapp-field-wrap born"
+                className="eapp-field-wrap no-label born"
                 value={this.state.WasBornAfter}
                 help="military.selective.help.born"
                 onUpdate={this.updateBornAfter}>
@@ -125,7 +125,7 @@ export default class Selective extends ValidationElement {
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="eapp-field-wrap registered"
+                    className="eapp-field-wrap no-label registered"
                     value={this.state.HasRegistered}
                     help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}>
@@ -133,8 +133,8 @@ export default class Selective extends ValidationElement {
 
             <Show when={this.state.HasRegistered === 'Yes'}>
               <div>
-                <h4>{i18n.t('military.selective.heading.number')}</h4>
-                <div className="eapp-field-wrap">
+                <h3>{i18n.t('military.selective.heading.number')}</h3>
+                <div className="eapp-field-wrap no-margin-bottom">
                   <Help id="military.selective.help.number">
                     <Text name="RegistrationNumber"
                           className="registration-number"
@@ -148,7 +148,7 @@ export default class Selective extends ValidationElement {
 
             <Show when={this.state.HasRegistered === 'No'}>
               <div>
-                <div className="eapp-field-wrap">
+                <div className="eapp-field-wrap no-margin-bottom">
                   <Help id="military.selective.help.explanation">
                     <Textarea name="Explanation"
                               className="explanation"
