@@ -1,13 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Svg, Show } from '../../../Form'
+import { ValidationElement, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Show } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
 import AdditionalActivity from './AdditionalActivity'
 import Supervisor from './Supervisor'
 import ReasonLeft from './ReasonLeft'
-import { today, daysAgo, utc } from '../dateranges'
+import Reprimand from './Reprimand'
+import { today, daysAgo } from '../dateranges'
 
 export class EmploymentItem extends ValidationElement {
   constructor (props) {
@@ -24,7 +25,8 @@ export class EmploymentItem extends ValidationElement {
       Reference: props.Reference,
       PhysicalAddress: props.PhysicalAddress,
       Additional: props.Additional,
-      ReasonLeft: props.ReasonLeft
+      ReasonLeft: props.ReasonLeft,
+      Reprimand: props.Reprimand
     }
   }
 
@@ -46,7 +48,8 @@ export class EmploymentItem extends ValidationElement {
           Reference: this.state.Reference,
           PhysicalAddress: this.state.PhysicalAddress,
           Additional: this.state.Additional,
-          ReasonLeft: this.state.ReasonLeft
+          ReasonLeft: this.state.ReasonLeft,
+          Reprimand: this.state.Reprimand
         })
       }
     })
@@ -84,6 +87,7 @@ export class EmploymentItem extends ValidationElement {
     return (
       <div>
         <h3>{i18n.t(`history.employment.default.heading.activity`)}</h3>
+
         <EmploymentActivity
           {...this.props.EmploymentActivity}
           onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
@@ -103,6 +107,24 @@ export class EmploymentItem extends ValidationElement {
             <HelpIcon className="used-help-icon" />
           </Help>
         </div>
+
+        <Show when={this.showLeaving()}>
+          <div>
+            <h3>{i18n.t('history.employment.default.left.title')}</h3>
+            <ReasonLeft name="ReasonLeft"
+                        {...this.props.ReasonLeft}
+                        onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
+                        />
+          </div>
+        </Show>
+        <Show when={true}>
+          <div>
+            <Reprimand name="Reprimand"
+                        {...this.props.Reprimand}
+                        onUpdate={this.onUpdate.bind(this, 'Reprimand')}
+                        />
+          </div>
+        </Show>
 
         <Show when={this.showEmployer()}>
           <div>
@@ -204,17 +226,6 @@ export class EmploymentItem extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.showLeaving()}>
-          <div>
-            <h2>{i18n.t('history.employment.default.left.title')}</h2>
-            <p>{i18n.t('history.employment.default.left.para')}</p>
-            <ReasonLeft name="ReasonLeft"
-                        {...this.props.ReasonLeft}
-                        onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
-                        className="eapp-field-wrap"
-                        />
-          </div>
-        </Show>
       </div>
     )
   }

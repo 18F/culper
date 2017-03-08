@@ -415,14 +415,10 @@ const en = {
   },
   identification: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       review: 'Review Identification',
@@ -719,14 +715,10 @@ const en = {
   },
   financial: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me on the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       gambling: 'Gambling debts',
@@ -908,21 +900,22 @@ const en = {
       }
     }
   },
+
   address: {
     options: {
       us: {
-        label: 'In the United States'
+        label: 'In the<br>United States'
       },
       apoFpo: {
         label: 'APO/FPO'
       },
       international: {
-        label: 'International'
+        label: 'Outside of the<br>United States'
       }
     },
     us: {
       street: {
-        label: 'Mailing address',
+        label: 'Street',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -934,13 +927,13 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
     international: {
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -952,7 +945,7 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
@@ -961,7 +954,7 @@ const en = {
         label: 'Select APO or FPO'
       },
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -973,11 +966,11 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO State Code'
       },
       apoFpoType: {
         apo: {
@@ -994,16 +987,43 @@ const en = {
     }
   },
 
-  military: {
+  suggestions: {
+    name: {
+      title: 'Alternate names found',
+      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>',
+      label: 'Suggested name',
+      use: 'Use this name',
+      dismiss: 'Use a different name instead'
+    },
+    address: {
+      title: 'Alternate address found',
+      para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
+      label: 'Suggested address',
+      use: 'Use this address',
+      dismiss: 'Use this address instead'
+    }
+  },
+
+  intro: {
     tour: {
       title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
       button: 'Take me on the tour!'
     },
     review: {
       title: 'Full section view',
-      para: 'View all the sections associated with military history at once',
       button: 'Show me the full section'
+    },
+    errors: 'Looks like we have a few issues, here is how to fix them.',
+    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    complete: 'Everything looks good here but you can still review your answers.'
+  },
+
+  military: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with military history at once'
     },
     destination: {
       selective: 'Selective service record',
@@ -1326,9 +1346,10 @@ const en = {
 
   history: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with your history at once'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -1488,9 +1509,18 @@ const en = {
             other: 'Other'
           }
         },
+        reasonDescription: {
+          title: 'Reason for leaving employment',
+          message: 'Explain why you left your last employment'
+        },
+        reasonOptions: {
+          title: 'Reason for leaving employment',
+          message: 'For this employment have any of the following happened to you in the last seven (7) years?'
+        },
         left: {
           title: 'Provide the reason for leaving the employment activity',
           para: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          list: '- Fired\n- Quit after being told you would be fired\n- Left by mutual agreement following charges or allegations of misconduct\n- Left by mutual agreement following notice of unsatisfactory performance',
           comments: 'Provide any additional comments for why you left this employment activity',
           help: {
             title: '',
@@ -1521,6 +1551,19 @@ const en = {
             option: 'Other',
             text: 'Do you have another reason for leaving to report for this employment?',
             date: 'Provide the date you left'
+          }
+        },
+        reprimand: {
+          para: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          description: {
+            label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
+          },
+          date: {
+            label: 'Provide the month and year you were warned, reprimanded, suspended or disciplined'
+          },
+          help: {
+            title: 'Have you received a written warning',
+            message: 'Explain if you have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy'
           }
         },
         datesEmployed: {
@@ -2939,14 +2982,10 @@ const en = {
   },
   foreign: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with foreign activities at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
       review: 'Review Foreign Actitivies',

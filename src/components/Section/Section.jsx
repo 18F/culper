@@ -42,10 +42,7 @@ class Section extends React.Component {
         <SectionView name="military">
           <Military subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="history1">
-          <History subsection={this.props.subsection} />
-        </SectionView>
-        <SectionView name="history2">
+        <SectionView name="history">
           <History subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="foreign">
