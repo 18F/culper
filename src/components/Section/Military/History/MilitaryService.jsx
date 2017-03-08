@@ -110,7 +110,7 @@ export default class MilitaryService extends ValidationElement {
                      value="AirForce"
                      onChange={this.updateService}
                      >
-                <div className="airforce-icon">
+                <div className="military-service-icon airforce-icon">
                   <Svg src="img/airforce.png" />
                 </div>
               </Radio>
@@ -120,7 +120,7 @@ export default class MilitaryService extends ValidationElement {
                      value="AirNationalGuard"
                      onChange={this.updateService}
                      >
-                <div className="airnationalguard-icon">
+                <div className="military-service-icon airnationalguard-icon">
                   <Svg src="img/airnationalguard.gif" />
                 </div>
               </Radio>
@@ -130,7 +130,7 @@ export default class MilitaryService extends ValidationElement {
                      value="Army"
                      onChange={this.updateService}
                      >
-                <div className="army-icon">
+                <div className="military-service-icon army-icon">
                   <Svg src="img/army.png" />
                 </div>
               </Radio>
@@ -140,7 +140,7 @@ export default class MilitaryService extends ValidationElement {
                      value="ArmyNationalGuard"
                      onChange={this.updateService}
                      >
-                <div className="armynationalguard-icon">
+                <div className="military-service-icon armynationalguard-icon">
                   <Svg src="img/armynationalguard.png" />
                 </div>
               </Radio>
@@ -150,7 +150,7 @@ export default class MilitaryService extends ValidationElement {
                      value="CoastGuard"
                      onChange={this.updateService}
                      >
-                <div className="coastguard-icon">
+                <div className="military-service-icon coastguard-icon">
                   <Svg src="img/coastguard.png" />
                 </div>
               </Radio>
@@ -160,7 +160,7 @@ export default class MilitaryService extends ValidationElement {
                      value="MarineCorps"
                      onChange={this.updateService}
                      >
-                <div className="marinecorps-icon">
+                <div className="military-service-icon marinecorps-icon">
                   <Svg src="img/marinecorps.png" />
                 </div>
               </Radio>
@@ -170,7 +170,7 @@ export default class MilitaryService extends ValidationElement {
                      value="Navy"
                      onChange={this.updateService}
                      >
-                <div className="navy-icon">
+                <div className="military-service-icon navy-icon">
                   <Svg src="img/navy.png" />
                 </div>
               </Radio>
