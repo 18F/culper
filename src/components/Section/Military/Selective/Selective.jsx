@@ -133,8 +133,8 @@ export default class Selective extends ValidationElement {
 
             <Show when={this.state.HasRegistered === 'Yes'}>
               <div>
-                <h4>{i18n.t('military.selective.heading.number')}</h4>
-                <div className="eapp-field-wrap">
+                <h3>{i18n.t('military.selective.heading.number')}</h3>
+                <div className="eapp-field-wrap no-margin-bottom">
                   <Help id="military.selective.help.number">
                     <Text name="RegistrationNumber"
                           className="registration-number"
@@ -148,7 +148,7 @@ export default class Selective extends ValidationElement {
 
             <Show when={this.state.HasRegistered === 'No'}>
               <div>
-                <div className="eapp-field-wrap">
+                <div className="eapp-field-wrap no-margin-bottom">
                   <Help id="military.selective.help.explanation">
                     <Textarea name="Explanation"
                               className="explanation"
