@@ -108,7 +108,6 @@ describe('The Telephone component', () => {
       name: 'telephone-component',
       numberType: 'Work',
       onUpdate: (values) => {
-        console.log('update: ', values)
         numberType = values.numberType
       }
     }
@@ -116,5 +115,26 @@ describe('The Telephone component', () => {
     expect(numberType).toBe('')
     component.find('.phonetype-option.work input').simulate('click')
     expect(numberType).toBe('')
+  })
+
+  it('handles updates to field values', () => {
+    let updated = 0
+    const expected = {
+      name: 'telephone-component',
+      onUpdate: (values) => {
+        updated++
+      }
+    }
+    const component = mount(<Telephone {...expected} />)
+    component.find('a.dsn-number').simulate('click')
+    component.find('a.domestic-number').simulate('click')
+    component.find({ type: 'text', name: 'domestic_first' }).simulate('change', { target: { value: '111' } })
+    component.find({ type: 'text', name: 'domestic_second' }).simulate('change', { target: { value: '222' } })
+    component.find({ type: 'text', name: 'domestic_third' }).simulate('change', { target: { value: '3333' } })
+    component.find({ type: 'text', name: 'domestic_extension' }).simulate('change', { target: { value: '4444' } })
+    component.find({ type: 'radio', name: 'nonumber' }).simulate('change')
+    component.find('.time.day input').simulate('change')
+    component.find('.phonetype-option.work input').simulate('change')
+    expect(updated).toBeGreaterThan(8)
   })
 })
