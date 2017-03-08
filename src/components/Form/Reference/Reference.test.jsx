@@ -11,7 +11,7 @@ describe('The Reference component', () => {
         updates++
       }
     }
-    const component = mount(<Reference name={expected.name} onUpdate={expected.onUpdate} />)
+    const component = mount(<Reference {...expected} />)
     component.find('input#last').simulate('change')
     expect(component.find('div.hidden').length).toBeGreaterThan(0)
     component.find('input[name="relationship-neighbor"]').first().simulate('change')

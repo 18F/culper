@@ -143,26 +143,6 @@ export default class Name extends ValidationElement {
       }
 
       super.handleValidation(event, s, e)
-
-      // api
-      // .validateName({
-      // Last: this.state.last,
-      // First: this.state.first,
-      // Middle: this.state.middle,
-      // Suffix: this.state.suffix,
-      // SuffixOther: this.state.suffixOther
-      // })
-      // .then((response) => {
-      // // TODO: Display and assign the errors as necessary
-      // if (response.Errors) {
-      // }
-
-      // if (response.Suggestions) {
-      // }
-      // })
-      // .then(() => {
-      // super.handleValidation(event, status)
-      // })
     })
   }
 
@@ -181,7 +161,6 @@ export default class Name extends ValidationElement {
 
   render () {
     const klass = `name ${this.props.className || ''}`.trim()
-
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}

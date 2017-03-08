@@ -17,6 +17,7 @@ import Checkbox from './Checkbox'
 import Radio from './Radio'
 import DateControl from './DateControl'
 import Svg from './Svg'
+import Suggestions from './Suggestions'
 
 // Composite components
 import Type from './Type'
@@ -85,5 +86,6 @@ export {
   Reference,
   Show,
   Svg,
-  BranchCollection
+  BranchCollection,
+  Suggestions
 }

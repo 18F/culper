@@ -1,13 +1,13 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import { EmploymentItem } from './Employment'
 
-describe('The employment item component', () => {
+describe('The employment component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'employment'
     }
-    const component = mount(<EmploymentItem name={expected.name} />)
+    const component = mount(<EmploymentItem {...expected} />)
     expect(component.find('h3').length).toBeGreaterThan(0)
   })
 })

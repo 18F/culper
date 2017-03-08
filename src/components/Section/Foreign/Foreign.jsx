@@ -147,6 +147,7 @@ class Foreign extends ValidationElement {
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
+                      suggestedNames={this.props.suggestedNames}
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
                       onValidate={this.onValidate.bind(this)}
                       />
@@ -191,12 +192,26 @@ function mapStateToProps (state) {
   let foreign = app.Foreign || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
+
+  let identification = app.Identification || {}
+  let names = []
+  if (identification.ApplicantName) {
+    names.push(identification.ApplicantName)
+  }
+
+  if (identification.OtherNames && identification.OtherNames.List) {
+    for (let item of identification.OtherNames.List) {
+      names.push(item.Name)
+    }
+  }
+
   return {
     Section: section,
     Foreign: foreign,
     Passport: foreign.Passport || {},
     Errors: errors.foreign || [],
-    Completed: completed.foreign || []
+    Completed: completed.foreign || [],
+    suggestedNames: names
   }
 }
 
