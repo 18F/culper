@@ -50,6 +50,8 @@ export default class Telephone extends ValidationElement {
         second: this.parseNumber(3, 13, props.number)
       }
     }
+
+    this.handleNumberTypeChange = this.handleNumberTypeChange.bind(this)
   }
 
   parseNumber (start, end, number) {
@@ -90,8 +92,8 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  handleNumberTypeChange (type, other) {
-    this.setState({numberType: type}, () => {
+  handleNumberTypeChange (event) {
+    this.setState({ numberType: event.target.value }, () => {
       this.onUpdate()
     })
   }
@@ -467,28 +469,28 @@ export default class Telephone extends ValidationElement {
                    className="phonetype-option cell"
                    label={i18n.t('telephone.numberType.cell')}
                    value="Cell"
-                   onChange={this.handleNumberTypeChange.bind(this, 'Cell')}
+                   onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
             <Radio name="numbertype-home"
                    className="phonetype-option home"
                    label={i18n.t('telephone.numberType.home')}
                    value="Home"
-                   onChange={this.handleNumberTypeChange.bind(this, 'Home')}
+                   onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
             <Radio name="numbertype-work"
                    className="phonetype-option work"
                    label={i18n.t('telephone.numberType.work')}
                    value="Work"
-                   onChange={this.handleNumberTypeChange.bind(this, 'Work')}
+                   onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
             <Radio name="numbertype-other"
                    className="phonetype-option other"
                    label={i18n.t('telephone.numberType.other')}
                    value="Other"
-                   onChange={this.handleNumberTypeChange.bind(this, 'Other')}
+                   onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
           </RadioGroup>
