@@ -126,7 +126,13 @@ class History extends ValidationElement {
     return (
       <div className="history intro review-screen">
         <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
+          <IntroHeader Errors={this.props.Errors}
+                       Completed={this.props.Completed}
+                       tour={i18n.t('history.tour.para')}
+                       review={i18n.t('history.review.para')}
+                       onTour={this.handleTour}
+                       onReview={this.handleReview}
+                       />
         </div>
       </div>
     )
