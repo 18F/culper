@@ -63,19 +63,9 @@ const navigation = [
     ]
   },
   {
-    name: 'Your history (A)',
-    title: 'Your history (A)',
-    url: 'history1',
-    hidden: false,
-    subsections: [
-      { name: 'Former federal service', url: 'federal' },
-      { hidden: true, name: 'Employment record', url: 'employment' }
-    ]
-  },
-  {
-    name: 'Your history (B)',
-    title: 'Your history (B)',
-    url: 'history2',
+    name: 'Your history',
+    title: 'Your history',
+    url: 'history',
     hidden: false,
     subsections: [
       { name: 'Places lived', url: 'residence' },
