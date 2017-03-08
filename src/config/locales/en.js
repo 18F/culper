@@ -1106,7 +1106,7 @@ const en = {
             lessthan: 'Under other than honorable conditions',
             general: 'General',
             badconduct: 'Bad conduct',
-            other: 'Other (provide type)',
+            other: 'Other<br>(provide type)',
             otherex: 'Provide other type of discharge'
           },
           reason: 'Provide the reason(s) for the discharge'
