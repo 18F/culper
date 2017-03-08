@@ -908,6 +908,7 @@ const en = {
       }
     }
   },
+
   address: {
     options: {
       us: {
@@ -991,6 +992,23 @@ const en = {
           placeholder: 'Enter APO/FPO'
         }
       }
+    }
+  },
+
+  suggestions: {
+    name: {
+      title: 'Alternate names found',
+      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>',
+      label: 'Suggested name',
+      use: 'Use this name',
+      dismiss: 'Use a different name instead'
+    },
+    address: {
+      title: 'Alternate address found',
+      para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
+      label: 'Suggested address',
+      use: 'Use this address',
+      dismiss: 'Use this address instead'
     }
   },
 

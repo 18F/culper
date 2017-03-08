@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Collection, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Svg, Show } from '../../../Form'
+import { ValidationElement, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Show } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -8,7 +8,7 @@ import AdditionalActivity from './AdditionalActivity'
 import Supervisor from './Supervisor'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
-import { today, daysAgo, utc } from '../dateranges'
+import { today, daysAgo } from '../dateranges'
 
 export class EmploymentItem extends ValidationElement {
   constructor (props) {
