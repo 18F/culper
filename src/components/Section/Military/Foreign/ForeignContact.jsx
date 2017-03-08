@@ -73,7 +73,7 @@ export default class ForeignContact extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.contact.address')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.contact.address">
             <Address name="Address"
                      className="foreign-contact-address"
@@ -86,7 +86,7 @@ export default class ForeignContact extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.contact.title')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.contact.title">
             <Text name="Title"
                   {...this.state.Title}
@@ -100,7 +100,7 @@ export default class ForeignContact extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.contact.dates')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.contact.dates">
             <DateRange name="Dates"
                        className="foreign-contact-dates"
@@ -113,7 +113,7 @@ export default class ForeignContact extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.contact.frequency')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.contact.frequency">
             <Text name="Frequency"
                   {...this.state.Frequency}
