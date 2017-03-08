@@ -77,7 +77,7 @@ export default class Procedure extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.disciplinary.heading.offenses')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.disciplinary.help.offenses">
             <Textarea name="Offenses"
                       {...this.state.Offenses}
