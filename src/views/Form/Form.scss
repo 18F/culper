@@ -47,6 +47,14 @@
           padding-right: 0;
         }
 
+        svg, img {
+          padding-top: 3rem;
+          margin-bottom: -2rem;
+          margin-left: -4rem;
+          height: 13rem;
+          width: auto;
+        }
+
         + .review-column {
           margin-left: 10%;
         }

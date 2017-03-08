@@ -106,17 +106,13 @@ class Financial extends ValidationElement {
     return (
       <div className="financial intro review-screen">
         <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('financial.tour.title')}</h3>
-          <p>{i18n.t('financial.tour.para')}</p>
-          <button onClick={this.handleTour}>{i18n.t('financial.tour.button')}</button>
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('financial.review.title')}</h3>
-          <p>{i18n.t('financial.review.para')}</p>
-          <button onClick={this.handleReview}>{i18n.t('financial.review.button')}</button>
+          <IntroHeader Errors={this.props.Errors}
+                       Completed={this.props.Completed}
+                       tour={i18n.t('financial.tour.para')}
+                       review={i18n.t('financial.review.para')}
+                       onTour={this.handleTour}
+                       onReview={this.handleReview}
+                       />
         </div>
       </div>
     )

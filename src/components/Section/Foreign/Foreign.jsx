@@ -101,17 +101,13 @@ class Foreign extends ValidationElement {
     return (
       <div className="foreign intro review-screen">
         <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('foreign.tour.title')}</h3>
-          <p>{i18n.t('foreign.tour.para')}</p>
-          <button onClick={this.handleTour}>{i18n.t('foreign.tour.button')}</button>
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('foreign.review.title')}</h3>
-          <p>{i18n.t('foreign.review.para')}</p>
-          <button onClick={this.handleReview}>{i18n.t('foreign.review.button')}</button>
+          <IntroHeader Errors={this.props.Errors}
+                       Completed={this.props.Completed}
+                       tour={i18n.t('foreign.tour.para')}
+                       review={i18n.t('foreign.review.para')}
+                       onTour={this.handleTour}
+                       onReview={this.handleReview}
+                       />
         </div>
       </div>
     )
