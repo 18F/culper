@@ -3,7 +3,7 @@ package form
 import (
 	"fmt"
 
-	"github.com/truetandem/e-QIP-prototype/api/geo"
+	"github.com/18F/e-QIP-prototype/api/geo"
 )
 
 // Validator is an interface to be used by components that require validation.

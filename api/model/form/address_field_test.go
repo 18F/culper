@@ -10,8 +10,7 @@ func TestAddressField(t *testing.T) {
 	}{
 		{
 			AddressField{
-				Street1: "12345",
-				Street2: "Some rd",
+				Address: "12345",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
@@ -22,8 +21,7 @@ func TestAddressField(t *testing.T) {
 		},
 		{
 			AddressField{
-				Street1: "",
-				Street2: "",
+				Address: "",
 				City:    "",
 				State:   "",
 				Zipcode: "",
@@ -34,8 +32,7 @@ func TestAddressField(t *testing.T) {
 		},
 		{
 			AddressField{
-				Street1: "Some Address",
-				Street2: "",
+				Address: "Some Address",
 				City:    "",
 				State:   "",
 				Zipcode: "",
@@ -46,8 +43,7 @@ func TestAddressField(t *testing.T) {
 		},
 		{
 			AddressField{
-				Street1: "Some Address",
-				Street2: "1234",
+				Address: "Some Address",
 				City:    "",
 				State:   "",
 				Zipcode: "",
