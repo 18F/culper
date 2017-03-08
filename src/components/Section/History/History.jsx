@@ -41,13 +41,7 @@ class History extends ValidationElement {
       || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
     this.setState({ firstTime: !bicycle })
 
-    // TODO: This may need to be changed... idea may be that the review is the timeline but
-    // this may not be correct.
-    const d = this.props.Section.section === 'history1'
-          ? 'timeline'
-          : 'residence'
-
-    const current = this.launch(this.props.History, this.props.subsection, d)
+    const current = this.launch(this.props.History, this.props.subsection, 'residence')
     if (current !== '') {
       this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
     }
@@ -129,14 +123,13 @@ class History extends ValidationElement {
    * Intro to the section when information is present
    */
   intro () {
-    if (this.props.Section.subsection) {
-      return
-    }
-
-    const d = this.props.Section.section === 'history1'
-          ? 'timeline'
-          : 'residence'
-    this.props.dispatch(push(`/form/${this.props.Section.section}/${d}`))
+    return (
+      <div className="history intro review-screen">
+        <div className="usa-grid-full">
+          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
+        </div>
+      </div>
+    )
   }
 
   /**
@@ -348,11 +341,13 @@ class History extends ValidationElement {
             {this.intro()}
           </SectionView>
 
-          <SectionView name="timeline"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next={`${this.props.Section.section}/federal`}
-                       nextLabel={i18n.t('history.destination.federal')}>
+          <SectionView name="review"
+                       title="Let&rsquo;s make sure everything looks right"
+                       showTop="true"
+                       back="history/federal"
+                       backLabel={i18n.t('history.destination.federal')}
+                       next="foreign/passport"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('history.timeline.title')}</h2>
             {i18n.m('history.timeline.para1')}
             {i18n.m('history.timeline.para2')}
@@ -415,9 +410,9 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="residence"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next={`${this.props.Section.section}/employment`}
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
             <h2>{i18n.t('history.residence.title')}</h2>
             <p>{i18n.t('history.residence.info')}</p>
@@ -441,9 +436,9 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="employment"
-                       back={`${this.props.Section.section}/residence`}
+                       back="history/residence"
                        backLabel={i18n.t('history.destination.residence')}
-                       next={`${this.props.Section.section}/education`}
+                       next="history/education"
                        nextLabel={i18n.t('history.destination.education')}>
             <h2>{i18n.t('history.employment.heading.employment')}</h2>
             {i18n.m('history.employment.para.employment')}
@@ -468,9 +463,9 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="education"
-                       back={`${this.props.Section.section}/employment`}
+                       back="history/employment"
                        backLabel={i18n.t('history.destination.employment')}
-                       next={`${this.props.Section.section}/federal`}
+                       next="history/federal"
                        nextLabel={i18n.t('history.destination.federal')}>
             <h2>{i18n.t('history.education.title')}</h2>
             <p>{i18n.t('history.education.info')}</p>
@@ -487,10 +482,10 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="federal"
-                       back={this.props.Section.section === 'history1' ? `${this.props.Section.section}/timeline` : `${this.props.Section.section}/education`}
-                       backLabel={this.props.Section.section === 'history1' ? i18n.t('history.destination.timeline') : i18n.t('history.destination.education')}
-                       next="foreign/passport"
-                       nextLabel={i18n.t('foreign.destination.passport')}
+                       back="history/education"
+                       backLabel={i18n.t('history.destination.education')}
+                       next="history/review"
+                       nextLabel={i18n.t('history.destination.review')}
                        >
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
