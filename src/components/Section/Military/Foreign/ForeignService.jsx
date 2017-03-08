@@ -119,7 +119,7 @@ export default class ForeignService extends ValidationElement {
     return (
       <div className="foreign-service">
         <h3>{i18n.t('military.foreign.heading.organization')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.organization">
             <RadioGroup className="organization option-list"
                         selectedValue={this.state.Organization}>
@@ -171,7 +171,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.name')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.name">
             <Text name="Name"
                   {...this.state.Name}
@@ -185,7 +185,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.dates')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.dates">
             <DateRange name="Dates"
                        className="foreign-service-dates"
@@ -198,7 +198,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.country')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.country">
             <Text name="Country"
                   {...this.state.Country}
@@ -212,7 +212,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.rank')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.rank">
             <Text name="Rank"
                   {...this.state.Rank}
@@ -226,7 +226,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.division')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.division">
             <Text name="Division"
                   {...this.state.Division}
@@ -240,7 +240,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.circumstances')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.circumstances">
             <Textarea name="Circumstances"
                       {...this.state.Circumstances}
@@ -254,7 +254,7 @@ export default class ForeignService extends ValidationElement {
         </div>
 
         <h3>{i18n.t('military.foreign.heading.left')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="military.foreign.help.left">
             <Textarea name="ReasonLeft"
                       {...this.state.ReasonLeft}
@@ -269,7 +269,7 @@ export default class ForeignService extends ValidationElement {
 
         <h3>{i18n.t('military.foreign.heading.maintainscontact')}</h3>
         <Branch name="has_maintainscontact"
-                className="eapp-field-wrap maintainscontact"
+                className="eapp-field-wrap no-label maintainscontact"
                 value={this.state.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}

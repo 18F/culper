@@ -284,7 +284,8 @@
           .hair-icon,
           .eye-icon,
           .sex-icon,
-          .relationship-icon {
+          .relationship-icon,
+          .military-service-icon {
             position: absolute;
             top: 0;
             left: 0;
@@ -311,7 +312,9 @@
           &:hover .sex-icon,
           &.checked .sex-icon,
           &:hover .relationship-icon,
-          &.checked .relationship-icon {
+          &.checked .relationship-icon,
+          &:hover .military-service-icon,
+          &.checked .military-service-icon {
             border-radius: 50%;
             top: 1.4rem;
             left: 50%;
