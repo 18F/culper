@@ -268,7 +268,7 @@ func (address *USPSAddress) FromGeoValues(geoValues Values) {
 // ToResult generates a Result struct and determines whether it is a partial match. A partial
 // match occurs when there's a mismatch in values between each corresponding field
 func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
-	result.Street = address.Address2
+	result.Address = address.Address2
 	result.City = address.City
 	result.State = address.State
 	result.Zipcode = address.Zip5
@@ -278,7 +278,7 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 	switch {
 	case address.ReturnText != "":
 		fallthrough
-	case !strings.EqualFold(result.Street, geoValues.Address):
+	case !strings.EqualFold(result.Address, geoValues.Address):
 		fallthrough
 	case !strings.EqualFold(result.City, geoValues.City):
 		fallthrough

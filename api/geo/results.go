@@ -5,7 +5,7 @@ import "fmt"
 // Result represents geocoded information that has been transformed from the original source.
 // All Geocoders should convert their location information into a Result struct
 type Result struct {
-	Street    string
+	Address   string
 	City      string
 	State     string
 	County    string
@@ -48,7 +48,7 @@ func (r Results) Empty() bool {
 // String returns a friendly representation of a Result
 func (r Result) String() string {
 	return fmt.Sprintf("Street: %s\nCity: %s\nState: %s\nZipcode: %s\nCounty: %s\nCountry: %s\nPartial: %v\nFormatted: %s",
-		r.Street,
+		r.Address,
 		r.City,
 		r.State,
 		r.Zipcode,

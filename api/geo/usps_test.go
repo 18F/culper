@@ -34,7 +34,7 @@ func TestQuerySuccess(t *testing.T) {
 				</AddressValidateResponse>`,
 			ExpectedResults: Results{
 				{
-					Street:  "123 SOME RD",
+					Address: "123 SOME RD",
 					City:    "ARLINGTON",
 					State:   "VA",
 					Zipcode: "22202",
@@ -62,7 +62,7 @@ func TestQuerySuccess(t *testing.T) {
 				</AddressValidateResponse>`,
 			ExpectedResults: Results{
 				{
-					Street:  "123 SOME RD",
+					Address: "123 SOME RD",
 					City:    "ARLINGTON",
 					State:   "VA",
 					Zipcode: "22202",

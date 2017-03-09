@@ -102,7 +102,7 @@ func TestEmpty(t *testing.T) {
 
 func TestResultsString(t *testing.T) {
 	result := Result{
-		Street:    "123",
+		Address:   "123",
 		City:      "Arlington",
 		State:     "VA",
 		County:    "County",
