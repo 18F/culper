@@ -185,7 +185,32 @@ type USPSError struct {
 	HelpContext string `xml:"HelpContext"`
 }
 
-// USPSAddress represents the structure for address information in a USPS request
+// USPSAddress represents the structure for the <Address> element information in a USPS request and response.
+// With a successful response, the following is returned
+//  <Address>
+//    <Address2></Address2>
+//    <City></City>
+//    <State></State>
+//    <Zip5></Zip5>
+//    <Zip4></Zip4>
+//  </Address>
+//
+// When there's an error with the address information, the <Error> block is nested within the <Address /> element
+// like the following
+// <AddressValidateResponse>
+//    <Address>
+//        <Error>
+//            <Number>-2147219401</Number>
+//            <Source>clsAMS</Source>
+//            <Description>Address Not Found.  </Description>
+//            <HelpFile/>
+//            <HelpContext/>
+//        </Error>
+//    </Address>
+// </AddressValidateResponse>
+//
+// Therefore, we include an Error field in the Address struct. We make it a pointer so that we can check for <nil>
+// if the value is not populated (no error has occurred).
 type USPSAddress struct {
 
 	// XMLName refers to the name to give the XML tag
@@ -284,7 +309,8 @@ func NewUSPSGeocoder(userID string) *USPSGeocoder {
 	}
 }
 
-// NewTestUSPSGeocoder is used for mocking purposes
+// NewTestUSPSGeocoder is used for mocking purposes. We can instantiate a new instance
+// and set the URL to that of an http test mock server
 func NewTestUSPSGeocoder(userID string, baseURI string) *USPSGeocoder {
 	if baseURI == "" {
 		baseURI = USPSURI
