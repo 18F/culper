@@ -33,7 +33,7 @@ class Login extends React.Component {
   redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/form'))
+      this.props.dispatch(push('/form/identification/name'))
     }
   }
 
