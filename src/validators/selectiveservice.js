@@ -13,11 +13,12 @@ export default class SelectiveServiceValidator {
   }
 
   validRegistered () {
-    return this.hasRegistered === 'Yes' || this.hasRegistered === 'No'
+    return this.wasBornAfter === 'No' ||
+      (this.wasBornAfter === 'Yes' && (this.hasRegistered === 'Yes' || this.hasRegistered === 'No'))
   }
 
   validRegistrationNumber () {
-    if (this.hasRegistered === 'Yes') {
+    if (this.wasBornAfter === 'Yes' && this.hasRegistered === 'Yes') {
       return validGenericTextfield(this.registrationNumber)
     }
 
@@ -25,7 +26,7 @@ export default class SelectiveServiceValidator {
   }
 
   validExplanation () {
-    if (this.hasRegistered === 'No') {
+    if (this.wasBornAfter === 'Yes' && this.hasRegistered === 'No') {
       return validGenericTextfield(this.explanation)
     }
 

@@ -62,9 +62,6 @@ export default class Selective extends ValidationElement {
     } else if (value === 'Yes') {
       this.onUpdate('Explanation', null)
     }
-
-    // Force validation checks
-    this.handleValidation(event, null, null)
   }
 
   updateRegistrationNumber (value) {
@@ -118,7 +115,8 @@ export default class Selective extends ValidationElement {
                 className="eapp-field-wrap no-label born"
                 value={this.state.WasBornAfter}
                 help="military.selective.help.born"
-                onUpdate={this.updateBornAfter}>
+                onUpdate={this.updateBornAfter}
+                onValidate={this.handleValidation}>
         </Branch>
 
         <Show when={this.state.WasBornAfter === 'Yes'}>
@@ -128,7 +126,8 @@ export default class Selective extends ValidationElement {
                     className="eapp-field-wrap no-label registered"
                     value={this.state.HasRegistered}
                     help="military.selective.help.registered"
-                    onUpdate={this.updateRegistered}>
+                    onUpdate={this.updateRegistered}
+                    onValidate={this.handleValidation}>
             </Branch>
 
             <Show when={this.state.HasRegistered === 'Yes'}>
@@ -139,7 +138,8 @@ export default class Selective extends ValidationElement {
                     <Text name="RegistrationNumber"
                           className="registration-number"
                           label={i18n.t('military.selective.label.number')}
-                          onValidate={this.updateRegistrationNumber}
+                          onUpdate={this.updateRegistrationNumber}
+                          onValidate={this.handleValidation}
                           />
                   </Help>
                 </div>
@@ -153,7 +153,8 @@ export default class Selective extends ValidationElement {
                     <Textarea name="Explanation"
                               className="explanation"
                               label={i18n.t('military.selective.label.explanation')}
-                              onValidate={this.updateExplanation}
+                              onUpdate={this.updateExplanation}
+                              onValidate={this.handleValidation}
                               />
                   </Help>
                 </div>
