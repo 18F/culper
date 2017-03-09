@@ -52,15 +52,17 @@ export class SectionViews extends React.Component {
           )
         }
 
-        let buttons = (
-          <div className="btn-wrap">
-            <div className="btn-container">
-              {previousButton}
-              <div className="btn-spacer"></div>
-              {nextButton}
-            </div>
-          </div>
-        )
+        let buttons = child.props.back || child.props.next
+            ? (
+              <div className="btn-wrap">
+                <div className="btn-container">
+                  {previousButton}
+                  <div className="btn-spacer"></div>
+                  {nextButton}
+                </div>
+              </div>
+            )
+            : null
 
         let title = null
         if (child.props.title) {
@@ -79,7 +81,7 @@ export class SectionViews extends React.Component {
             <div className="view">
               {child}
             </div>
-            <div>{buttons}</div>
+            <div className="bottom-btns">{buttons}</div>
           </div>
         )
       }

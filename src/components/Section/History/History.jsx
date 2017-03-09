@@ -37,7 +37,7 @@ class History extends ValidationElement {
 
   componentDidMount () {
     const bicycle = !!(this.props.History && this.props.History.Education && this.props.History.Education.List && this.props.History.Education.List.length > 0)
-      || !!(this.props.History && this.props.History.Employment && this.props.History.Employment.List && this.props.History.Employment.List.length > 0)
+          || !!(this.props.History && this.props.History.Employment && this.props.History.Employment.List && this.props.History.Employment.List.length > 0)
       || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
     this.setState({ firstTime: !bicycle })
 
@@ -357,62 +357,29 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.timeline.title')}</h2>
             {i18n.m('history.timeline.para1')}
             {i18n.m('history.timeline.para2')}
-            <Show when={(!this.props.Employment.List && !this.props.Residence.List) && !this.state.addOnLoad}>
-              <div className="add-options">
-                <div className="table">
-                  <div className="table-cell add-residence">
-                    <Svg src="img/residence-house.svg" />
-                    <div className="title">
-                      {i18n.t('history.timeline.start.residence.title')}
-                    </div>
-                    <div className="btn">
-                      <button className="add usa-button-outline" onClick={this.addResidence}>
-                        <span>{i18n.t('history.timeline.start.residence.button')}</span>
-                        <i className="fa fa-plus-circle"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="table-cell add-employment">
-                    <Svg src="img/employer-briefcase.svg" />
-                    <div className="title">
-                      {i18n.t('history.timeline.start.employment.title')}
-                    </div>
-                    <div className="btn">
-                      <button className="add usa-button-outline" onClick={this.addEmployer}>
-                        <span>{i18n.t('history.timeline.start.employment.button')}</span>
-                        <i className="fa fa-plus-circle"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Show>
+            <div>
+              { this.residenceSummaryProgress() }
+              { this.employmentSummaryProgress() }
+              { this.educationSummaryProgress() }
+              <HistoryCollection name="timeline"
+                                 addOnLoad={this.state.addOnLoad}
+                                 history={this.props.History}
+                                 types={['Residence', 'Employment', 'Education']}
+                                 total={this.totalYears()}
+                                 showGaps={true}
+                                 onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
+                                 onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
+                                 onEducationUpdate={this.onUpdate.bind(this, 'Education')}
+                                 onValidate={this.onValidate}
+                                 />
+            </div>
 
-            <Show when={(this.props.Employment.List || this.props.Residence.List || this.state.addOnLoad)}>
-              <div>
-                { this.residenceSummaryProgress() }
-                { this.employmentSummaryProgress() }
-                { this.educationSummaryProgress() }
-                <HistoryCollection name="timeline"
-                                   addOnLoad={this.state.addOnLoad}
-                                   history={this.props.History}
-                                   types={['Residence', 'Employment', 'Education']}
-                                   total={this.totalYears()}
-                                   showGaps={!this.state.firstTime}
-                                   onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
-                                   onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
-                                   onEducationUpdate={this.onUpdate.bind(this, 'Education')}
-                                   onValidate={this.onValidate}
-                                   />
-                <Show when={this.hasGaps(['Residence', 'Employment'])}>
-                  <div className="not-complete">
-                    <hr className="section-divider" />
-                    <h2>{i18n.t('history.timeline.heading.exiting')}</h2>
-                    {i18n.m('history.timeline.para.exiting')}
-                  </div>
-                </Show>
-              </div>
-            </Show>
+            <h2>{i18n.t('history.federal.title')}</h2>
+            <Federal name="federal"
+                     {...this.props.Federal}
+                     onUpdate={this.onUpdate.bind(this, 'Federal')}
+                     onValidate={this.onValidate}
+                     />
           </SectionView>
 
           <SectionView name="residence"
