@@ -48,11 +48,11 @@ func (a AddressField) Valid() (bool, error) {
 		})
 
 	if err != nil {
-		return false, ErrInvalidLocation{
+		stack.Append("Address", ErrInvalidLocation{
 			Message:     err.Error(),
 			Suggestions: results,
-		}
+		})
 	}
 
-	return true, nil
+	return stack.HasErrors(), stack
 }
