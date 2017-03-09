@@ -288,13 +288,7 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 		result.Partial = true
 	}
 
-	// If an actual Error is returned, we populate from that object. Otherwise,
-	// we can populate the content in ReturnText. There will never be an instance where Error
-	// and ReturnText values are both populated
-	switch {
-	case address.Error != nil:
-		result.Error = address.Error.Description
-	case address.ReturnText != "":
+	if address.ReturnText != "" {
 		result.Error = address.ReturnText
 	}
 

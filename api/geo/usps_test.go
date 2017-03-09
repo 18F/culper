@@ -141,6 +141,14 @@ func TestQueryError(t *testing.T) {
 				</AddressValidateResponse>`,
 			ExpectError: true,
 		},
+		{
+			Values: Values{},
+			XML: `
+				<Error>
+					<Description>Foo</Description>
+				</Error>`,
+			ExpectError: true,
+		},
 	}
 
 	for _, test := range tests {
