@@ -2,6 +2,7 @@ package geo
 
 import (
 	"errors"
+	"log"
 	"os"
 )
 
@@ -16,6 +17,10 @@ var (
 
 func init() {
 	uspsUserID := os.Getenv("USPS_USERID")
+	if uspsUserID == "" {
+		log.Print("WARNING: USPS API Key has not been set")
+	}
+
 	Geocode = NewUSPSGeocoder(uspsUserID)
 	//Geocode = NewGoogleGeocoder(gmapAPIKey)
 }

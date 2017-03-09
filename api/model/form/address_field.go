@@ -17,7 +17,6 @@ func (a AddressField) Valid() (bool, error) {
 
 	var stack ErrorStack
 
-	// TODO: Add multiple street/address fields to UI
 	if ok, err := a.Address.Valid(); !ok {
 		stack.Append("Address", err)
 	}
@@ -36,7 +35,7 @@ func (a AddressField) Valid() (bool, error) {
 
 	// Make sure non-geocoding validation checks are good
 	if stack.HasErrors() {
-		return true, stack
+		return false, stack
 	}
 
 	// Perform geocoding

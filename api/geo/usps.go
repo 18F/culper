@@ -3,12 +3,15 @@ package geo
 import (
 	"encoding/xml"
 	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-const (
+var (
 	// USPSURI is that base address for the USPS API
 	USPSURI = "http://production.shippingapis.com/ShippingAPI.dll"
 
@@ -30,6 +33,92 @@ func (g USPSGeocoder) Validate(geoValues Values) (Results, error) {
 
 // query creates and executes http requests and populates a Results object
 func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
+
+	// Prepare uri used to query
+	uri := g.prepareQueryURI(geoValues)
+
+	// Query away!
+	resp, err := http.Get(uri)
+	if err != nil {
+		log.Printf("Error executing USPS Geocoding Request [%v]", err)
+		return nil, fmt.Errorf("Unable to execute USPS Geocoding request")
+	}
+
+	// Decode the response to populate struct
+	var addressResp USPSAddressValidateResponse
+	if err := decode(resp.Body, &addressResp); err != nil {
+		return results, err
+	}
+
+	// Get a handle to found address
+	foundAddress := addressResp.Address
+
+	// Check if we've encountered an error
+	if foundAddress.Error != nil {
+		return results, fmt.Errorf("%v", foundAddress.Error.Description)
+	}
+
+	// Generate a normalized Result struct from the address found
+	results = append(results, foundAddress.ToResult(geoValues))
+
+	// Check if any of values requested to be validate do not match up to what was
+	// returned by the validation response. If there is a mismatch, mark as partial
+	if results.HasPartial() {
+		return results, fmt.Errorf("Geocode contains partial matches. Suggestions are available")
+	}
+
+	return results, nil
+}
+
+// decode handles generating a struct from a response body. The USPS api can return two different sets of XML based
+// on the error that has occurred. Under normal circumstances, this is returned
+//
+// <AddressValidateResponse>
+// 	<Address />
+// </AddressValidateResponse>
+
+// or
+
+// <AddressValidateResponse>
+// 	<Address>
+//		<Error>
+//		   ...
+//		</Error>
+// 	</Address
+// </AddressValidateResponse>
+//
+// However, if a higher level system error is encountered, for instance, when using an invalid user id,
+// this structure is returned
+//
+// <Error>
+//		<Number>80040B1A</Number>
+//		<Description>Authorization failure.  Perhaps username and/or password is incorrect.</Description>
+//		<Source>USPSCOM::DoAuth</Source>
+//	</Error>
+func decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
+	body, _ := ioutil.ReadAll(r)
+
+	// First attempt to unmarshal to typical AddressValidateResponse element
+	err := xml.Unmarshal(body, addressResp)
+	if err == nil {
+		return nil
+	}
+	log.Printf("Error attempting to decode USPS Address Validation Response. Checking if returned xml is system error")
+
+	// Check if we've encountered a system error where only <Error> is returned as the root element
+	var errorResp USPSErrorResponse
+	err = xml.Unmarshal(body, &errorResp)
+	if err != nil {
+		log.Printf("Error attempting to decode USPS Address validation as <Error> [%vs]", err)
+		return err
+	}
+
+	// We have a system error so return the description of the error
+	return fmt.Errorf("%v", errorResp.Description)
+}
+
+// prepareQueryURI creates the url used to execute a http validate address request
+func (g USPSGeocoder) prepareQueryURI(geoValues Values) string {
 	// Set up query parameters
 	v := url.Values{}
 
@@ -47,33 +136,9 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 	// Set the xml containing information to verify
 	v.Set("XML", addressRequest.ToXMLString())
 
-	// Query away!
 	uri := fmt.Sprintf("%v?%v", g.baseURI, v.Encode())
-	resp, err := http.Get(uri)
-	if err != nil {
-		return nil, err
-	}
-
-	// Decode the response to populate struct
-	var addressResp USPSAddressValidateResponse
-	if err := xml.NewDecoder(resp.Body).Decode(&addressResp); err != nil {
-		return nil, err
-	}
-
-	// Go through all the results and generate a normalized Result struct from each address
-	for _, addr := range addressResp.Address {
-		results = append(results, addr.ToResult(geoValues))
-	}
-
-	if results.HasErrors() {
-		return results, fmt.Errorf("Geocoder returned error information")
-	}
-
-	if results.HasPartial() {
-		return results, fmt.Errorf("Geocode contains partial matches. Suggestions are available")
-	}
-
-	return results, nil
+	log.Printf("Geocoding Request: [%v]\n", uri)
+	return uri
 }
 
 // USPSAddressValidateRequest contains the information necessary to execute an address validation webservice request
@@ -86,8 +151,8 @@ type USPSAddressValidateRequest struct {
 
 // USPSAddressValidateResponse contains the information returned from a successful webservice request
 type USPSAddressValidateResponse struct {
-	XMLName xml.Name      `xml:"AddressValidateResponse"`
-	Address []USPSAddress `xml:"Address"`
+	XMLName xml.Name    `xml:"AddressValidateResponse"`
+	Address USPSAddress `xml:"Address"`
 }
 
 // ToXMLString creates a string representation of the xml request
@@ -96,10 +161,16 @@ func (r USPSAddressValidateRequest) ToXMLString() string {
 	return string(output)
 }
 
+type USPSErrorResponse struct {
+	XMLName xml.Name `xml:"Error"`
+	USPSError
+}
+
 // USPSError is the structure for responses resulting in an error
 type USPSError struct {
+
 	// The error number generated by the Web Tools server.
-	Number int64 `xml:"Number"`
+	Number string `xml:"Number"`
 
 	// The component and interface that generated the error on the Web Tools server.
 	Source string `xml:"Source"`
@@ -210,5 +281,17 @@ func NewUSPSGeocoder(userID string) *USPSGeocoder {
 	return &USPSGeocoder{
 		userID:  userID,
 		baseURI: USPSURI,
+	}
+}
+
+// NewTestUSPSGeocoder is used for mocking purposes
+func NewTestUSPSGeocoder(userID string, baseURI string) *USPSGeocoder {
+	if baseURI == "" {
+		baseURI = USPSURI
+	}
+
+	return &USPSGeocoder{
+		userID:  userID,
+		baseURI: baseURI,
 	}
 }
