@@ -1,6 +1,9 @@
 package geo
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestHasPartial(t *testing.T) {
 	tests := []struct {
@@ -105,13 +108,22 @@ func TestResultsString(t *testing.T) {
 		Address:   "123",
 		City:      "Arlington",
 		State:     "VA",
-		County:    "County",
+		County:    "ATown",
 		Zipcode:   "22202",
 		Formatted: "",
 		Partial:   false,
 		Error:     "",
 	}
-	expected := "Street: 123\nCity: Arlington\nState: VA\nZipcode: 22202\nCounty: County\nCountry: \nPartial: false\nFormatted: "
+	expected := fmt.Sprintf("Street: %s\nCity: %s\nState: %s\nZipcode: %s\nCounty: %s\nCountry: %s\nPartial: %v\nFormatted: %s",
+		"123",
+		"Arlington",
+		"VA",
+		"22202",
+		"ATown",
+		"",
+		false,
+		"",
+	)
 	if result.String() != expected {
 		t.Errorf("Expected [%v] to be [%v]", result.String(), expected)
 	}

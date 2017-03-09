@@ -2,6 +2,7 @@ package geo
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -21,17 +22,7 @@ func TestQuerySuccess(t *testing.T) {
 				State:   "VA",
 				Zipcode: "22202",
 			},
-			XML: `
-				<?xml version="1.0" encoding="UTF-8"?>
-				<AddressValidateResponse>
-					<Address>
-						<Address2>123 SOME RD</Address2>
-						<City>ARLINGTON</City>
-						<State>VA</State>
-						<Zip5>22202</Zip5>
-						<Zip4></Zip4>
-					</Address>
-				</AddressValidateResponse>`,
+			XML: "testdata/valid_address.xml",
 			ExpectedResults: Results{
 				{
 					Address: "123 SOME RD",
@@ -49,17 +40,7 @@ func TestQuerySuccess(t *testing.T) {
 				State:   "VA",
 				Zipcode: "22202",
 			},
-			XML: `
-				<?xml version="1.0" encoding="UTF-8"?>
-				<AddressValidateResponse>
-					<Address>
-						<Address2>123 SOME RD</Address2>
-						<City>ARLINGTON</City>
-						<State>VA</State>
-						<Zip5>22202</Zip5>
-						<Zip4></Zip4>
-					</Address>
-				</AddressValidateResponse>`,
+			XML: "testdata/valid_address.xml",
 			ExpectedResults: Results{
 				{
 					Address: "123 SOME RD",
@@ -73,10 +54,14 @@ func TestQuerySuccess(t *testing.T) {
 	}
 
 	for _, test := range tests {
+		xml, err := readTestdata(test.XML)
+		if err != nil {
+			t.Fatal(err)
+		}
 
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/xml")
-			fmt.Fprintln(w, test.XML)
+			fmt.Fprintln(w, xml)
 		}))
 
 		geocoder := USPSGeocoder{
@@ -104,67 +89,52 @@ func TestQueryError(t *testing.T) {
 				State:   "VA",
 				Zipcode: "22202",
 			},
-			XML: `
-				<?xml version="1.0" encoding="UTF-8"?>
-				<AddressValidateResponse>
-					<Address>
-						<Error>
-						<Number>-2147219401</Number>
-						<Source>clsAMS</Source>
-						<Description>Address Not Found.</Description>
-						<HelpFile/>
-						<HelpContext/>
-						</Error>
-					</Address>
-				</AddressValidateResponse>`,
+			XML:         "testdata/address_error.xml",
 			ExpectError: true,
 		},
 		{
-			Values: Values{},
-			XML: `
-				<Foo>
-				</Foo>`,
+			Values:      Values{},
+			XML:         "testdata/foo_address.xml",
 			ExpectError: true,
 		},
 		{
-			Values: Values{},
-			XML: `
-				<AddressValidateResponse>
-					<Address>
-						<Address2>123 SOME RD</Address2>
-						<City>ARLINGTON</City>
-						<State>VA</State>
-						<Zip5>22202</Zip5>
-						<Zip4></Zip4>
-						<ReturnText>Missing apartment</ReturnText>
-					</Address>
-				</AddressValidateResponse>`,
+			Values:      Values{},
+			XML:         "testdata/address_returntext.xml",
 			ExpectError: true,
 		},
 		{
-			Values: Values{},
-			XML: `
-				<Error>
-					<Description>Foo</Description>
-				</Error>`,
+			Values:      Values{},
+			XML:         "testdata/usps_error.xml",
 			ExpectError: true,
 		},
 	}
 
 	for _, test := range tests {
+		xml, err := readTestdata(test.XML)
+		if err != nil {
+			t.Fatal(err)
+		}
 
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/xml")
-			fmt.Fprintln(w, test.XML)
+			fmt.Fprintln(w, xml)
 		}))
 
 		geocoder := USPSGeocoder{
 			baseURI: ts.URL,
 		}
-		_, err := geocoder.query(test.Values)
+		_, err = geocoder.query(test.Values)
 		if (err == nil) == test.ExpectError {
 			t.Errorf("Expected %v but got %v for %v\n", test.ExpectError, (err == nil), test.XML)
 		}
 	}
 
+}
+
+func readTestdata(filepath string) (string, error) {
+	b, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
 }

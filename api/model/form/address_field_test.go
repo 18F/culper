@@ -2,6 +2,7 @@ package form
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -16,16 +17,7 @@ func TestAddressField(t *testing.T) {
 		Expected bool
 	}{
 		{
-			XML: `<?xml version="1.0" encoding="UTF-8"?>
-			<AddressValidateResponse>
-				<Address>
-					<Address2>123 SOME RD</Address2>
-					<City>ARLINGTON</City>
-					<State>VA</State>
-					<Zip5>22202</Zip5>
-					<Zip4></Zip4>
-				</Address>
-			</AddressValidateResponse>`,
+			XML: "../../geo/testdata/valid_address.xml",
 			Field: AddressField{
 				Address: "123 Some RD",
 				City:    "Arlington",
@@ -35,16 +27,7 @@ func TestAddressField(t *testing.T) {
 			Expected: true,
 		},
 		{
-			XML: `<?xml version="1.0" encoding="UTF-8"?>
-			<AddressValidateResponse>
-				<Address>
-					<Address2>123 SOME RD</Address2>
-					<City>ARLINGTON</City>
-					<State>VA</State>
-					<Zip5>22202</Zip5>
-					<Zip4></Zip4>
-				</Address>
-			</AddressValidateResponse>`,
+			XML: "../../geo/testdata/valid_address.xml",
 			Field: AddressField{
 				Address: "123 Some Road",
 				City:    "Arlington",
@@ -54,7 +37,7 @@ func TestAddressField(t *testing.T) {
 			Expected: false,
 		},
 		{
-			XML: "",
+			XML: "../../geo/testdata/empty.xml",
 			Field: AddressField{
 				Address: "",
 				City:    "",
@@ -66,18 +49,7 @@ func TestAddressField(t *testing.T) {
 			Expected: false,
 		},
 		{
-			XML: `<?xml version="1.0" encoding="UTF-8"?>
-			<AddressValidateResponse>
-				<Address>
-					<Error>
-						<Number>-2147219401</Number>
-						<Source>clsAMS</Source>
-						<Description>Address Not Found.  </Description>
-						<HelpFile/>
-						<HelpContext/>
-					</Error>
-				</Address>
-			</AddressValidateResponse>`,
+			XML: "../../geo/testdata/address_error.xml",
 			Field: AddressField{
 				Address: "123",
 				City:    "Arlington",
@@ -89,9 +61,14 @@ func TestAddressField(t *testing.T) {
 	}
 
 	for _, test := range tests {
+		xml, err := readTestdata(test.XML)
+		if err != nil {
+			t.Fatal(err)
+		}
+
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/xml")
-			fmt.Fprintln(w, test.XML)
+			fmt.Fprintln(w, xml)
 		}))
 
 		geo.Geocode = geo.NewTestUSPSGeocoder("test", ts.URL)
@@ -99,4 +76,12 @@ func TestAddressField(t *testing.T) {
 			t.Errorf("Expected [%v] to be [%v]\n", ok, test.Expected)
 		}
 	}
+}
+
+func readTestdata(filepath string) (string, error) {
+	b, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
 }
