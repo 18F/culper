@@ -98,7 +98,7 @@ describe('Auth actions', function () {
       },
       {
         type: 'PUSH',
-        to: '/form',
+        to: '/form/identification/name',
         scrollTo: 'scrollTo'
       }
     ]
