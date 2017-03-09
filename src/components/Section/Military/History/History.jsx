@@ -44,9 +44,6 @@ export default class History extends ValidationElement {
     if (value === 'No') {
       this.onUpdate('List', [])
     }
-
-    // Force validation checks
-    this.handleValidation(event, null, null)
   }
 
   updateList (collection) {
@@ -113,7 +110,8 @@ export default class History extends ValidationElement {
                 className="eapp-field-wrap no-label served"
                 value={this.state.HasServed}
                 help="military.history.help.served"
-                onUpdate={this.updateServed}>
+                onUpdate={this.updateServed}
+                onValidate={this.handleValidation}>
         </Branch>
 
         <Show when={this.state.HasServed === 'Yes'}>

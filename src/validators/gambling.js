@@ -11,7 +11,7 @@ export default class GamblingValidator {
       return false
     }
 
-    if (this.hasGamblingDebt !== 'No' && this.hasGamblingDebt !== 'Yes') {
+    if (!(this.hasGamblingDebt === 'No' || this.hasGamblingDebt === 'Yes')) {
       return false
     }
 
@@ -22,11 +22,15 @@ export default class GamblingValidator {
    * Validates all fields for a collection of gambling debt
    */
   validGamblingDebt () {
+    if (this.validHasGamblingDebt() && this.hasGamblingDebt === 'No') {
+      return true
+    }
+
     if (!this.list || !this.list.length) {
       return false
     }
 
-    for (let item of this.list) {
+    for (const item of this.list) {
       if (!item.Losses || parseInt(item.Losses.value) < 1) {
         return false
       }
@@ -51,10 +55,7 @@ export default class GamblingValidator {
    * Validates section of gambling debt
    */
   isValid () {
-    if (!this.validHasGamblingDebt()) {
-      return false
-    }
-    return this.validGamblingDebt()
+    return this.validHasGamblingDebt() &&
+      this.validGamblingDebt()
   }
 }
-

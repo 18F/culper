@@ -9,6 +9,7 @@ export default function RadioGroup (props) {
     if (child.type !== Radio) {
       return child
     }
+
     // Check if current value matches one of the child radio options
     let checked = (child.props.value === props.selectedValue)
 

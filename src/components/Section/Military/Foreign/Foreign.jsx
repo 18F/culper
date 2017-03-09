@@ -62,7 +62,8 @@ export default class Foreign extends ValidationElement {
         <BranchCollection items={this.props.List}
                           branchName="has_foreign"
                           branchHelp="military.foreign.help.served"
-                          onUpdate={this.updateList}>
+                          onUpdate={this.updateList}
+                          onValidate={this.handleValidation}>
           <ForeignService name="Item"
                           bind={true}
                           onValidate={this.handleValidation}
