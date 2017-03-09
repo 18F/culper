@@ -1,15 +1,6 @@
 package geo
 
-import (
-	"fmt"
-	"regexp"
-	"strings"
-)
-
-var (
-	// CountyRegexp matches on variations of county
-	CountyRegexp = regexp.MustCompile("(?i)(County|Co|Co\\.)$")
-)
+import "fmt"
 
 // Result represents geocoded information that has been transformed from the original source.
 // All Geocoders should convert their location information into a Result struct
@@ -23,25 +14,6 @@ type Result struct {
 	Formatted string
 	Partial   bool
 	Error     string
-}
-
-// CountyEqual compares the County value against a passed in county.
-// This strips out variations of county which include the following:
-// - <county name> County
-// - <county name> Co
-// - <county name> Co.
-func (r Result) CountyEqual(county string) bool {
-	// Clean result county
-	rCounty := strings.TrimSpace(
-		CountyRegexp.ReplaceAllString(strings.TrimSpace(r.County), ""),
-	)
-
-	// clean county to compare
-	county = strings.TrimSpace(
-		CountyRegexp.ReplaceAllString(strings.TrimSpace(county), ""),
-	)
-
-	return rCounty == county
 }
 
 // Results contains a list of found Result. It contains helper methods to determine if
