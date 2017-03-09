@@ -438,7 +438,6 @@ export default class HistoryCollection extends ValidationElement {
             {options}
           </RadioGroup>
         </div>
-        <hr className="section-divider" />
       </div>
     )
   }
