@@ -54,5 +54,5 @@ func (a AddressField) Valid() (bool, error) {
 		})
 	}
 
-	return stack.HasErrors(), stack
+	return !stack.HasErrors(), stack
 }
