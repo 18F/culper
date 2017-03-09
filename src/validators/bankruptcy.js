@@ -19,8 +19,27 @@ export default class BankruptcyValidator {
       return false
     }
 
-    if (this.hasBankruptcy !== 'Yes' && this.hasBankruptcy !== 'No') {
+    if (!(this.hasBankruptcy === 'Yes' || this.hasBankruptcy === 'No')) {
       return false
+    }
+
+    return true
+  }
+
+  validBankruptcies () {
+    if (this.validHasBankruptcy() && this.hasBankruptcy === 'No') {
+      return true
+    }
+
+    if (!this.list || !this.list.length) {
+      return false
+    }
+
+    for (const item of this.list) {
+      const result = new BankruptcyItemValidator(item, null).isValid()
+      if (!result) {
+        return false
+      }
     }
 
     return true
@@ -30,18 +49,8 @@ export default class BankruptcyValidator {
    * Validates all bankruptcy items
    */
   isValid () {
-    if (this.hasBankruptcy === 'Yes' && (!this.list || !this.list.length)) {
-      return false
-    }
-
-    for (let item of this.list) {
-      let result = new BankruptcyItemValidator(item, null).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return this.validHasBankruptcy() &&
+      this.validBankruptcies()
   }
 }
 
