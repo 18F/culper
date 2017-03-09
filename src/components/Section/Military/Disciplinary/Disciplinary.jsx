@@ -43,9 +43,6 @@ export default class Disciplinary extends ValidationElement {
     if (value === 'No') {
       this.onUpdate('List', [])
     }
-
-    // Force validation checks
-    this.handleValidation(event, null, null)
   }
 
   updateList (collection) {
@@ -116,7 +113,8 @@ export default class Disciplinary extends ValidationElement {
                 className="eapp-field-wrap no-label"
                 value={this.state.HasDisciplinary}
                 help="military.disciplinary.help.branch"
-                onUpdate={this.updateDisciplinary}>
+                onUpdate={this.updateDisciplinary}
+                onValidate={this.handleValidation}>
         </Branch>
 
         <Show when={this.state.HasDisciplinary === 'Yes'}>

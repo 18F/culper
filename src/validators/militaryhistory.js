@@ -12,7 +12,7 @@ export default class MilitaryHistoryValidator {
   }
 
   validItems () {
-    if (!this.validServed() || this.hasServed === 'No') {
+    if (this.validServed() && this.hasServed === 'No') {
       return true
     }
 
