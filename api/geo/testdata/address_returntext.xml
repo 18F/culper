@@ -1,0 +1,10 @@
+<AddressValidateResponse>
+    <Address>
+        <Address2>123 SOME RD</Address2>
+        <City>ARLINGTON</City>
+        <State>VA</State>
+        <Zip5>22202</Zip5>
+        <Zip4></Zip4>
+        <ReturnText>Missing apartment</ReturnText>
+    </Address>
+</AddressValidateResponse>
