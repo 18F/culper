@@ -18,7 +18,7 @@ export default class IntroHeader extends React.Component {
       <div>
         <h3>{i18n.t('intro.review.title')}</h3>
         <p>{this.props.review}</p>
-        <button onClick={this.props.onTour}>{i18n.t('intro.review.button')}</button>
+        <button onClick={this.props.onReview}>{i18n.t('intro.review.button')}</button>
       </div>
     )
   }
