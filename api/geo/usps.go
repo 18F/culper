@@ -13,7 +13,7 @@ import (
 
 var (
 	// USPSURI is that base address for the USPS API
-	USPSURI = "https://production.shippingapis.com/ShippingAPI.dll"
+	USPSURI = "https://secure.shippingapis.com/ShippingAPI.dll"
 
 	// VerifyAPI is the name of that API that handles address verifications
 	VerifyAPI = "Verify"
