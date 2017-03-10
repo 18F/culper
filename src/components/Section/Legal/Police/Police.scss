@@ -1,0 +1,18 @@
+@import 'eqip-colors';
+
+.police {
+  .collection {
+    .summary .brief .index {
+      width: 13rem;
+    }
+
+    .summary .brief .dates {
+      width: 12rem !important;
+    }
+  }
+
+  .blue {
+    color: $eapp-blue-dark;
+    font-size: smaller;
+  }
+}

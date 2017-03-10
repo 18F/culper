@@ -1,0 +1,34 @@
+.military-service {
+  .service .eapp-blocks-radio label,
+  .status .eapp-blocks-radio label,
+  .officer .eapp-blocks-radio label,
+  .discharge-type .eapp-blocks-radio label {
+    width: 17rem;
+  }
+
+  .service-icon,
+  .discharge-type-icon {
+    margin-left: -2rem;
+  }
+
+  .service-number,
+  .discharge-reason,
+  .discharge-type-otherex {
+    display: inline-block;
+    width: 92%;
+  }
+
+  .discharge-type .eapp-blocks-radio label {
+    height: 9rem;
+    padding-top: 2rem;
+  }
+
+  .long-text label {
+    padding-top: 1rem !important;
+    line-height: initial;
+  }
+
+  .discharge-type-otherex {
+    margin-top: 4rem;
+  }
+}
