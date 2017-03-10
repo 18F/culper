@@ -3060,7 +3060,12 @@ const en = {
     police: {
       heading: {
         title: 'Police record',
-        questions: 'Have any of the following happened?'
+        questions: 'Have any of the following happened?',
+        date: 'Provide the date of the offense',
+        description: 'Provide a description of the specific nature of the offense',
+        involvement: 'Did this offense involve any of the following?',
+        address: 'Provide the location where the offense occurred',
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
@@ -3074,7 +3079,11 @@ const en = {
         arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
         charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court?',
         probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
-        trial: 'Are you currently on trial or awaiting a trial on criminal charges?'
+        trial: 'Are you currently on trial or awaiting a trial on criminal charges?',
+        violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+        firearms: '**Involve firearms or explosives?**',
+        substances: '**Involve alcohol or drugs?**',
+        address: 'This address is'
       },
       help: {
         summons: {
@@ -3098,6 +3107,41 @@ const en = {
           note: ''
         },
         trial: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        date: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        description: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        violence: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        firearms: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        substances: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        address: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        cited: {
           title: '',
           message: '',
           note: ''

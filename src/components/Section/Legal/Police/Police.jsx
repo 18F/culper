@@ -137,29 +137,15 @@ export default class Police extends ValidationElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
+    const description = o.Description && o.Description.value
+          ? o.Description.value
+          : i18n.t('legal.police.collection.summary.unknown')
     const dates = dateSummary(o)
-
-    let address1 = ''
-    let address2 = ''
-    if (o.Address) {
-      address1 += `${o.Address.address || ''}`.trim()
-      if (o.Address.addressType === 'United States') {
-        address2 = `${o.Address.city || ''}, ${o.Address.state || ''} ${o.Address.zipcode || ''}`.trim()
-      } else if (o.Address.addressType === 'APOFPO') {
-        address2 = `${o.Address.apoFpoType || ''}, ${o.Address.apoFpo || ''} ${o.Address.zipcode || ''}`.trim()
-      } else if (o.Address.addressType === 'International') {
-        address2 = `${o.Address.city || ''}, ${o.Address.country || ''}`.trim()
-      }
-    }
-
-    if (address1.length === 0 || address2.length === 1) {
-      address1 = i18n.t('legal.police.collection.summary.unknown')
-    }
 
     return (
       <div className="table">
         <div className="table-cell index">{i18n.t('legal.police.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell">{address1}<br />{address2}</div>
+        <div className="table-cell info"><strong>{description}</strong></div>
         <div className="table-cell dates"><strong>{dates}</strong></div>
       </div>
     )

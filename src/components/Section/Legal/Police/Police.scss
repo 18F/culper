@@ -6,6 +6,13 @@
       width: 13rem;
     }
 
+    .summary .brief .info {
+      max-width: 35rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .summary .brief .dates {
       width: 12rem !important;
     }
