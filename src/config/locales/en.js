@@ -1392,7 +1392,6 @@ const en = {
       education: 'Schools & diplomas',
       federal: 'Former federal service'
     },
-
     residence: {
       title: 'Places you have lived',
       info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
@@ -1460,7 +1459,6 @@ const en = {
         }
       }
     },
-
     employment: {
       summary: {
         title: 'Where you have worked',
@@ -1475,7 +1473,6 @@ const en = {
         employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
         employment2: 'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
-
       default: {
         noDate: {
           label: 'NA'
@@ -1745,7 +1742,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       activemilitary: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -1879,7 +1875,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       nationalguard: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -2013,7 +2008,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       usphs: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -2147,7 +2141,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       otherfederal: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2255,7 +2248,6 @@ const en = {
           }
         }
       },
-
       stategovernment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2363,7 +2355,6 @@ const en = {
           }
         }
       },
-
       federalcontractor: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2471,7 +2462,6 @@ const en = {
           }
         }
       },
-
       nongovernment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2579,7 +2569,6 @@ const en = {
           }
         }
       },
-
       selfemployment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2687,13 +2676,11 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       unemployment: {
         heading: {
           reference: 'Provide the name of someone who can verify your unemployment activities and means of support'
         }
       },
-
       other: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2987,6 +2974,7 @@ const en = {
       }
     }
   },
+
   foreign: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -3057,6 +3045,77 @@ const en = {
       }
     }
   },
+
+  legal: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with investigative & criminal history at once'
+    },
+    destination: {
+      police: 'Police record',
+      review: 'Review investigative & criminal history'
+    },
+    police: {
+      heading: {
+        title: 'Police record',
+        questions: 'Have any of the following happened?'
+      },
+      para: {
+        intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+        intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
+        intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
+        summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
+        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)'
+      },
+      label: {
+        summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
+        arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+        charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court?',
+        probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
+        trial: 'Are you currently on trial or awaiting a trial on criminal charges?'
+      },
+      help: {
+        summons: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        arrests: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        charges: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        probation: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        trial: {
+          title: '',
+          message: '',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of offenses',
+          item: 'Offense',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
+        appendMessage: '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)<br> - **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?<br> - **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)<br> - **In the last seven (7) years** have you been or are you currently on probation or parole?<br> - Are you currently on trial or awaiting a trial on criminal charges?<p>If yes use the button below to add add another offense.</p>',
+        append: 'Add another offense'
+      }
+    }
+  },
+
   alias: {
     maiden: {
       help: {
