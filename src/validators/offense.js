@@ -14,7 +14,7 @@ export default class OffenseValidator {
 
   validDate () {
     // console.log('date', this.date)
-    return this.date && validDateField(this.date)
+    return !!this.date && validDateField(this.date)
   }
 
   validDescription () {
@@ -39,7 +39,7 @@ export default class OffenseValidator {
 
   validAddress () {
     // console.log('address', this.address)
-    return this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new AddressValidator(this.address, null).isValid()
   }
 
   validCited () {
