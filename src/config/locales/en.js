@@ -372,6 +372,13 @@ const en = {
         message: 'The international number must be 10 digits between 0 and 9',
         note: ''
       }
+    },
+    Email: {
+      pattern: {
+        title: 'A valid email address is required',
+        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
+        note: 'Note: Underscores (_) and periods (.) are valid characters'
+      }
     }
   },
   section: {
@@ -540,9 +547,9 @@ const en = {
         }
       },
       label: {
-        state: 'State',
+        state: 'State or territory',
         city: 'City',
-        county: 'County or providence',
+        county: 'County or province',
         country: 'Country'
       },
       placeholder: {

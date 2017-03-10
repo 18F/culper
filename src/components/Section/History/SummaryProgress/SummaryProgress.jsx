@@ -65,7 +65,7 @@ export default class SummaryProgress extends ValidationElement {
    */
   completed () {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
-    return decimalAdjust('floor', this.total() * (sum / 100), 0)
+    return Math.min(decimalAdjust('floor', this.total() * (sum / 100), 0), this.total())
   }
 
   /**

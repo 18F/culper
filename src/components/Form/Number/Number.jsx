@@ -37,6 +37,7 @@ export default class Number extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
+
     // Prevent non-numerical values from being entered
     if (!event.target.value.match(/^(\s*|\d+)$/)) {
       return
@@ -124,9 +125,9 @@ export default class Number extends ValidationElement {
 
     // Set the internal state
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.state.name || 'input'
-      let e = { [prop]: errorCode }
-      super.handleValidation(event, status, e)
+      const errorObject = { [this.props.name]: errorCode }
+      const statusObject = { [this.props.name]: { status: status } }
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
