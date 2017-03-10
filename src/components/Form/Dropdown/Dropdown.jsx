@@ -80,6 +80,14 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (next) {
+    if (next.receiveProps) {
+      this.setState({
+        value: next.value
+      })
+    }
+  }
+
   /**
    * Handle the change event.
    */

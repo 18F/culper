@@ -95,7 +95,7 @@ describe('Contact Information validation', function () {
             }
           ]
         },
-        expected: false
+        expected: true
       },
       {
         state: {

@@ -10,7 +10,8 @@ export default class ContactInformationValidator {
    * Validates a collection of emails
    */
   validEmails () {
-    if (!this.emails || this.emails.length < 1) {
+    const required = 1
+    if (!this.emails || this.emails.length < required) {
       return false
     }
 
@@ -27,7 +28,8 @@ export default class ContactInformationValidator {
    * Validates a collection of phone numbers
    */
   validPhoneNumbers () {
-    if (!this.phoneNumbers || this.phoneNumbers.length < 2) {
+    const required = 1
+    if (!this.phoneNumbers || this.phoneNumbers.length < required) {
       return false
     }
 
