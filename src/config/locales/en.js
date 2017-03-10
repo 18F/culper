@@ -3065,7 +3065,11 @@ const en = {
         description: 'Provide a description of the specific nature of the offense',
         involvement: 'Did this offense involve any of the following?',
         address: 'Provide the location where the offense occurred',
-        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?'
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?',
+        citedagency: 'Arresting/citing/summoning agency',
+        citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
+        agencyaddress: 'Provide the location of the law enforcement agency',
+        charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
@@ -3142,6 +3146,16 @@ const en = {
           note: ''
         },
         cited: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        citedby: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        agencyaddress: {
           title: '',
           message: '',
           note: ''

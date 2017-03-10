@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Address, DateControl, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Address, DateControl, Textarea, Text, Help, HelpIcon } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -24,7 +24,10 @@ export default class Offense extends ValidationElement {
       InvolvedFirearms: props.InvolvedFirearms,
       InvolvedSubstances: props.InvolvedSubstances,
       Address: props.Address,
-      WasCited: props.WasCited
+      WasCited: props.WasCited,
+      CitedBy: props.CitedBy,
+      AgencyAddress: props.AgencyAddress,
+      WasCharged: props.WasCharged
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -35,6 +38,9 @@ export default class Offense extends ValidationElement {
     this.updateInvolvedSubstances = this.updateInvolvedSubstances.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
     this.updateWasCited = this.updateWasCited.bind(this)
+    this.updateCitedBy = this.updateCitedBy.bind(this)
+    this.updateAgencyAddress = this.updateAgencyAddress.bind(this)
+    this.updateWasCharged = this.updateWasCharged.bind(this)
   }
 
   onUpdate (name, values) {
@@ -69,6 +75,18 @@ export default class Offense extends ValidationElement {
 
   updateWasCited (value, event) {
     this.onUpdate('WasCited', value)
+  }
+
+  updateCitedBy (values) {
+    this.onUpdate('CitedBy', values)
+  }
+
+  updateAgencyAddress (value) {
+    this.onUpdate('AgencyAddress', value)
+  }
+
+  updateWasCharged (value, event) {
+    this.onUpdate('WasCharged', value)
   }
 
   render () {
@@ -150,6 +168,47 @@ export default class Offense extends ValidationElement {
                 onUpdate={this.updateWasCited}
                 onValidate={this.props.onValidate}>
         </Branch>
+
+        <Show when={this.state.WasCited === 'Yes'}>
+          <div>
+            <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
+            <h3>{i18n.t('legal.police.heading.citedby')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="legal.police.help.citedby">
+                <Text name="CitedBy"
+                      {...this.state.CitedBy}
+                      className="offense-citedby"
+                      onUpdate={this.updateCitedBy}
+                      onValidate={this.props.onValidate}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('legal.police.heading.agencyaddress')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="legal.police.help.agencyaddress">
+                <Address name="AgencyAddress"
+                        {...this.state.AgencyAddress}
+                        className="offense-agencyaddress"
+                        label={i18n.t('legal.police.label.address')}
+                        onUpdate={this.updateAgencyAddress}
+                        onValidate={this.props.onValidate}
+                        />
+                <HelpIcon className="address-help-icon" />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('legal.police.heading.charged')}</h3>
+            <Branch name="was_charged"
+                    className="eapp-field-wrap no-label offense-charged"
+                    value={this.state.WasCharged}
+                    help="legal.police.help.charged"
+                    onUpdate={this.updateWasCharged}
+                    onValidate={this.props.onValidate}>
+            </Branch>
+          </div>
+        </Show>
       </div>
     )
   }

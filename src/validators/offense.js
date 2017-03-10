@@ -10,41 +10,61 @@ export default class OffenseValidator {
     this.involvedSubstances = state.InvolvedSubstances
     this.address = state.Address
     this.wasCited = state.WasCited
+    this.citedBy = state.CitedBy
+    this.agencyAddress = state.AgencyAddress
+    this.wasCharged = state.WasCharged
   }
 
   validDate () {
-    // console.log('date', this.date)
     return !!this.date && validDateField(this.date)
   }
 
   validDescription () {
-    // console.log('description', this.description)
-    return this.description && validGenericTextfield(this.description)
+    return !!this.description && validGenericTextfield(this.description)
   }
 
   validViolence () {
-    // console.log('violence', this.involvedViolence)
     return this.involvedViolence === 'Yes' || this.involvedViolence === 'No'
   }
 
   validFirearms () {
-    // console.log('firearms', this.involvedFirearms)
     return this.involvedFirearms === 'Yes' || this.involvedFirearms === 'No'
   }
 
   validSubstances () {
-    // console.log('substances', this.involvedSubstances)
     return this.involvedSubstances === 'Yes' || this.involvedSubstances === 'No'
   }
 
   validAddress () {
-    // console.log('address', this.address)
     return !!this.address && new AddressValidator(this.address, null).isValid()
   }
 
   validCited () {
-    // console.log('cited', this.wasCited)
     return this.wasCited === 'Yes' || this.wasCited === 'No'
+  }
+
+  validCitedBy () {
+    if (this.wasCited === 'No') {
+      return true
+    }
+
+    return !!this.citedBy && validGenericTextfield(this.citedBy)
+  }
+
+  validAgencyAddress () {
+    if (this.wasCited === 'No') {
+      return true
+    }
+
+    return !!this.agencyAddress && new AddressValidator(this.agencyAddress, null).isValid()
+  }
+
+  validCharged () {
+    if (this.wasCited === 'No') {
+      return true
+    }
+
+    return this.wasCharged === 'Yes' || this.wasCharged === 'No'
   }
 
   isValid () {
@@ -54,6 +74,9 @@ export default class OffenseValidator {
       this.validFirearms() &&
       this.validSubstances() &&
       this.validAddress() &&
-      this.validCited()
+      this.validCited() &&
+      this.validCitedBy() &&
+      this.validAgencyAddress() &&
+      this.validCharged()
   }
 }

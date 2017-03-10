@@ -187,6 +187,109 @@ describe('Offense validation', function () {
     })
   })
 
+  it('validates cited by', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          CitedBy: {
+            value: ''
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          CitedBy: {
+            value: 'Somebody'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCitedBy()).toBe(test.expected)
+    })
+  })
+
+  it('validates cited by', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          AgencyAddress: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          AgencyAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validAgencyAddress()).toBe(test.expected)
+    })
+  })
+
+  it('validates if was charged', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCharged()).toBe(test.expected)
+    })
+  })
+
   it('validate offense object', () => {
     const tests = [
       {
