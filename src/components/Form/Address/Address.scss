@@ -1,3 +1,5 @@
+@import 'eqip-colors';
+
 .address {
   display: inline-block;
 
@@ -54,6 +56,16 @@
 
   label.bold {
     font-weight: 600;
+  }
+
+  .address-suggestion {
+    div {
+      line-height: 2rem;
+    }
+    .highlight {
+      background-color: $eapp-blue-lightest;
+      font-weight: 600;
+    }
   }
 }
 

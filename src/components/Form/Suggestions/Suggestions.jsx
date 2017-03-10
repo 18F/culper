@@ -55,7 +55,7 @@ export default class Suggestions extends React.Component {
   }
 
   visible () {
-    return !this.state.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0
+    return !this.props.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0
   }
 
   render () {
@@ -78,6 +78,7 @@ export default class Suggestions extends React.Component {
               <Help>
                 {this.suggestions()}
                 <div className="dismiss">
+                  {this.props.suggestionDismissContent}
                   <a href="javascript:;;" onClick={this.dismissSuggestions}>
                     <span>{this.props.suggestionDismissLabel}</span>
                     <i className="fa fa-arrow-circle-right"></i>

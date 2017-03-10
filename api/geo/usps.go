@@ -17,6 +17,12 @@ var (
 
 	// VerifyAPI is the name of that API that handles address verifications
 	VerifyAPI = "Verify"
+
+	// USPSErrorCodes contains USPS code mapping to eApp error codes
+	USPSErrorCodes = map[string]string{
+		"-2147219400": "error.geocode.city.invalid",
+		"-2147219401": "error.geocode.notfound",
+	}
 )
 
 // USPSGeocoder geocodes address information using the United States Post Office webservice
@@ -55,7 +61,11 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 
 	// Check if we've encountered an error
 	if foundAddress.Error != nil {
-		return results, fmt.Errorf("%v", foundAddress.Error.Description)
+		if errCode, ok := USPSErrorCodes[foundAddress.Error.Number]; ok {
+			return results, fmt.Errorf("%v", errCode)
+		}
+		return results, fmt.Errorf("%v", "geocode.generic")
+
 	}
 
 	// Generate a normalized Result struct from the address found

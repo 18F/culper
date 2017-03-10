@@ -1,3 +1,5 @@
+import { api } from '../services/api'
+
 export default class AddressValidator {
   constructor (state, props) {
     if (!state) {
@@ -38,5 +40,19 @@ export default class AddressValidator {
         return false
     }
     return true
+  }
+
+  geocode () {
+    return api
+      .validateAddress({
+        Address: this.address,
+        City: this.city,
+        State: this.state,
+        Zipcode: this.zipcode,
+        Country: this.country
+      })
+      .then((response) => {
+        return response.data
+      })
   }
 }

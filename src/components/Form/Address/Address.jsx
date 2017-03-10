@@ -8,8 +8,29 @@ import ZipCode from '../ZipCode'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
+import Suggestions from '../Suggestions'
+import Show from '../Show'
+import { Help } from '../Help'
 import { api } from '../../../services/api'
 import { i18n } from '../../../config'
+import { AddressValidator } from '../../../validators'
+
+const throttle = (callback, wait, context = this) => {
+  let timeout = null
+  let callbackArgs = null
+
+  const later = () => {
+    callback.apply(context, callbackArgs)
+    timeout = null
+  }
+
+  return function () {
+    callbackArgs = arguments
+    if (!timeout) {
+      timeout = setTimeout(later, wait)
+    }
+  }
+}
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -29,8 +50,13 @@ export default class Address extends ValidationElement {
       valid: props.valid || false,
       addressType: addressType,
       apoFpoType: props.apoFpoType,
+      suggestions: [],
       errorCodes: []
     }
+
+    this.suggestionDismissContent = this.suggestionDismissContent.bind(this)
+    this.handleValidation = throttle(this.handleValidation.bind(this), 300, this)
+    this.renderSuggestion = this.renderSuggestion.bind(this)
   }
 
   addressType () {
@@ -48,7 +74,9 @@ export default class Address extends ValidationElement {
    * Handle the change event.
    */
   handleChange (field, event) {
-    this.setState({ [field]: event.target.value }, () => {
+    this.setState({
+      [field]: event.target.value
+    }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -73,63 +101,55 @@ export default class Address extends ValidationElement {
     if (!event) {
       return
     }
+    console.log('do address validation')
+    this.handleAsyncValidation(event, status, error)
+      .then(result => {
+        if (result.geocodeError && result.error) {
+          this.props.addError(result.error)
+        }
+        this.setState({
+          error: result.complexStatus === false,
+          valid: result.complexStatus === true,
+          errorCodes: result.codes,
+          suggestions: result.suggestions
+        },
+          () => {
+            if (!result.geocodeError) {
+              super.handleValidation(event, status, error)
+            }
+          })
+      })
+  }
 
-    const codes = super.mergeError(this.state.errorCodes, error)
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else {
-      switch (this.state.addressType) {
-        case 'United States':
-          if (this.state.address && this.state.city && this.state.state && this.state.zipcode) {
-            complexStatus = true
-          }
-          break
+  handleAsyncValidation (event, status, error) {
+    return new Promise((resolve, reject) => {
+      // Setup address validator
+      const validator = new AddressValidator(this.state)
 
-        case 'International':
-          if (this.state.address && this.state.city && this.state.country) {
-            complexStatus = true
-          }
-          break
-
-        case 'APOFPO':
-          if (this.state.address && this.state.apoFpo && this.stateAddress.apoFpoType && this.state.zipcode) {
-            complexStatus = true
-          }
-          break
-      }
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, error)
-        return
+      // Retrieve codes
+      const codes = super.mergeError(this.state.errorCodes || [], error)
+      if (codes.length > 0) {
+        return resolve({complexStatus: false, codes: codes, suggestions: []})
       }
 
-      api
-        .validateAddress({
-          Address: [this.state.address1, this.state.address2].join(', '),
-          City: this.state.city,
-          State: this.state.state,
-          Zipcode: this.state.zipcode,
-          Country: this.state.country
-        })
-        .then((response) => {
-          // TODO: Display and assign the errors as necessary
-          if (response.Errors) {
-            this.setState({
-              error: response.Error.length > 0,
-              valid: response.Errors.length === 0
+      // No error codes found. Now start to validate location information
+      switch (validator.isValid()) {
+        case true:
+          this.props.removeErrorFunc(errors => {
+            return errors.filter(e => {
+              return e.indexOf('geocode') === -1
             })
-          }
+          })
 
-          // TODO: Display suggestions
-          if (response.Suggestions) {
-          }
-        })
-        .then(() => {
-          super.handleValidation(event, status, error)
-        })
+          // Once preliminary address fields are checked, we validate against geocoding api
+          validator
+            .geocode()
+            .then(handleGeocodeResponse)
+            .then(resolve)
+          break
+        default:
+          resolve({complexStatus: false, codes: [], suggestions: []})
+      }
     })
   }
 
@@ -322,11 +342,115 @@ export default class Address extends ValidationElement {
                  />
         </RadioGroup>
         <div className="fields">
-          {this.state.addressType === 'United States' && this.usAddress()}
-          {this.state.addressType === 'International' && this.internationalAddress()}
-          {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+            <Suggestions
+              onValidate={this.handleValidation}
+              suggestions={this.state.suggestions}
+              renderSuggestion={this.renderSuggestion}
+              dismissSuggestions={false}
+              withSuggestions={true}
+              suggestionTitle={'Alternate address found'}
+              suggestionLabel={'Suggested address'}
+              suggestionParagraph={'Consider the highlighted change below. Using the US Postal Service suggested address will help us process your case more quickly'}
+              suggestionDismissLabel={'Use this address instead'}
+              suggestionDismissContent={this.suggestionDismissContent()}
+              onDismiss={this.onSuggestionDismiss.bind(this)}
+              onSuggestion={this.onSuggestion.bind(this)}
+              suggestionUseLabel={'Use this address'}>
+              <div>
+                {this.state.addressType === 'United States' && this.usAddress()}
+                {this.state.addressType === 'International' && this.internationalAddress()}
+                {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+              </div>
+            </Suggestions>
         </div>
       </div>
     )
+  }
+
+  onSuggestionDismiss () {
+    this.setState({
+      suggestions: []
+    })
+  }
+
+  onSuggestion (suggestion) {
+    this.setState({
+      suggestions: [],
+      address: suggestion.Address,
+      city: suggestion.City,
+      state: suggestion.State,
+      zipcode: suggestion.Zipcode
+    })
+  }
+
+  suggestionDismissContent () {
+    const { address, city, state, zipcode } = this.state
+    return (
+      <div>
+        <h5>Original Address</h5>
+        <div className="address-suggestion">
+          <div>{ address }</div>
+          <div>{ city }, { state} { zipcode }</div>
+        </div>
+      </div>
+    )
+  }
+
+  renderSuggestion (suggestion) {
+    return (
+      <AddressSuggestion suggestion={suggestion} current={this.state} />
+    )
+  }
+}
+
+export function HighlightedField (props) {
+  if (props.new.toUpperCase() !== props.old.toUpperCase()) {
+    return (
+      <span className="highlight">{ props.new }</span>
+    )
+  }
+  return (<span>{ props.old }</span>)
+}
+
+export function AddressSuggestion (props) {
+  const suggestion = props.suggestion
+  return (
+    <div className="address-suggestion">
+      <div>
+        <HighlightedField new={ suggestion.Address } old={props.current.address} />
+      </div>
+      <div>
+        <HighlightedField new={ suggestion.City } old={props.current.city} />, <HighlightedField new={ suggestion.State } old={props.current.state} /> <HighlightedField new={ suggestion.Zipcode } old={props.current.zipcode} />
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Helper function to extract geocoded information
+ */
+export const handleGeocodeResponse = (response) => {
+  if (!response.Errors) {
+    return {complexStatus: true, suggestions: [], codes: []}
+  }
+  if (response.Errors && response.Errors.length) {
+    for (const err of response.Errors) {
+      if (err.Fieldname === 'Address') {
+        if (!err.Suggestions || !err.Suggestions.length) {
+          return {
+            complexStatus: false,
+            suggestions: [],
+            error: err.Error,
+            geocodeError: true
+          }
+        }
+        return {
+          geocodeError: true,
+          error: '',
+          complexStatus: false,
+          suggestions: err.Suggestions || []
+        }
+      }
+    }
   }
 }

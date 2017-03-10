@@ -22,7 +22,7 @@ export default class State extends ValidationElement {
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
         <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
+        <option value="CA">CA</option>
         <option value="CO">Colorado</option>
         <option value="CT">Connecticut</option>
         <option value="DE">Delaware</option>

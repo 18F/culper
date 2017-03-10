@@ -372,6 +372,22 @@ const en = {
         message: 'The international number must be 10 digits between 0 and 9',
         note: ''
       }
+    },
+    geocode: {
+      city: {
+        invalid: {
+          title: 'City is invalid',
+          message: 'The city entered is not valid'
+        }
+      },
+      notfound: {
+        title: 'Address not found',
+        message: 'The address provided does not match'
+      },
+      generic: {
+        title: 'Unable to validate address',
+        message: 'The address provided cannot be properly validated'
+      }
     }
   },
   section: {
