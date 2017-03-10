@@ -290,6 +290,302 @@ describe('Offense validation', function () {
     })
   })
 
+  it('validates if was not charged but needs explanation', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No',
+          Explanation: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No',
+          Explanation: {
+            value: 'Some explanation'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validExplanation()).toBe(test.expected)
+    })
+  })
+
+  it('validates court name', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtName: {
+            value: 'court name'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCourtName()).toBe(test.expected)
+    })
+  })
+
+  it('validates court address', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCourtAddress()).toBe(test.expected)
+    })
+  })
+
+  it('validates court type', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtType: 'Does not exit'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtType: 'Felony'
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCourtType()).toBe(test.expected)
+    })
+  })
+
+  it('validates court charge', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtCharge: {
+            value: 'Some charge'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCourtCharge()).toBe(test.expected)
+    })
+  })
+
+  it('validates court outcome', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtOutcome: {
+            value: 'Some outcome'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCourtOutcome()).toBe(test.expected)
+    })
+  })
+
+  it('validates court date', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          CourtDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validCourtDate()).toBe(test.expected)
+    })
+  })
+
+  it('validates sentenced', () => {
+    const tests = [
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          WasSentenced: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          WasSentenced: 'Yes'
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validSentenced()).toBe(test.expected)
+    })
+  })
+
   it('validate offense object', () => {
     const tests = [
       {

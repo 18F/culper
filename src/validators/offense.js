@@ -13,6 +13,14 @@ export default class OffenseValidator {
     this.citedBy = state.CitedBy
     this.agencyAddress = state.AgencyAddress
     this.wasCharged = state.WasCharged
+    this.explanation = state.Explanation
+    this.courtName = state.CourtName
+    this.courtAddress = state.CourtAddress
+    this.courtType = state.CourtType
+    this.courtCharge = state.CourtCharge
+    this.courtOutcome = state.CourtOutcome
+    this.courtDate = state.CourtDate
+    this.wasSentenced = state.WasSentenced
   }
 
   validDate () {
@@ -67,6 +75,70 @@ export default class OffenseValidator {
     return this.wasCharged === 'Yes' || this.wasCharged === 'No'
   }
 
+  validExplanation () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'No') {
+      return true
+    }
+
+    return !!this.explanation && validGenericTextfield(this.explanation)
+  }
+
+  validCourtName () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return !!this.courtName && validGenericTextfield(this.courtName)
+  }
+
+  validCourtAddress () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return !!this.courtAddress && new AddressValidator(this.courtAddress, null).isValid()
+  }
+
+  validCourtType () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return !!this.courtType && ['Felony', 'Misdemeanor', 'Other'].includes(this.courtType)
+  }
+
+  validCourtCharge () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return !!this.courtCharge && validGenericTextfield(this.courtCharge)
+  }
+
+  validCourtOutcome () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return !!this.courtOutcome && validGenericTextfield(this.courtOutcome)
+  }
+
+  validCourtDate () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return !!this.courtDate && validDateField(this.courtDate)
+  }
+
+  validSentenced () {
+    if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
+      return true
+    }
+
+    return this.wasSentenced === 'Yes' || this.wasSentenced === 'No'
+  }
+
   isValid () {
     return this.validDate() &&
       this.validDescription() &&
@@ -77,6 +149,14 @@ export default class OffenseValidator {
       this.validCited() &&
       this.validCitedBy() &&
       this.validAgencyAddress() &&
-      this.validCharged()
+      this.validCharged() &&
+      this.validExplanation() &&
+      this.validCourtName() &&
+      this.validCourtAddress() &&
+      this.validCourtType() &&
+      this.validCourtCharge() &&
+      this.validCourtOutcome() &&
+      this.validCourtDate() &&
+      this.validSentenced()
   }
 }

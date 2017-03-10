@@ -1,6 +1,15 @@
 .offense {
-  .offense-description {
+  .offense-description,
+  .offense-citedby,
+  .offense-explanation,
+  .offense-courtname,
+  .offense-courtcharge,
+  .offense-courtoutcome {
     display: inline-block;
     width: 92%;
+  }
+
+  .offense-courttype .eapp-blocks-radio label {
+    width: 17rem;
   }
 }

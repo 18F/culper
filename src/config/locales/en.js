@@ -3069,14 +3069,22 @@ const en = {
         citedagency: 'Arresting/citing/summoning agency',
         citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
         agencyaddress: 'Provide the location of the law enforcement agency',
-        charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?'
+        charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?',
+        courtinfo: 'Court Information',
+        courtname: 'Provide the name of the court',
+        courtaddress: 'Provide the location of the court',
+        chargedetails: 'Charges detail',
+        courttype: 'Type of charge',
+        courtdate: 'Date',
+        sentenced: 'Were you sentenced as a result of this offense?'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
         intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
         summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
-        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)'
+        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -3087,7 +3095,14 @@ const en = {
         violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
         firearms: '**Involve firearms or explosives?**',
         substances: '**Involve alcohol or drugs?**',
-        address: 'This address is'
+        address: 'This address is',
+        explanation: 'Provide explanation',
+        courtname: 'Name of court',
+        felony: 'Felony',
+        misdemeanor: 'Misdemeanor',
+        other: 'Other',
+        courtcharge: 'Charge',
+        courtoutcome: 'Outcome'
       },
       help: {
         summons: {
