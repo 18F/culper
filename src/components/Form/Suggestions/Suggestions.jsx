@@ -9,7 +9,6 @@ export default class Suggestions extends React.Component {
       dismissSuggestions: props.dismissSuggestions
     }
 
-    this.useSuggestion = this.useSuggestion.bind(this)
     this.dismissSuggestions = this.dismissSuggestions.bind(this)
   }
 

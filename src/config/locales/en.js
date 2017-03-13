@@ -374,6 +374,9 @@ const en = {
       }
     },
     geocode: {
+      original: {
+        title: 'Original address'
+      },
       partial: {
         title: 'Alternate address found',
         label: 'Suggested Address',

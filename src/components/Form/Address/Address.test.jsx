@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Address, { handleGeocodeResponse } from './Address'
+import Address, { handleGeocodeResponse, throttle } from './Address'
 import { api } from '../../../services/api'
 import MockAdapter from 'axios-mock-adapter'
 
@@ -113,6 +113,20 @@ describe('The Address component', () => {
 
     const component = mount(<Address {...expected} />)
     expect(component.find('.suggestions .modal-content').length).toBe(0)
+  })
+
+  it('Renders modal with just geocode error', () => {
+    const expected = {
+      name: 'someaddress',
+      address: '123 Some Rd',
+      city: 'Arlington',
+      state: 'VA',
+      zipcode: '22202',
+      geocodeErrorCode: 'error.geocode.partial'
+    }
+
+    const component = mount(<Address {...expected} />)
+    expect(component.find('.suggestions .modal-content').length).toBe(1)
   })
 
   it('Renders modal with suggestion and selects it', () => {
@@ -281,5 +295,22 @@ describe('The Address component', () => {
     tests.forEach(test => {
       expect(handleGeocodeResponse(test.response)).toEqual(test.expected)
     })
+  })
+
+  it('can throttle', (cb) => {
+    let count = 0
+
+    let func = throttle(() => {
+      count++
+    }, 300, this)
+
+    const funcs = [func, func, func]
+    funcs.forEach(f => {
+      f()
+    })
+    setTimeout(() => {
+      expect(count).toBe(1)
+      cb()
+    }, 300)
   })
 })

@@ -269,7 +269,7 @@ export default class Address extends ValidationElement {
                  value="FPO"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'city')}
-                 onValidate={this.props.handleValidation}
+                 onValidate={this.handleValidation}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -425,10 +425,10 @@ export default class Address extends ValidationElement {
     const { address, city, state, zipcode } = this.state
     return (
       <div>
-        <h5>Original Address</h5>
+        <h5>{i18n.t('error.geocode.original.title')}</h5>
         <div className="address-suggestion">
           <div>{ address }</div>
-          <div>{ city }, { state} { zipcode }</div>
+          <div>{ city }, { state } { zipcode }</div>
         </div>
       </div>
     )
@@ -481,7 +481,7 @@ export const handleGeocodeResponse = (response) => {
  * that trigger our components to re-render, we set a throttle so that the geocoding validation logic
  * executes once.
  */
-const throttle = (callback, wait, context = this) => {
+export const throttle = (callback, wait, context = this) => {
   let timeout = null
   let callbackArgs = null
 
