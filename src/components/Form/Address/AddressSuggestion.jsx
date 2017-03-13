@@ -1,5 +1,8 @@
 import React from 'react'
 
+/**
+ * Helper component that renders address information found
+ */
 export function AddressSuggestion (props) {
   const suggestion = props.suggestion
   const current = props.current
@@ -15,6 +18,10 @@ export function AddressSuggestion (props) {
   )
 }
 
+/**
+ * Compares a current and new value and adds a class in order to allow
+ * values to be highlighted when there's a mismatch
+ */
 export function HighlightedField (props) {
   let updated = props.new || ''
   let current = props.current || ''
