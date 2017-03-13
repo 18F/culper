@@ -3076,7 +3076,8 @@ const en = {
         chargedetails: 'Charges detail',
         courttype: 'Type of charge',
         courtdate: 'Date',
-        sentenced: 'Were you sentenced as a result of this offense?'
+        sentenced: 'Were you sentenced as a result of this offense?',
+        needmore: 'Since you answered yes we need more information'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',

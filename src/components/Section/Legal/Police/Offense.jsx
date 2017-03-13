@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Address, DateControl, Textarea, Text, RadioGroup, Radio, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Address, DateControl, Textarea, Text, RadioGroup, Radio, Svg, Help, HelpIcon } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -219,6 +219,9 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCited === 'Yes'}>
           <div>
+            <h3 className="more title">{i18n.t('legal.police.heading.needmore')}</h3>
+            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+
             <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
             <h3>{i18n.t('legal.police.heading.citedby')}</h3>
             <div className="eapp-field-wrap no-label">
@@ -277,6 +280,9 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCharged === 'Yes'}>
           <div>
+            <h3 className="more title">{i18n.t('legal.police.heading.needmore')}</h3>
+            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+
             <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
             <h3>{i18n.t('legal.police.heading.courtname')}</h3>
             <div className="eapp-field-wrap">
