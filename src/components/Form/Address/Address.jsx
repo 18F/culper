@@ -476,6 +476,11 @@ export const handleGeocodeResponse = (response) => {
   }
 }
 
+/**
+ * Used to prevent duplicate geocoding requests to be made. Since we perform various checks on the client-side
+ * that trigger our components to re-render, we set a throttle so that the geocoding validation logic
+ * executes once.
+ */
 const throttle = (callback, wait, context = this) => {
   let timeout = null
   let callbackArgs = null
