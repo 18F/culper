@@ -35,7 +35,7 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
-    saved: 'Saved',
+    saved: 'Auto saved',
     now: 'now',
     second: 'second',
     seconds: 'seconds',
