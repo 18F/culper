@@ -374,23 +374,37 @@ const en = {
       }
     },
     geocode: {
+      partial: {
+        title: 'Alternate address found',
+        label: 'Suggested Address',
+        para: 'Consider the highlighted change below. Using the US Postal Service suggested address will help us process your case more quickly'
+      },
       city: {
-        invalid: {
-          title: 'City is invalid',
-          message: 'The city entered is not valid'
-        }
+        title: 'City could not be found',
+        para: 'The city entered could not be found. Please ensure you have correctly typed the city associated to this address'
       },
       notfound: {
         title: 'Address not found',
-        message: 'The address provided does not match'
+        para: 'The address provided could not be found. Please ensure you have correctly typed all address fields correctly'
       },
       generic: {
         title: 'Unable to validate address',
-        message: 'The address provided cannot be properly validated'
+        para: 'The address provided cannot be properly validated'
+      },
+      multiple: {
+        title: 'Multiple address found',
+        para: 'Multiple addresses were found for the information you entered, and no default exists.'
       },
       defaultAddress: {
-        title: 'More Information Required',
-        message: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
+        title: 'More information required',
+        para: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
+      }
+    },
+    Email: {
+      pattern: {
+        title: 'A valid email address is required',
+        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
+        note: 'Note: Underscores (_) and periods (.) are valid characters'
       }
     }
   },
@@ -560,9 +574,9 @@ const en = {
         }
       },
       label: {
-        state: 'State',
+        state: 'State or territory',
         city: 'City',
-        county: 'County or providence',
+        county: 'County or province',
         country: 'Country'
       },
       placeholder: {

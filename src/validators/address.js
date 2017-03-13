@@ -6,8 +6,6 @@ export default class AddressValidator {
       return
     }
     this.addressType = state.addressType
-    this.apoFpo = state.apoFpo
-    this.apoFpoType = state.apoFpoType
     this.address = state.address
     this.city = state.city
     this.state = state.state
@@ -31,7 +29,7 @@ export default class AddressValidator {
         break
 
       case 'APOFPO':
-        if (!this.address || !this.apoFpo || !this.apoFpoType || !this.zipcode) {
+        if (!this.address || !this.city || !this.state || !this.zipcode) {
           return false
         }
         break
@@ -52,20 +50,12 @@ export default class AddressValidator {
 
   prepareGeocode () {
     let data = {}
-    if (this.isDomestic()) {
+    if (this.isDomestic() || this.isApoFpo()) {
       console.info('Geocoding Domestic Address')
       data = {
         Address: this.address,
         City: this.city,
         State: this.state,
-        Zipcode: this.zipcode
-      }
-    } else if (this.isApoFpo()) {
-      console.info('Geocoding APO/FPO Address')
-      data = {
-        Address: this.address,
-        City: this.apoFpoType,
-        State: this.apoFpo,
         Zipcode: this.zipcode
       }
     } else {

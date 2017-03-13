@@ -168,31 +168,6 @@ export default class Help extends ValidationElement {
         }
       }
 
-      extendedProps.addError = (error) => {
-        let errors = [...this.state.errors]
-        if (errors.includes(error)) {
-          return
-        }
-        errors.push(error)
-        this.setState({
-          errors: errors
-        })
-      }
-
-      extendedProps.removeError = (error) => {
-        const errors = this.state.errors.filter(e => e !== error)
-        this.setState({
-          errors: errors
-        })
-      }
-
-      extendedProps.removeErrorFunc = (errorFunc) => {
-        let errors = errorFunc([...this.state.errors])
-        this.setState({
-          errors: errors
-        })
-      }
-
       return React.cloneElement(child, {
         ...child.props,
         ...extendedProps

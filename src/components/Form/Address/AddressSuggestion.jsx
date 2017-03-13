@@ -2,13 +2,14 @@ import React from 'react'
 
 export function AddressSuggestion (props) {
   const suggestion = props.suggestion
+  const current = props.current
   return (
     <div className="address-suggestion">
       <div>
-        <HighlightedField new={ suggestion.Address } old={props.current.address} />
+        <HighlightedField new={ suggestion.Address } current={current.address} />
       </div>
       <div>
-        <HighlightedField new={ suggestion.City } old={props.current.city} />, <HighlightedField new={ suggestion.State } old={props.current.state} /> <HighlightedField new={ suggestion.Zipcode } old={props.current.zipcode} />
+        <HighlightedField new={ suggestion.City } current={current.city} />, <HighlightedField new={ suggestion.State } current={current.state} /> <HighlightedField new={ suggestion.Zipcode } current={current.zipcode} />
       </div>
     </div>
   )
@@ -16,13 +17,11 @@ export function AddressSuggestion (props) {
 
 export function HighlightedField (props) {
   let updated = props.new || ''
-  let old = props.old || ''
-  if (updated.toUpperCase() !== old.toUpperCase()) {
+  let current = props.current || ''
+  if (updated.toUpperCase() !== current.toUpperCase()) {
     return (
       <span className="highlight">{ updated }</span>
     )
   }
-  return (<span>{ props.old }</span>)
+  return (<span>{ props.current }</span>)
 }
-
-

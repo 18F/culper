@@ -20,9 +20,11 @@ var (
 
 	// USPSErrorCodes contains USPS code mapping to eApp error codes
 	USPSErrorCodes = map[string]string{
-		"-2147219400":     "error.geocode.city.invalid",
+		"-2147219400":     "error.geocode.city",
 		"-2147219401":     "error.geocode.notfound",
+		"-2147219403":     "error.geocode.multiple",
 		"Default Address": "error.geocode.defaultAddress",
+		"Partial":         "error.geocode.partial",
 	}
 )
 
@@ -80,7 +82,8 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 	// Check if any of values requested to be validate do not match up to what was
 	// returned by the validation response. If there is a mismatch, mark as partial
 	if results.HasPartial() {
-		return results, fmt.Errorf("Geocode contains partial matches. Suggestions are available")
+		errCode := USPSErrorCodes["Partial"]
+		return results, fmt.Errorf(errCode)
 	}
 
 	return results, nil

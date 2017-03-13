@@ -44,7 +44,7 @@ export default class Suggestions extends React.Component {
             {this.props.renderSuggestion(suggestion)}
           </div>
           <div className="action">
-            <button onClick={this.useSuggestion.bind(this, suggestion)}>
+            <button className="suggestion-btn" onClick={this.useSuggestion.bind(this, suggestion)}>
               <span>{this.props.suggestionUseLabel}</span>
               <i className="fa fa-arrow-circle-right"></i>
             </button>
@@ -55,7 +55,7 @@ export default class Suggestions extends React.Component {
   }
 
   visible () {
-    return !this.props.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0
+    return this.props.show || (!this.props.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0)
   }
 
   render () {
@@ -103,6 +103,7 @@ Suggestions.defaultProps = {
   withSuggestions: false,
   suggestions: [],
   className: '',
+  show: false,
   renderSuggestion: () => {
     console.warn('Missing handler for renderSuggestion')
   },

@@ -266,6 +266,7 @@ export default class DateControl extends ValidationElement {
                       ref="month"
                       label="Month"
                       placeholder="00"
+                      receiveProps={this.props.receiveProps}
                       value={this.state.month}
                       disabled={this.state.disabled}
                       readonly={this.props.readonly}

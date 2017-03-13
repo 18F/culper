@@ -101,6 +101,7 @@ export default class Passport extends ValidationElement {
   }
 
   renderSuggestion (suggestion) {
+    suggestion = suggestion || {}
     const name = `${suggestion.first || ''} ${suggestion.middle || ''} ${suggestion.last || ''} ${suggestion.suffix || ''}`.trim()
     return (<span>{name}</span>)
   }
