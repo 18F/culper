@@ -20,8 +20,9 @@ var (
 
 	// USPSErrorCodes contains USPS code mapping to eApp error codes
 	USPSErrorCodes = map[string]string{
-		"-2147219400": "error.geocode.city.invalid",
-		"-2147219401": "error.geocode.notfound",
+		"-2147219400":     "error.geocode.city.invalid",
+		"-2147219401":     "error.geocode.notfound",
+		"Default Address": "error.geocode.defaultAddress",
 	}
 )
 
@@ -66,6 +67,11 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 		}
 		return results, fmt.Errorf("%v", "geocode.generic")
 
+	}
+
+	if strings.ContainsAny(foundAddress.ReturnText, "Default Address") {
+		errCode := USPSErrorCodes["Default Address"]
+		return results, fmt.Errorf("%v", errCode)
 	}
 
 	// Generate a normalized Result struct from the address found

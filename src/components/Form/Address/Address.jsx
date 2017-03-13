@@ -9,11 +9,9 @@ import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
 import Suggestions from '../Suggestions'
-import Show from '../Show'
-import { Help } from '../Help'
-import { api } from '../../../services/api'
 import { i18n } from '../../../config'
 import { AddressValidator } from '../../../validators'
+import { AddressSuggestion } from './AddressSuggestion'
 
 const throttle = (callback, wait, context = this) => {
   let timeout = null
@@ -75,7 +73,8 @@ export default class Address extends ValidationElement {
    */
   handleChange (field, event) {
     this.setState({
-      [field]: event.target.value
+      [field]: event.target.value,
+      validated: false
     }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
@@ -88,7 +87,8 @@ export default class Address extends ValidationElement {
           country: this.state.country,
           addressType: this.state.addressType,
           apoFpo: this.state.apoFpo,
-          apoFpoType: this.state.apoFpoType
+          apoFpoType: this.state.apoFpoType,
+          validated: this.state.validated
         })
       }
     })
@@ -130,6 +130,10 @@ export default class Address extends ValidationElement {
       const codes = super.mergeError(this.state.errorCodes || [], error)
       if (codes.length > 0) {
         return resolve({complexStatus: false, codes: codes, suggestions: []})
+      }
+
+      if (this.state.validated) {
+        return resolve({complexStatus: true, codes: [], suggestions: []})
       }
 
       // No error codes found. Now start to validate location information
@@ -260,7 +264,7 @@ export default class Address extends ValidationElement {
                  value="APO"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'apoFpoType')}
-                 onValidate={this.props.onValidate}
+                 onValidate={this.props.handleValidation}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -269,7 +273,7 @@ export default class Address extends ValidationElement {
                  value="FPO"
                  disabled={this.props.disabled}
                  onChange={this.handleChange.bind(this, 'apoFpoType')}
-                 onValidate={this.props.onValidate}
+                 onValidate={this.props.handleValidation}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -369,7 +373,12 @@ export default class Address extends ValidationElement {
 
   onSuggestionDismiss () {
     this.setState({
-      suggestions: []
+      suggestions: [],
+      validated: true,
+      address: this.state.address,
+      city: this.state.city,
+      state: this.state.state,
+      zipcode: this.state.zipcode
     })
   }
 
@@ -379,7 +388,8 @@ export default class Address extends ValidationElement {
       address: suggestion.Address,
       city: suggestion.City,
       state: suggestion.State,
-      zipcode: suggestion.Zipcode
+      zipcode: suggestion.Zipcode,
+      validated: true
     })
   }
 
@@ -401,29 +411,6 @@ export default class Address extends ValidationElement {
       <AddressSuggestion suggestion={suggestion} current={this.state} />
     )
   }
-}
-
-export function HighlightedField (props) {
-  if (props.new.toUpperCase() !== props.old.toUpperCase()) {
-    return (
-      <span className="highlight">{ props.new }</span>
-    )
-  }
-  return (<span>{ props.old }</span>)
-}
-
-export function AddressSuggestion (props) {
-  const suggestion = props.suggestion
-  return (
-    <div className="address-suggestion">
-      <div>
-        <HighlightedField new={ suggestion.Address } old={props.current.address} />
-      </div>
-      <div>
-        <HighlightedField new={ suggestion.City } old={props.current.city} />, <HighlightedField new={ suggestion.State } old={props.current.state} /> <HighlightedField new={ suggestion.Zipcode } old={props.current.zipcode} />
-      </div>
-    </div>
-  )
 }
 
 /**

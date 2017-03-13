@@ -42,15 +42,42 @@ export default class AddressValidator {
     return true
   }
 
-  geocode () {
-    return api
-      .validateAddress({
+  isDomestic () {
+    return this.addressType === 'United States'
+  }
+
+  isApoFpo () {
+    return this.addressType === 'APOFPO'
+  }
+
+  prepareGeocode () {
+    let data = {}
+    if (this.isDomestic()) {
+      console.info('Geocoding Domestic Address')
+      data = {
         Address: this.address,
         City: this.city,
         State: this.state,
-        Zipcode: this.zipcode,
-        Country: this.country
-      })
+        Zipcode: this.zipcode
+      }
+    } else if (this.isApoFpo()) {
+      console.info('Geocoding APO/FPO Address')
+      data = {
+        Address: this.address,
+        City: this.apoFpoType,
+        State: this.apoFpo,
+        Zipcode: this.zipcode
+      }
+    } else {
+      console.warn(`Attemping to geocode an unsupported address type [${this.addressType}]`)
+    }
+    return data
+  }
+
+  geocode () {
+    const toGeocode = this.prepareGeocode()
+    return api
+      .validateAddress(toGeocode)
       .then((response) => {
         return response.data
       })

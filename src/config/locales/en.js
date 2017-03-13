@@ -387,6 +387,10 @@ const en = {
       generic: {
         title: 'Unable to validate address',
         message: 'The address provided cannot be properly validated'
+      },
+      defaultAddress: {
+        title: 'More Information Required',
+        message: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
       }
     }
   },
