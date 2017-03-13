@@ -98,6 +98,10 @@
   .collection-append {
     margin-top: 4.9rem;
     margin-bottom: 4.9rem;
+
+    ul {
+      margin-left: 4.6rem;
+    }
   }
 
   button.add {
@@ -106,6 +110,7 @@
     padding: 2rem;
     display: table;
     margin-top: 4.9rem;
+    margin-left: 4rem;
 
     span {
       display: table-cell;

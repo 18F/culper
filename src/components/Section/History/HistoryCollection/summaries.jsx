@@ -150,6 +150,10 @@ export const dateSummary = (item) => {
 
   let vals = []
   if (!item.Dates) {
+    if (item.Date && item.Date.date) {
+      return format(item.Date.date)
+    }
+
     return ''
   }
 
