@@ -3106,73 +3106,113 @@ const en = {
       },
       help: {
         summons: {
-          title: '',
-          message: '',
+          title: 'Need help with a summons, citation, or ticket?',
+          message: 'If you were issued a summons, citation, or ticket answer "Yes" and provide the required information',
           note: ''
         },
         arrests: {
-          title: '',
-          message: '',
+          title: 'Need help with an arrest?',
+          message: 'If you were arrested answer "Yes" and provide the required information',
           note: ''
         },
         charges: {
-          title: '',
-          message: '',
+          title: 'Need help with a criminal charge?',
+          message: 'If you were charged answer "Yes" and provide the required information',
           note: ''
         },
         probation: {
-          title: '',
-          message: '',
+          title: 'Need help with a current probation or parole?',
+          message: 'If you are currently on probation or parole answer "Yes" and provide the required information',
           note: ''
         },
         trial: {
-          title: '',
-          message: '',
+          title: 'Need help if on or awaiting trial?',
+          message: 'If you currently awaiting or on trial please answer "Yes" and provide the required information',
           note: ''
         },
         date: {
-          title: '',
-          message: '',
+          title: 'Need help withe the date of offense?',
+          message: 'Provide the closest date of the offense',
           note: ''
         },
         description: {
-          title: '',
-          message: '',
+          title: 'Need help with the description of the offense?',
+          message: 'Provide an account of the nature of the offense',
           note: ''
         },
         violence: {
-          title: '',
-          message: '',
+          title: 'Need help if this offense involved violence?',
+          message: 'Indicate if the offense involved domestic or criminal violence',
           note: ''
         },
         firearms: {
-          title: '',
-          message: '',
+          title: 'Need help if this offense involved firearms or explosives?',
+          message: 'Indicate if the offense involved firearms or explosives',
           note: ''
         },
         substances: {
-          title: '',
-          message: '',
+          title: 'Need help if this offense involved alcohol or drugs?',
+          message: 'Indicate if the offense involved alcohol or drugs',
           note: ''
         },
         address: {
-          title: '',
-          message: '',
+          title: 'Need help with the location of the offense?',
+          message: 'Provide the address where the offense took place',
           note: ''
         },
         cited: {
-          title: '',
-          message: '',
+          title: 'Need help if you were arrested, summoned, or cited for this offense?',
+          message: 'If you were arrested, summoned, or cited please answer "Yes" and provide the required information',
           note: ''
         },
         citedby: {
-          title: '',
-          message: '',
+          title: 'Need help with the law enforcement agency name?',
+          message: 'Provide the name of the law enforcement agency who handled this offense',
           note: ''
         },
         agencyaddress: {
-          title: '',
-          message: '',
+          title: 'Need help with the law enforcement agency address?',
+          message: 'Provide the address of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        charged: {
+          title: 'Need help if you were charged, convicted, or awaiting trial?',
+          message: 'If you were charged, convicted, currently awaiting trial, or due to appear in court answer "Yes" and provide the required information',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the name of the court?',
+          message: 'Provide the name of the court',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        courttype: {
+          title: 'Need help with the type of charge?',
+          message: 'Provide the type of charge issued by the court',
+          note: ''
+        },
+        courtcharge: {
+          title: 'Need help with the court charge(s)?',
+          message: 'Provide the charge(s)',
+          note: ''
+        },
+        courtoutcome: {
+          title: 'Need help with the court outcome?',
+          message: 'Provide the outcome of the court proceedings',
+          note: ''
+        },
+        courtdate: {
+          title: 'Need help with the court date?',
+          message: 'Provide the court date',
+          note: ''
+        },
+        sentenced: {
+          title: 'Need help if you were sentenced for this offense?',
+          message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
           note: ''
         }
       },
@@ -3183,7 +3223,7 @@ const en = {
           unknown: 'Click to provide details'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
-        appendMessage: '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)<br> - **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?<br> - **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)<br> - **In the last seven (7) years** have you been or are you currently on probation or parole?<br> - Are you currently on trial or awaiting a trial on criminal charges?<p>If yes use the button below to add add another offense.</p>',
+        appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
         append: 'Add another offense'
       }
     }
