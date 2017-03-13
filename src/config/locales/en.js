@@ -820,6 +820,7 @@ const en = {
         comments: 'Add optional comments'
       },
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
+      notApplicable: 'Not applicable',
       help: {
         title: 'Need help with bankruptcy?',
         message: 'Note: If you need to provide any additional comments about this information, enter them below.',

@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n, markdown, markdownById } from '../../../config'
-import ReactMarkdown from 'react-markdown'
 import ValidationElement from '../ValidationElement'
 
 export default class Help extends ValidationElement {
