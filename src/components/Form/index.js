@@ -18,6 +18,7 @@ import Radio from './Radio'
 import DateControl from './DateControl'
 import Svg from './Svg'
 import Suggestions from './Suggestions'
+import NotApplicable from './NotApplicable'
 
 // Composite components
 import Type from './Type'
@@ -87,5 +88,6 @@ export {
   Show,
   Svg,
   BranchCollection,
-  Suggestions
+  Suggestions,
+  NotApplicable
 }
