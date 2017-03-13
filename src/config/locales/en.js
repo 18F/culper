@@ -372,6 +372,13 @@ const en = {
         message: 'The international number must be 10 digits between 0 and 9',
         note: ''
       }
+    },
+    Email: {
+      pattern: {
+        title: 'A valid email address is required',
+        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
+        note: 'Note: Underscores (_) and periods (.) are valid characters'
+      }
     }
   },
   section: {
@@ -415,14 +422,10 @@ const en = {
   },
   identification: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       review: 'Review Identification',
@@ -544,9 +547,9 @@ const en = {
         }
       },
       label: {
-        state: 'State',
+        state: 'State or territory',
         city: 'City',
-        county: 'County or providence',
+        county: 'County or province',
         country: 'Country'
       },
       placeholder: {
@@ -719,14 +722,10 @@ const en = {
   },
   financial: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me on the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       gambling: 'Gambling debts',
@@ -1012,16 +1011,26 @@ const en = {
     }
   },
 
-  military: {
+  intro: {
     tour: {
       title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
       button: 'Take me on the tour!'
     },
     review: {
       title: 'Full section view',
-      para: 'View all the sections associated with military history at once',
       button: 'Show me the full section'
+    },
+    errors: 'Looks like we have a few issues, here is how to fix them.',
+    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    complete: 'Everything looks good here but you can still review your answers.'
+  },
+
+  military: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with military history at once'
     },
     destination: {
       selective: 'Selective service record',
@@ -1344,9 +1353,10 @@ const en = {
 
   history: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with your history at once'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -1382,7 +1392,6 @@ const en = {
       education: 'Schools & diplomas',
       federal: 'Former federal service'
     },
-
     residence: {
       title: 'Places you have lived',
       info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
@@ -1450,7 +1459,6 @@ const en = {
         }
       }
     },
-
     employment: {
       summary: {
         title: 'Where you have worked',
@@ -1465,7 +1473,6 @@ const en = {
         employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
         employment2: 'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
-
       default: {
         noDate: {
           label: 'NA'
@@ -1735,7 +1742,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       activemilitary: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -1869,7 +1875,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       nationalguard: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -2003,7 +2008,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       usphs: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -2137,7 +2141,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       otherfederal: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2245,7 +2248,6 @@ const en = {
           }
         }
       },
-
       stategovernment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2353,7 +2355,6 @@ const en = {
           }
         }
       },
-
       federalcontractor: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2461,7 +2462,6 @@ const en = {
           }
         }
       },
-
       nongovernment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2569,7 +2569,6 @@ const en = {
           }
         }
       },
-
       selfemployment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2677,13 +2676,11 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       unemployment: {
         heading: {
           reference: 'Provide the name of someone who can verify your unemployment activities and means of support'
         }
       },
-
       other: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2977,16 +2974,13 @@ const en = {
       }
     }
   },
+
   foreign: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with foreign activities at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
       review: 'Review Foreign Actitivies',
@@ -3051,6 +3045,191 @@ const en = {
       }
     }
   },
+
+  legal: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with investigative & criminal history at once'
+    },
+    destination: {
+      police: 'Police record',
+      review: 'Review investigative & criminal history'
+    },
+    police: {
+      heading: {
+        title: 'Police record',
+        questions: 'Have any of the following happened?',
+        date: 'Provide the date of the offense',
+        description: 'Provide a description of the specific nature of the offense',
+        involvement: 'Did this offense involve any of the following?',
+        address: 'Provide the location where the offense occurred',
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?',
+        citedagency: 'Arresting/citing/summoning agency',
+        citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
+        agencyaddress: 'Provide the location of the law enforcement agency',
+        charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?',
+        courtinfo: 'Court Information',
+        courtname: 'Provide the name of the court',
+        courtaddress: 'Provide the location of the court',
+        chargedetails: 'Charges detail',
+        courttype: 'Type of charge',
+        courtdate: 'Date',
+        sentenced: 'Were you sentenced as a result of this offense?',
+        needmore: 'Since you answered yes we need more information'
+      },
+      para: {
+        intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+        intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
+        intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
+        summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
+        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.'
+      },
+      label: {
+        summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
+        arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+        charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court?',
+        probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
+        trial: 'Are you currently on trial or awaiting a trial on criminal charges?',
+        violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+        firearms: '**Involve firearms or explosives?**',
+        substances: '**Involve alcohol or drugs?**',
+        address: 'This address is',
+        explanation: 'Provide explanation',
+        courtname: 'Name of court',
+        felony: 'Felony',
+        misdemeanor: 'Misdemeanor',
+        other: 'Other',
+        courtcharge: 'Charge',
+        courtoutcome: 'Outcome'
+      },
+      help: {
+        summons: {
+          title: 'Need help with a summons, citation, or ticket?',
+          message: 'If you were issued a summons, citation, or ticket answer "Yes" and provide the required information',
+          note: ''
+        },
+        arrests: {
+          title: 'Need help with an arrest?',
+          message: 'If you were arrested answer "Yes" and provide the required information',
+          note: ''
+        },
+        charges: {
+          title: 'Need help with a criminal charge?',
+          message: 'If you were charged answer "Yes" and provide the required information',
+          note: ''
+        },
+        probation: {
+          title: 'Need help with a current probation or parole?',
+          message: 'If you are currently on probation or parole answer "Yes" and provide the required information',
+          note: ''
+        },
+        trial: {
+          title: 'Need help if on or awaiting trial?',
+          message: 'If you currently awaiting or on trial please answer "Yes" and provide the required information',
+          note: ''
+        },
+        date: {
+          title: 'Need help withe the date of offense?',
+          message: 'Provide the closest date of the offense',
+          note: ''
+        },
+        description: {
+          title: 'Need help with the description of the offense?',
+          message: 'Provide an account of the nature of the offense',
+          note: ''
+        },
+        violence: {
+          title: 'Need help if this offense involved violence?',
+          message: 'Indicate if the offense involved domestic or criminal violence',
+          note: ''
+        },
+        firearms: {
+          title: 'Need help if this offense involved firearms or explosives?',
+          message: 'Indicate if the offense involved firearms or explosives',
+          note: ''
+        },
+        substances: {
+          title: 'Need help if this offense involved alcohol or drugs?',
+          message: 'Indicate if the offense involved alcohol or drugs',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the location of the offense?',
+          message: 'Provide the address where the offense took place',
+          note: ''
+        },
+        cited: {
+          title: 'Need help if you were arrested, summoned, or cited for this offense?',
+          message: 'If you were arrested, summoned, or cited please answer "Yes" and provide the required information',
+          note: ''
+        },
+        citedby: {
+          title: 'Need help with the law enforcement agency name?',
+          message: 'Provide the name of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        agencyaddress: {
+          title: 'Need help with the law enforcement agency address?',
+          message: 'Provide the address of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        charged: {
+          title: 'Need help if you were charged, convicted, or awaiting trial?',
+          message: 'If you were charged, convicted, currently awaiting trial, or due to appear in court answer "Yes" and provide the required information',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the name of the court?',
+          message: 'Provide the name of the court',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        courttype: {
+          title: 'Need help with the type of charge?',
+          message: 'Provide the type of charge issued by the court',
+          note: ''
+        },
+        courtcharge: {
+          title: 'Need help with the court charge(s)?',
+          message: 'Provide the charge(s)',
+          note: ''
+        },
+        courtoutcome: {
+          title: 'Need help with the court outcome?',
+          message: 'Provide the outcome of the court proceedings',
+          note: ''
+        },
+        courtdate: {
+          title: 'Need help with the court date?',
+          message: 'Provide the court date',
+          note: ''
+        },
+        sentenced: {
+          title: 'Need help if you were sentenced for this offense?',
+          message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of offenses',
+          item: 'Offense',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
+        appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
+        append: 'Add another offense'
+      }
+    }
+  },
+
   alias: {
     maiden: {
       help: {

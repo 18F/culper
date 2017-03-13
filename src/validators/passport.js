@@ -21,18 +21,26 @@ export default class PassportValidator {
       return false
     }
 
-    if (this.hasPassport === 'No') {
-      return true
+    if (!(this.hasPassport === 'No' || this.hasPassport === 'Yes')) {
+      return false
     }
 
     return true
   }
 
   validName () {
+    if (this.hasPassport === 'No') {
+      return true
+    }
+
     return new NameValidator(this.name, null).isValid()
   }
 
   validPassportNumber () {
+    if (this.hasPassport === 'No') {
+      return true
+    }
+
     if (!this.number || !this.number.value) {
       return false
     }
@@ -46,6 +54,10 @@ export default class PassportValidator {
   }
 
   validDates () {
+    if (this.hasPassport === 'No') {
+      return true
+    }
+
     if (!this.isValidEstimatedDate(this.issued)) {
       return false
     }

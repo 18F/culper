@@ -133,17 +133,13 @@ class Military extends ValidationElement {
     return (
       <div className="military intro review-screen">
         <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('military.tour.title')}</h3>
-          <p>{i18n.t('military.tour.para')}</p>
-          <button onClick={this.handleTour}>{i18n.t('military.tour.button')}</button>
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('military.review.title')}</h3>
-          <p>{i18n.t('military.review.para')}</p>
-          <button onClick={this.handleReview}>{i18n.t('military.review.button')}</button>
+          <IntroHeader Errors={this.props.Errors}
+                       Completed={this.props.Completed}
+                       tour={i18n.t('military.tour.para')}
+                       review={i18n.t('military.review.para')}
+                       onTour={this.handleTour}
+                       onReview={this.handleReview}
+                       />
         </div>
       </div>
     )
@@ -160,10 +156,10 @@ class Military extends ValidationElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="history1"
-                       nextLabel={i18n.t('history.destination.timeline')}>
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="history"
+                       nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}

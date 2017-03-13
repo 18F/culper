@@ -51,9 +51,9 @@ export default class Email extends ValidationElement {
   /**
    * Handle the validation event.
    */
-  handleValidation (event, status) {
+  handleValidation (event, status, errors) {
     this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+      super.handleValidation(event, status, errors)
     })
   }
 
