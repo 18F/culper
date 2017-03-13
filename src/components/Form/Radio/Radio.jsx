@@ -190,3 +190,14 @@ export default class Radio extends ValidationElement {
     )
   }
 }
+
+Radio.defaultProps = {
+  name: 'radio_input',
+  checked: false,
+  disabled: false,
+  valued: '',
+  focus: false,
+  error: false,
+  valid: false,
+  native: false
+}

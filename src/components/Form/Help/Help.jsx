@@ -106,7 +106,7 @@ export default class Help extends ValidationElement {
       })
 
       el.push(
-        <div className="message eapp-error-message">
+        <div className="message eapp-error-message" key={super.guid()}>
           <i className="fa fa-exclamation"></i>
           {markup}
         </div>
@@ -123,7 +123,7 @@ export default class Help extends ValidationElement {
       }
 
       el.push(
-        <div className="message eapp-help-message">
+        <div className="message eapp-help-message" key={super.guid()}>
           <i className="fa fa-question"></i>
           <h5>{i18n.t(`${this.props.id}.title`)}</h5>
           {markdownById(`${this.props.id}.message`)}
@@ -144,27 +144,31 @@ export default class Help extends ValidationElement {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {}
 
-      if (child.type) {
-        let what = Object.prototype.toString.call(child.type)
-        if (what === '[object Function]' && child.type.name === 'HelpIcon') {
-          extendedProps.onClick = this.handleClick
-          extendedProps.active = this.state.active
+      if (React.isValidElement(child)) {
+        if (child.type) {
+          const what = Object.prototype.toString.call(child.type)
+          if (what === '[object Function]' && child.type.name === 'HelpIcon') {
+            extendedProps.onClick = this.handleClick
+            extendedProps.active = this.state.active
+          }
         }
-      }
 
-      if (this.props.index) {
-        extendedProps.index = this.props.index
-      }
+        if (this.props.index) {
+          extendedProps.index = this.props.index
+        }
 
-      if (this.props.onUpdate) {
-        extendedProps.onUpdate = this.props.onUpdate
-      }
+        if (child.props.onUpdate && this.props.onUpdate) {
+          extendedProps.onUpdate = this.props.onUpdate
+        }
 
-      // Inject ourselves in to the validation callback
-      extendedProps.onValidate = (event, status, errors) => {
-        this.handleValidation(event, status, errors)
+        // Inject ourselves in to the validation callback
         if (child.props.onValidate) {
-          child.props.onValidate(event, status, errors)
+          extendedProps.onValidate = (event, status, errors) => {
+            this.handleValidation(event, status, errors)
+            if (child.props.onValidate) {
+              child.props.onValidate(event, status, errors)
+            }
+          }
         }
       }
 

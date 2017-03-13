@@ -1,5 +1,6 @@
 import React from 'react'
 import { Help } from '../Help'
+import { newGuid } from '../ValidationElement'
 
 export default class Suggestions extends React.Component {
   constructor (props) {
@@ -38,7 +39,7 @@ export default class Suggestions extends React.Component {
   suggestions () {
     return this.props.suggestions.map(suggestion => {
       return (
-        <div className="suggestion">
+        <div className="suggestion" key={newGuid()}>
           <div className="value">
             <h5>{this.props.suggestionLabel}</h5>
             {this.props.renderSuggestion(suggestion)}

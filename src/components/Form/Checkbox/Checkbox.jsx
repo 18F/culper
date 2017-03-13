@@ -154,3 +154,11 @@ export default class Checkbox extends ValidationElement {
     )
   }
 }
+
+Checkbox.defaultProps = {
+  name: 'checkbox_input',
+  checked: false,
+  focus: false,
+  error: false,
+  valid: false
+}

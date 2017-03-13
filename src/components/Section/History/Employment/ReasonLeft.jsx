@@ -48,7 +48,7 @@ export default class ReasonLeft extends ValidationElement {
     const branch = (
       <div>
         <h3>{i18n.t('history.employment.default.left.para')}</h3>
-        <p>{i18n.m('history.employment.default.left.list')}</p>
+        {i18n.m('history.employment.default.left.list')}
       </div>
     )
     return (
@@ -86,4 +86,3 @@ export default class ReasonLeft extends ValidationElement {
     )
   }
 }
-
