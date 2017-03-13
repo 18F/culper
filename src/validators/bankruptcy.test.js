@@ -46,45 +46,46 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           HasBankruptcy: 'Yes',
-          List: [{
-            PetitionType: {
-              value: 'hello'
-            },
-            CourtAddress: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202'
-            },
-            CourtInvolved: {
-              value: 'Some Court'
-            },
-            CourtNumber: {
-              value: 'C1234'
-            },
-            DateFiled: {
-              month: 1,
-              year: 2010
-            },
-            DateDischarged: {
-              month: 1,
-              year: 2012
-            },
-            NameDebt: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              lastInitialOnly: false,
-              suffix: 'Jr'
-            },
-            TotalAmount: {
-              value: 200
+          List: [
+            {
+              PetitionType: {
+                value: 'hello'
+              },
+              CourtAddress: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
+              CourtInvolved: {
+                value: 'Some Court'
+              },
+              CourtNumber: {
+                value: 'C1234'
+              },
+              DateFiled: {
+                month: 1,
+                year: 2010
+              },
+              DateDischarged: {
+                month: 1,
+                year: 2012
+              },
+              NameDebt: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                lastInitialOnly: false,
+                suffix: 'Jr'
+              },
+              TotalAmount: {
+                value: 200
+              }
             }
-          }
           ]
         },
         expected: true
@@ -92,11 +93,59 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           HasBankruptcy: 'Yes',
-          List: [{
-            PetitionType: {
-              value: 'hello'
+          List: [
+            {
+              PetitionType: {
+                value: 'hello'
+              },
+              CourtAddress: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
+              CourtInvolved: {
+                value: 'Some Court'
+              },
+              CourtNumber: {
+                value: 'C1234'
+              },
+              DateFiled: {
+                month: 1,
+                year: 2010
+              },
+              DateDischargedNotApplicable: {
+                applicable: false
+              },
+              NameDebt: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                lastInitialOnly: false,
+                suffix: 'Jr'
+              },
+              TotalAmount: {
+                value: 200
+              }
             }
-          }]
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasBankruptcy: 'Yes',
+          List: [
+            {
+              PetitionType: {
+                value: 'hello'
+              }
+            }
+          ]
         },
         expected: false
       }

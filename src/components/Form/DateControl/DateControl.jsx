@@ -342,6 +342,7 @@ export default class DateControl extends ValidationElement {
                     className={this.props.className}
                     value={this.state.estimated}
                     checked={this.state.estimated}
+                    disabled={this.state.disabled}
                     onChange={this.handleChange}
                     />
         </div>

@@ -67,6 +67,7 @@ export class BankruptcyItemValidator {
     this.totalAmount = state.TotalAmount
     this.dateFiled = state.DateFiled
     this.dateDischarged = state.DateDischarged
+    this.dateDischargedNotApplicable = state.DateDischargedNotApplicable
   }
 
   validPetitionType () {
@@ -97,6 +98,10 @@ export class BankruptcyItemValidator {
   }
 
   validDateDischarged () {
+    if (this.dateDischargedNotApplicable && !this.dateDischargedNotApplicable.applicable) {
+      return true
+    }
+
     return validGenericMonthYear(this.dateDischarged)
   }
 
