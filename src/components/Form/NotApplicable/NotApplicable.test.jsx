@@ -14,12 +14,15 @@ describe('The not applicable component', () => {
   })
 
   it('displays checkbox button for not applicable along with children', () => {
+    let updates = 0
     const expected = {
       name: 'notApplicable',
-      applicable: false
+      onUpdate: () => { updates++ }
     }
 
     const component = mount(<NotApplicable {...expected}><input type="text" name="inside" /></NotApplicable>)
+    component.find({type: 'checkbox'}).simulate('change')
     expect(component.find({type: 'text'}).nodes[0].disabled).toBe(true)
+    expect(updates).toEqual(1)
   })
 })
