@@ -54,7 +54,7 @@ export function twofactor (account, token) {
       .then(response => {
         api.setToken(getState().authentication.token)
         dispatch(handleTwoFactorSuccess())
-        dispatch(push('/form'))
+        dispatch(push('/form/identification/name'))
       })
       .catch(error => {
         api.setToken('')

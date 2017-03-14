@@ -36,9 +36,9 @@ export default class Height extends ValidationElement {
    */
   handleValidation (event, status, errors) {
     this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      let e = { [this.props.name]: errors }
-      let s = { [this.props.name]: { status: status } }
-      super.handleValidation(event, s, e)
+      const errorObject = { [this.props.name]: errors }
+      const statusObject = { [this.props.name]: { status: status } }
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 

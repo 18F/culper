@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { BankruptcyValidator } from '../../../../validators'
-import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Textarea, Help, HelpIcon,
-         Text, Name, Address, PetitionType, Checkbox } from '../../../Form'
+import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Help, HelpIcon,
+         Text, Name, Address, PetitionType, Checkbox, NotApplicable } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -174,12 +174,16 @@ export default class Bankruptcy extends ValidationElement {
         </div>
 
         <h3>{i18n.t('financial.bankruptcy.heading.dateDischarged')}</h3>
-        <div className="eapp-field-wrap">
+        <div className="eapp-field-wrap no-label">
           <Help id="financial.bankruptcy.dateDischarged.help">
-            <DateControl name="DateDischarged"
-                         className="datedischarged"
-                         onValidate={this.handleValidation}
-                         hideDay={true} />
+            <NotApplicable name="DischargeDateNotApplicable"
+                           onValidate={this.handleValidation}>
+              <DateControl name="DateDischarged"
+                           className="datedischarged"
+                           receiveProps="true"
+                           onValidate={this.handleValidation}
+                           hideDay={true} />
+            </NotApplicable>
             <HelpIcon className="datedischarged" />
           </Help>
         </div>

@@ -32,9 +32,11 @@ export default class ApoFpo extends ValidationElement {
   }
 
   render () {
+    const klass = `apofpo ${this.props.className || ''}`.trim()
     return (
       <Text name={this.props.name}
             label={this.props.label}
+            className={klass}
             placeholder={this.props.placeholder}
             minlength="2"
             maxlength="2"

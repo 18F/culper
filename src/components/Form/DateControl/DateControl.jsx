@@ -83,14 +83,16 @@ export default class DateControl extends ValidationElement {
     let day = this.state.day
     let year = this.state.year
     let estimated = this.state.estimated
+    const target = event.target || {}
+    const name = target.name || target.id || ''
 
-    if (event.target.name.indexOf('month') !== -1) {
+    if (name.indexOf('month') !== -1) {
       month = event.target.value
-    } else if (event.target.name.indexOf('day') !== -1) {
+    } else if (name.indexOf('day') !== -1) {
       day = event.target.value
-    } else if (event.target.name.indexOf('year') !== -1) {
+    } else if (name.indexOf('year') !== -1) {
       year = event.target.value
-    } else if (event.target.name.indexOf('estimated') !== -1) {
+    } else if (name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
 
@@ -112,13 +114,6 @@ export default class DateControl extends ValidationElement {
       () => {
         event.target.date = d
         super.handleChange(event)
-
-        // // Always make sure the day is re-validated
-        // if (['month', 'year', 'estimated'].includes(event.target.name)) {
-        //   this.refs.day.refs.input.focus()
-        //   this.refs.day.refs.input.blur()
-        //   event.target.focus()
-        // }
 
         if (this.props.onUpdate) {
           this.props.onUpdate({
@@ -261,7 +256,6 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    console.log('month:', this.state.month)
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
     return (
@@ -272,6 +266,7 @@ export default class DateControl extends ValidationElement {
                       ref="month"
                       label="Month"
                       placeholder="00"
+                      receiveProps={this.props.receiveProps}
                       value={this.state.month}
                       disabled={this.state.disabled}
                       readonly={this.props.readonly}
@@ -347,6 +342,7 @@ export default class DateControl extends ValidationElement {
                     className={this.props.className}
                     value={this.state.estimated}
                     checked={this.state.estimated}
+                    disabled={this.state.disabled}
                     onChange={this.handleChange}
                     />
         </div>

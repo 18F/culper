@@ -1,11 +1,11 @@
+import { api } from '../services/api'
+
 export default class AddressValidator {
   constructor (state, props) {
     if (!state) {
       return
     }
     this.addressType = state.addressType
-    this.apoFpo = state.apoFpo
-    this.apoFpoType = state.apoFpoType
     this.address = state.address
     this.city = state.city
     this.state = state.state
@@ -29,7 +29,7 @@ export default class AddressValidator {
         break
 
       case 'APOFPO':
-        if (!this.address || !this.apoFpo || !this.apoFpoType || !this.zipcode) {
+        if (!this.address || !this.city || !this.state || !this.zipcode) {
           return false
         }
         break
@@ -38,5 +38,35 @@ export default class AddressValidator {
         return false
     }
     return true
+  }
+
+  isDomestic () {
+    return this.addressType === 'United States'
+  }
+
+  isApoFpo () {
+    return this.addressType === 'APOFPO'
+  }
+
+  prepareGeocode () {
+    let data = {}
+    if (this.isDomestic() || this.isApoFpo()) {
+      data = {
+        Address: this.address,
+        City: this.city,
+        State: this.state,
+        Zipcode: this.zipcode
+      }
+    }
+    return data
+  }
+
+  geocode () {
+    const toGeocode = this.prepareGeocode()
+    return api
+      .validateAddress(toGeocode)
+      .then((response) => {
+        return response.data
+      })
   }
 }

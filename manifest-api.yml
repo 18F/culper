@@ -11,4 +11,4 @@ applications:
   services:
     - eqip-postgres
   env:
-    GOVERSION: go1.7.4
+    GOVERSION: go1.7.5

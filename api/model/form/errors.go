@@ -1,6 +1,10 @@
 package form
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/18F/e-QIP-prototype/api/geo"
+)
 
 // Validator is an interface to be used by components that require validation.
 type Validator interface {
@@ -110,7 +114,7 @@ func (e ErrFieldRequired) Result(fieldname string) interface{} {
 // ErrInvalidLocation represents an error for location information with additional options
 type ErrInvalidLocation struct {
 	Message     string
-	Suggestions []string
+	Suggestions []geo.Result
 }
 
 func (e ErrInvalidLocation) Error() string {
@@ -122,7 +126,7 @@ func (e ErrInvalidLocation) Result(fieldname string) interface{} {
 	return struct {
 		Fieldname   string
 		Error       string
-		Suggestions []string
+		Suggestions []geo.Result
 	}{
 		fieldname,
 		e.Error(),

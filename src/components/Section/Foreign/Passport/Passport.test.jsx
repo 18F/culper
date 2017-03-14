@@ -19,7 +19,7 @@ describe('The passport component', () => {
     const expected = {
       name: 'passport'
     }
-    const component = mount(<Passport name={expected.name} />)
+    const component = mount(<Passport {...expected} />)
     component.find({type: 'radio', name: 'has_passport', value: 'Yes'}).simulate('change')
     expect(component.find('input[name="has_passport"]').length).toEqual(2)
     expect(component.find('input#number').length).toEqual(1)
@@ -39,20 +39,45 @@ describe('The passport component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
+  it('displays suggested names if found', () => {
+    let first = ''
+    const expected = {
+      name: 'passport',
+      onUpdate: (values) => {
+        first = values.Name.first
+      },
+      suggestedNames: [
+        {
+          first: 'john',
+          last: 'smith'
+        },
+        {
+          first: 'jonathan',
+          last: 'smith'
+        }
+      ]
+    }
+    const component = mount(<Passport {...expected} />)
+    component.find({type: 'radio', name: 'has_passport', value: 'Yes'}).simulate('change')
+    expect(component.find('.modal').length).toEqual(1)
+    component.find('.suggestion .action button').first().simulate('click')
+    expect(first).toEqual(expected.suggestedNames[0].first)
+  })
+
   it('loads data and adds comment', () => {
     const data = {
       Card: 'Book',
       Comments: 'Comment',
       Issued: {
         day: '1',
-        estimated: null,
+        estimated: false,
         month: '1',
         name: 'issued',
         year: '2003'
       },
       Expiration: {
         day: '1',
-        estimated: null,
+        estimated: false,
         month: '1',
         name: 'expiration',
         year: '2004'
@@ -70,12 +95,7 @@ describe('The passport component', () => {
         value: 'C1234567'
       }
     }
-    const component = mount(
-      <Passport
-        {...data}
-        name={'passport'}
-      />
-    )
+    const component = mount(<Passport {...data} name={'passport'} />)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
     component.find({type: 'radio', name: 'passport-card', value: 'Card'}).simulate('change')
     expect(component.find({type: 'radio', name: 'passport-card', value: 'Card'}).hasClass('selected')).toBe(true)

@@ -30,7 +30,7 @@ describe('Contact Information validation', function () {
             }
           ]
         },
-        expected: false
+        expected: true
       },
       {
         state: {
@@ -61,12 +61,20 @@ describe('Contact Information validation', function () {
           PhoneNumbers: [
             {
               Telephone: {
-                value: '1112234555'
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
               }
             },
             {
               Telephone: {
-                value: '1112234555'
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
               }
             }
           ]
@@ -78,19 +86,27 @@ describe('Contact Information validation', function () {
           PhoneNumbers: [
             {
               Telephone: {
-                value: '1112234555'
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
               }
             }
           ]
         },
-        expected: false
+        expected: true
       },
       {
         state: {
           PhoneNumbers: [
             {
               Telephone: {
-                value: '5551234567'
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
               }
             },
             {
@@ -114,11 +130,6 @@ describe('Contact Information validation', function () {
           Emails: [
             {
               Email: {
-                value: 'foobar@local.dev'
-              }
-            },
-            {
-              Email: {
                 value: 'foobar2@local.dev'
               }
             }
@@ -126,12 +137,20 @@ describe('Contact Information validation', function () {
           PhoneNumbers: [
             {
               Telephone: {
-                value: '1112234555'
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
               }
             },
             {
               Telephone: {
-                value: '1112234555'
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
               }
             }
           ]

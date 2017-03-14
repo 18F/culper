@@ -95,14 +95,22 @@
     }
   }
 
+  .collection-append {
+    margin-top: 4.9rem;
+    margin-bottom: 4.9rem;
+
+    ul {
+      margin-left: 4.6rem;
+    }
+  }
+
   button.add {
     line-height: normal !important;
     max-width: 50%;
     padding: 2rem;
     display: table;
     margin-top: 4.9rem;
-    margin-right: auto;
-    margin-left: auto;
+    margin-left: 4rem;
 
     span {
       display: table-cell;

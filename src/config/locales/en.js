@@ -35,7 +35,7 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
-    saved: 'Saved',
+    saved: 'Auto saved',
     now: 'now',
     second: 'second',
     seconds: 'seconds',
@@ -372,6 +372,43 @@ const en = {
         message: 'The international number must be 10 digits between 0 and 9',
         note: ''
       }
+    },
+    geocode: {
+      original: {
+        title: 'Original address'
+      },
+      partial: {
+        title: 'Alternate address found',
+        label: 'Suggested Address',
+        para: 'Consider the highlighted change below. Using the US Postal Service suggested address will help us process your case more quickly'
+      },
+      city: {
+        title: 'City could not be found',
+        para: 'The city entered could not be found. Please ensure you have correctly typed the city associated to this address'
+      },
+      notfound: {
+        title: 'Address not found',
+        para: 'The address provided could not be found. Please ensure you have correctly typed all address fields correctly'
+      },
+      generic: {
+        title: 'Unable to validate address',
+        para: 'The address provided cannot be properly validated'
+      },
+      multiple: {
+        title: 'Multiple address found',
+        para: 'Multiple addresses were found for the information you entered, and no default exists.'
+      },
+      defaultAddress: {
+        title: 'More information required',
+        para: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
+      }
+    },
+    Email: {
+      pattern: {
+        title: 'A valid email address is required',
+        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
+        note: 'Note: Underscores (_) and periods (.) are valid characters'
+      }
     }
   },
   section: {
@@ -415,14 +452,10 @@ const en = {
   },
   identification: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       review: 'Review Identification',
@@ -544,9 +577,9 @@ const en = {
         }
       },
       label: {
-        state: 'State',
+        state: 'State or territory',
         city: 'City',
-        county: 'County or providence',
+        county: 'County or province',
         country: 'Country'
       },
       placeholder: {
@@ -719,14 +752,10 @@ const en = {
   },
   financial: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me on the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       gambling: 'Gambling debts',
@@ -821,6 +850,7 @@ const en = {
         comments: 'Add optional comments'
       },
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
+      notApplicable: 'Not applicable',
       help: {
         title: 'Need help with bankruptcy?',
         message: 'Note: If you need to provide any additional comments about this information, enter them below.',
@@ -908,21 +938,22 @@ const en = {
       }
     }
   },
+
   address: {
     options: {
       us: {
-        label: 'In the United States'
+        label: 'In the<br>United States'
       },
       apoFpo: {
         label: 'APO/FPO'
       },
       international: {
-        label: 'International'
+        label: 'Outside of the<br>United States'
       }
     },
     us: {
       street: {
-        label: 'Mailing address',
+        label: 'Street',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -934,13 +965,13 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
     international: {
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -952,7 +983,7 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
@@ -961,7 +992,7 @@ const en = {
         label: 'Select APO or FPO'
       },
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -973,11 +1004,11 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO State Code'
       },
       apoFpoType: {
         apo: {
@@ -993,11 +1024,370 @@ const en = {
       }
     }
   },
-  history: {
+
+  suggestions: {
+    name: {
+      title: 'Alternate names found',
+      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>',
+      label: 'Suggested name',
+      use: 'Use this name',
+      dismiss: 'Use a different name instead'
+    },
+    address: {
+      title: 'Alternate address found',
+      para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
+      label: 'Suggested address',
+      use: 'Use this address',
+      dismiss: 'Use this address instead'
+    }
+  },
+
+  intro: {
     tour: {
       title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      button: 'Take me on the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      button: 'Show me the full section'
+    },
+    errors: 'Looks like we have a few issues, here is how to fix them.',
+    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    complete: 'Everything looks good here but you can still review your answers.'
+  },
+
+  military: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with military history at once'
+    },
+    destination: {
+      selective: 'Selective service record',
+      history: 'U.S. military',
+      disciplinary: 'Disciplinary procedures',
+      foreign: 'Foreign military',
+      review: 'Review military history'
+    },
+    selective: {
+      heading: {
+        born: 'Were you born a male after December 31, 1959?',
+        registered: 'Have you registered with the Selective Service System (SSS)?',
+        number: 'Provide registration number'
+      },
+      label: {
+        number: 'Note: Selective Service Number is not your Social Security Number',
+        explanation: 'Provide an explanation'
+      },
+      help: {
+        born: {
+          title: 'Need help with when you were born?',
+          message: 'The selective service only applies to males born before a cerain date.',
+          note: ''
+        },
+        registered: {
+          title: 'Need help with whether you have registered?',
+          message: 'The Selective Service website (see link below) provides additional resources which may assist in finding your registration number or eligibility',
+          note: ''
+        },
+        number: {
+          title: 'Need help with your registration number?',
+          message: 'If additional assistance in determining your registration number is required please refer to the Selective Service information below',
+          note: ''
+        },
+        explanation: {
+          title: 'Need help providing an explanation?',
+          message: 'To assist in the investigation please provide an explanation why you may be unregistered',
+          note: ''
+        },
+        remember: {
+          title: 'Can&rsquo;t remember your registration number?',
+          message: 'The Selective Service website can help provide the registration number for persons who have registered. Use this link to look up your registration number then come back and enter it above.',
+          note: ''
+        }
+      }
+    },
+    history: {
+      heading: {
+        served: 'Have you ever served in the U.S. Military?',
+        service: 'Provide the branch of service you served in',
+        status: 'Provide your status',
+        officer: 'Officer or enlisted',
+        number: 'Provide your service number',
+        dates: 'Provide your dates of service',
+        discharged: 'Were you discharged from this instance of U.S. military service, to include Reserves, or National Guard?',
+        details: 'Discharge details',
+        discharge: {
+          type: 'Provide the type of discharge you received',
+          date: 'Provide the date of discharge listed above'
+        }
+      },
+      label: {
+        airforce: 'Air Force',
+        airnationalguard: 'Air National Guard',
+        army: 'Army',
+        armynationalguard: 'Army National Guard',
+        coastguard: 'Coast Guard',
+        marinecorps: 'Marine Corps',
+        navy: 'Navy',
+        activeduty: 'Active Duty',
+        activereserve: 'Active Reserve',
+        inactivereserve: 'Inactive Reserve',
+        officer: 'Officer',
+        enlisted: 'Enlisted',
+        na: 'Not applicable',
+        discharge: {
+          type: {
+            honorable: 'Honorable',
+            dishonorable: 'Dishonorable',
+            lessthan: 'Under other than honorable conditions',
+            general: 'General',
+            badconduct: 'Bad conduct',
+            other: 'Other (provide type)',
+            otherex: 'Provide other type of discharge'
+          },
+          reason: 'Provide the reason(s) for the discharge'
+        }
+      },
+      help: {
+        served: {
+          title: 'Need help determining if you have served?',
+          message: 'If at any point you have served with the active military then you need to report those activities',
+          note: ''
+        },
+        service: {
+          title: 'Need help with the branch of service?',
+          message: 'Please provide the branch of service you belonged to during this period',
+          note: ''
+        },
+        status: {
+          title: 'Need help with your status?',
+          message: 'Provide your current status with this service',
+          note: ''
+        },
+        officer: {
+          title: 'Need help with your enlistment?',
+          message: 'Select the most accurate option for your time in service',
+          note: ''
+        },
+        number: {
+          title: 'Need help with your service number?',
+          message: 'Depending on the time of your service you may have been assigned a service number. If not then use your social security number.',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with your dates of service?',
+          message: 'Provide the closest dates of service',
+          note: ''
+        },
+        discharged: {
+          title: 'Need help determining if you have been discharged?',
+          message: 'Provide the type of discharge and the corresponding details',
+          note: ''
+        },
+        discharge: {
+          type: {
+            title: 'Need help with the type of discharge?',
+            message: 'Please select the most appropriate type of discharge',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason for discharge?',
+            message: 'Provide the reasons or circumstances of the discharge',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of discharge?',
+            message: 'Provide the closest date of your military discharge',
+            note: ''
+          }
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of military history',
+          item: 'Branch',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Do you have additional military service to report?',
+        appendMessage: 'If yes use the button below to add more',
+        append: 'Add additional military history'
+      }
+    },
+    disciplinary: {
+      heading: {
+        title: 'Disciplinary procedures',
+        date: 'Provide the date of the court martial or other disciplinary procedure',
+        offenses: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
+        name: 'Provide the name of the disciplinary procedure',
+        court: 'Provide the description of the military court or other authority in which you were charged',
+        outcome: 'Provide the description of the final outcome of the disciplinary procedure'
+      },
+      para: {
+        info: '**In the last 7 years**, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+      },
+      label: {
+        name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
+        court: 'Title of court or convening authority, address, to include city and state or country if overseas',
+        outcome: 'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.'
+      },
+      help: {
+        branch: {
+          title: 'Need help determining disciplinary procedures?',
+          message: 'Have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date?',
+          message: 'Provide the date of the disciplinary procedures',
+          note: ''
+        },
+        offenses: {
+          title: 'Need help with the offenses?',
+          message: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the procedure name?',
+          message: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
+          note: ''
+        },
+        court: {
+          title: 'Need help with the court information?',
+          message: 'Title of court or convening authority, address, to include city and state or country if overseas',
+          note: ''
+        },
+        outcome: {
+          title: 'Need help with the outcome?',
+          message: 'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of disciplinary procedures',
+          item: 'Procedure',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Additional disciplinary procedures',
+        appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
+        append: 'Add additional disciplinary procedures'
+      }
+    },
+    foreign: {
+      heading: {
+        title: 'Foreign military',
+        organization: 'During your foreign service, which organization were you serving under?',
+        name: 'Provide the name of the foreign organization',
+        dates: 'Provide your period of service',
+        country: 'Provide the name of the country',
+        rank: 'Provide your highest position/rank held',
+        division: 'Provide the division/department/office in which you served',
+        circumstances: 'Provide a description of the circumstances of your association with this organization',
+        left: 'Provide a description of the reason for leaving this service',
+        maintainscontact: 'Do you maintain contact with current or former associates, colleagues, or acquaintances from your service in this organization?',
+        contact: {
+          details: 'Acquaintance contact details',
+          name: 'Provide the full name',
+          address: 'Provide the contact\'s address',
+          title: 'Provide the contact\'s official title',
+          dates: 'Provide the length of your association with the contact',
+          frequency: 'Provide the frequency of contact'
+        }
+      },
+      para: {
+        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
+        contact: 'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
+      },
+      label: {
+        organization: {
+          military: 'Military (Army, Navy, Air Force, Marines, etc.)',
+          intelligence: 'Intelligence Service',
+          diplomatic: 'Diplomatic Service',
+          security: 'Security Forces',
+          militia: 'Militia',
+          defense: 'Other Defense Forces',
+          other: 'Other Government Agency'
+        }
+      },
+      help: {
+        served: {
+          title: 'Need help with foreign military?',
+          message: 'If you have served in a foreign military or service it will help in processing your application',
+          note: ''
+        },
+        organization: {
+          title: 'Need help with foreign service?',
+          message: 'The type of foreign service',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the foreign organization?',
+          message: 'The organization name',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the period of service?',
+          message: 'The date range you served',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the name of the country?',
+          message: 'The country name',
+          note: ''
+        },
+        rank: {
+          title: 'Need help with the highest position/rank held?',
+          message: 'The hightest rank or position held within the service',
+          note: ''
+        },
+        division: {
+          title: 'Need help with the division/department/office?',
+          message: 'The name for the division, department, or office',
+          note: ''
+        },
+        circumstances: {
+          title: 'Need help describing the circumstances?',
+          message: 'Additional information regarding the circumstances of this foreign service',
+          note: ''
+        },
+        left: {
+          title: 'Need help with the reason for leaving?',
+          message: 'Please provide any reasons for leaving this service',
+          note: ''
+        },
+        maintainscontact: {
+          title: 'Need help with contacts with current or former associates?',
+          message: 'If you maintain contact with any current or former foreign associates please provide their contact information',
+          note: ''
+        }
+      },
+      collection: {
+        foreign: {
+          appendTitle: 'Do you have an additional foreign military service to report?',
+          append: 'Add another foreign military service'
+        },
+        contacts: {
+          summary: {
+            title: 'Summary of foreign military contacts',
+            item: 'Name',
+            unknown: 'Click to provide details'
+          },
+          appendTitle: 'Do you have an additional foreign military service contact to report?',
+          appendMessage: 'If yes use the button below to add another contact',
+          append: 'Add another contact'
+        }
+      }
+    }
+  },
+
+  history: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with your history at once'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -1033,7 +1423,6 @@ const en = {
       education: 'Schools & diplomas',
       federal: 'Former federal service'
     },
-
     residence: {
       title: 'Places you have lived',
       info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
@@ -1101,7 +1490,6 @@ const en = {
         }
       }
     },
-
     employment: {
       summary: {
         title: 'Where you have worked',
@@ -1116,7 +1504,6 @@ const en = {
         employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
         employment2: 'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
-
       default: {
         noDate: {
           label: 'NA'
@@ -1157,9 +1544,18 @@ const en = {
             other: 'Other'
           }
         },
+        reasonDescription: {
+          title: 'Reason for leaving employment',
+          message: 'Explain why you left your last employment'
+        },
+        reasonOptions: {
+          title: 'Reason for leaving employment',
+          message: 'For this employment have any of the following happened to you in the last seven (7) years?'
+        },
         left: {
           title: 'Provide the reason for leaving the employment activity',
           para: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          list: '- Fired\n- Quit after being told you would be fired\n- Left by mutual agreement following charges or allegations of misconduct\n- Left by mutual agreement following notice of unsatisfactory performance',
           comments: 'Provide any additional comments for why you left this employment activity',
           help: {
             title: '',
@@ -1190,6 +1586,19 @@ const en = {
             option: 'Other',
             text: 'Do you have another reason for leaving to report for this employment?',
             date: 'Provide the date you left'
+          }
+        },
+        reprimand: {
+          para: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          description: {
+            label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
+          },
+          date: {
+            label: 'Provide the month and year you were warned, reprimanded, suspended or disciplined'
+          },
+          help: {
+            title: 'Have you received a written warning',
+            message: 'Explain if you have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy'
           }
         },
         datesEmployed: {
@@ -1364,7 +1773,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       activemilitary: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -1498,7 +1906,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       nationalguard: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -1632,7 +2039,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       usphs: {
         heading: {
           title: 'Provide your most recent rank/position title',
@@ -1766,7 +2172,6 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       otherfederal: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -1874,7 +2279,6 @@ const en = {
           }
         }
       },
-
       stategovernment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -1982,7 +2386,6 @@ const en = {
           }
         }
       },
-
       federalcontractor: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2090,7 +2493,6 @@ const en = {
           }
         }
       },
-
       nongovernment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2198,7 +2600,6 @@ const en = {
           }
         }
       },
-
       selfemployment: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2306,13 +2707,11 @@ const en = {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
       },
-
       unemployment: {
         heading: {
           reference: 'Provide the name of someone who can verify your unemployment activities and means of support'
         }
       },
-
       other: {
         heading: {
           employer: 'Provide the name of your employer',
@@ -2606,16 +3005,13 @@ const en = {
       }
     }
   },
+
   foreign: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with foreign activities at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
       review: 'Review Foreign Actitivies',
@@ -2680,6 +3076,191 @@ const en = {
       }
     }
   },
+
+  legal: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with investigative & criminal history at once'
+    },
+    destination: {
+      police: 'Police record',
+      review: 'Review investigative & criminal history'
+    },
+    police: {
+      heading: {
+        title: 'Police record',
+        questions: 'Have any of the following happened?',
+        date: 'Provide the date of the offense',
+        description: 'Provide a description of the specific nature of the offense',
+        involvement: 'Did this offense involve any of the following?',
+        address: 'Provide the location where the offense occurred',
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?',
+        citedagency: 'Arresting/citing/summoning agency',
+        citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
+        agencyaddress: 'Provide the location of the law enforcement agency',
+        charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?',
+        courtinfo: 'Court Information',
+        courtname: 'Provide the name of the court',
+        courtaddress: 'Provide the location of the court',
+        chargedetails: 'Charges detail',
+        courttype: 'Type of charge',
+        courtdate: 'Date',
+        sentenced: 'Were you sentenced as a result of this offense?',
+        needmore: 'Since you answered yes we need more information'
+      },
+      para: {
+        intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+        intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
+        intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
+        summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
+        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.'
+      },
+      label: {
+        summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
+        arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+        charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court?',
+        probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
+        trial: 'Are you currently on trial or awaiting a trial on criminal charges?',
+        violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+        firearms: '**Involve firearms or explosives?**',
+        substances: '**Involve alcohol or drugs?**',
+        address: 'This address is',
+        explanation: 'Provide explanation',
+        courtname: 'Name of court',
+        felony: 'Felony',
+        misdemeanor: 'Misdemeanor',
+        other: 'Other',
+        courtcharge: 'Charge',
+        courtoutcome: 'Outcome'
+      },
+      help: {
+        summons: {
+          title: 'Need help with a summons, citation, or ticket?',
+          message: 'If you were issued a summons, citation, or ticket answer "Yes" and provide the required information',
+          note: ''
+        },
+        arrests: {
+          title: 'Need help with an arrest?',
+          message: 'If you were arrested answer "Yes" and provide the required information',
+          note: ''
+        },
+        charges: {
+          title: 'Need help with a criminal charge?',
+          message: 'If you were charged answer "Yes" and provide the required information',
+          note: ''
+        },
+        probation: {
+          title: 'Need help with a current probation or parole?',
+          message: 'If you are currently on probation or parole answer "Yes" and provide the required information',
+          note: ''
+        },
+        trial: {
+          title: 'Need help if on or awaiting trial?',
+          message: 'If you currently awaiting or on trial please answer "Yes" and provide the required information',
+          note: ''
+        },
+        date: {
+          title: 'Need help withe the date of offense?',
+          message: 'Provide the closest date of the offense',
+          note: ''
+        },
+        description: {
+          title: 'Need help with the description of the offense?',
+          message: 'Provide an account of the nature of the offense',
+          note: ''
+        },
+        violence: {
+          title: 'Need help if this offense involved violence?',
+          message: 'Indicate if the offense involved domestic or criminal violence',
+          note: ''
+        },
+        firearms: {
+          title: 'Need help if this offense involved firearms or explosives?',
+          message: 'Indicate if the offense involved firearms or explosives',
+          note: ''
+        },
+        substances: {
+          title: 'Need help if this offense involved alcohol or drugs?',
+          message: 'Indicate if the offense involved alcohol or drugs',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the location of the offense?',
+          message: 'Provide the address where the offense took place',
+          note: ''
+        },
+        cited: {
+          title: 'Need help if you were arrested, summoned, or cited for this offense?',
+          message: 'If you were arrested, summoned, or cited please answer "Yes" and provide the required information',
+          note: ''
+        },
+        citedby: {
+          title: 'Need help with the law enforcement agency name?',
+          message: 'Provide the name of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        agencyaddress: {
+          title: 'Need help with the law enforcement agency address?',
+          message: 'Provide the address of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        charged: {
+          title: 'Need help if you were charged, convicted, or awaiting trial?',
+          message: 'If you were charged, convicted, currently awaiting trial, or due to appear in court answer "Yes" and provide the required information',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the name of the court?',
+          message: 'Provide the name of the court',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        courttype: {
+          title: 'Need help with the type of charge?',
+          message: 'Provide the type of charge issued by the court',
+          note: ''
+        },
+        courtcharge: {
+          title: 'Need help with the court charge(s)?',
+          message: 'Provide the charge(s)',
+          note: ''
+        },
+        courtoutcome: {
+          title: 'Need help with the court outcome?',
+          message: 'Provide the outcome of the court proceedings',
+          note: ''
+        },
+        courtdate: {
+          title: 'Need help with the court date?',
+          message: 'Provide the court date',
+          note: ''
+        },
+        sentenced: {
+          title: 'Need help if you were sentenced for this offense?',
+          message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of offenses',
+          item: 'Offense',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
+        appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
+        append: 'Add another offense'
+      }
+    }
+  },
+
   alias: {
     maiden: {
       help: {

@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Foreign from './Foreign'
+import Passport from './Passport'
 import { mount } from 'enzyme'
 
 const applicationState = {
@@ -41,5 +42,29 @@ describe('The foreign section', () => {
       const component = mount(<Provider store={store}><Foreign subsection={section} /></Provider>)
       expect(component.find('div').length).toBeGreaterThan(0)
     })
+  })
+
+  it('can parse previous names', () => {
+    const store = mockStore({
+      authentication: { authenticated: true, twofactor: true },
+      application: {
+        Identification: {
+          ApplicantName: {
+            first: 'john',
+            last: 'smith'
+          },
+          OtherNames: {
+            List: [
+              {
+                first: 'johnathan',
+                last: 'smith'
+              }
+            ]
+          }
+        }
+      }
+    })
+    const component = mount(<Provider store={store}><Foreign subsection="passport" /></Provider>)
+    expect(component.find(Passport).props().suggestedNames.length).toBe(2)
   })
 })

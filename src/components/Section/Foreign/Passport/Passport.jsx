@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PassportValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, Text, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Text, Suggestions, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -25,6 +25,8 @@ export default class Passport extends ValidationElement {
       valid: false,
       errorCodes: []
     }
+
+    this.onSuggestion = this.onSuggestion.bind(this)
   }
 
   /**
@@ -98,6 +100,29 @@ export default class Passport extends ValidationElement {
     })
   }
 
+  renderSuggestion (suggestion) {
+    suggestion = suggestion || {}
+    const name = `${suggestion.first || ''} ${suggestion.middle || ''} ${suggestion.last || ''} ${suggestion.suffix || ''}`.trim()
+    return (<span>{name}</span>)
+  }
+
+  onSuggestion (suggestion) {
+    this.handleUpdate('Name', suggestion)
+  }
+
+  dismissSuggestions () {
+    // If we have a name already, don't show
+    if (this.state.Name && this.state.Name.first && this.state.Name.last) {
+      return true
+    }
+
+    // If we have suggestions, show them
+    if (this.props.suggestedNames && this.props.suggestedNames.length) {
+      return false
+    }
+    return true
+  }
+
   /**
    * Render children only when we explicit state there is passport information
    */
@@ -114,12 +139,24 @@ export default class Passport extends ValidationElement {
     return (
       <div>
         <h3>Provide the name in which passport was first issued</h3>
-        <Name name="name"
-              {...this.state.Name}
-              className="eapp-field-wrap"
-              onUpdate={this.handleUpdate.bind(this, 'Name')}
-              onValidate={this.handleValidation}
-              />
+        <Suggestions suggestions={this.props.suggestedNames}
+                     renderSuggestion={this.renderSuggestion}
+                     onSuggestion={this.onSuggestion}
+                     withSuggestions="true"
+                     dismissSuggestions={this.dismissSuggestions()}
+                     suggestionTitle={i18n.t('suggestions.name.title')}
+                     suggestionParagraph={i18n.m('suggestions.name.para')}
+                     suggestionLabel={i18n.t('suggestions.name.label')}
+                     suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
+                     suggestionUseLabel={i18n.t('suggestions.name.use')}
+                     >
+          <Name name="name"
+                {...this.state.Name}
+                className="eapp-field-wrap"
+                onUpdate={this.handleUpdate.bind(this, 'Name')}
+                onValidate={this.handleValidation}
+                />
+        </Suggestions>
 
         <h3>{i18n.t('foreign.passport.number')}</h3>
         <div className="eapp-field-wrap no-label">

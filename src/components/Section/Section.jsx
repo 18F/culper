@@ -5,7 +5,9 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
 import Foreign from './Foreign'
+import Military from './Military'
 import History from './History'
+import Legal from './Legal'
 import { SectionView, SectionViews } from './SectionView'
 
 class Section extends React.Component {
@@ -38,14 +40,17 @@ class Section extends React.Component {
         <SectionView name="financial">
           <Financial subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="history1">
-          <History subsection={this.props.subsection} />
+        <SectionView name="military">
+          <Military subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="history2">
+        <SectionView name="history">
           <History subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="foreign">
           <Foreign subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="legal">
+          <Legal subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
     )

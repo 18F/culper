@@ -10,16 +10,29 @@ export default class OtherNamesValidator {
    * Validates that proper values were included for branching
    */
   validHasOtherNames () {
-    if (this.hasOtherNames === 'Yes' || this.hasOtherNames === 'No') {
-      return true
+    if (!this.hasOtherNames) {
+      return false
     }
-    return false
+
+    if (!(this.hasOtherNames === 'Yes' || this.hasOtherNames === 'No')) {
+      return false
+    }
+
+    return true
   }
 
   /**
    * Checks if any of the other names is valid
    */
   validOtherNames () {
+    if (this.hasOtherNames === 'No') {
+      return true
+    }
+
+    if (!this.list || !this.list.length) {
+      return false
+    }
+
     for (let otherName of this.list) {
       const result = new OtherNameValidator(otherName, null).isValid()
       if (!result) {
@@ -33,10 +46,8 @@ export default class OtherNamesValidator {
    * Validates the branching hasOtherNames property and all other name values
    */
   isValid () {
-    if (!this.validHasOtherNames()) {
-      return false
-    }
-    return this.validOtherNames()
+    return this.validHasOtherNames() &&
+      this.validOtherNames()
   }
 }
 

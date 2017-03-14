@@ -106,17 +106,13 @@ class Financial extends ValidationElement {
     return (
       <div className="financial intro review-screen">
         <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('financial.tour.title')}</h3>
-          <p>{i18n.t('financial.tour.para')}</p>
-          <button onClick={this.handleTour}>{i18n.t('financial.tour.button')}</button>
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('financial.review.title')}</h3>
-          <p>{i18n.t('financial.review.para')}</p>
-          <button onClick={this.handleReview}>{i18n.t('financial.review.button')}</button>
+          <IntroHeader Errors={this.props.Errors}
+                       Completed={this.props.Completed}
+                       tour={i18n.t('financial.tour.para')}
+                       review={i18n.t('financial.review.para')}
+                       onTour={this.handleTour}
+                       onReview={this.handleReview}
+                       />
         </div>
       </div>
     )
@@ -135,8 +131,8 @@ class Financial extends ValidationElement {
                        showTop="true"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="foreign"
-                       nextLabel={i18n.t('foreign.destination.passport')}>
+                       next="military"
+                       nextLabel={i18n.t('military.destination.selective')}>
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
