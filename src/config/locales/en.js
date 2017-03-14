@@ -1302,7 +1302,8 @@ const en = {
       },
       label: {
         organization: {
-          military: 'Military<br>(Army, Navy, Air Force, Marines, etc.)',
+          military: 'Military',
+          military2: '(Army, Navy, Air Force, Marines, etc.)',
           intelligence: 'Intelligence Service',
           diplomatic: 'Diplomatic Service',
           security: 'Security Forces',
