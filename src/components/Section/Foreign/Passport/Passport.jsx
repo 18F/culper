@@ -110,6 +110,19 @@ export default class Passport extends ValidationElement {
     this.handleUpdate('Name', suggestion)
   }
 
+  dismissSuggestions () {
+    // If we have a name already, don't show
+    if (this.state.Name && this.state.Name.first && this.state.Name.last) {
+      return true
+    }
+
+    // If we have suggestions, show them
+    if (this.props.suggestedNames && this.props.suggestedNames.length) {
+      return false
+    }
+    return true
+  }
+
   /**
    * Render children only when we explicit state there is passport information
    */
@@ -130,6 +143,7 @@ export default class Passport extends ValidationElement {
                      renderSuggestion={this.renderSuggestion}
                      onSuggestion={this.onSuggestion}
                      withSuggestions="true"
+                     dismissSuggestions={this.dismissSuggestions()}
                      suggestionTitle={i18n.t('suggestions.name.title')}
                      suggestionParagraph={i18n.m('suggestions.name.para')}
                      suggestionLabel={i18n.t('suggestions.name.label')}
