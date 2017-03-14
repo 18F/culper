@@ -87,4 +87,7 @@ var stateList = [...]string{
 	"PR",
 	"VI",
 	"WQ",
+	"AE",
+	"AP",
+	"AA",
 }

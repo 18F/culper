@@ -8,8 +8,11 @@ import ZipCode from '../ZipCode'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
-import { api } from '../../../services/api'
+import Suggestions from '../Suggestions'
 import { i18n } from '../../../config'
+import { AddressValidator } from '../../../validators'
+import { AddressSuggestion } from './AddressSuggestion'
+
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -22,15 +25,21 @@ export default class Address extends ValidationElement {
       city: props.city,
       state: props.state,
       zipcode: props.zipcode,
-      apoFpo: props.apoFpo,
       country: props.country,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
       addressType: addressType,
-      apoFpoType: props.apoFpoType,
-      errorCodes: []
+      suggestions: props.suggestions,
+      errorCodes: [],
+      validated: props.validated,
+      geocodeErrorCode: props.geocodeErrorCode
     }
+
+    this.suggestionDismissContent = this.suggestionDismissContent.bind(this)
+    this.handleValidation = throttle(this.handleValidation.bind(this), 300, this)
+    this.renderSuggestion = this.renderSuggestion.bind(this)
+    this.handleAddressTypeChange = this.handleAddressTypeChange.bind(this)
   }
 
   addressType () {
@@ -44,25 +53,44 @@ export default class Address extends ValidationElement {
     return addressType
   }
 
+  doUpdate () {
+    if (this.props.onUpdate) {
+      this.props.onUpdate({
+        name: this.props.name,
+        address: this.state.address,
+        city: this.state.city,
+        state: this.state.state,
+        zipcode: this.state.zipcode,
+        country: this.state.country,
+        addressType: this.state.addressType,
+        validated: this.state.validated
+      })
+    }
+  }
+
   /**
    * Handle the change event.
    */
   handleChange (field, event) {
-    this.setState({ [field]: event.target.value }, () => {
+    this.setState({
+      [field]: event.target.value,
+      validated: false
+    }, () => {
       super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          address: this.state.address,
-          city: this.state.city,
-          state: this.state.state,
-          zipcode: this.state.zipcode,
-          country: this.state.country,
-          addressType: this.state.addressType,
-          apoFpo: this.state.apoFpo,
-          apoFpoType: this.state.apoFpoType
-        })
-      }
+      this.doUpdate()
+    })
+  }
+
+  handleAddressTypeChange (event) {
+    this.setState({
+      addressType: event.target.value,
+      address: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      country: ''
+    }, () => {
+      this.doUpdate()
     })
   }
 
@@ -73,63 +101,55 @@ export default class Address extends ValidationElement {
     if (!event) {
       return
     }
+    this.handleAsyncValidation(event, status, error)
+      .then(result => {
+        this.setState({
+          error: result.complexStatus === false,
+          valid: result.complexStatus === true,
+          errorCodes: result.codes,
+          suggestions: result.suggestions,
+          geocodeErrorCode: result.geocodeErrorCode
+        },
+          () => {
+            if (!result.geocodeError) {
+              super.handleValidation(event, status, error)
+            }
+          })
+      })
+  }
 
-    const codes = super.mergeError(this.state.errorCodes, error)
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else {
-      switch (this.state.addressType) {
-        case 'United States':
-          if (this.state.address && this.state.city && this.state.state && this.state.zipcode) {
-            complexStatus = true
-          }
-          break
+  /**
+   * Handles asynchornous validation. Since this component uses a combination of sync/async validation,
+   * we create a promise that can handle both scenarios to streamline the flow
+   */
+  handleAsyncValidation (event, status, error) {
+    return new Promise((resolve, reject) => {
+      // Setup address validator
+      const validator = new AddressValidator(this.state)
 
-        case 'International':
-          if (this.state.address && this.state.city && this.state.country) {
-            complexStatus = true
-          }
-          break
-
-        case 'APOFPO':
-          if (this.state.address && this.state.apoFpo && this.stateAddress.apoFpoType && this.state.zipcode) {
-            complexStatus = true
-          }
-          break
+      // Retrieve codes
+      const codes = super.mergeError(this.state.errorCodes || [], error)
+      if (codes.length > 0) {
+        return resolve({complexStatus: false, codes: codes, suggestions: []})
       }
-    }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, status, error)
-        return
+      // Check if this address has already been verified/validated by user
+      if (this.state.validated) {
+        return resolve({complexStatus: true, codes: [], suggestions: []})
       }
 
-      api
-        .validateAddress({
-          Address: [this.state.address1, this.state.address2].join(', '),
-          City: this.state.city,
-          State: this.state.state,
-          Zipcode: this.state.zipcode,
-          Country: this.state.country
-        })
-        .then((response) => {
-          // TODO: Display and assign the errors as necessary
-          if (response.Errors) {
-            this.setState({
-              error: response.Error.length > 0,
-              valid: response.Errors.length === 0
-            })
-          }
-
-          // TODO: Display suggestions
-          if (response.Suggestions) {
-          }
-        })
-        .then(() => {
-          super.handleValidation(event, status, error)
-        })
+      // No error codes found. Now start to validate location information
+      switch (validator.isValid()) {
+        case true:
+          // Once preliminary address fields are checked, we validate against geocoding api
+          validator
+            .geocode()
+            .then(handleGeocodeResponse)
+            .then(resolve)
+          break
+        default:
+          resolve({complexStatus: false, codes: [], suggestions: []})
+      }
     })
   }
 
@@ -234,13 +254,13 @@ export default class Address extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         <label>{i18n.t('address.apoFpo.select.label')}</label>
-        <RadioGroup className="apofpo" selectedValue={this.state.apoFpoType}>
+        <RadioGroup className="apofpo" selectedValue={this.state.city}>
           <Radio name="apoFpoType"
                  label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
                  value="APO"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange.bind(this, 'apoFpoType')}
-                 onValidate={this.props.onValidate}
+                 onChange={this.handleChange.bind(this, 'city')}
+                 onValidate={this.props.handleValidation}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -248,8 +268,8 @@ export default class Address extends ValidationElement {
                  label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
                  value="FPO"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange.bind(this, 'apoFpoType')}
-                 onValidate={this.props.onValidate}
+                 onChange={this.handleChange.bind(this, 'city')}
+                 onValidate={this.handleValidation}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -259,8 +279,8 @@ export default class Address extends ValidationElement {
                   className="state"
                   label={i18n.t('address.apoFpo.apoFpo.label')}
                   placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
-                  value={this.state.apoFpo}
-                  onChange={this.handleChange.bind(this, 'apoFpo')}
+                  value={this.state.state}
+                  onChange={this.handleChange.bind(this, 'state')}
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
@@ -293,7 +313,7 @@ export default class Address extends ValidationElement {
                  className="domestic"
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange.bind(this, 'addressType')}
+                 onChange={this.handleAddressTypeChange}
                  onValidate={this.props.onValidate}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -304,7 +324,7 @@ export default class Address extends ValidationElement {
                  className="apofpo"
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange.bind(this, 'addressType')}
+                 onChange={this.handleAddressTypeChange}
                  onValidate={this.props.onValidate}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -315,18 +335,165 @@ export default class Address extends ValidationElement {
                  className="international"
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange.bind(this, 'addressType')}
+                 onChange={this.handleAddressTypeChange}
                  onValidate={this.props.onValidate}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
         </RadioGroup>
         <div className="fields">
-          {this.state.addressType === 'United States' && this.usAddress()}
-          {this.state.addressType === 'International' && this.internationalAddress()}
-          {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+            <Suggestions
+              onValidate={this.handleValidation}
+              suggestions={this.state.suggestions}
+              renderSuggestion={this.renderSuggestion}
+              dismissSuggestions={false}
+              withSuggestions={true}
+              show={this.showSuggestions()}
+              suggestionTitle={this.suggestionTitle()}
+              suggestionLabel={this.suggestionLabel()}
+              suggestionParagraph={this.suggestionParagraph()}
+              suggestionDismissLabel={'Use this address instead'}
+              suggestionDismissContent={this.suggestionDismissContent()}
+              onDismiss={this.onSuggestionDismiss.bind(this)}
+              onSuggestion={this.onSuggestion.bind(this)}
+              suggestionUseLabel={'Use this address'}>
+              <div>
+                {this.state.addressType === 'United States' && this.usAddress()}
+                {this.state.addressType === 'International' && this.internationalAddress()}
+                {this.state.addressType === 'APOFPO' && this.apoFpoAddress()}
+              </div>
+            </Suggestions>
         </div>
       </div>
     )
+  }
+
+  /**
+   * Determines what conditions render the address suggestion modal
+   */
+  showSuggestions () {
+    if (this.state.geocodeErrorCode) {
+      return true
+    }
+    if (this.state.suggestions && this.state.suggestions.length) {
+      return true
+    }
+    return false
+  }
+
+  suggestionTitle () {
+    return i18n.t(`${this.state.geocodeErrorCode}.title`)
+  }
+
+  suggestionLabel () {
+    return i18n.t(`${this.state.geocodeErrorCode}.label`)
+  }
+
+  suggestionParagraph () {
+    return (<p>{i18n.t(`${this.state.geocodeErrorCode}.para`)}</p>)
+  }
+
+  onSuggestionDismiss () {
+    this.setState({
+      suggestions: [],
+      geocodeErrorCode: null,
+      address: this.state.address,
+      city: this.state.city,
+      state: this.state.state,
+      zipcode: this.state.zipcode,
+      validated: true
+    }, () => {
+      this.doUpdate()
+    })
+  }
+
+  onSuggestion (suggestion) {
+    this.setState({
+      suggestions: [],
+      geocodeErrorCode: null,
+      address: suggestion.Address,
+      city: suggestion.City,
+      state: suggestion.State,
+      zipcode: suggestion.Zipcode,
+      validated: true
+    }, () => {
+      this.doUpdate()
+    })
+  }
+
+  suggestionDismissContent () {
+    const { address, city, state, zipcode } = this.state
+    return (
+      <div>
+        <h5>{i18n.t('error.geocode.original.title')}</h5>
+        <div className="address-suggestion">
+          <div>{ address }</div>
+          <div>{ city }, { state } { zipcode }</div>
+        </div>
+      </div>
+    )
+  }
+
+  renderSuggestion (suggestion) {
+    return (
+      <AddressSuggestion suggestion={suggestion} current={this.state} />
+    )
+  }
+}
+
+Address.defaultProps = {
+  suggestions: [],
+  validate: false,
+  geocodeErrorCode: null
+}
+
+/**
+ * Helper function to extract geocoded information
+ */
+export const handleGeocodeResponse = (response) => {
+  if (!response.Errors || !response.Errors.length) {
+    return {complexStatus: true, suggestions: [], codes: []}
+  }
+  if (response.Errors && response.Errors.length) {
+    for (const err of response.Errors) {
+      if (err.Fieldname === 'Address') {
+        if (!err.Suggestions || !err.Suggestions.length) {
+          return {
+            complexStatus: false,
+            suggestions: [],
+            geocodeErrorCode: err.Error,
+            geocodeError: true
+          }
+        }
+        return {
+          complexStatus: false,
+          geocodeError: true,
+          geocodeErrorCode: err.Error,
+          suggestions: err.Suggestions || []
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Used to prevent duplicate geocoding requests to be made. Since we perform various checks on the client-side
+ * that trigger our components to re-render, we set a throttle so that the geocoding validation logic
+ * executes once.
+ */
+export const throttle = (callback, wait, context = this) => {
+  let timeout = null
+  let callbackArgs = null
+
+  const later = () => {
+    callback.apply(context, callbackArgs)
+    timeout = null
+  }
+
+  return function () {
+    callbackArgs = arguments
+    if (!timeout) {
+      timeout = setTimeout(later, wait)
+    }
   }
 }
