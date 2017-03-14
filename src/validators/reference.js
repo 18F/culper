@@ -24,8 +24,8 @@ export default class ReferenceValidator {
   }
 
   validRelationship () {
-    return relationshipOptions.includes(this.relationship) ||
-      (this.relationship === 'Other' && validGenericTextfield(this.relationshipOther))
+    return this.relationship && this.relationship.every(x => { return relationshipOptions.includes(x) }) ||
+      (this.relationship.some(x => { return x === 'Other' }) && validGenericTextfield(this.relationshipOther))
   }
 
   validPhone () {

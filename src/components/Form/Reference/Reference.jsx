@@ -10,8 +10,8 @@ import DateControl from '../DateControl'
 import Telephone from '../Telephone'
 import Email from '../Email'
 import Address from '../Address'
-import Radio from '../Radio'
-import RadioGroup from '../RadioGroup'
+import Checkbox from '../Checkbox'
+import CheckboxGroup from '../CheckboxGroup'
 import Show from '../Show'
 
 export default class Reference extends ValidationElement {
@@ -27,9 +27,9 @@ export default class Reference extends ValidationElement {
       Phone: props.Phone,
       Email: props.Email,
       Address: props.Address,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       errorCodes: []
     }
 
@@ -62,7 +62,18 @@ export default class Reference extends ValidationElement {
    * Handle the change event for relationships.
    */
   handleRelationshipChange (event) {
-    this.onUpdate('Relationship', event.target.value)
+    let relations = event.target.value
+    let selected = [...this.state.Relationship]
+
+    if (selected.includes(relations)) {
+      // Remove the relationship if it was previously selected
+      selected.splice(selected.indexOf(relations), 1)
+    } else {
+      // Add the new relationship
+      selected.push(relations)
+    }
+
+    this.onUpdate('Relationship', selected)
   }
 
   updateRelationshipOther (values) {
@@ -106,57 +117,57 @@ export default class Reference extends ValidationElement {
           <div className="eapp-field-wrap">
             <Help id={`${prefix}reference.help.relationship`}>
               <label>{i18n.t(`${prefix}reference.label.relationship.title`)}</label>
-              <RadioGroup className="relationship option-list eapp-extend-labels"
-                          selectedValue={this.state.Relationship}>
-                <Radio name="relationship-neighbor"
-                       label={i18n.t(`${prefix}reference.label.relationship.neighbor`)}
-                       value="Neighbor"
-                       onChange={this.handleRelationshipChange}
-                       >
+              <CheckboxGroup className="relationship option-list eapp-extend-labels"
+                             selectedValues={this.state.Relationship}>
+                <Checkbox name="relationship-neighbor"
+                          label={i18n.t(`${prefix}reference.label.relationship.neighbor`)}
+                          value="Neighbor"
+                          onChange={this.handleRelationshipChange}
+                          >
                   <div className="relationship-icon neighbor">
                     <Svg src="img/neighbor-icon.svg" />
                   </div>
-                </Radio>
-                <Radio name="relationship-friend"
-                       label={i18n.t(`${prefix}reference.label.relationship.friend`)}
-                       value="Friend"
-                       onChange={this.handleRelationshipChange}
-                       >
+                </Checkbox>
+                <Checkbox name="relationship-friend"
+                          label={i18n.t(`${prefix}reference.label.relationship.friend`)}
+                          value="Friend"
+                          onChange={this.handleRelationshipChange}
+                          >
                   <div className="relationship-icon friend">
                     <Svg src="img/friend-icon.svg" />
                   </div>
-                </Radio>
-                <Radio name="relationship-landlord"
-                       label={i18n.t(`${prefix}reference.label.relationship.landlord`)}
-                       value="Landlord"
-                       onChange={this.handleRelationshipChange}
-                       >
+                </Checkbox>
+                <Checkbox name="relationship-landlord"
+                          label={i18n.t(`${prefix}reference.label.relationship.landlord`)}
+                          value="Landlord"
+                          onChange={this.handleRelationshipChange}
+                          >
                   <div className="relationship-icon landlord">
                     <Svg src="img/landlord-icon.svg" />
                   </div>
-                </Radio>
-                <Radio name="relationship-business"
-                       label={i18n.t(`${prefix}reference.label.relationship.business`)}
-                       value="Business"
-                       onChange={this.handleRelationshipChange}
-                       >
+                </Checkbox>
+                <Checkbox name="relationship-business"
+                          label={i18n.t(`${prefix}reference.label.relationship.business`)}
+                          value="Business"
+                          onChange={this.handleRelationshipChange}
+                          >
                   <div className="relationship-icon business">
                     <Svg src="img/business-associate-icon.svg" />
                   </div>
-                </Radio>
-                <Radio name="relationship-other"
-                       label={i18n.t(`${prefix}reference.label.relationship.other`)}
-                       value="Other"
-                       onChange={this.handleRelationshipChange}
-                       >
+                </Checkbox>
+                <Checkbox name="relationship-other"
+                          label={i18n.t(`${prefix}reference.label.relationship.other`)}
+                          value="Other"
+                          onChange={this.handleRelationshipChange}
+                          >
                   <div className="relationship-icon other">
                     <Svg src="img/other-icon.svg" />
                   </div>
-                </Radio>
-              </RadioGroup>
+                </Checkbox>
+              </CheckboxGroup>
               <HelpIcon className="relationship-help-icon" />
-              <Show when={this.state.Relationship && !['Neighbor', 'Friend', 'Landlord', 'Business'].includes(this.state.Relationship)}>
-                <Text name="Relationship"
+              <Show when={this.state.Relationship.some(x => { return x === 'Other' })}>
+                <Text name="RelationshipOther"
                       label={i18n.t(`${prefix}reference.label.relationship.explanation`)}
                       maxlength="100"
                       className="relationship-other"
@@ -213,4 +224,18 @@ export default class Reference extends ValidationElement {
       </div>
     )
   }
+}
+
+Reference.defaultProps = {
+  FullName: {},
+  LastContact: {},
+  Comments: {},
+  Relationship: [],
+  RelationshipOther: '',
+  Phone: {},
+  Email: {},
+  Address: {},
+  focus: false,
+  error: false,
+  valid: false
 }

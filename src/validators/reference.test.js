@@ -21,7 +21,7 @@ describe('Reference component validation', function () {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          Relationship: 'Friend',
+          Relationship: ['Friend'],
           Phone: {
             noNumber: '',
             number: '7031112222',
@@ -60,7 +60,7 @@ describe('Reference component validation', function () {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          Relationship: 'Other',
+          Relationship: ['Other'],
           RelationshipOther: {
             value: 'Acquaintance'
           },
