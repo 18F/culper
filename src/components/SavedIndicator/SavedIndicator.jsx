@@ -9,7 +9,7 @@ class SavedIndicator extends React.Component {
 
     this.state = {
       interval: props.interval || 1000,
-      elapsed: 0
+      elapsed: props.elapsed || 0
     }
 
     this.tick = this.tick.bind(this)

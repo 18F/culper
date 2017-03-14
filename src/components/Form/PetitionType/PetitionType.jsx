@@ -45,27 +45,8 @@ export default class PetitionType extends ValidationElement {
   }
 
   handleAddressChange (value) {
-    console.log('handleChange')
     this.setState({ address: value }, () => {
       this.doUpdate()
-    })
-  }
-
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
     })
   }
 
@@ -93,6 +74,15 @@ export default class PetitionType extends ValidationElement {
         <Radio name="petition_type"
                label="Chapter 11"
                value="Chapter11"
+               disabled={this.props.disabled}
+               onChange={this.handleFieldChange.bind(this, 'value')}
+               onValidate={this.props.onValidate}
+               onBlur={this.props.onBlur}
+               onFocus={this.props.onFocus}
+               />
+        <Radio name="petition_type"
+               label="Chapter 12"
+               value="Chapter12"
                disabled={this.props.disabled}
                onChange={this.handleFieldChange.bind(this, 'value')}
                onValidate={this.props.onValidate}
@@ -131,7 +121,6 @@ export default class PetitionType extends ValidationElement {
               <Text name="chapter13Trustee"
                     className="trustee"
                     value={this.state.trustee}
-                    label={i18n.t('financial.bankruptcy.trustee.label')}
                     placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
                     onChange={this.handleFieldChange.bind(this, 'trustee')}
                     />

@@ -1,0 +1,50 @@
+.military-service {
+  .service .eapp-blocks-radio label,
+  .status .eapp-blocks-radio label,
+  .officer .eapp-blocks-radio label,
+  .discharge-type .eapp-blocks-radio label {
+    width: 17rem;
+  }
+
+  .service-icon,
+  .discharge-type-icon {
+    margin-left: -2rem;
+    margin-top: 2rem;
+  }
+
+  .service-number,
+  .discharge-reason,
+  .discharge-type-otherex {
+    display: inline-block;
+    width: 92%;
+  }
+
+  .discharge-type-honorable,
+  .discharge-type-dishonorable,
+  .discharge-type-lessthan,
+  .discharge-type-general,
+  .discharge-type-badconduct,
+  .discharge-type-other {
+    label {
+      height: 9rem;
+      overflow: hidden;
+      padding-top: 3rem;
+    }
+
+    p {
+      padding: 0 !important;
+    }
+  }
+
+  .discharge-type-lessthan,
+  .discharge-type-other {
+    label {
+      padding-top: 2rem !important;
+      line-height: initial;
+    }
+  }
+
+  .discharge-type-otherex {
+    margin-top: 4rem;
+  }
+}

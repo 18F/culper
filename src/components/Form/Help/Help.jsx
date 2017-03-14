@@ -1,6 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../config'
-import ReactMarkdown from 'react-markdown'
+import { i18n, markdown, markdownById } from '../../../config'
 import ValidationElement from '../ValidationElement'
 
 export default class Help extends ValidationElement {
@@ -63,6 +62,9 @@ export default class Help extends ValidationElement {
 
     this.setState({ errors: e }, () => {
       super.handleValidation(event, status, errors)
+      if (e.length) {
+        this.scrollIntoView()
+      }
     })
   }
 
@@ -91,13 +93,25 @@ export default class Help extends ValidationElement {
 
     if (this.state.errors && this.state.errors.length) {
       const markup = this.state.errors.map(err => {
+        const noteId = `${err}.note`
+        let note = i18n.t(noteId)
+        if (note.indexOf(noteId) > -1) {
+          note = ''
+        } else {
+          note = <em>{note}</em>
+        }
+
         return (
-          <ReactMarkdown source={i18n.t(err)} />
+          <div key={super.guid()}>
+            <h5>{i18n.t(`${err}.title`)}</h5>
+            {markdownById(`${err}.message`)}
+            {note}
+          </div>
         )
       })
 
       el.push(
-        <div ref="message" className="message eapp-error-message">
+        <div className="message eapp-error-message" key={super.guid()}>
           <i className="fa fa-exclamation"></i>
           {markup}
         </div>
@@ -105,10 +119,25 @@ export default class Help extends ValidationElement {
     }
 
     if (this.state.active) {
+      const noteId = `${this.props.id}.note`
+      let note = i18n.t(noteId)
+      if (note.indexOf(noteId) > -1) {
+        note = ''
+      } else {
+        note = <em>{note}</em>
+      }
+
       el.push(
-        <div ref="message" className="message eapp-help-message">
+        <div className="message eapp-help-message" key={super.guid()}>
           <i className="fa fa-question"></i>
-          <ReactMarkdown source={i18n.t(this.props.id)} />
+          <h5>{i18n.t(`${this.props.id}.title`)}</h5>
+          {markdownById(`${this.props.id}.message`)}
+          {note}
+          <a href="javascript:;;"
+             className="close"
+             onClick={this.handleClick}>
+            {i18n.t('help.close')}
+          </a>
         </div>
       )
     }
@@ -120,27 +149,31 @@ export default class Help extends ValidationElement {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {}
 
-      if (child.type) {
-        let what = Object.prototype.toString.call(child.type)
-        if (what === '[object Function]' && child.type.name === 'HelpIcon') {
-          extendedProps.onClick = this.handleClick
-          extendedProps.active = this.state.active
+      if (React.isValidElement(child)) {
+        if (child.type) {
+          const whatTypeOfObject = Object.prototype.toString.call(child.type)
+          if (whatTypeOfObject === '[object Function]' && child.type.name === 'HelpIcon') {
+            extendedProps.onClick = this.handleClick
+            extendedProps.active = this.state.active
+          }
         }
-      }
 
-      if (this.props.index) {
-        extendedProps.index = this.props.index
-      }
+        if (this.props.index) {
+          extendedProps.index = this.props.index
+        }
 
-      if (this.props.onUpdate) {
-        extendedProps.onUpdate = this.props.onUpdate
-      }
+        if (child.props.onUpdate && this.props.onUpdate) {
+          extendedProps.onUpdate = this.props.onUpdate
+        }
 
-      // Inject ourselves in to the validation callback
-      extendedProps.onValidate = (event, status, errors) => {
-        this.handleValidation(event, status, errors)
+        // Inject ourselves in to the validation callback
         if (child.props.onValidate) {
-          child.props.onValidate(event, status, errors)
+          extendedProps.onValidate = (event, status, errors) => {
+            this.handleValidation(event, status, errors)
+            if (child.props.onValidate) {
+              child.props.onValidate(event, status, errors)
+            }
+          }
         }
       }
 
@@ -167,8 +200,10 @@ export default class Help extends ValidationElement {
     // Flag if help container bottom is within current viewport
     const notInView = (winHeight < helpBottom)
 
-    if (this.state.active && this.props.scrollIntoView && notInView) {
-      this.refs.message.scrollIntoView(false)
+    const active = this.state.active || this.state.errors.length
+
+    if (active && this.props.scrollIntoView && notInView) {
+      this.refs.messages.scrollIntoView(false)
     }
   }
 
@@ -177,7 +212,9 @@ export default class Help extends ValidationElement {
     return (
       <div className={klass} ref="help">
         {this.children()}
-        {this.getMessages()}
+        <div ref="messages">
+          {this.getMessages()}
+        </div>
       </div>
     )
   }

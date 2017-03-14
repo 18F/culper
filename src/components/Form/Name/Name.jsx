@@ -5,6 +5,7 @@ import Text from '../Text'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import { api } from '../../../services/api'
+import { NameValidator } from '../../../validators'
 
 export default class Name extends ValidationElement {
   constructor (props) {
@@ -31,7 +32,7 @@ export default class Name extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    let part = this.extractPart(event.target.name)
+    let part = event.target.name || ''
     let value = event.target.value
     let updated = null
 
@@ -52,15 +53,19 @@ export default class Name extends ValidationElement {
         updated = { suffixOther: value }
         break
       case 'firstInitialOnly':
+        event.persist()
         updated = { firstInitialOnly: event.target.checked }
         break
       case 'lastInitialOnly':
+        event.persist()
         updated = { lastInitialOnly: event.target.checked }
         break
       case 'middleInitialOnly':
+        event.persist()
         updated = { middleInitialOnly: event.target.checked, noMiddleName: false }
         break
       case 'noMiddleName':
+        event.persist()
         updated = { noMiddleName: event.target.checked, middleInitialOnly: false, middle: '' }
         break
 
@@ -138,71 +143,11 @@ export default class Name extends ValidationElement {
       }
 
       super.handleValidation(event, s, e)
-
-      // api
-      // .validateName({
-      // Last: this.state.last,
-      // First: this.state.first,
-      // Middle: this.state.middle,
-      // Suffix: this.state.suffix,
-      // SuffixOther: this.state.suffixOther
-      // })
-      // .then((response) => {
-      // // TODO: Display and assign the errors as necessary
-      // if (response.Errors) {
-      // }
-
-      // if (response.Suggestions) {
-      // }
-      // })
-      // .then(() => {
-      // super.handleValidation(event, status)
-      // })
     })
   }
 
   isValid () {
-    if (!this.state.first) {
-      return false
-    }
-
-    if (this.state.firstInitialOnly && this.state.first.length > 1) {
-      return false
-    }
-
-    if (!this.state.last) {
-      return false
-    }
-
-    if (this.state.lastInitialOnly && this.state.last.length > 1) {
-      return false
-    }
-
-    if (!this.state.noMiddleName) {
-      if (!this.state.middle) {
-        return false
-      }
-
-      if (this.state.middleInitialOnly && this.state.middle.length > 1) {
-        return false
-      }
-    }
-
-    return true
-  }
-
-  /**
-   * Generated name for the part of the address elements.
-   */
-  partName (part) {
-    return '' + this.props.name + '-' + part
-  }
-
-  /**
-   * Returns the part name from the pull generated identifier.
-   */
-  extractPart (id) {
-    return id.split('-').pop()
+    return new NameValidator(this.state, null).isValid()
   }
 
   /**
@@ -216,7 +161,6 @@ export default class Name extends ValidationElement {
 
   render () {
     const klass = `name ${this.props.className || ''}`.trim()
-
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
@@ -236,12 +180,15 @@ export default class Name extends ValidationElement {
                 />
           <HelpIcon />
           <div className="text-right">
-            <input id="firstInitialOnly"
-                   type="checkbox"
-                   value="firstInitial"
-                   checked={this.props.firstInitialOnly}
-                   onChange={this.handleChange} />
-            <label>Initial Only</label>
+            <div className="inline">
+              <input id="firstInitialOnly"
+                     name="firstInitialOnly"
+                     type="checkbox"
+                     value="firstInitial"
+                     checked={this.props.firstInitialOnly}
+                     onChange={this.handleChange} />
+              <label>Initial Only</label>
+            </div>
           </div>
         </Help>
         <Help id="identification.name.middle.help" errorPrefix="name">
@@ -263,6 +210,7 @@ export default class Name extends ValidationElement {
           <div className="middle-options text-right">
             <div className="inline">
               <input id="noMiddleName"
+                     name="noMiddleName"
                      type="checkbox"
                      value="noMiddleName"
                      checked={this.props.noMiddleName}
@@ -271,6 +219,7 @@ export default class Name extends ValidationElement {
             </div>
             <div className="inline">
               <input id="middleInitialOnly"
+                     name="middleInitialOnly"
                      type="checkbox"
                      value="middleInitial"
                      checked={this.props.middleInitialOnly}
@@ -295,12 +244,15 @@ export default class Name extends ValidationElement {
                 />
           <HelpIcon />
           <div className="text-right">
-            <input id="lastInitialOnly"
-                   type="checkbox"
-                   value="lastInitial"
-                   checked={this.props.lastInitialOnly}
-                   onChange={this.handleChange} />
-            <label>Initial Only</label>
+            <div className="inline">
+              <input id="lastInitialOnly"
+                     name="lastInitialOnly"
+                     type="checkbox"
+                     value="lastInitial"
+                     checked={this.props.lastInitialOnly}
+                     onChange={this.handleChange} />
+              <label>Initial Only</label>
+            </div>
           </div>
         </Help>
         <Help id="identification.name.suffix.help" errorPrefix="name" scrollIntoView="true">
@@ -428,4 +380,20 @@ export default class Name extends ValidationElement {
       </div>
     )
   }
+}
+
+Name.defaultProps = {
+  first: '',
+  firstInitialOnly: false,
+  last: '',
+  lastInitialOnly: false,
+  middle: '',
+  middleInitialOnly: false,
+  noMiddleName: false,
+  suffix: '',
+  suffixOther: '',
+  focus: false,
+  error: false,
+  valid: false,
+  errorCodes: []
 }

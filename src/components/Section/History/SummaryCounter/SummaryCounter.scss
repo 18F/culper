@@ -1,0 +1,49 @@
+@import 'eqip-colors';
+
+.summary-counter {
+  color: $eapp-grey-darker;
+
+  .content {
+    display: inline-block;
+    width: 50%;
+
+    .summary-icon {
+      display: inline-block;
+      height: 100%;
+      width: auto;
+      transition: all 0.3s;
+      border-radius: 0;
+      vertical-align: middle;
+
+      svg, img {
+        height: 4.6rem;
+        width: 4.6rem;
+        transition: all 0.3s;
+      }
+    }
+
+    .title {
+      padding-left: 1rem;
+      font-weight: bolder;
+    }
+  }
+
+  .cell {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    vertical-align: text-top;
+    padding-left: 1rem;
+  }
+
+  .schools,
+  .diplomas {
+    font-weight: bold;
+    font-size: 26pt;
+    margin-bottom: -1.5rem;
+  }
+
+  .unit {
+    font-weight: bold;
+  }
+}

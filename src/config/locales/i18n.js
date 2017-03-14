@@ -1,3 +1,5 @@
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
 import en from './en'
 
 const locales = { en }
@@ -17,7 +19,18 @@ class I18n {
       return locale + '.' + id
     }
   }
+
+  m (id) {
+    return markdownById(id)
+  }
 }
 
-const i18n = new I18n()
-export default i18n
+export const i18n = new I18n()
+
+export const markdown = (text) => {
+  return (<ReactMarkdown source={text} />)
+}
+
+export const markdownById = (id) => {
+  return markdown(i18n.t(id))
+}

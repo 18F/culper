@@ -49,12 +49,13 @@ export default class Comments extends ValidationElement {
     const klass = `comments ${this.props.className || ''}`.trim()
 
     if (!this.state.visible) {
+      const addLocalisation = this.props.addLabel || 'comments.add'
       return (
         <div className="comments">
           {this.props.children}
           <div className={klass}>
-            <a href="javascript:;;" onClick={this.toggle} className="add">
-              <span>{i18n.t(this.props.addLabel || 'comments.add')}</span>
+            <a href="javascript:;;" onClick={this.toggle} className="add-comment">
+              <span>{i18n.t(addLocalisation)}</span>
               <i className="fa fa-plus-circle"></i>
             </a>
           </div>
@@ -72,7 +73,7 @@ export default class Comments extends ValidationElement {
                   value={this.state.value}
                   />
         <div className={klass}>
-          <a href="javascript:;;" onClick={this.toggle} className="remove">
+          <a href="javascript:;;" onClick={this.toggle} className="remove-comment">
             <span>{i18n.t(this.props.removeLabel || 'comments.remove')}</span>
             <i className="fa fa-times-circle"></i>
           </a>

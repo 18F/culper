@@ -9,7 +9,7 @@ describe('The Name component', () => {
       label: 'Text input focused',
       value: ''
     }
-    const component = mount(<Name name={expected.name} label={expected.label} value={expected.value} />)
+    const component = mount(<Name {...expected} />)
     component.find('input#last').simulate('change')
     expect(component.find('div.hidden').length).toBeGreaterThan(0)
   })
@@ -29,7 +29,7 @@ describe('The Name component', () => {
     ]
 
     expected.forEach((ex) => {
-      const component = mount(<Name name={ex.name} last={ex.last} />)
+      const component = mount(<Name {...ex} />)
       component.find('input#last').simulate('change')
       expect(component.find('div.hidden').length).toBeGreaterThan(0)
     })
@@ -54,11 +54,18 @@ describe('The Name component', () => {
         middle: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'middle',
         valid: false
+      },
+      {
+        name: 'applicant-firstInitialOnly',
+        first: 'Doe',
+        firstInitialOnly: true,
+        part: 'firstInitialOnly',
+        valid: false
       }
     ]
 
     expected.forEach((ex) => {
-      const component = mount(<Name name={ex.name} first={ex.first} last={ex.last} middle={ex.middle} />)
+      const component = mount(<Name {...ex} />)
       component.find('input#' + ex.part).simulate('change')
       expect(component.find('.usa-input-error-label').length === component.find('span').length).toEqual(ex.valid)
     })
@@ -72,11 +79,11 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
+      onValidate: function (event) {
         validations++
       }
     }
-    const component = mount(<Name name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
@@ -89,11 +96,11 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      onChange: function (event) {
         changes++
       }
     }
-    const component = mount(<Name name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })
@@ -106,11 +113,11 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleFocus: function (event) {
+      onFocus: function (event) {
         foci++
       }
     }
-    const component = mount(<Name name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -123,11 +130,11 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleBlur: function (event) {
+      onBlur: function (event) {
         blurs++
       }
     }
-    const component = mount(<Name name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
   })

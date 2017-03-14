@@ -7,11 +7,9 @@ export default class Number extends ValidationElement {
 
     this.state = {
       value: props.value,
-      disabled: props.disabled,
-      max: props.max,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       errorCode: null
     }
   }
@@ -36,6 +34,7 @@ export default class Number extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
+
     // Prevent non-numerical values from being entered
     if (!event.target.value.match(/^(\s*|\d+)$/)) {
       return
@@ -90,7 +89,7 @@ export default class Number extends ValidationElement {
     let hits = 0
     status = true
 
-    if (this.state.value) {
+    if (!isNaN(parseInt(this.state.value))) {
       if (status && this.props.min) {
         status = parseInt(this.state.value) >= parseInt(this.props.min)
         if (status === false) {
@@ -123,12 +122,9 @@ export default class Number extends ValidationElement {
 
     // Set the internal state
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.props.name || 'input'
-      let e = { [prop]: errorCode }
-
-      if (!event.fake) {
-        super.handleValidation(event, status, e)
-      }
+      const errorObject = { [this.props.name]: errorCode }
+      const statusObject = { [this.props.name]: { status: status } }
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
@@ -213,4 +209,13 @@ export default class Number extends ValidationElement {
       </div>
     )
   }
+}
+
+Number.defaultProps = {
+  disabled: false,
+  value: '',
+  focus: false,
+  error: false,
+  valid: false,
+  errorCode: null
 }

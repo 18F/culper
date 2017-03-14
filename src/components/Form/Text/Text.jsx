@@ -15,6 +15,9 @@ export default class Text extends ValidationElement {
   }
 
   componentWillReceiveProps (nextProps) {
+    if (this.state.value === nextProps.value) {
+      return
+    }
     this.setState({ value: nextProps.value })
   }
 
@@ -22,6 +25,7 @@ export default class Text extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
+    event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {

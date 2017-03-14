@@ -18,6 +18,7 @@ const navigation = [
     name: 'Financial record',
     title: 'Financial record',
     url: 'financial',
+    hidden: false,
     subsections: [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
@@ -53,23 +54,24 @@ const navigation = [
     name: 'Military history',
     title: 'Military history',
     url: 'military',
-    hidden: true,
+    hidden: false,
     subsections: [
-      { name: 'Selective Service Record', url: 'selective' },
-      { name: 'Military history details', url: 'history' }
+      { name: 'Selective service record', url: 'selective' },
+      { name: 'U.S. military', url: 'history' },
+      { name: 'Disciplinary procedures', url: 'disciplinary' },
+      { name: 'Foreign military', url: 'foreign' }
     ]
   },
   {
     name: 'Your history',
     title: 'Your history',
     url: 'history',
-    hidden: true,
+    hidden: false,
     subsections: [
       { name: 'Places lived', url: 'residence' },
       { name: 'Employment', url: 'employment' },
       { name: 'Schools & diplomas', url: 'education' },
-      { hidden: true, name: 'Timeline', url: 'timeline' },
-      { hidden: true, name: 'Former federal service', url: 'federal' },
+      { name: 'Former federal service', url: 'federal' },
       { hidden: true, name: 'Employment record', url: 'employment' }
     ]
   },
@@ -77,6 +79,7 @@ const navigation = [
     name: 'Foreign activities',
     title: 'Foreign activities',
     url: 'foreign',
+    hidden: false,
     subsections: [
       { name: 'U.S. passport information', url: 'passport' },
       { hidden: true, name: 'Foreign contacs', url: 'contacts' },
@@ -99,14 +102,14 @@ const navigation = [
     name: 'Investigative and criminal history',
     title: 'Investigative and criminal history',
     url: 'legal',
-    hidden: true,
+    hidden: false,
     subsections: [
       { name: 'Police record', url: 'police' },
-      { name: 'Involvement in non-criminal court actions', url: 'court' },
-      { name: 'Investigations and clearance record', url: 'investigations' },
-      { name: 'Financial record', url: 'financial' },
-      { name: 'Use of information technology systems', url: 'technology' },
-      { name: 'Association record', url: 'associations' }
+      { hidden: true, name: 'Involvement in non-criminal court actions', url: 'court' },
+      { hidden: true, name: 'Investigations and clearance record', url: 'investigations' },
+      { hidden: true, name: 'Financial record', url: 'financial' },
+      { hidden: true, name: 'Use of information technology systems', url: 'technology' },
+      { hidden: true, name: 'Association record', url: 'associations' }
     ]
   }
 ]

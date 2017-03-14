@@ -129,16 +129,8 @@ class Api {
     return this.proxySecured.get(env.EndpointValidatePassport(passport))
   }
 
-  validateCity (city) {
-    return this.proxySecured.get(env.EndpointValidateCity(city))
-  }
-
   validateZipcode (zipcode) {
     return this.proxySecured.get(env.EndpointValidateZipcode(zipcode))
-  }
-
-  validateState (state) {
-    return this.proxySecured.get(env.EndpointValidateState(state))
   }
 
   validateAddress (address) {

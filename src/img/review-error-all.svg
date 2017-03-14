@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Alerts" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 79.68 124.06" style="enable-background:new 0 0 79.68 124.06;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#5B606B;}
+	.st2{fill:#BCCAD8;}
+	.st3{fill:#E21C3C;}
+</style>
+<g>
+	<g>
+		<path class="st0" d="M76.61,1.52H3.07c-0.85,0-1.55,0.69-1.55,1.55v117.92c0,0.85,0.69,1.55,1.55,1.55h73.54
+			c0.85,0,1.55-0.69,1.55-1.55V3.07C78.16,2.22,77.47,1.52,76.61,1.52z"/>
+		<path class="st1" d="M75.02,124.06H4.66c-2.57,0-4.66-2.09-4.66-4.66V4.66C0,2.09,2.09,0,4.66,0h70.36c2.57,0,4.66,2.09,4.66,4.66
+			v114.73C79.68,121.96,77.59,124.06,75.02,124.06z M4.66,3.04c-0.89,0-1.62,0.73-1.62,1.62v114.73c0,0.89,0.73,1.62,1.62,1.62
+			h70.36c0.89,0,1.62-0.73,1.62-1.62V4.66c0-0.89-0.73-1.62-1.62-1.62H4.66z"/>
+	</g>
+	<g>
+		<rect x="20.75" y="30.51" class="st2" width="38.18" height="3.81"/>
+		<rect x="20.75" y="36.9" class="st2" width="38.18" height="3.81"/>
+		<rect x="20.75" y="24.13" class="st2" width="38.18" height="3.81"/>
+	</g>
+	<g>
+		<rect x="20.75" y="60.7" class="st2" width="38.18" height="3.81"/>
+		<rect x="20.75" y="67.09" class="st2" width="38.18" height="3.81"/>
+		<rect x="20.75" y="54.31" class="st2" width="38.18" height="3.81"/>
+	</g>
+	<g>
+		<rect x="20.75" y="90.43" class="st2" width="38.18" height="3.81"/>
+		<rect x="20.75" y="96.82" class="st2" width="38.18" height="3.81"/>
+		<rect x="20.75" y="84.04" class="st2" width="38.18" height="3.81"/>
+	</g>
+	<rect x="53.84" y="30.51" class="st3" width="5.09" height="3.81"/>
+	<rect x="53.84" y="36.9" class="st2" width="5.09" height="3.81"/>
+	<rect x="53.84" y="24.13" class="st2" width="5.09" height="3.81"/>
+	<rect x="53.84" y="60.7" class="st2" width="5.09" height="3.81"/>
+	<rect x="53.84" y="67.09" class="st2" width="5.09" height="3.81"/>
+	<rect x="53.84" y="54.31" class="st3" width="5.09" height="3.81"/>
+	<rect x="53.84" y="90.43" class="st2" width="5.09" height="3.81"/>
+	<rect x="53.84" y="96.82" class="st3" width="5.09" height="3.81"/>
+	<rect x="53.84" y="84.04" class="st2" width="5.09" height="3.81"/>
+</g>
+</svg>

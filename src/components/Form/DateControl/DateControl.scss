@@ -5,27 +5,30 @@
     width: 14rem;
     display: inline-block;
     margin-right: 1rem;
+    vertical-align: top;
   }
 
   .day {
     width: 7rem;
     display: inline-block;
     margin-right: 1rem;
+    vertical-align: top;
   }
 
   .year {
     width: 8.5rem;
     display: inline-block;
+    vertical-align: top;
   }
 
   .coupled-flags {
     clear: both;
-    padding-left: 22.5rem;
+    padding-left: 21.5rem;
   }
 }
 
 .datecontrol.day-hidden {
-  .usa-form-group-day {
+  .day {
     display: none;
   }
 

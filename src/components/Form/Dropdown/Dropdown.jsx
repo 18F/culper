@@ -62,7 +62,29 @@ export default class Dropdown extends ValidationElement {
         }
       }
 
-      this.setState({options: arr})
+      this.setState({options: arr}, () => {
+        // Force validation. Particularly on first render we need to revalidate the
+        // value.
+        let event = {
+          target: {
+            id: this.props.id || '',
+            name: this.props.name,
+            value: this.state.value
+          },
+          persist: function () {},
+          fake: true
+        }
+
+        this.handleValidation(event)
+      })
+    }
+  }
+
+  componentWillReceiveProps (next) {
+    if (next.receiveProps) {
+      this.setState({
+        value: next.value
+      })
     }
   }
 
@@ -71,17 +93,6 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    // let valid = true
-    // if (this.props.required) {
-    //   if (event.target.value === '') {
-    //     valid = false
-    //   }
-    // }
-
-    // this.setState({value: event.target.value, error: !valid, valid: valid}, () => {
-    //   super.handleChange(event)
-    // })
-
     this.setState({value: event.target.value}, () => {
       super.handleChange(event)
     })
@@ -90,15 +101,18 @@ export default class Dropdown extends ValidationElement {
   handleValidation (event, status, errorCodes) {
     let value = this.state.value
     let valid = value.length > 0 ? false : null
-    this.state.options.forEach(x => {
-      if (x.name.toLowerCase() === value.toLowerCase()) {
-        valid = true
-        value = x.name
-      }
-    })
 
-    if (valid === false) {
-      errorCodes = 'notfound'
+    if (valid !== null) {
+      this.state.options.forEach(x => {
+        if (x.name.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()) {
+          valid = true
+          value = x.name
+        }
+      })
+
+      if (valid === false) {
+        errorCodes = 'notfound'
+      }
     }
 
     this.setState({
@@ -145,6 +159,7 @@ export default class Dropdown extends ValidationElement {
       ...event,
       target: {
         id: this.props.name,
+        name: this.props.name,
         value: change.newValue
       }
     }
@@ -235,6 +250,7 @@ export default class Dropdown extends ValidationElement {
                      getSuggestionValue={getSuggestionValue}
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
+                     ref="autosuggest"
                      />
       </div>
     )

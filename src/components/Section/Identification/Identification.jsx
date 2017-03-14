@@ -1,16 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { IdentificationValidator } from '../../../validators'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import ValidationElement from '../../Form/ValidationElement'
-import ApplicantName from '../../Form/Name'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
-import IntroHeader from '../../Form/IntroHeader'
+import { IntroHeader, ValidationElement, Name } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -56,25 +55,7 @@ class Identification extends ValidationElement {
       this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
     }
 
-    let cstatus = 'neutral'
-    if (this.hasStatus('name', status, true)
-        && this.hasStatus('birthdate', status, true)
-        && this.hasStatus('birthplace', status, true)
-        && this.hasStatus('contacts', status, true)
-        && this.hasStatus('ssn', status, true)
-        && this.hasStatus('physical', status, true)
-        && this.hasStatus('othernames', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('name', status, false)
-               || this.hasStatus('birthdate', status, false)
-               || this.hasStatus('birthplace', status, false)
-               || this.hasStatus('contacts', status, false)
-               || this.hasStatus('ssn', status, false)
-               || this.hasStatus('physical', status, false)
-               || this.hasStatus('othernames', status, false)) {
-      cstatus = 'incomplete'
-    }
-
+    let cstatus = new IdentificationValidator(null, this.props).completionStatus(status)
     let completed = {
       ...this.props.Completed,
       ...status,
@@ -83,29 +64,17 @@ class Identification extends ValidationElement {
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
-  }
-
   intro () {
     return (
       <div className="identification intro review-screen">
         <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors} Completed={this.props.Completed} />
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('identification.tour.title')}</h3>
-          <p>{i18n.t('identification.tour.para')}</p>
-          <button onClick={this.handleTour}>{i18n.t('identification.tour.button')}</button>
-        </div>
-        <div className="review-column">
-          <h3>{i18n.t('identification.review.title')}</h3>
-          <p>{i18n.t('identification.review.para')}</p>
-          <button onClick={this.handleReview}>{i18n.t('identification.review.button')}</button>
+          <IntroHeader Errors={this.props.Errors}
+                       Completed={this.props.Completed}
+                       tour={i18n.t('identification.tour.para')}
+                       review={i18n.t('identification.review.para')}
+                       onTour={this.handleTour}
+                       onReview={this.handleReview}
+                       />
         </div>
       </div>
     )
@@ -140,12 +109,12 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.physical')}>
 
             <h2>{i18n.t('identification.name.title')}</h2>
-            <ApplicantName name="name"
-                           {...this.props.ApplicantName }
-                           className="eapp-field-wrap"
-                           onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-                           onValidate={this.onValidate.bind(this)}
-                           />
+            <Name name="name"
+                  {...this.props.ApplicantName }
+                  className="eapp-field-wrap"
+                  onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+                  onValidate={this.onValidate.bind(this)}
+                  />
 
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
@@ -198,12 +167,12 @@ class Identification extends ValidationElement {
                        next="identification/othernames"
                        nextLabel={i18n.t('identification.destination.othernames')}>
             <h2>{i18n.t('identification.name.title')}</h2>
-            <ApplicantName name="name"
-                           {...this.props.ApplicantName }
-                           className="eapp-field-wrap"
-                           onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-                           onValidate={this.onValidate.bind(this)}
-                           />
+            <Name name="name"
+                  {...this.props.ApplicantName }
+                  className="eapp-field-wrap"
+                  onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
+                  onValidate={this.onValidate.bind(this)}
+                  />
           </SectionView>
 
           <SectionView name="othernames"
@@ -321,7 +290,7 @@ function mapStateToProps (state) {
   }
 }
 
-function processApplicantBirthDate (birthDate) {
+export function processApplicantBirthDate (birthDate) {
   if (!birthDate) {
     return null
   }

@@ -23,6 +23,7 @@ describe('The Sex component', () => {
 
   it('bubbles up change event', () => {
     let changes = 0
+    let updates = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -32,10 +33,12 @@ describe('The Sex component', () => {
       valid: false,
       handleChange: function (event) {
         changes++
-      }
+      },
+      onUpdate: () => { updates++ }
     }
-    const component = mount(<Sex name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Sex name={expected.name} onChange={expected.handleChange} onUpdate={expected.onUpdate} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
+    expect(updates).toEqual(updates)
   })
 })

@@ -6,14 +6,6 @@ export default class Textarea extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      help: props.help,
-      disabled: props.disabled,
-      maxlength: props.maxlength,
-      pattern: props.pattern,
-      readonly: props.readonly,
-      required: props.required,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -79,9 +71,9 @@ export default class Textarea extends ValidationElement {
 
     if (this.state.value) {
       hits++
-      if (this.state.pattern && this.state.pattern.length > 0) {
+      if (this.props.pattern && this.props.pattern.length > 0) {
         try {
-          let re = new RegExp(this.state.pattern)
+          let re = new RegExp(this.props.pattern)
           status = status && re.test(this.state.value)
           if (!status) {
             errorCode = 'pattern'
@@ -90,7 +82,8 @@ export default class Textarea extends ValidationElement {
           // Not a valid regular expression
         }
       }
-      if (this.state.maxlength && parseInt(this.state.maxlength) > this.state.value.length) {
+
+      if (this.props.maxlength && parseInt(this.props.maxlength) < this.state.value.length) {
         status = false
       }
     }
@@ -102,7 +95,7 @@ export default class Textarea extends ValidationElement {
 
     // Set the internal state
     this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.state.name || 'textarea'
+      let prop = this.props.name || 'textarea'
       let e = { [prop]: errorCode }
       super.handleValidation(event, status, super.flattenObject(e))
     })
@@ -112,7 +105,7 @@ export default class Textarea extends ValidationElement {
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
@@ -162,18 +155,18 @@ export default class Textarea extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.props.name}>
+          {this.props.label}
         </label>
         <textarea className={this.inputClass()}
-                  id={this.state.name}
-                  name={this.state.name}
+                  id={this.props.name}
+                  name={this.props.name}
                   aria-describedby={this.errorName()}
-                  disabled={this.state.disabled}
-                  maxLength={this.state.maxlength}
-                  pattern={this.state.pattern}
-                  readOnly={this.state.readonly}
-                  required={this.state.required}
+                  disabled={this.props.disabled}
+                  maxLength={this.props.maxlength}
+                  pattern={this.props.pattern}
+                  readOnly={this.props.readonly}
+                  required={this.props.required}
                   value={this.state.value}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}

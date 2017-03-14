@@ -5,7 +5,7 @@ import Dropdown from './Dropdown'
 describe('The Dropdown component', () => {
   it('renders appropriately with an error', () => {
     const expected = {
-      name: 'dropdown',
+      name: 'state',
       value: '',
       className: 'dropdown-test'
     }

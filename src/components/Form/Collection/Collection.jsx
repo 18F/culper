@@ -2,18 +2,25 @@ import React from 'react'
 import { i18n } from '../../../config'
 import { findPosition } from '../../../middleware/history'
 import ValidationElement from '../ValidationElement'
+import Show from '../Show'
 
 export default class Collection extends ValidationElement {
   constructor (props) {
     super(props)
 
-    let min = this.props.minimum || 0
+    let indices = []
+    for (let i = 0; i < this.props.items.length; i++) {
+      indices.push(super.guid())
+    }
+    const factoryOfThings = this.factory(this.props.minimum, this.props.items, indices)
+
     this.state = {
       id: super.guid(),
-      minimum: min,
-      length: min,
-      items: this.props.items || [],
-      children: []
+      minimum: this.props.minimum,
+      length: this.props.minimum,
+      items: factoryOfThings.items,
+      indices: factoryOfThings.indices,
+      children: factoryOfThings.children
     }
 
     this.append = this.append.bind(this)
@@ -22,20 +29,12 @@ export default class Collection extends ValidationElement {
   }
 
   /**
-   * Upon the first mounting we need to ensure the minimum number of items
-   * are present in the collection.
-   */
-  componentDidMount () {
-    const f = this.factory(this.state.minimum, this.state.items)
-    this.setState({items: f.items, children: f.children})
-  }
-
-  /**
    * Factory to generate the initial amount of items in the collection
    */
-  factory (min, localItems) {
+  factory (min, localItems, localIndices) {
     let items = []
     let children = []
+    let indices = []
 
     localItems.forEach((item, index) => {
       items.push({
@@ -43,16 +42,22 @@ export default class Collection extends ValidationElement {
         open: false
       })
       children.push(this.createChildren(item, index))
+      indices.push(localIndices[index])
     })
 
     for (let index = children.length; index < min; index++) {
-      items.push({open: true})
+      // NOTE: Default state of `open === true` was changed for
+      // next round of usability testing. Please revert if things
+      // go ary.
+      items.push({open: false})
       children.push(this.createChildren(null, index))
+      indices.push(super.guid())
     }
 
     return {
       items: items,
-      children: children
+      children: children,
+      indices: indices
     }
   }
 
@@ -75,12 +80,18 @@ export default class Collection extends ValidationElement {
     for (let item of items) {
       item.open = false
     }
-    items.push({open: true})
+
+    // NOTE: The original state was `true` but for this round of usability testing
+    // we are modifying this behavior.
+    items.push({open: false})
+
+    let indices = [...this.state.indices]
+    indices.push(super.guid())
 
     let children = [...this.state.children]
-    children = this.factory(items.length, items).children
+    children = this.factory(items.length, items, indices).children
 
-    this.setState({ items: items, children: children }, () => {
+    this.setState({ items: items, children: children, indices: indices }, () => {
       this.dispatcher(this.state.items)
       this.scroll()
     })
@@ -93,10 +104,13 @@ export default class Collection extends ValidationElement {
     let items = [...this.state.items]
     items.splice(index, 1)
 
-    let children = [...this.state.children]
-    children = this.factory(items.length, items).children
+    let indices = [...this.state.indices]
+    indices.splice(index, 1)
 
-    this.setState({ items: items, children: children }, () => {
+    let children = [...this.state.children]
+    children = this.factory(items.length, items, indices).children
+
+    this.setState({ items: items, children: children, indices: indices }, () => {
       this.dispatcher(this.state.items)
       this.scroll()
     })
@@ -214,10 +228,6 @@ export default class Collection extends ValidationElement {
     this.setState({ items: items })
   }
 
-  persistedItem (index) {
-    return this.state.items[index] || {}
-  }
-
   /**
    * If a callback is not found for `this.props.summary` then normal rendering of every
    * item is done.
@@ -262,10 +272,17 @@ export default class Collection extends ValidationElement {
     // without worrying about the accordion look and feel.
     //
     // Also, if there are less than two items in the list skip the summary
-    if (!this.props.summary || this.state.items.length < 2) {
+    //
+    // NOTE: Prototyping always displaying the summaries (if one if present) for
+    // the next round of usability testing. If this doesn't work out then revert
+    // back to a check of number of items in the list as well.
+    //
+    //   if (!this.props.summary || this.state.items.length < 2) {}
+    //
+    if (!this.props.summary) {
       return this.state.items.map((item, index) => {
         return (
-          <div className="item" key={index}>
+          <div className="item" key={this.state.indices[index]}>
             <div className="details">
               {bylineTop(item, index)}
               {this.state.children[index]}
@@ -276,37 +293,33 @@ export default class Collection extends ValidationElement {
       })
     }
 
-    const title = (item, index) => {
-      if (index !== 0) {
-        return ''
-      }
-
-      return (
-        <div className="title">
-          <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
-          <hr />
-        </div>
-      )
-    }
-
     // There is a summary and it is appropriate to display at this moment
     const totalItems = this.state.items.length
     return this.state.items.map((item, index) => {
       const klassOpen = item.open === true ? 'open' : 'closed'
       const klassLast = index + 1 === totalItems ? 'last' : ''
       return (
-        <div className="item" key={index}>
-          <div className={`summary ${klassOpen} ${klassLast}`.trim()}>
-            {title(item, index)}
-            <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
-              <div className="brief">
-                {this.props.summary(item, index)}
+        <div className="item" key={this.state.indices[index]}>
+          <div className="summary">
+            <Show when={index === 0}>
+              <div className="caption gutters">
+                <div className="title">
+                  <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
+                  <hr />
+                </div>
               </div>
-              <div className="expander">
-                <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
-              </div>
-            </a>
-            <div className="divider">
+            </Show>
+            <div className={`row gutters ${klassOpen} ${klassLast}`.trim()}>
+              <a href="javascript:;;" className="toggle" onClick={this.toggle.bind(this, index)}>
+                <div className="brief">
+                  {this.props.summary(item, index)}
+                </div>
+                <div className="expander">
+                  <i className={`fa fa-chevron-${item.open === true ? 'up' : 'down'} fa-2`} aria-hidden="true"></i>
+                </div>
+              </a>
+            </div>
+            <div className={`divider gutters ${klassOpen} ${klassLast}`.trim()}>
               <hr />
             </div>
           </div>
@@ -320,20 +333,43 @@ export default class Collection extends ValidationElement {
     })
   }
 
+  getAppendContext () {
+    let title = null
+    if (this.props.appendTitle) {
+      title = <h2>{this.props.appendTitle}</h2>
+    }
+
+    let message = null
+    if (this.props.appendMessage) {
+      message = this.props.appendMessage
+    }
+
+    const klassAppend = `collection-append ${this.props.appendClass || ''}`.trim()
+    return (
+      <div className={klassAppend}>
+        {title}
+        {message}
+        <button className="add usa-button-outline" onClick={this.append}>
+          <span>{this.props.appendLabel}</span>
+          <i className="fa fa-plus-circle"></i>
+        </button>
+      </div>
+    )
+  }
+
   render () {
     const klass = `collection ${this.props.className || ''}`.trim()
-    const klassAppend = `text-center ${this.props.appendClass || ''}`.trim()
 
     return (
       <div id={this.state.id} className={klass}>
         {this.getContent()}
-        <div className={klassAppend}>
-          <button className="add usa-button-outline" onClick={this.append}>
-            <span>{this.props.appendLabel}</span>
-            <i className="fa fa-plus-circle"></i>
-          </button>
-        </div>
+        {this.getAppendContext()}
       </div>
     )
   }
+}
+
+Collection.defaultProps = {
+  minimum: 0,
+  items: []
 }

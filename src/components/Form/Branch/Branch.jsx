@@ -32,7 +32,7 @@ export default class Branch extends React.Component {
             {this.props.children}
           </div>
           <div>
-            <Help id={this.props.help}>
+            <Help id={this.props.help} className={this.props.helpClassName}>
               <label>{this.props.label || ''}</label>
               <RadioGroup className="option-list branch" selectedValue={this.state.value}>
                 <Radio name={this.props.name}
@@ -40,12 +40,14 @@ export default class Branch extends React.Component {
                        value={this.props.yesValue}
                        className="yes"
                        onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                       onValidate={this.props.onValidate}
                        />
                 <Radio name={this.props.name}
                        label={this.props.noLabel}
                        value={this.props.noValue}
                        className="no"
                        onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                       onValidate={this.props.onValidate}
                        />
               </RadioGroup>
               <HelpIcon className="branch-help-icon" />

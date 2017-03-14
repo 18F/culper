@@ -19,7 +19,7 @@
     "url": "^0.11.0"
   },
   "scripts": {
-    "test": "npm install && nightwatch",
+    "test": "rm -rf ./screenshots && rm -rf ./tmp-* && npm install && nightwatch",
     "docker": "sleep 1m; npm test"
   }
 }

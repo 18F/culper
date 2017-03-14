@@ -1,11 +1,28 @@
 @import 'eqip-colors';
 
 .collection {
+  .summary .row.open:hover,
+  .summary .row.closed:hover {
+    background-color: $eapp-grey;
+  }
+
   .summary {
-    display: table;
     width: 100%;
     background-color: $eapp-grey-light;
-    padding: 3rem 4rem;
+    padding-bottom: 0;
+
+    .caption,
+    .closed,
+    .open {
+      display: table;
+      width: 100%;
+    }
+
+    .closed,
+    .open {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
 
     .title {
       display: table-caption;
@@ -24,35 +41,26 @@
       }
     }
 
-    &.closed {
-      .divider {
-        display: table-row;
+    .divider {
+      display: table;
+      padding-top: 0;
+      padding-bottom: 0;
 
-        hr {
-          border: 0;
-          height: 0;
-          border-top: 1px solid rgba(0, 0, 0, 0.1);
-          border-bottom: 1px solid $eapp-grey;
-          margin-right: -5rem;
-          margin-top: 3rem;
-          margin-bottom: -3rem;
-        }
+      hr {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid $eapp-grey;
       }
     }
 
-    &.closed.last {
-      .divider {
-        hr {
-          margin-bottom: auto;
-        }
-      }
+    .divider.closed.last {
+      padding-bottom: 1.5rem;
     }
 
-    &.open {
-      .divider {
-        display: none;
-        visibility: hidden;
-      }
+    .divider.open {
+      display: none;
+      visibility: hidden;
     }
 
     a {
@@ -87,14 +95,22 @@
     }
   }
 
+  .collection-append {
+    margin-top: 4.9rem;
+    margin-bottom: 4.9rem;
+
+    ul {
+      margin-left: 4.6rem;
+    }
+  }
+
   button.add {
     line-height: normal !important;
     max-width: 50%;
     padding: 2rem;
     display: table;
     margin-top: 4.9rem;
-    margin-right: auto;
-    margin-left: auto;
+    margin-left: 4rem;
 
     span {
       display: table-cell;
@@ -108,17 +124,21 @@
     }
   }
 
+  .gutters {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   .details {
     &.gutters {
       border: 4px solid $eapp-grey-light;
-      padding-left: 4rem;
-      padding-right: 4rem;
 
       h1,
       h2,
       h3,
-      h4 {
-        padding: 0;
+      h4,
+      p {
+        padding-left: 0;
       }
 
       .eapp-field-wrap {

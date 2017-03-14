@@ -1,14 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { ContactInformationValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Email, Collection, Comments, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      name: props.name,
-      label: props.label,
-      value: props.value,
       focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false,
@@ -79,27 +77,7 @@ export default class ContactInformation extends ValidationElement {
   }
 
   isValid () {
-    for (let email of this.state.Emails) {
-      if (!email.Email || !email.Email.value) {
-        return false
-      }
-    }
-
-    if (this.state.Emails.length < 2) {
-      return false
-    }
-
-    for (let phone of this.state.PhoneNumbers) {
-      if (!phone.Telephone || !phone.Telephone.number) {
-        return false
-      }
-    }
-
-    if (this.state.PhoneNumbers.length < 2) {
-      return false
-    }
-
-    return true
+    return new ContactInformationValidator(this.state, null).isValid()
   }
 
   /**
@@ -126,6 +104,27 @@ export default class ContactInformation extends ValidationElement {
     let number = i18n.t('identification.contacts.collection.summary.unknown')
     if (item.Telephone && !item.noNumber && item.Telephone.number) {
       number = item.Telephone.number
+
+      switch (item.Telephone.type) {
+        case 'DSN':
+          number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
+          break
+
+        case 'International':
+          number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
+          if (item.Telephone.extension) {
+            number += ` x${item.Telephone.extension}`
+          }
+          break
+
+        case 'Domestic':
+        default:
+          number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
+          if (item.Telephone.extension) {
+            number += ` x${item.Telephone.extension}`
+          }
+          break
+      }
     }
 
     return (
@@ -142,6 +141,7 @@ export default class ContactInformation extends ValidationElement {
     return (
       <div className="contact">
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
+        <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
           <Collection minimum="1"
                       items={this.state.Emails}
@@ -151,7 +151,6 @@ export default class ContactInformation extends ValidationElement {
                       summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
                       appendClass="eapp-field-wrap"
                       appendLabel={i18n.t('identification.contacts.collection.append')}>
-
             <div className="eapp-field-wrap">
               <Help id="identification.contacts.help.email">
                 <Email name="Email"
@@ -166,6 +165,7 @@ export default class ContactInformation extends ValidationElement {
         </div>
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
+        <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
         <div className={klass + ' telephone-collection'}>
           <Collection minimum="2"
                       items={this.state.PhoneNumbers}
@@ -175,7 +175,6 @@ export default class ContactInformation extends ValidationElement {
                       summaryTitle={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                       appendClass="eapp-field-wrap"
                       appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
-
             <div className="eapp-field-wrap no-label">
               <Help id="identification.contacts.help.phoneNumber">
                 <Telephone name="Telephone"
@@ -194,8 +193,7 @@ export default class ContactInformation extends ValidationElement {
                   label={i18n.t('identification.contacts.label.comments')}
                   className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                  onValidate={this.handleValidation}
-                  >
+                  onValidate={this.handleValidation}>
           <h3>{i18n.t('identification.contacts.heading.comments')}</h3>
         </Comments>
 

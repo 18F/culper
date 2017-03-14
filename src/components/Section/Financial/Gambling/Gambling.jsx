@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { GamblingValidator } from '../../../../validators'
 import { ValidationElement, Branch, Collection, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
 
 export default class Gambling extends ValidationElement {
@@ -50,37 +51,7 @@ export default class Gambling extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    if (!this.state.HasGamblingDebt) {
-      return false
-    }
-
-    if (this.state.HasGamblingDebt === 'No') {
-      return true
-    }
-
-    if (this.state.HasGamblingDebt === 'Yes' && this.state.List.length === 0) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.Losses || parseInt(item.Losses.value) < 1) {
-        return false
-      }
-
-      if (!item.Description || !item.Description.value) {
-        return false
-      }
-
-      if (!item.Actions || !item.Actions.value) {
-        return false
-      }
-
-      if (!item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
-        return false
-      }
-    }
-
-    return true
+    return new GamblingValidator(this.state, null).isValid()
   }
 
   /**
@@ -88,10 +59,7 @@ export default class Gambling extends ValidationElement {
    */
   onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
-      if (val === 'No') {
-        this.myDispatch([])
-      }
-
+      this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
   }
@@ -206,7 +174,6 @@ export default class Gambling extends ValidationElement {
             <Number name="Losses"
                     className="losses"
                     placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                    label={i18n.t('financial.gambling.label.losses')}
                     min="1"
                     onValidate={this.handleValidation}
                     />
@@ -220,7 +187,6 @@ export default class Gambling extends ValidationElement {
             <Textarea name="Description"
                       className="description"
                       onValidate={this.handleValidation}
-                      label={i18n.t('financial.gambling.label.description')}
                       />
             <HelpIcon className="description-help-icon" />
           </Help>
@@ -232,7 +198,6 @@ export default class Gambling extends ValidationElement {
             <Textarea name="Actions"
                       className="actions"
                       onValidate={this.handleValidation}
-                      label={i18n.t('financial.gambling.label.actions')}
                       />
             <HelpIcon className="actions-help-icon" />
           </Help>
@@ -248,14 +213,13 @@ export default class Gambling extends ValidationElement {
                 className="eapp-field-wrap"
                 value={this.state.HasGamblingDebt}
                 help="financial.gambling.branch.help"
-                label={i18n.t('financial.gambling.branch.question')}
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         {this.visibleComponents()}
         <Comments name="Comments"
                   value={this.state.Comments}
                   label={i18n.t('financial.gambling.help.comments')}
-                  className="eapp-field-wrap"
+                  className="eapp-field-wrap gambling-comment"
                   onUpdate={this.commentsUpdated}
                   onValidate={this.handleValidation}>
           <h3>{i18n.t('financial.gambling.label.comments')}</h3>

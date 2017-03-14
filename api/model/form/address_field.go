@@ -1,9 +1,10 @@
 package form
 
+import "github.com/18F/e-QIP-prototype/api/geo"
+
 // AddressField contains complete address information for an entity
 type AddressField struct {
-	Street1 TextField
-	Street2 TextField
+	Address TextField
 	City    CityField
 	State   StateField
 	Zipcode ZipcodeField
@@ -16,12 +17,8 @@ func (a AddressField) Valid() (bool, error) {
 
 	var stack ErrorStack
 
-	if ok, err := a.Street1.Valid(); !ok {
+	if ok, err := a.Address.Valid(); !ok {
 		stack.Append("Address", err)
-	}
-
-	if ok, err := a.Street2.Valid(); !ok {
-		stack.Append("Street", err)
 	}
 
 	if ok, err := a.City.Valid(); !ok {
@@ -32,16 +29,29 @@ func (a AddressField) Valid() (bool, error) {
 		stack.Append("State", err)
 	}
 
-	if ok, err := a.Zipcode.Valid(); !ok {
-		stack.Append("Zipcode", err)
-	}
-
-	if ok, err := a.County.Valid(); !ok {
-		stack.Append("County", err)
-	}
-
 	if ok, err := a.Country.Valid(); !ok {
 		stack.Append("Country", err)
+	}
+
+	// Make sure non-geocoding validation checks are good
+	if stack.HasErrors() {
+		return false, stack
+	}
+
+	// Perform geocoding
+	results, err := geo.Geocode.Validate(
+		geo.Values{
+			Address: string(a.Address),
+			City:    string(a.City),
+			State:   string(a.State),
+			Zipcode: string(a.Zipcode),
+		})
+
+	if err != nil {
+		stack.Append("Address", ErrInvalidLocation{
+			Message:     err.Error(),
+			Suggestions: results,
+		})
 	}
 
 	return !stack.HasErrors(), stack

@@ -35,7 +35,7 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
-    saved: 'Saved',
+    saved: 'Auto saved',
     now: 'now',
     second: 'second',
     seconds: 'seconds',
@@ -53,100 +53,367 @@ const en = {
     close: 'Close'
   },
   comments: {
-    add: 'Add comment',
+    add: 'Add a comment',
+    addpaired: 'Add a comment to this question',
     remove: 'Remove comment'
+  },
+  help: {
+    close: 'Close info block'
   },
   error: {
     name: {
       last: {
-        required: '',
-        length: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
-        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+        required: {
+          title: 'The last name is required',
+          message: '',
+          note: ''
+        },
+        length: {
+          title: 'The last name does not meet length requirements',
+          message: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
+          note: ''
+        },
+        pattern: {
+          title: 'The last name has unsupported characters',
+          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
+          note: ''
+        }
       },
       first: {
-        length: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
-        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+        length: {
+          title: 'The first name does not meet the length requirements',
+          message: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
+          note: ''
+        },
+        pattern: {
+          title: 'The first name has unsupported characters',
+          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
+          note: ''
+        }
       },
       middle: {
-        length: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
-        pattern: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces'
+        length: {
+          title: 'The middle name does not meet the length requirements',
+          message: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
+          note: ''
+        },
+        pattern: {
+          title: 'The middle name has unsupported characters',
+          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
+          note: ''
+        }
       }
     },
     birthdate: {
-      age: 'Applicants must be older than 16 and less than 130 years of age'
+      age: {
+        title: 'The applicant age is not approved',
+        message: 'Applicants must be older than 16 and less than 130 years of age',
+        note: ''
+      }
     },
     ssn: {
       first: {
-        pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 3 digits',
+          message: 'The first part of the social security number must be 3 digits between 0 and 9',
+          note: ''
+        }
       },
       middle: {
-        pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 2 digits',
+          message: 'The middle part of the social security number must be 2 digits between 0 and 9',
+          note: ''
+        }
       },
       last: {
-        pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 4 digits',
+          message: 'The last part of the social security number must be 4 digits between 0 and 9',
+          note: ''
+        }
       },
       verifyFirst: {
-        pattern: 'The first part of the social security number must be 3 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 3 digits',
+          message: 'The first part of the social security number must be 3 digits between 0 and 9',
+          note: ''
+        }
       },
       verifyMiddle: {
-        pattern: 'The middle part of the social security number must be 2 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 2 digits',
+          message: 'The middle part of the social security number must be 2 digits between 0 and 9',
+          note: ''
+        }
       },
       verifyLast: {
-        pattern: 'The last part of the social security number must be 4 digits between 0 and 9'
+        pattern: {
+          title: 'This field must have 4 digits',
+          message: 'The last part of the social security number must be 4 digits between 0 and 9',
+          note: ''
+        }
       }
     },
     month: {
-      max: 'The month must be between 1 (January) and 12 (December)'
+      notfound: {
+        title: 'Month is not recognized',
+        message: 'The month must be between 1 (January) and 12 (December)',
+        note: ''
+      },
+      max: {
+        title: 'Month is not recognized',
+        message: 'The month must be between 1 (January) and 12 (December)',
+        note: ''
+      }
     },
     day: {
-      length: 'The day must be a valid day for the month',
-      max: 'Cannot exceed the number of days within the month'
+      length: {
+        title: 'Day falls outside of allowable range',
+        message: 'The day must be a valid day for the month',
+        note: ''
+      },
+      max: {
+        title: '',
+        message: 'Cannot exceed the number of days within the month',
+        note: ''
+      }
     },
     year: {
-      max: 'The year must be a valid year',
-      min: 'The year must be a valid year'
+      max: {
+        title: 'The year must be four digits',
+        message: 'The year must be a valid year',
+        note: ''
+      },
+      min: {
+        title: 'The year must be four digits',
+        message: 'The year must be a valid year',
+        note: ''
+      }
     },
     weight: {
       pounds: {
-        min: 'We only accept a value between 10 and 999 pounds',
-        max: 'We only accept a value between 10 and 999 pounds'
+        min: {
+          title: 'Weight below accepted limits',
+          message: 'We only accept a value between 10 and 999 pounds',
+          note: ''
+        },
+        max: {
+          title: 'Weight exceeds accepted limits',
+          message: 'We only accept a value between 10 and 999 pounds',
+          note: ''
+        }
       }
     },
     height: {
       feet: {
-        min: 'Feet must be between 1 and 9',
-        max: 'Feet must be between 1 and 9'
+        min: {
+          title: 'Feet is under the accepted limits',
+          message: 'Feet must be between 1 and 9',
+          note: ''
+        },
+        max: {
+          title: 'Feet is above the accepted limits',
+          message: 'Feet must be between 1 and 9',
+          note: ''
+        }
       },
       inches: {
-        min: 'Inches must be between 0 and 11',
-        max: 'Inches must be between 0 and 11'
+        min: {
+          title: 'Inches is below the accepted limits',
+          message: 'Inches must be between 0 and 11',
+          note: ''
+        },
+        max: {
+          title: 'Inches is above the accepted limits',
+          message: 'Inches must be between 0 and 11',
+          note: ''
+        }
       }
     },
     city: {
-      length: 'City name must be between 2 and 100 characters'
+      length: {
+        title: 'City name length',
+        message: 'City name must be between 2 and 100 characters',
+        note: ''
+      }
     },
     state: {
-      notfound: 'The state name must be one of the available options'
+      notfound: {
+        title: 'State option not supported',
+        message: 'The state name must be one of the available options',
+        note: ''
+      }
     },
     county: {
-      length: 'County name must be between 2 and 100 characters'
+      length: {
+        title: 'County length',
+        message: 'County name must be between 2 and 100 characters',
+        note: ''
+      }
     },
     zipcode: {
-      pattern: 'The zipcode can be either the 5 or 9 digit variation'
+      pattern: {
+        title: 'Zipcode not in accepted format',
+        message: 'The zipcode can be either the 5 or 9 digit variation',
+        note: ''
+      },
+      length: {
+        title: 'Zipcode not in accepted format',
+        message: 'The zipcode can be either the 5 or 9 digit variation',
+        note: ''
+      }
     },
     country: {
-      notfound: 'The country name must be one of the available options'
+      notfound: {
+        title: 'Country option not supported',
+        message: 'The country name must be one of the available options',
+        note: ''
+      }
     },
     passport: {
       number: {
-        pattern: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.'
+        pattern: {
+          title: 'Passport number not in acceptable format',
+          message: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.',
+          note: ''
+        }
       }
     },
     Losses: {
-      min: 'Reported losses must have a value'
+      min: {
+        title: 'Losses below accepted limits',
+        message: 'Reported losses must have a value',
+        note: ''
+      }
     },
     daterange: {
-      order: 'The **from** date must precede the **to** date'
+      order: {
+        title: 'Date range order',
+        message: 'The **from** date must precede the **to** date',
+        note: ''
+      }
+    },
+    domestic_first: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The area code must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The area code must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    domestic_second: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    domestic_third: {
+      pattern: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        note: ''
+      }
+    },
+    dsn_first: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    dsn_second: {
+      pattern: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        note: ''
+      }
+    },
+    int_first: {
+      pattern: {
+        title: 'This field must have 3 digits',
+        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 3 digits',
+        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        note: ''
+      }
+    },
+    int_second: {
+      pattern: {
+        title: 'This field must have 10 digits',
+        message: 'The international number must be 10 digits between 0 and 9',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 10 digits',
+        message: 'The international number must be 10 digits between 0 and 9',
+        note: ''
+      }
+    },
+    geocode: {
+      original: {
+        title: 'Original address'
+      },
+      partial: {
+        title: 'Alternate address found',
+        label: 'Suggested Address',
+        para: 'Consider the highlighted change below. Using the US Postal Service suggested address will help us process your case more quickly'
+      },
+      city: {
+        title: 'City could not be found',
+        para: 'The city entered could not be found. Please ensure you have correctly typed the city associated to this address'
+      },
+      notfound: {
+        title: 'Address not found',
+        para: 'The address provided could not be found. Please ensure you have correctly typed all address fields correctly'
+      },
+      generic: {
+        title: 'Unable to validate address',
+        para: 'The address provided cannot be properly validated'
+      },
+      multiple: {
+        title: 'Multiple address found',
+        para: 'Multiple addresses were found for the information you entered, and no default exists.'
+      },
+      defaultAddress: {
+        title: 'More information required',
+        para: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
+      }
+    },
+    Email: {
+      pattern: {
+        title: 'A valid email address is required',
+        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
+        note: 'Note: Underscores (_) and periods (.) are valid characters'
+      }
     }
   },
   section: {
@@ -190,14 +457,10 @@ const en = {
   },
   identification: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       review: 'Review Identification',
@@ -212,25 +475,45 @@ const en = {
       psychological: 'Psychological and emotional health'
     },
     name: {
-      title: 'Your full name',
+      title: 'Provide your full name',
       last: {
-        help: 'Your last name is required.  If you have only 1 name, enter it in the last name field'
+        help: {
+          title: 'Need help with the last name?',
+          message: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
+          note: ''
+        }
       },
       first: {
-        help: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.'
+        help: {
+          title: 'Need help with the first name?',
+          message: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.',
+          note: ''
+        }
       },
       middle: {
-        help: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.'
+        help: {
+          title: 'Need help with the middle name?',
+          message: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.',
+          note: ''
+        }
       },
       suffix: {
-        help: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field'
+        help: {
+          title: 'Need help with the suffix?',
+          message: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field',
+          note: ''
+        }
       }
     },
     othernames: {
-      title: 'Other names used',
-      info: 'Provide your other names used and the period of time you used them (for example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s)).',
+      title: 'Provide your other names used and the period of time you used them',
+      info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
-        help: 'Provide your other names used and the period of time you used them',
+        help: {
+          title: 'Need information on other names?',
+          message: 'Provide your other names used and the period of time you used them',
+          note: ''
+        },
         question: 'Have you used any other names?'
       },
       collection: {
@@ -239,15 +522,15 @@ const en = {
           name: 'Name',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Unknown'
+          unknown: 'Click to provide details'
         },
         append: 'Add another name'
       },
       heading: {
         name: 'Provide other name used',
-        maiden: 'Maiden name',
+        maiden: 'Was this your maiden name?',
         used: 'Dates used',
-        reason: 'Reason for change'
+        reason: 'Provide the reasons why the name was changed'
       },
       label: {
         maiden: 'Was this your maiden name?',
@@ -255,29 +538,53 @@ const en = {
       }
     },
     birthdate: {
-      title: 'Date of birth',
-      help: 'Provide your date of birth, or the closest possible estimate you can provide'
+      title: 'Provide your date of birth',
+      help: {
+        title: 'Need help with the birthdate?',
+        message: 'Provide your date of birth, or the closest possible estimate you can provide',
+        note: ''
+      }
     },
     birthplace: {
-      title: 'Place of birth',
+      title: 'Provide your place of birth',
       question: {
         label: 'Were you born in the United States of America?',
         yes: 'Yes',
         no: 'No'
       },
       branch: {
-        help: 'Enter information regarding your place of birth'
+        help: {
+          title: 'Need help with your place of birth?',
+          message: 'Enter information regarding your place of birth',
+          note: ''
+        }
       },
       help: {
-        city: 'City where you were born',
-        state: 'State where you were born',
-        country: 'Country where you were born',
-        county: 'County where you were born'
+        city: {
+          title: 'Need help with the city?',
+          message: 'City where you were born',
+          note: ''
+        },
+        state: {
+          title: 'Need help with the state?',
+          message: 'State where you were born',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the country?',
+          message: 'Country where you were born',
+          note: ''
+        },
+        county: {
+          title: 'Need help with the county?',
+          message: 'County where you were born',
+          note: ''
+        }
       },
       label: {
-        state: 'State',
+        state: 'State or territory',
         city: 'City',
-        county: 'County or providence',
+        county: 'County or province',
         country: 'Country'
       },
       placeholder: {
@@ -288,16 +595,24 @@ const en = {
       }
     },
     contacts: {
-      title: 'Your contact information',
+      title: 'Provide your contact information',
       help: {
-        email: 'Enter your email address',
-        phoneNumber: 'Enter your phone number'
+        email: {
+          title: 'Need help with an email address?',
+          message: 'Enter your email address',
+          note: ''
+        },
+        phoneNumber: {
+          title: 'Need help with a phone number?',
+          message: 'Enter your phone number',
+          note: ''
+        }
       },
       collection: {
         summary: {
           title: 'Summary of e-mail addresses',
           email: 'E-mail',
-          unknown: 'Unknown',
+          unknown: 'Click to provide details',
           phoneNumber: 'Phone number'
         },
         phoneNumbers: {
@@ -313,6 +628,10 @@ const en = {
         phoneNumber: 'Your phone numbers',
         comments: 'Add optional comments'
       },
+      para: {
+        email: 'Email addresses may be used as contact method, and identify subject in records.',
+        phoneNumber: 'Provide at least two phone numbers (one is required). Additional numbers provided may assist in the completion of your background investigation.'
+      },
       label: {
         email: 'Email address',
         comments: 'If you need to provide any additional comments about this information enter them below',
@@ -324,8 +643,12 @@ const en = {
       }
     },
     ssn: {
-      title: 'U.S. Social Security Number',
-      help: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+      title: 'Provide your U.S. Social Security Number',
+      help: {
+        title: 'Need help with your U.S. Social Security Number?',
+        message: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+        note: ''
+      },
       label: {
         notApplicable: 'Not applicable',
         last: '',
@@ -340,30 +663,58 @@ const en = {
       }
     },
     traits: {
-      title: 'Physical attributes',
+      title: 'Provide your physical attributes',
       heading: {
         hair: 'Hair color',
         eye: 'Eye color',
         height: 'Height',
         weight: 'Weight',
-        sex: 'Sex',
+        sex: 'Select your sex at the time of birth',
         comments: 'Add your comment about sex'
       },
       help: {
-        feet: 'Feet must be a number between 1 and 9',
-        inches: 'Inches must be a number between 0 and 11',
-        height: 'Height must be a number between 1 and 9',
-        weight: 'Weight must be a number between 10 and 999',
-        eye: 'Select an eye color',
-        hair: 'Select the hair color that most closely represents your hair color',
-        sex: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.'
+        feet: {
+          title: 'Need help with your height?',
+          message: 'Feet must be a number between 1 and 9',
+          note: ''
+        },
+        inches: {
+          title: 'Need help with your height?',
+          message: 'Inches must be a number between 0 and 11',
+          note: ''
+        },
+        height: {
+          title: 'Need help with your height?',
+          message: 'Height must be a number between 1 and 9',
+          note: ''
+        },
+        weight: {
+          title: 'Need help with your weight?',
+          message: 'Weight must be a number between 10 and 999',
+          note: ''
+        },
+        eye: {
+          title: 'Need help with your eye color?',
+          message: 'Select an eye color',
+          note: ''
+        },
+        hair: {
+          title: 'Need help with your hair color?',
+          message: 'Select the hair color that most closely represents your hair color',
+          note: ''
+        },
+        sex: {
+          title: 'Need help with you sex?',
+          message: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.',
+          note: ''
+        }
       },
       label: {
         sex: 'Select your sex at the time of birth',
         feet: 'Feet',
         inches: 'Inches',
         pounds: 'Pounds',
-        comments: 'Put your comment/explanation in the box below'
+        comments: 'Add a comment about sex'
       },
       placeholder: {
         feet: '0',
@@ -406,14 +757,10 @@ const en = {
   },
   financial: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me on the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with identification at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with identification at once'
     },
     destination: {
       gambling: 'Gambling debts',
@@ -421,15 +768,18 @@ const en = {
       review: 'Review Financial record'
     },
     gambling: {
-      title: 'Gambling debt',
+      title: 'Have your ever experienced financial problems due to gambling?',
       branch: {
-        help: 'Select whether you have experienced any financial problems due to gambling',
-        question: 'Have your ever experienced financial problems due to gambling?'
+        help: {
+          title: 'Need more information on gambling?',
+          message: 'Select whether you have experienced any financial problems due to gambling',
+          note: ''
+        }
       },
       collection: {
         summary: {
           title: 'Summary of gambling debt',
-          unknownlosses: 'Unknown losses',
+          unknownlosses: 'Click to provide details',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
@@ -452,11 +802,31 @@ const en = {
         comments: 'Add optional comment'
       },
       help: {
-        dates: 'Provide the date range of your financial problems due to gambling',
-        losses: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
-        description: 'Enter description of your financial problems due to gambling',
-        actions: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
-        comments: 'If you need to provide any additional comments about this information enter them below'
+        dates: {
+          title: 'Need help with the dates?',
+          message: 'Provide the date range of your financial problems due to gambling',
+          note: ''
+        },
+        losses: {
+          title: 'Need help gambling losses?',
+          message: 'Enter estimate of the amount (in U.S. dollars) of gambling losses incurred',
+          note: ''
+        },
+        description: {
+          title: 'Need help with the description?',
+          message: 'Enter description of your financial problems due to gambling',
+          note: ''
+        },
+        actions: {
+          title: 'Need help with the actions taken?',
+          message: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
+          note: ''
+        },
+        comments: {
+          title: 'Need help providing additional information?',
+          message: 'If you need to provide any additional comments about this information enter them below',
+          note: ''
+        }
       },
       placeholder: {
         losses: '1000'
@@ -467,7 +837,8 @@ const en = {
         summary: {
           title: 'Summary of Bankruptcy',
           item: 'Bankruptcy',
-          unknown: 'Unknown',
+          unknown: 'Click to provide details',
+          nodates: 'No date',
           chapter: 'Chapter'
         },
         append: 'Add bankruptcy'
@@ -483,45 +854,80 @@ const en = {
         courtAddress: 'Provide the address of the court involved',
         comments: 'Add optional comments'
       },
-      title: 'Bankruptcy',
-      help: 'Note: If you need to provide any additional comments about this information, enter them below.',
-      branch: {
-        question: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?'
+      title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
+      notApplicable: 'Not applicable',
+      help: {
+        title: 'Need help with bankruptcy?',
+        message: 'Note: If you need to provide any additional comments about this information, enter them below.',
+        note: ''
       },
       petitionType: {
-        help: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.'
+        help: {
+          title: 'Need help with the applicable bankruptcy petition type?',
+          message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',
+          note: ''
+        }
       },
       dateDischarged: {
-        help: 'Provide the date of bankruptcy discharge'
+        help: {
+          title: 'Need help with the date of bankruptcy discharge?',
+          message: 'Provide the date of bankruptcy discharge',
+          note: ''
+        }
       },
       dateFiled: {
-        help: 'Provide the date bankruptcy was filed'
+        help: {
+          title: 'Need help with the date the bankruptcy was filed?',
+          message: 'Provide the date bankruptcy was filed',
+          note: ''
+        }
       },
       courtNumber: {
         title: 'Court docket/account number',
         label: 'Number',
         placeholder: 'Court docket/account number',
-        help: 'Provide the docket/account number'
+        help: {
+          title: 'Need help with the docker or account number?',
+          message: 'Provide the docket/account number',
+          note: ''
+        }
       },
       totalAmount: {
         label: 'Amount',
         placeholder: 'Total amount',
-        help: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy'
+        help: {
+          title: 'Need help with the total amount?',
+          message: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
+          note: ''
+        },
+        estimated: 'Estimated'
       },
       courtInvolved: {
         label: 'Court name',
-        help: 'Provide the name of the court involved',
+        help: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court involved',
+          note: ''
+        },
         placeholder: 'Provide court involved'
       },
       trustee: {
         title: 'Provide the trustee',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
-        help: 'The trustee refers to the person who holds authority or a position of trust or responsibility appointed to the bankruptcy',
+        help: {
+          title: 'Need help with the trustee name?',
+          message: 'The trustee refers to the person who holds authority or a position of trust or responsibility appointed to the bankruptcy',
+          note: ''
+        },
         address: {
           title: 'Provide the address of the trustee for this bankruptcy',
           label: 'Trustee address',
-          help: 'The address of the trustee involved for this bankruptcy'
+          help: {
+            title: 'Need help with the trustee address?',
+            message: 'The address of the trustee involved for this bankruptcy',
+            note: ''
+          }
         }
       },
       comments: {
@@ -529,25 +935,30 @@ const en = {
       },
       courtAddress: {
         label: 'This address is',
-        help: 'Enter the address of the court involved'
+        help: {
+          title: 'Need help with the address of the court involved?',
+          message: 'Enter the address of the court involved',
+          note: ''
+        }
       }
     }
   },
+
   address: {
     options: {
       us: {
-        label: 'In the United States'
+        label: 'In the<br>United States'
       },
       apoFpo: {
         label: 'APO/FPO'
       },
       international: {
-        label: 'International'
+        label: 'Outside of the<br>United States'
       }
     },
     us: {
       street: {
-        label: 'Mailing address',
+        label: 'Street',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -559,13 +970,13 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
     international: {
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -577,7 +988,7 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       }
     },
@@ -586,7 +997,7 @@ const en = {
         label: 'Select APO or FPO'
       },
       street: {
-        label: 'Mailing address',
+        label: 'Address',
         placeholder: 'Enter mailing address'
       },
       city: {
@@ -598,11 +1009,11 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zipcode',
+        label: 'Zip Code',
         placeholder: 'Enter zipcode'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO State Code'
       },
       apoFpoType: {
         apo: {
@@ -618,11 +1029,392 @@ const en = {
       }
     }
   },
-  history: {
+
+  suggestions: {
+    name: {
+      title: 'Alternate names found',
+      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>',
+      label: 'Suggested name',
+      use: 'Use this name',
+      dismiss: 'Use a different name instead'
+    },
+    address: {
+      title: 'Alternate address found',
+      para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
+      label: 'Suggested address',
+      use: 'Use this address',
+      dismiss: 'Use this address instead'
+    }
+  },
+
+  intro: {
     tour: {
       title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      button: 'Take me on the tour!'
+    },
+    review: {
+      title: 'Full section view',
+      button: 'Show me the full section'
+    },
+    errors: 'Looks like we have a few issues, here is how to fix them.',
+    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    complete: 'Everything looks good here but you can still review your answers.'
+  },
+
+  military: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with military history at once'
+    },
+    destination: {
+      selective: 'Selective service record',
+      history: 'U.S. military',
+      disciplinary: 'Disciplinary procedures',
+      foreign: 'Foreign military',
+      review: 'Review military history'
+    },
+    selective: {
+      heading: {
+        born: 'Were you born a male after December 31, 1959?',
+        registered: 'Have you registered with the Selective Service System (SSS)?',
+        number: 'Provide registration number'
+      },
+      label: {
+        number: 'Note: Selective Service Number is not your Social Security Number',
+        explanation: 'Provide an explanation'
+      },
+      help: {
+        born: {
+          title: 'Need help with when you were born?',
+          message: 'The selective service only applies to males born before a cerain date.',
+          note: ''
+        },
+        registered: {
+          title: 'Need help with whether you have registered?',
+          message: 'The Selective Service website (see link below) provides additional resources which may assist in finding your registration number or eligibility',
+          note: ''
+        },
+        number: {
+          title: 'Need help with your registration number?',
+          message: 'If additional assistance in determining your registration number is required please refer to the Selective Service information below',
+          note: ''
+        },
+        explanation: {
+          title: 'Need help providing an explanation?',
+          message: 'To assist in the investigation please provide an explanation why you may be unregistered',
+          note: ''
+        },
+        remember: {
+          title: 'Can&rsquo;t remember your registration number?',
+          message: 'The Selective Service website can help provide the registration number for persons who have registered. Use this link to look up your registration number then come back and enter it above.',
+          note: ''
+        }
+      }
+    },
+    history: {
+      heading: {
+        served: 'Have you ever served in the U.S. Military?',
+        service: 'Provide the branch of service you served in',
+        status: 'Provide your status',
+        officer: 'Officer or enlisted',
+        number: 'Provide your service number',
+        dates: 'Provide your dates of service',
+        discharged: 'Were you discharged from this instance of U.S. military service, to include Reserves, or National Guard?',
+        details: 'Discharge details',
+        discharge: {
+          type: 'Provide the type of discharge you received',
+          date: 'Provide the date of discharge listed above'
+        }
+      },
+      label: {
+        airforce: 'Air Force',
+        airnationalguard: 'Air National Guard',
+        army: 'Army',
+        armynationalguard: 'Army National Guard',
+        coastguard: 'Coast Guard',
+        marinecorps: 'Marine Corps',
+        navy: 'Navy',
+        activeduty: 'Active Duty',
+        activereserve: 'Active Reserve',
+        inactivereserve: 'Inactive Reserve',
+        officer: 'Officer',
+        enlisted: 'Enlisted',
+        na: 'Not applicable',
+        discharge: {
+          type: {
+            honorable: 'Honorable',
+            dishonorable: 'Dishonorable',
+            lessthan: 'Under other than honorable conditions',
+            general: 'General',
+            badconduct: 'Bad conduct',
+            other: 'Other<br>(provide type)',
+            otherex: 'Provide other type of discharge'
+          },
+          reason: 'Provide the reason(s) for the discharge'
+        }
+      },
+      help: {
+        served: {
+          title: 'Need help determining if you have served?',
+          message: 'If at any point you have served with the active military then you need to report those activities',
+          note: ''
+        },
+        service: {
+          title: 'Need help with the branch of service?',
+          message: 'Please provide the branch of service you belonged to during this period',
+          note: ''
+        },
+        status: {
+          title: 'Need help with your status?',
+          message: 'Provide your current status with this service',
+          note: ''
+        },
+        officer: {
+          title: 'Need help with your enlistment?',
+          message: 'Select the most accurate option for your time in service',
+          note: ''
+        },
+        number: {
+          title: 'Need help with your service number?',
+          message: 'Depending on the time of your service you may have been assigned a service number. If not then use your social security number.',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with your dates of service?',
+          message: 'Provide the closest dates of service',
+          note: ''
+        },
+        discharged: {
+          title: 'Need help determining if you have been discharged?',
+          message: 'Provide the type of discharge and the corresponding details',
+          note: ''
+        },
+        discharge: {
+          type: {
+            title: 'Need help with the type of discharge?',
+            message: 'Please select the most appropriate type of discharge',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason for discharge?',
+            message: 'Provide the reasons or circumstances of the discharge',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of discharge?',
+            message: 'Provide the closest date of your military discharge',
+            note: ''
+          }
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of military history',
+          item: 'Branch',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Do you have additional military service to report?',
+        appendMessage: 'If yes use the button below to add more',
+        append: 'Add additional military history'
+      }
+    },
+    disciplinary: {
+      heading: {
+        title: 'Disciplinary procedures',
+        date: 'Provide the date of the court martial or other disciplinary procedure',
+        offenses: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
+        name: 'Provide the name of the disciplinary procedure',
+        court: 'Provide the description of the military court or other authority in which you were charged',
+        outcome: 'Provide the description of the final outcome of the disciplinary procedure'
+      },
+      para: {
+        info: '**In the last 7 years**, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+      },
+      label: {
+        name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
+        court: 'Title of court or convening authority, address, to include city and state or country if overseas',
+        outcome: 'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.'
+      },
+      help: {
+        branch: {
+          title: 'Need help determining disciplinary procedures?',
+          message: 'Have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date?',
+          message: 'Provide the date of the disciplinary procedures',
+          note: ''
+        },
+        offenses: {
+          title: 'Need help with the offenses?',
+          message: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the procedure name?',
+          message: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
+          note: ''
+        },
+        court: {
+          title: 'Need help with the court information?',
+          message: 'Title of court or convening authority, address, to include city and state or country if overseas',
+          note: ''
+        },
+        outcome: {
+          title: 'Need help with the outcome?',
+          message: 'Such as found guilty, found not guilty, reduction in rank, imprisonment, etc.',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of disciplinary procedures',
+          item: 'Procedure',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Additional disciplinary procedures',
+        appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
+        append: 'Add additional disciplinary procedures'
+      }
+    },
+    foreign: {
+      heading: {
+        title: 'Foreign military',
+        organization: 'During your foreign service, which organization were you serving under?',
+        name: 'Provide the name of the foreign organization',
+        dates: 'Provide your period of service',
+        country: 'Provide the name of the country',
+        rank: 'Provide your highest position/rank held',
+        division: 'Provide the division/department/office in which you served',
+        circumstances: 'Provide a description of the circumstances of your association with this organization',
+        left: 'Provide a description of the reason for leaving this service',
+        maintainscontact: 'Do you maintain contact with current or former associates, colleagues, or acquaintances from your service in this organization?',
+        contact: {
+          details: 'Acquaintance contact details',
+          name: 'Provide the full name',
+          address: 'Provide the contact\'s address',
+          title: 'Provide the contact\'s official title',
+          dates: 'Provide the length of your association with the contact',
+          frequency: 'Provide the frequency of contact'
+        }
+      },
+      para: {
+        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
+        contact: 'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
+      },
+      label: {
+        organization: {
+          military: 'Military',
+          military2: '(Army, Navy, Air Force, Marines, etc.)',
+          intelligence: 'Intelligence Service',
+          diplomatic: 'Diplomatic Service',
+          security: 'Security Forces',
+          militia: 'Militia',
+          defense: 'Other Defense Forces',
+          other: 'Other Government Agency'
+        }
+      },
+      help: {
+        served: {
+          title: 'Need help with foreign military?',
+          message: 'If you have served in a foreign military or service it will help in processing your application',
+          note: ''
+        },
+        organization: {
+          title: 'Need help with foreign service?',
+          message: 'The type of foreign service',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the foreign organization?',
+          message: 'The organization name',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the period of service?',
+          message: 'The date range you served',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the name of the country?',
+          message: 'The country name',
+          note: ''
+        },
+        rank: {
+          title: 'Need help with the highest position/rank held?',
+          message: 'The hightest rank or position held within the service',
+          note: ''
+        },
+        division: {
+          title: 'Need help with the division/department/office?',
+          message: 'The name for the division, department, or office',
+          note: ''
+        },
+        circumstances: {
+          title: 'Need help describing the circumstances?',
+          message: 'Additional information regarding the circumstances of this foreign service',
+          note: ''
+        },
+        left: {
+          title: 'Need help with the reason for leaving?',
+          message: 'Please provide any reasons for leaving this service',
+          note: ''
+        },
+        maintainscontact: {
+          title: 'Need help with contacts with current or former associates?',
+          message: 'If you maintain contact with any current or former foreign associates please provide their contact information',
+          note: ''
+        }
+      },
+      collection: {
+        foreign: {
+          appendTitle: 'Do you have an additional foreign military service to report?',
+          append: 'Add another foreign military service'
+        },
+        contacts: {
+          summary: {
+            title: 'Summary of foreign military contacts',
+            item: 'Name',
+            unknown: 'Click to provide details'
+          },
+          appendTitle: 'Do you have an additional foreign military service contact to report?',
+          appendMessage: 'If yes use the button below to add another contact',
+          append: 'Add another contact'
+        }
+      }
+    }
+  },
+
+  history: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with your history at once'
+    },
+    timeline: {
+      title: 'Let\'s cover your last 10 years',
+      para1: 'List the places where you have lived and worked beginning with your present residence or employer and working back 10 years. **Residences and employers for the entire period must be accounted for without breaks.**',
+      para2: 'You will also list any school attended in the last 10 years and all diplomas & degrees earned at any point in your life.',
+      start: {
+        residence: {
+          title: 'Start with your present residence',
+          button: 'Add residence'
+        },
+        employment: {
+          title: 'Start with your present employer',
+          button: 'Add employer'
+        }
+      },
+      heading: {
+        exiting: 'Before you leave this section'
+      },
+      para: {
+        exiting: '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
+      }
     },
     review: {
       title: 'Full section view',
@@ -631,10 +1423,11 @@ const en = {
     },
     destination: {
       review: 'Review your history',
+      timeline: 'Timeline',
       residence: 'Places you lived',
       employment: 'Employment history',
       education: 'Schools & diplomas',
-      timeline: 'Timeline'
+      federal: 'Former federal service'
     },
     residence: {
       title: 'Places you have lived',
@@ -647,7 +1440,8 @@ const en = {
         summary: {
           title: 'Summary of places you have lived',
           item: 'Address',
-          unknown: 'Unknown'
+          unknown: 'Unknown',
+          incomplete: 'This residence\'s information is incomplete'
         },
         append: 'Save and add another address'
       },
@@ -680,167 +1474,1550 @@ const en = {
         }
       },
       help: {
-        dates: 'Provide the date range of your residence',
-        address: 'The address of the residence during this time period',
-        role: 'Provide your role at this residence as closely as possible',
-        comments: 'If you need to provide any additional comments about this information enter them below'
+        dates: {
+          title: 'Need help with the date range?',
+          message: 'Provide the date range of your residence',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the address?',
+          message: 'The address of the residence during this time period',
+          note: ''
+        },
+        role: {
+          title: 'Need help with the role?',
+          message: 'Provide your role at this residence as closely as possible',
+          note: ''
+        },
+        comments: {
+          title: 'Need help providing additional information?',
+          message: 'If you need to provide any additional comments about this information enter them below',
+          note: ''
+        }
       }
     },
     employment: {
-      noDate: {
-        label: 'NA'
-      },
       summary: {
         title: 'Where you have worked',
-        unit: 'Years'
+        unit: 'Years covered'
       },
-      collection: {
-        append: 'Save and add another job',
-        summary: {
-          title: 'Summary of your work history',
-          employer: 'Employer'
-        }
+      heading: {
+        employment: 'List where you have worked',
+        exiting: 'Before you leave this section'
       },
-      activity: {
-        title: 'Government employment',
-        help: 'Select your employment activity',
-        other: {
-          label: 'Explanation for other',
-          help: ''
+      para: {
+        exiting: '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
+        employment2: 'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+      },
+      default: {
+        noDate: {
+          label: 'NA'
         },
-        type: {
-          activeMilitary: 'Active military duty station',
-          nationalGuard: 'National Guard/Reserve',
-          usphs: 'USPHS Commisioned Corps',
-          otherFederal: 'Other federal employment',
-          stateGovernment: 'State Government',
-          federalContractor: 'Federal contractor',
-          nonGovernment: 'Non-government employment',
-          selfEmployment: 'Self-employment',
-          unemployment: 'Unemployment',
-          other: 'Other'
-        }
-      },
-      datesEmployed: {
-        help: 'Select the dates you were employed'
-      },
-      address: {
-        label: 'This address is',
-        help: 'Provide the address'
-      },
-      status: {
-        help: 'Select the employment status',
-        fullTime: 'Full-time',
-        partTime: 'Part-time'
-      },
-      telephone: {
-        label: '',
-        help: 'Provide the telephone number'
-      },
-      title: {
-        label: 'Title',
-        help: 'Provide the name of your position title'
-      },
-      employer: {
-        label: 'Employer name',
-        help: 'Provide the name of your employer'
-      },
-      physicalAddress: {
-        help: 'Is/was your physical work address different than your employer\'s address?',
-        address: {
-          label: 'This address is'
-        },
-        heading: {
-          telephone: 'Provide telephone number',
-          address: 'Provide the address of physical location'
-        }
-      },
-      additionalActivity: {
-        help: 'Do you have any additional periods of activity to add?',
-        label: 'Do you have any additional periods of activity to add?',
         collection: {
-          append: 'Add additional periods'
+          append: 'Save and add another job',
+          summary: {
+            title: 'Summary of your work history',
+            employer: 'Employer',
+            incomplete: 'This employer\'s information is incomplete'
+          }
         },
-        heading: {
-          position: 'Provide position title',
-          supervisor: 'Provide supervisor',
-          datesEmployed: 'Provide dates of employment'
+        activity: {
+          title: 'Government employment',
+          help: {
+            title: 'Need help with your employment activity?',
+            message: 'Select your employment activity',
+            note: ''
+          },
+          other: {
+            label: 'Explanation for other',
+            help: {
+              title: '',
+              message: '',
+              note: ''
+            }
+          },
+          type: {
+            activeMilitary: 'Active military duty station',
+            nationalGuard: 'National Guard/Reserve',
+            usphs: 'USPHS Commisioned Corps',
+            otherFederal: 'Other federal employment',
+            stateGovernment: 'State Government',
+            federalContractor: 'Federal contractor',
+            nonGovernment: 'Non-government employment',
+            selfEmployment: 'Self-employment',
+            unemployment: 'Unemployment',
+            other: 'Other'
+          }
         },
-        position: {
-          label: 'Position',
-          help: 'Provide the position title'
+        reasonDescription: {
+          title: 'Reason for leaving employment',
+          message: 'Explain why you left your last employment'
         },
-        supervisor: {
-          label: 'Supervisor',
-          help: 'Provide the supervisor name'
+        reasonOptions: {
+          title: 'Reason for leaving employment',
+          message: 'For this employment have any of the following happened to you in the last seven (7) years?'
+        },
+        left: {
+          title: 'Provide the reason for leaving the employment activity',
+          para: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          list: '- Fired\n- Quit after being told you would be fired\n- Left by mutual agreement following charges or allegations of misconduct\n- Left by mutual agreement following notice of unsatisfactory performance',
+          comments: 'Provide any additional comments for why you left this employment activity',
+          help: {
+            title: '',
+            message: '',
+            note: ''
+          },
+          fired: {
+            option: 'Fired',
+            text: 'Provide the reason for being fired',
+            date: 'Provide the date you were fired'
+          },
+          quit: {
+            option: 'Quit',
+            text: 'Provide the reason for quitting',
+            date: 'Provide the date you quit after being told you would be fired'
+          },
+          charges: {
+            option: 'Charges',
+            text: 'Provide the charges or allegations of misconduct',
+            date: 'Provide the date you left following the charges or allegations of misconduct'
+          },
+          performance: {
+            option: 'Unsatisfactory performance',
+            text: 'Provide the reason(s) for unsatisfactory performance',
+            date: 'Provide the date you left by mutual agreement following a notice of unsatisfactory performance'
+          },
+          other: {
+            option: 'Other',
+            text: 'Do you have another reason for leaving to report for this employment?',
+            date: 'Provide the date you left'
+          }
+        },
+        reprimand: {
+          para: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          description: {
+            label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
+          },
+          date: {
+            label: 'Provide the month and year you were warned, reprimanded, suspended or disciplined'
+          },
+          help: {
+            title: 'Have you received a written warning',
+            message: 'Explain if you have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy'
+          }
         },
         datesEmployed: {
-          help: 'Provide dates of employment'
-        }
-      },
-      supervisor: {
-        name: {
-          label: 'Supervisor name',
-          help: 'Provide the name of this supervisor'
-        },
-        title: {
-          label: 'Supervisor position title',
-          help: 'Provide the position title of this supervisor'
-        },
-        email: {
-          label: 'Supervisor email',
-          help: 'Provide the email of this supervisor'
+          help: {
+            title: 'Need help with the dates you were employed?',
+            message: 'Select the dates you were employed',
+            note: ''
+          }
         },
         address: {
           label: 'This address is',
-          help: 'Provide the address of this supervisors work location'
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          },
+          fullTime: 'Full-time',
+          partTime: 'Part-time'
         },
         telephone: {
-          help: 'Provide the telephone number for this supervisor'
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical addresss?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with any additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
+          },
+          email: {
+            label: 'Supervisor email',
+            help: {
+              title: 'Need help with the email?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
+          },
+          address: {
+            label: 'This address is',
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
+          },
+          telephone: {
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
         },
         heading: {
-          name: 'Provide the name of your supervisor',
-          title: 'Provide the position title of your supervisor',
-          email: 'Provide the email address of your supervisor',
-          address: 'Provide the physical work location of your supervisor',
-          telephone: 'Provide the telephone number for this supervisor'
+          employment: 'List where you have worked',
+          done: 'Done! Now let\'s add more',
+          exiting: 'Before you leave this section',
+          activity: 'Select your employment activity',
+          datesEmployed: 'Provide dates of employment',
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          reference: 'Provide a reference',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          supervisor: 'Your Supervisor',
+          telephone: 'Provide your employment telephone number',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          done: 'Use the button below to save your history entry and start another.',
+          exiting: '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+          employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
+      },
+      activemilitary: {
+        heading: {
+          title: 'Provide your most recent rank/position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide address of duty station',
+          telephone: 'Provide your employment telephone number',
+          supervisor: 'Your Supervisor',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
+          },
+          email: {
+            label: 'Supervisor email',
+            help: {
+              title: 'Need help with the email address?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
+          },
+          address: {
+            label: 'This address is',
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
+          },
+          telephone: {
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
+      },
+      nationalguard: {
+        heading: {
+          title: 'Provide your most recent rank/position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide address of duty station',
+          telephone: 'Provide your employment telephone number',
+          supervisor: 'Your Supervisor',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the rank/position title?',
+            message: 'Provide your most recent rank/position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the phone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
+          },
+          email: {
+            label: 'Supervisor email',
+            help: {
+              title: 'Need help with the email address?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
+          },
+          address: {
+            label: 'This address is',
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
+          },
+          telephone: {
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
+      },
+      usphs: {
+        heading: {
+          title: 'Provide your most recent rank/position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide address of duty station',
+          telephone: 'Provide your employment telephone number',
+          supervisor: 'Your Supervisor',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the rank/position title?',
+            message: 'Provide your most recent rank/position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        supervisor: {
+          name: {
+            label: 'Supervisor name',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the name of this supervisor',
+              note: ''
+            }
+          },
+          title: {
+            label: 'Supervisor position title',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title of this supervisor',
+              note: ''
+            }
+          },
+          email: {
+            label: 'Supervisor email',
+            help: {
+              title: 'Need help with the email address?',
+              message: 'Provide the email of this supervisor',
+              note: ''
+            }
+          },
+          address: {
+            label: 'This address is',
+            help: {
+              title: 'Need help with the address?',
+              message: 'Provide the address of this supervisors work location',
+              note: ''
+            }
+          },
+          telephone: {
+            help: {
+              title: 'Need help with the telephone number?',
+              message: 'Provide the telephone number for this supervisor',
+              note: ''
+            }
+          },
+          heading: {
+            name: 'Provide the name of your supervisor',
+            title: 'Provide the position title of your supervisor',
+            email: 'Provide the email address of your supervisor',
+            address: 'Provide the physical work location of your supervisor',
+            telephone: 'Provide the telephone number for this supervisor'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
+      },
+      otherfederal: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        }
+      },
+      stategovernment: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        }
+      },
+      federalcontractor: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help withe the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        }
+      },
+      nongovernment: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        }
+      },
+      selfemployment: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide a reference',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          }
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical work address?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor name?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
+      },
+      unemployment: {
+        heading: {
+          reference: 'Provide the name of someone who can verify your unemployment activities and means of support'
+        }
+      },
+      other: {
+        heading: {
+          employer: 'Provide the name of your employer',
+          title: 'Provide the most recent position title',
+          status: 'Select the employment status for this position',
+          address: 'Provide the address of employment',
+          telephone: 'Provide your employment telephone number',
+          reference: 'Provide the name of someone who can verify your unemployment activities and means of support',
+          physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+          additionalActivity: 'Additional periods of activity with this employer'
+        },
+        activity: {
+          other: {
+            help: {
+              title: 'Need help with employment activity?',
+              message: 'Please explain the type of employment activity',
+              note: ''
+            }
+          }
+        },
+        employer: {
+          label: 'Employer name',
+          help: {
+            title: 'Need help with the employer name?',
+            message: 'Provide the name of your employer',
+            note: ''
+          }
+        },
+        title: {
+          label: 'Title',
+          help: {
+            title: 'Need help with the position title?',
+            message: 'Provide the name of your position title',
+            note: ''
+          }
+        },
+        status: {
+          help: {
+            title: 'Need help with the employment status?',
+            message: 'Select the employment status',
+            note: ''
+          },
+          fullTime: 'Full-time',
+          partTime: 'Part-time'
+        },
+        address: {
+          label: 'This address is',
+          help: {
+            title: 'Need help with the address?',
+            message: 'Provide the address',
+            note: ''
+          }
+        },
+        telephone: {
+          label: '',
+          help: {
+            title: 'Need help with the telephone number?',
+            message: 'Provide the telephone number',
+            note: ''
+          }
+        },
+        physicalAddress: {
+          help: {
+            title: 'Need help with the physical addresss?',
+            message: 'Is/was your physical work address different than your employer\'s address?',
+            note: ''
+          },
+          address: {
+            label: 'This address is'
+          },
+          heading: {
+            telephone: 'Provide telephone number',
+            address: 'Provide the address of physical location'
+          }
+        },
+        additionalActivity: {
+          help: {
+            title: 'Need help with any additional periods of activity?',
+            message: 'Do you have any additional periods of activity to add?',
+            note: ''
+          },
+          label: 'Do you have any additional periods of activity to add?',
+          collection: {
+            append: 'Add additional periods'
+          },
+          heading: {
+            position: 'Provide position title',
+            supervisor: 'Provide supervisor',
+            datesEmployed: 'Provide dates of employment'
+          },
+          position: {
+            label: 'Position',
+            help: {
+              title: 'Need help with the position title?',
+              message: 'Provide the position title',
+              note: ''
+            }
+          },
+          supervisor: {
+            label: 'Supervisor',
+            help: {
+              title: 'Need help with the supervisor?',
+              message: 'Provide the supervisor name',
+              note: ''
+            }
+          },
+          datesEmployed: {
+            help: {
+              title: 'Need help with the dates of employment?',
+              message: 'Provide dates of employment',
+              note: ''
+            }
+          }
+        },
+        para: {
+          additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        }
+      }
+    },
+
+    education: {
+      title: 'List the places you went to school',
+      info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
+      summary: {
+        title: 'Where you went to school',
+        schools: 'Schools attended',
+        diplomas: 'Degrees/Diplomas earned'
+      },
+      collection: {
+        school: {
+          summary: {
+            title: 'Summary of education',
+            item: 'School',
+            unknown: 'Unknown',
+            incomplete: 'This education\'s information is incomplete'
+          },
+          append: 'Save and add another school'
+        },
+        diploma: {
+          summary: {
+            title: 'Summary of degrees/diplomas',
+            item: 'Degree',
+            unknown: 'Unknown'
+          },
+          append: 'Add another diploma/degree'
         }
       },
       heading: {
         done: 'Done! Now let\'s add more',
         exiting: 'Before you leave this section',
-        activity: 'Select your employment activity',
-        employment: 'List where you have worked',
-        datesEmployed: 'Provide dates of employment',
-        employer: 'Provide the name of your employer',
-        title: 'Provide the most recent position title',
-        reference: 'Provide a reference',
-        status: 'Select the employment status for this position',
-        address: 'Provide the address of employer',
-        supervisor: 'Your Supervisor',
-        telephone: 'Provide your employment telephone number',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-        additionalActivity: 'Additional periods of activity with this employer'
+        degrees: 'Degrees/diplomas',
+        degree: 'Did you receive a degree/diploma?',
+        details: 'Enter your school information',
+        dates: 'Provide dates of attendance',
+        name: 'Provide the name of the school',
+        address: 'Provide the street address of the school',
+        comments: 'If you need to provide additional comments about this information enter them below',
+        type: 'Select the most appropriate code to describe your school',
+        reference: 'Add a person that knows you',
+        diploma: 'Provide type of degree(s)/diploma(s) received',
+        date: 'Date awarded'
       },
       para: {
-        done: 'Use the button below to save your history entry and start another.',
-        exiting: '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
-        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        exiting: '',
+        reference: 'For any school in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for education completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+      },
+      label: {
+        attendance: 'Have you attended any schools in the last 10 years?',
+        degree10: 'Have you received a degree or diploma more than 10 years ago?',
+        dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
+        name: 'School name',
+        address: 'This address is',
+        comments: 'Add optional comment',
+        type: {
+          highschool: 'High school',
+          college: 'College, university, or military college',
+          vocational: 'Vocational, technical, or trade school',
+          correspondence: 'Correspondence, distance, extension, or online school'
+        },
+        diploma: {
+          received: 'Type of degree(s)/diploma(s) received',
+          highschool: 'High School Diploma',
+          associate: 'Associate\'s',
+          bachelor: 'Bachelor\'s',
+          master: 'Master\'s',
+          doctorate: 'Doctorate',
+          professional: 'Professional Degree (eg. MD, DVM, JD)',
+          other: 'Other',
+          otherDiploma: 'Other degree/diploma'
+        }
+      },
+      help: {
+        attendance: {
+          title: 'Need help the attendance of school?',
+          message: 'If you have attended within the last 10 years a high school, college, vocational, or correspondence course',
+          note: ''
+        },
+        degree10: {
+          title: 'Need help with a degree or diploma?',
+          message: 'If you have received a degree or diploma within the last 10 years',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the dates of attendance?',
+          message: 'Provide the dates of attendance',
+          note: ''
+        },
+        school: {
+          title: 'Need help with the school name?',
+          message: 'Provide the school name',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the school address?',
+          message: 'Provide the street address of the school',
+          note: ''
+        },
+        type: {
+          title: 'Need help with the school code?',
+          message: 'Select the most appropriate code to describe your school',
+          note: ''
+        },
+        comments: {
+          title: 'Need help providing more information?',
+          message: 'If you need to provide any additional comments about this information enter them below',
+          note: ''
+        },
+        degree: {
+          title: 'Need help with a degree or diploma?',
+          message: 'If you have received one or more degrees or diplomas from this school please provide the required information',
+          note: ''
+        },
+        diploma: {
+          title: 'Need help selecting a degree or diploma?',
+          message: 'Select the most appropriate degree or diploma received',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date of acheivement?',
+          message: 'The date the degree or diploma was awarded',
+          note: ''
+        }
+      }
+    },
 
+    federal: {
+      title: 'Provide all former federal service',
+      heading: {
+        branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
+        dates: 'Provide dates of federal civilian employment',
+        name: 'Provide the name of the federal agency for which you are/were employed',
+        position: 'Provide your position title',
+        address: 'Provide the location of the agency'
+      },
+      help: {
+        branch: {
+          title: 'Need more information about former federal service?',
+          message: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the dates employed?',
+          message: 'The dates you were employed',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the agency name?',
+          message: 'The name of the federal service',
+          note: ''
+        },
+        position: {
+          title: 'Need help with the position title?',
+          message: 'The most recent position title during this employment',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the address?',
+          message: 'The address of the agency',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of former federal service',
+          item: 'Federal service',
+          present: 'Now',
+          nodates: 'No dates',
+          unknown: 'Click to provide details'
+        },
+        append: 'Add another former federal service'
       }
     }
   },
+
   foreign: {
     tour: {
-      title: 'One piece at a time',
-      para: 'Take a guided tour through the section',
-      button: 'Take me one the tour!'
+      para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with foreign activities at once',
-      button: 'Show me the full section'
+      para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
       review: 'Review Foreign Actitivies',
@@ -880,24 +3057,237 @@ const en = {
         label: 'If you need to provide any additional comments about this information enter them below'
       },
       help: {
-        number: 'Enter your passport number. If you possess a card, select the Passport card option',
-        issued: 'Enter the date your passport was issued',
-        expiration: 'Enter the date your passport expired'
+        number: {
+          title: 'Need help with the passport number?',
+          message: 'Enter your passport number. If you possess a card, select the Passport card option',
+          note: ''
+        },
+        issued: {
+          title: 'Need help with the date issued?',
+          message: 'Enter the date your passport was issued',
+          note: ''
+        },
+        expiration: {
+          title: 'Need help with the date expired?',
+          message: 'Enter the date your passport expired',
+          note: ''
+        }
       },
       branch: {
-        help: 'Select whether you possess a U.S. passport'
+        help: {
+          title: 'Need more information about the U.S. passport?',
+          message: 'Select whether you possess a U.S. passport',
+          note: ''
+        }
       }
     }
   },
+
+  legal: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with investigative & criminal history at once'
+    },
+    destination: {
+      police: 'Police record',
+      review: 'Review investigative & criminal history'
+    },
+    police: {
+      heading: {
+        title: 'Police record',
+        questions: 'Have any of the following happened?',
+        date: 'Provide the date of the offense',
+        description: 'Provide a description of the specific nature of the offense',
+        involvement: 'Did this offense involve any of the following?',
+        address: 'Provide the location where the offense occurred',
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?',
+        citedagency: 'Arresting/citing/summoning agency',
+        citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
+        agencyaddress: 'Provide the location of the law enforcement agency',
+        charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?',
+        courtinfo: 'Court Information',
+        courtname: 'Provide the name of the court',
+        courtaddress: 'Provide the location of the court',
+        chargedetails: 'Charges detail',
+        courttype: 'Type of charge',
+        courtdate: 'Date',
+        sentenced: 'Were you sentenced as a result of this offense?',
+        needmore: 'Since you answered yes we need more information'
+      },
+      para: {
+        intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+        intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
+        intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
+        summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
+        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.'
+      },
+      label: {
+        summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
+        arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+        charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court?',
+        probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
+        trial: 'Are you currently on trial or awaiting a trial on criminal charges?',
+        violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+        firearms: '**Involve firearms or explosives?**',
+        substances: '**Involve alcohol or drugs?**',
+        address: 'This address is',
+        explanation: 'Provide explanation',
+        courtname: 'Name of court',
+        felony: 'Felony',
+        misdemeanor: 'Misdemeanor',
+        other: 'Other',
+        courtcharge: 'Charge',
+        courtoutcome: 'Outcome'
+      },
+      help: {
+        summons: {
+          title: 'Need help with a summons, citation, or ticket?',
+          message: 'If you were issued a summons, citation, or ticket answer "Yes" and provide the required information',
+          note: ''
+        },
+        arrests: {
+          title: 'Need help with an arrest?',
+          message: 'If you were arrested answer "Yes" and provide the required information',
+          note: ''
+        },
+        charges: {
+          title: 'Need help with a criminal charge?',
+          message: 'If you were charged answer "Yes" and provide the required information',
+          note: ''
+        },
+        probation: {
+          title: 'Need help with a current probation or parole?',
+          message: 'If you are currently on probation or parole answer "Yes" and provide the required information',
+          note: ''
+        },
+        trial: {
+          title: 'Need help if on or awaiting trial?',
+          message: 'If you currently awaiting or on trial please answer "Yes" and provide the required information',
+          note: ''
+        },
+        date: {
+          title: 'Need help withe the date of offense?',
+          message: 'Provide the closest date of the offense',
+          note: ''
+        },
+        description: {
+          title: 'Need help with the description of the offense?',
+          message: 'Provide an account of the nature of the offense',
+          note: ''
+        },
+        violence: {
+          title: 'Need help if this offense involved violence?',
+          message: 'Indicate if the offense involved domestic or criminal violence',
+          note: ''
+        },
+        firearms: {
+          title: 'Need help if this offense involved firearms or explosives?',
+          message: 'Indicate if the offense involved firearms or explosives',
+          note: ''
+        },
+        substances: {
+          title: 'Need help if this offense involved alcohol or drugs?',
+          message: 'Indicate if the offense involved alcohol or drugs',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the location of the offense?',
+          message: 'Provide the address where the offense took place',
+          note: ''
+        },
+        cited: {
+          title: 'Need help if you were arrested, summoned, or cited for this offense?',
+          message: 'If you were arrested, summoned, or cited please answer "Yes" and provide the required information',
+          note: ''
+        },
+        citedby: {
+          title: 'Need help with the law enforcement agency name?',
+          message: 'Provide the name of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        agencyaddress: {
+          title: 'Need help with the law enforcement agency address?',
+          message: 'Provide the address of the law enforcement agency who handled this offense',
+          note: ''
+        },
+        charged: {
+          title: 'Need help if you were charged, convicted, or awaiting trial?',
+          message: 'If you were charged, convicted, currently awaiting trial, or due to appear in court answer "Yes" and provide the required information',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the name of the court?',
+          message: 'Provide the name of the court',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        courttype: {
+          title: 'Need help with the type of charge?',
+          message: 'Provide the type of charge issued by the court',
+          note: ''
+        },
+        courtcharge: {
+          title: 'Need help with the court charge(s)?',
+          message: 'Provide the charge(s)',
+          note: ''
+        },
+        courtoutcome: {
+          title: 'Need help with the court outcome?',
+          message: 'Provide the outcome of the court proceedings',
+          note: ''
+        },
+        courtdate: {
+          title: 'Need help with the court date?',
+          message: 'Provide the court date',
+          note: ''
+        },
+        sentenced: {
+          title: 'Need help if you were sentenced for this offense?',
+          message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of offenses',
+          item: 'Offense',
+          unknown: 'Click to provide details'
+        },
+        appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
+        appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
+        append: 'Add another offense'
+      }
+    }
+  },
+
   alias: {
     maiden: {
-      help: 'Select if this is your maiden name'
+      help: {
+        title: 'Need help with the maiden name?',
+        message: 'Select if this is your maiden name',
+        note: ''
+      }
     },
     reason: {
-      help: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.'
+      help: {
+        title: 'Need help with the explanation?',
+        message: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.',
+        note: ''
+      }
     },
     used: {
-      help: 'Provide the full range of dates this name was used'
+      help: {
+        title: 'Need help with the dates of use?',
+        message: 'Provide the full range of dates this name was used',
+        note: ''
+      }
     }
   },
   reference: {
@@ -929,11 +3319,31 @@ const en = {
       address: 'The address of your contact during this time period'
     },
     help: {
-      contact: 'Please provide the date of last contact with this person',
-      relationship: 'Please define your relationship with the person during this period',
-      email: 'A current e-mail address to contact this character reference',
-      phone: 'One or more telephone numbers to contact this character reference',
-      address: 'The current address of the character reference'
+      contact: {
+        title: 'Need help with the date of last contact?',
+        message: 'Please provide the date of last contact with this person',
+        note: ''
+      },
+      relationship: {
+        title: 'Need help defining your relationship?',
+        message: 'Please define your relationship with the person during this period',
+        note: ''
+      },
+      email: {
+        title: 'Need help with the email address?',
+        message: 'A current e-mail address to contact this character reference',
+        note: ''
+      },
+      phone: {
+        title: 'Need help with a telephone number?',
+        message: 'One or more telephone numbers to contact this character reference',
+        note: ''
+      },
+      address: {
+        title: 'Need help with the address?',
+        message: 'The current address of the character reference',
+        note: ''
+      }
     }
   }
 }
