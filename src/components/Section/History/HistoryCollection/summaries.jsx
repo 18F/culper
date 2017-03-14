@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { gaps } from '../dateranges'
 import { Svg, Show } from '../../../Form'
+import { newGuid } from '../../../Form/ValidationElement'
 
 /**
  * Renders a formatted summary information for a residence row
@@ -109,6 +110,7 @@ export const InjectGaps = (list, types, start) => {
           let g = holes.splice(i, 1)[0]
           list.push({
             type: 'Gap',
+            index: newGuid(),
             Item: {
               Dates: g,
               Type: t
@@ -118,6 +120,7 @@ export const InjectGaps = (list, types, start) => {
           let g = holes.splice(i, 1)[0]
           list.push({
             type: 'Gap',
+            index: newGuid(),
             Item: {
               Dates: g,
               Type: t

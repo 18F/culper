@@ -1,4 +1,5 @@
 import React from 'react'
+import { newGuid } from '../../../Form/ValidationElement'
 import { ValidationElement } from '../../../Form'
 import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
 
@@ -81,7 +82,7 @@ export default class SummaryProgress extends ValidationElement {
         left: '' + range.left + '%',
         width: '' + range.width + '%'
       }
-      return <div className="filled" style={styles}></div>
+      return <div key={newGuid()} className="filled" style={styles}></div>
     })
   }
 

@@ -6,10 +6,10 @@ export default class Generic extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value || '',
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      value: props.value,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       errorCode: null
     }
   }
@@ -210,4 +210,12 @@ export default class Generic extends ValidationElement {
       </div>
     )
   }
+}
+
+Generic.defaultProps = {
+  value: '',
+  focus: false,
+  error: false,
+  valid: false,
+  errorCode: null
 }
