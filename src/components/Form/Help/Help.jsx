@@ -96,7 +96,7 @@ export default class Help extends ValidationElement {
         }
 
         return (
-          <div>
+          <div key={super.guid()}>
             <h5>{i18n.t(`${err}.title`)}</h5>
             {markdownById(`${err}.message`)}
             {note}

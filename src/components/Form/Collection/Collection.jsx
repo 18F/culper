@@ -8,28 +8,24 @@ export default class Collection extends ValidationElement {
   constructor (props) {
     super(props)
 
-    let min = this.props.minimum || 0
+    let indices = []
+    for (let i = 0; i < this.props.items.length; i++) {
+      indices.push(super.guid())
+    }
+    const f = this.factory(this.props.minimum, this.props.items, indices)
+
     this.state = {
       id: super.guid(),
-      minimum: min,
-      length: min,
-      items: this.props.items || [],
-      indices: [super.guid()],
-      children: []
+      minimum: this.props.minimum,
+      length: this.props.minimum,
+      items: f.items,
+      indices: f.indices,
+      children: f.children
     }
 
     this.append = this.append.bind(this)
     this.toggle = this.toggle.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
-  }
-
-  /**
-   * Upon the first mounting we need to ensure the minimum number of items
-   * are present in the collection.
-   */
-  componentDidMount () {
-    const f = this.factory(this.state.minimum, this.state.items, this.state.indices)
-    this.setState({items: f.items, indices: f.indices, children: f.children})
   }
 
   /**
@@ -371,4 +367,9 @@ export default class Collection extends ValidationElement {
       </div>
     )
   }
+}
+
+Collection.defaultProps = {
+  minimum: 0,
+  items: []
 }

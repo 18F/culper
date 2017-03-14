@@ -8,7 +8,6 @@ describe('The BranchCollection component', () => {
 
   it('renders yes/no and branch contents', () => {
     const component = mount(<BranchCollection branch={hello} />)
-
     expect(component.find({type: 'radio', value: 'Yes'}).length).toBe(1)
     expect(component.find({type: 'radio', value: 'No'}).length).toBe(1)
     expect(component.find('div#summary').text()).toBe('Hola')

@@ -6,8 +6,13 @@ export default class BranchCollection extends React.Component {
   constructor (props) {
     super(props)
 
+    let indices = []
+    for (let i = 0; i < this.props.items.length; i++) {
+      indices.push(newGuid())
+    }
+
     this.state = {
-      indices: [newGuid()]
+      indices: indices
     }
 
     this.content = this.content.bind(this)
@@ -20,22 +25,6 @@ export default class BranchCollection extends React.Component {
         fn()
       }
     })
-  }
-
-  /**
-   * Upon the first mounting we need to ensure the minimum number of items
-   * are present in the collection.
-   */
-  componentDidMount () {
-    let indices = [...this.state.indices]
-
-    if (this.props.items) {
-      for (let i = 0; i < this.props.items.length; i++) {
-        indices.push(newGuid())
-      }
-    }
-
-    this.setState({ indices: indices })
   }
 
   /**
