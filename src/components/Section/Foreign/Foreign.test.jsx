@@ -65,7 +65,6 @@ describe('The foreign section', () => {
       }
     })
     const component = mount(<Provider store={store}><Foreign subsection="passport" /></Provider>)
-    console.log(component.find(Passport).props())
     expect(component.find(Passport).props().suggestedNames.length).toBe(2)
   })
 })

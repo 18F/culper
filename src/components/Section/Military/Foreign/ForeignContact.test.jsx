@@ -22,9 +22,9 @@ describe('The foreign contact component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<ForeignContact {...expected} />)
-    component.find('.foreign-contact-name .first input').simulate('change', { target: { value: 'The name' } })
-    component.find('.foreign-contact-address .city input').simulate('change', { target: { value: 'The city' } })
-    component.find('.foreign-contact-title input').simulate('change', { target: { value: 'The title' } })
+    component.find('.foreign-contact-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
+    component.find('.foreign-contact-address .city input').simulate('change', { target: { name: 'city', value: 'The city' } })
+    component.find('.foreign-contact-title input').simulate('change', { target: { name: 'title', value: 'The title' } })
     component.find('.foreign-contact-dates .datecontrol.from .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.foreign-contact-dates .datecontrol.from .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.foreign-contact-dates .datecontrol.from .year input').simulate('change', { target: { name: 'year', value: '2001' } })
