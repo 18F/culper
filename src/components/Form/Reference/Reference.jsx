@@ -12,6 +12,7 @@ import Email from '../Email'
 import Address from '../Address'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
+import Show from '../Show'
 
 export default class Reference extends ValidationElement {
   constructor (props) {
@@ -22,6 +23,7 @@ export default class Reference extends ValidationElement {
       LastContact: props.LastContact,
       Comments: props.Comments,
       Relationship: props.Relationship,
+      RelationshipOther: props.RelationshipOther,
       Phone: props.Phone,
       Email: props.Email,
       Address: props.Address,
@@ -32,6 +34,7 @@ export default class Reference extends ValidationElement {
     }
 
     this.handleRelationshipChange = this.handleRelationshipChange.bind(this)
+    this.updateRelationshipOther = this.updateRelationshipOther.bind(this)
   }
 
   /**
@@ -46,6 +49,7 @@ export default class Reference extends ValidationElement {
           LastContact: this.state.LastContact,
           Comments: this.state.Comments,
           Relationship: this.state.Relationship,
+          RelationshipOther: this.state.RelationshipOther,
           Phone: this.state.Phone,
           Email: this.state.Email,
           Address: this.state.Address
@@ -61,11 +65,8 @@ export default class Reference extends ValidationElement {
     this.onUpdate('Relationship', event.target.value)
   }
 
-  /**
-   * Some fields are only visible if `Other` is selected
-   */
-  showOther (value) {
-    return !value || ['Neighbor', 'Friend', 'Landlord', 'Business'].includes(value) ? 'hidden' : ''
+  updateRelationshipOther (values) {
+    this.onUpdate('RelationshipOther', values)
   }
 
   render () {
@@ -104,6 +105,7 @@ export default class Reference extends ValidationElement {
           <h3>{i18n.t(`${prefix}reference.heading.relationship`)}</h3>
           <div className="eapp-field-wrap">
             <Help id={`${prefix}reference.help.relationship`}>
+              <label>{i18n.t(`${prefix}reference.label.relationship.title`)}</label>
               <RadioGroup className="relationship option-list eapp-extend-labels"
                           selectedValue={this.state.Relationship}>
                 <Radio name="relationship-neighbor"
@@ -153,15 +155,16 @@ export default class Reference extends ValidationElement {
                 </Radio>
               </RadioGroup>
               <HelpIcon className="relationship-help-icon" />
-              <div className={this.showOther(this.state.Relationship)}>
+              <Show when={this.state.Relationship && !['Neighbor', 'Friend', 'Landlord', 'Business'].includes(this.state.Relationship)}>
                 <Text name="Relationship"
                       label={i18n.t(`${prefix}reference.label.relationship.explanation`)}
                       maxlength="100"
-                      value={this.state.Relationship}
-                      onUpdate={this.onUpdate.bind(this, 'Relationship')}
+                      className="relationship-other"
+                      {...this.state.RelationshipOther}
+                      onUpdate={this.updateRelationshipOther}
                       onValidate={this.props.handleValidation}
                       />
-              </div>
+              </Show>
             </Help>
           </div>
         </Comments>

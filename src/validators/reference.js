@@ -3,11 +3,13 @@ import AddressValidator from './address'
 import { validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
 
 const relationshipOptions = ['Neighbor', 'Friend', 'Landlord', 'Business', 'Other']
+
 export default class ReferenceValidator {
   constructor (state, props) {
     this.fullName = state.FullName
     this.lastContact = state.LastContact
     this.relationship = state.Relationship
+    this.relationshipOther = state.RelationshipOther
     this.phone = state.Phone
     this.email = state.Email
     this.address = state.Address
@@ -22,7 +24,8 @@ export default class ReferenceValidator {
   }
 
   validRelationship () {
-    return relationshipOptions.includes(this.relationship)
+    return relationshipOptions.includes(this.relationship) ||
+      (this.relationship === 'Other' && validGenericTextfield(this.relationshipOther))
   }
 
   validPhone () {
