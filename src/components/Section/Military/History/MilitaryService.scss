@@ -9,6 +9,7 @@
   .service-icon,
   .discharge-type-icon {
     margin-left: -2rem;
+    margin-top: 2rem;
   }
 
   .service-number,
@@ -18,14 +19,29 @@
     width: 92%;
   }
 
-  .discharge-type .eapp-blocks-radio label {
-    height: 9rem;
-    padding-top: 2rem;
+  .discharge-type-honorable,
+  .discharge-type-dishonorable,
+  .discharge-type-lessthan,
+  .discharge-type-general,
+  .discharge-type-badconduct,
+  .discharge-type-other {
+    label {
+      height: 9rem;
+      overflow: hidden;
+      padding-top: 3rem;
+    }
+
+    p {
+      padding: 0 !important;
+    }
   }
 
-  .long-text label {
-    padding-top: 1rem !important;
-    line-height: initial;
+  .discharge-type-lessthan,
+  .discharge-type-other {
+    label {
+      padding-top: 2rem !important;
+      line-height: initial;
+    }
   }
 
   .discharge-type-otherex {
