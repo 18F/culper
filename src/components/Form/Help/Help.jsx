@@ -168,6 +168,7 @@ export default class Help extends ValidationElement {
 
         // Inject ourselves in to the validation callback
         if (child.props.onValidate) {
+          extendedProps.onFlush = this.onFlush
           extendedProps.onValidate = (event, status, errors) => {
             this.handleValidation(event, status, errors)
             if (child.props.onValidate) {
@@ -176,8 +177,6 @@ export default class Help extends ValidationElement {
           }
         }
       }
-
-      extendedProps.onFlush = this.onFlush
 
       return React.cloneElement(child, {
         ...child.props,

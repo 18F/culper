@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateControl, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, DateControl, Show, Help, HelpIcon } from '../../../Form'
 import { api } from '../../../../services/api'
 
 export default class ApplicantBirthDate extends ValidationElement {
@@ -21,7 +21,7 @@ export default class ApplicantBirthDate extends ValidationElement {
    */
   onUpdate (value) {
     this.setState({ value: value.date }, () => {
-      this.handleValidation ({}, null, null)
+      this.handleValidation({}, null, null)
       if (this.props.onUpdate) {
         this.props.onUpdate({
           month: value.month,
@@ -41,8 +41,6 @@ export default class ApplicantBirthDate extends ValidationElement {
       return
     }
 
-    console.log('birth date validation triggered by: ', event.target)
-
     let errorCodes = []
     this.state.errorCodes.forEach((e) => {
       if (e !== 'age' && e !== 'day.max') {
@@ -57,7 +55,6 @@ export default class ApplicantBirthDate extends ValidationElement {
       let then = new Date(this.state.value)
 
       // This is an additional check to delay errors being passed up prematurely
-      console.log('then:', then)
       fullYear = then.getFullYear() > 999
       if (fullYear) {
         let age = now.getFullYear() - then.getFullYear()
@@ -83,41 +80,19 @@ export default class ApplicantBirthDate extends ValidationElement {
       }
     }
 
-    console.log('error:', error)
-    console.log('errorCodes:', errorCodes)
-    console.log('codes:', codes)
-    console.log('fullYear:', fullYear)
-    console.log('value:', this.state.value)
-
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       if (!fullYear) {
         return
       }
 
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
       if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
+        super.handleValidation(event, statusObject, errorObject)
         return
       }
 
-      api
-        .validateApplicantBirthdate({
-          Month: this.datePart('m', this.state.value),
-          Day: this.datePart('d', this.state.value),
-          Year: this.datePart('y', this.state.value),
-          Estimated: this.state.estimated
-        })
-        .then((response) => {
-          // Display and assign the errors as necessary
-          if (response.Errors) {
-            response.Errors.forEach((e) => {
-            })
-          }
-        })
-        .then(() => {
-          super.handleValidation(event, s, e)
-        })
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
@@ -173,6 +148,13 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
           <HelpIcon />
+          <Show when={this.state.errorCodes.includes('age')}>
+            <div className="message eapp-error-message">
+              <i className="fa fa-exclamation"></i>
+              <h5>{i18n.t('error.birthdate.age.title')}</h5>
+              {i18n.m('error.birthdate.age.message')}
+            </div>
+          </Show>
         </Help>
       </div>
     )

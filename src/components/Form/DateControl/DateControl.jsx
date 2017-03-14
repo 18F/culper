@@ -219,8 +219,8 @@ export default class DateControl extends ValidationElement {
     }
 
     let valid = validDate(this.state.month, this.state.day, this.state.year)
-    if (!valid) {
-      if (this.state.day > this.daysInMonth(this.state.month, this.state.year)) {
+    if (!valid && !error) {
+      if (this.state.day > daysInMonth(this.state.month, this.state.year)) {
         error = 'day.max'
       } else {
         error = { day: null }
