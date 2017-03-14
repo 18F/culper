@@ -1,4 +1,5 @@
 import React from 'react'
+import { newGuid } from '../../../Form/ValidationElement'
 import { ValidationElement } from '../../../Form'
 import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
 
@@ -65,7 +66,7 @@ export default class SummaryProgress extends ValidationElement {
    */
   completed () {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
-    return decimalAdjust('floor', this.total() * (sum / 100), 0)
+    return Math.min(decimalAdjust('floor', this.total() * (sum / 100), 0), this.total())
   }
 
   /**
@@ -81,7 +82,7 @@ export default class SummaryProgress extends ValidationElement {
         left: '' + range.left + '%',
         width: '' + range.width + '%'
       }
-      return <div className="filled" style={styles}></div>
+      return <div key={newGuid()} className="filled" style={styles}></div>
     })
   }
 

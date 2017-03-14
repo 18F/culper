@@ -1,3 +1,5 @@
+import { validGenericTextfield, validPhoneNumber } from './helpers'
+
 export default class ContactInformationValidator {
   constructor (state, props) {
     this.emails = state.Emails
@@ -8,12 +10,13 @@ export default class ContactInformationValidator {
    * Validates a collection of emails
    */
   validEmails () {
-    if (!this.emails || this.emails.length < 2) {
+    const required = 1
+    if (!this.emails || this.emails.length < required) {
       return false
     }
 
-    for (let item of this.emails) {
-      if (!item.Email || !item.Email.value) {
+    for (const item of this.emails) {
+      if (!item.Email || !validGenericTextfield(item.Email)) {
         return false
       }
     }
@@ -25,12 +28,13 @@ export default class ContactInformationValidator {
    * Validates a collection of phone numbers
    */
   validPhoneNumbers () {
-    if (!this.phoneNumbers || this.phoneNumbers.length < 2) {
+    const required = 1
+    if (!this.phoneNumbers || this.phoneNumbers.length < required) {
       return false
     }
 
-    for (let item of this.phoneNumbers) {
-      if (!item.Telephone || !item.Telephone.value) {
+    for (const item of this.phoneNumbers) {
+      if (!item.Telephone || !validPhoneNumber(item.Telephone)) {
         return false
       }
     }

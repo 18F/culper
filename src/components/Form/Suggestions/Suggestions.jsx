@@ -1,5 +1,6 @@
 import React from 'react'
 import { Help } from '../Help'
+import { newGuid } from '../ValidationElement'
 
 export default class Suggestions extends React.Component {
   constructor (props) {
@@ -9,7 +10,6 @@ export default class Suggestions extends React.Component {
       dismissSuggestions: props.dismissSuggestions
     }
 
-    this.useSuggestion = this.useSuggestion.bind(this)
     this.dismissSuggestions = this.dismissSuggestions.bind(this)
   }
 
@@ -38,13 +38,13 @@ export default class Suggestions extends React.Component {
   suggestions () {
     return this.props.suggestions.map(suggestion => {
       return (
-        <div className="suggestion">
+        <div className="suggestion" key={newGuid()}>
           <div className="value">
             <h5>{this.props.suggestionLabel}</h5>
             {this.props.renderSuggestion(suggestion)}
           </div>
           <div className="action">
-            <button onClick={this.useSuggestion.bind(this, suggestion)}>
+            <button className="suggestion-btn" onClick={this.useSuggestion.bind(this, suggestion)}>
               <span>{this.props.suggestionUseLabel}</span>
               <i className="fa fa-arrow-circle-right"></i>
             </button>
@@ -55,7 +55,7 @@ export default class Suggestions extends React.Component {
   }
 
   visible () {
-    return !this.state.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0
+    return this.props.show || (!this.props.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0)
   }
 
   render () {
@@ -78,6 +78,7 @@ export default class Suggestions extends React.Component {
               <Help>
                 {this.suggestions()}
                 <div className="dismiss">
+                  {this.props.suggestionDismissContent}
                   <a href="javascript:;;" onClick={this.dismissSuggestions}>
                     <span>{this.props.suggestionDismissLabel}</span>
                     <i className="fa fa-arrow-circle-right"></i>
@@ -102,6 +103,7 @@ Suggestions.defaultProps = {
   withSuggestions: false,
   suggestions: [],
   className: '',
+  show: false,
   renderSuggestion: () => {
     console.warn('Missing handler for renderSuggestion')
   },

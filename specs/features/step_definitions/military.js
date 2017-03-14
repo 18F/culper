@@ -96,7 +96,7 @@ const completeForeignMilitary = (promise) => {
     .then(() => { return setText('.foreign-contact .middle input', 'J') })
     .then(() => { return setText('.foreign-contact .last input', 'Bar') })
     .then(() => { return setOption('.foreign-contact-address .international label') })
-    .then(() => { return setText('.foreign-contact-address .mailing textarea', '1234 Some Rd') })
+    .then(() => { return setText('.foreign-contact-address .mailing input', '1234 Some Rd') })
     .then(() => { return setText('.foreign-contact-address .city input', 'Munich') })
     .then(() => { return setText('.foreign-contact-address .country input', 'Germany') })
     .then(() => { return setText('.foreign-contact-title input', 'Mr.') })

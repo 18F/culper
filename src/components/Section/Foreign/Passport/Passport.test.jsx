@@ -70,14 +70,14 @@ describe('The passport component', () => {
       Comments: 'Comment',
       Issued: {
         day: '1',
-        estimated: null,
+        estimated: false,
         month: '1',
         name: 'issued',
         year: '2003'
       },
       Expiration: {
         day: '1',
-        estimated: null,
+        estimated: false,
         month: '1',
         name: 'expiration',
         year: '2004'

@@ -11,7 +11,7 @@ export default class MilitaryDisciplinaryValidator {
   }
 
   validItems () {
-    if (!this.validDisciplinary() || this.hasDisciplinary === 'No') {
+    if (this.validDisciplinary() && this.hasDisciplinary === 'No') {
       return true
     }
 
