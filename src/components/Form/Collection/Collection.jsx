@@ -12,15 +12,15 @@ export default class Collection extends ValidationElement {
     for (let i = 0; i < this.props.items.length; i++) {
       indices.push(super.guid())
     }
-    const f = this.factory(this.props.minimum, this.props.items, indices)
+    const factoryOfThings = this.factory(this.props.minimum, this.props.items, indices)
 
     this.state = {
       id: super.guid(),
       minimum: this.props.minimum,
       length: this.props.minimum,
-      items: f.items,
-      indices: f.indices,
-      children: f.children
+      items: factoryOfThings.items,
+      indices: factoryOfThings.indices,
+      children: factoryOfThings.children
     }
 
     this.append = this.append.bind(this)

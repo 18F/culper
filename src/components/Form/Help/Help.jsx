@@ -145,8 +145,8 @@ export default class Help extends ValidationElement {
 
       if (React.isValidElement(child)) {
         if (child.type) {
-          const what = Object.prototype.toString.call(child.type)
-          if (what === '[object Function]' && child.type.name === 'HelpIcon') {
+          const whatTypeOfObject = Object.prototype.toString.call(child.type)
+          if (whatTypeOfObject === '[object Function]' && child.type.name === 'HelpIcon') {
             extendedProps.onClick = this.handleClick
             extendedProps.active = this.state.active
           }
