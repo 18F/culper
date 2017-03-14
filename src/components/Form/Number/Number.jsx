@@ -6,21 +6,11 @@ export default class Number extends ValidationElement {
     super(props)
 
     this.state = {
-      name: props.name,
-      label: props.label,
-      placeholder: props.placeholder,
-      help: props.help,
       disabled: props.disabled,
-      min: props.min,
-      max: props.max,
-      maxlength: props.maxlength,
-      readonly: props.readonly,
-      required: props.required,
-      step: props.step,
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       errorCode: null
     }
   }
@@ -135,7 +125,7 @@ export default class Number extends ValidationElement {
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.state.name + '-error'
+    return '' + this.props.name + '-error'
   }
 
   /**
@@ -191,19 +181,19 @@ export default class Number extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.name}>
-          {this.state.label}
+               htmlFor={this.props.name}>
+          {this.props.label}
         </label>
         <input className={this.inputClass()}
-               id={this.state.name}
-               name={this.state.name}
+               id={this.props.name}
+               name={this.props.name}
                type="text"
                ref="input"
-               placeholder={this.state.placeholder}
+               placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
                disabled={this.state.disabled}
-               maxLength={this.state.maxlength}
-               readOnly={this.state.readonly}
+               maxLength={this.props.maxlength}
+               readOnly={this.props.readonly}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
@@ -212,4 +202,13 @@ export default class Number extends ValidationElement {
       </div>
     )
   }
+}
+
+Number.defaultProps = {
+  disabled: false,
+  value: '',
+  focus: false,
+  error: false,
+  valid: false,
+  errorCode: null
 }
