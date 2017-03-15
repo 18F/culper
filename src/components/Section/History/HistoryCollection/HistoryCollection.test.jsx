@@ -112,4 +112,20 @@ describe('The history collection component', () => {
     expect(component.find('.history-collection').length).toEqual(1)
     expect(component.find('.item').length).toEqual(5)
   })
+
+  it('can fill gaps', () => {
+    const expected = {
+      name: 'history_collection',
+      types: ['Residence', 'Employment', 'Education'],
+      addOnLoad: 'Residence',
+      showGaps: true,
+      total: 10,
+      history: history
+    }
+    const component = mount(<HistoryCollection {...expected} />)
+    expect(component.find('.history-collection').length).toEqual(1)
+    expect(component.find('.item').length).toEqual(5)
+    component.find('.gap button').first().simulate('click')
+    expect(component.state().collectionType).not.toBeNull()
+  })
 })

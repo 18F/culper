@@ -4,7 +4,7 @@ import DateRange from './DateRange'
 
 describe('The date range component', () => {
   it('bubbles up validate event', () => {
-    let validations = 0
+    let updates = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -12,17 +12,15 @@ describe('The date range component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
-        validations++
-      }
+      onUpdate: () => { updates++ }
     }
-    const component = mount(<DateRange name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').first().simulate('blur')
-    expect(validations > 0).toEqual(true)
+    const component = mount(<DateRange {...expected} />)
+    component.find('.day input').first().simulate('change', { target: { value: '1' } })
+    expect(updates).toBeGreaterThan(0)
   })
 
   it('bubbles up change event', () => {
-    let changes = 0
+    let updates = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -30,17 +28,34 @@ describe('The date range component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
-        changes++
-      }
+      onUpdate: () => { updates++ }
     }
-    const component = mount(<DateRange name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<DateRange {...expected} />)
     component.find('input#day').first().simulate('change')
-    expect(changes).toEqual(1)
+    expect(updates).toBeGreaterThan(0)
+  })
+
+  it('handles dates in reversed order', () => {
+    let updates = 0
+    const expected = {
+      name: 'input-error',
+      label: 'Text input error',
+      help: 'Helpful error message',
+      error: true,
+      focus: false,
+      valid: false,
+      onUpdate: () => { updates++ },
+      present: true,
+      from: new Date('4/1/2010'),
+      to: new Date('1/1/2000')
+    }
+    const component = mount(<DateRange {...expected} />)
+    component.find('input[name="present"]').simulate('change')
+    expect(updates).toBeGreaterThan(0)
   })
 
   it('loads data', () => {
-    let changes = 0
+    let updates = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -48,14 +63,12 @@ describe('The date range component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
-        changes++
-      },
+      onUpdate: () => { updates++ },
       from: new Date('1/1/2000'),
       to: new Date('4/1/2010')
     }
-    const component = mount(<DateRange name={expected.name} onChange={expected.handleChange} from={expected.from} to={expected.to} />)
-    component.find('input[name="present"]').simulate('change')
-    expect(changes).toEqual(1)
+    const component = mount(<DateRange {...expected} />)
+    component.find({ type: 'checkbox', value: 'present' }).simulate('change')
+    expect(updates).toBeGreaterThan(0)
   })
 })

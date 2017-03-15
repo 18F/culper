@@ -14,7 +14,7 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class ForeignContact extends ValidationElement {
+export default class ForeignContact extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -128,4 +128,12 @@ export default class ForeignContact extends ValidationElement {
       </div>
     )
   }
+}
+
+ForeignContact.defaultProps = {
+  Name: {},
+  Address: {},
+  Title: {},
+  Dates: {},
+  Frequency: {}
 }

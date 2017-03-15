@@ -286,43 +286,42 @@ export default class MilitaryService extends ValidationElement {
                             selectedValue={this.state.DischargeType}>
                   <Radio name="discharge-type-honorable"
                          className="discharge-type-honorable"
-                         label={i18n.t('military.history.label.discharge.type.honorable')}
+                         label={i18n.m('military.history.label.discharge.type.honorable')}
                          value="Honorable"
                          onChange={this.updateDischargeType}
                          onValidate={this.props.onValidate}
                          />
                   <Radio name="discharge-type-dishonorable"
                          className="discharge-type-dishonorable"
-                         label={i18n.t('military.history.label.discharge.type.dishonorable')}
+                         label={i18n.m('military.history.label.discharge.type.dishonorable')}
                          value="Dishonorable"
                          onChange={this.updateDischargeType}
                          onValidate={this.props.onValidate}
                          />
                   <Radio name="discharge-type-lessthan"
-                         className="discharge-type-lessthan"
-                         label={i18n.t('military.history.label.discharge.type.lessthan')}
+                         className="discharge-type-lessthan long-text"
+                         label={i18n.m('military.history.label.discharge.type.lessthan')}
                          value="LessThan"
-                         className="long-text"
                          onChange={this.updateDischargeType}
                          onValidate={this.props.onValidate}
                          />
                   <Radio name="discharge-type-general"
                          className="discharge-type-general"
-                         label={i18n.t('military.history.label.discharge.type.general')}
+                         label={i18n.m('military.history.label.discharge.type.general')}
                          value="General"
                          onChange={this.updateDischargeType}
                          onValidate={this.props.onValidate}
                          />
                   <Radio name="discharge-type-badconduct"
                          className="discharge-type-badconduct"
-                         label={i18n.t('military.history.label.discharge.type.badconduct')}
+                         label={i18n.m('military.history.label.discharge.type.badconduct')}
                          value="BadConduct"
                          onChange={this.updateDischargeType}
                          onValidate={this.props.onValidate}
                          />
                   <Radio name="discharge-type-other"
-                         className="discharge-type-other"
-                         label={i18n.t('military.history.label.discharge.type.other')}
+                         className="discharge-type-other long-text"
+                         label={i18n.m('military.history.label.discharge.type.other')}
                          value="Other"
                          onChange={this.updateDischargeType}
                          onValidate={this.props.onValidate}

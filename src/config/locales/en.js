@@ -169,18 +169,23 @@ const en = {
     },
     day: {
       length: {
-        title: 'Day falls outside of allowable range',
+        title: 'Day falls outside of the allowable range',
         message: 'The day must be a valid day for the month',
         note: ''
       },
       max: {
-        title: '',
+        title: 'Day falls outside of the allowable range',
         message: 'Cannot exceed the number of days within the month',
         note: ''
       }
     },
     year: {
       max: {
+        title: 'The year must be four digits',
+        message: 'The year must be a valid year',
+        note: ''
+      },
+      min: {
         title: 'The year must be four digits',
         message: 'The year must be a valid year',
         note: ''
@@ -1144,7 +1149,7 @@ const en = {
             lessthan: 'Under other than honorable conditions',
             general: 'General',
             badconduct: 'Bad conduct',
-            other: 'Other (provide type)',
+            other: 'Other<br>(provide type)',
             otherex: 'Provide other type of discharge'
           },
           reason: 'Provide the reason(s) for the discharge'
@@ -1302,7 +1307,8 @@ const en = {
       },
       label: {
         organization: {
-          military: 'Military (Army, Navy, Air Force, Marines, etc.)',
+          military: 'Military',
+          military2: '(Army, Navy, Air Force, Marines, etc.)',
           intelligence: 'Intelligence Service',
           diplomatic: 'Diplomatic Service',
           security: 'Security Forces',

@@ -21,9 +21,7 @@ class Env {
   EndpointOAuth (service) { return `/auth/${service}` }
   EndpointValidateSSN (ssn) { return `/validate/ssn/${ssn}` }
   EndpointValidatePassport (passport) { return `/validate/passport/${passport}` }
-  EndpointValidateCity (city) { return `/validate/address/${city}` }
   EndpointValidateZipcode (zipcode) { return `/validate/zipcode/${zipcode}` }
-  EndpointValidateState (state) { return `/validate/state/${state}` }
   EndpointValidateAddress () { return '/validate/address' }
   EndpointValidateName () { return '/validate/name' }
   EndpointValidateApplicantBirthdate () { return '/validate/applicant/birthdate' }

@@ -20,7 +20,8 @@ export default class DateControl extends ValidationElement {
       day: props.day || props.hideDay ? 1 : this.datePart('d', props.value),
       year: props.year || this.datePart('y', props.value),
       foci: [false, false, false],
-      validity: [null, null, null]
+      validity: [null, null, null],
+      errorCodes: []
     }
   }
 
@@ -97,7 +98,7 @@ export default class DateControl extends ValidationElement {
     }
 
     let d
-    if (year && month && day) {
+    if (year && year.length > 3 && month && day) {
       d = new Date(year, month - 1, day)
     } else {
       d = ''
@@ -113,7 +114,6 @@ export default class DateControl extends ValidationElement {
       },
       () => {
         event.target.date = d
-        super.handleChange(event)
 
         if (this.props.onUpdate) {
           this.props.onUpdate({
@@ -180,7 +180,11 @@ export default class DateControl extends ValidationElement {
         foci: [month, day, year]
       },
       () => {
-        super.handleBlur(event)
+        const focus = month && day && year
+        const inputs = this.state.month && this.state.day && this.state.year && this.state.year.length > 3
+        if (!focus || inputs) {
+          super.handleBlur(event)
+        }
       })
   }
 
@@ -192,6 +196,13 @@ export default class DateControl extends ValidationElement {
       super.handleValidation(event, status, error)
       return
     }
+
+    let errorCodes = []
+    this.state.errorCodes.forEach(e => {
+      if (e != 'day.max') {
+        errorCodes.push(e)
+      }
+    })
 
     let month = this.state.validity[0]
     let day = this.state.validity[1]
@@ -208,28 +219,45 @@ export default class DateControl extends ValidationElement {
     }
 
     let valid = validDate(this.state.month, this.state.day, this.state.year)
+    if (!valid && !error) {
+      if (this.state.day > daysInMonth(this.state.month, this.state.year)) {
+        error = 'day.max'
+      } else {
+        error = { day: null }
+      }
+    }
 
+    const codes = super.mergeError(errorCodes, error)
     this.setState(
       {
-        error: !valid && month === false && day === false && year === false,
+        error: !valid || (month === false && day === false && year === false),
         valid: valid && month === true && day === true && year === true,
-        validity: [month, day, year]
+        validity: [month, day, year],
+        errorCodes: codes
       },
       () => {
-        // To calculate the overall status of the component we need to consider
-        // what is valid when comparing all three child components.
-        //
-        //  1. If all of the children are in a neutral state then so is this component
-        //  2. If all of the children are in a valid state then so is this component
-        //  3. All other permutations assume an invalid state
-        let s = false
-        if (month === null && day === null && year === null) {
-          s = null
-        } else if (month === true && day === true && year === true) {
-          s = true
-        }
+        const focus = this.state.foci[0] && this.state.foci[1] && this.state.foci[2]
+        const inputs = this.state.month && this.state.day && this.state.year && this.state.year.length > 3
+        if (!focus && inputs) {
+          // To calculate the overall status of the component we need to consider
+          // what is valid when comparing all three child components.
+          //
+          //  1. If all of the children are in a neutral state then so is this component
+          //  2. If all of the children are in a valid state then so is this component
+          //  3. All other permutations assume an invalid state
+          let s = false
+          if (month === null || day === null || year === null) {
+            s = null
+          } else {
+            s = valid
+          }
 
-        super.handleValidation(event, s, error)
+          super.handleValidation(event, s, codes)
+
+          if (codes.length === 0 && this.props.onFlush) {
+            this.props.onFlush()
+          }
+        }
       })
   }
 
@@ -260,7 +288,7 @@ export default class DateControl extends ValidationElement {
 
     return (
       <div className={klass}>
-        <div className={this.divClass()}>
+        <div>
           <div className="usa-form-group month">
             <Dropdown name="month"
                       ref="month"
@@ -296,7 +324,6 @@ export default class DateControl extends ValidationElement {
                     ref="day"
                     label="Day"
                     placeholder="00"
-                    aria-described-by={this.errorName('day')}
                     disabled={this.state.disabled}
                     max={daysInMonth(this.state.month, this.state.year)}
                     maxlength="2"
@@ -318,8 +345,8 @@ export default class DateControl extends ValidationElement {
                     ref="year"
                     label="Year"
                     placeholder="0000"
-                    aria-described-by={this.errorName('year')}
                     disabled={this.state.disabled}
+                    min="1000"
                     max="9999"
                     maxlength="4"
                     pattern={this.props.pattern}

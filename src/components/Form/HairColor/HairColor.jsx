@@ -10,7 +10,7 @@ export default class HairColor extends ValidationElement {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      value: props.value || [],
+      value: props.value,
       errors: []
     }
   }
@@ -258,4 +258,8 @@ export default class HairColor extends ValidationElement {
       </div>
     )
   }
+}
+
+HairColor.defaultProps = {
+  value: []
 }

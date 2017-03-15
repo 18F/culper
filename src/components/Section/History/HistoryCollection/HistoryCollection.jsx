@@ -19,9 +19,10 @@ import { EmploymentValidator, ResidenceValidator, EducationValidator } from '../
 export default class HistoryCollection extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       // List of history items managed by this collection
-      List: [],
+      List: this.prepare(this.props.history),
 
       // Current item that user is creating (NOT editing)
       currentNewItem: null,
@@ -30,8 +31,6 @@ export default class HistoryCollection extends ValidationElement {
       // Residence, Employment or School
       collectionType: props.types.length === 1 ? props.types[0] : '',
 
-      indices: [],
-
       // Error codes for each of the child collections
       errorCodes: []
     }
@@ -39,16 +38,6 @@ export default class HistoryCollection extends ValidationElement {
     this.handleCollectionTypeChange = this.handleCollectionTypeChange.bind(this)
     this.create = this.create.bind(this)
     this.fillGap = this.fillGap.bind(this)
-  }
-
-  componentDidMount () {
-    // If user has requested to show create form for a specific type when,
-    // first loading the component, check that here and do so
-    if (this.isEmpty() && this.props.addOnLoad && this.props.types.length > 1) {
-      this.selectCollectionType(this.props.addOnLoad)
-      return
-    }
-    this.prepare(this.props.history)
   }
 
   /**
@@ -160,10 +149,6 @@ export default class HistoryCollection extends ValidationElement {
     return this.props.history && this.props.history.Education && this.props.history.Education.List
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.prepare(nextProps.history)
-  }
-
   /**
    * Creates an array of items consisting of Residence and Employment items. These items are obtained
    * from History. For each, a type property is added to indicate the type of item it is in the collection.
@@ -179,6 +164,7 @@ export default class HistoryCollection extends ValidationElement {
     if (this.props.types.includes('Residence') && history.Residence && history.Residence.List) {
       const residences = history.Residence.List.map(r => {
         r.type = 'Residence'
+        r.index = super.guid()
         return r
       })
 
@@ -188,6 +174,7 @@ export default class HistoryCollection extends ValidationElement {
     if (this.props.types.includes('Employment') && history.Employment && history.Employment.List) {
       const employment = history.Employment.List.map(r => {
         r.type = 'Employment'
+        r.index = super.guid()
         return r
       })
 
@@ -197,15 +184,14 @@ export default class HistoryCollection extends ValidationElement {
     if (this.props.types.includes('Education') && history.Education && history.Education.List) {
       const education = history.Education.List.map(r => {
         r.type = 'Education'
+        r.index = super.guid()
         return r
       })
 
       list = list.concat(education)
     }
 
-    this.setState({
-      List: list.sort(this.sort)
-    })
+    return list.sort(this.sort)
   }
 
   /**
@@ -238,6 +224,7 @@ export default class HistoryCollection extends ValidationElement {
     let items = [...this.state.List]
     items[index] = {
       type: field,
+      index: items[index].index,
       Item: values
     }
 
@@ -281,13 +268,11 @@ export default class HistoryCollection extends ValidationElement {
 
     items.push({
       type: type,
+      index: super.guid(),
       Item: this.state.currentNewItem.values
     })
 
-    let indices = [...this.state.indices]
-    indices.push(super.guid())
-
-    this.setState({ currentNewItem: null, collectionType: null, indices: indices }, () => {
+    this.setState({ currentNewItem: null, collectionType: null }, () => {
       this.doUpdate(type, items, () => {
         // Check to see if there are multiple types of items supported
         if (this.props.types.length === 1) {
@@ -306,13 +291,7 @@ export default class HistoryCollection extends ValidationElement {
   remove (type, index) {
     let items = [...this.state.List]
     items.splice(index, 1)
-
-    let indices = [...this.state.indices]
-    indices.splice(index, 1)
-
-    this.setState({ indices: indices }, () => {
-      this.doUpdate(type, items)
-    })
+    this.doUpdate(type, items)
   }
 
   /**
@@ -396,6 +375,7 @@ export default class HistoryCollection extends ValidationElement {
       options.push(
         <Radio label="Residence"
                value="Residence"
+               key={super.guid()}
                onChange={this.handleCollectionTypeChange}>
           <div className="eye-icon">
             <Svg src="img/residence-house.svg" />
@@ -408,6 +388,7 @@ export default class HistoryCollection extends ValidationElement {
       options.push(
         <Radio label="Employer"
                value="Employment"
+               key={super.guid()}
                onChange={this.handleCollectionTypeChange}>
           <div className="eye-icon">
             <Svg src="img/employer-briefcase.svg" />
@@ -420,6 +401,7 @@ export default class HistoryCollection extends ValidationElement {
       options.push(
         <Radio label="School/Degree"
                value="Education"
+               key={super.guid()}
                onChange={this.handleCollectionTypeChange}>
           <div className="eye-icon">
             <Svg src="img/school-cap.svg" />
@@ -462,7 +444,7 @@ export default class HistoryCollection extends ValidationElement {
         return (
           <Row header={header}
                index={i}
-               key={this.state.indices[i]}
+               key={item.index}
                first={firstRow}
                last={lastRow}
                hasErrors={hasErrors}
@@ -486,7 +468,7 @@ export default class HistoryCollection extends ValidationElement {
         return (
           <Row header={header}
                index={i}
-               key={this.state.indices[i]}
+               key={item.index}
                first={firstRow}
                last={lastRow}
                hasErrors={hasErrors}
@@ -512,7 +494,7 @@ export default class HistoryCollection extends ValidationElement {
         return (
           <Row header={header}
                index={i}
-               key={this.state.indices[i]}
+               key={item.index}
                first={firstRow}
                last={lastRow}
                hasErrors={hasErrors}
@@ -533,7 +515,7 @@ export default class HistoryCollection extends ValidationElement {
       if (item.type === 'Gap') {
         return (
           <Gap index={i}
-               key={this.state.indices[i]}
+               key={item.index}
                first={firstRow}
                last={lastRow}
                dates={item.Item.Dates}

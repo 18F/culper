@@ -57,8 +57,6 @@ export default class AddressValidator {
         State: this.state,
         Zipcode: this.zipcode
       }
-    } else {
-      console.warn(`Attemping to geocode an unsupported address type [${this.addressType}]`)
     }
     return data
   }

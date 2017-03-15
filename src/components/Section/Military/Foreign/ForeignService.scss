@@ -16,9 +16,22 @@
 
     label {
       height: 12rem;
-      width: 24rem;
-      padding-top: 4rem;
-      overflow-x: hidden;
+      width: 18.5rem;
+      padding-top: 4.3rem;
+      overflow: hidden;
+    }
+
+    p {
+      padding: 0 !important;
+      line-height: 1.4;
+    }
+
+    .smaller {
+      font-size: 1.5rem;
+    }
+
+    .organization-other label {
+      padding-top: 3.3rem;
     }
 
     .organization-military label {

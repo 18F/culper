@@ -8,14 +8,19 @@ export default class Collection extends ValidationElement {
   constructor (props) {
     super(props)
 
-    let min = this.props.minimum || 0
+    let indices = []
+    for (let i = 0; i < this.props.items.length; i++) {
+      indices.push(super.guid())
+    }
+    const factoryOfThings = this.factory(this.props.minimum, this.props.items, indices)
+
     this.state = {
       id: super.guid(),
-      minimum: min,
-      length: min,
-      items: this.props.items || [],
-      indices: [],
-      children: []
+      minimum: this.props.minimum,
+      length: this.props.minimum,
+      items: factoryOfThings.items,
+      indices: factoryOfThings.indices,
+      children: factoryOfThings.children
     }
 
     this.append = this.append.bind(this)
@@ -24,20 +29,12 @@ export default class Collection extends ValidationElement {
   }
 
   /**
-   * Upon the first mounting we need to ensure the minimum number of items
-   * are present in the collection.
-   */
-  componentDidMount () {
-    const f = this.factory(this.state.minimum, this.state.items)
-    this.setState({items: f.items, children: f.children})
-  }
-
-  /**
    * Factory to generate the initial amount of items in the collection
    */
-  factory (min, localItems) {
+  factory (min, localItems, localIndices) {
     let items = []
     let children = []
+    let indices = []
 
     localItems.forEach((item, index) => {
       items.push({
@@ -45,6 +42,7 @@ export default class Collection extends ValidationElement {
         open: false
       })
       children.push(this.createChildren(item, index))
+      indices.push(localIndices[index])
     })
 
     for (let index = children.length; index < min; index++) {
@@ -53,11 +51,13 @@ export default class Collection extends ValidationElement {
       // go ary.
       items.push({open: false})
       children.push(this.createChildren(null, index))
+      indices.push(super.guid())
     }
 
     return {
       items: items,
-      children: children
+      children: children,
+      indices: indices
     }
   }
 
@@ -85,11 +85,11 @@ export default class Collection extends ValidationElement {
     // we are modifying this behavior.
     items.push({open: false})
 
-    let children = [...this.state.children]
-    children = this.factory(items.length, items).children
-
     let indices = [...this.state.indices]
     indices.push(super.guid())
+
+    let children = [...this.state.children]
+    children = this.factory(items.length, items, indices).children
 
     this.setState({ items: items, children: children, indices: indices }, () => {
       this.dispatcher(this.state.items)
@@ -104,11 +104,11 @@ export default class Collection extends ValidationElement {
     let items = [...this.state.items]
     items.splice(index, 1)
 
-    let children = [...this.state.children]
-    children = this.factory(items.length, items).children
-
     let indices = [...this.state.indices]
     indices.splice(index, 1)
+
+    let children = [...this.state.children]
+    children = this.factory(items.length, items, indices).children
 
     this.setState({ items: items, children: children, indices: indices }, () => {
       this.dispatcher(this.state.items)
@@ -303,10 +303,10 @@ export default class Collection extends ValidationElement {
           <div className="summary">
             <Show when={index === 0}>
               <div className="caption gutters">
-                  <div className="title">
-                    <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
-                    <hr />
-                  </div>
+                <div className="title">
+                  <h4>{this.props.summaryTitle || i18n.t('collection.summary')}</h4>
+                  <hr />
+                </div>
               </div>
             </Show>
             <div className={`row gutters ${klassOpen} ${klassLast}`.trim()}>
@@ -367,4 +367,9 @@ export default class Collection extends ValidationElement {
       </div>
     )
   }
+}
+
+Collection.defaultProps = {
+  minimum: 0,
+  items: []
 }

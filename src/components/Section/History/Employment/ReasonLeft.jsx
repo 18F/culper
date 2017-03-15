@@ -48,42 +48,41 @@ export default class ReasonLeft extends ValidationElement {
     const branch = (
       <div>
         <h3>{i18n.t('history.employment.default.left.para')}</h3>
-        <p>{i18n.m('history.employment.default.left.list')}</p>
+        {i18n.m('history.employment.default.left.list')}
       </div>
     )
+
     return (
       <div>
         <Comments name="comments"
-          value={this.state.Comments}
-          title={i18n.t('history.employment.default.left.comments')}
-          className={this.props.className}
-          onUpdate={this.updateComments}
-          onValidate={this.props.onValidate}
-        >
+                  value={this.state.Comments}
+                  title={i18n.t('history.employment.default.left.comments')}
+                  className="eapp-field-wrap"
+                  onUpdate={this.updateComments}
+                  onValidate={this.props.onValidate}>
 
-        <Help id="history.employment.default.reasonDescription">
-          <div className={this.props.className}>
-            <Textarea
-              name="reason_description"
-              value={this.state.ReasonDescription}
-              onUpdate={this.updateReasonDescription}
-            />
+          <div className="eapp-field-wrap no-label">
+            <Help id="history.employment.default.reasonDescription">
+              <Textarea name="reason_description"
+                        className="reason-description"
+                        value={this.state.ReasonDescription}
+                        onUpdate={this.updateReasonDescription}
+                        />
+              <HelpIcon />
+            </Help>
           </div>
-          <HelpIcon />
-        </Help>
 
-        <BranchCollection
-          className="eapp-field-wrap"
-          branchHelp="history.employment.default.reasonOptions"
-          branch={branch}
-          items={this.state.Reasons}
-          onUpdate={this.updateReasons}
-        >
-          <ReasonOptions name="Reason" bind={true} />
-        </BranchCollection>
-      </Comments>
-    </div>
+          <BranchCollection branchHelp="history.employment.default.reasonOptions"
+                            branch={branch}
+                            items={this.state.Reasons}
+                            onUpdate={this.updateReasons}
+                            >
+            <ReasonOptions name="Reason"
+                           className="eapp-field-wrap"
+                           bind={true} />
+          </BranchCollection>
+        </Comments>
+      </div>
     )
   }
 }
-
