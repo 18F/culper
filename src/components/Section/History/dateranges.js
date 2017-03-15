@@ -132,7 +132,7 @@ export const validDate = (month, day, year) => {
   const d = parseInt(day || 0)
   const y = parseInt(year || 0)
 
-  return (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
+  return (y > 1000 && y < 10000) && (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
 }
 
 /**

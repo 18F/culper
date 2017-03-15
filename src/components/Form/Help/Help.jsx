@@ -13,6 +13,7 @@ export default class Help extends ValidationElement {
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.onFlush = this.onFlush.bind(this)
   }
 
   /**
@@ -33,11 +34,12 @@ export default class Help extends ValidationElement {
     }
 
     let e = [...this.state.errors]
-    if (!errors) {
-      // Let's clean out what we current have stored for this target.
-      let name = !event.target || !event.target.name ? 'input' : event.target.name
-      e = this.cleanErrors(e, `.${name}.`)
-    } else {
+
+    // Let's clean out what we current have stored for this target.
+    let name = !event.target || !event.target.name ? 'input' : event.target.name
+    e = this.cleanErrors(e, `.${name}.`)
+
+    if (errors) {
       let errorFlat = super.flattenObject(errors)
 
       if (errorFlat.endsWith('.')) {
@@ -64,6 +66,10 @@ export default class Help extends ValidationElement {
         this.scrollIntoView()
       }
     })
+  }
+
+  onFlush () {
+    this.setState({ errors: [] })
   }
 
   /**
@@ -162,6 +168,7 @@ export default class Help extends ValidationElement {
 
         // Inject ourselves in to the validation callback
         if (child.props.onValidate) {
+          extendedProps.onFlush = this.onFlush
           extendedProps.onValidate = (event, status, errors) => {
             this.handleValidation(event, status, errors)
             if (child.props.onValidate) {

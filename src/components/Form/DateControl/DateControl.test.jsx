@@ -9,6 +9,7 @@ describe('The date component', () => {
     const expected = {
       name: 'input-error',
       label: 'DateControl input error',
+      disabled: false,
       error: true,
       focus: false,
       valid: false

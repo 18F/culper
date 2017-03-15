@@ -6,7 +6,6 @@ export default class Number extends ValidationElement {
     super(props)
 
     this.state = {
-      disabled: props.disabled,
       value: props.value,
       focus: props.focus,
       error: props.error,
@@ -16,9 +15,17 @@ export default class Number extends ValidationElement {
   }
 
   componentWillReceiveProps (next) {
-    this.setState({
-      disabled: next.disabled,
-      value: next.value
+    const old = this.state.max
+    this.setState({ max: next.max, value: next.value }, () => {
+      if (old !== next.max) {
+        this.handleValidation(
+          {
+            fake: true,
+            target: {
+              name: this.props.name
+            }
+          }, null)
+      }
     })
   }
 
@@ -84,7 +91,7 @@ export default class Number extends ValidationElement {
 
     if (!isNaN(parseInt(this.state.value))) {
       if (status && this.props.min) {
-        status = status && parseInt(this.state.value) >= parseInt(this.props.min)
+        status = parseInt(this.state.value) >= parseInt(this.props.min)
         if (status === false) {
           errorCode = 'min'
         }
@@ -92,7 +99,7 @@ export default class Number extends ValidationElement {
       }
 
       if (status && this.props.max) {
-        status = status && parseInt(this.state.value) <= parseInt(this.props.max)
+        status = parseInt(this.state.value) <= parseInt(this.state.max)
         if (status === false) {
           errorCode = 'max'
         }
@@ -100,7 +107,7 @@ export default class Number extends ValidationElement {
       }
 
       if (status && this.props.maxlength && this.props.maxlength > 0) {
-        status = status && ('' + this.state.value).length <= parseInt(this.props.maxlength)
+        status = ('' + this.state.value).length <= parseInt(this.props.maxlength)
         if (status === false) {
           errorCode = 'length'
         }
@@ -191,7 +198,7 @@ export default class Number extends ValidationElement {
                ref="input"
                placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
-               disabled={this.state.disabled}
+               disabled={this.props.disabled}
                maxLength={this.props.maxlength}
                readOnly={this.props.readonly}
                value={this.state.value}

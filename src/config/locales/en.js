@@ -169,18 +169,23 @@ const en = {
     },
     day: {
       length: {
-        title: 'Day falls outside of allowable range',
+        title: 'Day falls outside of the allowable range',
         message: 'The day must be a valid day for the month',
         note: ''
       },
       max: {
-        title: '',
+        title: 'Day falls outside of the allowable range',
         message: 'Cannot exceed the number of days within the month',
         note: ''
       }
     },
     year: {
       max: {
+        title: 'The year must be four digits',
+        message: 'The year must be a valid year',
+        note: ''
+      },
+      min: {
         title: 'The year must be four digits',
         message: 'The year must be a valid year',
         note: ''
