@@ -63,7 +63,7 @@ export default class DateRange extends ValidationElement {
     })
   }
 
-  handleChange (field, event) {
+  handleChange (event) {
     // Get a handle to current state values as well as set the value for the current
     // element that triggered a change
     let futureState = {
@@ -90,15 +90,13 @@ export default class DateRange extends ValidationElement {
       super.handleChange(event)
 
       // This will force a blur/validation
-      if (field === 'present') {
-        this.refs.to.refs.month.refs.autosuggest.input.focus()
-        this.refs.to.refs.month.refs.autosuggest.input.blur()
-        this.refs.to.refs.day.refs.input.focus()
-        this.refs.to.refs.day.refs.input.blur()
-        this.refs.to.refs.year.refs.input.focus()
-        this.refs.to.refs.year.refs.input.blur()
-        this.handleValidation(event, null, null)
-      }
+      this.refs.to.refs.month.refs.autosuggest.input.focus()
+      this.refs.to.refs.month.refs.autosuggest.input.blur()
+      this.refs.to.refs.day.refs.input.focus()
+      this.refs.to.refs.day.refs.input.blur()
+      this.refs.to.refs.year.refs.input.focus()
+      this.refs.to.refs.year.refs.input.blur()
+      this.handleValidation(event, null, null)
 
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -116,11 +114,7 @@ export default class DateRange extends ValidationElement {
    * Handle the validation event.
    */
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    if (status !== false) {
+    if (event && status !== false) {
       if (this.state.from && this.state.to) {
         if (this.state.from > this.state.to) {
           status = false
