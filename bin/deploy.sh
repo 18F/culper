@@ -21,6 +21,11 @@ elif [ $SPACE = 'staging' ]; then
   API_MANIFEST="manifest-api-staging.yml"
   FRONTEND_NAME="eqip-prototype-staging"
   FRONTEND_MANIFEST="manifest-frontend-staging.yml"
+elif [ $SPACE = 'dev' ]; then
+  API_NAME="eqip-prototype-api-dev"
+  API_MANIFEST="manifest-api-dev.yml"
+  FRONTEND_NAME="eqip-prototype-dev"
+  FRONTEND_MANIFEST="manifest-frontend-dev.yml"
 else
   echo "Unknown space: $SPACE"
   exit
