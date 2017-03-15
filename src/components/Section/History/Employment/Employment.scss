@@ -39,10 +39,12 @@
   }
 
   .date-left {
+    line-height: initial !important;
     padding-top: 5rem !important;
 
     > label {
       position: relative;
+      padding-bottom: 2rem;
     }
   }
 
@@ -70,5 +72,10 @@
 
   .daterange, .text, .employment-activity {
     display: inline-block;
+  }
+
+  .reason-description {
+    display: inline-block;
+    width: 92%;
   }
 }

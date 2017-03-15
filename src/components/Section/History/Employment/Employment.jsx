@@ -117,7 +117,8 @@ export class EmploymentItem extends ValidationElement {
                         />
           </div>
         </Show>
-        <Show when={true}>
+
+        <Show when={this.showLeaving()}>
           <div>
             <Reprimand name="Reprimand"
                         {...this.props.Reprimand}

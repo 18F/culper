@@ -19,9 +19,10 @@ import { EmploymentValidator, ResidenceValidator, EducationValidator } from '../
 export default class HistoryCollection extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       // List of history items managed by this collection
-      List: [],
+      List: this.prepare(this.props.history),
 
       // Current item that user is creating (NOT editing)
       currentNewItem: null,
@@ -37,16 +38,6 @@ export default class HistoryCollection extends ValidationElement {
     this.handleCollectionTypeChange = this.handleCollectionTypeChange.bind(this)
     this.create = this.create.bind(this)
     this.fillGap = this.fillGap.bind(this)
-  }
-
-  componentDidMount () {
-    // If user has requested to show create form for a specific type when,
-    // first loading the component, check that here and do so
-    if (this.isEmpty() && this.props.addOnLoad && this.props.types.length > 1) {
-      this.selectCollectionType(this.props.addOnLoad)
-      return
-    }
-    this.prepare(this.props.history)
   }
 
   /**
@@ -158,10 +149,6 @@ export default class HistoryCollection extends ValidationElement {
     return this.props.history && this.props.history.Education && this.props.history.Education.List
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.prepare(nextProps.history)
-  }
-
   /**
    * Creates an array of items consisting of Residence and Employment items. These items are obtained
    * from History. For each, a type property is added to indicate the type of item it is in the collection.
@@ -204,9 +191,7 @@ export default class HistoryCollection extends ValidationElement {
       list = list.concat(education)
     }
 
-    this.setState({
-      List: list.sort(this.sort)
-    })
+    return list.sort(this.sort)
   }
 
   /**
@@ -239,6 +224,7 @@ export default class HistoryCollection extends ValidationElement {
     let items = [...this.state.List]
     items[index] = {
       type: field,
+      index: items[index].index,
       Item: values
     }
 
