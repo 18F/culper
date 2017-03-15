@@ -51,8 +51,8 @@ export default class ForeignService extends ValidationElement {
     })
   }
 
-  updateOrganization (value) {
-    this.onUpdate('Organization', value)
+  updateOrganization (event) {
+    this.onUpdate('Organization', event.target.value)
   }
 
   updateName (value) {
