@@ -148,13 +148,13 @@ export class EducationItem extends ValidationElement {
           : unk
 
     return (
-      <div className="table">
-        <div className="table-cell index">
+      <span>
+        <span className="index">
           {i18n.t('history.education.collection.diploma.summary.item')} {index + 1}:
-        </div>
-        <div className="table-cell">{ text }</div>
-        <div className="table-cell dates">{ dd }</div>
-      </div>
+        </span>
+        <span className="">{ text }</span>
+        <span className="dates">{ dd }</span>
+      </span>
     )
   }
 

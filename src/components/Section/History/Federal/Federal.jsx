@@ -151,11 +151,11 @@ export default class Federal extends ValidationElement {
     const dates = dateSummary(item)
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell">{agency}</div>
-        <div className="table-cell dates">{dates}</div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</span>
+        <span className="">{agency}</span>
+        <span className="dates">{dates}</span>
+      </span>
     )
   }
 

@@ -116,11 +116,11 @@ export default class ForeignService extends ValidationElement {
     const dates = dateSummary(itemProperties)
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</div>
-        <div className="table-cell"><strong>{name}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</span>
+        <span className=""><strong>{name}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
     )
   }
 

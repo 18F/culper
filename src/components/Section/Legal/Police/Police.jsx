@@ -143,11 +143,11 @@ export default class Police extends ValidationElement {
     const dates = dateSummary(o)
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('legal.police.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell info"><strong>{description}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('legal.police.collection.summary.item')} {index + 1}:</span>
+        <span className="info"><strong>{description}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
     )
   }
 

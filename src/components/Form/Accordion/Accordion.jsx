@@ -133,18 +133,18 @@ export default class Accordion extends ValidationElement {
 
     return items.map((item, index, arr) => {
       const openState = `${item.open ? 'open' : 'close'}`
-      const chevron = `fa fa-chevron-${item.open ? 'up' : 'down'}`
+      const chevron = `toggle fa fa-chevron-${item.open ? 'up' : 'down'}`
       const openText = item.open
-            ? this.props.openLabel
-            : this.props.closeLabel
+            ? this.props.closeLabel
+            : this.props.openLabel
 
       return (
         <div className="item" key={item.uuid}>
           <div className="summary">
-            <a className={`left toggle ${openState}`} onClick={this.toggle.bind(this, item)}>
+            <a className={`left ${openState}`} onClick={this.toggle.bind(this, item)}>
               {this.props.summary(item, index)}
               <i className={chevron} aria-hidden="true"></i>
-              <span>{openText}</span>
+              <span className="toggle">{openText}</span>
             </a>
             <a className="right remove" onClick={this.remove.bind(this, item)}>
               <i className="fa fa-trash" aria-hidden="true"></i>
@@ -153,7 +153,9 @@ export default class Accordion extends ValidationElement {
           </div>
           <div className={`details ${openState}`}>
             {this.factory(item, index, this.props.children)}
-            <a className="toggle" onClick={this.toggle.bind(this, item)}>{this.props.closeLabel}</a>
+            <a className="close" onClick={this.toggle.bind(this, item)}>
+              <span>{this.props.closeLabel}</span>
+            </a>
           </div>
         </div>
       )

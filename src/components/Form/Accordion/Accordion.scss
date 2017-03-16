@@ -1,0 +1,65 @@
+@import 'eqip-colors';
+
+.accordion {
+  background-color: $eapp-grey;
+  padding: 50px;
+
+  .item {
+    background-color: #fff;
+    min-width: 550px;
+    max-width: 800px;
+    padding: 0 136px;
+  }
+
+  .summary .left {
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .toggle {
+      color: $eapp-blue;
+    }
+
+    &:hover {
+      color: $eapp-blue;
+
+      span {
+        border-bottom: 1px dashed $eapp-blue;
+      }
+    }
+  }
+
+  .summary .right {
+    color: $eapp-grey-dark;
+    text-decoration: none;
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+    overflow: hidden;
+
+    &:hover {
+      color: $eapp-red;
+
+      span {
+        border-bottom: 1px dashed $eapp-red;
+      }
+    }
+  }
+
+  .details.open {
+    display: block;
+
+    .close {
+      display: block;
+      text-align: right;
+    }
+  }
+
+  .details.close {
+    display: none;
+  }
+}

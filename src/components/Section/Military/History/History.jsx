@@ -95,11 +95,11 @@ export default class History extends ValidationElement {
     const dates = dateSummary(o)
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('military.history.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell"><strong>{service}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('military.history.collection.summary.item')} {index + 1}:</span>
+        <span><strong>{service}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
     )
   }
 

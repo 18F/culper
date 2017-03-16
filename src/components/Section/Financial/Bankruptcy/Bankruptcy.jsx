@@ -119,11 +119,11 @@ export default class Bankruptcy extends ValidationElement {
     }
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell">{address1}<br />{address2}</div>
-        <div className="table-cell dates">{from}</div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</span>
+        <span>{address1}<br />{address2}</span>
+        <span className="dates">{from}</span>
+      </span>
     )
   }
 

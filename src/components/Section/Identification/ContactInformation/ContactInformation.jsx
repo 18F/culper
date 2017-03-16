@@ -90,10 +90,10 @@ export default class ContactInformation extends ValidationElement {
     }
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</div>
-        <div className="table-cell"><strong>{addr}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</span>
+        <span><strong>{addr}</strong></span>
+      </span>
     )
   }
 
@@ -128,10 +128,10 @@ export default class ContactInformation extends ValidationElement {
     }
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</div>
-        <div className="table-cell"><strong>{number}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>
+        <span><strong>{number}</strong></span>
+      </span>
     )
   }
 

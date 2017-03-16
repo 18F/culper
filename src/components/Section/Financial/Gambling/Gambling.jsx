@@ -129,11 +129,11 @@ export default class Gambling extends ValidationElement {
           : `${from} - ${to}`
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('financial.gambling.collection.summary.debt')} {index + 1}:</div>
-        <div className="table-cell losses"><strong>{losses}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('financial.gambling.collection.summary.debt')} {index + 1}:</span>
+        <span className="losses"><strong>{losses}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
     )
   }
 
