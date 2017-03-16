@@ -33,10 +33,10 @@ const navigation = [
     name: 'Family & friends',
     title: 'Family & friends',
     url: 'family',
-    hidden: true,
+    hidden: false,
     subsections: [
-      { name: 'Marital status', url: 'marital' },
-      { name: 'People who know you well', url: 'friends' },
+      { hidden: true, name: 'Marital status', url: 'marital' },
+      { hidden: true, name: 'People who know you well', url: 'friends' },
       { name: 'Relatives', url: 'relatives' }
     ]
   },
