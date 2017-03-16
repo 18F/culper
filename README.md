@@ -142,6 +142,14 @@ yarn test
 The individual test results will be seen in the output, and the coverage
 results may be viewed after running ```yarn test```.
 
+### Executing feature specifications
+
+Running the feature specifications is an on-demand process and can be ran through [docker-compose][20] by specifying a different configuration file:
+
+```
+docker-compose -f nightwatch-compose.yml up
+```
+
 ### Packaging Application
 
 To package up the application, use the command:
