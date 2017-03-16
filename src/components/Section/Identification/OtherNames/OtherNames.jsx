@@ -1,8 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
 import { OtherNamesValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, Collection, MaidenName, Name, Textarea, DateRange, Radio, RadioGroup, Branch } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
   constructor (props) {
@@ -102,64 +101,6 @@ export default class OtherNames extends ValidationElement {
     )
   }
 
-  /**
-   * Render children only when we explicit state there are aliases
-   */
-  visibleComponents () {
-    if (this.state.HasOtherNames !== 'Yes') {
-      return ''
-    }
-
-    return (
-      <Collection minimum="1"
-                  items={this.state.List}
-                  dispatch={this.myDispatch}
-                  summary={this.summary}
-                  summaryTitle={i18n.t('identification.othernames.collection.summary.title')}
-                  appendClass="eapp-field-wrap"
-                  appendLabel={i18n.t('identification.othernames.collection.append')}>
-
-        <h3>{i18n.t('identification.othernames.heading.name')}</h3>
-        <Name name="Name"
-              key="name"
-              className="eapp-field-wrap"
-              onValidate={this.handleValidation}
-              />
-
-        <h3>{i18n.t('identification.othernames.heading.maiden')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="alias.maiden.help">
-            <MaidenName name="MaidenName"
-                        onValidate={this.handleValidation}
-                        />
-            <HelpIcon className="maiden-help-icon" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('identification.othernames.heading.used')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="alias.used.help">
-            <DateRange name="DatesUsed"
-                      onValidate={this.handleValidation}
-                      />
-            <HelpIcon className="used-help-icon" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('identification.othernames.heading.reason')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="alias.reason.help">
-            <Textarea name="Reason"
-                      className="reason"
-                      onValidate={this.handleValidation}
-                      />
-            <HelpIcon className="reason-help-icon" />
-          </Help>
-        </div>
-      </Collection>
-    )
-  }
-
   render () {
     return (
       <div className="other-names">
@@ -171,7 +112,55 @@ export default class OtherNames extends ValidationElement {
                 help="identification.othernames.branch.help"
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
-        {this.visibleComponents()}
+        <Show when={this.state.HasOtherNames === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.myDispatch}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('identification.othernames.collection.summary.title')}
+                     appendClass="eapp-field-wrap"
+                     appendLabel={i18n.t('identification.othernames.collection.append')}>
+
+            <h3>{i18n.t('identification.othernames.heading.name')}</h3>
+            <Name name="Name"
+                  key="name"
+                  className="eapp-field-wrap"
+                  bind={true}
+                  />
+
+            <h3>{i18n.t('identification.othernames.heading.maiden')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="alias.maiden.help">
+                <MaidenName name="MaidenName"
+                            bind={true}
+                            />
+                <HelpIcon className="maiden-help-icon" />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('identification.othernames.heading.used')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="alias.used.help">
+                <DateRange name="DatesUsed"
+                           bind={true}
+                           />
+                <HelpIcon className="used-help-icon" />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('identification.othernames.heading.reason')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="alias.reason.help">
+                <Textarea name="Reason"
+                          className="reason"
+                          bind={true}
+                          />
+                <HelpIcon className="reason-help-icon" />
+              </Help>
+            </div>
+          </Accordion>
+        </Show>
       </div>
     )
   }

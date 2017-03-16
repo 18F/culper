@@ -49,7 +49,9 @@ const en = {
   },
   collection: {
     summary: 'Summary',
+    append: 'Add another item',
     remove: 'Remove',
+    open: 'Open',
     close: 'Close'
   },
   comments: {
