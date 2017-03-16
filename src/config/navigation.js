@@ -5,10 +5,10 @@ const navigation = [
     url: 'identification',
     subsections: [
       { name: 'Full name', url: 'name' },
+      { name: 'Contacts', url: 'contacts' },
       { name: 'Other names used', url: 'othernames' },
       { name: 'Birth date', url: 'birthdate' },
       { name: 'Birth place', url: 'birthplace' },
-      { name: 'Contacts', url: 'contacts' },
       { name: 'Social security number', url: 'ssn' },
       { name: 'Physical attributes', url: 'physical' },
       { hidden: true, name: 'Psychological and emotional health', url: 'psychological' }
