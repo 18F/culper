@@ -18,7 +18,6 @@ import DateControl from './DateControl'
 import Svg from './Svg'
 import Suggestions from './Suggestions'
 import NotApplicable from './NotApplicable'
-import Collection from './Collection'
 import Accordion from './Accordion'
 
 // Composite components
@@ -51,7 +50,6 @@ export {
   ValidationElement,
   Help,
   HelpIcon,
-  Collection,
   Generic,
   Text,
   Email,

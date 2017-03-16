@@ -13,7 +13,7 @@ describe('The Police record component', () => {
     expect(component.find('.charges').length).toEqual(1)
     expect(component.find('.probation').length).toEqual(1)
     expect(component.find('.trial').length).toEqual(1)
-    expect(component.find('.collection').length).toEqual(0)
+    expect(component.find('.accordion').length).toEqual(0)
   })
 
   it('selecting all "no" nothing happens', () => {
@@ -26,7 +26,7 @@ describe('The Police record component', () => {
     component.find('.charges .no input').simulate('change')
     component.find('.probation .no input').simulate('change')
     component.find('.trial .no input').simulate('change')
-    expect(component.find('.collection').length).toEqual(0)
+    expect(component.find('.accordion').length).toEqual(0)
   })
 
   it('selecting at least one "yes" displays the form', () => {
@@ -39,6 +39,6 @@ describe('The Police record component', () => {
     component.find('.charges .no input').simulate('change')
     component.find('.probation .no input').simulate('change')
     component.find('.trial .yes input').simulate('change')
-    expect(component.find('.collection').length).toEqual(1)
+    expect(component.find('.accordion').length).toEqual(1)
   })
 })

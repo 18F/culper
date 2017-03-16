@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Collection } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import { dateSummary } from '../../History/HistoryCollection/summaries'
 import Offense from './Offense'
 
@@ -207,18 +207,19 @@ export default class Police extends ValidationElement {
         </Branch>
 
         <Show when={this.hasOffenses()}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateList}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('legal.police.collection.summary.title')}
-                      appendTitle={i18n.t('legal.police.collection.appendTitle')}
-                      appendMessage={i18n.m('legal.police.collection.appendMessage')}
-                      appendLabel={i18n.t('legal.police.collection.append')}>
-            <Offense name="Item"
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateList}
                      onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('legal.police.collection.summary.title')}
+                     appendTitle={i18n.t('legal.police.collection.appendTitle')}
+                     appendMessage={i18n.m('legal.police.collection.appendMessage')}
+                     appendLabel={i18n.t('legal.police.collection.append')}>
+            <Offense name="Item"
+                     bind={true}
                      />
-          </Collection>
+          </Accordion>
         </Show>
       </div>
     )

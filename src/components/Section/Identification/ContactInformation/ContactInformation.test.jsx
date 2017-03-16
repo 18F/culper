@@ -3,8 +3,6 @@ import { mount } from 'enzyme'
 import ContactInformation from './ContactInformation'
 
 describe('The ContactInformation component', () => {
-  const validElements = 5
-
   it('no error on empty', () => {
     let blurs = 0
     const expected = {
@@ -58,9 +56,6 @@ describe('The ContactInformation component', () => {
       ]
     }
     const component = mount(<ContactInformation {...expected} />)
-    // NOTE: This was commented out due to prototyping for next usability testing.
-    // Please removed or uncomment based on results.
-    // expect(component.find('.table-cell strong').length).toEqual(5)
     expect(component.find('.table-cell strong').length).toEqual(6)
     expect(component.find('.table-cell strong').at(0).text()).toEqual('Click to provide details')
     expect(component.find('.table-cell strong').at(1).text()).toEqual('(202) 867-5309 x1234')

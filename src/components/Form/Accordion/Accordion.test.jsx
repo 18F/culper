@@ -123,7 +123,6 @@ describe('The accordion component', () => {
     }
 
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
-    console.log(component.html())
     expect(component.find('.summary').length).toEqual(1)
     component.find('input').simulate('change', { target: { value: 'myvalue' } })
     expect(items.length).toEqual(1)

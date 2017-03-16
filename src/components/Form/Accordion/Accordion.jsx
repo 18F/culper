@@ -13,6 +13,32 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * On the initial mount we need to make sure there are key pieces of information
+   * present. If they are not (this may be due to coming from persisted data) assign
+   * them appropriately.
+   */
+  componentWillMount () {
+    let dirty = false
+    let items = this.props.items.map(item => {
+      if (!item.uuid) {
+        item.uuid = super.guid()
+        dirty = true
+      }
+
+      if (item.open !== true && item.open !== false) {
+        item.open = false
+        dirty = true
+      }
+
+      return item
+    })
+
+    if (dirty) {
+      this.update(items)
+    }
+  }
+
+  /**
    * Send the updated list of items back to the parent component.
    */
   update (items) {
@@ -83,7 +109,7 @@ export default class Accordion extends ValidationElement {
 
       const typeOfChildren = Object.prototype.toString.call(child.props.children)
       if (child.props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
-        childProps.children = this.factory(child.props.children, item)
+        childProps.children = this.factory(item, index, child.props.children)
       }
 
       return React.cloneElement(child, childProps)

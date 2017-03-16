@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { GamblingValidator } from '../../../../validators'
-import { ValidationElement, Branch, Collection, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
 
 export default class Gambling extends ValidationElement {
   constructor (props) {
@@ -137,75 +137,6 @@ export default class Gambling extends ValidationElement {
     )
   }
 
-  /**
-   * Render children only when we explicit state to do so
-   */
-  visibleComponents () {
-    if (this.state.HasGamblingDebt !== 'Yes') {
-      return ''
-    }
-
-    return (
-      <Collection minimum="1"
-                  items={this.state.List}
-                  dispatch={this.myDispatch}
-                  summary={this.summary}
-                  summaryTitle={i18n.t('financial.gambling.collection.summary.title')}
-                  appendClass="eapp-field-wrap"
-                  appendLabel={i18n.t('financial.gambling.collection.append')}>
-
-        <h3>{i18n.t('financial.gambling.heading.details')}</h3>
-
-        <h4>{i18n.t('financial.gambling.heading.dates')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="financial.gambling.help.dates">
-            <DateRange name="Dates"
-                       label={i18n.t('financial.gambling.label.dates')}
-                       onValidate={this.handleValidation}
-                       />
-            <HelpIcon className="dates-help-icon" />
-          </Help>
-        </div>
-
-        <h4>{i18n.t('financial.gambling.heading.losses')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="financial.gambling.help.losses">
-            <i className="fa fa-dollar"></i>
-            <Number name="Losses"
-                    className="losses"
-                    placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                    min="1"
-                    onValidate={this.handleValidation}
-                    />
-            <HelpIcon className="losses-help-icon" />
-          </Help>
-        </div>
-
-        <h4>{i18n.t('financial.gambling.heading.description')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="financial.gambling.help.description">
-            <Textarea name="Description"
-                      className="description"
-                      onValidate={this.handleValidation}
-                      />
-            <HelpIcon className="description-help-icon" />
-          </Help>
-        </div>
-
-        <h4>{i18n.t('financial.gambling.heading.actions')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="financial.gambling.help.actions">
-            <Textarea name="Actions"
-                      className="actions"
-                      onValidate={this.handleValidation}
-                      />
-            <HelpIcon className="actions-help-icon" />
-          </Help>
-        </div>
-      </Collection>
-    )
-  }
-
   render () {
     return (
       <div className="gambling">
@@ -215,7 +146,66 @@ export default class Gambling extends ValidationElement {
                 help="financial.gambling.branch.help"
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
-        {this.visibleComponents()}
+        <Show when={this.state.HasGamblingDebt === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.myDispatch}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('financial.gambling.collection.summary.title')}
+                     appendClass="eapp-field-wrap"
+                     appendLabel={i18n.t('financial.gambling.collection.append')}>
+
+            <h3>{i18n.t('financial.gambling.heading.details')}</h3>
+
+            <h4>{i18n.t('financial.gambling.heading.dates')}</h4>
+            <div className="eapp-field-wrap">
+              <Help id="financial.gambling.help.dates">
+                <DateRange name="Dates"
+                           label={i18n.t('financial.gambling.label.dates')}
+                           bind={true}
+                           />
+                <HelpIcon className="dates-help-icon" />
+              </Help>
+            </div>
+
+            <h4>{i18n.t('financial.gambling.heading.losses')}</h4>
+            <div className="eapp-field-wrap">
+              <Help id="financial.gambling.help.losses">
+                <i className="fa fa-dollar"></i>
+                <Number name="Losses"
+                        className="losses"
+                        placeholder={i18n.t('financial.gambling.placeholder.losses')}
+                        min="1"
+                        bind={true}
+                        />
+                <HelpIcon className="losses-help-icon" />
+              </Help>
+            </div>
+
+            <h4>{i18n.t('financial.gambling.heading.description')}</h4>
+            <div className="eapp-field-wrap">
+              <Help id="financial.gambling.help.description">
+                <Textarea name="Description"
+                          className="description"
+                          bind={true}
+                          />
+                <HelpIcon className="description-help-icon" />
+              </Help>
+            </div>
+
+            <h4>{i18n.t('financial.gambling.heading.actions')}</h4>
+            <div className="eapp-field-wrap">
+              <Help id="financial.gambling.help.actions">
+                <Textarea name="Actions"
+                          className="actions"
+                          bind={true}
+                          />
+                <HelpIcon className="actions-help-icon" />
+              </Help>
+            </div>
+          </Accordion>
+        </Show>
         <Comments name="Comments"
                   value={this.state.Comments}
                   label={i18n.t('financial.gambling.help.comments')}

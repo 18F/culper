@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, DateControl, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Svg, Show } from '../../../Form'
+import { ValidationElement, Branch, Accordion, Comments, DateRange, DateControl, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -255,14 +255,17 @@ export class EducationItem extends ValidationElement {
           </Branch>
 
           <Show when={this.state.HasDegree === 'Yes'}>
-            <Collection minimum="1"
-                        items={this.state.Diplomas}
-                        summary={this.diplomaSummary}
-                        summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
-                        appendLabel={i18n.t('history.education.collection.diploma.append')}
-                        dispatch={this.updateDiplomas}>
-              <DiplomaItem name="Diploma" />
-            </Collection>
+            <Accordion minimum="1"
+                       items={this.state.Diplomas}
+                       summary={this.diplomaSummary}
+                       summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
+                       appendLabel={i18n.t('history.education.collection.diploma.append')}
+                       onUpdate={this.updateDiplomas}
+                       onValidate={this.props.onValidate}>
+              <DiplomaItem name="Diploma"
+                           bind={true}
+                           />
+            </Accordion>
           </Show>
         </div>
       </div>

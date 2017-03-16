@@ -82,7 +82,7 @@ describe('The foreign service component', () => {
 
     for (const test of tests) {
       const component = mount(<ForeignService {...test.props} />)
-      expect(component.find('.brief .dates strong').text()).toBe(test.expected)
+      expect(component.find('.dates').text()).toBe(test.expected)
     }
   })
 })

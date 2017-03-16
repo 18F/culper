@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Collection } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import { dateSummary } from '../../History/HistoryCollection/summaries'
 import MilitaryService from './MilitaryService'
 
@@ -115,18 +115,19 @@ export default class History extends ValidationElement {
         </Branch>
 
         <Show when={this.state.HasServed === 'Yes'}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateList}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('military.history.collection.summary.title')}
-                      appendTitle={i18n.t('military.history.collection.appendTitle')}
-                      appendMessage={i18n.m('military.history.collection.appendMessage')}
-                      appendLabel={i18n.t('military.history.collection.append')}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('military.history.collection.summary.title')}
+                     appendTitle={i18n.t('military.history.collection.appendTitle')}
+                     appendMessage={i18n.m('military.history.collection.appendMessage')}
+                     appendLabel={i18n.t('military.history.collection.append')}>
             <MilitaryService name="Item"
-                             onValidate={this.handleValidation}
+                             bind={true}
                              />
-          </Collection>
+          </Accordion>
         </Show>
       </div>
     )

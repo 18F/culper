@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Collection, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
 import { dateSummary } from '../HistoryCollection/summaries'
 
 /**
@@ -146,8 +146,8 @@ export default class Federal extends ValidationElement {
    */
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
-          ? item.Name.value
-          : i18n.t('history.federal.collection.summary.unknown')
+      ? item.Name.value
+      : i18n.t('history.federal.collection.summary.unknown')
     const dates = dateSummary(item)
 
     return (
@@ -170,17 +170,18 @@ export default class Federal extends ValidationElement {
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasFederalService === 'Yes'}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateCollection}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('history.federal.collection.summary.title')}
-                      appendLabel={i18n.t('history.federal.collection.append')}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateCollection}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('history.federal.collection.summary.title')}
+                     appendLabel={i18n.t('history.federal.collection.append')}>
             <h3>{i18n.t('history.federal.heading.dates')}</h3>
             <div className="eapp-field-wrap">
               <Help id="history.federal.help.dates">
                 <DateRange name="Dates"
-                           onValidate={this.handleValidation}
+                           bind={true}
                            />
                 <HelpIcon />
               </Help>
@@ -191,7 +192,7 @@ export default class Federal extends ValidationElement {
               <Help id="history.federal.help.name">
                 <Text name="Name"
                       className="text"
-                      onValidate={this.handleValidation}
+                      bind={true}
                       />
                 <HelpIcon />
               </Help>
@@ -202,7 +203,7 @@ export default class Federal extends ValidationElement {
               <Help id="history.federal.help.position">
                 <Text name="Position"
                       className="text"
-                      onValidate={this.handleValidation}
+                      bind={true}
                       />
                 <HelpIcon />
               </Help>
@@ -212,12 +213,12 @@ export default class Federal extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="history.federal.help.address">
                 <Address name="Address"
-                         onValidate={this.handleValidation}
+                         bind={true}
                          />
                 <HelpIcon />
               </Help>
             </div>
-          </Collection>
+          </Accordion>
         </Show>
       </div>
     )
