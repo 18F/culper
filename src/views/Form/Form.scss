@@ -11,7 +11,8 @@
 
 .eapp-core {
   .eapp-form {
-    max-width: 72.4rem;
+    width: 87.5%;
+    margin: 0 auto;
 
     /* moving lower DOM elements in to design safe area */
     h1,
@@ -19,7 +20,7 @@
     h3,
     h4,
     p {
-      padding: 0 8rem 0 4rem;
+      padding: 0 17.5%;
     }
 
     .text-right {
@@ -156,7 +157,7 @@
   .eapp-field-wrap {
     /* position: relative; */
     margin-bottom: 4.9rem;
-    padding: 0 3rem 0 4rem;
+    padding: 0 17.5%;
 
     /* fix for nested field wrappers */
     .eapp-field-wrap {
@@ -367,13 +368,16 @@
     position: relative;
   }
 
-  button.usa-button-outline {
-    font-size: 10pt;
-    font-weight: bold;
+  button.usa-button-outline, .accordion button.add {
+    color: $eapp-blue;
+    font-size: 1.8rem;
+    font-weight: $eapp-bold;
     min-width: 20rem;
-    box-shadow: inset 0 0 0 3px #0071bc;
+    box-shadow: inset 0 0 0 3px $eapp-blue;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 1rem;
+    background: #fff;
+    margin: 3.4rem 14%;
   }
 
   .review-btns {

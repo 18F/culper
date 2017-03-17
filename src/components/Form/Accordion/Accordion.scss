@@ -2,13 +2,33 @@
 
 .accordion {
   background-color: $eapp-grey;
-  padding: 50px;
+  padding: 0 5rem;
+
+  > strong {
+      display: block;
+      line-height: 5rem;
+      min-height: 5rem;
+      padding: 0 14%;
+  }
+
+  .items {
+      line-height: 7.2rem;
+  }
 
   .item {
     background-color: #fff;
-    min-width: 550px;
-    max-width: 800px;
-    padding: 0 136px;
+    padding: 0 14%;
+    min-height: 7.2rem;
+    margin-top: 0.8rem;
+
+    .eapp-field-wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+  }
+
+  .item:first-child {
+      margin-top: 0;
   }
 
   .summary .left {
