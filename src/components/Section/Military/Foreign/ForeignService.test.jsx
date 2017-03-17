@@ -69,8 +69,12 @@ describe('The foreign service component', () => {
               Item: {
                 Name: null,
                 Dates: {
-                  from: new Date('1/1/2015'),
-                  to: new Date('1/1/2016')
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  }
                 }
               }
             }

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
-import { dateSummary } from '../../History/HistoryCollection/summaries'
+import { dateSummary } from '../../History/summaries'
 import MilitaryService from './MilitaryService'
 
 /**

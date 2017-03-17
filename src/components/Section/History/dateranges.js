@@ -39,11 +39,11 @@ export const decimalAdjust = (type, value, exp) => {
  *   }
  */
 export const rangeSorter = (a, b) => {
-  if (a.from < b.from) {
+  if (a.from.date < b.from.date) {
     return -1
   }
 
-  if (a.from > b.from) {
+  if (a.from.date > b.from.date) {
     return 1
   }
 

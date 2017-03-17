@@ -19,12 +19,20 @@ describe('The SummaryProgress component', () => {
       List: () => {
         return [
           {
-            to: new Date(),
-            from: new Date(new Date() - 2)
+            to: {
+              date: new Date()
+            },
+            from: {
+              date: new Date(new Date() - 2)
+            }
           },
           {
-            to: new Date(new Date() - 6),
-            from: new Date(new Date() - 12)
+            to: {
+              date: new Date(new Date() - 6)
+            },
+            from: {
+              date: new Date(new Date() - 12)
+            }
           }
         ]
       }

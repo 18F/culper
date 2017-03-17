@@ -8,7 +8,6 @@ describe('The gap component', () => {
       name: 'gap'
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('.item').length).toEqual(0)
     expect(component.find('button').length).toEqual(0)
   })
 
@@ -26,9 +25,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('.item').length).toEqual(1)
     expect(component.find('button').length).toEqual(1)
-    expect(component.find('.title').length).toEqual(1)
   })
 
   it('do not display table caption/title if not the first row', () => {
@@ -45,9 +42,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('.item').length).toEqual(1)
     expect(component.find('button').length).toEqual(1)
-    expect(component.find('.title').length).toEqual(0)
   })
 
   it('display the dates appropriately', () => {
@@ -64,9 +59,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('.item').length).toEqual(1)
     expect(component.find('button').length).toEqual(1)
-    expect(component.find('.title').length).toEqual(0)
     expect(component.find('.dates').text()).toEqual(`${expected.dates.from.date.getMonth() + 1}/${expected.dates.from.date.getFullYear()}-${expected.dates.to.date.getMonth() + 1}/${expected.dates.to.date.getFullYear()}`)
   })
 

@@ -25,7 +25,7 @@ describe('The summary components', () => {
     }
     const component = mount(<ResidenceSummary {...expected} />)
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.table-cell').length).toEqual(3)
+    expect(component.find('.employer').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
@@ -47,7 +47,7 @@ describe('The summary components', () => {
     }
     const component = mount(<EmploymentSummary {...expected} />)
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.table-cell').length).toEqual(3)
+    expect(component.find('.employer').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
@@ -69,7 +69,7 @@ describe('The summary components', () => {
     }
     const component = mount(<EducationSummary {...expected} />)
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.table-cell').length).toEqual(3)
+    expect(component.find('.employer').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 

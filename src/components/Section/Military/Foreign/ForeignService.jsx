@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Help, HelpIcon } from '../../../Form'
 import ForeignContact from './ForeignContact'
-import { dateSummary } from '../../History/HistoryCollection/summaries'
+import { dateSummary } from '../../History/summaries'
 
 /**
  * Convenience function to send updates along their merry way

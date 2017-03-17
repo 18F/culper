@@ -26,10 +26,10 @@ export default class SummaryProgress extends ValidationElement {
       let width = 0
 
       if (dates.from && dates.to) {
-        const from = julian(dates.from)
-        const to = julian(dates.to)
+        const from = julian(dates.from.date)
+        const to = julian(dates.to.date)
 
-        if (dates.from >= julianMax || to >= julianMax) {
+        if (dates.from.date >= julianMax || to >= julianMax) {
           // Meat of the calculations into percentages
           let right = findPercentage(julianNow, julianMax, to)
           left = findPercentage(julianNow, julianMax, from)

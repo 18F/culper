@@ -38,12 +38,14 @@ class History extends ValidationElement {
     this.updateResidence = this.updateResidence.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateEducation = this.updateEducation.bind(this)
+    this.customResidenceDetails = this.customResidenceDetails.bind(this)
+    this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
   }
 
   componentDidMount () {
     const bicycle = !!(this.props.History && this.props.History.Education && this.props.History.Education.List && this.props.History.Education.List.length > 0)
           || !!(this.props.History && this.props.History.Employment && this.props.History.Employment.List && this.props.History.Employment.List.length > 0)
-      || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
+          || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
     this.setState({ firstTime: !bicycle })
 
     const current = this.launch(this.props.History, this.props.subsection, 'residence')
@@ -100,14 +102,18 @@ class History extends ValidationElement {
     this.props.dispatch(updateApplication('History', field, values))
   }
 
+  excludeGaps (items) {
+    return items.filter(item => !item.type || (item.type && item.type !== 'Gap'))
+  }
+
   updateResidence (values) {
     // this.onUpdate('Residence', values.filter(item => !!item.type && item.type !== 'Gap'))
-    this.onUpdate('Residence', values)
+    this.onUpdate('Residence', this.excludeGaps(values))
   }
 
   updateEmployment (values) {
     // this.onUpdate('Employment', values.filter(item => !!item.type && item.type !== 'Gap'))
-    this.onUpdate('Employment', values)
+    this.onUpdate('Employment', this.excludeGaps(values))
   }
 
   updateEducation (values) {
@@ -210,11 +216,11 @@ class History extends ValidationElement {
    */
   residenceRangeList () {
     let dates = []
-    if (!this.props.Residence || !this.props.Residence.List) {
+    if (!this.props.Residence) {
       return dates
     }
 
-    for (const i of this.props.Residence.List) {
+    for (const i of this.props.Residence) {
       if (!i.Item) {
         continue
       }
@@ -232,11 +238,11 @@ class History extends ValidationElement {
    */
   employmentRangesList () {
     let dates = []
-    if (!this.props.Employment || !this.props.Employment.List) {
+    if (!this.props.Employment) {
       return dates
     }
 
-    for (const i of this.props.Employment.List) {
+    for (const i of this.props.Employment) {
       if (!i.Item) {
         continue
       }
@@ -251,11 +257,11 @@ class History extends ValidationElement {
 
   schoolRangesList () {
     let dates = []
-    if (!this.props.Education || !this.props.Education.List) {
+    if (!this.props.Education) {
       return dates
     }
 
-    for (const i of this.props.Education.List) {
+    for (const i of this.props.Education) {
       if (!i.Item) {
         continue
       }
@@ -270,11 +276,11 @@ class History extends ValidationElement {
 
   diplomaRangesList () {
     let dates = []
-    if (!this.props.Education || !this.props.Education.List) {
+    if (!this.props.Education) {
       return dates
     }
 
-    for (const i of this.props.Education.List) {
+    for (const i of this.props.Education) {
       if (!i.Item) {
         continue
       }
@@ -381,6 +387,22 @@ class History extends ValidationElement {
     return callback()
   }
 
+  fillGap (field, dates) {
+    let items = [...this.props.History[field]]
+    items.push({
+      uuid: super.guid(),
+      open: true,
+      Item: {
+        Dates: {
+          receiveProps: true,
+          from: dates.from,
+          to: dates.to
+        }
+      }
+    })
+    this.onUpdate(field, this.excludeGaps(items))
+  }
+
   customResidenceDetails (item, index, callback) {
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
@@ -390,6 +412,7 @@ class History extends ValidationElement {
              btnText={i18n.t('history.residence.gap.btnText')}
              first={index === 0}
              dates={dates}
+             onClick={this.fillGap.bind(this, 'Residence', dates)}
              />
       )
     }
@@ -406,6 +429,7 @@ class History extends ValidationElement {
              btnText={i18n.t('history.employment.gap.btnText')}
              first={index === 0}
              dates={dates}
+             onClick={this.fillGap.bind(this, 'Employment', dates)}
              />
       )
     }
@@ -616,9 +640,9 @@ function mapStateToProps (state) {
   return {
     Section: section,
     History: history,
-    Residence: history.Residence || {},
-    Employment: history.Employment || {},
-    Education: history.Education || {},
+    Residence: history.Residence || [],
+    Employment: history.Employment || [],
+    Education: history.Education || [],
     Federal: history.Federal || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
