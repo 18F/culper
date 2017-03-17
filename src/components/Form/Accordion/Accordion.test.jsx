@@ -5,23 +5,32 @@ import Text from '../Text'
 
 describe('The accordion component', () => {
   it('has no items with minimum equal to zero', () => {
+    let items = []
     const expected = {
-      minimum: 0
+      minimum: 0,
+      onUpdate: (x) => { items = x }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
-    expect(component.find('div.hello').length).toEqual(0)
+    expect(component.find('.accordion').length).toEqual(1)
+    expect(items.length).toEqual(0)
   })
 
   it('meets minimum amount required', () => {
+    let items = []
     const expected = {
-      minimum: 2
+      minimum: 2,
+      onUpdate: (x) => { items = x }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
-    expect(component.find('.summary').length).toEqual(2)
+    expect(component.find('.accordion').length).toEqual(1)
+    expect(items.length).toEqual(2)
   })
 
   it('can append an item', () => {
-    let items = []
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
     const expected = {
       minimum: 1,
       items: items,
@@ -36,6 +45,10 @@ describe('The accordion component', () => {
     let i = 0
     const expected = {
       minimum: 2,
+      items: [
+        { uuid: '1', open: false },
+        { uuid: '2', open: false }
+      ],
       summary: (item, index) => {
         i++
         return (<div className="table">Item {index}</div>)
@@ -50,7 +63,11 @@ describe('The accordion component', () => {
   })
 
   it('can toggle summary item', () => {
-    let items = []
+    let items = [
+      { uuid: '1', open: true },
+      { uuid: '2', open: true }
+    ]
+
     const expected = {
       minimum: 2,
       items: items,
@@ -72,6 +89,10 @@ describe('The accordion component', () => {
     let i = 0
     const expected = {
       minimum: 2,
+      items: [
+        { uuid: '1', open: false },
+        { uuid: '2', open: false }
+      ],
       summary: (item, index) => {
         return (<div className="table">Item {index}</div>)
       },
@@ -115,7 +136,10 @@ describe('The accordion component', () => {
   })
 
   it('can update children', () => {
-    let items = []
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
     const expected = {
       minimum: 1,
       items: items,
@@ -125,7 +149,57 @@ describe('The accordion component', () => {
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.summary').length).toEqual(1)
     component.find('input').simulate('change', { target: { value: 'myvalue' } })
+    component.find('input').simulate('blur')
     expect(items.length).toEqual(1)
     expect(items[0].mytext.value).toEqual('myvalue')
+  })
+
+  it('can support custom summaries', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const expected = {
+      minimum: 1,
+      items: items,
+      onUpdate: (x) => { items = x },
+      customSummary: (item, index) => { return <div className="custom-summary"></div> }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.custom-summary').length).toEqual(1)
+  })
+
+  it('can support custom details', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const expected = {
+      minimum: 1,
+      items: items,
+      onUpdate: (x) => { items = x },
+      customDetails: (item, index) => { return <div className="custom-details"></div> }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.custom-details').length).toEqual(1)
+  })
+
+  it('no infinite loop on overriding behavior', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const expected = {
+      minimum: 1,
+      items: items,
+      onUpdate: (x) => { items = x },
+      summary: (item, index) => { return <span className="summary-props">Properties</span> },
+      customSummary: (item, index, callback) => { return callback() },
+      customDetails: (item, index, callback) => { return callback() }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.summary').length).toEqual(1)
+    expect(component.find('.summary-props').length).toEqual(1)
+    expect(component.find('.details').length).toEqual(1)
   })
 })

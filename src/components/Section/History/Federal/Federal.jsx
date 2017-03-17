@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
-import { dateSummary } from '../HistoryCollection/summaries'
+import { dateSummary } from '../summaries'
 
 /**
  * Convenience function to send updates along their merry way

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Accordion, Comments, DateRange, DateControl, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
+import { ValidationElement, Branch, Accordion, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 

@@ -71,15 +71,15 @@ export default class OtherNames extends ValidationElement {
     }
 
     let from = ''
-    if (item.DatesUsed && item.DatesUsed.from) {
-      from = '' + item.DatesUsed.from.getFullYear()
+    if (item.DatesUsed && item.DatesUsed.from && item.DatesUsed.from.date) {
+      from = '' + item.DatesUsed.from.date.getFullYear()
     }
 
     let to = ''
     if (item.DatesUsed && item.DatesUsed.present) {
       to = i18n.t('identification.othernames.collection.summary.present')
-    } else if (item.DatesUsed && item.DatesUsed.to) {
-      to = '' + item.DatesUsed.to.getFullYear()
+    } else if (item.DatesUsed && item.DatesUsed.to && item.DatesUsed.to.date) {
+      to = '' + item.DatesUsed.to.date.getFullYear()
     }
 
     const dates = from === '' && to === ''

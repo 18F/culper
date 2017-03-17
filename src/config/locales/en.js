@@ -1395,7 +1395,9 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with your history at once'
+      title: 'Full section view',
+      para: 'View all the sections associated with your history at once',
+      button: 'Show me the full section'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -1417,11 +1419,6 @@ const en = {
       para: {
         exiting: '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
       }
-    },
-    review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with your history at once',
-      button: 'Show me the full section'
     },
     destination: {
       review: 'Review your history',
@@ -1446,6 +1443,11 @@ const en = {
           incomplete: 'This residence\'s information is incomplete'
         },
         append: 'Save and add another address'
+      },
+      gap: {
+        title: 'Residence gap',
+        para: 'There is a gap in your residence history. The entire 10 year period must be covered with no gaps',
+        btnText: 'Add an address'
       },
       heading: {
         done: 'Done! Now let\'s add more',
@@ -1502,6 +1504,11 @@ const en = {
       summary: {
         title: 'Where you have worked',
         unit: 'Years covered'
+      },
+      gap: {
+        title: 'Employment gap',
+        para: 'There is a gap in your employment. The entire 10 year period must be covered with no gaps',
+        btnText: 'Add an employer'
       },
       heading: {
         employment: 'List where you have worked',

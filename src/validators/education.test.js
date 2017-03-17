@@ -44,8 +44,12 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Dates: {
-            from: new Date('1/1/2000'),
-            to: new Date('1/1/2004'),
+            from: {
+              date: new Date('1/1/2000')
+            },
+            to: {
+              date: new Date('1/1/2004')
+            },
             present: false
           }
         },
@@ -55,8 +59,12 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Dates: {
-            from: new Date('1/1/2004'),
-            to: new Date('1/1/2000'),
+            from: {
+              date: new Date('1/1/2004')
+            },
+            to: {
+              date: new Date('1/1/2000')
+            },
             present: false
           }
         },
@@ -131,8 +139,12 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Dates: {
-            from: new Date('1/1/2000'),
-            to: new Date(),
+            from: {
+              date: new Date('1/1/2000')
+            },
+            to: {
+              date: new Date()
+            },
             present: false
           },
           Reference: {
@@ -178,8 +190,12 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Dates: {
-            from: new Date('1/1/2000'),
-            to: new Date('1/1/2001'),
+            from: {
+              date: new Date('1/1/2000')
+            },
+            to: {
+              date: new Date('1/1/2001')
+            },
             present: false
           },
           Reference: null

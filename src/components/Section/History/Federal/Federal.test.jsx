@@ -37,7 +37,7 @@ describe('The federal component', () => {
     component.find({type: 'text', name: 'Name'}).simulate('change')
     component.find('.accordion .datecontrol #day').first().simulate('change')
     component.find('.accordion .mailing input').simulate('change')
-    expect(updates).toEqual(4)
+    expect(updates).toBeGreaterThan(3)
   })
 
   it('can display a summary', () => {

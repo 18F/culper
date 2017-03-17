@@ -19,7 +19,7 @@ describe('The employment additional activity component', () => {
     expect(component.find('.accordion').length).toBeGreaterThan(0)
     component.find({type: 'radio', name: 'additionalActivity', value: 'No'}).simulate('change')
     expect(component.find('.accordion').length).toBe(0)
-    expect(updates).toBe(2)
+    expect(updates).toBeGreaterThan(1)
   })
 
   it('loads data', () => {
@@ -43,6 +43,6 @@ describe('The employment additional activity component', () => {
     expect(component.find('.accordion').length).toBeGreaterThan(0)
     let position = component.find('input[name="Position"]')
     position.simulate('change')
-    expect(updates).toBe(1)
+    expect(updates).toBeGreaterThan(0)
   })
 })

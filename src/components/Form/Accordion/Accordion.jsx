@@ -2,6 +2,14 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 
+const openState = (item = {}) => {
+  return `${item.open ? 'open' : 'close'}`
+}
+
+const chevron = (item = {}) => {
+  return `toggle fa fa-chevron-${item.open ? 'up' : 'down'}`
+}
+
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
@@ -9,6 +17,8 @@ export default class Accordion extends ValidationElement {
     this.update = this.update.bind(this)
     this.add = this.add.bind(this)
     this.updateChild = this.updateChild.bind(this)
+    this.summary = this.summary.bind(this)
+    this.details = this.details.bind(this)
     this.content = this.content.bind(this)
   }
 
@@ -19,7 +29,19 @@ export default class Accordion extends ValidationElement {
    */
   componentWillMount () {
     let dirty = false
-    let items = this.props.items.map(item => {
+
+    let items = [...this.props.items]
+    if (items.length < this.props.minimum) {
+      for (let i = 0; this.props.minimum - items.length > 0; i++) {
+        dirty = true
+        items.push({
+          uuid: super.guid(),
+          open: true
+        })
+      }
+    }
+
+    items = items.map(item => {
       if (!item.uuid) {
         item.uuid = super.guid()
         dirty = true
@@ -116,47 +138,47 @@ export default class Accordion extends ValidationElement {
     })
   }
 
+  openText (item = {}) {
+    return item.open ? this.props.closeLabel : this.props.openLabel
+  }
+
+  summary (item, index) {
+    return (
+      <div className="summary">
+        <a className={`left ${openState(item)}`} onClick={this.toggle.bind(this, item)}>
+          {this.props.summary(item, index)}
+          <i className={chevron(item)} aria-hidden="true"></i>
+          <span className="toggle">{this.openText(item)}</span>
+        </a>
+        <a className="right remove" onClick={this.remove.bind(this, item)}>
+          <i className="fa fa-trash" aria-hidden="true"></i>
+          <span>{this.props.removeLabel}</span>
+        </a>
+      </div>
+    )
+  }
+
+  details (item, index) {
+    return (
+      <div className={`details ${openState(item)}`}>
+        {this.factory(item, index, this.props.children)}
+        <a className="close" onClick={this.toggle.bind(this, item)}>
+          <span>{this.props.closeLabel}</span>
+        </a>
+      </div>
+    )
+  }
+
   /**
    * Render the indivual items in the array.
    */
   content () {
     // Ensure we have the minimum amount of items required
-    let items = this.props.items
-    if (items.length < this.props.minimum) {
-      for (let i = 0; this.props.minimum - items.length > 0; i++) {
-        items.push({
-          uuid: super.guid(),
-          open: true
-        })
-      }
-    }
-
-    return items.map((item, index, arr) => {
-      const openState = `${item.open ? 'open' : 'close'}`
-      const chevron = `toggle fa fa-chevron-${item.open ? 'up' : 'down'}`
-      const openText = item.open
-            ? this.props.closeLabel
-            : this.props.openLabel
-
+    return this.props.items.sort(this.props.sort).map((item, index, arr) => {
       return (
         <div className="item" key={item.uuid}>
-          <div className="summary">
-            <a className={`left ${openState}`} onClick={this.toggle.bind(this, item)}>
-              {this.props.summary(item, index)}
-              <i className={chevron} aria-hidden="true"></i>
-              <span className="toggle">{openText}</span>
-            </a>
-            <a className="right remove" onClick={this.remove.bind(this, item)}>
-              <i className="fa fa-trash" aria-hidden="true"></i>
-              <span>{this.props.removeLabel}</span>
-            </a>
-          </div>
-          <div className={`details ${openState}`}>
-            {this.factory(item, index, this.props.children)}
-            <a className="close" onClick={this.toggle.bind(this, item)}>
-              <span>{this.props.closeLabel}</span>
-            </a>
-          </div>
+          {this.props.customSummary(item, index, () => { return this.summary(item, index) })}
+          {this.props.customDetails(item, index, () => { return this.details(item, index) })}
         </div>
       )
     })
@@ -226,6 +248,7 @@ Accordion.defaultProps = {
   closeLabel: i18n.t('collection.close'),
   removeLabel: i18n.t('collection.remove'),
   description: i18n.t('collection.summary'),
+  sort: (a, b) => { return -1 },
   onUpdate: () => {},
   onValidate: () => {},
   summary: (item, index) => {
@@ -234,5 +257,11 @@ Accordion.defaultProps = {
         <strong>Warning:</strong> Item summary not implemented
       </span>
     )
+  },
+  customSummary: (item, index, callback) => {
+    return callback()
+  },
+  customDetails: (item, index, callback) => {
+    return callback()
   }
 }
