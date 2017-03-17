@@ -15,32 +15,17 @@ export class Gap extends React.Component {
     const to = (this.props.dates.to || {}).date || {}
 
     return (
-      <div className="item">
-        <div className="summary">
-          <Show when={this.props.first === true}>
-            <div className="caption gutters">
-                <div className="title">
-                  <h4>{i18n.t('collection.summary')}</h4>
-                  <hr />
-                </div>
-            </div>
-          </Show>
-          <div className="gap row gutters">
-            <div className="help">
-              <div className="message eapp-error-message">
-                <i className="fa fa-exclamation"></i>
-                <span className="dates">{`${from.getMonth() + 1}/${from.getFullYear()}-${to.getMonth() + 1}/${to.getFullYear()}`}</span>
-                <h4>{this.props.title}</h4>
-                <p>{this.props.para}</p>
-                <button className="usa-button-outline" onClick={this.props.onClick}>
-                  <span>{this.props.btnText}</span>
-                  <i className="fa fa-plus-circle"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="divider gutters">
-            <hr />
+      <div className="details open">
+        <div className="help">
+          <div className="message eapp-error-message">
+            <i className="fa fa-exclamation"></i>
+            <span className="dates">{`${from.getMonth() + 1}/${from.getFullYear()}-${to.getMonth() + 1}/${to.getFullYear()}`}</span>
+            <h4>{this.props.title}</h4>
+            <p>{this.props.para}</p>
+            <button className="usa-button-outline" onClick={this.props.onClick}>
+              <span>{this.props.btnText}</span>
+              <i className="fa fa-plus-circle"></i>
+            </button>
           </div>
         </div>
       </div>

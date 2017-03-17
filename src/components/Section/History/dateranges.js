@@ -159,12 +159,20 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
   start = endOfMonth(start)
 
   ranges.sort(rangeSorter).forEach((range, i) => {
+    if (!range.from || !range.to) {
+      return
+    }
+
     // Finds the gaps from the past to the present
     const stop = range.from.date
     if (stop > start && daysBetween(start, stop) > buffer) {
       holes.push({
-        from: start,
-        to: stop
+        from: {
+          date: start
+        },
+        to: {
+          date: stop
+        }
       })
     }
 
@@ -174,8 +182,12 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     // If this is the last date range check for gaps in the future
     if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {
       holes.push({
-        from: start,
-        to: fullStop
+        from: {
+          date: start
+        },
+        to: {
+          date: fullStop
+        }
       })
     }
   })

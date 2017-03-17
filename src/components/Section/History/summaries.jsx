@@ -31,14 +31,14 @@ export const ResidenceSummary = (props) => {
   const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/residence-house.svg'
 
   return (
-    <div className="table">
-      <div className="table-cell index">
+    <span>
+      <span className="index">
         <Svg src={svg} />
         {i18n.t('history.residence.collection.summary.item')}:
-      </div>
-      <div className="table-cell employer">{address1}<br />{address2}</div>
-      <div className="table-cell dates">{dates}</div>
-    </div>
+      </span>
+      <span className="employer">{address1}, {address2}</span>
+      <span className="dates">{dates}</span>
+    </span>
   )
 }
 
@@ -52,14 +52,14 @@ export const EmploymentSummary = (props) => {
   const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/employer-briefcase.svg'
 
   return (
-    <div className="table">
-      <div className="table-cell index">
+    <span>
+      <span className="index">
         <Svg src={svg} />
         {i18n.t('history.employment.default.collection.summary.employer')}:
-      </div>
-      <div className="table-cell employer">{ employer }</div>
-      <div className="table-cell dates">{ dates }</div>
-    </div>
+      </span>
+      <span className="employer">{ employer }</span>
+      <span className="dates">{ dates }</span>
+    </span>
   )
 }
 
@@ -73,14 +73,14 @@ export const EducationSummary = (props) => {
   const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/school-cap.svg'
 
   return (
-    <div className="table">
-      <div className="table-cell index">
+    <span>
+      <span className="index">
         <Svg src={svg} />
         {i18n.t('history.education.collection.school.summary.item')}:
-      </div>
-      <div className="table-cell employer">{ school }</div>
-      <div className="table-cell dates">{ dates }</div>
-    </div>
+      </span>
+      <span className="employer">{ school }</span>
+      <span className="dates">{ dates }</span>
+    </span>
   )
 }
 
@@ -105,7 +105,7 @@ export const InjectGaps = (list = [], start) => {
     for (let i = holes.length - 1; i > -1; i--) {
       const gap = holes[i]
 
-      if (gap.to === item.Item.Dates.from.date) {
+      if (gap.to.date === item.Item.Dates.from.date) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',
@@ -115,7 +115,7 @@ export const InjectGaps = (list = [], start) => {
             Dates: g
           }
         })
-      } else if (gap.from === item.Item.Dates.to.date) {
+      } else if (gap.from.date === item.Item.Dates.to.date) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',

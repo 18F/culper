@@ -383,12 +383,13 @@ class History extends ValidationElement {
 
   customResidenceDetails (item, index, callback) {
     if (item.type === 'Gap') {
+      const dates = (item.Item || {}).Dates || {}
       return (
         <Gap title={i18n.t('history.residence.gap.title')}
              para={i18n.t('history.residence.gap.para')}
              btnText={i18n.t('history.residence.gap.btnText')}
              first={index === 0}
-             dates={item.Dates}
+             dates={dates}
              />
       )
     }
@@ -398,12 +399,13 @@ class History extends ValidationElement {
 
   customEmploymentDetails (item, index, callback) {
     if (item.type === 'Gap') {
+      const dates = (item.Item || {}).Dates || {}
       return (
         <Gap title={i18n.t('history.employment.gap.title')}
              para={i18n.t('history.employment.gap.para')}
              btnText={i18n.t('history.employment.gap.btnText')}
              first={index === 0}
-             dates={item.Dates}
+             dates={dates}
              />
       )
     }
