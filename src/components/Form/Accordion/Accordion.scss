@@ -17,7 +17,6 @@
 
   .item {
     background-color: #fff;
-    padding: 0 14%;
     min-height: 7.2rem;
     margin-top: 0.8rem;
 
@@ -25,47 +24,67 @@
       padding-left: 0;
       padding-right: 0;
     }
+    .details {
+      padding: 0 14%;
+    }
   }
 
   .item:first-child {
     margin-top: 0;
   }
 
-  .summary .left {
-    color: #000;
-    text-decoration: none;
-    display: inline-block;
-    width: 80%;
-    vertical-align: top;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    .toggle {
-      color: $eapp-blue;
-    }
-
-    &:hover {
-      color: $eapp-blue;
-
-      span {
-        border-bottom: 1px dashed $eapp-blue;
+  .summary {
+    .left, .right {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      overflow: hidden;
+      vertical-align: top;
+      transition: box-shadow .3s, color .3s;
+      box-shadow: 0 0 0 0px rgba(32,84,146,.6);
+      &:hover {
+        box-shadow: 0 0 10px 0px rgba(32,84,146,.6);
+      }
+      .button-with-icon {
+        display: inline-block;
+        text-align: center;
+        width: 7rem;
+        height: 100%;
+        vertical-align: text-bottom;
+        border: none !important;
+        > * {
+          display: block;
+          line-height: 1;
+        }
       }
     }
-  }
-
-  .summary .right {
-    color: $eapp-grey-dark;
-    text-decoration: none;
-    display: inline-block;
-    width: 20%;
-    vertical-align: top;
-    overflow: hidden;
-
-    &:hover {
-      color: $eapp-red;
-
-      span {
-        border-bottom: 1px dashed $eapp-red;
+    .left {
+      color: #000;
+      width: 80%;
+      padding-left: 14%;
+      text-overflow: ellipsis;
+      .toggle {
+        color: $eapp-blue;
+      }
+      .button-with-icon {
+	  	right:0;
+      }
+      &:hover {
+        color: $eapp-blue;
+        > span {
+          border-bottom: 1px dashed $eapp-blue;
+        }
+      }
+    }
+    .right {
+      color: $eapp-grey-dark;
+      width: 20%;
+      .button-with-icon {
+	  	left:0;
+      }
+      &:hover {
+        color: $eapp-red;
       }
     }
   }
