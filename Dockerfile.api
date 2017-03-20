@@ -1,2 +1,2 @@
 FROM golang:1.7
-RUN curl https://raw.githubusercontent.com/Masterminds/glide.sh/master/get | sh
+RUN go get -u github.com/Masterminds/glide
