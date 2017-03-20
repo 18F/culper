@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Collection, Checkbox, CheckboxGroup } from '../../../Form'
-import { dateSummary } from '../../History/HistoryCollection/summaries'
+import { ValidationElement, Show, Collection, Checkbox, CheckboxGroup } from '../../../Form'
+import Relative from './Relative'
 
 /**
  * Convenience function to send updates along their merry way
@@ -20,20 +20,14 @@ export default class Relatives extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      Types: props.Types,
+      Relations: props.Relations,
       List: props.List,
       errorCodes: []
     }
 
     this.onUpdate = this.onUpdate.bind(this)
-    this.checkToClear = this.checkToClear.bind(this)
-    this.updateSummons = this.updateSummons.bind(this)
-    this.updateArrests = this.updateArrests.bind(this)
-    this.updateCharges = this.updateCharges.bind(this)
-    this.updateProbation = this.updateProbation.bind(this)
-    this.updateTrial = this.updateTrial.bind(this)
+    this.updateRelations = this.updateRelations.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.hasOffenses = this.hasOffenses.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -44,6 +38,39 @@ export default class Relatives extends ValidationElement {
         fn()
       }
     })
+  }
+
+  updateRelations (event) {
+    let relation = event.target.value
+    let selected = [...this.state.Relations]
+    let items = [...this.state.List]
+
+    if (selected.includes(relation)) {
+      // Remove the relation if it was previously selected
+      selected.splice(selected.indexOf(relation), 1)
+    } else {
+      // Add the relation if it wasn't already
+      selected.push(relation)
+
+      // If the list does not have this relation type then we add it
+      if (!this.state.List.some(x => x.Item.Relations.includes(relation))) {
+        items.push({
+          uuid: super.guid(),
+          open: false,
+          Item: {
+            Relations: [relation]
+          }
+        })
+      }
+    }
+
+    this.setState({ Relations: selected, List: items }, () => {
+      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+    })
+  }
+
+  updateList (values) {
+    this.onUpdate('List', values)
   }
 
   /**
@@ -79,7 +106,8 @@ export default class Relatives extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    return new PoliceValidator(this.state, null).isValid()
+    // TODO: Update with appropriate validator
+    return false
   }
 
   /**
@@ -87,403 +115,142 @@ export default class Relatives extends ValidationElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const relation = o.Relation || i18n.t('legal.police.collection.summary.item')
+    const relation = (o.Relations || []).length > 0
+          ? o.Relations[0]
+          : i18n.t('family.relatives.collection.summary.item')
     const name = o.Name
           ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('legal.relatives.collection.summary.unknown')
-    const dates = dateSummary({ Date: o.BirthDate })
+          : i18n.t('family.relatives.collection.summary.unknown')
 
     return (
-      <div className="table">
-        <div className="table-cell index">{relation}:</div>
-        <div className="table-cell info"><strong>{name}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{relation}:</span>
+        <span className="info"><strong>{name}</strong></span>
+      </span>
     )
-  }
-
-  needCitizenshipDocumentation () {
-    const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
-    if (this.state.Relations.some(x => relations.includes(x)) && this.state.Citizen && this.state.Birthplace.type === 'international' && this.state.IsDeceased === 'Yes') {
-      return true
-    }
-
-    if (this.state.Address.type === 'domestic' && this.state.Birthplace.type === 'international' && this.state.Citizen) {
-      return true
-    }
-
-    if (this.state.Address.type === 'apofpo' && this.state.Birthplace.type === 'international' && this.state.Citizen) {
-      return true
-    }
-
-    if (this.state.Birthplace.type === 'international' && this.state.Citizen) {
-      return true
-    }
-
-    return false
   }
 
   render () {
     return (
       <div className="relatives">
-        <h2>{i18n.t('legal.relatives.heading.title')}</h2>
-        {i18n.m('legal.relatives.para.opportunity')}
-        {i18n.m('legal.relatives.para.checkall')}
+        <h2>{i18n.t('family.relatives.heading.title')}</h2>
+        {i18n.m('family.relatives.para.opportunity')}
+        {i18n.m('family.relatives.para.checkall')}
 
-        <CheckboxGroup className=""
-                       selectedValues={this.state.Relations}>
-          <Checkbox name="relation-mother"
-                    label={i18n.t('legal.relatives.label.relation.mother')}
-                    value="Mother"
-                    className="relation-mother"
-                    />
-          <Checkbox name="relation-father"
-                    label={i18n.t('legal.relatives.label.relation.father')}
-                    value="Father"
-                    className="relation-father"
-                    />
-          <Checkbox name="relation-stepmother"
-                    label={i18n.t('legal.relatives.label.relation.stepmother')}
-                    value="Stepmother"
-                    className="relation-stepmother"
-                    />
-          <Checkbox name="relation-stepfather"
-                    label={i18n.t('legal.relatives.label.relation.stepfather')}
-                    value="Stepfather"
-                    className="relation-stepfather"
-                    />
-          <Checkbox name="relation-fosterparent"
-                    label={i18n.t('legal.relatives.label.relation.fosterparent')}
-                    value="Fosterparent"
-                    className="relation-fosterparent"
-                    />
-          <Checkbox name="relation-child"
-                    label={i18n.t('legal.relatives.label.relation.child')}
-                    value="Child"
-                    className="relation-child"
-                    />
-          <Checkbox name="relation-stepchild"
-                    label={i18n.t('legal.relatives.label.relation.stepchild')}
-                    value="Stepchild"
-                    className="relation-stepchild"
-                    />
-          <Checkbox name="relation-brother"
-                    label={i18n.t('legal.relatives.label.relation.brother')}
-                    value="Brother"
-                    className="relation-brother"
-                    />
-          <Checkbox name="relation-sister"
-                    label={i18n.t('legal.relatives.label.relation.sister')}
-                    value="Sister"
-                    className="relation-sister"
-                    />
-          <Checkbox name="relation-stepbrother"
-                    label={i18n.t('legal.relatives.label.relation.stepbrother')}
-                    value="Stepbrother"
-                    className="relation-stepbrother"
-                    />
-          <Checkbox name="relation-stepsister"
-                    label={i18n.t('legal.relatives.label.relation.stepsister')}
-                    value="Stepsister"
-                    className="relation-stepsister"
-                    />
-          <Checkbox name="relation-halfbrother"
-                    label={i18n.t('legal.relatives.label.relation.halfbrother')}
-                    value="Half-brother"
-                    className="relation-halfbrother"
-                    />
-          <Checkbox name="relation-halfsister"
-                    label={i18n.t('legal.relatives.label.relation.halfsister')}
-                    value="Half-sister"
-                    className="relation-halfsister"
-                    />
-          <Checkbox name="relation-fatherinlaw"
-                    label={i18n.t('legal.relatives.label.relation.fatherinlaw')}
-                    value="Father-in-law"
-                    className="relation-fatherinlaw"
-                    />
-          <Checkbox name="relation-montherinlaw"
-                    label={i18n.t('legal.relatives.label.relation.montherinlaw')}
-                    value="Monther-in-law"
-                    className="relation-montherinlaw"
-                    />
-          <Checkbox name="relation-guardian"
-                    label={i18n.t('legal.relatives.label.relation.guardian')}
-                    value="Guardian"
-                    className="relation-guardian"
-                    />
-        </CheckboxGroup>
+        <div className="eapp-field-wrap">
+          <CheckboxGroup className="option-list"
+                         selectedValues={this.state.Relations}>
+            <Checkbox name="relation-mother"
+                      label={i18n.t('family.relatives.label.relation.mother')}
+                      value="Mother"
+                      className="relation-mother"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-father"
+                      label={i18n.t('family.relatives.label.relation.father')}
+                      value="Father"
+                      className="relation-father"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-stepmother"
+                      label={i18n.t('family.relatives.label.relation.stepmother')}
+                      value="Stepmother"
+                      className="relation-stepmother"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-stepfather"
+                      label={i18n.t('family.relatives.label.relation.stepfather')}
+                      value="Stepfather"
+                      className="relation-stepfather"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-fosterparent"
+                      label={i18n.t('family.relatives.label.relation.fosterparent')}
+                      value="Fosterparent"
+                      className="relation-fosterparent"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-child"
+                      label={i18n.t('family.relatives.label.relation.child')}
+                      value="Child"
+                      className="relation-child"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-stepchild"
+                      label={i18n.t('family.relatives.label.relation.stepchild')}
+                      value="Stepchild"
+                      className="relation-stepchild"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-brother"
+                      label={i18n.t('family.relatives.label.relation.brother')}
+                      value="Brother"
+                      className="relation-brother"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-sister"
+                      label={i18n.t('family.relatives.label.relation.sister')}
+                      value="Sister"
+                      className="relation-sister"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-stepbrother"
+                      label={i18n.t('family.relatives.label.relation.stepbrother')}
+                      value="Stepbrother"
+                      className="relation-stepbrother"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-stepsister"
+                      label={i18n.t('family.relatives.label.relation.stepsister')}
+                      value="Stepsister"
+                      className="relation-stepsister"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-halfbrother"
+                      label={i18n.t('family.relatives.label.relation.halfbrother')}
+                      value="Half-brother"
+                      className="relation-halfbrother"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-halfsister"
+                      label={i18n.t('family.relatives.label.relation.halfsister')}
+                      value="Half-sister"
+                      className="relation-halfsister"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-fatherinlaw"
+                      label={i18n.t('family.relatives.label.relation.fatherinlaw')}
+                      value="Father-in-law"
+                      className="relation-fatherinlaw"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-montherinlaw"
+                      label={i18n.t('family.relatives.label.relation.montherinlaw')}
+                      value="Monther-in-law"
+                      className="relation-montherinlaw"
+                      onChange={this.updateRelations}
+                      />
+            <Checkbox name="relation-guardian"
+                      label={i18n.t('family.relatives.label.relation.guardian')}
+                      value="Guardian"
+                      className="relation-guardian"
+                      onChange={this.updateRelations}
+                      />
+          </CheckboxGroup>
+        </div>
 
         <Show when={this.state.List.length > 0}>
           <Collection minimum="1"
                       items={this.state.List}
                       dispatch={this.updateList}
                       summary={this.summary}
-                      summaryTitle={i18n.t('legal.relatives.collection.summary.title')}
-                      appendTitle={i18n.t('legal.relatives.collection.appendTitle')}
-                      appendMessage={i18n.m('legal.relatives.collection.appendMessage')}
-                      appendLabel={i18n.t('legal.relatives.collection.append')}>
-            <h3>{i18n.t('legal.relatives.heading.relation')}</h3>
-            <h3>{i18n.t('legal.relatives.heading.name')}</h3>
-            <h3>{i18n.t('legal.relatives.heading.birthdate')}</h3>
-            <h3>{i18n.t('legal.relatives.heading.birthplace')}</h3>
-            <h3>{i18n.t('legal.relatives.heading.citizenship')}</h3>
-
-            <Show when={this.state.Relations.some(x => x === 'Maiden')}>
-              <div>
-                <h3>{i18n.t('legal.relatives.heading.maiden')}</h3>
-              </div>
-            </Show>
-
-            <Show when={this.state.Relations.some(x => ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(x))}>
-              <div>
-                <h3>{i18n.t('legal.relatives.heading.alias.branch')}</h3>
-                <Branch name="has_alias"
-                        className="eapp-field-wrap no-label relative-alias"
-                        value={this.state.HasAlias}
-                        help="legal.relatives.help.alias"
-                        onUpdate={this.updateHasAlias}
-                        onValidate={this.props.onValidate}>
-                </Branch>
-
-                <Show when={this.state.HasAlias === 'Yes'}>
-                  <div>
-                    <h3>{i18n.t('legal.relatives.heading.alias.title')}</h3>
-                    <h4>{i18n.t('legal.relatives.heading.alias.maiden')}</h4>
-                  </div>
-                </Show>
-              </div>
-            </Show>
-
-            <h3>{i18n.t('legal.relatives.heading.deceased.branch')}</h3>
-            <Branch name="is_deceased"
-                    className="eapp-field-wrap no-label relative-deceased"
-                    value={this.state.IsDeceased}
-                    help="legal.relatives.help.deceased"
-                    onUpdate={this.updateIsDeceased}
-                    onValidate={this.props.onValidate}>
-            </Branch>
-            <Show when={this.state.IsDeceased === 'No'}>
-              <div>
-                <h3>{i18n.t('legal.relatives.heading.deceased.address')}</h3>
-              </div>
-            </Show>
-
-            <Show when={this.needCitizenshipDocumentation()}>
-              <div>
-                <h3>{i18n.t('legal.relatives.heading.us.title')}</h3>
-                <h4>{i18n.t('legal.relatives.heading.us.documentation')}</h4>
-
-                {i18n.m('legal.relatives.para.abroad')}
-                <RadioGroup className=""
-                            selectedValue={this.state.Abroad}>
-                  <Radio name="abroad-fs"
-                         label={i18n.t('legal.relatives.label.abroad.fs')}
-                         value="FS"
-                         className="abroad-fs"
-                         />
-                  <Radio name="abroad-ds"
-                         label={i18n.t('legal.relatives.label.abroad.ds')}
-                         value="DS"
-                         className="abroad-ds"
-                         />
-                </RadioGroup>
-
-                {i18n.m('legal.relatives.para.naturalized')}
-                <RadioGroup className=""
-                            selectedValue={this.state.Naturalized}>
-                  <Radio name="naturalized-alien"
-                         label={i18n.t('legal.relatives.label.naturalized.alien')}
-                         value="Alien"
-                         className="naturalized-alien"
-                         />
-                  <Radio name="naturalized-permanent"
-                         label={i18n.t('legal.relatives.label.naturalized.permanent')}
-                         value="Permanent"
-                         className="naturalized-permanent"
-                         />
-                  <Radio name="naturalized-certificate"
-                         label={i18n.t('legal.relatives.label.naturalized.certificate')}
-                         value="Certificate"
-                         className="naturalized-certificate"
-                         />
-                </RadioGroup>
-
-                {i18n.m('legal.relatives.para.derived')}
-                <RadioGroup className=""
-                            selectedValue={this.state.Derived}>
-                  <Radio name="derived-alien"
-                         label={i18n.t('legal.relatives.label.derived.alien')}
-                         value="Alien"
-                         className="derived-alien"
-                         />
-                  <Radio name="derived-permanent"
-                         label={i18n.t('legal.relatives.label.derived.permanent')}
-                         value="Permanent"
-                         className="derived-permanent"
-                         />
-                  <Radio name="derived-certificate"
-                         label={i18n.t('legal.relatives.label.derived.certificate')}
-                         value="Certificate"
-                         className="derived-certificate"
-                         />
-                  <Radio name="derived-other"
-                         label={i18n.t('legal.relatives.label.derived.other')}
-                         value="Other"
-                         className="derived-other"
-                         />
-                </RadioGroup>
-
-                <h4>{i18n.t('legal.relatives.heading.us.number')}</h4>
-                <h4>{i18n.t('legal.relatives.heading.us.name')}</h4>
-                <h4>{i18n.t('legal.relatives.heading.us.address')}</h4>
-              </div>
-            </Show>
-
-            <Show when={!this.state.Citizen && this.state.IsDeceased === 'No'}>
-              <div>
-                <Show when={this.state.Address.type === 'domestic'}>
-                  <h3>{i18n.t('legal.relatives.heading.address.title')}</h3>
-                  {i18n.t('legal.relatives.para.notcitizen')}
-                  <RadioGroup className=""
-                              selectedValue={this.state.Document}>
-                    <Radio name="document-permanent"
-                          label={i18n.t('legal.relatives.label.document.permanent')}
-                          value="Permanent"
-                          className="document-permanent"
-                          />
-                    <Radio name="document-employment"
-                          label={i18n.t('legal.relatives.label.document.employment')}
-                          value="Employment"
-                          className="document-employment"
-                          />
-                    <Radio name="document-arrival"
-                          label={i18n.t('legal.relatives.label.document.arrival')}
-                          value="Arrival"
-                          className="document-arrival"
-                          />
-                    <Radio name="document-visa"
-                          label={i18n.t('legal.relatives.label.document.visa')}
-                          value="Visa"
-                          className="document-visa"
-                          />
-                    <Radio name="document-f1"
-                          label={i18n.t('legal.relatives.label.document.f1')}
-                          value="F1"
-                          className="document-f1"
-                          />
-                    <Radio name="document-j1"
-                          label={i18n.t('legal.relatives.label.document.j1')}
-                          value="J1"
-                          className="document-j1"
-                          />
-                    <Radio name="document-other"
-                          label={i18n.t('legal.relatives.label.document.other')}
-                          value="Other"
-                          className="document-other"
-                          />
-                  </RadioGroup>
-
-                  <h3>{i18n.t('legal.relatives.heading.address.number')}</h3>
-                  <h3>{i18n.t('legal.relatives.heading.address.expiration')}</h3>
-                </Show>
-
-                <Show when={this.state.Address.type === 'international'}>
-                  <h3>{i18n.t('legal.relatives.heading.address.title')}</h3>
-                  <h3>{i18n.t('legal.relatives.heading.address.firstcontact')}</h3>
-                  <h3>{i18n.t('legal.relatives.heading.address.lastcontact')}</h3>
-                  <h3>{i18n.t('legal.relatives.heading.address.methods')}</h3>
-                  {i18n.m('legal.relatives.para.checkall')}
-                  <CheckboxGroup className=""
-                                 selectedValues={this.state.Methods}>
-                    <Checkbox name="methods-inperson"
-                              label={i18n.t('legal.relatives.label.methods.inperson')}
-                              value="In person"
-                              className="methods-inperson"
-                              />
-                    <Checkbox name="methods-telephone"
-                              label={i18n.t('legal.relatives.label.methods.telephone')}
-                              value="Telephone"
-                              className="methods-telephone"
-                              />
-                    <Checkbox name="methods-electronic"
-                              label={i18n.t('legal.relatives.label.methods.electronic')}
-                              value="Electronic"
-                              className="methods-electronic"
-                              />
-                    <Checkbox name="methods-written"
-                              label={i18n.t('legal.relatives.label.methods.written')}
-                              value="Written"
-                              className="methods-written"
-                              />
-                    <Checkbox name="methods-other"
-                              label={i18n.t('legal.relatives.label.methods.other')}
-                              value="Other"
-                              className="methods-other"
-                              />
-                  </CheckboxGroup>
-
-                  <h3>{i18n.t('legal.relatives.heading.address.frequency')}</h3>
-                  <RadioGroup className=""
-                              selectedValue={this.state.Frequency}>
-                    <Radio name="frequency-daily"
-                           label={i18n.t('legal.relatives.label.frequency.daily')}
-                           value="Daily"
-                           className="frequency-daily"
-                           />
-                    <Radio name="frequency-weekly"
-                           label={i18n.t('legal.relatives.label.frequency.weekly')}
-                           value="Weekly"
-                           className="frequency-weekly"
-                           />
-                    <Radio name="frequency-monthly"
-                           label={i18n.t('legal.relatives.label.frequency.monthly')}
-                           value="Monthly"
-                           className="frequency-monthly"
-                           />
-                    <Radio name="frequency-quarterly"
-                           label={i18n.t('legal.relatives.label.frequency.quarterly')}
-                           value="Quarterly"
-                           className="frequency-quarterly"
-                           />
-                    <Radio name="frequency-annually"
-                           label={i18n.t('legal.relatives.label.frequency.annually')}
-                           value="Annually"
-                           className="frequency-annually"
-                           />
-                    <Radio name="frequency-other"
-                           label={i18n.t('legal.relatives.label.frequency.other')}
-                           value="Other"
-                           className="frequency-other"
-                           />
-                    <Radio name="frequency-daily"
-                           label={i18n.t('legal.relatives.label.frequency.daily')}
-                           value="daily"
-                           className="frequency-daily"
-                           />
-                  </RadioGroup>
-
-                  <h3>{i18n.t('legal.relatives.heading.employer.name')}</h3>
-                  <h3>{i18n.t('legal.relatives.heading.employer.address')}</h3>
-
-                  <h3>{i18n.t('legal.relatives.heading.employer.affiliated')}</h3>
-                  <Branch name="has_affiliation"
-                          className="eapp-field-wrap no-label foreign-affiliation"
-                          value={this.state.HasAffiliation}
-                          help="legal.relatives.help.affiliation"
-                          onUpdate={this.updateHasAffiliation}
-                          onValidate={this.props.onValidate}>
-                  </Branch>
-                  <Show when={this.state.HasAffiliation}>
-                    <div>
-                      <h3>{i18n.t('legal.relatives.heading.employer.relationship')}</h3>
-                    </div>
-                  </Show>
-
-                </Show>
-              </div>
-            </Show>
-
+                      summaryTitle={i18n.t('family.relatives.collection.summary.title')}
+                      appendTitle={i18n.t('family.relatives.collection.appendTitle')}
+                      appendMessage={i18n.m('family.relatives.collection.appendMessage')}
+                      appendLabel={i18n.t('family.relatives.collection.append')}>
+            <Relative name="Item"
+                      bind={true}
+                      />
           </Collection>
         </Show>
       </div>
@@ -492,6 +259,6 @@ export default class Relatives extends ValidationElement {
 }
 
 Relatives.defaultProps = {
-  Types: [],
+  Relations: [],
   List: []
 }
