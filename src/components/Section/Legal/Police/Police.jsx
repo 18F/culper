@@ -4,6 +4,7 @@ import { PoliceValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Collection } from '../../../Form'
 import { dateSummary } from '../../History/HistoryCollection/summaries'
 import Offense from './Offense'
+import Sentence from './Sentence'
 
 /**
  * Convenience function to send updates along their merry way
@@ -27,7 +28,8 @@ export default class Police extends ValidationElement {
       HasProbation: props.HasProbation,
       HasTrial: props.HasTrial,
       List: props.List,
-      errorCodes: []
+      errorCodes: [],
+      Sentence: props.Sentence
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -39,6 +41,7 @@ export default class Police extends ValidationElement {
     this.updateTrial = this.updateTrial.bind(this)
     this.updateList = this.updateList.bind(this)
     this.hasOffenses = this.hasOffenses.bind(this)
+    this.updateSentence = this.updateSentence.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -90,6 +93,12 @@ export default class Police extends ValidationElement {
 
   updateList (collection) {
     this.onUpdate('List', collection)
+  }
+
+  updateSentence (value) {
+    this.onUpdate('Sentence', value, () => {
+      this.checkToClear()
+    })
   }
 
   /**
@@ -187,6 +196,12 @@ export default class Police extends ValidationElement {
             {i18n.m('legal.police.para.charges')}
           </div>
         </Branch>
+
+        <Show when={this.state.HasCharges === 'Yes'}>
+          <Sentence name="Sentence"
+            onUpdate={this.updateSentence}
+          />
+        </Show>
 
         <Branch name="has_probation"
                 className="eapp-field-wrap no-label probation"

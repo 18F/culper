@@ -3114,7 +3114,14 @@ const en = {
         courttype: 'Type of charge',
         courtdate: 'Date',
         sentenced: 'Were you sentenced as a result of this offense?',
-        needmore: 'Since you answered yes we need more information'
+        needmore: 'Since you answered yes we need more information',
+        sentenceDescription: 'Provide a description of the sentence',
+        exceedsYear: 'Were you sentenced to imprisonment for a term exceeding 1 year?',
+        incarcerated: 'Were you incarcerated as aresult of that sentence for not less than 1 year?',
+        incarcerationDates: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
+        probationDates: 'If conviction resulted in probation or parole, provide the  dates of probation or parole',
+        awaitingTrial: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
+        awaitingTrialExplanation: 'Provide explanation'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
@@ -3251,6 +3258,36 @@ const en = {
         sentenced: {
           title: 'Need help if you were sentenced for this offense?',
           message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
+          note: ''
+        },
+        sentenceDescription: {
+          title: 'Need help with the sentence description?',
+          message: 'Provide a description of your sentencing',
+          note: ''
+        },
+        exceedsYear: {
+          title: 'Need help?',
+          message: 'If you were sentenced for a term exceeding 1 year, please click "Yes"',
+          note: ''
+        },
+        incarcerationDates: {
+          title: 'Need help with incarceration dates?',
+          message: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
+          note: ''
+        },
+        probationDates: {
+          title: 'Need help with probation dates?',
+          message: 'If conviction resulted in probation or parole, provide the dates of probation or parole',
+          note: ''
+        },
+        awaitingTrial: {
+          title: 'Need help with this question?',
+          message: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
+          note: ''
+        },
+        awaitingTrialExplanation: {
+          title: 'Need help with awaiting trial explanation',
+          message: 'Provide explanation',
           note: ''
         }
       },
