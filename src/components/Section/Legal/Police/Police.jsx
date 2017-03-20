@@ -4,7 +4,7 @@ import { PoliceValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Collection } from '../../../Form'
 import { dateSummary } from '../../History/HistoryCollection/summaries'
 import Offense from './Offense'
-import Sentence from './Sentence'
+import DomesticViolence from './DomesticViolence'
 
 /**
  * Convenience function to send updates along their merry way
