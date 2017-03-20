@@ -6,10 +6,10 @@ const navigation = [
     subsections: [
       { name: 'Full name', url: 'name' },
       { name: 'Other names used', url: 'othernames' },
-      { name: 'Birth date', url: 'birthdate' },
-      { name: 'Birth place', url: 'birthplace' },
-      { name: 'Contacts', url: 'contacts' },
-      { name: 'Social security number', url: 'ssn' },
+      { name: 'Date of birth', url: 'birthdate' },
+      { name: 'Place of birth', url: 'birthplace' },
+      { name: 'Your contact information', url: 'contacts' },
+      { name: 'SSN', url: 'ssn' },
       { name: 'Physical attributes', url: 'physical' },
       { hidden: true, name: 'Psychological and emotional health', url: 'psychological' }
     ]
@@ -68,9 +68,9 @@ const navigation = [
     url: 'history',
     hidden: false,
     subsections: [
-      { name: 'Places lived', url: 'residence' },
-      { name: 'Employment', url: 'employment' },
-      { name: 'Schools & diplomas', url: 'education' },
+      { name: 'Where have you lived', url: 'residence' },
+      { name: 'Employment activities', url: 'employment' },
+      { name: 'Where you went to school', url: 'education' },
       { name: 'Former federal service', url: 'federal' },
       { hidden: true, name: 'Employment record', url: 'employment' }
     ]
