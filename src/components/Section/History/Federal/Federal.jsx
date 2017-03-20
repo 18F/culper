@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
 import { dateSummary } from '../summaries'
+import { FederalServiceValidator } from '../../../../validators'
 
 /**
  * Convenience function to send updates along their merry way
@@ -62,61 +63,7 @@ export default class Federal extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    if (!this.state.HasFederalService) {
-      return false
-    }
-
-    if (this.state.HasFederalService === 'No') {
-      return true
-    }
-
-    if (this.state.HasFederalService === 'Yes' && this.state.List.length === 0) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.Name || parseInt(item.Name.value) < 1) {
-        return false
-      }
-
-      if (!item.Position || !item.Position.value) {
-        return false
-      }
-
-      if (!item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
-        return false
-      }
-
-      if (!item.Address) {
-        return false
-      }
-
-      const address = item.Address
-      switch (address.addressType) {
-        case 'United States':
-          if (!address.address || !address.city || !address.state || !address.zipcode) {
-            return false
-          }
-          break
-
-        case 'International':
-          if (!address.address || !address.city || !address.country) {
-            return false
-          }
-          break
-
-        case 'APOFPO':
-          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
-            return false
-          }
-          break
-
-        default:
-          return false
-      }
-    }
-
-    return true
+    return new FederalServiceValidator(this.state, null).isValid()
   }
 
   onUpdate (name, values) {

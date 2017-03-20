@@ -519,7 +519,7 @@ class History extends ValidationElement {
             <p>{i18n.t('history.residence.info')}</p>
             { this.residenceSummaryProgress() }
             <Accordion minimum="1"
-                       items={InjectGaps(this.props.History.Residence, daysAgo(today, 365 * this.totalYears()))}
+                       items={this.props.History.Residence}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
                        summary={ResidenceSummary}
@@ -552,7 +552,7 @@ class History extends ValidationElement {
             {i18n.m('history.employment.para.employment2')}
             { this.employmentSummaryProgress() }
             <Accordion minimum="1"
-                       items={InjectGaps(this.props.History.Employment, daysAgo(today, 365 * this.totalYears()))}
+                       items={this.props.History.Employment}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
                        summary={EmploymentSummary}
