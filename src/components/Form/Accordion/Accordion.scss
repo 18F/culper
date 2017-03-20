@@ -9,6 +9,12 @@
     line-height: 5rem;
     min-height: 5rem;
     padding: 0 14%;
+    @media screen and (max-width: 1380px) {
+      padding: 0 7.5%;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 0 5.5%;
+    }
   }
 
   .items {
@@ -26,6 +32,12 @@
     }
     .details {
       padding: 0 14%;
+      @media screen and (max-width: 1380px) {
+        padding: 0 7.5%;
+      }
+      @media screen and (max-width: 1024px) {
+        padding: 0 5.5%;
+      }
     }
   }
 
@@ -64,11 +76,18 @@
       width: 80%;
       padding-left: 14%;
       text-overflow: ellipsis;
+      @media screen and (max-width: 1380px) {
+        padding-left: 7.5%;
+      }
+      @media screen and (max-width: 1024px) {
+        padding-left: 5.5%;
+      }
       .toggle {
         color: $eapp-blue;
       }
       .button-with-icon {
-	  	right:0;
+        padding-top:1.3rem;
+        float:right;
       }
       &:hover {
         color: $eapp-blue;
@@ -80,9 +99,7 @@
     .right {
       color: $eapp-grey-dark;
       width: 20%;
-      .button-with-icon {
-	  	left:0;
-      }
+      padding-left: 0.5rem;
       &:hover {
         color: $eapp-red;
       }

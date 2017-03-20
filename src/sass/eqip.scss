@@ -45,22 +45,8 @@ a:focus {
 
     .eapp-structure-right {
       width: 79%;
-      //       padding-left: 6.2rem;
-
-      @media screen and (max-width: 1024px) {
-        //         padding-left: 8rem;
-      }
-
-      @media screen and (max-width: 768px) {
-        //         width: 70.2%;
-        //         padding-left: 5rem;
-      }
-
       &.eapp-title {
         vertical-align: bottom;
-
-        //padding-right: 11rem;
-        //padding-bottom: 2rem;
       }
     }
   }
@@ -146,13 +132,19 @@ a:focus {
         display: block;
         margin: 0 17.5%;
         line-height: 1.2;
+        @media screen and (max-width: 1380px) {
+            margin: 0 12%;
+        }
+        @media screen and (max-width: 1024px) {
+            margin: 0 5.5%;
+        }
       }
     }
   }
 }
 
 /* horizontal progress bar, inner div width to be adjusted via JS */
-.eapp-progress {
+.eapp-progress {	
   position: relative;
   height: 0.7rem;
   background: $eapp-grey-lightest;
@@ -174,11 +166,9 @@ a:focus {
   padding-bottom: 4rem;
 
   @media screen and (max-width: 1024px) {
-    padding-right: 12rem;
   }
 
   @media screen and (max-width: 768px) {
-    padding-right: 8rem;
   }
 }
 
