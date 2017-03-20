@@ -147,12 +147,16 @@ export default class Accordion extends ValidationElement {
       <div className="summary">
         <a className={`left ${openState(item)}`} onClick={this.toggle.bind(this, item)}>
           {this.props.summary(item, index)}
-          <i className={chevron(item)} aria-hidden="true"></i>
-          <span className="toggle">{this.openText(item)}</span>
+          <span className="button-with-icon">
+            <i className={chevron(item)} aria-hidden="true"></i>
+            <span className="toggle">{this.openText(item)}</span>
+          </span>
         </a>
         <a className="right remove" onClick={this.remove.bind(this, item)}>
-          <i className="fa fa-trash" aria-hidden="true"></i>
-          <span>{this.props.removeLabel}</span>
+          <span className="button-with-icon">
+            <i className="fa fa-trash" aria-hidden="true"></i>
+            <span>{this.props.removeLabel}</span>
+          </span>
         </a>
       </div>
     )
