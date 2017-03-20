@@ -6,6 +6,7 @@ import { ValidationElement, IntroHeader } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
+import Relatives from './Relatives'
 
 class Family extends ValidationElement {
   constructor (props) {
@@ -148,6 +149,11 @@ class Family extends ValidationElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="family/review"
                        nextLabel={i18n.t('family.destination.review')}>
+            <Relatives name="relatives"
+                       {...this.props.Relatives}
+                       onUpdate={this.updateRelatives}
+                       onValidate={this.handleValidation}
+                       />
           </SectionView>
         </SectionViews>
       </div>

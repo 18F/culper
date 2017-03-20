@@ -455,6 +455,7 @@ const en = {
       other: 'Other'
     }
   },
+
   identification: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -755,6 +756,7 @@ const en = {
       }
     }
   },
+
   financial: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -940,6 +942,144 @@ const en = {
           message: 'Enter the address of the court involved',
           note: ''
         }
+      }
+    }
+  },
+
+  family: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with family & friends at once'
+    },
+    destination: {
+      review: 'Review Family & Friends',
+      relatives: 'Relatives',
+      marital: 'Marital status',
+      friends: 'People who know you well'
+    },
+    relatives: {
+      collection: {
+        summary: {
+          title: 'Summary of relatives',
+          unknown: 'Click to provide details',
+          item: 'Relative'
+        },
+        appendTitle: 'Do you have an additional relative to enter?',
+        appendMessage: 'If **Yes** use the button below to add another',
+        append: 'Add another relative'
+      },
+      heading: {
+        title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
+        relation: 'Provide relative type',
+        name: 'Provide your relative\'s name',
+        birthdate: 'Provide your relative\'s date of birth',
+        birthplace: 'Provide your relative\'s place of birth',
+        citizenship: 'Provide your relative\'s country(ies) of citizenship',
+        maiden: 'Provide your mother\'s maiden name',
+        alias: {
+          branch: 'Has this relative used any other names?',
+          title: 'Provide other names used and the period of time that your relative used them.',
+          maiden: 'Maiden name?',
+          additional: 'Has this relative used any additional names?'
+        },
+        deceased: {
+          branch: 'Is your relative deceased?',
+          address: 'Provide your relative\'s current address'
+        },
+        us: {
+          title: 'U.S. Citizenship Documentation',
+          documentation: 'Provide one type of citizenship documentation and document number below:',
+          number: 'Provide the document number',
+          name: 'Provide the name of the court that issued the Certificate of Naturalization',
+          address: 'Provide the address of the court that issued the Certificate of Naturalization'
+        },
+        address: {
+          title: 'Provide type of documentation he or she possesses to support U.S. residence:',
+          number: 'Provide the document number',
+          expiration: 'Provide document expiration date',
+          firstcontact: 'Provide approximate date of first contact',
+          lastcontact: 'Provide approximate date of last contact',
+          methods: 'Provide methods of contact',
+          frequency: 'Provide approximate frequency of contact'
+        },
+        employer: {
+          name: 'Provide name of current employer, or provide the name of their most recent employer if not currently employed (if known)',
+          address: 'Provide the address of current employer, or provide the address of their most recent employer if not currently employed',
+          affiliated: 'Is this relative affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service?',
+          relationship: 'Describe the relative\'s relationship with the foreign government, military, security, defense industry, foreign movement, or intelligence service.'
+        }
+      },
+      para: {
+        opportunity: 'An opportunity will be provided to list multiple relatives for each type.',
+        checkall: 'Check all that apply.',
+        alias: 'Such as maiden, name by former marriage, former name, alias, or nickname.',
+        abroad: 'Born abroad to U.S. Parents',
+        naturalized: 'Naturalized:',
+        derived: 'Derived:',
+        notcitizen: 'Not a U.S. Citizen:'
+      },
+      label: {
+        relation: {
+          mother: 'Mother',
+          father: 'Father',
+          stepmother: 'Stepmother',
+          stepfather: 'Stepfather',
+          fosterparent: 'Foster parent',
+          child: 'Child (including adopted/foster)',
+          stepchild: 'Stepchild',
+          brother: 'Brother',
+          sister: 'Sister',
+          stepbrother: 'Stepbrother',
+          stepsister: 'Stepsister',
+          halfbrother: 'Half-brother',
+          halfsister: 'Half-sister',
+          fatherinlaw: 'Father-in-law',
+          montherinlaw: 'Mother-in-law',
+          guardian: 'Guardian'
+        },
+        abroad: {
+          fs: 'FS 240 or 545',
+          ds: 'DS 1350'
+        },
+        naturalized: {
+          alien: 'Alien Registration (on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)',
+          permanent: 'Permanent resident card (I-551)',
+          certificate: 'Certificate of naturalization (N550 or N570)'
+        },
+        derived: {
+          alien: 'Alien Registration (on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)',
+          permanent: 'Permanent resident card (I-551)',
+          certificate: 'Certificate of naturalization (N550 or N570)',
+          other: 'Other (provide explanation)'
+        },
+        methods: {
+          inperson: 'In person',
+          telephone: 'Telephone',
+          electronic: 'Electronic (such as e-mail, texting, chat rooms, etc.)',
+          written: 'Written correspondence',
+          other: 'Other (provide explanation)'
+        },
+        frequency: {
+          daily: 'Daily',
+          weekly: 'Weekly',
+          monthly: 'Monthly',
+          quarterly: 'Quarterly',
+          annually: 'Annually',
+          other: 'Other (provide explanation)'
+        },
+        document: {
+          permanent: 'I-551 Permanent Resident',
+          employment: 'I-766 Employment Authorization',
+          arrival: 'I-94 Arrival-Departure Record',
+          visa: 'U.S. Visa (red foil number)',
+          f1: 'I-20 Certificate of Eligibility for Non-Immigrant-F1-Status',
+          j1: 'DS-2019 Certificate of Eligibility of Exchange Visitor-J1-Status',
+          other: 'Other (provide explanation'
+        }
+      },
+      help: {
       }
     }
   },
