@@ -42,10 +42,12 @@
       overflow: hidden;
       vertical-align: top;
       transition: box-shadow .3s, color .3s;
-      box-shadow: 0 0 0 0px rgba(32,84,146,.6);
+      box-shadow: 0 0 0 0 rgba(32, 84, 146, 0.6);
+
       &:hover {
-        box-shadow: 0 0 10px 0px rgba(32,84,146,.6);
+        box-shadow: 0 0 10px 0 rgba(32, 84, 146, 0.6);
       }
+
       .button-with-icon {
         display: inline-block;
         text-align: center;
@@ -53,36 +55,44 @@
         height: 100%;
         vertical-align: text-bottom;
         border: none !important;
+
         > * {
           display: block;
           line-height: 1;
         }
       }
     }
+
     .left {
       color: #000;
       width: 80%;
       padding-left: 14%;
       text-overflow: ellipsis;
+
       .toggle {
         color: $eapp-blue;
       }
+
       .button-with-icon {
-	  	right:0;
+        right: 0;
       }
+
       &:hover {
         color: $eapp-blue;
+
         > span {
           border-bottom: 1px dashed $eapp-blue;
         }
       }
     }
+
     .right {
       color: $eapp-grey-dark;
       width: 20%;
       .button-with-icon {
-	  	left:0;
+        left: 0;
       }
+
       &:hover {
         color: $eapp-red;
       }

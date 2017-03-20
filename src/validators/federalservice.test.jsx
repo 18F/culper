@@ -58,7 +58,6 @@ describe('Federal service component validation', function () {
     ]
 
     tests.forEach(test => {
-      console.log('test', test)
       expect(new FederalServiceValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
