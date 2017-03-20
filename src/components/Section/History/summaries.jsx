@@ -1,25 +1,26 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { gaps } from './dateranges'
-import { Svg } from '../../Form'
+import { Svg, Show } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
+import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
 
 /**
  * Renders a formatted summary information for a residence row
  */
 export const ResidenceSummary = (props) => {
-  const res = props.Item || {}
+  const item = props.Item || {}
 
   let address1 = ''
   let address2 = ''
-  if (res.Address) {
-    address1 += `${res.Address.address || ''}`.trim()
-    if (res.Address.addressType === 'United States') {
-      address2 = `${res.Address.city || ''}, ${res.Address.state || ''} ${res.Address.zipcode || ''}`.trim()
-    } else if (res.Address.addressType === 'APOFPO') {
-      address2 = `${res.Address.apoFpoType || ''}, ${res.Address.apoFpo || ''} ${res.Address.zipcode || ''}`.trim()
-    } else if (res.Address.addressType === 'International') {
-      address2 = `${res.Address.city || ''}, ${res.Address.country || ''}`.trim()
+  if (item.Address) {
+    address1 += `${item.Address.address || ''}`.trim()
+    if (item.Address.addressType === 'United States') {
+      address2 = `${item.Address.city || ''}, ${item.Address.state || ''} ${item.Address.zipcode || ''}`.trim()
+    } else if (item.Address.addressType === 'APOFPO') {
+      address2 = `${item.Address.apoFpoType || ''}, ${item.Address.apoFpo || ''} ${item.Address.zipcode || ''}`.trim()
+    } else if (item.Address.addressType === 'International') {
+      address2 = `${item.Address.city || ''}, ${item.Address.country || ''}`.trim()
     }
   }
 
@@ -27,8 +28,9 @@ export const ResidenceSummary = (props) => {
     address1 = i18n.t('history.residence.collection.summary.unknown')
   }
 
-  const dates = dateSummary(res)
-  const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/residence-house.svg'
+  const dates = dateSummary(item)
+  const hasErrors = props.Item && !new ResidenceValidator(item, null).isValid()
+  const svg = hasErrors ? 'img/exclamation-point.svg' : 'img/residence-house.svg'
 
   return (
     <span>
@@ -38,6 +40,9 @@ export const ResidenceSummary = (props) => {
       </span>
       <span className="employer">{address1}, {address2}</span>
       <span className="dates">{dates}</span>
+      <Show when={hasErrors}>
+        <div className="incomplete">{i18n.t('history.residence.collection.summary.incomplete')}</div>
+      </Show>
     </span>
   )
 }
@@ -49,7 +54,8 @@ export const EmploymentSummary = (props) => {
   let item = props.Item || {}
   const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
   const dates = dateSummary(item)
-  const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/employer-briefcase.svg'
+  const hasErrors = props.Item && !new EmploymentValidator(item, null).isValid()
+  const svg = hasErrors === true ? 'img/exclamation-point.svg' : 'img/employer-briefcase.svg'
 
   return (
     <span>
@@ -59,6 +65,9 @@ export const EmploymentSummary = (props) => {
       </span>
       <span className="employer">{ employer }</span>
       <span className="dates">{ dates }</span>
+      <Show when={hasErrors}>
+        <div className="incomplete">{i18n.t('history.employment.default.collection.summary.incomplete')}</div>
+      </Show>
     </span>
   )
 }
@@ -70,7 +79,8 @@ export const EducationSummary = (props) => {
   let item = props.Item || {}
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
   const dates = dateSummary(item)
-  const svg = props.hasErrors === true ? 'img/exclamation-point.svg' : 'img/school-cap.svg'
+  const hasErrors = props.Item && !new EducationValidator(item, null).isValid()
+  const svg = hasErrors === true ? 'img/exclamation-point.svg' : 'img/school-cap.svg'
 
   return (
     <span>
@@ -80,6 +90,9 @@ export const EducationSummary = (props) => {
       </span>
       <span className="employer">{ school }</span>
       <span className="dates">{ dates }</span>
+      <Show when={hasErrors}>
+        <div className="incomplete">{i18n.t('history.education.collection.summary.incomplete')}</div>
+      </Show>
     </span>
   )
 }
