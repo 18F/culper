@@ -156,6 +156,7 @@ export default class ContactInformation extends ValidationElement {
                 <Email name="Email"
                        label={i18n.t('identification.contacts.label.email')}
                        placeholder={i18n.t('identification.contacts.placeholder.email')}
+                       bind={true}
                        />
                 <HelpIcon className="email-icon" />
               </Help>
@@ -179,6 +180,7 @@ export default class ContactInformation extends ValidationElement {
                 <Telephone name="Telephone"
                            label={i18n.t('identification.contacts.label.telephone')}
                            placeholder={i18n.t('identification.contacts.placeholder.telephone')}
+                           bind={true}
                            />
                 <HelpIcon className="telephone-icon" />
               </Help>
