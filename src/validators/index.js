@@ -12,6 +12,7 @@ import GamblingValidator from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
 import EducationValidator from './education'
+import FederalServiceValidator from './federalservice'
 import SelectiveServiceValidator from './selectiveservice'
 import MilitaryHistoryValidator from './militaryhistory'
 import MilitaryDisciplinaryValidator from './militarydisciplinary'
@@ -39,5 +40,6 @@ export {
   MilitaryDisciplinaryValidator,
   MilitaryForeignValidator,
   PoliceValidator,
-  OffenseValidator
+  OffenseValidator,
+  FederalServiceValidator
 }

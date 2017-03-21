@@ -10,8 +10,8 @@ const scan = (items, julianMax) => {
 
   for (const dates of items.sort(rangeSorter)) {
     if (dates.from && dates.to) {
-      const from = julian(dates.from)
-      const to = julian(dates.to)
+      const from = julian(dates.from.date)
+      const to = julian(dates.to.date)
 
       if (from >= julianMax || to >= julianMax) {
         counter++

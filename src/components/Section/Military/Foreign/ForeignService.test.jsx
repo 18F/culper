@@ -69,8 +69,12 @@ describe('The foreign service component', () => {
               Item: {
                 Name: null,
                 Dates: {
-                  from: new Date('1/1/2015'),
-                  to: new Date('1/1/2016')
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  }
                 }
               }
             }
@@ -82,7 +86,7 @@ describe('The foreign service component', () => {
 
     for (const test of tests) {
       const component = mount(<ForeignService {...test.props} />)
-      expect(component.find('.brief .dates strong').text()).toBe(test.expected)
+      expect(component.find('.dates').text()).toBe(test.expected)
     }
   })
 })

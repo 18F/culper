@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, DateControl, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Svg, Show } from '../../../Form'
+import { ValidationElement, Branch, BranchCollection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -148,13 +148,13 @@ export class EducationItem extends ValidationElement {
           : unk
 
     return (
-      <div className="table">
-        <div className="table-cell index">
+      <span>
+        <span className="index">
           {i18n.t('history.education.collection.diploma.summary.item')} {index + 1}:
-        </div>
-        <div className="table-cell">{ text }</div>
-        <div className="table-cell dates">{ dd }</div>
-      </div>
+        </span>
+        <span className="">{ text }</span>
+        <span className="dates">{ dd }</span>
+      </span>
     )
   }
 
@@ -243,27 +243,16 @@ export class EducationItem extends ValidationElement {
           </div>
 
           {this.reference()}
-
-          <h2>{i18n.t('history.education.heading.degrees')}</h2>
-          <h3>{i18n.t('history.education.heading.degree')}</h3>
-          <Branch name="branch_degree"
-                  className="eapp-field-wrap"
-                  value={this.state.HasDegree}
-                  help="history.education.help.degree"
-                  onUpdate={this.updateBranchDegree}
-                  >
-          </Branch>
-
-          <Show when={this.state.HasDegree === 'Yes'}>
-            <Collection minimum="1"
-                        items={this.state.Diplomas}
-                        summary={this.diplomaSummary}
-                        summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
-                        appendLabel={i18n.t('history.education.collection.diploma.append')}
-                        dispatch={this.updateDiplomas}>
-              <DiplomaItem name="Diploma" />
-            </Collection>
-          </Show>
+          <BranchCollection
+            branchHelp="history.employment.default.reprimand.help"
+            branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
+            branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
+            items={this.state.Diplomas}
+            onUpdate={this.updateDiplomas}>
+            <div>
+              <DiplomaItem name="Diploma" bind={true} />
+            </div>
+          </BranchCollection>
         </div>
       </div>
     )

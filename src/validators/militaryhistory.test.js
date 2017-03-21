@@ -47,8 +47,12 @@ describe('Military history validation', function () {
                 Officer: 'Enlisted',
                 ServiceNumber: '0123456789',
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 HasBeenDischarged: 'Yes'
@@ -69,8 +73,12 @@ describe('Military history validation', function () {
                 Officer: 'Enlisted',
                 ServiceNumber: '0123456789',
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 HasBeenDischarged: 'Yes',
@@ -104,8 +112,12 @@ describe('Military history validation', function () {
                 Officer: 'Enlisted',
                 ServiceNumber: '0123456789',
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 HasBeenDischarged: 'Yes',
@@ -133,8 +145,12 @@ describe('Military history validation', function () {
                 Officer: 'Enlisted',
                 ServiceNumber: '0123456789',
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 HasBeenDischarged: 'Yes',
@@ -165,8 +181,12 @@ describe('Military history validation', function () {
                 Officer: 'Enlisted',
                 ServiceNumber: '0123456789',
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 HasBeenDischarged: 'No'
@@ -186,8 +206,12 @@ describe('Military history validation', function () {
                 Officer: 'Enlisted',
                 ServiceNumber: '0123456789',
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 HasBeenDischarged: 'No'

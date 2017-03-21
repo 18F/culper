@@ -13,9 +13,9 @@ export default class DateControl extends ValidationElement {
       disabled: props.disabled,
       value: props.value,
       estimated: props.estimated,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       month: props.month || this.datePart('m', props.value),
       day: props.day || props.hideDay ? 1 : this.datePart('d', props.value),
       year: props.year || this.datePart('y', props.value),
@@ -27,12 +27,29 @@ export default class DateControl extends ValidationElement {
 
   componentWillReceiveProps (next) {
     if (next.receiveProps) {
+      let value = ''
+      let month = ''
+      let day = ''
+      let year = ''
+
+      if (next.value) {
+        value = next.value
+        month = this.datePart('m', next.value)
+        day = this.datePart('d', next.value)
+        year = this.datePart('y', next.value)
+      } else if (next.date) {
+        value = next.date
+        month = '' + (next.date.getMonth() + 1)
+        day = next.date.getDate()
+        year = next.date.getFullYear()
+      }
+
       this.setState({
         disabled: next.disabled,
-        value: next.value,
-        month: this.datePart('m', next.value),
-        day: this.datePart('d', next.value),
-        year: this.datePart('y', next.value)
+        value: value,
+        month: month,
+        day: day,
+        year: year
       })
     }
   }
@@ -376,4 +393,17 @@ export default class DateControl extends ValidationElement {
       </div>
     )
   }
+}
+
+DateControl.defaultProps = {
+  disabled: false,
+  value: '',
+  estimated: false,
+  focus: false,
+  error: false,
+  valid: false,
+  hideDay: false,
+  month: '',
+  day: '',
+  year: ''
 }

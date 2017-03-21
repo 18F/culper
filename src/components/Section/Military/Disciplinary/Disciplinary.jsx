@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryDisciplinaryValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Collection } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import Procedure from './Procedure'
 
 /**
@@ -98,11 +98,11 @@ export default class Disciplinary extends ValidationElement {
           : ''
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('military.disciplinary.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell"><strong>{service}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('military.disciplinary.collection.summary.item')} {index + 1}:</span>
+        <span><strong>{service}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
     )
   }
 
@@ -118,18 +118,19 @@ export default class Disciplinary extends ValidationElement {
         </Branch>
 
         <Show when={this.state.HasDisciplinary === 'Yes'}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateList}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('military.disciplinary.collection.summary.title')}
-                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
-                      appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
-                      appendLabel={i18n.t('military.disciplinary.collection.append')}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('military.disciplinary.collection.summary.title')}
+                     appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
+                     appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
+                     appendLabel={i18n.t('military.disciplinary.collection.append')}>
             <Procedure name="Item"
-                       onValidate={this.handleValidation}
+                       bind={true}
                        />
-          </Collection>
+          </Accordion>
         </Show>
       </div>
     )

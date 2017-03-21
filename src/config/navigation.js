@@ -5,6 +5,7 @@ const navigation = [
     url: 'identification',
     subsections: [
       { name: 'Full name', url: 'name' },
+      { name: 'Contacts', url: 'contacts' },
       { name: 'Other names used', url: 'othernames' },
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },

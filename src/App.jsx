@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from './config'
 import { SectionTitle, ProgressBar, ScoreCard, Navigation } from './components'
 import { connect } from 'react-redux'
-import { login, logout } from './actions/AuthActions'
+import { logout } from './actions/AuthActions'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish

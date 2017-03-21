@@ -2,26 +2,41 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, Svg, Show } from '../../Form'
+import { ValidationElement, Accordion, Svg, Show } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
-import ReactMarkdown from 'react-markdown'
-import HistoryCollection from './HistoryCollection/HistoryCollection'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
+import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary } from './summaries'
+import { ResidenceItem } from './Residence'
+import { EmploymentItem } from './Employment'
+import { EducationItem } from './Education'
+import { Gap } from './Gap'
+import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
+import { openState } from '../../Form/Accordion/Accordion'
+
+const byline = (item, index, initial, translation, validator) => {
+  if (item.Item && !validator(item.Item)) {
+    return (
+      <div className={`byline ${openState(item, initial)}`.trim()}>
+        <div className="incomplete">{i18n.t(translation)}</div>
+      </div>
+    )
+  }
+
+  return null
+}
 
 class History extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
-      subsection: props.subsection,
-      addOnLoad: props.addOnLoad,
-      firstTime: true
+      subsection: props.subsection
     }
 
     this.handleTour = this.handleTour.bind(this)
@@ -30,17 +45,16 @@ class History extends ValidationElement {
     this.employmentRangesList = this.employmentRangesList.bind(this)
     this.schoolRangesList = this.schoolRangesList.bind(this)
     this.diplomaRangesList = this.diplomaRangesList.bind(this)
-    this.addResidence = this.addResidence.bind(this)
-    this.addEmployer = this.addEmployer.bind(this)
+
     this.onValidate = this.onValidate.bind(this)
+    this.updateResidence = this.updateResidence.bind(this)
+    this.updateEmployment = this.updateEmployment.bind(this)
+    this.updateEducation = this.updateEducation.bind(this)
+    this.customResidenceDetails = this.customResidenceDetails.bind(this)
+    this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
   }
 
   componentDidMount () {
-    const bicycle = !!(this.props.History && this.props.History.Education && this.props.History.Education.List && this.props.History.Education.List.length > 0)
-          || !!(this.props.History && this.props.History.Employment && this.props.History.Employment.List && this.props.History.Employment.List.length > 0)
-      || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
-    this.setState({ firstTime: !bicycle })
-
     const current = this.launch(this.props.History, this.props.subsection, 'residence')
     if (current !== '') {
       this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
@@ -95,6 +109,45 @@ class History extends ValidationElement {
     this.props.dispatch(updateApplication('History', field, values))
   }
 
+  excludeGaps (items) {
+    return items.filter(item => !item.type || (item.type && item.type !== 'Gap'))
+  }
+
+  updateResidence (values) {
+    this.onUpdate('Residence', this.excludeGaps(values))
+  }
+
+  updateEmployment (values) {
+    this.onUpdate('Employment', this.excludeGaps(values))
+  }
+
+  updateEducation (values) {
+    this.onUpdate('Education', values)
+  }
+
+  /**
+   * Default sorting of history objects. This assumes that all objects contain a `Dates` property
+   * with date range values.
+   */
+  sort (a, b) {
+    const first = ((a || {}).Item || {}).Dates
+    const second = ((b || {}).Item || {}).Dates
+
+    if (!first && !second) {
+      return 0
+    }
+
+    if (!first || !first.to || !first.to.date) {
+      return -1
+    }
+
+    if (!second || !second.to || !second.to.date) {
+      return 1
+    }
+
+    return second.to.date.getTime() - first.to.date.getTime()
+  }
+
   /**
    * Helper to test whether a subsection is complete
    */
@@ -117,25 +170,6 @@ class History extends ValidationElement {
     }
 
     return subsection
-  }
-
-  /**
-   * Intro to the section when information is present
-   */
-  intro () {
-    return (
-      <div className="history intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors}
-                       Completed={this.props.Completed}
-                       tour={i18n.t('history.tour.para')}
-                       review={i18n.t('history.review.para')}
-                       onTour={this.handleTour}
-                       onReview={this.handleReview}
-                       />
-        </div>
-      </div>
-    )
   }
 
   /**
@@ -168,11 +202,11 @@ class History extends ValidationElement {
    */
   residenceRangeList () {
     let dates = []
-    if (!this.props.Residence || !this.props.Residence.List) {
+    if (!this.props.Residence) {
       return dates
     }
 
-    for (const i of this.props.Residence.List) {
+    for (const i of this.props.Residence) {
       if (!i.Item) {
         continue
       }
@@ -190,11 +224,11 @@ class History extends ValidationElement {
    */
   employmentRangesList () {
     let dates = []
-    if (!this.props.Employment || !this.props.Employment.List) {
+    if (!this.props.Employment) {
       return dates
     }
 
-    for (const i of this.props.Employment.List) {
+    for (const i of this.props.Employment) {
       if (!i.Item) {
         continue
       }
@@ -209,11 +243,11 @@ class History extends ValidationElement {
 
   schoolRangesList () {
     let dates = []
-    if (!this.props.Education || !this.props.Education.List) {
+    if (!this.props.Education) {
       return dates
     }
 
-    for (const i of this.props.Education.List) {
+    for (const i of this.props.Education) {
       if (!i.Item) {
         continue
       }
@@ -228,11 +262,11 @@ class History extends ValidationElement {
 
   diplomaRangesList () {
     let dates = []
-    if (!this.props.Education || !this.props.Education.List) {
+    if (!this.props.Education) {
       return dates
     }
 
-    for (const i of this.props.Education.List) {
+    for (const i of this.props.Education) {
       if (!i.Item) {
         continue
       }
@@ -300,14 +334,6 @@ class History extends ValidationElement {
     )
   }
 
-  addResidence () {
-    this.setState({ addOnLoad: 'Residence' })
-  }
-
-  addEmployer () {
-    this.setState({ addOnLoad: 'Employment' })
-  }
-
   hasGaps (types) {
     let holes = 0
 
@@ -321,7 +347,7 @@ class History extends ValidationElement {
           continue
         }
 
-        const list = this.props.History[t].List.filter(item => {
+        const list = this.props.History[t].filter(item => {
           return item.Item && item.Item.Dates
         })
 
@@ -339,12 +365,98 @@ class History extends ValidationElement {
     return holes > 0
   }
 
+  customSummary (item, index, initial, callback) {
+    if (item.type === 'Gap') {
+      return null
+    }
+
+    return callback()
+  }
+
+  fillGap (field, dates) {
+    let items = [...this.props.History[field]]
+    items.push({
+      uuid: super.guid(),
+      open: true,
+      Item: {
+        Dates: {
+          receiveProps: true,
+          from: dates.from,
+          to: dates.to
+        }
+      }
+    })
+    this.onUpdate(field, this.excludeGaps(items))
+  }
+
+  customResidenceDetails (item, index, initial, callback) {
+    if (item.type === 'Gap') {
+      const dates = (item.Item || {}).Dates || {}
+      return (
+        <Gap title={i18n.t('history.residence.gap.title')}
+             para={i18n.t('history.residence.gap.para')}
+             btnText={i18n.t('history.residence.gap.btnText')}
+             first={index === 0}
+             dates={dates}
+             onClick={this.fillGap.bind(this, 'Residence', dates)}
+             />
+      )
+    }
+
+    return callback()
+  }
+
+  customEmploymentDetails (item, index, initial, callback) {
+    if (item.type === 'Gap') {
+      const dates = (item.Item || {}).Dates || {}
+      return (
+        <Gap title={i18n.t('history.employment.gap.title')}
+             para={i18n.t('history.employment.gap.para')}
+             btnText={i18n.t('history.employment.gap.btnText')}
+             first={index === 0}
+             dates={dates}
+             onClick={this.fillGap.bind(this, 'Employment', dates)}
+             />
+      )
+    }
+
+    return callback()
+  }
+
+  customResidenceByline (item, index, initial) {
+    return byline(item, index, initial, 'history.residence.collection.summary.incomplete', (item) => {
+      return new ResidenceValidator(item, null).isValid()
+    })
+  }
+
+  customEmploymentByline (item, index, initial) {
+    return byline(item, index, initial, 'history.employment.default.collection.summary.incomplete', (item) => {
+      return new EmploymentValidator(item, null).isValid()
+    })
+  }
+
+  customEducationByline (item, index, initial) {
+    return byline(item, index, initial, 'history.education.collection.summary.incomplete', (item) => {
+      return new EducationValidator(item, null).isValid()
+    })
+  }
+
   render () {
     return (
       <div className="history">
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            {this.intro()}
+            <div className="history intro review-screen">
+              <div className="usa-grid-full">
+                <IntroHeader Errors={this.props.Errors}
+                            Completed={this.props.Completed}
+                            tour={i18n.t('history.tour.para')}
+                            review={i18n.t('history.review.para')}
+                            onTour={this.handleTour}
+                            onReview={this.handleReview}
+                            />
+              </div>
+            </div>
           </SectionView>
 
           <SectionView name="review"
@@ -357,22 +469,55 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.timeline.title')}</h2>
             {i18n.m('history.timeline.para1')}
             {i18n.m('history.timeline.para2')}
-            <div>
-              { this.residenceSummaryProgress() }
-              { this.employmentSummaryProgress() }
-              { this.educationSummaryProgress() }
-              <HistoryCollection name="timeline"
-                                 addOnLoad={this.state.addOnLoad}
-                                 history={this.props.History}
-                                 types={['Residence', 'Employment', 'Education']}
-                                 total={this.totalYears()}
-                                 showGaps={true}
-                                 onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
-                                 onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
-                                 onEducationUpdate={this.onUpdate.bind(this, 'Education')}
-                                 onValidate={this.onValidate}
-                                 />
-            </div>
+            { this.residenceSummaryProgress() }
+            { this.employmentSummaryProgress() }
+            { this.educationSummaryProgress() }
+            <Accordion minimum="1"
+                       items={InjectGaps(this.props.History.Residence, daysAgo(today, 365 * this.totalYears()))}
+                       onUpdate={this.updateResidence}
+                       onValidate={this.onValidate}
+                       summary={ResidenceSummary}
+                       byline={this.customResidenceByline}
+                       customSummary={this.customSummary}
+                       customDetails={this.customResidenceDetails}
+                       sort={this.sort}
+                       description={i18n.t('history.residence.collection.summary.title')}
+                       appendLabel={i18n.t('history.residence.collection.append')}
+                       >
+              <ResidenceItem name="Item"
+                             bind={true}
+                             />
+            </Accordion>
+            <Accordion minimum="1"
+                       items={InjectGaps(this.props.History.Employment, daysAgo(today, 365 * this.totalYears()))}
+                       onUpdate={this.updateEmployment}
+                       onValidate={this.onValidate}
+                       summary={EmploymentSummary}
+                       byline={this.customEmploymentByline}
+                       customSummary={this.customSummary}
+                       customDetails={this.customEmploymentDetails}
+                       sort={this.sort}
+                       description={i18n.t('history.employment.default.collection.summary.title')}
+                       appendLabel={i18n.t('history.employment.default.collection.append')}
+                       >
+              <EmploymentItem name="Item"
+                              bind={true}
+                              />
+            </Accordion>
+            <Accordion minimum="1"
+                       items={this.props.History.Education}
+                       onUpdate={this.updateEducation}
+                       onValidate={this.onValidate}
+                       summary={EducationSummary}
+                       byline={this.customEducationByline}
+                       sort={this.sort}
+                       description={i18n.t('history.education.collection.school.summary.title')}
+                       appendLabel={i18n.t('history.education.collection.school.append')}
+                       >
+              <EducationItem name="Item"
+                             bind={true}
+                             />
+            </Accordion>
 
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
@@ -390,15 +535,22 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.residence.title')}</h2>
             <p>{i18n.t('history.residence.info')}</p>
             { this.residenceSummaryProgress() }
-            <HistoryCollection name="residence"
-                               addOnLoad="Residence"
-                               history={this.props.History}
-                               types={['Residence']}
-                               total={this.totalYears()}
-                               showGaps={!this.state.firstTime}
-                               onResidenceUpdate={this.onUpdate.bind(this, 'Residence')}
-                               onValidate={this.onValidate}
-                               />
+            <Accordion minimum="1"
+                       items={this.props.History.Residence}
+                       onUpdate={this.updateResidence}
+                       onValidate={this.onValidate}
+                       summary={ResidenceSummary}
+                       byline={this.customResidenceByline}
+                       customSummary={this.customSummary}
+                       customDetails={this.customResidenceDetails}
+                       sort={this.sort}
+                       description={i18n.t('history.employment.default.collection.summary.title')}
+                       appendLabel={i18n.t('history.employment.default.collection.append')}
+                       >
+              <ResidenceItem name="Item"
+                             bind={true}
+                             />
+            </Accordion>
             <Show when={this.hasGaps(['Residence'])}>
               <div className="not-complete">
                 <hr className="section-divider" />
@@ -417,15 +569,22 @@ class History extends ValidationElement {
             {i18n.m('history.employment.para.employment')}
             {i18n.m('history.employment.para.employment2')}
             { this.employmentSummaryProgress() }
-            <HistoryCollection name="employment"
-                               addOnLoad="Employment"
-                               history={this.props.History}
-                               types={['Employment']}
-                               total={this.totalYears()}
-                               showGaps={!this.state.firstTime}
-                               onEmploymentUpdate={this.onUpdate.bind(this, 'Employment')}
-                               onValidate={this.onValidate}
-                               />
+            <Accordion minimum="1"
+                       items={this.props.History.Employment}
+                       onUpdate={this.updateEmployment}
+                       onValidate={this.onValidate}
+                       summary={EmploymentSummary}
+                       customDetails={this.customEmploymentDetails}
+                       customSummary={this.customSummary}
+                       customDetails={this.customEmploymentDetails}
+                       sort={this.sort}
+                       description={i18n.t('history.employment.default.collection.summary.title')}
+                       appendLabel={i18n.t('history.employment.default.collection.append')}
+                       >
+              <EmploymentItem name="Item"
+                              bind={true}
+                              />
+            </Accordion>
             <Show when={this.hasGaps(['Employment'])}>
               <div className="not-complete">
                 <hr className="section-divider" />
@@ -443,15 +602,20 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.education.title')}</h2>
             <p>{i18n.t('history.education.info')}</p>
             { this.educationSummaryProgress() }
-            <HistoryCollection name="education"
-                               addOnLoad="Education"
-                               history={this.props.History}
-                               types={['Education']}
-                               total={this.totalYears()}
-                               showGaps={!this.state.firstTime}
-                               onEducationUpdate={this.onUpdate.bind(this, 'Education')}
-                               onValidate={this.onValidate}
-                               />
+            <Accordion minimum="1"
+                       items={this.props.History.Education}
+                       onUpdate={this.updateEducation}
+                       onValidate={this.onValidate}
+                       summary={EducationSummary}
+                       byline={this.customEducationByline}
+                       sort={this.sort}
+                       description={i18n.t('history.education.collection.school.summary.title')}
+                       appendLabel={i18n.t('history.education.collection.school.append')}
+                       >
+              <EducationItem name="Item"
+                             bind={true}
+                             />
+            </Accordion>
           </SectionView>
 
           <SectionView name="federal"
@@ -496,9 +660,9 @@ function mapStateToProps (state) {
   return {
     Section: section,
     History: history,
-    Residence: history.Residence || {},
-    Employment: history.Employment || {},
-    Education: history.Education || {},
+    Residence: history.Residence || [],
+    Employment: history.Employment || [],
+    Education: history.Education || [],
     Federal: history.Federal || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
