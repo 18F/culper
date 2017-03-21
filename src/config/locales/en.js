@@ -1431,8 +1431,12 @@ const en = {
       federal: 'Former federal service'
     },
     residence: {
-      title: 'Places you have lived',
-      info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
+      title: 'Where you have lived',
+      info: 'List the places where your have lived beginning with your present residence and working back 10 years.',
+      info2: 'Residences for the entire period must be accounted for without breaks.',
+      info3a: ' - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there.',
+      info3b: ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
+      info3c: ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
       summary: {
         title: 'Where you have lived',
         unit: 'Years covered'
