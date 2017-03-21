@@ -160,3 +160,9 @@ export default class DateRange extends ValidationElement {
     )
   }
 }
+
+DateRange.defaultProps = {
+  from: {},
+  to: {},
+  present: false
+}

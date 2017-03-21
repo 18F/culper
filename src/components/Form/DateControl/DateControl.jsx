@@ -105,7 +105,7 @@ export default class DateControl extends ValidationElement {
     const name = target.name || target.id || ''
 
     if (name.indexOf('month') !== -1) {
-      month = event.target.value
+      month = parseInt(event.target.value, 10)
     } else if (name.indexOf('day') !== -1) {
       day = event.target.value
     } else if (name.indexOf('year') !== -1) {

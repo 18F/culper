@@ -84,7 +84,7 @@ export default class ContactInformation extends ValidationElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    let addr = i18n.t('identification.contacts.collection.summary.unknown')
+    let addr = i18n.t('identification.contacts.collection.summary.unknownEmail')
     if (item.Email && item.Email.value) {
       addr = item.Email.value
     }
@@ -101,7 +101,7 @@ export default class ContactInformation extends ValidationElement {
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    let number = i18n.t('identification.contacts.collection.summary.unknown')
+    let number = i18n.t('identification.contacts.collection.summary.unknownPhone')
     if (item.Telephone && !item.noNumber && item.Telephone.number) {
       number = item.Telephone.number
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, Accordion, Svg, Show } from '../../Form'
+import { ValidationElement, Accordion, Svg, Show, Branch } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
@@ -50,6 +50,8 @@ class History extends ValidationElement {
     this.updateResidence = this.updateResidence.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateEducation = this.updateEducation.bind(this)
+    this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
+    this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
     this.customResidenceDetails = this.customResidenceDetails.bind(this)
     this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
   }
@@ -123,6 +125,18 @@ class History extends ValidationElement {
 
   updateEducation (values) {
     this.onUpdate('Education', values)
+  }
+
+  updateBranchAttendance (values) {
+    let education = this.props.Education || {}
+    education.HasAttended = values
+    this.updateEducation(education)
+  }
+
+  updateBranchDegree10 (values) {
+    let education = this.props.Education || {}
+    education.HasDegree10 = values
+    this.updateEducation(education)
   }
 
   /**
@@ -436,7 +450,7 @@ class History extends ValidationElement {
   }
 
   customEducationByline (item, index, initial) {
-    return byline(item, index, initial, 'history.education.collection.summary.incomplete', (item) => {
+    return byline(item, index, initial, 'history.education.collection.school.summary.incomplete', (item) => {
       return new EducationValidator(item, null).isValid()
     })
   }
@@ -471,7 +485,9 @@ class History extends ValidationElement {
             {i18n.m('history.timeline.para2')}
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
-            { this.educationSummaryProgress() }
+            <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
+              { this.educationSummaryProgress() }
+            </Show>
             <Accordion minimum="1"
                        items={InjectGaps(this.props.History.Residence, daysAgo(today, 365 * this.totalYears()))}
                        onUpdate={this.updateResidence}
@@ -480,7 +496,6 @@ class History extends ValidationElement {
                        byline={this.customResidenceByline}
                        customSummary={this.customSummary}
                        customDetails={this.customResidenceDetails}
-                       sort={this.sort}
                        description={i18n.t('history.residence.collection.summary.title')}
                        appendLabel={i18n.t('history.residence.collection.append')}
                        >
@@ -496,7 +511,6 @@ class History extends ValidationElement {
                        byline={this.customEmploymentByline}
                        customSummary={this.customSummary}
                        customDetails={this.customEmploymentDetails}
-                       sort={this.sort}
                        description={i18n.t('history.employment.default.collection.summary.title')}
                        appendLabel={i18n.t('history.employment.default.collection.append')}
                        >
@@ -504,20 +518,41 @@ class History extends ValidationElement {
                               bind={true}
                               />
             </Accordion>
-            <Accordion minimum="1"
-                       items={this.props.History.Education}
-                       onUpdate={this.updateEducation}
-                       onValidate={this.onValidate}
-                       summary={EducationSummary}
-                       byline={this.customEducationByline}
-                       sort={this.sort}
-                       description={i18n.t('history.education.collection.school.summary.title')}
-                       appendLabel={i18n.t('history.education.collection.school.append')}
-                       >
-              <EducationItem name="Item"
-                             bind={true}
-                             />
-            </Accordion>
+            <Branch name="branch_school"
+                    className="eapp-field-wrap"
+                    value={this.props.Education.HasAttended}
+                    help="history.education.help.attendance"
+                    label={i18n.t('history.education.label.attendance')}
+                    onUpdate={this.updateBranchAttendance}
+                    >
+            </Branch>
+            <Show when={this.props.Education.HasAttended === 'No'}>
+              <div>
+                <Branch name="branch_degree10"
+                        className="eapp-field-wrap"
+                        value={this.props.Education.HasDegree10}
+                        help="history.education.help.degree10"
+                        label={i18n.t('history.education.label.degree10')}
+                        onUpdate={this.updateBranchDegree10}
+                        >
+                </Branch>
+              </div>
+            </Show>
+            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+              <Accordion minimum="1"
+                         items={this.props.History.Education}
+                         onUpdate={this.updateEducation}
+                         onValidate={this.onValidate}
+                         summary={EducationSummary}
+                         byline={this.customEducationByline}
+                         description={i18n.t('history.education.collection.school.summary.title')}
+                         appendLabel={i18n.t('history.education.collection.school.append')}
+                         >
+                <EducationItem name="Item"
+                               bind={true}
+                               />
+              </Accordion>
+            </Show>
 
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
@@ -543,7 +578,6 @@ class History extends ValidationElement {
                        byline={this.customResidenceByline}
                        customSummary={this.customSummary}
                        customDetails={this.customResidenceDetails}
-                       sort={this.sort}
                        description={i18n.t('history.employment.default.collection.summary.title')}
                        appendLabel={i18n.t('history.employment.default.collection.append')}
                        >
@@ -577,7 +611,6 @@ class History extends ValidationElement {
                        customDetails={this.customEmploymentDetails}
                        customSummary={this.customSummary}
                        customDetails={this.customEmploymentDetails}
-                       sort={this.sort}
                        description={i18n.t('history.employment.default.collection.summary.title')}
                        appendLabel={i18n.t('history.employment.default.collection.append')}
                        >
@@ -601,21 +634,44 @@ class History extends ValidationElement {
                        nextLabel={i18n.t('history.destination.federal')}>
             <h2>{i18n.t('history.education.title')}</h2>
             <p>{i18n.t('history.education.info')}</p>
-            { this.educationSummaryProgress() }
-            <Accordion minimum="1"
-                       items={this.props.History.Education}
-                       onUpdate={this.updateEducation}
-                       onValidate={this.onValidate}
-                       summary={EducationSummary}
-                       byline={this.customEducationByline}
-                       sort={this.sort}
-                       description={i18n.t('history.education.collection.school.summary.title')}
-                       appendLabel={i18n.t('history.education.collection.school.append')}
-                       >
-              <EducationItem name="Item"
-                             bind={true}
-                             />
-            </Accordion>
+            <Branch name="branch_school"
+                    className="eapp-field-wrap"
+                    value={this.props.Education.HasAttended}
+                    help="history.education.help.attendance"
+                    label={i18n.t('history.education.label.attendance')}
+                    onUpdate={this.updateBranchAttendance}
+                    >
+            </Branch>
+            <Show when={this.props.Education.HasAttended === 'No'}>
+              <div>
+                <Branch name="branch_degree10"
+                        className="eapp-field-wrap"
+                        value={this.props.Education.HasDegree10}
+                        help="history.education.help.degree10"
+                        label={i18n.t('history.education.label.degree10')}
+                        onUpdate={this.updateBranchDegree10}
+                        >
+                </Branch>
+              </div>
+            </Show>
+            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+              <div>
+                { this.educationSummaryProgress() }
+                <Accordion minimum="1"
+                           items={this.props.History.Education}
+                           onUpdate={this.updateEducation}
+                           onValidate={this.onValidate}
+                           summary={EducationSummary}
+                           byline={this.customEducationByline}
+                           description={i18n.t('history.education.collection.school.summary.title')}
+                           appendLabel={i18n.t('history.education.collection.school.append')}
+                           >
+                  <EducationItem name="Item"
+                                 bind={true}
+                                 />
+                </Accordion>
+              </div>
+            </Show>
           </SectionView>
 
           <SectionView name="federal"
@@ -632,7 +688,7 @@ class History extends ValidationElement {
                      />
           </SectionView>
         </SectionViews>
-      </div>
+        </div>
     )
   }
 }

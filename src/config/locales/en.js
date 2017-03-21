@@ -525,7 +525,7 @@ const en = {
           name: 'Name',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Click to provide details'
+          unknown: 'Provide your full name below'
         },
         append: 'Add another name'
       },
@@ -615,7 +615,8 @@ const en = {
         summary: {
           title: 'Summary of e-mail addresses',
           email: 'E-mail',
-          unknown: 'Click to provide details',
+          unknownEmail: 'Provide your e-mail address below',
+          unknownPhone: 'Provide your telephone number below',
           phoneNumber: 'Phone number'
         },
         phoneNumbers: {
@@ -782,7 +783,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of gambling debt',
-          unknownlosses: 'Click to provide details',
+          unknownlosses: 'Provide your gambling debt below',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
@@ -840,7 +841,7 @@ const en = {
         summary: {
           title: 'Summary of Bankruptcy',
           item: 'Bankruptcy',
-          unknown: 'Click to provide details',
+          unknown: 'Provide your bankruptcy below',
           nodates: 'No date',
           chapter: 'Chapter'
         },
@@ -1216,7 +1217,7 @@ const en = {
         summary: {
           title: 'Summary of military history',
           item: 'Branch',
-          unknown: 'Click to provide details'
+          unknown: 'Provide your military history below'
         },
         appendTitle: 'Do you have additional military service to report?',
         appendMessage: 'If yes use the button below to add more',
@@ -1276,7 +1277,7 @@ const en = {
         summary: {
           title: 'Summary of disciplinary procedures',
           item: 'Procedure',
-          unknown: 'Click to provide details'
+          unknown: 'Provide the disciplinary procedure below'
         },
         appendTitle: 'Additional disciplinary procedures',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
@@ -1381,7 +1382,7 @@ const en = {
           summary: {
             title: 'Summary of foreign military contacts',
             item: 'Name',
-            unknown: 'Click to provide details'
+            unknown: 'Provide foreign military contact below'
           },
           appendTitle: 'Do you have an additional foreign military service contact to report?',
           appendMessage: 'If yes use the button below to add another contact',
@@ -1443,7 +1444,7 @@ const en = {
           unknown: 'Unknown',
           incomplete: 'This residence\'s information is incomplete'
         },
-        append: 'Save and add another address'
+        append: 'Add another residence'
       },
       gap: {
         title: 'Residence gap',
@@ -1525,7 +1526,7 @@ const en = {
           label: 'NA'
         },
         collection: {
-          append: 'Save and add another job',
+          append: 'Add another employer',
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
@@ -2864,7 +2865,7 @@ const en = {
             unknown: 'Unknown',
             incomplete: 'This education\'s information is incomplete'
           },
-          append: 'Save and add another school'
+          append: 'Add another school'
         },
         diploma: {
           summary: {
@@ -3016,7 +3017,7 @@ const en = {
           item: 'Federal service',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Click to provide details'
+          unknown: 'Provide federal service below'
         },
         append: 'Add another former federal service'
       }
@@ -3269,7 +3270,7 @@ const en = {
         summary: {
           title: 'Summary of offenses',
           item: 'Offense',
-          unknown: 'Click to provide details'
+          unknown: 'Provide offense below'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
         appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
