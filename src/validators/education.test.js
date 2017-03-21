@@ -214,14 +214,13 @@ describe('Education component validation', function () {
       {
         state: {
           HasAttended: 'Yes',
-          HasDegree: 'No'
+          Diplomas: [ { Has: 'No' } ]
         },
         expected: true
       },
       {
         state: {
           HasAttended: 'Yes',
-          HasDegree: 'Yes',
           Diplomas: []
         },
         expected: false
@@ -229,21 +228,100 @@ describe('Education component validation', function () {
       {
         state: {
           HasAttended: 'Yes',
-          HasDegree: 'Yes',
+          Diplomas: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAttended: 'Yes',
           Diplomas: [
             {
-              Date: {
-                date: new Date()
-              },
-              Diploma: 'High School Diploma',
-              DiplomaOther: null
+              Has: 'Yes',
+              Diploma: {
+                Date: {
+                  date: new Date()
+                },
+                Diploma: 'Other',
+                DiplomaOther: ''
+              }
+            }
+          ]
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAttended: 'Yes',
+          Diplomas: [
+            {
+              Has: 'Yes',
+              Diploma: {
+                Date: null,
+                Diploma: 'Other',
+                DiplomaOther: 'Other'
+              }
+            }
+          ]
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAttended: 'Yes',
+          Diplomas: [
+            {
+              Has: 'Yes',
+              Diploma: null
+            }
+          ]
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAttended: 'Yes',
+          Diplomas: [
+            {
+              Has: 'Yes',
+              Diploma: {
+                Date: {
+                  date: new Date()
+                },
+                Diploma: 'High School Diploma',
+                DiplomaOther: null
+              }
             },
             {
-              Date: {
-                date: new Date()
-              },
-              Diploma: 'Other',
-              DiplomaOther: 'GED'
+              Has: 'Yes',
+              Diploma: {
+                Date: {
+                  date: new Date()
+                },
+                Diploma: 'Other',
+                DiplomaOther: 'GED'
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasAttended: 'Yes',
+          Diplomas: [
+            {
+              Has: 'Yes',
+              Diploma: {
+                Date: {
+                  date: new Date()
+                },
+                Diploma: 'High School Diploma',
+                DiplomaOther: null
+              }
+            },
+            {
+              Has: 'No'
             }
           ]
         },
@@ -253,6 +331,36 @@ describe('Education component validation', function () {
 
     tests.forEach(test => {
       expect(new EducationValidator(test.state, null).validDiplomas()).toBe(test.expected)
+    })
+  })
+
+  it('handle valid attendance', () => {
+    const tests = [
+      {
+        state: {
+          HasAttended: 'Yes',
+          hasDegree10: 'Yes'
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasAttended: 'Nope',
+          hasDegree10: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAttended: 'No',
+          hasDegree10: 'Nope'
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EducationValidator(test.state, null).validAttendance()).toBe(test.expected)
     })
   })
 })

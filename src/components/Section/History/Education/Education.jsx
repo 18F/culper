@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Accordion, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
+import { ValidationElement, Branch, BranchCollection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -243,30 +243,16 @@ export class EducationItem extends ValidationElement {
           </div>
 
           {this.reference()}
-
-          <h2>{i18n.t('history.education.heading.degrees')}</h2>
-          <h3>{i18n.t('history.education.heading.degree')}</h3>
-          <Branch name="branch_degree"
-                  className="eapp-field-wrap"
-                  value={this.state.HasDegree}
-                  help="history.education.help.degree"
-                  onUpdate={this.updateBranchDegree}
-                  >
-          </Branch>
-
-          <Show when={this.state.HasDegree === 'Yes'}>
-            <Accordion minimum="1"
-                       items={this.state.Diplomas}
-                       summary={this.diplomaSummary}
-                       summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
-                       appendLabel={i18n.t('history.education.collection.diploma.append')}
-                       onUpdate={this.updateDiplomas}
-                       onValidate={this.props.onValidate}>
-              <DiplomaItem name="Diploma"
-                           bind={true}
-                           />
-            </Accordion>
-          </Show>
+          <BranchCollection
+            branchHelp="history.employment.default.reprimand.help"
+            branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
+            branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
+            items={this.state.Diplomas}
+            onUpdate={this.updateDiplomas}>
+            <div>
+              <DiplomaItem name="Diploma" bind={true} />
+            </div>
+          </BranchCollection>
         </div>
       </div>
     )

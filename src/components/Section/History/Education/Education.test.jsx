@@ -78,7 +78,12 @@ describe('The education component', () => {
     const expected = {
       name: 'education',
       HasAttended: 'Yes',
-      HasDegree: 'Yes'
+      Diplomas: [
+        {
+          Has: 'Yes',
+          Diploma: { }
+        }
+      ]
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.diploma').length).toEqual(1)
