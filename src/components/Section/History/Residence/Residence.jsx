@@ -6,7 +6,7 @@ import { today, daysAgo } from '../dateranges'
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
 const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+  return (from && from.date >= threeYearsAgo) || (to && to.date >= threeYearsAgo)
 }
 
 /**
