@@ -19,14 +19,24 @@ import { Gap } from './Gap'
 import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
 import { openState } from '../../Form/Accordion/Accordion'
 
+const byline = (item, index, initial, translation, validator) => {
+  if (item.Item && !validator(item.Item)) {
+    return (
+      <div className={`byline ${openState(item, initial)}`.trim()}>
+        <div className="incomplete">{i18n.t(translation)}</div>
+      </div>
+    )
+  }
+
+  return null
+}
+
 class History extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
-      subsection: props.subsection,
-      addOnLoad: props.addOnLoad,
-      firstTime: true
+      subsection: props.subsection
     }
 
     this.handleTour = this.handleTour.bind(this)
@@ -45,11 +55,6 @@ class History extends ValidationElement {
   }
 
   componentDidMount () {
-    const bicycle = !!(this.props.History && this.props.History.Education && this.props.History.Education.List && this.props.History.Education.List.length > 0)
-          || !!(this.props.History && this.props.History.Employment && this.props.History.Employment.List && this.props.History.Employment.List.length > 0)
-          || !!(this.props.History && this.props.History.Residence && this.props.History.Residence.List && this.props.History.Residence.List.length > 0)
-    this.setState({ firstTime: !bicycle })
-
     const current = this.launch(this.props.History, this.props.subsection, 'residence')
     if (current !== '') {
       this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
@@ -109,12 +114,10 @@ class History extends ValidationElement {
   }
 
   updateResidence (values) {
-    // this.onUpdate('Residence', values.filter(item => !!item.type && item.type !== 'Gap'))
     this.onUpdate('Residence', this.excludeGaps(values))
   }
 
   updateEmployment (values) {
-    // this.onUpdate('Employment', values.filter(item => !!item.type && item.type !== 'Gap'))
     this.onUpdate('Employment', this.excludeGaps(values))
   }
 
@@ -167,25 +170,6 @@ class History extends ValidationElement {
     }
 
     return subsection
-  }
-
-  /**
-   * Intro to the section when information is present
-   */
-  intro () {
-    return (
-      <div className="history intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors}
-                       Completed={this.props.Completed}
-                       tour={i18n.t('history.tour.para')}
-                       review={i18n.t('history.review.para')}
-                       onTour={this.handleTour}
-                       onReview={this.handleReview}
-                       />
-        </div>
-      </div>
-    )
   }
 
   /**
@@ -440,42 +424,21 @@ class History extends ValidationElement {
   }
 
   customResidenceByline (item, index, initial) {
-    const hasErrors = item.Item && !new ResidenceValidator(item.Item, null).isValid()
-    if (hasErrors) {
-      return (
-        <div className={`byline ${openState(item, initial)}`.trim()}>
-          <div className="incomplete">{i18n.t('history.residence.collection.summary.incomplete')}</div>
-        </div>
-      )
-    }
-
-    return null
+    return byline(item, index, initial, 'history.residence.collection.summary.incomplete', (item) => {
+      return new ResidenceValidator(item, null).isValid()
+    })
   }
 
   customEmploymentByline (item, index, initial) {
-    const hasErrors = item.Item && !new EmploymentValidator(item.Item, null).isValid()
-    if (hasErrors) {
-      return (
-        <div className={`byline ${openState(item, initial)}`.trim()}>
-          <div className="incomplete">{i18n.t('history.employment.default.collection.summary.incomplete')}</div>
-        </div>
-      )
-    }
-
-    return null
+    return byline(item, index, initial, 'history.employment.default.collection.summary.incomplete', (item) => {
+      return new EmploymentValidator(item, null).isValid()
+    })
   }
 
   customEducationByline (item, index, initial) {
-    const hasErrors = item.Item && !new EducationValidator(item.Item, null).isValid()
-    if (hasErrors) {
-      return (
-        <div className={`byline ${openState(item, initial)}`.trim()}>
-          <div className="incomplete">{i18n.t('history.education.collection.summary.incomplete')}</div>
-        </div>
-      )
-    }
-
-    return null
+    return byline(item, index, initial, 'history.education.collection.summary.incomplete', (item) => {
+      return new EducationValidator(item, null).isValid()
+    })
   }
 
   render () {
@@ -483,7 +446,17 @@ class History extends ValidationElement {
       <div className="history">
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            {this.intro()}
+            <div className="history intro review-screen">
+              <div className="usa-grid-full">
+                <IntroHeader Errors={this.props.Errors}
+                            Completed={this.props.Completed}
+                            tour={i18n.t('history.tour.para')}
+                            review={i18n.t('history.review.para')}
+                            onTour={this.handleTour}
+                            onReview={this.handleReview}
+                            />
+              </div>
+            </div>
           </SectionView>
 
           <SectionView name="review"
