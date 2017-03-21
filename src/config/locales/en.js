@@ -2879,6 +2879,7 @@ const en = {
         exiting: 'Before you leave this section',
         degrees: 'Degrees/diplomas',
         degree: 'Did you receive a degree/diploma?',
+        degreeTail: 'Do you have another degree/diploma to add?',
         details: 'Enter your school information',
         dates: 'Provide dates of attendance',
         name: 'Provide the name of the school',

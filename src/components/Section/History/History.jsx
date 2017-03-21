@@ -494,8 +494,8 @@ class History extends ValidationElement {
                        onValidate={this.onValidate}
                        summary={EducationSummary}
                        sort={this.sort}
-                       description={i18n.t('history.education.collection.summary.title')}
-                       appendLabel={i18n.t('history.education.collection.append')}
+                       description={i18n.t('history.education.collection.school.summary.title')}
+                       appendLabel={i18n.t('history.education.collection.school.append')}
                        >
               <EducationItem name="Item"
                              bind={true}
@@ -589,8 +589,8 @@ class History extends ValidationElement {
                        onValidate={this.onValidate}
                        summary={EducationSummary}
                        sort={this.sort}
-                       description={i18n.t('history.education.collection.summary.title')}
-                       appendLabel={i18n.t('history.education.collection.append')}
+                       description={i18n.t('history.education.collection.school.summary.title')}
+                       appendLabel={i18n.t('history.education.collection.school.append')}
                        >
               <EducationItem name="Item"
                              bind={true}

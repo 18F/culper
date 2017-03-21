@@ -91,7 +91,7 @@ export const EducationSummary = (props) => {
       <span className="employer">{ school }</span>
       <span className="dates">{ dates }</span>
       <Show when={hasErrors}>
-        <div className="incomplete">{i18n.t('history.education.collection.summary.incomplete')}</div>
+        <div className="incomplete">{i18n.t('history.education.collection.school.summary.incomplete')}</div>
       </Show>
     </span>
   )
