@@ -51,6 +51,7 @@ const en = {
     summary: 'Summary',
     append: 'Add another item',
     remove: 'Remove',
+    warning: 'Are you sure you would like to remove this item?',
     open: 'Open',
     close: 'Close'
   },
