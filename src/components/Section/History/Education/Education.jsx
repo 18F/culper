@@ -162,20 +162,6 @@ export class EducationItem extends ValidationElement {
     return (
       <div>
         <div className="content">
-          <h3>{i18n.t('history.education.heading.dates')}</h3>
-          <div className="eapp-field-wrap">
-            <label className="info-label">{i18n.t('history.education.label.dates')}</label>
-            <Help id="history.education.help.dates">
-              <DateRange name="Dates"
-                         {...this.state.Dates}
-                         label={i18n.t('history.education.label.dates')}
-                         onUpdate={this.updateDates}
-                         onValidate={this.props.onValidate}
-                         />
-              <HelpIcon className="dates-help-icon" />
-            </Help>
-          </div>
-
           <h3>{i18n.t('history.education.heading.name')}</h3>
           <div className="eapp-field-wrap">
             <Help id="history.education.help.name">
@@ -188,6 +174,20 @@ export class EducationItem extends ValidationElement {
                     onValidate={this.props.handleValidation}
                     />
               <HelpIcon />
+            </Help>
+          </div>
+
+          <h3>{i18n.t('history.education.heading.dates')}</h3>
+          <div className="eapp-field-wrap">
+            <label className="info-label">{i18n.t('history.education.label.dates')}</label>
+            <Help id="history.education.help.dates">
+              <DateRange name="Dates"
+                         {...this.state.Dates}
+                         label={i18n.t('history.education.label.dates')}
+                         onUpdate={this.updateDates}
+                         onValidate={this.props.onValidate}
+                         />
+              <HelpIcon className="dates-help-icon" />
             </Help>
           </div>
 
