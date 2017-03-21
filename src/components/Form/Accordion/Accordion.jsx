@@ -109,20 +109,18 @@ export default class Accordion extends ValidationElement {
    */
   remove (item) {
     // Confirm deletion first
-    if (!this.props.skipWarning && window.confirm(i18n.t('collection.warning')) !== true) {
-      return
+    if (this.props.skipWarning || window.confirm(i18n.t('collection.warning')) === true) {
+      let items = this.props.items.filter(x => {
+        return x.uuid !== item.uuid
+      })
+
+      if (items.length < this.props.minimum) {
+        items.push(this.newItem())
+      }
+
+      this.update(items)
+      this.setState({ initial: false })
     }
-
-    let items = this.props.items.filter(x => {
-      return x.uuid !== item.uuid
-    })
-
-    if (items.length < this.props.minimum) {
-      items.push(this.newItem())
-    }
-
-    this.update(items)
-    this.setState({ initial: false })
   }
 
   /**

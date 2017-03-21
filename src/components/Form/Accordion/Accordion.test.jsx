@@ -204,4 +204,18 @@ describe('The accordion component', () => {
     expect(component.find('.summary-props').length).toEqual(1)
     expect(component.find('.details').length).toEqual(1)
   })
+
+  it('can support custom summary byline', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const expected = {
+      minimum: 1,
+      items: items,
+      byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.byline').length).toEqual(1)
+  })
 })
