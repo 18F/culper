@@ -6,7 +6,7 @@
   }
 
   99% {
-    max-height: 50vh;
+    max-height: 75vh;
   }
 
   100% {
@@ -16,7 +16,7 @@
 
 @keyframes closebox {
   0% {
-    max-height: 50vh;
+    max-height: 75vh;
   }
 
   100% {
@@ -58,8 +58,10 @@
     }
 
     .details {
+      line-height: 1.6;
       padding: 0 14%;
       overflow: hidden;
+      border-left: 0.4rem solid $eapp-blue;
 
       @media screen and (max-width: 1380px) {
         padding: 0 7.5%;
@@ -115,6 +117,8 @@
       width: 80%;
       padding-left: 14%;
       text-overflow: ellipsis;
+      transition: border-left-color 0.3s;
+      border-left: 0.4rem solid #fff;
 
       @media screen and (max-width: 1380px) {
         padding-left: 7.5%;
@@ -122,6 +126,10 @@
 
       @media screen and (max-width: 1024px) {
         padding-left: 5.5%;
+      }
+
+      &.open {
+        border-left-color: $eapp-blue;
       }
 
       .toggle {
@@ -154,7 +162,7 @@
   }
 
   .details.open, .details.close {
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
   }
