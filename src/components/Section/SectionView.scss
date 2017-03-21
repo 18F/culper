@@ -4,11 +4,13 @@
   display: table;
   padding: 0 17.5%;
   width: 100%;
+
   @media screen and (max-width: 1380px) {
-      padding: 0 12%;
+    padding: 0 12%;
   }
+
   @media screen and (max-width: 1024px) {
-      padding: 0 5.5%;
+    padding: 0 5.5%;
   }
 
   .btn-container {

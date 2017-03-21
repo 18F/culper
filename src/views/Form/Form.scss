@@ -18,17 +18,20 @@
   h6,
   p {
     padding: 0 17.5%;
+
     @media screen and (max-width: 1380px) {
-        padding: 0 12%;
+      padding: 0 12%;
     }
+
     @media screen and (max-width: 1024px) {
-        padding: 0 5.5%;
+      padding: 0 5.5%;
     }
   }
+
   .eapp-form {
     width: 100%;
-    max-width:106rem;
-    min-width:70rem;
+    max-width: 106rem;
+    min-width: 70rem;
     margin: 0 auto;
 
     .accordion {
@@ -54,11 +57,13 @@
     /* end-of-section review options */
     .review-screen {
       padding: 0 17.5%;
+
       @media screen and (max-width: 1380px) {
-          padding: 0 12%;
+        padding: 0 12%;
       }
+
       @media screen and (max-width: 1024px) {
-          padding: 0 5.5%;
+        padding: 0 5.5%;
       }
 
       h1 {
@@ -185,11 +190,13 @@
     /* position: relative; */
     margin-bottom: 4.9rem;
     padding: 0 17.5%;
+
     @media screen and (max-width: 1380px) {
-        padding: 0 12%;
+      padding: 0 12%;
     }
+
     @media screen and (max-width: 1024px) {
-        padding: 0 5.5%;
+      padding: 0 5.5%;
     }
 
     /* fix for nested field wrappers */
@@ -244,7 +251,6 @@
         border: 1px solid $eapp-grey-dark;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-//         z-index: 1;
 
         input {
           position: absolute;
@@ -389,7 +395,6 @@
     position: absolute;
     top: -3.9rem;
     left: 0;
-//     z-index: -1;
     color: $eapp-grey-dark;
 
     > input[type='radio'] {

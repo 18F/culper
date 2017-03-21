@@ -1,24 +1,29 @@
 @import 'eqip-colors';
 
 @keyframes openbox {
-    0% {
-        max-height: 0;
-    }
-    99% {
-        max-height: 50vh;
-    }
-    100% {
-        max-height: none;
-    }
+  0% {
+    max-height: 0;
+  }
+
+  99% {
+    max-height: 50vh;
+  }
+
+  100% {
+    max-height: none;
+  }
 }
+
 @keyframes closebox {
-    0% {
-        max-height: 50vh;
-    }
-    100% {
-        max-height: 0;
-    }
+  0% {
+    max-height: 50vh;
+  }
+
+  100% {
+    max-height: 0;
+  }
 }
+
 .accordion {
   background-color: $eapp-grey;
   padding: 0 5rem;
@@ -28,9 +33,11 @@
     line-height: 5rem;
     min-height: 5rem;
     padding: 0 14%;
+
     @media screen and (max-width: 1380px) {
       padding: 0 7.5%;
     }
+
     @media screen and (max-width: 1024px) {
       padding: 0 5.5%;
     }
@@ -49,15 +56,19 @@
       padding-left: 0;
       padding-right: 0;
     }
+
     .details {
       padding: 0 14%;
       overflow: hidden;
+
       @media screen and (max-width: 1380px) {
         padding: 0 7.5%;
       }
+
       @media screen and (max-width: 1024px) {
         padding: 0 5.5%;
       }
+
       .close {
         display: block;
         text-align: right;
@@ -104,19 +115,22 @@
       width: 80%;
       padding-left: 14%;
       text-overflow: ellipsis;
+
       @media screen and (max-width: 1380px) {
         padding-left: 7.5%;
       }
+
       @media screen and (max-width: 1024px) {
         padding-left: 5.5%;
       }
+
       .toggle {
         color: $eapp-blue;
       }
 
       .button-with-icon {
-        padding-top:1.3rem;
-        float:right;
+        padding-top: 1.3rem;
+        float: right;
       }
 
       &:hover {
@@ -132,19 +146,23 @@
       color: $eapp-grey-dark;
       width: 20%;
       padding-left: 0.5rem;
+
       &:hover {
         color: $eapp-red;
       }
     }
   }
+
   .details.open, .details.close {
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
   }
+
   .details.open {
     animation-name: openbox;
   }
+
   .details.close {
     animation-name: closebox;
   }
