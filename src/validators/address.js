@@ -61,12 +61,30 @@ export default class AddressValidator {
     return data
   }
 
+  isSystemError (data) {
+    if (!data || !data.Errors || !data.Errors.length) {
+      return false
+    }
+    for (let e of data.Errors) {
+      if (e.Error.indexOf('error.geocode.system') !== -1) {
+        return true
+      }
+    }
+    return false
+  }
+
   geocode () {
     const toGeocode = this.prepareGeocode()
-    return api
-      .validateAddress(toGeocode)
-      .then((response) => {
-        return response.data
-      })
+    return new Promise((resolve, reject) => {
+      api
+        .validateAddress(toGeocode)
+        .then((response) => {
+          const data = response.data
+          if (this.isSystemError(data)) {
+            return reject(data)
+          }
+          resolve(response.data)
+        })
+    })
   }
 }

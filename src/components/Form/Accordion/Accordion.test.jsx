@@ -88,6 +88,7 @@ describe('The accordion component', () => {
   it('can remove item from collection', () => {
     let i = 0
     const expected = {
+      skipWarning: true,
       minimum: 2,
       items: [
         { uuid: '1', open: false },
@@ -119,6 +120,7 @@ describe('The accordion component', () => {
   it('remove when above the minimum', () => {
     let items = []
     const expected = {
+      skipWarning: true,
       minimum: 2,
       items: [
         { uuid: '1', open: false },
@@ -193,13 +195,27 @@ describe('The accordion component', () => {
       minimum: 1,
       items: items,
       onUpdate: (x) => { items = x },
-      summary: (item, index) => { return <span className="summary-props">Properties</span> },
-      customSummary: (item, index, callback) => { return callback() },
-      customDetails: (item, index, callback) => { return callback() }
+      summary: (item, index, initial) => { return <span className="summary-props">Properties</span> },
+      customSummary: (item, index, initial, callback) => { return callback() },
+      customDetails: (item, index, initial, callback) => { return callback() }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.summary').length).toEqual(1)
     expect(component.find('.summary-props').length).toEqual(1)
     expect(component.find('.details').length).toEqual(1)
+  })
+
+  it('can support custom summary byline', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const expected = {
+      minimum: 1,
+      items: items,
+      byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.byline').length).toEqual(1)
   })
 })

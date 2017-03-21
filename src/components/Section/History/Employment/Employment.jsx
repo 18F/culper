@@ -95,6 +95,30 @@ export class EmploymentItem extends ValidationElement {
           className="eapp-field-wrap no-label"
           />
 
+        <Show when={this.showEmployer()}>
+          <div>
+            <h3>{i18n.t(`${prefix}.heading.employer`)}</h3>
+            <div className="eapp-field-wrap">
+              <Help id={`${prefix}.employer.help`}>
+                <Text name="Employment"
+                      {...this.props.Employment}
+                      onUpdate={this.onUpdate.bind(this, 'Employment')}
+                      className="text"
+                      label={i18n.t(`${prefix}.employer.label`)}
+                      />
+                <HelpIcon className="employer" />
+              </Help>
+            </div>
+          </div>
+        </Show>
+
+        <Show when={this.showSupervisor()}>
+          <Supervisor name="Supervisor"
+                      {...this.props.Supervisor}
+                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
+                      />
+        </Show>
+
         <h3>{i18n.t(`history.employment.default.heading.datesEmployed`)}</h3>
         <div className="eapp-field-wrap">
           <Help id={`history.employment.default.datesEmployed.help`}>
@@ -129,19 +153,6 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployer()}>
           <div>
-            <h3>{i18n.t(`${prefix}.heading.employer`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`${prefix}.employer.help`}>
-                <Text name="Employment"
-                      {...this.props.Employment}
-                      onUpdate={this.onUpdate.bind(this, 'Employment')}
-                      className="text"
-                      label={i18n.t(`${prefix}.employer.label`)}
-                      />
-                <HelpIcon className="employer" />
-              </Help>
-            </div>
-
             <h3>{i18n.t(`${prefix}.heading.title`)}</h3>
             <div className="eapp-field-wrap">
               <Help id={`${prefix}.title.help`}>
@@ -190,13 +201,6 @@ export class EmploymentItem extends ValidationElement {
               </Help>
             </div>
           </div>
-        </Show>
-
-        <Show when={this.showSupervisor()}>
-          <Supervisor name="Supervisor"
-                      {...this.props.Supervisor}
-                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
-                      />
         </Show>
 
         <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
