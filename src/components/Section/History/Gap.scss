@@ -1,5 +1,10 @@
 .gap {
+  border-right: 0.4rem solid #fff !important;
+  border-left: 0.4rem solid #fff !important;
+
   .help {
+    padding-top: 1rem;
+
     .message {
       width: 100%;
     }
@@ -23,6 +28,8 @@
   }
 
   button {
+    margin: 0 !important;
+
     i {
       margin-left: 1rem;
     }

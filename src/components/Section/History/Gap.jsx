@@ -15,7 +15,7 @@ export class Gap extends React.Component {
     const to = (this.props.dates.to || {}).date || {}
 
     return (
-      <div className="details open">
+      <div className="gap details open">
         <div className="help">
           <div className="message eapp-error-message">
             <i className="fa fa-exclamation"></i>

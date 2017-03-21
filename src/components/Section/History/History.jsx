@@ -488,6 +488,7 @@ class History extends ValidationElement {
             <Accordion minimum="1"
                        defaultState={false}
                        items={InjectGaps(this.props.History.Residence, daysAgo(today, 365 * this.totalYears()))}
+                       sort={this.sort}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
                        summary={ResidenceSummary}
@@ -504,6 +505,7 @@ class History extends ValidationElement {
             <Accordion minimum="1"
                        defaultState={false}
                        items={InjectGaps(this.props.History.Employment, daysAgo(today, 365 * this.totalYears()))}
+                       sort={this.sort}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
                        summary={EmploymentSummary}
@@ -521,6 +523,7 @@ class History extends ValidationElement {
               <Accordion minimum="1"
                          defaultState={false}
                          items={this.props.History.Education}
+                         sort={this.sort}
                          onUpdate={this.updateEducation}
                          onValidate={this.onValidate}
                          summary={EducationSummary}
