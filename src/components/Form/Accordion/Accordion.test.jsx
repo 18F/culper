@@ -193,9 +193,9 @@ describe('The accordion component', () => {
       minimum: 1,
       items: items,
       onUpdate: (x) => { items = x },
-      summary: (item, index) => { return <span className="summary-props">Properties</span> },
-      customSummary: (item, index, callback) => { return callback() },
-      customDetails: (item, index, callback) => { return callback() }
+      summary: (item, index, initial) => { return <span className="summary-props">Properties</span> },
+      customSummary: (item, index, initial, callback) => { return callback() },
+      customDetails: (item, index, initial, callback) => { return callback() }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.summary').length).toEqual(1)

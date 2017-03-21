@@ -379,7 +379,7 @@ class History extends ValidationElement {
     return holes > 0
   }
 
-  customSummary (item, index, callback) {
+  customSummary (item, index, initial, callback) {
     if (item.type === 'Gap') {
       return null
     }
@@ -403,7 +403,7 @@ class History extends ValidationElement {
     this.onUpdate(field, this.excludeGaps(items))
   }
 
-  customResidenceDetails (item, index, callback) {
+  customResidenceDetails (item, index, initial, callback) {
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
@@ -420,7 +420,7 @@ class History extends ValidationElement {
     return callback()
   }
 
-  customEmploymentDetails (item, index, callback) {
+  customEmploymentDetails (item, index, initial, callback) {
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (

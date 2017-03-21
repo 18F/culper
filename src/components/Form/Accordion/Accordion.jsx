@@ -2,8 +2,8 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 
-const openState = (item = {}) => {
-  return `${item.open ? 'open' : 'close'}`
+const openState = (item = {}, initial = false) => {
+  return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()
 }
 
 const chevron = (item = {}) => {
@@ -13,6 +13,10 @@ const chevron = (item = {}) => {
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
+
+    this.state = {
+      initial: props.initial
+    }
 
     this.update = this.update.bind(this)
     this.add = this.add.bind(this)
@@ -80,6 +84,15 @@ export default class Accordion extends ValidationElement {
 
       return x
     }))
+
+    this.setState({ initial: false })
+  }
+
+  /**
+   * Create a new item with required properties.
+   */
+  newItem () {
+    return { uuid: super.guid(), open: true }
   }
 
   /**
@@ -87,22 +100,29 @@ export default class Accordion extends ValidationElement {
    * default states.
    */
   add () {
-    this.update(this.props.items.concat([{ uuid: super.guid(), open: true }]))
+    this.update(this.props.items.concat([this.newItem()]))
+    this.setState({ initial: false })
   }
 
   /**
    * Remove the item from the array of items.
    */
   remove (item) {
+    // Confirm deletion first
+    if (window.confirm(i18n.t('collection.warning')) !== true) {
+      return
+    }
+
     let items = this.props.items.filter(x => {
       return x.uuid !== item.uuid
     })
 
     if (items.length < this.props.minimum) {
-      this.add()
-    } else {
-      this.update(items)
+      items.push(this.newItem())
     }
+
+    this.update(items)
+    this.setState({ initial: false })
   }
 
   /**
@@ -112,6 +132,7 @@ export default class Accordion extends ValidationElement {
     let items = [...this.props.items]
     items[index][prop] = value
     this.update(items)
+    this.setState({ initial: false })
   }
 
   /**
@@ -142,10 +163,10 @@ export default class Accordion extends ValidationElement {
     return item.open ? this.props.closeLabel : this.props.openLabel
   }
 
-  summary (item, index) {
+  summary (item, index, initial = false) {
     return (
       <div className="summary">
-        <a className={`left ${openState(item)}`} onClick={this.toggle.bind(this, item)}>
+        <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
           {this.props.summary(item, index)}
           <span className="button-with-icon">
             <i className={chevron(item)} aria-hidden="true"></i>
@@ -162,9 +183,9 @@ export default class Accordion extends ValidationElement {
     )
   }
 
-  details (item, index) {
+  details (item, index, initial = false) {
     return (
-      <div className={`details ${openState(item)}`}>
+      <div className={`details ${openState(item, initial)}`}>
         {this.factory(item, index, this.props.children)}
         <a className="close" onClick={this.toggle.bind(this, item)}>
           <span>{this.props.closeLabel}</span>
@@ -178,11 +199,12 @@ export default class Accordion extends ValidationElement {
    */
   content () {
     // Ensure we have the minimum amount of items required
+    const initial = this.state.initial
     return this.props.items.sort(this.props.sort).map((item, index, arr) => {
       return (
         <div className="item" key={item.uuid}>
-          {this.props.customSummary(item, index, () => { return this.summary(item, index) })}
-          {this.props.customDetails(item, index, () => { return this.details(item, index) })}
+          {this.props.customSummary(item, index, initial, () => { return this.summary(item, index, initial) })}
+          {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
         </div>
       )
     })
@@ -241,6 +263,7 @@ export default class Accordion extends ValidationElement {
 }
 
 Accordion.defaultProps = {
+  initial: true,
   minimum: 1,
   items: [],
   className: '',
@@ -255,17 +278,17 @@ Accordion.defaultProps = {
   sort: (a, b) => { return -1 },
   onUpdate: () => {},
   onValidate: () => {},
-  summary: (item, index) => {
+  summary: (item, index, initial = false) => {
     return (
       <span>
         <strong>Warning:</strong> Item summary not implemented
       </span>
     )
   },
-  customSummary: (item, index, callback) => {
+  customSummary: (item, index, initial, callback) => {
     return callback()
   },
-  customDetails: (item, index, callback) => {
+  customDetails: (item, index, initial, callback) => {
     return callback()
   }
 }
