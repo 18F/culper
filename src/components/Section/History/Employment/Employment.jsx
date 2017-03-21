@@ -74,7 +74,7 @@ export class EmploymentItem extends ValidationElement {
     const sevenYearsAgo = daysAgo(today, 365 * 7)
     const from = (this.state.Dates || {}).from
     const to = (this.state.Dates || {}).to
-    return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo)
+    return (from && from.date >= sevenYearsAgo) || (to && to.date >= sevenYearsAgo)
   }
 
   localizeByActivity () {

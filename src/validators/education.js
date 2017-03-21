@@ -66,7 +66,7 @@ export default class EducationValidator {
 
   validReference () {
     const threeYearsAgo = daysAgo(today, 365 * 3)
-    if (this.hasEducation() && ((this.dates.from && this.dates.from >= threeYearsAgo) || (this.dates.to && this.dates.to >= threeYearsAgo))) {
+    if (this.hasEducation() && ((this.dates.from.date && this.dates.from.date >= threeYearsAgo) || (this.dates.to.date && this.dates.to.date >= threeYearsAgo))) {
       return this.reference && new ReferenceValidator(this.reference, null).isValid()
     }
 

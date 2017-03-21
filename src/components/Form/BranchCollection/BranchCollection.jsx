@@ -97,10 +97,16 @@ export default class BranchCollection extends React.Component {
   }
 
   content () {
-    let hasNo = !!this.props.items.find(item => item[this.props.valueKey] === 'No')
+    let items = this.props.items.map(item => {
+      if (!item.index) {
+        item.index = newGuid()
+      }
+      return item
+    })
+    let hasNo = !!items.find(item => item[this.props.valueKey] === 'No')
 
     // When no items are present, render default branch yes/no
-    if (this.props.items.length === 0) {
+    if (items.length === 0) {
       return (
         <div>
           {
@@ -115,7 +121,7 @@ export default class BranchCollection extends React.Component {
 
     // If a branch has been selected but it has a `No` value, rather than deleting, we'll update
     // its value
-    if (this.props.items.length === 1 && this.props.items[0][this.props.valueKey] === 'No') {
+    if (items.length === 1 && items[0][this.props.valueKey] === 'No') {
       var item = this.props.items[0]
       return (
         <div key={item.index}>
@@ -144,7 +150,7 @@ export default class BranchCollection extends React.Component {
         return null
       }
 
-      return this.props.items.length - 1 === index
+      return items.length - 1 === index
         ? this.branch({
           className: 'last-branch',
           onUpdate: this.onLastBranchClick.bind(this),
@@ -160,7 +166,7 @@ export default class BranchCollection extends React.Component {
         : null
     }
 
-    const rows = this.props.items.map((item, index) => {
+    const rows = items.map((item, index) => {
       return (
         <div key={item.index}>
           { top(index, item) }
