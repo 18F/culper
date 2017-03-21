@@ -8,7 +8,6 @@ export default class EducationValidator {
   constructor (state, props) {
     this.hasAttended = state.HasAttended
     this.hasDegree10 = state.HasDegree10
-    this.hasDegree = state.HasDegree
     this.dates = state.Dates
     this.address = state.Address
     this.name = state.Name
@@ -74,27 +73,31 @@ export default class EducationValidator {
     return true
   }
 
+  hasDegree () {
+    return this.diplomas.filter(diploma => { return diploma.Has === 'Yes' }).length
+  }
+
   validDiplomas () {
     if (this.hasEducation()) {
-      if (!(this.hasDegree === 'No' || this.hasDegree === 'Yes')) {
+      // Check if we have valid yes/no values
+      if (!this.diplomas || !this.diplomas.length) {
         return false
       }
-
-      if (this.hasDegree === 'Yes') {
-        if (!this.diplomas || this.diplomas.length === 0) {
-          return false
-        }
-
+      if (this.hasDegree()) {
         for (const item of this.diplomas) {
-          if (!item.Diploma) {
+          if (item.Has !== 'Yes') {
+            continue
+          }
+          const diploma = item.Diploma
+          if (!diploma) {
             return false
           }
 
-          if (item.Diploma === 'Other' && !item.DiplomaOther) {
+          if (diploma.Diploma === 'Other' && !diploma.DiplomaOther) {
             return false
           }
 
-          if (!item.Date || !item.Date.date) {
+          if (!diploma.Date || !diploma.Date.date) {
             return false
           }
         }

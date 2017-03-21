@@ -5,26 +5,7 @@ import { newGuid } from '../ValidationElement/ValidationElement'
 export default class BranchCollection extends React.Component {
   constructor (props) {
     super(props)
-
-    let indices = []
-    for (let i = 0; i < this.props.items.length; i++) {
-      indices.push(newGuid())
-    }
-
-    this.state = {
-      indices: indices
-    }
-
     this.content = this.content.bind(this)
-    this.updateIndices = this.updateIndices.bind(this)
-  }
-
-  updateIndices (indices, fn) {
-    this.setState({ indices: indices }, () => {
-      if (fn) {
-        fn()
-      }
-    })
   }
 
   /**
@@ -38,10 +19,6 @@ export default class BranchCollection extends React.Component {
     // If it's not the first item, remove it when user selects no if `removeable` flag is turned on
     if (this.props.items.length > 1 && this.props.removable && yes === 'No') {
       items.splice(index, 1)
-
-      //let indices = [...this.state.indices]
-      //indices.splice(index, 1)
-      //this.updateIndices(indices)
     }
 
     this.props.onUpdate(items)
@@ -56,8 +33,6 @@ export default class BranchCollection extends React.Component {
       index: newGuid()
     }
     let items = [item]
-    //let indices = [newGuid()]
-    //this.updateIndices(indices, () => { this.props.onUpdate(items) })
     this.props.onUpdate(items)
   }
 
@@ -72,16 +47,10 @@ export default class BranchCollection extends React.Component {
     if (yes === 'Yes') {
       let items = [...this.props.items]
       items.push(item)
-      //let indices = [...this.state.indices]
-      //indices.push(newGuid())
-      //this.updateIndices(indices, () => { this.props.onUpdate(items) })
       this.props.onUpdate(items)
     } else {
       let items = [...this.props.items]
       items.push(item)
-      //let indices = [...this.state.indices]
-      //indices.push(newGuid())
-      //this.updateIndices(indices, () => { this.props.onUpdate(items) })
       this.props.onUpdate(items)
     }
   }
