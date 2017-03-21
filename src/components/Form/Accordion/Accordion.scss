@@ -1,5 +1,24 @@
 @import 'eqip-colors';
 
+@keyframes openbox {
+    0% {
+        max-height: 0;
+    }
+    99% {
+        max-height: 50vh;
+    }
+    100% {
+        max-height: none;
+    }
+}
+@keyframes closebox {
+    0% {
+        max-height: 50vh;
+    }
+    100% {
+        max-height: 0;
+    }
+}
 .accordion {
   background-color: $eapp-grey;
   padding: 0 5rem;
@@ -32,11 +51,16 @@
     }
     .details {
       padding: 0 14%;
+      overflow: hidden;
       @media screen and (max-width: 1380px) {
         padding: 0 7.5%;
       }
       @media screen and (max-width: 1024px) {
         padding: 0 5.5%;
+      }
+      .close {
+        display: block;
+        text-align: right;
       }
     }
   }
@@ -113,17 +137,15 @@
       }
     }
   }
-
-  .details.open {
-    display: block;
-
-    .close {
-      display: block;
-      text-align: right;
-    }
+  .details.open, .details.close {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
   }
-
+  .details.open {
+    animation-name: openbox;
+  }
   .details.close {
-    display: none;
+    animation-name: closebox;
   }
 }
