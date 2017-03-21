@@ -115,6 +115,8 @@ export default class Address extends ValidationElement {
               super.handleValidation(event, status, error)
             }
           })
+      }).catch(error => {
+        console.log(error)
       })
   }
 
