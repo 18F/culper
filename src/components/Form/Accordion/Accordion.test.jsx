@@ -88,6 +88,7 @@ describe('The accordion component', () => {
   it('can remove item from collection', () => {
     let i = 0
     const expected = {
+      skipWarning: true,
       minimum: 2,
       items: [
         { uuid: '1', open: false },
@@ -119,6 +120,7 @@ describe('The accordion component', () => {
   it('remove when above the minimum', () => {
     let items = []
     const expected = {
+      skipWarning: true,
       minimum: 2,
       items: [
         { uuid: '1', open: false },

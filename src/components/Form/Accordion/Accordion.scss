@@ -82,6 +82,21 @@
     margin-top: 0;
   }
 
+  .byline {
+    width: 100%;
+    padding: 1rem 7.5%;
+    transition: border-left-color 0.3s;
+    border-right: 0.4rem solid #fff;
+
+    &.close {
+      border-left: 0.4rem solid #fff;
+    }
+
+    &.open {
+      border-left: 0.4rem solid $eapp-blue;
+    }
+  }
+
   .summary {
     display: table;
     width: 100%;
@@ -104,7 +119,6 @@
         display: inline-block;
         text-align: center;
         width: 7rem;
-        // height: 100%;
         vertical-align: text-bottom;
         border: none !important;
 

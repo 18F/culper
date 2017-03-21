@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 
-const openState = (item = {}, initial = false) => {
+export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()
 }
 
@@ -109,7 +109,7 @@ export default class Accordion extends ValidationElement {
    */
   remove (item) {
     // Confirm deletion first
-    if (window.confirm(i18n.t('collection.warning')) !== true) {
+    if (!this.props.skipWarning && window.confirm(i18n.t('collection.warning')) !== true) {
       return
     }
 
@@ -164,20 +164,23 @@ export default class Accordion extends ValidationElement {
 
   summary (item, index, initial = false) {
     return (
-      <div className="summary">
-        <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
-          <span className="button-with-icon">
-            <i className={chevron(item)} aria-hidden="true"></i>
-            <span className="toggle">{this.openText(item)}</span>
-          </span>
-          {this.props.summary(item, index)}
-        </a>
-        <a className="right remove" onClick={this.remove.bind(this, item)}>
-          <span className="button-with-icon">
-            <i className="fa fa-trash" aria-hidden="true"></i>
-            <span>{this.props.removeLabel}</span>
-          </span>
-        </a>
+      <div>
+        <div className="summary">
+          <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
+            <span className="button-with-icon">
+              <i className={chevron(item)} aria-hidden="true"></i>
+              <span className="toggle">{this.openText(item)}</span>
+            </span>
+            {this.props.summary(item, index, initial)}
+          </a>
+          <a className="right remove" onClick={this.remove.bind(this, item)}>
+            <span className="button-with-icon">
+              <i className="fa fa-trash" aria-hidden="true"></i>
+              <span>{this.props.removeLabel}</span>
+            </span>
+          </a>
+        </div>
+        {this.props.byline(item, index, initial)}
       </div>
     )
   }
@@ -263,6 +266,7 @@ export default class Accordion extends ValidationElement {
 
 Accordion.defaultProps = {
   initial: true,
+  skipWarning: false,
   minimum: 1,
   items: [],
   className: '',
@@ -283,6 +287,9 @@ Accordion.defaultProps = {
         <strong>Warning:</strong> Item summary not implemented
       </span>
     )
+  },
+  byline: (item, index, initial = false) => {
+    return null
   },
   customSummary: (item, index, initial, callback) => {
     return callback()

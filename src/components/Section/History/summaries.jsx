@@ -11,6 +11,7 @@ import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../
 export const ResidenceSummary = (props) => {
   const item = props.Item || {}
 
+  let address = ''
   let address1 = ''
   let address2 = ''
   if (item.Address) {
@@ -25,7 +26,9 @@ export const ResidenceSummary = (props) => {
   }
 
   if (address1.length === 0 || address2.length === 1) {
-    address1 = i18n.t('history.residence.collection.summary.unknown')
+    address = i18n.t('history.residence.collection.summary.unknown')
+  } else {
+    address = `${address1}, ${address2}`.trim()
   }
 
   const dates = dateSummary(item)
@@ -34,15 +37,12 @@ export const ResidenceSummary = (props) => {
 
   return (
     <span>
+      <Svg src={svg} />
       <span className="index">
-        <Svg src={svg} />
         {i18n.t('history.residence.collection.summary.item')}:
       </span>
-      <span className="employer">{address1}, {address2}</span>
+      <span className="employer">{address}</span>
       <span className="dates">{dates}</span>
-      <Show when={hasErrors}>
-        <div className="incomplete">{i18n.t('history.residence.collection.summary.incomplete')}</div>
-      </Show>
     </span>
   )
 }
@@ -59,15 +59,12 @@ export const EmploymentSummary = (props) => {
 
   return (
     <span>
+      <Svg src={svg} />
       <span className="index">
-        <Svg src={svg} />
         {i18n.t('history.employment.default.collection.summary.employer')}:
       </span>
       <span className="employer">{ employer }</span>
       <span className="dates">{ dates }</span>
-      <Show when={hasErrors}>
-        <div className="incomplete">{i18n.t('history.employment.default.collection.summary.incomplete')}</div>
-      </Show>
     </span>
   )
 }
@@ -84,15 +81,12 @@ export const EducationSummary = (props) => {
 
   return (
     <span>
+      <Svg src={svg} />
       <span className="index">
-        <Svg src={svg} />
         {i18n.t('history.education.collection.school.summary.item')}:
       </span>
       <span className="employer">{ school }</span>
       <span className="dates">{ dates }</span>
-      <Show when={hasErrors}>
-        <div className="incomplete">{i18n.t('history.education.collection.summary.incomplete')}</div>
-      </Show>
     </span>
   )
 }
@@ -183,5 +177,7 @@ export const dateSummary = (item) => {
     vals.push(noDateLabel)
   }
 
-  return vals.join('-')
+  return vals.every(x => x === noDateLabel)
+    ? ''
+    : vals.join('-')
 }
