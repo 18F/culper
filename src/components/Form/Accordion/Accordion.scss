@@ -81,8 +81,11 @@
   }
 
   .summary {
+    display: table;
+    width: 100%;
+
     .left, .right {
-      display: inline-block;
+      display: table-cell;
       position: relative;
       cursor: pointer;
       text-decoration: none;
@@ -99,7 +102,7 @@
         display: inline-block;
         text-align: center;
         width: 7rem;
-        height: 100%;
+        // height: 100%;
         vertical-align: text-bottom;
         border: none !important;
 
@@ -133,10 +136,22 @@
         float: right;
       }
 
+      > span:last-of-type {
+        > span:first-of-type {
+          margin-right: 1rem;
+        }
+
+        > span.dates {
+          float: right;
+          text-align: right;
+          height: 4.9rem;
+        }
+      }
+
       &:hover {
         color: $eapp-blue;
 
-        > span {
+        > span:last-of-type > span {
           border-bottom: 1px dashed $eapp-blue;
         }
       }
@@ -154,16 +169,27 @@
   }
 
   .details.open, .details.close {
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
+    &.animate {
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+    }
   }
 
   .details.open {
-    animation-name: openbox;
+    &.animate {
+      animation-name: openbox;
+    }
   }
 
   .details.close {
-    animation-name: closebox;
+    &.static {
+      // display: none;
+      max-height: 0;
+    }
+
+    &.animate {
+      animation-name: closebox;
+    }
   }
 }

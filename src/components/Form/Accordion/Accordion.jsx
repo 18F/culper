@@ -132,7 +132,6 @@ export default class Accordion extends ValidationElement {
     let items = [...this.props.items]
     items[index][prop] = value
     this.update(items)
-    this.setState({ initial: false })
   }
 
   /**
@@ -167,11 +166,11 @@ export default class Accordion extends ValidationElement {
     return (
       <div className="summary">
         <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
-          {this.props.summary(item, index)}
           <span className="button-with-icon">
             <i className={chevron(item)} aria-hidden="true"></i>
             <span className="toggle">{this.openText(item)}</span>
           </span>
+          {this.props.summary(item, index)}
         </a>
         <a className="right remove" onClick={this.remove.bind(this, item)}>
           <span className="button-with-icon">
