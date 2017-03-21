@@ -52,10 +52,11 @@ export default class Accordion extends ValidationElement {
       }
 
       if (item.open !== true && item.open !== false) {
-        item.open = false
+        item.open = this.props.defaultState
         dirty = true
       }
 
+      item.open = this.props.defaultState
       return item
     })
 
@@ -266,6 +267,7 @@ Accordion.defaultProps = {
   initial: true,
   skipWarning: false,
   minimum: 1,
+  defaultState: true,
   items: [],
   className: '',
   appendTitle: '',

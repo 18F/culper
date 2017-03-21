@@ -463,32 +463,30 @@ class History extends ValidationElement {
             <div className="history intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
-                            Completed={this.props.Completed}
-                            tour={i18n.t('history.tour.para')}
-                            review={i18n.t('history.review.para')}
-                            onTour={this.handleTour}
-                            onReview={this.handleReview}
-                            />
+                             Completed={this.props.Completed}
+                             tour={i18n.t('history.tour.para')}
+                             review={i18n.t('history.review.para')}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
               </div>
             </div>
           </SectionView>
 
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
-                       showTop="true"
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
                        next="foreign/passport"
                        nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('history.timeline.title')}</h2>
-            {i18n.m('history.timeline.para1')}
-            {i18n.m('history.timeline.para2')}
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
             <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
               { this.educationSummaryProgress() }
             </Show>
             <Accordion minimum="1"
+                       defaultState={false}
                        items={InjectGaps(this.props.History.Residence, daysAgo(today, 365 * this.totalYears()))}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
@@ -504,6 +502,7 @@ class History extends ValidationElement {
                              />
             </Accordion>
             <Accordion minimum="1"
+                       defaultState={false}
                        items={InjectGaps(this.props.History.Employment, daysAgo(today, 365 * this.totalYears()))}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
@@ -518,28 +517,9 @@ class History extends ValidationElement {
                               bind={true}
                               />
             </Accordion>
-            <Branch name="branch_school"
-                    className="eapp-field-wrap"
-                    value={this.props.Education.HasAttended}
-                    help="history.education.help.attendance"
-                    label={i18n.t('history.education.label.attendance')}
-                    onUpdate={this.updateBranchAttendance}
-                    >
-            </Branch>
-            <Show when={this.props.Education.HasAttended === 'No'}>
-              <div>
-                <Branch name="branch_degree10"
-                        className="eapp-field-wrap"
-                        value={this.props.Education.HasDegree10}
-                        help="history.education.help.degree10"
-                        label={i18n.t('history.education.label.degree10')}
-                        onUpdate={this.updateBranchDegree10}
-                        >
-                </Branch>
-              </div>
-            </Show>
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               <Accordion minimum="1"
+                         defaultState={false}
                          items={this.props.History.Education}
                          onUpdate={this.updateEducation}
                          onValidate={this.onValidate}
@@ -554,6 +534,7 @@ class History extends ValidationElement {
               </Accordion>
             </Show>
 
+            <p></p>
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
@@ -568,7 +549,11 @@ class History extends ValidationElement {
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
             <h2>{i18n.t('history.residence.title')}</h2>
-            <p>{i18n.t('history.residence.info')}</p>
+            <h3>{i18n.t('history.residence.info')}</h3>
+            {i18n.m('history.residence.info2')}
+            {i18n.m('history.residence.info3a')}
+            {i18n.m('history.residence.info3b')}
+            {i18n.m('history.residence.info3c')}
             { this.residenceSummaryProgress() }
             <Accordion minimum="1"
                        items={this.props.History.Residence}
@@ -688,7 +673,7 @@ class History extends ValidationElement {
                      />
           </SectionView>
         </SectionViews>
-        </div>
+      </div>
     )
   }
 }
