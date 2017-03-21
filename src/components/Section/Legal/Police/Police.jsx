@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Collection } from '../../../Form'
+import { ValidationElement, Branch, Show, BranchCollection, Collection } from '../../../Form'
 import { dateSummary } from '../../History/HistoryCollection/summaries'
 import Offense from './Offense'
 import DomesticViolence from './DomesticViolence'
@@ -28,6 +28,7 @@ export default class Police extends ValidationElement {
       HasProbation: props.HasProbation,
       HasTrial: props.HasTrial,
       List: props.List,
+      DomesticViolence: props.DomesticViolence,
       errorCodes: []
     }
 
@@ -40,6 +41,7 @@ export default class Police extends ValidationElement {
     this.updateTrial = this.updateTrial.bind(this)
     this.updateList = this.updateList.bind(this)
     this.hasOffenses = this.hasOffenses.bind(this)
+    this.updateDomesticViolence = this.updateDomesticViolence.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -92,6 +94,13 @@ export default class Police extends ValidationElement {
   updateList (collection) {
     this.onUpdate('List', collection)
   }
+
+  updateDomesticViolence (value, event) {
+    this.onUpdate('DomesticViolence', value, () => {
+      this.checkToClear()
+    })
+  }
+
 
   /**
    * Handle the validation event.
@@ -152,6 +161,12 @@ export default class Police extends ValidationElement {
     )
   }
 
+  domesticViolenceBranch () {
+    return (
+      <div>{i18n.m('legal.police.label.domesticViolence')}</div>
+    )
+  }
+
   render () {
     return (
       <div className="police">
@@ -206,6 +221,18 @@ export default class Police extends ValidationElement {
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.trial')}
         </Branch>
+
+        <BranchCollection
+          branchHelp="legal.police.branchCollection.domesticViolence"
+          branch={this.domesticViolenceBranch()}
+          items={this.state.DomesticViolence}
+          onUpdate={this.updateDomesticViolence}
+        >
+          <DomesticViolence name="domestic"
+            bind={true}
+            onValidate={this.handleValidation}
+          />
+        </BranchCollection>
 
         <Show when={this.hasOffenses()}>
           <Collection minimum="1"

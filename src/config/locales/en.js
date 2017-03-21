@@ -3121,7 +3121,11 @@ const en = {
         incarcerationDates: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
         probationDates: 'If conviction resulted in probation or parole, provide the  dates of probation or parole',
         awaitingTrial: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
-        awaitingTrialExplanation: 'Provide explanation'
+        awaitingTrialExplanation: 'Provide explanation',
+        domesticExplanation: 'Provide explanation',
+        domesticCourtName: 'Provide the name of the court or agency that issued the order',
+        domesticCourtAddress: 'Provide the location of the court or agency that issued the order',
+        domesticCourtDate: 'Provide the date the order was issued'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
@@ -3147,7 +3151,8 @@ const en = {
         misdemeanor: 'Misdemeanor',
         other: 'Other',
         courtcharge: 'Charge',
-        courtoutcome: 'Outcome'
+        courtoutcome: 'Outcome',
+        domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?'
       },
       help: {
         summons: {
@@ -3289,6 +3294,12 @@ const en = {
           title: 'Need help with awaiting trial explanation',
           message: 'Provide explanation',
           note: ''
+        }
+      },
+      branchCollection: {
+        domesticViolence: {
+          title: 'Need help?',
+          message: 'Is there currently a domestic violence protective order or restraining order issued against you?'
         }
       },
       collection: {
