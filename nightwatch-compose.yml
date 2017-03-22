@@ -1,0 +1,93 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    expose:
+      - '5432'
+    networks:
+      - private
+
+  # Within the docker world this is the main entrypoint in to
+  # this web application. This was done in order to have a
+  # combination of:
+  #  - development REPL
+  #  - automated unit tests
+  #  - spec testing
+  #
+  # Caddy will do the following:
+  #  - serve compiled static assets
+  #  - proxy /api requests to the backend API
+  web:
+    image: abiosoft/caddy
+    volumes:
+      - ./dist:/srv
+      - ./api/Caddyfile:/etc/Caddyfile
+    ports:
+      - '8080:2015'
+    networks:
+      - private
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    env_file:
+      - .env
+    working_dir: /go/src/github.com/18F/e-QIP-prototype/api
+    command: ./run.sh
+    volumes:
+      - .:/go/src/github.com/18F/e-QIP-prototype
+    expose:
+      - '3000'
+    environment:
+      DATABASE_USER: postgres
+      DATABASE_NAME: postgres
+      DATABASE_HOST: db:5432
+    networks:
+      - private
+    depends_on:
+      - db
+
+  hub:
+    image: selenium/hub:latest
+    expose:
+      - '4444'
+    networks:
+      - private
+
+  # Selenium nodes currently don't support docker networks.
+  # To get around this we emulate what `--link` would create for
+  # environment variables.
+  #
+  # Reference: https://github.com/SeleniumHQ/docker-selenium/issues/133
+  chrome:
+    image: selenium/node-chrome:latest
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - private
+    depends_on:
+      - hub
+
+  nightwatch:
+    build:
+      context: .
+      dockerfile: Dockerfile.nightwatch
+    command: [npm, run, docker]
+    volumes:
+      - ./specs:/usr/src/app
+    networks:
+      - private
+    depends_on:
+      - chrome
+      - web
+
+networks:
+  private:
+    driver: bridge

@@ -16,28 +16,19 @@ describe('The employment additional activity component', () => {
 
     const selected = component.find({type: 'radio', name: 'additionalActivity', value: 'Yes'})
     selected.simulate('change')
-    expect(component.find('.has-additional').length).toBeGreaterThan(0)
+    expect(component.find('.accordion').length).toBeGreaterThan(0)
     component.find({type: 'radio', name: 'additionalActivity', value: 'No'}).simulate('change')
-    expect(component.find('.has-additional').length).toBe(0)
-    expect(updates).toBe(2)
+    expect(component.find('.accordion').length).toBe(0)
+    expect(updates).toBeGreaterThan(1)
   })
 
   it('loads data', () => {
     let updates = 0
-    let blur = 0
-    let focus = 0
-
-    let expected = {
+    const expected = {
       onUpdate: () => {
         updates++
       },
-      onBlur: () => {
-        blur++
-      },
-      onFocus: () => {
-        focus++
-      },
-      list: [
+      items: [
         {
           Position: {
             name: 'Position',
@@ -48,15 +39,10 @@ describe('The employment additional activity component', () => {
       HasAdditionalActivity: 'Yes'
     }
 
-    const component = mount(<AdditionalActivity name="activity" List={expected.list} onUpdate={expected.onUpdate} onFocus={expected.onFocus} onBlur={expected.onBlur} HasAdditionalActivity={expected.HasAdditionalActivity} />)
-    expect(component.find('.has-additional').length).toBeGreaterThan(0)
+    const component = mount(<AdditionalActivity {...expected} />)
+    expect(component.find('.accordion').length).toBeGreaterThan(0)
     let position = component.find('input[name="Position"]')
     position.simulate('change')
-    position.simulate('blur')
-    position.simulate('focus')
-    expect(updates).toBe(1)
-    expect(blur).toBe(1)
-    expect(focus).toBe(1)
+    expect(updates).toBeGreaterThan(0)
   })
 })
-

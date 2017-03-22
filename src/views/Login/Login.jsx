@@ -84,6 +84,7 @@ class Login extends React.Component {
                     placeholder="Enter your username"
                     label="Username"
                     autoFocus
+                    value={this.state.username}
                     onChange={this.onUsernameChange} />
             </div>
             <div className={pwClass}>

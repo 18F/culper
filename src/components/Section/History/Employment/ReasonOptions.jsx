@@ -77,65 +77,65 @@ export default class ReasonOptions extends React.Component {
     const text = this.labelText()
     const date = this.labelDate()
     return (
-      <Help id="history.employment.default.left.help">
-        <div className={this.props.className}>
+      <div className={this.props.className}>
+        <Help id="history.employment.default.left.help">
           <h3>Select the type of incident</h3>
           <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason}>
             <Radio name="employment_left"
-              label={i18n.t('history.employment.default.left.fired.option')}
-              value="Fired"
-              onUpdate={this.updateReason}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.t('history.employment.default.left.fired.option')}
+                   value="Fired"
+                   onUpdate={this.updateReason}
+                   onValidate={this.props.onValidate}
+                   />
             <Radio name="employment_quit"
-              label={i18n.t('history.employment.default.left.quit.option')}
-              value="Quit"
-              onUpdate={this.updateReason}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.t('history.employment.default.left.quit.option')}
+                   value="Quit"
+                   onUpdate={this.updateReason}
+                   onValidate={this.props.onValidate}
+                   />
             <Radio name="employment_charges"
-              label={i18n.t('history.employment.default.left.charges.option')}
-              value="Charges"
-              onUpdate={this.updateReason}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.t('history.employment.default.left.charges.option')}
+                   value="Charges"
+                   onUpdate={this.updateReason}
+                   onValidate={this.props.onValidate}
+                   />
             <Radio name="employment_performance"
-              label={i18n.t('history.employment.default.left.performance.option')}
-              value="Performance"
-              onUpdate={this.updateReason}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.t('history.employment.default.left.performance.option')}
+                   value="Performance"
+                   onUpdate={this.updateReason}
+                   onValidate={this.props.onValidate}
+                   />
             <Radio name="employment_other"
-              label={i18n.t('history.employment.default.left.other.option')}
-              value="Other"
-              onUpdate={this.updateReason}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.t('history.employment.default.left.other.option')}
+                   value="Other"
+                   onUpdate={this.updateReason}
+                   onValidate={this.props.onValidate}
+                   />
           </RadioGroup>
           <HelpIcon />
-        </div>
-        <Show when={this.state.Reason}>
-          <div>
-            <div className={`${this.props.className} explanation-left`}>
-              <Textarea name="Text"
-                label={text}
-                maxlength="100"
-                {...this.state.Text}
-                onUpdate={this.updateText}
-                onValidate={this.props.onValidate}
-              />
+          <Show when={this.state.Reason}>
+            <div>
+              <div className="explanation-left">
+                <Textarea name="Text"
+                          label={text}
+                          maxlength="100"
+                          {...this.state.Text}
+                          onUpdate={this.updateText}
+                          onValidate={this.props.onValidate}
+                          />
+              </div>
+              <div className="date-left">
+                <label>{date}</label>
+                <DateControl name="Date"
+                             {...this.state.Date}
+                             onUpdate={this.updateDate}
+                             onValidate={this.props.onValidate}
+                             />
+              </div>
             </div>
-            <div className={`${this.props.className} date-left`}>
-              <label>{date}</label>
-              <DateControl name="Date"
-                {...this.state.Date}
-                onUpdate={this.updateDate}
-                onValidate={this.props.onValidate}
-              />
-            </div>
-          </div>
-        </Show>
-      </Help>
+          </Show>
+        </Help>
+      </div>
     )
   }
 }

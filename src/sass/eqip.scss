@@ -34,8 +34,9 @@ a:focus {
     }
 
     .eapp-structure-left {
-      width: 24.8%;
+      width: 21%;
       height: 100vh;
+      min-width: 32rem;
 
       @media screen and (max-width: 768px) {
         width: 29.8%;
@@ -43,22 +44,10 @@ a:focus {
     }
 
     .eapp-structure-right {
-      width: 75.2%;
-      padding-left: 6.2rem;
-
-      @media screen and (max-width: 1024px) {
-        padding-left: 8rem;
-      }
-
-      @media screen and (max-width: 768px) {
-        width: 70.2%;
-        padding-left: 5rem;
-      }
+      width: 79%;
 
       &.eapp-title {
         vertical-align: bottom;
-        padding-right: 11rem;
-        padding-bottom: 2rem;
       }
     }
   }
@@ -132,17 +121,26 @@ a:focus {
 
     /* section title styling, trying to be flexible for long section titles, text should flow up into header */
     .title {
+      width: 87.5%;
       max-height: 14.5rem;
       overflow: hidden;
-      margin-left: 4rem;
+      margin: 0 auto;
       color: #fff;
       font-size: 5rem;
       font-weight: $eapp-bold;
 
       .title-text {
         display: block;
-        width: auto;
+        margin: 0 17.5%;
         line-height: 1.2;
+
+        @media screen and (max-width: 1380px) {
+          margin: 0 12%;
+        }
+
+        @media screen and (max-width: 1024px) {
+          margin: 0 5.5%;
+        }
       }
     }
   }
@@ -169,14 +167,6 @@ a:focus {
 .eapp-core {
   padding-top: 5rem;
   padding-bottom: 4rem;
-
-  @media screen and (max-width: 1024px) {
-    padding-right: 12rem;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding-right: 8rem;
-  }
 }
 
 .hidden {

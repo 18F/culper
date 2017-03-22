@@ -28,7 +28,7 @@ export default class ResidenceValidator {
   }
 
   validReference () {
-    if (withinThreeYears(this.dates.from, this.dates.to)) {
+    if (withinThreeYears(this.dates.from.date, this.dates.to.date)) {
       return new ReferenceValidator(this.reference, null).isValid()
     }
 

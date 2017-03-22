@@ -1,7 +1,7 @@
 ---
 applications:
 - name: eqip-prototype-api-staging
-  memory: 1G
+  memory: 64M
   instances: 2
   domain: fr.cloud.gov
   host: eqip-prototype-api-staging

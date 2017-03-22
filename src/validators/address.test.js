@@ -49,7 +49,7 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           state: 'APO',
           city: 'APO',
-          zipcode: '000000'
+          zipcode: '00000'
         },
         expected: true
       },
@@ -59,7 +59,7 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           state: null,
           city: 'APO',
-          zipcode: '000000'
+          zipcode: '00000'
         },
         expected: false
       },
@@ -69,7 +69,7 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           state: null,
           city: 'APO',
-          zipcode: '000000'
+          zipcode: '00000'
         },
         expected: false
       }
@@ -128,7 +128,65 @@ describe('Address component validation', function () {
     })
   })
 
-  it('should geocode information', function () {
+  it('should geocode information', async () => {
+    const test = {
+      state: {
+        addressType: 'United States',
+        address: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      expected: {
+        Errors: []
+      }
+    }
+
+    api.setToken('my-token')
+    const mock = new MockAdapter(api.proxySecured)
+    mock.onPost('/validate/address').reply(200, {
+      Errors: []
+    })
+
+    return new AddressValidator(test.state, null)
+      .geocode()
+      .then(r => {
+        expect(r).toEqual(test.expected)
+      })
+  })
+
+  it('should handle system errors', async () => {
+    const test = {
+      state: {
+        addressType: 'United States',
+        address: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      expected: {
+        Errors: [{
+          Error: 'error.geocode.system'
+        }]
+      }
+    }
+
+    api.setToken('my-token')
+    const mock = new MockAdapter(api.proxySecured)
+    mock.onPost('/validate/address').reply(200, {
+      Errors: [{
+        Error: 'error.geocode.system'
+      }]
+    })
+    return new AddressValidator(test.state, null)
+      .geocode()
+      .then(r => {
+      }).catch(r => {
+        expect(r).toEqual(test.expected)
+      })
+  })
+
+  it('should validate zipcode', function () {
     const tests = [
       {
         state: {
@@ -136,25 +194,24 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           city: 'Arlington',
           state: 'Virginia',
-          zipcode: '22202'
+          zipcode: '2'
         },
-        expected: {
-          Errors: null
-        }
+        expected: false
+      },
+      {
+        state: {
+          addressType: 'United States',
+          address: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'Virginia',
+          zipcode: null
+        },
+        expected: false
       }
     ]
-    api.setToken('my-token')
-    const mock = new MockAdapter(api.proxySecured)
+
     tests.forEach(test => {
-      mock.onPost('/validate/address').reply(200, {
-        Errors: []
-      })
-      new AddressValidator(test.state, null)
-        .geocode()
-        .then(r => {
-          expect(r).toBe(test.expected)
-          mock.rese()
-        })
+      expect(new AddressValidator(test.state, null).validZipcode()).toEqual(test.expected)
     })
   })
 })

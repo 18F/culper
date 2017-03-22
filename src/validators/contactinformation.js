@@ -33,13 +33,15 @@ export default class ContactInformationValidator {
       return false
     }
 
+    let successful = 0
     for (const item of this.phoneNumbers) {
       if (!item.Telephone || !validPhoneNumber(item.Telephone)) {
-        return false
+        continue
       }
+      successful++
     }
 
-    return true
+    return successful >= required
   }
 
   /**

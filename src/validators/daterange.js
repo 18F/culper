@@ -1,10 +1,7 @@
 export default class DateRangeValidator {
-  constructor (state, props) {
-    if (!state) {
-      return
-    }
+  constructor (state = {}, props = {}) {
     this.from = state.from
-    this.to = state.to
+    this.to = state.present ? { date: new Date() } : state.to
     this.present = state.present
   }
 
@@ -12,15 +9,15 @@ export default class DateRangeValidator {
    * Validates the date ranges
    */
   isValid () {
-    if (!this.from) {
+    if (!this.from || !this.from.date) {
       return false
     }
 
-    if (!this.to && !this.present) {
+    if (!this.to || !this.to.date) {
       return false
     }
 
-    if (this.to < this.from) {
+    if (this.to.date < this.from.date) {
       return false
     }
 

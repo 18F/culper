@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import History from './History'
-import { mount, shallow } from 'enzyme'
+import { mount } from 'enzyme'
 
 const applicationState = {
   History: {}

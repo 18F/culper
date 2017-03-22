@@ -43,6 +43,7 @@ export default class Radio extends ValidationElement {
       return
     }
 
+    event.persist()
     const futureChecked = !this.state.checked
     const futureValue = futureChecked ? this.props.value : ''
     this.handleValidation(event)
@@ -61,6 +62,7 @@ export default class Radio extends ValidationElement {
    * Handle the focus event.
    */
   handleFocus (event) {
+    event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
     })
@@ -70,6 +72,7 @@ export default class Radio extends ValidationElement {
    * Handle the blur event.
    */
   handleBlur (event) {
+    event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
@@ -190,4 +193,15 @@ export default class Radio extends ValidationElement {
       </div>
     )
   }
+}
+
+Radio.defaultProps = {
+  name: 'radio_input',
+  checked: false,
+  disabled: false,
+  valued: '',
+  focus: false,
+  error: false,
+  valid: false,
+  native: false
 }

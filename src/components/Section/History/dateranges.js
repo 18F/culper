@@ -39,11 +39,11 @@ export const decimalAdjust = (type, value, exp) => {
  *   }
  */
 export const rangeSorter = (a, b) => {
-  if (a.from < b.from) {
+  if (a.from.date < b.from.date) {
     return -1
   }
 
-  if (a.from > b.from) {
+  if (a.from.date > b.from.date) {
     return 1
   }
 
@@ -97,6 +97,10 @@ export const findPercentage = (max, min, value) => {
  * Determine how many days are between dates
  */
 export const daysBetween = (from, to) => {
+  if (!from || !to) {
+    return 0
+  }
+
   const diff = Math.abs(to.getTime() - from.getTime())
   return Math.ceil(diff / (1000 * 3600 * 24))
 }
@@ -132,7 +136,7 @@ export const validDate = (month, day, year) => {
   const d = parseInt(day || 0)
   const y = parseInt(year || 0)
 
-  return (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
+  return (y > 1000 && y < 10000) && (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
 }
 
 /**
@@ -155,23 +159,35 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
   start = endOfMonth(start)
 
   ranges.sort(rangeSorter).forEach((range, i) => {
+    if (!range.from || !range.to) {
+      return
+    }
+
     // Finds the gaps from the past to the present
-    const stop = range.from
+    const stop = range.from.date
     if (stop > start && daysBetween(start, stop) > buffer) {
       holes.push({
-        from: start,
-        to: stop
+        from: {
+          date: start
+        },
+        to: {
+          date: stop
+        }
       })
     }
 
     // Set the next start position
-    start = endOfMonth(range.to)
+    start = endOfMonth(range.to.date)
 
     // If this is the last date range check for gaps in the future
     if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {
       holes.push({
-        from: start,
-        to: fullStop
+        from: {
+          date: start
+        },
+        to: {
+          date: fullStop
+        }
       })
     }
   })

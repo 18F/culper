@@ -49,7 +49,10 @@ const en = {
   },
   collection: {
     summary: 'Summary',
+    append: 'Add another item',
     remove: 'Remove',
+    warning: 'Are you sure you would like to remove this item?',
+    open: 'Open',
     close: 'Close'
   },
   comments: {
@@ -169,18 +172,23 @@ const en = {
     },
     day: {
       length: {
-        title: 'Day falls outside of allowable range',
+        title: 'Day falls outside of the allowable range',
         message: 'The day must be a valid day for the month',
         note: ''
       },
       max: {
-        title: '',
+        title: 'Day falls outside of the allowable range',
         message: 'Cannot exceed the number of days within the month',
         note: ''
       }
     },
     year: {
       max: {
+        title: 'The year must be four digits',
+        message: 'The year must be a valid year',
+        note: ''
+      },
+      min: {
         title: 'The year must be four digits',
         message: 'The year must be a valid year',
         note: ''
@@ -517,7 +525,7 @@ const en = {
           name: 'Name',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Click to provide details'
+          unknown: 'Provide your full name below'
         },
         append: 'Add another name'
       },
@@ -607,7 +615,8 @@ const en = {
         summary: {
           title: 'Summary of e-mail addresses',
           email: 'E-mail',
-          unknown: 'Click to provide details',
+          unknownEmail: 'Provide your e-mail address below',
+          unknownPhone: 'Provide your telephone number below',
           phoneNumber: 'Phone number'
         },
         phoneNumbers: {
@@ -774,7 +783,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of gambling debt',
-          unknownlosses: 'Click to provide details',
+          unknownlosses: 'Provide your gambling debt below',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
@@ -832,7 +841,7 @@ const en = {
         summary: {
           title: 'Summary of Bankruptcy',
           item: 'Bankruptcy',
-          unknown: 'Click to provide details',
+          unknown: 'Provide your bankruptcy below',
           nodates: 'No date',
           chapter: 'Chapter'
         },
@@ -1144,7 +1153,7 @@ const en = {
             lessthan: 'Under other than honorable conditions',
             general: 'General',
             badconduct: 'Bad conduct',
-            other: 'Other (provide type)',
+            other: 'Other<br>(provide type)',
             otherex: 'Provide other type of discharge'
           },
           reason: 'Provide the reason(s) for the discharge'
@@ -1208,7 +1217,7 @@ const en = {
         summary: {
           title: 'Summary of military history',
           item: 'Branch',
-          unknown: 'Click to provide details'
+          unknown: 'Provide your military history below'
         },
         appendTitle: 'Do you have additional military service to report?',
         appendMessage: 'If yes use the button below to add more',
@@ -1268,7 +1277,7 @@ const en = {
         summary: {
           title: 'Summary of disciplinary procedures',
           item: 'Procedure',
-          unknown: 'Click to provide details'
+          unknown: 'Provide the disciplinary procedure below'
         },
         appendTitle: 'Additional disciplinary procedures',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
@@ -1302,7 +1311,8 @@ const en = {
       },
       label: {
         organization: {
-          military: 'Military (Army, Navy, Air Force, Marines, etc.)',
+          military: 'Military',
+          military2: '(Army, Navy, Air Force, Marines, etc.)',
           intelligence: 'Intelligence Service',
           diplomatic: 'Diplomatic Service',
           security: 'Security Forces',
@@ -1372,7 +1382,7 @@ const en = {
           summary: {
             title: 'Summary of foreign military contacts',
             item: 'Name',
-            unknown: 'Click to provide details'
+            unknown: 'Provide foreign military contact below'
           },
           appendTitle: 'Do you have an additional foreign military service contact to report?',
           appendMessage: 'If yes use the button below to add another contact',
@@ -1387,7 +1397,9 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with your history at once'
+      title: 'Full section view',
+      para: 'View all the sections associated with your history at once',
+      button: 'Show me the full section'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -1410,11 +1422,6 @@ const en = {
         exiting: '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
       }
     },
-    review: {
-      title: 'Full section view',
-      para: 'View all the sections associated with your history at once',
-      button: 'Show me the full section'
-    },
     destination: {
       review: 'Review your history',
       timeline: 'Timeline',
@@ -1424,8 +1431,12 @@ const en = {
       federal: 'Former federal service'
     },
     residence: {
-      title: 'Places you have lived',
-      info: 'List the places where your have lived beginning with your present residence and working back 10 years. Residences for the entire period must be accounted for without breaks.',
+      title: 'Where you have lived',
+      info: 'List the places where your have lived beginning with your present residence and working back 10 years.',
+      info2: 'Residences for the entire period must be accounted for without breaks.',
+      info3a: ' - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there.',
+      info3b: ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
+      info3c: ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
       summary: {
         title: 'Where you have lived',
         unit: 'Years covered'
@@ -1437,7 +1448,12 @@ const en = {
           unknown: 'Unknown',
           incomplete: 'This residence\'s information is incomplete'
         },
-        append: 'Save and add another address'
+        append: 'Add another residence'
+      },
+      gap: {
+        title: 'Residence gap',
+        para: 'There is a gap in your residence history. The entire 10 year period must be covered with no gaps',
+        btnText: 'Add an address'
       },
       heading: {
         done: 'Done! Now let\'s add more',
@@ -1495,6 +1511,11 @@ const en = {
         title: 'Where you have worked',
         unit: 'Years covered'
       },
+      gap: {
+        title: 'Employment gap',
+        para: 'There is a gap in your employment. The entire 10 year period must be covered with no gaps',
+        btnText: 'Add an employer'
+      },
       heading: {
         employment: 'List where you have worked',
         exiting: 'Before you leave this section'
@@ -1509,7 +1530,7 @@ const en = {
           label: 'NA'
         },
         collection: {
-          append: 'Save and add another job',
+          append: 'Add another employer',
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
@@ -2848,7 +2869,7 @@ const en = {
             unknown: 'Unknown',
             incomplete: 'This education\'s information is incomplete'
           },
-          append: 'Save and add another school'
+          append: 'Add another school'
         },
         diploma: {
           summary: {
@@ -2864,6 +2885,7 @@ const en = {
         exiting: 'Before you leave this section',
         degrees: 'Degrees/diplomas',
         degree: 'Did you receive a degree/diploma?',
+        degreeTail: 'Do you have another degree/diploma to add?',
         details: 'Enter your school information',
         dates: 'Provide dates of attendance',
         name: 'Provide the name of the school',
@@ -2999,7 +3021,7 @@ const en = {
           item: 'Federal service',
           present: 'Now',
           nodates: 'No dates',
-          unknown: 'Click to provide details'
+          unknown: 'Provide federal service below'
         },
         append: 'Add another former federal service'
       }
@@ -3252,7 +3274,7 @@ const en = {
         summary: {
           title: 'Summary of offenses',
           item: 'Offense',
-          unknown: 'Click to provide details'
+          unknown: 'Provide offense below'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
         appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',

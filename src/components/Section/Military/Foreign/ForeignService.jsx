@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Collection, RadioGroup, Radio, DateRange, Text, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Help, HelpIcon } from '../../../Form'
 import ForeignContact from './ForeignContact'
-import { dateSummary } from '../../History/HistoryCollection/summaries'
+import { dateSummary } from '../../History/summaries'
 
 /**
  * Convenience function to send updates along their merry way
@@ -51,8 +51,8 @@ export default class ForeignService extends ValidationElement {
     })
   }
 
-  updateOrganization (value) {
-    this.onUpdate('Organization', value)
+  updateOrganization (event) {
+    this.onUpdate('Organization', event.target.value)
   }
 
   updateName (value) {
@@ -96,6 +96,15 @@ export default class ForeignService extends ValidationElement {
     this.onUpdate('List', value)
   }
 
+  labelForMilitary () {
+    return (
+      <p>
+        {i18n.t('military.foreign.label.organization.military')}<br />
+        <span className="smaller">{i18n.t('military.foreign.label.organization.military2')}</span>
+      </p>
+    )
+  }
+
   /**
    * Assists in rendering the summary section.
    */
@@ -107,11 +116,11 @@ export default class ForeignService extends ValidationElement {
     const dates = dateSummary(itemProperties)
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</div>
-        <div className="table-cell"><strong>{name}</strong></div>
-        <div className="table-cell dates"><strong>{dates}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</span>
+        <span className=""><strong>{name}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
     )
   }
 
@@ -125,43 +134,43 @@ export default class ForeignService extends ValidationElement {
                         selectedValue={this.state.Organization}>
               <Radio name="organization-military"
                      className="organization-military"
-                     label={i18n.t('military.foreign.label.organization.military')}
+                     label={this.labelForMilitary()}
                      value="Military"
                      onChange={this.updateOrganization}
                      />
               <Radio name="organization-intelligence"
                      className="organization-intelligence"
-                     label={i18n.t('military.foreign.label.organization.intelligence')}
+                     label={i18n.m('military.foreign.label.organization.intelligence')}
                      value="Intelligence"
                      onChange={this.updateOrganization}
                      />
               <Radio name="organization-diplomatic"
                      className="organization-diplomatic"
-                     label={i18n.t('military.foreign.label.organization.diplomatic')}
+                     label={i18n.m('military.foreign.label.organization.diplomatic')}
                      value="Diplomatic"
                      onChange={this.updateOrganization}
                      />
               <Radio name="organization-security"
                      className="organization-security"
-                     label={i18n.t('military.foreign.label.organization.security')}
+                     label={i18n.m('military.foreign.label.organization.security')}
                      value="Security"
                      onChange={this.updateOrganization}
                      />
               <Radio name="organization-militia"
                      className="organization-militia"
-                     label={i18n.t('military.foreign.label.organization.militia')}
+                     label={i18n.m('military.foreign.label.organization.militia')}
                      value="Militia"
                      onChange={this.updateOrganization}
                      />
               <Radio name="organization-defense"
                      className="organization-defense"
-                     label={i18n.t('military.foreign.label.organization.defense')}
+                     label={i18n.m('military.foreign.label.organization.defense')}
                      value="Defense"
                      onChange={this.updateOrganization}
                      />
               <Radio name="organization-other"
                      className="organization-other"
-                     label={i18n.t('military.foreign.label.organization.other')}
+                     label={i18n.m('military.foreign.label.organization.other')}
                      value="Other"
                      onChange={this.updateOrganization}
                      />
@@ -280,20 +289,20 @@ export default class ForeignService extends ValidationElement {
           <div>
             <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
             {i18n.m('military.foreign.para.contact')}
-            <Collection minimum="1"
-                        className="foreign-contacts-collection"
-                        items={this.state.List}
-                        dispatch={this.updateList}
-                        summary={this.summary}
-                        summaryTitle={i18n.t('military.foreign.collection.contacts.summary.title')}
-                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
-                        appendMessage={i18n.m('military.foreign.collection.contacts.appendMessage')}
-                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
+            <Accordion minimum="1"
+                       className="foreign-contacts-collection"
+                       items={this.state.List}
+                       onUpdate={this.updateList}
+                       onValidate={this.props.onValidate}
+                       summary={this.summary}
+                       description={i18n.t('military.foreign.collection.contacts.summary.title')}
+                       appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
+                       appendMessage={i18n.m('military.foreign.collection.contacts.appendMessage')}
+                       appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
               <ForeignContact name="Item"
-                              onUpdate={this.updateList}
-                              onValidate={this.props.onValidate}
+                              bind={true}
                               />
-            </Collection>
+            </Accordion>
           </div>
         </Show>
       </div>

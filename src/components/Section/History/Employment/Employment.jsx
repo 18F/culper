@@ -74,7 +74,7 @@ export class EmploymentItem extends ValidationElement {
     const sevenYearsAgo = daysAgo(today, 365 * 7)
     const from = (this.state.Dates || {}).from
     const to = (this.state.Dates || {}).to
-    return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo)
+    return (from && from.date >= sevenYearsAgo) || (to && to.date >= sevenYearsAgo)
   }
 
   localizeByActivity () {
@@ -91,9 +91,36 @@ export class EmploymentItem extends ValidationElement {
         <EmploymentActivity
           {...this.props.EmploymentActivity}
           onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
+          onValidate={this.props.onValidate}
           name="EmploymentActivity"
           className="eapp-field-wrap no-label"
           />
+
+        <Show when={this.showEmployer()}>
+          <div>
+            <h3>{i18n.t(`${prefix}.heading.employer`)}</h3>
+            <div className="eapp-field-wrap">
+              <Help id={`${prefix}.employer.help`}>
+                <Text name="Employment"
+                      {...this.props.Employment}
+                      onUpdate={this.onUpdate.bind(this, 'Employment')}
+                      onValidate={this.props.onValidate}
+                      className="text"
+                      label={i18n.t(`${prefix}.employer.label`)}
+                      />
+                <HelpIcon className="employer" />
+              </Help>
+            </div>
+          </div>
+        </Show>
+
+        <Show when={this.showSupervisor()}>
+          <Supervisor name="Supervisor"
+                      {...this.props.Supervisor}
+                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
+                      onValidate={this.props.onValidate}
+                      />
+        </Show>
 
         <h3>{i18n.t(`history.employment.default.heading.datesEmployed`)}</h3>
         <div className="eapp-field-wrap">
@@ -102,7 +129,7 @@ export class EmploymentItem extends ValidationElement {
                        {...this.props.Dates}
                        receiveProps={this.props.receiveProps}
                        onUpdate={this.onUpdate.bind(this, 'Dates')}
-                       onValidate={this.handleValidation}
+                       onValidate={this.props.onValidate}
                        />
             <HelpIcon className="used-help-icon" />
           </Help>
@@ -114,33 +141,23 @@ export class EmploymentItem extends ValidationElement {
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
                         onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
+                        onValidate={this.props.onValidate}
                         />
           </div>
         </Show>
-        <Show when={true}>
+
+        <Show when={this.showLeaving()}>
           <div>
             <Reprimand name="Reprimand"
                         {...this.props.Reprimand}
                         onUpdate={this.onUpdate.bind(this, 'Reprimand')}
+                        onValidate={this.props.onValidate}
                         />
           </div>
         </Show>
 
         <Show when={this.showEmployer()}>
           <div>
-            <h3>{i18n.t(`${prefix}.heading.employer`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`${prefix}.employer.help`}>
-                <Text name="Employment"
-                      {...this.props.Employment}
-                      onUpdate={this.onUpdate.bind(this, 'Employment')}
-                      className="text"
-                      label={i18n.t(`${prefix}.employer.label`)}
-                      />
-                <HelpIcon className="employer" />
-              </Help>
-            </div>
-
             <h3>{i18n.t(`${prefix}.heading.title`)}</h3>
             <div className="eapp-field-wrap">
               <Help id={`${prefix}.title.help`}>
@@ -149,7 +166,7 @@ export class EmploymentItem extends ValidationElement {
                       onUpdate={this.onUpdate.bind(this, 'Title')}
                       className="text"
                       label={i18n.t(`${prefix}.title.label`)}
-                      onValidate={this.handleValidation}
+                      onValidate={this.props.onValidate}
                       />
                 <HelpIcon className="title" />
               </Help>
@@ -161,6 +178,7 @@ export class EmploymentItem extends ValidationElement {
                 <EmploymentStatus name="Status"
                                   {...this.props.Status}
                                   onUpdate={this.onUpdate.bind(this, 'Status')}
+                                  onValidate={this.props.onValidate}
                                   />
                 <HelpIcon className="status" />
               </Help>
@@ -172,6 +190,7 @@ export class EmploymentItem extends ValidationElement {
                 <Address name="Address"
                          {...this.props.Address}
                          onUpdate={this.onUpdate.bind(this, 'Address')}
+                         onValidate={this.props.onValidate}
                          label={i18n.t(`${prefix}.address.label`)}
                          />
                 <HelpIcon className="address"/>
@@ -184,6 +203,7 @@ export class EmploymentItem extends ValidationElement {
                 <Telephone name="Telephone"
                            {...this.props.Telephone}
                            onUpdate={this.onUpdate.bind(this, 'Telephone')}
+                           onValidate={this.props.onValidate}
                            />
                 <HelpIcon className="telephone-icon"/>
               </Help>
@@ -191,17 +211,11 @@ export class EmploymentItem extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.showSupervisor()}>
-          <Supervisor name="Supervisor"
-                      {...this.props.Supervisor}
-                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
-                      />
-        </Show>
-
         <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
         <Reference name="Reference"
                    {...this.props.Reference}
                    onUpdate={this.onUpdate.bind(this, 'Reference')}
+                   onValidate={this.props.onValidate}
                    />
 
         <Show when={this.showPhysicalAddress()}>
@@ -210,6 +224,7 @@ export class EmploymentItem extends ValidationElement {
             <PhysicalAddress name="PhysicalAddress"
                              {...this.props.PhysicalAddress}
                              onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
+                             onValidate={this.props.onValidate}
                              className="eapp-field-wrap"
                              />
           </div>
@@ -222,10 +237,10 @@ export class EmploymentItem extends ValidationElement {
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
                                 onUpdate={this.onUpdate.bind(this, 'Additional')}
+                                onValidate={this.props.onValidate}
                                 className="additional-activity eapp-field-wrap" />
           </div>
         </Show>
-
       </div>
     )
   }

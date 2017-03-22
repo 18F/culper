@@ -126,14 +126,15 @@ export default class EmploymentValidator {
   }
 
   validReasonLeft () {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
-    if ((this.dates.from && this.dates.from >= sevenYearsAgo) || (this.dates.to && this.dates.to >= sevenYearsAgo)) {
+    if (this.withinSevenYears()) {
       if (!this.reasonLeft) {
         return false
       }
+
       if (!this.reasonLeft.Reasons) {
         return false
       }
+
       for (let r of this.reasonLeft.Reasons) {
         if (r.Has === 'No') {
           continue
@@ -174,11 +175,11 @@ export default class EmploymentValidator {
   }
 
   validReprimand () {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
-    if ((this.dates.from && this.dates.from >= sevenYearsAgo) || (this.dates.to && this.dates.to >= sevenYearsAgo)) {
+    if (this.withinSevenYears()) {
       if (!this.reprimand.Reasons) {
         return false
       }
+
       for (let r of this.reprimand.Reasons) {
         if (r.Has === 'No') {
           continue
@@ -187,6 +188,7 @@ export default class EmploymentValidator {
         if (!validGenericTextfield(r.Text)) {
           return false
         }
+
         if (!validGenericMonthYear(r.Date)) {
           return false
         }
@@ -194,6 +196,15 @@ export default class EmploymentValidator {
     }
 
     return true
+  }
+
+  withinSevenYears () {
+    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    if ((this.dates.from && this.dates.from.date && this.dates.from.date >= sevenYearsAgo) || (this.dates.to && this.dates.to.date && this.dates.to.date >= sevenYearsAgo)) {
+      return true
+    }
+
+    return false
   }
 
   isValid () {

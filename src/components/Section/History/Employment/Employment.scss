@@ -1,24 +1,4 @@
-.employment {
-  .collection {
-    .table-cell.index {
-      width: 10rem;
-
-      .svg {
-        height: 1.3rem;
-        width: auto;
-        margin-right: 1rem;
-      }
-    }
-
-    .table-cell.dates {
-      width: 16rem;
-    }
-
-    .table-cell.employer {
-      width: 28rem;
-    }
-  }
-
+.history {
   .employment-status {
     label {
       padding-left: 8rem;
@@ -39,10 +19,12 @@
   }
 
   .date-left {
+    line-height: initial !important;
     padding-top: 5rem !important;
 
     > label {
       position: relative;
+      padding-bottom: 2rem;
     }
   }
 
@@ -69,6 +51,10 @@
   }
 
   .daterange, .text, .employment-activity {
+    display: inline-block;
+  }
+
+  .reason-description {
     display: inline-block;
     width: 92%;
   }

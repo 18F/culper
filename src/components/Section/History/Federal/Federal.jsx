@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Collection, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
-import { dateSummary } from '../HistoryCollection/summaries'
+import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
+import { dateSummary } from '../summaries'
+import { FederalServiceValidator } from '../../../../validators'
 
 /**
  * Convenience function to send updates along their merry way
@@ -62,61 +63,7 @@ export default class Federal extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    if (!this.state.HasFederalService) {
-      return false
-    }
-
-    if (this.state.HasFederalService === 'No') {
-      return true
-    }
-
-    if (this.state.HasFederalService === 'Yes' && this.state.List.length === 0) {
-      return false
-    }
-
-    for (let item of this.state.List) {
-      if (!item.Name || parseInt(item.Name.value) < 1) {
-        return false
-      }
-
-      if (!item.Position || !item.Position.value) {
-        return false
-      }
-
-      if (!item.Dates || !item.Dates.from || (!item.Dates.to && !item.Dates.present)) {
-        return false
-      }
-
-      if (!item.Address) {
-        return false
-      }
-
-      const address = item.Address
-      switch (address.addressType) {
-        case 'United States':
-          if (!address.address || !address.city || !address.state || !address.zipcode) {
-            return false
-          }
-          break
-
-        case 'International':
-          if (!address.address || !address.city || !address.country) {
-            return false
-          }
-          break
-
-        case 'APOFPO':
-          if (!address.address || !address.apoFpo || !address.apoFpoType || !address.zipcode) {
-            return false
-          }
-          break
-
-        default:
-          return false
-      }
-    }
-
-    return true
+    return new FederalServiceValidator(this.state, null).isValid()
   }
 
   onUpdate (name, values) {
@@ -146,16 +93,16 @@ export default class Federal extends ValidationElement {
    */
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
-          ? item.Name.value
-          : i18n.t('history.federal.collection.summary.unknown')
+      ? item.Name.value
+      : i18n.t('history.federal.collection.summary.unknown')
     const dates = dateSummary(item)
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell">{agency}</div>
-        <div className="table-cell dates">{dates}</div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</span>
+        <span className="">{agency}</span>
+        <span className="dates">{dates}</span>
+      </span>
     )
   }
 
@@ -170,17 +117,18 @@ export default class Federal extends ValidationElement {
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasFederalService === 'Yes'}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateCollection}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('history.federal.collection.summary.title')}
-                      appendLabel={i18n.t('history.federal.collection.append')}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateCollection}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('history.federal.collection.summary.title')}
+                     appendLabel={i18n.t('history.federal.collection.append')}>
             <h3>{i18n.t('history.federal.heading.dates')}</h3>
             <div className="eapp-field-wrap">
               <Help id="history.federal.help.dates">
                 <DateRange name="Dates"
-                           onValidate={this.handleValidation}
+                           bind={true}
                            />
                 <HelpIcon />
               </Help>
@@ -191,7 +139,7 @@ export default class Federal extends ValidationElement {
               <Help id="history.federal.help.name">
                 <Text name="Name"
                       className="text"
-                      onValidate={this.handleValidation}
+                      bind={true}
                       />
                 <HelpIcon />
               </Help>
@@ -202,7 +150,7 @@ export default class Federal extends ValidationElement {
               <Help id="history.federal.help.position">
                 <Text name="Position"
                       className="text"
-                      onValidate={this.handleValidation}
+                      bind={true}
                       />
                 <HelpIcon />
               </Help>
@@ -212,12 +160,12 @@ export default class Federal extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="history.federal.help.address">
                 <Address name="Address"
-                         onValidate={this.handleValidation}
+                         bind={true}
                          />
                 <HelpIcon />
               </Help>
             </div>
-          </Collection>
+          </Accordion>
         </Show>
       </div>
     )

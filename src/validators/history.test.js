@@ -13,8 +13,12 @@ describe('Employment component validation', function () {
                   value: 'Contractor'
                 },
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 Employment: {
@@ -77,7 +81,7 @@ describe('Employment component validation', function () {
                     year: '2016',
                     date: new Date('1/1/2016')
                   },
-                  Relationship: 'Friend',
+                  Relationship: ['Friend'],
                   Phone: {
                     noNumber: '',
                     number: '7031112222',

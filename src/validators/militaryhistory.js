@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class MilitaryHistoryValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.hasServed = state.HasServed
     this.list = state.List || []
   }
@@ -36,7 +36,7 @@ export default class MilitaryHistoryValidator {
 }
 
 export class MilitaryServiceValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.service = state.Service
     this.status = state.Status
     this.officer = state.Officer
@@ -50,7 +50,7 @@ export class MilitaryServiceValidator {
   }
 
   validService () {
-    return this.service.length > 0
+    return this.service && this.service.length > 0
   }
 
   validStatus () {

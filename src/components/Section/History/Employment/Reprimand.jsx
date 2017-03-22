@@ -36,6 +36,7 @@ export default class Reprimand extends ValidationElement {
         <h3>{i18n.t('history.employment.default.reprimand.para')}</h3>
       </div>
     )
+
     return (
       <BranchCollection
         branchHelp="history.employment.default.reprimand.help"

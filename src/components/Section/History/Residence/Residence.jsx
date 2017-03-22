@@ -6,7 +6,7 @@ import { today, daysAgo } from '../dateranges'
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
 const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+  return (from && from.date >= threeYearsAgo) || (to && to.date >= threeYearsAgo)
 }
 
 /**
@@ -94,20 +94,6 @@ export class ResidenceItem extends ValidationElement {
   render () {
     return (
       <div className="residence">
-        <h3>{i18n.t('history.residence.heading.dates')}</h3>
-        <div className="eapp-field-wrap">
-          <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
-          <Help id="history.residence.help.dates">
-            <DateRange name="Dates"
-                       {...this.state.Dates}
-                       label={i18n.t('history.residence.label.dates')}
-                       onUpdate={this.onUpdate.bind(this, 'Dates')}
-                       onValidate={this.props.onValidate}
-                       />
-            <HelpIcon className="dates-help-icon" />
-          </Help>
-        </div>
-
         <Comments name="Comments"
                   {...this.state.Comments}
                   className="eapp-field-wrap"
@@ -128,6 +114,20 @@ export class ResidenceItem extends ValidationElement {
             </Help>
           </div>
         </Comments>
+
+        <h3>{i18n.t('history.residence.heading.dates')}</h3>
+        <div className="eapp-field-wrap">
+          <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
+          <Help id="history.residence.help.dates">
+            <DateRange name="Dates"
+                       {...this.state.Dates}
+                       label={i18n.t('history.residence.label.dates')}
+                       onUpdate={this.onUpdate.bind(this, 'Dates')}
+                       onValidate={this.props.onValidate}
+                       />
+            <HelpIcon className="dates-help-icon" />
+          </Help>
+        </div>
 
         <h3>{i18n.t('history.residence.heading.role')}</h3>
         <div className="eapp-field-wrap">
@@ -163,7 +163,7 @@ export class ResidenceItem extends ValidationElement {
                     className="other"
                     maxlength="100"
                     onUpdate={this.onUpdate.bind(this, 'OtherRole')}
-                    onValidate={this.props.handleValidation}
+                    onValidate={this.props.onValidate}
                     />
             </div>
           </Help>

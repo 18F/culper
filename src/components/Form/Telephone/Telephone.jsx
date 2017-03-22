@@ -442,17 +442,15 @@ export default class Telephone extends ValidationElement {
         </Show>
 
         <div className="timeofday">
-          <RadioGroup selectedValue={this.state.timeOfDay}>
-            <Radio name="timeofday"
-                   native={true}
+          <RadioGroup selectedValue={this.state.timeOfDay} name="timeofday">
+            <Radio native={true}
                    className="time day"
                    label={i18n.t('telephone.timeOfDay.day')}
                    value="Day"
                    onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
                    onValidate={this.handleValidation}
                    />
-            <Radio name="timeofday"
-                   native={true}
+            <Radio native={true}
                    className="time night"
                    label={i18n.t('telephone.timeOfDay.night')}
                    value="Night"

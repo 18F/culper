@@ -25,7 +25,6 @@ export default class NotApplicable extends React.Component {
   }
 
   renderChildren () {
-    console.log('not applicable: ', !this.state.applicable)
     if (this.state.applicable) {
       return this.props.children
     }

@@ -1,7 +1,6 @@
 // Validation
 import ValidationElement from './ValidationElement'
 import { Help, HelpIcon } from './Help'
-import Collection from './Collection'
 
 // Basic form elements
 import Generic from './Generic'
@@ -19,6 +18,7 @@ import DateControl from './DateControl'
 import Svg from './Svg'
 import Suggestions from './Suggestions'
 import NotApplicable from './NotApplicable'
+import Accordion from './Accordion'
 
 // Composite components
 import Type from './Type'
@@ -50,7 +50,6 @@ export {
   ValidationElement,
   Help,
   HelpIcon,
-  Collection,
   Generic,
   Text,
   Email,
@@ -89,5 +88,6 @@ export {
   Svg,
   BranchCollection,
   Suggestions,
-  NotApplicable
+  NotApplicable,
+  Accordion
 }

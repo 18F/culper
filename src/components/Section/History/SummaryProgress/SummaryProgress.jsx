@@ -1,4 +1,5 @@
 import React from 'react'
+import { newGuid } from '../../../Form/ValidationElement'
 import { ValidationElement } from '../../../Form'
 import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
 
@@ -25,10 +26,10 @@ export default class SummaryProgress extends ValidationElement {
       let width = 0
 
       if (dates.from && dates.to) {
-        const from = julian(dates.from)
-        const to = julian(dates.to)
+        const from = julian(dates.from.date)
+        const to = julian(dates.to.date)
 
-        if (dates.from >= julianMax || to >= julianMax) {
+        if (dates.from.date >= julianMax || to >= julianMax) {
           // Meat of the calculations into percentages
           let right = findPercentage(julianNow, julianMax, to)
           left = findPercentage(julianNow, julianMax, from)
@@ -81,7 +82,7 @@ export default class SummaryProgress extends ValidationElement {
         left: '' + range.left + '%',
         width: '' + range.width + '%'
       }
-      return <div className="filled" style={styles}></div>
+      return <div key={newGuid()} className="filled" style={styles}></div>
     })
   }
 
