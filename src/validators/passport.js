@@ -66,7 +66,17 @@ export default class PassportValidator {
       return false
     }
 
-    if (!new DateRangeValidator({from: this.issued.date, to: this.expiration.date}).isValid()) {
+    const range = {
+      from: {
+        date: this.issued.date
+      },
+      to: {
+        date: this.expiration.date
+      },
+      present: false
+    }
+
+    if (!new DateRangeValidator(range).isValid()) {
       return false
     }
 

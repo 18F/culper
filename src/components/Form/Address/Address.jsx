@@ -38,8 +38,14 @@ export default class Address extends ValidationElement {
 
     this.suggestionDismissContent = this.suggestionDismissContent.bind(this)
     this.handleValidation = throttle(this.handleValidation.bind(this), 300, this)
+    this.handleAsyncValidation = this.handleAsyncValidation.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
     this.handleAddressTypeChange = this.handleAddressTypeChange.bind(this)
+    this.doUpdate = this.doUpdate.bind(this)
+  }
+
+  componentWillUnmount () {
+    this.handleAsyncValidation = null
   }
 
   addressType () {
@@ -101,6 +107,10 @@ export default class Address extends ValidationElement {
     if (!event) {
       return
     }
+    if (!this.handleAsyncValidation) {
+      return
+    }
+
     this.handleAsyncValidation(event, status, error)
       .then(result => {
         this.setState({
@@ -115,6 +125,8 @@ export default class Address extends ValidationElement {
               super.handleValidation(event, status, error)
             }
           })
+      }).catch(error => {
+        console.log(error)
       })
   }
 

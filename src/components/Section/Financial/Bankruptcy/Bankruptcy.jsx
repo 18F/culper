@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { BankruptcyValidator } from '../../../../validators'
-import { ValidationElement, Branch, Collection, Comments, DateControl, Number, Help, HelpIcon,
+import { ValidationElement, Branch, Show, Accordion, Comments, DateControl, Number, Help, HelpIcon,
          Text, Name, Address, PetitionType, Checkbox, NotApplicable } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
@@ -119,127 +119,11 @@ export default class Bankruptcy extends ValidationElement {
     }
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</div>
-        <div className="table-cell">{address1}<br />{address2}</div>
-        <div className="table-cell dates">{from}</div>
-      </div>
-    )
-  }
-
-  /**
-   * Render children only when we explicit state to do so
-   */
-  visibleComponents () {
-    if (this.state.HasBankruptcy !== 'Yes') {
-      return ''
-    }
-
-    return (
-      <Collection minimum="1"
-                  items={this.state.List}
-                  dispatch={this.myDispatch}
-                  summary={this.summary}
-                  summaryTitle={i18n.t('financial.bankruptcy.collection.summary.title')}
-                  appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
-        <PetitionType name="PetitionType"
-                      className="eapp-field-wrap"
-                      />
-
-        <h3>{i18n.t('financial.bankruptcy.heading.courtNumber')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="financial.bankruptcy.courtNumber.help">
-            <Text name="CourtNumber"
-                  className="courtnumber"
-                  placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
-                  title={i18n.t('financial.bankruptcy.courtNumber.title')}
-                  onValidate={this.handleValidation}
-                  placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
-                  />
-            <HelpIcon className="courtnumber" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.dateFiled')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="financial.bankruptcy.dateFiled.help">
-            <DateControl name="DateFiled"
-                         className="datefiled"
-                         onValidate={this.handleValidation}
-                         hideDay={true} />
-            <HelpIcon className="datefiled" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.dateDischarged')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="financial.bankruptcy.dateDischarged.help">
-            <NotApplicable name="DischargeDateNotApplicable"
-                           onValidate={this.handleValidation}>
-              <DateControl name="DateDischarged"
-                           className="datedischarged"
-                           receiveProps="true"
-                           onValidate={this.handleValidation}
-                           hideDay={true} />
-            </NotApplicable>
-            <HelpIcon className="datedischarged" />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.totalAmount')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="financial.bankruptcy.totalAmount.help">
-            <i className="fa fa-dollar"></i>
-            <Number name="TotalAmount"
-                    className="amount"
-                    min="0"
-                    placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
-                    onValidate={this.handleValidation}
-                    />
-            <HelpIcon className="amount" />
-            <div className="coupled-flags">
-              <Checkbox name="TotalAmountEstimated"
-                        ref="estimated"
-                        label={i18n.t('financial.bankruptcy.totalAmount.estimated')}
-                        toggle="false"
-                        checked={this.state.TotalAmountEstimated}
-                        onValidate={this.handleValidation}
-                        />
-            </div>
-          </Help>
-        </div>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
-        <Name name="NameDebt"
-              onValidate={this.handleValidation}
-              className="namedebt eapp-field-wrap"
-              />
-
-        <h3>{i18n.t('financial.bankruptcy.heading.courtInvolved')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="financial.bankruptcy.courtInvolved.help">
-            <Text name="CourtInvolved"
-                  placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
-                  onValidate={this.handleValidation}
-                  className="courtinvolved"
-                  />
-            <HelpIcon className="courtinvolved"/>
-          </Help>
-        </div>
-
-        <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="financial.bankruptcy.courtAddress.help">
-            <Address name="CourtAddress"
-                     label={i18n.t('financial.bankruptcy.courtAddress.label')}
-                     onValidate={this.handleValidation}
-                     />
-            <HelpIcon />
-          </Help>
-        </div>
-      </Collection>
+      <span>
+        <span className="index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</span>
+        <span>{address1}<br />{address2}</span>
+        <span className="dates">{from}</span>
+      </span>
     )
   }
 
@@ -252,7 +136,114 @@ export default class Bankruptcy extends ValidationElement {
                 help="financial.bankruptcy.help"
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
-        {this.visibleComponents()}
+        <Show when={this.state.HasBankruptcy === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.myDispatch}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('financial.bankruptcy.collection.summary.title')}
+                     appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
+
+            <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
+            <PetitionType name="PetitionType"
+                          className="eapp-field-wrap"
+                          bind={true}
+                          />
+
+            <h3>{i18n.t('financial.bankruptcy.heading.courtNumber')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.bankruptcy.courtNumber.help">
+                <Text name="CourtNumber"
+                      className="courtnumber"
+                      placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+                      title={i18n.t('financial.bankruptcy.courtNumber.title')}
+                      placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+                      bind={true}
+                      />
+                <HelpIcon className="courtnumber" />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.bankruptcy.heading.dateFiled')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.bankruptcy.dateFiled.help">
+                <DateControl name="DateFiled"
+                             className="datefiled"
+                             bind={true}
+                             hideDay={true} />
+                <HelpIcon className="datefiled" />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.bankruptcy.heading.dateDischarged')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.bankruptcy.dateDischarged.help">
+                <NotApplicable name="DischargeDateNotApplicable"
+                               bind={true}>
+                  <DateControl name="DateDischarged"
+                               className="datedischarged"
+                               receiveProps="true"
+                               bind={true}
+                               hideDay={true} />
+                </NotApplicable>
+                <HelpIcon className="datedischarged" />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.bankruptcy.heading.totalAmount')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.bankruptcy.totalAmount.help">
+                <i className="fa fa-dollar"></i>
+                <Number name="TotalAmount"
+                        className="amount"
+                        min="0"
+                        placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
+                        bind={true}
+                        />
+                <HelpIcon className="amount" />
+                <div className="coupled-flags">
+                  <Checkbox name="TotalAmountEstimated"
+                            ref="estimated"
+                            label={i18n.t('financial.bankruptcy.totalAmount.estimated')}
+                            toggle="false"
+                            checked={this.state.TotalAmountEstimated}
+                            bind={true}
+                            />
+                </div>
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
+            <Name name="NameDebt"
+                  className="namedebt eapp-field-wrap"
+                  bind={true}
+                  />
+
+            <h3>{i18n.t('financial.bankruptcy.heading.courtInvolved')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.bankruptcy.courtInvolved.help">
+                <Text name="CourtInvolved"
+                      placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
+                      className="courtinvolved"
+                      bind={true}
+                      />
+                <HelpIcon className="courtinvolved"/>
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.bankruptcy.heading.courtAddress')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.bankruptcy.courtAddress.help">
+                <Address name="CourtAddress"
+                         label={i18n.t('financial.bankruptcy.courtAddress.label')}
+                         bind={true}
+                         />
+                <HelpIcon />
+              </Help>
+            </div>
+          </Accordion>
+        </Show>
         <Comments name="Comments"
                   value={this.state.Comments}
                   label={i18n.t('financial.bankruptcy.comments.label')}

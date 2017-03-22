@@ -25,6 +25,8 @@ var (
 		"-2147219403":     "error.geocode.multiple",
 		"Default Address": "error.geocode.defaultAddress",
 		"Partial":         "error.geocode.partial",
+		"System":          "error.geocode.system",
+		"80040B19":        "error.geocode.system.xml",
 	}
 )
 
@@ -132,8 +134,14 @@ func decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
 		return err
 	}
 
-	// We have a system error so return the description of the error
-	return fmt.Errorf("%v", errorResp.Description)
+	// We have a system error so attempt to resolve error code
+	if errCode, ok := USPSErrorCodes[errorResp.Number]; ok {
+		return ErrUSPSSystem{Message: errCode}
+	}
+
+	fmt.Println("Unable to resolve error code. Default to generic error message")
+	sysErr := ErrUSPSSystem{Message: USPSErrorCodes["System"]}
+	return sysErr
 }
 
 // prepareQueryURI creates the url used to execute a http validate address request
@@ -311,6 +319,14 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 	}
 
 	return result
+}
+
+type ErrUSPSSystem struct {
+	Message string
+}
+
+func (e ErrUSPSSystem) Error() string {
+	return e.Message
 }
 
 // NewUSPSGeocoder creates a new instance of USPS Geocoder

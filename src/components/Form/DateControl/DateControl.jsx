@@ -5,6 +5,15 @@ import Checkbox from '../Checkbox'
 import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 
+const trimLeadingZero = (num) => {
+  if (isNaN(num)) {
+    return num
+  }
+
+  const i = parseInt(`0${num}`, 10)
+  return i === 0 ? '' : '' + i
+}
+
 export default class DateControl extends ValidationElement {
   constructor (props) {
     super(props)
@@ -13,12 +22,12 @@ export default class DateControl extends ValidationElement {
       disabled: props.disabled,
       value: props.value,
       estimated: props.estimated,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
-      month: props.month || this.datePart('m', props.value),
-      day: props.day || props.hideDay ? 1 : this.datePart('d', props.value),
-      year: props.year || this.datePart('y', props.value),
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
+      month: trimLeadingZero(props.month) || this.datePart('m', props.value),
+      day: trimLeadingZero(props.day) || props.hideDay ? 1 : this.datePart('d', props.value),
+      year: trimLeadingZero(props.year) || this.datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null],
       errorCodes: []
@@ -27,12 +36,29 @@ export default class DateControl extends ValidationElement {
 
   componentWillReceiveProps (next) {
     if (next.receiveProps) {
+      let value = ''
+      let month = ''
+      let day = ''
+      let year = ''
+
+      if (next.value) {
+        value = next.value
+        month = this.datePart('m', next.value)
+        day = this.datePart('d', next.value)
+        year = this.datePart('y', next.value)
+      } else if (next.date) {
+        value = next.date
+        month = '' + (next.date.getMonth() + 1)
+        day = next.date.getDate()
+        year = next.date.getFullYear()
+      }
+
       this.setState({
         disabled: next.disabled,
-        value: next.value,
-        month: this.datePart('m', next.value),
-        day: this.datePart('d', next.value),
-        year: this.datePart('y', next.value)
+        value: value,
+        month: month,
+        day: day,
+        year: year
       })
     }
   }
@@ -88,11 +114,11 @@ export default class DateControl extends ValidationElement {
     const name = target.name || target.id || ''
 
     if (name.indexOf('month') !== -1) {
-      month = event.target.value
+      month = trimLeadingZero(event.target.value)
     } else if (name.indexOf('day') !== -1) {
-      day = event.target.value
+      day = trimLeadingZero(event.target.value)
     } else if (name.indexOf('year') !== -1) {
-      year = event.target.value
+      year = trimLeadingZero(event.target.value)
     } else if (name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
@@ -199,7 +225,7 @@ export default class DateControl extends ValidationElement {
 
     let errorCodes = []
     this.state.errorCodes.forEach(e => {
-      if (e != 'day.max') {
+      if (e !== 'day.max') {
         errorCodes.push(e)
       }
     })
@@ -376,4 +402,17 @@ export default class DateControl extends ValidationElement {
       </div>
     )
   }
+}
+
+DateControl.defaultProps = {
+  disabled: false,
+  value: '',
+  estimated: false,
+  focus: false,
+  error: false,
+  valid: false,
+  hideDay: false,
+  month: '',
+  day: '',
+  year: ''
 }

@@ -16,7 +16,9 @@ describe('The residence component', () => {
     const expected = {
       name: 'residence',
       Dates: {
-        to: new Date()
+        to: {
+          date: new Date()
+        }
       },
       Reference: {
         Email: 'test@abc.com'

@@ -4,18 +4,11 @@ import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
 
 export default class DateRange extends ValidationElement {
-
   constructor (props) {
     super(props)
     this.state = {
       from: props.from,
-      from_day: '',
-      from_month: '',
-      from_year: '',
       to: props.to,
-      to_day: '',
-      to_month: '',
-      to_year: '',
       present: props.present,
       presentClicked: false,
       trickleDown: false,
@@ -35,19 +28,7 @@ export default class DateRange extends ValidationElement {
     let futureState = {
       ...this.state,
       presentClicked: false,
-      [field + '_' + value.name]: value
-    }
-
-    if (field === 'from') {
-      if (futureState.from_year && futureState.from_month && futureState.from_day && ('' + futureState.from_year).length === 4) {
-        futureState.from = new Date(futureState.from_year, parseInt(futureState.from_month) - 1, futureState.from_day)
-      }
-    }
-
-    if (field === 'to') {
-      if (futureState.to_year && futureState.to_month && futureState.to_day && ('' + futureState.to_year).length === 4) {
-        futureState.to = new Date(futureState.to_year, parseInt(futureState.to_month) - 1, futureState.to_day)
-      }
+      [field]: value
     }
 
     this.setState(futureState, () => {
@@ -75,15 +56,18 @@ export default class DateRange extends ValidationElement {
     // If present is true then make the "to" date equal to today
     if (!this.state.present && futureState.present) {
       let now = new Date()
-      futureState.to = now
-      futureState.to_year = now.getFullYear()
-      futureState.to_month = now.getMonth() - 1
-      futureState.to_day = now.getDate()
+      futureState.to = {}
+      futureState.to.date = now
+      futureState.to.year = now.getFullYear()
+      futureState.to.month = '' + (now.getMonth() - 1)
+      futureState.to.day = now.getDate()
     } else if (this.state.present && !futureState.present) {
-      futureState.to = null
-      futureState.to_year = null
-      futureState.to_month = null
-      futureState.to_day = null
+      futureState.to = {
+        date: '',
+        year: '',
+        month: '',
+        day: ''
+      }
     }
 
     this.setState(futureState, () => {
@@ -114,9 +98,9 @@ export default class DateRange extends ValidationElement {
    * Handle the validation event.
    */
   handleValidation (event, status, error) {
-    if (event && status !== false) {
-      if (this.state.from && this.state.to) {
-        if (this.state.from > this.state.to) {
+    if (event && status !== false && this.state.from && this.state.to) {
+      if (this.state.from.date && this.state.to.date) {
+        if (this.state.from.date > this.state.to.date) {
           status = false
           error = { daterange: 'order' }
         } else {
@@ -139,7 +123,7 @@ export default class DateRange extends ValidationElement {
           </div>
           <DateControl name="from"
                        className="from"
-                       value={this.state.from}
+                       {...this.state.from}
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate.bind(this, 'from')}
                        receiveProps={this.state.trickleDown}
@@ -157,7 +141,7 @@ export default class DateRange extends ValidationElement {
           <DateControl name="to"
                        ref="to"
                        className="to"
-                       value={this.state.to}
+                       {...this.state.to}
                        estimated={this.state.estimated}
                        receiveProps={this.state.trickleDown || this.state.presentClicked}
                        disabled={this.state.present}
@@ -180,4 +164,10 @@ export default class DateRange extends ValidationElement {
       </div>
     )
   }
+}
+
+DateRange.defaultProps = {
+  from: {},
+  to: {},
+  present: false
 }
