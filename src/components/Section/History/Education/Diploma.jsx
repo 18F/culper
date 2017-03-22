@@ -97,7 +97,7 @@ export class DiplomaItem extends ValidationElement {
                     className="other"
                     maxlength="100"
                     onUpdate={this.onUpdate.bind(this, 'OtherRole')}
-                    onValidate={this.props.handleValidation}
+                    onValidate={this.props.onValidate}
                     />
             </Show>
           </Help>

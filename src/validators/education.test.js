@@ -1,4 +1,4 @@
-import EducationValidator from './education'
+import EducationValidator, { EducationItemValidator } from './education'
 
 describe('Education component validation', function () {
   it('handle no education', () => {
@@ -73,7 +73,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validDates()).toBe(test.expected)
+      expect(new EducationItemValidator(test.state, null).validDates()).toBe(test.expected)
     })
   })
 
@@ -95,7 +95,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new EducationItemValidator(test.state, null).validAddress()).toBe(test.expected)
     })
   })
 
@@ -113,7 +113,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new EducationItemValidator(test.state, null).validName()).toBe(test.expected)
     })
   })
 
@@ -129,7 +129,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validType()).toBe(test.expected)
+      expect(new EducationItemValidator(test.state, null).validType()).toBe(test.expected)
     })
   })
 
@@ -205,7 +205,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validReference()).toBe(test.expected)
+      expect(new EducationItemValidator(test.state, null).validReference()).toBe(test.expected)
     })
   })
 
@@ -330,7 +330,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validDiplomas()).toBe(test.expected)
+      expect(new EducationItemValidator(test.state, null).validDiplomas()).toBe(test.expected)
     })
   })
 

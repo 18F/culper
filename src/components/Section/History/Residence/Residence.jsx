@@ -163,7 +163,7 @@ export class ResidenceItem extends ValidationElement {
                     className="other"
                     maxlength="100"
                     onUpdate={this.onUpdate.bind(this, 'OtherRole')}
-                    onValidate={this.props.handleValidation}
+                    onValidate={this.props.onValidate}
                     />
             </div>
           </Help>

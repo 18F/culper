@@ -20,9 +20,7 @@ export class EducationItem extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasAttended: props.HasAttended,
       HasDegree: props.HasDegree,
-      HasDegree10: props.HasDegree10,
       Dates: props.Dates,
       Type: props.Type,
       Name: props.Name,
@@ -51,9 +49,7 @@ export class EducationItem extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          HasAttended: this.state.HasAttended,
           HasDegree: this.state.HasDegree,
-          HasDegree10: this.state.HasDegree10,
           Dates: this.state.Dates,
           Type: this.state.Type,
           Name: this.state.Name,
@@ -161,7 +157,7 @@ export class EducationItem extends ValidationElement {
                     className="school-name"
                     maxlength="100"
                     onUpdate={this.updateName}
-                    onValidate={this.props.handleValidation}
+                    onValidate={this.props.onValidate}
                     />
               <HelpIcon />
             </Help>
@@ -238,7 +234,8 @@ export class EducationItem extends ValidationElement {
             branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
             branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
             items={this.state.Diplomas}
-            onUpdate={this.updateDiplomas}>
+            onUpdate={this.updateDiplomas}
+            onValidate={this.props.onValidate}>
             <div>
               <DiplomaItem name="Diploma" bind={true} />
             </div>
