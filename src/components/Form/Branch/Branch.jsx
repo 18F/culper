@@ -32,7 +32,7 @@ export default class Branch extends React.Component {
             {this.props.children}
           </div>
           <div>
-            <Help id={this.props.help} className={this.props.helpClassName}>
+            <Help id={this.props.help}>
               <label>{this.props.label || ''}</label>
               <RadioGroup className="option-list branch" selectedValue={this.props.value}>
                 <Radio name={this.props.name}
