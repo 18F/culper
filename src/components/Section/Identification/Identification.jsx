@@ -164,8 +164,8 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="name"
-                       next="identification/othernames"
-                       nextLabel={i18n.t('identification.destination.othernames')}>
+                       next="identification/contacts"
+                       nextLabel={i18n.t('identification.destination.contacts')}>
             <h2>{i18n.t('identification.name.title')}</h2>
             <Name name="name"
                   {...this.props.ApplicantName }
@@ -176,8 +176,8 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="othernames"
-                       back="identification/name"
-                       backLabel={i18n.t('identification.destination.name')}
+                       back="identification/contacts"
+                       backLabel={i18n.t('identification.destination.contacts')}
                        next="identification/birthdate"
                        nextLabel={i18n.t('identification.destination.birthdate')}>
             <h2>{i18n.t('identification.othernames.title')}</h2>
@@ -203,8 +203,8 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="birthplace"
-                       next="identification/contacts"
-                       nextLabel={i18n.t('identification.destination.contacts')}
+                       next="identification/ssn"
+                       nextLabel={i18n.t('identification.destination.ssn')}
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
             <h2>{i18n.t('identification.birthplace.title')}</h2>
@@ -217,10 +217,10 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="contacts"
-                       back="identification/birthplace"
-                       backLabel={i18n.t('identification.destination.birthplace')}
-                       next="identification/ssn"
-                       nextLabel={i18n.t('identification.destination.ssn')}>
+                       back="identification/name"
+                       backLabel={i18n.t('identification.destination.name')}
+                       next="identification/othernames"
+                       nextLabel={i18n.t('identification.destination.othernames')}>
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
@@ -230,8 +230,8 @@ class Identification extends ValidationElement {
           </SectionView>
 
           <SectionView name="ssn"
-                       back="identification/contacts"
-                       backLabel={i18n.t('identification.destination.contacts')}
+                       back="identification/birthplace"
+                       backLabel={i18n.t('identification.destination.birthplace')}
                        next="identification/physical"
                        nextLabel={i18n.t('identification.destination.physical')}>
             <h2>{i18n.t('identification.ssn.title')}</h2>

@@ -49,7 +49,7 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           state: 'APO',
           city: 'APO',
-          zipcode: '000000'
+          zipcode: '00000'
         },
         expected: true
       },
@@ -59,7 +59,7 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           state: null,
           city: 'APO',
-          zipcode: '000000'
+          zipcode: '00000'
         },
         expected: false
       },
@@ -69,7 +69,7 @@ describe('Address component validation', function () {
           address: '1234 Some Rd',
           state: null,
           city: 'APO',
-          zipcode: '000000'
+          zipcode: '00000'
         },
         expected: false
       }
@@ -184,5 +184,34 @@ describe('Address component validation', function () {
       }).catch(r => {
         expect(r).toEqual(test.expected)
       })
+  })
+
+  it('should validate zipcode', function () {
+    const tests = [
+      {
+        state: {
+          addressType: 'United States',
+          address: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'Virginia',
+          zipcode: '2'
+        },
+        expected: false
+      },
+      {
+        state: {
+          addressType: 'United States',
+          address: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'Virginia',
+          zipcode: null
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new AddressValidator(test.state, null).validZipcode()).toEqual(test.expected)
+    })
   })
 })

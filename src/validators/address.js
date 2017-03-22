@@ -17,7 +17,7 @@ export default class AddressValidator {
   isValid () {
     switch (this.addressType) {
       case 'United States':
-        if (!this.address || !this.city || !this.state || !this.zipcode) {
+        if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
           return false
         }
         break
@@ -29,7 +29,7 @@ export default class AddressValidator {
         break
 
       case 'APOFPO':
-        if (!this.address || !this.city || !this.state || !this.zipcode) {
+        if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
           return false
         }
         break
@@ -38,6 +38,13 @@ export default class AddressValidator {
         return false
     }
     return true
+  }
+
+  validZipcode (zip) {
+    if (!zip) {
+      return false
+    }
+    return zip.length === 5
   }
 
   isDomestic () {

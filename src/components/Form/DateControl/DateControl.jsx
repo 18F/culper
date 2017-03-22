@@ -5,6 +5,15 @@ import Checkbox from '../Checkbox'
 import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 
+const trimLeadingZero = (num) => {
+  if (isNaN(num)) {
+    return num
+  }
+
+  const i = parseInt(`0${num}`, 10)
+  return i === 0 ? '' : '' + i
+}
+
 export default class DateControl extends ValidationElement {
   constructor (props) {
     super(props)
@@ -16,9 +25,9 @@ export default class DateControl extends ValidationElement {
       focus: props.focus,
       error: props.error,
       valid: props.valid,
-      month: props.month || this.datePart('m', props.value),
-      day: props.day || props.hideDay ? 1 : this.datePart('d', props.value),
-      year: props.year || this.datePart('y', props.value),
+      month: trimLeadingZero(props.month) || this.datePart('m', props.value),
+      day: trimLeadingZero(props.day) || props.hideDay ? 1 : this.datePart('d', props.value),
+      year: trimLeadingZero(props.year) || this.datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null],
       errorCodes: []
@@ -105,11 +114,11 @@ export default class DateControl extends ValidationElement {
     const name = target.name || target.id || ''
 
     if (name.indexOf('month') !== -1) {
-      month = event.target.value
+      month = trimLeadingZero(event.target.value)
     } else if (name.indexOf('day') !== -1) {
-      day = event.target.value
+      day = trimLeadingZero(event.target.value)
     } else if (name.indexOf('year') !== -1) {
-      year = event.target.value
+      year = trimLeadingZero(event.target.value)
     } else if (name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
@@ -216,7 +225,7 @@ export default class DateControl extends ValidationElement {
 
     let errorCodes = []
     this.state.errorCodes.forEach(e => {
-      if (e != 'day.max') {
+      if (e !== 'day.max') {
         errorCodes.push(e)
       }
     })

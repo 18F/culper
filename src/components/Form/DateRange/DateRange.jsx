@@ -4,7 +4,6 @@ import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
 
 export default class DateRange extends ValidationElement {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -57,12 +56,18 @@ export default class DateRange extends ValidationElement {
     // If present is true then make the "to" date equal to today
     if (!this.state.present && futureState.present) {
       let now = new Date()
+      futureState.to = {}
       futureState.to.date = now
       futureState.to.year = now.getFullYear()
-      futureState.to.month = now.getMonth() - 1
+      futureState.to.month = '' + (now.getMonth() - 1)
       futureState.to.day = now.getDate()
     } else if (this.state.present && !futureState.present) {
-      futureState.to = null
+      futureState.to = {
+        date: '',
+        year: '',
+        month: '',
+        day: ''
+      }
     }
 
     this.setState(futureState, () => {
@@ -159,4 +164,10 @@ export default class DateRange extends ValidationElement {
       </div>
     )
   }
+}
+
+DateRange.defaultProps = {
+  from: {},
+  to: {},
+  present: false
 }

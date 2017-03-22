@@ -20,9 +20,7 @@ export class EducationItem extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasAttended: props.HasAttended,
       HasDegree: props.HasDegree,
-      HasDegree10: props.HasDegree10,
       Dates: props.Dates,
       Type: props.Type,
       Name: props.Name,
@@ -34,8 +32,6 @@ export class EducationItem extends ValidationElement {
 
     this.onUpdate = this.onUpdate.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
-    this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
-    this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
     this.updateBranchDegree = this.updateBranchDegree.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateReference = this.updateReference.bind(this)
@@ -53,9 +49,7 @@ export class EducationItem extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          HasAttended: this.state.HasAttended,
           HasDegree: this.state.HasDegree,
-          HasDegree10: this.state.HasDegree10,
           Dates: this.state.Dates,
           Type: this.state.Type,
           Name: this.state.Name,
@@ -73,14 +67,6 @@ export class EducationItem extends ValidationElement {
    */
   handleTypeChange (event) {
     this.onUpdate('Type', event.target.value)
-  }
-
-  updateBranchAttendance (values) {
-    this.onUpdate('HasAttended', values)
-  }
-
-  updateBranchDegree10 (values) {
-    this.onUpdate('HasDegree10', values)
   }
 
   updateBranchDegree (values) {
@@ -171,7 +157,7 @@ export class EducationItem extends ValidationElement {
                     className="school-name"
                     maxlength="100"
                     onUpdate={this.updateName}
-                    onValidate={this.props.handleValidation}
+                    onValidate={this.props.onValidate}
                     />
               <HelpIcon />
             </Help>
@@ -248,7 +234,8 @@ export class EducationItem extends ValidationElement {
             branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
             branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
             items={this.state.Diplomas}
-            onUpdate={this.updateDiplomas}>
+            onUpdate={this.updateDiplomas}
+            onValidate={this.props.onValidate}>
             <div>
               <DiplomaItem name="Diploma" bind={true} />
             </div>
@@ -261,29 +248,7 @@ export class EducationItem extends ValidationElement {
   render () {
     return (
       <div className="education">
-        <Branch name="branch_school"
-                className="eapp-field-wrap"
-                value={this.state.HasAttended}
-                help="history.education.help.attendance"
-                label={i18n.t('history.education.label.attendance')}
-                onUpdate={this.updateBranchAttendance}
-                >
-        </Branch>
-        <Show when={this.state.HasAttended === 'No'}>
-          <div>
-            <Branch name="branch_degree10"
-                    className="eapp-field-wrap"
-                    value={this.state.HasDegree10}
-                    help="history.education.help.degree10"
-                    label={i18n.t('history.education.label.degree10')}
-                    onUpdate={this.updateBranchDegree10}
-                    >
-            </Branch>
-          </div>
-        </Show>
-        <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
-          {this.school()}
-        </Show>
+        {this.school()}
       </div>
     )
   }

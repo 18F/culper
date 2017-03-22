@@ -6,7 +6,7 @@ import { today, daysAgo } from '../dateranges'
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
 const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+  return (from && from.date >= threeYearsAgo) || (to && to.date >= threeYearsAgo)
 }
 
 /**
@@ -163,7 +163,7 @@ export class ResidenceItem extends ValidationElement {
                     className="other"
                     maxlength="100"
                     onUpdate={this.onUpdate.bind(this, 'OtherRole')}
-                    onValidate={this.props.handleValidation}
+                    onValidate={this.props.onValidate}
                     />
             </div>
           </Help>
