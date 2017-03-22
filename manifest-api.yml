@@ -10,5 +10,6 @@ applications:
   command: ./api
   services:
     - eqip-postgres
+    - usps-api
   env:
     GOVERSION: go1.7.5

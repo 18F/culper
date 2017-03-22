@@ -10,6 +10,7 @@ applications:
   command: ./api
   services:
     - eqip-postgres
+    - usps-api
   env:
     GOVERSION: go1.7.5
     ALLOW_2FA_RESET: 1
