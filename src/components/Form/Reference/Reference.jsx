@@ -180,7 +180,7 @@ export default class Reference extends ValidationElement {
           </div>
         </Comments>
 
-        <h3>{i18n.t(`${prefix}reference.heading.correspondence`)}</h3>
+        <h2>{i18n.t(`${prefix}reference.heading.correspondence`)}</h2>
         <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
 
         <h3>{i18n.t(`${prefix}reference.heading.phone`)}</h3>

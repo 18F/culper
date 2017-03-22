@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Collection, Comments, DateRange, DateControl, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Svg, Show } from '../../../Form'
+import { ValidationElement, Branch, BranchCollection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -20,9 +20,7 @@ export class EducationItem extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasAttended: props.HasAttended,
       HasDegree: props.HasDegree,
-      HasDegree10: props.HasDegree10,
       Dates: props.Dates,
       Type: props.Type,
       Name: props.Name,
@@ -34,8 +32,6 @@ export class EducationItem extends ValidationElement {
 
     this.onUpdate = this.onUpdate.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
-    this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
-    this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
     this.updateBranchDegree = this.updateBranchDegree.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateReference = this.updateReference.bind(this)
@@ -53,9 +49,7 @@ export class EducationItem extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          HasAttended: this.state.HasAttended,
           HasDegree: this.state.HasDegree,
-          HasDegree10: this.state.HasDegree10,
           Dates: this.state.Dates,
           Type: this.state.Type,
           Name: this.state.Name,
@@ -73,14 +67,6 @@ export class EducationItem extends ValidationElement {
    */
   handleTypeChange (event) {
     this.onUpdate('Type', event.target.value)
-  }
-
-  updateBranchAttendance (values) {
-    this.onUpdate('HasAttended', values)
-  }
-
-  updateBranchDegree10 (values) {
-    this.onUpdate('HasDegree10', values)
   }
 
   updateBranchDegree (values) {
@@ -148,13 +134,13 @@ export class EducationItem extends ValidationElement {
           : unk
 
     return (
-      <div className="table">
-        <div className="table-cell index">
+      <span>
+        <span className="index">
           {i18n.t('history.education.collection.diploma.summary.item')} {index + 1}:
-        </div>
-        <div className="table-cell">{ text }</div>
-        <div className="table-cell dates">{ dd }</div>
-      </div>
+        </span>
+        <span className="">{ text }</span>
+        <span className="dates">{ dd }</span>
+      </span>
     )
   }
 
@@ -162,6 +148,21 @@ export class EducationItem extends ValidationElement {
     return (
       <div>
         <div className="content">
+          <h3>{i18n.t('history.education.heading.name')}</h3>
+          <div className="eapp-field-wrap">
+            <Help id="history.education.help.name">
+              <Text name="Name"
+                    {...this.state.Name}
+                    label={i18n.t('history.education.label.name')}
+                    className="school-name"
+                    maxlength="100"
+                    onUpdate={this.updateName}
+                    onValidate={this.props.onValidate}
+                    />
+              <HelpIcon />
+            </Help>
+          </div>
+
           <h3>{i18n.t('history.education.heading.dates')}</h3>
           <div className="eapp-field-wrap">
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
@@ -173,21 +174,6 @@ export class EducationItem extends ValidationElement {
                          onValidate={this.props.onValidate}
                          />
               <HelpIcon className="dates-help-icon" />
-            </Help>
-          </div>
-
-          <h3>{i18n.t('history.education.heading.name')}</h3>
-          <div className="eapp-field-wrap">
-            <Help id="history.education.help.name">
-              <Text name="Name"
-                    {...this.state.Name}
-                    label={i18n.t('history.education.label.name')}
-                    className="school-name"
-                    maxlength="100"
-                    onUpdate={this.updateName}
-                    onValidate={this.props.handleValidation}
-                    />
-              <HelpIcon />
             </Help>
           </div>
 
@@ -243,27 +229,17 @@ export class EducationItem extends ValidationElement {
           </div>
 
           {this.reference()}
-
-          <h2>{i18n.t('history.education.heading.degrees')}</h2>
-          <h3>{i18n.t('history.education.heading.degree')}</h3>
-          <Branch name="branch_degree"
-                  className="eapp-field-wrap"
-                  value={this.state.HasDegree}
-                  help="history.education.help.degree"
-                  onUpdate={this.updateBranchDegree}
-                  >
-          </Branch>
-
-          <Show when={this.state.HasDegree === 'Yes'}>
-            <Collection minimum="1"
-                        items={this.state.Diplomas}
-                        summary={this.diplomaSummary}
-                        summaryTitle={i18n.t('history.education.collection.diploma.summary.title')}
-                        appendLabel={i18n.t('history.education.collection.diploma.append')}
-                        dispatch={this.updateDiplomas}>
-              <DiplomaItem name="Diploma" />
-            </Collection>
-          </Show>
+          <BranchCollection
+            branchHelp="history.employment.default.reprimand.help"
+            branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
+            branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
+            items={this.state.Diplomas}
+            onUpdate={this.updateDiplomas}
+            onValidate={this.props.onValidate}>
+            <div>
+              <DiplomaItem name="Diploma" bind={true} />
+            </div>
+          </BranchCollection>
         </div>
       </div>
     )
@@ -272,29 +248,7 @@ export class EducationItem extends ValidationElement {
   render () {
     return (
       <div className="education">
-        <Branch name="branch_school"
-                className="eapp-field-wrap"
-                value={this.state.HasAttended}
-                help="history.education.help.attendance"
-                label={i18n.t('history.education.label.attendance')}
-                onUpdate={this.updateBranchAttendance}
-                >
-        </Branch>
-        <Show when={this.state.HasAttended === 'No'}>
-          <div>
-            <Branch name="branch_degree10"
-                    className="eapp-field-wrap"
-                    value={this.state.HasDegree10}
-                    help="history.education.help.degree10"
-                    label={i18n.t('history.education.label.degree10')}
-                    onUpdate={this.updateBranchDegree10}
-                    >
-            </Branch>
-          </div>
-        </Show>
-        <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
-          {this.school()}
-        </Show>
+        {this.school()}
       </div>
     )
   }

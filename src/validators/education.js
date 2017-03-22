@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield, validPhoneNumber } from './helpers'
+import { validGenericTextfield } from './helpers'
 import AddressValidator from './address'
 import ReferenceValidator from './reference'
 
@@ -8,17 +8,7 @@ export default class EducationValidator {
   constructor (state, props) {
     this.hasAttended = state.HasAttended
     this.hasDegree10 = state.HasDegree10
-    this.hasDegree = state.HasDegree
-    this.dates = state.Dates
-    this.address = state.Address
-    this.name = state.Name
-    this.type = state.Type
-    this.reference = state.Reference
-    this.diplomas = state.Diplomas
-  }
-
-  hasEducation () {
-    return this.hasAttended === 'Yes' || this.hasDegree10 === 'Yes'
+    this.list = state.List || []
   }
 
   validAttendance () {
@@ -33,70 +23,91 @@ export default class EducationValidator {
     return true
   }
 
-  validDates () {
-    if (this.hasEducation()) {
-      return new DateRangeValidator(this.dates, null).isValid()
+  validList () {
+    if (this.hasAttended === 'No' && this.hasDegree10 === 'No') {
+      return true
+    }
+
+    if (this.list && this.list.length === 0) {
+      return false
+    }
+
+    for (const edu of this.list) {
+      if (new EducationItemValidator(edu, null).isValid() === false) {
+        return false
+      }
     }
 
     return true
+  }
+
+  isValid () {
+    return this.validAttendance() && this.validList()
+  }
+}
+
+export class EducationItemValidator {
+  constructor (state = {}, props = {}) {
+    this.list = state.List
+    this.dates = state.Dates
+    this.address = state.Address
+    this.name = state.Name
+    this.type = state.Type
+    this.reference = state.Reference
+    this.diplomas = state.Diplomas
+  }
+
+  validDates () {
+    return new DateRangeValidator(this.dates, null).isValid()
   }
 
   validAddress () {
-    if (this.hasEducation()) {
-      return new AddressValidator(this.address, null).isValid()
-    }
-
-    return true
+    return new AddressValidator(this.address, null).isValid()
   }
 
   validName () {
-    if (this.hasEducation()) {
-      return this.name && validGenericTextfield(this.name)
-    }
-
-    return true
+    return this.name && validGenericTextfield(this.name)
   }
 
   validType () {
-    if (this.hasEducation()) {
-      return this.type && this.type.length > 0
-    }
-
-    return true
+    return this.type && this.type.length > 0
   }
 
   validReference () {
     const threeYearsAgo = daysAgo(today, 365 * 3)
-    if (this.hasEducation() && ((this.dates.from && this.dates.from >= threeYearsAgo) || (this.dates.to && this.dates.to >= threeYearsAgo))) {
+    if ((this.dates.from.date && this.dates.from.date >= threeYearsAgo) || (this.dates.to.date && this.dates.to.date >= threeYearsAgo)) {
       return this.reference && new ReferenceValidator(this.reference, null).isValid()
     }
 
     return true
   }
 
-  validDiplomas () {
-    if (this.hasEducation()) {
-      if (!(this.hasDegree === 'No' || this.hasDegree === 'Yes')) {
-        return false
-      }
+  hasDegree () {
+    return this.diplomas.filter(diploma => { return diploma.Has === 'Yes' }).length
+  }
 
-      if (this.hasDegree === 'Yes') {
-        if (!this.diplomas || this.diplomas.length === 0) {
+  validDiplomas () {
+    // Check if we have valid yes/no values
+    if (!this.diplomas || !this.diplomas.length) {
+      return false
+    }
+
+    if (this.hasDegree()) {
+      for (const item of this.diplomas) {
+        if (item.Has !== 'Yes') {
+          continue
+        }
+        const diploma = item.Diploma
+        if (!diploma) {
           return false
         }
 
-        for (const item of this.diplomas) {
-          if (!item.Diploma) {
-            return false
-          }
+        if (diploma.Diploma === 'Other' && !diploma.DiplomaOther) {
+          return false
+        }
 
-          if (item.Diploma === 'Other' && !item.DiplomaOther) {
-            return false
-          }
-
-          if (!item.Date || !item.Date.date) {
-            return false
-          }
+        if (!diploma.Date || !diploma.Date.date) {
+          return false
         }
       }
     }
@@ -105,8 +116,7 @@ export default class EducationValidator {
   }
 
   isValid () {
-    return this.validAttendance() &&
-      this.validDates() &&
+    return this.validDates() &&
       this.validAddress() &&
       this.validName() &&
       this.validType() &&

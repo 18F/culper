@@ -1,7 +1,7 @@
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class MilitaryDisciplinaryValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.hasDisciplinary = state.HasDisciplinary
     this.list = state.List || []
   }
@@ -35,7 +35,7 @@ export default class MilitaryDisciplinaryValidator {
 }
 
 export class ProcedureValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.date = state.Date
     this.offenses = state.Offenses
     this.name = state.Name

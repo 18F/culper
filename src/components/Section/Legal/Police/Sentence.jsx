@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Textarea, DateRange, Help, HelpIcon } from '../../../Form'
-import { dateSummary } from '../../History/HistoryCollection/summaries'
+import { dateSummary } from '../../History/summaries'
 import Offense from './Offense'
 
 export default class Sentence extends ValidationElement {

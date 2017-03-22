@@ -5,7 +5,7 @@ import { validDateField, validPhoneNumber, validGenericTextfield } from './helpe
 const relationshipOptions = ['Neighbor', 'Friend', 'Landlord', 'Business', 'Other']
 
 export default class ReferenceValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.fullName = state.FullName
     this.lastContact = state.LastContact
     this.relationship = state.Relationship

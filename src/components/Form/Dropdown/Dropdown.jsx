@@ -3,6 +3,15 @@ import ValidationElement from '../ValidationElement'
 import ReactMarkdown from 'react-markdown'
 import Autosuggest from 'react-autosuggest'
 
+const trimLeadingZero = (num) => {
+  if (isNaN(num)) {
+    return num
+  }
+
+  const i = parseInt(`0${num}`, 10)
+  return i === 0 ? '' : '' + i
+}
+
 const getSuggestionValue = suggestion => suggestion.name
 
 const renderSuggestion = (suggestion, search) => {
@@ -93,13 +102,13 @@ export default class Dropdown extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({value: event.target.value}, () => {
+    this.setState({value: trimLeadingZero(event.target.value)}, () => {
       super.handleChange(event)
     })
   }
 
   handleValidation (event, status, errorCodes) {
-    let value = this.state.value
+    let value = trimLeadingZero(this.state.value)
     let valid = value.length > 0 ? false : null
 
     if (valid !== null) {
@@ -116,7 +125,7 @@ export default class Dropdown extends ValidationElement {
     }
 
     this.setState({
-      value: value,
+      value: trimLeadingZero(value),
       error: valid === false,
       valid: valid === true
     },

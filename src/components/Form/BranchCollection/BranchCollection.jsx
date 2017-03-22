@@ -5,26 +5,7 @@ import { newGuid } from '../ValidationElement/ValidationElement'
 export default class BranchCollection extends React.Component {
   constructor (props) {
     super(props)
-
-    let indices = []
-    for (let i = 0; i < this.props.items.length; i++) {
-      indices.push(newGuid())
-    }
-
-    this.state = {
-      indices: indices
-    }
-
     this.content = this.content.bind(this)
-    this.updateIndices = this.updateIndices.bind(this)
-  }
-
-  updateIndices (indices, fn) {
-    this.setState({ indices: indices }, () => {
-      if (fn) {
-        fn()
-      }
-    })
   }
 
   /**
@@ -38,10 +19,6 @@ export default class BranchCollection extends React.Component {
     // If it's not the first item, remove it when user selects no if `removeable` flag is turned on
     if (this.props.items.length > 1 && this.props.removable && yes === 'No') {
       items.splice(index, 1)
-
-      let indices = [...this.state.indices]
-      indices.splice(index, 1)
-      this.updateIndices(indices)
     }
 
     this.props.onUpdate(items)
@@ -52,11 +29,11 @@ export default class BranchCollection extends React.Component {
    */
   onDefaultBranchClick (yes) {
     let item = {
-      [this.props.valueKey]: yes
+      [this.props.valueKey]: yes,
+      index: newGuid()
     }
     let items = [item]
-    let indices = [newGuid()]
-    this.updateIndices(indices, () => { this.props.onUpdate(items) })
+    this.props.onUpdate(items)
   }
 
   /**
@@ -64,14 +41,17 @@ export default class BranchCollection extends React.Component {
    */
   onLastBranchClick (yes) {
     let item = {
-      [this.props.valueKey]: yes
+      [this.props.valueKey]: yes,
+      index: newGuid()
     }
     if (yes === 'Yes') {
       let items = [...this.props.items]
       items.push(item)
-      let indices = [...this.state.indices]
-      indices.push(newGuid())
-      this.updateIndices(indices, () => { this.props.onUpdate(items) })
+      this.props.onUpdate(items)
+    } else {
+      let items = [...this.props.items]
+      items.push(item)
+      this.props.onUpdate(items)
     }
   }
 
@@ -111,19 +91,28 @@ export default class BranchCollection extends React.Component {
         onValidate={this.props.onValidate}
         {...props}
         >
-        {this.props.branch}
+        {props.children || this.props.branch}
       </Branch>
     )
   }
 
   content () {
+    let items = this.props.items.map(item => {
+      if (!item.index) {
+        item.index = newGuid()
+      }
+      return item
+    })
+    let hasNo = !!items.find(item => item[this.props.valueKey] === 'No')
+
     // When no items are present, render default branch yes/no
-    if (this.props.items.length === 0) {
+    if (items.length === 0) {
       return (
-        <div key={this.state.indices[0]}>
+        <div>
           {
             this.branch({
-              onUpdate: this.onDefaultBranchClick.bind(this)
+              onUpdate: this.onDefaultBranchClick.bind(this),
+              value: null
             })
           }
         </div>
@@ -132,10 +121,10 @@ export default class BranchCollection extends React.Component {
 
     // If a branch has been selected but it has a `No` value, rather than deleting, we'll update
     // its value
-    if (this.props.items.length === 1 && this.props.items[0][this.props.valueKey] === 'No') {
+    if (items.length === 1 && items[0][this.props.valueKey] === 'No') {
       var item = this.props.items[0]
       return (
-        <div key={this.state.indices[0]}>
+        <div key={item.index}>
           {
             this.branch({
               value: 'No',
@@ -156,10 +145,17 @@ export default class BranchCollection extends React.Component {
 
     // Render the branch question at the very end
     const bottom = (index, item) => {
-      return this.props.items.length - 1 === index
+      var value = null
+      if (hasNo) {
+        return null
+      }
+
+      return items.length - 1 === index
         ? this.branch({
           className: 'last-branch',
-          onUpdate: this.onLastBranchClick.bind(this)
+          onUpdate: this.onLastBranchClick.bind(this),
+          children: this.props.branchTail || this.props.branch,
+          value: value
         })
       : null
     }
@@ -170,9 +166,9 @@ export default class BranchCollection extends React.Component {
         : null
     }
 
-    const rows = this.props.items.map((item, index) => {
+    const rows = items.map((item, index) => {
       return (
-        <div key={this.state.indices[index]}>
+        <div key={item.index}>
           { top(index, item) }
           <div>{ kiddos(index, item) }</div>
           { bottom(index, item) }
@@ -207,6 +203,10 @@ BranchCollection.defaultProps = {
 
   // Key name that stores whether yes/no has been selected
   valueKey: 'Has',
+
+  branch: null,
+
+  branchTail: null,
 
   onUpdate: () => {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')

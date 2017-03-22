@@ -4,6 +4,7 @@
 .help {
   padding-top: 2.6rem;
   line-height: 4.6rem;
+  z-index: 1;
 
   > label {
     top: -1.2rem !important;
@@ -54,10 +55,16 @@
     background: $eapp-blue-lightest;
     border: 2px solid $eapp-blue-lighter;
 
-    h5 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       margin-top: 0;
       font-family: $eapp-sans;
       font-size: 13pt;
+      padding: 0;
     }
 
     > i {

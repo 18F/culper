@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, Email, Collection, Comments, Telephone } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Email, Accordion, Comments, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
   constructor (props) {
@@ -84,16 +84,16 @@ export default class ContactInformation extends ValidationElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    let addr = i18n.t('identification.contacts.collection.summary.unknown')
+    let addr = i18n.t('identification.contacts.collection.summary.unknownEmail')
     if (item.Email && item.Email.value) {
       addr = item.Email.value
     }
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</div>
-        <div className="table-cell"><strong>{addr}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</span>
+        <span><strong>{addr}</strong></span>
+      </span>
     )
   }
 
@@ -101,7 +101,7 @@ export default class ContactInformation extends ValidationElement {
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    let number = i18n.t('identification.contacts.collection.summary.unknown')
+    let number = i18n.t('identification.contacts.collection.summary.unknownPhone')
     if (item.Telephone && !item.noNumber && item.Telephone.number) {
       number = item.Telephone.number
 
@@ -128,10 +128,10 @@ export default class ContactInformation extends ValidationElement {
     }
 
     return (
-      <div className="table">
-        <div className="table-cell index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</div>
-        <div className="table-cell"><strong>{number}</strong></div>
-      </div>
+      <span>
+        <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>
+        <span><strong>{number}</strong></span>
+      </span>
     )
   }
 
@@ -143,49 +143,49 @@ export default class ContactInformation extends ValidationElement {
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
         <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
-          <Collection minimum="1"
-                      items={this.state.Emails}
-                      dispatch={this.contactDispatch.bind(this, 'Emails')}
-                      scrollTo="self"
-                      summary={this.emailSummary}
-                      summaryTitle={i18n.t('identification.contacts.collection.summary.title')}
-                      appendClass="eapp-field-wrap"
-                      appendLabel={i18n.t('identification.contacts.collection.append')}>
+          <Accordion minimum="1"
+                     items={this.state.Emails}
+                     onUpdate={this.contactDispatch.bind(this, 'Emails')}
+                     onValidate={this.handleValidation}
+                     summary={this.emailSummary}
+                     description={i18n.t('identification.contacts.collection.summary.title')}
+                     appendClass="eapp-field-wrap"
+                     appendLabel={i18n.t('identification.contacts.collection.append')}>
             <div className="eapp-field-wrap">
               <Help id="identification.contacts.help.email">
                 <Email name="Email"
                        label={i18n.t('identification.contacts.label.email')}
-                       onValidate={this.handleValidation}
                        placeholder={i18n.t('identification.contacts.placeholder.email')}
+                       bind={true}
                        />
-                       <HelpIcon className="email-icon" />
+                <HelpIcon className="email-icon" />
               </Help>
             </div>
-          </Collection>
+          </Accordion>
         </div>
 
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
         <div className={klass + ' telephone-collection'}>
-          <Collection minimum="2"
-                      items={this.state.PhoneNumbers}
-                      dispatch={this.contactDispatch.bind(this, 'PhoneNumbers')}
-                      scrollTo="self"
-                      summary={this.phoneNumberSummary}
-                      summaryTitle={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
-                      appendClass="eapp-field-wrap"
-                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
+          <Accordion minimum="2"
+                     items={this.state.PhoneNumbers}
+                     onUpdate={this.contactDispatch.bind(this, 'PhoneNumbers')}
+                     onValidate={this.handleValidation}
+                     summary={this.phoneNumberSummary}
+                     description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
+                     appendClass="eapp-field-wrap"
+                     appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
             <div className="eapp-field-wrap no-label">
               <Help id="identification.contacts.help.phoneNumber">
                 <Telephone name="Telephone"
-                       label={i18n.t('identification.contacts.label.telephone')}
-                       onValidate={this.handleValidation}
-                       placeholder={i18n.t('identification.contacts.placeholder.telephone')}
-                       />
-                       <HelpIcon className="telephone-icon" />
+                           label={i18n.t('identification.contacts.label.telephone')}
+                           placeholder={i18n.t('identification.contacts.placeholder.telephone')}
+                           bind={true}
+                           />
+                <HelpIcon className="telephone-icon" />
               </Help>
             </div>
-          </Collection>
+          </Accordion>
         </div>
 
         <Comments name="comments"

@@ -17,7 +17,7 @@ export default class AddressValidator {
   isValid () {
     switch (this.addressType) {
       case 'United States':
-        if (!this.address || !this.city || !this.state || !this.zipcode) {
+        if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
           return false
         }
         break
@@ -29,7 +29,7 @@ export default class AddressValidator {
         break
 
       case 'APOFPO':
-        if (!this.address || !this.city || !this.state || !this.zipcode) {
+        if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
           return false
         }
         break
@@ -38,6 +38,13 @@ export default class AddressValidator {
         return false
     }
     return true
+  }
+
+  validZipcode (zip) {
+    if (!zip) {
+      return false
+    }
+    return zip.length === 5
   }
 
   isDomestic () {
@@ -61,12 +68,30 @@ export default class AddressValidator {
     return data
   }
 
+  isSystemError (data) {
+    if (!data || !data.Errors || !data.Errors.length) {
+      return false
+    }
+    for (let e of data.Errors) {
+      if (e.Error.indexOf('error.geocode.system') !== -1) {
+        return true
+      }
+    }
+    return false
+  }
+
   geocode () {
     const toGeocode = this.prepareGeocode()
-    return api
-      .validateAddress(toGeocode)
-      .then((response) => {
-        return response.data
-      })
+    return new Promise((resolve, reject) => {
+      api
+        .validateAddress(toGeocode)
+        .then((response) => {
+          const data = response.data
+          if (this.isSystemError(data)) {
+            return reject(data)
+          }
+          resolve(response.data)
+        })
+    })
   }
 }

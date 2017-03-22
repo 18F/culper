@@ -63,8 +63,12 @@ describe('Military foreign validation', function () {
                   value: 'Army'
                 },
                 Dates: {
-                  from: new Date('1/1/2010'),
-                  to: new Date('1/1/2012'),
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
                   present: false
                 },
                 Country: {
@@ -106,8 +110,12 @@ describe('Military foreign validation', function () {
                         value: 'Mr.'
                       },
                       Dates: {
-                        from: new Date('1/1/2010'),
-                        to: new Date('1/1/2012'),
+                        from: {
+                          date: new Date('1/1/2010')
+                        },
+                        to: {
+                          date: new Date('1/1/2012')
+                        },
                         present: false
                       },
                       Frequency: {

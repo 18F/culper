@@ -11,14 +11,15 @@
       width: 100% !important;
       max-width: 64rem !important;
     }
+    padding-bottom: 2.2rem;
   }
 
   .branch {
+    padding-top: 2rem;
     .help {
       padding-top: 0;
 
       label {
-        display: inline;
         position: relative;
       }
     }

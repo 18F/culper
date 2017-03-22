@@ -9,10 +9,10 @@ describe('The federal component', () => {
     }
     const component = mount(<Federal name={expected.name} />)
     component.find({type: 'radio', name: 'has_federalservice', value: 'Yes'}).simulate('change')
-    expect(component.find('.collection').length).toBeGreaterThan(0)
-    expect(component.find('.collection .daterange').length).toBeGreaterThan(0)
-    expect(component.find('.collection .text').length).toBeGreaterThan(0)
-    expect(component.find('.collection .address').length).toBeGreaterThan(0)
+    expect(component.find('.accordion').length).toBeGreaterThan(0)
+    expect(component.find('.accordion .daterange').length).toBeGreaterThan(0)
+    expect(component.find('.accordion .text').length).toBeGreaterThan(0)
+    expect(component.find('.accordion .address').length).toBeGreaterThan(0)
   })
 
   it('selects no', () => {
@@ -21,7 +21,7 @@ describe('The federal component', () => {
     }
     const component = mount(<Federal name={expected.name} />)
     component.find({type: 'radio', name: 'has_federalservice', value: 'No'}).simulate('change')
-    expect(component.find('.collection').length).toBe(0)
+    expect(component.find('.accordion').length).toBe(0)
   })
 
   it('recieves updates from children', () => {
@@ -32,12 +32,12 @@ describe('The federal component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<Federal {...expected} />)
-    expect(component.find('.collection').length).toBe(1)
+    expect(component.find('.accordion').length).toBe(1)
     component.find({type: 'text', name: 'Position'}).simulate('change')
     component.find({type: 'text', name: 'Name'}).simulate('change')
-    component.find('.collection .datecontrol #day').first().simulate('change')
-    component.find('.collection .mailing input').simulate('change')
-    expect(updates).toEqual(4)
+    component.find('.accordion .datecontrol #day').first().simulate('change')
+    component.find('.accordion .mailing input').simulate('change')
+    expect(updates).toBeGreaterThan(3)
   })
 
   it('can display a summary', () => {
@@ -64,9 +64,9 @@ describe('The federal component', () => {
       ]
     }
     const component = mount(<Federal {...expected} />)
-    expect(component.find('.collection').length).toBe(1)
-    expect(component.find('.collection .item').length).toBe(2)
-    expect(component.find('.collection .index').length).toBe(2)
-    expect(component.find('.collection .dates').length).toBe(2)
+    expect(component.find('.accordion').length).toBe(1)
+    expect(component.find('.accordion .item').length).toBe(2)
+    expect(component.find('.accordion .index').length).toBe(2)
+    expect(component.find('.accordion .dates').length).toBe(2)
   })
 })

@@ -559,7 +559,104 @@ describe('Offense validation', function () {
       {
         state: {
           WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCharged: 'No',
+          Sentence: {
+            AwaitingTrial: 'Yes',
+            AwaitingTrialExplanation: 'Yes',
+            ExceedsYear: 'Yes',
+            Incarcerated: 'Yes',
+            IncarcerationDates: {
+              from: {
+                date: new Date('1/1/2000')
+              },
+              to: {
+                date: new Date('1/1/2004')
+              },
+              present: false
+            },
+            ProbationDates: {
+              from: {
+                date: new Date('1/1/2000')
+              },
+              to: {
+                date: new Date('1/1/2004')
+              },
+              present: false
+            },
+            Description: {
+              value: 'Foo'
+            }
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          WasSentenced: 'No',
+          Sentence: {
+            AwaitingTrial: 'Yes',
+            AwaitingTrialExplanation: 'Yes',
+            ExceedsYear: 'Yes',
+            Incarcerated: 'Yes',
+            IncarcerationDates: {
+              from: {
+                date: new Date('1/1/2000')
+              },
+              to: {
+                date: new Date('1/1/2004')
+              },
+              present: false
+            },
+            ProbationDates: {
+              from: {
+                date: new Date('1/1/2000')
+              },
+              to: {
+                date: new Date('1/1/2004')
+              },
+              present: false
+            },
+            Description: {
+              value: 'Foo'
+            }
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
+          WasSentenced: 'Yes',
+          Sentence: {
+            AwaitingTrial: 'Yes',
+            AwaitingTrialExplanation: 'Yes',
+            ExceedsYear: 'Yes',
+            Incarcerated: 'Yes',
+            IncarcerationDates: {
+              from: {
+                date: new Date('1/1/2000')
+              },
+              to: {
+                date: new Date('1/1/2004')
+              },
+              present: false
+            },
+            ProbationDates: {
+              from: {
+                date: new Date('1/1/2000')
+              },
+              to: {
+                date: new Date('1/1/2004')
+              },
+              present: false
+            },
+            Description: {
+              value: 'Foo'
+            }
+          }
         },
         expected: true
       },
@@ -575,9 +672,9 @@ describe('Offense validation', function () {
         state: {
           WasCited: 'Yes',
           WasCharged: 'Yes',
-          WasSentenced: 'Yes'
+          WasSentenced: 'Nope'
         },
-        expected: true
+        expected: false
       }
     ]
 

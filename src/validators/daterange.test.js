@@ -5,32 +5,48 @@ describe('Date range validator', function () {
     const tests = [
       {
         state: {
-          from: new Date('1/1/2010'),
-          to: new Date('1/1/2012'),
+          from: {
+            date: new Date('1/1/2010')
+          },
+          to: {
+            date: new Date('1/1/2012')
+          },
           present: false
         },
         expected: true
       },
       {
         state: {
-          from: new Date('1/1/2010'),
-          to: null,
+          from: {
+            date: new Date('1/1/2010')
+          },
+          to: {
+            date: null
+          },
           present: false
         },
         expected: false
       },
       {
         state: {
-          from: null,
-          to: new Date('1/1/2010'),
+          from: {
+            date: null
+          },
+          to: {
+            date: new Date('1/1/2010')
+          },
           present: false
         },
         expected: false
       },
       {
         state: {
-          from: new Date('1/1/2012'),
-          to: new Date('1/1/2010'),
+          from: {
+            date: new Date('1/1/2012')
+          },
+          to: {
+            date: new Date('1/1/2010')
+          },
           present: false
         },
         expected: false
