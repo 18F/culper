@@ -38,7 +38,6 @@ export default class RelativesValidator {
 
 export class RelativeValidator {
   constructor (state = {}, props = {}) {
-    console.log('state', state)
     this.relations = state.Relations || []
     this.name = state.Name
     this.birthdate = state.Birthdate
@@ -63,6 +62,7 @@ export class RelativeValidator {
     this.frequency = state.Frequency
     this.employer = state.Employer
     this.employerAddress = state.EmployerAddress
+    this.hasAffiliation = state.HasAffiliation
     this.employerRelationship = state.EmployerRelationship
   }
 
@@ -105,10 +105,6 @@ export class RelativeValidator {
 
   validBirthplace () {
     return !!this.birthplace && new AddressValidator(this.birthplace, null).isValid()
-  }
-
-  validCitizen () {
-    return false
   }
 
   validMaidenName () {
@@ -286,7 +282,6 @@ export class RelativeValidator {
       this.validName() &&
       this.validBirthdate() &&
       this.validBirthplace() &&
-      this.validCitizen() &&
       this.validMaidenName() &&
       this.validAliases() &&
       this.validIsDeceased() &&
@@ -319,7 +314,6 @@ export class AliasValidator {
   }
 
   validHas () {
-    console.log('has', this.has)
     return !!this.has && (this.has === 'No' || this.has === 'Yes')
   }
 

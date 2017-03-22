@@ -24,42 +24,6 @@ describe('Relatives validation', function () {
     })
   })
 
-  // it('validate items', () => {
-  //   const tests = [
-  //     {
-  //       state: {
-  //         Relations: [],
-  //         List: []
-  //       },
-  //       expected: false
-  //     },
-  //     {
-  //       state: {
-  //         Relations: ['Mother'],
-  //         List: []
-  //       },
-  //       expected: false
-  //     },
-  //     {
-  //       state: {
-  //         Relations: ['Mother'],
-  //         List: [
-  //           {
-  //             Item: {
-  //               Relations: ['Mother']
-  //             }
-  //           }
-  //         ]
-  //       },
-  //       expected: true
-  //     }
-  //   ]
-
-  //   tests.forEach(test => {
-  //     expect(new RelativesValidator(test.state, null).isValid()).toBe(test.expected)
-  //   })
-  // })
-
   it('validate relative relationship', () => {
     const tests = [
       {
@@ -117,6 +81,37 @@ describe('Relatives validation', function () {
   })
 
   it('validate relative birth date', () => {
+    const tests = [
+      {
+        state: {
+        },
+        expected: false
+      },
+      {
+        state: {
+          Birthdate: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Birthdate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validBirthdate()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative birth place', () => {
     const tests = [
       {
         state: {
@@ -1055,7 +1050,7 @@ describe('Relatives validation', function () {
             date: new Date('1/1/2016')
           }
         },
-        expected: false
+        expected: true
       }
     ]
 
@@ -1105,7 +1100,7 @@ describe('Relatives validation', function () {
             date: new Date('1/1/2016')
           }
         },
-        expected: false
+        expected: true
       }
     ]
 
@@ -1150,12 +1145,227 @@ describe('Relatives validation', function () {
           },
           Methods: ['In person', 'Electronic']
         },
-        expected: false
+        expected: true
       }
     ]
 
     tests.forEach(test => {
       expect(new RelativeValidator(test.state, null).validMethods()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative does not live within the U.S. correspondence frequency', () => {
+    const tests = [
+      {
+        state: {
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Frequency: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Frequency: 'Daily'
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validFrequency()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative does not live within the U.S. employer name', () => {
+    const tests = [
+      {
+        state: {
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Employer: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Employer: {
+            value: 'ACME'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validEmployer()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative does not live within the U.S. employer address', () => {
+    const tests = [
+      {
+        state: {
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          EmployerAddress: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          EmployerAddress: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validEmployerAddress()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative does not live within the U.S. employer relationship', () => {
+    const tests = [
+      {
+        state: {
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          HasAffiliation: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          HasAffiliation: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          HasAffiliation: 'Yes',
+          EmployerRelationship: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          HasAffiliation: 'Yes',
+          EmployerRelationship: {
+            value: 'Associate'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validEmployerRelationship()).toBe(test.expected)
     })
   })
 })
