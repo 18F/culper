@@ -1,5 +1,6 @@
 import NameValidator from './name'
 import AddressValidator from './address'
+import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
@@ -37,13 +38,14 @@ export default class RelativesValidator {
 
 export class RelativeValidator {
   constructor (state = {}, props = {}) {
-    this.relations = state.Relations
+    console.log('state', state)
+    this.relations = state.Relations || []
     this.name = state.Name
     this.birthdate = state.Birthdate
     this.birthplace = state.Birthplace
-    this.citizen = state.Citizen
+    this.citizenship = state.Citizenship || []
     this.maidenName = state.MaidenName
-    this.aliases = state.Aliases
+    this.aliases = state.Aliases || []
     this.isDeceased = state.IsDeceased
     this.address = state.Address
     this.abroad = state.Abroad
@@ -57,11 +59,36 @@ export class RelativeValidator {
     this.expiration = state.Expiration
     this.firstContact = state.FirstContact
     this.lastContact = state.LastContact
-    this.methods = state.Methods
+    this.methods = state.Methods || []
     this.frequency = state.Frequency
     this.employer = state.Employer
     this.employerAddress = state.EmployerAddress
     this.employerRelationship = state.EmployerRelationship
+  }
+
+  citizen () {
+    return !!this.citizenship && this.citizenship.some(x => x === 'United States')
+  }
+
+  requiresCitizenshipDocumentation () {
+    const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
+    if (this.relations && this.relations.some(x => relations.includes(x)) && this.citizen() && this.birthplace.addressType === 'International' && this.isDeceased === 'Yes') {
+      return true
+    }
+
+    if (this.address && this.address.addressType === 'United States' && this.birthplace.addressType === 'International' && this.citizen()) {
+      return true
+    }
+
+    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.addressType === 'International' && this.citizen()) {
+      return true
+    }
+
+    if (this.birthplace && this.birthplace.addressType === 'International' && this.citizen()) {
+      return true
+    }
+
+    return false
   }
 
   validRelations () {
@@ -89,79 +116,169 @@ export class RelativeValidator {
   }
 
   validAliases () {
-    return false
+    if (this.aliases.length === 0) {
+      return false
+    }
+
+    for (const alias of this.aliases) {
+      if (new AliasValidator(alias, null).isValid() === false) {
+        return false
+      }
+    }
+
+    return true
   }
 
   validIsDeceased () {
-    return false
+    return !!this.isDeceased && (this.isDeceased === 'No' || this.isDeceased === 'Yes')
   }
 
   validAddress () {
-    return false
+    if (!this.isDeceased) {
+      return false
+    }
+
+    if (this.isDeceased === 'No') {
+      return true
+    }
+
+    return !!this.address && new AddressValidator(this.address, null).isValid()
   }
 
   validAbroad () {
-    return false
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return !!this.abroad && this.abroad.length > 0
   }
 
   validNaturalized () {
-    return false
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return !!this.naturalized && this.naturalized.length > 0
   }
 
   validDerived () {
-    return false
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return !!this.derived && this.derived.length > 0
   }
 
   validDocumentNumber () {
-    return false
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return validGenericTextfield(this.documentNumber)
   }
 
   validCourtName () {
-    return false
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return validGenericTextfield(this.courtName)
   }
 
   validCourtAddress () {
-    return false
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return new AddressValidator(this.courtAddress, null).isValid()
   }
 
   validDocument () {
-    return false
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
+    return !!this.document && this.document.length > 0
   }
 
   validResidenceDocumentNumber () {
-    return false
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
+    return !!this.residenceDocumentNumber && validGenericTextfield(this.residenceDocumentNumber)
   }
 
   validExpiration () {
-    return false
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
+    return !!this.expiration && validDateField(this.expiration)
   }
 
   validFirstContact () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    return !!this.firstContact && validDateField(this.firstContact)
   }
 
   validLastContact () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    return !!this.lastContact && validDateField(this.lastContact)
   }
 
   validMethods () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    return this.methods.length > 0
   }
 
   validFrequency () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    return !!this.frequency && this.frequency.length > 0
   }
 
   validEmployer () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    return !!this.employer && validGenericTextfield(this.employer)
   }
 
   validEmployerAddress () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    return !!this.employerAddress && new AddressValidator(this.employerAddress, null).isValid()
   }
 
   validEmployerRelationship () {
-    return false
+    if (this.address && this.address.addressType !== 'International') {
+      return true
+    }
+
+    if (!this.hasAffiliation) {
+      return false
+    }
+
+    if (this.hasAffiliation === 'No') {
+      return true
+    }
+
+    return !!this.employerRelationship && validGenericTextfield(this.employerRelationship)
   }
 
   isValid () {
@@ -190,5 +307,43 @@ export class RelativeValidator {
       this.validEmployer() &&
       this.validEmployerAddress() &&
       this.validEmployerRelationship()
+  }
+}
+
+export class AliasValidator {
+  constructor (state = {}, props = {}) {
+    this.has = state.Has
+    this.name = state.Name
+    this.maidenName = state.MaidenName
+    this.dates = state.Dates
+  }
+
+  validHas () {
+    console.log('has', this.has)
+    return !!this.has && (this.has === 'No' || this.has === 'Yes')
+  }
+
+  validName () {
+    return !!this.name && new NameValidator(this.name, null).isValid()
+  }
+
+  validMaidenName () {
+    return !!this.maidenName && (this.maidenName === 'No' || this.maidenName === 'Yes')
+  }
+
+  validDates () {
+    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+  }
+
+  isValid () {
+    const has = this.validHas()
+    if (has && this.has === 'No') {
+      return true
+    }
+
+    return has &&
+      this.validName() &&
+      this.validMaidenName() &&
+      this.validDates()
   }
 }

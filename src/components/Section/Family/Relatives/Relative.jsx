@@ -4,6 +4,7 @@ import { ValidationElement, Branch, Show, Svg, BranchCollection,
          Name, Text, Textarea, Address, DateControl, DateRange,
          Checkbox, CheckboxGroup, Radio, RadioGroup
        } from '../../../Form'
+import { RelativeValidator } from '../../../../validators'
 
 /**
  * Convenience function to send updates along their merry way
@@ -26,7 +27,7 @@ export default class Relative extends ValidationElement {
       Name: props.Name,
       Birthdate: props.Birthdate,
       Birthplace: props.Birthplace,
-      Citizen: props.Citizen,
+      Citizenship: props.Citizenship, // Needs new component
       MaidenName: props.MaidenName,
       Aliases: props.Aliases,
       IsDeceased: props.IsDeceased,
@@ -188,28 +189,8 @@ export default class Relative extends ValidationElement {
     this.onUpdate('EmployerRelationship', values)
   }
 
-  needCitizenshipDocumentation () {
-    const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
-    if (this.state.Relations && this.state.Relations.some(x => relations.includes(x)) && this.state.Citizen && this.state.Birthplace.type === 'international' && this.state.IsDeceased === 'Yes') {
-      return true
-    }
-
-    if (this.state.Address && this.state.Address.type === 'domestic' && this.state.Birthplace.type === 'international' && this.state.Citizen) {
-      return true
-    }
-
-    if (this.state.Address && this.state.Address.type === 'apofpo' && this.state.Birthplace.type === 'international' && this.state.Citizen) {
-      return true
-    }
-
-    if (this.state.Birthplace && this.state.Birthplace.type === 'international' && this.state.Citizen) {
-      return true
-    }
-
-    return false
-  }
-
   render () {
+    const validator = new RelativeValidator(this.state, null)
     return (
       <div className="relative-item">
         <h3>{i18n.t('family.relatives.heading.relation')}</h3>
@@ -327,15 +308,14 @@ export default class Relative extends ValidationElement {
           <div>
             <h3>{i18n.t('family.relatives.heading.alias.branch')}</h3>
 
-            <BranchCollection items={this.props.List}
+            <BranchCollection items={this.props.Aliases}
                               branchName="has_alias"
                               onUpdate={this.updateAliases}
                               onValidate={this.props.onValidate}>
               <div>
                 <h3>{i18n.t('family.relatives.heading.alias.title')}</h3>
                 {i18n.m('family.relatives.para.alias')}
-                <Name name="Alias"
-                      {...this.state.Alias}
+                <Name name="Name"
                       bind={true}
                       />
 
@@ -369,7 +349,7 @@ export default class Relative extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.needCitizenshipDocumentation()}>
+        <Show when={validator.requiresCitizenshipDocumentation()}>
           <div>
             <Svg src="img/date-down-arrow.svg" className="more arrow" />
 
@@ -453,9 +433,9 @@ export default class Relative extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={!this.state.Citizen && this.state.IsDeceased === 'No'}>
+        <Show when={!validator.citizen() && this.state.IsDeceased === 'No'}>
           <div>
-            <Show when={this.state.Address && this.state.Address.type === 'domestic'}>
+            <Show when={this.state.Address && this.state.Address.addressType === 'United States'}>
               <h3>{i18n.t('family.relatives.heading.address.title')}</h3>
               {i18n.t('family.relatives.para.notcitizen')}
               <RadioGroup className=""
@@ -508,7 +488,7 @@ export default class Relative extends ValidationElement {
                            />
             </Show>
 
-            <Show when={this.state.Address && this.state.Address.type === 'international'}>
+            <Show when={this.state.Address && this.state.Address.addressType === 'International'}>
               <h3>{i18n.t('family.relatives.heading.address.title')}</h3>
               <h3>{i18n.t('family.relatives.heading.address.firstcontact')}</h3>
               <DateControl name="FirstContact"
