@@ -1,4 +1,5 @@
 import OffenseValidator from './offense'
+import DomesticViolence from './domesticviolence'
 
 export default class PoliceValidator {
   constructor (state = {}, props = {}) {
@@ -8,6 +9,7 @@ export default class PoliceValidator {
     this.hasProbation = state.HasProbation
     this.hasTrial = state.HasTrial
     this.list = state.List || []
+    this.domesticViolence = state.DomesticViolence || []
   }
 
   validChecks () {
@@ -24,6 +26,10 @@ export default class PoliceValidator {
       this.hasCharges === 'Yes' ||
       this.hasProbation === 'Yes' ||
       this.hasTrial === 'Yes'
+  }
+
+  validDomesticViolence () {
+    return new DomesticViolence(this.domesticViolence).isValid()
   }
 
   validItems () {
@@ -46,6 +52,7 @@ export default class PoliceValidator {
 
   isValid () {
     return this.validChecks() &&
-      this.validItems()
+      this.validItems() &&
+      this.validDomesticViolence()
   }
 }
