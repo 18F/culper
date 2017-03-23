@@ -3141,7 +3141,8 @@ const en = {
         domesticExplanation: 'Provide explanation',
         domesticCourtName: 'Provide the name of the court or agency that issued the order',
         domesticCourtAddress: 'Provide the location of the court or agency that issued the order',
-        domesticCourtDate: 'Provide the date the order was issued'
+        domesticCourtDate: 'Provide the date the order was issued',
+        otherOffenseSentenced: 'Were you sentenced as a result of these charges?',
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',

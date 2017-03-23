@@ -4,6 +4,7 @@ import { PoliceValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
 import { dateSummary } from '../../History/summaries'
 import Offense from './Offense'
+import OtherOffense from './OtherOffense'
 import DomesticViolence from './DomesticViolence'
 
 /**
@@ -28,6 +29,7 @@ export default class Police extends ValidationElement {
       HasProbation: props.HasProbation,
       HasTrial: props.HasTrial,
       List: props.List,
+      OtherOffenses: props.OtherOffenses,
       DomesticViolence: props.DomesticViolence,
       errorCodes: []
     }
@@ -42,6 +44,7 @@ export default class Police extends ValidationElement {
     this.updateList = this.updateList.bind(this)
     this.hasOffenses = this.hasOffenses.bind(this)
     this.updateDomesticViolence = this.updateDomesticViolence.bind(this)
+    this.updateOtherOffenses = this.updateOtherOffenses.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -95,12 +98,17 @@ export default class Police extends ValidationElement {
     this.onUpdate('List', collection)
   }
 
+  updateOtherOffenses (value) {
+    this.onUpdate('OtherOffenses', value, () => {
+      this.checkToClear()
+    })
+  }
+
   updateDomesticViolence (value, event) {
     this.onUpdate('DomesticViolence', value, () => {
       this.checkToClear()
     })
   }
-
 
   /**
    * Handle the validation event.
@@ -167,6 +175,30 @@ export default class Police extends ValidationElement {
     )
   }
 
+  otherOffenseBranch () {
+    return (
+      <div>
+        <ul>
+          Other than those offenses already listed, have you EVER had the following happen to you?
+          <li>Have you EVER been convicted in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime,
+            and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even
+            if previously listed on this form.)
+          </li>
+          <li>
+            Have you EVER been charged with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony
+            offenses.)
+          </li>
+          <li>Have you EVER been convicted of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child,
+            dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or
+            someone with whom you share a child in common?
+          </li>
+          <li>Have you EVER been charged with an offense involving firearms or explosives?</li>
+          <li>Have you EVER been charged with an offense involving alcohol or drugs?</li>
+        </ul>
+      </div>
+    )
+  }
+
   render () {
     return (
       <div className="police">
@@ -222,18 +254,6 @@ export default class Police extends ValidationElement {
           {i18n.m('legal.police.label.trial')}
         </Branch>
 
-        <BranchCollection
-          branchHelp="legal.police.branchCollection.domesticViolence"
-          branch={this.domesticViolenceBranch()}
-          items={this.state.DomesticViolence}
-          onUpdate={this.updateDomesticViolence}
-        >
-          <DomesticViolence name="domestic"
-            bind={true}
-            onValidate={this.handleValidation}
-          />
-        </BranchCollection>
-
         <Show when={this.hasOffenses()}>
           <Accordion minimum="1"
                      items={this.state.List}
@@ -249,6 +269,29 @@ export default class Police extends ValidationElement {
                      />
           </Accordion>
         </Show>
+
+        <BranchCollection
+          branchHelp="legal.police.branchCollection.otherOffenses"
+          branch={this.otherOffenseBranch()}
+          items={this.state.OtherOffenses}
+          onUpdate={this.updateOtherOffenses}>
+          <OtherOffense name="Item"
+            bind={true}
+          />
+        </BranchCollection>
+
+        <BranchCollection
+          branchHelp="legal.police.branchCollection.domesticViolence"
+          branch={this.domesticViolenceBranch()}
+          items={this.state.DomesticViolence}
+          onUpdate={this.updateDomesticViolence}
+        >
+          <DomesticViolence name="domestic"
+            bind={true}
+            onValidate={this.handleValidation}
+          />
+        </BranchCollection>
+
       </div>
     )
   }

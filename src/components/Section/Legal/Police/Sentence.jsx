@@ -74,6 +74,7 @@ export default class Sentence extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="legal.police.help.sentenceDescription">
             <Textarea
+              {...this.state.Description}
               className="description"
               name="description"
               label={i18n.t('legal.police.heading.sentenceDescription')}
@@ -120,7 +121,7 @@ export default class Sentence extends ValidationElement {
           <Help id="legal.police.help.probationDates">
             <DateRange name="ProbationDates"
               className="probation-dates"
-              {...this.state.DatesIncarcerated}
+              {...this.state.ProbationDates}
               onUpdate={this.updateProbationDates}
               onValidate={this.props.onValidate}
             />
