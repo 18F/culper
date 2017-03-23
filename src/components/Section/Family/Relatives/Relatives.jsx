@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { RelativesValidator } from '../../../../validators'
-import { ValidationElement, Show, Accordion, Checkbox, CheckboxGroup } from '../../../Form'
+import { ValidationElement, Show, Accordion, Checkbox, CheckboxGroup, Help, HelpIcon } from '../../../Form'
 import Relative from './Relative'
 
 /**
@@ -14,6 +14,17 @@ const sendUpdate = (fn, name, props) => {
       ...props
     })
   }
+}
+
+export const subtext = (text, subtext) => {
+  return (
+    <div className="up-a-bit">
+      <p>
+        {i18n.t(text)}<br />
+        <span className="smaller">{i18n.t(subtext)}</span>
+      </p>
+    </div>
+  )
 }
 
 export default class Relatives extends ValidationElement {
@@ -136,106 +147,109 @@ export default class Relatives extends ValidationElement {
         {i18n.m('family.relatives.para.opportunity')}
         {i18n.m('family.relatives.para.checkall')}
 
-        <div className="eapp-field-wrap">
-          <CheckboxGroup className="option-list relatives-relation"
-                         selectedValues={this.state.Relations}>
-            <Checkbox name="relation-mother"
-                      label={i18n.t('family.relatives.label.relation.mother')}
-                      value="Mother"
-                      className="relation-mother"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-father"
-                      label={i18n.t('family.relatives.label.relation.father')}
-                      value="Father"
-                      className="relation-father"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepmother"
-                      label={i18n.t('family.relatives.label.relation.stepmother')}
-                      value="Stepmother"
-                      className="relation-stepmother"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepfather"
-                      label={i18n.t('family.relatives.label.relation.stepfather')}
-                      value="Stepfather"
-                      className="relation-stepfather"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-fosterparent"
-                      label={i18n.t('family.relatives.label.relation.fosterparent')}
-                      value="Fosterparent"
-                      className="relation-fosterparent"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-child"
-                      label={i18n.t('family.relatives.label.relation.child')}
-                      value="Child"
-                      className="relation-child"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepchild"
-                      label={i18n.t('family.relatives.label.relation.stepchild')}
-                      value="Stepchild"
-                      className="relation-stepchild"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-brother"
-                      label={i18n.t('family.relatives.label.relation.brother')}
-                      value="Brother"
-                      className="relation-brother"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-sister"
-                      label={i18n.t('family.relatives.label.relation.sister')}
-                      value="Sister"
-                      className="relation-sister"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepbrother"
-                      label={i18n.t('family.relatives.label.relation.stepbrother')}
-                      value="Stepbrother"
-                      className="relation-stepbrother"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepsister"
-                      label={i18n.t('family.relatives.label.relation.stepsister')}
-                      value="Stepsister"
-                      className="relation-stepsister"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-halfbrother"
-                      label={i18n.t('family.relatives.label.relation.halfbrother')}
-                      value="Half-brother"
-                      className="relation-halfbrother"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-halfsister"
-                      label={i18n.t('family.relatives.label.relation.halfsister')}
-                      value="Half-sister"
-                      className="relation-halfsister"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-fatherinlaw"
-                      label={i18n.t('family.relatives.label.relation.fatherinlaw')}
-                      value="Father-in-law"
-                      className="relation-fatherinlaw"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-montherinlaw"
-                      label={i18n.t('family.relatives.label.relation.montherinlaw')}
-                      value="Monther-in-law"
-                      className="relation-montherinlaw"
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-guardian"
-                      label={i18n.t('family.relatives.label.relation.guardian')}
-                      value="Guardian"
-                      className="relation-guardian"
-                      onChange={this.updateRelations}
-                      />
-          </CheckboxGroup>
+        <div className="eapp-field-wrap no-label">
+          <Help>
+            <CheckboxGroup className="option-list relatives-relation"
+                           selectedValues={this.state.Relations}>
+              <Checkbox name="relation-mother"
+                        label={i18n.m('family.relatives.label.relation.mother')}
+                        value="Mother"
+                        className="relation-mother"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-father"
+                        label={i18n.m('family.relatives.label.relation.father')}
+                        value="Father"
+                        className="relation-father"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-stepmother"
+                        label={i18n.m('family.relatives.label.relation.stepmother')}
+                        value="Stepmother"
+                        className="relation-stepmother"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-stepfather"
+                        label={i18n.m('family.relatives.label.relation.stepfather')}
+                        value="Stepfather"
+                        className="relation-stepfather"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-fosterparent"
+                        label={i18n.m('family.relatives.label.relation.fosterparent')}
+                        value="Fosterparent"
+                        className="relation-fosterparent"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-child"
+                        label={subtext('family.relatives.label.relation.child.text', 'family.relatives.label.relation.child.subtext')}
+                        value="Child"
+                        className="relation-child"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-stepchild"
+                        label={i18n.m('family.relatives.label.relation.stepchild')}
+                        value="Stepchild"
+                        className="relation-stepchild"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-brother"
+                        label={i18n.m('family.relatives.label.relation.brother')}
+                        value="Brother"
+                        className="relation-brother"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-sister"
+                        label={i18n.m('family.relatives.label.relation.sister')}
+                        value="Sister"
+                        className="relation-sister"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-stepbrother"
+                        label={i18n.m('family.relatives.label.relation.stepbrother')}
+                        value="Stepbrother"
+                        className="relation-stepbrother"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-stepsister"
+                        label={i18n.m('family.relatives.label.relation.stepsister')}
+                        value="Stepsister"
+                        className="relation-stepsister"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-halfbrother"
+                        label={i18n.m('family.relatives.label.relation.halfbrother')}
+                        value="Half-brother"
+                        className="relation-halfbrother"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-halfsister"
+                        label={i18n.m('family.relatives.label.relation.halfsister')}
+                        value="Half-sister"
+                        className="relation-halfsister"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-fatherinlaw"
+                        label={i18n.m('family.relatives.label.relation.fatherinlaw')}
+                        value="Father-in-law"
+                        className="relation-fatherinlaw"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-montherinlaw"
+                        label={i18n.m('family.relatives.label.relation.montherinlaw')}
+                        value="Monther-in-law"
+                        className="relation-montherinlaw"
+                        onChange={this.updateRelations}
+                        />
+              <Checkbox name="relation-guardian"
+                        label={i18n.m('family.relatives.label.relation.guardian')}
+                        value="Guardian"
+                        className="relation-guardian"
+                        onChange={this.updateRelations}
+                        />
+            </CheckboxGroup>
+            <HelpIcon />
+          </Help>
         </div>
 
         <Show when={this.state.List.length > 0}>

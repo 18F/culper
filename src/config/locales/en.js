@@ -976,6 +976,7 @@ const en = {
       },
       heading: {
         title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
+        needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
         name: 'Provide your relative\'s name',
         birthdate: 'Provide your relative\'s date of birth',
@@ -1022,16 +1023,21 @@ const en = {
         abroad: 'Born abroad to U.S. Parents',
         naturalized: 'Naturalized:',
         derived: 'Derived:',
-        notcitizen: 'Not a U.S. Citizen:'
+        notcitizen: 'Not a U.S. Citizen:',
+        or: 'Or'
       },
       label: {
+        idk: 'I don\'t know',
         relation: {
           mother: 'Mother',
           father: 'Father',
           stepmother: 'Stepmother',
           stepfather: 'Stepfather',
           fosterparent: 'Foster parent',
-          child: 'Child (including adopted/foster)',
+          child: {
+            text: 'Child',
+            subtext: '(including adopted/foster)'
+          },
           stepchild: 'Stepchild',
           brother: 'Brother',
           sister: 'Sister',
@@ -1048,22 +1054,49 @@ const en = {
           ds: 'DS 1350'
         },
         naturalized: {
-          alien: 'Alien Registration (on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)',
-          permanent: 'Permanent resident card (I-551)',
-          certificate: 'Certificate of naturalization (N550 or N570)'
+          alien: {
+            text: 'Alien Registration',
+            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          },
+          permanent: {
+            text: 'Permanent resident card',
+            subtext: '(I-551)'
+          },
+          certificate: {
+            text: 'Certificate of naturalization',
+            subtext: '(N550 or N570)'
+          }
         },
         derived: {
-          alien: 'Alien Registration (on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)',
-          permanent: 'Permanent resident card (I-551)',
-          certificate: 'Certificate of naturalization (N550 or N570)',
-          other: 'Other (provide explanation)'
+          alien: {
+            text: 'Alien Registration',
+            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          },
+          permanent: {
+            text: 'Permanent resident card',
+            subtext: '(I-551)'
+          },
+          certificate: {
+            text: 'Certificate of naturalization',
+            subtext: '(N550 or N570)'
+          },
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
         },
         methods: {
           inperson: 'In person',
           telephone: 'Telephone',
-          electronic: 'Electronic (such as e-mail, texting, chat rooms, etc.)',
+          electronic: {
+            text: 'Electronic',
+            subtext: '(such as e-mail, texting, chat rooms, etc.)'
+          },
           written: 'Written correspondence',
-          other: 'Other (provide explanation)'
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
         },
         frequency: {
           daily: 'Daily',
@@ -1071,16 +1104,31 @@ const en = {
           monthly: 'Monthly',
           quarterly: 'Quarterly',
           annually: 'Annually',
-          other: 'Other (provide explanation)'
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
         },
         document: {
           permanent: 'I-551 Permanent Resident',
           employment: 'I-766 Employment Authorization',
           arrival: 'I-94 Arrival-Departure Record',
-          visa: 'U.S. Visa (red foil number)',
-          f1: 'I-20 Certificate of Eligibility for Non-Immigrant-F1-Status',
-          j1: 'DS-2019 Certificate of Eligibility of Exchange Visitor-J1-Status',
-          other: 'Other (provide explanation'
+          visa: {
+            text: 'U.S. Visa',
+            subtext: '(red foil number)'
+          },
+          f1: {
+            text: 'I-20 Certificate of Eligibility',
+            subtext: '(non-immigrant F1 status)'
+          },
+          j1: {
+            text: 'DS-2019 Certificate of Eligibility',
+            subtext: '(exchange visitor J1 status)'
+          },
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
         }
       },
       help: {
