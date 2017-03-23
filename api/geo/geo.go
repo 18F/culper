@@ -3,7 +3,8 @@ package geo
 import (
 	"errors"
 	"log"
-	"os"
+
+	"github.com/18F/e-QIP-prototype/api/cf"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 )
 
 func init() {
-	uspsUserID := os.Getenv("USPS_USERID")
+	uspsUserID := cf.UserService("usps-api", "api_key")
 	if uspsUserID == "" {
 		log.Print("WARNING: USPS API Key has not been set")
 	}
