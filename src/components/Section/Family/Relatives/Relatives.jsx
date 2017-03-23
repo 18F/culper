@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Show, Collection, Checkbox, CheckboxGroup } from '../../../Form'
+import { RelativesValidator } from '../../../../validators'
+import { ValidationElement, Show, Accordion, Checkbox, CheckboxGroup } from '../../../Form'
 import Relative from './Relative'
 
 /**
@@ -106,8 +106,7 @@ export default class Relatives extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    // TODO: Update with appropriate validator
-    return false
+    return new RelativesValidator(this.status, null).isValid()
   }
 
   /**
@@ -138,7 +137,7 @@ export default class Relatives extends ValidationElement {
         {i18n.m('family.relatives.para.checkall')}
 
         <div className="eapp-field-wrap">
-          <CheckboxGroup className="option-list"
+          <CheckboxGroup className="option-list relatives-relation"
                          selectedValues={this.state.Relations}>
             <Checkbox name="relation-mother"
                       label={i18n.t('family.relatives.label.relation.mother')}
@@ -240,18 +239,18 @@ export default class Relatives extends ValidationElement {
         </div>
 
         <Show when={this.state.List.length > 0}>
-          <Collection minimum="1"
-                      items={this.state.List}
-                      dispatch={this.updateList}
-                      summary={this.summary}
-                      summaryTitle={i18n.t('family.relatives.collection.summary.title')}
-                      appendTitle={i18n.t('family.relatives.collection.appendTitle')}
-                      appendMessage={i18n.m('family.relatives.collection.appendMessage')}
-                      appendLabel={i18n.t('family.relatives.collection.append')}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateList}
+                     summary={this.summary}
+                     description={i18n.t('family.relatives.collection.summary.title')}
+                     appendTitle={i18n.t('family.relatives.collection.appendTitle')}
+                     appendMessage={i18n.m('family.relatives.collection.appendMessage')}
+                     appendLabel={i18n.t('family.relatives.collection.append')}>
             <Relative name="Item"
                       bind={true}
                       />
-          </Collection>
+          </Accordion>
         </Show>
       </div>
     )

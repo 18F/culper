@@ -5,8 +5,8 @@ import { validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
   constructor (state = {}, props = {}) {
-    this.relations = state.Relations
-    this.list = state.List
+    this.relations = state.Relations || []
+    this.list = state.List || []
   }
 
   validRelations () {
