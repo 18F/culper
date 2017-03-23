@@ -3142,7 +3142,7 @@ const en = {
         domesticCourtName: 'Provide the name of the court or agency that issued the order',
         domesticCourtAddress: 'Provide the location of the court or agency that issued the order',
         domesticCourtDate: 'Provide the date the order was issued',
-        otherOffenseSentenced: 'Were you sentenced as a result of these charges?',
+        otherOffenseSentenced: 'Were you sentenced as a result of these charges?'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
@@ -3150,7 +3150,15 @@ const en = {
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
         summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
         charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
-        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.'
+        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
+        otherOffense: {
+          intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
+          first: 'Have you EVER been convicted in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
+          second: 'Have you EVER been charged with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
+          third: 'Have you EVER been convicted of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+          fourth: 'Have you EVER been charged with an offense involving firearms or explosives?',
+          fifth: 'Have you EVER been charged with an offense involving alcohol or drugs?'
+        }
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
