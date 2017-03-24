@@ -1132,6 +1132,131 @@ const en = {
         }
       },
       help: {
+        relation: {
+          title: 'Need help selecting relatives?',
+          message: 'Select the relatives relationship to you',
+          note: ''
+        },
+        birthdate: {
+          title: 'Need help with the date of birth?',
+          message: 'Provide the closest date of birth',
+          note: ''
+        },
+        birthplace: {
+          title: 'Need help with the place of birth?',
+          message: 'Provide the place of birth',
+          note: ''
+        },
+        citizenship: {
+          title: 'Need help with the citizenship?',
+          message: 'Provide all of the citizenships',
+          note: ''
+        },
+        maiden: {
+          title: 'Need help with the maiden name?',
+          message: 'Provide the maiden name of your mother',
+          note: ''
+        },
+        deceased: {
+          title: 'Need help with the deceased?',
+          message: 'If your relative is no longer living please answer "Yes"',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the address?',
+          message: 'Provide the address of the relative',
+          note: ''
+        },
+        abroad: {
+          title: 'Need help if the relative was born abroad?',
+          message: 'Select the appropriate type of documentation',
+          note: ''
+        },
+        naturalized: {
+          title: 'Need help if the relative was naturalized?',
+          message: 'Select the appropriate type of documentation',
+          note: ''
+        },
+        derived: {
+          title: 'Need help if the relative is a derived citizen?',
+          message: 'Select the appropriate type of documentation',
+          note: ''
+        },
+        documentnumber: {
+          title: 'Need help with the document number?',
+          message: 'Provide the document number for the citizenship',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the court name that issued the Certificate of Naturalization',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court that issued the Certificate of Naturalization',
+          note: ''
+        },
+        document: {
+          title: 'Need help if the relative has documentation to support U.S. residence?',
+          message: 'If the relative resides in the U.S. but is not a citizen provide the documentation',
+          note: ''
+        },
+        residencedocumentnumber: {
+          title: 'Need help with the residence document number?',
+          message: 'Provide the residence document number',
+          note: ''
+        },
+        expiration: {
+          title: 'Need help with the expiration date?',
+          message: 'Provide the expiration date',
+          note: ''
+        },
+        firstcontact: {
+          title: 'Need help with the date of first contact?',
+          message: 'Provide the approximate date of first contact',
+          note: ''
+        },
+        lastcontact: {
+          title: 'Need help with the date of last contact?',
+          message: 'Provide the approximate date of last contact',
+          note: ''
+        },
+        methods: {
+          title: 'Need help with the methods of correspondence with the relative?',
+          message: 'Select all types of correspondence used with the relative',
+          note: ''
+        },
+        frequency: {
+          title: 'Need help with the frequency of correspondence?',
+          message: 'Provide the best response to how often you correspond with the relative',
+          note: ''
+        },
+        employer: {
+          title: 'Need help with the relative\'s employer name?',
+          message: 'Provide the employer name or select "I don\'t know" if unknown',
+          note: ''
+        },
+        employeraddress: {
+          title: 'Need help with the relative\'s employer\'s address?',
+          message: 'Provide the employer address or select "I don\'t know" if unknown',
+          note: ''
+        },
+        affiliation: {
+          title: 'Need help if the relative has any foreign affiliations?',
+          message: 'If the relative is affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
+          note: ''
+        },
+        employerrelationship: {
+          title: 'Need help with the relative\'s relationships to foreign affiliates?',
+          message: 'Describe the affiliation with the foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
+          note: ''
+        },
+        aliasdates: {
+          title: 'Need help with the date range the other name was used?',
+          message: 'Provide the approximate date range the name was used',
+          note: ''
+        }
       }
     }
   },

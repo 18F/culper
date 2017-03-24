@@ -148,7 +148,7 @@ export default class Relatives extends ValidationElement {
         {i18n.m('family.relatives.para.checkall')}
 
         <div className="eapp-field-wrap no-label">
-          <Help>
+          <Help id="family.relatives.help.relation">
             <CheckboxGroup className="option-list relatives-relation"
                            selectedValues={this.state.Relations}>
               <Checkbox name="relation-mother"

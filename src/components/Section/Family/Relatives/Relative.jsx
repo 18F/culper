@@ -272,7 +272,7 @@ export default class Relative extends ValidationElement {
       <div className="relative-item">
         <h3>{i18n.t('family.relatives.heading.relation')}</h3>
         <div className="eapp-field-wrap no-label">
-          <Help>
+          <Help id="family.relatives.help.relation">
             <CheckboxGroup className="relative-relation option-list"
                            selectedValues={this.state.Relations}>
               <Checkbox name="relation-mother"
@@ -385,7 +385,7 @@ export default class Relative extends ValidationElement {
 
         <h3>{i18n.t('family.relatives.heading.birthdate')}</h3>
         <div className="eapp-field-wrap">
-          <Help>
+          <Help id="family.relatives.help.birthdate">
             <DateControl name="Birthdate"
                          className="relative-birthdate"
                          {...this.state.Birthdate}
@@ -397,7 +397,7 @@ export default class Relative extends ValidationElement {
 
         <h3>{i18n.t('family.relatives.heading.birthplace')}</h3>
         <div className="eapp-field-wrap no-label">
-          <Help>
+          <Help id="family.relatives.help.birthplace">
             <Address name="Birthplace"
                      className="relative-birthplace"
                      {...this.state.Birthplace}
@@ -409,7 +409,7 @@ export default class Relative extends ValidationElement {
 
         <h3>{i18n.t('family.relatives.heading.citizenship')}</h3>
         <div className="eapp-field-wrap no-label">
-          <Help>
+          <Help id="family.relatives.help.citizenship">
             <Country name="Citizenship"
                      value={this.state.Citizenship.first}
                      className="relative-citizenship"
@@ -423,7 +423,7 @@ export default class Relative extends ValidationElement {
           <div>
             <h3>{i18n.t('family.relatives.heading.maiden')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.maiden">
                 <Text name="MaidenName"
                       className="relative-maidenname"
                       {...this.state.MaidenName}
@@ -464,7 +464,7 @@ export default class Relative extends ValidationElement {
           <div>
             <h3>{i18n.t('family.relatives.heading.deceased.address')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.address">
                 <Address name="Address"
                          className="relative-address"
                          {...this.state.Address}
@@ -486,7 +486,7 @@ export default class Relative extends ValidationElement {
 
             {i18n.m('family.relatives.para.abroad')}
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.abroad">
                 <RadioGroup className="relative-abroad option-list"
                             selectedValue={this.state.Abroad}>
                   <Radio name="abroad-fs"
@@ -508,7 +508,7 @@ export default class Relative extends ValidationElement {
 
             {i18n.m('family.relatives.para.naturalized')}
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.naturalized">
                 <RadioGroup className="relative-naturalized option-list"
                             selectedValue={this.state.Naturalized}>
                   <Radio name="naturalized-alien"
@@ -540,7 +540,7 @@ export default class Relative extends ValidationElement {
                       onUpdate={this.updateDerivedComments}>
               {i18n.m('family.relatives.para.derived')}
               <div className="eapp-field-wrap no-label">
-                <Help>
+                <Help id="family.relatives.help.derived">
                   <RadioGroup className="relative-derived option-list"
                               selectedValue={this.state.Derived}>
                     <Radio name="derived-alien"
@@ -575,7 +575,7 @@ export default class Relative extends ValidationElement {
 
             <h4>{i18n.t('family.relatives.heading.us.number')}</h4>
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.documentnumber">
                 <Text name="DocumentNumber"
                       className="relative-documentnumber"
                       {...this.state.DocumentNumber}
@@ -587,7 +587,7 @@ export default class Relative extends ValidationElement {
 
             <h4>{i18n.t('family.relatives.heading.us.name')}</h4>
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.courtname">
                 <Text name="CourtName"
                       className="relative-courtname"
                       {...this.state.CourtName}
@@ -599,7 +599,7 @@ export default class Relative extends ValidationElement {
 
             <h4>{i18n.t('family.relatives.heading.us.address')}</h4>
             <div className="eapp-field-wrap no-label">
-              <Help>
+              <Help id="family.relatives.help.courtaddress">
                 <Address name="CourtAddress"
                          className="relative-courtaddress"
                          {...this.state.CourtAddress}
@@ -622,7 +622,7 @@ export default class Relative extends ValidationElement {
                   <h3>{i18n.t('family.relatives.heading.address.title')}</h3>
                   {i18n.t('family.relatives.para.notcitizen')}
                   <div className="eapp-field-wrap no-label">
-                    <Help>
+                    <Help id="family.relatives.help.document">
                       <RadioGroup className="relative-document option-list"
                                   selectedValue={this.state.Document}>
                         <Radio name="document-permanent"
@@ -675,7 +675,7 @@ export default class Relative extends ValidationElement {
 
                 <h3>{i18n.t('family.relatives.heading.address.number')}</h3>
                 <div className="eapp-field-wrap no-label">
-                  <Help>
+                  <Help id="family.relatives.help.residencedocumentnumber">
                     <Text name="ResidenceDocumentNumber"
                           className="relative-residence-documentnumber"
                           {...this.state.ResidenceDocumentNumber}
@@ -687,7 +687,7 @@ export default class Relative extends ValidationElement {
 
                 <h3>{i18n.t('family.relatives.heading.address.expiration')}</h3>
                 <div className="eapp-field-wrap">
-                  <Help>
+                  <Help id="family.relatives.help.expiration">
                     <DateControl name="Expiration"
                                  className="relative-expiration"
                                  {...this.state.Expiration}
@@ -703,7 +703,7 @@ export default class Relative extends ValidationElement {
               <div>
                 <h3>{i18n.t('family.relatives.heading.address.firstcontact')}</h3>
                 <div className="eapp-field-wrap">
-                  <Help>
+                  <Help id="family.relatives.help.firstcontact">
                     <DateControl name="FirstContact"
                                  className="relative-first-contact"
                                  {...this.state.FirstContact}
@@ -715,7 +715,7 @@ export default class Relative extends ValidationElement {
 
                 <h3>{i18n.t('family.relatives.heading.address.lastcontact')}</h3>
                 <div className="eapp-field-wrap">
-                  <Help>
+                  <Help idn="family.relatives.help.lastcontact">
                     <DateControl name="LastContact"
                                  className="relative-last-contact"
                                  {...this.state.LastContact}
@@ -732,7 +732,7 @@ export default class Relative extends ValidationElement {
                   <h3>{i18n.t('family.relatives.heading.address.methods')}</h3>
                   {i18n.m('family.relatives.para.checkall')}
                   <div className="eapp-field-wrap no-label">
-                    <Help>
+                    <Help id="family.relatives.help.methods">
                       <CheckboxGroup className="relative-methods option-list"
                                      selectedValues={this.state.Methods}>
                         <Checkbox name="methods-inperson"
@@ -777,7 +777,7 @@ export default class Relative extends ValidationElement {
                           onUpdate={this.updateFrequencyComments}>
                   <h3>{i18n.t('family.relatives.heading.address.frequency')}</h3>
                   <div className="eapp-field-wrap no-label">
-                    <Help>
+                    <Help id="family.relatives.help.frequency">
                       <RadioGroup className="relative-frequency option-list"
                                   selectedValue={this.state.Frequency}>
                         <Radio name="frequency-daily"
@@ -824,7 +824,7 @@ export default class Relative extends ValidationElement {
 
                 <h3>{i18n.t('family.relatives.heading.employer.name')}</h3>
                 <div className="eapp-field-wrap no-label">
-                  <Help>
+                  <Help id="family.relatives.help.employer">
                     <NotApplicable name="EmployerNotApplicable"
                                    label={i18n.t('family.relatives.label.idk')}
                                    or={i18n.m('family.relatives.para.or')}
@@ -841,7 +841,7 @@ export default class Relative extends ValidationElement {
 
                 <h3>{i18n.t('family.relatives.heading.employer.address')}</h3>
                 <div className="eapp-field-wrap no-label">
-                  <Help>
+                  <Help id="family.relatives.help.employeraddress">
                     <NotApplicable name="EmployerAddressNotApplicable"
                                    label={i18n.t('family.relatives.label.idk')}
                                    or={i18n.m('family.relatives.para.or')}
@@ -858,7 +858,7 @@ export default class Relative extends ValidationElement {
 
                 <h3>{i18n.t('family.relatives.heading.employer.affiliated')}</h3>
                 <div className="eapp-field-wrap">
-                  <Help>
+                  <Help id="family.relatives.help.affiliation">
                     <NotApplicable name="EmployerRelationshipNotApplicable"
                                    label={i18n.t('family.relatives.label.idk')}
                                    or={i18n.m('family.relatives.para.or')}
@@ -874,7 +874,7 @@ export default class Relative extends ValidationElement {
                         <div>
                           <h3>{i18n.t('family.relatives.heading.employer.relationship')}</h3>
                           <div className="eapp-field-wrap no-label">
-                            <Help>
+                            <Help id="family.relatives.help.employerrelationship">
                               <Textarea name="EmployerRelationship"
                                         className="relative-employer-relationship"
                                         {...this.state.EmployerRelationship}

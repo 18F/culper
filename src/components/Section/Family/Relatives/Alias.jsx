@@ -62,7 +62,7 @@ export default class Alias extends ValidationElement {
         </Branch>
 
         <div className="eapp-field-wrap">
-          <Help>
+          <Help id="family.relatives.help.aliasdates">
             <DateRange name="Dates"
                        className="alias-dates"
                        {...this.state.Dates}

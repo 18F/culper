@@ -96,26 +96,37 @@ export class RelativeValidator {
   }
 
   validRelations () {
+    console.log('relations')
     return this.relations.length > 0
   }
 
   validName () {
+    console.log('name')
     return !!this.name && new NameValidator(this.name, null).isValid()
   }
 
   validBirthdate () {
+    console.log('birthdate')
     return !!this.birthdate && validDateField(this.birthdate)
   }
 
   validBirthplace () {
+    console.log('birthplace')
     return !!this.birthplace && new AddressValidator(this.birthplace, null).isValid()
   }
 
+  validCitizenship () {
+    console.log('citizenship')
+    return !!this.citizenship && this.citizenship.length > 0
+  }
+
   validMaidenName () {
+    console.log('maiden name')
     return !!this.maidenName && validGenericTextfield(this.maidenName)
   }
 
   validAliases () {
+    console.log('aliases')
     if (this.aliases.length === 0) {
       return false
     }
@@ -135,10 +146,12 @@ export class RelativeValidator {
   }
 
   validIsDeceased () {
+    console.log('deceased')
     return !!this.isDeceased && (this.isDeceased === 'No' || this.isDeceased === 'Yes')
   }
 
   validAddress () {
+    console.log('address')
     if (!this.isDeceased) {
       return false
     }
@@ -151,6 +164,7 @@ export class RelativeValidator {
   }
 
   validAbroad () {
+    console.log('abroad')
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
@@ -159,6 +173,7 @@ export class RelativeValidator {
   }
 
   validNaturalized () {
+    console.log('naturalized')
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
@@ -167,6 +182,7 @@ export class RelativeValidator {
   }
 
   validDerived () {
+    console.log('derived')
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
@@ -177,6 +193,7 @@ export class RelativeValidator {
   }
 
   validDocumentNumber () {
+    console.log('document number')
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
@@ -185,6 +202,7 @@ export class RelativeValidator {
   }
 
   validCourtName () {
+    console.log('court name')
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
@@ -193,6 +211,7 @@ export class RelativeValidator {
   }
 
   validCourtAddress () {
+    console.log('court address')
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
@@ -201,6 +220,7 @@ export class RelativeValidator {
   }
 
   validDocument () {
+    console.log('document')
     if (this.citizen() || this.isDeceased === 'Yes') {
       return true
     }
@@ -211,6 +231,7 @@ export class RelativeValidator {
   }
 
   validResidenceDocumentNumber () {
+    console.log('res doc numb')
     if (this.citizen() || this.isDeceased === 'Yes') {
       return true
     }
@@ -219,6 +240,7 @@ export class RelativeValidator {
   }
 
   validExpiration () {
+    console.log('expiration')
     if (this.citizen() || this.isDeceased === 'Yes') {
       return true
     }
@@ -227,6 +249,7 @@ export class RelativeValidator {
   }
 
   validFirstContact () {
+    console.log('first contact')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -235,6 +258,7 @@ export class RelativeValidator {
   }
 
   validLastContact () {
+    console.log('last contact')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -243,6 +267,7 @@ export class RelativeValidator {
   }
 
   validMethods () {
+    console.log('methods')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -253,6 +278,7 @@ export class RelativeValidator {
   }
 
   validFrequency () {
+    console.log('freq')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -263,6 +289,7 @@ export class RelativeValidator {
   }
 
   validEmployer () {
+    console.log('employer')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -271,6 +298,7 @@ export class RelativeValidator {
   }
 
   validEmployerAddress () {
+    console.log('employer addr')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -279,6 +307,7 @@ export class RelativeValidator {
   }
 
   validEmployerRelationship () {
+    console.log('employer rel')
     if (this.address && this.address.addressType !== 'International') {
       return true
     }
@@ -299,6 +328,7 @@ export class RelativeValidator {
       this.validName() &&
       this.validBirthdate() &&
       this.validBirthplace() &&
+      this.validCitizenship() &&
       this.validMaidenName() &&
       this.validAliases() &&
       this.validIsDeceased() &&

@@ -143,37 +143,37 @@ describe('Relatives validation', function () {
     })
   })
 
-  // it('validate relative citizenship', () => {
-  //   const tests = [
-  //     {
-  //       state: {
-  //       },
-  //       expected: false
-  //     },
-  //     {
-  //       state: {
-  //         Birthplace: {}
-  //       },
-  //       expected: false
-  //     },
-  //     {
-  //       state: {
-  //         Birthplace: {
-  //           addressType: 'United States',
-  //           address: '1234 Some Rd',
-  //           city: 'Arlington',
-  //           state: 'Virginia',
-  //           zipcode: '22202'
-  //         }
-  //       },
-  //       expected: true
-  //     }
-  //   ]
+  it('validate relative citizenship', () => {
+    const tests = [
+      {
+        state: {
+        },
+        expected: false
+      },
+      {
+        state: {
+          Citizenship: []
+        },
+        expected: false
+      },
+      {
+        state: {
+          Citizenship: ['United States']
+        },
+        expected: true
+      },
+      {
+        state: {
+          Citizenship: ['United States', 'Germany']
+        },
+        expected: true
+      }
+    ]
 
-  //   tests.forEach(test => {
-  //     expect(new RelativeValidator(test.state, null).validBirthplace()).toBe(test.expected)
-  //   })
-  // })
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validCitizenship()).toBe(test.expected)
+    })
+  })
 
   it('validate relative maiden name', () => {
     const tests = [
@@ -1368,6 +1368,91 @@ describe('Relatives validation', function () {
 
     tests.forEach(test => {
       expect(new RelativeValidator(test.state, null).validEmployerRelationship()).toBe(test.expected)
+    })
+  })
+
+  it('in its entirety', () => {
+    const tests = [
+      {
+        state: {
+          Relations: ['Mother'],
+          List: [
+            {
+              Item: {
+                Relations: ['Mother'],
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
+                },
+                Birthdate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Birthplace: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Citizenship: ['United States'],
+                MaidenName: {
+                  value: 'Nunyabusiness'
+                },
+                Aliases: [
+                  {
+                    Has: 'Yes',
+                    Item: {
+                      Name: {
+                        first: 'Foo',
+                        firstInitialOnly: false,
+                        middle: 'J',
+                        middleInitialOnly: true,
+                        noMiddleName: false,
+                        last: 'Bar',
+                        lastInitialOnly: false,
+                        suffix: 'Jr'
+                      },
+                      MaidenName: 'No',
+                      Dates: {
+                        from: {
+                          date: new Date('1/1/2010')
+                        },
+                        to: {
+                          date: new Date('1/1/2012')
+                        },
+                        present: false
+                      }
+                    }
+                  }
+                ],
+                IsDeceased: 'No',
+                Address: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                }
+              }
+            }
+          ]
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      console.log('yo', test.state)
+      expect(new RelativesValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 })
