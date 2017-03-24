@@ -86,6 +86,10 @@ describe('The Email component', () => {
         valid: true
       },
       {
+        address: 'CHARLES@X-MEN.ORG',
+        valid: true
+      },
+      {
         address: 'me@you',
         valid: false
       }
