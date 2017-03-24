@@ -171,15 +171,15 @@ export default class Police extends ValidationElement {
 
   domesticViolenceBranch () {
     return (
-      <div>{i18n.m('legal.police.label.domesticViolence')}</div>
+      <h3 className="eapp-field-wrap">{i18n.m('legal.police.label.domesticViolence')}</h3>
     )
   }
 
   otherOffenseBranch () {
     return (
       <div>
-        <p>{i18n.t('legal.police.para.otherOffense.intro')}</p>
-        <ul>
+        <h3 className="eapp-field-wrap">{i18n.t('legal.police.para.otherOffense.intro')}</h3>
+        <ul className="other-offenses">
           <li>{i18n.t('legal.police.para.otherOffense.first')}</li>
           <li>{i18n.t('legal.police.para.otherOffense.second')}</li>
           <li>{i18n.t('legal.police.para.otherOffense.third')}</li>
