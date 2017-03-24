@@ -25,9 +25,11 @@
   .middle,
   .last,
   .suffix,
-  .suffix-other {
+  .suffix-other,
+  .text-right {
     display: inline-block;
     width: 92%;
+    max-width: 64rem !important;
   }
 
   .suffix-other {

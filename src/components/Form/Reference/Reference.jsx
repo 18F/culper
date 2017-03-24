@@ -200,6 +200,7 @@ export default class Reference extends ValidationElement {
           <Help id={`${prefix}reference.help.email`}>
             <Email name="Email"
                    {...this.state.Email}
+                   className="reference-email"
                    label={i18n.t(`${prefix}reference.label.email`)}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onValidate={this.props.onValidate}
