@@ -89,6 +89,7 @@ export default class Reference extends ValidationElement {
         <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
         <div className="eapp-field-wrap">
           <Name name="FullName"
+                prefix={`${this.props.prefix}.name`}
                 {...this.state.FullName}
                 onUpdate={this.onUpdate.bind(this, 'FullName')}
                 onValidate={this.props.onValidate}
@@ -238,5 +239,6 @@ Reference.defaultProps = {
   Address: {},
   focus: false,
   error: false,
-  valid: false
+  valid: false,
+  prefix: 'reference'
 }
