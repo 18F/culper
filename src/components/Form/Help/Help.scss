@@ -50,10 +50,12 @@
 
   .message {
     width: 92%;
+    max-width: 64rem;
     margin: 1.3rem 0;
     padding: 2rem 3rem 1.3rem 3rem;
     background: $eapp-blue-lightest;
     border: 2px solid $eapp-blue-lighter;
+    border-radius: 6px;
 
     h1,
     h2,
