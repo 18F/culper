@@ -78,6 +78,7 @@ export default class Sentence extends ValidationElement {
               className="description"
               name="description"
               label={i18n.t('legal.police.heading.sentenceDescription')}
+              onValidate={this.props.onValidate}
               onUpdate={this.updateDescription} />
             <HelpIcon />
           </Help>
@@ -87,6 +88,7 @@ export default class Sentence extends ValidationElement {
           className="eapp-field-wrap no-label exceeds-year"
           value={this.state.ExceedsYear}
           help="legal.police.help.sentenceDescription"
+          onValidate={this.props.onValidate}
           onUpdate={this.updateExceedsYear}>
           <div>
             {i18n.t('legal.police.heading.exceedsYear')}
@@ -97,6 +99,7 @@ export default class Sentence extends ValidationElement {
           className="eapp-field-wrap no-label incarcerated"
           value={this.state.Incarcerated}
           help="legal.police.help.exceedsYear"
+          onValidate={this.props.onValidate}
           onUpdate={this.updateIncarcerated}>
           <div>
             {i18n.m('legal.police.heading.incarcerated')}
@@ -133,6 +136,7 @@ export default class Sentence extends ValidationElement {
           className="eapp-field-wrap no-label awaiting-trial"
           value={this.state.AwaitingTrial}
           help="legal.police.help.awaitingTrial"
+          onValidate={this.props.onValidate}
           onUpdate={this.updateAwaitingTrial}>
           <div>
             {i18n.t('legal.police.heading.awaitingTrial')}
@@ -146,6 +150,7 @@ export default class Sentence extends ValidationElement {
               className="awaiting-trial-explanation"
               {...this.state.AwaitingTrialExplanation}
               name="awaiting_trial_explanation"
+              onValidate={this.props.onValidate}
               onUpdate={this.updateAwaitingTrialExplanation} />
           </div>
         </Show>

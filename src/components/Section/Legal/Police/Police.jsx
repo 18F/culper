@@ -268,6 +268,7 @@ export default class Police extends ValidationElement {
           onUpdate={this.updateOtherOffenses}>
           <OtherOffense name="Item"
             bind={true}
+            onValidate={this.props.onValidate}
           />
         </BranchCollection>
 

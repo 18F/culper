@@ -28,7 +28,6 @@ export default class OtherOffense extends ValidationElement {
       WasCited: props.WasCited,
       WasCharged: props.WasCharged,
       Explanation: props.Explanation,
-
       CourtName: props.CourtName,
       CourtAddress: props.CourtAddress,
       CourtCharge: props.CourtCharge,
@@ -284,6 +283,7 @@ export default class OtherOffense extends ValidationElement {
         <Show when={this.state.WasSentenced === 'Yes'}>
           <Sentence name="Sentence"
             {...this.state.Sentence}
+            onValidate={this.props.onValidate}
             onUpdate={this.updateSentence}
           />
         </Show>

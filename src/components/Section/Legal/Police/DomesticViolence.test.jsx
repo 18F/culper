@@ -21,7 +21,7 @@ describe('The DomesticViolence  component', () => {
     }
     const component = mount(<DomesticViolence {...expected} />)
 
-    let selectors = [
+    const selectors = [
       'textarea#explanation',
       { type: 'text', name: 'address' },
       { type: 'text', name: 'CourtName' },
