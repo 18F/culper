@@ -8,22 +8,27 @@ export default class Comments extends ValidationElement {
     super(props)
 
     this.state = {
-      value: this.props.value || '',
-      visible: this.props.value ? true : false,
+      value: this.props.value,
+      visible: this.props.visible,
       errors: []
     }
 
     this.toggle = this.toggle.bind(this)
+    this.visible = this.visible.bind(this)
   }
 
   toggle () {
-    let future = !this.state.visible
+    let future = !this.visible()
     let value = future ? this.state.value : ''
     this.setState({ visible: future, value: value }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate(this.state.value)
       }
     })
+  }
+
+  visible () {
+    return this.state.value || this.state.visible || this.props.visible
   }
 
   handleChange (event) {
@@ -48,14 +53,13 @@ export default class Comments extends ValidationElement {
   render () {
     const klass = `comments ${this.props.className || ''}`.trim()
 
-    if (!this.state.visible) {
-      const addLocalisation = this.props.addLabel || 'comments.add'
+    if (!this.visible()) {
       return (
         <div className="comments">
           {this.props.children}
           <div className={klass}>
             <a href="javascript:;;" onClick={this.toggle} className="add-comment">
-              <span>{i18n.t(addLocalisation)}</span>
+              <span>{i18n.t(this.props.addLabel)}</span>
               <i className="fa fa-plus-circle"></i>
             </a>
           </div>
@@ -74,11 +78,19 @@ export default class Comments extends ValidationElement {
                   />
         <div className={klass}>
           <a href="javascript:;;" onClick={this.toggle} className="remove-comment">
-            <span>{i18n.t(this.props.removeLabel || 'comments.remove')}</span>
+            <span>{i18n.t(this.props.removeLabel)}</span>
             <i className="fa fa-times-circle"></i>
           </a>
         </div>
       </div>
     )
   }
+}
+
+Comments.defaultProps = {
+  value: '',
+  visible: false,
+  title: '',
+  addLabel: 'comments.add',
+  removeLabel: 'comments.remove'
 }

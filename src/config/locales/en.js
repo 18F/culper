@@ -470,6 +470,7 @@ const en = {
       other: 'Other'
     }
   },
+
   identification: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -771,6 +772,7 @@ const en = {
       }
     }
   },
+
   financial: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -954,6 +956,317 @@ const en = {
         help: {
           title: 'Need help with the address of the court involved?',
           message: 'Enter the address of the court involved',
+          note: ''
+        }
+      }
+    }
+  },
+
+  family: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with family & friends at once'
+    },
+    destination: {
+      review: 'Review Family & Friends',
+      relatives: 'Relatives',
+      marital: 'Marital status',
+      friends: 'People who know you well'
+    },
+    relatives: {
+      collection: {
+        summary: {
+          title: 'Summary of relatives',
+          unknown: 'Click to provide details',
+          item: 'Relative'
+        },
+        appendTitle: 'Do you have an additional relative to enter?',
+        appendMessage: 'If **Yes** use the button below to add another',
+        append: 'Add another relative'
+      },
+      heading: {
+        title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
+        needmore: 'Since you answered yes we need more information',
+        relation: 'Provide relative type',
+        name: 'Provide your relative\'s name',
+        birthdate: 'Provide your relative\'s date of birth',
+        birthplace: 'Provide your relative\'s place of birth',
+        citizenship: 'Provide your relative\'s country(ies) of citizenship',
+        maiden: 'Provide your mother\'s maiden name',
+        alias: {
+          branch: 'Has this relative used any other names?',
+          title: 'Provide other names used and the period of time that your relative used them.',
+          maiden: 'Maiden name?',
+          additional: 'Has this relative used any additional names?'
+        },
+        deceased: {
+          branch: 'Is your relative deceased?',
+          address: 'Provide your relative\'s current address'
+        },
+        us: {
+          title: 'U.S. Citizenship Documentation',
+          documentation: 'Provide one type of citizenship documentation and document number below:',
+          number: 'Provide the document number',
+          name: 'Provide the name of the court that issued the Certificate of Naturalization',
+          address: 'Provide the address of the court that issued the Certificate of Naturalization'
+        },
+        address: {
+          title: 'Provide type of documentation he or she possesses to support U.S. residence:',
+          number: 'Provide the document number',
+          expiration: 'Provide document expiration date',
+          firstcontact: 'Provide approximate date of first contact',
+          lastcontact: 'Provide approximate date of last contact',
+          methods: 'Provide methods of contact',
+          frequency: 'Provide approximate frequency of contact'
+        },
+        employer: {
+          name: 'Provide name of current employer, or provide the name of their most recent employer if not currently employed (if known)',
+          address: 'Provide the address of current employer, or provide the address of their most recent employer if not currently employed',
+          affiliated: 'Is this relative affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service?',
+          relationship: 'Describe the relative\'s relationship with the foreign government, military, security, defense industry, foreign movement, or intelligence service.'
+        }
+      },
+      para: {
+        opportunity: 'An opportunity will be provided to list multiple relatives for each type.',
+        checkall: 'Check all that apply.',
+        alias: 'Such as maiden, name by former marriage, former name, alias, or nickname.',
+        abroad: 'Born abroad to U.S. Parents',
+        naturalized: 'Naturalized:',
+        derived: 'Derived:',
+        notcitizen: 'Not a U.S. Citizen:',
+        or: 'Or'
+      },
+      label: {
+        idk: 'I don\'t know',
+        relation: {
+          mother: 'Mother',
+          father: 'Father',
+          stepmother: 'Stepmother',
+          stepfather: 'Stepfather',
+          fosterparent: 'Foster parent',
+          child: {
+            text: 'Child',
+            subtext: '(including adopted/foster)'
+          },
+          stepchild: 'Stepchild',
+          brother: 'Brother',
+          sister: 'Sister',
+          stepbrother: 'Stepbrother',
+          stepsister: 'Stepsister',
+          halfbrother: 'Half-brother',
+          halfsister: 'Half-sister',
+          fatherinlaw: 'Father-in-law',
+          montherinlaw: 'Mother-in-law',
+          guardian: 'Guardian'
+        },
+        abroad: {
+          fs: 'FS 240 or 545',
+          ds: 'DS 1350'
+        },
+        naturalized: {
+          alien: {
+            text: 'Alien Registration',
+            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          },
+          permanent: {
+            text: 'Permanent resident card',
+            subtext: '(I-551)'
+          },
+          certificate: {
+            text: 'Certificate of naturalization',
+            subtext: '(N550 or N570)'
+          }
+        },
+        derived: {
+          alien: {
+            text: 'Alien Registration',
+            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          },
+          permanent: {
+            text: 'Permanent resident card',
+            subtext: '(I-551)'
+          },
+          certificate: {
+            text: 'Certificate of naturalization',
+            subtext: '(N550 or N570)'
+          },
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
+        },
+        methods: {
+          inperson: 'In person',
+          telephone: 'Telephone',
+          electronic: {
+            text: 'Electronic',
+            subtext: '(such as e-mail, texting, chat rooms, etc.)'
+          },
+          written: 'Written correspondence',
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
+        },
+        frequency: {
+          daily: 'Daily',
+          weekly: 'Weekly',
+          monthly: 'Monthly',
+          quarterly: 'Quarterly',
+          annually: 'Annually',
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
+        },
+        document: {
+          permanent: 'I-551 Permanent Resident',
+          employment: 'I-766 Employment Authorization',
+          arrival: 'I-94 Arrival-Departure Record',
+          visa: {
+            text: 'U.S. Visa',
+            subtext: '(red foil number)'
+          },
+          f1: {
+            text: 'I-20 Certificate of Eligibility',
+            subtext: '(non-immigrant F1 status)'
+          },
+          j1: {
+            text: 'DS-2019 Certificate of Eligibility',
+            subtext: '(exchange visitor J1 status)'
+          },
+          other: {
+            text: 'Other',
+            subtext: '(provide explanation)'
+          }
+        }
+      },
+      help: {
+        relation: {
+          title: 'Need help selecting relatives?',
+          message: 'Select the relatives relationship to you',
+          note: ''
+        },
+        birthdate: {
+          title: 'Need help with the date of birth?',
+          message: 'Provide the closest date of birth',
+          note: ''
+        },
+        birthplace: {
+          title: 'Need help with the place of birth?',
+          message: 'Provide the place of birth',
+          note: ''
+        },
+        citizenship: {
+          title: 'Need help with the citizenship?',
+          message: 'Provide all of the citizenships',
+          note: ''
+        },
+        maiden: {
+          title: 'Need help with the maiden name?',
+          message: 'Provide the maiden name of your mother',
+          note: ''
+        },
+        deceased: {
+          title: 'Need help with the deceased?',
+          message: 'If your relative is no longer living please answer "Yes"',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the address?',
+          message: 'Provide the address of the relative',
+          note: ''
+        },
+        abroad: {
+          title: 'Need help if the relative was born abroad?',
+          message: 'Select the appropriate type of documentation',
+          note: ''
+        },
+        naturalized: {
+          title: 'Need help if the relative was naturalized?',
+          message: 'Select the appropriate type of documentation',
+          note: ''
+        },
+        derived: {
+          title: 'Need help if the relative is a derived citizen?',
+          message: 'Select the appropriate type of documentation',
+          note: ''
+        },
+        documentnumber: {
+          title: 'Need help with the document number?',
+          message: 'Provide the document number for the citizenship',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the court name that issued the Certificate of Naturalization',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court that issued the Certificate of Naturalization',
+          note: ''
+        },
+        document: {
+          title: 'Need help if the relative has documentation to support U.S. residence?',
+          message: 'If the relative resides in the U.S. but is not a citizen provide the documentation',
+          note: ''
+        },
+        residencedocumentnumber: {
+          title: 'Need help with the residence document number?',
+          message: 'Provide the residence document number',
+          note: ''
+        },
+        expiration: {
+          title: 'Need help with the expiration date?',
+          message: 'Provide the expiration date',
+          note: ''
+        },
+        firstcontact: {
+          title: 'Need help with the date of first contact?',
+          message: 'Provide the approximate date of first contact',
+          note: ''
+        },
+        lastcontact: {
+          title: 'Need help with the date of last contact?',
+          message: 'Provide the approximate date of last contact',
+          note: ''
+        },
+        methods: {
+          title: 'Need help with the methods of correspondence with the relative?',
+          message: 'Select all types of correspondence used with the relative',
+          note: ''
+        },
+        frequency: {
+          title: 'Need help with the frequency of correspondence?',
+          message: 'Provide the best response to how often you correspond with the relative',
+          note: ''
+        },
+        employer: {
+          title: 'Need help with the relative\'s employer name?',
+          message: 'Provide the employer name or select "I don\'t know" if unknown',
+          note: ''
+        },
+        employeraddress: {
+          title: 'Need help with the relative\'s employer\'s address?',
+          message: 'Provide the employer address or select "I don\'t know" if unknown',
+          note: ''
+        },
+        affiliation: {
+          title: 'Need help if the relative has any foreign affiliations?',
+          message: 'If the relative is affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
+          note: ''
+        },
+        employerrelationship: {
+          title: 'Need help with the relative\'s relationships to foreign affiliates?',
+          message: 'Describe the affiliation with the foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
+          note: ''
+        },
+        aliasdates: {
+          title: 'Need help with the date range the other name was used?',
+          message: 'Provide the approximate date range the name was used',
           note: ''
         }
       }
@@ -3142,7 +3455,19 @@ const en = {
         courttype: 'Type of charge',
         courtdate: 'Date',
         sentenced: 'Were you sentenced as a result of this offense?',
-        needmore: 'Since you answered yes we need more information'
+        needmore: 'Since you answered yes we need more information',
+        sentenceDescription: 'Provide a description of the sentence',
+        exceedsYear: 'Were you sentenced to imprisonment for a term exceeding 1 year?',
+        incarcerated: 'Were you incarcerated as aresult of that sentence for not less than 1 year?',
+        incarcerationDates: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
+        probationDates: 'If conviction resulted in probation or parole, provide the  dates of probation or parole',
+        awaitingTrial: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
+        awaitingTrialExplanation: 'Provide explanation',
+        domesticExplanation: 'Provide explanation',
+        domesticCourtName: 'Provide the name of the court or agency that issued the order',
+        domesticCourtAddress: 'Provide the location of the court or agency that issued the order',
+        domesticCourtDate: 'Provide the date the order was issued',
+        otherOffenseSentenced: 'Were you sentenced as a result of these charges?'
       },
       para: {
         intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
@@ -3150,7 +3475,15 @@ const en = {
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
         summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
         charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
-        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.'
+        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
+        otherOffense: {
+          intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
+          first: 'Have you EVER been convicted in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
+          second: 'Have you EVER been charged with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
+          third: 'Have you EVER been convicted of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+          fourth: 'Have you EVER been charged with an offense involving firearms or explosives?',
+          fifth: 'Have you EVER been charged with an offense involving alcohol or drugs?'
+        }
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -3168,7 +3501,8 @@ const en = {
         misdemeanor: 'Misdemeanor',
         other: 'Other',
         courtcharge: 'Charge',
-        courtoutcome: 'Outcome'
+        courtoutcome: 'Outcome',
+        domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?'
       },
       help: {
         summons: {
@@ -3280,6 +3614,42 @@ const en = {
           title: 'Need help if you were sentenced for this offense?',
           message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
           note: ''
+        },
+        sentenceDescription: {
+          title: 'Need help with the sentence description?',
+          message: 'Provide a description of your sentencing',
+          note: ''
+        },
+        exceedsYear: {
+          title: 'Need help?',
+          message: 'If you were sentenced for a term exceeding 1 year, please click "Yes"',
+          note: ''
+        },
+        incarcerationDates: {
+          title: 'Need help with incarceration dates?',
+          message: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
+          note: ''
+        },
+        probationDates: {
+          title: 'Need help with probation dates?',
+          message: 'If conviction resulted in probation or parole, provide the dates of probation or parole',
+          note: ''
+        },
+        awaitingTrial: {
+          title: 'Need help with this question?',
+          message: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
+          note: ''
+        },
+        awaitingTrialExplanation: {
+          title: 'Need help with awaiting trial explanation',
+          message: 'Provide explanation',
+          note: ''
+        }
+      },
+      branchCollection: {
+        domesticViolence: {
+          title: 'Need help?',
+          message: 'Is there currently a domestic violence protective order or restraining order issued against you?'
         }
       },
       collection: {

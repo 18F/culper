@@ -1,4 +1,5 @@
 import AddressValidator from './address'
+import SentenceValidator from './sentence'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class OffenseValidator {
@@ -20,6 +21,7 @@ export default class OffenseValidator {
     this.courtCharge = state.CourtCharge
     this.courtOutcome = state.CourtOutcome
     this.courtDate = state.CourtDate
+    this.sentence = state.Sentence
     this.wasSentenced = state.WasSentenced
   }
 
@@ -136,7 +138,15 @@ export default class OffenseValidator {
       return true
     }
 
-    return this.wasSentenced === 'Yes' || this.wasSentenced === 'No'
+    if (this.wasSentenced === 'No') {
+      return true
+    }
+
+    if (this.wasSentenced === 'Yes') {
+      return new SentenceValidator(this.sentence, null).isValid()
+    }
+
+    return false
   }
 
   isValid () {

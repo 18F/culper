@@ -60,7 +60,31 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'No',
-          List: []
+          List: [],
+          DomesticViolence: [
+            {
+              Has: 'Yes',
+              domestic: {
+                CourtName: {
+                  value: '4th Circuit Court'
+                },
+                CourtAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Explanation: {
+                  value: 'Some content'
+                },
+                Issued: {
+                  month: '1',
+                  year: '2009'
+                }
+              }
+            }
+          ]
         },
         expected: true
       },
@@ -105,6 +129,30 @@ describe('Police record validation', function () {
                   zipcode: '22202'
                 },
                 WasCited: 'No'
+              }
+            }
+          ],
+          DomesticViolence: [
+            {
+              Has: 'Yes',
+              domestic: {
+                CourtName: {
+                  value: '4th Circuit Court'
+                },
+                CourtAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Explanation: {
+                  value: 'Some content'
+                },
+                Issued: {
+                  month: '1',
+                  year: '2009'
+                }
               }
             }
           ]

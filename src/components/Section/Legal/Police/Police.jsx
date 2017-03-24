@@ -1,9 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
 import { dateSummary } from '../../History/summaries'
 import Offense from './Offense'
+import OtherOffense from './OtherOffense'
+import DomesticViolence from './DomesticViolence'
 
 /**
  * Convenience function to send updates along their merry way
@@ -27,6 +29,8 @@ export default class Police extends ValidationElement {
       HasProbation: props.HasProbation,
       HasTrial: props.HasTrial,
       List: props.List,
+      OtherOffenses: props.OtherOffenses,
+      DomesticViolence: props.DomesticViolence,
       errorCodes: []
     }
 
@@ -39,6 +43,8 @@ export default class Police extends ValidationElement {
     this.updateTrial = this.updateTrial.bind(this)
     this.updateList = this.updateList.bind(this)
     this.hasOffenses = this.hasOffenses.bind(this)
+    this.updateDomesticViolence = this.updateDomesticViolence.bind(this)
+    this.updateOtherOffenses = this.updateOtherOffenses.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -90,6 +96,18 @@ export default class Police extends ValidationElement {
 
   updateList (collection) {
     this.onUpdate('List', collection)
+  }
+
+  updateOtherOffenses (value) {
+    this.onUpdate('OtherOffenses', value, () => {
+      this.checkToClear()
+    })
+  }
+
+  updateDomesticViolence (value, event) {
+    this.onUpdate('DomesticViolence', value, () => {
+      this.checkToClear()
+    })
   }
 
   /**
@@ -148,6 +166,27 @@ export default class Police extends ValidationElement {
         <span className="info"><strong>{description}</strong></span>
         <span className="dates"><strong>{dates}</strong></span>
       </span>
+    )
+  }
+
+  domesticViolenceBranch () {
+    return (
+      <h3 className="eapp-field-wrap">{i18n.m('legal.police.label.domesticViolence')}</h3>
+    )
+  }
+
+  otherOffenseBranch () {
+    return (
+      <div>
+        <h3 className="eapp-field-wrap">{i18n.t('legal.police.para.otherOffense.intro')}</h3>
+        <ul className="other-offenses">
+          <li>{i18n.t('legal.police.para.otherOffense.first')}</li>
+          <li>{i18n.t('legal.police.para.otherOffense.second')}</li>
+          <li>{i18n.t('legal.police.para.otherOffense.third')}</li>
+          <li>{i18n.t('legal.police.para.otherOffense.fourth')}</li>
+          <li>{i18n.t('legal.police.para.otherOffense.fifth')}</li>
+        </ul>
+      </div>
     )
   }
 
@@ -221,6 +260,30 @@ export default class Police extends ValidationElement {
                      />
           </Accordion>
         </Show>
+
+        <BranchCollection
+          branchHelp="legal.police.branchCollection.otherOffenses"
+          branch={this.otherOffenseBranch()}
+          items={this.state.OtherOffenses}
+          onUpdate={this.updateOtherOffenses}>
+          <OtherOffense name="Item"
+            bind={true}
+            onValidate={this.props.onValidate}
+          />
+        </BranchCollection>
+
+        <BranchCollection
+          branchHelp="legal.police.branchCollection.domesticViolence"
+          branch={this.domesticViolenceBranch()}
+          items={this.state.DomesticViolence}
+          onUpdate={this.updateDomesticViolence}
+        >
+          <DomesticViolence name="domestic"
+            bind={true}
+            onValidate={this.handleValidation}
+          />
+        </BranchCollection>
+
       </div>
     )
   }
