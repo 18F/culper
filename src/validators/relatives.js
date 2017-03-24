@@ -50,16 +50,20 @@ export class RelativeValidator {
     this.abroad = state.Abroad
     this.naturalized = state.Naturalized
     this.derived = state.Derived
+    this.derivedComments = state.DerivedComments
     this.documentNumber = state.DocumentNumber
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
     this.document = state.Document
+    this.documentComments = state.DocumentComments
     this.residenceDocumentNumber = state.ResidenceDocumentNumber
     this.expiration = state.Expiration
     this.firstContact = state.FirstContact
     this.lastContact = state.LastContact
     this.methods = state.Methods || []
+    this.methodsComments = state.MethodsComments
     this.frequency = state.Frequency
+    this.frequencyComments = state.FrequencyComments
     this.employer = state.Employer
     this.employerAddress = state.EmployerAddress
     this.hasAffiliation = state.HasAffiliation
@@ -117,7 +121,12 @@ export class RelativeValidator {
     }
 
     for (const alias of this.aliases) {
-      if (new AliasValidator(alias, null).isValid() === false) {
+      const has = !!alias.Has && (alias.Has === 'No' || alias.Has === 'Yes')
+      if (has && alias.Has === 'No') {
+        continue
+      }
+
+      if (has && new AliasValidator(alias.Item, null).isValid() === false) {
         return false
       }
     }
@@ -162,7 +171,9 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.derived && this.derived.length > 0
+    return !!this.derived && this.derived.length > 0 &&
+      ((this.derived === 'Other' && !!this.derivedComments && this.derivedComments.length > 0) ||
+       (this.derived !== 'Other'))
   }
 
   validDocumentNumber () {
@@ -194,7 +205,9 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.document && this.document.length > 0
+    return !!this.document && this.document.length > 0 &&
+      ((this.document === 'Other' && !!this.documentComments && this.documentComments.length > 0) ||
+       (this.document !== 'Other'))
   }
 
   validResidenceDocumentNumber () {
@@ -234,7 +247,9 @@ export class RelativeValidator {
       return true
     }
 
-    return this.methods.length > 0
+    return this.methods.length > 0 &&
+      ((this.methods.some(x => x === 'Other') && !!this.methodsComments && this.methodsComments.length > 0) ||
+       (this.methods.every(x => x !== 'Other')))
   }
 
   validFrequency () {
@@ -242,7 +257,9 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.frequency && this.frequency.length > 0
+    return !!this.frequency && this.frequency.length > 0 &&
+      ((this.frequency === 'Other' && !!this.frequencyComments && this.frequencyComments.length > 0) ||
+       (this.frequency !== 'Other'))
   }
 
   validEmployer () {
@@ -307,14 +324,9 @@ export class RelativeValidator {
 
 export class AliasValidator {
   constructor (state = {}, props = {}) {
-    this.has = state.Has
     this.name = state.Name
     this.maidenName = state.MaidenName
     this.dates = state.Dates
-  }
-
-  validHas () {
-    return !!this.has && (this.has === 'No' || this.has === 'Yes')
   }
 
   validName () {
@@ -330,13 +342,7 @@ export class AliasValidator {
   }
 
   isValid () {
-    const has = this.validHas()
-    if (has && this.has === 'No') {
-      return true
-    }
-
-    return has &&
-      this.validName() &&
+    return this.validName() &&
       this.validMaidenName() &&
       this.validDates()
   }

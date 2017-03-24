@@ -241,25 +241,27 @@ describe('Relatives validation', function () {
           Aliases: [
             {
               Has: 'Yes',
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: 'No',
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
-                to: {
-                  date: new Date('1/1/2012')
-                },
-                present: false
+                MaidenName: 'No',
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                }
               }
             }
           ]

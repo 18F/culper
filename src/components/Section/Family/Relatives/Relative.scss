@@ -9,16 +9,18 @@
     top: 25% !important;
   }
 
-  .relative-documentnumber,
+  .relative-residence-documentnumber,
   .relative-courtname,
   .relative-employer-relationship,
   .relative-maidenname {
     width: 92%;
+    max-width: 64rem;
     display: inline-block;
   }
 
   .relative-citizenship {
     width: 92%;
+    max-width: 64rem;
     display: inline-block;
 
     ul {

@@ -33,25 +33,25 @@ defineSupportCode(({Given, Then, When}) => {
 
 const completeRelatives = (promise) => {
   return promise
-    .then(() => { return setOption('.relation-mother label') })
+    .then(() => { return setOption('.relation-father label') })
     .then(() => { return setText('.relative-name .first input', 'Charles') })
     .then(() => { return setText('.relative-name .middle input', 'F') })
     .then(() => { return setText('.relative-name .last input', 'Xavier') })
     .then(() => { return setText('.relative-birthdate .month input', '1') })
     .then(() => { return setText('.relative-birthdate .day input', '1') })
     .then(() => { return setText('.relative-birthdate .year input', '2001') })
+    .then(() => { return setOption('.relative-birthplace .international label') })
     .then(() => { return setText('.relative-birthplace .mailing input', '1234 Some Rd') })
-    .then(() => { return setText('.relative-birthplace .city input', 'Phoenix') })
-    .then(() => { return setText('.relative-birthplace .state input', 'AZ') })
-    .then(() => { return setText('.relative-birthplace .zipcode input', '85010') })
+    .then(() => { return setText('.relative-birthplace .city input', 'Frankfurt') })
+    .then(() => { return setText('.relative-birthplace .country input#country', 'Germany') })
     .then(() => { return client.pause(3000) })
     .then(() => { return click('.dismiss a') })
+    .then(() => { return tab('.relative-birthplace .country input#country') })
     .then(() => { return setText('.relative-citizenship input', 'United States') })
-    .then(() => { return setText('.relative-maidenname input', 'maidenname') })
-
-    .then(() => { return setOption('.relative-alias .yes label') })
+    .then(() => { return tab('.relative-citizenship input') })
+    .then(() => { return click('.relative-alias .yes label') })
     .then(() => { return setText('.alias-name .first input', 'Professor') })
-    .then(() => { return setText('.alias-name .last input', 'Xavier') })
+    .then(() => { return setText('.alias-name .last input', 'X') })
     .then(() => { return setOption('.alias-maiden .yes label') })
     .then(() => { return setText('.alias-dates .datecontrol.from .month input', '1') })
     .then(() => { return setText('.alias-dates .datecontrol.from .day input', '1') })
@@ -61,12 +61,13 @@ const completeRelatives = (promise) => {
     .then(() => { return setText('.alias-dates .datecontrol.to .year input', '2005') })
     .then(() => { return setOption('.relative-deceased .no label') })
     .then(() => { return setOption('.relative-address .international label') })
-    .then(() => { return setText('.relative-address .country input#country', 'Germany') })
-    .then(() => { return setText('.relative-address .city input', 'Frankfurt') })
     .then(() => { return setText('.relative-address .mailing input', '1234 Some Rd') })
+    .then(() => { return setText('.relative-address .city input', 'Frankfurt') })
+    .then(() => { return setText('.relative-address .country input#country', 'Germany') })
     .then(() => { return client.pause(3000) })
     .then(() => { return click('.dismiss a') })
-    .then(() => { return setOption('.relative-abroad .abroad-fs input') })
+    .then(() => { return tab('.relative-address .country input') })
+    .then(() => { return setOption('.relative-abroad .abroad-fs label') })
     .then(() => { return setOption('.relative-naturalized .naturalized-alien label') })
     .then(() => { return setOption('.relative-derived .derived-alien label') })
     .then(() => { return setText('.relative-documentnumber input', '1234567890') })
@@ -75,6 +76,7 @@ const completeRelatives = (promise) => {
     .then(() => { return setText('.relative-courtaddress .city input', 'Phoenix') })
     .then(() => { return setText('.relative-courtaddress .state input', 'AZ') })
     .then(() => { return setText('.relative-courtaddress .zipcode input', '85010') })
+    .then(() => { return tab('.relative-courtaddress .zipcode input') })
     .then(() => { return client.pause(3000) })
     .then(() => { return click('.dismiss a') })
 }
@@ -143,4 +145,10 @@ const setText = (selector, text) => {
     .assert.visible(selector)
     .setValue(selector, text)
     .saveScreenshot('./screenshots/Family/' + filenum() + '-set-text.png')
+}
+
+const tab = (selector) => {
+  return client
+    .assert.visible(selector)
+    .sendKeys(selector, client.Keys.TAB)
 }

@@ -3,10 +3,11 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Svg, BranchCollection,
          Name, Text, Textarea, Address, DateControl, DateRange,
          Checkbox, CheckboxGroup, Radio, RadioGroup, Country,
-         Help, HelpIcon, NotApplicable
+         Help, HelpIcon, NotApplicable, Comments
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
 import { subtext } from './Relatives'
+import Alias from './Alias'
 
 /**
  * Convenience function to send updates along their merry way
@@ -37,16 +38,20 @@ export default class Relative extends ValidationElement {
       Abroad: props.Abroad,
       Naturalized: props.Naturalized,
       Derived: props.Derived,
+      DerivedComments: props.DerivedComments,
       DocumentNumber: props.DocumentNumber,
       CourtName: props.CourtName,
       CourtAddress: props.CourtAddress,
       Document: props.Document,
+      DocumentComments: props.DocumentComments,
       ResidenceDocumentNumber: props.ResidenceDocumentNumber,
       Expiration: props.Expiration,
       FirstContact: props.FirstContact,
       LastContact: props.LastContact,
       Methods: props.Methods,
+      MethodsComments: props.MethodsComments,
       Frequency: props.Frequency,
+      FrequencyComments: props.FrequencyComments,
       EmployerNotApplicable: props.EmployerNotApplicable,
       EmployerAddressNotApplicable: props.EmployerAddressNotApplicable,
       EmployerRelationshipNotApplicable: props.EmployerRelationshipNotApplicable,
@@ -70,21 +75,23 @@ export default class Relative extends ValidationElement {
     this.updateAbroad = this.updateAbroad.bind(this)
     this.updateNaturalized = this.updateNaturalized.bind(this)
     this.updateDerived = this.updateDerived.bind(this)
+    this.updateDerivedComments = this.updateDerivedComments.bind(this)
     this.updateDocumentNumber = this.updateDocumentNumber.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
     this.updateDocument = this.updateDocument.bind(this)
+    this.updateDocumentComments = this.updateDocumentComments.bind(this)
     this.updateResidenceDocumentNumber = this.updateResidenceDocumentNumber.bind(this)
     this.updateExpiration = this.updateExpiration.bind(this)
     this.updateFirstContact = this.updateFirstContact.bind(this)
     this.updateLastContact = this.updateLastContact.bind(this)
     this.updateMethods = this.updateMethods.bind(this)
+    this.updateMethodsComments = this.updateMethodsComments.bind(this)
     this.updateFrequency = this.updateFrequency.bind(this)
-
+    this.updateFrequencyComments = this.updateFrequencyComments.bind(this)
     this.updateEmployerNotApplicable = this.updateEmployerNotApplicable.bind(this)
     this.updateEmployerAddressNotApplicable = this.updateEmployerAddressNotApplicable.bind(this)
     this.updateEmployerRelationshipNotApplicable = this.updateEmployerRelationshipNotApplicable.bind(this)
-
     this.updateEmployer = this.updateEmployer.bind(this)
     this.updateEmployerAddress = this.updateEmployerAddress.bind(this)
     this.updateHasAffiliation = this.updateHasAffiliation.bind(this)
@@ -160,6 +167,10 @@ export default class Relative extends ValidationElement {
     this.onUpdate('Derived', event.target.value)
   }
 
+  updateDerivedComments (values) {
+    this.onUpdate('DerivedComments', values)
+  }
+
   updateDocumentNumber (values) {
     this.onUpdate('DocumentNumber', values)
   }
@@ -174,6 +185,10 @@ export default class Relative extends ValidationElement {
 
   updateDocument (event) {
     this.onUpdate('Document', event.target.value)
+  }
+
+  updateDocumentComments (event) {
+    this.onUpdate('DocumentComments', event.target.value)
   }
 
   updateResidenceDocumentNumber (values) {
@@ -207,8 +222,16 @@ export default class Relative extends ValidationElement {
     this.onUpdate('Methods', selected)
   }
 
+  updateMethodsComments (event) {
+    this.onUpdate('MethodsComments', event.target.value)
+  }
+
   updateFrequency (event) {
     this.onUpdate('Frequency', event.target.value)
+  }
+
+  updateFrequencyComments (event) {
+    this.onUpdate('FrequencyComments', event.target.value)
   }
 
   updateEmployerNotApplicable (values) {
@@ -423,30 +446,7 @@ export default class Relative extends ValidationElement {
               <div>
                 <h3 className="more title">{i18n.t('family.relatives.heading.needmore')}</h3>
                 <Svg src="img/date-down-arrow.svg" className="more arrow" />
-
-                <h3>{i18n.t('family.relatives.heading.alias.title')}</h3>
-                {i18n.m('family.relatives.para.alias')}
-                <Name name="Name"
-                      className="alias-name"
-                      bind={true}
-                      />
-
-                <h4>{i18n.t('family.relatives.heading.alias.maiden')}</h4>
-                <Branch name="MaidenName"
-                        className="alias-maiden"
-                        bind={true}>
-                </Branch>
-
-                <div className="eapp-field-wrap">
-                  <Help>
-                    <DateRange name="Dates"
-                               className="alias-dates"
-                               bind={true}
-                               />
-                    <HelpIcon />
-                  </Help>
-                </div>
-
+                <Alias name="Item" bind={true} />
               </div>
             </BranchCollection>
           </div>
@@ -534,39 +534,44 @@ export default class Relative extends ValidationElement {
               </Help>
             </div>
 
-            {i18n.m('family.relatives.para.derived')}
-            <div className="eapp-field-wrap no-label">
-              <Help>
-                <RadioGroup className="relative-derived option-list"
-                            selectedValue={this.state.Derived}>
-                  <Radio name="derived-alien"
-                         label={subtext('family.relatives.label.derived.alien.text', 'family.relatives.label.derived.alien.subtext')}
-                         value="Alien"
-                         className="derived-alien"
-                         onChange={this.updateDerived}
-                         />
-                  <Radio name="derived-permanent"
-                         label={subtext('family.relatives.label.derived.permanent.text', 'family.relatives.label.derived.permanent.subtext')}
-                         value="Permanent"
-                         className="derived-permanent"
-                         onChange={this.updateDerived}
-                         />
-                  <Radio name="derived-certificate"
-                         label={subtext('family.relatives.label.derived.certificate.text', 'family.relatives.label.derived.certificate.subtext')}
-                         value="Certificate"
-                         className="derived-certificate"
-                         onChange={this.updateDerived}
-                         />
-                  <Radio name="derived-other"
-                         label={subtext('family.relatives.label.derived.other.text', 'family.relatives.label.derived.other.subtext')}
-                         value="Other"
-                         className="derived-other"
-                         onChange={this.updateDerived}
-                         />
-                </RadioGroup>
-                <HelpIcon />
-              </Help>
-            </div>
+            <Comments name="DerivedComments"
+                      value={this.state.DerivedComments}
+                      visible={this.state.Derived === 'Other'}
+                      onUpdate={this.updateDerivedComments}>
+              {i18n.m('family.relatives.para.derived')}
+              <div className="eapp-field-wrap no-label">
+                <Help>
+                  <RadioGroup className="relative-derived option-list"
+                              selectedValue={this.state.Derived}>
+                    <Radio name="derived-alien"
+                           label={subtext('family.relatives.label.derived.alien.text', 'family.relatives.label.derived.alien.subtext')}
+                           value="Alien"
+                           className="derived-alien"
+                           onChange={this.updateDerived}
+                           />
+                    <Radio name="derived-permanent"
+                           label={subtext('family.relatives.label.derived.permanent.text', 'family.relatives.label.derived.permanent.subtext')}
+                           value="Permanent"
+                           className="derived-permanent"
+                           onChange={this.updateDerived}
+                           />
+                    <Radio name="derived-certificate"
+                           label={subtext('family.relatives.label.derived.certificate.text', 'family.relatives.label.derived.certificate.subtext')}
+                           value="Certificate"
+                           className="derived-certificate"
+                           onChange={this.updateDerived}
+                           />
+                    <Radio name="derived-other"
+                           label={subtext('family.relatives.label.derived.other.text', 'family.relatives.label.derived.other.subtext')}
+                           value="Other"
+                           className="derived-other"
+                           onChange={this.updateDerived}
+                           />
+                  </RadioGroup>
+                  <HelpIcon />
+                </Help>
+              </div>
+            </Comments>
 
             <h4>{i18n.t('family.relatives.heading.us.number')}</h4>
             <div className="eapp-field-wrap no-label">
@@ -610,58 +615,63 @@ export default class Relative extends ValidationElement {
           <div>
             <Show when={this.state.Address && this.state.Address.addressType === 'United States'}>
               <div>
-                <h3>{i18n.t('family.relatives.heading.address.title')}</h3>
-                {i18n.t('family.relatives.para.notcitizen')}
-                <div className="eapp-field-wrap no-label">
-                  <Help>
-                    <RadioGroup className="relative-document option-list"
-                                selectedValue={this.state.Document}>
-                      <Radio name="document-permanent"
-                             label={i18n.m('family.relatives.label.document.permanent')}
-                             value="Permanent"
-                             className="document-permanent"
-                             onChange={this.updateDocument}
-                             />
-                      <Radio name="document-employment"
-                             label={i18n.m('family.relatives.label.document.employment')}
-                             value="Employment"
-                             className="document-employment"
-                             onChange={this.updateDocument}
-                             />
-                      <Radio name="document-arrival"
-                             label={i18n.m('family.relatives.label.document.arrival')}
-                             value="Arrival"
-                             className="document-arrival"
-                             onChange={this.updateDocument}
-                             />
-                      <Radio name="document-visa"
-                             label={subtext('family.relatives.label.document.visa.text', 'family.relatives.label.document.visa.subtext')}
-                             value="Visa"
-                             className="document-visa"
-                             onChange={this.updateDocument}
-                             />
-                      <Radio name="document-f1"
-                             label={subtext('family.relatives.label.document.f1.text', 'family.relatives.label.document.f1.subtext')}
-                             value="F1"
-                             className="document-f1"
-                             onChange={this.updateDocument}
-                             />
-                      <Radio name="document-j1"
-                             label={subtext('family.relatives.label.document.j1.text', 'family.relatives.label.document.j1.subtext')}
-                             value="J1"
-                             className="document-j1"
-                             onChange={this.updateDocument}
-                             />
-                      <Radio name="document-other"
-                             label={subtext('family.relatives.label.document.other.text', 'family.relatives.label.document.other.subtext')}
-                             value="Other"
-                             className="document-other"
-                             onChange={this.updateDocument}
-                             />
-                    </RadioGroup>
-                    <HelpIcon />
-                  </Help>
-                </div>
+                <Comments name="DocumentComments"
+                          value={this.state.DocumentComments}
+                          visible={this.state.Document === 'Other'}
+                          onUpdate={this.updateDocumentComments}>
+                  <h3>{i18n.t('family.relatives.heading.address.title')}</h3>
+                  {i18n.t('family.relatives.para.notcitizen')}
+                  <div className="eapp-field-wrap no-label">
+                    <Help>
+                      <RadioGroup className="relative-document option-list"
+                                  selectedValue={this.state.Document}>
+                        <Radio name="document-permanent"
+                               label={i18n.m('family.relatives.label.document.permanent')}
+                               value="Permanent"
+                               className="document-permanent"
+                               onChange={this.updateDocument}
+                               />
+                        <Radio name="document-employment"
+                               label={i18n.m('family.relatives.label.document.employment')}
+                               value="Employment"
+                               className="document-employment"
+                               onChange={this.updateDocument}
+                               />
+                        <Radio name="document-arrival"
+                               label={i18n.m('family.relatives.label.document.arrival')}
+                               value="Arrival"
+                               className="document-arrival"
+                               onChange={this.updateDocument}
+                               />
+                        <Radio name="document-visa"
+                               label={subtext('family.relatives.label.document.visa.text', 'family.relatives.label.document.visa.subtext')}
+                               value="Visa"
+                               className="document-visa"
+                               onChange={this.updateDocument}
+                               />
+                        <Radio name="document-f1"
+                               label={subtext('family.relatives.label.document.f1.text', 'family.relatives.label.document.f1.subtext')}
+                               value="F1"
+                               className="document-f1"
+                               onChange={this.updateDocument}
+                               />
+                        <Radio name="document-j1"
+                               label={subtext('family.relatives.label.document.j1.text', 'family.relatives.label.document.j1.subtext')}
+                               value="J1"
+                               className="document-j1"
+                               onChange={this.updateDocument}
+                               />
+                        <Radio name="document-other"
+                               label={subtext('family.relatives.label.document.other.text', 'family.relatives.label.document.other.subtext')}
+                               value="Other"
+                               className="document-other"
+                               onChange={this.updateDocument}
+                               />
+                      </RadioGroup>
+                      <HelpIcon />
+                    </Help>
+                  </div>
+                </Comments>
 
                 <h3>{i18n.t('family.relatives.heading.address.number')}</h3>
                 <div className="eapp-field-wrap no-label">
@@ -715,92 +725,102 @@ export default class Relative extends ValidationElement {
                   </Help>
                 </div>
 
-                <h3>{i18n.t('family.relatives.heading.address.methods')}</h3>
-                {i18n.m('family.relatives.para.checkall')}
-                <div className="eapp-field-wrap no-label">
-                  <Help>
-                    <CheckboxGroup className="relative-methods option-list"
-                                   selectedValues={this.state.Methods}>
-                      <Checkbox name="methods-inperson"
-                                label={i18n.m('family.relatives.label.methods.inperson')}
-                                value="In person"
-                                className="methods-inperson"
-                                onChange={this.updateMethods}
-                                />
-                      <Checkbox name="methods-telephone"
-                                label={i18n.m('family.relatives.label.methods.telephone')}
-                                value="Telephone"
-                                className="methods-telephone"
-                                onChange={this.updateMethods}
-                                />
-                      <Checkbox name="methods-electronic"
-                                label={subtext('family.relatives.label.methods.electronic.text', 'family.relatives.label.methods.electronic.subtext')}
-                                value="Electronic"
-                                className="methods-electronic"
-                                onChange={this.updateMethods}
-                                />
-                      <Checkbox name="methods-written"
-                                label={i18n.m('family.relatives.label.methods.written')}
-                                value="Written"
-                                className="methods-written"
-                                onChange={this.updateMethods}
-                                />
-                      <Checkbox name="methods-other"
-                                label={subtext('family.relatives.label.methods.other.text', 'family.relatives.label.methods.other.subtext')}
-                                value="Other"
-                                className="methods-other"
-                                onChange={this.updateMethods}
-                                />
-                    </CheckboxGroup>
-                    <HelpIcon />
-                  </Help>
-                </div>
+                <Comments name="MethodsComments"
+                          value={this.state.MethodsComments}
+                          visible={this.state.Methods.some(x => x === 'Other')}
+                  onUpdate={this.updateMethodsComments}>
+                  <h3>{i18n.t('family.relatives.heading.address.methods')}</h3>
+                  {i18n.m('family.relatives.para.checkall')}
+                  <div className="eapp-field-wrap no-label">
+                    <Help>
+                      <CheckboxGroup className="relative-methods option-list"
+                                     selectedValues={this.state.Methods}>
+                        <Checkbox name="methods-inperson"
+                                  label={i18n.m('family.relatives.label.methods.inperson')}
+                                  value="In person"
+                                  className="methods-inperson"
+                                  onChange={this.updateMethods}
+                                  />
+                        <Checkbox name="methods-telephone"
+                                  label={i18n.m('family.relatives.label.methods.telephone')}
+                                  value="Telephone"
+                                  className="methods-telephone"
+                                  onChange={this.updateMethods}
+                                  />
+                        <Checkbox name="methods-electronic"
+                                  label={subtext('family.relatives.label.methods.electronic.text', 'family.relatives.label.methods.electronic.subtext')}
+                                  value="Electronic"
+                                  className="methods-electronic"
+                                  onChange={this.updateMethods}
+                                  />
+                        <Checkbox name="methods-written"
+                                  label={i18n.m('family.relatives.label.methods.written')}
+                                  value="Written"
+                                  className="methods-written"
+                                  onChange={this.updateMethods}
+                                  />
+                        <Checkbox name="methods-other"
+                                  label={subtext('family.relatives.label.methods.other.text', 'family.relatives.label.methods.other.subtext')}
+                                  value="Other"
+                                  className="methods-other"
+                                  onChange={this.updateMethods}
+                                  />
+                      </CheckboxGroup>
+                      <HelpIcon />
+                    </Help>
+                  </div>
+                </Comments>
 
-                <h3>{i18n.t('family.relatives.heading.address.frequency')}</h3>
-                <div className="eapp-field-wrap no-label">
-                  <Help>
-                    <RadioGroup className="relative-frequency option-list"
-                                selectedValue={this.state.Frequency}>
-                      <Radio name="frequency-daily"
-                             label={i18n.m('family.relatives.label.frequency.daily')}
-                             value="Daily"
-                             className="frequency-daily"
-                             onChange={this.updateFrequency}
-                             />
-                      <Radio name="frequency-weekly"
-                             label={i18n.m('family.relatives.label.frequency.weekly')}
-                             value="Weekly"
-                             className="frequency-weekly"
-                             onChange={this.updateFrequency}
-                             />
-                      <Radio name="frequency-monthly"
-                             label={i18n.m('family.relatives.label.frequency.monthly')}
-                             value="Monthly"
-                             className="frequency-monthly"
-                             onChange={this.updateFrequency}
-                             />
-                      <Radio name="frequency-quarterly"
-                             label={i18n.m('family.relatives.label.frequency.quarterly')}
-                             value="Quarterly"
-                             className="frequency-quarterly"
-                             onChange={this.updateFrequency}
-                             />
-                      <Radio name="frequency-annually"
-                             label={i18n.m('family.relatives.label.frequency.annually')}
-                             value="Annually"
-                             className="frequency-annually"
-                             onChange={this.updateFrequency}
-                             />
-                      <Radio name="frequency-other"
-                             label={subtext('family.relatives.label.frequency.other.text', 'family.relatives.label.frequency.other.subtext')}
-                             value="Other"
-                             className="frequency-other"
-                             onChange={this.updateFrequency}
-                             />
-                    </RadioGroup>
-                    <HelpIcon />
-                  </Help>
-                </div>
+                <Comments name="FrequencyComments"
+                          value={this.state.FrequencyComments}
+                          visible={this.state.Frequency === 'Other'}
+                          onUpdate={this.updateFrequencyComments}>
+                  <h3>{i18n.t('family.relatives.heading.address.frequency')}</h3>
+                  <div className="eapp-field-wrap no-label">
+                    <Help>
+                      <RadioGroup className="relative-frequency option-list"
+                                  selectedValue={this.state.Frequency}>
+                        <Radio name="frequency-daily"
+                               label={i18n.m('family.relatives.label.frequency.daily')}
+                               value="Daily"
+                               className="frequency-daily"
+                               onChange={this.updateFrequency}
+                               />
+                        <Radio name="frequency-weekly"
+                               label={i18n.m('family.relatives.label.frequency.weekly')}
+                               value="Weekly"
+                               className="frequency-weekly"
+                               onChange={this.updateFrequency}
+                               />
+                        <Radio name="frequency-monthly"
+                               label={i18n.m('family.relatives.label.frequency.monthly')}
+                               value="Monthly"
+                               className="frequency-monthly"
+                               onChange={this.updateFrequency}
+                               />
+                        <Radio name="frequency-quarterly"
+                               label={i18n.m('family.relatives.label.frequency.quarterly')}
+                               value="Quarterly"
+                               className="frequency-quarterly"
+                               onChange={this.updateFrequency}
+                               />
+                        <Radio name="frequency-annually"
+                               label={i18n.m('family.relatives.label.frequency.annually')}
+                               value="Annually"
+                               className="frequency-annually"
+                               onChange={this.updateFrequency}
+                               />
+                        <Radio name="frequency-other"
+                               label={subtext('family.relatives.label.frequency.other.text', 'family.relatives.label.frequency.other.subtext')}
+                               value="Other"
+                               className="frequency-other"
+                               onChange={this.updateFrequency}
+                               />
+                      </RadioGroup>
+                      <HelpIcon />
+                    </Help>
+                  </div>
+                </Comments>
 
                 <h3>{i18n.t('family.relatives.heading.employer.name')}</h3>
                 <div className="eapp-field-wrap no-label">
@@ -890,16 +910,20 @@ Relative.defaultProps = {
   Abroad: '',
   Naturalized: '',
   Derived: '',
+  DerivedComments: '',
   DocumentNumber: {},
   CourtName: {},
   CourtAddress: {},
   Document: '',
+  DocumentComments: '',
   ResidenceDocumentNumber: {},
   Expiration: {},
   FirstContact: {},
   LastContact: {},
   Methods: [],
+  MethodsComments: '',
   Frequency: '',
+  FrequencyComments: '',
   EmployerNotApplicable: {},
   EmployerAddressNotApplicable: {},
   EmployerRelationshipNotApplicable: {},
