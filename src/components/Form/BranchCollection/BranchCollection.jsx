@@ -85,11 +85,11 @@ export default class BranchCollection extends React.Component {
   branch (props) {
     return (
       <Branch
-        helpClassName="eapp-field-wrap"
         name={this.props.branchName}
         help={this.props.branchHelp}
         onValidate={this.props.onValidate}
         {...props}
+        className={`eapp-field-wrap no-label ${props.className}`}
         >
         {props.children || this.props.branch}
       </Branch>
