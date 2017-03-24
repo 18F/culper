@@ -218,7 +218,7 @@ export default class DateControl extends ValidationElement {
    * Handle the validation event.
    */
   handleValidation (event, status, error) {
-    if (!event || !event.target) {
+    if (!event || !event.target || !event.target.name) {
       super.handleValidation(event, status, error)
       return
     }
@@ -357,6 +357,7 @@ export default class DateControl extends ValidationElement {
                     readonly={this.props.readonly}
                     required={this.props.required}
                     step="1"
+                    receiveProps="true"
                     value={this.state.day}
                     focus={this.state.foci[1]}
                     onChange={this.handleChange}
@@ -378,6 +379,7 @@ export default class DateControl extends ValidationElement {
                     pattern={this.props.pattern}
                     readonly={this.props.readonly}
                     step="1"
+                    receiveProps="true"
                     value={this.state.year}
                     focus={this.state.foci[2]}
                     onChange={this.handleChange}

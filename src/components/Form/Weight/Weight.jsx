@@ -9,8 +9,8 @@ export default class Weight extends ValidationElement {
 
     this.state = {
       value: props.value,
-      error: props.error || false,
-      valid: props.valid || false,
+      error: props.error,
+      valid: props.valid,
       errors: []
     }
   }
@@ -96,4 +96,10 @@ export default class Weight extends ValidationElement {
       </div>
     )
   }
+}
+
+Weight.defaultProps = {
+  value: '',
+  error: false,
+  valid: false
 }
