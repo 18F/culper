@@ -5,8 +5,6 @@ describe('Sentence record validation', function () {
     const tests = [
       {
         state: {
-          AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: 'Yes',
           ExceedsYear: 'Yes',
           Incarcerated: 'Yes'
         },
@@ -14,26 +12,6 @@ describe('Sentence record validation', function () {
       },
       {
         state: {
-          AwaitingTrial: 'Nope',
-          AwaitingTrialExplanation: 'Yes',
-          ExceedsYear: 'Yes',
-          Incarcerated: 'Yes'
-        },
-        expected: false
-      },
-      {
-        state: {
-          AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: 'Nope',
-          ExceedsYear: 'Yes',
-          Incarcerated: 'Yes'
-        },
-        expected: false
-      },
-      {
-        state: {
-          AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: 'Yes',
           ExceedsYear: 'Nope',
           Incarcerated: 'Yes'
         },
@@ -41,8 +19,6 @@ describe('Sentence record validation', function () {
       },
       {
         state: {
-          AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: 'Yes',
           ExceedsYear: 'Yes',
           Incarcerated: 'Nope'
         },
@@ -117,8 +93,6 @@ describe('Sentence record validation', function () {
     const tests = [
       {
         state: {
-          AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: 'Yes',
           ExceedsYear: 'Yes',
           Incarcerated: 'Yes',
           IncarcerationDates: {

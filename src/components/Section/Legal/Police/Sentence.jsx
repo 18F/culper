@@ -13,17 +13,13 @@ export default class Sentence extends ValidationElement {
       ExceedsYear: props.ExceedsYear,
       Incarcerated: props.Incarcerated,
       IncarcerationDates: props.IncarcerationDates,
-      ProbationDates: props.ProbationDates,
-      AwaitingTrial: props.AwaitingTrial,
-      AwaitingTrialExplanation: props.AwaitingTrialExplanation
+      ProbationDates: props.ProbationDates
     }
     this.updateDescription = this.updateDescription.bind(this)
     this.updateExceedsYear = this.updateExceedsYear.bind(this)
     this.updateIncarcerated = this.updateIncarcerated.bind(this)
     this.updateIncarcerationDates = this.updateIncarcerationDates.bind(this)
     this.updateProbationDates = this.updateProbationDates.bind(this)
-    this.updateAwaitingTrial = this.updateAwaitingTrial.bind(this)
-    this.updateAwaitingTrialExplanation = this.updateAwaitingTrialExplanation.bind(this)
   }
 
   update (name, values) {
@@ -33,9 +29,7 @@ export default class Sentence extends ValidationElement {
         ExceedsYear: this.state.ExceedsYear,
         Incarcerated: this.state.Incarcerated,
         IncarcerationDates: this.state.IncarcerationDates,
-        ProbationDates: this.state.ProbationDates,
-        AwaitingTrial: this.state.AwaitingTrial,
-        AwaitingTrialExplanation: this.state.AwaitingTrialExplanation
+        ProbationDates: this.state.ProbationDates
       })
     })
   }
@@ -131,29 +125,6 @@ export default class Sentence extends ValidationElement {
             <HelpIcon />
           </Help>
         </div>
-
-        <Branch name="awaiting_trial"
-          className="eapp-field-wrap no-label awaiting-trial"
-          value={this.state.AwaitingTrial}
-          help="legal.police.help.awaitingTrial"
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateAwaitingTrial}>
-          <div>
-            {i18n.t('legal.police.heading.awaitingTrial')}
-          </div>
-        </Branch>
-
-        <Show when={this.state.AwaitingTrial === 'Yes'}>
-          <div className="eapp-field-wrap">
-            <Textarea
-              label={i18n.t('legal.police.heading.awaitingTrialExplanation')}
-              className="awaiting-trial-explanation"
-              {...this.state.AwaitingTrialExplanation}
-              name="awaiting_trial_explanation"
-              onValidate={this.props.onValidate}
-              onUpdate={this.updateAwaitingTrialExplanation} />
-          </div>
-        </Show>
       </div>
     )
   }

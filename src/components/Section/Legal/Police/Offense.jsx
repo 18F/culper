@@ -30,14 +30,15 @@ export default class Offense extends ValidationElement {
       AgencyAddress: props.AgencyAddress,
       WasCharged: props.WasCharged,
       Explanation: props.Explanation,
-
       CourtName: props.CourtName,
       CourtAddress: props.CourtAddress,
       CourtCharge: props.CourtCharge,
       CourtOutcome: props.CourtOutcome,
       CourtDate: props.CourtDate,
       WasSentenced: props.WasSentenced,
-      Sentence: props.Sentence
+      Sentence: props.Sentence,
+      AwaitingTrial: props.AwaitingTrial,
+      AwaitingTrialExplanation: props.AwaitingTrialExplanation
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -60,6 +61,8 @@ export default class Offense extends ValidationElement {
     this.updateCourtDate = this.updateCourtDate.bind(this)
     this.updateWasSentenced = this.updateWasSentenced.bind(this)
     this.updateSentence = this.updateSentence.bind(this)
+    this.updateAwaitingTrial = this.updateAwaitingTrial.bind(this)
+    this.updateAwaitingTrialExplanation = this.updateAwaitingTrialExplanation.bind(this)
   }
 
   onUpdate (name, values) {
@@ -142,6 +145,14 @@ export default class Offense extends ValidationElement {
 
   updateSentence (value, event) {
     this.onUpdate('Sentence', value)
+  }
+
+  updateAwaitingTrial (values) {
+    this.onUpdate('AwaitingTrial', values)
+  }
+
+  updateAwaitingTrialExplanation (values) {
+    this.onUpdate('AwaitingTrialExplanation', values)
   }
 
   render () {
@@ -408,6 +419,29 @@ export default class Offense extends ValidationElement {
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateSentence}
               />
+            </Show>
+            <Show when={this.state.WasSentenced === 'No'}>
+              <div>
+                <Branch name="awaiting_trial"
+                  className="eapp-field-wrap no-label awaiting-trial"
+                  value={this.state.AwaitingTrial}
+                  help="legal.police.help.awaitingTrial"
+                  onValidate={this.props.onValidate}
+                  onUpdate={this.updateAwaitingTrial}>
+                  <div>
+                    {i18n.t('legal.police.heading.awaitingTrial')}
+                  </div>
+                </Branch>
+                <div className="eapp-field-wrap">
+                  <Textarea
+                    label={i18n.t('legal.police.heading.awaitingTrialExplanation')}
+                    className="awaiting-trial-explanation"
+                    {...this.state.AwaitingTrialExplanation}
+                    name="awaiting_trial_explanation"
+                    onValidate={this.props.onValidate}
+                    onUpdate={this.updateAwaitingTrialExplanation} />
+                </div>
+              </div>
             </Show>
           </div>
         </Show>
