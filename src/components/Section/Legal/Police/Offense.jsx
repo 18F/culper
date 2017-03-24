@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import Sentence from './Sentence'
 import { ValidationElement, Branch, Show, Address, DateControl, Textarea, Text, RadioGroup, Radio, Svg, Help, HelpIcon } from '../../../Form'
 
 /**
@@ -35,7 +36,8 @@ export default class Offense extends ValidationElement {
       CourtCharge: props.CourtCharge,
       CourtOutcome: props.CourtOutcome,
       CourtDate: props.CourtDate,
-      WasSentenced: props.WasSentenced
+      WasSentenced: props.WasSentenced,
+      Sentence: props.Sentence
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -57,6 +59,7 @@ export default class Offense extends ValidationElement {
     this.updateCourtOutcome = this.updateCourtOutcome.bind(this)
     this.updateCourtDate = this.updateCourtDate.bind(this)
     this.updateWasSentenced = this.updateWasSentenced.bind(this)
+    this.updateSentence = this.updateSentence.bind(this)
   }
 
   onUpdate (name, values) {
@@ -135,6 +138,10 @@ export default class Offense extends ValidationElement {
 
   updateWasSentenced (value, event) {
     this.onUpdate('WasSentenced', value)
+  }
+
+  updateSentence (value, event) {
+    this.onUpdate('Sentence', value)
   }
 
   render () {
@@ -288,12 +295,12 @@ export default class Offense extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="legal.police.help.courtname">
                 <Text name="CourtName"
-                      {...this.state.CourtName}
-                      label={i18n.t('legal.police.label.courtname')}
-                      className="offense-courtname"
-                      onUpdate={this.updateCourtName}
-                      onValidate={this.props.onValidate}
-                      />
+                  {...this.state.CourtName}
+                  label={i18n.t('legal.police.label.courtname')}
+                  className="offense-courtname"
+                  onUpdate={this.updateCourtName}
+                  onValidate={this.props.onValidate}
+                />
                 <HelpIcon />
               </Help>
             </div>
@@ -302,12 +309,12 @@ export default class Offense extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="legal.police.help.courtaddress">
                 <Address name="CourtAddress"
-                         {...this.state.CourtAddress}
-                         label={i18n.t('legal.police.label.address')}
-                         className="offense-courtaddress"
-                         onUpdate={this.updateCourtAddress}
-                         onValidate={this.props.onValidate}
-                         />
+                  {...this.state.CourtAddress}
+                  label={i18n.t('legal.police.label.address')}
+                  className="offense-courtaddress"
+                  onUpdate={this.updateCourtAddress}
+                  onValidate={this.props.onValidate}
+                />
                 <HelpIcon className="address-help-icon" />
               </Help>
             </div>
@@ -319,28 +326,28 @@ export default class Offense extends ValidationElement {
             <div className="eapp-field-wrap no-label">
               <Help id="legal.police.help.courttype">
                 <RadioGroup className="offense-courttype option-list"
-                            selectedValue={this.state.CourtType}>
+                  selectedValue={this.state.CourtType}>
                   <Radio name="charge-felony"
-                         className="charge-felony"
-                         label={i18n.t('legal.police.label.felony')}
-                         value="Felony"
-                         onChange={this.updateCourtType}
-                         onValidate={this.props.onValidate}
-                         />
+                    className="charge-felony"
+                    label={i18n.t('legal.police.label.felony')}
+                    value="Felony"
+                    onChange={this.updateCourtType}
+                    onValidate={this.props.onValidate}
+                  />
                   <Radio name="charge-misdemeanor"
-                         className="charge-misdemeanor"
-                         label={i18n.t('legal.police.label.misdemeanor')}
-                         value="Misdemeanor"
-                         onChange={this.updateCourtType}
-                         onValidate={this.props.onValidate}
-                         />
+                    className="charge-misdemeanor"
+                    label={i18n.t('legal.police.label.misdemeanor')}
+                    value="Misdemeanor"
+                    onChange={this.updateCourtType}
+                    onValidate={this.props.onValidate}
+                  />
                   <Radio name="charge-other"
-                         className="charge-other"
-                         label={i18n.t('legal.police.label.other')}
-                         value="Other"
-                         onChange={this.updateCourtType}
-                         onValidate={this.props.onValidate}
-                         />
+                    className="charge-other"
+                    label={i18n.t('legal.police.label.other')}
+                    value="Other"
+                    onChange={this.updateCourtType}
+                    onValidate={this.props.onValidate}
+                  />
                 </RadioGroup>
                 <HelpIcon />
               </Help>
@@ -349,12 +356,12 @@ export default class Offense extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="legal.police.help.courtcharge">
                 <Text name="CourtCharge"
-                      {...this.state.CourtCharge}
-                      label={i18n.t('legal.police.label.courtcharge')}
-                      className="offense-courtcharge"
-                      onUpdate={this.updateCourtCharge}
-                      onValidate={this.props.onValidate}
-                      />
+                  {...this.state.CourtCharge}
+                  label={i18n.t('legal.police.label.courtcharge')}
+                  className="offense-courtcharge"
+                  onUpdate={this.updateCourtCharge}
+                  onValidate={this.props.onValidate}
+                />
                 <HelpIcon />
               </Help>
             </div>
@@ -362,12 +369,12 @@ export default class Offense extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="legal.police.help.courtoutcome">
                 <Text name="CourtOutcome"
-                      {...this.state.CourtOutcome}
-                      label={i18n.t('legal.police.label.courtoutcome')}
-                      className="offense-courtoutcome"
-                      onUpdate={this.updateCourtOutcome}
-                      onValidate={this.props.onValidate}
-                      />
+                  {...this.state.CourtOutcome}
+                  label={i18n.t('legal.police.label.courtoutcome')}
+                  className="offense-courtoutcome"
+                  onUpdate={this.updateCourtOutcome}
+                  onValidate={this.props.onValidate}
+                />
                 <HelpIcon />
               </Help>
             </div>
@@ -376,24 +383,32 @@ export default class Offense extends ValidationElement {
             <div className="eapp-field-wrap">
               <Help id="legal.police.help.courtdate">
                 <DateControl name="CourtDate"
-                             {...this.state.CourtDate}
-                             hideDay={true}
-                             className="offense-courtdate"
-                             onUpdate={this.updateCourtDate}
-                             onValidate={this.props.onValidate}
-                             />
+                  {...this.state.CourtDate}
+                  hideDay={true}
+                  className="offense-courtdate"
+                  onUpdate={this.updateCourtDate}
+                  onValidate={this.props.onValidate}
+                />
                 <HelpIcon />
               </Help>
             </div>
 
             <h3>{i18n.t('legal.police.heading.sentenced')}</h3>
             <Branch name="was_sentenced"
-                    className="eapp-field-wrap no-label offense-sentenced"
-                    value={this.state.WasSentenced}
-                    help="legal.police.help.sentenced"
-                    onUpdate={this.updateWasSentenced}
-                    onValidate={this.props.onValidate}>
+              className="eapp-field-wrap no-label offense-sentenced"
+              value={this.state.WasSentenced}
+              help="legal.police.help.sentenced"
+              onUpdate={this.updateWasSentenced}
+              onValidate={this.props.onValidate}>
             </Branch>
+
+            <Show when={this.state.WasSentenced === 'Yes'}>
+              <Sentence name="Sentence"
+                {...this.state.Sentence}
+                onValidate={this.props.onValidate}
+                onUpdate={this.updateSentence}
+              />
+            </Show>
           </div>
         </Show>
       </div>
