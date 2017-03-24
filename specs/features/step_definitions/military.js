@@ -47,7 +47,7 @@ const completeSelectiveService = (promise) => {
 const completeMilitaryHistory = (promise) => {
   return promise
     .then(() => { return setOption('.history .branch .yes') })
-    .then(() => { return click('.collection .item a.toggle') })
+    .then(() => { return click('.accordion .item a.toggle') })
     .then(() => { return setOption('.service-marinecorps label') })
     .then(() => { return setOption('.officer-enlisted label') })
     .then(() => { return setText('.dates .datecontrol.from .month input', '1') })
@@ -65,7 +65,7 @@ const completeMilitaryHistory = (promise) => {
 const completeDisciplinaryProcedures = (promise) => {
   return promise
     .then(() => { return setOption('.branch .yes') })
-    .then(() => { return click('.collection .item a.toggle') })
+    .then(() => { return click('.accordion .item a.toggle') })
     .then(() => { return setText('.procedure-date .month input', '1') })
     .then(() => { return setText('.procedure-date .year input', '2005') })
     .then(() => { return setText('.procedure-offenses textarea', 'Loitering') })

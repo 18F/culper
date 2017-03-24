@@ -231,10 +231,12 @@ export default class Accordion extends ValidationElement {
       <div className={klassAppend}>
         {title}
         {message}
-        <button className="add usa-button-outline" onClick={this.add}>
-          <span>{this.props.appendLabel}</span>
-          <i className="fa fa-plus-circle"></i>
-        </button>
+        <div className="eapp-field-wrap">
+          <button className="add usa-button-outline" onClick={this.add}>
+            <span>{this.props.appendLabel}</span>
+            <i className="fa fa-plus-circle"></i>
+          </button>
+        </div>
       </div>
     )
   }

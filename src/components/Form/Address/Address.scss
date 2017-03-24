@@ -11,6 +11,7 @@
     .zipcode {
       display: table-cell;
       padding-right: 2rem;
+      vertical-align: top;
     }
   }
 
@@ -49,7 +50,6 @@
 
     label {
       position: relative !important;
-      display: inline !important;
       top: 0 !important;
     }
   }
@@ -63,6 +63,7 @@
       line-height: 2rem;
       text-transform: uppercase;
     }
+
     .highlight {
       background-color: $eapp-blue-lightest;
       font-weight: 600;

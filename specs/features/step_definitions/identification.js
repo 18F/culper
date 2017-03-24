@@ -53,7 +53,7 @@ const completeFullName = (promise) => {
 const completeOtherNamesUsed = (promise) => {
   return promise
       .then(() => { return setOption('.other-names .branch .yes') })
-      .then(() => { return click('.other-names .collection .item a.toggle') })
+      .then(() => { return click('.other-names .accordion .item a.toggle') })
       .then(() => { return setText('input[name="first"]', 'Professor') })
       .then(() => { return click('input[name="noMiddleName"]') })
       .then(() => { return setText('input[name="last"]', 'X') })

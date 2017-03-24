@@ -54,6 +54,7 @@ export default class NotApplicable extends React.Component {
                     checked={!this.state.applicable}
                     onUpdate={this.onUpdate}
                     />
+          {this.props.or}
         </div>
         <div className={`${klass} ${dithered} content`.trim()}>
           {this.renderChildren()}
@@ -66,5 +67,6 @@ export default class NotApplicable extends React.Component {
 NotApplicable.defaultProps = {
   name: 'NotApplicable',
   label: i18n.t('financial.bankruptcy.notApplicable'),
+  or: '',
   applicable: true
 }

@@ -1,0 +1,109 @@
+@import 'eqip-colors';
+
+.relative-item {
+  .smaller {
+    font-size: smaller;
+  }
+
+  .up-a-bit {
+    top: 25% !important;
+  }
+
+  .relative-residence-documentnumber,
+  .relative-courtname,
+  .relative-employer-relationship,
+  .relative-maidenname {
+    width: 92%;
+    max-width: 64rem;
+    display: inline-block;
+  }
+
+  .relative-citizenship {
+    width: 92%;
+    max-width: 64rem;
+    display: inline-block;
+
+    ul {
+      padding: 0 0 0 2.2rem;
+
+      li {
+        padding-left: 1.2rem;
+      }
+    }
+  }
+
+  .relative-relation label,
+  .relative-abroad label,
+  .relative-naturalized label,
+  .relative-derived label,
+  .relative-methods label,
+  .relative-frequency label,
+  .relative-document label {
+    height: 10rem;
+    width: 18rem;
+    overflow: hidden;
+
+    > span {
+      display: block;
+      height: 100%;
+
+      > div {
+        top: 35%;
+
+        > p {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .relative-abroad label {
+    width: 15rem;
+    height: 5rem;
+
+    > span > div {
+      top: 20%;
+    }
+  }
+
+  .relative-naturalized label,
+  .relative-derived label {
+    width: 30rem;
+
+    > span > div > p {
+      line-height: 1.2;
+    }
+  }
+
+  .relative-methods label {
+    width: 19rem;
+
+    > span > div > p {
+      line-height: 1.2;
+    }
+  }
+
+  .relative-document label {
+    width: 30rem;
+  }
+
+  .more.title {
+    color: $eapp-blue-dark;
+  }
+
+  .more.arrow {
+    text-align: center;
+    height: 8rem;
+    width: 100%;
+    margin: 0 auto 2rem auto;
+  }
+
+  .help-icon-employer-address {
+    margin-top: 13rem;
+    margin-left: -3rem;
+  }
+
+  .relative-affiliation .branch-help-icon {
+    margin-left: -25rem;
+  }
+}

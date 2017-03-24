@@ -38,7 +38,7 @@ const completePoliceRecord = (promise) => {
     .then(() => { return setOption('.police .branch.charges .no') })
     .then(() => { return setOption('.police .branch.probation .no') })
     .then(() => { return setOption('.police .branch.trial .yes') })
-    .then(() => { return click('.collection .item a.toggle') })
+    .then(() => { return click('.accordion .item a.toggle') })
     .then(() => { return setText('.offense-date .month input', '1') })
     .then(() => { return setText('.offense-date .day input', '1') })
     .then(() => { return setText('.offense-date .year input', '2001') })
