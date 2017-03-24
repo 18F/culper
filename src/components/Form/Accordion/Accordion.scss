@@ -74,6 +74,13 @@
       .close {
         display: block;
         text-align: right;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+
+        span {
+          border-bottom: 1px dashed $eapp-blue;
+        }
       }
     }
   }
