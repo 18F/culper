@@ -1,44 +1,25 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField } from './helpers'
+import { validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField, withinSevenYears } from './helpers'
 import AddressValidator from './address'
 import ReferenceValidator from './reference'
 
 export default class EmploymentValidator {
   constructor (state, props) {
-    this.employmentActivity = state.EmploymentActivity
+    this.employmentActivity = state.EmploymentActivity || { value: null }
     this.dates = state.Dates
     this.employment = state.Employment
     this.status = state.Status
     this.title = state.Title
+    this.dutyStation = state.DutyStation
     this.address = state.Address
     this.additional = state.Additional
     this.telephone = state.Telephone
     this.physicalAddress = state.PhysicalAddress
     this.reasonLeft = state.ReasonLeft
-    this.reprimand = state.Reprimand
+    this.reprimand = state.Reprimand || {}
     this.supervisor = state.Supervisor
     this.reference = state.Reference
-  }
-
-  hasEmployment () {
-    return this.employmentActivity && !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(this.employmentActivity.value)
-  }
-
-  hasPhysicalAddress () {
-    return this.employmentActivity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other', 'SelfEmployment'].includes(this.employmentActivity.value)
-  }
-
-  hasSupervisor () {
-    return this.employmentActivity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(this.employmentActivity.value)
-  }
-
-  validEmploymentActivity () {
-    if (this.employmentActivity === 'Other') {
-      return this.employmentActivity.otherExplanation
-    }
-
-    return validGenericTextfield(this.employmentActivity)
   }
 
   validDates () {
@@ -46,80 +27,58 @@ export default class EmploymentValidator {
   }
 
   validEmployment () {
-    if (this.hasEmployment()) {
-      return validGenericTextfield(this.employment)
-    }
-
-    return true
+    return validGenericTextfield(this.employment)
   }
 
   validStatus () {
-    if (this.hasEmployment()) {
-      return validGenericTextfield(this.status)
-    }
-
-    return true
+    return validGenericTextfield(this.status)
   }
 
   validTitle () {
-    if (this.hasEmployment()) {
-      return validGenericTextfield(this.title)
-    }
-
-    return true
+    return validGenericTextfield(this.title)
   }
 
   validAddress () {
-    if (this.hasEmployment()) {
-      return new AddressValidator(this.address, null).isValid()
-    }
-
-    return true
+    return new AddressValidator(this.address, null).isValid()
   }
 
   validAdditionalActivity () {
-    if (this.hasEmployment()) {
-      if (!this.additional) {
-        return false
-      }
-      if (!(this.additional.HasAdditionalActivity === 'No' || this.additional.HasAdditionalActivity === 'Yes')) {
+    if (!this.additional) {
+      return false
+    }
+    if (!(this.additional.HasAdditionalActivity === 'No' || this.additional.HasAdditionalActivity === 'Yes')) {
+      return false
+    }
+
+    if (this.additional.HasAdditionalActivity === 'Yes') {
+      if (!this.additional.List || this.additional.List.length === 0) {
         return false
       }
 
-      if (this.additional.HasAdditionalActivity === 'Yes') {
-        if (!this.additional.List || this.additional.List.length === 0) {
+      for (const activity of this.additional.List) {
+        let valid = validGenericTextfield(activity.Position) &&
+          validGenericTextfield(activity.Supervisor) &&
+          new DateRangeValidator(activity.DatesEmployed).isValid()
+        if (!valid) {
           return false
-        }
-
-        for (const activity of this.additional.List) {
-          return validGenericTextfield(activity.Position) &&
-            validGenericTextfield(activity.Supervisor) &&
-            new DateRangeValidator(activity.DatesEmployed).isValid()
         }
       }
     }
-
     return true
   }
 
   validTelephone () {
-    if (this.hasEmployment()) {
-      return validPhoneNumber(this.telephone)
-    }
-
-    return true
+    return validPhoneNumber(this.telephone)
   }
 
   validPhysicalAddress () {
-    if (this.hasPhysicalAddress()) {
-      if (!this.physicalAddress || !(this.physicalAddress.HasDifferentAddress === 'No' || this.physicalAddress.HasDifferentAddress === 'Yes')) {
-        return false
-      }
+    if (!this.physicalAddress || !(this.physicalAddress.HasDifferentAddress === 'No' || this.physicalAddress.HasDifferentAddress === 'Yes')) {
+      return false
+    }
 
-      if (this.physicalAddress.HasDifferentAddress === 'Yes') {
-        return this.physicalAddress.Address &&
-          new AddressValidator(this.physicalAddress.Address, null).isValid()
-      }
+    if (this.physicalAddress.HasDifferentAddress === 'Yes') {
+      return this.physicalAddress.Address &&
+        new AddressValidator(this.physicalAddress.Address, null).isValid()
     }
 
     return true
@@ -158,16 +117,12 @@ export default class EmploymentValidator {
   }
 
   validSupervisor () {
-    if (this.hasSupervisor()) {
-      return this.supervisor &&
-        validGenericTextfield(this.supervisor.SupervisorName) &&
-        validGenericTextfield(this.supervisor.Title) &&
-        validGenericTextfield(this.supervisor.Email) &&
-        new AddressValidator(this.supervisor.Address, null).isValid() &&
-        validPhoneNumber(this.supervisor.Telephone)
-    }
-
-    return true
+    return this.supervisor &&
+      validGenericTextfield(this.supervisor.SupervisorName) &&
+      validGenericTextfield(this.supervisor.Title) &&
+      validGenericTextfield(this.supervisor.Email) &&
+      new AddressValidator(this.supervisor.Address, null).isValid() &&
+      validPhoneNumber(this.supervisor.Telephone)
   }
 
   validReference () {
@@ -199,26 +154,67 @@ export default class EmploymentValidator {
   }
 
   withinSevenYears () {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
-    if ((this.dates.from && this.dates.from.date && this.dates.from.date >= sevenYearsAgo) || (this.dates.to && this.dates.to.date && this.dates.to.date >= sevenYearsAgo)) {
-      return true
-    }
+    return withinSevenYears(this.dates.from, this.dates.to)
+  }
 
-    return false
+  validAssignedDuty () {
+    return validGenericTextfield(this.dutyStation)
   }
 
   isValid () {
-    return this.validEmploymentActivity() &&
-      this.validDates() &&
-      this.validEmployment() &&
-      this.validStatus() &&
-      this.validTitle() &&
-      this.validAddress() &&
-      this.validTelephone() &&
-      this.validAdditionalActivity() &&
-      this.validPhysicalAddress() &&
-      this.validReasonLeft() &&
-      this.validSupervisor() &&
-      this.validReference()
+    switch (this.employmentActivity.value) {
+      // Active Duty, National Guard/Reserve, or USPHS Commissioned Corps
+      case 'ActiveMilitary':
+      case 'NationalGuard':
+      case 'USPHS':
+        return this.validDates() &&
+          this.validTitle() &&
+          this.validAssignedDuty() &&
+          this.validStatus() &&
+          this.validAddress() &&
+          this.validTelephone() &&
+          this.validSupervisor() &&
+          this.validReasonLeft() &&
+          this.validReprimand()
+
+      // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
+      case 'OtherFederal':
+      case 'StateGovernment':
+      case 'FederalContractor':
+      case 'NonGovernment':
+      case 'Other':
+        return this.validDates() &&
+          this.validTitle() &&
+          this.validEmployment() &&
+          this.validStatus() &&
+          this.validAddress() &&
+          this.validTelephone() &&
+          this.validSupervisor() &&
+          this.validAdditionalActivity() &&
+          this.validReasonLeft() &&
+          this.validReprimand()
+
+      // Self employment
+      case 'SelfEmployment':
+        return this.validDates() &&
+          this.validTitle() &&
+          this.validEmployment() &&
+          this.validStatus() &&
+          this.validAddress() &&
+          this.validPhysicalAddress() &&
+          this.validTelephone() &&
+          this.validReference() &&
+          this.validReasonLeft() &&
+          this.validReprimand()
+
+      // Unemployment
+      case 'Unemployment':
+        return this.validDates() &&
+          this.validReference() &&
+          this.validReasonLeft()
+      default:
+        return false
+    }
   }
 }
+

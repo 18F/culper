@@ -62,7 +62,7 @@ export default class Supervisor extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="supervisor">
         <h3>{i18n.t('history.employment.default.supervisor.heading.name')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.employment.default.supervisor.name.help">
