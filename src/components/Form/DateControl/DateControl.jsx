@@ -294,21 +294,6 @@ export default class DateControl extends ValidationElement {
     return '' + this.props.name + '-' + part + '-error'
   }
 
-  /**
-   * Style classes applied to the wrapper.
-   */
-  divClass () {
-    let klass = ''
-
-    if (!this.props.disabled) {
-      if (this.state.error) {
-        klass += ' usa-input-error'
-      }
-    }
-
-    return klass.trim()
-  }
-
   render () {
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
 
