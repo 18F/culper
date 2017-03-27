@@ -3,6 +3,7 @@
 .comments {
   &.active {
     border-left: 0.75rem solid $eapp-grey-light;
+    padding-left: 1rem;
   }
 
   /* these importants need removed after label-based refactoring */
