@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { i18n } from '../../../../config'
 import { PhysicalValidator } from '../../../../validators'
 import { ValidationElement, Help, HelpIcon, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'

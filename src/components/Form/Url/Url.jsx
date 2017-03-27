@@ -7,11 +7,11 @@ export default class Url extends ValidationElement {
     super(props)
 
     this.state = {
-      pattern: props.pattern || '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',
+      pattern: props.pattern,
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid
     }
   }
 
@@ -73,4 +73,12 @@ export default class Url extends ValidationElement {
                />
     )
   }
+}
+
+Url.defaultProps = {
+  pattern: '^(https?:\/\/)?([\dA-z\.-]+)\.([A-z\.]{2,6})([\/\w \.-]*)*\/?$',
+  value: '',
+  focus: false,
+  error: false,
+  valid: false
 }

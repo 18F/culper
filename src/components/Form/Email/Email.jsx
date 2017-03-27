@@ -7,11 +7,11 @@ export default class Email extends ValidationElement {
     super(props)
 
     this.state = {
-      pattern: props.pattern || '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.+([a-z\.]{2,6})$',
+      pattern: props.pattern,
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid
     }
   }
 
@@ -80,4 +80,12 @@ export default class Email extends ValidationElement {
                />
     )
   }
+}
+
+Email.defaultProps = {
+  pattern: `^([A-z0-9_\.-]+)@([\dA-z\.-]+)\.+([A-z\.]{2,6})$`,
+  value: '',
+  focus: false,
+  error: false,
+  valid: false
 }

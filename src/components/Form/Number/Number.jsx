@@ -1,12 +1,22 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 
+const trimLeadingZero = (num) => {
+  if (isNaN(num)) {
+    return ''
+  }
+
+  const i = parseInt(`0${num}`, 10)
+  return i === 0 ? '' : '' + i
+}
+
 export default class Number extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
       value: props.value,
+      max: props.max,
       focus: props.focus,
       error: props.error,
       valid: props.valid,
@@ -15,8 +25,12 @@ export default class Number extends ValidationElement {
   }
 
   componentWillReceiveProps (next) {
+    if (!next.receiveProps) {
+      return
+    }
+
     const old = this.state.max
-    this.setState({ max: next.max, value: next.value }, () => {
+    this.setState({ max: next.max, value: trimLeadingZero(next.value) }, () => {
       if (old !== next.max) {
         this.handleValidation(
           {
@@ -40,8 +54,9 @@ export default class Number extends ValidationElement {
       return
     }
 
-    this.setState({ value: event.target.value }, () => {
+    this.setState({ value: trimLeadingZero(event.target.value) }, () => {
       super.handleChange(event)
+      this.handleValidation(event, null)
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
@@ -214,6 +229,7 @@ export default class Number extends ValidationElement {
 Number.defaultProps = {
   disabled: false,
   value: '',
+  max: '',
   focus: false,
   error: false,
   valid: false,

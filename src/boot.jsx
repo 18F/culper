@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { Home, Login, Help, Demo, Form } from './views'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { Login, Help, Form } from './views'
+import { Router, Route, IndexRedirect, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
@@ -16,7 +16,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App} onEnter={onEnter}>
-        <IndexRoute component={Home} />
+        <IndexRedirect to="/form/identification/name" />
         <Route path="/help" component={Help} />
         <Route path="/form(/:section(/:subsection))" component={Form} />
       </Route>
