@@ -60,6 +60,18 @@ const en = {
     addpaired: 'Add a comment to this question',
     remove: 'Remove comment'
   },
+  name: {
+    label: {
+      first: 'First name',
+      last: 'Last name',
+      middle: 'Middle name or initial'
+    },
+    placeholder: {
+      first: 'Please enter your first name or initial',
+      middle: 'Please enter your middle name or initial',
+      last: 'Please enter your last name'
+    }
+  },
   help: {
     close: 'Close info block'
   },
@@ -3703,6 +3715,18 @@ const en = {
       },
       email: 'Provide e-mail address for this person',
       address: 'The address of your contact during this time period'
+    },
+    name: {
+      label: {
+        first: 'First name',
+        last: 'Last name',
+        middle: 'Middle name or initial'
+      },
+      placeholder: {
+        first: 'Enter first name of the person who knows you',
+        middle: 'Enter middle name of the person who knows you',
+        last: 'Enter last name of the person who knows you'
+      }
     },
     help: {
       contact: {

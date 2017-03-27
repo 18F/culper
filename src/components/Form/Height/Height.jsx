@@ -10,8 +10,8 @@ export default class Height extends ValidationElement {
     this.state = {
       feet: props.feet,
       inches: props.inches,
-      error: props.error || false,
-      valid: props.valid || false,
+      error: props.error,
+      valid: props.valid,
       errors: []
     }
   }
@@ -24,8 +24,8 @@ export default class Height extends ValidationElement {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          feet: parseInt(this.state.feet),
-          inches: parseInt(this.state.inches)
+          feet: this.state.feet,
+          inches: this.state.inches
         })
       }
     })
@@ -111,4 +111,11 @@ export default class Height extends ValidationElement {
       </div>
     )
   }
+}
+
+Height.defaultProps = {
+  feet: '',
+  inches: '',
+  error: false,
+  valid: false
 }

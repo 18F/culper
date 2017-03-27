@@ -146,10 +146,10 @@ describe('The URL component', () => {
         url: 'https://www.google.com',
         valid: true
       },
-      // {
-      //   url: 'https://www.google.com?q=test',
-      //   valid: true
-      // }
+      {
+        url: 'https://www.GOOGLE.com',
+        valid: true
+      },
       {
         url: 'nope://www.google.com',
         valid: false
