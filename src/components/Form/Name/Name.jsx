@@ -4,8 +4,8 @@ import { Help, HelpIcon } from '../Help'
 import Text from '../Text'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
-import { api } from '../../../services/api'
 import { NameValidator } from '../../../validators'
+import { i18n } from '../../../config'
 
 export default class Name extends ValidationElement {
   constructor (props) {
@@ -160,6 +160,7 @@ export default class Name extends ValidationElement {
   }
 
   render () {
+    const prefix = this.props.prefix
     const klass = `name ${this.props.className || ''}`.trim()
     return (
       <div className={klass}>
@@ -167,11 +168,11 @@ export default class Name extends ValidationElement {
         <Help id="identification.name.first.help" errorPrefix="name">
           <Text name="first"
                 ref="first"
-                label="First name"
+                label={i18n.t(`${prefix}.label.first`)}
                 pattern="^[a-zA-Z\-\.' ]*$"
                 maxlength={this.state.firstInitialOnly ? '1' : '100'}
                 className="first"
-                placeholder="Please enter your first name or initial"
+                placeholder={i18n.t(`${prefix}.placeholder.first`)}
                 value={this.state.first}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -194,11 +195,11 @@ export default class Name extends ValidationElement {
         <Help id="identification.name.middle.help" errorPrefix="name">
           <Text name="middle"
                 ref="middle"
-                label="Middle name or initial"
+                label={i18n.t(`${prefix}.label.middle`)}
                 minlength="0"
                 maxlength={this.state.middleInitialOnly ? '1' : '100'}
                 className="middle"
-                placeholder="Please enter your middle name or initial"
+                placeholder={i18n.t(`${prefix}.placeholder.middle`)}
                 value={this.state.middle}
                 disabled={this.state.noMiddleName}
                 onChange={this.handleChange}
@@ -231,11 +232,11 @@ export default class Name extends ValidationElement {
         <Help id="identification.name.last.help" errorPrefix="name">
           <Text name="last"
                 ref="last"
-                label="Last name"
+                label={i18n.t(`${prefix}.label.last`)}
                 maxlength={this.state.lastInitialOnly ? '1' : '100'}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
-                placeholder="Please enter your last name"
+                placeholder={i18n.t(`${prefix}.placeholder.last`)}
                 value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -255,7 +256,7 @@ export default class Name extends ValidationElement {
             </div>
           </div>
         </Help>
-        <Help id="identification.name.suffix.help" errorPrefix="name" scrollIntoView="true">
+        <Help id="identification.name.suffix.help" errorPrefix="name">
           <label>Suffix <span className="optional">(Optional)</span></label>
 
           <RadioGroup className="option-list suffix" selectedValue={this.state.suffix}>
@@ -392,6 +393,7 @@ Name.defaultProps = {
   noMiddleName: false,
   suffix: '',
   suffixOther: '',
+  prefix: 'name',
   focus: false,
   error: false,
   valid: false,

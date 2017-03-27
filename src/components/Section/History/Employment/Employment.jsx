@@ -132,7 +132,7 @@ export class EmploymentItem extends ValidationElement {
                   {...this.props.Employment}
                   onUpdate={this.onUpdate.bind(this, 'Employment')}
                   onValidate={this.props.onValidate}
-                  className="text"
+                  className="text full-width"
                   label={i18n.t(`${prefix}.employer.label`)}
                 />
                 <HelpIcon className="employer" />
@@ -167,7 +167,7 @@ export class EmploymentItem extends ValidationElement {
                 <Text name="DutyStation"
                   {...this.props.DutyStation}
                   onUpdate={this.onUpdate.bind(this, 'DutyStation')}
-                  className="text"
+                  className="text full-width"
                   label={i18n.t(`${prefix}.dutyStation.label`)}
                   onValidate={this.props.onValidate}
                 />
