@@ -3466,11 +3466,11 @@ const en = {
         chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
-          first: 'Have you EVER been convicted in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
-          second: 'Have you EVER been charged with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
-          third: 'Have you EVER been convicted of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
-          fourth: 'Have you EVER been charged with an offense involving firearms or explosives?',
-          fifth: 'Have you EVER been charged with an offense involving alcohol or drugs?'
+          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
+          second: '**Have you EVER been charged** with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
+          third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+          fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
+          fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
         }
       },
       label: {
@@ -3490,7 +3490,9 @@ const en = {
         other: 'Other',
         courtcharge: 'Charge',
         courtoutcome: 'Outcome',
-        domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?'
+        domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
+        notApplicable: 'Not applicable',
+        or: 'or add date range'
       },
       help: {
         summons: {
