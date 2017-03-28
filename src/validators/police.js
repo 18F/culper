@@ -1,4 +1,5 @@
 import OffenseValidator from './offense'
+import OtherOffenseValidator from './otheroffense'
 import DomesticViolence from './domesticviolence'
 
 export default class PoliceValidator {
@@ -9,7 +10,13 @@ export default class PoliceValidator {
     this.hasProbation = state.HasProbation
     this.hasTrial = state.HasTrial
     this.list = state.List || []
+    this.otherOffenses = state.OtherOffenses || []
     this.domesticViolence = state.DomesticViolence || []
+    this.hasOtherConviction = state.HasOtherConviction
+    this.hasOtherFelony = state.HasOtherFelony
+    this.hasOtherDomestic = state.HasOtherDomestic
+    this.hasOtherFirearms = state.HasOtherFirearms
+    this.hasOtherAlcohol = state.HasOtherAlcohol
   }
 
   validChecks () {
@@ -26,6 +33,14 @@ export default class PoliceValidator {
       this.hasCharges === 'Yes' ||
       this.hasProbation === 'Yes' ||
       this.hasTrial === 'Yes'
+  }
+
+  hasOtherOffenses () {
+    return this.hasOtherConviction === 'Yes' ||
+      this.hasOtherFelony === 'Yes' ||
+      this.hasOtherDomestic === 'Yes' ||
+      this.hasOtherFirearms === 'Yes' ||
+      this.hasOtherAlcohol === 'Yes'
   }
 
   validDomesticViolence () {
@@ -47,6 +62,11 @@ export default class PoliceValidator {
       }
     }
 
+    for (const otherOffense of this.otherOffenses) {
+      if (new OtherOffenseValidator(otherOffense.Item, null).isValid() !== true) {
+        return false
+      }
+    }
     return true
   }
 

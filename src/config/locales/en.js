@@ -3443,7 +3443,7 @@ const en = {
         description: 'Provide a description of the specific nature of the offense',
         involvement: 'Did this offense involve any of the following?',
         address: 'Provide the location where the offense occurred',
-        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?',
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by any police officer, sheriff, marshal or any other type of law enforcement official?',
         citedagency: 'Arresting/citing/summoning agency',
         citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
         agencyaddress: 'Provide the location of the law enforcement agency',
@@ -3661,7 +3661,7 @@ const en = {
           unknown: 'Provide offense below'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
-        appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
+        appendMessage: '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)\n- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?\n- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)\n- **In the last seven (7) years** have you been or are you currently on probation or parole?\nAre you currently on trial or awaiting a trial on criminal charges?\n<p>If yes use the button below to add add another offense.</p>',
         append: 'Add another offense'
       }
     }
