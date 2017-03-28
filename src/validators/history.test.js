@@ -10,7 +10,7 @@ describe('Employment component validation', function () {
               type: 'Employment',
               Item: {
                 EmploymentActivity: {
-                  value: 'Contractor'
+                  value: 'FederalContractor'
                 },
                 Dates: {
                   from: {
@@ -47,6 +47,30 @@ describe('Employment component validation', function () {
                   numberType: 'Cell',
                   timeOfDay: 'Day'
                 },
+                Supervisor: {
+                  Address: {
+                    addressType: 'United States',
+                    address: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202'
+                  },
+                  Email: {
+                    value: 'foo@local.dev'
+                  },
+                  SupervisorName: {
+                    value: 'John Doe'
+                  },
+                  Telephone: {
+                    noNumber: '',
+                    number: '2021112222',
+                    numberType: 'Cell',
+                    timeOfDay: 'Day'
+                  },
+                  Title: {
+                    value: 'The Foo'
+                  }
+                },
                 ReasonLeft: {
                   Reasons: [
                     {
@@ -64,41 +88,20 @@ describe('Employment component validation', function () {
                     }
                   ]
                 },
-                Reference: {
-                  FullName: {
-                    first: 'Foo',
-                    firstInitialOnly: false,
-                    middle: 'J',
-                    middleInitialOnly: true,
-                    noMiddleName: false,
-                    last: 'Bar',
-                    lastInitialOnly: false,
-                    suffix: 'Jr'
-                  },
-                  LastContact: {
-                    day: '1',
-                    month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
-                  },
-                  Relationship: ['Friend'],
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    timeOfDay: 'Both',
-                    extension: ''
-                  },
-                  Email: {
-                    value: 'user@local.dev'
-                  },
-                  Address: {
-                    addressType: 'United States',
-                    address: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'Virginia',
-                    zipcode: '22202'
-                  }
+                Reprimand: {
+                  Reasons: [
+                    {
+                      Date: {
+                        date: new Date('1/1/2015'),
+                        month: '1',
+                        year: '2015'
+                      },
+                      Has: 'Yes',
+                      Text: {
+                        value: 'Foo'
+                      }
+                    }
+                  ]
                 }
               }
             }

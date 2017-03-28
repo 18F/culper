@@ -1,12 +1,12 @@
 import EmploymentValidator from './employment'
 
 describe('Employment component validation', function () {
-  it('should validate employment entry', function () {
+  it('should validate active military, national guard and USPHS', function () {
     const tests = [
       {
         state: {
           EmploymentActivity: {
-            value: 'Contractor'
+            value: 'ActiveMilitary'
           },
           Dates: {
             from: {
@@ -17,14 +17,438 @@ describe('Employment component validation', function () {
             },
             present: false
           },
-          Employment: {
-            value: 'SW'
-          },
           Status: {
-            value: 'Some status'
+            value: 'Fulltime'
           },
           Title: {
-            value: 'Dev'
+            value: 'IT Support'
+          },
+          DutyStation: {
+            value: 'Station 1'
+          },
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          Telephone: {
+            noNumber: '',
+            number: '2028675309',
+            numberType: 'Cell',
+            timeOfDay: 'Day'
+          },
+          Supervisor: {
+            Address: {
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
+            },
+            Email: {
+              value: 'foo@local.dev'
+            },
+            SupervisorName: {
+              value: 'John Doe'
+            },
+            Telephone: {
+              noNumber: '',
+              number: '2021112222',
+              numberType: 'Cell',
+              timeOfDay: 'Day'
+            },
+            Title: {
+              value: 'The Foo'
+            }
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Foo'
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'NationalGuard'
+          },
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2016')
+            },
+            present: false
+          },
+          Status: {
+            value: 'Fulltime'
+          },
+          Title: {
+            value: 'IT Support'
+          },
+          DutyStation: {
+            value: 'Station 1'
+          },
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          Telephone: {
+            noNumber: '',
+            number: '2028675309',
+            numberType: 'Cell',
+            timeOfDay: 'Day'
+          },
+          Supervisor: {
+            Address: {
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
+            },
+            Email: {
+              value: 'foo@local.dev'
+            },
+            SupervisorName: {
+              value: 'John Doe'
+            },
+            Telephone: {
+              noNumber: '',
+              number: '2021112222',
+              numberType: 'Cell',
+              timeOfDay: 'Day'
+            },
+            Title: {
+              value: 'The Foo'
+            }
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Foo'
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+    })
+  })
+
+  it('should validate federal employment, state government, federal contractor, non-government and other', function () {
+    const tests = [
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'FederalContractor'
+          },
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2016')
+            },
+            present: false
+          },
+          Status: {
+            value: 'Fulltime'
+          },
+          Employment: {
+            value: 'LM'
+          },
+          Title: {
+            value: 'IT Support'
+          },
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          Additional: {
+            HasAdditionalActivity: 'No',
+            List: []
+          },
+          Telephone: {
+            noNumber: '',
+            number: '2028675309',
+            numberType: 'Cell',
+            timeOfDay: 'Day'
+          },
+          Supervisor: {
+            Address: {
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
+            },
+            Email: {
+              value: 'foo@local.dev'
+            },
+            SupervisorName: {
+              value: 'John Doe'
+            },
+            Telephone: {
+              noNumber: '',
+              number: '2021112222',
+              numberType: 'Cell',
+              timeOfDay: 'Day'
+            },
+            Title: {
+              value: 'The Foo'
+            }
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Foo'
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'StateGovernment'
+          },
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2016')
+            },
+            present: false
+          },
+          Status: {
+            value: 'Fulltime'
+          },
+          Title: {
+            value: 'IT Support'
+          },
+          Employment: {
+            value: 'US'
+          },
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          Telephone: {
+            noNumber: '',
+            number: '2028675309',
+            numberType: 'Cell',
+            timeOfDay: 'Day'
+          },
+          Supervisor: {
+            Address: {
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
+            },
+            Email: {
+              value: 'foo@local.dev'
+            },
+            SupervisorName: {
+              value: 'John Doe'
+            },
+            Telephone: {
+              noNumber: '',
+              number: '2021112222',
+              numberType: 'Cell',
+              timeOfDay: 'Day'
+            },
+            Title: {
+              value: 'The Foo'
+            }
+          },
+          ReasonLeft: {
+            Reasons: [
+              {
+                Has: 'Yes',
+                Reason: 'Fired',
+                Date: {
+                  date: new Date('1/1/2016'),
+                  day: '1',
+                  month: '1',
+                  year: '2016'
+                },
+                Text: {
+                  value: 'Some excuse'
+                }
+              }
+            ]
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Foo'
+                }
+              }
+            ]
+          },
+          Additional: {
+            HasAdditionalActivity: 'Yes',
+            List: [
+              {
+                Position: {
+                  value: 'Dev1'
+                },
+                Supervisor: {
+                  value: 'Homer'
+                },
+                DatesEmployed: {
+                  from: {
+                    date: new Date('1/1/2011')
+                  },
+                  to: {
+                    date: new Date('3/1/2011')
+                  },
+                  present: false
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+    })
+  })
+
+  it('should validate self employment', function () {
+    const tests = [
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'SelfEmployment'
+          },
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2016')
+            },
+            present: false
+          },
+          Status: {
+            value: 'Fulltime'
+          },
+          Employment: {
+            value: 'Self Enterprises'
+          },
+          Title: {
+            value: 'Boss'
           },
           Address: {
             addressType: 'United States',
@@ -34,11 +458,14 @@ describe('Employment component validation', function () {
             zipcode: '22202'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'No'
-          },
-          Additional: {
-            HasAdditionalActivity: 'No',
-            List: []
+            HasDifferentAddress: 'Yes',
+            Address: {
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
+            }
           },
           Telephone: {
             noNumber: '',
@@ -60,6 +487,91 @@ describe('Employment component validation', function () {
                 Text: {
                   value: 'Some excuse'
                 }
+              }
+            ]
+          },
+          Reference: {
+            FullName: {
+              first: 'Foo',
+              firstInitialOnly: false,
+              middle: 'J',
+              middleInitialOnly: true,
+              noMiddleName: false,
+              last: 'Bar',
+              lastInitialOnly: false,
+              suffix: 'Jr'
+            },
+            LastContact: {
+              day: '1',
+              month: '1',
+              year: '2016',
+              date: new Date('1/1/2016')
+            },
+            Relationship: ['Friend'],
+            Phone: {
+              noNumber: '',
+              number: '7031112222',
+              numberType: 'Home',
+              timeOfDay: 'Both',
+              extension: ''
+            },
+            Email: {
+              value: 'user@local.dev'
+            },
+            Address: {
+              addressType: 'United States',
+              address: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202'
+            }
+          },
+          Reprimand: {
+            Reasons: [
+              {
+                Date: {
+                  date: new Date('1/1/2015'),
+                  month: '1',
+                  year: '2015'
+                },
+                Has: 'Yes',
+                Text: {
+                  value: 'Foo'
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+    })
+  })
+
+  it('should validate unemployment', function () {
+    const tests = [
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'Unemployment'
+          },
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2016')
+            },
+            present: false
+          },
+          ReasonLeft: {
+            ReasonDescription: 'Gained employment again',
+            Reasons: [
+              {
+                Has: 'No'
               }
             ]
           },
@@ -248,6 +760,28 @@ describe('Employment component validation', function () {
           }
         },
         expected: true
+      },
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: 'No'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          EmploymentActivity: {
+            value: 'ActiveMilitary'
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: 'Nope'
+          }
+        },
+        expected: false
       }
     ]
 
@@ -316,14 +850,6 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Status: {
-            value: 'Foo'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Title: {
             value: 'Foo'
           }
         },
