@@ -42,6 +42,15 @@ describe('The Sentence  component', () => {
       component.find(selector).first().simulate('change', { target: { value: '1' } })
     })
 
-    expect(updates).toEqual(5)
+    selectors = [
+      {type: 'checkbox', name: 'ProbationDatesNA'},
+      {type: 'checkbox', name: 'IncarcerationDatesNA'}
+    ]
+
+    selectors.forEach(selector => {
+      component.find(selector).first().simulate('change')
+    })
+
+    expect(updates).toEqual(7)
   })
 })

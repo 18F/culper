@@ -59,14 +59,6 @@ export default class Sentence extends ValidationElement {
     this.update('ProbationDates', values)
   }
 
-  updateAwaitingTrial (values) {
-    this.update('AwaitingTrial', values)
-  }
-
-  updateAwaitingTrialExplanation (values) {
-    this.update('AwaitingTrialExplanation', values)
-  }
-
   updateIncarcerationDatesNA (values) {
     this.update('IncarcerationDatesNA', values)
   }
