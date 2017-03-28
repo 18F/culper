@@ -88,4 +88,19 @@ describe('The suggestions component', () => {
     component.find('.suggestion .action button').first().simulate('click')
     expect(used).toBe(true)
   })
+
+  it('renders warning messages when not all props are passed', () => {
+    const expected = {
+      suggestions: [{id: 1}],
+      show: true
+
+    }
+    const spy = spyOn(console, 'warn')
+    let component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    expect(spy).toHaveBeenCalled()
+    component.find('.suggestion-btn').simulate('click')
+    expect(spy).toHaveBeenCalled()
+    component.find('.dismiss').simulate('click')
+    expect(spy).toHaveBeenCalled()
+  })
 })
