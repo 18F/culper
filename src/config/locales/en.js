@@ -2128,7 +2128,8 @@ const en = {
           supervisor: 'Your Supervisor',
           reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-          additionalActivity: 'Additional periods of activity with this employer'
+          additionalActivity: 'Additional periods of activity with this employer',
+          dutyStation: 'Provide your assigned duty station during this period'
         },
         title: {
           label: 'Title',
@@ -2248,6 +2249,9 @@ const en = {
             }
           }
         },
+        dutyStation: {
+          label: 'Duty station'
+        },
         para: {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
@@ -2261,7 +2265,8 @@ const en = {
           supervisor: 'Your Supervisor',
           reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-          additionalActivity: 'Additional periods of activity with this employer'
+          additionalActivity: 'Additional periods of activity with this employer',
+          dutyStation: 'Provide your assigned duty station during this period'
         },
         title: {
           label: 'Title',
@@ -2381,6 +2386,9 @@ const en = {
             }
           }
         },
+        dutyStation: {
+          label: 'Duty station'
+        },
         para: {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
@@ -2394,7 +2402,8 @@ const en = {
           supervisor: 'Your Supervisor',
           reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-          additionalActivity: 'Additional periods of activity with this employer'
+          additionalActivity: 'Additional periods of activity with this employer',
+          dutyStation: 'Provide your assigned duty station during this period'
         },
         title: {
           label: 'Title',
@@ -2513,6 +2522,9 @@ const en = {
               note: ''
             }
           }
+        },
+        dutyStation: {
+          label: 'Duty station'
         },
         para: {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
@@ -2953,7 +2965,7 @@ const en = {
           status: 'Select the employment status for this position',
           address: 'Provide the address of employment',
           telephone: 'Provide your employment telephone number',
-          reference: 'Provide a reference',
+          reference: 'Provide the name of someone that can verify your self-employment',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
           additionalActivity: 'Additional periods of activity with this employer'
         },

@@ -28,6 +28,10 @@ describe('The employment activity component', () => {
     expect(counter).toBe(1)
     expect(blur).toBe(1)
     expect(focus).toBe(1)
+
+    component.find({type: 'radio', value: 'Other'}).simulate('change')
+    component.find('textarea').simulate('change', { target: { value: 'Hello' } })
+    expect(counter).toBe(3)
   })
 })
 

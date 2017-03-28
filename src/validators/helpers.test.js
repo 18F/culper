@@ -1,4 +1,4 @@
-import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField } from './helpers'
+import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield } from './helpers'
 
 describe('Helpers for validators', function () {
   it('should return if a property has a status', function () {
@@ -21,6 +21,27 @@ describe('Helpers for validators', function () {
 
     tests.forEach(test => {
       expect(hasStatus(test.completed)(test.property, test.status, test.val)).toBe(true)
+    })
+  })
+
+  it('should validate generic text field', function () {
+    const tests = [
+      {
+        Field: {
+          value: 'hello'
+        },
+        expected: true
+      },
+      {
+        Field: {
+          value: ''
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(validGenericTextfield(test.Field)).toBe(test.expected)
     })
   })
 
@@ -212,6 +233,39 @@ describe('Helpers for validators', function () {
 
     tests.forEach(test => {
       expect(validDateField(test.date)).toBe(test.expected)
+    })
+  })
+
+  it('should validate if within seven years', function () {
+    const tests = [
+      {
+        Dates: {
+          from: {
+            date: new Date('1/1/2010')
+          },
+          to: {
+            date: new Date('1/1/2016')
+          },
+          present: false
+        },
+        expected: true
+      },
+      {
+        Dates: {
+          from: {
+            date: new Date('1/1/2000')
+          },
+          to: {
+            date: new Date('1/1/2001')
+          },
+          present: false
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(withinSevenYears(test.Dates.from, test.Dates.to)).toBe(test.expected)
     })
   })
 })
