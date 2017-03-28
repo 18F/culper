@@ -11,9 +11,16 @@
   background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.9);
 
+  .suggestions-wrap {
+    display: table-cell;
+    width: 100vw;
+    height: 100vh;
+    vertical-align: middle;
+  }
+
   .modal-content {
     background-color: #fff;
-    margin: 5rem auto;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid $eapp-grey-lightest;
     box-shadow: 5px 5px 5px $eapp-grey-light;

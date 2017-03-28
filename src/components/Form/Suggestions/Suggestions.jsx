@@ -71,20 +71,22 @@ export default class Suggestions extends React.Component {
       <div>
         {this.props.children}
         <div className="modal">
-          <div className="suggestions modal-content">
-            <h3>{this.props.suggestionTitle}</h3>
-            {this.props.suggestionParagraph}
-            <div className={klass}>
-              <Help>
-                {this.suggestions()}
-                <div className="dismiss">
-                  {this.props.suggestionDismissContent}
-                  <a href="javascript:;;" onClick={this.dismissSuggestions}>
-                    <span>{this.props.suggestionDismissLabel}</span>
-                    <i className="fa fa-arrow-circle-right"></i>
-                  </a>
-                </div>
-              </Help>
+          <div className="suggestions-wrap">
+            <div className="suggestions modal-content">
+              <h3>{this.props.suggestionTitle}</h3>
+              {this.props.suggestionParagraph}
+              <div className={klass}>
+                <Help>
+                  {this.suggestions()}
+                  <div className="dismiss">
+                    {this.props.suggestionDismissContent}
+                    <a href="javascript:;;" onClick={this.dismissSuggestions}>
+                      <span>{this.props.suggestionDismissLabel}</span>
+                      <i className="fa fa-arrow-circle-right"></i>
+                    </a>
+                  </div>
+                </Help>
+              </div>
             </div>
           </div>
         </div>
@@ -105,7 +107,7 @@ Suggestions.defaultProps = {
   className: '',
   show: false,
   renderSuggestion: () => {
-    console.warn('Missing handler for renderSuggestion')
+    console.warn('*********************************Missing handler for renderSuggestion')
   },
   onSuggestion: () => {
     console.warn('Missing handler for onSuggestion')
