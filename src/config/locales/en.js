@@ -3455,7 +3455,7 @@ const en = {
         description: 'Provide a description of the specific nature of the offense',
         involvement: 'Did this offense involve any of the following?',
         address: 'Provide the location where the offense occurred',
-        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by anyn police officer, sheriff, marshal or any other type of law enforcement official?',
+        cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by any police officer, sheriff, marshal or any other type of law enforcement official?',
         citedagency: 'Arresting/citing/summoning agency',
         citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
         agencyaddress: 'Provide the location of the law enforcement agency',
@@ -3490,11 +3490,11 @@ const en = {
         chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
-          first: 'Have you EVER been convicted in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
-          second: 'Have you EVER been charged with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
-          third: 'Have you EVER been convicted of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
-          fourth: 'Have you EVER been charged with an offense involving firearms or explosives?',
-          fifth: 'Have you EVER been charged with an offense involving alcohol or drugs?'
+          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
+          second: '**Have you EVER been charged** with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
+          third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+          fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
+          fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
         }
       },
       label: {
@@ -3514,7 +3514,9 @@ const en = {
         other: 'Other',
         courtcharge: 'Charge',
         courtoutcome: 'Outcome',
-        domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?'
+        domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
+        notApplicable: 'Not applicable',
+        or: 'or add date range'
       },
       help: {
         summons: {
@@ -3671,7 +3673,7 @@ const en = {
           unknown: 'Provide offense below'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
-        appendMessage: '<ul><li>**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)</li><li>**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?</li><li>**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)</li><li>**In the last seven (7) years** have you been or are you currently on probation or parole?</li><li>Are you currently on trial or awaiting a trial on criminal charges?</li></ul><p>If yes use the button below to add add another offense.</p>',
+        appendMessage: '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)\n- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?\n- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)\n- **In the last seven (7) years** have you been or are you currently on probation or parole?\nAre you currently on trial or awaiting a trial on criminal charges?\n<p>If yes use the button below to add add another offense.</p>',
         append: 'Add another offense'
       }
     }

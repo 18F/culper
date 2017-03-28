@@ -3,8 +3,6 @@ import { validGenericTextfield } from './helpers'
 
 export default class SentenceValidator {
   constructor (state = {}, props = {}) {
-    this.awaitingTrial = state.AwaitingTrial
-    this.awaitingTrialExplanation = state.AwaitingTrialExplanation
     this.description = state.Description
     this.exceedsYear = state.ExceedsYear
     this.incarcerated = state.Incarcerated
@@ -13,12 +11,6 @@ export default class SentenceValidator {
   }
 
   validChecks () {
-    if (this.awaitingTrial !== 'Yes' && this.awaitingTrial !== 'No') {
-      return false
-    }
-    if (this.awaitingTrialExplanation !== 'Yes' && this.awaitingTrialExplanation !== 'No') {
-      return false
-    }
     if (this.exceedsYear !== 'Yes' && this.exceedsYear !== 'No') {
       return false
     }
