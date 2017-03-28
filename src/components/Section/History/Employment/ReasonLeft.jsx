@@ -26,7 +26,8 @@ export default class ReasonLeft extends ValidationElement {
         this.props.onUpdate({
           name: this.props.name,
           Comments: this.state.Comments,
-          Reasons: this.state.Reasons
+          Reasons: this.state.Reasons,
+          ReasonDescription: this.state.ReasonDescription
         })
       }
     })
@@ -53,7 +54,7 @@ export default class ReasonLeft extends ValidationElement {
     )
 
     return (
-      <div>
+      <div className="reason-leaving">
         <Comments name="comments"
                   value={this.state.Comments}
                   title={i18n.t('history.employment.default.left.comments')}
@@ -64,8 +65,8 @@ export default class ReasonLeft extends ValidationElement {
           <div className="eapp-field-wrap no-label">
             <Help id="history.employment.default.reasonDescription">
               <Textarea name="reason_description"
+                        {...this.state.ReasonDescription}
                         className="reason-description"
-                        value={this.state.ReasonDescription}
                         onUpdate={this.updateReasonDescription}
                         />
               <HelpIcon />
