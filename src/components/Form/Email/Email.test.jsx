@@ -32,11 +32,14 @@ describe('The Email component', () => {
       valid: false,
       handleChange: function (event) {
         changes++
+      },
+      onUpdate: function () {
+        changes++
       }
     }
-    const component = mount(<Email name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Email name={expected.name} onChange={expected.handleChange} onUpdate={expected.onUpdate} />)
     component.find('input').first().simulate('change')
-    expect(changes).toEqual(1)
+    expect(changes).toEqual(2)
   })
 
   it('bubbles up focus event', () => {
@@ -83,6 +86,10 @@ describe('The Email component', () => {
       },
       {
         address: 'charles@x-men.org',
+        valid: true
+      },
+      {
+        address: 'CHARLES@X-MEN.ORG',
         valid: true
       },
       {

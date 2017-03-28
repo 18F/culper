@@ -1,3 +1,5 @@
+import { daysAgo, today } from '../components/Section/History/dateranges'
+
 export const validGenericMonthYear = (obj) => {
   if (!obj || !obj.month || !obj.year) {
     return false
@@ -86,3 +88,10 @@ export const validDateField = (obj) => {
   return true
 }
 
+export const withinSevenYears = (from, to) => {
+  const sevenYearsAgo = daysAgo(today, 365 * 7)
+  if ((from && from.date && from.date >= sevenYearsAgo) || (to && to.date && to.date >= sevenYearsAgo)) {
+    return true
+  }
+  return false
+}

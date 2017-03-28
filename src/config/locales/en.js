@@ -60,6 +60,18 @@ const en = {
     addpaired: 'Add a comment to this question',
     remove: 'Remove comment'
   },
+  name: {
+    label: {
+      first: 'First name',
+      last: 'Last name',
+      middle: 'Middle name or initial'
+    },
+    placeholder: {
+      first: 'Please enter your first name or initial',
+      middle: 'Please enter your middle name or initial',
+      last: 'Please enter your last name'
+    }
+  },
   help: {
     close: 'Close info block'
   },
@@ -2116,7 +2128,8 @@ const en = {
           supervisor: 'Your Supervisor',
           reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-          additionalActivity: 'Additional periods of activity with this employer'
+          additionalActivity: 'Additional periods of activity with this employer',
+          dutyStation: 'Provide your assigned duty station during this period'
         },
         title: {
           label: 'Title',
@@ -2236,6 +2249,9 @@ const en = {
             }
           }
         },
+        dutyStation: {
+          label: 'Duty station'
+        },
         para: {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
@@ -2249,7 +2265,8 @@ const en = {
           supervisor: 'Your Supervisor',
           reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-          additionalActivity: 'Additional periods of activity with this employer'
+          additionalActivity: 'Additional periods of activity with this employer',
+          dutyStation: 'Provide your assigned duty station during this period'
         },
         title: {
           label: 'Title',
@@ -2369,6 +2386,9 @@ const en = {
             }
           }
         },
+        dutyStation: {
+          label: 'Duty station'
+        },
         para: {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
         }
@@ -2382,7 +2402,8 @@ const en = {
           supervisor: 'Your Supervisor',
           reference: 'Provide a reference',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
-          additionalActivity: 'Additional periods of activity with this employer'
+          additionalActivity: 'Additional periods of activity with this employer',
+          dutyStation: 'Provide your assigned duty station during this period'
         },
         title: {
           label: 'Title',
@@ -2501,6 +2522,9 @@ const en = {
               note: ''
             }
           }
+        },
+        dutyStation: {
+          label: 'Duty station'
         },
         para: {
           additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
@@ -2941,7 +2965,7 @@ const en = {
           status: 'Select the employment status for this position',
           address: 'Provide the address of employment',
           telephone: 'Provide your employment telephone number',
-          reference: 'Provide a reference',
+          reference: 'Provide the name of someone that can verify your self-employment',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
           additionalActivity: 'Additional periods of activity with this employer'
         },
@@ -3703,6 +3727,18 @@ const en = {
       },
       email: 'Provide e-mail address for this person',
       address: 'The address of your contact during this time period'
+    },
+    name: {
+      label: {
+        first: 'First name',
+        last: 'Last name',
+        middle: 'Middle name or initial'
+      },
+      placeholder: {
+        first: 'Enter first name of the person who knows you',
+        middle: 'Enter middle name of the person who knows you',
+        last: 'Enter last name of the person who knows you'
+      }
     },
     help: {
       contact: {

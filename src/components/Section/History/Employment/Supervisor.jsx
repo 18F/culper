@@ -62,12 +62,12 @@ export default class Supervisor extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="supervisor">
         <h3>{i18n.t('history.employment.default.supervisor.heading.name')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.employment.default.supervisor.name.help">
             <Text name="SupervisorName"
-              className="text"
+              className="text full-width"
               {...this.props.SupervisorName}
               label={i18n.t('history.employment.default.supervisor.name.label')}
               onValidate={this.handleValidation}
@@ -84,7 +84,7 @@ export default class Supervisor extends ValidationElement {
           <Help id="history.employment.default.supervisor.title.help">
             <Text name="Title"
               {...this.props.Title}
-              className="text"
+              className="text full-width"
               label={i18n.t('history.employment.default.supervisor.title.label')}
               onBlur={this.handleBlur}
               onFocus={this.handleFocus}
@@ -100,7 +100,7 @@ export default class Supervisor extends ValidationElement {
           <Help id="history.employment.default.supervisor.email.help">
             <Email name="Email"
               {...this.props.Email}
-              className="text"
+              className="text full-width"
               label={i18n.t('history.employment.default.supervisor.email.label')}
               onBlur={this.handleBlur}
               onFocus={this.handleFocus}

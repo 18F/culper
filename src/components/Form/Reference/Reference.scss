@@ -3,6 +3,12 @@
     margin-top: 4rem;
   }
 
+  .reference-email {
+    display: inline-block;
+    width: 92%;
+    max-width: 64rem;
+  }
+
   .relationship label {
     width: 17rem;
 
@@ -77,5 +83,10 @@
         width: 3rem !important;
       }
     }
+  }
+
+  .relationship-help-icon {
+    margin-left: -16rem;
+    margin-top: 1rem;
   }
 }

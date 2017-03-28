@@ -54,8 +54,10 @@
     display: inline-block;
   }
 
+  .full-width,
   .reason-description {
     display: inline-block;
     width: 92%;
+    max-width: 64rem;
   }
 }
