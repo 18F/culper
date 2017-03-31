@@ -102,14 +102,21 @@ Story Points Completed: 110
 ```
 View Sprint 8 [backlog items][33] completed and [burndown chart][41] 
 
-### Sprint 9 (current sprint)
+### Sprint 9 
 ```
 Duration: Mar 16, 2017 to Mar 29, 2017
-Story Points Planned: 121
+Story Points Planned: 113
 ```
-View Sprint 9 [backlog items][42] in progress
+View Sprint 9 [backlog items][42] completed and [burndown chart][45]
 
-View Sprint 9 [burndown chart][43]
+### Sprint 10 (current sprint)
+```
+Duration: Mar 29, 2017 to Apr 12, 2017
+Story Points Planned: 118
+```
+View Sprint 10 [backlog items][44] in progress
+
+View Sprint 10 [burndown chart][43]
 
 Team Velocity: **108** pts
 
@@ -288,5 +295,7 @@ Please refer to the [contributing documentation][18].
 [39]: https://github.com/truetandem/e-QIP-prototype/issues/618
 [40]: https://github.com/truetandem/e-QIP-prototype/issues/619
 [41]: https://github.com/truetandem/e-QIP-prototype/issues/725
-[42]: https://github.com/truetandem/e-QIP-prototype/milestone/10
-[43]: http://burndown.io/#truetandem/e-QIP-prototype/10
+[42]: https://github.com/truetandem/e-QIP-prototype/milestone/10?closed=1
+[43]: http://burndown.io/#truetandem/e-QIP-prototype/11
+[44]: https://github.com/truetandem/e-QIP-prototype/milestone/11
+[45]: https://github.com/truetandem/e-QIP-prototype/issues/812
