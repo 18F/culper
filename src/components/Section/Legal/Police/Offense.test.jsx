@@ -89,7 +89,12 @@ describe('The offense component', () => {
     component.find('.offense-courtdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.offense-sentenced .yes input').simulate('change')
     component.find('.offense-sentenced .yes input').simulate('change')
+    component.find('textarea#description').simulate('change', { target: { value: 'Test' } })
     component.find({ type: 'radio', name: 'exceeding_year', value: 'Yes' }).simulate('change')
+
+    component.find('.offense-sentenced .no input').simulate('change')
+    component.find({ type: 'radio', name: 'awaiting_trial', value: 'Yes' }).simulate('change')
+    component.find('#awaiting_trial_explanation').simulate('change')
 
     // Toggle was charged to provide explanation
     component.find('.offense-charged .no input').simulate('change')
