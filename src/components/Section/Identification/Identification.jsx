@@ -256,13 +256,6 @@ class Identification extends ValidationElement {
                       onValidate={this.onValidate.bind(this)}
                       />
           </SectionView>
-
-          <SectionView name="psychological"
-                       back="identification/physical"
-                       backLabel={i18n.t('identification.destination.physical')}
-                       next="identification/review"
-                       nextLabel={i18n.t('identification.destination.review')}>
-          </SectionView>
         </SectionViews>
       </div>
     )
