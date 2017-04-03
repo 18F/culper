@@ -115,6 +115,7 @@ const navigation = [
     title: 'Psychological and emotional health',
     name: 'Psychological and emotional health',
     url: 'psychological',
+    hidden: false,
     subsections: [
       { name: 'Competence', url: 'competence' },
       { name: 'Consultations', url: 'consultations' },

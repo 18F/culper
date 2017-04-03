@@ -6,6 +6,7 @@ import { ValidationElement, IntroHeader } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
+import Competence from './Competence/Competence'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -15,8 +16,10 @@ class Psychological extends ValidationElement {
       subsection: props.subsection
     }
 
+    this.onUpdate = this.onUpdate.bind(this)
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
+    this.updateCompetence = this.updateCompetence.bind(this)
   }
 
   componentDidMount () {
@@ -34,6 +37,14 @@ class Psychological extends ValidationElement {
     this.props.dispatch(push('/form/psychological/review'))
   }
 
+  onUpdate (field, values) {
+    console.log('Update...')
+    this.props.dispatch(updateApplication('Psychological', field, values))
+  }
+
+  updateCompetence (values) {
+    this.onUpdate('Competence', values)
+  }
   /**
    * Determine the desired behaviour when visiting the
    * root of a route
@@ -88,6 +99,15 @@ class Psychological extends ValidationElement {
             { i18n.m('psychological.intro.para3') }
             { i18n.m('psychological.intro.para4') }
           </SectionView>
+
+          <SectionView name="competence"
+            back="psychological/intro"
+            next=""
+            nextLabel={ i18n.m('psychological.destination.tbd') }>
+            <Competence name="Competence"
+              {...this.state.Competence}
+              onUpdate={this.onUpdate.bind(this, 'Competence')} />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -103,6 +123,7 @@ function mapStateToProps (state) {
   return {
     Section: section,
     Psychological: psychological,
+    Competence: psychological.Competence,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
