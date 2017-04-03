@@ -95,3 +95,54 @@ export const withinSevenYears = (from, to) => {
   }
   return false
 }
+
+export class BranchCollection {
+  constructor (collection = [], key = 'Has') {
+    this.collection = collection
+    this.key = key
+  }
+
+  empty () {
+    if (!this.collection || !this.collection.length) {
+      return true
+    }
+    return false
+  }
+
+  validKeyValues () {
+    return !this.empty() && (this.hasNo() || this.hasYes())
+  }
+
+  hasNo () {
+    return this.hasKeyValue('No')
+  }
+
+  hasYes () {
+    return this.hasKeyValue('Yes')
+  }
+
+  each (isValidFunc) {
+    if (this.empty()) {
+      return false
+    }
+
+    for (let item of this.collection) {
+      if (!isValidFunc(item)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  hasKeyValue (key) {
+    if (this.empty()) {
+      return false
+    }
+    for (let item of this.collection) {
+      if (item[this.key] === key) {
+        return true
+      }
+    }
+    return false
+  }
+}

@@ -25,6 +25,7 @@ export default class CompetenceItem extends ValidationElement {
         CourtName: this.props.CourtName,
         CourtAddress: this.props.CourtAddress,
         Disposition: this.props.Disposition,
+        Appeals: this.props.Appeals,
         [field]: values
       })
     }
@@ -108,7 +109,7 @@ export default class CompetenceItem extends ValidationElement {
         <BranchCollection
           branchHelp="history.employment.default.reprimand.help"
           branch={<h2>Was this matter appealed to a higher  court or administrative agency</h2>}
-          items={this.state.Appeals}
+          items={this.props.Appeals}
           onUpdate={this.updateAppeals}
         >
 
@@ -116,6 +117,7 @@ export default class CompetenceItem extends ValidationElement {
           <h3>Name of court or administrative agency</h3>
           <Help id="psychological.competence.help.disposition">
             <Text name="CourtName"
+              bind={true}
               label={i18n.t('psychological.competence.label.courtName')}
               onValidate={this.props.onValidate}
             />
@@ -126,6 +128,7 @@ export default class CompetenceItem extends ValidationElement {
             <h3>Provide the address of the court or administrative agency</h3>
             <Help id="psychological.competence.help.courtAddress">
               <Address name="CourtAddress"
+                bind={true}
                 label={i18n.t('psychological.competence.label.courtAddress')}
                 onValidate={this.props.onValidate}
               />

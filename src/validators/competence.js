@@ -1,5 +1,5 @@
 import AddressValidator from './address'
-import { validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField, withinSevenYears } from './helpers'
+import { validGenericTextfield, validGenericMonthYear, validDateField, withinSevenYears, BranchCollection } from './helpers'
 
 export default class CompetenceValidator {
   constructor (state, props) {
@@ -7,11 +7,12 @@ export default class CompetenceValidator {
     this.courtName = state.CourtName
     this.disposition = state.Disposition
     this.occurred = state.Occurred
+    this.appeals = state.Appeals
   }
 
   validCourt () {
     return validGenericTextfield(this.courtName) &&
-      new AddressValidator(this.courtAddress)
+      new AddressValidator(this.courtAddress).isValid()
   }
 
   validDisposition () {
@@ -22,9 +23,26 @@ export default class CompetenceValidator {
     return validGenericMonthYear(this.occurred)
   }
 
+  validAppeals () {
+    const branchValidator = new BranchCollection(this.appeals)
+    if (!branchValidator.validKeyValues()) {
+      return false
+    }
+
+    if (branchValidator.hasNo()) {
+      return true
+    }
+
+    return branchValidator.each(item => {
+      return validGenericTextfield(item.CourtName) &&
+        new AddressValidator(item.CourtAddress)
+    })
+  }
+
   isValid () {
     return this.validCourt() &&
       this.validDisposition() &&
-      this.validOccurred()
+      this.validOccurred() &&
+      this.validAppeals()
   }
 }
