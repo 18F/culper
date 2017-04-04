@@ -1880,7 +1880,7 @@ const en = {
           type: {
             activeMilitary: 'Active military duty station',
             nationalGuard: 'National Guard/Reserve',
-            usphs: 'USPHS Commisioned Corps',
+            usphs: 'USPHS Commissioned Corps',
             otherFederal: 'Other federal employment',
             stateGovernment: 'State Government',
             federalContractor: 'Federal contractor',
@@ -3714,7 +3714,8 @@ const en = {
     },
     para: {
       correspondence: 'Provide the following contact information for this person.',
-      address: 'Provide street address for this person (including apartment number).'
+      address: 'Provide street address for this person (including apartment number).',
+      or: 'Or'
     },
     label: {
       relationship: {
@@ -3728,6 +3729,7 @@ const en = {
         comments: 'Add a comment to this question'
       },
       email: 'Provide e-mail address for this person',
+      idk: 'I don\'t know',
       address: 'The address of your contact during this time period'
     },
     name: {

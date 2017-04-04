@@ -1,6 +1,7 @@
 .not-applicable {
   display: inline-block;
   width: 92%;
+  max-width: 64rem;
 
   .button label {
     width: 23.5rem;
@@ -9,6 +10,7 @@
 
   .button p {
     margin-top: -2rem;
+    padding-bottom: 2rem !important;
   }
 
   .dithered {
@@ -21,8 +23,13 @@
     + .toggle {
       display: inline-block;
       vertical-align: top;
-      margin-top: 11.5rem;
-      margin-left: 0.8rem;
+      margin-top: 9rem;
+    }
+  }
+
+  .not-applicable.with-or {
+    + .toggle {
+      margin-top: 13.5rem;
     }
   }
 }

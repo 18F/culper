@@ -31,7 +31,7 @@ deploy:
     script: "./bin/deploy.sh staging"
     skip_cleanup: true
     on:
-      branch: pre-usability-fixes
+      branch: master
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh production"

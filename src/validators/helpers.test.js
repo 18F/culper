@@ -1,4 +1,4 @@
-import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, BranchCollection } from './helpers'
+import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, BranchCollection, validNotApplicable } from './helpers'
 
 describe('Helpers for validators', function () {
   it('should return if a property has a status', function () {
@@ -369,10 +369,36 @@ describe('Helpers for validators', function () {
         expected: false
       }
     ]
-
     tests.forEach(test => {
       const branchValidator = new BranchCollection(test.Collection)
       expect(branchValidator.each(test.Function)).toBe(test.expected)
+    })
+  })
+
+  it('should validate not applicable groups', function () {
+    const tests = [
+      {
+        logic: () => { return false },
+        expected: false
+      },
+      {
+        NotApplicable: {
+          applicable: true
+        },
+        logic: () => { return false },
+        expected: false
+      },
+      {
+        NotApplicable: {
+          applicable: false
+        },
+        logic: () => { return false },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(validNotApplicable(test.NotApplicable, test.logic)).toBe(test.expected)
     })
   })
 })

@@ -88,6 +88,20 @@ export const validDateField = (obj) => {
   return true
 }
 
+export const validNotApplicable = (notApplicable, logic) => {
+  // If the `NotApplicable` object is not present then apply the logic
+  if (!notApplicable) {
+    return logic()
+  }
+
+  // If the `NotApplicable` object is present and is applicable then apply the logic
+  if (notApplicable && notApplicable.applicable) {
+    return logic()
+  }
+
+  return true
+}
+
 export const withinSevenYears = (from, to) => {
   const sevenYearsAgo = daysAgo(today, 365 * 7)
   if ((from && from.date && from.date >= sevenYearsAgo) || (to && to.date && to.date >= sevenYearsAgo)) {
