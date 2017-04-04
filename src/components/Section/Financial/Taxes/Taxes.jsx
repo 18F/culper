@@ -98,7 +98,7 @@ export default class Taxes extends ValidationElement {
         <Branch name="has_taxes"
                 className="taxes-branch eapp-field-wrap"
                 value={this.state.HasTaxes}
-                help="financial.taxes.help"
+                help="financial.taxes.help.branch"
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
@@ -129,7 +129,7 @@ export default class Taxes extends ValidationElement {
                 <Number name="Year"
                         className="taxes-year"
                         placeholder={i18n.t('financial.taxes.placeholder.year')}
-                        min="1775"
+                        min="1000"
                         bind={true}
                         />
                 <HelpIcon />

@@ -429,6 +429,13 @@ const en = {
         message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
         note: 'Note: Underscores (_) and periods (.) are valid characters'
       }
+    },
+    Year: {
+      min: {
+        title: 'The year is below the accepted limits',
+        message: 'The year must be four (4) digit year',
+        note: ''
+      }
     }
   },
   section: {
@@ -988,44 +995,49 @@ const en = {
         amount: '1000'
       },
       help: {
+        branch: {
+          title: 'Need help with the type of tax failure?',
+          message: 'If you have failed to file or pay any federal, state, or other taxes required by law or ordinance within the last seven (7) years click "Yes"',
+          note: ''
+        },
         failure: {
-          title: '',
-          message: '',
+          title: 'Need help with the type of tax failure?',
+          message: 'Provide the type of tax failure',
           note: ''
         },
         year: {
-          title: '',
-          message: '',
+          title: 'Need help with the year?',
+          message: 'Provide the year you failed to file or pay your taxes',
           note: ''
         },
         reason: {
-          title: '',
-          message: '',
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the failure to file or pay the required taxes',
           note: ''
         },
         agency: {
-          title: '',
-          message: '',
+          title: 'Need help with the agency?',
+          message: 'Provide the name of the agency to which the taxes were failed to file or pay to',
           note: ''
         },
         taxtype: {
-          title: '',
-          message: '',
+          title: 'Need help with tax type?',
+          message: 'Provide the type of taxes you failed to file or pay such as property, income, sales, etc.',
           note: ''
         },
         amount: {
-          title: '',
-          message: '',
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of taxes',
           note: ''
         },
         date: {
-          title: '',
-          message: '',
+          title: 'Need help with the date satisfied?',
+          message: 'Provide the date, if any, the tax issue was satisfied',
           note: ''
         },
         description: {
-          title: '',
-          message: '',
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this debt',
           note: ''
         }
       },
