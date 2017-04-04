@@ -1,6 +1,6 @@
 import NameValidator from './name'
 import AddressValidator from './address'
-import { validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
+import { validNotApplicable, validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
 
 const relationshipOptions = ['Neighbor', 'Friend', 'Landlord', 'Business', 'Other']
 
@@ -12,6 +12,7 @@ export default class ReferenceValidator {
     this.relationshipOther = state.RelationshipOther
     this.phone = state.Phone
     this.email = state.Email
+    this.emailNotApplicable = state.EmailNotApplicable
     this.address = state.Address
   }
 
@@ -33,7 +34,7 @@ export default class ReferenceValidator {
   }
 
   validEmail () {
-    return validGenericTextfield(this.email)
+    return validNotApplicable(this.emailNotApplicable, () => { return validGenericTextfield(this.email) })
   }
 
   validAddress () {

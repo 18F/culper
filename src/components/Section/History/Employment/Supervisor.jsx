@@ -9,6 +9,7 @@ export default class Supervisor extends ValidationElement {
       SupervisorName: props.SupervisorName,
       Title: props.Title,
       Email: props.Email,
+      EmailNotApplicable: props.EmailNotApplicable,
       Address: props.Address,
       Telephone: props.Telephone
     }
@@ -23,6 +24,7 @@ export default class Supervisor extends ValidationElement {
         SupervisorName: this.state.SupervisorName,
         Title: this.state.Title,
         Email: this.state.Email,
+        EmailNotApplicable: this.state.EmailNotApplicable,
         Address: this.state.Address,
         Telephone: this.state.Telephone
       })
@@ -107,6 +109,7 @@ export default class Supervisor extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.default.supervisor.email.help">
             <NotApplicable name="EmailNotApplicable"
+                           {...this.state.EmailNotApplicable}
                            label={i18n.t('reference.label.idk')}
                            or={i18n.m('reference.para.or')}
                            onUpdate={this.updateEmailNotApplicable}>
@@ -156,4 +159,13 @@ export default class Supervisor extends ValidationElement {
       </div>
     )
   }
+}
+
+Supervisor.defaultProps = {
+  SupervisorName: {},
+  Title: {},
+  Email: {},
+  EmailNotApplicable: {},
+  Address: {},
+  Telephone: {}
 }

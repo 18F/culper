@@ -27,6 +27,7 @@ export default class Reference extends ValidationElement {
       RelationshipOther: props.RelationshipOther,
       Phone: props.Phone,
       Email: props.Email,
+      EmailNotApplicable: props.EmailNotApplicable,
       Address: props.Address,
       focus: props.focus,
       error: props.error,
@@ -54,6 +55,7 @@ export default class Reference extends ValidationElement {
           RelationshipOther: this.state.RelationshipOther,
           Phone: this.state.Phone,
           Email: this.state.Email,
+          EmailNotApplicable: this.state.EmailNotApplicable,
           Address: this.state.Address
         })
       }
@@ -206,6 +208,7 @@ export default class Reference extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id={`${prefix}reference.help.email`}>
             <NotApplicable name="EmailNotApplicable"
+                           {...this.state.EmailNotApplicable}
                            label={i18n.t('reference.label.idk')}
                            or={i18n.m('reference.para.or')}
                            onUpdate={this.updateEmailNotApplicable}>
@@ -247,6 +250,7 @@ Reference.defaultProps = {
   RelationshipOther: '',
   Phone: {},
   Email: {},
+  EmailNotApplicable: {},
   Address: {},
   focus: false,
   error: false,

@@ -52,4 +52,17 @@ describe('The Reference component', () => {
     component.find({ type: 'checkbox', value: 'Neighbor' }).simulate('change')
     expect(updates).toEqual(3)
   })
+
+  it('can toggle "I don\'t know" button', () => {
+    let updates = 0
+    const expected = {
+      name: 'reference',
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = mount(<Reference {...expected} />)
+    component.find({ type: 'checkbox', name: 'EmailNotApplicable' }).simulate('change')
+    expect(updates).toEqual(1)
+  })
 })
