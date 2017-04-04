@@ -96,12 +96,18 @@ export const withinSevenYears = (from, to) => {
   return false
 }
 
+/**
+ * Helper for testing components using the branch collection
+ */
 export class BranchCollection {
   constructor (collection = [], key = 'Has') {
     this.collection = collection
     this.key = key
   }
 
+  /**
+   * Returns if the collection is empty
+   */
   empty () {
     if (!this.collection || !this.collection.length) {
       return true
@@ -109,18 +115,35 @@ export class BranchCollection {
     return false
   }
 
+  /**
+   * Ensures that the collection is not empty and that valid Yes/No responses were included.
+   * Since users are required to mark an answer, an empty collection does not mean it's valid. It must have
+   * at least one Yes/No item
+   */
   validKeyValues () {
     return !this.empty() && (this.hasNo() || this.hasYes())
   }
 
+  /**
+   * Checks if an item has been marked with No
+   */
   hasNo () {
     return this.hasKeyValue('No')
   }
 
+  /**
+   * Checks if an item has been marked with Yes
+   */
   hasYes () {
     return this.hasKeyValue('Yes')
   }
 
+  /**
+   * Iterator that goes through each item and executes the isValidFunc. When an item
+   * is invalid, it returns.
+   * @param isValidFunc - Function that is excuted and returns whether the item is valid. This
+   * is meant to be passed in by callers of this method.
+   */
   each (isValidFunc) {
     if (this.empty()) {
       return false
@@ -134,6 +157,9 @@ export class BranchCollection {
     return true
   }
 
+  /**
+   * Helper function that checks if a given key exists at the root level of a branch collection item
+   */
   hasKeyValue (key) {
     if (this.empty()) {
       return false
