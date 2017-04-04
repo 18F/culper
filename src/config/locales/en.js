@@ -1880,7 +1880,7 @@ const en = {
           type: {
             activeMilitary: 'Active military duty station',
             nationalGuard: 'National Guard/Reserve',
-            usphs: 'USPHS Commisioned Corps',
+            usphs: 'USPHS Commissioned Corps',
             otherFederal: 'Other federal employment',
             stateGovernment: 'State Government',
             federalContractor: 'Federal contractor',
