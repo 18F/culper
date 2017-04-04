@@ -1082,7 +1082,7 @@ const en = {
         title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
         needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
-        name: 'Provide your relative\'s name',
+        name: 'Provide your relative\'s full name',
         birthdate: 'Provide your relative\'s date of birth',
         birthplace: 'Provide your relative\'s place of birth',
         citizenship: 'Provide your relative\'s country(ies) of citizenship',
