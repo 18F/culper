@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Help, HelpIcon, Text, Suggestions, Name, DateControl, Branch, Comments, Radio, RadioGroup, Show } from '../../../Form'
+import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
 import CompetenceItem from './CompetenceItem'
 
 export default class Competence extends ValidationElement {
@@ -19,10 +19,12 @@ export default class Competence extends ValidationElement {
 
   update (field, values) {
     this.setState({[field]: values}, () => {
-      this.props.onUpdate({
-        IsIncompetent: this.state.IsIncompetent,
-        List: this.state.List
-      })
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          IsIncompetent: this.state.IsIncompetent,
+          List: this.state.List
+        })
+      }
     })
   }
 

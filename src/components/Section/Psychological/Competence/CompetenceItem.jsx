@@ -107,6 +107,7 @@ export default class CompetenceItem extends ValidationElement {
         </div>
 
         <BranchCollection
+          className="appeals"
           branchHelp="history.employment.default.reprimand.help"
           branch={<h2>Was this matter appealed to a higher  court or administrative agency</h2>}
           items={this.props.Appeals}
