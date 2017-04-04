@@ -509,12 +509,11 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title="Let&rsquo;s make sure your history is covered"
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
                        next="foreign/passport"
                        nextLabel={i18n.t('foreign.destination.passport')}>
-            <h2>{i18n.t('history.timeline.title')}</h2>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
             <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
