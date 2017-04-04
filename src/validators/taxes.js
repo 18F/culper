@@ -47,10 +47,12 @@ export class TaxValidator {
   constructor (state = {}, props = {}) {
     this.failure = state.Failure
     this.year = state.Year
+    this.yearEstimated = state.YearEstimated
     this.reason = state.Reason
     this.agency = state.Agency
     this.taxType = state.TaxType
     this.amount = state.Amount
+    this.AmountEstimated = state.AmountEstimated
     this.date = state.Date
     this.dateNotApplicable = state.DateNotApplicable
     this.description = state.Description

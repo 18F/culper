@@ -980,7 +980,8 @@ const en = {
       label: {
         file: 'File',
         pay: 'Pay',
-        both: 'Both'
+        both: 'Both',
+        estimated: 'Estimated'
       },
       placeholder: {
         year: '2016',
@@ -1034,7 +1035,9 @@ const en = {
           unknown: 'Provide your tax filing information below',
           item: 'Agency'
         },
-        append: 'Add another tax filing'
+        appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+        appendMessage: 'If yes use the button below to add another tax filing/payment issue',
+        append: 'Add another tax filing/payment issue'
       }
     }
   },

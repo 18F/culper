@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { TaxesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
-         Text, Textarea, RadioGroup, Radio, NotApplicable } from '../../../Form'
+         Checkbox, Text, Textarea } from '../../../Form'
 import FailureType from './FailureType'
 
 export default class Taxes extends ValidationElement {
@@ -108,6 +108,8 @@ export default class Taxes extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.taxes.collection.summary.title')}
+                     appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
+                     appendMessage={i18n.m('financial.taxes.collection.appendMessage')}
                      appendLabel={i18n.t('financial.taxes.collection.append')}>
 
             <h3>{i18n.t('financial.taxes.heading.failure')}</h3>
@@ -131,6 +133,14 @@ export default class Taxes extends ValidationElement {
                         bind={true}
                         />
                 <HelpIcon />
+                <div className="taxes-year coupled-flags">
+                  <Checkbox name="YearEstimated"
+                            ref="estimated"
+                            label={i18n.t('financial.taxes.label.estimated')}
+                            toggle="false"
+                            bind={true}
+                            />
+                </div>
               </Help>
             </div>
 
@@ -178,6 +188,14 @@ export default class Taxes extends ValidationElement {
                         bind={true}
                         />
                 <HelpIcon />
+                <div className="taxes-amount coupled-flags">
+                  <Checkbox name="AmountEstimated"
+                            ref="estimated"
+                            label={i18n.t('financial.taxes.label.estimated')}
+                            toggle="false"
+                            bind={true}
+                            />
+                </div>
               </Help>
             </div>
 
