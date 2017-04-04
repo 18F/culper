@@ -60,31 +60,22 @@ class Psychological extends ValidationElement {
     return subsection
   }
 
-  /**
-   * Intro to the section when information is present
-   */
-  intro () {
-    return (
-      <div className="legal intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors}
-            Completed={this.props.Completed}
-            tour={i18n.t('psychological.tour.para')}
-            review={i18n.t('psychological.review.para')}
-            onTour={this.handleTour}
-            onReview={this.handleReview}
-          />
-        </div>
-      </div>
-    )
-  }
-
   render () {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            {this.intro()}
+            <div className="legal intro review-screen">
+              <div className="usa-grid-full">
+                <IntroHeader Errors={this.props.Errors}
+                  Completed={this.props.Completed}
+                  tour={i18n.t('psychological.tour.para')}
+                  review={i18n.t('psychological.review.para')}
+                  onTour={this.handleTour}
+                  onReview={this.handleReview}
+                />
+              </div>
+            </div>
           </SectionView>
 
           <SectionView name="intro"

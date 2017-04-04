@@ -73,7 +73,6 @@ export default class Competence extends ValidationElement {
             appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
             <CompetenceItem name="Competence" bind={true} />
           </Accordion>
-
         </Show>
       </div>
     )

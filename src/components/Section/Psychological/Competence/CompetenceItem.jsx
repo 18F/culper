@@ -6,10 +6,6 @@ export default class CompetenceItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-
-    }
-
     this.update = this.update.bind(this)
     this.updateOccurred = this.updateOccurred.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
