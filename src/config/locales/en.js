@@ -783,6 +783,11 @@ const en = {
     destination: {
       gambling: 'Gambling debts',
       bankruptcy: 'Bankruptcy',
+      taxes: 'Taxes',
+      card: 'Employer card abuse',
+      credit: 'Credit counseling',
+      deliquent: 'Deliquent payments',
+      nonpayment: 'Non-payment consequence',
       review: 'Review Financial record'
     },
     gambling: {
@@ -958,6 +963,78 @@ const en = {
           message: 'Enter the address of the court involved',
           note: ''
         }
+      }
+    },
+    taxes: {
+      title: 'In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+      heading: {
+        failure: 'Did you fail to file, pay as required, or both?',
+        year: 'Provide the year you failed to file or pay your federal, state, or other taxes (Estimated)',
+        reason: 'Provide the reason(s) for your failure to file or pay required taxes',
+        agency: 'Provide the federal, state, or other agency to which you failed to file or pay taxes',
+        taxtype: 'Provide the type of taxes you failed to file or pay (such as property, income, sales, etc.)',
+        amount: 'Provide the amount (in U.S. dollars) of taxes',
+        date: 'Provide the date satisfied',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        file: 'File',
+        pay: 'Pay',
+        both: 'Both'
+      },
+      placeholder: {
+        year: '2016',
+        amount: '1000'
+      },
+      help: {
+        failure: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        year: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        reason: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        agency: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        taxtype: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        amount: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        date: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        description: {
+          title: '',
+          message: '',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of failed tax filings',
+          unknown: 'Provide your tax filing information below',
+          item: 'Agency'
+        },
+        append: 'Add another tax filing'
       }
     }
   },
