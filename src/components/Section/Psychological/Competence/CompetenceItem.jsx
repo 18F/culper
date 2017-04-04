@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Address, ValidationElement, Help, HelpIcon, Text, Suggestions, Name, DateControl, Branch, BranchCollection, Comments, Radio, RadioGroup, Show } from '../../../Form'
+import { Address, ValidationElement, Help, HelpIcon, Text, DateControl, BranchCollection, Svg } from '../../../Form'
 
 export default class CompetenceItem extends ValidationElement {
   constructor (props) {
@@ -55,7 +55,7 @@ export default class CompetenceItem extends ValidationElement {
     return (
       <div className="competence-item">
         <div className="eapp-field-wrap">
-          <h3>Provide the date this occurred</h3>
+          <h3>{i18n.t('psychological.competence.heading.occurred')}</h3>
           <Help id="psychological.competence.help.occurred">
             <DateControl name="Occurred"
               {...this.props.Occurred}
@@ -68,12 +68,12 @@ export default class CompetenceItem extends ValidationElement {
           </Help>
         </div>
 
-        <div className="eapp-field-wrap">
-          <h3>Provide the name of the court or administrative agency that declared you mentally incompetent</h3>
+        <div className="eapp-field-wrap no-label">
+          <h3>{i18n.t('psychological.competence.heading.courtName')}</h3>
           <Help id="psychological.competence.help.courtName">
             <Text name="CourtName"
+              className="courtname"
               {...this.props.CourtName}
-              label={i18n.t('psychological.competence.label.courtName')}
               onUpdate={this.updateCourtName}
               onValidate={this.props.onValidate}
             />
@@ -82,8 +82,8 @@ export default class CompetenceItem extends ValidationElement {
         </div>
 
         <div className="eapp-field-wrap">
-          <h3>Provide the address of the court or administrative agency</h3>
-          <Help id="psychological.competence.help.courtName">
+          <h3>{i18n.t('psychological.competence.heading.courtAddress')}</h3>
+          <Help id="psychological.competence.help.courtAddress">
             <Address name="CourtAddress"
               {...this.props.CourtAddress}
               label={i18n.t('psychological.competence.label.courtAddress')}
@@ -93,12 +93,12 @@ export default class CompetenceItem extends ValidationElement {
             <HelpIcon className="date-help-icon" />
           </Help>
         </div>
-        <div className="eapp-field-wrap">
-          <h3>Provide the final disposition</h3>
+        <div className="eapp-field-wrap no-label">
+          <h3>{i18n.t('psychological.competence.heading.disposition')}</h3>
           <Help id="psychological.competence.help.disposition">
             <Text name="Disposition"
+              className="disposition"
               {...this.props.Disposition}
-              label={i18n.t('psychological.competence.label.disposition')}
               onUpdate={this.updateDisposition}
               onValidate={this.props.onValidate}
             />
@@ -108,34 +108,37 @@ export default class CompetenceItem extends ValidationElement {
 
         <BranchCollection
           className="appeals"
-          branchHelp="history.employment.default.reprimand.help"
-          branch={<h2>Was this matter appealed to a higher  court or administrative agency</h2>}
+          branchHelp="psychological.competence.help.appealed"
+          branch={<h3>{ i18n.t('psychological.competence.heading.appealed') }</h3>}
           items={this.props.Appeals}
           onUpdate={this.updateAppeals}
         >
 
-        <div className="eapp-field-wrap">
-          <h3>Name of court or administrative agency</h3>
+        <h3 className="more title">{i18n.t('psychological.competence.heading.needMore')}</h3>
+        <Svg src="img/date-down-arrow.svg" className="more arrow" />
+
+        <div className="eapp-field-wrap no-label">
+          <h3>{i18n.t('psychological.competence.heading.appealCourtName')}</h3>
           <Help id="psychological.competence.help.disposition">
             <Text name="CourtName"
+              className="courtname"
               bind={true}
-              label={i18n.t('psychological.competence.label.courtName')}
               onValidate={this.props.onValidate}
             />
             <HelpIcon className="date-help-icon" />
           </Help>
+        </div>
 
-          <div className="eapp-field-wrap">
-            <h3>Provide the address of the court or administrative agency</h3>
-            <Help id="psychological.competence.help.courtAddress">
-              <Address name="CourtAddress"
-                bind={true}
-                label={i18n.t('psychological.competence.label.courtAddress')}
-                onValidate={this.props.onValidate}
-              />
-              <HelpIcon className="date-help-icon" />
-            </Help>
-          </div>
+        <div className="eapp-field-wrap">
+          <h3>{i18n.t('psychological.competence.heading.appealCourtName')}</h3>
+          <Help id="psychological.competence.help.courtAddress">
+            <Address name="CourtAddress"
+              bind={true}
+              label={i18n.t('psychological.competence.label.courtAddress')}
+              onValidate={this.props.onValidate}
+            />
+            <HelpIcon className="date-help-icon" />
+          </Help>
         </div>
       </BranchCollection>
     </div>

@@ -38,7 +38,6 @@ class Psychological extends ValidationElement {
   }
 
   onUpdate (field, values) {
-    console.log('Update...')
     this.props.dispatch(updateApplication('Psychological', field, values))
   }
 

@@ -36,10 +36,23 @@ export default class Competence extends ValidationElement {
     this.update('IsIncompetent', values)
   }
 
+  summary (item, index) {
+    const o = (item || {}).Competence || {}
+    const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
+    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.competence.collection.summaryCourtName')
+
+    return (
+      <span>
+        <span className="index">Order:</span>
+        <span className="info"><strong>{courtName}</strong></span>
+      </span>
+    )
+  }
+
   render () {
     return (
       <div className="competence">
-        <h2>Has a court or administrative agency ever issued an order declaring you mentally incompetent</h2>
+        <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
           className="eapp-field-wrap no-label "
           value={this.state.IsIncompetent}
@@ -51,12 +64,11 @@ export default class Competence extends ValidationElement {
           <Accordion minimum="1"
             items={this.state.List}
             onUpdate={this.updateList}
-            summary={() => { return <div>SUmmary</div> } }
-            description={i18n.t('legal.police.collection.summary.title')}
-            appendTitle={i18n.t('legal.police.collection.appendTitle')}
-            appendMessage={<span>Append message</span>}
-            appendLabel={<span>Label</span>}>
-
+            summary={this.summary}
+            description={i18n.t('psychological.competence.collection.description')}
+            appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
+            appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
+            appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
             <CompetenceItem name="Competence" bind={true} />
           </Accordion>
 
