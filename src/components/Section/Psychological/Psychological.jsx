@@ -95,7 +95,7 @@ class Psychological extends ValidationElement {
             next=""
             nextLabel={ i18n.m('psychological.destination.tbd') }>
             <Competence name="Competence"
-              {...this.state.Competence}
+              {...this.props.Competence}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
           </SectionView>
         </SectionViews>

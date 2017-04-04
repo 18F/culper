@@ -1,18 +1,18 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import CompetenceItem from './CompetenceItem'
+import Order from './Order'
 
-describe('The CompetenceItem component', () => {
+describe('The Order component', () => {
   it('Renders without errors', () => {
-    const component = mount(<CompetenceItem />)
-    expect(component.find('.competence-item').length).toBe(1)
+    const component = mount(<Order />)
+    expect(component.find('.order').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<CompetenceItem onUpdate={onUpdate} />)
-    expect(component.find('.competence-item').length).toBe(1)
+    const component = mount(<Order onUpdate={onUpdate} />)
+    expect(component.find('.order').length).toBe(1)
     component.find('.datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
     component.find('input[name="CourtName"]').simulate('change')
     component.find('input[name="address"]').simulate('change')

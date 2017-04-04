@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
-import CompetenceItem from './CompetenceItem'
+import Order from '../Order'
 
 export default class Competence extends ValidationElement {
   constructor (props) {
@@ -71,7 +71,7 @@ export default class Competence extends ValidationElement {
             appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
             appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
             appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
-            <CompetenceItem name="Competence" bind={true} />
+            <Order name="Competence" prefix="competence" bind={true} />
           </Accordion>
         </Show>
       </div>
