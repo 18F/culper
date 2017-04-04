@@ -1,4 +1,4 @@
-import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, validNotApplicable } from './helpers'
+import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, BranchCollection, validNotApplicable } from './helpers'
 
 describe('Helpers for validators', function () {
   it('should return if a property has a status', function () {
@@ -266,6 +266,112 @@ describe('Helpers for validators', function () {
 
     tests.forEach(test => {
       expect(withinSevenYears(test.Dates.from, test.Dates.to)).toBe(test.expected)
+    })
+  })
+
+  it('should validate if branch collection is empty', function () {
+    const tests = [
+      {
+        Collection: [
+          {
+            Has: 'Yes'
+          }
+        ],
+        expected: false
+      },
+      {
+        Collection: [
+          {
+            Has: 'No'
+          }
+        ],
+        expected: false
+      },
+      {
+        Collection: [],
+        expected: true
+      },
+      {
+        Collection: null,
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      const branchValidator = new BranchCollection(test.Collection)
+      expect(branchValidator.empty()).toBe(test.expected)
+    })
+  })
+
+  it('should validate if branch collection has a key', function () {
+    const tests = [
+      {
+        Collection: [
+          {
+            Has: 'Yes'
+          }
+        ],
+        value: 'Yes',
+        expected: true
+      },
+      {
+        Collection: [
+          {
+            Has: 'No'
+          }
+        ],
+        value: 'No',
+        expected: true
+      },
+      {
+        Collection: [],
+        expected: false,
+        value: 'No'
+      },
+      {
+        Collection: null,
+        expected: false,
+        value: 'Yes'
+      }
+    ]
+
+    tests.forEach(test => {
+      const branchValidator = new BranchCollection(test.Collection)
+      expect(branchValidator.hasKeyValue(test.value)).toBe(test.expected)
+    })
+  })
+
+  it('should validate with custom each function', function () {
+    const tests = [
+      {
+        Function: (item) => {
+          return true
+        },
+        Collection: [
+          {
+            Has: 'Yes'
+          }
+        ],
+        expected: true
+      },
+      {
+        Function: (item) => {
+          return true
+        },
+        Collection: [],
+        expected: false
+      },
+      {
+        Function: (item) => {
+          return false
+        },
+        Collection: [{ Has: 'Yes' }],
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      const branchValidator = new BranchCollection(test.Collection)
+      expect(branchValidator.each(test.Function)).toBe(test.expected)
     })
   })
 

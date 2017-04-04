@@ -149,6 +149,9 @@
           border-left-color: $eapp-red;
         }
       }
+      .subsection > * {
+        padding-left: 2.2rem;
+      }
     }
 
     .subsection:last-child {
