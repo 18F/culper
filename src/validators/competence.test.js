@@ -1,4 +1,4 @@
-import CompetenceValidator from './competence'
+import CompetenceValidator, { CompetenceItemValidator } from './competence'
 
 describe('Competence validation', function () {
   it('validates court', () => {
@@ -27,7 +27,7 @@ describe('Competence validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CompetenceValidator(test.state, null).validCourt()).toBe(test.expected)
+      expect(new CompetenceItemValidator(test.state, null).validCourt()).toBe(test.expected)
     })
   })
 
@@ -67,11 +67,11 @@ describe('Competence validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CompetenceValidator(test.state, null).validAppeals()).toBe(test.expected)
+      expect(new CompetenceItemValidator(test.state, null).validAppeals()).toBe(test.expected)
     })
   })
 
-  it('validates competence', () => {
+  it('validates competence item', () => {
     const tests = [
       {
         state: {
@@ -102,6 +102,97 @@ describe('Competence validation', function () {
         state: {
           CourtName: null,
           CourtAddress: null
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CompetenceItemValidator(test.state, null).isValid()).toBe(test.expected)
+    })
+  })
+
+  it('validates competence', () => {
+    const tests = [
+      {
+        state: {
+          IsIncompetent: 'Yes',
+          List: [
+            {
+              Competence: {
+                CourtName: {
+                  value: 'Circuit Court'
+                },
+                CourtAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Disposition: {
+                  value: 'Stuff'
+                },
+                Occurred: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Appeals: [{ Has: 'No' }]
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          List: [],
+          IsIncompetent: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          List: [],
+          IsIncompetent: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          List: [],
+          IsIncompetent: 'Nope'
+        },
+        expected: false
+      },
+      {
+        state: {
+          IsIncompetent: 'Yes',
+          List: [
+            {
+              Competence: {
+                CourtName: null,
+                CourtAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Disposition: {
+                  value: 'Stuff'
+                },
+                Occurred: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Appeals: [{ Has: 'No' }]
+              }
+            }
+          ]
         },
         expected: false
       }

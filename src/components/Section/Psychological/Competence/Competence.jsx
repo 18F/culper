@@ -40,10 +40,11 @@ export default class Competence extends ValidationElement {
     const o = (item || {}).Competence || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
     const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.competence.collection.summaryCourtName')
+    const type = i18n.t('psychological.competence.collection.itemType')
 
     return (
       <span>
-        <span className="index">Order:</span>
+        <span className="index">{type}</span>
         <span className="info"><strong>{courtName}</strong></span>
       </span>
     )
@@ -65,6 +66,7 @@ export default class Competence extends ValidationElement {
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
+            onValidate={this.handleValidation}
             description={i18n.t('psychological.competence.collection.description')}
             appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
             appendMessage={i18n.m('psychological.competence.collection.appendMessage')}

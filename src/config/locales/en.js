@@ -3832,7 +3832,8 @@ const en = {
         description: 'description',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
-        appendLabel: 'Add another order'
+        appendLabel: 'Add another order',
+        itemType: 'Order:'
       }
     }
   }
