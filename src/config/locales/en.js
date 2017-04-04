@@ -3863,6 +3863,73 @@ const en = {
         note: ''
       }
     }
+  },
+  psychological: {
+    heading: {
+      intro: 'Why we are asking',
+      competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?'
+    },
+    destination: {
+      competence: 'Competence'
+    },
+    intro: {
+      para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
+      para2: 'Individuals experience a range of reactions to traumatic events. For example, the death of a loved one, divorce, major injury, service in a military combat environment, sexual assault, domestic violence, or other difficult work-related, family, personal, or medical issues may lead to grief, depression, or other responses. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced such events, as well as for those with other mental health conditions. Nothing in this questionnaire is intended to discourage those who might benefit from such treatment from seeking it.',
+      para3: '**Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility** for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.',
+      para4: '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
+
+    },
+    competence: {
+      heading: {
+        occurred: 'Provide the date this occurred',
+        courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
+        courtAddress: 'Provide the address of the court or administrative agency',
+        disposition: 'Provide the final disposition',
+        appealCourtName: 'Name of court or administrative agency',
+        appealCourtAddress: 'Provide the address of the court or administrative agency',
+        appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        needMore: 'Since you answered yes, we need more information'
+      },
+      label: {
+        courtAddress: 'This address is',
+        disposition: 'Provide the final disposition'
+      },
+      help: {
+        occurred: {
+          title: 'Need help the date occurred?',
+          message: 'The date issued',
+          note: ''
+        },
+        courtName: {
+          title: 'Need help with the court name?',
+          message: 'The court that declared you incompetent',
+          note: ''
+        },
+        courtAddress: {
+          title: 'Need help with the court address?',
+          message: 'The court addres ',
+          note: ''
+        },
+        disposition: {
+          title: 'Need help with the disposition?',
+          message: '',
+          note: ''
+        },
+        appealed: {
+          title: 'Need help with whether this matter was appealed?',
+          message: '',
+          note: ''
+        }
+      },
+      collection: {
+        summaryCourtName: 'Click to provide details',
+        description: 'description',
+        appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
+        appendMessage: 'If yes, use the button below to add another instance',
+        appendLabel: 'Add another order',
+        itemType: 'Order:'
+      }
+    }
   }
 }
 
