@@ -28,5 +28,17 @@ describe('The employment supervisor component', () => {
     expect(blur).toBe(1)
     expect(focus).toBe(1)
   })
-})
 
+  it('can toggle "I don\'t know" button', () => {
+    let updates = 0
+    const expected = {
+      name: 'supervisor',
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = mount(<Supervisor {...expected} />)
+    component.find({ type: 'checkbox', name: 'EmailNotApplicable' }).simulate('change')
+    expect(updates).toEqual(1)
+  })
+})
