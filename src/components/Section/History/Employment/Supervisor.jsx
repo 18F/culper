@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Email, Text, Help, HelpIcon, Address, Telephone } from '../../../Form'
+import { ValidationElement, Email, Text, Help, HelpIcon, Address, Telephone, NotApplicable } from '../../../Form'
 
 export default class Supervisor extends ValidationElement {
   constructor (props) {
@@ -12,6 +12,8 @@ export default class Supervisor extends ValidationElement {
       Address: props.Address,
       Telephone: props.Telephone
     }
+
+    this.updateEmailNotApplicable = this.updateEmailNotApplicable.bind(this)
   }
 
   doUpdate () {
@@ -29,6 +31,12 @@ export default class Supervisor extends ValidationElement {
 
   onUpdate (field, value) {
     this.setState({ [field]: value }, () => {
+      this.doUpdate()
+    })
+  }
+
+  updateEmailNotApplicable (values) {
+    this.setState({ EmailNotApplicable: values }, () => {
       this.doUpdate()
     })
   }
@@ -98,15 +106,20 @@ export default class Supervisor extends ValidationElement {
         <h3>{i18n.t('history.employment.default.supervisor.heading.email')}</h3>
         <div className="eapp-field-wrap">
           <Help id="history.employment.default.supervisor.email.help">
-            <Email name="Email"
-              {...this.props.Email}
-              className="text full-width"
-              label={i18n.t('history.employment.default.supervisor.email.label')}
-              onBlur={this.handleBlur}
-              onFocus={this.handleFocus}
-              onUpdate={this.onUpdate.bind(this, 'Email')}
-              onValidate={this.handleValidation}
-            />
+            <NotApplicable name="EmailNotApplicable"
+                           label={i18n.t('reference.label.idk')}
+                           or={i18n.m('reference.para.or')}
+                           onUpdate={this.updateEmailNotApplicable}>
+              <Email name="Email"
+                     {...this.props.Email}
+                     className="text"
+                     label={i18n.t('history.employment.default.supervisor.email.label')}
+                     onBlur={this.handleBlur}
+                     onFocus={this.handleFocus}
+                     onUpdate={this.onUpdate.bind(this, 'Email')}
+                     onValidate={this.handleValidation}
+                     />
+            </NotApplicable>
             <HelpIcon className="email-help-icon" />
           </Help>
         </div>
@@ -115,13 +128,13 @@ export default class Supervisor extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.default.supervisor.address.help">
             <Address name="Address"
-              {...this.props.Address}
-              label={i18n.t('history.employment.default.supervisor.address.label')}
-              onBlur={this.handleBlur}
-              onFocus={this.handleFocus}
-              onUpdate={this.onUpdate.bind(this, 'Address')}
-              onValidate={this.handleValidation}
-            />
+                     {...this.props.Address}
+                     label={i18n.t('history.employment.default.supervisor.address.label')}
+                     onBlur={this.handleBlur}
+                     onFocus={this.handleFocus}
+                     onUpdate={this.onUpdate.bind(this, 'Address')}
+                     onValidate={this.handleValidation}
+                     />
             <HelpIcon className="address-help-icon" />
           </Help>
         </div>
@@ -130,13 +143,13 @@ export default class Supervisor extends ValidationElement {
         <div className="eapp-field-wrap">
           <Help id="history.employment.default.supervisor.telephone.help">
             <Telephone name="Telephone"
-              {...this.props.Telephone}
-              label={i18n.t('history.employment.default.supervisor.telephone.label')}
-              onBlur={this.handleBlur}
-              onFocus={this.handleFocus}
-              onUpdate={this.onUpdate.bind(this, 'Telephone')}
-              onValidate={this.handleValidation}
-            />
+                       {...this.props.Telephone}
+                       label={i18n.t('history.employment.default.supervisor.telephone.label')}
+                       onBlur={this.handleBlur}
+                       onFocus={this.handleFocus}
+                       onUpdate={this.onUpdate.bind(this, 'Telephone')}
+                       onValidate={this.handleValidation}
+                       />
             <HelpIcon className="telephone-help-icon" />
           </Help>
         </div>

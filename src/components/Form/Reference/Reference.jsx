@@ -13,6 +13,7 @@ import Address from '../Address'
 import Checkbox from '../Checkbox'
 import CheckboxGroup from '../CheckboxGroup'
 import Show from '../Show'
+import NotApplicable from '../NotApplicable'
 
 export default class Reference extends ValidationElement {
   constructor (props) {
@@ -35,6 +36,7 @@ export default class Reference extends ValidationElement {
 
     this.handleRelationshipChange = this.handleRelationshipChange.bind(this)
     this.updateRelationshipOther = this.updateRelationshipOther.bind(this)
+    this.updateEmailNotApplicable = this.updateEmailNotApplicable.bind(this)
   }
 
   /**
@@ -78,6 +80,10 @@ export default class Reference extends ValidationElement {
 
   updateRelationshipOther (values) {
     this.onUpdate('RelationshipOther', values)
+  }
+
+  updateEmailNotApplicable (values) {
+    this.onUpdate('EmailNotApplicable', values)
   }
 
   render () {
@@ -199,13 +205,18 @@ export default class Reference extends ValidationElement {
         <h3>{i18n.t(`${prefix}reference.heading.email`)}</h3>
         <div className="eapp-field-wrap">
           <Help id={`${prefix}reference.help.email`}>
-            <Email name="Email"
-                   {...this.state.Email}
-                   className="reference-email"
-                   label={i18n.t(`${prefix}reference.label.email`)}
-                   onUpdate={this.onUpdate.bind(this, 'Email')}
-                   onValidate={this.props.onValidate}
-                   />
+            <NotApplicable name="EmailNotApplicable"
+                           label={i18n.t('reference.label.idk')}
+                           or={i18n.m('reference.para.or')}
+                           onUpdate={this.updateEmailNotApplicable}>
+              <Email name="Email"
+                     {...this.state.Email}
+                     className="reference-email"
+                     label={i18n.t(`${prefix}reference.label.email`)}
+                     onUpdate={this.onUpdate.bind(this, 'Email')}
+                     onValidate={this.props.onValidate}
+                     />
+            </NotApplicable>
             <HelpIcon className="email-help-icon" />
           </Help>
         </div>
