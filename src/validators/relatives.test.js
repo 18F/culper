@@ -268,6 +268,9 @@ describe('Relatives validation', function () {
                     date: new Date('1/1/2012')
                   },
                   present: false
+                },
+                Reason: {
+                  value: 'The reason'
                 }
               }
             }
@@ -1444,6 +1447,9 @@ describe('Relatives validation', function () {
                           date: new Date('1/1/2012')
                         },
                         present: false
+                      },
+                      Reason: {
+                        value: 'The reason'
                       }
                     }
                   }

@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Help, HelpIcon } from '../../../Form'
-import { RelativeValidator } from '../../../../validators'
-import { subtext } from './Relatives'
+import { ValidationElement, Branch, Name, DateRange, Textarea, Help, HelpIcon } from '../../../Form'
 
 export default class Alias extends ValidationElement {
   constructor (props) {
@@ -11,13 +9,15 @@ export default class Alias extends ValidationElement {
     this.state = {
       Name: props.Name,
       MaidenName: props.MaidenName,
-      Dates: props.Birthdate
+      Dates: props.Birthdate,
+      Reason: props.Reason
     }
 
     this.onUpdate = this.onUpdate.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateMaidenName = this.updateMaidenName.bind(this)
     this.updateDates = this.updateDates.bind(this)
+    this.updateReason = this.updateReason.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -41,6 +41,10 @@ export default class Alias extends ValidationElement {
 
   updateDates (values) {
     this.onUpdate('Dates', values)
+  }
+
+  updateReason (values) {
+    this.onUpdate('Reason', values)
   }
 
   render () {
@@ -71,6 +75,18 @@ export default class Alias extends ValidationElement {
             <HelpIcon />
           </Help>
         </div>
+
+        <h4>{i18n.t('family.relatives.heading.alias.reason')}</h4>
+        <div className="eapp-field-wrap no-label">
+          <Help id="family.relatives.help.reason">
+            <Textarea name="Reason"
+                      className="alias-reason"
+                      {...this.state.Reason}
+                      onUpdate={this.updateReason}
+                      />
+            <HelpIcon />
+          </Help>
+        </div>
       </div>
     )
   }
@@ -79,5 +95,6 @@ export default class Alias extends ValidationElement {
 Alias.defaultProps = {
   Name: {},
   MaidenName: '',
-  Dates: {}
+  Dates: {},
+  Reason: {}
 }

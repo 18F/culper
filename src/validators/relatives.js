@@ -332,6 +332,7 @@ export class AliasValidator {
     this.name = state.Name
     this.maidenName = state.MaidenName
     this.dates = state.Dates
+    this.reason = state.Reason
   }
 
   validName () {
@@ -346,9 +347,14 @@ export class AliasValidator {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
+  validReason () {
+    return !!this.reason && validGenericTextfield(this.reason)
+  }
+
   isValid () {
     return this.validName() &&
       this.validMaidenName() &&
-      this.validDates()
+      this.validDates() &&
+      this.validReason()
   }
 }
