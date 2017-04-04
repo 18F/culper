@@ -80,6 +80,36 @@ class Navigation extends React.Component {
     return klass
   }
 
+  subsectionWalker (section, url) {
+    if (!section.subsections) {
+      return null
+    }
+    let location = hashHistory.getCurrentLocation()
+    let pathname = location.pathname
+    return section.subsections.map(subsection => {
+      if (subsection.hidden) {
+        return ''
+      }
+
+      const subUrl = `${url}/${subsection.url}`
+      const subClass = this.getClassName(subUrl, pathname)
+      let childSubsections = []
+      if (section.subsections) {
+        childSubsections = this.subsectionWalker(subsection, subUrl)
+      }
+
+      return (
+        <div key={subsection.name} className="subsection" >
+          <Link to={subUrl} className={subClass}>
+            <span className="name">{subsection.name}</span>
+            <span className="eapp-status-icon-error"></span>
+          </Link>
+          { childSubsections }
+        </div>
+      )
+    })
+  }
+
   render () {
     let location = hashHistory.getCurrentLocation()
     let pathname = location.pathname
@@ -91,22 +121,7 @@ class Navigation extends React.Component {
 
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
-      const subsections = section.subsections.map(subsection => {
-        if (subsection.hidden) {
-          return ''
-        }
-
-        const subUrl = `/form/${section.url}/${subsection.url}`
-        const subClass = this.getClassName(subUrl, pathname)
-        return (
-          <div key={subsection.name} className="subsection" >
-            <Link to={subUrl} className={subClass}>
-              <span className="name">{subsection.name}</span>
-              <span className="eapp-status-icon-error"></span>
-            </Link>
-          </div>
-        )
-      })
+      const subsections = this.subsectionWalker(section, url)
 
       // Increment the section number
       sectionNum++
