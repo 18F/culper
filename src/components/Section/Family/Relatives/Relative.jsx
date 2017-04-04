@@ -422,16 +422,11 @@ export default class Relative extends ValidationElement {
         <Show when={mother}>
           <div>
             <h3>{i18n.t('family.relatives.heading.maiden')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="family.relatives.help.maiden">
-                <Text name="MaidenName"
-                      className="relative-maidenname"
-                      {...this.state.MaidenName}
-                      onUpdate={this.updateMaidenName}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Name name="MaidenName"
+                  className="relative-maidenname eapp-field-wrap"
+                  {...this.state.MaidenName}
+                  onUpdate={this.updateMaidenName}
+                  />
           </div>
         </Show>
 
@@ -903,7 +898,7 @@ Relative.defaultProps = {
   Birthdate: {},
   Birthplace: {},
   Citizenship: [],
-  MaidenName: '',
+  MaidenName: {},
   Aliases: [],
   IsDeceased: '',
   Address: {},

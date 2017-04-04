@@ -191,7 +191,14 @@ describe('Relatives validation', function () {
       {
         state: {
           MaidenName: {
-            value: 'Nunyabusiness'
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: 'Jr'
           }
         },
         expected: true
@@ -1405,7 +1412,14 @@ describe('Relatives validation', function () {
                 },
                 Citizenship: ['United States'],
                 MaidenName: {
-                  value: 'Nunyabusiness'
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
                 Aliases: [
                   {

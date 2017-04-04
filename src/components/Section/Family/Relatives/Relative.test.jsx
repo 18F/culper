@@ -174,7 +174,7 @@ describe('The relative component', () => {
 
     // Are you my mother?
     expect(component.find('.relative-maidenname').length).toBeGreaterThan(0)
-    component.find('.relative-maidenname input').simulate('change', { target: { value: 'maidenname' } })
+    component.find('.relative-maidenname .last input').simulate('change', { target: { value: 'maidenname' } })
 
     // Is immediate family
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)

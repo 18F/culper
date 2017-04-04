@@ -116,7 +116,7 @@ export class RelativeValidator {
   }
 
   validMaidenName () {
-    return !!this.maidenName && validGenericTextfield(this.maidenName)
+    return !!this.maidenName && new NameValidator(this.maidenName, null).isValid()
   }
 
   validAliases () {
