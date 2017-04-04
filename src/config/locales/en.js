@@ -996,7 +996,7 @@ const en = {
         citizenship: 'Provide your relative\'s country(ies) of citizenship',
         maiden: 'Provide your mother\'s maiden name',
         alias: {
-          branch: 'Has this relative used any other names?',
+          branch: 'Has this relative used any additional names?',
           title: 'Provide other names used and the period of time that your relative used them.',
           maiden: 'Maiden name?',
           additional: 'Has this relative used any additional names?'
