@@ -93,7 +93,7 @@ class Psychological extends ValidationElement {
 
           <SectionView name="competence"
             back="psychological/intro"
-            next="psychological/consultation"
+            next="psychological/consultations"
             nextLabel={ i18n.m('psychological.destination.tbd') }>
             <Competence name="Competence"
               {...this.props.Competence}
