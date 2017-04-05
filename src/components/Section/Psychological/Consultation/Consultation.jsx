@@ -1,8 +1,8 @@
-
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
 import Order from '../Order'
+import { ConsultationValidator } from '../../../../validators'
 
 export default class Consultation extends ValidationElement {
   constructor (props) {
@@ -10,12 +10,14 @@ export default class Consultation extends ValidationElement {
 
     this.state = {
       IsIncompetent: props.IsIncompetent,
-      List: props.List
+      List: props.List,
+      errorCodes: []
     }
 
     this.update = this.update.bind(this)
     this.updateIsIncompentent = this.updateIsIncompentent.bind(this)
     this.updateList = this.updateList.bind(this)
+    this.isValid = this.isValid.bind(this)
   }
 
   update (field, values) {
@@ -37,6 +39,26 @@ export default class Consultation extends ValidationElement {
     this.update('IsIncompetent', values)
   }
 
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.isValid()) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
+      super.handleValidation(event, statusObject, errorObject)
+    })
+  }
+
   summary (item, index) {
     const o = (item || {}).Consultation || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
@@ -51,11 +73,15 @@ export default class Consultation extends ValidationElement {
     )
   }
 
+  isValid () {
+    return new ConsultationValidator(this.state).isValid()
+  }
+
   render () {
     return (
       <div className="consultation">
         <h2>{i18n.t('psychological.heading.consultation')}</h2>
-        { i18n.m('psychological.heading.consultation2')} }
+        { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
           className="eapp-field-wrap no-label "
           value={this.state.IsIncompetent}

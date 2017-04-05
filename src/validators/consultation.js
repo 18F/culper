@@ -1,6 +1,6 @@
 import OrderValidator from './order'
 
-export default class CompetenceValidator {
+export default class ConsultationValidator {
   constructor (state = {}, props) {
     this.list = state.List || []
     this.isIncompetent = state.IsIncompetent
@@ -16,7 +16,7 @@ export default class CompetenceValidator {
     }
 
     for (let order of this.list) {
-      if (!new OrderValidator(order.Competence).isValid()) {
+      if (!new OrderValidator(order.Consultation).isValid()) {
         return false
       }
     }
