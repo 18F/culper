@@ -22,7 +22,7 @@ const navigation = [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
       { name: 'Taxes', url: 'taxes' },
-      { hidden: true, name: 'Employer card abuse', url: 'card' },
+      { name: 'Employer card abuse', url: 'card' },
       { hidden: true, name: 'Credit counseling', url: 'credit' },
       { hidden: true, name: 'Deliquent payments', url: 'deliquent' },
       { hidden: true, name: 'Non-payment consequence', url: 'nonpayment' }

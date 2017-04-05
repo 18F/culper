@@ -1051,6 +1051,70 @@ const en = {
         appendMessage: 'If yes use the button below to add another tax filing/payment issue',
         append: 'Add another tax filing/payment issue'
       }
+    },
+    card: {
+      title: 'In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?',
+      heading: {
+        agency: 'Provide the name of the agency or company',
+        address: 'Provide the address of the agency or company',
+        date: 'Provide the date of your counseling, warning, or disciplinary action',
+        reason: 'Provide the reason(s) for the counseling, warning, or disciplinary action',
+        amount: 'Provide the amount (in U.S. dollars) of violation',
+        description: 'Provide a description of any action(s) you have taken to rectify this situation. If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '1000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with the employer card abuse?',
+          message: 'If in the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer then click "Yes"',
+          note: ''
+        },
+        agency: {
+          title: 'Need help with the agency or company name?',
+          message: 'Provide the name of the agency or company involved',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the agency or company address?',
+          message: 'Provide the last known address of the agency or company involved',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date?',
+          message: 'Provide the approximate date of the violation',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the violation',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of violation',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of employer card abuses',
+          unknown: 'Provide your card abuse information below',
+          item: 'Employer'
+        },
+        appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
+        appendMessage: 'If yes use the button below to add another card abuse/counseling issue',
+        append: 'Add another card abuse/counseling issue'
+      }
     }
   },
 
