@@ -11,6 +11,7 @@ import Gambling from './Gambling'
 import Bankruptcy from './Bankruptcy'
 import Taxes from './Taxes'
 import Card from './Card'
+import Credit from './Credit'
 
 class Financial extends ValidationElement {
   constructor (props) {
@@ -56,12 +57,14 @@ class Financial extends ValidationElement {
     if (this.hasStatus('gambling', status, true) &&
         this.hasStatus('bankruptcy', status, true) &&
         this.hasStatus('taxes', status, true) &&
-        this.hasStatus('card', status, true)) {
+        this.hasStatus('card', status, true) &&
+        this.hasStatus('credit', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('gambling', status, false) ||
                this.hasStatus('bankruptcy', status, false) ||
                this.hasStatus('taxes', status, false) &&
-               this.hasStatus('card', status, false)) {
+               this.hasStatus('card', status, false) &&
+               this.hasStatus('credit', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -205,6 +208,19 @@ class Financial extends ValidationElement {
                   onValidate={this.onValidate.bind(this)}
                   />
           </SectionView>
+
+          <SectionView name="credit"
+                       back="financial/card"
+                       backLabel={i18n.t('financial.destination.card')}
+                       next="financial/deliquent"
+                       nextLabel={i18n.t('financial.destination.deliquent')}>
+            <h2>{i18n.t('financial.credit.title')}</h2>
+            <Credit name="credit"
+                    {...this.props.Credit}
+                    onUpdate={this.onUpdate.bind(this, 'Credit')}
+                    onValidate={this.onValidate.bind(this)}
+                    />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -224,6 +240,7 @@ function mapStateToProps (state) {
     Bankruptcy: financial.Bankruptcy || {},
     Taxes: financial.Taxes || {},
     Card: financial.Card || {},
+    Credit: financial.Credit || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
