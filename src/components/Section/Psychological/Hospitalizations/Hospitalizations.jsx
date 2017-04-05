@@ -66,14 +66,14 @@ export default class Hospitalizations extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Hospitalization || {}
-    const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.hospitalization.collection.summary')
+    const treatmentDate = (o.TreatmentDate || {}).date ? `${o.TreatmentDate.month}/${o.Occurred.year}` : ''
+    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${treatmentDate}` : i18n.t('psychological.hospitalization.collection.summary')
     const type = i18n.t('psychological.hospitalization.collection.itemType')
 
     return (
       <span>
         <span className="index">{type}</span>
-        <span className="info"><strong>{courtName}</strong></span>
+        <span className="info"><strong>{facility}</strong></span>
       </span>
     )
   }

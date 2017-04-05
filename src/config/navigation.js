@@ -119,7 +119,7 @@ const navigation = [
     subsections: [
       { name: 'Competence', url: 'competence' },
       { name: 'Consultations', url: 'consultations' },
-      { name: 'Hospitalizations', url: 'hospitalization' },
+      { name: 'Hospitalizations', url: 'hospitalizations' },
       { name: 'Diagnosed', url: 'diagnosed' },
       { name: 'Existing Conditions', url: 'existingconditions' }
     ]

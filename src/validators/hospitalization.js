@@ -2,7 +2,36 @@ import DateRangeValidator from './daterange'
 import AddressValidator from './address'
 import { validGenericTextfield } from './helpers'
 
-export default class HospitalizationValidator {
+export default class HospitalizationsValidator {
+  constructor (state = {}, props) {
+    this.list = state.List || []
+    this.hospitalized = state.Hospitalized
+  }
+
+  validList () {
+    if (this.hospitalized === 'Yes' && this.list.length === 0) {
+      return false
+    }
+
+    for (let hospitalization of this.list) {
+      if (!new HospitalizationValidator(hospitalization).isValid()) {
+        return false
+      }
+    }
+    return true
+  }
+
+  validHospitalization () {
+    return this.hospitalized === 'Yes' || this.hospitalized === 'No'
+  }
+
+  isValid () {
+    return this.validHospitalization() &&
+      this.validList()
+  }
+}
+
+export class HospitalizationValidator {
   constructor (state = {}, props) {
     this.treatmentDate = state.TreatmentDate
     this.admission = state.Admission || { value: null }
