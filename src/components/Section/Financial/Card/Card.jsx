@@ -80,13 +80,18 @@ export default class Card extends ValidationElement {
   summary (item, index) {
     const obj = (item || {})
     const agency = (obj.Agency || {}).value || i18n.t('financial.card.collection.summary.unknown')
-    const year = (obj.Year || {}).value || ''
+    const date = (obj.Date || {})
+
+    let from = ''
+    if (date.month && date.year) {
+      from = '' + date.month + '/' + date.year
+    }
 
     return (
       <span>
         <span className="index">{i18n.t('financial.card.collection.summary.item')} {index + 1}:</span>
         <span><strong>{agency}</strong></span>
-        <span className="dates">{year}</span>
+        <span className="dates">{from}</span>
       </span>
     )
   }
