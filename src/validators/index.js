@@ -20,6 +20,7 @@ import MilitaryForeignValidator from './militaryforeign'
 import PoliceValidator from './police'
 import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
+import TaxesValidator, { TaxValidator } from './taxes'
 
 export {
   AddressValidator,
@@ -45,5 +46,7 @@ export {
   FederalServiceValidator,
   RelativesValidator,
   RelativeValidator,
-  AliasValidator
+  AliasValidator,
+  TaxesValidator,
+  TaxValidator
 }

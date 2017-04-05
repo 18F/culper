@@ -8,7 +8,7 @@ describe('The procedure component', () => {
       name: 'procedure'
     }
     const component = mount(<Procedure {...expected} />)
-    expect(component.find('.procedure-date').length).toBeGreaterThan(1)
+    expect(component.find('.procedure-date').length).toEqual(1)
     expect(component.find('.procedure-offenses').length).toEqual(1)
     expect(component.find('.procedure-name').length).toEqual(1)
     expect(component.find('.procedure-court').length).toEqual(1)

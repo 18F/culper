@@ -429,6 +429,13 @@ const en = {
         message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
         note: 'Note: Underscores (_) and periods (.) are valid characters'
       }
+    },
+    Year: {
+      min: {
+        title: 'The year is below the accepted limits',
+        message: 'The year must be four (4) digit year',
+        note: ''
+      }
     }
   },
   section: {
@@ -783,6 +790,11 @@ const en = {
     destination: {
       gambling: 'Gambling debts',
       bankruptcy: 'Bankruptcy',
+      taxes: 'Taxes',
+      card: 'Employer card abuse',
+      credit: 'Credit counseling',
+      deliquent: 'Deliquent payments',
+      nonpayment: 'Non-payment consequence',
       review: 'Review Financial record'
     },
     gambling: {
@@ -958,6 +970,86 @@ const en = {
           message: 'Enter the address of the court involved',
           note: ''
         }
+      }
+    },
+    taxes: {
+      title: 'In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+      heading: {
+        failure: 'Did you fail to file, pay as required, or both?',
+        year: 'Provide the year you failed to file or pay your federal, state, or other taxes (Estimated)',
+        reason: 'Provide the reason(s) for your failure to file or pay required taxes',
+        agency: 'Provide the federal, state, or other agency to which you failed to file or pay taxes',
+        taxtype: 'Provide the type of taxes you failed to file or pay (such as property, income, sales, etc.)',
+        amount: 'Provide the amount (in U.S. dollars) of taxes',
+        date: 'Provide the date satisfied',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        file: 'File',
+        pay: 'Pay',
+        both: 'Both',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        year: '2016',
+        amount: '1000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with the type of tax failure?',
+          message: 'If you have failed to file or pay any federal, state, or other taxes required by law or ordinance within the last seven (7) years click "Yes"',
+          note: ''
+        },
+        failure: {
+          title: 'Need help with the type of tax failure?',
+          message: 'Provide the type of tax failure',
+          note: ''
+        },
+        year: {
+          title: 'Need help with the year?',
+          message: 'Provide the year you failed to file or pay your taxes',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the failure to file or pay the required taxes',
+          note: ''
+        },
+        agency: {
+          title: 'Need help with the agency?',
+          message: 'Provide the name of the agency to which the taxes were failed to file or pay to',
+          note: ''
+        },
+        taxtype: {
+          title: 'Need help with tax type?',
+          message: 'Provide the type of taxes you failed to file or pay such as property, income, sales, etc.',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of taxes',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date satisfied?',
+          message: 'Provide the date, if any, the tax issue was satisfied',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this debt',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of failed tax filings',
+          unknown: 'Provide your tax filing information below',
+          item: 'Agency'
+        },
+        appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+        appendMessage: 'If yes use the button below to add another tax filing/payment issue',
+        append: 'Add another tax filing/payment issue'
       }
     }
   },
