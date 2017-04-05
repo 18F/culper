@@ -3974,6 +3974,10 @@ const en = {
           title: 'Need help with whether this matter was appealed?',
           message: '',
           note: ''
+        },
+        incompetent: {
+          title: 'Need help with this question?',
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
         }
       },
       collection: {
