@@ -52,7 +52,7 @@ export class TaxValidator {
     this.agency = state.Agency
     this.taxType = state.TaxType
     this.amount = state.Amount
-    this.AmountEstimated = state.AmountEstimated
+    this.amountEstimated = state.AmountEstimated
     this.date = state.Date
     this.dateNotApplicable = state.DateNotApplicable
     this.description = state.Description
