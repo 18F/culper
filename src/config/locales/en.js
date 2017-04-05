@@ -1200,63 +1200,63 @@ const en = {
       },
       help: {
         branch: {
-          title: '',
-          message: '',
+          title: 'Need help with nonpayment consequences?',
+          message: 'If you have had in of the listed items happen to you then select "Yes"',
           note: ''
         },
         name: {
-          title: '',
-          message: '',
+          title: 'Need help with the name of the agency, organization, or individual?',
+          message: 'Provide the name of the agency, organization, or individual',
           note: ''
         },
         infractions: {
-          title: '',
-          message: '',
+          title: 'Need help with types of financial issues?',
+          message: 'Select all of the financial issues which applies to this issue',
           note: ''
         },
         accountnumber: {
-          title: '',
-          message: '',
+          title: 'Need help with the associated loan or account number(s)?',
+          message: 'Provide the associated loan or account number(s)',
           note: ''
         },
         propertytype: {
-          title: '',
-          message: '',
+          title: 'Need help with the type of property?',
+          message: 'Provide a description of the type of property involved, if any',
           note: ''
         },
         amount: {
-          title: '',
-          message: '',
+          title: 'Need help with the financial issue amount?',
+          message: 'Provide the approximate amount of the financial issue',
           note: ''
         },
         reason: {
-          title: '',
-          message: '',
+          title: 'Need help with the reason(s) for the financial issue?',
+          message: 'Provide the reason(s) for the financial issue',
           note: ''
         },
         status: {
-          title: '',
-          message: '',
+          title: 'Need help with the current status?',
+          message: 'Provide a description of the current status of the financial issue',
           note: ''
         },
         date: {
-          title: '',
-          message: '',
+          title: 'Need help with the beginning date?',
+          message: 'Provide the approximate date the financial issue began',
           note: ''
         },
         resolved: {
-          title: '',
-          message: '',
+          title: 'Need help with the resolved date?',
+          message: 'Provide the approximate date, if available, the financial issue was resolved',
           note: ''
         },
         courtname: {
-          title: '',
-          message: '',
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court involved',
           note: ''
         },
         courtaddress: {
-          title: '',
-          message: '',
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court involved',
           note: ''
         },
         description: {
