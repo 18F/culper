@@ -23,6 +23,7 @@ import RelativesValidator, { RelativeValidator, AliasValidator } from './relativ
 import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
 import CardAbuseValidator from './cardabuse'
+import CreditValidator from './credit'
 
 export {
   AddressValidator,
@@ -52,5 +53,6 @@ export {
   ConsultationValidator,
   TaxesValidator,
   TaxValidator,
-  CardAbuseValidator
+  CardAbuseValidator,
+  CreditValidator
 }
