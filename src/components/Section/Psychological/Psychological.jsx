@@ -93,9 +93,9 @@ class Psychological extends ValidationElement {
 
           <SectionView name="competence"
             back="psychological/intro"
-            backLabel={ i18n.m('psychological.destination.intro') }
+            backLabel={ i18n.t('psychological.destination.intro') }
             next="psychological/consultations"
-            nextLabel={ i18n.m('psychological.destination.consultation') }>
+            nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
               {...this.props.Competence}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
@@ -103,9 +103,9 @@ class Psychological extends ValidationElement {
 
           <SectionView name="consultations"
             back="psychological/competence"
-            backLabel={ i18n.m('psychological.destination.competence') }
+            backLabel={ i18n.t('psychological.destination.competence') }
             next=""
-            nextLabel={ i18n.m('psychological.destination.tbd') }>
+            nextLabel={ i18n.t('psychological.destination.tbd') }>
             <Consultation name="Consultations"
               {...this.props.Consultations}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
