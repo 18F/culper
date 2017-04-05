@@ -74,7 +74,7 @@ export default class Order extends ValidationElement {
               onUpdate={this.updateCourtName}
               onValidate={this.props.onValidate}
             />
-            <HelpIcon className="date-help-icon" />
+            <HelpIcon className="text-help-icon" />
           </Help>
         </div>
 
@@ -87,7 +87,7 @@ export default class Order extends ValidationElement {
               onUpdate={this.updateCourtAddress}
               onValidate={this.props.onValidate}
             />
-            <HelpIcon className="date-help-icon" />
+            <HelpIcon className="address-help-icon" />
           </Help>
         </div>
         <div className="eapp-field-wrap no-label">
@@ -99,7 +99,7 @@ export default class Order extends ValidationElement {
               onUpdate={this.updateDisposition}
               onValidate={this.props.onValidate}
             />
-            <HelpIcon className="date-help-icon" />
+            <HelpIcon className="text-help-icon" />
           </Help>
         </div>
 
@@ -122,7 +122,7 @@ export default class Order extends ValidationElement {
               bind={true}
               onValidate={this.props.onValidate}
             />
-            <HelpIcon className="date-help-icon" />
+            <HelpIcon className="text-help-icon" />
           </Help>
         </div>
 
@@ -134,7 +134,7 @@ export default class Order extends ValidationElement {
               label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
               onValidate={this.props.onValidate}
             />
-            <HelpIcon className="date-help-icon" />
+            <HelpIcon className="address-help-icon" />
           </Help>
         </div>
 
@@ -146,7 +146,7 @@ export default class Order extends ValidationElement {
               bind={true}
               onValidate={this.props.onValidate}
             />
-            <HelpIcon className="date-help-icon" />
+            <HelpIcon className="text-help-icon" />
           </Help>
         </div>
       </BranchCollection>
