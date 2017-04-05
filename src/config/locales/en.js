@@ -1161,7 +1161,7 @@ const en = {
         summary: {
           title: 'Summary of credit counseling',
           unknown: 'Provide your counseling details below',
-          item: 'Company'
+          item: 'Service'
         },
         appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
         appendMessage: 'If yes use the button below to add another credit counseling entry',
