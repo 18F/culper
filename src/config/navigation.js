@@ -10,8 +10,7 @@ const navigation = [
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },
       { name: 'SSN', url: 'ssn' },
-      { name: 'Physical attributes', url: 'physical' },
-      { hidden: true, name: 'Psychological and emotional health', url: 'psychological' }
+      { name: 'Physical attributes', url: 'physical' }
     ]
   },
   {
@@ -22,9 +21,9 @@ const navigation = [
     subsections: [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
-      { hidden: true, name: 'Taxes', url: 'taxes' },
-      { hidden: true, name: 'Employer card abuse', url: 'card' },
-      { hidden: true, name: 'Credit counseling', url: 'credit' },
+      { name: 'Taxes', url: 'taxes' },
+      { name: 'Employer card abuse', url: 'card' },
+      { name: 'Credit counseling', url: 'credit' },
       { hidden: true, name: 'Deliquent payments', url: 'deliquent' },
       { hidden: true, name: 'Non-payment consequence', url: 'nonpayment' }
     ]
@@ -110,6 +109,19 @@ const navigation = [
       { hidden: true, name: 'Financial record', url: 'financial' },
       { hidden: true, name: 'Use of information technology systems', url: 'technology' },
       { hidden: true, name: 'Association record', url: 'associations' }
+    ]
+  },
+  {
+    title: 'Psychological and emotional health',
+    name: 'Psychological and emotional health',
+    url: 'psychological',
+    hidden: false,
+    subsections: [
+      { name: 'Competence', url: 'competence' },
+      { name: 'Consultations', url: 'consultations' },
+      { name: 'Hospitalizations', url: 'hospitalization' },
+      { name: 'Diagnosed', url: 'diagnosed' },
+      { name: 'Existing Conditions', url: 'existingconditions' }
     ]
   }
 ]

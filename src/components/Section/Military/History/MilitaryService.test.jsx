@@ -51,7 +51,7 @@ describe('The military service component', () => {
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
-    expect(component.find('.discharge-date').length).toBeGreaterThan(1)
+    expect(component.find('.discharge-date').length).toEqual(1)
   })
 
   it('selecting other for discharge type presents textbox', () => {

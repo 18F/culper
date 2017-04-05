@@ -9,6 +9,9 @@ import { updateApplication, reportErrors, reportCompletion } from '../../../acti
 import { SectionViews, SectionView } from '../SectionView'
 import Gambling from './Gambling'
 import Bankruptcy from './Bankruptcy'
+import Taxes from './Taxes'
+import Card from './Card'
+import Credit from './Credit'
 
 class Financial extends ValidationElement {
   constructor (props) {
@@ -51,11 +54,17 @@ class Financial extends ValidationElement {
     }
 
     let cstatus = 'neutral'
-    if (this.hasStatus('gambling', status, true)
-        && this.hasStatus('bankruptcy', status, true)) {
+    if (this.hasStatus('gambling', status, true) &&
+        this.hasStatus('bankruptcy', status, true) &&
+        this.hasStatus('taxes', status, true) &&
+        this.hasStatus('card', status, true) &&
+        this.hasStatus('credit', status, true)) {
       cstatus = 'complete'
-    } else if (this.hasStatus('gambling', status, false)
-               || this.hasStatus('bankruptcy', status, false)) {
+    } else if (this.hasStatus('gambling', status, false) ||
+               this.hasStatus('bankruptcy', status, false) ||
+               this.hasStatus('taxes', status, false) &&
+               this.hasStatus('card', status, false) &&
+               this.hasStatus('credit', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -164,14 +173,53 @@ class Financial extends ValidationElement {
           <SectionView name="bankruptcy"
                        back="financial/gambling"
                        backLabel={i18n.t('financial.destination.gambling')}
-                       next="financial/review"
-                       nextLabel={i18n.t('financial.destination.review')}>
+                       next="financial/taxes"
+                       nextLabel={i18n.t('financial.destination.taxes')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcy name="bankruptcy"
                         {...this.props.Bankruptcy}
                         onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
                         onValidate={this.onValidate.bind(this)}
                         />
+          </SectionView>
+
+          <SectionView name="taxes"
+                       back="financial/bankruptcy"
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       next="financial/card"
+                       nextLabel={i18n.t('financial.destination.card')}>
+            <h2>{i18n.t('financial.taxes.title')}</h2>
+            <Taxes name="taxes"
+                   {...this.props.Taxes}
+                   onUpdate={this.onUpdate.bind(this, 'Taxes')}
+                   onValidate={this.onValidate.bind(this)}
+                   />
+          </SectionView>
+
+          <SectionView name="card"
+                       back="financial/taxes"
+                       backLabel={i18n.t('financial.destination.taxes')}
+                       next="financial/credit"
+                       nextLabel={i18n.t('financial.destination.credit')}>
+            <h2>{i18n.t('financial.card.title')}</h2>
+            <Card name="card"
+                  {...this.props.Card}
+                  onUpdate={this.onUpdate.bind(this, 'Card')}
+                  onValidate={this.onValidate.bind(this)}
+                  />
+          </SectionView>
+
+          <SectionView name="credit"
+                       back="financial/card"
+                       backLabel={i18n.t('financial.destination.card')}
+                       next="financial/deliquent"
+                       nextLabel={i18n.t('financial.destination.deliquent')}>
+            <h2>{i18n.t('financial.credit.title')}</h2>
+            <Credit name="credit"
+                    {...this.props.Credit}
+                    onUpdate={this.onUpdate.bind(this, 'Credit')}
+                    onValidate={this.onValidate.bind(this)}
+                    />
           </SectionView>
         </SectionViews>
       </div>
@@ -190,6 +238,9 @@ function mapStateToProps (state) {
     Financial: financial,
     Gambling: financial.Gambling || {},
     Bankruptcy: financial.Bankruptcy || {},
+    Taxes: financial.Taxes || {},
+    Card: financial.Card || {},
+    Credit: financial.Credit || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }

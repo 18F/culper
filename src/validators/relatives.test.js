@@ -1451,7 +1451,6 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      console.log('yo', test.state)
       expect(new RelativesValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })

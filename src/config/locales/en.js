@@ -429,6 +429,13 @@ const en = {
         message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
         note: 'Note: Underscores (_) and periods (.) are valid characters'
       }
+    },
+    Year: {
+      min: {
+        title: 'The year is below the accepted limits',
+        message: 'The year must be four (4) digit year',
+        note: ''
+      }
     }
   },
   section: {
@@ -783,6 +790,11 @@ const en = {
     destination: {
       gambling: 'Gambling debts',
       bankruptcy: 'Bankruptcy',
+      taxes: 'Taxes',
+      card: 'Employer card abuse',
+      credit: 'Credit counseling',
+      deliquent: 'Deliquent payments',
+      nonpayment: 'Non-payment consequence',
       review: 'Review Financial record'
     },
     gambling: {
@@ -959,6 +971,202 @@ const en = {
           note: ''
         }
       }
+    },
+    taxes: {
+      title: 'In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+      heading: {
+        failure: 'Did you fail to file, pay as required, or both?',
+        year: 'Provide the year you failed to file or pay your federal, state, or other taxes (Estimated)',
+        reason: 'Provide the reason(s) for your failure to file or pay required taxes',
+        agency: 'Provide the federal, state, or other agency to which you failed to file or pay taxes',
+        taxtype: 'Provide the type of taxes you failed to file or pay (such as property, income, sales, etc.)',
+        amount: 'Provide the amount (in U.S. dollars) of taxes',
+        date: 'Provide the date satisfied',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        file: 'File',
+        pay: 'Pay',
+        both: 'Both',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        year: '2016',
+        amount: '1000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with the type of tax failure?',
+          message: 'If you have failed to file or pay any federal, state, or other taxes required by law or ordinance within the last seven (7) years click "Yes"',
+          note: ''
+        },
+        failure: {
+          title: 'Need help with the type of tax failure?',
+          message: 'Provide the type of tax failure',
+          note: ''
+        },
+        year: {
+          title: 'Need help with the year?',
+          message: 'Provide the year you failed to file or pay your taxes',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the failure to file or pay the required taxes',
+          note: ''
+        },
+        agency: {
+          title: 'Need help with the agency?',
+          message: 'Provide the name of the agency to which the taxes were failed to file or pay to',
+          note: ''
+        },
+        taxtype: {
+          title: 'Need help with tax type?',
+          message: 'Provide the type of taxes you failed to file or pay such as property, income, sales, etc.',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of taxes',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date satisfied?',
+          message: 'Provide the date, if any, the tax issue was satisfied',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this debt',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of failed tax filings',
+          unknown: 'Provide your tax filing information below',
+          item: 'Agency'
+        },
+        appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+        appendMessage: 'If yes use the button below to add another tax filing/payment issue',
+        append: 'Add another tax filing/payment issue'
+      }
+    },
+    card: {
+      title: 'In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?',
+      heading: {
+        agency: 'Provide the name of the agency or company',
+        address: 'Provide the address of the agency or company',
+        date: 'Provide the date of your counseling, warning, or disciplinary action',
+        reason: 'Provide the reason(s) for the counseling, warning, or disciplinary action',
+        amount: 'Provide the amount (in U.S. dollars) of violation',
+        description: 'Provide a description of any action(s) you have taken to rectify this situation. If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '1000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with the employer card abuse?',
+          message: 'If in the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer then click "Yes"',
+          note: ''
+        },
+        agency: {
+          title: 'Need help with the agency or company name?',
+          message: 'Provide the name of the agency or company involved',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the agency or company address?',
+          message: 'Provide the last known address of the agency or company involved',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date?',
+          message: 'Provide the approximate date of the violation',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the violation',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of violation',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of employer card abuses',
+          unknown: 'Provide your card abuse information below',
+          item: 'Employer'
+        },
+        appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
+        appendMessage: 'If yes use the button below to add another card abuse/counseling issue',
+        append: 'Add another card abuse/counseling issue'
+      }
+    },
+    credit: {
+      title: 'Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties?',
+      heading: {
+        explanation: 'Provide explanation',
+        name: 'Provide the name of the credit counseling organization or resource',
+        telephone: 'Provide the phone number of the credit counseling organization',
+        address: 'Provide the location of the credit counseling organization',
+        description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
+      },
+      help: {
+        branch: {
+          title: 'Need help with credit counseling?',
+          message: 'If you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties then click "Yes"',
+          note: ''
+        },
+        explanation: {
+          title: 'Need help with the explanation?',
+          message: 'Provide an explanation for the counseling',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the counseling organization name?',
+          message: 'Provide the name of the counseling organization',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with the telephone number?',
+          message: 'Provide the contact phone number for the counseling organization',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the counseling organization address?',
+          message: 'Provide the last known address for the counseling organization',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of credit counseling',
+          unknown: 'Provide your counseling details below',
+          item: 'Service'
+        },
+        appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
+        appendMessage: 'If yes use the button below to add another credit counseling entry',
+        append: 'Add another credit counseling entry'
+      }
     }
   },
 
@@ -990,7 +1198,7 @@ const en = {
         title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
         needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
-        name: 'Provide your relative\'s name',
+        name: 'Provide your relative\'s full name',
         birthdate: 'Provide your relative\'s date of birth',
         birthplace: 'Provide your relative\'s place of birth',
         citizenship: 'Provide your relative\'s country(ies) of citizenship',
@@ -1880,7 +2088,7 @@ const en = {
           type: {
             activeMilitary: 'Active military duty station',
             nationalGuard: 'National Guard/Reserve',
-            usphs: 'USPHS Commisioned Corps',
+            usphs: 'USPHS Commissioned Corps',
             otherFederal: 'Other federal employment',
             stateGovernment: 'State Government',
             federalContractor: 'Federal contractor',
@@ -3714,7 +3922,8 @@ const en = {
     },
     para: {
       correspondence: 'Provide the following contact information for this person.',
-      address: 'Provide street address for this person (including apartment number).'
+      address: 'Provide street address for this person (including apartment number).',
+      or: 'Or'
     },
     label: {
       relationship: {
@@ -3728,6 +3937,7 @@ const en = {
         comments: 'Add a comment to this question'
       },
       email: 'Provide e-mail address for this person',
+      idk: 'I don\'t know',
       address: 'The address of your contact during this time period'
     },
     name: {
@@ -3767,6 +3977,73 @@ const en = {
         title: 'Need help with the address?',
         message: 'The current address of the character reference',
         note: ''
+      }
+    }
+  },
+  psychological: {
+    heading: {
+      intro: 'Why we are asking',
+      competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?'
+    },
+    destination: {
+      competence: 'Competence'
+    },
+    intro: {
+      para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
+      para2: 'Individuals experience a range of reactions to traumatic events. For example, the death of a loved one, divorce, major injury, service in a military combat environment, sexual assault, domestic violence, or other difficult work-related, family, personal, or medical issues may lead to grief, depression, or other responses. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced such events, as well as for those with other mental health conditions. Nothing in this questionnaire is intended to discourage those who might benefit from such treatment from seeking it.',
+      para3: '**Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility** for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.',
+      para4: '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
+
+    },
+    competence: {
+      heading: {
+        occurred: 'Provide the date this occurred',
+        courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
+        courtAddress: 'Provide the address of the court or administrative agency',
+        disposition: 'Provide the final disposition',
+        appealCourtName: 'Name of court or administrative agency',
+        appealCourtAddress: 'Provide the address of the court or administrative agency',
+        appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        needMore: 'Since you answered yes, we need more information'
+      },
+      label: {
+        courtAddress: 'This address is',
+        disposition: 'Provide the final disposition'
+      },
+      help: {
+        occurred: {
+          title: 'Need help the date occurred?',
+          message: 'The date issued',
+          note: ''
+        },
+        courtName: {
+          title: 'Need help with the court name?',
+          message: 'The court that declared you incompetent',
+          note: ''
+        },
+        courtAddress: {
+          title: 'Need help with the court address?',
+          message: 'The court addres ',
+          note: ''
+        },
+        disposition: {
+          title: 'Need help with the disposition?',
+          message: '',
+          note: ''
+        },
+        appealed: {
+          title: 'Need help with whether this matter was appealed?',
+          message: '',
+          note: ''
+        }
+      },
+      collection: {
+        summaryCourtName: 'Click to provide details',
+        description: 'description',
+        appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
+        appendMessage: 'If yes, use the button below to add another instance',
+        appendLabel: 'Add another order',
+        itemType: 'Order:'
       }
     }
   }

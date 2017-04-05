@@ -32,6 +32,9 @@ describe('Reference component validation', function () {
           Email: {
             value: 'user@local.dev'
           },
+          EmailNotApplicable: {
+            applicable: true
+          },
           Address: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -73,6 +76,9 @@ describe('Reference component validation', function () {
           },
           Email: {
             value: 'user@local.dev'
+          },
+          EmailNotApplicable: {
+            applicable: true
           },
           Address: {
             addressType: 'United States',

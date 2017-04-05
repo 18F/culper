@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField, withinSevenYears } from './helpers'
+import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField, withinSevenYears } from './helpers'
 import AddressValidator from './address'
 import ReferenceValidator from './reference'
 
@@ -120,7 +120,7 @@ export default class EmploymentValidator {
     return this.supervisor &&
       validGenericTextfield(this.supervisor.SupervisorName) &&
       validGenericTextfield(this.supervisor.Title) &&
-      validGenericTextfield(this.supervisor.Email) &&
+      validNotApplicable(this.supervisor.EmailNotApplicable, () => { return validGenericTextfield(this.supervisor.Email) }) &&
       new AddressValidator(this.supervisor.Address, null).isValid() &&
       validPhoneNumber(this.supervisor.Telephone)
   }
@@ -217,4 +217,3 @@ export default class EmploymentValidator {
     }
   }
 }
-

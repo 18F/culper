@@ -47,7 +47,7 @@ export default class NotApplicable extends React.Component {
 
     // When there is nothing special do the status quo
     return (
-      <div className="not-applicable">
+      <div className={`not-applicable ${this.props.or ? 'with-or' : ''}`.trim()}>
         <div className={`${klass} button`.trim()}>
           <Checkbox name={this.props.name}
                     label={this.props.label}
