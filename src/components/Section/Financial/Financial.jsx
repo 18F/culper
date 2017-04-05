@@ -231,11 +231,17 @@ class Financial extends ValidationElement {
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
-            <Credit name="nonpayment"
-                    {...this.props.Nonpayment}
-                    onUpdate={this.onUpdate.bind(this, 'Nonpayment')}
-                    onValidate={this.onValidate.bind(this)}
-                    />
+            <ul>
+              <li>{i18n.m('financial.nonpayment.para.alimony')}</li>
+              <li>{i18n.m('financial.nonpayment.para.judgement')}</li>
+              <li>{i18n.m('financial.nonpayment.para.lien')}</li>
+              <li>{i18n.m('financial.nonpayment.para.federal')}</li>
+            </ul>
+            <Nonpayment name="nonpayment"
+                        {...this.props.Nonpayment}
+                        onUpdate={this.onUpdate.bind(this, 'Nonpayment')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
         </SectionViews>
       </div>

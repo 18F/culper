@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
-         Address, Checkbox, Text, Textarea } from '../../../Form'
+         NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
 
 export default class Nonpayment extends ValidationElement {
   constructor (props) {
@@ -98,6 +98,21 @@ export default class Nonpayment extends ValidationElement {
     )
   }
 
+  message () {
+    return (
+      <div>
+        <ul>
+          <li>{i18n.m('financial.nonpayment.para.alimony')}</li>
+          <li>{i18n.m('financial.nonpayment.para.judgement')}</li>
+          <li>{i18n.m('financial.nonpayment.para.lien')}</li>
+          <li>{i18n.m('financial.nonpayment.para.federal')}</li>
+        </ul>
+
+        {i18n.m('financial.nonpayment.collection.appendMessage')}
+      </div>
+    )
+  }
+
   render () {
     return (
       <div className="nonpayment">
@@ -115,8 +130,148 @@ export default class Nonpayment extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('financial.nonpayment.collection.summary.title')}
                      appendTitle={i18n.t('financial.nonpayment.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.nonpayment.collection.appendMessage')}
+                     appendMessage={this.message()}
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
+
+            <h3>{i18n.t('financial.nonpayment.heading.name')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.name">
+                <Text name="Name"
+                      className="nonpayment-name"
+                      bind={true}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.accountnumber')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.accountnumber">
+                <Text name="AccountNumber"
+                      className="nonpayment-accountnumber"
+                      bind={true}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.propertytype')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.propertytype">
+                <Text name="PropertyType"
+                      className="nonpayment-propertytype"
+                      bind={true}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.amount')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.amount">
+                <i className="fa fa-dollar"></i>
+                <Number name="Amount"
+                        className="nonpayment-amount"
+                        placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
+                        min="1"
+                        bind={true}
+                        />
+                <HelpIcon />
+                <div className="nonpayment-amount coupled-flags">
+                  <Checkbox name="AmountEstimated"
+                            ref="estimated"
+                            label={i18n.t('financial.nonpayment.label.estimated')}
+                            toggle="false"
+                            bind={true}
+                            />
+                </div>
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.reason')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.reason">
+                <Textarea name="Reason"
+                          className="nonpayment-reason"
+                          bind={true}
+                          />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.status')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.status">
+                <Text name="Status"
+                      className="nonpayment-status"
+                      bind={true}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.date')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.nonpayment.help.date">
+                <DateControl name="Date"
+                             className="nonpayment-date"
+                             hideDay={true}
+                             bind={true}
+                             />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.resolved')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.resolved">
+                <NotApplicable name="ResolvedNotApplicable"
+                               label={i18n.t('financial.nonpayment.label.notresolved')}
+                               or={i18n.m('financial.nonpayment.para.or')}
+                               bind={true}>
+                  <DateControl name="Resolved"
+                               className="nonpayment-resolved"
+                               hideDay={true}
+                               bind={true}
+                               />
+                </NotApplicable>
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.courtname')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.courtname">
+                <Text name="CourtName"
+                      className="nonpayment-courtname"
+                      bind={true}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.courtaddress')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.courtaddress">
+                <Address name="CourtAddress"
+                         className="nonpayment-courtaddress"
+                         bind={true}
+                         />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.description')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.description">
+                <Textarea name="Description"
+                          className="nonpayment-description"
+                          bind={true}
+                          />
+                <HelpIcon />
+              </Help>
+            </div>
+
           </Accordion>
         </Show>
       </div>
@@ -124,7 +279,7 @@ export default class Nonpayment extends ValidationElement {
   }
 }
 
-Card.defaultProps = {
+Nonpayment.defaultProps = {
   HasNonpayment: '',
   List: []
 }

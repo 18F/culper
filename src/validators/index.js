@@ -54,5 +54,5 @@ export {
   TaxValidator,
   CardAbuseValidator,
   CreditValidator,
-  Nonpayment
+  NonpaymentValidator
 }
