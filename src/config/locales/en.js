@@ -1167,6 +1167,114 @@ const en = {
         appendMessage: 'If yes use the button below to add another credit counseling entry',
         append: 'Add another credit counseling entry'
       }
+    },
+    nonpayment: {
+      title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
+      para: {
+        alimony: '**In the last seven (7) years,** you have been deliquent on alimony or child support payments.',
+        judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        federal: 'You are currently deliquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        or: 'Or'
+      },
+      heading: {
+        name: 'Provide the name of agency/organization/individual to which debt is/was owed',
+        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        accountnumber: 'Provide the associated loan / account number(s) involved',
+        propertytype: 'Identify/describe the type of property involved (if any)',
+        amount: 'Provide the amount (in U.S. dollars) of the financial issue',
+        reason: 'Provide the reason(s) for the financial issue',
+        status: 'Provide the current status of the financial issue',
+        date: 'Provide the date the financial issue began',
+        resolved: 'Provide the date the financial issue was resolved',
+        courtname: 'Provide the name of the court involved',
+        courtaddress: 'Provide the address of the court involved',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any provide explanation.'
+      },
+      label: {
+        notresolved: 'Not resolved',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '10000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with nonpayment consequences?',
+          message: 'If you have had in of the listed items happen to you then select "Yes"',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the agency, organization, or individual?',
+          message: 'Provide the name of the agency, organization, or individual',
+          note: ''
+        },
+        infractions: {
+          title: 'Need help with types of financial issues?',
+          message: 'Select all of the financial issues which applies to this issue',
+          note: ''
+        },
+        accountnumber: {
+          title: 'Need help with the associated loan or account number(s)?',
+          message: 'Provide the associated loan or account number(s)',
+          note: ''
+        },
+        propertytype: {
+          title: 'Need help with the type of property?',
+          message: 'Provide a description of the type of property involved, if any',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the financial issue amount?',
+          message: 'Provide the approximate amount of the financial issue',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason(s) for the financial issue?',
+          message: 'Provide the reason(s) for the financial issue',
+          note: ''
+        },
+        status: {
+          title: 'Need help with the current status?',
+          message: 'Provide a description of the current status of the financial issue',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the beginning date?',
+          message: 'Provide the approximate date the financial issue began',
+          note: ''
+        },
+        resolved: {
+          title: 'Need help with the resolved date?',
+          message: 'Provide the approximate date, if available, the financial issue was resolved',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court involved',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court involved',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of non-payment issues',
+          unknown: 'Provide your non-payment details below',
+          item: 'Service'
+        },
+        appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
+        appendMessage: 'If yes use the button below to add another non-payment or excessive late payment',
+        append: 'Add another non-payment or excessive late payment'
+      }
     }
   },
 
