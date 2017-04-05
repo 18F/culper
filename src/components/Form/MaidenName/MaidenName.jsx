@@ -1,6 +1,5 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import Generic from '../Generic'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 

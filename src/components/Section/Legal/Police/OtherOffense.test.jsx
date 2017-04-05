@@ -8,7 +8,7 @@ describe('The offense component', () => {
       name: 'offense'
     }
     const component = mount(<OtherOffense {...expected} />)
-    expect(component.find('.offense-date').length).toEqual(2)
+    expect(component.find('.offense-date').length).toEqual(1)
     expect(component.find('.offense-description').length).toEqual(1)
     expect(component.find('.offense-violence').length).toEqual(1)
     expect(component.find('.offense-firearms').length).toEqual(1)
@@ -51,4 +51,3 @@ describe('The offense component', () => {
     expect(updates).toBeGreaterThan(6)
   })
 })
-
