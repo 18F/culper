@@ -3911,18 +3911,22 @@ const en = {
         },
         courtAddress: {
           title: 'Need help with the court address?',
-          message: 'The court addres ',
+          message: 'The court address',
           note: ''
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: '',
+          message: 'Enter the disposition for this order',
           note: ''
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
-          message: '',
+          message: 'Was this matter appealed to a higher court or administrative agency?',
           note: ''
+        },
+        incompetent: {
+          title: 'Need help with this question?',
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
         }
       },
       collection: {
@@ -3962,17 +3966,17 @@ const en = {
         },
         courtAddress: {
           title: 'Need help with the court address?',
-          message: 'The court addres ',
+          message: 'The court address',
           note: ''
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: '',
+          message: 'Enter the disposition for this order',
           note: ''
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
-          message: '',
+          message: 'Was this matter appealed to a higher court or administrative agency?',
           note: ''
         },
         incompetent: {
