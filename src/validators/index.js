@@ -24,6 +24,7 @@ import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
 import CardAbuseValidator from './cardabuse'
 import CreditValidator from './credit'
+import NonpaymentValidator from './nonpayment'
 
 export {
   AddressValidator,
@@ -54,5 +55,6 @@ export {
   TaxesValidator,
   TaxValidator,
   CardAbuseValidator,
-  CreditValidator
+  CreditValidator,
+  NonpaymentValidator
 }

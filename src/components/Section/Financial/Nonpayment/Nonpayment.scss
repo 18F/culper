@@ -1,0 +1,48 @@
+.nonpayment {
+  .nonpayment-name,
+  .nonpayment-infractions,
+  .nonpayment-accountnumber,
+  .nonpayment-propertytype,
+  .nonpayment-amount,
+  .nonpayment-reason,
+  .nonpayment-status,
+  .nonpayment-date,
+  .nonpayment-resolved,
+  .nonpayment-courtname,
+  .nonpayment-courtaddress,
+  .nonpayment-description {
+    display: inline-block;
+    max-width: 64rem;
+    width: 92%;
+  }
+
+  .nonpayment-date,
+  .nonpayment-resolved {
+    width: initial !important;
+  }
+
+  .fa.fa-dollar {
+    margin-left: -2rem;
+  }
+
+  .nonpayment-amount {
+    margin-left: 1rem;
+
+    label {
+      margin-left: 1rem;
+    }
+  }
+
+  .nonpayment-amount.coupled-flags {
+    clear: both;
+    z-index: 1;
+
+    .eapp-blocks-checkbox {
+      float: right;
+
+      label.no-toggle {
+        margin-right: 0 !important;
+      }
+    }
+  }
+}

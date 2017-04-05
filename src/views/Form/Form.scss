@@ -22,6 +22,10 @@
 
     li {
       margin: 0 4rem;
+
+      p {
+        padding: 0;
+      }
     }
 
     @media screen and (max-width: 1380px) {

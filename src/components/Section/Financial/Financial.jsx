@@ -12,6 +12,7 @@ import Bankruptcy from './Bankruptcy'
 import Taxes from './Taxes'
 import Card from './Card'
 import Credit from './Credit'
+import Nonpayment from './Nonpayment'
 
 class Financial extends ValidationElement {
   constructor (props) {
@@ -58,13 +59,15 @@ class Financial extends ValidationElement {
         this.hasStatus('bankruptcy', status, true) &&
         this.hasStatus('taxes', status, true) &&
         this.hasStatus('card', status, true) &&
-        this.hasStatus('credit', status, true)) {
+        this.hasStatus('credit', status, true) &&
+        this.hasStatus('nonpayment', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('gambling', status, false) ||
                this.hasStatus('bankruptcy', status, false) ||
-               this.hasStatus('taxes', status, false) &&
-               this.hasStatus('card', status, false) &&
-               this.hasStatus('credit', status, false)) {
+               this.hasStatus('taxes', status, false) ||
+               this.hasStatus('card', status, false) ||
+               this.hasStatus('credit', status, false) ||
+               this.hasStatus('nonpayment', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -221,6 +224,25 @@ class Financial extends ValidationElement {
                     onValidate={this.onValidate.bind(this)}
                     />
           </SectionView>
+
+          <SectionView name="nonpayment"
+                       back="financial/deliquent"
+                       backLabel={i18n.t('financial.destination.deliquent')}
+                       next="financial/review"
+                       nextLabel={i18n.t('financial.destination.review')}>
+            <h2>{i18n.t('financial.nonpayment.title')}</h2>
+            <ul>
+              <li>{i18n.m('financial.nonpayment.para.alimony')}</li>
+              <li>{i18n.m('financial.nonpayment.para.judgement')}</li>
+              <li>{i18n.m('financial.nonpayment.para.lien')}</li>
+              <li>{i18n.m('financial.nonpayment.para.federal')}</li>
+            </ul>
+            <Nonpayment name="nonpayment"
+                        {...this.props.Nonpayment}
+                        onUpdate={this.onUpdate.bind(this, 'Nonpayment')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -241,6 +263,7 @@ function mapStateToProps (state) {
     Taxes: financial.Taxes || {},
     Card: financial.Card || {},
     Credit: financial.Credit || {},
+    Nonpayment: financial.Nonpayment || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
