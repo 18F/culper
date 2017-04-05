@@ -23,7 +23,7 @@ const navigation = [
       { name: 'Bankruptcy', url: 'bankruptcy' },
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
-      { hidden: true, name: 'Credit counseling', url: 'credit' },
+      { name: 'Credit counseling', url: 'credit' },
       { hidden: true, name: 'Deliquent payments', url: 'deliquent' },
       { hidden: true, name: 'Non-payment consequence', url: 'nonpayment' }
     ]

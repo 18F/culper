@@ -1115,6 +1115,58 @@ const en = {
         appendMessage: 'If yes use the button below to add another card abuse/counseling issue',
         append: 'Add another card abuse/counseling issue'
       }
+    },
+    credit: {
+      title: 'Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties?',
+      heading: {
+        explanation: 'Provide explanation',
+        name: 'Provide the name of the credit counseling organization or resource',
+        telephone: 'Provide the phone number of the credit counseling organization',
+        address: 'Provide the location of the credit counseling organization',
+        description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
+      },
+      help: {
+        branch: {
+          title: 'Need help with credit counseling?',
+          message: 'If you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties then click "Yes"',
+          note: ''
+        },
+        explanation: {
+          title: 'Need help with the explanation?',
+          message: 'Provide an explanation for the counseling',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the counseling organization name?',
+          message: 'Provide the name of the counseling organization',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with the telephone number?',
+          message: 'Provide the contact phone number for the counseling organization',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the counseling organization address?',
+          message: 'Provide the last known address for the counseling organization',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of credit counseling',
+          unknown: 'Provide your counseling details below',
+          item: 'Service'
+        },
+        appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
+        appendMessage: 'If yes use the button below to add another credit counseling entry',
+        append: 'Add another credit counseling entry'
+      }
     }
   },
 

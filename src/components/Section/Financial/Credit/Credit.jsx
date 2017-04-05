@@ -1,0 +1,177 @@
+import React from 'react'
+import { i18n } from '../../../../config'
+import { CreditValidator } from '../../../../validators'
+import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon,
+         Telephone, Address, Text, Textarea } from '../../../Form'
+
+export default class Credit extends ValidationElement {
+  constructor (props) {
+    super(props)
+    this.state = {
+      HasCreditCounseling: props.HasCreditCounseling,
+      List: props.List,
+      errorCodes: []
+    }
+
+    this.updateBranch = this.updateBranch.bind(this)
+    this.updateList = this.updateList.bind(this)
+    this.summary = this.summary.bind(this)
+  }
+
+  /**
+   * Handle the validation event.
+   */
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.isValid()) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
+      super.handleValidation(event, statusObject, errorObject)
+    })
+  }
+
+  /**
+   * Determine if all items in the collection are considered to be in
+   * a valid state.
+   */
+  isValid () {
+    return new CreditValidator(this.state, null).isValid()
+  }
+
+  /**
+   * Updates triggered by the branching component.
+   */
+  updateBranch (val, event) {
+    this.setState({ HasCreditCounseling: val }, () => {
+      this.updateList(val === 'No' ? [] : this.state.List)
+      this.handleValidation(event, null, null)
+    })
+  }
+
+  /**
+   * Dispatch callback initiated from the collection to notify of any new
+   * updates to the items.
+   */
+  updateList (collection) {
+    this.setState({ List: collection }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          List: this.state.List,
+          HasCreditCounseling: this.state.HasCreditCounseling
+        })
+      }
+    })
+  }
+
+  /**
+   * Assists in rendering the summary section.
+   */
+  summary (item, index) {
+    const obj = (item || {})
+    const name = (obj.Name || {}).value || i18n.t('financial.credit.collection.summary.unknown')
+
+    return (
+      <span>
+        <span className="index">{i18n.t('financial.credit.collection.summary.item')} {index + 1}:</span>
+        <span><strong>{name}</strong></span>
+      </span>
+    )
+  }
+
+  render () {
+    return (
+      <div className="credit-counseling">
+        <Branch name="has_credit"
+                className="credit-branch eapp-field-wrap no-label"
+                value={this.state.HasCreditCounseling}
+                help="financial.credit.help.branch"
+                onUpdate={this.updateBranch}>
+        </Branch>
+        <Show when={this.state.HasCreditCounseling === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('financial.credit.collection.summary.title')}
+                     appendTitle={i18n.t('financial.credit.collection.appendTitle')}
+                     appendMessage={i18n.m('financial.credit.collection.appendMessage')}
+                     appendLabel={i18n.t('financial.credit.collection.append')}>
+
+            <h3>{i18n.t('financial.credit.heading.explanation')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.credit.help.explanation">
+                <Textarea name="Explanation"
+                          className="credit-explanation"
+                          bind={true}
+                          />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.credit.heading.name')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.credit.help.name">
+                <Text name="Name"
+                      className="credit-name"
+                      bind={true}
+                      />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.credit.heading.telephone')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.credit.help.telephone">
+                <Telephone name="Telephone"
+                           className="credit-telephone"
+                           bind={true}
+                           />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.credit.heading.address')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.credit.help.address">
+                <Address name="Address"
+                         className="credit-address"
+                         bind={true}
+                         />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.credit.heading.description')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.credit.help.description">
+                <Textarea name="Description"
+                          className="credit-description"
+                          bind={true}
+                          />
+                <HelpIcon />
+              </Help>
+            </div>
+
+          </Accordion>
+        </Show>
+      </div>
+    )
+  }
+}
+
+Credit.defaultProps = {
+  HasCreditCounseling: '',
+  List: []
+}

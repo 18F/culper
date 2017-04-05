@@ -1,0 +1,11 @@
+.credit-counseling {
+  .credit-explanation,
+  .credit-name,
+  .credit-telephone,
+  .credit-address,
+  .credit-description {
+    display: inline-block;
+    max-width: 64rem;
+    width: 92%;
+  }
+}

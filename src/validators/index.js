@@ -22,6 +22,7 @@ import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
 import TaxesValidator, { TaxValidator } from './taxes'
 import CardAbuseValidator from './cardabuse'
+import CreditValidator from './credit'
 
 export {
   AddressValidator,
@@ -50,5 +51,6 @@ export {
   AliasValidator,
   TaxesValidator,
   TaxValidator,
-  CardAbuseValidator
+  CardAbuseValidator,
+  CreditValidator
 }
