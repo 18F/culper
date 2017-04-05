@@ -50,5 +50,6 @@ describe('The taxes component', () => {
     component.find('.taxes-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.taxes-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.taxes-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
+    expect(updates).toBeGreaterThan(7)
   })
 })

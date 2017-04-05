@@ -96,7 +96,7 @@ export default class Taxes extends ValidationElement {
     return (
       <div className="taxes">
         <Branch name="has_taxes"
-                className="taxes-branch eapp-field-wrap"
+                className="taxes-branch eapp-field-wrap no-label"
                 value={this.state.HasTaxes}
                 help="financial.taxes.help.branch"
                 onUpdate={this.updateBranch}>

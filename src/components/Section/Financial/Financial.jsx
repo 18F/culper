@@ -10,6 +10,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Gambling from './Gambling'
 import Bankruptcy from './Bankruptcy'
 import Taxes from './Taxes'
+import Card from './Card'
 
 class Financial extends ValidationElement {
   constructor (props) {
@@ -54,11 +55,13 @@ class Financial extends ValidationElement {
     let cstatus = 'neutral'
     if (this.hasStatus('gambling', status, true) &&
         this.hasStatus('bankruptcy', status, true) &&
-        this.hasStatus('taxes', status, true)) {
+        this.hasStatus('taxes', status, true) &&
+        this.hasStatus('card', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('gambling', status, false) ||
                this.hasStatus('bankruptcy', status, false) ||
-               this.hasStatus('taxes', status, false)) {
+               this.hasStatus('taxes', status, false) &&
+               this.hasStatus('card', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -189,6 +192,19 @@ class Financial extends ValidationElement {
                    onValidate={this.onValidate.bind(this)}
                    />
           </SectionView>
+
+          <SectionView name="card"
+                       back="financial/taxes"
+                       backLabel={i18n.t('financial.destination.taxes')}
+                       next="financial/credit"
+                       nextLabel={i18n.t('financial.destination.credit')}>
+            <h2>{i18n.t('financial.card.title')}</h2>
+            <Card name="card"
+                  {...this.props.Card}
+                  onUpdate={this.onUpdate.bind(this, 'Card')}
+                  onValidate={this.onValidate.bind(this)}
+                  />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -207,6 +223,7 @@ function mapStateToProps (state) {
     Gambling: financial.Gambling || {},
     Bankruptcy: financial.Bankruptcy || {},
     Taxes: financial.Taxes || {},
+    Card: financial.Card || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
