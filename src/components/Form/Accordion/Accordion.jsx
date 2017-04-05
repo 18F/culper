@@ -218,7 +218,7 @@ export default class Accordion extends ValidationElement {
 
     let title = null
     if (this.props.appendTitle) {
-      title = <h2>{this.props.appendTitle}</h2>
+      title = <h3>{this.props.appendTitle}</h3>
     }
 
     let message = null
