@@ -1,9 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
-import Order from '../Order'
 import Hospitalization from './Hospitalization'
-//import { HospitalizationValidator } from '../../../../validators'
+import { HospitalizationsValidator } from '../../../../validators'
 
 export default class Hospitalizations extends ValidationElement {
   constructor (props) {
@@ -18,7 +17,6 @@ export default class Hospitalizations extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateHospitalized = this.updateHospitalized.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.isValid = this.isValid.bind(this)
   }
 
   update (field, values) {
@@ -41,10 +39,6 @@ export default class Hospitalizations extends ValidationElement {
   }
 
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -58,10 +52,6 @@ export default class Hospitalizations extends ValidationElement {
       const statusObject = { [this.props.name]: { status: complexStatus } }
       super.handleValidation(event, statusObject, errorObject)
     })
-  }
-
-  updateAdmission (value) {
-    this.update('Admission', value)
   }
 
   summary (item, index) {
@@ -79,13 +69,12 @@ export default class Hospitalizations extends ValidationElement {
   }
 
   isValid () {
-    //return new HospitalizationValidator(this.state).isValid()
-    return true
+    return new HospitalizationsValidator(this.state).isValid()
   }
 
   render () {
     return (
-      <div className="hospitalization">
+      <div className="hospitalizations">
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
           className="eapp-field-wrap no-label "
