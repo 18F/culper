@@ -3889,7 +3889,7 @@ const en = {
         courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
         courtAddress: 'Provide the address of the court or administrative agency',
         disposition: 'Provide the final disposition',
-        appealCourtName: 'Name of court or administrative agency',
+        appealCourtName: 'Provide the name of the higher court or administrative agency',
         appealCourtAddress: 'Provide the address of the court or administrative agency',
         appealed: 'Was this matter appealed to a higher  court or administrative agency?',
         needMore: 'Since you answered yes, we need more information'

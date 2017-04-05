@@ -137,6 +137,18 @@ export default class Order extends ValidationElement {
             <HelpIcon className="date-help-icon" />
           </Help>
         </div>
+
+        <div className="eapp-field-wrap no-label">
+          <h3>{i18n.t(`psychological.${prefix}.heading.disposition`)}</h3>
+          <Help id={`psychological.${prefix}.help.disposition`}>
+            <Text name="Disposition"
+              className="disposition"
+              bind={true}
+              onValidate={this.props.onValidate}
+            />
+            <HelpIcon className="date-help-icon" />
+          </Help>
+        </div>
       </BranchCollection>
     </div>
     )
