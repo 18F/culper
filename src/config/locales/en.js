@@ -4091,10 +4091,14 @@ const en = {
   psychological: {
     heading: {
       intro: 'Why we are asking',
-      competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?'
+      competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
+      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)'
     },
     destination: {
-      competence: 'Competence'
+      intro: 'Introduction',
+      competence: 'Competence',
+      consultation: 'Consultations'
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -4104,6 +4108,61 @@ const en = {
 
     },
     competence: {
+      heading: {
+        occurred: 'Provide the date this occurred',
+        courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
+        courtAddress: 'Provide the address of the court or administrative agency',
+        disposition: 'Provide the final disposition',
+        appealCourtName: 'Provide the name of the higher court or administrative agency',
+        appealCourtAddress: 'Provide the address of the court or administrative agency',
+        appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        needMore: 'Since you answered yes, we need more information'
+      },
+      label: {
+        courtAddress: 'This address is',
+        disposition: 'Provide the final disposition'
+      },
+      help: {
+        occurred: {
+          title: 'Need help the date occurred?',
+          message: 'The date issued',
+          note: ''
+        },
+        courtName: {
+          title: 'Need help with the court name?',
+          message: 'The court that declared you incompetent',
+          note: ''
+        },
+        courtAddress: {
+          title: 'Need help with the court address?',
+          message: 'The court address',
+          note: ''
+        },
+        disposition: {
+          title: 'Need help with the disposition?',
+          message: 'Enter the disposition for this order',
+          note: ''
+        },
+        appealed: {
+          title: 'Need help with whether this matter was appealed?',
+          message: 'Was this matter appealed to a higher court or administrative agency?',
+          note: ''
+        },
+        incompetent: {
+          title: 'Need help with this question?',
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
+        }
+      },
+      collection: {
+        summaryCourtName: 'Click to provide details',
+        description: 'description',
+        appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
+        appendMessage: 'If yes, use the button below to add another instance',
+        appendLabel: 'Add another order',
+        itemType: 'Order:'
+      }
+    },
+    consultation: {
       heading: {
         occurred: 'Provide the date this occurred',
         courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
@@ -4131,18 +4190,22 @@ const en = {
         },
         courtAddress: {
           title: 'Need help with the court address?',
-          message: 'The court addres ',
+          message: 'The court address',
           note: ''
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: '',
+          message: 'Enter the disposition for this order',
           note: ''
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
-          message: '',
+          message: 'Was this matter appealed to a higher court or administrative agency?',
           note: ''
+        },
+        incompetent: {
+          title: 'Need help with this question?',
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
         }
       },
       collection: {
