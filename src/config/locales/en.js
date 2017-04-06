@@ -4233,7 +4233,6 @@ const en = {
       },
       collection: {
         summary: 'Click to provide details',
-        description: 'description',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',

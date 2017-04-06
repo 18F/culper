@@ -89,7 +89,6 @@ export default class Hospitalizations extends ValidationElement {
             onUpdate={this.updateList}
             summary={this.summary}
             onValidate={this.handleValidation}
-            description={i18n.t('psychological.hospitalization.collection.description')}
             appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
             appendMessage={i18n.m('psychological.hospitalization.collection.appendMessage')}
             appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
