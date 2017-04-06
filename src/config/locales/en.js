@@ -4093,8 +4093,8 @@ const en = {
       intro: 'Why we are asking',
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
       consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
-        consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
-        hospitalization: 'Have you EVER been hospitalized for a mental health condition?'
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
+      hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
     },
     destination: {
       intro: 'Introduction',
@@ -4237,6 +4237,33 @@ const en = {
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization:'
+      }
+    },
+    diagnosis: {
+      heading: {
+        condition: 'Identify the diagnosis or health condition',
+        diagnosed: 'Provide the dates of diagnosis',
+        healthcareProfessional: 'Health care professional info',
+        effective: 'Was the counseling/treatment effective in managing your symptoms?',
+        facility: 'Agency/organization/facility'
+      },
+      person: {
+        heading: {
+          name: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
+          address: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+        },
+        label: {
+          address: 'This address is'
+        }
+      },
+      facility: {
+        heading: {
+          name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
+          address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+        },
+        label: {
+          address: 'This address is'
+        }
       }
     }
   }

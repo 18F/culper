@@ -9,6 +9,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
+import Diagnosis from './Diagnosis/Diagnosis'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -121,6 +122,7 @@ class Psychological extends ValidationElement {
             backLabel={ i18n.t('psychological.destination.hospitalization') }
             next=""
             nextLabel={ i18n.t('psychological.destination.tbd') }>
+            <Diagnosis name="Diagnosis" />
           </SectionView>
         </SectionViews>
       </div>
