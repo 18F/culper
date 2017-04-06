@@ -4093,8 +4093,8 @@ const en = {
       intro: 'Why we are asking',
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
       consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
-        consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
-        hospitalization: 'Have you EVER been hospitalized for a mental health condition?'
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
+      hospitalization: 'Have you EVER been hospitalized for a mental health condition?'
     },
     destination: {
       intro: 'Introduction',
