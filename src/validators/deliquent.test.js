@@ -1,6 +1,6 @@
-import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
+import DeliquentValidator, { DeliquentItemValidator } from './deliquent'
 
-describe('nonpayment component validation', function () {
+describe('deliquent component validation', function () {
   it('validate name', () => {
     const tests = [
       {
@@ -22,7 +22,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validName()).toBe(test.expected)
     })
   })
 
@@ -43,7 +43,7 @@ describe('nonpayment component validation', function () {
   //   ]
 
   //   tests.forEach(test => {
-  //     expect(new NonpaymentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
+  //     expect(new DeliquentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
   //   })
   // })
 
@@ -68,7 +68,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validAccountNumber()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validAccountNumber()).toBe(test.expected)
     })
   })
 
@@ -93,7 +93,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validPropertyType()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validPropertyType()).toBe(test.expected)
     })
   })
 
@@ -134,7 +134,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validAmount()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validAmount()).toBe(test.expected)
     })
   })
 
@@ -159,7 +159,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validReason()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validReason()).toBe(test.expected)
     })
   })
 
@@ -184,7 +184,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validStatus()).toBe(test.expected)
     })
   })
 
@@ -211,7 +211,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validDate()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validDate()).toBe(test.expected)
     })
   })
 
@@ -271,7 +271,59 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validResolved()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validResolved()).toBe(test.expected)
+    })
+  })
+
+  it('validate court name', () => {
+    const tests = [
+      {
+        state: {
+          CourtName: {
+            value: ''
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          CourtName: {
+            value: 'The court'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new DeliquentItemValidator(test.state, null).validCourtName()).toBe(test.expected)
+    })
+  })
+
+  it('validate court address', () => {
+    const tests = [
+      {
+        state: {
+          CourtAddress: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          CourtAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new DeliquentItemValidator(test.state, null).validCourtAddress()).toBe(test.expected)
     })
   })
 
@@ -296,7 +348,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(new DeliquentItemValidator(test.state, null).validDescription()).toBe(test.expected)
     })
   })
 
@@ -304,32 +356,32 @@ describe('nonpayment component validation', function () {
     const tests = [
       {
         state: {
-          HasNonpayment: ''
+          HasDeliquent: ''
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Unicorn'
+          HasDeliquent: 'Unicorn'
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'No'
+          HasDeliquent: 'No'
         },
         expected: true
       },
       {
         state: {
-          HasNonpayment: 'Yes'
+          HasDeliquent: 'Yes'
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentValidator(test.state, null).validHasNonpayment()).toBe(test.expected)
+      expect(new DeliquentValidator(test.state, null).validHasDeliquent()).toBe(test.expected)
     })
   })
 
@@ -337,28 +389,28 @@ describe('nonpayment component validation', function () {
     const tests = [
       {
         state: {
-          HasNonpayment: 'No',
+          HasDeliquent: 'No',
           List: []
         },
         expected: true
       },
       {
         state: {
-          HasNonpayment: 'Yes',
+          HasDeliquent: 'Yes',
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Yes',
+          HasDeliquent: 'Yes',
           List: [{}]
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Yes',
+          HasDeliquent: 'Yes',
           List: [
             {
               Name: {
@@ -397,6 +449,16 @@ describe('nonpayment component validation', function () {
                 date: new Date('1/1/2016'),
                 present: false
               },
+              CourtName: {
+                value: 'The court'
+              },
+              CourtAddress: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
               Description: {
                 value: 'The description'
               }
@@ -408,7 +470,7 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DeliquentValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 })
