@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
+import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()
@@ -15,7 +16,8 @@ export default class Accordion extends ValidationElement {
     super(props)
 
     this.state = {
-      initial: props.initial
+      initial: props.initial,
+      scrollToIndex: -1
     }
 
     this.update = this.update.bind(this)
@@ -66,6 +68,29 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * When the component recieves an update we need to check if it is necessary to scroll an
+   * item in to view.
+   */
+  componentDidUpdate () {
+    if (this.state.scrollToIndex !== -1) {
+      // Get the position of the element we want to be visible
+      const pos = findPosition(document.getElementById(this.props.items[this.state.scrollToIndex].uuid))
+
+      // Get the top most point we want to display at least on the first addition
+      const top = this.props.scrollTo
+            ? findPosition(document.getElementById(this.props.scrollTo))
+            : findPosition(this.refs.accordion)
+
+      // Find the offset from the top most element to the first item in the accordion for
+      // a fixed offset to constantly be applied
+      const offset = findPosition(document.getElementById(this.props.items[0].uuid)) - top
+
+      // Scroll to that position
+      window.scroll(0, pos - offset)
+    }
+  }
+
+  /**
    * Send the updated list of items back to the parent component.
    */
   update (items) {
@@ -86,7 +111,7 @@ export default class Accordion extends ValidationElement {
       return x
     }))
 
-    this.setState({ initial: false })
+    this.setState({ initial: false, scrollToIndex: -1 })
   }
 
   /**
@@ -101,8 +126,13 @@ export default class Accordion extends ValidationElement {
    * default states.
    */
   add () {
-    this.update(this.props.items.concat([this.newItem()]))
-    this.setState({ initial: false })
+    let items = [...this.props.items]
+    for (let item of items) {
+      item.open = false
+    }
+
+    this.update(items.concat([this.newItem()]))
+    this.setState({ initial: false, scrollToIndex: items.length - 1 })
   }
 
   /**
@@ -120,7 +150,7 @@ export default class Accordion extends ValidationElement {
       }
 
       this.update(items)
-      this.setState({ initial: false })
+      this.setState({ initial: false, scrollToIndex: -1 })
     }
   }
 
@@ -203,7 +233,7 @@ export default class Accordion extends ValidationElement {
     const initial = this.state.initial
     return this.props.items.sort(this.props.sort).map((item, index, arr) => {
       return (
-        <div className="item" key={item.uuid}>
+        <div className="item" id={item.uuid} key={item.uuid}>
           {this.props.customSummary(item, index, initial, () => { return this.summary(item, index, initial) })}
           {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
         </div>
@@ -246,7 +276,7 @@ export default class Accordion extends ValidationElement {
     const description = this.props.items.length < 2 ? '' : this.props.description
 
     return (
-      <div>
+      <div ref="accordion">
         <div className={klass}>
           <strong>{description}</strong>
 
@@ -280,6 +310,7 @@ Accordion.defaultProps = {
   closeLabel: i18n.t('collection.close'),
   removeLabel: i18n.t('collection.remove'),
   description: i18n.t('collection.summary'),
+  scrollTo: '',
   sort: (a, b) => { return -1 },
   onUpdate: () => {},
   onValidate: () => {},

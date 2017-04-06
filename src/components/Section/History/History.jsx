@@ -514,6 +514,7 @@ class History extends ValidationElement {
                        backLabel={i18n.t('history.destination.federal')}
                        next="foreign/passport"
                        nextLabel={i18n.t('foreign.destination.passport')}>
+            <span id="scrollToHistory"></span>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
             <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
@@ -521,6 +522,7 @@ class History extends ValidationElement {
             </Show>
             <Accordion minimum="1"
                        defaultState={false}
+                       scrollTo="scrollToHistory"
                        items={InjectGaps(this.props.Residence, daysAgo(today, 365 * this.totalYears()))}
                        sort={this.sort}
                        onUpdate={this.updateResidence}
@@ -538,6 +540,7 @@ class History extends ValidationElement {
             </Accordion>
             <Accordion minimum="1"
                        defaultState={false}
+                       scrollTo="scrollToHistory"
                        items={InjectGaps(this.props.Employment, daysAgo(today, 365 * this.totalYears()))}
                        sort={this.sort}
                        onUpdate={this.updateEmployment}
@@ -556,6 +559,7 @@ class History extends ValidationElement {
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               <Accordion minimum="1"
                          defaultState={false}
+                         scrollTo="scrollToHistory"
                          items={this.props.Education.List}
                          sort={this.sort}
                          onUpdate={this.updateEducation}
@@ -591,8 +595,10 @@ class History extends ValidationElement {
             {i18n.m('history.residence.info3a')}
             {i18n.m('history.residence.info3b')}
             {i18n.m('history.residence.info3c')}
+            <span id="scrollToHistory"></span>
             { this.residenceSummaryProgress() }
             <Accordion minimum="1"
+                       scrollTo="scrollToHistory"
                        items={this.props.Residence}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
@@ -624,8 +630,10 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.employment.heading.employment')}</h2>
             {i18n.m('history.employment.para.employment')}
             {i18n.m('history.employment.para.employment2')}
+            <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
             <Accordion minimum="1"
+                       scrollTo="scrollToHistory"
                        items={this.props.Employment}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
@@ -679,8 +687,10 @@ class History extends ValidationElement {
             </Show>
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               <div>
+                <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
                 <Accordion minimum="1"
+                           scrollTo="scrollToHistory"
                            items={this.props.Education.List}
                            onUpdate={this.updateEducation}
                            onValidate={this.onValidate}
