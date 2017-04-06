@@ -48,7 +48,6 @@ export default class Hospitalization extends ValidationElement {
   }
 
   render () {
-    console.log(this.props.Admission)
     return (
       <div className="hospitalization">
         <div className="eapp-field-wrap">
