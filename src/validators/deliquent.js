@@ -65,6 +65,13 @@ export class DeliquentItemValidator {
     return !!this.name && validGenericTextfield(this.name)
   }
 
+  validInfractions () {
+    const allowed = ['Alimony', 'Judgement', 'Lien', 'Federal']
+    return !!this.infractions &&
+      this.infractions.length > 0 &&
+      this.infractions.every(x => { return allowed.includes(x) })
+  }
+
   validAccountNumber () {
     return !!this.accountNumber && validGenericTextfield(this.accountNumber)
   }

@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
          NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
+import Infractions from './Infractions'
 
 export default class Nonpayment extends ValidationElement {
   constructor (props) {
@@ -144,6 +145,17 @@ export default class Nonpayment extends ValidationElement {
                       className="nonpayment-name"
                       bind={true}
                       />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.nonpayment.heading.infractions')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.nonpayment.help.infractions">
+                <Infractions name="Infractions"
+                             className="nonpayment-infractions"
+                             bind={true}
+                             />
                 <HelpIcon />
               </Help>
             </div>

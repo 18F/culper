@@ -26,26 +26,32 @@ describe('deliquent component validation', function () {
     })
   })
 
-  // it('validate infractions', () => {
-  //   const tests = [
-  //     {
-  //       state: {
-  //         Infractions: []
-  //       },
-  //       expected: false
-  //     },
-  //     {
-  //       state: {
-  //         Infractions: []
-  //       },
-  //       expected: true
-  //     }
-  //   ]
+  it('validate infractions', () => {
+    const tests = [
+      {
+        state: {
+          Infractions: []
+        },
+        expected: false
+      },
+      {
+        state: {
+          Infractions: ['DoesNotExist']
+        },
+        expected: false
+      },
+      {
+        state: {
+          Infractions: ['Alimony']
+        },
+        expected: true
+      }
+    ]
 
-  //   tests.forEach(test => {
-  //     expect(new DeliquentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
-  //   })
-  // })
+    tests.forEach(test => {
+      expect(new DeliquentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
+    })
+  })
 
   it('validate account number', () => {
     const tests = [

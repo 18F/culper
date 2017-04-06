@@ -41,7 +41,7 @@ describe('The deliquent component', () => {
     const component = mount(<Deliquent {...expected} />)
     component.find('.branch .yes input').simulate('change')
     component.find('.deliquent-name input').simulate('change', { target: { value: 'IRS' } })
-    // component.find('.deliquent-infractions input').simulate('change', { target: { value: 'IRS' } })
+    component.find('.deliquent-infractions .deliquent-alimony input').simulate('change')
     component.find('.deliquent-accountnumber input').simulate('change', { target: { value: 'IRS' } })
     component.find('.deliquent-propertytype input').simulate('change', { target: { value: 'IRS' } })
     component.find('.deliquent-amount input[type="text"]').simulate('change', { target: { value: '10000' } })

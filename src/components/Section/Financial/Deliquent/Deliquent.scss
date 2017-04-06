@@ -16,6 +16,21 @@
     width: 92%;
   }
 
+  .deliquent-infractions {
+    z-index: 1;
+
+    label::before {
+      vertical-align: top !important;
+      margin-top: 0.8rem !important;
+    }
+
+    label > span > div {
+      display: inline-block;
+      width: 90%;
+      text-align: left;
+    }
+  }
+
   .deliquent-date,
   .deliquent-resolved {
     width: initial !important;

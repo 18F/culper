@@ -16,6 +16,21 @@
     width: 92%;
   }
 
+  .nonpayment-infractions {
+    z-index: 1;
+
+    label::before {
+      vertical-align: top !important;
+      margin-top: 0.8rem !important;
+    }
+
+    label > span > div {
+      display: inline-block;
+      width: 90%;
+      text-align: left;
+    }
+  }
+
   .nonpayment-date,
   .nonpayment-resolved {
     width: initial !important;

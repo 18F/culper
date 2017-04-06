@@ -62,6 +62,13 @@ export class NonpaymentItemValidator {
     return !!this.name && validGenericTextfield(this.name)
   }
 
+  validInfractions () {
+    const allowed = ['Repossession', 'Defaulted', 'Collections', 'Cancelled', 'Evicted', 'Garnished', 'Deliquent', 'Any']
+    return !!this.infractions &&
+      this.infractions.length > 0 &&
+      this.infractions.every(x => { return allowed.includes(x) })
+  }
+
   validAccountNumber () {
     return !!this.accountNumber && validGenericTextfield(this.accountNumber)
   }

@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { DeliquentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
          NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
+import Infractions from './Infractions'
 
 export default class Deliquent extends ValidationElement {
   constructor (props) {
@@ -140,6 +141,17 @@ export default class Deliquent extends ValidationElement {
                       className="deliquent-name"
                       bind={true}
                       />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.deliquent.heading.infractions')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.deliquent.help.infractions">
+                <Infractions name="Infractions"
+                             className="deliquent-infractions"
+                             bind={true}
+                             />
                 <HelpIcon />
               </Help>
             </div>
