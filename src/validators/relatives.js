@@ -43,6 +43,7 @@ export class RelativeValidator {
     this.birthdate = state.Birthdate
     this.birthplace = state.Birthplace
     this.citizenship = state.Citizenship || []
+    this.maidenSameAsListed = state.MaidenSameAsListed
     this.maidenName = state.MaidenName
     this.aliases = state.Aliases || []
     this.isDeceased = state.IsDeceased
@@ -116,6 +117,10 @@ export class RelativeValidator {
   }
 
   validMaidenName () {
+    if (!!this.maidenSameAsListed && this.maidenSameAsListed === 'Yes') {
+      return true
+    }
+
     return !!this.maidenName && new NameValidator(this.maidenName, null).isValid()
   }
 

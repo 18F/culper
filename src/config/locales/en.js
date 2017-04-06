@@ -1558,6 +1558,10 @@ const en = {
             text: 'Other',
             subtext: '(provide explanation)'
           }
+        },
+        maiden: {
+          same: 'Same as listed',
+          diff: 'Different name'
         }
       },
       help: {
