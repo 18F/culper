@@ -102,10 +102,14 @@ export default class Nonpayment extends ValidationElement {
     return (
       <div>
         <ul>
-          <li>{i18n.m('financial.nonpayment.para.alimony')}</li>
-          <li>{i18n.m('financial.nonpayment.para.judgement')}</li>
-          <li>{i18n.m('financial.nonpayment.para.lien')}</li>
-          <li>{i18n.m('financial.nonpayment.para.federal')}</li>
+          <li>{i18n.m('financial.nonpayment.para.repo')}</li>
+          <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
+          <li>{i18n.m('financial.nonpayment.para.collections')}</li>
+          <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
+          <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
+          <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
+          <li>{i18n.m('financial.nonpayment.para.deliquent')}</li>
+          <li>{i18n.m('financial.nonpayment.para.any')}</li>
         </ul>
 
         {i18n.m('financial.nonpayment.collection.appendMessage')}
@@ -210,18 +214,6 @@ export default class Nonpayment extends ValidationElement {
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.date')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="financial.nonpayment.help.date">
-                <DateControl name="Date"
-                             className="nonpayment-date"
-                             hideDay={true}
-                             bind={true}
-                             />
-                <HelpIcon />
-              </Help>
-            </div>
-
             <h3>{i18n.t('financial.nonpayment.heading.resolved')}</h3>
             <div className="eapp-field-wrap no-label">
               <Help id="financial.nonpayment.help.resolved">
@@ -239,24 +231,14 @@ export default class Nonpayment extends ValidationElement {
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.courtname')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.courtname">
-                <Text name="CourtName"
-                      className="nonpayment-courtname"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('financial.nonpayment.heading.courtaddress')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.courtaddress">
-                <Address name="CourtAddress"
-                         className="nonpayment-courtaddress"
-                         bind={true}
-                         />
+            <h3>{i18n.t('financial.nonpayment.heading.date')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.nonpayment.help.date">
+                <DateControl name="Date"
+                             className="nonpayment-date"
+                             hideDay={true}
+                             bind={true}
+                             />
                 <HelpIcon />
               </Help>
             </div>

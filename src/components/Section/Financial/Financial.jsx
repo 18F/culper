@@ -252,10 +252,14 @@ class Financial extends ValidationElement {
                        nextLabel={i18n.t('financial.destination.review')}>
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
             <ul>
-              <li>{i18n.m('financial.nonpayment.para.alimony')}</li>
-              <li>{i18n.m('financial.nonpayment.para.judgement')}</li>
-              <li>{i18n.m('financial.nonpayment.para.lien')}</li>
-              <li>{i18n.m('financial.nonpayment.para.federal')}</li>
+              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
+              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
+              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
+              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
+              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
+              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
+              <li>{i18n.m('financial.nonpayment.para.deliquent')}</li>
+              <li>{i18n.m('financial.nonpayment.para.any')}</li>
             </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
