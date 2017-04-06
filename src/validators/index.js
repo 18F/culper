@@ -24,6 +24,7 @@ import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
 import CardAbuseValidator from './cardabuse'
 import CreditValidator from './credit'
+import HospitalizationsValidator from './hospitalization'
 import NonpaymentValidator from './nonpayment'
 import DeliquentValidator from './deliquent'
 
@@ -57,6 +58,7 @@ export {
   TaxValidator,
   CardAbuseValidator,
   CreditValidator,
+  HospitalizationsValidator,
   NonpaymentValidator,
   DeliquentValidator
 }
