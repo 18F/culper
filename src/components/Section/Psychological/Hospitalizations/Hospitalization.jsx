@@ -48,6 +48,7 @@ export default class Hospitalization extends ValidationElement {
   }
 
   render () {
+    console.log(this.props.Admission)
     return (
       <div className="hospitalization">
         <div className="eapp-field-wrap">
@@ -72,7 +73,7 @@ export default class Hospitalization extends ValidationElement {
           </RadioGroup>
         </div>
 
-        <Show when={this.props.Admission && this.props.Admission.value}>
+        <Show when={this.props.Admission}>
           <div className="eapp-field-wrap no-label">
             <h3>{i18n.t(`psychological.hospitalization.heading.treatment`)}</h3>
             <Help id={`psychological.hospitalization.help.treatment`}>
@@ -90,8 +91,8 @@ export default class Hospitalization extends ValidationElement {
         <div className="eapp-field-wrap">
           <h3>{i18n.t(`psychological.hospitalization.heading.treatment`)}</h3>
           <Help id={`psychological.hospitalization.help.treatment`}>
-            <DateRange name="Dates"
-              {...this.props.Dates}
+            <DateRange name="TreatmentDate"
+              {...this.props.TreatmentDate}
               receiveProps={this.props.receiveProps}
               onUpdate={this.updateTreatmentDate}
               onValidate={this.props.onValidate}
@@ -118,6 +119,7 @@ export default class Hospitalization extends ValidationElement {
             <Help id={ `psychological.hospitalization.help.address` }>
               <Address name="FacilityAddress"
                 bind={true}
+                {...this.props.FacilityAddress}
                 label={i18n.t(`psychological.hospitalization.label.address`)}
                 onUpdate={this.updateFacilityAddress}
                 onValidate={this.props.onValidate}
