@@ -17,8 +17,8 @@ describe('The Hospitalization component', () => {
     component.find('.datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
     component.find('input[name="Facility"]').simulate('change')
     component.find('input[name="address"]').simulate('change')
-    component.find({type: 'radio', value: 'Voluntary'}).simulate('change')
-    expect(updates).toBe(3)
+    component.find({type: 'radio', value: 'Voluntary'}).simulate('click')
+    expect(updates).toBe(4)
   })
 
   it('Performs updates with explanation', () => {
