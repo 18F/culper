@@ -1,17 +1,18 @@
+import AddressValidator from './address'
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
-export default class NonpaymentValidator {
+export default class DeliquentValidator {
   constructor (state = {}, props = {}) {
-    this.hasNonpayment = state.HasNonpayment
+    this.hasDeliquent = state.HasDeliquent
     this.list = state.List || []
   }
 
-  validHasNonpayment () {
-    if (!this.hasNonpayment) {
+  validHasDeliquent () {
+    if (!this.hasDeliquent) {
       return false
     }
 
-    if (!(this.hasNonpayment === 'No' || this.hasNonpayment === 'Yes')) {
+    if (!(this.hasDeliquent === 'No' || this.hasDeliquent === 'Yes')) {
       return false
     }
 
@@ -19,7 +20,7 @@ export default class NonpaymentValidator {
   }
 
   validList () {
-    if (this.validHasNonpayment() && this.hasNonpayment === 'No') {
+    if (this.validHasDeliquent() && this.hasDeliquent === 'No') {
       return true
     }
 
@@ -28,7 +29,7 @@ export default class NonpaymentValidator {
     }
 
     for (const item of this.list) {
-      if (new NonpaymentItemValidator(item, null).isValid() === false) {
+      if (new DeliquentItemValidator(item, null).isValid() === false) {
         return false
       }
     }
@@ -37,12 +38,12 @@ export default class NonpaymentValidator {
   }
 
   isValid () {
-    return this.validHasNonpayment() &&
+    return this.validHasDeliquent() &&
       this.validList()
   }
 }
 
-export class NonpaymentItemValidator {
+export class DeliquentItemValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
     this.infractions = state.Infractions || []
@@ -55,6 +56,8 @@ export class NonpaymentItemValidator {
     this.date = state.Date
     this.resolved = state.Resolved
     this.resolvedNotApplicable = state.ResolvedNotApplicable
+    this.courtName = state.CourtName
+    this.courtAddress = state.CourtAddress
     this.description = state.Description
   }
 
@@ -63,7 +66,7 @@ export class NonpaymentItemValidator {
   }
 
   validInfractions () {
-    const allowed = ['Repossession', 'Defaulted', 'Collections', 'Cancelled', 'Evicted', 'Garnished', 'Deliquent', 'Any']
+    const allowed = ['Alimony', 'Judgement', 'Lien', 'Federal']
     return !!this.infractions &&
       this.infractions.length > 0 &&
       this.infractions.every(x => { return allowed.includes(x) })
@@ -102,6 +105,14 @@ export class NonpaymentItemValidator {
     return validNotApplicable(this.resolvedNotApplicable, () => { return validDateField(this.resolved) })
   }
 
+  validCourtName () {
+    return !!this.courtName && validGenericTextfield(this.courtName)
+  }
+
+  validCourtAddress () {
+    return !!this.courtAddress && new AddressValidator(this.courtAddress, null).isValid()
+  }
+
   validDescription () {
     return !!this.description && validGenericTextfield(this.description)
   }
@@ -115,6 +126,8 @@ export class NonpaymentItemValidator {
       this.validStatus() &&
       this.validDate() &&
       this.validResolved() &&
+      this.validCourtName() &&
+      this.validCourtAddress() &&
       this.validDescription()
   }
 }

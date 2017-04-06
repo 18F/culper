@@ -1,15 +1,15 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NonpaymentValidator } from '../../../../validators'
+import { DeliquentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
          NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
-export default class Nonpayment extends ValidationElement {
+export default class Deliquent extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasNonpayment: props.HasNonpayment,
+      HasDeliquent: props.HasDeliquent,
       List: props.List,
       errorCodes: []
     }
@@ -47,14 +47,14 @@ export default class Nonpayment extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    return new NonpaymentValidator(this.state, null).isValid()
+    return new DeliquentValidator(this.state, null).isValid()
   }
 
   /**
    * Updates triggered by the branching component.
    */
   updateBranch (val, event) {
-    this.setState({ HasNonpayment: val }, () => {
+    this.setState({ HasDeliquent: val }, () => {
       this.updateList(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
     })
@@ -69,7 +69,7 @@ export default class Nonpayment extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
-          HasNonpayment: this.state.HasNonpayment
+          HasDeliquent: this.state.HasDeliquent
         })
       }
     })
@@ -80,7 +80,7 @@ export default class Nonpayment extends ValidationElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.nonpayment.collection.summary.unknown')
+    const name = (obj.Name || {}).value || i18n.t('financial.deliquent.collection.summary.unknown')
     const amount = (obj.Amount || {}).value
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
     const date = (obj.Date || {})
@@ -92,7 +92,7 @@ export default class Nonpayment extends ValidationElement {
 
     return (
       <span>
-        <span className="index">{i18n.t('financial.nonpayment.collection.summary.item')} {index + 1}:</span>
+        <span className="index">{i18n.t('financial.deliquent.collection.summary.item')} {index + 1}:</span>
         <span><strong>{text}</strong></span>
         <span className="dates">{from}</span>
       </span>
@@ -103,100 +103,96 @@ export default class Nonpayment extends ValidationElement {
     return (
       <div>
         <ul>
-          <li>{i18n.m('financial.nonpayment.para.repo')}</li>
-          <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
-          <li>{i18n.m('financial.nonpayment.para.collections')}</li>
-          <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
-          <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
-          <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
-          <li>{i18n.m('financial.nonpayment.para.deliquent')}</li>
-          <li>{i18n.m('financial.nonpayment.para.any')}</li>
+          <li>{i18n.m('financial.deliquent.para.alimony')}</li>
+          <li>{i18n.m('financial.deliquent.para.judgement')}</li>
+          <li>{i18n.m('financial.deliquent.para.lien')}</li>
+          <li>{i18n.m('financial.deliquent.para.federal')}</li>
         </ul>
 
-        {i18n.m('financial.nonpayment.collection.appendMessage')}
+        {i18n.m('financial.deliquent.collection.appendMessage')}
       </div>
     )
   }
 
   render () {
     return (
-      <div className="nonpayment">
-        <Branch name="has_nonpayment"
-                className="nonpayment-branch eapp-field-wrap no-label"
-                value={this.state.HasNonpayment}
-                help="financial.nonpayment.help.branch"
+      <div className="deliquent">
+        <Branch name="has_deliquent"
+                className="deliquent-branch eapp-field-wrap no-label"
+                value={this.state.HasDeliquent}
+                help="financial.deliquent.help.branch"
                 onUpdate={this.updateBranch}>
         </Branch>
-        <Show when={this.state.HasNonpayment === 'Yes'}>
+        <Show when={this.state.HasDeliquent === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
-                     description={i18n.t('financial.nonpayment.collection.summary.title')}
-                     appendTitle={i18n.t('financial.nonpayment.collection.appendTitle')}
+                     description={i18n.t('financial.deliquent.collection.summary.title')}
+                     appendTitle={i18n.t('financial.deliquent.collection.appendTitle')}
                      appendMessage={this.message()}
-                     appendLabel={i18n.t('financial.nonpayment.collection.append')}>
+                     appendLabel={i18n.t('financial.deliquent.collection.append')}>
 
-            <h3>{i18n.t('financial.nonpayment.heading.name')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.name')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.name">
+              <Help id="financial.deliquent.help.name">
                 <Text name="Name"
-                      className="nonpayment-name"
+                      className="deliquent-name"
                       bind={true}
                       />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.infractions')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.infractions')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.infractions">
+              <Help id="financial.deliquent.help.infractions">
                 <Infractions name="Infractions"
-                             className="nonpayment-infractions"
+                             className="deliquent-infractions"
                              bind={true}
                              />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.accountnumber')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.accountnumber')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.accountnumber">
+              <Help id="financial.deliquent.help.accountnumber">
                 <Text name="AccountNumber"
-                      className="nonpayment-accountnumber"
+                      className="deliquent-accountnumber"
                       bind={true}
                       />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.propertytype')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.propertytype')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.propertytype">
+              <Help id="financial.deliquent.help.propertytype">
                 <Text name="PropertyType"
-                      className="nonpayment-propertytype"
+                      className="deliquent-propertytype"
                       bind={true}
                       />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.amount')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.amount')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.amount">
+              <Help id="financial.deliquent.help.amount">
                 <i className="fa fa-dollar"></i>
                 <Number name="Amount"
-                        className="nonpayment-amount"
-                        placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
+                        className="deliquent-amount"
+                        placeholder={i18n.t('financial.deliquent.placeholder.amount')}
                         min="1"
                         bind={true}
                         />
                 <HelpIcon />
-                <div className="nonpayment-amount coupled-flags">
+                <div className="deliquent-amount coupled-flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
-                            label={i18n.t('financial.nonpayment.label.estimated')}
+                            label={i18n.t('financial.deliquent.label.estimated')}
                             toggle="false"
                             bind={true}
                             />
@@ -204,37 +200,49 @@ export default class Nonpayment extends ValidationElement {
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.reason')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.reason')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.reason">
+              <Help id="financial.deliquent.help.reason">
                 <Textarea name="Reason"
-                          className="nonpayment-reason"
+                          className="deliquent-reason"
                           bind={true}
                           />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.status')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.status')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.status">
+              <Help id="financial.deliquent.help.status">
                 <Text name="Status"
-                      className="nonpayment-status"
+                      className="deliquent-status"
                       bind={true}
                       />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.resolved')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.date')}</h3>
+            <div className="eapp-field-wrap">
+              <Help id="financial.deliquent.help.date">
+                <DateControl name="Date"
+                             className="deliquent-date"
+                             hideDay={true}
+                             bind={true}
+                             />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.deliquent.heading.resolved')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.resolved">
+              <Help id="financial.deliquent.help.resolved">
                 <NotApplicable name="ResolvedNotApplicable"
-                               label={i18n.t('financial.nonpayment.label.notresolved')}
-                               or={i18n.m('financial.nonpayment.para.or')}
+                               label={i18n.t('financial.deliquent.label.notresolved')}
+                               or={i18n.m('financial.deliquent.para.or')}
                                bind={true}>
                   <DateControl name="Resolved"
-                               className="nonpayment-resolved"
+                               className="deliquent-resolved"
                                hideDay={true}
                                bind={true}
                                />
@@ -243,23 +251,33 @@ export default class Nonpayment extends ValidationElement {
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.date')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="financial.nonpayment.help.date">
-                <DateControl name="Date"
-                             className="nonpayment-date"
-                             hideDay={true}
-                             bind={true}
-                             />
+            <h3>{i18n.t('financial.deliquent.heading.courtname')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.deliquent.help.courtname">
+                <Text name="CourtName"
+                      className="deliquent-courtname"
+                      bind={true}
+                      />
                 <HelpIcon />
               </Help>
             </div>
 
-            <h3>{i18n.t('financial.nonpayment.heading.description')}</h3>
+            <h3>{i18n.t('financial.deliquent.heading.courtaddress')}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id="financial.nonpayment.help.description">
+              <Help id="financial.deliquent.help.courtaddress">
+                <Address name="CourtAddress"
+                         className="deliquent-courtaddress"
+                         bind={true}
+                         />
+                <HelpIcon />
+              </Help>
+            </div>
+
+            <h3>{i18n.t('financial.deliquent.heading.description')}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id="financial.deliquent.help.description">
                 <Textarea name="Description"
-                          className="nonpayment-description"
+                          className="deliquent-description"
                           bind={true}
                           />
                 <HelpIcon />
@@ -273,7 +291,7 @@ export default class Nonpayment extends ValidationElement {
   }
 }
 
-Nonpayment.defaultProps = {
-  HasNonpayment: '',
+Deliquent.defaultProps = {
+  HasDeliquent: '',
   List: []
 }
