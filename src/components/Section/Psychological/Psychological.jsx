@@ -7,6 +7,8 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Competence from './Competence/Competence'
+import Consultation from './Consultation/Consultation'
+import Hospitalizations from './Hospitalizations/Hospitalizations'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -19,7 +21,6 @@ class Psychological extends ValidationElement {
     this.onUpdate = this.onUpdate.bind(this)
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
-    this.updateCompetence = this.updateCompetence.bind(this)
   }
 
   componentDidMount () {
@@ -41,9 +42,6 @@ class Psychological extends ValidationElement {
     this.props.dispatch(updateApplication('Psychological', field, values))
   }
 
-  updateCompetence (values) {
-    this.onUpdate('Competence', values)
-  }
   /**
    * Determine the desired behaviour when visiting the
    * root of a route
@@ -81,7 +79,7 @@ class Psychological extends ValidationElement {
           <SectionView name="intro"
             back=""
             next="psychological/competence"
-            nextLabel={ i18n.m('psychological.destination.competence') }>
+            nextLabel={ i18n.m('psychological.destination.consultation') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para1') }
@@ -92,11 +90,31 @@ class Psychological extends ValidationElement {
 
           <SectionView name="competence"
             back="psychological/intro"
-            next=""
-            nextLabel={ i18n.m('psychological.destination.tbd') }>
+            backLabel={ i18n.t('psychological.destination.intro') }
+            next="psychological/consultations"
+            nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
               {...this.props.Competence}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
+          </SectionView>
+
+          <SectionView name="consultations"
+            back="psychological/competence"
+            backLabel={ i18n.t('psychological.destination.competence') }
+            next="psychological/hospitalizations"
+            nextLabel={ i18n.t('psychological.destination.hospitalization') }>
+            <Consultation name="Consultations"
+              {...this.props.Consultations}
+              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+          </SectionView>
+          <SectionView name="hospitalizations"
+            back="psychological/consultations"
+            backLabel={ i18n.t('psychological.destination.consultation') }
+            next=""
+            nextLabel={ i18n.t('psychological.destination.tbd') }>
+            <Hospitalizations name="Hospitalizations"
+              {...this.props.Hospitalizations}
+              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
         </SectionViews>
       </div>
@@ -114,6 +132,8 @@ function mapStateToProps (state) {
     Section: section,
     Psychological: psychological,
     Competence: psychological.Competence,
+    Consultations: psychological.Consultation,
+    Hospitalizations: psychological.Hospitalization,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }

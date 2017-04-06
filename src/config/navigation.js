@@ -24,8 +24,8 @@ const navigation = [
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
       { name: 'Credit counseling', url: 'credit' },
-      { hidden: true, name: 'Deliquent payments', url: 'deliquent' },
-      { hidden: true, name: 'Non-payment consequence', url: 'nonpayment' }
+      { name: 'Deliquent payments', url: 'deliquent' },
+      { name: 'Non-payment consequence', url: 'nonpayment' }
     ]
   },
   {
@@ -119,7 +119,7 @@ const navigation = [
     subsections: [
       { name: 'Competence', url: 'competence' },
       { name: 'Consultations', url: 'consultations' },
-      { name: 'Hospitalizations', url: 'hospitalization' },
+      { name: 'Hospitalizations', url: 'hospitalizations' },
       { name: 'Diagnosed', url: 'diagnosed' },
       { name: 'Existing Conditions', url: 'existingconditions' }
     ]

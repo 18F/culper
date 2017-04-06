@@ -1,6 +1,6 @@
-import CompetenceValidator from './competence'
+import ConsultationValidator from './consultation'
 
-describe('Competence validation', function () {
+describe('Consultation validation', function () {
   it('validates competence', () => {
     const tests = [
       {
@@ -8,7 +8,7 @@ describe('Competence validation', function () {
           IsIncompetent: 'Yes',
           List: [
             {
-              Competence: {
+              Consultation: {
                 CourtName: {
                   value: 'Circuit Court'
                 },
@@ -61,7 +61,7 @@ describe('Competence validation', function () {
           IsIncompetent: 'Yes',
           List: [
             {
-              Competence: {
+              Consultation: {
                 CourtName: null,
                 CourtAddress: {
                   addressType: 'United States',
@@ -88,7 +88,7 @@ describe('Competence validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CompetenceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ConsultationValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 })
