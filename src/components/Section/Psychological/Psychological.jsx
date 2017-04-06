@@ -8,6 +8,7 @@ import { updateApplication, reportErrors, reportCompletion } from '../../../acti
 import { SectionViews, SectionView } from '../SectionView'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
+import Hospitalizations from './Hospitalizations/Hospitalizations'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -20,7 +21,6 @@ class Psychological extends ValidationElement {
     this.onUpdate = this.onUpdate.bind(this)
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
-    this.updateCompetence = this.updateCompetence.bind(this)
   }
 
   componentDidMount () {
@@ -42,9 +42,6 @@ class Psychological extends ValidationElement {
     this.props.dispatch(updateApplication('Psychological', field, values))
   }
 
-  updateCompetence (values) {
-    this.onUpdate('Competence', values)
-  }
   /**
    * Determine the desired behaviour when visiting the
    * root of a route
@@ -104,11 +101,20 @@ class Psychological extends ValidationElement {
           <SectionView name="consultations"
             back="psychological/competence"
             backLabel={ i18n.t('psychological.destination.competence') }
-            next=""
-            nextLabel={ i18n.t('psychological.destination.tbd') }>
+            next="psychological/hospitalizations"
+            nextLabel={ i18n.t('psychological.destination.hospitalization') }>
             <Consultation name="Consultations"
               {...this.props.Consultations}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+          </SectionView>
+          <SectionView name="hospitalizations"
+            back="psychological/consultations"
+            backLabel={ i18n.t('psychological.destination.consultation') }
+            next=""
+            nextLabel={ i18n.t('psychological.destination.tbd') }>
+            <Hospitalizations name="Hospitalizations"
+              {...this.props.Hospitalizations}
+              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
         </SectionViews>
       </div>
@@ -127,6 +133,7 @@ function mapStateToProps (state) {
     Psychological: psychological,
     Competence: psychological.Competence,
     Consultations: psychological.Consultation,
+    Hospitalizations: psychological.Hospitalization,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }

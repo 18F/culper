@@ -4193,12 +4193,14 @@ const en = {
       intro: 'Why we are asking',
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
       consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
-      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)'
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
+      hospitalization: 'Have you EVER been hospitalized for a mental health condition?'
     },
     destination: {
       intro: 'Introduction',
       competence: 'Competence',
-      consultation: 'Consultations'
+      consultation: 'Consultations',
+      hospitalization: 'Hospitalizations'
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -4315,6 +4317,26 @@ const en = {
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
         itemType: 'Order:'
+      }
+    },
+    hospitalization: {
+      heading: {
+        admission: 'Was the admission voluntary or involuntary',
+        treatment: 'Provide the dates of treatment',
+        facility: 'Provide the facility where treatment was provided',
+        address: 'Provide the address of the facility where treatment was provided'
+      },
+      label: {
+        address: 'This address is',
+        voluntaryAdmission: 'Voluntary\n\n(Provide Explanation)',
+        involuntaryAdmission: 'Involuntary\n\n(Provide Explanation)'
+      },
+      collection: {
+        summary: 'Click to provide details',
+        appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
+        appendMessage: 'If yes, use the button below to add another hospitalization',
+        appendLabel: 'Add another hospitalization',
+        itemType: 'Hospitalization:'
       }
     }
   }
