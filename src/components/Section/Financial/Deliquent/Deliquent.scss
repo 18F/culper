@@ -1,22 +1,22 @@
-.nonpayment {
-  .nonpayment-name,
-  .nonpayment-infractions,
-  .nonpayment-accountnumber,
-  .nonpayment-propertytype,
-  .nonpayment-amount,
-  .nonpayment-reason,
-  .nonpayment-status,
-  .nonpayment-date,
-  .nonpayment-resolved,
-  .nonpayment-courtname,
-  .nonpayment-courtaddress,
-  .nonpayment-description {
+.deliquent {
+  .deliquent-name,
+  .deliquent-infractions,
+  .deliquent-accountnumber,
+  .deliquent-propertytype,
+  .deliquent-amount,
+  .deliquent-reason,
+  .deliquent-status,
+  .deliquent-date,
+  .deliquent-resolved,
+  .deliquent-courtname,
+  .deliquent-courtaddress,
+  .deliquent-description {
     display: inline-block;
     max-width: 64rem;
     width: 92%;
   }
 
-  .nonpayment-infractions {
+  .deliquent-infractions {
     z-index: 1;
 
     label::before {
@@ -31,8 +31,8 @@
     }
   }
 
-  .nonpayment-date,
-  .nonpayment-resolved {
+  .deliquent-date,
+  .deliquent-resolved {
     width: initial !important;
   }
 
@@ -40,7 +40,7 @@
     margin-left: -2rem;
   }
 
-  .nonpayment-amount {
+  .deliquent-amount {
     margin-left: 1rem;
 
     label {
@@ -48,7 +48,7 @@
     }
   }
 
-  .nonpayment-amount.coupled-flags {
+  .deliquent-amount.coupled-flags {
     clear: both;
     z-index: 1;
 
