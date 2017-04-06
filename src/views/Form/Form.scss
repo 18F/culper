@@ -22,6 +22,10 @@
 
     li {
       margin: 0 4rem;
+
+      p {
+        padding: 0;
+      }
     }
 
     @media screen and (max-width: 1380px) {
@@ -230,8 +234,10 @@
     .option-list {
       display: inline-block;
       padding-top: 0.3rem;
-      max-width: 93%;
-      width: 92%;
+
+      // NOTE: Commented this out b/c it was affecting every usage of option-list (branches, general buttons, etc.)
+      // max-width: 64rem;
+      // width: 92%;
     }
 
     .option-list.branch {

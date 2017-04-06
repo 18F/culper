@@ -21,11 +21,11 @@ const navigation = [
     subsections: [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
-      { hidden: true, name: 'Taxes', url: 'taxes' },
-      { hidden: true, name: 'Employer card abuse', url: 'card' },
-      { hidden: true, name: 'Credit counseling', url: 'credit' },
-      { hidden: true, name: 'Deliquent payments', url: 'deliquent' },
-      { hidden: true, name: 'Non-payment consequence', url: 'nonpayment' }
+      { name: 'Taxes', url: 'taxes' },
+      { name: 'Employer card abuse', url: 'card' },
+      { name: 'Credit counseling', url: 'credit' },
+      { name: 'Deliquent payments', url: 'deliquent' },
+      { name: 'Non-payment consequence', url: 'nonpayment' }
     ]
   },
   {

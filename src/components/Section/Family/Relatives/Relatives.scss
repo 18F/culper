@@ -7,20 +7,26 @@
     top: 25% !important;
   }
 
-  .relatives-relation label {
-    height: 10rem;
-    width: 18rem;
-    overflow: hidden;
+  .relatives-relation {
+    display: inline-block;
+    width: 92%;
+    max-width: 64rem;
 
-    > span {
-      display: block;
-      height: 100%;
+    label {
+      height: 10rem;
+      width: 18rem;
+      overflow: hidden;
 
-      > div {
-        top: 35%;
+      > span {
+        display: block;
+        height: 100%;
 
-        > p {
-          padding: 0;
+        > div {
+          top: 35%;
+
+          > p {
+            padding: 0;
+          }
         }
       }
     }

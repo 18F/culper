@@ -20,6 +20,12 @@ import MilitaryForeignValidator from './militaryforeign'
 import PoliceValidator from './police'
 import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
+import ConsultationValidator from './consultation'
+import TaxesValidator, { TaxValidator } from './taxes'
+import CardAbuseValidator from './cardabuse'
+import CreditValidator from './credit'
+import NonpaymentValidator from './nonpayment'
+import DeliquentValidator from './deliquent'
 
 export {
   AddressValidator,
@@ -45,5 +51,12 @@ export {
   FederalServiceValidator,
   RelativesValidator,
   RelativeValidator,
-  AliasValidator
+  AliasValidator,
+  ConsultationValidator,
+  TaxesValidator,
+  TaxValidator,
+  CardAbuseValidator,
+  CreditValidator,
+  NonpaymentValidator,
+  DeliquentValidator
 }

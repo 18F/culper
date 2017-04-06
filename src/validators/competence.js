@@ -1,5 +1,4 @@
-import AddressValidator from './address'
-import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
+import OrderValidator from './order'
 
 export default class CompetenceValidator {
   constructor (state = {}, props) {
@@ -17,7 +16,7 @@ export default class CompetenceValidator {
     }
 
     for (let order of this.list) {
-      if (!new CompetenceItemValidator(order.Competence).isValid()) {
+      if (!new OrderValidator(order.Competence).isValid()) {
         return false
       }
     }
@@ -37,50 +36,4 @@ export default class CompetenceValidator {
     return this.validList()
   }
 
-}
-
-export class CompetenceItemValidator {
-  constructor (state, props) {
-    this.courtAddress = state.CourtAddress
-    this.courtName = state.CourtName
-    this.disposition = state.Disposition
-    this.occurred = state.Occurred
-    this.appeals = state.Appeals
-  }
-
-  validCourt () {
-    return validGenericTextfield(this.courtName) &&
-      new AddressValidator(this.courtAddress).isValid()
-  }
-
-  validDisposition () {
-    return validGenericTextfield(this.disposition)
-  }
-
-  validOccurred () {
-    return validGenericMonthYear(this.occurred)
-  }
-
-  validAppeals () {
-    const branchValidator = new BranchCollection(this.appeals)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (branchValidator.hasNo()) {
-      return true
-    }
-
-    return branchValidator.each(item => {
-      return validGenericTextfield(item.CourtName) &&
-        new AddressValidator(item.CourtAddress)
-    })
-  }
-
-  isValid () {
-    return this.validCourt() &&
-      this.validDisposition() &&
-      this.validOccurred() &&
-      this.validAppeals()
-  }
 }

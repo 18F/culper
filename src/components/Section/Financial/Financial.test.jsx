@@ -34,7 +34,7 @@ describe('The financial section', () => {
   })
 
   it('can go to each subsection', () => {
-    const sections = ['gambling', 'bankruptcy']
+    const sections = ['gambling', 'bankruptcy', 'taxes', 'card', 'credit', 'deliquent', 'nonpayment']
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
     sections.forEach((section) => {

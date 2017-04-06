@@ -7,6 +7,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Competence from './Competence/Competence'
+import Consultation from './Consultation/Consultation'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -81,7 +82,7 @@ class Psychological extends ValidationElement {
           <SectionView name="intro"
             back=""
             next="psychological/competence"
-            nextLabel={ i18n.m('psychological.destination.competence') }>
+            nextLabel={ i18n.m('psychological.destination.consultation') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para1') }
@@ -92,11 +93,22 @@ class Psychological extends ValidationElement {
 
           <SectionView name="competence"
             back="psychological/intro"
-            next=""
-            nextLabel={ i18n.m('psychological.destination.tbd') }>
+            backLabel={ i18n.t('psychological.destination.intro') }
+            next="psychological/consultations"
+            nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
               {...this.props.Competence}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
+          </SectionView>
+
+          <SectionView name="consultations"
+            back="psychological/competence"
+            backLabel={ i18n.t('psychological.destination.competence') }
+            next=""
+            nextLabel={ i18n.t('psychological.destination.tbd') }>
+            <Consultation name="Consultations"
+              {...this.props.Consultations}
+              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
           </SectionView>
         </SectionViews>
       </div>
@@ -114,6 +126,7 @@ function mapStateToProps (state) {
     Section: section,
     Psychological: psychological,
     Competence: psychological.Competence,
+    Consultations: psychological.Consultation,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }

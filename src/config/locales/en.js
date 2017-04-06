@@ -429,6 +429,13 @@ const en = {
         message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
         note: 'Note: Underscores (_) and periods (.) are valid characters'
       }
+    },
+    Year: {
+      min: {
+        title: 'The year is below the accepted limits',
+        message: 'The year must be four (4) digit year',
+        note: ''
+      }
     }
   },
   section: {
@@ -783,6 +790,11 @@ const en = {
     destination: {
       gambling: 'Gambling debts',
       bankruptcy: 'Bankruptcy',
+      taxes: 'Taxes',
+      card: 'Employer card abuse',
+      credit: 'Credit counseling',
+      deliquent: 'Deliquent payments',
+      nonpayment: 'Non-payment consequence',
       review: 'Review Financial record'
     },
     gambling: {
@@ -959,6 +971,410 @@ const en = {
           note: ''
         }
       }
+    },
+    taxes: {
+      title: 'In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+      heading: {
+        failure: 'Did you fail to file, pay as required, or both?',
+        year: 'Provide the year you failed to file or pay your federal, state, or other taxes (Estimated)',
+        reason: 'Provide the reason(s) for your failure to file or pay required taxes',
+        agency: 'Provide the federal, state, or other agency to which you failed to file or pay taxes',
+        taxtype: 'Provide the type of taxes you failed to file or pay (such as property, income, sales, etc.)',
+        amount: 'Provide the amount (in U.S. dollars) of taxes',
+        date: 'Provide the date satisfied',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        file: 'File',
+        pay: 'Pay',
+        both: 'Both',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        year: '2016',
+        amount: '1000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with the type of tax failure?',
+          message: 'If you have failed to file or pay any federal, state, or other taxes required by law or ordinance within the last seven (7) years click "Yes"',
+          note: ''
+        },
+        failure: {
+          title: 'Need help with the type of tax failure?',
+          message: 'Provide the type of tax failure',
+          note: ''
+        },
+        year: {
+          title: 'Need help with the year?',
+          message: 'Provide the year you failed to file or pay your taxes',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the failure to file or pay the required taxes',
+          note: ''
+        },
+        agency: {
+          title: 'Need help with the agency?',
+          message: 'Provide the name of the agency to which the taxes were failed to file or pay to',
+          note: ''
+        },
+        taxtype: {
+          title: 'Need help with tax type?',
+          message: 'Provide the type of taxes you failed to file or pay such as property, income, sales, etc.',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of taxes',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date satisfied?',
+          message: 'Provide the date, if any, the tax issue was satisfied',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this debt',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of failed tax filings',
+          unknown: 'Provide your tax filing information below',
+          item: 'Agency'
+        },
+        appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
+        appendMessage: 'If yes use the button below to add another tax filing/payment issue',
+        append: 'Add another tax filing/payment issue'
+      }
+    },
+    card: {
+      title: 'In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?',
+      heading: {
+        agency: 'Provide the name of the agency or company',
+        address: 'Provide the address of the agency or company',
+        date: 'Provide the date of your counseling, warning, or disciplinary action',
+        reason: 'Provide the reason(s) for the counseling, warning, or disciplinary action',
+        amount: 'Provide the amount (in U.S. dollars) of violation',
+        description: 'Provide a description of any action(s) you have taken to rectify this situation. If you have not taken any action(s) provide explanation.'
+      },
+      label: {
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '1000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with the employer card abuse?',
+          message: 'If in the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer then click "Yes"',
+          note: ''
+        },
+        agency: {
+          title: 'Need help with the agency or company name?',
+          message: 'Provide the name of the agency or company involved',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the agency or company address?',
+          message: 'Provide the last known address of the agency or company involved',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the date?',
+          message: 'Provide the approximate date of the violation',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason?',
+          message: 'Provide the reason for the violation',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the amount?',
+          message: 'Provide the amount, in U.S. dollars, of violation',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of employer card abuses',
+          unknown: 'Provide your card abuse information below',
+          item: 'Employer'
+        },
+        appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
+        appendMessage: 'If yes use the button below to add another card abuse/counseling issue',
+        append: 'Add another card abuse/counseling issue'
+      }
+    },
+    credit: {
+      title: 'Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties?',
+      heading: {
+        explanation: 'Provide explanation',
+        name: 'Provide the name of the credit counseling organization or resource',
+        telephone: 'Provide the phone number of the credit counseling organization',
+        address: 'Provide the location of the credit counseling organization',
+        description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
+      },
+      help: {
+        branch: {
+          title: 'Need help with credit counseling?',
+          message: 'If you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties then click "Yes"',
+          note: ''
+        },
+        explanation: {
+          title: 'Need help with the explanation?',
+          message: 'Provide an explanation for the counseling',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the counseling organization name?',
+          message: 'Provide the name of the counseling organization',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with the telephone number?',
+          message: 'Provide the contact phone number for the counseling organization',
+          note: ''
+        },
+        address: {
+          title: 'Need help with the counseling organization address?',
+          message: 'Provide the last known address for the counseling organization',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of credit counseling',
+          unknown: 'Provide your counseling details below',
+          item: 'Service'
+        },
+        appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
+        appendMessage: 'If yes use the button below to add another credit counseling entry',
+        append: 'Add another credit counseling entry'
+      }
+    },
+    deliquent: {
+      title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
+      para: {
+        alimony: '**In the last seven (7) years,** you have been deliquent on alimony or child support payments.',
+        judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        federal: 'You are currently deliquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        or: 'Or'
+      },
+      heading: {
+        name: 'Provide the name of agency/organization/individual to which debt is/was owed',
+        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        accountnumber: 'Provide the associated loan / account number(s) involved',
+        propertytype: 'Identify/describe the type of property involved (if any)',
+        amount: 'Provide the amount (in U.S. dollars) of the financial issue',
+        reason: 'Provide the reason(s) for the financial issue',
+        status: 'Provide the current status of the financial issue',
+        date: 'Provide the date the financial issue began',
+        resolved: 'Provide the date the financial issue was resolved',
+        courtname: 'Provide the name of the court involved',
+        courtaddress: 'Provide the address of the court involved',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any provide explanation.'
+      },
+      label: {
+        notresolved: 'Not resolved',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '10000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with deliquent payments?',
+          message: 'If you have had in of the listed items happen to you then select "Yes"',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the agency, organization, or individual?',
+          message: 'Provide the name of the agency, organization, or individual',
+          note: ''
+        },
+        infractions: {
+          title: 'Need help with types of financial issues?',
+          message: 'Select all of the financial issues which applies to this issue',
+          note: ''
+        },
+        accountnumber: {
+          title: 'Need help with the associated loan or account number(s)?',
+          message: 'Provide the associated loan or account number(s)',
+          note: ''
+        },
+        propertytype: {
+          title: 'Need help with the type of property?',
+          message: 'Provide a description of the type of property involved, if any',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the financial issue amount?',
+          message: 'Provide the approximate amount of the financial issue',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason(s) for the financial issue?',
+          message: 'Provide the reason(s) for the financial issue',
+          note: ''
+        },
+        status: {
+          title: 'Need help with the current status?',
+          message: 'Provide a description of the current status of the financial issue',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the beginning date?',
+          message: 'Provide the approximate date the financial issue began',
+          note: ''
+        },
+        resolved: {
+          title: 'Need help with the resolved date?',
+          message: 'Provide the approximate date, if available, the financial issue was resolved',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court involved',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court involved',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of deliquent payment issues',
+          unknown: 'Provide your deliquent payment details below',
+          item: 'Service'
+        },
+        appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
+        appendMessage: 'If yes use the button below to add another payment issue',
+        append: 'Add another payment issue'
+      }
+    },
+    nonpayment: {
+      title: 'Other than previously listed, have any of the following happened?',
+      para: {
+        repo: '**In the last seven (7) years,** you had any possessions or property voluntarily or involuntarily repossessed or foreclosed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        defaulted: '**In the last seven (7) years,** you defaulted on any type of loan? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        collections: '**In the last seven (7) years,** you had bills or debts turned over to a collection agency? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        cancelled: '**In the last seven (7) years,** you had any account or credit card suspended, charged off, or cancelled for failing to pay as agreed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        evicted: '**In the last seven (7) years,** you were evicted for non-payment?',
+        garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
+        deliquent: '**In the last seven (7) years,** you have been over 120 days deliquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        any: 'You are currently over 120 days deliquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        or: 'Or'
+      },
+      heading: {
+        name: 'Provide the name of agency/organization/individual to which debt is/was owed',
+        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        accountnumber: 'Provide the associated loan / account number(s) involved',
+        propertytype: 'Identify/describe the type of property involved (if any)',
+        amount: 'Provide the amount (in U.S. dollars) of the financial issue',
+        reason: 'Provide the reason(s) for the financial issue',
+        status: 'Provide the current status of the financial issue',
+        date: 'Provide the date the financial issue began',
+        resolved: 'Provide the date the financial issue was resolved',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any provide explanation.'
+      },
+      label: {
+        notresolved: 'Not resolved',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '10000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with nonpayment consequences?',
+          message: 'If you have had in of the listed items happen to you then select "Yes"',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the agency, organization, or individual?',
+          message: 'Provide the name of the agency, organization, or individual',
+          note: ''
+        },
+        infractions: {
+          title: 'Need help with types of financial issues?',
+          message: 'Select all of the financial issues which applies to this issue',
+          note: ''
+        },
+        accountnumber: {
+          title: 'Need help with the associated loan or account number(s)?',
+          message: 'Provide the associated loan or account number(s)',
+          note: ''
+        },
+        propertytype: {
+          title: 'Need help with the type of property?',
+          message: 'Provide a description of the type of property involved, if any',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the financial issue amount?',
+          message: 'Provide the approximate amount of the financial issue',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason(s) for the financial issue?',
+          message: 'Provide the reason(s) for the financial issue',
+          note: ''
+        },
+        status: {
+          title: 'Need help with the current status?',
+          message: 'Provide a description of the current status of the financial issue',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the beginning date?',
+          message: 'Provide the approximate date the financial issue began',
+          note: ''
+        },
+        resolved: {
+          title: 'Need help with the resolved date?',
+          message: 'Provide the approximate date, if available, the financial issue was resolved',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of non-payment issues',
+          unknown: 'Provide your non-payment details below',
+          item: 'Service'
+        },
+        appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
+        appendMessage: 'If yes use the button below to add another non-payment or excessive late payment',
+        append: 'Add another non-payment or excessive late payment'
+      }
     }
   },
 
@@ -990,7 +1406,7 @@ const en = {
         title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
         needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
-        name: 'Provide your relative\'s name',
+        name: 'Provide your relative\'s full name',
         birthdate: 'Provide your relative\'s date of birth',
         birthplace: 'Provide your relative\'s place of birth',
         citizenship: 'Provide your relative\'s country(ies) of citizenship',
@@ -3776,10 +4192,14 @@ const en = {
   psychological: {
     heading: {
       intro: 'Why we are asking',
-      competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?'
+      competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
+      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)'
     },
     destination: {
-      competence: 'Competence'
+      intro: 'Introduction',
+      competence: 'Competence',
+      consultation: 'Consultations'
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -3789,6 +4209,61 @@ const en = {
 
     },
     competence: {
+      heading: {
+        occurred: 'Provide the date this occurred',
+        courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
+        courtAddress: 'Provide the address of the court or administrative agency',
+        disposition: 'Provide the final disposition',
+        appealCourtName: 'Provide the name of the higher court or administrative agency',
+        appealCourtAddress: 'Provide the address of the court or administrative agency',
+        appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        needMore: 'Since you answered yes, we need more information'
+      },
+      label: {
+        courtAddress: 'This address is',
+        disposition: 'Provide the final disposition'
+      },
+      help: {
+        occurred: {
+          title: 'Need help the date occurred?',
+          message: 'The date issued',
+          note: ''
+        },
+        courtName: {
+          title: 'Need help with the court name?',
+          message: 'The court that declared you incompetent',
+          note: ''
+        },
+        courtAddress: {
+          title: 'Need help with the court address?',
+          message: 'The court address',
+          note: ''
+        },
+        disposition: {
+          title: 'Need help with the disposition?',
+          message: 'Enter the disposition for this order',
+          note: ''
+        },
+        appealed: {
+          title: 'Need help with whether this matter was appealed?',
+          message: 'Was this matter appealed to a higher court or administrative agency?',
+          note: ''
+        },
+        incompetent: {
+          title: 'Need help with this question?',
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
+        }
+      },
+      collection: {
+        summaryCourtName: 'Click to provide details',
+        description: 'description',
+        appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
+        appendMessage: 'If yes, use the button below to add another instance',
+        appendLabel: 'Add another order',
+        itemType: 'Order:'
+      }
+    },
+    consultation: {
       heading: {
         occurred: 'Provide the date this occurred',
         courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
@@ -3816,18 +4291,22 @@ const en = {
         },
         courtAddress: {
           title: 'Need help with the court address?',
-          message: 'The court addres ',
+          message: 'The court address',
           note: ''
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: '',
+          message: 'Enter the disposition for this order',
           note: ''
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
-          message: '',
+          message: 'Was this matter appealed to a higher court or administrative agency?',
           note: ''
+        },
+        incompetent: {
+          title: 'Need help with this question?',
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
         }
       },
       collection: {
