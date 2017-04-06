@@ -12,6 +12,7 @@ import Bankruptcy from './Bankruptcy'
 import Taxes from './Taxes'
 import Card from './Card'
 import Credit from './Credit'
+import Deliquent from './Deliquent'
 import Nonpayment from './Nonpayment'
 
 class Financial extends ValidationElement {
@@ -225,6 +226,25 @@ class Financial extends ValidationElement {
                     />
           </SectionView>
 
+          <SectionView name="deliquent"
+                       back="financial/credit"
+                       backLabel={i18n.t('financial.destination.credit')}
+                       next="financial/nonpayment"
+                       nextLabel={i18n.t('financial.destination.nonpayment')}>
+            <h2>{i18n.t('financial.deliquent.title')}</h2>
+            <ul>
+              <li>{i18n.m('financial.deliquent.para.alimony')}</li>
+              <li>{i18n.m('financial.deliquent.para.judgement')}</li>
+              <li>{i18n.m('financial.deliquent.para.lien')}</li>
+              <li>{i18n.m('financial.deliquent.para.federal')}</li>
+            </ul>
+            <Deliquent name="deliquent"
+                       {...this.props.Deliquent}
+                       onUpdate={this.onUpdate.bind(this, 'Deliquent')}
+                       onValidate={this.onValidate.bind(this)}
+                       />
+          </SectionView>
+
           <SectionView name="nonpayment"
                        back="financial/deliquent"
                        backLabel={i18n.t('financial.destination.deliquent')}
@@ -232,10 +252,14 @@ class Financial extends ValidationElement {
                        nextLabel={i18n.t('financial.destination.review')}>
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
             <ul>
-              <li>{i18n.m('financial.nonpayment.para.alimony')}</li>
-              <li>{i18n.m('financial.nonpayment.para.judgement')}</li>
-              <li>{i18n.m('financial.nonpayment.para.lien')}</li>
-              <li>{i18n.m('financial.nonpayment.para.federal')}</li>
+              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
+              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
+              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
+              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
+              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
+              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
+              <li>{i18n.m('financial.nonpayment.para.deliquent')}</li>
+              <li>{i18n.m('financial.nonpayment.para.any')}</li>
             </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
@@ -263,6 +287,7 @@ function mapStateToProps (state) {
     Taxes: financial.Taxes || {},
     Card: financial.Card || {},
     Credit: financial.Credit || {},
+    Deliquent: financial.Deliquent || {},
     Nonpayment: financial.Nonpayment || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []

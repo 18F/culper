@@ -53,8 +53,6 @@ describe('The nonpayment component', () => {
     component.find('.nonpayment-resolved .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.nonpayment-resolved .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.nonpayment-resolved .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.nonpayment-courtname input').simulate('change', { target: { value: '123 Some Rd' } })
-    component.find('.nonpayment-courtaddress .mailing input').simulate('change', { target: { value: '123 Some Rd' } })
     component.find('.nonpayment-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBeGreaterThan(11)
   })

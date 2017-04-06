@@ -1168,7 +1168,7 @@ const en = {
         append: 'Add another credit counseling entry'
       }
     },
-    nonpayment: {
+    deliquent: {
       title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
       para: {
         alimony: '**In the last seven (7) years,** you have been deliquent on alimony or child support payments.',
@@ -1189,6 +1189,116 @@ const en = {
         resolved: 'Provide the date the financial issue was resolved',
         courtname: 'Provide the name of the court involved',
         courtaddress: 'Provide the address of the court involved',
+        description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any provide explanation.'
+      },
+      label: {
+        notresolved: 'Not resolved',
+        estimated: 'Estimated'
+      },
+      placeholder: {
+        amount: '10000'
+      },
+      help: {
+        branch: {
+          title: 'Need help with deliquent payments?',
+          message: 'If you have had in of the listed items happen to you then select "Yes"',
+          note: ''
+        },
+        name: {
+          title: 'Need help with the name of the agency, organization, or individual?',
+          message: 'Provide the name of the agency, organization, or individual',
+          note: ''
+        },
+        infractions: {
+          title: 'Need help with types of financial issues?',
+          message: 'Select all of the financial issues which applies to this issue',
+          note: ''
+        },
+        accountnumber: {
+          title: 'Need help with the associated loan or account number(s)?',
+          message: 'Provide the associated loan or account number(s)',
+          note: ''
+        },
+        propertytype: {
+          title: 'Need help with the type of property?',
+          message: 'Provide a description of the type of property involved, if any',
+          note: ''
+        },
+        amount: {
+          title: 'Need help with the financial issue amount?',
+          message: 'Provide the approximate amount of the financial issue',
+          note: ''
+        },
+        reason: {
+          title: 'Need help with the reason(s) for the financial issue?',
+          message: 'Provide the reason(s) for the financial issue',
+          note: ''
+        },
+        status: {
+          title: 'Need help with the current status?',
+          message: 'Provide a description of the current status of the financial issue',
+          note: ''
+        },
+        date: {
+          title: 'Need help with the beginning date?',
+          message: 'Provide the approximate date the financial issue began',
+          note: ''
+        },
+        resolved: {
+          title: 'Need help with the resolved date?',
+          message: 'Provide the approximate date, if available, the financial issue was resolved',
+          note: ''
+        },
+        courtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court involved',
+          note: ''
+        },
+        courtaddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court involved',
+          note: ''
+        },
+        description: {
+          title: 'Need help providing a description?',
+          message: 'Provide a description or explanation taken concerning this issue',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of deliquent payment issues',
+          unknown: 'Provide your deliquent payment details below',
+          item: 'Service'
+        },
+        appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
+        appendMessage: 'If yes use the button below to add another payment issue',
+        append: 'Add another payment issue'
+      }
+    },
+    nonpayment: {
+      title: 'Other than previously listed, have any of the following happened?',
+      para: {
+        repo: '**In the last seven (7) years,** you had any possessions or property voluntarily or involuntarily repossessed or foreclosed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        defaulted: '**In the last seven (7) years,** you defaulted on any type of loan? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        collections: '**In the last seven (7) years,** you had bills or debts turned over to a collection agency? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        cancelled: '**In the last seven (7) years,** you had any account or credit card suspended, charged off, or cancelled for failing to pay as agreed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        evicted: '**In the last seven (7) years,** you were evicted for non-payment?',
+        garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
+        deliquent: '**In the last seven (7) years,** you have been over 120 days deliquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        any: 'You are currently over 120 days deliquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        or: 'Or'
+      },
+      heading: {
+        name: 'Provide the name of agency/organization/individual to which debt is/was owed',
+        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        accountnumber: 'Provide the associated loan / account number(s) involved',
+        propertytype: 'Identify/describe the type of property involved (if any)',
+        amount: 'Provide the amount (in U.S. dollars) of the financial issue',
+        reason: 'Provide the reason(s) for the financial issue',
+        status: 'Provide the current status of the financial issue',
+        date: 'Provide the date the financial issue began',
+        resolved: 'Provide the date the financial issue was resolved',
         description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any provide explanation.'
       },
       label: {
@@ -1247,16 +1357,6 @@ const en = {
         resolved: {
           title: 'Need help with the resolved date?',
           message: 'Provide the approximate date, if available, the financial issue was resolved',
-          note: ''
-        },
-        courtname: {
-          title: 'Need help with the court name?',
-          message: 'Provide the name of the court involved',
-          note: ''
-        },
-        courtaddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court involved',
           note: ''
         },
         description: {
