@@ -10,6 +10,7 @@ import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
+import ExistingConditions from './ExistingConditions/ExistingConditions'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -132,7 +133,10 @@ class Psychological extends ValidationElement {
             backLabel={ i18n.t('psychological.destination.diagnoses') }
             next="psychological/review"
             nextLabel={ i18n.t('psychological.destination.review') }>
-
+            <ExistingConditions name="ExistingCondition"
+              {...this.props.ExistingConditions}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+            />
           </SectionView>
 
         </SectionViews>
@@ -154,7 +158,7 @@ function mapStateToProps (state) {
     Consultations: psychological.Consultation,
     Hospitalizations: psychological.Hospitalization,
     Diagnoses: psychological.Diagnoses,
-    existingConditions: psychological.ExistingConditions,
+    ExistingConditions: psychological.ExistingConditions,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
