@@ -9,6 +9,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
+import Diagnoses from './Diagnoses/Diagnoses'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -79,7 +80,7 @@ class Psychological extends ValidationElement {
           <SectionView name="intro"
             back=""
             next="psychological/competence"
-            nextLabel={ i18n.m('psychological.destination.consultation') }>
+            nextLabel={ i18n.m('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para1') }
@@ -110,11 +111,21 @@ class Psychological extends ValidationElement {
           <SectionView name="hospitalizations"
             back="psychological/consultations"
             backLabel={ i18n.t('psychological.destination.consultation') }
-            next=""
-            nextLabel={ i18n.t('psychological.destination.tbd') }>
+            next="psychological/diagnoses"
+            nextLabel={ i18n.t('psychological.destination.diagnoses') }>
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
+          </SectionView>
+          <SectionView name="diagnoses"
+            back="psychological/hospitalizations"
+            backLabel={ i18n.t('psychological.destination.hospitalization') }
+            next="psychological/existing"
+            nextLabel={ i18n.t('psychological.destination.existingConditions') }>
+            <Diagnoses name="Diagnoses"
+              {...this.props.Diagnoses}
+              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
+            />
           </SectionView>
         </SectionViews>
       </div>
@@ -134,6 +145,7 @@ function mapStateToProps (state) {
     Competence: psychological.Competence,
     Consultations: psychological.Consultation,
     Hospitalizations: psychological.Hospitalization,
+    Diagnoses: psychological.Diagnoses,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
