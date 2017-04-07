@@ -1,0 +1,174 @@
+@import 'eqip-colors';
+@import 'eqip-fonts';
+
+.field {
+  display: table;
+  border-left: 0.75rem solid #fff;
+  margin-left: -1.75rem;
+  padding-left: 1rem;
+
+  &.with-comments {
+    border-left: 0.75rem solid $eapp-grey-light;
+    padding-left: 1rem;
+  }
+
+  > .title {
+    display: table-caption;
+  }
+
+  > .content {
+    display: table-row;
+
+    > .component {
+      display: table-cell;
+      width: 93.43%;
+      max-width: 64rem;
+
+      label {
+        display: block;
+        position: initial;
+        color: $eapp-grey-dark;
+
+        > input[type='radio'] {
+          max-width: 0;
+        }
+      }
+
+      > .comments-button {
+        display: block;
+
+        i {
+          margin-left: 1rem;
+        }
+
+        &.add,
+        &.add:link,
+        &.add:visited,
+        &.add:hover,
+        &.add:active {
+          color: $eapp-blue;
+          text-decoration: none;
+
+          span {
+            border-bottom: 1px $eapp-blue dashed;
+          }
+        }
+
+        &.remove,
+        &.remove:link,
+        &.remove:visited,
+        &.remove:hover,
+        &.remove:active {
+          color: $eapp-red;
+          text-decoration: none;
+
+          span {
+            border-bottom: 1px $eapp-red dashed;
+          }
+        }
+      }
+    }
+
+    > .icon {
+      display: table-cell;
+      vertical-align: top;
+
+      > .toggle {
+        display: inline-block;
+        margin-left: 0.8rem;
+        margin-top: 2.8rem;
+
+        svg {
+          display: inline-block;
+          height: 3.7rem;
+          vertical-align: middle;
+
+          .eapp-help-icon,
+          .eapp-help-circle {
+            transition: fill 0.3s;
+          }
+
+          .eapp-help-icon {
+            fill: $eapp-blue-light;
+          }
+
+          .eapp-help-circle {
+            fill: $eapp-blue-lightest;
+          }
+        }
+
+        &:hover,
+        &.active {
+          svg {
+            .eapp-help-icon {
+              fill: $eapp-blue-lightest;
+            }
+
+            .eapp-help-circle {
+              fill: $eapp-blue-light;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > .messages {
+    display: table-row;
+
+    > .message {
+      max-width: 64rem;
+      margin: 1.3rem 0;
+      padding: 2rem 3rem 1.3rem 3rem;
+      background: $eapp-blue-lightest;
+      border: 2px solid $eapp-blue-lighter;
+      border-radius: 6px;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 0;
+        font-family: $eapp-sans;
+        font-size: 13pt;
+        padding: 0;
+      }
+
+      > i {
+        display: block;
+        position: relative;
+        top: -2.9rem;
+        left: -3.9rem;
+        height: 1.6rem;
+        width: 1.6rem;
+        color: #fff;
+        font-size: 1.3rem;
+        line-height: 1.6rem;
+        text-align: center;
+        background: $eapp-blue-light;
+        border-radius: 50%;
+      }
+
+      .close {
+        display: block;
+        margin-top: 1rem;
+      }
+
+      &.error {
+        background: $eapp-red-lightest;
+        border-color: $eapp-red-light;
+
+        > i {
+          background-color: $eapp-red;
+        }
+      }
+    }
+  }
+
+  // Kill global styles when transition is complete!!!
+  label, input, textarea, select {
+    max-width: none !important;
+  }
+}

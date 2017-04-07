@@ -191,12 +191,11 @@
       box-shadow: none;
       background: url('../img/checkmark.svg') no-repeat right 0.7rem center / 1.7rem auto;
       border-width: 2px;
-      width: calc(100% * 1);
+      width: 100%;
     }
   }
 
   .eapp-field-wrap {
-    /* position: relative; */
     margin-bottom: 4.9rem;
     padding: 0 17.5%;
 
@@ -229,166 +228,163 @@
         max-width: none;
       }
     }
+  }
 
-    /* handle option list blocks, basic structure */
-    .option-list {
-      display: inline-block;
-      padding-top: 0.3rem;
+  /* handle option list blocks, basic structure */
+  .option-list {
+    display: inline-block;
+    padding-top: 0.3rem;
+  }
 
-      // NOTE: Commented this out b/c it was affecting every usage of option-list (branches, general buttons, etc.)
-      // max-width: 64rem;
-      // width: 92%;
+  .option-list.branch {
+    label {
+      width: 15rem;
     }
+  }
 
-    .option-list.branch {
-      label {
-        width: 15rem;
+  /* handle block style radio and checkboxes */
+  .eapp-blocks-radio, .eapp-blocks-checkbox {
+    display: inline-block;
+
+    label {
+      display: block;
+      position: relative;
+      top: 0;
+      min-width: 7.7rem;
+      margin-bottom: 1.2rem;
+      margin-right: 1.6rem;
+      margin-top: 0;
+      text-align: center;
+      background: $eapp-grey-light;
+      border: 1px solid $eapp-grey-dark;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      line-height: 4.6rem;
+
+      input {
+        position: absolute;
       }
     }
 
-    /* handle block style radio and checkboxes */
+    label.usa-input-focus {
+      box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
+    }
+
+    label.checked, label:hover {
+      color: #fff;
+      border: 1px solid $eapp-green;
+      background: $eapp-green;
+    }
+
+    label.checked.usa-input-focus,
+    label.checked:focus,
+    input [type='checkbox'].usa-input-focus,
+    input [type='checkbox']:focus {
+      box-shadow: none;
+    }
+
+    svg path {
+      fill: $eapp-grey-darker;
+    }
+  }
+
+  /* handle block style radio and checkboxes that are NOT toggles */
+  .eapp-blocks-radio, .eapp-blocks-checkbox {
+    label.no-toggle {
+      display: block;
+      margin-bottom: 1.2rem;
+      margin-right: 1.6rem;
+      text-align: center;
+      background: transparent;
+      border: none;
+    }
+
+    label.no-toggle.checked, label.no-toggle:hover {
+      color: initial;
+      border: none;
+      background: transparent;
+    }
+  }
+
+  .eapp-extend-labels {
     .eapp-blocks-radio, .eapp-blocks-checkbox {
-      display: inline-block;
+      min-width: 12rem;
+      line-height: 1;
+
+      i {
+        display: none;
+      }
 
       label {
-        display: block;
         position: relative;
-        top: 0;
-        min-width: 7.7rem;
-        margin-bottom: 1.2rem;
-        margin-right: 1.6rem;
-        margin-top: 0;
-        text-align: center;
-        background: $eapp-grey-light;
-        border: 1px solid $eapp-grey-dark;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-
-        input {
-          position: absolute;
-        }
-      }
-
-      label.usa-input-focus {
-        box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
-      }
-
-      label.checked, label:hover {
-        color: #fff;
-        border: 1px solid $eapp-green;
-        background: $eapp-green;
-      }
-
-      label.checked.usa-input-focus,
-      label.checked:focus,
-      input [type='checkbox'].usa-input-focus,
-      input [type='checkbox']:focus {
-        box-shadow: none;
-      }
-
-      svg path {
-        fill: $eapp-grey-darker;
-      }
-    }
-
-    /* handle block style radio and checkboxes that are NOT toggles */
-    .eapp-blocks-radio, .eapp-blocks-checkbox {
-      label.no-toggle {
-        display: block;
-        margin-bottom: 1.2rem;
-        margin-right: 1.6rem;
-        text-align: center;
-        background: transparent;
-        border: none;
-      }
-
-      label.no-toggle.checked, label.no-toggle:hover {
-        color: initial;
-        border: none;
-        background: transparent;
-      }
-    }
-
-    .eapp-extend-labels {
-      .eapp-blocks-radio, .eapp-blocks-checkbox {
+        margin-bottom: 3.3rem;
+        height: 7.6rem;
         min-width: 12rem;
-        line-height: 1;
+        cursor: pointer;
 
-        i {
-          display: none;
+        input[type='checkbox'], input[type='radio'] {
+          height: 1px;
+          width: 1px;
         }
 
-        label {
-          position: relative;
-          margin-bottom: 3.3rem;
-          height: 7.6rem;
-          min-width: 12rem;
-          cursor: pointer;
+        span {
+          display: block;
+          position: absolute;
+          top: 8rem;
+          left: 0;
+          width: 100%;
+          line-height: 1.1;
+          font-size: 1.7rem;
+          color: $eapp-grey-dark;
+        }
 
-          input[type='checkbox'], input[type='radio'] {
-            height: 1px;
-            width: 1px;
-          }
+        .hair-icon,
+        .eye-icon,
+        .sex-icon,
+        .relationship-icon,
+        .military-service-icon {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          transition: all 0.3s;
+          border-radius: 0;
 
-          span {
-            display: block;
+          svg, img {
             position: absolute;
-            top: 8rem;
-            left: 0;
-            width: 100%;
-            line-height: 1.1;
-            font-size: 1.7rem;
-            color: $eapp-grey-dark;
-          }
-
-          .hair-icon,
-          .eye-icon,
-          .sex-icon,
-          .relationship-icon,
-          .military-service-icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            transition: all 0.3s;
-            border-radius: 0;
-
-            svg, img {
-              position: absolute;
-              top: 1.4rem;
-              left: 50%;
-              height: 4.6rem;
-              width: 4.6rem;
-              margin-left: -2.3rem;
-              transition: all 0.3s;
-            }
-          }
-
-          &:hover .hair-icon,
-          &.checked .hair-icon,
-          &:hover .eye-icon,
-          &.checked .eye-icon,
-          &:hover .sex-icon,
-          &.checked .sex-icon,
-          &:hover .relationship-icon,
-          &.checked .relationship-icon,
-          &:hover .military-service-icon,
-          &.checked .military-service-icon {
-            border-radius: 50%;
             top: 1.4rem;
             left: 50%;
-            width: 4.6rem;
             height: 4.6rem;
-            background-color: #f7f7f7;
+            width: 4.6rem;
             margin-left: -2.3rem;
+            transition: all 0.3s;
+          }
+        }
 
-            svg, img {
-              top: 0.8rem;
-              height: 3rem;
-              width: 3rem;
-              margin-left: -1.5rem;
-            }
+        &:hover .hair-icon,
+        &.checked .hair-icon,
+        &:hover .eye-icon,
+        &.checked .eye-icon,
+        &:hover .sex-icon,
+        &.checked .sex-icon,
+        &:hover .relationship-icon,
+        &.checked .relationship-icon,
+        &:hover .military-service-icon,
+        &.checked .military-service-icon {
+          border-radius: 50%;
+          top: 1.4rem;
+          left: 50%;
+          width: 4.6rem;
+          height: 4.6rem;
+          background-color: #f7f7f7;
+          margin-left: -2.3rem;
+
+          svg, img {
+            top: 0.8rem;
+            height: 3rem;
+            width: 3rem;
+            margin-left: -1.5rem;
           }
         }
       }
