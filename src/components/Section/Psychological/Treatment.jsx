@@ -37,8 +37,8 @@ export default class Treatment extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="treatment">
+        <h3>{i18n.t(`psychological.${prefix}.heading.name`)}</h3>
         <div className="eapp-field-wrap no-label">
-          <h3>{i18n.t(`psychological.${prefix}.heading.name`)}</h3>
           <Help id={`psychological.${prefix}.help.name`}>
             <Text name="Name"
               className="name"
@@ -58,8 +58,8 @@ export default class Treatment extends ValidationElement {
           />
         </div>
 
+        <h3>{i18n.t(`psychological.${prefix}.heading.address`)}</h3>
         <div className="eapp-field-wrap">
-          <h3>{i18n.t(`psychological.${prefix}.heading.address`)}</h3>
           <Help id={`psychological.${prefix}.help.address`}>
             <Address name="Address"
               {...this.props.Address}
