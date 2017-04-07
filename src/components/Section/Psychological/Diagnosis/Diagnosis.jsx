@@ -60,7 +60,7 @@ export default class Diagnosis extends ValidationElement {
         <h3>{i18n.t(`psychological.diagnosis.heading.condition`)}</h3>
         <div className="eapp-field-wrap no-label">
           <Help id={`psychological.diagnosis.help.condition`}>
-            <Text name="Facility"
+            <Text name="Condition"
               className="condition"
               {...this.props.Condition}
               onUpdate={this.updateCondition}
