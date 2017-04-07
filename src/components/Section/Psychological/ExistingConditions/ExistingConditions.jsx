@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
-import Treatment from '../Treatment'
+import { Accordion, ValidationElement, Branch, Show, RadioGroup, Radio } from '../../../Form'
+import Diagnosis from '../Diagnoses/Diagnosis'
 
 export default class ExistingConditions extends ValidationElement {
   constructor (props) {
@@ -39,8 +39,9 @@ export default class ExistingConditions extends ValidationElement {
     this.update('HasCondition', values)
   }
 
-  updateReceivedTreatment (values) {
-    this.update('ReceivedTreatment', values)
+  updateReceivedTreatment (checkbox) {
+    console.log(checkbox)
+    this.update('ReceivedTreatment', checkbox.value)
   }
 
   updateTreatmentList (values) {
@@ -97,13 +98,33 @@ export default class ExistingConditions extends ValidationElement {
         </Branch>
 
         <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
-        {i18n.m('psychological.para.receivedTreatment')}
-        <Branch name="hascondition"
-          className="eapp-field-wrap no-label hascondition"
-          value={this.state.HasCondition}
-          help="psychological.existingConditions.help.hasCondition"
-          onUpdate={this.updateHasCondition}>
-        </Branch>
+        {i18n.m('psychological.existingConditions.para.receivedTreatment')}
+
+        <div className="eapp-field-wrap">
+          <RadioGroup selectedValue={this.state.ReceivedTreatment}>
+            <Radio name="numbertype-cell"
+              className="phonetype-option cell"
+              label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
+              value="Yes"
+              onUpdate={this.updateReceivedTreatment}
+              onValidate={this.handleValidation}
+            />
+            <Radio name="numbertype-home"
+              className="phonetype-option home"
+              label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
+              value="No"
+              onUpdate={this.updateReceivedTreatment}
+              onValidate={this.handleValidation}
+            />
+            <Radio name="numbertype-work"
+              className="phonetype-option work"
+              label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
+              value="Decline"
+              onUpdate={this.updateReceivedTreatment}
+              onValidate={this.handleValidation}
+            />
+          </RadioGroup>
+        </div>
 
         <Show when={this.state.ReceivedTreatment === 'Yes'}>
           <Accordion minimum="1"
@@ -114,8 +135,8 @@ export default class ExistingConditions extends ValidationElement {
             appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
             appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
             appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
-            <Treatment name="Treatment"
-              prefix="existingConditions"
+            <Diagnosis name="Diagnosis"
+              prefix="existingConditions.diagnosis"
               bind={true} />
           </Accordion>
         </Show>
