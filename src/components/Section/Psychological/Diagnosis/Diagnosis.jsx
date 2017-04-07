@@ -13,6 +13,7 @@ export default class Diagnosis extends ValidationElement {
     this.updateTreatment = this.updateTreatment.bind(this)
     this.updateEffective = this.updateEffective.bind(this)
     this.updateTreatmentFacility = this.updateTreatmentFacility.bind(this)
+    this.updateExplanation = this.updateExplanation.bind(this)
   }
 
   update (field, values) {
@@ -23,6 +24,7 @@ export default class Diagnosis extends ValidationElement {
         Treatment: this.props.Treatment,
         TreatmentFacility: this.props.TreatmentFacility,
         Effective: this.props.Effective,
+        Explanation: this.props.Explanation,
         [field]: values
       })
     }
@@ -40,19 +42,21 @@ export default class Diagnosis extends ValidationElement {
     this.update('Treatment', values)
   }
 
-
   updateTreatmentFacility (values) {
     this.update('TreatmentFacility', values)
   }
 
-  updateEffective (values) {
-    this.update('Effective', values)
+  updateEffective (radio) {
+    this.update('Effective', radio.value)
+  }
+
+  updateExplanation (values) {
+    this.update('Explanation', values)
   }
 
   render () {
     return (
       <div className="diagnosis">
-
         <h3>{i18n.t(`psychological.diagnosis.heading.condition`)}</h3>
         <div className="eapp-field-wrap no-label">
           <Help id={`psychological.diagnosis.help.condition`}>
@@ -101,26 +105,40 @@ export default class Diagnosis extends ValidationElement {
 
         <h3>{i18n.t(`psychological.diagnosis.heading.effective`)}</h3>
         <div className="eapp-field-wrap">
-          <RadioGroup className="effective" name="effective" selectedValue={this.props.Effective}>
-            <Radio
-              className="yes"
-              label="Yes"
-              value="Yes"
-              onUpdate={this.updateEffective}>
-            </Radio>
-            <Radio
-              className="no"
-              label="No"
-              value="No"
-              onUpdate={this.updateEffective}>
-            </Radio>
-          </RadioGroup>
+          <Help id={`psychological.diagnosis.help.effective`}>
+            <RadioGroup className="effective" selectedValue={this.props.Effective}>
+              <Radio name="effective"
+                label="Yes"
+                value="Yes"
+                onUpdate={this.updateEffective}>
+              </Radio>
+              <Radio name="effective"
+                label="No"
+                value="No"
+                onUpdate={this.updateEffective}>
+              </Radio>
+            </RadioGroup>
+          </Help>
         </div>
 
+        <Show when={this.props.Effective === 'No'}>
+          <div>
+            <h3>{i18n.t(`psychological.diagnosis.heading.explanation`)}</h3>
+            <div className="eapp-field-wrap">
+              <Help id={`psychological.diagnosis.help.explanation`}>
+                <Textarea name="Explanation"
+                  className="explanation"
+                  {...this.props.Explanation}
+                  onUpdate={this.updateExplanation}
+                  onValidate={this.props.onValidate}
+                />
+              </Help>
+            </div>
+          </div>
+        </Show>
       </div>
     )
   }
 }
 
-Diagnosis.defaultProps = {
-}
+Diagnosis.defaultProps = {}

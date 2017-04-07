@@ -4345,7 +4345,8 @@ const en = {
         diagnosed: 'Provide the dates of diagnosis',
         healthcareProfessional: 'Health care professional info',
         effective: 'Was the counseling/treatment effective in managing your symptoms?',
-        facility: 'Agency/organization/facility'
+        facility: 'Agency/organization/facility',
+        explanation: 'Provide explanation'
       },
       person: {
         heading: {

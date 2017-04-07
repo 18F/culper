@@ -16,7 +16,15 @@ describe('The Diagnosis component', () => {
     component.find('.datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
     component.find('.person .treatment input[name="Name"]').simulate('change')
     component.find('.facility .treatment input[name="Name"]').simulate('change')
-    component.find('.effective .yes input').simulate('click')
+    component.find({ type: 'radio', name: 'effective', value: 'No' }).simulate('click')
     expect(updates).toBe(5)
+  })
+
+  it('Performs updates and shows explanation', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const component = mount(<Diagnosis onUpdate={onUpdate} Effective={'No'} />)
+    component.find('textarea').simulate('change')
+    expect(updates).toBe(1)
   })
 })

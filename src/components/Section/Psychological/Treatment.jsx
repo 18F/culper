@@ -50,15 +50,12 @@ export default class Treatment extends ValidationElement {
           </Help>
         </div>
 
-        <div className="eapp-field-wrap">
-          <Help id={`${prefix}reference.help.phone`}>
-            <Telephone name="Phone"
-              {...this.props.Phone}
-              onUpdate={this.updatePhone}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
+        <div className="eapp-field-wrap help">
+          <Telephone name="Phone"
+            {...this.props.Phone}
+            onUpdate={this.updatePhone}
+            onValidate={this.props.onValidate}
+          />
         </div>
 
         <div className="eapp-field-wrap">
