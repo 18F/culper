@@ -127,6 +127,14 @@ class Psychological extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
           </SectionView>
+          <SectionView name="conditions"
+            back="psychological/diagnoses"
+            backLabel={ i18n.t('psychological.destination.diagnoses') }
+            next="psychological/review"
+            nextLabel={ i18n.t('psychological.destination.review') }>
+
+          </SectionView>
+
         </SectionViews>
       </div>
     )
@@ -146,6 +154,7 @@ function mapStateToProps (state) {
     Consultations: psychological.Consultation,
     Hospitalizations: psychological.Hospitalization,
     Diagnoses: psychological.Diagnoses,
+    existingConditions: psychological.ExistingConditions,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
