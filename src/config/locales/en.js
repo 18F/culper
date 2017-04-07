@@ -4357,7 +4357,9 @@ const en = {
           address: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
         },
         label: {
-          address: 'This address is'
+          address: 'This address is',
+          name: 'Name',
+          phone: 'Telephone'
         }
       },
       facility: {
@@ -4389,7 +4391,9 @@ const en = {
           address: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
         },
         label: {
-          address: 'This address is'
+          address: 'This address is',
+          name: 'Name',
+          phone: 'Telephone'
         }
       },
       treatment: {

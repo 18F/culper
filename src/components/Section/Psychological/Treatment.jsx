@@ -38,9 +38,10 @@ export default class Treatment extends ValidationElement {
     return (
       <div className="treatment">
         <h3>{i18n.t(`psychological.${prefix}.heading.name`)}</h3>
-        <div className="eapp-field-wrap no-label">
+        <div className="eapp-field-wrap">
           <Help id={`psychological.${prefix}.help.name`}>
             <Text name="Name"
+              label={i18n.t(`psychological.${prefix}.label.name`)}
               className="name"
               {...this.props.Name}
               onUpdate={this.updateName}
@@ -52,6 +53,7 @@ export default class Treatment extends ValidationElement {
 
         <div className="eapp-field-wrap help">
           <Telephone name="Phone"
+            label={i18n.t(`psychological.${prefix}.label.phone`)}
             {...this.props.Phone}
             onUpdate={this.updatePhone}
             onValidate={this.props.onValidate}
