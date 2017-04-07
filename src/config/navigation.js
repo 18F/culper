@@ -120,7 +120,7 @@ const navigation = [
       { name: 'Competence', url: 'competence' },
       { name: 'Consultations', url: 'consultations' },
       { name: 'Hospitalizations', url: 'hospitalizations' },
-      { name: 'Diagnosed', url: 'diagnosed' },
+      { name: 'Diagnoses', url: 'diagnoses' },
       { name: 'Existing Conditions', url: 'existingconditions' }
     ]
   }

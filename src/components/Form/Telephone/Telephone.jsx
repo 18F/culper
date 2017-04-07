@@ -404,6 +404,9 @@ export default class Telephone extends ValidationElement {
   render () {
     return (
       <div className="telephone">
+        <Show when={this.props.label}>
+          <label>{this.props.label}</label>
+        </Show>
         <div className="type">
           Switch to:
           <Show when={this.state.type !== 'Domestic'}>

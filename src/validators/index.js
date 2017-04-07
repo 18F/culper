@@ -27,6 +27,7 @@ import CreditValidator from './credit'
 import HospitalizationsValidator from './hospitalization'
 import NonpaymentValidator from './nonpayment'
 import DeliquentValidator from './deliquent'
+import DiagnosesValidator from './diagnoses'
 
 export {
   AddressValidator,
@@ -60,5 +61,6 @@ export {
   CreditValidator,
   HospitalizationsValidator,
   NonpaymentValidator,
-  DeliquentValidator
+  DeliquentValidator,
+  DiagnosesValidator
 }
