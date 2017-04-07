@@ -4201,7 +4201,9 @@ const en = {
       intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',
-      hospitalization: 'Hospitalizations'
+      hospitalization: 'Hospitalizations',
+      diagnoses: 'Diagnoses',
+      existingConditions: 'Existing conditions'
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -4380,6 +4382,15 @@ const en = {
         appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
         itemType: 'Diagnosis:'
+      },
+      professional: {
+        heading: {
+          name: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
+          address: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+        },
+        label: {
+          address: 'This address is'
+        }
       },
       treatment: {
         collection: {

@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
-//import { DiagnosesValidator } from '../../../../validators'
+import { DiagnosesValidator } from '../../../../validators'
 
 export default class Diagnoses extends ValidationElement {
   constructor (props) {
@@ -13,7 +13,7 @@ export default class Diagnoses extends ValidationElement {
       Diagnosed: props.Diagnosed,
       DidNotConsult: props.DidNotConsult,
       InTreatment: props.InTreatment,
-      List: props.List,
+      DiagnosisList: props.DiagnosisList,
       TreatmentList: props.TreatmentList,
       errorCodes: []
     }
@@ -22,7 +22,7 @@ export default class Diagnoses extends ValidationElement {
     this.updateDiagnosed = this.updateDiagnosed.bind(this)
     this.updateDidNotConsult = this.updateDidNotConsult.bind(this)
     this.updateInTreatment = this.updateInTreatment.bind(this)
-    this.updateList = this.updateList.bind(this)
+    this.updateDiagnosisList = this.updateDiagnosisList.bind(this)
     this.updateTreatmentList = this.updateTreatmentList.bind(this)
   }
 
@@ -31,14 +31,17 @@ export default class Diagnoses extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Diagnosed: this.state.Diagnosed,
-          List: this.state.List
+          DidNotConsult: this.state.DidNotConsult,
+          InTreatment: this.state.InTreatment,
+          DiagnosisList: this.state.DiagnosisList,
+          TreatmentList: this.state.TreatmentList
         })
       }
     })
   }
 
-  updateList (values) {
-    this.update('List', values)
+  updateDiagnosisList (values) {
+    this.update('DiagnosisList', values)
   }
 
   updateTreatmentList (values) {
@@ -102,8 +105,7 @@ export default class Diagnoses extends ValidationElement {
   }
 
   isValid () {
-    return true
-    //return new DiagnosesValidator(this.state).isValid()
+    return new DiagnosesValidator(this.state).isValid()
   }
 
   render () {
@@ -120,8 +122,8 @@ export default class Diagnoses extends ValidationElement {
 
         <Show when={this.state.Diagnosed === 'Yes'}>
           <Accordion minimum="1"
-            items={this.state.List}
-            onUpdate={this.updateList}
+            items={this.state.DiagnosisList}
+            onUpdate={this.updateDiagnosisList}
             summary={this.summary}
             onValidate={this.handleValidation}
             appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
@@ -158,6 +160,7 @@ export default class Diagnoses extends ValidationElement {
             appendMessage={i18n.m('psychological.diagnoses.treatment.collection.appendMessage')}
             appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
             <Treatment name="Treatment"
+              prefix="diagnoses.professional"
               bind={true} />
           </Accordion>
         </Show>
@@ -168,5 +171,6 @@ export default class Diagnoses extends ValidationElement {
 
 Diagnoses.defaultProps = {
   List: [],
+  DiagnosisList: [],
   TreatmentList: []
 }

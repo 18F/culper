@@ -111,17 +111,17 @@ class Psychological extends ValidationElement {
           <SectionView name="hospitalizations"
             back="psychological/consultations"
             backLabel={ i18n.t('psychological.destination.consultation') }
-            next="psychological/diagnosis"
-            nextLabel={ i18n.t('psychological.destination.diagnosis') }>
+            next="psychological/diagnoses"
+            nextLabel={ i18n.t('psychological.destination.diagnoses') }>
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
-          <SectionView name="diagnosis"
+          <SectionView name="diagnoses"
             back="psychological/hospitalizations"
             backLabel={ i18n.t('psychological.destination.hospitalization') }
-            next=""
-            nextLabel={ i18n.t('psychological.destination.tbd') }>
+            next="psychological/existing"
+            nextLabel={ i18n.t('psychological.destination.existingConditions') }>
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}

@@ -15,8 +15,6 @@ describe('The Diagnoses component', () => {
     component.find('.diagnosed .yes input').simulate('change')
     component.find('.didnotconsult .yes input').simulate('change')
     component.find('.intreatment .yes input').simulate('change')
-    //expect(component.find('.hospitalization').length).toBe(1)
-    //component.find({type: 'radio', value: 'Voluntary'}).simulate('change')
     expect(updates).toBe(5)
   })
 })
