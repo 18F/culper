@@ -9,7 +9,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
-import Diagnosis from './Diagnosis/Diagnosis'
+import Diagnoses from './Diagnoses/Diagnoses'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -122,9 +122,9 @@ class Psychological extends ValidationElement {
             backLabel={ i18n.t('psychological.destination.hospitalization') }
             next=""
             nextLabel={ i18n.t('psychological.destination.tbd') }>
-            <Diagnosis name="Diagnosis"
-              {...this.props.Diagnosis}
-              onUpdate={this.onUpdate.bind(this, 'Diagnosis')}
+            <Diagnoses name="Diagnoses"
+              {...this.props.Diagnoses}
+              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
           </SectionView>
         </SectionViews>
@@ -145,7 +145,7 @@ function mapStateToProps (state) {
     Competence: psychological.Competence,
     Consultations: psychological.Consultation,
     Hospitalizations: psychological.Hospitalization,
-    Diagnosis: psychological.Diagnosis,
+    Diagnoses: psychological.Diagnoses,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }

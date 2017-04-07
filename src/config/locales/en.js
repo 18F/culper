@@ -4194,7 +4194,8 @@ const en = {
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
       consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
       consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
-      hospitalization: 'Have you EVER been hospitalized for a mental health condition?'
+      hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
+      diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, is not a reason to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
       intro: 'Introduction',
@@ -4364,6 +4365,29 @@ const en = {
         },
         label: {
           address: 'This address is'
+        }
+      }
+    },
+    diagnoses: {
+      heading: {
+        didNotConsult: 'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
+        para: 'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        inTreatment: 'Are you currently in treatment?'
+      },
+      collection: {
+        summary: 'Provide your diagnosis details below',
+        appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendLabel: 'Add another diagnosis',
+        itemType: 'Diagnosis:'
+      },
+      treatment: {
+        collection: {
+          summary: 'Provide your diagnosis details below',
+          appendTitle: 'Do you have an additional instance where you are currently in treatment?',
+          appendMessage: 'If yes, use the button below to add another treatment',
+          appendLabel: 'Add another treatment',
+          itemType: 'Treatment:'
         }
       }
     }
