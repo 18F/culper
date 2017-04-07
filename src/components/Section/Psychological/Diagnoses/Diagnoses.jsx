@@ -78,8 +78,8 @@ export default class Diagnoses extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
-    const treatmentDate = (o.TreatmentDate || {}).date ? `${o.TreatmentDate.month}/${o.Occurred.year}` : ''
-    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${treatmentDate}` : i18n.t('psychological.diagnoses.collection.summary')
+    const date = (o.Diagnosed || {}).from ? `${o.Diagnosed.from.month}/${o.Diagnosed.from.year}` : ''
+    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${date}` : i18n.t('psychological.diagnoses.collection.summary')
     const type = i18n.t('psychological.diagnoses.collection.itemType')
 
     return (
@@ -92,14 +92,13 @@ export default class Diagnoses extends ValidationElement {
 
   treatmentSummary (item, index) {
     const o = (item || {}).Treatment || {}
-    const treatmentDate = (o.TreatmentDate || {}).date ? `${o.TreatmentDate.month}/${o.Occurred.year}` : ''
-    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${treatmentDate}` : i18n.t('psychological.diagnoses.collection.summary')
-    const type = i18n.t('psychological.diagnoses.collection.itemType')
+    const name = (o.Name || {}).value ? `${o.Name.value}` : i18n.t('psychological.diagnoses.treatment.collection.summary')
+    const type = i18n.t('psychological.diagnoses.treatment.collection.itemType')
 
     return (
       <span>
         <span className="index">{type}</span>
-        <span className="info"><strong>{facility}</strong></span>
+        <span className="info"><strong>{name}</strong></span>
       </span>
     )
   }
