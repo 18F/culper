@@ -287,7 +287,7 @@ export default class ApplicantSSN extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Field help="identification.ssn.help" >
+        <Field help="identification.ssn.help">
           <Text name="first"
                 ref="first"
                 className="first eapp-short-input"
