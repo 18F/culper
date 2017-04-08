@@ -1,11 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Text, Checkbox } from '../../../Form'
 import { api } from '../../../../services/api'
+import { ValidationElement, Field, Text, Checkbox } from '../../../Form'
 
 export default class ApplicantSSN extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       value: props.value,
       first: this.props.first || this.ripper(props.value, 0, 3),
@@ -286,7 +287,7 @@ export default class ApplicantSSN extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Help id="identification.ssn.help" errorPrefix="ssn">
+        <Field help="identification.ssn.help" >
           <Text name="first"
                 ref="first"
                 className="first eapp-short-input"
@@ -337,7 +338,6 @@ export default class ApplicantSSN extends ValidationElement {
                 onCut={this.disallowClipboard}
                 onPaste={this.disallowClipboard}
                 />
-          <HelpIcon />
           <div className="coupled-flags">
             <Checkbox name="notApplicable"
                       label={i18n.t('identification.ssn.label.notApplicable')}
@@ -351,7 +351,7 @@ export default class ApplicantSSN extends ValidationElement {
                       onBlur={this.props.onBlur}
                       />
           </div>
-        </Help>
+        </Field>
       </div>
     )
   }
