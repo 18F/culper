@@ -140,7 +140,7 @@ export default class ApplicantBirthDate extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Field id="identification.birthdate.help">
+        <Field help="identification.birthdate.help">
           <DateControl name={this.props.name}
                        value={this.state.value}
                        estimated={this.state.estimated}
