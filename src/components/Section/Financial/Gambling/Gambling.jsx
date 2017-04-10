@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { GamblingValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Comments, DateRange, Number, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, Comments, DateRange, Number, Textarea, Field } from '../../../Form'
 
 export default class Gambling extends ValidationElement {
   constructor (props) {
@@ -158,20 +158,19 @@ export default class Gambling extends ValidationElement {
 
             <h3>{i18n.t('financial.gambling.heading.details')}</h3>
 
-            <h4>{i18n.t('financial.gambling.heading.dates')}</h4>
-            <div className="eapp-field-wrap">
-              <Help id="financial.gambling.help.dates">
-                <DateRange name="Dates"
-                           label={i18n.t('financial.gambling.label.dates')}
-                           bind={true}
-                           />
-                <HelpIcon className="dates-help-icon" />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.gambling.heading.dates')}
+                   titleSize="h4"
+                   help="financial.gambling.help.dates">
+              <DateRange name="Dates"
+                         label={i18n.t('financial.gambling.label.dates')}
+                         bind={true}
+                         />
+            </Field>
 
-            <h4>{i18n.t('financial.gambling.heading.losses')}</h4>
-            <div className="eapp-field-wrap">
-              <Help id="financial.gambling.help.losses">
+            <Field title={i18n.t('financial.gambling.heading.losses')}
+                   titleSize="h4"
+                   help="financial.gambling.help.losses">
+              <div>
                 <i className="fa fa-dollar"></i>
                 <Number name="Losses"
                         className="losses"
@@ -179,31 +178,26 @@ export default class Gambling extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <HelpIcon className="losses-help-icon" />
-              </Help>
-            </div>
+              </div>
+            </Field>
 
-            <h4>{i18n.t('financial.gambling.heading.description')}</h4>
-            <div className="eapp-field-wrap">
-              <Help id="financial.gambling.help.description">
-                <Textarea name="Description"
-                          className="description"
-                          bind={true}
-                          />
-                <HelpIcon className="description-help-icon" />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.gambling.heading.description')}
+                   titleSize="h4"
+                   help="financial.gambling.help.description">
+              <Textarea name="Description"
+                        className="description"
+                        bind={true}
+                        />
+            </Field>
 
-            <h4>{i18n.t('financial.gambling.heading.actions')}</h4>
-            <div className="eapp-field-wrap">
-              <Help id="financial.gambling.help.actions">
-                <Textarea name="Actions"
-                          className="actions"
-                          bind={true}
-                          />
-                <HelpIcon className="actions-help-icon" />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.gambling.heading.actions')}
+                   titleSize="h4"
+                   help="financial.gambling.help.actions">
+              <Textarea name="Actions"
+                        className="actions"
+                        bind={true}
+                        />
+            </Field>
           </Accordion>
         </Show>
         <Comments name="Comments"

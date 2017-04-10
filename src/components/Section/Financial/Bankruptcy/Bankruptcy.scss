@@ -13,16 +13,17 @@
   }
 
   .amount {
-    padding-left: 1rem;
+    margin-left: 1rem;
+    width: 100%;
 
     label {
       margin-left: 1rem;
     }
   }
 
-  .coupled-flags {
-    clear: both;
-    padding-left: 15.5rem;
+  .text-right {
+    width: 100% !important;
+    margin-left: 1rem;
   }
 
   .fa.fa-dollar {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CreditValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon,
+import { ValidationElement, Branch, Show, Accordion, Field,
          Telephone, Address, Text, Textarea } from '../../../Form'
 
 export default class Credit extends ValidationElement {
@@ -109,60 +109,46 @@ export default class Credit extends ValidationElement {
                      appendMessage={i18n.m('financial.credit.collection.appendMessage')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
 
-            <h3>{i18n.t('financial.credit.heading.explanation')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.credit.help.explanation">
-                <Textarea name="Explanation"
-                          className="credit-explanation"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.credit.heading.explanation')}
+                   help="financial.credit.help.explanation">
+              <Textarea name="Explanation"
+                        className="credit-explanation"
+                        bind={true}
+                        />
+            </Field>
 
-            <h3>{i18n.t('financial.credit.heading.name')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.credit.help.name">
-                <Text name="Name"
-                      className="credit-name"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.credit.heading.name')}
+                   help="financial.credit.help.name">
+              <Text name="Name"
+                    className="credit-name"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.credit.heading.telephone')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.credit.help.telephone">
-                <Telephone name="Telephone"
-                           className="credit-telephone"
-                           bind={true}
-                           />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('financial.credit.heading.address')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.credit.help.address">
-                <Address name="Address"
-                         className="credit-address"
+            <Field title={i18n.t('financial.credit.heading.telephone')}
+                   help="financial.credit.help.telephone">
+              <Telephone name="Telephone"
+                         className="credit-telephone"
                          bind={true}
                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            </Field>
 
-            <h3>{i18n.t('financial.credit.heading.description')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.credit.help.description">
-                <Textarea name="Description"
-                          className="credit-description"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.credit.heading.address')}
+                   help="financial.credit.help.address"
+                   adjustFor="big-buttons">
+              <Address name="Address"
+                       className="credit-address"
+                       bind={true}
+                       />
+            </Field>
+
+            <Field title={i18n.t('financial.credit.heading.description')}
+                   help="financial.credit.help.description">
+              <Textarea name="Description"
+                        className="credit-description"
+                        bind={true}
+                        />
+            </Field>
 
           </Accordion>
         </Show>

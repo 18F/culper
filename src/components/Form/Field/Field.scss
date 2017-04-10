@@ -67,7 +67,8 @@
           position: initial;
           color: $eapp-grey-dark;
 
-          > input[type='radio'] {
+          > input[type='radio'],
+          > input[type='checkbox'] {
             max-width: 0;
             z-index: -1;
           }

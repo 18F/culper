@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { DeliquentValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
+import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
          NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
@@ -134,53 +134,41 @@ export default class Deliquent extends ValidationElement {
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.deliquent.collection.append')}>
 
-            <h3>{i18n.t('financial.deliquent.heading.name')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.name">
-                <Text name="Name"
-                      className="deliquent-name"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.name')}
+                   help="financial.deliquent.help.name">
+              <Text name="Name"
+                    className="deliquent-name"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.infractions')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.infractions">
-                <Infractions name="Infractions"
-                             className="deliquent-infractions"
-                             bind={true}
-                             />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.infractions')}
+                   help="financial.deliquent.help.infractions">
+              <Infractions name="Infractions"
+                           className="deliquent-infractions"
+                           bind={true}
+                           />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.accountnumber')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.accountnumber">
-                <Text name="AccountNumber"
-                      className="deliquent-accountnumber"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.accountnumber')}
+                   help="financial.deliquent.help.accountnumber">
+              <Text name="AccountNumber"
+                    className="deliquent-accountnumber"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.propertytype')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.propertytype">
-                <Text name="PropertyType"
-                      className="deliquent-propertytype"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.propertytype')}
+                   help="financial.deliquent.help.propertytype">
+              <Text name="PropertyType"
+                    className="deliquent-propertytype"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.amount')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.amount">
+            <Field title={i18n.t('financial.deliquent.heading.amount')}
+                   help="financial.deliquent.help.amount">
+              <div>
                 <i className="fa fa-dollar"></i>
                 <Number name="Amount"
                         className="deliquent-amount"
@@ -188,7 +176,6 @@ export default class Deliquent extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <HelpIcon />
                 <div className="deliquent-amount coupled-flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
@@ -197,92 +184,76 @@ export default class Deliquent extends ValidationElement {
                             bind={true}
                             />
                 </div>
-              </Help>
-            </div>
+              </div>
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.reason')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.reason">
-                <Textarea name="Reason"
-                          className="deliquent-reason"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.reason')}
+                   help="financial.deliquent.help.reason">
+              <Textarea name="Reason"
+                        className="deliquent-reason"
+                        bind={true}
+                        />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.status')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.status">
-                <Text name="Status"
-                      className="deliquent-status"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.status')}
+                   help="financial.deliquent.help.status">
+              <Text name="Status"
+                    className="deliquent-status"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.date')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="financial.deliquent.help.date">
-                <DateControl name="Date"
-                             className="deliquent-date"
+            <Field title={i18n.t('financial.deliquent.heading.date')}
+                   help="financial.deliquent.help.date"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="Date"
+                           className="deliquent-date"
+                           hideDay={true}
+                           bind={true}
+                           />
+            </Field>
+
+            <Field title={i18n.t('financial.deliquent.heading.resolved')}
+                   help="financial.deliquent.help.resolved"
+                   adjustFor="buttons"
+                   shrink={true}>
+              <NotApplicable name="ResolvedNotApplicable"
+                             label={i18n.t('financial.deliquent.label.notresolved')}
+                             or={i18n.m('financial.deliquent.para.or')}
+                             bind={true}>
+                <DateControl name="Resolved"
+                             className="deliquent-resolved"
                              hideDay={true}
                              bind={true}
                              />
-                <HelpIcon />
-              </Help>
-            </div>
+              </NotApplicable>
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.resolved')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.resolved">
-                <NotApplicable name="ResolvedNotApplicable"
-                               label={i18n.t('financial.deliquent.label.notresolved')}
-                               or={i18n.m('financial.deliquent.para.or')}
-                               bind={true}>
-                  <DateControl name="Resolved"
-                               className="deliquent-resolved"
-                               hideDay={true}
-                               bind={true}
-                               />
-                </NotApplicable>
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.courtname')}
+                   help="financial.deliquent.help.courtname">
+              <Text name="CourtName"
+                    className="deliquent-courtname"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.courtname')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.courtname">
-                <Text name="CourtName"
-                      className="deliquent-courtname"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.courtaddress')}
+                   help="financial.deliquent.help.courtaddress"
+                   adjustFor="big-buttons">
+              <Address name="CourtAddress"
+                       className="deliquent-courtaddress"
+                       bind={true}
+                       />
+            </Field>
 
-            <h3>{i18n.t('financial.deliquent.heading.courtaddress')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.courtaddress">
-                <Address name="CourtAddress"
-                         className="deliquent-courtaddress"
-                         bind={true}
-                         />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('financial.deliquent.heading.description')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.deliquent.help.description">
-                <Textarea name="Description"
-                          className="deliquent-description"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.deliquent.heading.description')}
+                   help="financial.deliquent.help.description">
+              <Textarea name="Description"
+                        className="deliquent-description"
+                        bind={true}
+                        />
+            </Field>
 
           </Accordion>
         </Show>
