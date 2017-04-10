@@ -289,7 +289,7 @@ export default class Accordion extends ValidationElement {
             {this.content()}
           </div>
 
-          <button className="add" onClick={this.add}>
+          <button className="add usa-button-outline" onClick={this.add}>
             {this.props.appendLabel}
           </button>
         </div>

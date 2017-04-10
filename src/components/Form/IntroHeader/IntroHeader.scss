@@ -1,0 +1,33 @@
+.review-screen {
+  h1 {
+    padding: 0;
+  }
+
+  .review-column {
+    float: left;
+    width: 45%;
+
+    h3, p {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    svg, img {
+      padding-top: 3rem;
+      margin-bottom: -2rem;
+      margin-left: -4rem;
+      height: 13rem;
+      width: auto;
+    }
+
+    + .review-column {
+      margin-left: 10%;
+    }
+  }
+}
+
+.review-btns {
+  button {
+    height: 5.5rem;
+  }
+}

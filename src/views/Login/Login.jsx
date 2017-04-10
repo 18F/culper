@@ -72,7 +72,7 @@ class Login extends React.Component {
 
     return (
       <div>
-        <div id="info" className="usa-width-one-whole">
+        <div id="info" className="login-info usa-width-one-whole">
           <h2>{i18n.t('login.title')}</h2>
           <p>{i18n.t('login.para')}</p>
         </div>

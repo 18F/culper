@@ -3834,6 +3834,7 @@ const en = {
       placeholder: {
         number: 'A########'
       },
+      name: 'Provide the name in which passport was first issued',
       number: 'Provide your U.S. passport number',
       card: 'Passport card',
       issued: 'Provide the issue date of the passport',

@@ -152,13 +152,11 @@ export default class DateRange extends ValidationElement {
           <div className="from-present">
             <span className="or"> or </span>
             <Checkbox name="present"
-                      label=""
+                      label="Present"
                       value="present"
                       checked={this.state.present}
                       onChange={this.handleChange}
-                      >
-              <span>Present</span>
-            </Checkbox>
+                      />
           </div>
         </div>
       </div>

@@ -1,0 +1,12 @@
+// This is to only apply the padding on the initial section-view child view
+.eapp-form > div > div > .section-view > .view {
+  padding: 0 17.5%;
+
+  @media screen and (max-width: 1380px) {
+    padding: 0 12%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 0 5.5%;
+  }
+}
