@@ -405,7 +405,7 @@ export default class Telephone extends ValidationElement {
     return (
       <div className="telephone">
         <Show when={this.props.label}>
-          <label>{this.props.label}</label>
+          <span>{this.props.label}</span>
         </Show>
         <div className="type">
           Switch to:

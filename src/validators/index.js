@@ -28,6 +28,7 @@ import HospitalizationsValidator from './hospitalization'
 import NonpaymentValidator from './nonpayment'
 import DeliquentValidator from './deliquent'
 import DiagnosesValidator from './diagnoses'
+import ExistingConditionsValidator from './existingconditions'
 
 export {
   AddressValidator,
@@ -62,5 +63,6 @@ export {
   HospitalizationsValidator,
   NonpaymentValidator,
   DeliquentValidator,
-  DiagnosesValidator
+  DiagnosesValidator,
+  ExistingConditionsValidator
 }

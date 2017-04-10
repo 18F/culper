@@ -10,6 +10,7 @@ import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
+import ExistingConditions from './ExistingConditions/ExistingConditions'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -120,13 +121,53 @@ class Psychological extends ValidationElement {
           <SectionView name="diagnoses"
             back="psychological/hospitalizations"
             backLabel={ i18n.t('psychological.destination.hospitalization') }
-            next="psychological/existing"
+            next="psychological/conditions"
             nextLabel={ i18n.t('psychological.destination.existingConditions') }>
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
           </SectionView>
+          <SectionView name="conditions"
+            back="psychological/diagnoses"
+            backLabel={ i18n.t('psychological.destination.diagnoses') }
+            next="psychological/review"
+            nextLabel={ i18n.t('psychological.destination.review') }>
+            <ExistingConditions name="ExistingCondition"
+              {...this.props.ExistingConditions}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+            />
+          </SectionView>
+          <SectionView name="review"
+            back="psychological/conditions"
+            backLabel={ i18n.t('psychological.destination.existingConditions') }>
+
+            <Competence name="Competence"
+              {...this.props.Competence}
+              onUpdate={this.onUpdate.bind(this, 'Competence')} />
+
+            <Consultation name="Consultations"
+              {...this.props.Consultations}
+              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+            <ExistingConditions name="ExistingCondition"
+              {...this.props.ExistingConditions}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')} />
+
+            <Hospitalizations name="Hospitalizations"
+              {...this.props.Hospitalizations}
+              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
+
+            <Diagnoses name="Diagnoses"
+              {...this.props.Diagnoses}
+              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
+            />
+
+            <ExistingConditions name="ExistingCondition"
+              {...this.props.ExistingConditions}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+            />
+          </SectionView>
+
         </SectionViews>
       </div>
     )
@@ -146,6 +187,7 @@ function mapStateToProps (state) {
     Consultations: psychological.Consultation,
     Hospitalizations: psychological.Hospitalization,
     Diagnoses: psychological.Diagnoses,
+    ExistingConditions: psychological.ExistingConditions,
     Errors: errors.financial || [],
     Completed: completed.financial || []
   }
