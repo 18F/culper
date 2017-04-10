@@ -18,6 +18,7 @@ export default class Consultation extends ValidationElement {
     this.updateIsIncompentent = this.updateIsIncompentent.bind(this)
     this.updateList = this.updateList.bind(this)
     this.isValid = this.isValid.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -86,6 +87,7 @@ export default class Consultation extends ValidationElement {
           className="eapp-field-wrap no-label "
           value={this.state.IsIncompetent}
           help="psychological.consultation.help.incompetent"
+          onValidate={this.handleValidation}
           onUpdate={this.updateIsIncompentent}>
         </Branch>
 

@@ -4328,7 +4328,8 @@ const en = {
         admission: 'Was the admission voluntary or involuntary',
         treatment: 'Provide the dates of treatment',
         facility: 'Provide the facility where treatment was provided',
-        address: 'Provide the address of the facility where treatment was provided'
+        address: 'Provide the address of the facility where treatment was provided',
+        explanation: 'Provide explanation'
       },
       label: {
         address: 'This address is',
