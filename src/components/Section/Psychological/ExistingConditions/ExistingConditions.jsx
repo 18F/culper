@@ -25,6 +25,7 @@ export default class ExistingConditions extends ValidationElement {
     this.updateDidNotFollow = this.updateDidNotFollow.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
     this.updateDidNotFollowExplanation = this.updateDidNotFollowExplanation.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -103,6 +104,7 @@ export default class ExistingConditions extends ValidationElement {
           className="eapp-field-wrap no-label hascondition"
           value={this.state.HasCondition}
           help="psychological.existingConditions.help.hasCondition"
+          onValidate={this.handleValidation}
           onUpdate={this.updateHasCondition}>
         </Branch>
 
@@ -147,7 +149,7 @@ export default class ExistingConditions extends ValidationElement {
                   className="explanation"
                   {...this.props.Explanation}
                   onUpdate={this.updateExplanation}
-                  onValidate={this.props.onValidate}
+                  onValidate={this.handleValidation}
                 />
                 <HelpIcon className="text-help-icon" />
               </Help>
@@ -175,6 +177,7 @@ export default class ExistingConditions extends ValidationElement {
           className="eapp-field-wrap no-label didnotfollow"
           value={this.state.DidNotFollow}
           help="psychological.existingConditions.help.didNotFollow"
+          onValidate={this.handleValidation}
           onUpdate={this.updateDidNotFollow}>
         </Branch>
 
@@ -187,7 +190,7 @@ export default class ExistingConditions extends ValidationElement {
                   className="explanation"
                   {...this.props.DidNotFollowExplanation}
                   onUpdate={this.updateDidNotFollowExplanation}
-                  onValidate={this.props.onValidate}
+                  onValidate={this.handleValidation}
                 />
                 <HelpIcon className="text-help-icon" />
               </Help>

@@ -4213,6 +4213,12 @@ const en = {
       para4: '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
 
     },
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with psychological and emotional health at once'
+    },
     competence: {
       heading: {
         occurred: 'Provide the date this occurred',
@@ -4328,7 +4334,8 @@ const en = {
         admission: 'Was the admission voluntary or involuntary',
         treatment: 'Provide the dates of treatment',
         facility: 'Provide the facility where treatment was provided',
-        address: 'Provide the address of the facility where treatment was provided'
+        address: 'Provide the address of the facility where treatment was provided',
+        explanation: 'Provide explanation'
       },
       label: {
         address: 'This address is',
