@@ -4213,6 +4213,12 @@ const en = {
       para4: '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
 
     },
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with psychological and emotional health at once'
+    },
     competence: {
       heading: {
         occurred: 'Provide the date this occurred',

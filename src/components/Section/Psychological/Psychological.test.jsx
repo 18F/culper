@@ -32,4 +32,12 @@ describe('The legal section', () => {
     const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
+
+  it('can update review section', () => {
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
+    expect(component.find('div').length).toBeGreaterThan(0)
+    component.find('.competence .yes input').simulate('change')
+    expect(component.find('.competence .accordion').length).toBe(1)
+  })
 })
