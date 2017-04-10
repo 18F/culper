@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Help, HelpIcon } from '../../../Form'
-import { RelativeValidator } from '../../../../validators'
-import { subtext } from './Relatives'
+import { ValidationElement, Branch, Name, DateRange, Field } from '../../../Form'
 
 export default class Alias extends ValidationElement {
   constructor (props) {
@@ -61,16 +59,15 @@ export default class Alias extends ValidationElement {
                 onUpdate={this.updateMaidenName} >
         </Branch>
 
-        <div className="eapp-field-wrap">
-          <Help id="family.relatives.help.aliasdates">
-            <DateRange name="Dates"
-                       className="alias-dates"
-                       {...this.state.Dates}
-                       onUpdate={this.updateDates}
-                       />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field help="family.relatives.help.aliasdates"
+               adjustFor="labels"
+               shrink={true}>
+          <DateRange name="Dates"
+                     className="alias-dates"
+                     {...this.state.Dates}
+                     onUpdate={this.updateDates}
+                     />
+        </Field>
       </div>
     )
   }

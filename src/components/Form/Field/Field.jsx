@@ -11,7 +11,8 @@ export default class Field extends ValidationElement {
     this.state = {
       errors: props.errors,
       helpActive: props.helpActive,
-      commentsActive: props.commentsActive
+      commentsActive: props.commentsActive,
+      commentsValue: (props.commentsValue || {}).value || ''
     }
 
     this.toggleHelp = this.toggleHelp.bind(this)
@@ -33,11 +34,10 @@ export default class Field extends ValidationElement {
    */
   toggleComments () {
     const future = !this.visibleComments()
-    const value = future ? (this.props.commentsActive || {}).value : ''
-    this.setState({ commentsActive: future }, () => {
+    const value = future ? this.state.commentsValue : ''
+    this.setState({ commentsActive: future, commentsValue: value }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          ...this.props.commentsActive,
           name: this.props.commentsName,
           value: value
         })
@@ -49,7 +49,7 @@ export default class Field extends ValidationElement {
    * Determines if the comments should be visible.
    */
   visibleComments () {
-    return this.props.comments && (this.props.commentsValue || this.state.commentsActive || this.props.commentsActive)
+    return this.props.comments && (this.state.commentsValue || this.state.commentsActive || this.props.commentsActive)
   }
 
   /**
@@ -152,7 +152,7 @@ export default class Field extends ValidationElement {
 
     return (
       <Textarea name={this.props.commentsName}
-                value={this.props.commentsValue}
+                value={this.state.commentsValue}
                 onUpdate={this.props.onUpdate}
                 onValidate={this.props.onValidate}
                 />
@@ -289,7 +289,7 @@ export default class Field extends ValidationElement {
   }
 
   render () {
-    const klass = `field ${this.state.commentsActive ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
+    const klass = `field ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
     const klassTitle = `title ${this.props.titleSize}`.trim()
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
@@ -329,7 +329,7 @@ Field.defaultProps = {
   adjustFor: '',
   comments: false,
   commentsName: 'Comments',
-  commentsValue: '',
+  commentsValue: {},
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',

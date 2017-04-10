@@ -64,7 +64,9 @@ describe('The field component', () => {
   it('comments visible if given a value', () => {
     const expected = {
       comments: true,
-      commentsValue: 'Dude where is the gun show?'
+      commentsValue: {
+        value: 'Dude where is the gun show?'
+      }
     }
     const component = mount(<Field {...expected} />)
     expect(component.find('textarea').length).toEqual(1)
