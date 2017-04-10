@@ -12,9 +12,14 @@ describe('The ExistingConditions component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<ExistingConditions onUpdate={onUpdate} />)
-    //component.find('.diagnosed .yes input').simulate('change')
-    //component.find('.didnotconsult .yes input').simulate('change')
-    //component.find('.intreatment .yes input').simulate('change')
-    //expect(updates).toBe(5)
+    component.find('.hascondition .yes input').simulate('change')
+    component.find('.didnotfollow .yes input').simulate('change')
+    component.find({type: 'radio', name: 'treatment', value: 'No'}).simulate('click')
+    component.find('textarea#Explanation').simulate('change')
+
+    component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('click')
+    component.find('input#Condition').simulate('change')
+
+    expect(updates).toBe(7)
   })
 })
