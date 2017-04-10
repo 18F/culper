@@ -186,3 +186,10 @@ export class BranchCollection {
     return false
   }
 }
+
+/**
+ * Checks if a branch value is within the set of possible valid yes/no values.
+ */
+export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => {
+  return (value === yesValue || value === noValue)
+}
