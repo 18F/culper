@@ -44,7 +44,6 @@ export default class ExistingConditions extends ValidationElement {
   }
 
   updateReceivedTreatment (checkbox) {
-    console.log(checkbox)
     this.update('ReceivedTreatment', checkbox.value)
   }
 
@@ -77,15 +76,10 @@ export default class ExistingConditions extends ValidationElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).Diagnosis || {}
-    const date = (o.Diagnosed || {}).from ? `${o.Diagnosed.from.month}/${o.Diagnosed.from.year}` : ''
-    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${date}` : i18n.t('psychological.existingConditions.collection.summary')
-    const type = i18n.t('psychological.existingConditions.collection.itemType')
-
+    const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
     return (
       <span>
-        <span className="index">{type}</span>
-        <span className="info"><strong>{facility}</strong></span>
+        <span className="index">{type} {index + 1}</span>
       </span>
     )
   }
@@ -158,7 +152,7 @@ export default class ExistingConditions extends ValidationElement {
           <Accordion minimum="1"
             items={this.state.TreatmentList}
             onUpdate={this.updateTreatmentList}
-            summary={this.treatmentSummary}
+            summary={this.summary}
             onValidate={this.handleValidation}
             appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
             appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}

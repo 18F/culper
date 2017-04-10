@@ -4430,7 +4430,7 @@ const en = {
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
           appendMessage: 'If yes, use the button below to add another instance',
           appendLabel: 'Add another treatment',
-          itemType: 'Treatment:'
+          itemType: 'Instance:'
         }
       },
       diagnosis: {
