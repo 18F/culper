@@ -167,11 +167,13 @@ export default class Field extends ValidationElement {
       return null
     }
 
+    const klass = `toggle ${this.props.adjustFor ? `adjust-for-${this.props.adjustFor}` : ''}`.trim()
+
     return (
       <a href="javascript:;"
          tabIndex="-1"
          title="Show help"
-         className="toggle"
+         className={klass}
          onClick={this.toggleHelp}>
         <Svg src="img/info.svg" />
       </a>
@@ -228,7 +230,7 @@ export default class Field extends ValidationElement {
           {note}
           <a href="javascript:;;"
              className="close"
-             onClick={this.handleClick}>
+             onClick={this.toggleHelp}>
             {i18n.t('help.close')}
           </a>
         </div>
@@ -288,23 +290,29 @@ export default class Field extends ValidationElement {
 
   render () {
     const klass = `field ${this.state.commentsActive ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
+    const klassTitle = `title ${this.props.titleSize}`.trim()
+    const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
     return (
       <div className={klass} ref="field">
-        <span className="title">{this.props.title}</span>
-        <span className="content">
-          <span className="component">
-            {this.children()}
-            {this.comments()}
-            {this.commentsButton()}
+        <span className={klassTitle}>{this.props.title}</span>
+        <div className="table">
+          <span className="content">
+            <span className={klassComponent}>
+              {this.children()}
+              {this.comments()}
+              {this.commentsButton()}
+            </span>
+            <span className="icon">
+              {this.icon()}
+            </span>
           </span>
-          <span className="icon">
-            {this.icon()}
+        </div>
+        <div className="table expand">
+          <span className="messages" ref="messages">
+            {this.messages()}
           </span>
-        </span>
-        <span className="messages" ref="messages">
-          {this.messages()}
-        </span>
+        </div>
       </div>
     )
   }
@@ -312,14 +320,18 @@ export default class Field extends ValidationElement {
 
 Field.defaultProps = {
   title: '',
+  titleSize: 'h3',
   className: '',
   errors: [],
+  errorPrefix: '',
   help: '',
   helpActive: false,
+  adjustFor: '',
   comments: false,
   commentsName: 'Comments',
   commentsValue: '',
   commentsActive: false,
   commentsAdd: 'comments.add',
-  commentsRemove: 'comments.remove'
+  commentsRemove: 'comments.remove',
+  shrink: false
 }

@@ -132,14 +132,18 @@ export default class OtherNames extends ValidationElement {
                   />
 
             <Field title={i18n.t('identification.othernames.heading.maiden')}
-                   help="alias.maiden.help">
+                   help="alias.maiden.help"
+                   adjustFor="buttons"
+                   shrink={true}>
               <MaidenName name="MaidenName"
                           bind={true}
                           />
             </Field>
 
             <Field title={i18n.t('identification.othernames.heading.used')}
-                   help="alias.used.help">
+                   help="alias.used.help"
+                   adjustFor="labels"
+                   shrink={true}>
               <DateRange name="DatesUsed"
                          bind={true}
                          />

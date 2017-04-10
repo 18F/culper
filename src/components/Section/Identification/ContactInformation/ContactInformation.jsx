@@ -151,7 +151,8 @@ export default class ContactInformation extends ValidationElement {
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
-            <Field help="identification.contacts.help.email">
+            <Field help="identification.contacts.help.email"
+                   adjustFor="labels">
               <Email name="Email"
                      label={i18n.t('identification.contacts.label.email')}
                      placeholder={i18n.t('identification.contacts.placeholder.email')}
@@ -174,7 +175,6 @@ export default class ContactInformation extends ValidationElement {
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
             <Field help="identification.contacts.help.phoneNumber">
               <Telephone name="Telephone"
-                         label={i18n.t('identification.contacts.label.telephone')}
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                          bind={true}
                          />

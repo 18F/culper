@@ -208,7 +208,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
       return (
         <div className={klass}>
           {this.options()}
-          <Field help="identification.birthplace.help.state">
+          <Field help="identification.birthplace.help.state"
+                 adjustFor="labels">
             <MilitaryState name="state"
                            label={i18n.t('identification.birthplace.label.state')}
                            value={this.state.state}
@@ -223,7 +224,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
                            onBlur={this.props.onBlur}
                            />
           </Field>
-          <Field help="identification.birthplace.help.city">
+          <Field help="identification.birthplace.help.city"
+                 adjustFor="labels">
             <City name="city"
                   label={i18n.t('identification.birthplace.label.city')}
                   value={this.state.city}
@@ -236,7 +238,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
                   onBlur={this.props.onBlur}
                   />
           </Field>
-          <Field help="identification.birthplace.help.county">
+          <Field help="identification.birthplace.help.county"
+                 adjustFor="labels">
             <County name="county"
                     label={i18n.t('identification.birthplace.label.county')}
                     value={this.state.county}
@@ -256,7 +259,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         {this.options()}
-        <Field help="identification.birthplace.help.city">
+        <Field help="identification.birthplace.help.city"
+               adjustFor="labels">
           <City name="city"
                 label={i18n.t('identification.birthplace.label.city')}
                 value={this.state.city}
@@ -269,7 +273,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Field>
-        <Field help="identification.birthplace.help.country">
+        <Field help="identification.birthplace.help.country"
+               adjustFor="labels">
           <Country name="country"
                    label={i18n.t('identification.birthplace.label.country')}
                    value={this.state.country}

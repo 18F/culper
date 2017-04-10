@@ -165,7 +165,9 @@ export default class Name extends ValidationElement {
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
-        <Field help="identification.name.first.help">
+        <Field help="identification.name.first.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <Text name="first"
                 ref="first"
                 label={i18n.t(`${prefix}.label.first`)}
@@ -191,7 +193,9 @@ export default class Name extends ValidationElement {
             </div>
           </div>
         </Field>
-        <Field id="identification.name.middle.help">
+        <Field help="identification.name.middle.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <Text name="middle"
                 ref="middle"
                 label={i18n.t(`${prefix}.label.middle`)}
@@ -227,7 +231,9 @@ export default class Name extends ValidationElement {
             </div>
           </div>
         </Field>
-        <Field help="identification.name.last.help">
+        <Field help="identification.name.last.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <Text name="last"
                 ref="last"
                 label={i18n.t(`${prefix}.label.last`)}
@@ -253,7 +259,9 @@ export default class Name extends ValidationElement {
             </div>
           </div>
         </Field>
-        <Field help="identification.name.suffix.help">
+        <Field help="identification.name.suffix.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <label>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></label>
 
           <RadioGroup className="option-list suffix" selectedValue={this.state.suffix}>

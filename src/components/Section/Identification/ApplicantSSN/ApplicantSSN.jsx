@@ -287,69 +287,72 @@ export default class ApplicantSSN extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Field help="identification.ssn.help">
-          <Text name="first"
-                ref="first"
-                className="first eapp-short-input"
-                placeholder={i18n.t('identification.ssn.placeholder.first')}
-                maxlength="3"
-                pattern="^[0-9]*$"
-                value={this.state.first}
-                disabled={this.state.notApplicable}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                onCopy={this.disallowClipboard}
-                onCut={this.disallowClipboard}
-                onPaste={this.disallowClipboard}
-                />
-          <Text name="middle"
-                ref="middle"
-                className="middle eapp-short-input"
-                placeholder={i18n.t('identification.ssn.placeholder.middle')}
-                maxlength="2"
-                pattern="^[0-9]*$"
-                value={this.state.middle}
-                disabled={this.state.notApplicable}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                onKeyDown={this.handleKeyDown}
-                onCopy={this.disallowClipboard}
-                onCut={this.disallowClipboard}
-                onPaste={this.disallowClipboard}
-                />
-          <Text name="last"
-                ref="last"
-                className="last eapp-short-input"
-                placeholder={i18n.t('identification.ssn.placeholder.last')}
-                maxlength="4"
-                pattern="^[0-9]*$"
-                value={this.state.last}
-                disabled={this.state.notApplicable}
-                onChange={this.handleChange}
-                onValidate={this.handleValidation}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                onKeyDown={this.handleKeyDown}
-                onCopy={this.disallowClipboard}
-                onCut={this.disallowClipboard}
-                onPaste={this.disallowClipboard}
-                />
-          <div className="coupled-flags">
-            <Checkbox name="notApplicable"
-                      label={i18n.t('identification.ssn.label.notApplicable')}
-                      ref="notApplicable"
-                      toggle="false"
-                      value={this.state.notApplicable}
-                      checked={this.state.notApplicable}
-                      onChange={this.handleChange}
-                      onValidate={this.handleValidation}
-                      onFocus={this.props.onFocus}
-                      onBlur={this.props.onBlur}
-                      />
+        <Field help="identification.ssn.help"
+               shrink={true}>
+          <div>
+            <Text name="first"
+                  ref="first"
+                  className="first eapp-short-input"
+                  placeholder={i18n.t('identification.ssn.placeholder.first')}
+                  maxlength="3"
+                  pattern="^[0-9]*$"
+                  value={this.state.first}
+                  disabled={this.state.notApplicable}
+                  onChange={this.handleChange}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  onCopy={this.disallowClipboard}
+                  onCut={this.disallowClipboard}
+                  onPaste={this.disallowClipboard}
+                  />
+            <Text name="middle"
+                  ref="middle"
+                  className="middle eapp-short-input"
+                  placeholder={i18n.t('identification.ssn.placeholder.middle')}
+                  maxlength="2"
+                  pattern="^[0-9]*$"
+                  value={this.state.middle}
+                  disabled={this.state.notApplicable}
+                  onChange={this.handleChange}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  onKeyDown={this.handleKeyDown}
+                  onCopy={this.disallowClipboard}
+                  onCut={this.disallowClipboard}
+                  onPaste={this.disallowClipboard}
+                  />
+            <Text name="last"
+                  ref="last"
+                  className="last eapp-short-input"
+                  placeholder={i18n.t('identification.ssn.placeholder.last')}
+                  maxlength="4"
+                  pattern="^[0-9]*$"
+                  value={this.state.last}
+                  disabled={this.state.notApplicable}
+                  onChange={this.handleChange}
+                  onValidate={this.handleValidation}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  onKeyDown={this.handleKeyDown}
+                  onCopy={this.disallowClipboard}
+                  onCut={this.disallowClipboard}
+                  onPaste={this.disallowClipboard}
+                  />
+            <div className="coupled-flags">
+              <Checkbox name="notApplicable"
+                        label={i18n.t('identification.ssn.label.notApplicable')}
+                        ref="notApplicable"
+                        toggle="false"
+                        value={this.state.notApplicable}
+                        checked={this.state.notApplicable}
+                        onChange={this.handleChange}
+                        onValidate={this.handleValidation}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
+            </div>
           </div>
         </Field>
       </div>

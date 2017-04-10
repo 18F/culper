@@ -68,7 +68,9 @@ export default class Physical extends ValidationElement {
     return (
       <div className={klass}>
         <Field title={i18n.t('identification.traits.heading.height')}
-               help="identification.traits.help.height">
+               help="identification.traits.help.height"
+               adjustFor='labels'
+               shrink={true}>
           <Height name="height"
                   {...this.props.Height}
                   onUpdate={this.handleUpdate.bind(this, 'Height')}
@@ -77,7 +79,9 @@ export default class Physical extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.weight')}
-               help="identification.traits.help.weight">
+               help="identification.traits.help.weight"
+               adjustFor="labels"
+               shrink={true}>
           <Weight name="weight"
                   value={this.props.Weight}
                   onUpdate={this.handleUpdate.bind(this, 'Weight')}
@@ -86,6 +90,7 @@ export default class Physical extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.hair')}
+               adjustFor="big-buttons"
                help="identification.traits.help.hair">
           <HairColor name="hair"
                       help="identification.traits.help.hair"
@@ -97,6 +102,7 @@ export default class Physical extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.eye')}
+               adjustFor="big-buttons"
                help="identification.traits.help.eye">
           <EyeColor name="eye"
                     className=""
@@ -108,6 +114,8 @@ export default class Physical extends ValidationElement {
 
         <Field title={i18n.t('identification.traits.heading.sex')}
                help="identification.traits.help.sex"
+               adjustFor="big-buttons"
+               shrink={true}
                comments={true}>
           <Sex name="sex"
                 value={this.props.Sex}
