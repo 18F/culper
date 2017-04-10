@@ -50,7 +50,6 @@ class Psychological extends ValidationElement {
    * Report errors and completion status
    */
   onValidate (event, status, errorCodes) {
-    console.log('onValidate')
     if (!event) {
       return
     }
