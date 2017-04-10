@@ -11,9 +11,10 @@ export default class ExistingConditions extends ValidationElement {
     this.state = {
       HasCondition: props.HasCondition,
       ReceivedTreatment: props.ReceivedTreatment,
+      Explanation: props.Explanation,
       TreatmentList: props.TreatmentList,
       DidNotFollow: props.DidNotFollow,
-      Explanation: props.Explanation,
+      DidNotFollowExplanation: props.DidNotFollowExplanation,
       errorCodes: []
     }
 
@@ -23,6 +24,7 @@ export default class ExistingConditions extends ValidationElement {
     this.updateTreatmentList = this.updateTreatmentList.bind(this)
     this.updateDidNotFollow = this.updateDidNotFollow.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
+    this.updateDidNotFollowExplanation = this.updateDidNotFollowExplanation.bind(this)
   }
 
   update (field, values) {
@@ -31,9 +33,10 @@ export default class ExistingConditions extends ValidationElement {
         this.props.onUpdate({
           HasCondition: this.state.HasCondition,
           ReceivedTreatment: this.state.ReceivedTreatment,
+          Explanation: this.state.Explanation,
           TreatmentList: this.state.TreatmentList,
           DidNotFollow: this.state.DidNotFollow,
-          Explanation: this.state.Explanation
+          didNotFollowExplanation: this.state.DidNotFollowExplanation
         })
       }
     })
@@ -57,6 +60,10 @@ export default class ExistingConditions extends ValidationElement {
 
   updateExplanation (values) {
     this.update('Explanation', values)
+  }
+
+  updateDidNotFollowExplanation (values) {
+    this.update('didNotFollowExplanation', values)
   }
 
   handleValidation (event, status, error) {
@@ -170,6 +177,23 @@ export default class ExistingConditions extends ValidationElement {
           help="psychological.existingConditions.help.didNotFollow"
           onUpdate={this.updateDidNotFollow}>
         </Branch>
+
+        <Show when={this.state.DidNotFollow === 'Yes'}>
+          <div>
+            <h3>{i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}</h3>
+            <div className="eapp-field-wrap no-label">
+              <Help id={`psychological.existingConditions.help.didNotFollowExplanation`}>
+                <Textarea name="DidNotFollowExplanation"
+                  className="explanation"
+                  {...this.props.DidNotFollowExplanation}
+                  onUpdate={this.updateDidNotFollowExplanation}
+                  onValidate={this.props.onValidate}
+                />
+                <HelpIcon className="text-help-icon" />
+              </Help>
+            </div>
+          </div>
+        </Show>
       </div>
     )
   }

@@ -4203,7 +4203,8 @@ const en = {
       consultation: 'Consultations',
       hospitalization: 'Hospitalizations',
       diagnoses: 'Diagnoses',
-      existingConditions: 'Existing conditions'
+      existingConditions: 'Existing conditions',
+      review: 'Review'
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -4411,11 +4412,34 @@ const en = {
         hasCondition: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
         receivedTreatment: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
         didNotFollow: 'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
-        explanation: 'Provide explanation'
+        explanation: 'Provide explanation',
+        didNotFollowExplanation: 'Provide explanation'
       },
       para: {
         hasCondition: 'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer "no" even if you have a mental health or other condition requiring treatment. For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer "no."',
         receivedTreatment: 'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
+      },
+      help: {
+        hasCondition: {
+          title: 'Help with adverse impacts',
+          message: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
+          note: ''
+        },
+        receivedTreatment: {
+          title: 'Help with counseling or treatment',
+          message: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
+          note: ''
+        },
+        didNotFollow: {
+          title: 'Help with following prescribed course of treatment',
+          message: 'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
+          note: ''
+        },
+        didNotFollowExplanation: {
+          title: 'Help with not following prescribed course of action explanation',
+          message: 'Provide explanation',
+          note: ''
+        }
       },
       receivedTreatment: {
         label: {

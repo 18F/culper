@@ -45,6 +45,44 @@ describe('Diagnosis validation', function () {
     })
   })
 
+  it('validates did not follow', () => {
+    const tests = [
+      {
+        state: {
+          DidNotFollow: 'Yes',
+          DidNotFollowExplanation: {
+            value: 'Stuff'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          DidNotFollow: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          DidNotFollow: 'Nope'
+        },
+        expected: false
+      },
+      {
+        state: {
+          DidNotFollow: 'Yes',
+          DidNotFollowExplanation: {
+            value: null
+          }
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new ExistingConditionsValidator(test.state, null).validDidNotFollow()).toBe(test.expected)
+    })
+  })
+
   it('validates treatment list', () => {
     const tests = [
       {
@@ -145,6 +183,9 @@ describe('Diagnosis validation', function () {
           HasCondition: 'No',
           ReceivedTreatment: 'Yes',
           DidNotFollow: 'No',
+          DidNotFollowExplanation: {
+            value: 'Stuff'
+          },
           Explanation: null,
           TreatmentList: [
             {

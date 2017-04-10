@@ -138,6 +138,35 @@ class Psychological extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
             />
           </SectionView>
+          <SectionView name="review"
+            back="psychological/conditions"
+            backLabel={ i18n.t('psychological.destination.existingConditions') }>
+
+            <Competence name="Competence"
+              {...this.props.Competence}
+              onUpdate={this.onUpdate.bind(this, 'Competence')} />
+
+            <Consultation name="Consultations"
+              {...this.props.Consultations}
+              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+            <ExistingConditions name="ExistingCondition"
+              {...this.props.ExistingConditions}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')} />
+
+            <Hospitalizations name="Hospitalizations"
+              {...this.props.Hospitalizations}
+              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
+
+            <Diagnoses name="Diagnoses"
+              {...this.props.Diagnoses}
+              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
+            />
+
+            <ExistingConditions name="ExistingCondition"
+              {...this.props.ExistingConditions}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+            />
+          </SectionView>
 
         </SectionViews>
       </div>

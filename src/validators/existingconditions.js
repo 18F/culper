@@ -5,9 +5,10 @@ export default class ExistingConditionsValidator {
   constructor (state = {}, props) {
     this.hasCondition = state.HasCondition
     this.receivedTreatment = state.ReceivedTreatment
+    this.explanation = state.Explanation
     this.treatmentList = state.TreatmentList || []
     this.didNotFollow = state.DidNotFollow
-    this.explanation = state.Explanation
+    this.didNotFollowExplanation = state.DidNotFollowExplanation
   }
 
   validReceivedTreatment () {
@@ -16,6 +17,16 @@ export default class ExistingConditionsValidator {
     }
 
     if (this.receivedTreatment === 'No' && !validGenericTextfield(this.explanation)) {
+      return false
+    }
+    return true
+  }
+
+  validDidNotFollow () {
+    if (!validBranch(this.didNotFollow)) {
+      return false
+    }
+    if (this.didNotFollow === 'Yes' && !validGenericTextfield(this.didNotFollowExplanation)) {
       return false
     }
     return true
@@ -41,7 +52,7 @@ export default class ExistingConditionsValidator {
   isValid () {
     return validBranch(this.hasCondition) &&
       this.validReceivedTreatment() &&
-      validBranch(this.didNotFollow) &&
+      this.validDidNotFollow() &&
       this.validTreatmentList()
   }
 }
