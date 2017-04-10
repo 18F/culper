@@ -1,0 +1,216 @@
+import ExistingConditionsValidator from './existingconditions'
+
+describe('Diagnosis validation', function () {
+  it('validates received treatment', () => {
+    const tests = [
+      {
+        state: {
+          ReceivedTreatment: 'Yes',
+          Explanation: null
+        },
+        expected: true
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Decline',
+          Explanation: null
+        },
+        expected: true
+      },
+      {
+        state: {
+          ReceivedTreatment: 'No',
+          Explanation: {
+            value: 'The explanation'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Nope'
+        },
+        expected: false
+      },
+      {
+        state: {
+          ReceivedTreatment: 'No',
+          Explanation: null
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new ExistingConditionsValidator(test.state, null).validReceivedTreatment()).toBe(test.expected)
+    })
+  })
+
+  it('validates treatment list', () => {
+    const tests = [
+      {
+        state: {
+          ReceivedTreatment: 'Yes',
+          TreatmentList: [
+            {
+              Treatment: {
+                Condition: {
+                  value: 'Test'
+                },
+                Effective: 'Yes',
+                Explanation: {
+                  value: null
+                },
+                Diagnosed: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Treatment: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    addressType: 'United States',
+                    address: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202'
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                },
+                TreatmentFacility: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    addressType: 'United States',
+                    address: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202'
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              }
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          ReceivedTreatment: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Yes',
+          TreatmentList: [{Treatment: {}}]
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new ExistingConditionsValidator(test.state, null).validTreatmentList()).toBe(test.expected)
+    })
+  })
+
+  it('validates diagnosis', () => {
+    const tests = [
+      {
+        state: {
+          HasCondition: 'No',
+          ReceivedTreatment: 'Yes',
+          DidNotFollow: 'No',
+          Explanation: null,
+          TreatmentList: [
+            {
+              Treatment: {
+                Condition: {
+                  value: 'Test'
+                },
+                Effective: 'Yes',
+                Explanation: {
+                  value: null
+                },
+                Diagnosed: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Treatment: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    addressType: 'United States',
+                    address: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202'
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                },
+                TreatmentFacility: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    addressType: 'United States',
+                    address: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202'
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              }
+            }
+          ]},
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new ExistingConditionsValidator(test.state, null).isValid()).toBe(test.expected)
+    })
+  })
+})

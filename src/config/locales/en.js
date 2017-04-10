@@ -4410,7 +4410,8 @@ const en = {
       heading: {
         hasCondition: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
         receivedTreatment: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
-        didNotFollow: 'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?'
+        didNotFollow: 'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
+        explanation: 'Provide explanation'
       },
       para: {
         hasCondition: 'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer "no" even if you have a mental health or other condition requiring treatment. For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer "no."',
@@ -4421,6 +4422,15 @@ const en = {
           yes: 'Yes',
           no: 'No',
           decline: 'I decline to answer'
+        }
+      },
+      treatment: {
+        collection: {
+          summary: 'Provide your treatment details below',
+          appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
+          appendMessage: 'If yes, use the button below to add another instance',
+          appendLabel: 'Add another treatment',
+          itemType: 'Treatment:'
         }
       },
       diagnosis: {

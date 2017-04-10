@@ -121,7 +121,7 @@ class Psychological extends ValidationElement {
           <SectionView name="diagnoses"
             back="psychological/hospitalizations"
             backLabel={ i18n.t('psychological.destination.hospitalization') }
-            next="psychological/existing"
+            next="psychological/conditions"
             nextLabel={ i18n.t('psychological.destination.existingConditions') }>
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
