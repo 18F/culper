@@ -114,76 +114,75 @@ export default class Reference extends ValidationElement {
                        />
         </Field>
 
-        <Comments name="Comments"
-                  {...this.state.Comments}
-                  addLabel={`${prefix}reference.label.relationship.comments`}
-                  onUpdate={this.onUpdate.bind(this, 'Comments')}
-                  onValidate={this.onValidate}>
-          <Field title={i18n.t(`${prefix}reference.heading.relationship`)}
-                 help="${prefix}reference.help.relationship"
-                 adjustFor="labels"
-                 shrink={true}>
-            <label>{i18n.t(`${prefix}reference.label.relationship.title`)}</label>
-            <CheckboxGroup className="relationship option-list eapp-extend-labels"
-                           selectedValues={this.state.Relationship}>
-              <Checkbox name="relationship-neighbor"
-                        label={i18n.t(`${prefix}reference.label.relationship.neighbor`)}
-                        value="Neighbor"
-                        onChange={this.handleRelationshipChange}
-                        >
-                <div className="relationship-icon neighbor">
-                  <Svg src="img/neighbor-icon.svg" />
-                </div>
-              </Checkbox>
-              <Checkbox name="relationship-friend"
-                        label={i18n.t(`${prefix}reference.label.relationship.friend`)}
-                        value="Friend"
-                        onChange={this.handleRelationshipChange}
-                        >
-                <div className="relationship-icon friend">
-                  <Svg src="img/friend-icon.svg" />
-                </div>
-              </Checkbox>
-              <Checkbox name="relationship-landlord"
-                        label={i18n.t(`${prefix}reference.label.relationship.landlord`)}
-                        value="Landlord"
-                        onChange={this.handleRelationshipChange}
-                        >
-                <div className="relationship-icon landlord">
-                  <Svg src="img/landlord-icon.svg" />
-                </div>
-              </Checkbox>
-              <Checkbox name="relationship-business"
-                        label={i18n.t(`${prefix}reference.label.relationship.business`)}
-                        value="Business"
-                        onChange={this.handleRelationshipChange}
-                        >
-                <div className="relationship-icon business">
-                  <Svg src="img/business-associate-icon.svg" />
-                </div>
-              </Checkbox>
-              <Checkbox name="relationship-other"
-                        label={i18n.t(`${prefix}reference.label.relationship.other`)}
-                        value="Other"
-                        onChange={this.handleRelationshipChange}
-                        >
-                <div className="relationship-icon other">
-                  <Svg src="img/other-icon.svg" />
-                </div>
-              </Checkbox>
-            </CheckboxGroup>
-            <Show when={this.state.Relationship.some(x => { return x === 'Other' })}>
-              <Text name="RelationshipOther"
-                    label={i18n.t(`${prefix}reference.label.relationship.explanation`)}
-                    maxlength="100"
-                    className="relationship-other"
-                    {...this.state.RelationshipOther}
-                    onUpdate={this.updateRelationshipOther}
-                    onValidate={this.props.handleValidation}
-                    />
-            </Show>
-          </Field>
-        </Comments>
+        <Field title={i18n.t(`${prefix}reference.heading.relationship`)}
+               help="${prefix}reference.help.relationship"
+               comments={true}
+               commentsName="Comments"
+               commentsValue={this.state.Comments}
+               commentsAdd={`${prefix}reference.label.relationship.comments`}
+               onUpdate={this.onUpdate.bind(this, 'Comments')}
+               adjustFor="labels"
+               shrink={true}>
+          <label>{i18n.t(`${prefix}reference.label.relationship.title`)}</label>
+          <CheckboxGroup className="relationship option-list eapp-extend-labels"
+                         selectedValues={this.state.Relationship}>
+            <Checkbox name="relationship-neighbor"
+                      label={i18n.t(`${prefix}reference.label.relationship.neighbor`)}
+                      value="Neighbor"
+                      onChange={this.handleRelationshipChange}
+                      >
+              <div className="relationship-icon neighbor">
+                <Svg src="img/neighbor-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-friend"
+                      label={i18n.t(`${prefix}reference.label.relationship.friend`)}
+                      value="Friend"
+                      onChange={this.handleRelationshipChange}
+                      >
+              <div className="relationship-icon friend">
+                <Svg src="img/friend-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-landlord"
+                      label={i18n.t(`${prefix}reference.label.relationship.landlord`)}
+                      value="Landlord"
+                      onChange={this.handleRelationshipChange}
+                      >
+              <div className="relationship-icon landlord">
+                <Svg src="img/landlord-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-business"
+                      label={i18n.t(`${prefix}reference.label.relationship.business`)}
+                      value="Business"
+                      onChange={this.handleRelationshipChange}
+                      >
+              <div className="relationship-icon business">
+                <Svg src="img/business-associate-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-other"
+                      label={i18n.t(`${prefix}reference.label.relationship.other`)}
+                      value="Other"
+                      onChange={this.handleRelationshipChange}
+                      >
+              <div className="relationship-icon other">
+                <Svg src="img/other-icon.svg" />
+              </div>
+            </Checkbox>
+          </CheckboxGroup>
+          <Show when={this.state.Relationship.some(x => { return x === 'Other' })}>
+            <Text name="RelationshipOther"
+                  label={i18n.t(`${prefix}reference.label.relationship.explanation`)}
+                  maxlength="100"
+                  className="relationship-other"
+                  {...this.state.RelationshipOther}
+                  onUpdate={this.updateRelationshipOther}
+                  onValidate={this.props.handleValidation}
+                  />
+          </Show>
+        </Field>
 
         <h2>{i18n.t(`${prefix}reference.heading.correspondence`)}</h2>
         <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>

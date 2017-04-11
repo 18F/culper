@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Comments, DateRange, Reference, Text, RadioGroup, Radio, Field, Address } from '../../../Form'
+import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Address } from '../../../Form'
 import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
@@ -94,24 +94,22 @@ export class ResidenceItem extends ValidationElement {
   render () {
     return (
       <div className="residence">
-        <Comments name="Comments"
-                  {...this.state.Comments}
-                  addLabel="history.residence.label.comments"
-                  title={i18n.t('history.residence.heading.comments')}
-                  onUpdate={this.onUpdate.bind(this, 'Comments')}
-                  onValidate={this.props.onValidate}>
-          <Field title={i18n.t('history.residence.heading.address')}
-                 help="history.residence.help.address"
-                 adjustFor="big-buttons"
-                 shrink={true}>
-            <Address name="Address"
-                     {...this.state.Address}
-                     label={i18n.t('history.residence.label.address')}
-                     onUpdate={this.onUpdate.bind(this, 'Address')}
-                     onValidate={this.props.onValidate}
-                     />
-          </Field>
-        </Comments>
+        <Field title={i18n.t('history.residence.heading.address')}
+               help="history.residence.help.address"
+               comments={true}
+               commentsName="Comments"
+               commentsValue={this.state.Comments}
+               commentsAdd="history.residence.label.comments"
+               onUpdate={this.onUpdate.bind(this, 'Comments')}
+               adjustFor="big-buttons"
+               shrink={true}>
+          <Address name="Address"
+                   {...this.state.Address}
+                   label={i18n.t('history.residence.label.address')}
+                   onUpdate={this.onUpdate.bind(this, 'Address')}
+                   onValidate={this.props.onValidate}
+                   />
+        </Field>
 
         <Field title={i18n.t('history.residence.heading.dates')}
                help="history.residence.help.dates"

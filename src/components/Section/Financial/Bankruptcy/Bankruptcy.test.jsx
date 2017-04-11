@@ -54,13 +54,11 @@ describe('The bankruptcy component', () => {
         name={expected.name}
         List={bankruptcyData}
         HasBankruptcy={true}
-        Comments={'Test'}
         onUpdate={onUpdate}
       />
     )
     component.find({type: 'radio', name: 'has_bankruptcydebt', value: 'Yes'}).simulate('change')
     expect(component.find('.details').length).toBeGreaterThan(0)
-    component.find('textarea#Comments').simulate('change')
 
     component.find('button.add').simulate('click')
 

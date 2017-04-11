@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { BankruptcyValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Comments, DateControl, Number, Field,
+import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
          Text, Name, Address, PetitionType, Checkbox, NotApplicable } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
@@ -9,12 +9,10 @@ export default class Bankruptcy extends ValidationElement {
     super(props)
     this.state = {
       List: props.List || [],
-      Comments: props.Comments,
       HasBankruptcy: props.HasBankruptcy,
       errorCodes: []
     }
 
-    this.commentsUpdated = this.commentsUpdated.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
   }
@@ -62,18 +60,6 @@ export default class Bankruptcy extends ValidationElement {
     this.setState({ HasBankruptcy: val }, () => {
       this.myDispatch(val === 'No' ? [] : this.state.List)
       this.handleValidation(event, null, null)
-    })
-  }
-
-  commentsUpdated (val) {
-    this.setState({ Comments: val }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          Comments: this.state.Comments,
-          HasBankruptcy: this.state.HasBankruptcy
-        })
-      }
     })
   }
 
@@ -232,13 +218,6 @@ export default class Bankruptcy extends ValidationElement {
             </Field>
           </Accordion>
         </Show>
-        <Comments name="Comments"
-                  value={this.state.Comments}
-                  label={i18n.t('financial.bankruptcy.comments.label')}
-                  onUpdate={this.commentsUpdated}
-                  onValidate={this.handleValidation}>
-          <h3>{i18n.t('financial.bankruptcy.heading.comments')}</h3>
-        </Comments>
       </div>
     )
   }

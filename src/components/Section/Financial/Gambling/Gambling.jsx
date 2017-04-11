@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { GamblingValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Comments, DateRange, Number, Textarea, Field } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, DateRange, Number, Textarea, Field } from '../../../Form'
 
 export default class Gambling extends ValidationElement {
   constructor (props) {
@@ -9,11 +9,9 @@ export default class Gambling extends ValidationElement {
     this.state = {
       List: props.List || [],
       HasGamblingDebt: props.HasGamblingDebt,
-      Comments: props.Comments,
       errorCodes: []
     }
 
-    this.commentsUpdated = this.commentsUpdated.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
   }
@@ -65,21 +63,6 @@ export default class Gambling extends ValidationElement {
   }
 
   /**
-   * Persist changes to comments
-   */
-  commentsUpdated (val) {
-    this.setState({ Comments: val }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          Comments: this.state.Comments,
-          HasGamblingDebt: this.state.HasGamblingDebt
-        })
-      }
-    })
-  }
-
-  /**
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
@@ -88,7 +71,6 @@ export default class Gambling extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
-          Comments: this.state.Comments,
           HasGamblingDebt: this.state.HasGamblingDebt
         })
       }
@@ -199,14 +181,6 @@ export default class Gambling extends ValidationElement {
             </Field>
           </Accordion>
         </Show>
-        <Comments name="Comments"
-                  value={this.state.Comments}
-                  label={i18n.t('financial.gambling.help.comments')}
-                  className="gambling-comment"
-                  onUpdate={this.commentsUpdated}
-                  onValidate={this.handleValidation}>
-          <h3>{i18n.t('financial.gambling.label.comments')}</h3>
-        </Comments>
       </div>
     )
   }

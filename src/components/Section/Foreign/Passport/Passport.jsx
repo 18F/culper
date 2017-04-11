@@ -166,15 +166,15 @@ export default class Passport extends ValidationElement {
             <RadioGroup className="passport-card option-list"
                         selectedValue={this.state.Card}>
               <Radio name="passport-book"
-                    label={i18n.t('foreign.passport.label.book')}
-                    value="Book"
-                    onChange={this.handleChange}
-                    />
+                     label={i18n.t('foreign.passport.label.book')}
+                     value="Book"
+                     onChange={this.handleChange}
+                     />
               <Radio name="passport-card"
-                    label={i18n.t('foreign.passport.label.card')}
-                    value="Card"
-                    onChange={this.handleChange}
-                    />
+                     label={i18n.t('foreign.passport.label.card')}
+                     value="Card"
+                     onChange={this.handleChange}
+                     />
             </RadioGroup>
             <Text name="number"
                   value={this.state.Number.value}
@@ -211,15 +211,6 @@ export default class Passport extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
         </Field>
-
-        <Comments name="comments"
-                  value={this.state.Comments}
-                  label={i18n.t('foreign.passport.comment.label')}
-                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                  onValidate={this.handleValidation}
-                  >
-          <h3>{i18n.t('foreign.passport.comment.title')}</h3>
-        </Comments>
       </div>
     )
   }

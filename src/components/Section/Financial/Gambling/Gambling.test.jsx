@@ -65,13 +65,11 @@ describe('The gambling component', () => {
         name={expected.name}
         List={gamblingData}
         HasGamblingDebt={true}
-        Comments={'Test'}
         onUpdate={onUpdate}
       />
     )
     component.find({type: 'radio', name: 'has_gamblingdebt', value: 'Yes'}).simulate('change')
     expect(component.find('.details').length).toBeGreaterThan(0)
-    component.find('textarea#Comments').simulate('change')
 
     component.find('button.add').simulate('click')
     expect(component.find('.row.open').length).toBe(0)

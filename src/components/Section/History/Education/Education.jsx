@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, BranchCollection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Field, Address, Show } from '../../../Form'
+import { ValidationElement, BranchCollection, DateRange, Reference, Text, RadioGroup, Radio, Field, Address } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -174,24 +174,21 @@ export class EducationItem extends ValidationElement {
                        />
           </Field>
 
-          <Comments name="Comments"
-                    {...this.state.Comments}
-                    addLabel="history.education.label.comments"
-                    title={i18n.t('history.education.heading.comments')}
-                    onUpdate={this.updateComments}
-                    onValidate={this.props.onValidate}>
-            <Field title={i18n.t('history.education.heading.address')}
-                   help="history.education.help.address"
-                   adjustFor="big-buttons"
-                   shrink={true}>
-              <Address name="Address"
-                       {...this.state.Address}
-                       label={i18n.t('history.education.label.address')}
-                       onUpdate={this.updateAddress}
-                       onValidate={this.props.onValidate}
-                       />
-            </Field>
-          </Comments>
+          <Field title={i18n.t('history.education.heading.address')}
+                 help="history.education.help.address"
+                 comments={true}
+                 commentsName="Comments"
+                 commentsValue={this.state.Comments}
+                 onUpdate={this.updateComments}
+                 adjustFor="big-buttons"
+                 shrink={true}>
+            <Address name="Address"
+                     {...this.state.Address}
+                     label={i18n.t('history.education.label.address')}
+                     onUpdate={this.updateAddress}
+                     onValidate={this.props.onValidate}
+                     />
+          </Field>
 
           <Field title={i18n.t('history.education.heading.type')}
                  help="history.education.help.type"
