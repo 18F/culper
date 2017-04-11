@@ -84,7 +84,6 @@ export default class Consultation extends ValidationElement {
         <h2>{i18n.t('psychological.heading.consultation')}</h2>
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
-          className="eapp-field-wrap no-label "
           value={this.state.IsIncompetent}
           help="psychological.consultation.help.incompetent"
           onValidate={this.handleValidation}

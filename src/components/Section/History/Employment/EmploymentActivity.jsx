@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Textarea, Help, HelpIcon, Radio, RadioGroup, Show } from '../../../Form'
+import { ValidationElement, Textarea, Field, Radio, RadioGroup, Show } from '../../../Form'
 
 export default class EmploymentActivity extends ValidationElement {
   constructor (props) {
@@ -41,7 +41,9 @@ export default class EmploymentActivity extends ValidationElement {
     return (
       <div className="employment-activity">
         <div className={this.props.className}>
-          <Help id={`history.employment.default.activity.help`}>
+          <Field help={`history.employment.default.activity.help`}
+                 adjustFor="labels"
+                 shrink={true}>
             <RadioGroup name="employment_activity"
                         className="option-list"
                         selectedValue={this.state.value}>
@@ -138,22 +140,19 @@ export default class EmploymentActivity extends ValidationElement {
                 onFocus={this.props.onFocus}
                 />
             </RadioGroup>
-            <HelpIcon className="activity"/>
-          </Help>
-        </div>
-        <Show when={this.state.value === 'Other'}>
-          <div className="eapp-field-wrap">
-            <Help id="history.employment.other.activity.other.help">
+          </Field>
+          <Show when={this.state.value === 'Other'}>
+            <Field help="history.employment.other.activity.other.help"
+                   adjustFor="labels">
               <Textarea name="otherExplanation"
                         className="other"
                         value={this.state.otherExplanation}
                         label={i18n.t('history.employment.default.activity.other.label')}
                         onChange={this.updateExplanation}
                         />
-              <HelpIcon />
-            </Help>
-          </div>
-        </Show>
+            </Field>
+          </Show>
+        </div>
       </div>
     )
   }

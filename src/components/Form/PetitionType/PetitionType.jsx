@@ -4,8 +4,8 @@ import ValidationElement from '../ValidationElement'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import Text from '../Text'
-import { Help, HelpIcon } from '../Help'
 import Address from '../Address'
+import Field from '../Field'
 
 export default class PetitionType extends ValidationElement {
   constructor (props) {
@@ -107,48 +107,43 @@ export default class PetitionType extends ValidationElement {
 
     if (this.state.value === 'Chapter13') {
       return (
-        <div>
-          <div className={klass + ' no-label'}>
-            <Help id="financial.bankruptcy.petitionType.help">
-              {options}
-              <HelpIcon className="petition-type" />
-            </Help>
-          </div>
+        <div className={klass}>
+          <Field help="financial.bankruptcy.petitionType.help"
+                 adjustFor="buttons"
+                 shrink={true}>
+            {options}
+          </Field>
 
-          <h3>{i18n.t('financial.bankruptcy.trustee.title')}</h3>
-          <div className={klass}>
-            <Help id="financial.bankruptcy.trustee.help">
-              <Text name="chapter13Trustee"
-                    className="trustee"
-                    value={this.state.trustee}
-                    placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
-                    onChange={this.handleFieldChange.bind(this, 'trustee')}
-                    />
-              <HelpIcon className="trustee"/>
-            </Help>
-          </div>
+          <Field title={i18n.t('financial.bankruptcy.trustee.title')}
+                 help="financial.bankruptcy.trustee.help">
+            <Text name="chapter13Trustee"
+                  className="trustee"
+                  value={this.state.trustee}
+                  placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
+                  onChange={this.handleFieldChange.bind(this, 'trustee')}
+                  />
+          </Field>
 
-          <h3>{i18n.t('financial.bankruptcy.trustee.address.title')}</h3>
-          <div className={klass}>
-            <Help id="financial.bankruptcy.trustee.address.help">
-              <Address name="trusteeAddress"
-                       {...this.props.address}
-                       label={i18n.t('financial.bankruptcy.trustee.address.label')}
-                       onUpdate={this.handleAddressChange.bind(this)}
-                       />
-              <HelpIcon className="trustee-address"/>
-            </Help>
-          </div>
+          <Field title={i18n.t('financial.bankruptcy.trustee.address.title')}
+                 help="financial.bankruptcy.trustee.address.help"
+                 adjustFor="labels">
+            <Address name="trusteeAddress"
+                     {...this.props.address}
+                     label={i18n.t('financial.bankruptcy.trustee.address.label')}
+                     onUpdate={this.handleAddressChange.bind(this)}
+                     />
+          </Field>
         </div>
       )
     }
 
     return (
-      <div className={klass + ' no-label'}>
-        <Help id="financial.bankruptcy.petitionType.help">
+      <div className={klass}>
+        <Field help="financial.bankruptcy.petitionType.help"
+               adjustFor="buttons"
+               shrink={true}>
           {options}
-          <HelpIcon className="petition-type" />
-        </Help>
+        </Field>
       </div>
     )
   }

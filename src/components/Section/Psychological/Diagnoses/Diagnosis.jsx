@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Text, Textarea, DateRange, RadioGroup, Radio, Show } from '../../../Form'
+import { ValidationElement, Field, Text, Textarea, DateRange, RadioGroup, Radio, Show } from '../../../Form'
 import Treatment from '../Treatment'
 
 export default class Diagnosis extends ValidationElement {
@@ -58,84 +58,74 @@ export default class Diagnosis extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="diagnosis">
-        <h3>{i18n.t(`psychological.${prefix}.heading.condition`)}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id={`psychological.${prefix}.help.condition`}>
-            <Text name="Condition"
-              className="condition"
-              {...this.props.Condition}
-              onUpdate={this.updateCondition}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}
+               help={`psychological.${prefix}.help.condition`}>
+          <Text name="Condition"
+                className="condition"
+                {...this.props.Condition}
+                onUpdate={this.updateCondition}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h3>{i18n.t(`psychological.${prefix}.heading.diagnosed`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={`psychological.${prefix}.help.diagnosed`}>
-            <DateRange name="Diagnosed"
-              {...this.props.Diagnosed}
-              receiveProps={this.props.receiveProps}
-              onUpdate={this.updateDiagnosed}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.diagnosed`)}
+               help={`psychological.${prefix}.help.diagnosed`}
+               adjustFor="daterange">
+          <DateRange name="Diagnosed"
+                     {...this.props.Diagnosed}
+                     receiveProps={this.props.receiveProps}
+                     onUpdate={this.updateDiagnosed}
+                     onValidate={this.props.onValidate}
+                     />
+        </Field>
 
         <h2>{i18n.t(`psychological.${prefix}.heading.healthcareProfessional`)}</h2>
-        <div className="eapp-field-wrap person">
+        <div className="person">
           <Treatment name="Treatment"
-            {...this.props.Treatment}
-            prefix={`${prefix}.person`}
-            onUpdate={this.updateTreatment}
-            onValidate={this.props.onValidate}
-          />
+                     {...this.props.Treatment}
+                     prefix={`${prefix}.person`}
+                     onUpdate={this.updateTreatment}
+                     onValidate={this.props.onValidate}
+                     />
         </div>
 
         <h2>{i18n.t(`psychological.${prefix}.heading.facility`)}</h2>
-        <div className="eapp-field-wrap facility">
+        <div className="facility">
           <Treatment name="TreatmentFacility"
-            {...this.props.TreatmentFacility}
-            prefix={`${prefix}.facility`}
-            onUpdate={this.updateTreatmentFacility}
-            onValidate={this.props.onValidate}
-          />
+                     {...this.props.TreatmentFacility}
+                     prefix={`${prefix}.facility`}
+                     onUpdate={this.updateTreatmentFacility}
+                     onValidate={this.props.onValidate}
+                     />
         </div>
 
-        <h3>{i18n.t(`psychological.${prefix}.heading.effective`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={`psychological.${prefix}.help.effective`}>
-            <RadioGroup className="effective" selectedValue={this.props.Effective}>
-              <Radio name="effective"
-                label="Yes"
-                value="Yes"
-                onUpdate={this.updateEffective}>
-              </Radio>
-              <Radio name="effective"
-                label="No"
-                value="No"
-                onUpdate={this.updateEffective}>
-              </Radio>
-            </RadioGroup>
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
+               help={`psychological.${prefix}.help.effective`}
+               adjustFor="buttons">
+          <RadioGroup className="effective" selectedValue={this.props.Effective}>
+            <Radio name="effective"
+                   label="Yes"
+                   value="Yes"
+                   onUpdate={this.updateEffective}>
+            </Radio>
+            <Radio name="effective"
+                   label="No"
+                   value="No"
+                   onUpdate={this.updateEffective}>
+            </Radio>
+          </RadioGroup>
+        </Field>
 
         <Show when={this.props.Effective === 'No'}>
-          <div>
-            <h3>{i18n.t(`psychological.${prefix}.heading.explanation`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`psychological.${prefix}.help.explanation`}>
-                <Textarea name="Explanation"
-                  className="explanation"
-                  {...this.props.Explanation}
-                  onUpdate={this.updateExplanation}
-                  onValidate={this.props.onValidate}
-                />
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`psychological.${prefix}.heading.explanation`)}
+                 help={`psychological.${prefix}.help.explanation`}>
+            <Textarea name="Explanation"
+                      className="explanation"
+                      {...this.props.Explanation}
+                      onUpdate={this.updateExplanation}
+                      onValidate={this.props.onValidate}
+                      />
+          </Field>
         </Show>
       </div>
     )

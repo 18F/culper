@@ -1,9 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Textarea, DateRange, Help, HelpIcon, NotApplicable } from '../../../Form'
-import { dateSummary } from '../../History/summaries'
-import Offense from './Offense'
+import { ValidationElement, Branch, Textarea, DateRange, Field, NotApplicable } from '../../../Form'
 
 export default class Sentence extends ValidationElement {
   constructor (props) {
@@ -70,78 +67,75 @@ export default class Sentence extends ValidationElement {
   render () {
     return (
       <div className="sentence">
-        <div className="eapp-field-wrap">
-          <Help id="legal.police.help.sentenceDescription">
-            <Textarea
-              {...this.state.Description}
-              className="description"
-              name="description"
-              label={i18n.t('legal.police.heading.sentenceDescription')}
-              onValidate={this.props.onValidate}
-              onUpdate={this.updateDescription} />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field help="legal.police.help.sentenceDescription"
+               adjustFor="labels">
+          <Textarea {...this.state.Description}
+                    className="description"
+                    name="description"
+                    label={i18n.t('legal.police.heading.sentenceDescription')}
+                    onValidate={this.props.onValidate}
+                    onUpdate={this.updateDescription} />
+        </Field>
 
         <Branch name="exceeding_year"
-          className="eapp-field-wrap no-label exceeds-year"
-          value={this.state.ExceedsYear}
-          help="legal.police.help.sentenceDescription"
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateExceedsYear}>
+                className="exceeds-year"
+                value={this.state.ExceedsYear}
+                help="legal.police.help.sentenceDescription"
+                onValidate={this.props.onValidate}
+                onUpdate={this.updateExceedsYear}>
           <div>
             {i18n.t('legal.police.heading.exceedsYear')}
           </div>
         </Branch>
 
         <Branch name="incarcerated"
-          className="eapp-field-wrap no-label incarcerated"
-          value={this.state.Incarcerated}
-          help="legal.police.help.exceedsYear"
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateIncarcerated}>
+                className="incarcerated"
+                value={this.state.Incarcerated}
+                help="legal.police.help.exceedsYear"
+                onValidate={this.props.onValidate}
+                onUpdate={this.updateIncarcerated}>
           <div>
             {i18n.m('legal.police.heading.incarcerated')}
           </div>
         </Branch>
 
-        <h4>{i18n.t('legal.police.heading.incarcerationDates')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="legal.police.help.incarcerationDates">
-            <NotApplicable name="IncarcerationDatesNA"
-              {...this.state.IncarcerationDatesNA}
-              label={i18n.t('legal.police.label.notApplicable')}
-              or={i18n.t('legal.police.label.or')}
-              onUpdate={this.updateIncarcerationDatesNA}>
-              <DateRange name="IncarcerationDates"
-                className="incarceration-dates"
-                {...this.state.IncarcerationDates}
-                onUpdate={this.updateIncarcerationDates}
-                onValidate={this.props.onValidate}
-              />
-            </NotApplicable>
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('legal.police.heading.incarcerationDates')}
+               titleSize="h4"
+               help="legal.police.help.incarcerationDates"
+               adjustFor="buttons"
+               shrink={true}>
+          <NotApplicable name="IncarcerationDatesNA"
+                         {...this.state.IncarcerationDatesNA}
+                         label={i18n.t('legal.police.label.notApplicable')}
+                         or={i18n.t('legal.police.label.or')}
+                         onUpdate={this.updateIncarcerationDatesNA}>
+            <DateRange name="IncarcerationDates"
+                       className="incarceration-dates"
+                       {...this.state.IncarcerationDates}
+                       onUpdate={this.updateIncarcerationDates}
+                       onValidate={this.props.onValidate}
+                       />
+          </NotApplicable>
+        </Field>
 
-        <h4>{i18n.t('legal.police.heading.probationDates')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="legal.police.help.probationDates">
-            <NotApplicable name="ProbationDatesNA"
-              {...this.state.ProbationDatesNA}
-              label={i18n.t('legal.police.label.notApplicable')}
-              or={i18n.t('legal.police.label.or')}
-              onUpdate={this.updateProbationDatesNA}>
-              <DateRange name="ProbationDates"
-                className="probation-dates"
-                {...this.state.ProbationDates}
-                onUpdate={this.updateProbationDates}
-                onValidate={this.props.onValidate}
-              />
-            </NotApplicable>
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('legal.police.heading.probationDates')}
+               titleSize="h4"
+               help="legal.police.help.probationDates"
+               adjustFor="buttons"
+               shrink={true}>
+          <NotApplicable name="ProbationDatesNA"
+                         {...this.state.ProbationDatesNA}
+                         label={i18n.t('legal.police.label.notApplicable')}
+                         or={i18n.t('legal.police.label.or')}
+                         onUpdate={this.updateProbationDatesNA}>
+            <DateRange name="ProbationDates"
+                       className="probation-dates"
+                       {...this.state.ProbationDates}
+                       onUpdate={this.updateProbationDates}
+                       onValidate={this.props.onValidate}
+                       />
+          </NotApplicable>
+        </Field>
       </div>
     )
   }

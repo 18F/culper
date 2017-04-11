@@ -17,19 +17,3 @@
     opacity: 0.5;
   }
 }
-
-.help {
-  .not-applicable {
-    + .toggle {
-      display: inline-block;
-      vertical-align: top;
-      margin-top: 9rem;
-    }
-  }
-
-  .not-applicable.with-or {
-    + .toggle {
-      margin-top: 13.5rem;
-    }
-  }
-}

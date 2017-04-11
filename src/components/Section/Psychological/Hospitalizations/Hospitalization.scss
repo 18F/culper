@@ -1,17 +1,10 @@
 .hospitalization {
-  .explanation,
-  .facility {
-    width: 92%;
-    max-width: 64rem;
-    display: inline-block;
-  }
-
   .admission {
-    .voluntary,
-    .involuntary {
+    .block label {
       font-weight: 600;
       width: 20rem;
       padding: 0.5rem;
+
       div {
         p {
           margin-bottom: 0.4rem;

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { DelinquentValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
+import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
          NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
@@ -134,53 +134,41 @@ export default class Delinquent extends ValidationElement {
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.delinquent.collection.append')}>
 
-            <h3>{i18n.t('financial.delinquent.heading.name')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.name">
-                <Text name="Name"
-                      className="delinquent-name"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.name')}
+                   help="financial.delinquent.help.name">
+              <Text name="Name"
+                    className="delinquent-name"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.infractions')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.infractions">
-                <Infractions name="Infractions"
-                             className="delinquent-infractions"
-                             bind={true}
-                             />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.infractions')}
+                   help="financial.delinquent.help.infractions">
+              <Infractions name="Infractions"
+                           className="delinquent-infractions"
+                           bind={true}
+                           />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.accountnumber')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.accountnumber">
-                <Text name="AccountNumber"
-                      className="delinquent-accountnumber"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.accountnumber')}
+                   help="financial.delinquent.help.accountnumber">
+              <Text name="AccountNumber"
+                    className="delinquent-accountnumber"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.propertytype')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.propertytype">
-                <Text name="PropertyType"
-                      className="delinquent-propertytype"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.propertytype')}
+                   help="financial.delinquent.help.propertytype">
+              <Text name="PropertyType"
+                    className="delinquent-propertytype"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.amount')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.amount">
+            <Field title={i18n.t('financial.delinquent.heading.amount')}
+                   help="financial.delinquent.help.amount">
+              <div>
                 <i className="fa fa-dollar"></i>
                 <Number name="Amount"
                         className="delinquent-amount"
@@ -188,8 +176,7 @@ export default class Delinquent extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <HelpIcon />
-                <div className="delinquent-amount coupled-flags">
+                <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.delinquent.label.estimated')}
@@ -197,92 +184,76 @@ export default class Delinquent extends ValidationElement {
                             bind={true}
                             />
                 </div>
-              </Help>
-            </div>
+              </div>
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.reason')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.reason">
-                <Textarea name="Reason"
-                          className="delinquent-reason"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.reason')}
+                   help="financial.delinquent.help.reason">
+              <Textarea name="Reason"
+                        className="delinquent-reason"
+                        bind={true}
+                        />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.status')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.status">
-                <Text name="Status"
-                      className="delinquent-status"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.status')}
+                   help="financial.delinquent.help.status">
+              <Text name="Status"
+                    className="delinquent-status"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.date')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="financial.delinquent.help.date">
-                <DateControl name="Date"
-                             className="delinquent-date"
+            <Field title={i18n.t('financial.delinquent.heading.date')}
+                   help="financial.delinquent.help.date"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="Date"
+                           className="delinquent-date"
+                           hideDay={true}
+                           bind={true}
+                           />
+            </Field>
+
+            <Field title={i18n.t('financial.delinquent.heading.resolved')}
+                   help="financial.delinquent.help.resolved"
+                   adjustFor="buttons"
+                   shrink={true}>
+              <NotApplicable name="ResolvedNotApplicable"
+                             label={i18n.t('financial.delinquent.label.notresolved')}
+                             or={i18n.m('financial.delinquent.para.or')}
+                             bind={true}>
+                <DateControl name="Resolved"
+                             className="delinquent-resolved"
                              hideDay={true}
                              bind={true}
                              />
-                <HelpIcon />
-              </Help>
-            </div>
+              </NotApplicable>
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.resolved')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.resolved">
-                <NotApplicable name="ResolvedNotApplicable"
-                               label={i18n.t('financial.delinquent.label.notresolved')}
-                               or={i18n.m('financial.delinquent.para.or')}
-                               bind={true}>
-                  <DateControl name="Resolved"
-                               className="delinquent-resolved"
-                               hideDay={true}
-                               bind={true}
-                               />
-                </NotApplicable>
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.courtname')}
+                   help="financial.delinquent.help.courtname">
+              <Text name="CourtName"
+                    className="delinquent-courtname"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.courtname')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.courtname">
-                <Text name="CourtName"
-                      className="delinquent-courtname"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
+                   help="financial.delinquent.help.courtaddress"
+                   adjustFor="big-buttons">
+              <Address name="CourtAddress"
+                       className="delinquent-courtaddress"
+                       bind={true}
+                       />
+            </Field>
 
-            <h3>{i18n.t('financial.delinquent.heading.courtaddress')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.courtaddress">
-                <Address name="CourtAddress"
-                         className="delinquent-courtaddress"
-                         bind={true}
-                         />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('financial.delinquent.heading.description')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.delinquent.help.description">
-                <Textarea name="Description"
-                          className="delinquent-description"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.delinquent.heading.description')}
+                   help="financial.delinquent.help.description">
+              <Textarea name="Description"
+                        className="delinquent-description"
+                        bind={true}
+                        />
+            </Field>
 
           </Accordion>
         </Show>

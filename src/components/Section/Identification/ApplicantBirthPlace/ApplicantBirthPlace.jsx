@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { BirthPlaceValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, City, MilitaryState, County, Country, Branch } from '../../../Form'
 import { api } from '../../../../services/api'
+import { BirthPlaceValidator } from '../../../../validators'
+import { ValidationElement, Field, City, MilitaryState, County, Country, Branch } from '../../../Form'
 
 export default class ApplicantBirthPlace extends ValidationElement {
   constructor (props) {
@@ -208,7 +208,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
       return (
         <div className={klass}>
           {this.options()}
-          <Help id="identification.birthplace.help.state">
+          <Field help="identification.birthplace.help.state"
+                 adjustFor="labels">
             <MilitaryState name="state"
                            label={i18n.t('identification.birthplace.label.state')}
                            value={this.state.state}
@@ -222,9 +223,9 @@ export default class ApplicantBirthPlace extends ValidationElement {
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
                            />
-            <HelpIcon className="state-help-icon" />
-          </Help>
-          <Help id="identification.birthplace.help.city">
+          </Field>
+          <Field help="identification.birthplace.help.city"
+                 adjustFor="labels">
             <City name="city"
                   label={i18n.t('identification.birthplace.label.city')}
                   value={this.state.city}
@@ -236,9 +237,9 @@ export default class ApplicantBirthPlace extends ValidationElement {
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   />
-            <HelpIcon className="" />
-          </Help>
-          <Help id="identification.birthplace.help.county">
+          </Field>
+          <Field help="identification.birthplace.help.county"
+                 adjustFor="labels">
             <County name="county"
                     label={i18n.t('identification.birthplace.label.county')}
                     value={this.state.county}
@@ -250,8 +251,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                     onFocus={this.props.onFocus}
                     onBlur={this.props.onBlur}
                     />
-            <HelpIcon className="" />
-          </Help>
+          </Field>
         </div>
       )
     }
@@ -259,7 +259,8 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         {this.options()}
-        <Help id="identification.birthplace.help.city">
+        <Field help="identification.birthplace.help.city"
+               adjustFor="labels">
           <City name="city"
                 label={i18n.t('identification.birthplace.label.city')}
                 value={this.state.city}
@@ -271,9 +272,9 @@ export default class ApplicantBirthPlace extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <HelpIcon className="" />
-        </Help>
-        <Help id="identification.birthplace.help.country">
+        </Field>
+        <Field help="identification.birthplace.help.country"
+               adjustFor="labels">
           <Country name="country"
                    label={i18n.t('identification.birthplace.label.country')}
                    value={this.state.country}
@@ -286,8 +287,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
-          <HelpIcon className="country-help-icon" />
-        </Help>
+        </Field>
       </div>
     )
   }

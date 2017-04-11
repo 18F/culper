@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Name, Address, DateRange, Text, Help, HelpIcon } from '../../../Form'
+import { Name, Address, DateRange, Text, Field } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -63,68 +63,58 @@ export default class ForeignContact extends React.Component {
     return (
       <div className="foreign-contact">
         <h3>{i18n.t('military.foreign.heading.contact.name')}</h3>
-        <div className="eapp-field-wrap">
-          <Name name="Name"
-                className="foreign-contact-name"
-                {...this.state.Name}
-                onUpdate={this.updateName}
+        <Name name="Name"
+              className="foreign-contact-name"
+              {...this.state.Name}
+              onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
+              />
+
+        <Field title={i18n.t('military.foreign.heading.contact.address')}
+               help="military.foreign.help.contact.address"
+               adjustFor="big-buttons"
+               shrink={true}>
+          <Address name="Address"
+                   className="foreign-contact-address"
+                   {...this.state.Address}
+                   onUpdate={this.updateAddress}
+                   onValidate={this.props.onValidate}
+                   />
+        </Field>
+
+        <Field title={i18n.t('military.foreign.heading.contact.title')}
+               help="military.foreign.help.contact.title">
+          <Text name="Title"
+                {...this.state.Title}
+                className="foreign-contact-title"
+                maxlength="100"
+                onUpdate={this.updateTitle}
                 onValidate={this.props.onValidate}
                 />
-        </div>
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.contact.address')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.contact.address">
-            <Address name="Address"
-                     className="foreign-contact-address"
-                     {...this.state.Address}
-                     onUpdate={this.updateAddress}
+        <Field title={i18n.t('military.foreign.heading.contact.dates')}
+               help="military.foreign.help.contact.dates"
+               adjustFor="daterange"
+               shrink={true}>
+          <DateRange name="Dates"
+                     className="foreign-contact-dates"
+                     {...this.state.Dates}
+                     onUpdate={this.updateDates}
                      onValidate={this.props.onValidate}
                      />
-            <HelpIcon />
-          </Help>
-        </div>
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.contact.title')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.contact.title">
-            <Text name="Title"
-                  {...this.state.Title}
-                  className="foreign-contact-title"
-                  maxlength="100"
-                  onUpdate={this.updateTitle}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('military.foreign.heading.contact.dates')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.contact.dates">
-            <DateRange name="Dates"
-                       className="foreign-contact-dates"
-                       {...this.state.Dates}
-                       onUpdate={this.updateDates}
-                       onValidate={this.props.onValidate}
-                       />
-            <HelpIcon />
-          </Help>
-        </div>
-
-        <h3>{i18n.t('military.foreign.heading.contact.frequency')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.contact.frequency">
-            <Text name="Frequency"
-                  {...this.state.Frequency}
-                  className="foreign-contact-frequency"
-                  maxlength="100"
-                  onUpdate={this.updateFrequency}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.contact.frequency')}
+               help="military.foreign.help.contact.frequency">
+          <Text name="Frequency"
+                {...this.state.Frequency}
+                className="foreign-contact-frequency"
+                maxlength="100"
+                onUpdate={this.updateFrequency}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
       </div>
     )
   }

@@ -374,7 +374,7 @@ export default class DateControl extends ValidationElement {
                     />
           </div>
         </div>
-        <div className="coupled-flags">
+        <div className="flags">
           <Checkbox name="estimated"
                     ref="estimated"
                     label="Estimated"

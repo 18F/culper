@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CardAbuseValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Help, HelpIcon,
+import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
          Address, Checkbox, Text, Textarea } from '../../../Form'
 
 export default class Card extends ValidationElement {
@@ -100,7 +100,7 @@ export default class Card extends ValidationElement {
     return (
       <div className="card-abuse">
         <Branch name="has_cardabuse"
-                className="card-branch eapp-field-wrap no-label"
+                className="card-branch"
                 value={this.state.HasCardAbuse}
                 help="financial.card.help.branch"
                 onUpdate={this.updateBranch}>
@@ -116,54 +116,45 @@ export default class Card extends ValidationElement {
                      appendMessage={i18n.m('financial.card.collection.appendMessage')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 
-            <h3>{i18n.t('financial.card.heading.agency')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.card.help.agency">
-                <Text name="Agency"
-                      className="card-agency"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.card.heading.agency')}
+                   help="financial.card.help.agency">
+              <Text name="Agency"
+                    className="card-agency"
+                    bind={true}
+                    />
+            </Field>
 
-            <h3>{i18n.t('financial.card.heading.address')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.card.help.address">
-                <Address name="Address"
-                         className="card-address"
-                         bind={true}
-                         />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.card.heading.address')}
+                   help="financial.card.help.address"
+                   adjustFor="labels">
+              <Address name="Address"
+                       className="card-address"
+                       bind={true}
+                       />
+            </Field>
 
-            <h3>{i18n.t('financial.card.heading.date')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="financial.card.help.date">
-                <DateControl name="Date"
-                             className="card-date"
-                             hideDay={true}
-                             bind={true}
-                             />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.card.heading.date')}
+                   help="financial.card.help.date"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="Date"
+                           className="card-date"
+                           hideDay={true}
+                           bind={true}
+                           />
+            </Field>
 
-            <h3>{i18n.t('financial.card.heading.reason')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.card.help.reason">
-                <Textarea name="Reason"
-                          className="card-reason"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.card.heading.reason')}
+                   help="financial.card.help.reason">
+              <Textarea name="Reason"
+                        className="card-reason"
+                        bind={true}
+                        />
+            </Field>
 
-            <h3>{i18n.t('financial.card.heading.amount')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.card.help.amount">
+            <Field title={i18n.t('financial.card.heading.amount')}
+                   help="financial.card.help.amount">
+              <div>
                 <i className="fa fa-dollar"></i>
                 <Number name="Amount"
                         className="card-amount"
@@ -171,8 +162,7 @@ export default class Card extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <HelpIcon />
-                <div className="card-amount coupled-flags">
+                <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.card.label.estimated')}
@@ -180,19 +170,16 @@ export default class Card extends ValidationElement {
                             bind={true}
                             />
                 </div>
-              </Help>
-            </div>
+              </div>
+            </Field>
 
-            <h3>{i18n.t('financial.card.heading.description')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="financial.card.help.description">
-                <Textarea name="Description"
-                          className="card-description"
-                          bind={true}
-                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('financial.card.heading.description')}
+                   help="financial.card.help.description">
+              <Textarea name="Description"
+                        className="card-description"
+                        bind={true}
+                        />
+            </Field>
 
           </Accordion>
         </Show>

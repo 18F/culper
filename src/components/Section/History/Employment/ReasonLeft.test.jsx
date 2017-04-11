@@ -36,11 +36,11 @@ describe('The reason left component', () => {
     }
     const component = mount(<ReasonLeft {...expected} />)
     component.find({name: 'reason_description'}).simulate('change')
-    component.find('.add-comment').simulate('click')
+    component.find('.comments-button.add').simulate('click')
     let comment = component.find({name: 'comments'})
     expect(comment.length).toBe(1)
     comment.simulate('change')
-    expect(updates).toBe(4)
+    expect(updates).toBe(1)
   })
 
   it('renders verbiage differently based on reason', () => {

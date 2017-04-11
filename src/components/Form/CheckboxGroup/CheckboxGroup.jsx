@@ -26,7 +26,7 @@ export default function CheckboxGroup (props) {
   })
 
   return (
-    <div className={props.className}>{children}</div>
+    <div className={`blocks ${props.className || ''}`.trim()}>{children}</div>
   )
 }
 

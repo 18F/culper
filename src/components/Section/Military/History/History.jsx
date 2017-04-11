@@ -107,7 +107,7 @@ export default class History extends ValidationElement {
     return (
       <div className="history">
         <Branch name="has_served"
-                className="eapp-field-wrap no-label served"
+                className="served"
                 value={this.state.HasServed}
                 help="military.history.help.served"
                 onUpdate={this.updateServed}

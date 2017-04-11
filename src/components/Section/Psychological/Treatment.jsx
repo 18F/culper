@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Help, HelpIcon, Text, Telephone } from '../../Form'
+import { Address, ValidationElement, Field, Text, Telephone } from '../../Form'
 
 export default class Treatment extends ValidationElement {
   constructor (props) {
@@ -37,41 +37,37 @@ export default class Treatment extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="treatment">
-        <h3>{i18n.t(`psychological.${prefix}.heading.name`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={`psychological.${prefix}.help.name`}>
-            <Text name="Name"
-              label={i18n.t(`psychological.${prefix}.label.name`)}
-              className="name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.name`)}
+               help={`psychological.${prefix}.help.name`}
+               adjustFor="labels">
+          <Text name="Name"
+                label={i18n.t(`psychological.${prefix}.label.name`)}
+                className="name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <div className="eapp-field-wrap help">
+        <Field adjustFor="labels">
           <Telephone name="Phone"
-            label={i18n.t(`psychological.${prefix}.label.phone`)}
-            {...this.props.Phone}
-            onUpdate={this.updatePhone}
-            onValidate={this.props.onValidate}
-          />
-        </div>
+                     label={i18n.t(`psychological.${prefix}.label.phone`)}
+                     {...this.props.Phone}
+                     onUpdate={this.updatePhone}
+                     onValidate={this.props.onValidate}
+                     />
+        </Field>
 
-        <h3>{i18n.t(`psychological.${prefix}.heading.address`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={`psychological.${prefix}.help.address`}>
-            <Address name="Address"
-              {...this.props.Address}
-              label={i18n.t(`psychological.${prefix}.label.address`)}
-              onUpdate={this.updateAddress}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.address`)}
+               help={`psychological.${prefix}.help.address`}
+               adjustFor="big-buttons">
+          <Address name="Address"
+                   {...this.props.Address}
+                   label={i18n.t(`psychological.${prefix}.label.address`)}
+                   onUpdate={this.updateAddress}
+                   onValidate={this.props.onValidate}
+                   />
+        </Field>
       </div>
     )
   }

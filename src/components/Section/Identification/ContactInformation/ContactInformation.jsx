@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, Email, Accordion, Comments, Telephone } from '../../../Form'
+import { ValidationElement, Field, Email, Accordion, Telephone } from '../../../Form'
 
 export default class ContactInformation extends ValidationElement {
   constructor (props) {
@@ -11,7 +11,6 @@ export default class ContactInformation extends ValidationElement {
       error: props.error || false,
       valid: props.valid || false,
       errorCodes: [],
-      Comments: props.Comments,
       Emails: props.Emails || [],
       PhoneNumbers: props.PhoneNumbers || []
     }
@@ -42,7 +41,6 @@ export default class ContactInformation extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Emails: this.state.Emails,
-          Comments: this.state.Comments,
           PhoneNumbers: this.state.PhoneNumbers
         })
       }
@@ -149,18 +147,15 @@ export default class ContactInformation extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.emailSummary}
                      description={i18n.t('identification.contacts.collection.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
-            <div className="eapp-field-wrap">
-              <Help id="identification.contacts.help.email">
-                <Email name="Email"
-                       label={i18n.t('identification.contacts.label.email')}
-                       placeholder={i18n.t('identification.contacts.placeholder.email')}
-                       bind={true}
-                       />
-                <HelpIcon className="email-icon" />
-              </Help>
-            </div>
+            <Field help="identification.contacts.help.email"
+                   adjustFor="labels">
+              <Email name="Email"
+                     label={i18n.t('identification.contacts.label.email')}
+                     placeholder={i18n.t('identification.contacts.placeholder.email')}
+                     bind={true}
+                     />
+            </Field>
           </Accordion>
         </div>
 
@@ -173,29 +168,15 @@ export default class ContactInformation extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
-            <div className="eapp-field-wrap no-label">
-              <Help id="identification.contacts.help.phoneNumber">
-                <Telephone name="Telephone"
-                           label={i18n.t('identification.contacts.label.telephone')}
-                           placeholder={i18n.t('identification.contacts.placeholder.telephone')}
-                           bind={true}
-                           />
-                <HelpIcon className="telephone-icon" />
-              </Help>
-            </div>
+            <Field help="identification.contacts.help.phoneNumber">
+              <Telephone name="Telephone"
+                         placeholder={i18n.t('identification.contacts.placeholder.telephone')}
+                         bind={true}
+                         />
+            </Field>
           </Accordion>
         </div>
-
-        <Comments name="comments"
-                  value={this.state.Comments}
-                  label={i18n.t('identification.contacts.label.comments')}
-                  className="eapp-field-wrap"
-                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                  onValidate={this.handleValidation}>
-          <h3>{i18n.t('identification.contacts.heading.comments')}</h3>
-        </Comments>
 
       </div>
     )

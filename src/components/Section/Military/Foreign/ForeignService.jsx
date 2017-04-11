@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field } from '../../../Form'
 import ForeignContact from './ForeignContact'
 import { dateSummary } from '../../History/summaries'
 
@@ -127,158 +127,138 @@ export default class ForeignService extends ValidationElement {
   render () {
     return (
       <div className="foreign-service">
-        <h3>{i18n.t('military.foreign.heading.organization')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.organization">
-            <RadioGroup className="organization option-list"
-                        selectedValue={this.state.Organization}>
-              <Radio name="organization-military"
-                     className="organization-military"
-                     label={this.labelForMilitary()}
-                     value="Military"
-                     onChange={this.updateOrganization}
-                     />
-              <Radio name="organization-intelligence"
-                     className="organization-intelligence"
-                     label={i18n.m('military.foreign.label.organization.intelligence')}
-                     value="Intelligence"
-                     onChange={this.updateOrganization}
-                     />
-              <Radio name="organization-diplomatic"
-                     className="organization-diplomatic"
-                     label={i18n.m('military.foreign.label.organization.diplomatic')}
-                     value="Diplomatic"
-                     onChange={this.updateOrganization}
-                     />
-              <Radio name="organization-security"
-                     className="organization-security"
-                     label={i18n.m('military.foreign.label.organization.security')}
-                     value="Security"
-                     onChange={this.updateOrganization}
-                     />
-              <Radio name="organization-militia"
-                     className="organization-militia"
-                     label={i18n.m('military.foreign.label.organization.militia')}
-                     value="Militia"
-                     onChange={this.updateOrganization}
-                     />
-              <Radio name="organization-defense"
-                     className="organization-defense"
-                     label={i18n.m('military.foreign.label.organization.defense')}
-                     value="Defense"
-                     onChange={this.updateOrganization}
-                     />
-              <Radio name="organization-other"
-                     className="organization-other"
-                     label={i18n.m('military.foreign.label.organization.other')}
-                     value="Other"
-                     onChange={this.updateOrganization}
-                     />
-            </RadioGroup>
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.organization')}
+               help="military.foreign.help.organization"
+               adjustFor="big-buttons"
+               shrink={true}>
+          <RadioGroup className="organization option-list"
+                      selectedValue={this.state.Organization}>
+            <Radio name="organization-military"
+                   className="organization-military"
+                   label={this.labelForMilitary()}
+                   value="Military"
+                   onChange={this.updateOrganization}
+                   />
+            <Radio name="organization-intelligence"
+                   className="organization-intelligence"
+                   label={i18n.m('military.foreign.label.organization.intelligence')}
+                   value="Intelligence"
+                   onChange={this.updateOrganization}
+                   />
+            <Radio name="organization-diplomatic"
+                   className="organization-diplomatic"
+                   label={i18n.m('military.foreign.label.organization.diplomatic')}
+                   value="Diplomatic"
+                   onChange={this.updateOrganization}
+                   />
+            <Radio name="organization-security"
+                   className="organization-security"
+                   label={i18n.m('military.foreign.label.organization.security')}
+                   value="Security"
+                   onChange={this.updateOrganization}
+                   />
+            <Radio name="organization-militia"
+                   className="organization-militia"
+                   label={i18n.m('military.foreign.label.organization.militia')}
+                   value="Militia"
+                   onChange={this.updateOrganization}
+                   />
+            <Radio name="organization-defense"
+                   className="organization-defense"
+                   label={i18n.m('military.foreign.label.organization.defense')}
+                   value="Defense"
+                   onChange={this.updateOrganization}
+                   />
+            <Radio name="organization-other"
+                   className="organization-other"
+                   label={i18n.m('military.foreign.label.organization.other')}
+                   value="Other"
+                   onChange={this.updateOrganization}
+                   />
+          </RadioGroup>
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.name')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.name">
-            <Text name="Name"
-                  {...this.state.Name}
-                  className="foreign-service-name"
-                  maxlength="100"
-                  onUpdate={this.updateName}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.name')}
+               help="military.foreign.help.name">
+          <Text name="Name"
+                {...this.state.Name}
+                className="foreign-service-name"
+                maxlength="100"
+                onUpdate={this.updateName}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.dates')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.dates">
-            <DateRange name="Dates"
-                       className="foreign-service-dates"
-                       {...this.state.Dates}
-                       onUpdate={this.updateDates}
-                       onValidate={this.props.onValidate}
-                       />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.dates')}
+               help="military.foreign.help.dates"
+               adjustFor="daterange"
+               shrink={true}>
+          <DateRange name="Dates"
+                     className="foreign-service-dates"
+                     {...this.state.Dates}
+                     onUpdate={this.updateDates}
+                     onValidate={this.props.onValidate}
+                     />
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.country')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.country">
-            <Text name="Country"
-                  {...this.state.Country}
-                  className="foreign-service-country"
-                  maxlength="100"
-                  onUpdate={this.updateCountry}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.country')}
+               help="military.foreign.help.country">
+          <Text name="Country"
+                {...this.state.Country}
+                className="foreign-service-country"
+                maxlength="100"
+                onUpdate={this.updateCountry}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.rank')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.rank">
-            <Text name="Rank"
-                  {...this.state.Rank}
-                  className="foreign-service-rank"
-                  maxlength="100"
-                  onUpdate={this.updateRank}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.rank')}
+               help="military.foreign.help.rank">
+          <Text name="Rank"
+                {...this.state.Rank}
+                className="foreign-service-rank"
+                maxlength="100"
+                onUpdate={this.updateRank}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.division')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.division">
-            <Text name="Division"
-                  {...this.state.Division}
-                  className="foreign-service-division"
-                  maxlength="100"
-                  onUpdate={this.updateDivision}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.division')}
+               help="military.foreign.help.division">
+          <Text name="Division"
+                {...this.state.Division}
+                className="foreign-service-division"
+                maxlength="100"
+                onUpdate={this.updateDivision}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.circumstances')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.circumstances">
-            <Textarea name="Circumstances"
-                      {...this.state.Circumstances}
-                      className="foreign-service-circumstances"
-                      maxlength="100"
-                      onUpdate={this.updateCircumstances}
-                      onValidate={this.props.onValidate}
-                      />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.circumstances')}
+               help="military.foreign.help.circumstances">
+          <Textarea name="Circumstances"
+                    {...this.state.Circumstances}
+                    className="foreign-service-circumstances"
+                    maxlength="100"
+                    onUpdate={this.updateCircumstances}
+                    onValidate={this.props.onValidate}
+                    />
+        </Field>
 
-        <h3>{i18n.t('military.foreign.heading.left')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.foreign.help.left">
-            <Textarea name="ReasonLeft"
-                      {...this.state.ReasonLeft}
-                      className="foreign-service-left"
-                      maxlength="100"
-                      onUpdate={this.updateReasonLeft}
-                      onValidate={this.props.onValidate}
-                      />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.foreign.heading.left')}
+               help="military.foreign.help.left">
+          <Textarea name="ReasonLeft"
+                    {...this.state.ReasonLeft}
+                    className="foreign-service-left"
+                    maxlength="100"
+                    onUpdate={this.updateReasonLeft}
+                    onValidate={this.props.onValidate}
+                    />
+        </Field>
 
         <h3>{i18n.t('military.foreign.heading.maintainscontact')}</h3>
         <Branch name="has_maintainscontact"
-                className="eapp-field-wrap no-label maintainscontact"
+                className="maintainscontact"
                 value={this.state.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}

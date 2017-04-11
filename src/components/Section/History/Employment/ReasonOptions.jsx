@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Help, HelpIcon, Radio, RadioGroup, Show, Textarea, DateControl } from '../../../Form'
+import { Field, Radio, RadioGroup, Show, Textarea, DateControl } from '../../../Form'
 
 export default class ReasonOptions extends React.Component {
   constructor (props) {
@@ -78,8 +78,10 @@ export default class ReasonOptions extends React.Component {
     const date = this.labelDate()
     return (
       <div className={this.props.className}>
-        <Help id="history.employment.default.left.help">
-          <h3>Select the type of incident</h3>
+        <Field title="Select the type of incident"
+               help="history.employment.default.left.help"
+               adjustFor="big-buttons"
+               shrink={true}>
           <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason}>
             <Radio name="employment_left"
                    label={i18n.t('history.employment.default.left.fired.option')}
@@ -112,7 +114,6 @@ export default class ReasonOptions extends React.Component {
                    onValidate={this.props.onValidate}
                    />
           </RadioGroup>
-          <HelpIcon />
           <Show when={this.state.Reason}>
             <div>
               <div className="explanation-left">
@@ -134,7 +135,7 @@ export default class ReasonOptions extends React.Component {
               </div>
             </div>
           </Show>
-        </Help>
+        </Field>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PassportValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, Text, Suggestions, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Field, Text, Suggestions, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -138,7 +138,7 @@ export default class Passport extends ValidationElement {
 
     return (
       <div>
-        <h3>Provide the name in which passport was first issued</h3>
+        <h3>{i18n.t('foreign.passport.name')}</h3>
         <Suggestions suggestions={this.props.suggestedNames}
                      renderSuggestion={this.renderSuggestion}
                      onSuggestion={this.onSuggestion}
@@ -152,29 +152,30 @@ export default class Passport extends ValidationElement {
                      >
           <Name name="name"
                 {...this.state.Name}
-                className="eapp-field-wrap"
                 onUpdate={this.handleUpdate.bind(this, 'Name')}
                 onValidate={this.handleValidation}
                 />
         </Suggestions>
 
-        <h3>{i18n.t('foreign.passport.number')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="foreign.passport.help.number" errorPrefix="passport">
+        <Field title={i18n.t('foreign.passport.number')}
+               help="foreign.passport.help.number"
+               errorPrefix="passport"
+               adjustFor="buttons"
+               shrink={true}>
+          <div>
             <RadioGroup className="passport-card option-list"
                         selectedValue={this.state.Card}>
               <Radio name="passport-book"
-                    label={i18n.t('foreign.passport.label.book')}
-                    value="Book"
-                    onChange={this.handleChange}
-                    />
+                     label={i18n.t('foreign.passport.label.book')}
+                     value="Book"
+                     onChange={this.handleChange}
+                     />
               <Radio name="passport-card"
-                    label={i18n.t('foreign.passport.label.card')}
-                    value="Card"
-                    onChange={this.handleChange}
-                    />
+                     label={i18n.t('foreign.passport.label.card')}
+                     value="Card"
+                     onChange={this.handleChange}
+                     />
             </RadioGroup>
-            <HelpIcon />
             <Text name="number"
                   value={this.state.Number.value}
                   label={i18n.t('foreign.passport.label.number')}
@@ -186,42 +187,30 @@ export default class Passport extends ValidationElement {
                   onUpdate={this.handleUpdate.bind(this, 'Number')}
                   onValidate={this.handleValidation}
                   />
-          </Help>
-        </div>
+          </div>
+        </Field>
 
-        <h3>{i18n.t('foreign.passport.issued')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="foreign.passport.help.issued">
-            <DateControl name="issued"
-                         {...this.state.Issued}
-                         onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                         onValidate={this.handleValidation}
-                         />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('foreign.passport.issued')}
+               help="foreign.passport.help.issued"
+               adjustFor="labels"
+               shrink={true}>
+          <DateControl name="issued"
+                       {...this.state.Issued}
+                       onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                       onValidate={this.handleValidation}
+                       />
+        </Field>
 
-        <h3>{i18n.t('foreign.passport.expiration')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="foreign.passport.help.expiration">
-            <DateControl name="expiration"
-                         {...this.state.Expiration}
-                         onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                         onValidate={this.handleValidation}
-                         />
-            <HelpIcon />
-          </Help>
-        </div>
-
-        <Comments name="comments"
-                  value={this.state.Comments}
-                  label={i18n.t('foreign.passport.comment.label')}
-                  className="eapp-field-wrap"
-                  onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                  onValidate={this.handleValidation}
-                  >
-          <h3>{i18n.t('foreign.passport.comment.title')}</h3>
-        </Comments>
+        <Field title={i18n.t('foreign.passport.expiration')}
+               help="foreign.passport.help.expiration"
+               adjustFor="labels"
+               shrink={true}>
+          <DateControl name="expiration"
+                       {...this.state.Expiration}
+                       onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                       onValidate={this.handleValidation}
+                       />
+        </Field>
       </div>
     )
   }
@@ -241,7 +230,6 @@ export default class Passport extends ValidationElement {
         <Branch name="has_passport"
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
-                className="eapp-field-wrap"
                 help="foreign.passport.branch.help"
                 >
         </Branch>

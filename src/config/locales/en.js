@@ -64,7 +64,24 @@ const en = {
     label: {
       first: 'First name',
       last: 'Last name',
-      middle: 'Middle name or initial'
+      middle: 'Middle name or initial',
+      initialOnly: 'Initial Only',
+      noMiddle: 'No middle name',
+      other: 'Other',
+      suffix: 'Suffix',
+      optional: 'Optional',
+      jr: 'Jr',
+      sr: 'Sr',
+      i: 'I',
+      ii: 'II',
+      iii: 'III',
+      iv: 'IV',
+      v: 'V',
+      vi: 'VI',
+      vii: 'VII',
+      viii: 'VIII',
+      ix: 'IX',
+      x: 'X'
     },
     placeholder: {
       first: 'Please enter your first name or initial',
@@ -3822,6 +3839,7 @@ const en = {
       placeholder: {
         number: 'A########'
       },
+      name: 'Provide the name in which passport was first issued',
       number: 'Provide your U.S. passport number',
       card: 'Passport card',
       issued: 'Provide the issue date of the passport',
@@ -4157,7 +4175,24 @@ const en = {
       label: {
         first: 'First name',
         last: 'Last name',
-        middle: 'Middle name or initial'
+        middle: 'Middle name or initial',
+        initialOnly: 'Initial Only',
+        noMiddle: 'No middle name',
+        other: 'Other',
+        suffix: 'Suffix',
+        optional: 'Optional',
+        jr: 'Jr',
+        sr: 'Sr',
+        i: 'I',
+        ii: 'II',
+        iii: 'III',
+        iv: 'IV',
+        v: 'V',
+        vi: 'VI',
+        vii: 'VII',
+        viii: 'VIII',
+        ix: 'IX',
+        x: 'X'
       },
       placeholder: {
         first: 'Enter first name of the person who knows you',

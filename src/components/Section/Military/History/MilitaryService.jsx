@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, RadioGroup, Radio, Svg, DateRange, DateControl, Text, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, RadioGroup, Radio, Svg, DateRange, DateControl, Text, Textarea, Field } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -99,176 +99,167 @@ export default class MilitaryService extends ValidationElement {
   render () {
     return (
       <div className="military-service">
-        <h3>{i18n.t('military.history.heading.service')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.history.help.service">
-            <RadioGroup className="service option-list eapp-extend-labels"
-                        selectedValue={this.state.Service}>
-              <Radio name="service-airforce"
-                     className="service-airforce"
-                     label={i18n.t('military.history.label.airforce')}
-                     value="AirForce"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon airforce-icon">
-                  <Svg src="img/airforce.png" />
-                </div>
-              </Radio>
-              <Radio name="service-airnationalguard"
-                     className="service-airnationalguard"
-                     label={i18n.t('military.history.label.airnationalguard')}
-                     value="AirNationalGuard"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon airnationalguard-icon">
-                  <Svg src="img/airnationalguard.gif" />
-                </div>
-              </Radio>
-              <Radio name="service-army"
-                     className="service-army"
-                     label={i18n.t('military.history.label.army')}
-                     value="Army"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon army-icon">
-                  <Svg src="img/army.png" />
-                </div>
-              </Radio>
-              <Radio name="service-armynationalguard"
-                     className="service-armynationalguard"
-                     label={i18n.t('military.history.label.armynationalguard')}
-                     value="ArmyNationalGuard"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon armynationalguard-icon">
-                  <Svg src="img/armynationalguard.png" />
-                </div>
-              </Radio>
-              <Radio name="service-coastguard"
-                     className="service-coastguard"
-                     label={i18n.t('military.history.label.coastguard')}
-                     value="CoastGuard"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon coastguard-icon">
-                  <Svg src="img/coastguard.png" />
-                </div>
-              </Radio>
-              <Radio name="service-marinecorps"
-                     className="service-marinecorps"
-                     label={i18n.t('military.history.label.marinecorps')}
-                     value="MarineCorps"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon marinecorps-icon">
-                  <Svg src="img/marinecorps.png" />
-                </div>
-              </Radio>
-              <Radio name="service-navy"
-                     className="service-navy"
-                     label={i18n.t('military.history.label.navy')}
-                     value="Navy"
-                     onChange={this.updateService}
-                     >
-                <div className="military-service-icon navy-icon">
-                  <Svg src="img/navy.png" />
-                </div>
-              </Radio>
-            </RadioGroup>
-            <HelpIcon className="service-icon" />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.history.heading.service')}
+               help="military.history.help.service"
+               adjustFor="big-buttons"
+               shrink={true}>
+          <RadioGroup className="service option-list eapp-extend-labels"
+                      selectedValue={this.state.Service}>
+            <Radio name="service-airforce"
+                   className="service-airforce"
+                   label={i18n.t('military.history.label.airforce')}
+                   value="AirForce"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon airforce-icon">
+                <Svg src="img/airforce.png" />
+              </div>
+            </Radio>
+            <Radio name="service-airnationalguard"
+                   className="service-airnationalguard"
+                   label={i18n.t('military.history.label.airnationalguard')}
+                   value="AirNationalGuard"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon airnationalguard-icon">
+                <Svg src="img/airnationalguard.gif" />
+              </div>
+            </Radio>
+            <Radio name="service-army"
+                   className="service-army"
+                   label={i18n.t('military.history.label.army')}
+                   value="Army"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon army-icon">
+                <Svg src="img/army.png" />
+              </div>
+            </Radio>
+            <Radio name="service-armynationalguard"
+                   className="service-armynationalguard"
+                   label={i18n.t('military.history.label.armynationalguard')}
+                   value="ArmyNationalGuard"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon armynationalguard-icon">
+                <Svg src="img/armynationalguard.png" />
+              </div>
+            </Radio>
+            <Radio name="service-coastguard"
+                   className="service-coastguard"
+                   label={i18n.t('military.history.label.coastguard')}
+                   value="CoastGuard"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon coastguard-icon">
+                <Svg src="img/coastguard.png" />
+              </div>
+            </Radio>
+            <Radio name="service-marinecorps"
+                   className="service-marinecorps"
+                   label={i18n.t('military.history.label.marinecorps')}
+                   value="MarineCorps"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon marinecorps-icon">
+                <Svg src="img/marinecorps.png" />
+              </div>
+            </Radio>
+            <Radio name="service-navy"
+                   className="service-navy"
+                   label={i18n.t('military.history.label.navy')}
+                   value="Navy"
+                   onChange={this.updateService}
+                   >
+              <div className="military-service-icon navy-icon">
+                <Svg src="img/navy.png" />
+              </div>
+            </Radio>
+          </RadioGroup>
+        </Field>
 
         <Show when={this.state.Service === 'AirNationalGuard' || this.state.Service === 'ArmyNationalGuard'}>
-          <div>
-            <h3>{i18n.t('military.history.heading.status')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="military.history.help.status">
-                <RadioGroup className="status option-list"
-                            selectedValue={this.state.Status}>
-                  <Radio name="status-activeduty"
-                         className="status-activeduty"
-                         label={i18n.t('military.history.label.activeduty')}
-                         value="ActiveDuty"
-                         onChange={this.updateStatus}
-                         />
-                  <Radio name="status-activereserve"
-                         className="status-activereserve"
-                         label={i18n.t('military.history.label.activereserve')}
-                         value="ActiveReserve"
-                         onChange={this.updateStatus}
-                         />
-                  <Radio name="status-inactivereserve"
-                         className="status-inactivereserve"
-                         label={i18n.t('military.history.label.inactivereserve')}
-                         value="InactiveReserve"
-                         onChange={this.updateStatus}
-                         />
-                </RadioGroup>
-                <HelpIcon />
-              </Help>
-            </div>
-          </div>
-        </Show>
-
-        <h3>{i18n.t('military.history.heading.officer')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.history.help.officer">
-            <RadioGroup className="officer option-list"
-                        selectedValue={this.state.Officer}>
-              <Radio name="officer-officer"
-                     className="officer-officer"
-                     label={i18n.t('military.history.label.officer')}
-                     value="Officer"
-                     onChange={this.updateOfficer}
+          <Field title={i18n.t('military.history.heading.status')}
+                 help="military.history.help.status"
+                 adjustFor="buttons"
+                 shrink={true}>
+            <RadioGroup className="status option-list"
+                        selectedValue={this.state.Status}>
+              <Radio name="status-activeduty"
+                     className="status-activeduty"
+                     label={i18n.t('military.history.label.activeduty')}
+                     value="ActiveDuty"
+                     onChange={this.updateStatus}
                      />
-              <Radio name="officer-enlisted"
-                     className="officer-enlisted"
-                     label={i18n.t('military.history.label.enlisted')}
-                     value="Enlisted"
-                     onChange={this.updateOfficer}
+              <Radio name="status-activereserve"
+                     className="status-activereserve"
+                     label={i18n.t('military.history.label.activereserve')}
+                     value="ActiveReserve"
+                     onChange={this.updateStatus}
                      />
-              <Radio name="officer-na"
-                     className="officer-na"
-                     label={i18n.t('military.history.label.na')}
-                     value="NotApplicable"
-                     onChange={this.updateOfficer}
+              <Radio name="status-inactivereserve"
+                     className="status-inactivereserve"
+                     label={i18n.t('military.history.label.inactivereserve')}
+                     value="InactiveReserve"
+                     onChange={this.updateStatus}
                      />
             </RadioGroup>
-            <HelpIcon />
-          </Help>
-        </div>
+          </Field>
+        </Show>
 
-        <h3>{i18n.t('military.history.heading.number')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.history.help.number">
-            <Text name="ServiceNumber"
-                  {...this.state.ServiceNumber}
-                  className="service-number"
-                  onUpdate={this.updateServiceNumber}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.history.heading.officer')}
+               help="military.history.help.officer"
+               adjustFor="buttons"
+               shrink={true}>
+          <RadioGroup className="officer option-list"
+                      selectedValue={this.state.Officer}>
+            <Radio name="officer-officer"
+                   className="officer-officer"
+                   label={i18n.t('military.history.label.officer')}
+                   value="Officer"
+                   onChange={this.updateOfficer}
+                   />
+            <Radio name="officer-enlisted"
+                   className="officer-enlisted"
+                   label={i18n.t('military.history.label.enlisted')}
+                   value="Enlisted"
+                   onChange={this.updateOfficer}
+                   />
+            <Radio name="officer-na"
+                   className="officer-na"
+                   label={i18n.t('military.history.label.na')}
+                   value="NotApplicable"
+                   onChange={this.updateOfficer}
+                   />
+          </RadioGroup>
+        </Field>
 
-        <h3>{i18n.t('military.history.heading.dates')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.history.help.dates">
-            <DateRange name="Dates"
-                       className="dates"
-                       {...this.state.Dates}
-                       label={i18n.t('military.history.label.dates')}
-                       onUpdate={this.updateDates}
-                       onValidate={this.props.onValidate}
-                       />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.history.heading.number')}
+               help="military.history.help.number">
+          <Text name="ServiceNumber"
+                {...this.state.ServiceNumber}
+                className="service-number"
+                onUpdate={this.updateServiceNumber}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
+
+        <Field title={i18n.t('military.history.heading.dates')}
+               help="military.history.help.dates"
+               adjustFor="daterange"
+               shrink={true}>
+          <DateRange name="Dates"
+                     className="dates"
+                     {...this.state.Dates}
+                     label={i18n.t('military.history.label.dates')}
+                     onUpdate={this.updateDates}
+                     onValidate={this.props.onValidate}
+                     />
+        </Field>
 
         <h3>{i18n.t('military.history.heading.discharged')}</h3>
         <Branch name="has_beendischarged"
-                className="eapp-field-wrap no-label discharged"
+                className="discharged"
                 value={this.state.HasBeenDischarged}
                 help="military.history.help.discharged"
                 onUpdate={this.updateDischarged}
@@ -279,96 +270,92 @@ export default class MilitaryService extends ValidationElement {
           <div>
             <h2>{i18n.t('military.history.heading.details')}</h2>
 
-            <h3>{i18n.t('military.history.heading.discharge.type')}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id="military.history.help.discharge.type">
-                <RadioGroup className="discharge-type option-list"
-                            selectedValue={this.state.DischargeType}>
-                  <Radio name="discharge-type-honorable"
-                         className="discharge-type-honorable"
-                         label={i18n.m('military.history.label.discharge.type.honorable')}
-                         value="Honorable"
-                         onChange={this.updateDischargeType}
-                         onValidate={this.props.onValidate}
-                         />
-                  <Radio name="discharge-type-dishonorable"
-                         className="discharge-type-dishonorable"
-                         label={i18n.m('military.history.label.discharge.type.dishonorable')}
-                         value="Dishonorable"
-                         onChange={this.updateDischargeType}
-                         onValidate={this.props.onValidate}
-                         />
-                  <Radio name="discharge-type-lessthan"
-                         className="discharge-type-lessthan long-text"
-                         label={i18n.m('military.history.label.discharge.type.lessthan')}
-                         value="LessThan"
-                         onChange={this.updateDischargeType}
-                         onValidate={this.props.onValidate}
-                         />
-                  <Radio name="discharge-type-general"
-                         className="discharge-type-general"
-                         label={i18n.m('military.history.label.discharge.type.general')}
-                         value="General"
-                         onChange={this.updateDischargeType}
-                         onValidate={this.props.onValidate}
-                         />
-                  <Radio name="discharge-type-badconduct"
-                         className="discharge-type-badconduct"
-                         label={i18n.m('military.history.label.discharge.type.badconduct')}
-                         value="BadConduct"
-                         onChange={this.updateDischargeType}
-                         onValidate={this.props.onValidate}
-                         />
-                  <Radio name="discharge-type-other"
-                         className="discharge-type-other long-text"
-                         label={i18n.m('military.history.label.discharge.type.other')}
-                         value="Other"
-                         onChange={this.updateDischargeType}
-                         onValidate={this.props.onValidate}
-                         />
-                </RadioGroup>
-                <HelpIcon className="discharge-type-icon" />
-                <Show when={this.state.DischargeType === 'Other'}>
-                  <Text name="DischargeTypeOther"
-                        {...this.state.DischargeTypeOther}
-                        label={i18n.t('military.history.label.discharge.type.otherex')}
-                        className="discharge-type-otherex"
-                        maxlength="100"
-                        onUpdate={this.updateDischargeTypeOther}
-                        onValidate={this.props.onValidate}
-                        />
-                </Show>
-              </Help>
-            </div>
+            <Field title={i18n.t('military.history.heading.discharge.type')}
+                   help="military.history.help.discharge.type"
+                   adjustFor="big-buttons"
+                   shrink={true}>
+              <RadioGroup className="discharge-type option-list"
+                          selectedValue={this.state.DischargeType}>
+                <Radio name="discharge-type-honorable"
+                       className="discharge-type-honorable"
+                       label={i18n.m('military.history.label.discharge.type.honorable')}
+                       value="Honorable"
+                       onChange={this.updateDischargeType}
+                       onValidate={this.props.onValidate}
+                       />
+                <Radio name="discharge-type-dishonorable"
+                       className="discharge-type-dishonorable"
+                       label={i18n.m('military.history.label.discharge.type.dishonorable')}
+                       value="Dishonorable"
+                       onChange={this.updateDischargeType}
+                       onValidate={this.props.onValidate}
+                       />
+                <Radio name="discharge-type-lessthan"
+                       className="discharge-type-lessthan long-text"
+                       label={i18n.m('military.history.label.discharge.type.lessthan')}
+                       value="LessThan"
+                       onChange={this.updateDischargeType}
+                       onValidate={this.props.onValidate}
+                       />
+                <Radio name="discharge-type-general"
+                       className="discharge-type-general"
+                       label={i18n.m('military.history.label.discharge.type.general')}
+                       value="General"
+                       onChange={this.updateDischargeType}
+                       onValidate={this.props.onValidate}
+                       />
+                <Radio name="discharge-type-badconduct"
+                       className="discharge-type-badconduct"
+                       label={i18n.m('military.history.label.discharge.type.badconduct')}
+                       value="BadConduct"
+                       onChange={this.updateDischargeType}
+                       onValidate={this.props.onValidate}
+                       />
+                <Radio name="discharge-type-other"
+                       className="discharge-type-other long-text"
+                       label={i18n.m('military.history.label.discharge.type.other')}
+                       value="Other"
+                       onChange={this.updateDischargeType}
+                       onValidate={this.props.onValidate}
+                       />
+              </RadioGroup>
+              <Show when={this.state.DischargeType === 'Other'}>
+                <Text name="DischargeTypeOther"
+                      {...this.state.DischargeTypeOther}
+                      label={i18n.t('military.history.label.discharge.type.otherex')}
+                      className="discharge-type-otherex"
+                      maxlength="100"
+                      onUpdate={this.updateDischargeTypeOther}
+                      onValidate={this.props.onValidate}
+                      />
+              </Show>
+            </Field>
 
             <Show when={this.state.DischargeType && this.state.DischargeType !== 'Honorable'}>
-              <div className="eapp-field-wrap">
-                <Help id="military.history.help.discharge.reason">
-                  <Textarea name="DischargeReason"
-                            {...this.state.DischargeReason}
-                            className="discharge-reason"
-                            label={i18n.t('military.history.label.discharge.reason')}
-                            onUpdate={this.updateDischargeReason}
-                            onValidate={this.props.onValidate}
-                            />
-                  <HelpIcon />
-                </Help>
-              </div>
+              <Field help="military.history.help.discharge.reason"
+                     adjustFor="labels">
+                <Textarea name="DischargeReason"
+                          {...this.state.DischargeReason}
+                          className="discharge-reason"
+                          label={i18n.t('military.history.label.discharge.reason')}
+                          onUpdate={this.updateDischargeReason}
+                          onValidate={this.props.onValidate}
+                          />
+              </Field>
             </Show>
 
-            <h3>{i18n.t('military.history.heading.discharge.date')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="military.history.help.discharge.date">
-                <DateControl name="DischargeDate"
-                             {...this.state.DischargeDate}
-                             className="discharge-date"
-                             hideDay={true}
-                             onUpdate={this.updateDischargeDate}
-                             onValidate={this.props.onValidate}
-                             />
-                <HelpIcon />
-              </Help>
-            </div>
+            <Field title={i18n.t('military.history.heading.discharge.date')}
+                   help="military.history.help.discharge.date"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="DischargeDate"
+                           {...this.state.DischargeDate}
+                           className="discharge-date"
+                           hideDay={true}
+                           onUpdate={this.updateDischargeDate}
+                           onValidate={this.props.onValidate}
+                           />
+            </Field>
           </div>
         </Show>
       </div>

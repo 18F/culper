@@ -15,6 +15,7 @@
     vertical-align: top;
     text-align: center;
     margin-right: 2rem;
+    margin-top: 3.5rem;
   }
 
   .datecontrol {
@@ -39,22 +40,11 @@
   .from-present {
     display: inline-block;
     vertical-align: top;
+    padding-top: 2.5rem;
 
     .or {
       margin-right: 1rem;
-    }
-
-    .eapp-blocks-checkbox {
-      width: 15rem;
-    }
-  }
-}
-
-.help {
-  .daterange {
-    + .toggle {
-      margin-top: 1.5rem;
-      margin-left: -18rem;
+      margin-left: 1rem;
     }
   }
 }

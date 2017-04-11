@@ -116,7 +116,7 @@ export default class Diagnoses extends ValidationElement {
         {i18n.m('psychological.heading.diagnoses')}
         <h3>{i18n.t('psychological.diagnoses.heading.para')}</h3>
         <Branch name="diagnosed"
-          className="eapp-field-wrap no-label diagnosed"
+          className="diagnosed"
           value={this.state.Diagnosed}
           help="psychological.diagnoses.help.diagnosed"
           onValidate={this.handleValidation}
@@ -139,7 +139,7 @@ export default class Diagnoses extends ValidationElement {
 
         <h3>{i18n.t('psychological.diagnoses.heading.didNotConsult')}</h3>
         <Branch name="didNotConsult"
-          className="eapp-field-wrap no-label didnotconsult"
+          className="didnotconsult"
           value={this.state.DidNotConsult}
           help="psychological.diagnoses.help.didNotConsult"
           onValidate={this.handleValidation}
@@ -148,7 +148,7 @@ export default class Diagnoses extends ValidationElement {
 
         <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
         <Branch name="inTreatment"
-          className="eapp-field-wrap no-label intreatment"
+          className="intreatment"
           value={this.state.InTreatment}
           help="psychological.diagnoses.help.inTreatment"
           onValidate={this.handleValidation}

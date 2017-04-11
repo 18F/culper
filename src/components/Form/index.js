@@ -19,6 +19,7 @@ import Svg from './Svg'
 import Suggestions from './Suggestions'
 import NotApplicable from './NotApplicable'
 import Accordion from './Accordion'
+import Field from './Field'
 
 // Composite components
 import Type from './Type'
@@ -89,5 +90,6 @@ export {
   BranchCollection,
   Suggestions,
   NotApplicable,
-  Accordion
+  Accordion,
+  Field
 }

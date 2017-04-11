@@ -54,7 +54,7 @@ export default class NotApplicable extends React.Component {
                     checked={!this.state.applicable}
                     onUpdate={this.onUpdate}
                     />
-          {this.props.or}
+          <span className="or">{this.props.or}</span>
         </div>
         <div className={`${klass} ${dithered} content`.trim()}>
           {this.renderChildren()}

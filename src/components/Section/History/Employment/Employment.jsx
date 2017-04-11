@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateRange, Address, Text, Help, HelpIcon, Reference, Telephone, Show } from '../../../Form'
+import { ValidationElement, DateRange, Address, Text, Field, Reference, Telephone, Show } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -120,153 +120,125 @@ export class EmploymentItem extends ValidationElement {
           onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
           onValidate={this.props.onValidate}
           name="EmploymentActivity"
-          className="eapp-field-wrap no-label"
           />
 
         <Show when={this.showEmployer()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.employer`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`${prefix}.employer.help`}>
-                <Text name="Employment"
+          <Field title={i18n.t(`${prefix}.heading.employer`)}
+                 help={`${prefix}.employer.help`}
+                 adjustFor="labels">
+            <Text name="Employment"
                   {...this.props.Employment}
                   onUpdate={this.onUpdate.bind(this, 'Employment')}
                   onValidate={this.props.onValidate}
                   className="text full-width"
                   label={i18n.t(`${prefix}.employer.label`)}
-                />
-                <HelpIcon className="employer" />
-              </Help>
-            </div>
-          </div>
+                  />
+          </Field>
         </Show>
 
         <Show when={this.showEmployed()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.title`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`${prefix}.title.help`}>
-                <Text name="Title"
+          <Field title={i18n.t(`${prefix}.heading.title`)}
+                 help={`${prefix}.title.help`}
+                 adjustFor="labels">
+            <Text name="Title"
                   {...this.props.Title}
                   onUpdate={this.onUpdate.bind(this, 'Title')}
                   className="text"
                   label={i18n.t(`${prefix}.title.label`)}
                   onValidate={this.props.onValidate}
-                />
-                <HelpIcon className="title" />
-              </Help>
-            </div>
-          </div>
+                  />
+          </Field>
         </Show>
 
         <Show when={this.showAssignedDuty()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.dutyStation`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`${prefix}.dutyStation.help`}>
-                <Text name="DutyStation"
+          <Field title={i18n.t(`${prefix}.heading.dutyStation`)}
+                 help={`${prefix}.dutyStation.help`}
+                 adjustFor="labels">
+            <Text name="DutyStation"
                   {...this.props.DutyStation}
                   onUpdate={this.onUpdate.bind(this, 'DutyStation')}
                   className="text full-width"
                   label={i18n.t(`${prefix}.dutyStation.label`)}
                   onValidate={this.props.onValidate}
-                />
-                <HelpIcon className="title" />
-              </Help>
-            </div>
-          </div>
+                  />
+          </Field>
         </Show>
 
         <Show when={this.showStatus()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.status`)}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id={`${prefix}.status.help`}>
-                <EmploymentStatus name="Status"
-                  {...this.props.Status}
-                  onUpdate={this.onUpdate.bind(this, 'Status')}
-                  onValidate={this.props.onValidate}
-                />
-                <HelpIcon className="status" />
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`${prefix}.heading.status`)}
+                 help={`${prefix}.status.help`}
+                 shrink={true}>
+            <EmploymentStatus name="Status"
+                              {...this.props.Status}
+                              onUpdate={this.onUpdate.bind(this, 'Status')}
+                              onValidate={this.props.onValidate}
+                              />
+          </Field>
         </Show>
 
-        <h3>{i18n.t(`history.employment.default.heading.datesEmployed`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={`history.employment.default.datesEmployed.help`}>
-            <DateRange name="Dates"
-              {...this.props.Dates}
-              receiveProps={this.props.receiveProps}
-              onUpdate={this.onUpdate.bind(this, 'Dates')}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="used-help-icon" />
-          </Help>
-        </div>
+        <Field title={i18n.t(`history.employment.default.heading.datesEmployed`)}
+               help={`history.employment.default.datesEmployed.help`}
+               adjustFor="daterange"
+               shrink={true}>
+          <DateRange name="Dates"
+                     {...this.props.Dates}
+                     receiveProps={this.props.receiveProps}
+                     onUpdate={this.onUpdate.bind(this, 'Dates')}
+                     onValidate={this.props.onValidate}
+                     />
+        </Field>
 
         <Show when={this.showEmployed()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.address`)}</h3>
-            <div className="eapp-field-wrap">
-              <Help id={`${prefix}.address.help`}>
-                <Address name="Address"
-                  {...this.props.Address}
-                  onUpdate={this.onUpdate.bind(this, 'Address')}
-                  onValidate={this.props.onValidate}
-                  label={i18n.t(`${prefix}.address.label`)}
-                />
-                <HelpIcon className="address"/>
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`${prefix}.heading.address`)}
+                 help={`${prefix}.address.help`}
+                 adjustFor="labels"
+                 shrink={true}>
+            <Address name="Address"
+                     {...this.props.Address}
+                     onUpdate={this.onUpdate.bind(this, 'Address')}
+                     onValidate={this.props.onValidate}
+                     label={i18n.t(`${prefix}.address.label`)}
+                     />
+          </Field>
         </Show>
 
         <Show when={this.showPhysicalAddress()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.physicalAddress`)}</h3>
+          <Field title={i18n.t(`${prefix}.heading.physicalAddress`)}>
             <PhysicalAddress name="PhysicalAddress"
-              {...this.props.PhysicalAddress}
-              onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
-              onValidate={this.props.onValidate}
-              className="eapp-field-wrap"
-            />
-          </div>
+                             {...this.props.PhysicalAddress}
+                             onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
+                             onValidate={this.props.onValidate}
+                             />
+          </Field>
         </Show>
 
         <Show when={this.showEmployed()}>
-          <div>
-            <h3>{i18n.t(`${prefix}.heading.telephone`)}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id={`${prefix}.telephone.help`}>
-                <Telephone name="Telephone"
-                  {...this.props.Telephone}
-                  onUpdate={this.onUpdate.bind(this, 'Telephone')}
-                  onValidate={this.props.onValidate}
-                />
-                <HelpIcon className="telephone-icon"/>
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`${prefix}.heading.telephone`)}
+                 help={`${prefix}.telephone.help`}>
+            <Telephone name="Telephone"
+                       {...this.props.Telephone}
+                       onUpdate={this.onUpdate.bind(this, 'Telephone')}
+                       onValidate={this.props.onValidate}
+                       />
+          </Field>
         </Show>
 
         <Show when={this.showSupervisor()}>
           <Supervisor name="Supervisor"
-            {...this.props.Supervisor}
-            onUpdate={this.onUpdate.bind(this, 'Supervisor')}
-            onValidate={this.props.onValidate}
-          />
+                      {...this.props.Supervisor}
+                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
+                      onValidate={this.props.onValidate}
+                      />
         </Show>
 
         <Show when={this.showReference()}>
           <div>
             <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
             <Reference name="Reference"
-              {...this.props.Reference}
-              onUpdate={this.onUpdate.bind(this, 'Reference')}
-              onValidate={this.props.onValidate}
-            />
+                       {...this.props.Reference}
+                       onUpdate={this.onUpdate.bind(this, 'Reference')}
+                       onValidate={this.props.onValidate}
+                       />
           </div>
         </Show>
 
@@ -275,30 +247,27 @@ export class EmploymentItem extends ValidationElement {
             <h2>{i18n.t(`${prefix}.heading.additionalActivity`)}</h2>
             <p>{i18n.t(`${prefix}.para.additionalActivity`)}</p>
             <AdditionalActivity name="Additional"
-              {...this.props.Additional}
-              onUpdate={this.onUpdate.bind(this, 'Additional')}
-              onValidate={this.props.onValidate}
-              className="additional-activity eapp-field-wrap" />
+                                {...this.props.Additional}
+                                onUpdate={this.onUpdate.bind(this, 'Additional')}
+                                onValidate={this.props.onValidate}
+                                className="additional-activity" />
           </div>
         </Show>
 
         <h3>{i18n.t('history.employment.default.left.title')}</h3>
         <ReasonLeft name="ReasonLeft"
-          {...this.props.ReasonLeft}
-          onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
-          onValidate={this.props.onValidate}
-        />
+                    {...this.props.ReasonLeft}
+                    onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
+                    onValidate={this.props.onValidate}
+                    />
 
         <Show when={this.showLeaving()}>
-          <div>
-            <Reprimand name="Reprimand"
-              {...this.props.Reprimand}
-              onUpdate={this.onUpdate.bind(this, 'Reprimand')}
-              onValidate={this.props.onValidate}
-            />
-          </div>
+          <Reprimand name="Reprimand"
+                     {...this.props.Reprimand}
+                     onUpdate={this.onUpdate.bind(this, 'Reprimand')}
+                     onValidate={this.props.onValidate}
+                     />
         </Show>
-
       </div>
     )
   }

@@ -60,8 +60,11 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = this.props.className || ''
-    klass += ' eapp-blocks-checkbox'
+    let klass = `${this.props.className || ''} block`
+
+    if (this.props.children) {
+      klass += ' extended'
+    }
 
     if (this.state.error) {
       klass += ' usa-input-error'

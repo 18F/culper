@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Name, DateRange, Field, Textarea } from '../../../Form'
 
 export default class Alias extends ValidationElement {
   constructor (props) {
@@ -65,28 +65,25 @@ export default class Alias extends ValidationElement {
                 onUpdate={this.updateMaidenName} >
         </Branch>
 
-        <div className="eapp-field-wrap">
-          <Help id="family.relatives.help.aliasdates">
-            <DateRange name="Dates"
-                       className="alias-dates"
-                       {...this.state.Dates}
-                       onUpdate={this.updateDates}
-                       />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field help="family.relatives.help.aliasdates"
+               adjustFor="daterange"
+               shrink={true}>
+          <DateRange name="Dates"
+                     className="alias-dates"
+                     {...this.state.Dates}
+                     onUpdate={this.updateDates}
+                     />
+        </Field>
 
-        <h4>{i18n.t('family.relatives.heading.alias.reason')}</h4>
-        <div className="eapp-field-wrap no-label">
-          <Help id="family.relatives.help.reason">
-            <Textarea name="Reason"
-                      className="alias-reason"
-                      {...this.state.Reason}
-                      onUpdate={this.updateReason}
-                      />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('family.relatives.heading.alias.reason')}
+               titleSize="h4"
+               help="family.relatives.help.reason">
+          <Textarea name="Reason"
+                    className="alias-reason"
+                    {...this.state.Reason}
+                    onUpdate={this.updateReason}
+                    />
+        </Field>
       </div>
     )
   }

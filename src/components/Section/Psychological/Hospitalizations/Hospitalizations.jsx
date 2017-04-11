@@ -80,7 +80,6 @@ export default class Hospitalizations extends ValidationElement {
       <div className="hospitalizations">
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
-          className="eapp-field-wrap no-label "
           value={this.state.Hospitalized}
           help="psychological.hospitalization.help.incompetent"
           onValidate={this.handleValidation}

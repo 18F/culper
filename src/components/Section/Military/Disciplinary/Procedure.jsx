@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateControl, Text, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, DateControl, Text, Textarea, Field } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -62,76 +62,66 @@ export default class Procedure extends ValidationElement {
   render () {
     return (
       <div className="disciplinary-procedure">
-        <h3>{i18n.t('military.disciplinary.heading.date')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="military.disciplinary.help.date">
-            <DateControl name="Date"
-                         {...this.state.Date}
-                         className="procedure-date"
-                         hideDay={true}
-                         onUpdate={this.updateDate}
-                         onValidate={this.props.onValidate}
-                         />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.disciplinary.heading.date')}
+               help="military.disciplinary.help.date"
+               adjustFor="labels"
+               shrink={true}>
+          <DateControl name="Date"
+                       {...this.state.Date}
+                       className="procedure-date"
+                       hideDay={true}
+                       onUpdate={this.updateDate}
+                       onValidate={this.props.onValidate}
+                       />
+        </Field>
 
-        <h3>{i18n.t('military.disciplinary.heading.offenses')}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id="military.disciplinary.help.offenses">
-            <Textarea name="Offenses"
-                      {...this.state.Offenses}
-                      className="procedure-offenses"
-                      onUpdate={this.updateOffenses}
-                      onValidate={this.props.onValidate}
-                      />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.disciplinary.heading.offenses')}
+               help="military.disciplinary.help.offenses">
+          <Textarea name="Offenses"
+                    {...this.state.Offenses}
+                    className="procedure-offenses"
+                    onUpdate={this.updateOffenses}
+                    onValidate={this.props.onValidate}
+                    />
+        </Field>
 
-        <h3>{i18n.t('military.disciplinary.heading.name')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="military.disciplinary.help.name">
-            <Text name="Name"
-                  {...this.state.Name}
-                  label={i18n.m('military.disciplinary.label.name')}
-                  className="procedure-name"
-                  maxlength="100"
-                  onUpdate={this.updateName}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.disciplinary.heading.name')}
+               help="military.disciplinary.help.name"
+               adjustFor="labels">
+          <Text name="Name"
+                {...this.state.Name}
+                label={i18n.m('military.disciplinary.label.name')}
+                className="procedure-name"
+                maxlength="100"
+                onUpdate={this.updateName}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h3>{i18n.t('military.disciplinary.heading.court')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="military.disciplinary.help.court">
-            <Textarea name="Court"
-                      {...this.state.Court}
-                      label={i18n.t('military.disciplinary.label.court')}
-                      className="procedure-court"
-                      onUpdate={this.updateCourt}
-                      onValidate={this.props.onValidate}
-                      />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.disciplinary.heading.court')}
+               help="military.disciplinary.help.court"
+               adjustFor="labels">
+          <Textarea name="Court"
+                    {...this.state.Court}
+                    label={i18n.t('military.disciplinary.label.court')}
+                    className="procedure-court"
+                    onUpdate={this.updateCourt}
+                    onValidate={this.props.onValidate}
+                    />
+        </Field>
 
-        <h3>{i18n.t('military.disciplinary.heading.outcome')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="military.disciplinary.help.outcome">
-            <Text name="Outcome"
-                  {...this.state.Outcome}
-                  label={i18n.t('military.disciplinary.label.outcome')}
-                  className="procedure-outcome"
-                  maxlength="100"
-                  onUpdate={this.updateOutcome}
-                  onValidate={this.props.onValidate}
-                  />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('military.disciplinary.heading.outcome')}
+               help="military.disciplinary.help.outcome"
+               adjustFor="labels">
+          <Text name="Outcome"
+                {...this.state.Outcome}
+                label={i18n.t('military.disciplinary.label.outcome')}
+                className="procedure-outcome"
+                maxlength="100"
+                onUpdate={this.updateOutcome}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
       </div>
     )
   }
