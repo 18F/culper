@@ -110,7 +110,6 @@ export default class Disciplinary extends ValidationElement {
     return (
       <div className="disciplinary">
         <Branch name="has_disciplinary"
-                className="eapp-field-wrap no-label"
                 value={this.state.HasDisciplinary}
                 help="military.disciplinary.help.branch"
                 onUpdate={this.updateDisciplinary}

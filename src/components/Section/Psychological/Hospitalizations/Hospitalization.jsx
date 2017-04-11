@@ -51,7 +51,7 @@ export default class Hospitalization extends ValidationElement {
     return (
       <div className="hospitalization">
         <h3>{i18n.t(`psychological.hospitalization.heading.admission`)}</h3>
-        <div className="eapp-field-wrap">
+        <div>
           <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission}>
             <Radio
               className="voluntary-option"
@@ -75,7 +75,7 @@ export default class Hospitalization extends ValidationElement {
         <Show when={this.props.Admission}>
           <div>
             <h3>{i18n.t(`psychological.hospitalization.heading.treatment`)}</h3>
-            <div className="eapp-field-wrap no-label">
+            <div>
               <Help id={`psychological.hospitalization.help.treatment`}>
                 <Textarea name="Explanation"
                   className="explanation"
@@ -90,7 +90,7 @@ export default class Hospitalization extends ValidationElement {
         </Show>
 
         <h3>{i18n.t(`psychological.hospitalization.heading.treatment`)}</h3>
-        <div className="eapp-field-wrap">
+        <div>
           <Help id={`psychological.hospitalization.help.treatment`}>
             <DateRange name="TreatmentDate"
               {...this.props.TreatmentDate}
@@ -103,7 +103,7 @@ export default class Hospitalization extends ValidationElement {
         </div>
 
         <h3>{i18n.t(`psychological.hospitalization.heading.facility`)}</h3>
-        <div className="eapp-field-wrap no-label">
+        <div>
           <Help id={`psychological.hospitalization.help.facility`}>
             <Text name="Facility"
               className="facility"
@@ -116,7 +116,7 @@ export default class Hospitalization extends ValidationElement {
         </div>
 
         <h3>{i18n.t(`psychological.hospitalization.heading.address`)}</h3>
-        <div className="eapp-field-wrap">
+        <div>
           <Help id={ `psychological.hospitalization.help.address` }>
             <Address name="FacilityAddress"
               {...this.props.FacilityAddress}

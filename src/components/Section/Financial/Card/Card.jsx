@@ -100,7 +100,7 @@ export default class Card extends ValidationElement {
     return (
       <div className="card-abuse">
         <Branch name="has_cardabuse"
-                className="card-branch eapp-field-wrap no-label"
+                className="card-branch"
                 value={this.state.HasCardAbuse}
                 help="financial.card.help.branch"
                 onUpdate={this.updateBranch}>

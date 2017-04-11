@@ -259,7 +259,7 @@ export default class MilitaryService extends ValidationElement {
 
         <h3>{i18n.t('military.history.heading.discharged')}</h3>
         <Branch name="has_beendischarged"
-                className="eapp-field-wrap no-label discharged"
+                className="discharged"
                 value={this.state.HasBeenDischarged}
                 help="military.history.help.discharged"
                 onUpdate={this.updateDischarged}

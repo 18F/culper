@@ -109,7 +109,6 @@ export default class OtherNames extends ValidationElement {
         <p>{i18n.t('identification.othernames.info')}</p>
         <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
-                className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
                 onUpdate={this.onUpdate.bind(this)}>
@@ -121,13 +120,11 @@ export default class OtherNames extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
 
             <h3>{i18n.t('identification.othernames.heading.name')}</h3>
             <Name name="Name"
                   key="name"
-                  className="eapp-field-wrap"
                   bind={true}
                   />
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, BranchCollection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Help, HelpIcon, Address, Show } from '../../../Form'
+import { ValidationElement, Branch, BranchCollection, Comments, DateRange, Reference, Text, RadioGroup, Radio, Field, Address, Show } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -148,87 +148,82 @@ export class EducationItem extends ValidationElement {
     return (
       <div>
         <div className="content">
-          <h3>{i18n.t('history.education.heading.name')}</h3>
-          <div className="eapp-field-wrap">
-            <Help id="history.education.help.name">
-              <Text name="Name"
-                    {...this.state.Name}
-                    label={i18n.t('history.education.label.name')}
-                    className="school-name"
-                    maxlength="100"
-                    onUpdate={this.updateName}
-                    onValidate={this.props.onValidate}
-                    />
-              <HelpIcon />
-            </Help>
-          </div>
+          <Field title={i18n.t('history.education.heading.name')}
+                 help="history.education.help.name"
+                 adjustFor="labels">
+            <Text name="Name"
+                  {...this.state.Name}
+                  label={i18n.t('history.education.label.name')}
+                  className="school-name"
+                  maxlength="100"
+                  onUpdate={this.updateName}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
 
-          <h3>{i18n.t('history.education.heading.dates')}</h3>
-          <div className="eapp-field-wrap">
+          <Field title={i18n.t('history.education.heading.dates')}
+                 help="history.education.help.dates"
+                 adjustFor="labels"
+                 shrink={true}>
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
-            <Help id="history.education.help.dates">
-              <DateRange name="Dates"
-                         {...this.state.Dates}
-                         label={i18n.t('history.education.label.dates')}
-                         onUpdate={this.updateDates}
-                         onValidate={this.props.onValidate}
-                         />
-              <HelpIcon className="dates-help-icon" />
-            </Help>
-          </div>
+            <DateRange name="Dates"
+                       {...this.state.Dates}
+                       label={i18n.t('history.education.label.dates')}
+                       onUpdate={this.updateDates}
+                       onValidate={this.props.onValidate}
+                       />
+          </Field>
 
           <Comments name="Comments"
                     {...this.state.Comments}
                     addLabel="history.education.label.comments"
                     title={i18n.t('history.education.heading.comments')}
-                    className="eapp-field-wrap"
                     onUpdate={this.updateComments}
                     onValidate={this.props.onValidate}>
-            <h3>{i18n.t('history.education.heading.address')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="history.education.help.address">
-                <Address name="Address"
-                         {...this.state.Address}
-                         label={i18n.t('history.education.label.address')}
-                         onUpdate={this.updateAddress}
-                         onValidate={this.props.onValidate}
-                         />
-                <HelpIcon className="address-help-icon" />
-              </Help>
-            </div>
+            <Field title={i18n.t('history.education.heading.address')}
+                   help="history.education.help.address"
+                   adjustFor="big-buttons"
+                   shrink={true}>
+              <Address name="Address"
+                       {...this.state.Address}
+                       label={i18n.t('history.education.label.address')}
+                       onUpdate={this.updateAddress}
+                       onValidate={this.props.onValidate}
+                       />
+            </Field>
           </Comments>
 
-          <h3>{i18n.t('history.education.heading.type')}</h3>
-          <div className="eapp-field-wrap">
-            <Help id="history.education.help.type">
-              <RadioGroup className="type option-list"
-                          selectedValue={this.state.Type}>
-                <Radio name="type-highschool"
-                       label={i18n.t('history.education.label.type.highschool')}
-                       value="High School"
-                       onChange={this.handleTypeChange}
-                       />
-                <Radio name="type-college"
-                       label={i18n.t('history.education.label.type.college')}
-                       value="College"
-                       onChange={this.handleTypeChange}
-                       />
-                <Radio name="type-vocational"
-                       label={i18n.t('history.education.label.type.vocational')}
-                       value="Vocational"
-                       onChange={this.handleTypeChange}
-                       />
-                <Radio name="type-correspondence"
-                       label={i18n.t('history.education.label.type.correspondence')}
-                       value="Correspondence"
-                       onChange={this.handleTypeChange}
-                       />
-              </RadioGroup>
-              <HelpIcon className="type-help-icon" />
-            </Help>
-          </div>
+          <Field title={i18n.t('history.education.heading.type')}
+                 help="history.education.help.type"
+                 adjustFor="buttons"
+                 shrink={true}>
+            <RadioGroup className="type option-list"
+                        selectedValue={this.state.Type}>
+              <Radio name="type-highschool"
+                     label={i18n.t('history.education.label.type.highschool')}
+                     value="High School"
+                     onChange={this.handleTypeChange}
+                     />
+              <Radio name="type-college"
+                     label={i18n.t('history.education.label.type.college')}
+                     value="College"
+                     onChange={this.handleTypeChange}
+                     />
+              <Radio name="type-vocational"
+                     label={i18n.t('history.education.label.type.vocational')}
+                     value="Vocational"
+                     onChange={this.handleTypeChange}
+                     />
+              <Radio name="type-correspondence"
+                     label={i18n.t('history.education.label.type.correspondence')}
+                     value="Correspondence"
+                     onChange={this.handleTypeChange}
+                     />
+            </RadioGroup>
+          </Field>
 
           {this.reference()}
+
           <BranchCollection
             branchHelp="history.employment.default.reprimand.help"
             branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}

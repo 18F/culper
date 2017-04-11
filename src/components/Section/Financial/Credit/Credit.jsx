@@ -93,7 +93,7 @@ export default class Credit extends ValidationElement {
     return (
       <div className="credit-counseling">
         <Branch name="has_credit"
-                className="credit-branch eapp-field-wrap no-label"
+                className="credit-branch"
                 value={this.state.HasCreditCounseling}
                 help="financial.credit.help.branch"
                 onUpdate={this.updateBranch}>

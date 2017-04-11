@@ -376,7 +376,7 @@ export default class Relative extends ValidationElement {
 
         <h3>{i18n.t('family.relatives.heading.name')}</h3>
         <Name name="Name"
-              className="relative-name eapp-field-wrap"
+              className="relative-name"
               {...this.state.Name}
               onUpdate={this.updateName}
               />
@@ -427,7 +427,7 @@ export default class Relative extends ValidationElement {
             <BranchCollection items={this.state.Aliases}
                               branchName="has_alias"
                               branch={aliasTitle}
-                              className="relative-alias eapp-field-wrap help"
+                              className="relative-alias"
                               onUpdate={this.updateAliases}
                               onValidate={this.props.onValidate}>
               <div>
@@ -441,7 +441,7 @@ export default class Relative extends ValidationElement {
 
         <h3>{i18n.t('family.relatives.heading.deceased.branch')}</h3>
         <Branch name="is_deceased"
-                className="eapp-field-wrap no-label relative-deceased"
+                className="relative-deceased"
                 value={this.state.IsDeceased}
                 help="family.relatives.help.deceased"
                 onUpdate={this.updateIsDeceased}

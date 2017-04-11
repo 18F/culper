@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Radio, RadioGroup, Show, Comments, Textarea, DateControl, Branch, Text, BranchCollection } from '../../../Form'
+import { ValidationElement, Field, Textarea, DateControl, BranchCollection } from '../../../Form'
 
 export default class Reprimand extends ValidationElement {
   constructor (props) {
@@ -43,24 +43,26 @@ export default class Reprimand extends ValidationElement {
         branch={branch}
         items={this.state.Reasons}
         onUpdate={this.updateReasons}
-      >
-        <div className="eapp-field-wrap">
-          <div className="explanation-left">
+        >
+        <div>
+          <Field className="explanation-left">
             <Textarea name="Text"
-              bind={true}
-              label={i18n.t('history.employment.default.reprimand.description.label')}
-              maxlength="100"
-              onValidate={this.props.onValidate}
-            />
-          </div>
-          <div className="date-left">
+                      bind={true}
+                      label={i18n.t('history.employment.default.reprimand.description.label')}
+                      maxlength="100"
+                      onValidate={this.props.onValidate}
+                      />
+          </Field>
+          <Field className="date-left"
+                 adjustFor="labels"
+                 shrink={true}>
             <label>{i18n.t('history.employment.default.reprimand.date.label')}</label>
             <DateControl name="Date"
-              bind={true}
-              hideDay={true}
-              onValidate={this.props.onValidate}
-            />
-          </div>
+                         bind={true}
+                         hideDay={true}
+                         onValidate={this.props.onValidate}
+                         />
+          </Field>
         </div>
       </BranchCollection>
     )

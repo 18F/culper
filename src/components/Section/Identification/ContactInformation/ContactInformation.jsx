@@ -149,7 +149,6 @@ export default class ContactInformation extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.emailSummary}
                      description={i18n.t('identification.contacts.collection.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
             <Field help="identification.contacts.help.email"
                    adjustFor="labels">
@@ -171,7 +170,6 @@ export default class ContactInformation extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
             <Field help="identification.contacts.help.phoneNumber">
               <Telephone name="Telephone"
@@ -185,7 +183,6 @@ export default class ContactInformation extends ValidationElement {
         <Comments name="comments"
                   value={this.state.Comments}
                   label={i18n.t('identification.contacts.label.comments')}
-                  className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}>
           <h3>{i18n.t('identification.contacts.heading.comments')}</h3>

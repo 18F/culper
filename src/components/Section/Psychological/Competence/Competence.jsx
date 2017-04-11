@@ -55,7 +55,6 @@ export default class Competence extends ValidationElement {
       <div className="competence">
         <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
-          className="eapp-field-wrap no-label "
           value={this.state.IsIncompetent}
           help="psychological.competence.help.incompetent"
           onUpdate={this.updateIsIncompentent}>

@@ -122,7 +122,7 @@ export default class Nonpayment extends ValidationElement {
     return (
       <div className="nonpayment">
         <Branch name="has_nonpayment"
-                className="nonpayment-branch eapp-field-wrap no-label"
+                className="nonpayment-branch"
                 value={this.state.HasNonpayment}
                 help="financial.nonpayment.help.branch"
                 onUpdate={this.updateBranch}>

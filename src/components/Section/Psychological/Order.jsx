@@ -51,7 +51,7 @@ export default class Order extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="order">
-        <div className="eapp-field-wrap">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.occurred`)}</h3>
           <Help id={`psychological.${prefix}.help.occurred`}>
             <DateControl name="Occurred"
@@ -65,7 +65,7 @@ export default class Order extends ValidationElement {
           </Help>
         </div>
 
-        <div className="eapp-field-wrap no-label">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.courtName`)}</h3>
           <Help id={`psychological.${prefix}.help.courtName`}>
             <Text name="CourtName"
@@ -78,7 +78,7 @@ export default class Order extends ValidationElement {
           </Help>
         </div>
 
-        <div className="eapp-field-wrap">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.courtAddress`)}</h3>
           <Help id={`psychological.${prefix}.help.courtAddress`}>
             <Address name="CourtAddress"
@@ -90,7 +90,7 @@ export default class Order extends ValidationElement {
             <HelpIcon className="address-help-icon" />
           </Help>
         </div>
-        <div className="eapp-field-wrap no-label">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.disposition`)}</h3>
           <Help id={`psychological.${prefix}.help.disposition`}>
             <Text name="Disposition"
@@ -114,7 +114,7 @@ export default class Order extends ValidationElement {
         <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
         <Svg src="img/date-down-arrow.svg" className="more arrow" />
 
-        <div className="eapp-field-wrap no-label">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.appealCourtName`)}</h3>
           <Help id={`psychological.${prefix}.help.disposition`}>
             <Text name="CourtName"
@@ -126,7 +126,7 @@ export default class Order extends ValidationElement {
           </Help>
         </div>
 
-        <div className="eapp-field-wrap">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.appealCourtName`)}</h3>
           <Help id={ `psychological.${prefix}.help.courtAddress` }>
             <Address name="CourtAddress"
@@ -138,7 +138,7 @@ export default class Order extends ValidationElement {
           </Help>
         </div>
 
-        <div className="eapp-field-wrap no-label">
+        <div>
           <h3>{i18n.t(`psychological.${prefix}.heading.disposition`)}</h3>
           <Help id={`psychological.${prefix}.help.disposition`}>
             <Text name="Disposition"

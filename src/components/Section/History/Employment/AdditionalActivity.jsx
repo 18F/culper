@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Show, Accordion, DateRange, Text, Help, HelpIcon, Branch } from '../../../Form'
+import { ValidationElement, Show, Accordion, DateRange, Text, Field, Branch } from '../../../Form'
 
 export default class AdditionalActivity extends ValidationElement {
   constructor (props) {
@@ -75,42 +75,39 @@ export default class AdditionalActivity extends ValidationElement {
                      items={this.state.List}
                      onUpdate={this.myDispatch}
                      onValidate={this.handleValidation}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('history.employment.default.additionalActivity.collection.append')}>
 
-            <h4>{i18n.t('history.employment.default.additionalActivity.heading.position')}</h4>
-            <div className={klass}>
-              <Help id="history.employment.default.additionalActivity.position.help">
-                <Text name="Position"
-                      className="text"
-                      label={i18n.t('history.employment.default.additionalActivity.position.label')}
-                      bind={true}
-                      />
-                <HelpIcon className="employer" />
-              </Help>
-            </div>
+            <Field title={i18n.t('history.employment.default.additionalActivity.heading.position')}
+                   titleSize="h4"
+                   help="history.employment.default.additionalActivity.position.help"
+                   adjustFor="labels">
+              <Text name="Position"
+                    className="text"
+                    label={i18n.t('history.employment.default.additionalActivity.position.label')}
+                    bind={true}
+                    />
+            </Field>
 
-            <h4>{i18n.t('history.employment.default.additionalActivity.heading.supervisor')}</h4>
-            <div className={klass}>
-              <Help id="history.employment.default.additionalActivity.supervisor.help">
-                <Text name="Supervisor"
-                      className="text"
-                      label={i18n.t('history.employment.default.additionalActivity.supervisor.label')}
-                      bind={true}
-                      />
-                <HelpIcon className="employer" />
-              </Help>
-            </div>
+            <Field title={i18n.t('history.employment.default.additionalActivity.heading.supervisor')}
+                   titleSize="h4"
+                   help="history.employment.default.additionalActivity.supervisor.help"
+                   adjustFor="labels">
+              <Text name="Supervisor"
+                    className="text"
+                    label={i18n.t('history.employment.default.additionalActivity.supervisor.label')}
+                    bind={true}
+                    />
+            </Field>
 
-            <h4>{i18n.t('history.employment.default.additionalActivity.heading.datesEmployed')}</h4>
-            <div className={klass}>
-              <Help id="history.employment.default.additionalActivity.datesEmployed.help">
-                <DateRange name="DatesEmployed"
-                           bind={true}
-                           />
-                <HelpIcon className="used-help-icon" />
-              </Help>
-            </div>
+            <Field title={i18n.t('history.employment.default.additionalActivity.heading.datesEmployed')}
+                   titleSize="h4"
+                   help="history.employment.default.additionalActivity.datesEmployed.help"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateRange name="DatesEmployed"
+                         bind={true}
+                         />
+            </Field>
           </Accordion>
         </Show>
       </div>

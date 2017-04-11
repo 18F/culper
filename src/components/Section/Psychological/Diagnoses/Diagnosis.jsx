@@ -58,7 +58,7 @@ export default class Diagnosis extends ValidationElement {
     return (
       <div className="diagnosis">
         <h3>{i18n.t(`psychological.diagnosis.heading.condition`)}</h3>
-        <div className="eapp-field-wrap no-label">
+        <div>
           <Help id={`psychological.diagnosis.help.condition`}>
             <Text name="Condition"
               className="condition"
@@ -71,7 +71,7 @@ export default class Diagnosis extends ValidationElement {
         </div>
 
         <h3>{i18n.t(`psychological.diagnosis.heading.diagnosed`)}</h3>
-        <div className="eapp-field-wrap">
+        <div>
           <Help id={`psychological.diagnosis.help.diagnosed`}>
             <DateRange name="Diagnosed"
               {...this.props.Diagnosed}
@@ -84,7 +84,7 @@ export default class Diagnosis extends ValidationElement {
         </div>
 
         <h2>{i18n.t(`psychological.diagnosis.heading.healthcareProfessional`)}</h2>
-        <div className="eapp-field-wrap person">
+        <div className=" person">
           <Treatment name="Treatment"
             {...this.props.Treatment}
             prefix="diagnosis.person"
@@ -94,7 +94,7 @@ export default class Diagnosis extends ValidationElement {
         </div>
 
         <h2>{i18n.t(`psychological.diagnosis.heading.facility`)}</h2>
-        <div className="eapp-field-wrap facility">
+        <div className=" facility">
           <Treatment name="TreatmentFacility"
             {...this.props.TreatmentFacility}
             prefix="diagnosis.facility"
@@ -104,7 +104,7 @@ export default class Diagnosis extends ValidationElement {
         </div>
 
         <h3>{i18n.t(`psychological.diagnosis.heading.effective`)}</h3>
-        <div className="eapp-field-wrap">
+        <div>
           <Help id={`psychological.diagnosis.help.effective`}>
             <RadioGroup className="effective" selectedValue={this.props.Effective}>
               <Radio name="effective"
@@ -124,7 +124,7 @@ export default class Diagnosis extends ValidationElement {
         <Show when={this.props.Effective === 'No'}>
           <div>
             <h3>{i18n.t(`psychological.diagnosis.heading.explanation`)}</h3>
-            <div className="eapp-field-wrap">
+            <div>
               <Help id={`psychological.diagnosis.help.explanation`}>
                 <Textarea name="Explanation"
                   className="explanation"

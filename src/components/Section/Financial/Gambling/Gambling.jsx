@@ -141,7 +141,6 @@ export default class Gambling extends ValidationElement {
     return (
       <div className="gambling">
         <Branch name="has_gamblingdebt"
-                className="eapp-field-wrap"
                 value={this.state.HasGamblingDebt}
                 help="financial.gambling.branch.help"
                 onUpdate={this.onUpdate.bind(this)}>
@@ -153,7 +152,6 @@ export default class Gambling extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('financial.gambling.collection.append')}>
 
             <h3>{i18n.t('financial.gambling.heading.details')}</h3>
@@ -203,7 +201,7 @@ export default class Gambling extends ValidationElement {
         <Comments name="Comments"
                   value={this.state.Comments}
                   label={i18n.t('financial.gambling.help.comments')}
-                  className="eapp-field-wrap gambling-comment"
+                  className="gambling-comment"
                   onUpdate={this.commentsUpdated}
                   onValidate={this.handleValidation}>
           <h3>{i18n.t('financial.gambling.label.comments')}</h3>

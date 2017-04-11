@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateControl, Text, RadioGroup, Radio, Help, HelpIcon, Show } from '../../../Form'
+import { ValidationElement, DateControl, Text, RadioGroup, Radio, Field, Show } from '../../../Form'
 
 export class DiplomaItem extends ValidationElement {
   constructor (props) {
@@ -48,75 +48,73 @@ export class DiplomaItem extends ValidationElement {
   render () {
     return (
       <div>
-        <h3>{i18n.t('history.education.heading.diploma')}</h3>
-        <div className="eapp-field-wrap">
-          <Help id="history.education.help.diploma">
-            <RadioGroup className="diploma option-list"
-                        selectedValue={this.state.Diploma}>
-              <Radio name="diploma-highschool"
-                     label={i18n.t('history.education.label.diploma.highschool')}
-                     value="High School Diploma"
-                     onChange={this.updateDiploma}
-                     />
-              <Radio name="diploma-associate"
-                     label={i18n.t('history.education.label.diploma.associate')}
-                     value="Associate"
-                     onChange={this.updateDiploma}
-                     />
-              <Radio name="diploma-bachelor"
-                     label={i18n.t('history.education.label.diploma.bachelor')}
-                     value="Bachelor"
-                     onChange={this.updateDiploma}
-                     />
-              <Radio name="diploma-master"
-                     label={i18n.t('history.education.label.diploma.master')}
-                     value="Master"
-                     onChange={this.updateDiploma}
-                     />
-              <Radio name="diploma-doctorate"
-                     label={i18n.t('history.education.label.diploma.doctorate')}
-                     value="Doctorate"
-                     onChange={this.updateDiploma}
-                     />
-              <Radio name="diploma-professional"
-                     label={i18n.t('history.education.label.diploma.professional')}
-                     value="Professional"
-                     onChange={this.updateDiploma}
-                     />
-              <Radio name="diploma-other"
-                     label={i18n.t('history.education.label.diploma.other')}
-                     value="Other"
-                     onChange={this.updateDiploma}
-                     />
-            </RadioGroup>
-            <HelpIcon className="diploma-help-icon" />
-            <Show when={this.state.Diploma === 'Other'}>
-              <Text name="DiplomaOther"
-                    {...this.state.DiplomaOther}
-                    label={i18n.t('history.residence.label.diploma.other')}
-                    className="other"
-                    maxlength="100"
-                    onUpdate={this.onUpdate.bind(this, 'OtherRole')}
-                    onValidate={this.props.onValidate}
-                    />
-            </Show>
-          </Help>
-        </div>
+        <Field title={i18n.t('history.education.heading.diploma')}
+               help="history.education.help.diploma"
+               adjustFor="buttons"
+               shrink={true}>
+          <RadioGroup className="diploma option-list"
+                      selectedValue={this.state.Diploma}>
+            <Radio name="diploma-highschool"
+                   label={i18n.t('history.education.label.diploma.highschool')}
+                   value="High School Diploma"
+                   onChange={this.updateDiploma}
+                   />
+            <Radio name="diploma-associate"
+                   label={i18n.t('history.education.label.diploma.associate')}
+                   value="Associate"
+                   onChange={this.updateDiploma}
+                   />
+            <Radio name="diploma-bachelor"
+                   label={i18n.t('history.education.label.diploma.bachelor')}
+                   value="Bachelor"
+                   onChange={this.updateDiploma}
+                   />
+            <Radio name="diploma-master"
+                   label={i18n.t('history.education.label.diploma.master')}
+                   value="Master"
+                   onChange={this.updateDiploma}
+                   />
+            <Radio name="diploma-doctorate"
+                   label={i18n.t('history.education.label.diploma.doctorate')}
+                   value="Doctorate"
+                   onChange={this.updateDiploma}
+                   />
+            <Radio name="diploma-professional"
+                   label={i18n.t('history.education.label.diploma.professional')}
+                   value="Professional"
+                   onChange={this.updateDiploma}
+                   />
+            <Radio name="diploma-other"
+                   label={i18n.t('history.education.label.diploma.other')}
+                   value="Other"
+                   onChange={this.updateDiploma}
+                   />
+          </RadioGroup>
+          <Show when={this.state.Diploma === 'Other'}>
+            <Text name="DiplomaOther"
+                  {...this.state.DiplomaOther}
+                  label={i18n.t('history.residence.label.diploma.other')}
+                  className="other"
+                  maxlength="100"
+                  onUpdate={this.onUpdate.bind(this, 'OtherRole')}
+                  onValidate={this.props.onValidate}
+                  />
+          </Show>
+        </Field>
 
-        <h3>{i18n.t('history.education.heading.date')}</h3>
-        <div className="eapp-field-wrap">
+        <Field title={i18n.t('history.education.heading.date')}
+               help="history.education.help.date"
+               adjustFor="label"
+               shrink={true}>
           <label className="info-label">{i18n.t('history.education.label.date')}</label>
-          <Help id="history.education.help.date">
-            <DateControl name="Date"
-                         {...this.state.Date}
-                         label={i18n.t('history.education.label.date')}
-                         hideDay={true}
-                         onUpdate={this.updateDate}
-                         onValidate={this.props.onValidate}
-                         />
-            <HelpIcon className="date-help-icon" />
-          </Help>
-        </div>
+          <DateControl name="Date"
+                       {...this.state.Date}
+                       label={i18n.t('history.education.label.date')}
+                       hideDay={true}
+                       onUpdate={this.updateDate}
+                       onValidate={this.props.onValidate}
+                       />
+        </Field>
       </div>
     )
   }

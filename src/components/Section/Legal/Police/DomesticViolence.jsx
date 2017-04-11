@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Address, Branch, Show, Text, Textarea, DateControl, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Address, Text, Textarea, DateControl, Field } from '../../../Form'
 
 export default class DomesticViolence extends ValidationElement {
   constructor (props) {
@@ -51,55 +50,53 @@ export default class DomesticViolence extends ValidationElement {
   render () {
     return (
       <div className="domestic-violence">
-        <h4>{i18n.t('legal.police.heading.domesticExplanation')}</h4>
-        <div className="eapp-field-wrap">
+        <Field title={i18n.t('legal.police.heading.domesticExplanation')}
+               titleSize="h4">
           <Textarea
             className="explanation no-label"
             name="explanation"
             onUpdate={this.updateExplanation} />
-        </div>
+        </Field>
 
-        <h4>{i18n.t('legal.police.heading.domesticCourtDate')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="legal.police.help.domesticIssued">
-            <DateControl name="Issued"
-              {...this.state.Issued}
-              hideDay={true}
-              className="issued"
-              onUpdate={this.updateIssued}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('legal.police.heading.domesticCourtDate')}
+               titleSize="h4"
+               help="legal.police.help.domesticIssued"
+               adjustFor="labels"
+               shrink={true}>
+          <DateControl name="Issued"
+                       {...this.state.Issued}
+                       hideDay={true}
+                       className="issued"
+                       onUpdate={this.updateIssued}
+                       onValidate={this.props.onValidate}
+                       />
+        </Field>
 
-        <h4>{i18n.t('legal.police.heading.domesticCourtName')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="legal.police.help.courtname">
-            <Text name="CourtName"
-              {...this.state.CourtName}
-              label={i18n.t('legal.police.label.courtname')}
-              className="domestic-courtname"
-              onUpdate={this.updateCourtName}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t('legal.police.heading.domesticCourtName')}
+               titleSize="h4"
+               help="legal.police.help.courtname">
+          <Text name="CourtName"
+                {...this.state.CourtName}
+                label={i18n.t('legal.police.label.courtname')}
+                className="domestic-courtname"
+                onUpdate={this.updateCourtName}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <h4>{i18n.t('legal.police.heading.domesticCourtAddress')}</h4>
-        <div className="eapp-field-wrap">
-          <Help id="legal.police.help.courtaddress">
-            <Address name="CourtAddress"
-              {...this.state.CourtAddress}
-              label={i18n.t('legal.police.label.address')}
-              className="domestic-courtaddress"
-              onUpdate={this.updateCourtAddress}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="address-help-icon" />
-          </Help>
-        </div>
+        <Field title={i18n.t('legal.police.heading.domesticCourtAddress')}
+               titleSize="h4"
+               help="legal.police.help.courtaddress"
+               adjustFor="big-buttons"
+               shrink={true}>
+          <Address name="CourtAddress"
+                   {...this.state.CourtAddress}
+                   label={i18n.t('legal.police.label.address')}
+                   className="domestic-courtaddress"
+                   onUpdate={this.updateCourtAddress}
+                   onValidate={this.props.onValidate}
+                   />
+        </Field>
       </div>
     )
   }

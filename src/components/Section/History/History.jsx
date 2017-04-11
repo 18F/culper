@@ -338,7 +338,7 @@ class History extends ValidationElement {
 
   residenceSummaryProgress () {
     return (
-      <SummaryProgress className="residence eapp-field-wrap"
+      <SummaryProgress className="residence"
                        List={this.residenceRangeList}
                        title={i18n.t('history.residence.summary.title')}
                        unit={i18n.t('history.residence.summary.unit')}
@@ -353,7 +353,7 @@ class History extends ValidationElement {
 
   employmentSummaryProgress () {
     return (
-      <SummaryProgress className="residence eapp-field-wrap"
+      <SummaryProgress className="residence"
                        List={this.employmentRangesList}
                        title={i18n.t('history.employment.summary.title')}
                        unit={i18n.t('history.employment.summary.unit')}
@@ -368,7 +368,7 @@ class History extends ValidationElement {
 
   educationSummaryProgress () {
     return (
-      <SummaryCounter className="education eapp-field-wrap"
+      <SummaryCounter className="education"
                       title={i18n.t('history.education.summary.title')}
                       schools={this.schoolRangesList}
                       diplomas={this.diplomaRangesList}
@@ -662,7 +662,6 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.education.title')}</h2>
             <p>{i18n.t('history.education.info')}</p>
             <Branch name="branch_school"
-                    className="eapp-field-wrap"
                     value={this.props.Education.HasAttended}
                     help="history.education.help.attendance"
                     label={i18n.t('history.education.label.attendance')}
@@ -672,7 +671,6 @@ class History extends ValidationElement {
             <Show when={this.props.Education.HasAttended === 'No'}>
               <div>
                 <Branch name="branch_degree10"
-                        className="eapp-field-wrap"
                         value={this.props.Education.HasDegree10}
                         help="history.education.help.degree10"
                         label={i18n.t('history.education.label.degree10')}

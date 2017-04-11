@@ -213,7 +213,6 @@ export default class Passport extends ValidationElement {
         <Comments name="comments"
                   value={this.state.Comments}
                   label={i18n.t('foreign.passport.comment.label')}
-                  className="eapp-field-wrap"
                   onUpdate={this.handleUpdate.bind(this, 'Comments')}
                   onValidate={this.handleValidation}
                   >
@@ -238,7 +237,6 @@ export default class Passport extends ValidationElement {
         <Branch name="has_passport"
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
-                className="eapp-field-wrap"
                 help="foreign.passport.branch.help"
                 >
         </Branch>

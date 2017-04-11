@@ -258,7 +258,7 @@ export default class ForeignService extends ValidationElement {
 
         <h3>{i18n.t('military.foreign.heading.maintainscontact')}</h3>
         <Branch name="has_maintainscontact"
-                className="eapp-field-wrap no-label maintainscontact"
+                className="maintainscontact"
                 value={this.state.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}

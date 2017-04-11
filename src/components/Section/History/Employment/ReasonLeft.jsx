@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Help, HelpIcon, Radio, RadioGroup, Show, Comments, Textarea, DateControl, Branch, Text, BranchCollection } from '../../../Form'
+import { ValidationElement, Field, Radio, RadioGroup, Show, Comments, Textarea, DateControl, Branch, Text, BranchCollection } from '../../../Form'
 import ReasonOptions from './ReasonOptions'
 
 export default class ReasonLeft extends ValidationElement {
@@ -58,20 +58,16 @@ export default class ReasonLeft extends ValidationElement {
         <Comments name="comments"
                   value={this.state.Comments}
                   title={i18n.t('history.employment.default.left.comments')}
-                  className="eapp-field-wrap"
                   onUpdate={this.updateComments}
                   onValidate={this.props.onValidate}>
 
-          <div className="eapp-field-wrap no-label">
-            <Help id="history.employment.default.reasonDescription">
-              <Textarea name="reason_description"
-                        {...this.state.ReasonDescription}
-                        className="reason-description"
-                        onUpdate={this.updateReasonDescription}
-                        />
-              <HelpIcon />
-            </Help>
-          </div>
+          <Field help="history.employment.default.reasonDescription">
+            <Textarea name="reason_description"
+                      {...this.state.ReasonDescription}
+                      className="reason-description"
+                      onUpdate={this.updateReasonDescription}
+                      />
+          </Field>
 
           <BranchCollection branchHelp="history.employment.default.reasonOptions"
                             branch={branch}
@@ -79,7 +75,6 @@ export default class ReasonLeft extends ValidationElement {
                             onUpdate={this.updateReasons}
                             >
             <ReasonOptions name="Reason"
-                           className="eapp-field-wrap"
                            bind={true} />
           </BranchCollection>
         </Comments>
