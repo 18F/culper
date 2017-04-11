@@ -12,6 +12,10 @@
     padding-left: 1rem;
   }
 
+  @media screen and (max-width: 1100px) {
+    margin-bottom: 1.5rem;
+  }
+
   > .title {
     display: block;
     width: 93.43%;
