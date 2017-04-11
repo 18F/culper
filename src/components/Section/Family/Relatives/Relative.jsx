@@ -31,6 +31,7 @@ export default class Relative extends ValidationElement {
       Birthdate: props.Birthdate,
       Birthplace: props.Birthplace,
       Citizenship: props.Citizenship, // Needs new component
+      MaidenSameAsListed: props.MaidenSameAsListed,
       MaidenName: props.MaidenName,
       Aliases: props.Aliases,
       IsDeceased: props.IsDeceased,
@@ -68,6 +69,7 @@ export default class Relative extends ValidationElement {
     this.updateBirthdate = this.updateBirthdate.bind(this)
     this.updateBirthplace = this.updateBirthplace.bind(this)
     this.updateCitizenship = this.updateCitizenship.bind(this)
+    this.updateMaidenSameAsListed = this.updateMaidenSameAsListed.bind(this)
     this.updateMaidenName = this.updateMaidenName.bind(this)
     this.updateAliases = this.updateAliases.bind(this)
     this.updateIsDeceased = this.updateIsDeceased.bind(this)
@@ -137,6 +139,10 @@ export default class Relative extends ValidationElement {
 
   updateCitizenship (values) {
     this.onUpdate('Citizenship', [values.value])
+  }
+
+  updateMaidenSameAsListed (values) {
+    this.onUpdate('MaidenSameAsListed', values)
   }
 
   updateMaidenName (values) {
@@ -414,11 +420,21 @@ export default class Relative extends ValidationElement {
         <Show when={mother}>
           <Field title={i18n.t('family.relatives.heading.maiden')}
                  help="family.relatives.help.maiden">
-            <Text name="MaidenName"
-                  className="relative-maidenname"
-                  {...this.state.MaidenName}
-                  onUpdate={this.updateMaidenName}
-                  />
+            <Branch name="maiden_diff"
+                    className="eapp-field-wrap no-label relative-maiden-diff help"
+                    value={this.state.MaidenSameAsListed}
+                    yesLabel={i18n.t('family.relatives.label.maiden.same')}
+                    noLabel={i18n.t('family.relatives.label.maiden.diff')}
+                    onUpdate={this.updateMaidenSameAsListed}
+                    onValidate={this.props.onValidate}>
+            </Branch>
+            <Show when={this.state.MaidenSameAsListed === 'No'}>
+              <Name name="MaidenName"
+                    className="relative-maidenname eapp-field-wrap"
+                    {...this.state.MaidenName}
+                    onUpdate={this.updateMaidenName}
+                    />
+            </Show>
           </Field>
         </Show>
 
@@ -859,7 +875,8 @@ Relative.defaultProps = {
   Birthdate: {},
   Birthplace: {},
   Citizenship: [],
-  MaidenName: '',
+  MaidenSameAsListed: '',
+  MaidenName: {},
   Aliases: [],
   IsDeceased: '',
   Address: {},

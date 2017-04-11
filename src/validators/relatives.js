@@ -43,6 +43,7 @@ export class RelativeValidator {
     this.birthdate = state.Birthdate
     this.birthplace = state.Birthplace
     this.citizenship = state.Citizenship || []
+    this.maidenSameAsListed = state.MaidenSameAsListed
     this.maidenName = state.MaidenName
     this.aliases = state.Aliases || []
     this.isDeceased = state.IsDeceased
@@ -116,7 +117,11 @@ export class RelativeValidator {
   }
 
   validMaidenName () {
-    return !!this.maidenName && validGenericTextfield(this.maidenName)
+    if (!!this.maidenSameAsListed && this.maidenSameAsListed === 'Yes') {
+      return true
+    }
+
+    return !!this.maidenName && new NameValidator(this.maidenName, null).isValid()
   }
 
   validAliases () {
@@ -332,6 +337,7 @@ export class AliasValidator {
     this.name = state.Name
     this.maidenName = state.MaidenName
     this.dates = state.Dates
+    this.reason = state.Reason
   }
 
   validName () {
@@ -346,9 +352,14 @@ export class AliasValidator {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
+  validReason () {
+    return !!this.reason && validGenericTextfield(this.reason)
+  }
+
   isValid () {
     return this.validName() &&
       this.validMaidenName() &&
-      this.validDates()
+      this.validDates() &&
+      this.validReason()
   }
 }

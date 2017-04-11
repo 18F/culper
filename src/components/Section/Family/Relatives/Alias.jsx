@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Field } from '../../../Form'
+import { ValidationElement, Branch, Name, DateRange, Field, Textarea } from '../../../Form'
 
 export default class Alias extends ValidationElement {
   constructor (props) {
@@ -9,13 +9,15 @@ export default class Alias extends ValidationElement {
     this.state = {
       Name: props.Name,
       MaidenName: props.MaidenName,
-      Dates: props.Birthdate
+      Dates: props.Birthdate,
+      Reason: props.Reason
     }
 
     this.onUpdate = this.onUpdate.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateMaidenName = this.updateMaidenName.bind(this)
     this.updateDates = this.updateDates.bind(this)
+    this.updateReason = this.updateReason.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -39,6 +41,10 @@ export default class Alias extends ValidationElement {
 
   updateDates (values) {
     this.onUpdate('Dates', values)
+  }
+
+  updateReason (values) {
+    this.onUpdate('Reason', values)
   }
 
   render () {
@@ -68,6 +74,16 @@ export default class Alias extends ValidationElement {
                      onUpdate={this.updateDates}
                      />
         </Field>
+
+        <Field title={i18n.t('family.relatives.heading.alias.reason')}
+               titleSize="h4"
+               help="family.relatives.help.reason">
+          <Textarea name="Reason"
+                    className="alias-reason"
+                    {...this.state.Reason}
+                    onUpdate={this.updateReason}
+                    />
+        </Field>
       </div>
     )
   }
@@ -76,5 +92,6 @@ export default class Alias extends ValidationElement {
 Alias.defaultProps = {
   Name: {},
   MaidenName: '',
-  Dates: {}
+  Dates: {},
+  Reason: {}
 }

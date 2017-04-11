@@ -120,6 +120,8 @@ select {
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     line-height: 4.6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     input {
       position: absolute;
