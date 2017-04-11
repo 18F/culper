@@ -45,6 +45,7 @@ describe('The relative component', () => {
 
     const component = mount(<Relative {...expected} />)
     component.find({ type: 'checkbox', value: 'Mother' }).simulate('change')
+    component.find('.relative-maiden-diff .no input').simulate('change')
     expect(component.find('.relative-maidenname').length).toEqual(1)
   })
 
@@ -173,8 +174,9 @@ describe('The relative component', () => {
     component.find('.relative-deceased .no input').simulate('change')
 
     // Are you my mother?
+    component.find('.relative-maiden-diff .no input').simulate('change')
     expect(component.find('.relative-maidenname').length).toBeGreaterThan(0)
-    component.find('.relative-maidenname input').simulate('change', { target: { value: 'maidenname' } })
+    component.find('.relative-maidenname .last input').simulate('change', { target: { value: 'maidenname' } })
 
     // Is immediate family
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)

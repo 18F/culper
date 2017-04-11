@@ -13,7 +13,15 @@
   .relative-residence-documentnumber,
   .relative-courtname,
   .relative-employer-relationship,
-  .relative-maidenname {
+  .relative-maidenname,
+  .relative-derived,
+  .relative-naturalized,
+  .relative-document,
+  .relative-documentnumber,
+  .relative-methods,
+  .relative-frequency,
+  .relative-employer,
+  .alias-reason {
     width: 92%;
     max-width: 64rem;
     display: inline-block;
@@ -102,9 +110,5 @@
   .help-icon-employer-address {
     margin-top: 13rem;
     margin-left: -3rem;
-  }
-
-  .relative-affiliation .branch-help-icon {
-    margin-left: -25rem;
   }
 }
