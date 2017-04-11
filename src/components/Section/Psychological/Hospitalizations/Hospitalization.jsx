@@ -1,17 +1,21 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, ValidationElement, Help, HelpIcon, Text, Textarea, DateRange, BranchCollection, Svg, RadioGroup, Radio, Show } from '../../../Form'
+import { HospitalizationValidator } from '../../../../validators'
+import { Address, ValidationElement, Help, HelpIcon, Text, Textarea, DateRange, BranchCollection, RadioGroup, Radio, Show } from '../../../Form'
 
 export default class Hospitalization extends ValidationElement {
   constructor (props) {
     super(props)
-
+    this.state = {
+      errorCodes: []
+    }
     this.update = this.update.bind(this)
     this.updateAdmission = this.updateAdmission.bind(this)
     this.updateTreatmentDate = this.updateTreatmentDate.bind(this)
     this.updateFacility = this.updateFacility.bind(this)
     this.updateFacilityAddress = this.updateFacilityAddress.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -32,7 +36,7 @@ export default class Hospitalization extends ValidationElement {
   }
 
   updateAdmission (values) {
-    this.update('Admission', values)
+    this.update('Admission', values.value)
   }
 
   updateFacility (values) {
@@ -47,6 +51,30 @@ export default class Hospitalization extends ValidationElement {
     this.update('Explanation', values)
   }
 
+  isValid () {
+    return new HospitalizationValidator(this.props).isValid()
+  }
+
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.isValid()) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
+      super.handleValidation(event, statusObject, errorObject)
+    })
+  }
+
   render () {
     return (
       <div className="hospitalization">
@@ -56,6 +84,7 @@ export default class Hospitalization extends ValidationElement {
             <Radio
               className="voluntary-option"
               value="Voluntary"
+              onValidate={this.handleValidation}
               onUpdate={this.updateAdmission}>
               <div className="voluntary">
                 {i18n.m('psychological.hospitalization.label.voluntaryAdmission')}
@@ -64,6 +93,7 @@ export default class Hospitalization extends ValidationElement {
             <Radio
               className="involuntary-option"
               value="Involuntary"
+              onValidate={this.handleValidation}
               onUpdate={this.updateAdmission}>
               <div className="involuntary">
                 {i18n.m('psychological.hospitalization.label.involuntaryAdmission')}
@@ -74,14 +104,14 @@ export default class Hospitalization extends ValidationElement {
 
         <Show when={this.props.Admission}>
           <div>
-            <h3>{i18n.t(`psychological.hospitalization.heading.treatment`)}</h3>
+            <h3>{i18n.t(`psychological.hospitalization.heading.explanation`)}</h3>
             <div className="eapp-field-wrap no-label">
-              <Help id={`psychological.hospitalization.help.treatment`}>
+              <Help id={`psychological.hospitalization.help.explanation`}>
                 <Textarea name="Explanation"
                   className="explanation"
                   {...this.props.Explanation}
                   onUpdate={this.updateExplanation}
-                  onValidate={this.props.onValidate}
+                  onValidate={this.handleValidation}
                 />
                 <HelpIcon />
               </Help>
@@ -96,7 +126,7 @@ export default class Hospitalization extends ValidationElement {
               {...this.props.TreatmentDate}
               receiveProps={this.props.receiveProps}
               onUpdate={this.updateTreatmentDate}
-              onValidate={this.props.onValidate}
+              onValidate={this.handleValidation}
             />
             <HelpIcon />
           </Help>
@@ -109,7 +139,7 @@ export default class Hospitalization extends ValidationElement {
               className="facility"
               {...this.props.Facility}
               onUpdate={this.updateFacility}
-              onValidate={this.props.onValidate}
+              onValidate={this.handleValidation}
             />
             <HelpIcon />
           </Help>
@@ -122,7 +152,7 @@ export default class Hospitalization extends ValidationElement {
               {...this.props.FacilityAddress}
               label={i18n.t(`psychological.hospitalization.label.address`)}
               onUpdate={this.updateFacilityAddress}
-              onValidate={this.props.onValidate}
+              onValidate={this.handleValidation}
             />
             <HelpIcon />
           </Help>

@@ -13,8 +13,8 @@ export default class HospitalizationsValidator {
       return false
     }
 
-    for (let hospitalization of this.list) {
-      if (!new HospitalizationValidator(hospitalization).isValid()) {
+    for (let item of this.list) {
+      if (!new HospitalizationValidator(item.Hospitalization).isValid()) {
         return false
       }
     }
@@ -41,18 +41,18 @@ export class HospitalizationValidator {
   }
 
   validTreatmentDate () {
-    return new DateRangeValidator(this.treatmentDate)
+    return new DateRangeValidator(this.treatmentDate).isValid()
   }
 
   validAdmission () {
-    if (this.admission.value !== 'Voluntary' && this.admission.value !== 'Involuntary') {
+    if (this.admission !== 'Voluntary' && this.admission !== 'Involuntary') {
       return false
     }
     return validGenericTextfield(this.explanation)
   }
 
   validFacilityAddress () {
-    return new AddressValidator(this.facilityAddress)
+    return new AddressValidator(this.facilityAddress).isValid()
   }
 
   validFacility () {

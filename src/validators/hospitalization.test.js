@@ -5,9 +5,7 @@ describe('Hospitalization validation', function () {
     const tests = [
       {
         state: {
-          Admission: {
-            value: 'Voluntary'
-          },
+          Admission: 'Voluntary',
           Explanation: {
             value: 'Because I can'
           }
@@ -16,9 +14,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Admission: {
-            value: 'Foo'
-          },
+          Admission: 'Foo',
           Explanation: {
             value: 'Because I can'
           }
@@ -55,9 +51,7 @@ describe('Hospitalization validation', function () {
             },
             present: false
           },
-          Admission: {
-            value: 'Voluntary'
-          },
+          Admission: 'Voluntary',
           Explanation: {
             value: 'Because I can'
           }
@@ -97,30 +91,30 @@ describe('Hospitalization validation', function () {
         state: {
           Hospitalized: 'Yes',
           List: [{
-            Facility: {
-              value: 'Place 1'
-            },
-            FacilityAddress: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202'
-            },
-            TreatmentDate: {
-              from: {
-                date: new Date('1/1/2010')
+            Hospitalization: {
+              Facility: {
+                value: 'Place 1'
               },
-              to: {
-                date: new Date('1/1/2012')
+              FacilityAddress: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
               },
-              present: false
-            },
-            Admission: {
-              value: 'Voluntary'
-            },
-            Explanation: {
-              value: 'Because I can'
+              TreatmentDate: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2012')
+                },
+                present: false
+              },
+              Admission: 'Voluntary',
+              Explanation: {
+                value: 'Because I can'
+              }
             }
           }
           ]
@@ -131,30 +125,30 @@ describe('Hospitalization validation', function () {
         state: {
           Hospitalized: 'Nope',
           List: [{
-            Facility: {
-              value: 'Place 1'
-            },
-            FacilityAddress: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202'
-            },
-            TreatmentDate: {
-              from: {
-                date: new Date('1/1/2010')
+            Hospitalization: {
+              Facility: {
+                value: 'Place 1'
               },
-              to: {
-                date: new Date('1/1/2012')
+              FacilityAddress: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
               },
-              present: false
-            },
-            Admission: {
-              value: 'Voluntary'
-            },
-            Explanation: {
-              value: 'Because I can'
+              TreatmentDate: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2012')
+                },
+                present: false
+              },
+              Admission: 'Voluntary',
+              Explanation: {
+                value: 'Because I can'
+              }
             }
           }
           ]
@@ -184,9 +178,7 @@ describe('Hospitalization validation', function () {
               },
               present: false
             },
-            Admission: {
-              value: 'Voluntary'
-            },
+            Admission: 'Voluntary',
             Explanation: {
               value: 'Because I can'
             }
