@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show, RadioGroup, Radio, Help, HelpIcon, Textarea } from '../../../Form'
+import { Accordion, ValidationElement, Branch, Show, RadioGroup, Radio, Field, Textarea } from '../../../Form'
 import Diagnosis from '../Diagnoses/Diagnosis'
 import { ExistingConditionsValidator } from '../../../../validators'
 
@@ -101,101 +101,88 @@ export default class ExistingConditions extends ValidationElement {
         <h3>{i18n.t('psychological.existingConditions.heading.hasCondition')}</h3>
         {i18n.m('psychological.existingConditions.para.hasCondition')}
         <Branch name="hascondition"
-          className="eapp-field-wrap no-label hascondition"
-          value={this.state.HasCondition}
-          help="psychological.existingConditions.help.hasCondition"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateHasCondition}>
+                className="eapp-field-wrap no-label hascondition"
+                value={this.state.HasCondition}
+                help="psychological.existingConditions.help.hasCondition"
+                onValidate={this.handleValidation}
+                onUpdate={this.updateHasCondition}>
         </Branch>
 
         <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
         {i18n.m('psychological.existingConditions.para.receivedTreatment')}
 
-        <div className="eapp-field-wrap">
-          <Help id={`psychological.existingConditions.help.receivedTreatment`}>
-            <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
-              <Radio name="treatment"
-                className="treatment"
-                label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
-                value="Yes"
-                onUpdate={this.updateReceivedTreatment}
-                onValidate={this.handleValidation}
-              />
-              <Radio name="treatment"
-                className="treatment"
-                label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
-                value="No"
-                onUpdate={this.updateReceivedTreatment}
-                onValidate={this.handleValidation}
-              />
-              <Radio name="treatment"
-                className="treatment"
-                label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
-                value="Decline"
-                onUpdate={this.updateReceivedTreatment}
-                onValidate={this.handleValidation}
-              />
-            </RadioGroup>
-            <HelpIcon className="text-help-icon" />
-          </Help>
-        </div>
+        <Field help={`psychological.existingConditions.help.receivedTreatment`}>
+          <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
+            <Radio name="treatment"
+                   className="treatment"
+                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
+                   value="Yes"
+                   onUpdate={this.updateReceivedTreatment}
+                   onValidate={this.handleValidation}
+                   />
+            <Radio name="treatment"
+                   className="treatment"
+                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
+                   value="No"
+                   onUpdate={this.updateReceivedTreatment}
+                   onValidate={this.handleValidation}
+                   />
+            <Radio name="treatment"
+                   className="treatment"
+                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
+                   value="Decline"
+                   onUpdate={this.updateReceivedTreatment}
+                   onValidate={this.handleValidation}
+                   />
+          </RadioGroup>
+        </Field>
 
         <Show when={this.state.ReceivedTreatment === 'No'}>
-          <div>
-            <h3>{i18n.t(`psychological.existingConditions.heading.explanation`)}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id={`psychological.existingConditions.help.explanation`}>
-                <Textarea name="Explanation"
-                  className="explanation"
-                  {...this.props.Explanation}
-                  onUpdate={this.updateExplanation}
-                  onValidate={this.handleValidation}
-                />
-                <HelpIcon className="text-help-icon" />
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
+                 help="psychological.existingConditions.help.explanation">
+            <Textarea name="Explanation"
+                      className="explanation"
+                      {...this.props.Explanation}
+                      onUpdate={this.updateExplanation}
+                      onValidate={this.handleValidation}
+                      />
+          </Field>
         </Show>
 
         <Show when={this.state.ReceivedTreatment === 'Yes'}>
           <Accordion minimum="1"
-            items={this.state.TreatmentList}
-            onUpdate={this.updateTreatmentList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
+                     items={this.state.TreatmentList}
+                     onUpdate={this.updateTreatmentList}
+                     summary={this.summary}
+                     onValidate={this.handleValidation}
+                     appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
+                     appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
+                     appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
             <Diagnosis name="Diagnosis"
-              prefix="existingConditions.diagnosis"
-              bind={true} />
+                       prefix="existingConditions.diagnosis"
+                       bind={true} />
           </Accordion>
         </Show>
 
         <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
         <Branch name="didNotFollow"
-          className="eapp-field-wrap no-label didnotfollow"
-          value={this.state.DidNotFollow}
-          help="psychological.existingConditions.help.didNotFollow"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateDidNotFollow}>
+                className="eapp-field-wrap no-label didnotfollow"
+                value={this.state.DidNotFollow}
+                help="psychological.existingConditions.help.didNotFollow"
+                onValidate={this.handleValidation}
+                onUpdate={this.updateDidNotFollow}>
         </Branch>
 
         <Show when={this.state.DidNotFollow === 'Yes'}>
-          <div>
-            <h3>{i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id={`psychological.existingConditions.help.didNotFollowExplanation`}>
-                <Textarea name="DidNotFollowExplanation"
-                  className="explanation"
-                  {...this.props.DidNotFollowExplanation}
-                  onUpdate={this.updateDidNotFollowExplanation}
-                  onValidate={this.handleValidation}
-                />
-                <HelpIcon className="text-help-icon" />
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
+                 help="psychological.existingConditions.help.didNotFollowExplanation">
+            <Textarea name="DidNotFollowExplanation"
+                      className="explanation"
+                      {...this.props.DidNotFollowExplanation}
+                      onUpdate={this.updateDidNotFollowExplanation}
+                      onValidate={this.handleValidation}
+                      />
+          </Field>
         </Show>
       </div>
     )
