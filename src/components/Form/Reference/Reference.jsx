@@ -104,7 +104,7 @@ export default class Reference extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.contact`)}
-               help="${prefix}reference.help.contact"
+               help={`${prefix}reference.help.contact`}
                adjustFor="labels"
                shrink={true}>
           <DateControl name="LastContact"
@@ -115,7 +115,7 @@ export default class Reference extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.relationship`)}
-               help="${prefix}reference.help.relationship"
+               help={`${prefix}reference.help.relationship`}
                comments={true}
                commentsName="Comments"
                commentsValue={this.state.Comments}
@@ -188,7 +188,7 @@ export default class Reference extends ValidationElement {
         <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
 
         <Field title={i18n.t(`${prefix}reference.heading.phone`)}
-               help="${prefix}reference.help.phone"
+               help={`${prefix}reference.help.phone`}
                adjustFor="labels">
           <Telephone name="Phone"
                      {...this.state.Phone}
@@ -198,7 +198,7 @@ export default class Reference extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.email`)}
-               help="${prefix}reference.help.email"
+               help={`${prefix}reference.help.email`}
                adjustFor="buttons">
           <NotApplicable name="EmailNotApplicable"
                          {...this.state.EmailNotApplicable}

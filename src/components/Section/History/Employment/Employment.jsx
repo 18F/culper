@@ -124,7 +124,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployer()}>
           <Field title={i18n.t(`${prefix}.heading.employer`)}
-                 help="${prefix}.employer.help"
+                 help={`${prefix}.employer.help`}
                  adjustFor="labels">
             <Text name="Employment"
                   {...this.props.Employment}
@@ -152,7 +152,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showAssignedDuty()}>
           <Field title={i18n.t(`${prefix}.heading.dutyStation`)}
-                 help="${prefix}.dutyStation.help"
+                 help={`${prefix}.dutyStation.help`}
                  adjustFor="labels">
             <Text name="DutyStation"
                   {...this.props.DutyStation}
@@ -166,7 +166,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showStatus()}>
           <Field title={i18n.t(`${prefix}.heading.status`)}
-                 help="${prefix}.status.help"
+                 help={`${prefix}.status.help`}
                  shrink={true}>
             <EmploymentStatus name="Status"
                               {...this.props.Status}
@@ -190,7 +190,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.address`)}
-                 help="${prefix}.address.help"
+                 help={`${prefix}.address.help`}
                  adjustFor="labels"
                  shrink={true}>
             <Address name="Address"
@@ -214,7 +214,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.telephone`)}
-                 help="${prefix}.telephone.help">
+                 help={`${prefix}.telephone.help`}>
             <Telephone name="Telephone"
                        {...this.props.Telephone}
                        onUpdate={this.onUpdate.bind(this, 'Telephone')}
