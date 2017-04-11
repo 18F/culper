@@ -4,6 +4,7 @@ import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 import { DiagnosesValidator } from '../../../../validators'
+import { dateRangeFormat } from '../summaryHelper'
 
 export default class Diagnoses extends ValidationElement {
   constructor (props) {
@@ -79,8 +80,9 @@ export default class Diagnoses extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
-    const date = (o.Diagnosed || {}).from ? `${o.Diagnosed.from.month}/${o.Diagnosed.from.year}` : ''
-    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${date}` : i18n.t('psychological.diagnoses.collection.summary')
+    const date = (o.Diagnosed || {})
+    const formattedDate = dateRangeFormat(date)
+    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${formattedDate}` : i18n.t('psychological.diagnoses.collection.summary')
     const type = i18n.t('psychological.diagnoses.collection.itemType')
 
     return (
@@ -116,7 +118,7 @@ export default class Diagnoses extends ValidationElement {
         <Branch name="diagnosed"
           className="diagnosed"
           value={this.state.Diagnosed}
-          help="psychological.diagnoses.help.incompetent"
+          help="psychological.diagnoses.help.diagnosed"
           onValidate={this.handleValidation}
           onUpdate={this.updateDiagnosed}>
         </Branch>

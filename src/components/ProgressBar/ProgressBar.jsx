@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
-const sections = ['identification', 'financial', 'family', 'military', 'history', 'foreign', 'legal']
+const sections = ['identification', 'financial', 'family', 'military', 'history', 'foreign', 'legal', 'psychological']
 
 class ProgressBar extends React.Component {
   total () {

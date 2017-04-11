@@ -72,9 +72,9 @@ export default class Infractions extends ValidationElement {
                   onChange={this.update}
                   onValidate={this.props.onValidate}
                   />
-        <Checkbox label={i18n.m('financial.nonpayment.para.deliquent')}
-                  value="Deliquent"
-                  className="nonpayment-deliquent"
+        <Checkbox label={i18n.m('financial.nonpayment.para.delinquent')}
+                  value="Delinquent"
+                  className="nonpayment-delinquent"
                   toggle="false"
                   onChange={this.update}
                   onValidate={this.props.onValidate}

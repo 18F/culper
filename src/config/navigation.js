@@ -24,7 +24,7 @@ const navigation = [
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
       { name: 'Credit counseling', url: 'credit' },
-      { name: 'Deliquent payments', url: 'deliquent' },
+      { name: 'Delinquent payments', url: 'delinquent' },
       { name: 'Non-payment consequence', url: 'nonpayment' }
     ]
   },

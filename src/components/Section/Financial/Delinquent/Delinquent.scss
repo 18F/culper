@@ -1,5 +1,5 @@
-.deliquent {
-  .deliquent-infractions {
+.delinquent {
+  .delinquent-infractions {
     z-index: 1;
 
     .block {
@@ -24,8 +24,8 @@
     }
   }
 
-  .deliquent-date,
-  .deliquent-resolved {
+  .delinquent-date,
+  .delinquent-resolved {
     width: initial !important;
   }
 
@@ -33,7 +33,7 @@
     margin-left: -2rem;
   }
 
-  .deliquent-amount {
+  .delinquent-amount {
     width: 100%;
     margin-left: 1rem;
     display: inline-block;
