@@ -20,6 +20,12 @@ describe('Passport component validation', function () {
           HasPassport: ''
         },
         expected: false
+      },
+      {
+        state: {
+          HasPassport: 'Nope'
+        },
+        expected: false
       }
     ]
 
