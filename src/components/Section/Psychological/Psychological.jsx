@@ -10,6 +10,8 @@ import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
+import ExistingConditions from './ExistingConditions/ExistingConditions'
+import { PsychologicalValidator } from '../../../validators'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -22,6 +24,7 @@ class Psychological extends ValidationElement {
     this.onUpdate = this.onUpdate.bind(this)
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
+    this.onValidate = this.onValidate.bind(this)
   }
 
   componentDidMount () {
@@ -41,6 +44,29 @@ class Psychological extends ValidationElement {
 
   onUpdate (field, values) {
     this.props.dispatch(updateApplication('Psychological', field, values))
+  }
+
+  /**
+   * Report errors and completion status
+   */
+  onValidate (event, status, errorCodes) {
+    if (!event) {
+      return
+    }
+
+    if (!event.fake) {
+      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
+      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+    }
+
+    let cstatus = new PsychologicalValidator(null, this.props).completionStatus(status)
+    let completed = {
+      ...this.props.Completed,
+      ...status,
+      status: cstatus
+    }
+
+    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
   }
 
   /**
@@ -96,6 +122,7 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
               {...this.props.Competence}
+              onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
           </SectionView>
 
@@ -106,6 +133,7 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.hospitalization') }>
             <Consultation name="Consultations"
               {...this.props.Consultations}
+              onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
           </SectionView>
           <SectionView name="hospitalizations"
@@ -115,18 +143,63 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.diagnoses') }>
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
+              onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
           <SectionView name="diagnoses"
             back="psychological/hospitalizations"
             backLabel={ i18n.t('psychological.destination.hospitalization') }
-            next="psychological/existing"
+            next="psychological/conditions"
             nextLabel={ i18n.t('psychological.destination.existingConditions') }>
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
+              onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
           </SectionView>
+          <SectionView name="conditions"
+            back="psychological/diagnoses"
+            backLabel={ i18n.t('psychological.destination.diagnoses') }
+            next="psychological/review"
+            nextLabel={ i18n.t('psychological.destination.review') }>
+            <ExistingConditions name="ExistingConditions"
+              {...this.props.ExistingConditions}
+              onValidate={this.onValidate}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+            />
+          </SectionView>
+          <SectionView name="review"
+            back="psychological/conditions"
+            backLabel={ i18n.t('psychological.destination.existingConditions') }>
+
+            <Competence name="Competence"
+              {...this.props.Competence}
+              onValidate={this.onValidate}
+              onUpdate={this.onUpdate.bind(this, 'Competence')} />
+
+            <Consultation name="Consultations"
+              {...this.props.Consultations}
+              onValidate={this.onValidate}
+              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+
+            <Hospitalizations name="Hospitalizations"
+              {...this.props.Hospitalizations}
+              onValidate={this.onValidate}
+              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
+
+            <Diagnoses name="Diagnoses"
+              {...this.props.Diagnoses}
+              onValidate={this.onValidate}
+              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
+            />
+
+            <ExistingConditions name="ExistingConditions"
+              {...this.props.ExistingConditions}
+              onValidate={this.onValidate}
+              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+            />
+          </SectionView>
+
         </SectionViews>
       </div>
     )
@@ -146,8 +219,9 @@ function mapStateToProps (state) {
     Consultations: psychological.Consultation,
     Hospitalizations: psychological.Hospitalization,
     Diagnoses: psychological.Diagnoses,
+    ExistingConditions: psychological.ExistingConditions,
     Errors: errors.financial || [],
-    Completed: completed.financial || []
+    Completed: completed.psychological || []
   }
 }
 

@@ -121,7 +121,7 @@ const navigation = [
       { name: 'Consultations', url: 'consultations' },
       { name: 'Hospitalizations', url: 'hospitalizations' },
       { name: 'Diagnoses', url: 'diagnoses' },
-      { name: 'Existing Conditions', url: 'existingconditions' }
+      { name: 'Existing Conditions', url: 'conditions' }
     ]
   }
 ]

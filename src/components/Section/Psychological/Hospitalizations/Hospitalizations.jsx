@@ -17,6 +17,7 @@ export default class Hospitalizations extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateHospitalized = this.updateHospitalized.bind(this)
     this.updateList = this.updateList.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -79,6 +80,7 @@ export default class Hospitalizations extends ValidationElement {
         <Branch name="hospitalized"
           value={this.state.Hospitalized}
           help="psychological.hospitalization.help.incompetent"
+          onValidate={this.handleValidation}
           onUpdate={this.updateHospitalized}>
         </Branch>
 

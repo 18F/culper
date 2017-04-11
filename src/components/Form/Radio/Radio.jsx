@@ -17,6 +17,7 @@ export default class Radio extends ValidationElement {
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   componentWillReceiveProps (newProps) {

@@ -24,6 +24,7 @@ export default class Diagnoses extends ValidationElement {
     this.updateInTreatment = this.updateInTreatment.bind(this)
     this.updateDiagnosisList = this.updateDiagnosisList.bind(this)
     this.updateTreatmentList = this.updateTreatmentList.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -116,6 +117,7 @@ export default class Diagnoses extends ValidationElement {
           className="diagnosed"
           value={this.state.Diagnosed}
           help="psychological.diagnoses.help.incompetent"
+          onValidate={this.handleValidation}
           onUpdate={this.updateDiagnosed}>
         </Branch>
 
@@ -138,6 +140,7 @@ export default class Diagnoses extends ValidationElement {
           className="didnotconsult"
           value={this.state.DidNotConsult}
           help="psychological.diagnoses.help.didNotConsult"
+          onValidate={this.handleValidation}
           onUpdate={this.updateDidNotConsult}>
         </Branch>
 
@@ -146,6 +149,7 @@ export default class Diagnoses extends ValidationElement {
           className="intreatment"
           value={this.state.InTreatment}
           help="psychological.diagnoses.help.inTreatment"
+          onValidate={this.handleValidation}
           onUpdate={this.updateInTreatment}>
         </Branch>
 

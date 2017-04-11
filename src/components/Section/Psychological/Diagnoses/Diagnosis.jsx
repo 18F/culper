@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, ValidationElement, Help, HelpIcon, Text, Textarea, DateRange, BranchCollection, Svg, RadioGroup, Radio, Show } from '../../../Form'
+import { ValidationElement, Help, HelpIcon, Text, Textarea, DateRange, RadioGroup, Radio, Show } from '../../../Form'
 import Treatment from '../Treatment'
 
 export default class Diagnosis extends ValidationElement {
@@ -55,11 +55,12 @@ export default class Diagnosis extends ValidationElement {
   }
 
   render () {
+    const prefix = this.props.prefix
     return (
       <div className="diagnosis">
-        <h3>{i18n.t(`psychological.diagnosis.heading.condition`)}</h3>
-        <div>
-          <Help id={`psychological.diagnosis.help.condition`}>
+        <h3>{i18n.t(`psychological.${prefix}.heading.condition`)}</h3>
+        <div className="eapp-field-wrap no-label">
+          <Help id={`psychological.${prefix}.help.condition`}>
             <Text name="Condition"
               className="condition"
               {...this.props.Condition}
@@ -70,9 +71,9 @@ export default class Diagnosis extends ValidationElement {
           </Help>
         </div>
 
-        <h3>{i18n.t(`psychological.diagnosis.heading.diagnosed`)}</h3>
-        <div>
-          <Help id={`psychological.diagnosis.help.diagnosed`}>
+        <h3>{i18n.t(`psychological.${prefix}.heading.diagnosed`)}</h3>
+        <div className="eapp-field-wrap">
+          <Help id={`psychological.${prefix}.help.diagnosed`}>
             <DateRange name="Diagnosed"
               {...this.props.Diagnosed}
               receiveProps={this.props.receiveProps}
@@ -83,29 +84,29 @@ export default class Diagnosis extends ValidationElement {
           </Help>
         </div>
 
-        <h2>{i18n.t(`psychological.diagnosis.heading.healthcareProfessional`)}</h2>
-        <div className=" person">
+        <h2>{i18n.t(`psychological.${prefix}.heading.healthcareProfessional`)}</h2>
+        <div className="eapp-field-wrap person">
           <Treatment name="Treatment"
             {...this.props.Treatment}
-            prefix="diagnosis.person"
+            prefix={`${prefix}.person`}
             onUpdate={this.updateTreatment}
             onValidate={this.props.onValidate}
           />
         </div>
 
-        <h2>{i18n.t(`psychological.diagnosis.heading.facility`)}</h2>
-        <div className=" facility">
+        <h2>{i18n.t(`psychological.${prefix}.heading.facility`)}</h2>
+        <div className="eapp-field-wrap facility">
           <Treatment name="TreatmentFacility"
             {...this.props.TreatmentFacility}
-            prefix="diagnosis.facility"
+            prefix={`${prefix}.facility`}
             onUpdate={this.updateTreatmentFacility}
             onValidate={this.props.onValidate}
           />
         </div>
 
-        <h3>{i18n.t(`psychological.diagnosis.heading.effective`)}</h3>
-        <div>
-          <Help id={`psychological.diagnosis.help.effective`}>
+        <h3>{i18n.t(`psychological.${prefix}.heading.effective`)}</h3>
+        <div className="eapp-field-wrap">
+          <Help id={`psychological.${prefix}.help.effective`}>
             <RadioGroup className="effective" selectedValue={this.props.Effective}>
               <Radio name="effective"
                 label="Yes"
@@ -123,9 +124,9 @@ export default class Diagnosis extends ValidationElement {
 
         <Show when={this.props.Effective === 'No'}>
           <div>
-            <h3>{i18n.t(`psychological.diagnosis.heading.explanation`)}</h3>
-            <div>
-              <Help id={`psychological.diagnosis.help.explanation`}>
+            <h3>{i18n.t(`psychological.${prefix}.heading.explanation`)}</h3>
+            <div className="eapp-field-wrap">
+              <Help id={`psychological.${prefix}.help.explanation`}>
                 <Textarea name="Explanation"
                   className="explanation"
                   {...this.props.Explanation}
@@ -141,4 +142,6 @@ export default class Diagnosis extends ValidationElement {
   }
 }
 
-Diagnosis.defaultProps = {}
+Diagnosis.defaultProps = {
+  prefix: 'diagnosis'
+}
