@@ -130,7 +130,7 @@ export default class Taxes extends ValidationElement {
                       min="1000"
                       bind={true}
                       />
-              <div className="taxes-year coupled-flags">
+              <div className="flags">
                 <Checkbox name="YearEstimated"
                           ref="estimated"
                           label={i18n.t('financial.taxes.label.estimated')}
@@ -174,7 +174,7 @@ export default class Taxes extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <div className="taxes-amount coupled-flags">
+                <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.taxes.label.estimated')}

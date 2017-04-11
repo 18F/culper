@@ -20,20 +20,10 @@
     display: inline-block;
     vertical-align: top;
   }
-
-  .coupled-flags {
-    clear: both;
-    padding-left: 21.5rem;
-    z-index: 1;
-  }
 }
 
 .datecontrol.day-hidden {
   .day {
     display: none;
-  }
-
-  .coupled-flags {
-    padding-left: 14rem;
   }
 }

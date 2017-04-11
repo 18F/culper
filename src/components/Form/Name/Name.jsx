@@ -181,7 +181,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <div className="text-right">
+          <div className="flags">
             <div className="inline">
               <input id="firstInitialOnly"
                      name="firstInitialOnly"
@@ -210,7 +210,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <div className="middle-options text-right">
+          <div className="middle-options flags">
             <div className="inline">
               <input id="noMiddleName"
                      name="noMiddleName"
@@ -247,7 +247,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <div className="text-right">
+          <div className="flags">
             <div className="inline">
               <input id="lastInitialOnly"
                      name="lastInitialOnly"

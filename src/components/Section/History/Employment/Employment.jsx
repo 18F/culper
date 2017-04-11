@@ -166,7 +166,8 @@ export class EmploymentItem extends ValidationElement {
 
         <Show when={this.showStatus()}>
           <Field title={i18n.t(`${prefix}.heading.status`)}
-                 help="${prefix}.status.help">
+                 help="${prefix}.status.help"
+                 shrink={true}>
             <EmploymentStatus name="Status"
                               {...this.props.Status}
                               onUpdate={this.onUpdate.bind(this, 'Status')}
@@ -177,7 +178,7 @@ export class EmploymentItem extends ValidationElement {
 
         <Field title={i18n.t(`history.employment.default.heading.datesEmployed`)}
                help={`history.employment.default.datesEmployed.help`}
-               adjustFor="labels"
+               adjustFor="daterange"
                shrink={true}>
           <DateRange name="Dates"
                      {...this.props.Dates}

@@ -418,10 +418,11 @@ export default class Relative extends ValidationElement {
         </Field>
 
         <Show when={mother}>
-          <Field title={i18n.t('family.relatives.heading.maiden')}
-                 help="family.relatives.help.maiden">
+          <div>
+            <h3>{i18n.t('family.relatives.heading.maiden')}</h3>
             <Branch name="maiden_diff"
-                    className="eapp-field-wrap no-label relative-maiden-diff help"
+                    help="family.relatives.help.maiden"
+                    className="eapp-field-wrap no-label relative-maiden-diff"
                     value={this.state.MaidenSameAsListed}
                     yesLabel={i18n.t('family.relatives.label.maiden.same')}
                     noLabel={i18n.t('family.relatives.label.maiden.diff')}
@@ -435,7 +436,7 @@ export default class Relative extends ValidationElement {
                     onUpdate={this.updateMaidenName}
                     />
             </Show>
-          </Field>
+          </div>
         </Show>
 
         <Show when={immediateFamily}>

@@ -162,30 +162,32 @@ export default class Passport extends ValidationElement {
                errorPrefix="passport"
                adjustFor="buttons"
                shrink={true}>
-          <RadioGroup className="passport-card option-list"
-                      selectedValue={this.state.Card}>
-            <Radio name="passport-book"
-                   label={i18n.t('foreign.passport.label.book')}
-                   value="Book"
-                   onChange={this.handleChange}
-                   />
-            <Radio name="passport-card"
-                   label={i18n.t('foreign.passport.label.card')}
-                   value="Card"
-                   onChange={this.handleChange}
-                   />
-          </RadioGroup>
-          <Text name="number"
-                value={this.state.Number.value}
-                label={i18n.t('foreign.passport.label.number')}
-                placeholder={i18n.t('foreign.passport.placeholder.number')}
-                pattern={re}
-                maxlength="9"
-                className="number"
-                ref="number"
-                onUpdate={this.handleUpdate.bind(this, 'Number')}
-                onValidate={this.handleValidation}
-                />
+          <div>
+            <RadioGroup className="passport-card option-list"
+                        selectedValue={this.state.Card}>
+              <Radio name="passport-book"
+                    label={i18n.t('foreign.passport.label.book')}
+                    value="Book"
+                    onChange={this.handleChange}
+                    />
+              <Radio name="passport-card"
+                    label={i18n.t('foreign.passport.label.card')}
+                    value="Card"
+                    onChange={this.handleChange}
+                    />
+            </RadioGroup>
+            <Text name="number"
+                  value={this.state.Number.value}
+                  label={i18n.t('foreign.passport.label.number')}
+                  placeholder={i18n.t('foreign.passport.placeholder.number')}
+                  pattern={re}
+                  maxlength="9"
+                  className="number"
+                  ref="number"
+                  onUpdate={this.handleUpdate.bind(this, 'Number')}
+                  onValidate={this.handleValidation}
+                  />
+          </div>
         </Field>
 
         <Field title={i18n.t('foreign.passport.issued')}

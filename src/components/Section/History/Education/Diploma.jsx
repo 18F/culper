@@ -93,7 +93,7 @@ export class DiplomaItem extends ValidationElement {
           <Show when={this.state.Diploma === 'Other'}>
             <Text name="DiplomaOther"
                   {...this.state.DiplomaOther}
-                  label={i18n.t('history.residence.label.diploma.other')}
+                  label={i18n.t('history.education.label.diploma.other')}
                   className="other"
                   maxlength="100"
                   onUpdate={this.onUpdate.bind(this, 'OtherRole')}
@@ -106,10 +106,8 @@ export class DiplomaItem extends ValidationElement {
                help="history.education.help.date"
                adjustFor="label"
                shrink={true}>
-          <label className="info-label">{i18n.t('history.education.label.date')}</label>
           <DateControl name="Date"
                        {...this.state.Date}
-                       label={i18n.t('history.education.label.date')}
                        hideDay={true}
                        onUpdate={this.updateDate}
                        onValidate={this.props.onValidate}

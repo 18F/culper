@@ -180,7 +180,7 @@ export default class Nonpayment extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <div className="nonpayment-amount coupled-flags">
+                <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.nonpayment.label.estimated')}

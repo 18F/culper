@@ -176,7 +176,7 @@ export default class Deliquent extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <div className="deliquent-amount coupled-flags">
+                <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.deliquent.label.estimated')}

@@ -191,7 +191,7 @@ export default class ForeignService extends ValidationElement {
 
         <Field title={i18n.t('military.foreign.heading.dates')}
                help="military.foreign.help.dates"
-               adjustFor="labels"
+               adjustFor="daterange"
                shrink={true}>
           <DateRange name="Dates"
                      className="foreign-service-dates"

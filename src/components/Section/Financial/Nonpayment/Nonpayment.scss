@@ -2,6 +2,10 @@
   .nonpayment-infractions {
     z-index: 1;
 
+    .block {
+      display: block !important;
+    }
+
     label::before {
       vertical-align: top !important;
       margin-top: 0.8rem !important;
@@ -9,8 +13,10 @@
 
     label > span > div {
       display: inline-block;
-      width: 90%;
+      width: 89%;
       text-align: left;
+      vertical-align: top;
+      margin-top: 0.3rem;
     }
 
     .no-toggle {
@@ -34,19 +40,6 @@
 
     label {
       margin-left: 1rem;
-    }
-  }
-
-  .nonpayment-amount.coupled-flags {
-    clear: both;
-    z-index: 1;
-
-    .block {
-      float: right;
-
-      label.no-toggle {
-        margin-right: 0 !important;
-      }
     }
   }
 }

@@ -26,17 +26,4 @@
       margin-left: 1rem;
     }
   }
-
-  .card-amount.coupled-flags {
-    clear: both;
-    z-index: 1;
-
-    .eapp-blocks-checkbox {
-      float: right;
-
-      label.no-toggle {
-        margin-right: 0 !important;
-      }
-    }
-  }
 }

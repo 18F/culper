@@ -246,7 +246,7 @@ export default class MilitaryService extends ValidationElement {
 
         <Field title={i18n.t('military.history.heading.dates')}
                help="military.history.help.dates"
-               adjustFor="labels"
+               adjustFor="daterange"
                shrink={true}>
           <DateRange name="Dates"
                      className="dates"

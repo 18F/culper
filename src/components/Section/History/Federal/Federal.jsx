@@ -125,7 +125,7 @@ export default class Federal extends ValidationElement {
                      appendLabel={i18n.t('history.federal.collection.append')}>
             <Field title={i18n.t('history.federal.heading.dates')}
                    help="history.federal.help.dates"
-                   adjustFor="labels">
+                   adjustFor="daterange">
               <DateRange name="Dates"
                          bind={true}
                          />

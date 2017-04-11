@@ -66,7 +66,7 @@ export default class Alias extends ValidationElement {
         </Branch>
 
         <Field help="family.relatives.help.aliasdates"
-               adjustFor="labels"
+               adjustFor="daterange"
                shrink={true}>
           <DateRange name="Dates"
                      className="alias-dates"

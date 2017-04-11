@@ -195,7 +195,7 @@ export default class Bankruptcy extends ValidationElement {
                         placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
                         bind={true}
                         />
-                <div className="text-right">
+                <div className="flags">
                   <Checkbox name="TotalAmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.bankruptcy.totalAmount.estimated')}

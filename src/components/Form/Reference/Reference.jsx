@@ -200,8 +200,7 @@ export default class Reference extends ValidationElement {
 
         <Field title={i18n.t(`${prefix}reference.heading.email`)}
                help="${prefix}reference.help.email"
-               adjustFor="buttons"
-               shrink={true}>
+               adjustFor="buttons">
           <NotApplicable name="EmailNotApplicable"
                          {...this.state.EmailNotApplicable}
                          label={i18n.t('reference.label.idk')}

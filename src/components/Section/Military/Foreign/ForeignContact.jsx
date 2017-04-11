@@ -95,7 +95,7 @@ export default class ForeignContact extends React.Component {
 
         <Field title={i18n.t('military.foreign.heading.contact.dates')}
                help="military.foreign.help.contact.dates"
-               adjustFor="labels"
+               adjustFor="daterange"
                shrink={true}>
           <DateRange name="Dates"
                      className="foreign-contact-dates"

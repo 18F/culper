@@ -118,6 +118,18 @@ export default class Field extends ValidationElement {
   }
 
   /**
+   * Render the title as needed
+   */
+  title () {
+    if (this.props.title) {
+      const klassTitle = `title ${this.props.titleSize}`.trim()
+      return <span className={klassTitle}>{this.props.title}</span>
+    }
+
+    return null
+  }
+
+  /**
    * Render the comments toggle link if needed.
    */
   commentsButton () {
@@ -290,12 +302,11 @@ export default class Field extends ValidationElement {
 
   render () {
     const klass = `field ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
-    const klassTitle = `title ${this.props.titleSize}`.trim()
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
     return (
       <div className={klass} ref="field">
-        <span className={klassTitle}>{this.props.title}</span>
+        {this.title()}
         <div className="table">
           <span className="content">
             <span className={klassComponent}>

@@ -115,7 +115,7 @@ export class ResidenceItem extends ValidationElement {
 
         <Field title={i18n.t('history.residence.heading.dates')}
                help="history.residence.help.dates"
-               adjustFor="label"
+               adjustFor="daterange"
                shrink={true}>
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"

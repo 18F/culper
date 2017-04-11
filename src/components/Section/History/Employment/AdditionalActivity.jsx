@@ -102,7 +102,7 @@ export default class AdditionalActivity extends ValidationElement {
             <Field title={i18n.t('history.employment.default.additionalActivity.heading.datesEmployed')}
                    titleSize="h4"
                    help="history.employment.default.additionalActivity.datesEmployed.help"
-                   adjustFor="labels"
+                   adjustFor="daterange"
                    shrink={true}>
               <DateRange name="DatesEmployed"
                          bind={true}

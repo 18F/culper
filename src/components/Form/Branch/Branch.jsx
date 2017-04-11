@@ -24,7 +24,7 @@ export default class Branch extends React.Component {
 
   render () {
     const klass = `branch ${this.props.className || ''}`.trim()
-    const adjustFor = this.props.label ? 'labels' : 'buttons'
+    const adjustFor = 'buttons'
 
     return (
       <div className={klass}>
@@ -32,10 +32,11 @@ export default class Branch extends React.Component {
           {this.props.children}
         </div>
         <div>
-          <Field help={this.props.help}
+          <Field title={this.props.label}
+                 titleSize="label"
+                 help={this.props.help}
                  adjustFor={adjustFor}
                  shrink={true}>
-            <label>{this.props.label || ''}</label>
             <RadioGroup className="option-list branch" selectedValue={this.props.value}>
               <Radio name={this.props.name}
                      label={this.props.yesLabel}

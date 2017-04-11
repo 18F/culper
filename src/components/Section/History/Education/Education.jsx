@@ -163,7 +163,7 @@ export class EducationItem extends ValidationElement {
 
           <Field title={i18n.t('history.education.heading.dates')}
                  help="history.education.help.dates"
-                 adjustFor="labels"
+                 adjustFor="daterange"
                  shrink={true}>
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
             <DateRange name="Dates"

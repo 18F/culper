@@ -162,7 +162,7 @@ export default class Card extends ValidationElement {
                         min="1"
                         bind={true}
                         />
-                <div className="card-amount coupled-flags">
+                <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"
                             label={i18n.t('financial.card.label.estimated')}

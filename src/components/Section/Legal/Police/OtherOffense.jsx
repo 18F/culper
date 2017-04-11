@@ -297,9 +297,10 @@ export default class OtherOffense extends ValidationElement {
                 {i18n.t('legal.police.heading.awaitingTrial')}
               </div>
             </Branch>
-            <Field adjustFor="labels">
-              <Textarea label={i18n.t('legal.police.heading.awaitingTrialExplanation')}
-                        className="awaiting-trial-explanation"
+            <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
+                   titleSize="label"
+                   adjustFor="labels">
+              <Textarea className="awaiting-trial-explanation"
                         {...this.state.AwaitingTrialExplanation}
                         name="awaiting_trial_explanation"
                         onValidate={this.props.onValidate}

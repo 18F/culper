@@ -8,10 +8,6 @@
   }
 
   .relatives-relation {
-    display: inline-block;
-    width: 92%;
-    max-width: 64rem;
-
     label {
       height: 10rem;
       width: 18rem;
@@ -22,6 +18,7 @@
         height: 100%;
 
         > div {
+          position: relative;
           top: 35%;
 
           > p {

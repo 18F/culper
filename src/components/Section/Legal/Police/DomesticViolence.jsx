@@ -74,7 +74,8 @@ export default class DomesticViolence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.domesticCourtName')}
                titleSize="h4"
-               help="legal.police.help.courtname">
+               help="legal.police.help.courtname"
+               adjustFor="labels">
           <Text name="CourtName"
                 {...this.state.CourtName}
                 label={i18n.t('legal.police.label.courtname')}

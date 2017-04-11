@@ -340,7 +340,7 @@ export default class ApplicantSSN extends ValidationElement {
                   onCut={this.disallowClipboard}
                   onPaste={this.disallowClipboard}
                   />
-            <div className="coupled-flags">
+            <div className="flags">
               <Checkbox name="notApplicable"
                         label={i18n.t('identification.ssn.label.notApplicable')}
                         ref="notApplicable"

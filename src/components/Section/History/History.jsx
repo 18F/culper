@@ -669,15 +669,13 @@ class History extends ValidationElement {
                     >
             </Branch>
             <Show when={this.props.Education.HasAttended === 'No'}>
-              <div>
-                <Branch name="branch_degree10"
-                        value={this.props.Education.HasDegree10}
-                        help="history.education.help.degree10"
-                        label={i18n.t('history.education.label.degree10')}
-                        onUpdate={this.updateBranchDegree10}
-                        >
-                </Branch>
-              </div>
+              <Branch name="branch_degree10"
+                      value={this.props.Education.HasDegree10}
+                      help="history.education.help.degree10"
+                      label={i18n.t('history.education.label.degree10')}
+                      onUpdate={this.updateBranchDegree10}
+                      >
+              </Branch>
             </Show>
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               <div>
