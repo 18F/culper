@@ -1,18 +1,18 @@
 import AddressValidator from './address'
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
-export default class DeliquentValidator {
+export default class DelinquentValidator {
   constructor (state = {}, props = {}) {
-    this.hasDeliquent = state.HasDeliquent
+    this.hasDelinquent = state.HasDelinquent
     this.list = state.List || []
   }
 
-  validHasDeliquent () {
-    if (!this.hasDeliquent) {
+  validHasDelinquent () {
+    if (!this.hasDelinquent) {
       return false
     }
 
-    if (!(this.hasDeliquent === 'No' || this.hasDeliquent === 'Yes')) {
+    if (!(this.hasDelinquent === 'No' || this.hasDelinquent === 'Yes')) {
       return false
     }
 
@@ -20,7 +20,7 @@ export default class DeliquentValidator {
   }
 
   validList () {
-    if (this.validHasDeliquent() && this.hasDeliquent === 'No') {
+    if (this.validHasDelinquent() && this.hasDelinquent === 'No') {
       return true
     }
 
@@ -29,7 +29,7 @@ export default class DeliquentValidator {
     }
 
     for (const item of this.list) {
-      if (new DeliquentItemValidator(item, null).isValid() === false) {
+      if (new DelinquentItemValidator(item, null).isValid() === false) {
         return false
       }
     }
@@ -38,12 +38,12 @@ export default class DeliquentValidator {
   }
 
   isValid () {
-    return this.validHasDeliquent() &&
+    return this.validHasDelinquent() &&
       this.validList()
   }
 }
 
-export class DeliquentItemValidator {
+export class DelinquentItemValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
     this.infractions = state.Infractions || []

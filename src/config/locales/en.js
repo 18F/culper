@@ -793,7 +793,7 @@ const en = {
       taxes: 'Taxes',
       card: 'Employer card abuse',
       credit: 'Credit counseling',
-      deliquent: 'Deliquent payments',
+      delinquent: 'Delinquent payments',
       nonpayment: 'Non-payment consequence',
       review: 'Review Financial record'
     },
@@ -1168,13 +1168,13 @@ const en = {
         append: 'Add another credit counseling entry'
       }
     },
-    deliquent: {
+    delinquent: {
       title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
       para: {
-        alimony: '**In the last seven (7) years,** you have been deliquent on alimony or child support payments.',
+        alimony: '**In the last seven (7) years,** you have been delinquent on alimony or child support payments.',
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        federal: 'You are currently deliquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         or: 'Or'
       },
       heading: {
@@ -1200,7 +1200,7 @@ const en = {
       },
       help: {
         branch: {
-          title: 'Need help with deliquent payments?',
+          title: 'Need help with delinquent payments?',
           message: 'If you have had in of the listed items happen to you then select "Yes"',
           note: ''
         },
@@ -1267,8 +1267,8 @@ const en = {
       },
       collection: {
         summary: {
-          title: 'Summary of deliquent payment issues',
-          unknown: 'Provide your deliquent payment details below',
+          title: 'Summary of delinquent payment issues',
+          unknown: 'Provide your delinquent payment details below',
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
@@ -1285,8 +1285,8 @@ const en = {
         cancelled: '**In the last seven (7) years,** you had any account or credit card suspended, charged off, or cancelled for failing to pay as agreed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         evicted: '**In the last seven (7) years,** you were evicted for non-payment?',
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
-        deliquent: '**In the last seven (7) years,** you have been over 120 days deliquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        any: 'You are currently over 120 days deliquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         or: 'Or'
       },
       heading: {

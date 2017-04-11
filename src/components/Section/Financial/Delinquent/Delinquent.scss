@@ -1,22 +1,22 @@
-.deliquent {
-  .deliquent-name,
-  .deliquent-infractions,
-  .deliquent-accountnumber,
-  .deliquent-propertytype,
-  .deliquent-amount,
-  .deliquent-reason,
-  .deliquent-status,
-  .deliquent-date,
-  .deliquent-resolved,
-  .deliquent-courtname,
-  .deliquent-courtaddress,
-  .deliquent-description {
+.delinquent {
+  .delinquent-name,
+  .delinquent-infractions,
+  .delinquent-accountnumber,
+  .delinquent-propertytype,
+  .delinquent-amount,
+  .delinquent-reason,
+  .delinquent-status,
+  .delinquent-date,
+  .delinquent-resolved,
+  .delinquent-courtname,
+  .delinquent-courtaddress,
+  .delinquent-description {
     display: inline-block;
     max-width: 64rem;
     width: 92%;
   }
 
-  .deliquent-infractions {
+  .delinquent-infractions {
     z-index: 1;
 
     label::before {
@@ -31,8 +31,8 @@
     }
   }
 
-  .deliquent-date,
-  .deliquent-resolved {
+  .delinquent-date,
+  .delinquent-resolved {
     width: initial !important;
   }
 
@@ -40,7 +40,7 @@
     margin-left: -2rem;
   }
 
-  .deliquent-amount {
+  .delinquent-amount {
     margin-left: 1rem;
 
     label {
@@ -48,7 +48,7 @@
     }
   }
 
-  .deliquent-amount.coupled-flags {
+  .delinquent-amount.coupled-flags {
     clear: both;
     z-index: 1;
 

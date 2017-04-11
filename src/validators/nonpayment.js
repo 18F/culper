@@ -63,7 +63,7 @@ export class NonpaymentItemValidator {
   }
 
   validInfractions () {
-    const allowed = ['Repossession', 'Defaulted', 'Collections', 'Cancelled', 'Evicted', 'Garnished', 'Deliquent', 'Any']
+    const allowed = ['Repossession', 'Defaulted', 'Collections', 'Cancelled', 'Evicted', 'Garnished', 'Delinquent', 'Any']
     return !!this.infractions &&
       this.infractions.length > 0 &&
       this.infractions.every(x => { return allowed.includes(x) })
