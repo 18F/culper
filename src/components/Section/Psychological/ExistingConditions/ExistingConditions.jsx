@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Branch, Show, RadioGroup, Radio, Help, HelpIcon, Textarea } from '../../../Form'
 import Diagnosis from '../Diagnoses/Diagnosis'
 import { ExistingConditionsValidator } from '../../../../validators'
+import { dateRangeFormat } from '../summaryHelper'
 
 export default class ExistingConditions extends ValidationElement {
   constructor (props) {
@@ -84,10 +85,16 @@ export default class ExistingConditions extends ValidationElement {
   }
 
   summary (item, index) {
+    const o = (item || {}).Diagnosis || {}
+    const treatmentDate = (o.Diagnosed || {})
+    const formattedTreatmentDate = dateRangeFormat(treatmentDate)
+    const condition = (o.Condition || {}).value ? `${o.Condition.value} ${formattedTreatmentDate}` : i18n.t('psychological.existingConditions.treatment.collection.summary')
     const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
     return (
+
       <span>
-        <span className="index">{type} {index + 1}</span>
+        <span className="index">{type}</span>
+        <span className="info"><strong>{condition}</strong></span>
       </span>
     )
   }

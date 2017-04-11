@@ -115,6 +115,12 @@ describe('Contact Information validation', function () {
           ]
         },
         expected: true
+      },
+      {
+        state: {
+          PhoneNumbers: null
+        },
+        expected: false
       }
     ]
 

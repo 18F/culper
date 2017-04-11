@@ -14,7 +14,7 @@ describe('The infractions component', () => {
     }
     const component = mount(<Infractions {...expected} />)
     expect(values.length).toEqual(1)
-    component.find('.deliquent-alimony input').simulate('change')
+    component.find('.delinquent-alimony input').simulate('change')
     expect(values.length).toEqual(0)
   })
 
@@ -29,7 +29,7 @@ describe('The infractions component', () => {
     }
     const component = mount(<Infractions {...expected} />)
     expect(values.length).toEqual(1)
-    component.find('.deliquent-federal input').simulate('change')
+    component.find('.delinquent-federal input').simulate('change')
     expect(values.length).toEqual(2)
   })
 })

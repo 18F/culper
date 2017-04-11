@@ -12,7 +12,7 @@ import Bankruptcy from './Bankruptcy'
 import Taxes from './Taxes'
 import Card from './Card'
 import Credit from './Credit'
-import Deliquent from './Deliquent'
+import Delinquent from './Delinquent'
 import Nonpayment from './Nonpayment'
 
 class Financial extends ValidationElement {
@@ -216,8 +216,8 @@ class Financial extends ValidationElement {
           <SectionView name="credit"
                        back="financial/card"
                        backLabel={i18n.t('financial.destination.card')}
-                       next="financial/deliquent"
-                       nextLabel={i18n.t('financial.destination.deliquent')}>
+                       next="financial/delinquent"
+                       nextLabel={i18n.t('financial.destination.delinquent')}>
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
@@ -226,28 +226,28 @@ class Financial extends ValidationElement {
                     />
           </SectionView>
 
-          <SectionView name="deliquent"
+          <SectionView name="delinquent"
                        back="financial/credit"
                        backLabel={i18n.t('financial.destination.credit')}
                        next="financial/nonpayment"
                        nextLabel={i18n.t('financial.destination.nonpayment')}>
-            <h2>{i18n.t('financial.deliquent.title')}</h2>
+            <h2>{i18n.t('financial.delinquent.title')}</h2>
             <ul>
-              <li>{i18n.m('financial.deliquent.para.alimony')}</li>
-              <li>{i18n.m('financial.deliquent.para.judgement')}</li>
-              <li>{i18n.m('financial.deliquent.para.lien')}</li>
-              <li>{i18n.m('financial.deliquent.para.federal')}</li>
+              <li>{i18n.m('financial.delinquent.para.alimony')}</li>
+              <li>{i18n.m('financial.delinquent.para.judgement')}</li>
+              <li>{i18n.m('financial.delinquent.para.lien')}</li>
+              <li>{i18n.m('financial.delinquent.para.federal')}</li>
             </ul>
-            <Deliquent name="deliquent"
-                       {...this.props.Deliquent}
-                       onUpdate={this.onUpdate.bind(this, 'Deliquent')}
+            <Delinquent name="delinquent"
+                       {...this.props.Delinquent}
+                       onUpdate={this.onUpdate.bind(this, 'Delinquent')}
                        onValidate={this.onValidate.bind(this)}
                        />
           </SectionView>
 
           <SectionView name="nonpayment"
-                       back="financial/deliquent"
-                       backLabel={i18n.t('financial.destination.deliquent')}
+                       back="financial/delinquent"
+                       backLabel={i18n.t('financial.destination.delinquent')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
@@ -258,7 +258,7 @@ class Financial extends ValidationElement {
               <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
               <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
               <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
-              <li>{i18n.m('financial.nonpayment.para.deliquent')}</li>
+              <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
               <li>{i18n.m('financial.nonpayment.para.any')}</li>
             </ul>
             <Nonpayment name="nonpayment"
@@ -287,7 +287,7 @@ function mapStateToProps (state) {
     Taxes: financial.Taxes || {},
     Card: financial.Card || {},
     Credit: financial.Credit || {},
-    Deliquent: financial.Deliquent || {},
+    Delinquent: financial.Delinquent || {},
     Nonpayment: financial.Nonpayment || {},
     Errors: errors.financial || [],
     Completed: completed.financial || []

@@ -363,4 +363,89 @@ describe('Education component validation', function () {
       expect(new EducationValidator(test.state, null).validAttendance()).toBe(test.expected)
     })
   })
+
+  it('handle valid list', () => {
+    const tests = [
+      {
+        state: {
+          HasAttended: 'Yes',
+          hasDegree10: 'Yes',
+          List: [
+            {
+              Name: {
+                value: 'School name'
+              },
+              Reference: null,
+              Type: 'High School',
+              Address: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
+              Dates: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2016')
+                },
+                present: false
+              },
+              Diplomas: [
+                {
+                  Has: 'No',
+                  Diploma: null
+                }
+              ]
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasAttended: 'Yes',
+          hasDegree10: 'Yes',
+          List: [
+            {
+              Name: {
+                value: ''
+              },
+              Reference: null,
+              Type: 'High School',
+              Address: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
+              Dates: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2016')
+                },
+                present: false
+              },
+              Diplomas: [
+                {
+                  Has: 'No',
+                  Diploma: null
+                }
+              ]
+            }
+          ]
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new EducationValidator(test.state, null).validList()).toBe(test.expected)
+    })
+  })
 })

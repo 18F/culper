@@ -30,30 +30,30 @@ export default class Infractions extends ValidationElement {
     return (
       <CheckboxGroup className={`option-list ${this.props.className || ''}`.trim()}
                      selectedValues={this.props.value}>
-        <Checkbox label={i18n.m('financial.deliquent.para.alimony')}
+        <Checkbox label={i18n.m('financial.delinquent.para.alimony')}
                   value="Alimony"
-                  className="deliquent-alimony"
+                  className="delinquent-alimony"
                   toggle="false"
                   onChange={this.update}
                   onValidate={this.props.onValidate}
                   />
-        <Checkbox label={i18n.m('financial.deliquent.para.judgement')}
+        <Checkbox label={i18n.m('financial.delinquent.para.judgement')}
                   value="Judgement"
-                  className="deliquent-judgement"
+                  className="delinquent-judgement"
                   toggle="false"
                   onChange={this.update}
                   onValidate={this.props.onValidate}
                   />
-        <Checkbox label={i18n.m('financial.deliquent.para.lien')}
+        <Checkbox label={i18n.m('financial.delinquent.para.lien')}
                   value="Lien"
-                  className="deliquent-lien"
+                  className="delinquent-lien"
                   toggle="false"
                   onChange={this.update}
                   onValidate={this.props.onValidate}
                   />
-        <Checkbox label={i18n.m('financial.deliquent.para.federal')}
+        <Checkbox label={i18n.m('financial.delinquent.para.federal')}
                   value="Federal"
-                  className="deliquent-federal"
+                  className="delinquent-federal"
                   toggle="false"
                   onChange={this.update}
                   onValidate={this.props.onValidate}

@@ -1,6 +1,6 @@
-import DeliquentValidator, { DeliquentItemValidator } from './deliquent'
+import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 
-describe('deliquent component validation', function () {
+describe('delinquent component validation', function () {
   it('validate name', () => {
     const tests = [
       {
@@ -22,7 +22,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validName()).toBe(test.expected)
     })
   })
 
@@ -49,7 +49,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
     })
   })
 
@@ -74,7 +74,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validAccountNumber()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validAccountNumber()).toBe(test.expected)
     })
   })
 
@@ -99,7 +99,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validPropertyType()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validPropertyType()).toBe(test.expected)
     })
   })
 
@@ -140,7 +140,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validAmount()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validAmount()).toBe(test.expected)
     })
   })
 
@@ -165,7 +165,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validReason()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validReason()).toBe(test.expected)
     })
   })
 
@@ -190,7 +190,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validStatus()).toBe(test.expected)
     })
   })
 
@@ -217,7 +217,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validDate()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validDate()).toBe(test.expected)
     })
   })
 
@@ -277,7 +277,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validResolved()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validResolved()).toBe(test.expected)
     })
   })
 
@@ -302,7 +302,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validCourtName()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validCourtName()).toBe(test.expected)
     })
   })
 
@@ -329,7 +329,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validCourtAddress()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validCourtAddress()).toBe(test.expected)
     })
   })
 
@@ -354,7 +354,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentItemValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validDescription()).toBe(test.expected)
     })
   })
 
@@ -362,32 +362,32 @@ describe('deliquent component validation', function () {
     const tests = [
       {
         state: {
-          HasDeliquent: ''
+          HasDelinquent: ''
         },
         expected: false
       },
       {
         state: {
-          HasDeliquent: 'Unicorn'
+          HasDelinquent: 'Unicorn'
         },
         expected: false
       },
       {
         state: {
-          HasDeliquent: 'No'
+          HasDelinquent: 'No'
         },
         expected: true
       },
       {
         state: {
-          HasDeliquent: 'Yes'
+          HasDelinquent: 'Yes'
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentValidator(test.state, null).validHasDeliquent()).toBe(test.expected)
+      expect(new DelinquentValidator(test.state, null).validHasDelinquent()).toBe(test.expected)
     })
   })
 
@@ -395,28 +395,28 @@ describe('deliquent component validation', function () {
     const tests = [
       {
         state: {
-          HasDeliquent: 'No',
+          HasDelinquent: 'No',
           List: []
         },
         expected: true
       },
       {
         state: {
-          HasDeliquent: 'Yes',
+          HasDelinquent: 'Yes',
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasDeliquent: 'Yes',
+          HasDelinquent: 'Yes',
           List: [{}]
         },
         expected: false
       },
       {
         state: {
-          HasDeliquent: 'Yes',
+          HasDelinquent: 'Yes',
           List: [
             {
               Name: {
@@ -476,7 +476,7 @@ describe('deliquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DeliquentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DelinquentValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 })
