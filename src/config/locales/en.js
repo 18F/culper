@@ -4206,6 +4206,12 @@ const en = {
       existingConditions: 'Existing conditions',
       review: 'Review'
     },
+    default: {
+      label: {
+        toDate: 'N/A',
+        fromDate: 'N/A'
+      }
+    },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
       para2: 'Individuals experience a range of reactions to traumatic events. For example, the death of a loved one, divorce, major injury, service in a military combat environment, sexual assault, domestic violence, or other difficult work-related, family, personal, or medical issues may lead to grief, depression, or other responses. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced such events, as well as for those with other mental health conditions. Nothing in this questionnaire is intended to discourage those who might benefit from such treatment from seeking it.',
@@ -4348,6 +4354,28 @@ const en = {
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization:'
+      },
+      help: {
+        incompetent: {
+          title: 'Need help with mental health hospitalization?',
+          message: 'Have you EVER been hospitalized for a mental health condition?',
+          note: ''
+        },
+        treatment: {
+          title: 'Need help the dates of treatment?',
+          message: 'Provide the dates when you were treated ',
+          note: ''
+        },
+        facility: {
+          title: 'Need help the facility where treatment was provided?',
+          message: 'Provide the name of the facility where treatment was provided',
+          note: ''
+        },
+        address: {
+          title: 'Need help with treatment facility?',
+          message: 'Provide the address of the facility where treatment was provided',
+          note: ''
+        }
       }
     },
     diagnosis: {
@@ -4359,6 +4387,18 @@ const en = {
         facility: 'Agency/organization/facility',
         explanation: 'Provide explanation'
       },
+      help: {
+        condition: {
+          title: 'Need help with health condition',
+          message: 'Provide the name of the diagnosis or health condition',
+          note: ''
+        },
+        diagnosed: {
+          title: 'Need help with treatment dates',
+          message: 'Provide the dates of couseling or treatment',
+          note: ''
+        }
+      },
       person: {
         heading: {
           name: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
@@ -4368,6 +4408,18 @@ const en = {
           address: 'This address is',
           name: 'Name',
           phone: 'Telephone'
+        },
+        help: {
+          address: {
+            title: 'Need help with health care professional address',
+            message: 'Provide the address of the health care professional',
+            note: ''
+          },
+          name: {
+            title: 'Need help the name of the healthcare professional?',
+            message: 'Provide the name of the healthcare professional',
+            note: ''
+          }
         }
       },
       facility: {
@@ -4376,7 +4428,21 @@ const en = {
           address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
         },
         label: {
+          name: 'Name',
+          phone: 'Telephone',
           address: 'This address is'
+        },
+        help: {
+          address: {
+            title: 'Need help with treatment facility?',
+            message: 'Provide the address of the facility where treatment was provided',
+            note: ''
+          },
+          name: {
+            title: 'Need help the facility where treatment was provided?',
+            message: 'Provide the name of the facility where treatment was provided',
+            note: ''
+          }
         }
       }
     },
@@ -4411,6 +4477,40 @@ const en = {
           appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment:'
+        }
+      },
+      help: {
+        diagnosed: {
+          title: 'Help with diagnoses',
+          message: 'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+          note: ''
+        },
+        didNotConsult: {
+          title: 'Help with occasions when not consulting',
+          message: 'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
+          note: ''
+        },
+        inTreatment: {
+          title: 'Help with current treatment',
+          message: 'Are you currently in treatment?',
+          note: ''
+        },
+        condition: {
+          title: 'Help with diagnosis',
+          message: 'Identify the diagnosis or health condition',
+          note: ''
+        }
+      },
+      person: {
+        help: {
+          name: {
+            title: 'Help with healthcare professional',
+            message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+          },
+          address: {
+            title: 'Help with healthcare professional address',
+            message: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+          }
         }
       }
     },
@@ -4473,6 +4573,18 @@ const en = {
           facility: 'Agency/organization/facility',
           explanation: 'Provide explanation'
         },
+        help: {
+          condition: {
+            title: 'Need help with health condition',
+            message: 'Provide the name of the diagnosis or health condition',
+            note: ''
+          },
+          diagnosed: {
+            title: 'Need help with treatment dates',
+            message: 'Provide the dates of couseling or treatment',
+            note: ''
+          }
+        },
         person: {
           heading: {
             name: 'Provide the name and telephone number of the health care professional',
@@ -4482,6 +4594,18 @@ const en = {
             address: 'This address is',
             name: 'Name',
             phone: 'Telephone'
+          },
+          help: {
+            address: {
+              title: 'Need help with health care professional address',
+              message: 'Provide the address of the health care professional',
+              note: ''
+            },
+            name: {
+              title: 'Need help the name of the healthcare professional?',
+              message: 'Provide the name of the healthcare professional',
+              note: ''
+            }
           }
         },
         facility: {
@@ -4493,6 +4617,18 @@ const en = {
             address: 'This address is',
             name: 'Name',
             phone: 'Telephone'
+          },
+          help: {
+            address: {
+              title: 'Need help with treatment facility?',
+              message: 'Provide the address of the facility where treatment was provided',
+              note: ''
+            },
+            name: {
+              title: 'Need help the facility where treatment was provided?',
+              message: 'Provide the name of the facility where treatment was provided',
+              note: ''
+            }
           }
         }
       }
