@@ -1,21 +1,4 @@
 .nonpayment {
-  .nonpayment-name,
-  .nonpayment-infractions,
-  .nonpayment-accountnumber,
-  .nonpayment-propertytype,
-  .nonpayment-amount,
-  .nonpayment-reason,
-  .nonpayment-status,
-  .nonpayment-date,
-  .nonpayment-resolved,
-  .nonpayment-courtname,
-  .nonpayment-courtaddress,
-  .nonpayment-description {
-    display: inline-block;
-    max-width: 64rem;
-    width: 92%;
-  }
-
   .nonpayment-infractions {
     z-index: 1;
 
@@ -28,6 +11,10 @@
       display: inline-block;
       width: 90%;
       text-align: left;
+    }
+
+    .no-toggle {
+      display: inline !important;
     }
   }
 
@@ -43,6 +30,7 @@
   .nonpayment-amount {
     width: 100%;
     margin-left: 1rem;
+    display: inline-block;
 
     label {
       margin-left: 1rem;
@@ -53,7 +41,7 @@
     clear: both;
     z-index: 1;
 
-    .eapp-blocks-checkbox {
+    .block {
       float: right;
 
       label.no-toggle {

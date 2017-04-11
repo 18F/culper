@@ -65,7 +65,7 @@ export default class MaidenName extends ValidationElement {
         <label>{this.props.label}</label>
         <RadioGroup className="option-list" selectedValue={this.state.value}>
           <Radio name="maiden-name"
-                 label=""
+                 label="Yes"
                  value="Yes"
                  className="yes"
                  disabled={this.props.disabled}
@@ -78,11 +78,9 @@ export default class MaidenName extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  onValidate={this.handleValidation}
-                 >
-            Yes
-          </Radio>
+                 />
           <Radio name="maiden-name"
-                 label=""
+                 label="No"
                  value="No"
                  className="no"
                  disabled={this.props.disabled}
@@ -95,9 +93,7 @@ export default class MaidenName extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  onValidate={this.handleValidation}
-                 >
-            No
-          </Radio>
+                 />
         </RadioGroup>
       </div>
     )

@@ -158,7 +158,8 @@ export default class Gambling extends ValidationElement {
 
             <Field title={i18n.t('financial.gambling.heading.dates')}
                    titleSize="h4"
-                   help="financial.gambling.help.dates">
+                   help="financial.gambling.help.dates"
+                   adjustFor="labels">
               <DateRange name="Dates"
                          label={i18n.t('financial.gambling.label.dates')}
                          bind={true}

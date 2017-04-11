@@ -2,6 +2,7 @@
 @import 'eqip-fonts';
 
 label, input, textarea, select {
+  width: 100%;
   max-width: 64rem;
   margin-top: 0;
   color: $eapp-grey-dark;
@@ -101,7 +102,7 @@ select {
 
 .block {
   display: inline-block;
-  vertical-align: top;
+  // vertical-align: top;
 
   label {
     display: block;

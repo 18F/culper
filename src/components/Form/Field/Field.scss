@@ -58,8 +58,16 @@
         width: 93.43%;
         max-width: 64rem;
 
+        > div {
+          width: 100%;
+        }
+
         &.shrink {
           width: initial;
+
+          > div {
+            width: initial;
+          }
         }
 
         label {
