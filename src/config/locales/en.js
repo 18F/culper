@@ -4199,13 +4199,17 @@ const en = {
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
       consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
       consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
-      hospitalization: 'Have you EVER been hospitalized for a mental health condition?'
+      hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
+      diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, is not a reason to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
       intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',
-      hospitalization: 'Hospitalizations'
+      hospitalization: 'Hospitalizations',
+      diagnoses: 'Diagnoses',
+      existingConditions: 'Existing conditions',
+      review: 'Review'
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -4213,6 +4217,12 @@ const en = {
       para3: '**Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility** for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.',
       para4: '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
 
+    },
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with psychological and emotional health at once'
     },
     competence: {
       heading: {
@@ -4329,7 +4339,8 @@ const en = {
         admission: 'Was the admission voluntary or involuntary',
         treatment: 'Provide the dates of treatment',
         facility: 'Provide the facility where treatment was provided',
-        address: 'Provide the address of the facility where treatment was provided'
+        address: 'Provide the address of the facility where treatment was provided',
+        explanation: 'Provide explanation'
       },
       label: {
         address: 'This address is',
@@ -4342,6 +4353,153 @@ const en = {
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization:'
+      }
+    },
+    diagnosis: {
+      heading: {
+        condition: 'Identify the diagnosis or health condition',
+        diagnosed: 'Provide the dates of diagnosis',
+        healthcareProfessional: 'Health care professional info',
+        effective: 'Was the counseling/treatment effective in managing your symptoms?',
+        facility: 'Agency/organization/facility',
+        explanation: 'Provide explanation'
+      },
+      person: {
+        heading: {
+          name: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
+          address: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+        },
+        label: {
+          address: 'This address is',
+          name: 'Name',
+          phone: 'Telephone'
+        }
+      },
+      facility: {
+        heading: {
+          name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
+          address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+        },
+        label: {
+          address: 'This address is'
+        }
+      }
+    },
+    diagnoses: {
+      heading: {
+        didNotConsult: 'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
+        para: 'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        inTreatment: 'Are you currently in treatment?'
+      },
+      collection: {
+        summary: 'Provide your diagnosis details below',
+        appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendLabel: 'Add another diagnosis',
+        itemType: 'Diagnosis:'
+      },
+      professional: {
+        heading: {
+          name: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
+          address: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+        },
+        label: {
+          address: 'This address is',
+          name: 'Name',
+          phone: 'Telephone'
+        }
+      },
+      treatment: {
+        collection: {
+          summary: 'Provide your diagnosis details below',
+          appendTitle: 'Do you have an additional instance where you are currently in treatment?',
+          appendMessage: 'If yes, use the button below to add another treatment',
+          appendLabel: 'Add another treatment',
+          itemType: 'Treatment:'
+        }
+      }
+    },
+    existingConditions: {
+      heading: {
+        hasCondition: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
+        receivedTreatment: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
+        didNotFollow: 'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
+        explanation: 'Provide explanation',
+        didNotFollowExplanation: 'Provide explanation'
+      },
+      para: {
+        hasCondition: 'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer "no" even if you have a mental health or other condition requiring treatment. For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer "no."',
+        receivedTreatment: 'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
+      },
+      help: {
+        hasCondition: {
+          title: 'Help with adverse impacts',
+          message: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
+          note: ''
+        },
+        receivedTreatment: {
+          title: 'Help with counseling or treatment',
+          message: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
+          note: ''
+        },
+        didNotFollow: {
+          title: 'Help with following prescribed course of treatment',
+          message: 'Have you ever chosen not to follow a prescribed course of treatment for any of these conditions?',
+          note: ''
+        },
+        didNotFollowExplanation: {
+          title: 'Help with not following prescribed course of action explanation',
+          message: 'Provide explanation',
+          note: ''
+        }
+      },
+      receivedTreatment: {
+        label: {
+          yes: 'Yes',
+          no: 'No',
+          decline: 'I decline to answer'
+        }
+      },
+      treatment: {
+        collection: {
+          summary: 'Provide your treatment details below',
+          appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
+          appendMessage: 'If yes, use the button below to add another instance',
+          appendLabel: 'Add another treatment',
+          itemType: 'Instance:'
+        }
+      },
+      diagnosis: {
+        heading: {
+          condition: 'Identify the diagnosis or health condition',
+          diagnosed: 'Provide the dates of counseling or treatment',
+          healthcareProfessional: 'Health care professional info',
+          effective: 'Was the counseling/treatment effective in managing your symptoms?',
+          facility: 'Agency/organization/facility',
+          explanation: 'Provide explanation'
+        },
+        person: {
+          heading: {
+            name: 'Provide the name and telephone number of the health care professional',
+            address: 'Provide the address of the health care professional'
+          },
+          label: {
+            address: 'This address is',
+            name: 'Name',
+            phone: 'Telephone'
+          }
+        },
+        facility: {
+          heading: {
+            name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
+            address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+          },
+          label: {
+            address: 'This address is',
+            name: 'Name',
+            phone: 'Telephone'
+          }
+        }
       }
     }
   }
