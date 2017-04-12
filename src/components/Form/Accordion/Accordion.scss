@@ -250,4 +250,9 @@ button.usa-button-outline {
   padding: 1.7rem 2.3rem 1.7rem 2.3rem;
   background: #fff;
   margin: 3.4rem 10%;
+
+  &:hover {
+    color: #1a4c88;
+    box-shadow: inset 0 0 0 3px #1a4c88, 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+  }
 }
