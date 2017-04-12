@@ -131,8 +131,11 @@ select {
       box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
     }
 
-    &.checked,
     &:hover {
+      background-color: #cececf;
+    }
+
+    &.checked {
       color: #fff;
       border: 1px solid $eapp-green;
       background: $eapp-green;
