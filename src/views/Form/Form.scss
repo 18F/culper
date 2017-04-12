@@ -254,4 +254,17 @@ select {
       }
     }
   }
+
+  &.disabled {
+    label {
+      cursor: initial;
+      background: $eapp-grey-light;
+
+      &.usa-input-focus,
+      &.checked,
+      &:hover {
+        background: $eapp-grey-light;
+      }
+    }
+  }
 }

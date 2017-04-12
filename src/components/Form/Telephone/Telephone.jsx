@@ -199,14 +199,14 @@ export default class Telephone extends ValidationElement {
   dsn () {
     return (
       <div>
-        <label>{i18n.t('telephone.dsn.label')}</label>
+        <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.dsn.label')}</label>
         <Text name="dsn_first"
               className="number three"
               placeholder="000"
               pattern="\d{3}"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="3"
               minlength="3"
               readonly={this.props.readonly}
@@ -224,7 +224,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{4}"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               minlengh="4"
               maxlength="4"
               readonly={this.props.readonly}
@@ -251,7 +251,7 @@ export default class Telephone extends ValidationElement {
   domestic () {
     return (
       <div>
-        <label>{i18n.t('telephone.domestic.label')}</label>
+        <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.domestic.label')}</label>
 
         <span className="separator">(</span>
         <Text name="domestic_first"
@@ -259,7 +259,7 @@ export default class Telephone extends ValidationElement {
               placeholder="000"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="3"
               pattern="\d{3}"
               readonly={this.props.readonly}
@@ -276,7 +276,7 @@ export default class Telephone extends ValidationElement {
               placeholder="000"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="3"
               pattern="\d{3}"
               readonly={this.props.readonly}
@@ -293,7 +293,7 @@ export default class Telephone extends ValidationElement {
               placeholder="0000"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               minlengh="4"
               maxlength="4"
               pattern="\d{4}"
@@ -311,7 +311,7 @@ export default class Telephone extends ValidationElement {
               placeholder="0000"
               label={i18n.t('telephone.domestic.extension.label')}
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="4"
               pattern="\d{0,4}"
               readonly={this.props.readonly}
@@ -337,14 +337,14 @@ export default class Telephone extends ValidationElement {
   international () {
     return (
       <div className="international">
-        <label>{i18n.t('telephone.international.label')}</label>
+        <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.international.label')}</label>
         <span className="separator">+</span>
         <Text name="int_first"
               className="number three"
               placeholder="000"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="3"
               pattern="\d{3}"
               readonly={this.props.readonly}
@@ -361,7 +361,7 @@ export default class Telephone extends ValidationElement {
               placeholder="0000000000"
               label=""
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="10"
               pattern="\d{10}"
               readonly={this.props.readonly}
@@ -378,7 +378,7 @@ export default class Telephone extends ValidationElement {
               placeholder="0000"
               label={i18n.t('telephone.international.extension.label')}
               aria-describedby=""
-              disabled={this.props.disabled}
+              disabled={this.state.noNumber}
               maxlength="4"
               pattern="\d{0,4}"
               readonly={this.props.readonly}
@@ -450,6 +450,7 @@ export default class Telephone extends ValidationElement {
                    className="time day"
                    label={i18n.t('telephone.timeOfDay.day')}
                    value="Day"
+                   disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
                    onValidate={this.handleValidation}
                    />
@@ -457,6 +458,7 @@ export default class Telephone extends ValidationElement {
                    className="time night"
                    label={i18n.t('telephone.timeOfDay.night')}
                    value="Night"
+                   disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
                    onValidate={this.handleValidation}
                    />
@@ -464,12 +466,13 @@ export default class Telephone extends ValidationElement {
         </div>
 
         <div className="phonetype">
-          <label>Select phone number type</label>
+          <label className={this.state.noNumber ? 'disabled' : ''}>Select phone number type</label>
           <RadioGroup selectedValue={this.state.numberType}>
             <Radio name="numbertype-cell"
                    className="phonetype-option cell"
                    label={i18n.t('telephone.numberType.cell')}
                    value="Cell"
+                   disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
@@ -477,6 +480,7 @@ export default class Telephone extends ValidationElement {
                    className="phonetype-option home"
                    label={i18n.t('telephone.numberType.home')}
                    value="Home"
+                   disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
@@ -484,6 +488,7 @@ export default class Telephone extends ValidationElement {
                    className="phonetype-option work"
                    label={i18n.t('telephone.numberType.work')}
                    value="Work"
+                   disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />
@@ -491,6 +496,7 @@ export default class Telephone extends ValidationElement {
                    className="phonetype-option other"
                    label={i18n.t('telephone.numberType.other')}
                    value="Other"
+                   disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
                    onValidate={this.handleValidation}
                    />

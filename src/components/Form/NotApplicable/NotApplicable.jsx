@@ -43,7 +43,7 @@ export default class NotApplicable extends React.Component {
   render () {
     // Append on any classes passed down
     const klass = `${this.props.className || ''}`.trim()
-    const dithered = this.state.applicable ? '' : 'dithered'
+    const dithered = this.state.applicable ? '' : 'disabled'
 
     // When there is nothing special do the status quo
     return (

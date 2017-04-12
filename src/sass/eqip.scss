@@ -201,9 +201,14 @@ a:focus {
   max-width: 100%;
 }
 
-select, input {
-  &[disabled],
-  &[readonly] {
-    background-color: #ddd;
+.disabled,
+[disabled],
+[readonly] {
+  background-color: #fff;
+  opacity: 0.35;
+
+  &[type='checkbox'],
+  &[type='radio'] {
+    opacity: 0;
   }
 }

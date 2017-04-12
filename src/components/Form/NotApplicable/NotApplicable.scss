@@ -1,7 +1,5 @@
 .not-applicable {
   display: inline-block;
-  width: 92%;
-  max-width: 64rem;
 
   .button label {
     width: 23.5rem;
@@ -11,9 +9,5 @@
   .button p {
     margin-top: -2rem;
     padding-bottom: 2rem !important;
-  }
-
-  .dithered {
-    opacity: 0.5;
   }
 }
