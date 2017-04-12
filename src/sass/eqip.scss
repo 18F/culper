@@ -142,6 +142,10 @@ a:focus {
         padding: 1rem 1.5rem;
         color: $eapp-grey;
         text-decoration: none;
+
+        &:hover {
+          color: #fff;
+        }
       }
     }
   }
