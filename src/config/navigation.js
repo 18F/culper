@@ -29,9 +29,9 @@ const navigation = [
     ]
   },
   {
-    name: 'Family & friends',
-    title: 'Family & friends',
-    url: 'family',
+    name: 'Relationships',
+    title: 'Relationships',
+    url: 'relationships',
     hidden: false,
     subsections: [
       { hidden: true, name: 'Marital status', url: 'marital' },

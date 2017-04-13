@@ -8,7 +8,7 @@ import { updateApplication, reportErrors, reportCompletion } from '../../../acti
 import { SectionViews, SectionView } from '../SectionView'
 import Relatives from './Relatives'
 
-class Family extends ValidationElement {
+class Relationships extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -26,18 +26,18 @@ class Family extends ValidationElement {
   }
 
   componentDidMount () {
-    let current = this.launch(this.props.Family, this.props.subsection, 'relatives')
+    let current = this.launch(this.props.Relationships, this.props.subsection, 'relatives')
     if (current !== '') {
-      this.props.dispatch(push(`/form/family/${current}`))
+      this.props.dispatch(push(`/form/relationships/${current}`))
     }
   }
 
   handleTour (event) {
-    this.props.dispatch(push('/form/family/relatives'))
+    this.props.dispatch(push('/form/relationships/relatives'))
   }
 
   handleReview (event) {
-    this.props.dispatch(push('/form/family/review'))
+    this.props.dispatch(push('/form/relationships/review'))
   }
 
   /**
@@ -77,7 +77,7 @@ class Family extends ValidationElement {
    * Update storage values for a subsection
    */
   onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Family', field, values))
+    this.props.dispatch(updateApplication('Relationships', field, values))
   }
 
   updateMarital (values) {
@@ -121,12 +121,12 @@ class Family extends ValidationElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            <div className="family intro review-screen">
+            <div className="relationships intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
                             Completed={this.props.Completed}
-                            tour={i18n.t('family.tour.para')}
-                            review={i18n.t('family.review.para')}
+                            tour={i18n.t('relationships.tour.para')}
+                            review={i18n.t('relationships.review.para')}
                             onTour={this.handleTour}
                             onReview={this.handleReview}
                             />
@@ -137,8 +137,8 @@ class Family extends ValidationElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       back="family/relatives"
-                       backLabel={i18n.t('family.destination.relatives')}
+                       back="relationships/relatives"
+                       backLabel={i18n.t('relationships.destination.relatives')}
                        next="military/selective"
                        next={i18n.t('military.destination.selective')}
                        >
@@ -147,8 +147,8 @@ class Family extends ValidationElement {
           <SectionView name="relatives"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="family/review"
-                       nextLabel={i18n.t('family.destination.review')}>
+                       next="relationships/review"
+                       nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
                        {...this.props.Relatives}
                        onUpdate={this.updateRelatives}
@@ -164,22 +164,22 @@ class Family extends ValidationElement {
 function mapStateToProps (state) {
   let section = state.section || {}
   let app = state.application || {}
-  let family = app.Family || {}
+  let relationships = app.Relationships || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
     Section: section,
-    Family: family,
-    Relatives: family.Relatives || {},
-    Marital: family.Marital || {},
-    Friends: family.Friends || {},
-    Errors: errors.family || [],
-    Completed: completed.family || []
+    Relationships: relationships,
+    Relatives: relationships.Relatives || {},
+    Marital: relationships.Marital || {},
+    Friends: relationships.Friends || {},
+    Errors: errors.relationships || [],
+    Completed: completed.relationships || []
   }
 }
 
-Family.defaultProps = {
+Relationships.defaultProps = {
   subsection: ''
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Family))
+export default connect(mapStateToProps)(AuthenticatedView(Relationships))

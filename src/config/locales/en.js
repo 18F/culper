@@ -504,7 +504,7 @@ const en = {
     },
     destination: {
       review: 'Review Identification',
-      family: 'Family & friends',
+      relationships: 'Relationships',
       othernames: 'Other names used',
       name: 'Full name',
       birthdate: 'Birth date',
@@ -1395,15 +1395,15 @@ const en = {
     }
   },
 
-  family: {
+  relationships: {
     tour: {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with family & friends at once'
+      para: 'View all the sections associated with relationships at once'
     },
     destination: {
-      review: 'Review Family & Friends',
+      review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
       friends: 'People who know you well'

@@ -50,22 +50,22 @@ export default class Alias extends ValidationElement {
   render () {
     return (
       <div className="relative-alias">
-        <h3>{i18n.t('family.relatives.heading.alias.title')}</h3>
-        {i18n.m('family.relatives.para.alias')}
+        <h3>{i18n.t('relationships.relatives.heading.alias.title')}</h3>
+        {i18n.m('relationships.relatives.para.alias')}
         <Name name="Name"
               className="alias-name"
               {...this.state.Name}
               onUpdate={this.updateName}
               />
 
-        <h4>{i18n.t('family.relatives.heading.alias.maiden')}</h4>
+        <h4>{i18n.t('relationships.relatives.heading.alias.maiden')}</h4>
         <Branch name="MaidenName"
                 className="alias-maiden"
                 value={this.state.MaidenName}
                 onUpdate={this.updateMaidenName} >
         </Branch>
 
-        <Field help="family.relatives.help.aliasdates"
+        <Field help="relationships.relatives.help.aliasdates"
                adjustFor="daterange"
                shrink={true}>
           <DateRange name="Dates"
@@ -75,9 +75,9 @@ export default class Alias extends ValidationElement {
                      />
         </Field>
 
-        <Field title={i18n.t('family.relatives.heading.alias.reason')}
+        <Field title={i18n.t('relationships.relatives.heading.alias.reason')}
                titleSize="h4"
-               help="family.relatives.help.reason">
+               help="relationships.relatives.help.reason">
           <Textarea name="Reason"
                     className="alias-reason"
                     {...this.state.Reason}
