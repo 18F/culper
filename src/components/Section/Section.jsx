@@ -5,6 +5,7 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
 import Family from './Family'
+import Citizenship from './Citizenship'
 import Foreign from './Foreign'
 import Military from './Military'
 import History from './History'
@@ -44,6 +45,9 @@ class Section extends React.Component {
         </SectionView>
         <SectionView name="family">
           <Family subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="citizenship">
+          <Citizenship subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="military">
           <Military subsection={this.props.subsection} />

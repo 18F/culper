@@ -1395,6 +1395,42 @@ const en = {
     }
   },
 
+  citizenship: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with citizenship at once'
+    },
+    destination: {
+      review: 'Review Citizenship',
+      status: 'Citizenship status',
+      multiple: 'Dual/multiple citizenship'
+    },
+    status: {
+      heading: {
+        title: 'Citizenship Status',
+        citizenshipstatus: 'Provide your current citizenship status'
+      },
+      label: {
+        citizenshipstatus: {
+          citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
+          foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
+          naturalized: 'I am a naturalized U.S. citizen',
+          derived: 'I am a derived U.S. citizen',
+          notcitizen: 'I am not a U.S. citizen'
+        }
+      },
+      help: {
+        citizenshipstatus: {
+          title: 'Need help with your citizenship status?',
+          message: 'Select the box that reflects your current citizenship status',
+          note: ''
+        }
+      }
+    }
+  },
+
   family: {
     tour: {
       para: 'Take a guided tour through the section'
