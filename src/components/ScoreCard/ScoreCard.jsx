@@ -1,17 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../config'
+import { i18n, navigation } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
-const sections = ['identification', 'financial', 'family', 'military', 'history', 'foreign', 'legal', 'psychological']
-
 class ScoreCard extends React.Component {
+  sections () {
+    return navigation.filter(x => !x.hidden)
+  }
+
   total () {
-    return sections.length
+    return this.sections().length
   }
 
   completed () {
+    const sections = this.sections()
     let completedSections = []
+
     for (let section in this.props.completed) {
       if (this.props.completed[section].status === 'complete'
           && !completedSections.includes(section)
@@ -19,6 +23,7 @@ class ScoreCard extends React.Component {
         completedSections.push(section)
       }
     }
+
     return completedSections.length
   }
 
