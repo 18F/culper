@@ -1416,11 +1416,30 @@ const en = {
         documentissued: 'Provide the date the document was issued',
         placeissued: 'Provide the place of issuance',
         documentname: 'Provide the name in which document was issued',
-        certificatenumber: 'Provide your Certificate of Citizenship number',
-        certificateissued: 'Provide the date the certificate was issued',
-        certificatename: 'Provide the name in which the certificate was issued',
+        certificatenumber: {
+          foreignborn: 'Provide your Certificate of Citizenship number',
+          naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)'
+        },
+        certificateissued: {
+          foreignborn: 'Provide the date the certificate was issued',
+          naturalized: 'Provide the date the Certificate of Naturalization was issued'
+        },
+        certificatename: {
+          foreignborn: 'Provide the name in which the certificate was issued',
+          naturalized: 'Provide the name in which the Certificate of Naturalization was issued'
+        },
+        certificatecourtname: 'Provide the name of the court that issued the Certificate of Naturalization',
+        certificatecourtaddress: 'Provide the address of the court that issued the Certificate of Naturalization',
         bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
-        militarybase: 'Provide the name of the base'
+        militarybase: 'Provide the name of the base',
+        entrydate: 'Provide the date of entry into the U.S.',
+        entrylocation: 'Provide the location of entry into the U.S.',
+        priorcitizenship: 'Provide countrny(ies) of prior citizenship',
+        hasalienregistration: 'Do/did you have a U.S. alien registration number?',
+        alienregistrationnumber: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+        basis: {
+          naturalized: 'Provide the basis of naturalization'
+        }
       },
       label: {
         citizenshipstatus: {
@@ -1434,6 +1453,10 @@ const en = {
           fs240: 'FS-240',
           ds1350: 'DS-1350',
           fs545: 'FS-545',
+          other: 'Other'
+        },
+        basis: {
+          individual: 'Based on my own individual naturalization application',
           other: 'Other'
         }
       },
@@ -1491,6 +1514,46 @@ const en = {
         militarybase: {
           title: 'Need help with military base?',
           message: 'Provide the name of the military base',
+          note: ''
+        },
+        entrydate: {
+          title: 'Need help with the date of entry in to the U.S.?',
+          message: '',
+          note: ''
+        },
+        entrylocation: {
+          title: 'Need help with the location of entry?',
+          message: '',
+          note: ''
+        },
+        priorcitizenship: {
+          title: 'Need help with prior citizenship(s)?',
+          message: '',
+          note: ''
+        },
+        hasalienregistration: {
+          title: 'Need help if you have an alien registration number?',
+          message: '',
+          note: ''
+        },
+        alienregistrationnumber: {
+          title: 'Need help with your alien registration number?',
+          message: '',
+          note: ''
+        },
+        certificatecourtname: {
+          title: 'Need help with the court name?',
+          message: '',
+          note: ''
+        },
+        certificatecourtaddress: {
+          title: 'Need help with address of the court who issued the certificate?',
+          message: '',
+          note: ''
+        },
+        basisnaturalized: {
+          title: 'Need help with the basis of naturalization?',
+          message: '',
           note: ''
         }
       }

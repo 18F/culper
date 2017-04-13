@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Field, RadioGroup, Radio,
-         Text, Textarea, Name, Address, DateControl } from '../../../Form'
+         Text, Textarea, Name, Address, DateControl, Country } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -33,6 +33,14 @@ export default class Status extends ValidationElement {
       CertificateName: props.CertificateName,
       BornOnMilitaryInstallation: props.BornOnMilitaryInstallation,
       MilitaryBase: props.MilitaryBase,
+      EntryDate: props.EntryDate,
+      EntryLocation: props.EntryLocation,
+      PriorCitizenship: props.PriorCitizenship,
+      HasAlienRegistration: props.HasAlienRegistration,
+      AlienRegistrationNumber: props.AlienRegistrationNumber,
+      CertificateCourtName: props.CertificateCourtName,
+      CertificateCourtAddress: props.CertificateCourtAddress,
+      Basis: props.Basis,
       errorCodes: []
     }
 
@@ -49,6 +57,14 @@ export default class Status extends ValidationElement {
     this.updateCertificateName = this.updateCertificateName.bind(this)
     this.updateBornOnMilitaryInstallation = this.updateBornOnMilitaryInstallation.bind(this)
     this.updateMilitaryBase = this.updateMilitaryBase.bind(this)
+    this.updateEntryDate = this.updateEntryDate.bind(this)
+    this.updateEntryLocation = this.updateEntryLocation.bind(this)
+    this.updatePriorCitizenship = this.updatePriorCitizenship.bind(this)
+    this.updateHasAlienRegistration = this.updateHasAlienRegistration.bind(this)
+    this.updateAlienRegistrationNumber = this.updateAlienRegistrationNumber.bind(this)
+    this.updateCertificateCourtName = this.updateCertificateCourtName.bind(this)
+    this.updateCertificateCourtAddress = this.updateCertificateCourtAddress.bind(this)
+    this.updateBasis = this.updateBasis.bind(this)
   }
 
   /**
@@ -134,6 +150,38 @@ export default class Status extends ValidationElement {
 
   updateMilitaryBase (values) {
     this.onUpdate('MilitaryBase', values)
+  }
+
+  updateEntryDate (values) {
+    this.onUpdate('EntryDate', values)
+  }
+
+  updateEntryLocation (values) {
+    this.onUpdate('EntryLocation', values)
+  }
+
+  updatePriorCitizenship (values) {
+    this.onUpdate('PriorCitizenship', values)
+  }
+
+  updateHasAlienRegistration (values) {
+    this.onUpdate('HasAlienRegistration', values)
+  }
+
+  updateAlienRegistrationNumber (values) {
+    this.onUpdate('AlienRegistrationNumber', values)
+  }
+
+  updateCertificateCourtName (values) {
+    this.onUpdate('CertificateCourtName', values)
+  }
+
+  updateCertificateCourtAddress (values) {
+    this.onUpdate('CertificateCourtAddress', values)
+  }
+
+  updateBasis (event) {
+    this.onUpdate('Basis', event.target.value)
   }
 
   render () {
@@ -260,7 +308,7 @@ export default class Status extends ValidationElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatenumber')}
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
                    help="citizenship.status.help.certificatenumber">
               <Text name="CertificateNumber"
                     className="certificate-number"
@@ -270,7 +318,7 @@ export default class Status extends ValidationElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificateissued')}
+            <Field title={i18n.t('citizenship.status.heading.certificateissued.foreignborn')}
                    help="citizenship.status.help.certificateissued"
                    adjustFor="labels"
                    shrink={true}>
@@ -282,7 +330,7 @@ export default class Status extends ValidationElement {
                            />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatename')}>
+            <Field title={i18n.t('citizenship.status.heading.certificatename.foreignborn')}>
               <Name name="CertificateName"
                     className="certificate-name"
                     {...this.state.CertificateName}
@@ -312,12 +360,146 @@ export default class Status extends ValidationElement {
                       />
               </Field>
             </Show>
-
           </div>
         </Show>
 
         <Show when={this.state.CitizenshipStatus === 'Naturalized'}>
-          <div></div>
+          <div>
+            <Field title={i18n.t('citizenship.status.heading.entrydate')}
+                   help="citizenship.status.help.entrydate"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="EntryDate"
+                           className="entry-date"
+                           {...this.state.EntryDate}
+                           onUpdate={this.updateEntryDate}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.entrylocation')}
+                   help="citizenship.status.help.entrylocation"
+                   adjustFor="big-buttons"
+                   shrink={true}>
+              <Address name="EntryLocation"
+                       className="entry-location"
+                       {...this.state.EntryLocation}
+                       onUpdate={this.updateEntryLocation}
+                       onValidate={this.handleValidation}
+                       />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.priorcitizenship')}
+                   help="citizenship.status.help.priorcitizenship">
+              <Country name="PriorCitizenship"
+                       className="prior-citizenship"
+                       value={this.state.PriorCitizenship.first}
+                       onUpdate={this.updatePriorCitizenship}
+                       onValidate={this.handleValidation}
+                       />
+            </Field>
+
+            <Branch name="has_alien_registration"
+                    label={i18n.t('citizenship.status.heading.hasalienregistration')}
+                    labelSize="h3"
+                    className="has-alien-registration"
+                    value={this.state.HasAlienRegistration}
+                    help="citizenship.status.help.hasalienregistration"
+                    onUpdate={this.updateHasAlienRegistration}
+                    onValidate={this.handleValidation}
+                    />
+
+            <Show when={this.state.HasAlienRegistration === 'Yes'}>
+              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber')}
+                     help="citizenship.status.help.alienregistrationnumber">
+                <Text name="AlienRegistrationNumber"
+                      className="alien-registration-number"
+                      {...this.state.AlienRegistrationNumber}
+                      onUpdate={this.updateAlienRegistrationNumber}
+                      onValidate={this.handleValidation}
+                      />
+              </Field>
+            </Show>
+
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}
+                   help="citizenship.status.help.certificatenumber">
+              <Text name="CertificateNumber"
+                    className="certificate-number"
+                    {...this.state.CertificateNumber}
+                    onUpdate={this.updateCertificateNumber}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}
+                   help="citizenship.status.help.certificatecourtname">
+              <Text name="CertificateCourtName"
+                    className="certificate-court-name"
+                    {...this.state.CertificateCourtName}
+                    onUpdate={this.updateCertificateCourtName}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificatecourtaddress')}
+                   help="citizenship.status.help.certificatecourtaddress"
+                   adjustFor="big-buttons"
+                   shrink={true}>
+              <Address name="CertificateCourtAddress"
+                       className="certificate-court-address"
+                       {...this.state.CertificateCourtAddress}
+                       onUpdate={this.updateCertificateCourtAddress}
+                       onValidate={this.handleValidation}
+                       />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificateissued.naturalized')}
+                   help="citizenship.status.help.certificateissued"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="CertificateIssued"
+                           className="certificate-issued"
+                           {...this.state.CertificateIssued}
+                           onUpdate={this.updateCertificateIssued}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificatename.naturalized')}>
+              <Name name="CertificateName"
+                    className="certificate-name"
+                    {...this.state.CertificateName}
+                    onUpdate={this.updateCertificateName}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
+                   help="citizenship.status.help.basis"
+                   adjustFor="big-buttons"
+                   comments={true}
+                   commentsName="Explanation"
+                   commentsValue={this.state.Explanation}
+                   commentsActive={this.state.Basis === 'Other'}
+                   onUpdate={this.updateExplanation}
+                   onValidate={this.handleValidation}>
+              <RadioGroup className="citizenship-basis"
+                          selectedValue={this.state.Basis}>
+                <Radio name="citizenship-basis-individual"
+                       label={i18n.m('citizenship.status.label.basis.individual')}
+                       value="Individual"
+                       className="citizenship-basis-individual"
+                       onChange={this.updateBasis}
+                       />
+                <Radio name="citizenship-basis-other"
+                       label={i18n.m('citizenship.status.label.basis.other')}
+                       value="Other"
+                       className="citizenship-basis-other"
+                       onChange={this.updateBasis}
+                       />
+              </RadioGroup>
+            </Field>
+          </div>
         </Show>
 
         <Show when={this.state.CitizenshipStatus === 'Derived'}>
@@ -344,5 +526,13 @@ Status.defaultProps = {
   CertificateIssued: {},
   CertificateName: {},
   BornOnMilitaryInstallation: '',
-  MilitaryBase: {}
+  MilitaryBase: {},
+  EntryDate: {},
+  EntryLocation: {},
+  PriorCitizenship: [],
+  HasAlienRegistration: '',
+  AlienRegistrationNumber: {},
+  CertificateCourtName: {},
+  CertificateCourtAddress: {},
+  Basis: ''
 }

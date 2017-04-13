@@ -138,6 +138,86 @@ describe('citizenship component validation', function () {
     })
   })
 
+  it('can validate alien registration', () => {
+    const tests = [
+      {
+        state: {
+          HasAlienRegistration: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAlienRegistration: 'Yuppers'
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAlienRegistration: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasAlienRegistration: 'Yes',
+          AlienRegistrationNumber: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasAlienRegistration: 'Yes',
+          AlienRegistrationNumber: {
+            value: 'number'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new CitizenshipValidator(test.state, null).validAlienRegistration()).toBe(test.expected)
+    })
+  })
+
+  it('can validate basis', () => {
+    const tests = [
+      {
+        state: {
+          Basis: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          Basis: 'Some othe option'
+        },
+        expected: true
+      },
+      {
+        state: {
+          Basis: 'Other',
+          Explanation: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          Basis: 'Other',
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new CitizenshipValidator(test.state, null).validBasis()).toBe(test.expected)
+    })
+  })
+
   it('can validate', () => {
     const tests = [
       {
@@ -201,6 +281,63 @@ describe('citizenship component validation', function () {
           BornOnMilitaryInstallation: 'Yes',
           MilitaryBase: {
             value: 'Camp Pendleton'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          CitizenshipStatus: 'Naturalized',
+          EntryDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          EntryLocation: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          PriorCitizenship: ['Germany'],
+          HasAlienRegistration: 'Yes',
+          AlienRegistrationNumber: {
+            value: 'number'
+          },
+          CertificateNumber: {
+            value: 'certificate number'
+          },
+          CertificateCourtName: {
+            value: 'court name'
+          },
+          CertificateCourtAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: 'Jr'
+          },
+          Basis: 'Other',
+          Explanation: {
+            value: 'Explanation'
           }
         },
         expected: true
