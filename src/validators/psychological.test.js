@@ -1,4 +1,4 @@
-import PsychologicalValidator from './psychological'
+import PsychologicalValidator, { showQuestion21E, hideExistingConditions } from './psychological'
 
 describe('Psychologicalvalidation', function () {
   it('Should validate completion status', function () {
@@ -20,6 +20,35 @@ describe('Psychologicalvalidation', function () {
       },
       {
         props: {
+          Completed: {
+            Competence: {
+              status: true
+            }
+          }
+        },
+        Status: {
+          Competence: {
+            status: false
+          }
+        },
+        expected: 'incomplete'
+      },
+      {
+        props: {
+          Psychological: {
+            Competence: {
+              IsIncompetent: 'No'
+            },
+            Consultation: {
+              Consulted: 'No'
+            },
+            Diagnoses: {
+              Diagnosed: 'No'
+            },
+            Hospitalization: {
+              Hospitalized: 'No'
+            }
+          },
           Completed: {
             Competence: {
               status: true
@@ -76,6 +105,63 @@ describe('Psychologicalvalidation', function () {
 
     tests.forEach(test => {
       expect(new PsychologicalValidator(null, test.props).completionStatus(test.Status)).toBe(test.expected)
+    })
+  })
+
+  it('Should determine when to show question 21E', function () {
+    const tests = [
+      {
+        props: {
+          Psychological: {
+            Competence: {
+              IsIncompetent: 'No'
+            },
+            Consultation: {
+              Consulted: 'No'
+            },
+            Diagnoses: {
+              Diagnosed: 'No'
+            },
+            Hospitalization: {
+              Hospitalized: 'No'
+            }
+          },
+          Completed: {
+            Competence: {
+              status: true
+            }
+          }
+        },
+        expected: true
+      },
+      {
+        props: {
+          Psychological: {
+            Competence: {
+              IsIncompetent: 'Yes'
+            },
+            Consultation: {
+              Consulted: 'No'
+            },
+            Diagnoses: {
+              Diagnosed: 'No'
+            },
+            Hospitalization: {
+              Hospitalized: 'No'
+            }
+          },
+          Completed: {
+            Competence: {
+              status: true
+            }
+          }
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(showQuestion21E(test.props.Psychological)).toBe(test.expected)
     })
   })
 })

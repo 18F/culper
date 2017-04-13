@@ -91,6 +91,10 @@ class Navigation extends React.Component {
         return ''
       }
 
+      if (subsection.hiddenFunc && subsection.hiddenFunc(this.props.application)) {
+        return ''
+      }
+
       const subUrl = `${url}/${subsection.url}`
       const subClass = this.getClassName(subUrl, pathname)
       let childSubsections = []
@@ -155,6 +159,7 @@ function mapStateToProps (state) {
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
+    application: app,
     section: section,
     errors: errors,
     completed: completed
