@@ -47,6 +47,7 @@ import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
 import SSN from './SSN'
+import BirthPlace from './BirthPlace'
 
 export {
   ValidationElement,
@@ -93,5 +94,6 @@ export {
   NotApplicable,
   Accordion,
   Field,
-  SSN
+  SSN,
+  BirthPlace
 }

@@ -4,11 +4,10 @@ import { i18n } from '../../../config'
 import { IdentificationValidator } from '../../../validators'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ApplicantBirthDate from './ApplicantBirthDate'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
-import { IntroHeader, ValidationElement, Name, SSN } from '../../Form'
+import { IntroHeader, ValidationElement, Name, SSN, BirthPlace } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -129,7 +128,7 @@ class Identification extends ValidationElement {
                                 />
 
             <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <ApplicantBirthPlace name="birthplace"
+            <BirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
                                  onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onValidate={this.onValidate.bind(this)}
@@ -200,7 +199,7 @@ class Identification extends ValidationElement {
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
             <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <ApplicantBirthPlace name="birthplace"
+            <BirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
                                  onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onValidate={this.onValidate.bind(this)}

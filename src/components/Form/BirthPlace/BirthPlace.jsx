@@ -1,10 +1,15 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { api } from '../../../../services/api'
-import { BirthPlaceValidator } from '../../../../validators'
-import { ValidationElement, Field, City, MilitaryState, County, Country, Branch } from '../../../Form'
+import { i18n } from '../../../config'
+import { BirthPlaceValidator } from '../../../validators'
+import ValidationElement from '../ValidationElement'
+import Field from '../Field'
+import City from '../City'
+import MilitaryState from '../MilitaryState'
+import County from '../County'
+import Country from '../Country'
+import Branch from '../Branch'
 
-export default class ApplicantBirthPlace extends ValidationElement {
+export default class BirthPlace extends ValidationElement {
   constructor (props) {
     super(props)
     let domestic = (props.country === undefined ? null : (props.country === 'United States' ? 'Yes' : 'No'))

@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import ApplicantBirthPlace from './ApplicantBirthPlace'
+import BirthPlace from './BirthPlace'
 
-describe('The ApplicantBirthPlace component', () => {
+describe('The BirthPlace component', () => {
   const children = 4
 
   it('no error on empty', () => {
@@ -11,7 +11,7 @@ describe('The ApplicantBirthPlace component', () => {
       label: 'Text input focused',
       value: ''
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} label={expected.label} value={expected.value} country=''/>)
+    const component = mount(<BirthPlace name={expected.name} label={expected.label} value={expected.value} country=''/>)
     component.find('input#city').simulate('blur')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
@@ -28,7 +28,7 @@ describe('The ApplicantBirthPlace component', () => {
         validations++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<BirthPlace name={expected.name} onValidate={expected.handleValidation} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
@@ -45,7 +45,7 @@ describe('The ApplicantBirthPlace component', () => {
         changes++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onChange={expected.handleChange} country=''/>)
+    const component = mount(<BirthPlace name={expected.name} onChange={expected.handleChange} country=''/>)
     component.find('input[type="text"]').first().simulate('change')
     expect(changes).toEqual(1)
   })
@@ -62,7 +62,7 @@ describe('The ApplicantBirthPlace component', () => {
         foci++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onFocus={expected.handleFocus} country='' />)
+    const component = mount(<BirthPlace name={expected.name} onFocus={expected.handleFocus} country='' />)
     component.find('input[type="text"]').first().simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -79,7 +79,7 @@ describe('The ApplicantBirthPlace component', () => {
         blurs++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} country='' />)
+    const component = mount(<BirthPlace name={expected.name} onBlur={expected.handleBlur} country='' />)
     component.find('input[type="text"]').first().simulate('blur')
     expect(blurs).toEqual(1)
   })
@@ -96,7 +96,7 @@ describe('The ApplicantBirthPlace component', () => {
         updates++
       }
     }
-    const component = mount(<ApplicantBirthPlace name={expected.name} onBlur={expected.handleBlur} onUpdate={expected.onUpdate} country='' />)
+    const component = mount(<BirthPlace name={expected.name} onBlur={expected.handleBlur} onUpdate={expected.onUpdate} country='' />)
     component.find({type: 'radio', name: 'is_domestic', value: 'Yes'}).simulate('change')
     expect(component.find('input').length).toBe(5)
     expect(updates).toBe(1)
