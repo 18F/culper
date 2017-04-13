@@ -518,29 +518,29 @@ const en = {
       title: 'Provide your full name',
       last: {
         help: {
-          title: 'Need help with the last name?',
-          message: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
-          note: ''
+          title: 'Need help with your last name?',
+          message: 'If your last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       first: {
         help: {
-          title: 'Need help with the first name?',
-          message: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.',
-          note: ''
+          title: 'Need help with your first name?',
+          message: 'If your first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       middle: {
         help: {
-          title: 'Need help with the middle name?',
-          message: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.',
-          note: ''
+          title: 'Need help with your middle name?',
+          message: 'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.  <br>If you do not have a middle name leave this field empty and check the "No middle name" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       suffix: {
         help: {
-          title: 'Need help with the suffix?',
-          message: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field',
+          title: 'Need help with your suffix?',
+          message: 'If your suffix does not appear in this list, select "Other" and enter your suffix in the provided field',
           note: ''
         }
       }
@@ -687,7 +687,7 @@ const en = {
       title: 'Provide your U.S. Social Security Number',
       help: {
         title: 'Need help with your U.S. Social Security Number?',
-        message: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+        message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',
         note: ''
       },
       label: {
