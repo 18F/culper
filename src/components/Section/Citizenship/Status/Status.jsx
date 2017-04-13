@@ -42,6 +42,9 @@ export default class Status extends ValidationElement {
       CertificateCourtAddress: props.CertificateCourtAddress,
       Basis: props.Basis,
       PermanentResidentCardNumber: props.PermanentResidentCardNumber,
+      ResidenceStatus: props.ResidenceStatus,
+      DocumentType: props.DocumentType,
+      DocumentExpiration: props.DocumentExpiration,
       errorCodes: []
     }
 
@@ -67,6 +70,9 @@ export default class Status extends ValidationElement {
     this.updateCertificateCourtAddress = this.updateCertificateCourtAddress.bind(this)
     this.updateBasis = this.updateBasis.bind(this)
     this.updatePermanentResidentCardNumber = this.updatePermanentResidentCardNumber.bind(this)
+    this.updateResidenceStatus = this.updateResidenceStatus.bind(this)
+    this.updateDocumentType = this.updateDocumentType.bind(this)
+    this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
   }
 
   /**
@@ -190,6 +196,18 @@ export default class Status extends ValidationElement {
     this.onUpdate('PermanentResidentCardNumber', values)
   }
 
+  updateResidenceStatus (values) {
+    this.onUpdate('ResidenceStatus', values)
+  }
+
+  updateDocumentType (event) {
+    this.onUpdate('DocumentType', event.target.value)
+  }
+
+  updateDocumentExpiration (values) {
+    this.onUpdate('DocumentExpiration', values)
+  }
+
   render () {
     return (
       <div className="status">
@@ -271,7 +289,7 @@ export default class Status extends ValidationElement {
               </RadioGroup>
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentnumber')}
+            <Field title={i18n.t('citizenship.status.heading.documentnumber.foreignborn')}
                    help="citizenship.status.help.documentnumber">
               <Text name="DocumentNumber"
                     className="document-number"
@@ -395,7 +413,7 @@ export default class Status extends ValidationElement {
                        />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.priorcitizenship')}
+            <Field title={i18n.t('citizenship.status.heading.priorcitizenship.naturalized')}
                    help="citizenship.status.help.priorcitizenship">
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
@@ -590,7 +608,148 @@ export default class Status extends ValidationElement {
         </Show>
 
         <Show when={this.state.CitizenshipStatus === 'NotCitizen'}>
-          <div></div>
+          <div>
+            <Field title={i18n.t('citizenship.status.heading.residencestatus')}
+                   help="citizenship.status.help.residencestatus">
+              <Text name="ResidenceStatus"
+                    className="residence-status"
+                    {...this.state.ResidenceStatus}
+                    onUpdate={this.updateResidenceStatus}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.entrydate')}
+                   help="citizenship.status.help.entrydate"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="EntryDate"
+                           className="entry-date"
+                           {...this.state.EntryDate}
+                           onUpdate={this.updateEntryDate}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.entrylocation')}
+                   help="citizenship.status.help.entrylocation"
+                   adjustFor="big-buttons"
+                   shrink={true}>
+              <Address name="EntryLocation"
+                       className="entry-location"
+                       {...this.state.EntryLocation}
+                       onUpdate={this.updateEntryLocation}
+                       onValidate={this.handleValidation}
+                       />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.priorcitizenship.notcitizen')}
+                   help="citizenship.status.help.priorcitizenship">
+              <Country name="PriorCitizenship"
+                       className="prior-citizenship"
+                       value={this.state.PriorCitizenship.first}
+                       onUpdate={this.updatePriorCitizenship}
+                       onValidate={this.handleValidation}
+                       />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.notcitizen')}
+                    help="citizenship.status.help.alienregistrationnumber">
+              <Text name="AlienRegistrationNumber"
+                    className="alien-registration-number"
+                    {...this.state.AlienRegistrationNumber}
+                    onUpdate={this.updateAlienRegistrationNumber}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.documentexpiration')}
+                   help="citizenship.status.help.documentexpiration"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="DocumentExpiration"
+                           className="document-expiration"
+                           {...this.state.DocumentExpiration}
+                           onUpdate={this.updateDocumentExpiration}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.documenttype')}
+                   help="citizenship.status.help.documenttype"
+                   adjustFor="buttons"
+                   comments={true}
+                   commentsName="Explanation"
+                   commentsValue={this.state.Explanation}
+                   commentsActive={this.state.DocumentType === 'Other'}
+                   onUpdate={this.updateExplanation}
+                   onValidate={this.handleValidation}>
+              <RadioGroup className="citizenship-document-type"
+                          selectedValue={this.state.DocumentType}>
+                <Radio name="document-type-i94"
+                       label={i18n.t('citizenship.status.label.documenttype.i94')}
+                       value="I-94"
+                       className="document-type-i94"
+                       onChange={this.updateDocumentType}
+                       />
+                <Radio name="document-type-visa"
+                       label={i18n.t('citizenship.status.label.documenttype.visa')}
+                       value="U.S. Visa"
+                       className="document-type-visa"
+                       onChange={this.updateDocumentType}
+                       />
+                <Radio name="document-type-i20"
+                       label={i18n.t('citizenship.status.label.documenttype.i20')}
+                       value="I-20"
+                       className="document-type-i20"
+                       onChange={this.updateDocumentType}
+                       />
+                <Radio name="document-type-ds2019"
+                       label={i18n.t('citizenship.status.label.documenttype.ds2019')}
+                       value="DS-2019"
+                       className="document-type-ds2019"
+                       onChange={this.updateDocumentType}
+                       />
+                <Radio name="document-type-other"
+                       label={i18n.t('citizenship.status.label.documenttype.other')}
+                       value="Other"
+                       className="document-type-other"
+                       onChange={this.updateDocumentType}
+                       />
+              </RadioGroup>
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.documentnumber.notcitizen')}
+                   help="citizenship.status.help.documentnumber">
+              <Text name="DocumentNumber"
+                    className="document-number"
+                    {...this.state.DocumentNumber}
+                    onUpdate={this.updateDocumentNumber}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.documentname')}>
+              <Name name="DocumentName"
+                    className="document-name"
+                    {...this.state.DocumentName}
+                    onUpdate={this.updateDocumentName}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.documentissued')}
+                   help="citizenship.status.help.documentissued"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="DocumentIssued"
+                           className="document-issued"
+                           {...this.state.DocumentIssued}
+                           onUpdate={this.updateDocumentIssued}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+          </div>
         </Show>
       </div>
     )
@@ -618,5 +777,8 @@ Status.defaultProps = {
   CertificateCourtName: {},
   CertificateCourtAddress: {},
   Basis: '',
-  PermanentResidentCardNumber: {}
+  PermanentResidentCardNumber: {},
+  ResidenceStatus: {},
+  DocumentType: '',
+  DocumentExpiration: {}
 }

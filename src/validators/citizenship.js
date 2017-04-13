@@ -10,24 +10,25 @@ export default class CitizenshipValidator {
     this.explanation = state.Explanation
     this.documentNumber = state.DocumentNumber
     this.documentIssued = state.DocumentIssued
-    this.placeIssued = state.PlaceIssued
     this.documentName = state.DocumentName
+    this.documentExpiration = state.DocumentExpiration
+    this.documentType = state.DocumentType
+    this.placeIssued = state.PlaceIssued
     this.certificateNumber = state.CertificateNumber
     this.certificateIssued = state.CertificateIssued
     this.certificateName = state.CertificateName
+    this.certificateCourtName = state.CertificateCourtName
+    this.certificateCourtAddress = state.CertificateCourtAddress
     this.bornOnMilitaryInstallation = state.BornOnMilitaryInstallation
     this.militaryBase = state.MilitaryBase
-
     this.entryDate = state.EntryDate
     this.entryLocation = state.EntryLocation
     this.priorCitizenship = state.PriorCitizenship
     this.hasAlienRegistration = state.HasAlienRegistration
     this.alienRegistrationNumber = state.AlienRegistrationNumber
-    this.certificateCourtName = state.CertificateCourtName
-    this.certificateCourtAddress = state.CertificateCourtAddress
     this.basis = state.Basis
-
     this.permanentResidentCardNumber = state.PermanentResidentCardNumber
+    this.residenceStatus = state.ResidenceStatus
   }
 
   validCitizenshipStatus () {
@@ -80,6 +81,23 @@ export default class CitizenshipValidator {
       this.validBasis()
   }
 
+  validNotCitizen () {
+    if (this.citizenshipStatus !== 'NotCitizen') {
+      return true
+    }
+
+    return validGenericTextfield(this.residenceStatus) &&
+      validDateField(this.entryDate) &&
+      new AddressValidator(this.entryLocation, null).isValid() &&
+      this.validCitizenships(this.priorCitizenship) &&
+      validGenericTextfield(this.alienRegistrationNumber) &&
+      validDateField(this.documentExpiration) &&
+      this.validDocumentType() &&
+      validGenericTextfield(this.documentNumber) &&
+      new NameValidator(this.documentName, null).isValid() &&
+      validDateField(this.documentIssued)
+  }
+
   validAbroadDocumentation () {
     return !!this.abroadDocumentation &&
       ['FS-240', 'DS-1350', 'FS-545', 'Other'].includes(this.abroadDocumentation) &&
@@ -105,10 +123,17 @@ export default class CitizenshipValidator {
       (this.basis !== 'Other' || (this.basis === 'Other' && validGenericTextfield(this.explanation)))
   }
 
+  validDocumentType () {
+    return !!this.documentType &&
+      ['I-94', 'U.S. Visa', 'I-20', 'DS-2019', 'Other'].includes(this.documentType) &&
+      (this.documentType !== 'Other' || (this.documentType === 'Other' && validGenericTextfield(this.explanation)))
+  }
+
   isValid () {
     return this.validCitizenshipStatus() &&
       this.validForeignBorn() &&
       this.validNaturalized() &&
-      this.validDerived()
+      this.validDerived() &&
+      this.validNotCitizen()
   }
 }

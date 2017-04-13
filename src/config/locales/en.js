@@ -1412,7 +1412,10 @@ const en = {
         title: 'Citizenship Status',
         citizenshipstatus: 'Provide your current citizenship status',
         abroad: 'Provide type of documentation of U.S. citizen born abroad',
-        documentnumber: 'Provide document number for U.S. citizen born abroad',
+        documentnumber: {
+          foreignborn: 'Provide document number for U.S. citizen born abroad',
+          notcitizen: 'Provide document number'
+        },
         documentissued: 'Provide the date the document was issued',
         placeissued: 'Provide the place of issuance',
         documentname: 'Provide the name in which document was issued',
@@ -1437,17 +1440,24 @@ const en = {
         militarybase: 'Provide the name of the base',
         entrydate: 'Provide the date of entry into the U.S.',
         entrylocation: 'Provide the location of entry into the U.S.',
-        priorcitizenship: 'Provide countrny(ies) of prior citizenship',
+        priorcitizenship: {
+          naturalized: 'Provide countrny(ies) of prior citizenship',
+          notcitizen: 'Provide your countr(ies) of citizenship'
+        },
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
         alienregistrationnumber: {
           naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
-          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)'
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
+          notcitizen: 'Provide your alien registration number (I-551, I-766)'
         },
         basis: {
           naturalized: 'Provide the basis of naturalization',
           derived: 'Provide the basis of derived citizenship'
         },
-        permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)'
+        permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)',
+        residencestatus: 'Provide your residence status',
+        documentexpiration: 'Provide documen expiration date',
+        documenttype: 'Provide type of document issued'
       },
       label: {
         citizenshipstatus: {
@@ -1466,6 +1476,13 @@ const en = {
         basis: {
           naturalized: 'Based on my own individual naturalization application',
           derived: 'By operation of law through my U.S. citizen parent',
+          other: 'Other'
+        },
+        documenttype: {
+          i94: 'I-94',
+          visa: 'U.S. Visa',
+          i20: 'I-20',
+          ds2019: 'DS-2019',
           other: 'Other'
         }
       },
@@ -1574,6 +1591,21 @@ const en = {
         },
         permanentresidentcardnumber: {
           title: 'Need help with your permaenent resident card?',
+          message: '',
+          note: ''
+        },
+        residencestatus: {
+          title: 'Need help with your residence status?',
+          message: '',
+          note: ''
+        },
+        documentexpiration: {
+          title: '',
+          message: '',
+          note: ''
+        },
+        documenttype: {
+          title: '',
           message: '',
           note: ''
         }

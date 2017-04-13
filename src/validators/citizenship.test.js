@@ -218,6 +218,49 @@ describe('citizenship component validation', function () {
     })
   })
 
+  it('can validate document types', () => {
+    const tests = [
+      {
+        state: {
+          DocumentType: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          DocumentType: 'Yuppers'
+        },
+        expected: false
+      },
+      {
+        state: {
+          DocumentType: 'I-94'
+        },
+        expected: true
+      },
+      {
+        state: {
+          DocumentType: 'Other',
+          Explanation: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          DocumentType: 'Other',
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new CitizenshipValidator(test.state, null).validDocumentType()).toBe(test.expected)
+    })
+  })
+
   it('can validate', () => {
     const tests = [
       {
@@ -373,6 +416,61 @@ describe('citizenship component validation', function () {
           Basis: 'Other',
           Explanation: {
             value: 'Explanation'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          CitizenshipStatus: 'NotCitizen',
+          ResidenceStatus: {
+            value: 'status'
+          },
+          EntryDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          EntryLocation: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          PriorCitizenship: ['Germany'],
+          AlienRegistrationNumber: {
+            value: 'number'
+          },
+          DocumentType: 'Other',
+          Explanation: {
+            value: 'Explanation'
+          },
+          DocumentNumber: {
+            value: 'document number'
+          },
+          DocumentName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: 'Jr'
+          },
+          DocumentIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          DocumentExpiration: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
           }
         },
         expected: true
