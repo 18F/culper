@@ -5,7 +5,7 @@ describe('Consultation validation', function () {
     const tests = [
       {
         state: {
-          IsIncompetent: 'Yes',
+          Consulted: 'Yes',
           List: [
             {
               Consultation: {
@@ -38,27 +38,27 @@ describe('Consultation validation', function () {
       {
         state: {
           List: [],
-          IsIncompetent: 'Yes'
+          Consulted: 'Yes'
         },
         expected: false
       },
       {
         state: {
           List: [],
-          IsIncompetent: 'No'
+          Consulted: 'No'
         },
         expected: true
       },
       {
         state: {
           List: [],
-          IsIncompetent: 'Nope'
+          Consulted: 'Nope'
         },
         expected: false
       },
       {
         state: {
-          IsIncompetent: 'Yes',
+          Consulted: 'Yes',
           List: [
             {
               Consultation: {
