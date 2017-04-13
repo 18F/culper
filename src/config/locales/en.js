@@ -1708,6 +1708,25 @@ const en = {
           note: ''
         }
       }
+    },
+    status: {
+      heading: {
+        title: 'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.',
+        name: 'Provide full name'
+      },
+      para: {
+        never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.'
+      },
+      label: {
+        status: {
+          never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
+          separated: 'Separated',
+          annulled: 'Annulled',
+          divorced: 'Divorced/dissolved',
+          widowed: 'Widowed'
+        }
+      }
     }
   },
 
