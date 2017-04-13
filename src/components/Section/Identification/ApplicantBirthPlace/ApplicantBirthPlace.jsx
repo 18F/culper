@@ -223,8 +223,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                            onBlur={this.props.onBlur}
                            />
           </Field>
-          <Field 
-                 adjustFor="labels">
+          <Field adjustFor="labels">
             <City name="city"
                   label={i18n.t('identification.birthplace.label.city')}
                   value={this.state.city}
@@ -237,8 +236,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                   onBlur={this.props.onBlur}
                   />
           </Field>
-          <Field 
-                 adjustFor="labels">
+          <Field adjustFor="labels">
             <County name="county"
                     label={i18n.t('identification.birthplace.label.county')}
                     value={this.state.county}
@@ -258,8 +256,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         {this.options()}
-        <Field 
-               adjustFor="labels">
+        <Field adjustFor="labels">
           <City name="city"
                 label={i18n.t('identification.birthplace.label.city')}
                 value={this.state.city}
@@ -272,8 +269,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Field>
-        <Field 
-               adjustFor="labels">
+        <Field adjustFor="labels">
           <Country name="country"
                    label={i18n.t('identification.birthplace.label.country')}
                    value={this.state.country}
