@@ -341,6 +341,41 @@ describe('citizenship component validation', function () {
           }
         },
         expected: true
+      },
+      {
+        state: {
+          CitizenshipStatus: 'Derived',
+          AlienRegistrationNumber: {
+            value: 'number'
+          },
+          PermanentResidentCardNumber: {
+            value: 'number'
+          },
+          CertificateNumber: {
+            value: 'certificate number'
+          },
+          CertificateName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: 'Jr'
+          },
+          CertificateIssued: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          Basis: 'Other',
+          Explanation: {
+            value: 'Explanation'
+          }
+        },
+        expected: true
       }
     ]
 

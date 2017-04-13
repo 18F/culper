@@ -41,6 +41,7 @@ export default class Status extends ValidationElement {
       CertificateCourtName: props.CertificateCourtName,
       CertificateCourtAddress: props.CertificateCourtAddress,
       Basis: props.Basis,
+      PermanentResidentCardNumber: props.PermanentResidentCardNumber,
       errorCodes: []
     }
 
@@ -65,6 +66,7 @@ export default class Status extends ValidationElement {
     this.updateCertificateCourtName = this.updateCertificateCourtName.bind(this)
     this.updateCertificateCourtAddress = this.updateCertificateCourtAddress.bind(this)
     this.updateBasis = this.updateBasis.bind(this)
+    this.updatePermanentResidentCardNumber = this.updatePermanentResidentCardNumber.bind(this)
   }
 
   /**
@@ -182,6 +184,10 @@ export default class Status extends ValidationElement {
 
   updateBasis (event) {
     this.onUpdate('Basis', event.target.value)
+  }
+
+  updatePermanentResidentCardNumber (values) {
+    this.onUpdate('PermanentResidentCardNumber', values)
   }
 
   render () {
@@ -410,7 +416,7 @@ export default class Status extends ValidationElement {
                     />
 
             <Show when={this.state.HasAlienRegistration === 'Yes'}>
-              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber')}
+              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}
                      help="citizenship.status.help.alienregistrationnumber">
                 <Text name="AlienRegistrationNumber"
                       className="alien-registration-number"
@@ -475,7 +481,7 @@ export default class Status extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
-                   help="citizenship.status.help.basis"
+                   help="citizenship.status.help.basis.naturalized"
                    adjustFor="big-buttons"
                    comments={true}
                    commentsName="Explanation"
@@ -486,7 +492,7 @@ export default class Status extends ValidationElement {
               <RadioGroup className="citizenship-basis"
                           selectedValue={this.state.Basis}>
                 <Radio name="citizenship-basis-individual"
-                       label={i18n.m('citizenship.status.label.basis.individual')}
+                       label={i18n.m('citizenship.status.label.basis.naturalized')}
                        value="Individual"
                        className="citizenship-basis-individual"
                        onChange={this.updateBasis}
@@ -503,7 +509,84 @@ export default class Status extends ValidationElement {
         </Show>
 
         <Show when={this.state.CitizenshipStatus === 'Derived'}>
-          <div></div>
+          <div>
+            <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.derived')}
+                    help="citizenship.status.help.alienregistrationnumber">
+              <Text name="AlienRegistrationNumber"
+                    className="alien-registration-number"
+                    {...this.state.AlienRegistrationNumber}
+                    onUpdate={this.updateAlienRegistrationNumber}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.permanentresidentcardnumber')}
+                    help="citizenship.status.help.permanentresidentcardnumber">
+              <Text name="PermanentResidentCardNumber"
+                    className="permanent-resident-card-number"
+                    {...this.state.PermanentResidentCardNumber}
+                    onUpdate={this.updatePermanentResidentCardNumber}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.derived')}
+                   help="citizenship.status.help.certificatenumber">
+              <Text name="CertificateNumber"
+                    className="certificate-number"
+                    {...this.state.CertificateNumber}
+                    onUpdate={this.updateCertificateNumber}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificatename.derived')}>
+              <Name name="CertificateName"
+                    className="certificate-name"
+                    {...this.state.CertificateName}
+                    onUpdate={this.updateCertificateName}
+                    onValidate={this.handleValidation}
+                    />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.certificateissued.derived')}
+                   help="citizenship.status.help.certificateissued"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="CertificateIssued"
+                           className="certificate-issued"
+                           {...this.state.CertificateIssued}
+                           onUpdate={this.updateCertificateIssued}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.basis.derived')}
+                   help="citizenship.status.help.basis.derived"
+                   adjustFor="big-buttons"
+                   comments={true}
+                   commentsName="Explanation"
+                   commentsValue={this.state.Explanation}
+                   commentsActive={this.state.Basis === 'Other'}
+                   onUpdate={this.updateExplanation}
+                   onValidate={this.handleValidation}>
+              <RadioGroup className="citizenship-basis"
+                          selectedValue={this.state.Basis}>
+                <Radio name="citizenship-basis-individual"
+                       label={i18n.m('citizenship.status.label.basis.derived')}
+                       value="Individual"
+                       className="citizenship-basis-individual"
+                       onChange={this.updateBasis}
+                       />
+                <Radio name="citizenship-basis-other"
+                       label={i18n.m('citizenship.status.label.basis.other')}
+                       value="Other"
+                       className="citizenship-basis-other"
+                       onChange={this.updateBasis}
+                       />
+              </RadioGroup>
+            </Field>
+          </div>
         </Show>
 
         <Show when={this.state.CitizenshipStatus === 'NotCitizen'}>
@@ -534,5 +617,6 @@ Status.defaultProps = {
   AlienRegistrationNumber: {},
   CertificateCourtName: {},
   CertificateCourtAddress: {},
-  Basis: ''
+  Basis: '',
+  PermanentResidentCardNumber: {}
 }

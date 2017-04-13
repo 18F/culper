@@ -26,6 +26,8 @@ export default class CitizenshipValidator {
     this.certificateCourtName = state.CertificateCourtName
     this.certificateCourtAddress = state.CertificateCourtAddress
     this.basis = state.Basis
+
+    this.permanentResidentCardNumber = state.PermanentResidentCardNumber
   }
 
   validCitizenshipStatus () {
@@ -48,17 +50,6 @@ export default class CitizenshipValidator {
       this.validBornOnMilitaryInstallation()
   }
 
-  validAbroadDocumentation () {
-    return !!this.abroadDocumentation &&
-      ['FS-240', 'DS-1350', 'FS-545', 'Other'].includes(this.abroadDocumentation) &&
-      (this.abroadDocumentation !== 'Other' || (this.abroadDocumentation === 'Other' && validGenericTextfield(this.explanation)))
-  }
-
-  validBornOnMilitaryInstallation () {
-    return !!this.bornOnMilitaryInstallation &&
-      (this.bornOnMilitaryInstallation === 'No' || (this.bornOnMilitaryInstallation === 'Yes' && validGenericTextfield(this.militaryBase)))
-  }
-
   validNaturalized () {
     if (this.citizenshipStatus !== 'Naturalized') {
       return true
@@ -74,6 +65,30 @@ export default class CitizenshipValidator {
       validDateField(this.certificateIssued) &&
       new NameValidator(this.certificateName, null).isValid() &&
       this.validBasis()
+  }
+
+  validDerived () {
+    if (this.citizenshipStatus !== 'Derived') {
+      return true
+    }
+
+    return validGenericTextfield(this.alienRegistrationNumber) &&
+      validGenericTextfield(this.permanentResidentCardNumber) &&
+      validGenericTextfield(this.certificateNumber) &&
+      new NameValidator(this.certificateName, null).isValid() &&
+      validDateField(this.certificateIssued) &&
+      this.validBasis()
+  }
+
+  validAbroadDocumentation () {
+    return !!this.abroadDocumentation &&
+      ['FS-240', 'DS-1350', 'FS-545', 'Other'].includes(this.abroadDocumentation) &&
+      (this.abroadDocumentation !== 'Other' || (this.abroadDocumentation === 'Other' && validGenericTextfield(this.explanation)))
+  }
+
+  validBornOnMilitaryInstallation () {
+    return !!this.bornOnMilitaryInstallation &&
+      (this.bornOnMilitaryInstallation === 'No' || (this.bornOnMilitaryInstallation === 'Yes' && validGenericTextfield(this.militaryBase)))
   }
 
   validCitizenships (arr) {
@@ -93,6 +108,7 @@ export default class CitizenshipValidator {
   isValid () {
     return this.validCitizenshipStatus() &&
       this.validForeignBorn() &&
-      this.validNaturalized()
+      this.validNaturalized() &&
+      this.validDerived()
   }
 }

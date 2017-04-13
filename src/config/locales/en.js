@@ -1418,15 +1418,18 @@ const en = {
         documentname: 'Provide the name in which document was issued',
         certificatenumber: {
           foreignborn: 'Provide your Certificate of Citizenship number',
-          naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)'
+          naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)',
+          derived: 'Provide your Certificate of Citizenship number (N560 or N561)'
         },
         certificateissued: {
           foreignborn: 'Provide the date the certificate was issued',
-          naturalized: 'Provide the date the Certificate of Naturalization was issued'
+          naturalized: 'Provide the date the Certificate of Naturalization was issued',
+          derived: 'Provide the date the certificate was issued'
         },
         certificatename: {
           foreignborn: 'Provide the name in which the certificate was issued',
-          naturalized: 'Provide the name in which the Certificate of Naturalization was issued'
+          naturalized: 'Provide the name in which the Certificate of Naturalization was issued',
+          derived: 'Provide the name in which the document was issued'
         },
         certificatecourtname: 'Provide the name of the court that issued the Certificate of Naturalization',
         certificatecourtaddress: 'Provide the address of the court that issued the Certificate of Naturalization',
@@ -1436,10 +1439,15 @@ const en = {
         entrylocation: 'Provide the location of entry into the U.S.',
         priorcitizenship: 'Provide countrny(ies) of prior citizenship',
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
-        alienregistrationnumber: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+        alienregistrationnumber: {
+          naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)'
+        },
         basis: {
-          naturalized: 'Provide the basis of naturalization'
-        }
+          naturalized: 'Provide the basis of naturalization',
+          derived: 'Provide the basis of derived citizenship'
+        },
+        permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)'
       },
       label: {
         citizenshipstatus: {
@@ -1456,7 +1464,8 @@ const en = {
           other: 'Other'
         },
         basis: {
-          individual: 'Based on my own individual naturalization application',
+          naturalized: 'Based on my own individual naturalization application',
+          derived: 'By operation of law through my U.S. citizen parent',
           other: 'Other'
         }
       },
@@ -1551,8 +1560,20 @@ const en = {
           message: '',
           note: ''
         },
-        basisnaturalized: {
-          title: 'Need help with the basis of naturalization?',
+        basis: {
+          naturalized: {
+            title: 'Need help with the basis of naturalization?',
+            message: '',
+            note: ''
+          },
+          derived: {
+            title: 'Need help with the basis of derived citizenship?',
+            message: '',
+            note: ''
+          }
+        },
+        permanentresidentcardnumber: {
+          title: 'Need help with your permaenent resident card?',
           message: '',
           note: ''
         }
