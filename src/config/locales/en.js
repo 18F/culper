@@ -518,29 +518,29 @@ const en = {
       title: 'Provide your full name',
       last: {
         help: {
-          title: 'Need help with the last name?',
-          message: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
-          note: ''
+          title: 'Need help with your last name?',
+          message: 'If your last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       first: {
         help: {
-          title: 'Need help with the first name?',
-          message: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.',
-          note: ''
+          title: 'Need help with your first name?',
+          message: 'If your first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       middle: {
         help: {
-          title: 'Need help with the middle name?',
-          message: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.',
-          note: ''
+          title: 'Need help with your middle name?',
+          message: 'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.  <br>If you do not have a middle name leave this field empty and check the "No middle name" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       suffix: {
         help: {
-          title: 'Need help with the suffix?',
-          message: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field',
+          title: 'Need help with your suffix?',
+          message: 'If your suffix does not appear in this list, select "Other" and enter your suffix in the provided field',
           note: ''
         }
       }
@@ -550,9 +550,9 @@ const en = {
       info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: {
-          title: 'Need information on other names?',
-          message: 'Provide your other names used and the period of time you used them',
-          note: ''
+          title: 'Need help with you other names used?',
+          message: 'List all other names you have used no matter how long ago.',
+          note: 'Note: Input names one at a time, you will have the ability to add multiple other names.'
         },
         question: 'Have you used any other names?'
       },
@@ -580,8 +580,8 @@ const en = {
     birthdate: {
       title: 'Provide your date of birth',
       help: {
-        title: 'Need help with the birthdate?',
-        message: 'Provide your date of birth, or the closest possible estimate you can provide',
+        title: 'Need help with your birthdate?',
+        message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
         note: ''
       }
     },
@@ -638,14 +638,14 @@ const en = {
       title: 'Provide your contact information',
       help: {
         email: {
-          title: 'Need help with an email address?',
-          message: 'Enter your email address',
-          note: ''
+          title: 'Need help with your email address(es)?',
+          message: 'Enter your primary email address first',
+          note: 'Note: Multiple email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
-          title: 'Need help with a phone number?',
-          message: 'Enter your phone number',
-          note: ''
+          title: 'Need help with you phone number(s)?',
+          message: 'Enter only current phone number(s)',
+          note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
       collection: {
@@ -687,7 +687,7 @@ const en = {
       title: 'Provide your U.S. Social Security Number',
       help: {
         title: 'Need help with your U.S. Social Security Number?',
-        message: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+        message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',
         note: ''
       },
       label: {

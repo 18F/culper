@@ -193,7 +193,6 @@ export default class BirthPlace extends ValidationElement {
     return (
       <Branch name="is_domestic"
               value={this.state.domestic}
-              help="identification.birthplace.branch.help"
               label={i18n.t('identification.birthplace.question.label')}
               onUpdate={this.onUpdate.bind(this)}>
       </Branch>
@@ -229,8 +228,7 @@ export default class BirthPlace extends ValidationElement {
                            onBlur={this.props.onBlur}
                            />
           </Field>
-          <Field help="identification.birthplace.help.city"
-                 adjustFor="labels">
+          <Field adjustFor="labels">
             <City name="city"
                   label={i18n.t('identification.birthplace.label.city')}
                   value={this.state.city}
@@ -243,8 +241,7 @@ export default class BirthPlace extends ValidationElement {
                   onBlur={this.props.onBlur}
                   />
           </Field>
-          <Field help="identification.birthplace.help.county"
-                 adjustFor="labels">
+          <Field adjustFor="labels">
             <County name="county"
                     label={i18n.t('identification.birthplace.label.county')}
                     value={this.state.county}
@@ -264,8 +261,7 @@ export default class BirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         {this.options()}
-        <Field help="identification.birthplace.help.city"
-               adjustFor="labels">
+        <Field adjustFor="labels">
           <City name="city"
                 label={i18n.t('identification.birthplace.label.city')}
                 value={this.state.city}
@@ -278,8 +274,7 @@ export default class BirthPlace extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Field>
-        <Field help="identification.birthplace.help.country"
-               adjustFor="labels">
+        <Field adjustFor="labels">
           <Country name="country"
                    label={i18n.t('identification.birthplace.label.country')}
                    value={this.state.country}
