@@ -5,11 +5,10 @@ import { IdentificationValidator } from '../../../validators'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
-import ApplicantSSN from './ApplicantSSN'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
-import { IntroHeader, ValidationElement, Name } from '../../Form'
+import { IntroHeader, ValidationElement, Name, SSN } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -144,7 +143,7 @@ class Identification extends ValidationElement {
                                 />
 
             <h2>{i18n.t('identification.ssn.title')}</h2>
-            <ApplicantSSN name="ssn"
+            <SSN name="ssn"
                           {...this.props.ApplicantSSN}
                           onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
                           onValidate={this.onValidate.bind(this)}
@@ -227,7 +226,7 @@ class Identification extends ValidationElement {
                        next="identification/physical"
                        nextLabel={i18n.t('identification.destination.physical')}>
             <h2>{i18n.t('identification.ssn.title')}</h2>
-            <ApplicantSSN name="ssn"
+            <SSN name="ssn"
                           {...this.props.ApplicantSSN}
                           onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
                           onValidate={this.onValidate.bind(this)}
