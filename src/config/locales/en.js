@@ -687,7 +687,7 @@ const en = {
       title: 'Provide your U.S. Social Security Number',
       help: {
         title: 'Need help with your U.S. Social Security Number?',
-        message: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+        message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',
         note: ''
       },
       label: {
