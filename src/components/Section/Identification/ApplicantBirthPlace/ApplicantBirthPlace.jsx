@@ -188,7 +188,6 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <Branch name="is_domestic"
               value={this.state.domestic}
-              help="identification.birthplace.branch.help"
               label={i18n.t('identification.birthplace.question.label')}
               onUpdate={this.onUpdate.bind(this)}>
       </Branch>
@@ -224,7 +223,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                            onBlur={this.props.onBlur}
                            />
           </Field>
-          <Field help="identification.birthplace.help.city"
+          <Field 
                  adjustFor="labels">
             <City name="city"
                   label={i18n.t('identification.birthplace.label.city')}
@@ -238,7 +237,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                   onBlur={this.props.onBlur}
                   />
           </Field>
-          <Field help="identification.birthplace.help.county"
+          <Field 
                  adjustFor="labels">
             <County name="county"
                     label={i18n.t('identification.birthplace.label.county')}
@@ -259,7 +258,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         {this.options()}
-        <Field help="identification.birthplace.help.city"
+        <Field 
                adjustFor="labels">
           <City name="city"
                 label={i18n.t('identification.birthplace.label.city')}
@@ -273,7 +272,7 @@ export default class ApplicantBirthPlace extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Field>
-        <Field help="identification.birthplace.help.country"
+        <Field 
                adjustFor="labels">
           <Country name="country"
                    label={i18n.t('identification.birthplace.label.country')}
