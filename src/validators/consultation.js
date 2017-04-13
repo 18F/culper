@@ -3,15 +3,15 @@ import OrderValidator from './order'
 export default class ConsultationValidator {
   constructor (state = {}, props) {
     this.list = state.List || []
-    this.isIncompetent = state.IsIncompetent
+    this.consulted = state.Consulted
   }
 
-  validIsIncompetent () {
-    return this.isIncompetent === 'Yes' || this.isIncompetent === 'No'
+  validConsulted () {
+    return this.consulted === 'Yes' || this.consulted === 'No'
   }
 
   validList () {
-    if (this.isIncompetent === 'Yes' && this.list.length === 0) {
+    if (this.consulted === 'Yes' && this.list.length === 0) {
       return false
     }
 
@@ -25,11 +25,11 @@ export default class ConsultationValidator {
   }
 
   isValid () {
-    if (!this.validIsIncompetent()) {
+    if (!this.validConsulted()) {
       return false
     }
 
-    if (this.isIncompetent === 'No') {
+    if (this.consulted === 'No') {
       return true
     }
 

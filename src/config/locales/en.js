@@ -550,9 +550,9 @@ const en = {
       info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: {
-          title: 'Need information on other names?',
-          message: 'Provide your other names used and the period of time you used them',
-          note: ''
+          title: 'Need help with you other names used?',
+          message: 'List all other names you have used no matter how long ago.',
+          note: 'Note: Input names one at a time, you will have the ability to add multiple other names.'
         },
         question: 'Have you used any other names?'
       },
@@ -580,8 +580,8 @@ const en = {
     birthdate: {
       title: 'Provide your date of birth',
       help: {
-        title: 'Need help with the birthdate?',
-        message: 'Provide your date of birth, or the closest possible estimate you can provide',
+        title: 'Need help with your birthdate?',
+        message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
         note: ''
       }
     },
@@ -638,14 +638,14 @@ const en = {
       title: 'Provide your contact information',
       help: {
         email: {
-          title: 'Need help with an email address?',
-          message: 'Enter your email address',
-          note: ''
+          title: 'Need help with your email address(es)?',
+          message: 'Enter your primary email address first',
+          note: 'Note: Multiple email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
-          title: 'Need help with a phone number?',
-          message: 'Enter your phone number',
-          note: ''
+          title: 'Need help with you phone number(s)?',
+          message: 'Enter only current phone number(s)',
+          note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
       collection: {

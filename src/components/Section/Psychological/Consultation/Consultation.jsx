@@ -9,13 +9,13 @@ export default class Consultation extends ValidationElement {
     super(props)
 
     this.state = {
-      IsIncompetent: props.IsIncompetent,
+      Consulted: props.Consulted,
       List: props.List,
       errorCodes: []
     }
 
     this.update = this.update.bind(this)
-    this.updateIsIncompentent = this.updateIsIncompentent.bind(this)
+    this.updateConsulted = this.updateConsulted.bind(this)
     this.updateList = this.updateList.bind(this)
     this.isValid = this.isValid.bind(this)
     this.handleValidation = this.handleValidation.bind(this)
@@ -25,7 +25,7 @@ export default class Consultation extends ValidationElement {
     this.setState({[field]: values}, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          IsIncompetent: this.state.IsIncompetent,
+          Consulted: this.state.Consulted,
           List: this.state.List
         })
       }
@@ -36,8 +36,8 @@ export default class Consultation extends ValidationElement {
     this.update('List', values)
   }
 
-  updateIsIncompentent (values) {
-    this.update('IsIncompetent', values)
+  updateConsulted (values) {
+    this.update('Consulted', values)
   }
 
   handleValidation (event, status, error) {
@@ -84,13 +84,13 @@ export default class Consultation extends ValidationElement {
         <h2>{i18n.t('psychological.heading.consultation')}</h2>
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
-          value={this.state.IsIncompetent}
+          value={this.state.Consulted}
           help="psychological.consultation.help.incompetent"
           onValidate={this.handleValidation}
-          onUpdate={this.updateIsIncompentent}>
+          onUpdate={this.updateConsulted}>
         </Branch>
 
-        <Show when={this.state.IsIncompetent === 'Yes'}>
+        <Show when={this.state.Consulted === 'Yes'}>
           <Accordion minimum="1"
             items={this.state.List}
             onUpdate={this.updateList}

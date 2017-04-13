@@ -48,8 +48,15 @@ export default class DiagnosesValidator {
   }
 
   isValid () {
-    return validBranch(this.diagnosed) &&
-      validBranch(this.didNotConsult) &&
+    if (!validBranch(this.diagnosed)) {
+      return false
+    }
+
+    if (this.diagnosed === 'No') {
+      return true
+    }
+
+    return validBranch(this.didNotConsult) &&
       validBranch(this.inTreatment) &&
       this.validDiagnosisList() &&
       this.validTreatmentList()
