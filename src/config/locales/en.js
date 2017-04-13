@@ -1410,7 +1410,17 @@ const en = {
     status: {
       heading: {
         title: 'Citizenship Status',
-        citizenshipstatus: 'Provide your current citizenship status'
+        citizenshipstatus: 'Provide your current citizenship status',
+        abroad: 'Provide type of documentation of U.S. citizen born abroad',
+        documentnumber: 'Provide document number for U.S. citizen born abroad',
+        documentissued: 'Provide the date the document was issued',
+        placeissued: 'Provide the place of issuance',
+        documentname: 'Provide the name in which document was issued',
+        certificatenumber: 'Provide your Certificate of Citizenship number',
+        certificateissued: 'Provide the date the certificate was issued',
+        certificatename: 'Provide the name in which the certificate was issued',
+        bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
+        militarybase: 'Provide the name of the base'
       },
       label: {
         citizenshipstatus: {
@@ -1419,12 +1429,68 @@ const en = {
           naturalized: 'I am a naturalized U.S. citizen',
           derived: 'I am a derived U.S. citizen',
           notcitizen: 'I am not a U.S. citizen'
+        },
+        abroad: {
+          fs240: 'FS-240',
+          ds1350: 'DS-1350',
+          fs545: 'FS-545',
+          other: 'Other'
         }
       },
       help: {
         citizenshipstatus: {
           title: 'Need help with your citizenship status?',
           message: 'Select the box that reflects your current citizenship status',
+          note: ''
+        },
+        abroad: {
+          title: 'Need help with documentation of U.S. citizen born abroad?',
+          message: 'Select the type of documentation',
+          note: ''
+        },
+        documentnumber: {
+          title: 'Need help with the document number?',
+          message: 'Provide the document number',
+          note: ''
+        },
+        documentissued: {
+          title: 'Need help with the date the documentation was issued?',
+          message: 'Provide the approximate date the documenation was issued',
+          note: ''
+        },
+        placeissued: {
+          title: 'Need help with the place the documentation was issued?',
+          message: 'Provide the place where the documentation was issued',
+          note: ''
+        },
+        documentname: {
+          title: 'Need help with the name on the documentation?',
+          message: 'Provide the name on the documentation',
+          note: ''
+        },
+        certificatenumber: {
+          title: 'Need help with the certificate number?',
+          message: 'Provide the certificate number',
+          note: ''
+        },
+        certificateissued: {
+          title: 'Need help with the date the certificate was issued?',
+          message: 'Provide the approximate date the certificate was issued',
+          note: ''
+        },
+        certificatename: {
+          title: 'Need help with the name on the certificate?',
+          message: 'Provide the name on the certificate',
+          note: ''
+        },
+        bornonmilitaryinstallation: {
+          title: 'Need help with if you were born on a military installation?',
+          message: 'If you were born on a military installation select "yes"',
+          note: ''
+        },
+        militarybase: {
+          title: 'Need help with military base?',
+          message: 'Provide the name of the military base',
           note: ''
         }
       }
