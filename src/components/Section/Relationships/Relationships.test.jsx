@@ -4,10 +4,10 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Family from './Family'
+import Relationships from './Relationships'
 
 const applicationState = {
-  Family: {}
+  Relationships: {}
 }
 
 describe('The family and friends section', () => {
@@ -17,19 +17,19 @@ describe('The family and friends section', () => {
 
   it('hidden when not authenticated', () => {
     const store = mockStore({ authentication: [], application: applicationState })
-    const component = mount(<Provider store={store}><Family /></Provider>)
+    const component = mount(<Provider store={store}><Relationships /></Provider>)
     expect(component.find('div').length).toEqual(0)
   })
 
   it('visible when authenticated', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Family /></Provider>)
+    const component = mount(<Provider store={store}><Relationships /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-    const component = mount(<Provider store={store}><Family subsection="review" /></Provider>)
+    const component = mount(<Provider store={store}><Relationships subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -38,7 +38,7 @@ describe('The family and friends section', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
     sections.forEach((section) => {
-      const component = mount(<Provider store={store}><Family subsection={section} /></Provider>)
+      const component = mount(<Provider store={store}><Relationships subsection={section} /></Provider>)
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })

@@ -213,6 +213,10 @@ export default class Dropdown extends ValidationElement {
       klass += ' usa-input-error-label'
     }
 
+    if (this.props.disabled) {
+      klass += ' disabled'
+    }
+
     return klass.trim()
   }
 

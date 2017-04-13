@@ -49,7 +49,7 @@ describe('The relative component', () => {
     expect(component.find('.relative-maidenname').length).toEqual(1)
   })
 
-  it('display items specific to immediate family', () => {
+  it('display items specific to immediate relationships', () => {
     const expected = {
       name: 'relative'
     }
@@ -178,7 +178,7 @@ describe('The relative component', () => {
     expect(component.find('.relative-maidenname').length).toBeGreaterThan(0)
     component.find('.relative-maidenname .last input').simulate('change', { target: { value: 'maidenname' } })
 
-    // Is immediate family
+    // Is immediate relationships
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)
     component.find('.relative-alias .branch .yes input').simulate('change')
     component.find('.alias-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader } from '../../Form'
+import { ValidationElement, IntroHeader, Show } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -11,7 +11,7 @@ import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
 import ExistingConditions from './ExistingConditions/ExistingConditions'
-import { PsychologicalValidator } from '../../../validators'
+import PsychologicalValidator, { showQuestion21E } from '../../../validators/psychological'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -67,6 +67,20 @@ class Psychological extends ValidationElement {
     }
 
     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  }
+
+  diagnosesNextLabel () {
+    if (this.props.ShowExistingConditions) {
+      return i18n.t('psychological.destination.existingConditions')
+    }
+    return i18n.t('psychological.destination.review')
+  }
+
+  diagnosesNext () {
+    if (this.props.ShowExistingConditions) {
+      return 'psychological/conditions'
+    }
+    return 'psychological/review'
   }
 
   /**
@@ -149,8 +163,8 @@ class Psychological extends ValidationElement {
           <SectionView name="diagnoses"
             back="psychological/hospitalizations"
             backLabel={ i18n.t('psychological.destination.hospitalization') }
-            next="psychological/conditions"
-            nextLabel={ i18n.t('psychological.destination.existingConditions') }>
+            next={this.diagnosesNext()}
+            nextLabel={this.diagnosesNextLabel()}>
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
               onValidate={this.onValidate}
@@ -193,11 +207,13 @@ class Psychological extends ValidationElement {
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
 
-            <ExistingConditions name="ExistingConditions"
-              {...this.props.ExistingConditions}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
-            />
+            <Show when={this.props.ShowExistingConditions}>
+              <ExistingConditions name="ExistingConditions"
+                {...this.props.ExistingConditions}
+                onValidate={this.onValidate}
+                onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+              />
+            </Show>
           </SectionView>
 
         </SectionViews>
@@ -221,7 +237,8 @@ function mapStateToProps (state) {
     Diagnoses: psychological.Diagnoses,
     ExistingConditions: psychological.ExistingConditions,
     Errors: errors.financial || [],
-    Completed: completed.psychological || []
+    Completed: completed.psychological || [],
+    ShowExistingConditions: showQuestion21E(psychological)
   }
 }
 

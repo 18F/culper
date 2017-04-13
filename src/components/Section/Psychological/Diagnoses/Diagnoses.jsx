@@ -124,51 +124,54 @@ export default class Diagnoses extends ValidationElement {
         </Branch>
 
         <Show when={this.state.Diagnosed === 'Yes'}>
-          <Accordion minimum="1"
-            items={this.state.DiagnosisList}
-            onUpdate={this.updateDiagnosisList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
-            <Diagnosis name="Diagnosis"
-              bind={true} />
-          </Accordion>
+          <div>
+            <Accordion minimum="1"
+              items={this.state.DiagnosisList}
+              onUpdate={this.updateDiagnosisList}
+              summary={this.summary}
+              onValidate={this.handleValidation}
+              appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
+              appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
+              appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
+              <Diagnosis name="Diagnosis"
+                bind={true} />
+            </Accordion>
+
+            <h3>{i18n.t('psychological.diagnoses.heading.didNotConsult')}</h3>
+            <Branch name="didNotConsult"
+              className="didnotconsult"
+              value={this.state.DidNotConsult}
+              help="psychological.diagnoses.help.didNotConsult"
+              onValidate={this.handleValidation}
+              onUpdate={this.updateDidNotConsult}>
+            </Branch>
+
+            <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
+            <Branch name="inTreatment"
+              className="intreatment"
+              value={this.state.InTreatment}
+              help="psychological.diagnoses.help.inTreatment"
+              onValidate={this.handleValidation}
+              onUpdate={this.updateInTreatment}>
+            </Branch>
+
+            <Show when={this.state.InTreatment === 'Yes'}>
+              <Accordion minimum="1"
+                items={this.state.TreatmentList}
+                onUpdate={this.updateTreatmentList}
+                summary={this.treatmentSummary}
+                onValidate={this.handleValidation}
+                appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
+                appendMessage={i18n.m('psychological.diagnoses.treatment.collection.appendMessage')}
+                appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
+                <Treatment name="Treatment"
+                  prefix="diagnoses.professional"
+                  bind={true} />
+              </Accordion>
+            </Show>
+          </div>
         </Show>
 
-        <h3>{i18n.t('psychological.diagnoses.heading.didNotConsult')}</h3>
-        <Branch name="didNotConsult"
-          className="didnotconsult"
-          value={this.state.DidNotConsult}
-          help="psychological.diagnoses.help.didNotConsult"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateDidNotConsult}>
-        </Branch>
-
-        <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
-        <Branch name="inTreatment"
-          className="intreatment"
-          value={this.state.InTreatment}
-          help="psychological.diagnoses.help.inTreatment"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateInTreatment}>
-        </Branch>
-
-        <Show when={this.state.InTreatment === 'Yes'}>
-          <Accordion minimum="1"
-            items={this.state.TreatmentList}
-            onUpdate={this.updateTreatmentList}
-            summary={this.treatmentSummary}
-            onValidate={this.handleValidation}
-            appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.diagnoses.treatment.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
-            <Treatment name="Treatment"
-              prefix="diagnoses.professional"
-              bind={true} />
-          </Accordion>
-        </Show>
       </div>
     )
   }

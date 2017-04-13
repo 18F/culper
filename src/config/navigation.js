@@ -1,3 +1,5 @@
+import { hideExistingConditions } from '../validators/psychological'
+
 const navigation = [
   {
     name: 'Information about you',
@@ -29,9 +31,9 @@ const navigation = [
     ]
   },
   {
-    name: 'Family & friends',
-    title: 'Family & friends',
-    url: 'family',
+    name: 'Relationships',
+    title: 'Relationships',
+    url: 'relationships',
     hidden: false,
     subsections: [
       { hidden: true, name: 'Marital status', url: 'marital' },
@@ -120,7 +122,7 @@ const navigation = [
       { name: 'Consultations', url: 'consultations' },
       { name: 'Hospitalizations', url: 'hospitalizations' },
       { name: 'Diagnoses', url: 'diagnoses' },
-      { name: 'Existing Conditions', url: 'conditions' }
+      { name: 'Existing Conditions', url: 'conditions', hiddenFunc: hideExistingConditions }
     ]
   }
 ]
