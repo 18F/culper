@@ -175,6 +175,8 @@ export default class Number extends ValidationElement {
       if (this.state.error) {
         klass += ' usa-input-error-label'
       }
+    } else {
+      klass += ' disabled'
     }
 
     return klass.trim()

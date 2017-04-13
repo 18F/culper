@@ -66,6 +66,10 @@ export default class Checkbox extends ValidationElement {
       klass += ' extended'
     }
 
+    if (this.props.disabled) {
+      klass += ' disabled'
+    }
+
     if (this.state.error) {
       klass += ' usa-input-error'
     }

@@ -8,7 +8,6 @@ export default class Radio extends ValidationElement {
     this.state = {
       uid: super.guid(),
       checked: props.checked,
-      disabled: props.disabled,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -96,6 +95,10 @@ export default class Radio extends ValidationElement {
 
     if (this.props.children) {
       klass += ' extended'
+    }
+
+    if (this.props.disabled) {
+      klass += ' disabled'
     }
 
     if (this.state.error) {
