@@ -46,6 +46,8 @@ import PetitionType from './PetitionType'
 import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
+import SSN from './SSN'
+import BirthPlace from './BirthPlace'
 
 export {
   ValidationElement,
@@ -91,5 +93,7 @@ export {
   Suggestions,
   NotApplicable,
   Accordion,
-  Field
+  Field,
+  SSN,
+  BirthPlace
 }

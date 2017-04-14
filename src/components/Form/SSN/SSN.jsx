@@ -1,9 +1,12 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { api } from '../../../../services/api'
-import { ValidationElement, Field, Text, Checkbox } from '../../../Form'
+import { i18n } from '../../../config'
+import { api } from '../../../services/api'
+import ValidationElement from '../ValidationElement'
+import Field from '../Field'
+import Text from '../Text'
+import Checkbox from '../Checkbox'
 
-export default class ApplicantSSN extends ValidationElement {
+export default class SSN extends ValidationElement {
   constructor (props) {
     super(props)
 
