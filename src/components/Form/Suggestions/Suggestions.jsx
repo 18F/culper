@@ -1,5 +1,4 @@
 import React from 'react'
-import { Help } from '../Help'
 import { newGuid } from '../ValidationElement'
 
 export default class Suggestions extends React.Component {
@@ -76,16 +75,14 @@ export default class Suggestions extends React.Component {
               <h3>{this.props.suggestionTitle}</h3>
               {this.props.suggestionParagraph}
               <div className={klass}>
-                <Help>
-                  {this.suggestions()}
-                  <div className="dismiss">
-                    {this.props.suggestionDismissContent}
-                    <a href="javascript:;;" onClick={this.dismissSuggestions}>
-                      <span>{this.props.suggestionDismissLabel}</span>
-                      <i className="fa fa-arrow-circle-right"></i>
-                    </a>
-                  </div>
-                </Help>
+                {this.suggestions()}
+                <div className="dismiss">
+                  {this.props.suggestionDismissContent}
+                  <a href="javascript:;;" onClick={this.dismissSuggestions}>
+                    <span>{this.props.suggestionDismissLabel}</span>
+                    <i className="fa fa-arrow-circle-right"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
