@@ -336,5 +336,6 @@ Field.defaultProps = {
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
-  shrink: false
+  shrink: false,
+  scrollIntoView: true
 }
