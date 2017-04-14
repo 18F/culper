@@ -2,11 +2,13 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import { dateSummary } from '../../History/dateranges'
+import CitizenshipItem from './CitizenshipItem'
 
 /**
  * Convenience function to send updates along their merry way
  */
-const sendUpdate = (fn, name, props) => {
+export const sendUpdate = (fn, name, props) => {
   if (fn) {
     fn({
       name: name,
@@ -91,12 +93,12 @@ export default class Multiple extends ValidationElement {
     const itemProperties = (item || {}).Item || {}
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
-          : i18n.t('citizenship.multiple.collection.citizenships.summary.unknown')
-    const dates = ''
+          : i18n.t('citizenship.multiple.collection.citizenship.summary.unknown')
+    const dates = dateSummary(itemProperties)
 
     return (
       <span>
-        <span className="index">{i18n.t('citizenship.multiple.collection.citizenships.summary.item')} {index + 1}:</span>
+        <span className="index">{i18n.t('citizenship.multiple.collection.citizenship.summary.item')} {index + 1}:</span>
         <span><strong>{country}</strong></span>
         <span className="dates"><strong>{dates}</strong></span>
       </span>
@@ -107,12 +109,12 @@ export default class Multiple extends ValidationElement {
     const itemProperties = (item || {}).Item || {}
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
-          : i18n.t('citizenship.multiple.collection.passports.summary.unknown')
-    const dates = ''
+          : i18n.t('citizenship.multiple.collection.passport.summary.unknown')
+    const dates = dateSummary(itemProperties)
 
     return (
       <span>
-        <span className="index">{i18n.t('citizenship.multiple.collection.passports.summary.item')} {index + 1}:</span>
+        <span className="index">{i18n.t('citizenship.multiple.collection.passport.summary.item')} {index + 1}:</span>
         <span><strong>{country}</strong></span>
         <span className="dates"><strong>{dates}</strong></span>
       </span>
@@ -138,10 +140,11 @@ export default class Multiple extends ValidationElement {
                      onUpdate={this.updateCitizenships}
                      onValidate={this.handleValidation}
                      summary={this.summaryCitizenships}
-                     description={i18n.t('citizenship.multiple.collection.citizenships.summary.title')}
-                     appendTitle={i18n.t('citizenship.multiple.collection.citizenships.appendTitle')}
-                     appendMessage={i18n.m('citizenship.multiple.collection.citizenships.appendMessage')}
-                     appendLabel={i18n.t('citizenship.multiple.collection.citizenships.append')}>
+                     description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
+                     appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
+                     appendMessage={i18n.m('citizenship.multiple.collection.citizenship.appendMessage')}
+                     appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}>
+            <CitizenshipItem name="Item" bind={true} />
           </Accordion>
         </Show>
 
@@ -161,10 +164,10 @@ export default class Multiple extends ValidationElement {
                      onUpdate={this.updatePassports}
                      onValidate={this.handleValidation}
                      summary={this.summaryPassports}
-                     description={i18n.t('citizenship.multiple.collection.passports.summary.title')}
-                     appendTitle={i18n.t('citizenship.multiple.collection.passports.appendTitle')}
-                     appendMessage={i18n.m('citizenship.multiple.collection.passports.appendMessage')}
-                     appendLabel={i18n.t('citizenship.multiple.collection.passports.append')}>
+                     description={i18n.t('citizenship.multiple.collection.passport.summary.title')}
+                     appendTitle={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
+                     appendMessage={i18n.m('citizenship.multiple.collection.passport.appendMessage')}
+                     appendLabel={i18n.t('citizenship.multiple.collection.passport.append')}>
           </Accordion>
         </Show>
       </div>
