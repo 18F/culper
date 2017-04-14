@@ -4,6 +4,7 @@ import { CitizenshipMultipleValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import { dateSummary } from '../../History/summaries'
 import CitizenshipItem from './CitizenshipItem'
+import PassportItem from './PassportItem'
 
 /**
  * Convenience function to send updates along their merry way
@@ -110,7 +111,7 @@ export default class Multiple extends ValidationElement {
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
           : i18n.t('citizenship.multiple.collection.passport.summary.unknown')
-    const dates = dateSummary(itemProperties)
+    const dates = dateSummary({ Date: itemProperties.Issued })
 
     return (
       <span>
@@ -168,6 +169,7 @@ export default class Multiple extends ValidationElement {
                      appendTitle={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
                      appendMessage={i18n.m('citizenship.multiple.collection.passport.appendMessage')}
                      appendLabel={i18n.t('citizenship.multiple.collection.passport.append')}>
+            <PassportItem name="Item" bind={true} />
           </Accordion>
         </Show>
       </div>

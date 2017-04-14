@@ -1642,6 +1642,16 @@ const en = {
           appendTitle: 'Do you have an additional citizenship to provide?',
           appendMessage: 'If yes use the button below to add another',
           append: 'Add another citizenship'
+        },
+        passport: {
+          summary: {
+            title: 'Summary of foreign passports',
+            item: 'Country',
+            unknown: 'Provide passport details below'
+          },
+          appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
+          appendMessage: 'If yes use the button below to add another foreign passport',
+          append: 'Add another foreign passport'
         }
       },
       help: {
