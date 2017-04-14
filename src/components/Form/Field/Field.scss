@@ -262,3 +262,22 @@
     }
   }
 }
+
+// Handle when multiplicity
+.field {
+  .field {
+    margin-bottom: 0;
+
+    > .title {
+      width: 100%;
+    }
+
+    > .table > .content > .component {
+      width: 100%;
+    }
+
+    > .messages > .message {
+      width: 100%;
+    }
+  }
+}
