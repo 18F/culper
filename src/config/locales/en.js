@@ -1679,7 +1679,7 @@ const en = {
             item: 'Country',
             unknown: 'Provide travel details below'
           },
-          append: 'Add another foreign passport'
+          append: 'Add another foreign travel'
         }
       },
       help: {
