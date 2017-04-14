@@ -1405,6 +1405,230 @@ const en = {
     }
   },
 
+  citizenship: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with citizenship at once'
+    },
+    destination: {
+      review: 'Review Citizenship',
+      status: 'Citizenship status',
+      multiple: 'Dual/multiple citizenship'
+    },
+    status: {
+      heading: {
+        title: 'Citizenship Status',
+        citizenshipstatus: 'Provide your current citizenship status',
+        abroad: 'Provide type of documentation of U.S. citizen born abroad',
+        documentnumber: {
+          foreignborn: 'Provide document number for U.S. citizen born abroad',
+          notcitizen: 'Provide document number'
+        },
+        documentissued: 'Provide the date the document was issued',
+        placeissued: 'Provide the place of issuance',
+        documentname: 'Provide the name in which document was issued',
+        certificatenumber: {
+          foreignborn: 'Provide your Certificate of Citizenship number',
+          naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)',
+          derived: 'Provide your Certificate of Citizenship number (N560 or N561)'
+        },
+        certificateissued: {
+          foreignborn: 'Provide the date the certificate was issued',
+          naturalized: 'Provide the date the Certificate of Naturalization was issued',
+          derived: 'Provide the date the certificate was issued'
+        },
+        certificatename: {
+          foreignborn: 'Provide the name in which the certificate was issued',
+          naturalized: 'Provide the name in which the Certificate of Naturalization was issued',
+          derived: 'Provide the name in which the document was issued'
+        },
+        certificatecourtname: 'Provide the name of the court that issued the Certificate of Naturalization',
+        certificatecourtaddress: 'Provide the address of the court that issued the Certificate of Naturalization',
+        bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
+        militarybase: 'Provide the name of the base',
+        entrydate: 'Provide the date of entry into the U.S.',
+        entrylocation: 'Provide the location of entry into the U.S.',
+        priorcitizenship: {
+          naturalized: 'Provide countrny(ies) of prior citizenship',
+          notcitizen: 'Provide your countr(ies) of citizenship'
+        },
+        hasalienregistration: 'Do/did you have a U.S. alien registration number?',
+        alienregistrationnumber: {
+          naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
+          notcitizen: 'Provide your alien registration number (I-551, I-766)'
+        },
+        alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
+        basis: {
+          naturalized: 'Provide the basis of naturalization',
+          derived: 'Provide the basis of derived citizenship'
+        },
+        permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)',
+        residencestatus: 'Provide your residence status',
+        documentexpiration: 'Provide document expiration date',
+        documenttype: 'Provide type of document issued'
+      },
+      label: {
+        citizenshipstatus: {
+          citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
+          foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
+          naturalized: 'I am a naturalized U.S. citizen',
+          derived: 'I am a derived U.S. citizen',
+          notcitizen: 'I am not a U.S. citizen'
+        },
+        abroad: {
+          fs240: 'FS-240',
+          ds1350: 'DS-1350',
+          fs545: 'FS-545',
+          other: 'Other'
+        },
+        basis: {
+          naturalized: 'Based on my own individual naturalization application',
+          derived: 'By operation of law through my U.S. citizen parent',
+          other: 'Other'
+        },
+        documenttype: {
+          i94: 'I-94',
+          visa: 'U.S. Visa',
+          i20: 'I-20',
+          ds2019: 'DS-2019',
+          other: 'Other'
+        }
+      },
+      help: {
+        citizenshipstatus: {
+          title: 'Need help with your citizenship status?',
+          message: 'Select the box that reflects your current citizenship status',
+          note: ''
+        },
+        abroad: {
+          title: 'Need help with documentation of U.S. citizen born abroad?',
+          message: 'Select the type of documentation',
+          note: ''
+        },
+        documentnumber: {
+          title: 'Need help with the document number?',
+          message: 'Provide the document number',
+          note: ''
+        },
+        documentissued: {
+          title: 'Need help with the date the documentation was issued?',
+          message: 'Provide the approximate date the documenation was issued',
+          note: ''
+        },
+        placeissued: {
+          title: 'Need help with the place the documentation was issued?',
+          message: 'Provide the place where the documentation was issued',
+          note: ''
+        },
+        documentname: {
+          title: 'Need help with the name on the documentation?',
+          message: 'Provide the name on the documentation',
+          note: ''
+        },
+        certificatenumber: {
+          title: 'Need help with the certificate number?',
+          message: 'Provide the certificate number',
+          note: ''
+        },
+        certificateissued: {
+          title: 'Need help with the date the certificate was issued?',
+          message: 'Provide the approximate date the certificate was issued',
+          note: ''
+        },
+        certificatename: {
+          title: 'Need help with the name on the certificate?',
+          message: 'Provide the name on the certificate',
+          note: ''
+        },
+        bornonmilitaryinstallation: {
+          title: 'Need help with if you were born on a military installation?',
+          message: 'If you were born on a military installation select "yes"',
+          note: ''
+        },
+        militarybase: {
+          title: 'Need help with military base?',
+          message: 'Provide the name of the military base',
+          note: ''
+        },
+        entrydate: {
+          title: 'Need help with the date of entry in to the U.S.?',
+          message: 'Provide the approximate date of entry',
+          note: ''
+        },
+        entrylocation: {
+          title: 'Need help with the location of entry?',
+          message: 'Provide the location of entry in to the U.S.',
+          note: ''
+        },
+        priorcitizenship: {
+          title: 'Need help with prior citizenship(s)?',
+          message: 'Provide any prior citizenships',
+          note: ''
+        },
+        hasalienregistration: {
+          title: 'Need help if you have an alien registration number?',
+          message: 'If you have an alien registration number select "Yes"',
+          note: ''
+        },
+        alienregistrationnumber: {
+          title: 'Need help with your alien registration number?',
+          message: 'Provide the alien registration number',
+          note: ''
+        },
+        alienregistrationexpiration: {
+          title: 'Need help with your alien registration expiration date?',
+          message: 'Provide the date of expiration for the alien registration',
+          note: ''
+        },
+        certificatecourtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the court name',
+          note: ''
+        },
+        certificatecourtaddress: {
+          title: 'Need help with address of the court who issued the certificate?',
+          message: 'Provide the address of the court who issued the certificate',
+          note: ''
+        },
+        basis: {
+          naturalized: {
+            title: 'Need help with the basis of naturalization?',
+            message: 'Provide the basis of naturalization',
+            note: ''
+          },
+          derived: {
+            title: 'Need help with the basis of derived citizenship?',
+            message: 'Provide the basis of the derive citizenship',
+            note: ''
+          }
+        },
+        permanentresidentcardnumber: {
+          title: 'Need help with your permaenent resident card?',
+          message: 'Provide your permanent resident card number',
+          note: ''
+        },
+        residencestatus: {
+          title: 'Need help with your residence status?',
+          message: 'Provide your residence status',
+          note: ''
+        },
+        documentexpiration: {
+          title: 'Need help with the documentation expiration date?',
+          message: 'Provide the approximate date of expiration',
+          note: ''
+        },
+        documenttype: {
+          title: 'Need help with the type of documentation?',
+          message: 'Provide the type of documentation',
+          note: ''
+        }
+      }
+    }
+  },
+
   relationships: {
     tour: {
       para: 'Take a guided tour through the section'

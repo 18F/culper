@@ -33,7 +33,7 @@ export default class Branch extends React.Component {
         </div>
         <div>
           <Field title={this.props.label}
-                 titleSize="label"
+                 titleSize={this.props.labelSize}
                  help={this.props.help}
                  adjustFor={adjustFor}
                  shrink={true}>
@@ -66,5 +66,6 @@ Branch.defaultProps = {
   yesValue: 'Yes',
   noLabel: 'No',
   noValue: 'No',
+  labelSize: 'label',
   value: null
 }
