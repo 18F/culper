@@ -443,6 +443,12 @@ describe('citizenship component validation', function () {
           AlienRegistrationNumber: {
             value: 'number'
           },
+          AlienRegistrationExpiration: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
           DocumentType: 'Other',
           Explanation: {
             value: 'Explanation'

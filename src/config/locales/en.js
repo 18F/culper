@@ -1450,13 +1450,14 @@ const en = {
           derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
           notcitizen: 'Provide your alien registration number (I-551, I-766)'
         },
+        alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
         basis: {
           naturalized: 'Provide the basis of naturalization',
           derived: 'Provide the basis of derived citizenship'
         },
         permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)',
         residencestatus: 'Provide your residence status',
-        documentexpiration: 'Provide documen expiration date',
+        documentexpiration: 'Provide document expiration date',
         documenttype: 'Provide type of document issued'
       },
       label: {
@@ -1544,69 +1545,74 @@ const en = {
         },
         entrydate: {
           title: 'Need help with the date of entry in to the U.S.?',
-          message: '',
+          message: 'Provide the approximate date of entry',
           note: ''
         },
         entrylocation: {
           title: 'Need help with the location of entry?',
-          message: '',
+          message: 'Provide the location of entry in to the U.S.',
           note: ''
         },
         priorcitizenship: {
           title: 'Need help with prior citizenship(s)?',
-          message: '',
+          message: 'Provide any prior citizenships',
           note: ''
         },
         hasalienregistration: {
           title: 'Need help if you have an alien registration number?',
-          message: '',
+          message: 'If you have an alien registration number select "Yes"',
           note: ''
         },
         alienregistrationnumber: {
           title: 'Need help with your alien registration number?',
-          message: '',
+          message: 'Provide the alien registration number',
+          note: ''
+        },
+        alienregistrationexpiration: {
+          title: 'Need help with your alien registration expiration date?',
+          message: 'Provide the date of expiration for the alien registration',
           note: ''
         },
         certificatecourtname: {
           title: 'Need help with the court name?',
-          message: '',
+          message: 'Provide the court name',
           note: ''
         },
         certificatecourtaddress: {
           title: 'Need help with address of the court who issued the certificate?',
-          message: '',
+          message: 'Provide the address of the court who issued the certificate',
           note: ''
         },
         basis: {
           naturalized: {
             title: 'Need help with the basis of naturalization?',
-            message: '',
+            message: 'Provide the basis of naturalization',
             note: ''
           },
           derived: {
             title: 'Need help with the basis of derived citizenship?',
-            message: '',
+            message: 'Provide the basis of the derive citizenship',
             note: ''
           }
         },
         permanentresidentcardnumber: {
           title: 'Need help with your permaenent resident card?',
-          message: '',
+          message: 'Provide your permanent resident card number',
           note: ''
         },
         residencestatus: {
           title: 'Need help with your residence status?',
-          message: '',
+          message: 'Provide your residence status',
           note: ''
         },
         documentexpiration: {
-          title: '',
-          message: '',
+          title: 'Need help with the documentation expiration date?',
+          message: 'Provide the approximate date of expiration',
           note: ''
         },
         documenttype: {
-          title: '',
-          message: '',
+          title: 'Need help with the type of documentation?',
+          message: 'Provide the type of documentation',
           note: ''
         }
       }
