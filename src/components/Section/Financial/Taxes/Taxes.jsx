@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { TaxesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
-         Checkbox, Text, Textarea } from '../../../Form'
+         Checkbox, Text, Textarea, NotApplicable } from '../../../Form'
 import FailureType from './FailureType'
 
 export default class Taxes extends ValidationElement {
@@ -187,13 +187,18 @@ export default class Taxes extends ValidationElement {
 
             <Field title={i18n.t('financial.taxes.heading.date')}
                    help="financial.taxes.help.date"
-                   adjustFor="labels"
+                   adjustFor="buttons"
                    shrink={true}>
-              <DateControl name="Date"
-                           className="taxes-date"
-                           hideDay={true}
-                           bind={true}
-                           />
+              <NotApplicable name="DateNotApplicable"
+                             label={i18n.t('financial.taxes.label.notapplicable')}
+                             or={i18n.m('financial.taxes.para.or')}
+                             bind={true}>
+                <DateControl name="Date"
+                             className="taxes-date"
+                             hideDay={true}
+                             bind={true}
+                             />
+              </NotApplicable>
             </Field>
 
             <Field title={i18n.t('financial.taxes.heading.description')}

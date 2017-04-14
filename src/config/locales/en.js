@@ -1011,7 +1011,11 @@ const en = {
         file: 'File',
         pay: 'Pay',
         both: 'Both',
-        estimated: 'Estimated'
+        estimated: 'Estimated',
+        notapplicable: 'Not applicable'
+      },
+      para: {
+        or: 'or'
       },
       placeholder: {
         year: '2016',
