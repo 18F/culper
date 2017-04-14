@@ -1630,6 +1630,20 @@ const en = {
           renouncedexplanation: 'Provide explanation',
           current: 'Do you currently hold citizenship with this country?',
           currentexplanation: 'Provide explanation'
+        },
+        hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
+        passport: {
+          country: 'Provide the country in which the passport (or identity card) was issued',
+          issued: 'Provide the date the passport (or identity card) was issued',
+          location: 'Provide the place the passport (or identity card) was issued',
+          name: 'Provide the name in which passport (or identity card) was issued',
+          number: 'Provide the passport (or identity card) number',
+          expiration: 'Provide the passport (or identity card) expiration date',
+          used: 'Have you EVER used this passport (or identity card) for foreign travel?'
+        },
+        travel: {
+          country: 'Provide the country to which you traveled on this passport (or identity card)',
+          dates: 'Provide the dates involved'
         }
       },
       collection: {
@@ -1651,6 +1665,14 @@ const en = {
           },
           appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
           appendMessage: 'If yes use the button below to add another foreign passport',
+          append: 'Add another foreign passport'
+        },
+        travel: {
+          summary: {
+            title: 'Summary of foreign travel',
+            item: 'Country',
+            unknown: 'Provide travel details below'
+          },
           append: 'Add another foreign passport'
         }
       },
@@ -1694,6 +1716,60 @@ const en = {
           currentexplanation: {
             title: 'Need help explaining your current citizenship?',
             message: 'Provide the explanation for the current citizenship',
+            note: ''
+          }
+        },
+        hasforeignpassport: {
+          title: 'Need help with foreign passports or identity cards?',
+          message: 'If you have ever had a foreign passport or identity card then select "yes"',
+          note: ''
+        },
+        passport: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          issued: {
+            title: 'Need help with the dates issued?',
+            message: 'Provide the approximate date the item was issued',
+            note: ''
+          },
+          location: {
+            title: 'Need help with the place it was issued?',
+            message: 'Provide the location the passport (or identity card) was issued',
+            note: ''
+          },
+          name: {
+            title: 'Need help with the name?',
+            message: 'Provide the name on the passport (or identity card)',
+            note: ''
+          },
+          number: {
+            title: 'Need help with the passport number?',
+            message: 'Provide the passport (or identity card) number',
+            note: ''
+          },
+          expiration: {
+            title: 'Need help with the expiration date?',
+            message: 'Provide the approximate date the item expires',
+            note: ''
+          },
+          used: {
+            title: 'Need help determining if the passport was used?',
+            message: 'If you have used the passport for travel then select "yes"',
+            note: ''
+          }
+        },
+        travel: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates',
             note: ''
           }
         }
