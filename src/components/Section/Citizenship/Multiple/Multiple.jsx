@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
-import { dateSummary } from '../../History/dateranges'
+import { dateSummary } from '../../History/summaries'
 import CitizenshipItem from './CitizenshipItem'
 
 /**

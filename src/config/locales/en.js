@@ -1616,6 +1616,78 @@ const en = {
           note: ''
         }
       }
+    },
+
+    multiple: {
+      heading: {
+        title: 'Dual/Multiple citizenship & foreign passport information',
+        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
+        citizenship: {
+          country: 'Provide country of citizenship',
+          dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
+          how: 'How did ou acquire this non-U.S. citizenship you now have or previously had?',
+          renounce: 'Have you taken any action to renounce your foreign citizenship?',
+          renouncedexplanation: 'Provide explanation',
+          current: 'Do you currently hold citizenship with this country?',
+          currentexplanation: 'Provide explanation'
+        }
+      },
+      collection: {
+        citizenship: {
+          summary: {
+            title: 'Summary of dual/multiple citizenships',
+            item: 'Country',
+            unknown: 'Provide citizenship details below'
+          },
+          appendTitle: 'Do you have an additional citizenship to provide?',
+          appendMessage: 'If yes use the button below to add another',
+          append: 'Add another citizenship'
+        }
+      },
+      help: {
+        hasmultiple: {
+          title: 'Need help with multilpe citizenships?',
+          message: 'If you have ever had a non-U.S. citizenship then select "yes"',
+          note: ''
+        },
+        citizenship: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates',
+            note: ''
+          },
+          how: {
+            title: 'Need help with the how you acquired this citizenship?',
+            message: 'Provide the how you acquired this citizenship',
+            note: ''
+          },
+          renounce: {
+            title: 'Need help with the renouncement?',
+            message: 'If you have renounced this citizenship select "yes"',
+            note: ''
+          },
+          renouncedexplanation: {
+            title: 'Need help explaining your renouncement?',
+            message: 'Provide the explanation for the renouncement',
+            note: ''
+          },
+          current: {
+            title: 'Need help with the current citizenship?',
+            message: 'If you still retain citizenship select "yes"',
+            note: ''
+          },
+          currentexplanation: {
+            title: 'Need help explaining your current citizenship?',
+            message: 'Provide the explanation for the current citizenship',
+            note: ''
+          }
+        }
+      }
     }
   },
 
