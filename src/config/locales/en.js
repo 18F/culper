@@ -307,7 +307,10 @@ const en = {
       number: {
         pattern: {
           title: 'Passport number not in acceptable format',
-          message: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.',
+          message: [
+            'For passport books the number will start with a letter and then 6 to 9 digits.',
+            'For passport cards the number begins with a "C" and followed by 8 digits.'
+          ],
           note: ''
         }
       }
@@ -533,7 +536,10 @@ const en = {
       middle: {
         help: {
           title: 'Need help with your middle name?',
-          message: 'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.  <br>If you do not have a middle name leave this field empty and check the "No middle name" checkbox.',
+          message: [
+            'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+            'If you do not have a middle name leave this field empty and check the "No middle name" checkbox.'
+          ],
           note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
