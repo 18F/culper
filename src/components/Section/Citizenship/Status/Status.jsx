@@ -38,6 +38,7 @@ export default class Status extends ValidationElement {
       PriorCitizenship: props.PriorCitizenship,
       HasAlienRegistration: props.HasAlienRegistration,
       AlienRegistrationNumber: props.AlienRegistrationNumber,
+      AlienRegistrationExiration: props.AlienRegistrationExiration,
       CertificateCourtName: props.CertificateCourtName,
       CertificateCourtAddress: props.CertificateCourtAddress,
       Basis: props.Basis,
@@ -66,6 +67,7 @@ export default class Status extends ValidationElement {
     this.updatePriorCitizenship = this.updatePriorCitizenship.bind(this)
     this.updateHasAlienRegistration = this.updateHasAlienRegistration.bind(this)
     this.updateAlienRegistrationNumber = this.updateAlienRegistrationNumber.bind(this)
+    this.updateAlienRegistrationExpiration = this.updateAlienRegistrationExpiration.bind(this)
     this.updateCertificateCourtName = this.updateCertificateCourtName.bind(this)
     this.updateCertificateCourtAddress = this.updateCertificateCourtAddress.bind(this)
     this.updateBasis = this.updateBasis.bind(this)
@@ -178,6 +180,10 @@ export default class Status extends ValidationElement {
 
   updateAlienRegistrationNumber (values) {
     this.onUpdate('AlienRegistrationNumber', values)
+  }
+
+  updateAlienRegistrationExpiration (values) {
+    this.onUpdate('AlienRegistrationExpiration', values)
   }
 
   updateCertificateCourtName (values) {
@@ -663,14 +669,14 @@ export default class Status extends ValidationElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentexpiration')}
-                   help="citizenship.status.help.documentexpiration"
+            <Field title={i18n.t('citizenship.status.heading.alienregistrationexpiration')}
+                   help="citizenship.status.help.alienregistrationexpiration"
                    adjustFor="labels"
                    shrink={true}>
-              <DateControl name="DocumentExpiration"
-                           className="document-expiration"
-                           {...this.state.DocumentExpiration}
-                           onUpdate={this.updateDocumentExpiration}
+              <DateControl name="AlienRegistrationExpiration"
+                           className="alient-registration-expiration"
+                           {...this.state.AlienRegistrationExpiration}
+                           onUpdate={this.updateAlienRegistrationExpiration}
                            onValidate={this.handleValidation}
                            />
             </Field>
@@ -749,6 +755,18 @@ export default class Status extends ValidationElement {
                            onValidate={this.handleValidation}
                            />
             </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.documentexpiration')}
+                   help="citizenship.status.help.documentexpiration"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="DocumentExpiration"
+                           className="document-expiration"
+                           {...this.state.DocumentExpiration}
+                           onUpdate={this.updateDocumentExpiration}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
           </div>
         </Show>
       </div>
@@ -774,6 +792,7 @@ Status.defaultProps = {
   PriorCitizenship: [],
   HasAlienRegistration: '',
   AlienRegistrationNumber: {},
+  AlienRegistrationExpiration: {},
   CertificateCourtName: {},
   CertificateCourtAddress: {},
   Basis: '',

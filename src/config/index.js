@@ -1,4 +1,4 @@
 import env from './environment'
-import { i18n, markdown, markdownById } from './locales'
+import { i18n, markdown } from './locales'
 import navigation from './navigation'
-export { env, i18n, markdown, markdownById, navigation }
+export { env, i18n, markdown, navigation }

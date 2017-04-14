@@ -26,6 +26,7 @@ export default class CitizenshipValidator {
     this.priorCitizenship = state.PriorCitizenship
     this.hasAlienRegistration = state.HasAlienRegistration
     this.alienRegistrationNumber = state.AlienRegistrationNumber
+    this.alienRegistrationExpiration = state.AlienRegistrationExpiration
     this.basis = state.Basis
     this.permanentResidentCardNumber = state.PermanentResidentCardNumber
     this.residenceStatus = state.ResidenceStatus
@@ -91,11 +92,12 @@ export default class CitizenshipValidator {
       new AddressValidator(this.entryLocation, null).isValid() &&
       this.validCitizenships(this.priorCitizenship) &&
       validGenericTextfield(this.alienRegistrationNumber) &&
-      validDateField(this.documentExpiration) &&
+      validDateField(this.alienRegistrationExpiration) &&
       this.validDocumentType() &&
       validGenericTextfield(this.documentNumber) &&
       new NameValidator(this.documentName, null).isValid() &&
-      validDateField(this.documentIssued)
+      validDateField(this.documentIssued) &&
+      validDateField(this.documentExpiration)
   }
 
   validAbroadDocumentation () {
