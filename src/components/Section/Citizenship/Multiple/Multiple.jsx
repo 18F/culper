@@ -1,0 +1,180 @@
+import React from 'react'
+import { i18n } from '../../../../config'
+import { CitizenshipMultipleValidator } from '../../../../validators'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+
+/**
+ * Convenience function to send updates along their merry way
+ */
+const sendUpdate = (fn, name, props) => {
+  if (fn) {
+    fn({
+      name: name,
+      ...props
+    })
+  }
+}
+
+export default class Multiple extends ValidationElement {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      HasMultiple: props.HasMultiple,
+      Citizenships: props.Citizenships,
+      HasForeignPassport: props.HasForeignPassport,
+      Passports: props.Passports,
+      errorCodes: []
+    }
+
+    this.onUpdate = this.onUpdate.bind(this)
+    this.updateHasMultiple = this.updateHasMultiple.bind(this)
+    this.updateCitizenships = this.updateCitizenships.bind(this)
+    this.updateHasForeignPassport = this.updateHasForeignPassport.bind(this)
+    this.updatePassports = this.updatePassports.bind(this)
+  }
+
+  /**
+   * Handle the validation event.
+   */
+  handleValidation (event, status, error) {
+    if (!event) {
+      return
+    }
+
+    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.isValid()) {
+      complexStatus = true
+    }
+
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
+      super.handleValidation(event, statusObject, errorObject)
+    })
+  }
+
+  /**
+   * Determine if all items in the collection are considered to be in
+   * a valid state.
+   */
+  isValid () {
+    return new CitizenshipMultipleValidator(this.state, null).isValid()
+  }
+
+  onUpdate (name, values) {
+    this.setState({ [name]: values }, () => {
+      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+    })
+  }
+
+  updateHasMultiple (values) {
+    this.onUpdate('HasMultiple', values)
+  }
+
+  updateCitizenships (values) {
+    this.onUpdate('Citizenships', values)
+  }
+
+  updateHasForeignPassport (values) {
+    this.onUpdate('HasForeignPassport', values)
+  }
+
+  updatePassports (values) {
+    this.onUpdate('Passports', values)
+  }
+
+  summaryCitizenships (item, index) {
+    const itemProperties = (item || {}).Item || {}
+    const country = itemProperties.Country && itemProperties.Country.value
+          ? itemProperties.Country.value
+          : i18n.t('citizenship.multiple.collection.citizenships.summary.unknown')
+    const dates = ''
+
+    return (
+      <span>
+        <span className="index">{i18n.t('citizenship.multiple.collection.citizenships.summary.item')} {index + 1}:</span>
+        <span><strong>{country}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
+    )
+  }
+
+  summaryPassports (item, index) {
+    const itemProperties = (item || {}).Item || {}
+    const country = itemProperties.Country && itemProperties.Country.value
+          ? itemProperties.Country.value
+          : i18n.t('citizenship.multiple.collection.passports.summary.unknown')
+    const dates = ''
+
+    return (
+      <span>
+        <span className="index">{i18n.t('citizenship.multiple.collection.passports.summary.item')} {index + 1}:</span>
+        <span><strong>{country}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
+      </span>
+    )
+  }
+
+  render () {
+    return (
+      <div className="multiple">
+        <Branch name="has_multiple"
+                label={i18n.t('citizenship.multiple.heading.hasmultiple')}
+                labelSize="h3"
+                className="has-multiple"
+                value={this.state.HasMultiple}
+                help="citizenship.multiple.help.hasmultiple"
+                onUpdate={this.updateHasMultiple}
+                onValidate={this.handleValidation}
+                />
+
+        <Show when={this.state.HasMultiple === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.Citizenships}
+                     onUpdate={this.updateCitizenships}
+                     onValidate={this.handleValidation}
+                     summary={this.summaryCitizenships}
+                     description={i18n.t('citizenship.multiple.collection.citizenships.summary.title')}
+                     appendTitle={i18n.t('citizenship.multiple.collection.citizenships.appendTitle')}
+                     appendMessage={i18n.m('citizenship.multiple.collection.citizenships.appendMessage')}
+                     appendLabel={i18n.t('citizenship.multiple.collection.citizenships.append')}>
+          </Accordion>
+        </Show>
+
+        <Branch name="has_foreign_passport"
+                label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
+                labelSize="h3"
+                className="has-foreignpassport"
+                value={this.state.HasForeignPassport}
+                help="citizenship.multiple.help.hasforeignpassport"
+                onUpdate={this.updateHasForeignPassport}
+                onValidate={this.handleValidation}
+                />
+
+        <Show when={this.state.HasForeignPassport === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.Passports}
+                     onUpdate={this.updatePassports}
+                     onValidate={this.handleValidation}
+                     summary={this.summaryPassports}
+                     description={i18n.t('citizenship.multiple.collection.passports.summary.title')}
+                     appendTitle={i18n.t('citizenship.multiple.collection.passports.appendTitle')}
+                     appendMessage={i18n.m('citizenship.multiple.collection.passports.appendMessage')}
+                     appendLabel={i18n.t('citizenship.multiple.collection.passports.append')}>
+          </Accordion>
+        </Show>
+      </div>
+    )
+  }
+}
+
+Multiple.defaultProps = {
+  HasMultiple: '',
+  Citizenships: [],
+  HasForeignPassport: '',
+  Passports: []
+}
