@@ -1,6 +1,5 @@
 // Validation
 import ValidationElement from './ValidationElement'
-import { Help, HelpIcon } from './Help'
 
 // Basic form elements
 import Generic from './Generic'
@@ -51,8 +50,6 @@ import BirthPlace from './BirthPlace'
 
 export {
   ValidationElement,
-  Help,
-  HelpIcon,
   Generic,
   Text,
   Email,
