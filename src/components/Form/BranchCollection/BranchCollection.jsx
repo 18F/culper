@@ -86,7 +86,7 @@ export default class BranchCollection extends React.Component {
     return (
       <Branch
         name={this.props.branchName}
-        help={this.props.branchHelp}
+        help={this.props.help || this.props.branchHelp}
         onValidate={this.props.onValidate}
         {...props}
         className={props.className}
@@ -111,8 +111,10 @@ export default class BranchCollection extends React.Component {
         <div>
           {
             this.branch({
-              onUpdate: this.onDefaultBranchClick.bind(this),
-              value: null
+              label: this.props.label,
+              labelSize: this.props.labelSize,
+              value: null,
+              onUpdate: this.onDefaultBranchClick.bind(this)
             })
           }
         </div>
@@ -127,6 +129,8 @@ export default class BranchCollection extends React.Component {
         <div key={item.index}>
           {
             this.branch({
+              label: this.props.label,
+              labelSize: this.props.labelSize,
               value: 'No',
               onUpdate: this.onBranchClick.bind(this, item, 0)
             })
@@ -138,6 +142,8 @@ export default class BranchCollection extends React.Component {
     // When more than 1 item is in
     const top = (index, item) => {
       return this.branch({
+        label: this.props.label,
+        labelSize: this.props.labelSize,
         value: item[this.props.valueKey],
         onUpdate: this.onBranchClick.bind(this, item, index)
       })
@@ -153,6 +159,8 @@ export default class BranchCollection extends React.Component {
       return items.length - 1 === index
         ? this.branch({
           className: 'last-branch',
+          label: this.props.appendLabel,
+          labelSize: this.props.appendSize,
           onUpdate: this.onLastBranchClick.bind(this),
           children: this.props.branchTail || this.props.branch,
           value: value
