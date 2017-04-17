@@ -645,12 +645,12 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email address(es)?',
-          message: 'Enter your primary email address first',
+          message: 'Enter your primary email address first.',
           note: 'Note: Multiple email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
           title: 'Need help with you phone number(s)?',
-          message: 'Enter only current phone number(s)',
+          message: 'Enter only current phone number(s).',
           note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
@@ -4361,23 +4361,23 @@ const en = {
   alias: {
     maiden: {
       help: {
-        title: 'Need help with the maiden name?',
-        message: 'Select if this is your maiden name',
+        title: 'Need help with the maiden name question?',
+        message: 'Select "Yes" if this was your surname used from birth before it was legally changed at marriage.',
         note: ''
       }
     },
     reason: {
       help: {
         title: 'Need help with the explanation?',
-        message: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.',
-        note: ''
+        message: 'We want to understand why this other name was used and/or changed.',
+        note: 'Examples: Nickname used since birth, changed when married, pen name. '
       }
     },
     used: {
       help: {
-        title: 'Need help with the dates of use?',
-        message: 'Provide the full range of dates this name was used',
-        note: ''
+        title: 'Need help with the dates used range?',
+        message: 'This date range is for the full time period you used the name or people knew you by it.',
+        note: 'Example: If the name was used from your birth until the present use your birthdate for "From" and select "Present"'
       }
     }
   },
