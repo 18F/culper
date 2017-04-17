@@ -731,29 +731,35 @@ const en = {
           note: ''
         },
         height: {
-          title: 'Need help with your height?',
-          message: 'Height must be a number between 1 and 9',
+          title: 'Need help entering your height?',
+          message: [
+                    'Please use feet and inches only.',
+                    'Feet must be a number between 1 and 9. Inches must be between 0 and 11.'
+                   ],
           note: ''
         },
         weight: {
-          title: 'Need help with your weight?',
-          message: 'Weight must be a number between 10 and 999',
+          title: 'Need help entering your weight?',
+          message: [
+                    'Please use pounds only.',
+                    'Weight must be a number between 10 and 999.'
+                   ],
           note: ''
         },
         eye: {
-          title: 'Need help with your eye color?',
-          message: 'Select an eye color',
+          title: 'Need help selecting your eye color?',
+          message: 'Choose the eye color that most closely represents your eyes.',
           note: ''
         },
         hair: {
-          title: 'Need help with your hair color?',
-          message: 'Select the hair color that most closely represents your hair color',
-          note: ''
+          title: 'Need help selecting your hair color?',
+          message: 'Choose the hair color that most closely represents your hair.',
+          note: 'Note: You can select multiple colors if necessary.'
         },
         sex: {
-          title: 'Need help with you sex?',
-          message: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.',
-          note: ''
+          title: 'Need help with your sex?',
+          message: 'Please select the sex at your time of birth.',
+          note: 'Note: If additional information is appropriate please use "Add a comment" below to detail it.'
         }
       },
       label: {
