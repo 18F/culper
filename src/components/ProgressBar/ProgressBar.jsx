@@ -1,16 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { navigation } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
-const sections = ['identification', 'financial', 'relationships', 'military', 'history', 'foreign', 'legal', 'psychological']
-
 class ProgressBar extends React.Component {
+  sections () {
+    return navigation.filter(x => !x.hidden)
+  }
+
   total () {
-    return sections.length
+    return this.sections().length
   }
 
   completed () {
+    const sections = this.sections()
     let completedSections = []
+
     for (let section in this.props.completed) {
       if (this.props.completed[section].status === 'complete'
           && !completedSections.includes(section)
@@ -18,6 +23,7 @@ class ProgressBar extends React.Component {
         completedSections.push(section)
       }
     }
+
     return completedSections.length
   }
 

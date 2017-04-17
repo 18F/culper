@@ -193,3 +193,9 @@ export class BranchCollection {
 export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => {
   return (value === yesValue || value === noValue)
 }
+
+export const battery = (tests, validator, fn) => {
+  return tests.forEach((test, index) => {
+    expect(new validator(test.state, null)[fn]()).toBe(test.expected)
+  })
+}

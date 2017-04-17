@@ -52,7 +52,6 @@ const navigation = [
     name: 'Citizenship',
     title: 'Citizenship',
     url: 'citizenship',
-    hidden: true,
     subsections: [
       { name: 'Citizenship Status', url: 'status' },
       { name: 'Dual/Multiple Citizenship', url: 'multiple' }

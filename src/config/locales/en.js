@@ -307,7 +307,10 @@ const en = {
       number: {
         pattern: {
           title: 'Passport number not in acceptable format',
-          message: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.',
+          message: [
+            'For passport books the number will start with a letter and then 6 to 9 digits.',
+            'For passport cards the number begins with a "C" and followed by 8 digits.'
+          ],
           note: ''
         }
       }
@@ -533,7 +536,10 @@ const en = {
       middle: {
         help: {
           title: 'Need help with your middle name?',
-          message: 'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.  <br>If you do not have a middle name leave this field empty and check the "No middle name" checkbox.',
+          message: [
+            'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+            'If you do not have a middle name leave this field empty and check the "No middle name" checkbox.'
+          ],
           note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
@@ -639,12 +645,12 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email address(es)?',
-          message: 'Enter your primary email address first',
+          message: 'Enter your primary email address first.',
           note: 'Note: Multiple email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
           title: 'Need help with you phone number(s)?',
-          message: 'Enter only current phone number(s)',
+          message: 'Enter only current phone number(s).',
           note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
@@ -725,29 +731,35 @@ const en = {
           note: ''
         },
         height: {
-          title: 'Need help with your height?',
-          message: 'Height must be a number between 1 and 9',
+          title: 'Need help entering your height?',
+          message: [
+                    'Please use feet and inches only.',
+                    'Feet must be a number between 1 and 9. Inches must be between 0 and 11.'
+                   ],
           note: ''
         },
         weight: {
-          title: 'Need help with your weight?',
-          message: 'Weight must be a number between 10 and 999',
+          title: 'Need help entering your weight?',
+          message: [
+                    'Please use pounds only.',
+                    'Weight must be a number between 10 and 999.'
+                   ],
           note: ''
         },
         eye: {
-          title: 'Need help with your eye color?',
-          message: 'Select an eye color',
+          title: 'Need help selecting your eye color?',
+          message: 'Choose the eye color that most closely represents your eyes.',
           note: ''
         },
         hair: {
-          title: 'Need help with your hair color?',
-          message: 'Select the hair color that most closely represents your hair color',
-          note: ''
+          title: 'Need help selecting your hair color?',
+          message: 'Choose the hair color that most closely represents your hair.',
+          note: 'Note: You can select multiple colors if necessary.'
         },
         sex: {
-          title: 'Need help with you sex?',
-          message: 'This is the sex at time of birth. If additional information is appropriate please include these within the comments.',
-          note: ''
+          title: 'Need help with your sex?',
+          message: 'Please select the sex at your time of birth.',
+          note: 'Note: If additional information is appropriate please use "Add a comment" below to detail it.'
         }
       },
       label: {
@@ -1005,7 +1017,11 @@ const en = {
         file: 'File',
         pay: 'Pay',
         both: 'Both',
-        estimated: 'Estimated'
+        estimated: 'Estimated',
+        notapplicable: 'Not applicable'
+      },
+      para: {
+        or: 'or'
       },
       placeholder: {
         year: '2016',
@@ -1391,6 +1407,388 @@ const en = {
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
         appendMessage: 'If yes use the button below to add another non-payment or excessive late payment',
         append: 'Add another non-payment or excessive late payment'
+      }
+    }
+  },
+
+  citizenship: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with citizenship at once'
+    },
+    destination: {
+      review: 'Review Citizenship',
+      status: 'Citizenship status',
+      multiple: 'Dual/multiple citizenship'
+    },
+    status: {
+      heading: {
+        title: 'Citizenship Status',
+        citizenshipstatus: 'Provide your current citizenship status',
+        abroad: 'Provide type of documentation of U.S. citizen born abroad',
+        documentnumber: {
+          foreignborn: 'Provide document number for U.S. citizen born abroad',
+          notcitizen: 'Provide document number'
+        },
+        documentissued: 'Provide the date the document was issued',
+        placeissued: 'Provide the place of issuance',
+        documentname: 'Provide the name in which document was issued',
+        certificatenumber: {
+          foreignborn: 'Provide your Certificate of Citizenship number',
+          naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)',
+          derived: 'Provide your Certificate of Citizenship number (N560 or N561)'
+        },
+        certificateissued: {
+          foreignborn: 'Provide the date the certificate was issued',
+          naturalized: 'Provide the date the Certificate of Naturalization was issued',
+          derived: 'Provide the date the certificate was issued'
+        },
+        certificatename: {
+          foreignborn: 'Provide the name in which the certificate was issued',
+          naturalized: 'Provide the name in which the Certificate of Naturalization was issued',
+          derived: 'Provide the name in which the document was issued'
+        },
+        certificatecourtname: 'Provide the name of the court that issued the Certificate of Naturalization',
+        certificatecourtaddress: 'Provide the address of the court that issued the Certificate of Naturalization',
+        bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
+        militarybase: 'Provide the name of the base',
+        entrydate: 'Provide the date of entry into the U.S.',
+        entrylocation: 'Provide the location of entry into the U.S.',
+        priorcitizenship: {
+          naturalized: 'Provide countrny(ies) of prior citizenship',
+          notcitizen: 'Provide your countr(ies) of citizenship'
+        },
+        hasalienregistration: 'Do/did you have a U.S. alien registration number?',
+        alienregistrationnumber: {
+          naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
+          notcitizen: 'Provide your alien registration number (I-551, I-766)'
+        },
+        alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
+        basis: {
+          naturalized: 'Provide the basis of naturalization',
+          derived: 'Provide the basis of derived citizenship'
+        },
+        permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)',
+        residencestatus: 'Provide your residence status',
+        documentexpiration: 'Provide document expiration date',
+        documenttype: 'Provide type of document issued'
+      },
+      label: {
+        citizenshipstatus: {
+          citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
+          foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
+          naturalized: 'I am a naturalized U.S. citizen',
+          derived: 'I am a derived U.S. citizen',
+          notcitizen: 'I am not a U.S. citizen'
+        },
+        abroad: {
+          fs240: 'FS-240',
+          ds1350: 'DS-1350',
+          fs545: 'FS-545',
+          other: 'Other'
+        },
+        basis: {
+          naturalized: 'Based on my own individual naturalization application',
+          derived: 'By operation of law through my U.S. citizen parent',
+          other: 'Other'
+        },
+        documenttype: {
+          i94: 'I-94',
+          visa: 'U.S. Visa',
+          i20: 'I-20',
+          ds2019: 'DS-2019',
+          other: 'Other'
+        }
+      },
+      help: {
+        citizenshipstatus: {
+          title: 'Need help with your citizenship status?',
+          message: 'Select the box that reflects your current citizenship status',
+          note: ''
+        },
+        abroad: {
+          title: 'Need help with documentation of U.S. citizen born abroad?',
+          message: 'Select the type of documentation',
+          note: ''
+        },
+        documentnumber: {
+          title: 'Need help with the document number?',
+          message: 'Provide the document number',
+          note: ''
+        },
+        documentissued: {
+          title: 'Need help with the date the documentation was issued?',
+          message: 'Provide the approximate date the documenation was issued',
+          note: ''
+        },
+        placeissued: {
+          title: 'Need help with the place the documentation was issued?',
+          message: 'Provide the place where the documentation was issued',
+          note: ''
+        },
+        documentname: {
+          title: 'Need help with the name on the documentation?',
+          message: 'Provide the name on the documentation',
+          note: ''
+        },
+        certificatenumber: {
+          title: 'Need help with the certificate number?',
+          message: 'Provide the certificate number',
+          note: ''
+        },
+        certificateissued: {
+          title: 'Need help with the date the certificate was issued?',
+          message: 'Provide the approximate date the certificate was issued',
+          note: ''
+        },
+        certificatename: {
+          title: 'Need help with the name on the certificate?',
+          message: 'Provide the name on the certificate',
+          note: ''
+        },
+        bornonmilitaryinstallation: {
+          title: 'Need help with if you were born on a military installation?',
+          message: 'If you were born on a military installation select "yes"',
+          note: ''
+        },
+        militarybase: {
+          title: 'Need help with military base?',
+          message: 'Provide the name of the military base',
+          note: ''
+        },
+        entrydate: {
+          title: 'Need help with the date of entry in to the U.S.?',
+          message: 'Provide the approximate date of entry',
+          note: ''
+        },
+        entrylocation: {
+          title: 'Need help with the location of entry?',
+          message: 'Provide the location of entry in to the U.S.',
+          note: ''
+        },
+        priorcitizenship: {
+          title: 'Need help with prior citizenship(s)?',
+          message: 'Provide any prior citizenships',
+          note: ''
+        },
+        hasalienregistration: {
+          title: 'Need help if you have an alien registration number?',
+          message: 'If you have an alien registration number select "Yes"',
+          note: ''
+        },
+        alienregistrationnumber: {
+          title: 'Need help with your alien registration number?',
+          message: 'Provide the alien registration number',
+          note: ''
+        },
+        alienregistrationexpiration: {
+          title: 'Need help with your alien registration expiration date?',
+          message: 'Provide the date of expiration for the alien registration',
+          note: ''
+        },
+        certificatecourtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the court name',
+          note: ''
+        },
+        certificatecourtaddress: {
+          title: 'Need help with address of the court who issued the certificate?',
+          message: 'Provide the address of the court who issued the certificate',
+          note: ''
+        },
+        basis: {
+          naturalized: {
+            title: 'Need help with the basis of naturalization?',
+            message: 'Provide the basis of naturalization',
+            note: ''
+          },
+          derived: {
+            title: 'Need help with the basis of derived citizenship?',
+            message: 'Provide the basis of the derive citizenship',
+            note: ''
+          }
+        },
+        permanentresidentcardnumber: {
+          title: 'Need help with your permaenent resident card?',
+          message: 'Provide your permanent resident card number',
+          note: ''
+        },
+        residencestatus: {
+          title: 'Need help with your residence status?',
+          message: 'Provide your residence status',
+          note: ''
+        },
+        documentexpiration: {
+          title: 'Need help with the documentation expiration date?',
+          message: 'Provide the approximate date of expiration',
+          note: ''
+        },
+        documenttype: {
+          title: 'Need help with the type of documentation?',
+          message: 'Provide the type of documentation',
+          note: ''
+        }
+      }
+    },
+
+    multiple: {
+      heading: {
+        title: 'Dual/Multiple citizenship & foreign passport information',
+        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
+        citizenship: {
+          country: 'Provide country of citizenship',
+          dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
+          how: 'How did ou acquire this non-U.S. citizenship you now have or previously had?',
+          renounced: 'Have you taken any action to renounce your foreign citizenship?',
+          renouncedexplanation: 'Provide explanation',
+          current: 'Do you currently hold citizenship with this country?',
+          currentexplanation: 'Provide explanation'
+        },
+        hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
+        passport: {
+          country: 'Provide the country in which the passport (or identity card) was issued',
+          issued: 'Provide the date the passport (or identity card) was issued',
+          location: 'Provide the place the passport (or identity card) was issued',
+          name: 'Provide the name in which passport (or identity card) was issued',
+          number: 'Provide the passport (or identity card) number',
+          expiration: 'Provide the passport (or identity card) expiration date',
+          used: 'Have you EVER used this passport (or identity card) for foreign travel?'
+        },
+        travel: {
+          country: 'Provide the country to which you traveled on this passport (or identity card)',
+          dates: 'Provide the dates involved'
+        }
+      },
+      collection: {
+        citizenship: {
+          summary: {
+            title: 'Summary of dual/multiple citizenships',
+            item: 'Country',
+            unknown: 'Provide citizenship details below'
+          },
+          appendTitle: 'Do you have an additional citizenship to provide?',
+          appendMessage: 'If yes use the button below to add another',
+          append: 'Add another citizenship'
+        },
+        passport: {
+          summary: {
+            title: 'Summary of foreign passports',
+            item: 'Country',
+            unknown: 'Provide passport details below'
+          },
+          appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
+          appendMessage: 'If yes use the button below to add another foreign passport',
+          append: 'Add another foreign passport'
+        },
+        travel: {
+          summary: {
+            title: 'Summary of foreign travel',
+            item: 'Country',
+            unknown: 'Provide travel details below'
+          },
+          append: 'Add another foreign travel'
+        }
+      },
+      help: {
+        hasmultiple: {
+          title: 'Need help with multilpe citizenships?',
+          message: 'If you have ever had a non-U.S. citizenship then select "yes"',
+          note: ''
+        },
+        citizenship: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates',
+            note: ''
+          },
+          how: {
+            title: 'Need help with the how you acquired this citizenship?',
+            message: 'Provide the how you acquired this citizenship',
+            note: ''
+          },
+          renounced: {
+            title: 'Need help with the renouncement?',
+            message: 'If you have renounced this citizenship select "yes"',
+            note: ''
+          },
+          renouncedexplanation: {
+            title: 'Need help explaining your renouncement?',
+            message: 'Provide the explanation for the renouncement',
+            note: ''
+          },
+          current: {
+            title: 'Need help with the current citizenship?',
+            message: 'If you still retain citizenship select "yes"',
+            note: ''
+          },
+          currentexplanation: {
+            title: 'Need help explaining your current citizenship?',
+            message: 'Provide the explanation for the current citizenship',
+            note: ''
+          }
+        },
+        hasforeignpassport: {
+          title: 'Need help with foreign passports or identity cards?',
+          message: 'If you have ever had a foreign passport or identity card then select "yes"',
+          note: ''
+        },
+        passport: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          issued: {
+            title: 'Need help with the dates issued?',
+            message: 'Provide the approximate date the item was issued',
+            note: ''
+          },
+          location: {
+            title: 'Need help with the place it was issued?',
+            message: 'Provide the location the passport (or identity card) was issued',
+            note: ''
+          },
+          name: {
+            title: 'Need help with the name?',
+            message: 'Provide the name on the passport (or identity card)',
+            note: ''
+          },
+          number: {
+            title: 'Need help with the passport number?',
+            message: 'Provide the passport (or identity card) number',
+            note: ''
+          },
+          expiration: {
+            title: 'Need help with the expiration date?',
+            message: 'Provide the approximate date the item expires',
+            note: ''
+          },
+          used: {
+            title: 'Need help determining if the passport was used?',
+            message: 'If you have used the passport for travel then select "yes"',
+            note: ''
+          }
+        },
+        travel: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates',
+            note: ''
+          }
+        }
       }
     }
   },
@@ -4203,23 +4601,23 @@ const en = {
   alias: {
     maiden: {
       help: {
-        title: 'Need help with the maiden name?',
-        message: 'Select if this is your maiden name',
+        title: 'Need help with the maiden name question?',
+        message: 'Select "Yes" if this was your surname used from birth before it was legally changed at marriage.',
         note: ''
       }
     },
     reason: {
       help: {
         title: 'Need help with the explanation?',
-        message: 'Provide the explanation for why you use an alias.  For example, privacy in business dealings, a pen name, etc.',
-        note: ''
+        message: 'We want to understand why this other name was used and/or changed.',
+        note: 'Examples: Nickname used since birth, changed when married, pen name. '
       }
     },
     used: {
       help: {
-        title: 'Need help with the dates of use?',
-        message: 'Provide the full range of dates this name was used',
-        note: ''
+        title: 'Need help with the dates used range?',
+        message: 'This date range is for the full time period you used the name or people knew you by it.',
+        note: 'Example: If the name was used from your birth until the present use your birthdate for "From" and select "Present"'
       }
     }
   },

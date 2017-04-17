@@ -198,23 +198,27 @@ export default class Field extends ValidationElement {
   messages () {
     let el = []
 
+    const message = (id) => {
+      const noteId = `${id}.note`
+      let note = i18n.m(noteId)
+      if (Object.prototype.toString.call(note) === '[object String]' && note.indexOf(noteId) > -1) {
+        note = ''
+      } else {
+        note = <em>{note}</em>
+      }
+
+      return (
+        <div key={super.guid()}>
+          <h5>{i18n.t(`${id}.title`)}</h5>
+          {i18n.m(`${id}.message`)}
+          {note}
+        </div>
+      )
+    }
+
     if (this.state.errors && this.state.errors.length) {
       const markup = this.state.errors.map(err => {
-        const noteId = `${err}.note`
-        let note = i18n.t(noteId)
-        if (note.indexOf(noteId) > -1) {
-          note = ''
-        } else {
-          note = <em>{note}</em>
-        }
-
-        return (
-          <div key={super.guid()}>
-            <h5>{i18n.t(`${err}.title`)}</h5>
-            {i18n.m(`${err}.message`)}
-            {note}
-          </div>
-        )
+        return message(err)
       })
 
       el.push(
@@ -226,23 +230,11 @@ export default class Field extends ValidationElement {
     }
 
     if (this.state.helpActive && this.props.help) {
-      const noteId = `${this.props.help}.note`
-      let note = i18n.t(noteId)
-      if (note.indexOf(noteId) > -1) {
-        note = ''
-      } else {
-        note = <em>{note}</em>
-      }
-
       el.push(
         <div className="message help" key={super.guid()}>
           <i className="fa fa-question"></i>
-          <h5>{i18n.t(`${this.props.help}.title`)}</h5>
-          {i18n.m(`${this.props.help}.message`)}
-          {note}
-          <a href="javascript:;;"
-             className="close"
-             onClick={this.toggleHelp}>
+          {message(this.props.help)}
+          <a href="javascript:;;" className="close" onClick={this.toggleHelp}>
             {i18n.t('help.close')}
           </a>
         </div>
@@ -344,5 +336,6 @@ Field.defaultProps = {
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
-  shrink: false
+  shrink: false,
+  scrollIntoView: true
 }

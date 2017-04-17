@@ -31,6 +31,8 @@ import DiagnosesValidator from './diagnoses'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
+import CitizenshipValidator from './citizenship'
+import CitizenshipMultipleValidator from './citizenship-multiple'
 
 export {
   AddressValidator,
@@ -69,5 +71,7 @@ export {
   ExistingConditionsValidator,
   PsychologicalValidator,
   CompetenceValidator,
-  HospitalizationValidator
+  HospitalizationValidator,
+  CitizenshipValidator,
+  CitizenshipMultipleValidator
 }

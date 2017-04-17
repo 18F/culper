@@ -241,6 +241,10 @@
           border-radius: 50%;
         }
 
+        em {
+          line-height: 1.6;
+        }
+
         .close {
           display: block;
           margin-top: 1rem;
@@ -255,6 +259,26 @@
           }
         }
       }
+    }
+  }
+}
+
+// Handle when multiplicity
+.field {
+  .field {
+    margin-bottom: 0;
+    margin-right: -4.75rem;
+
+    > .title {
+      width: 100%;
+    }
+
+    > .table > .content > .component {
+      width: 100%;
+    }
+
+    > .messages > .message {
+      width: 100%;
     }
   }
 }
