@@ -1,6 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Field, DateControl, ValidationElement, Branch, Show, CheckboxGroup, RadioGroup, Radio, Name } from '../../../Form'
+import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, RadioGroup, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
+import Cohabitant from './Cohabitant'
+import CivilUnion from './CivilUnion'
 
 export default class RelationshipStatus extends ValidationElement {
   constructor (props) {
@@ -8,11 +10,17 @@ export default class RelationshipStatus extends ValidationElement {
 
     this.state = {
       Status: props.Status,
+      CivilUnion: props.CivilUnion,
+      HasCohabitant: props.HasCohabitant,
+      CohabitantList: props.CohabitantList,
       errorCodes: []
     }
 
     this.update = this.update.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
+    this.updateCivilUnion = this.updateCivilUnion.bind(this)
+    this.updateHasCohabitant = this.updateHasCohabitant.bind(this)
+    this.updateCohabitantList = this.updateCohabitantList.bind(this)
   }
 
   update (field, values) {
@@ -20,7 +28,9 @@ export default class RelationshipStatus extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Status: this.state.Status,
-          List: this.state.List
+          HasCohabitant: this.state.HasCohabitant,
+          CohabitantList: this.state.CohabitantList,
+          CivilUnion: this.state.CivilUnion
         })
       }
     })
@@ -32,6 +42,18 @@ export default class RelationshipStatus extends ValidationElement {
 
   updateStatus (values) {
     this.update('Status', values.target.value)
+  }
+
+  updateHasCohabitant (values) {
+    this.update('HasCohabitant', values)
+  }
+
+  updateCivilUnion (values) {
+    this.update('CivilUnion', values)
+  }
+
+  updateCohabitantList (values) {
+    this.update('CohabitantList', values)
   }
 
   handleValidation (event, status, error) {
@@ -57,49 +79,70 @@ export default class RelationshipStatus extends ValidationElement {
   render () {
     return (
       <div className="relationship-status">
-        <h3>{i18n.t('relationships.status.heading.title')}</h3>
-        <RadioGroup name="status" className="option-list relatives-relation" selectedValue={this.state.Status}>
-          <Radio
-            label={i18n.m('relationships.status.label.status.never')}
-            value="Never"
-            className="status"
-            onChange={this.updateStatus}
+        <Field title={i18n.t('relationships.status.heading.title')}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.state.Status}>
+            <Radio
+              label={i18n.m('relationships.status.label.status.never')}
+              value="Never"
+              onChange={this.updateStatus}
+            />
+            <Radio
+              label={i18n.m('relationships.status.label.status.inCivilUnion')}
+              value="InCivilUnion"
+              onChange={this.updateStatus}
+            />
+            <Radio
+              label={i18n.m('relationships.status.label.status.separated')}
+              value="Separated"
+              onChange={this.updateStatus}
+            />
+            <Radio
+              label={i18n.m('relationships.status.label.status.annulled')}
+              value="Annulled"
+              onChange={this.updateStatus}
+            />
+            <Radio
+              label={i18n.m('relationships.status.label.status.divorced')}
+              value="Divorced"
+              onChange={this.updateStatus}
+            />
+            <Radio
+              label={i18n.m('relationships.status.label.status.widowed')}
+              value="Widowed"
+              onChange={this.updateStatus}
+            />
+          </RadioGroup>
+        </Field>
+
+        <Show when={['InCivilUnion', 'Separated'].includes(this.state.Status)}>
+          <CivilUnion name="civilUnion"
+            {...this.state.CivilUnion}
+            onUpdate={this.updateCivilUnion}
           />
-          <Radio
-            label={i18n.m('relationships.status.label.status.inCivilUnion')}
-            value="InCivilUnion"
-            className="status"
-            onChange={this.updateStatus}
-          />
-        </RadioGroup>
-
-        <Show when={this.state.Status === 'Never'}>
-          <div>
-            <p>{i18n.t('relationships.status.para.never')}</p>
-
-            <Field title={i18n.t('relationships.status.heading.name')}
-              adjustFor="labels">
-              <Name name="Name"
-                {...this.state.Name}
-              />
-            </Field>
-
-            <Field help="relationships.status.help.birthdate"
-              title="Provide date of birth"
-              adjustFor="labels"
-              shrink={true}>
-              <DateControl name="birthdate"
-                value={this.state.Birthdate}
-                onUpdate={this.updateBirthdate}
-                onValidate={this.handleValidation}
-              />
-            </Field>
-          </div>
         </Show>
-        <Show when={this.state.Status === 'InCivilUnion'}>
-          <div>
-            Civil Union
-          </div>
+
+        <Field title={i18n.t('relationships.status.heading.hasCohabitant')}>
+          <Branch name="hasCohabitant"
+            className="has-cohabitant"
+            value={this.state.HasCohabitant}
+            help="relationships.status.help.hasCohabitant"
+            onUpdate={this.updateHasCohabitant}
+            onValidate={this.props.onValidate}>
+          </Branch>
+        </Field>
+
+        <Show when={this.state.HasCohabitant === 'Yes'}>
+          <Accordion minimum="1"
+            items={this.state.CohabitantList}
+            onUpdate={this.updateCohabitantList}
+            summary={() => { return <span>Hello</span> }}
+            onValidate={this.handleValidation}
+            description={i18n.t('psychological.competence.collection.description')}
+            appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
+            appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
+            appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
+            <Cohabitant name="Cohabitant" />
+          </Accordion>
         </Show>
       </div>
     )
@@ -109,3 +152,4 @@ export default class RelationshipStatus extends ValidationElement {
 RelationshipStatus.defaultProps = {
   List: []
 }
+

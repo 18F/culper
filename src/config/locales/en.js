@@ -1712,10 +1712,24 @@ const en = {
     status: {
       heading: {
         title: 'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.',
-        name: 'Provide full name'
+        name: 'Provide full name',
+        birthdate: 'Provide birthdate',
+        birthplace: 'Provide place of birth',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
+        ssn: 'Provide U.S. Social Security Number',
+        othernames: 'Provide other names used',
+        address: 'Provide current address, if different than your current address',
+        telephone: 'Provide telephone number',
+        email: 'Provide email address',
+        separated: 'Are you separated?',
+        dateSeparated: 'Provide date of separation',
+        locationSeparated: 'If legally separated, provide the location of the record',
+        divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
+        hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?'
       },
       para: {
-        never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.'
+        never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
+        othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
       },
       label: {
         status: {
@@ -1725,6 +1739,55 @@ const en = {
           annulled: 'Annulled',
           divorced: 'Divorced/dissolved',
           widowed: 'Widowed'
+        }
+      },
+      endedDetails: {
+        heading: {
+          name: 'Provide the full name',
+          address: 'Provide location',
+          birthdate: 'Provide birthdate',
+          telephone: 'Provide telephone number',
+          birthplace: 'Provide the place of birth.',
+          dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
+          recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+          deceased: 'Is this person deceased?',
+          deceasedAddress: 'Provide last known address of the person from whom you are divorced/dissolved or annulled',
+          status: 'Provide status'
+        },
+        label: {
+          divorced: 'Divorced/Dissolved',
+          widowed: 'Widowed',
+          annulled: 'Annulled'
+        }
+      },
+      cohabitant: {
+        heading: {
+          name: 'Provide the cohabitant full name',
+          address: 'Provide location',
+          birthdate: 'Provide birthdate',
+          telephone: 'Provide telephone number',
+          birthplace: 'Provide the place of birth.',
+          foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
+          ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+          othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+          cohabitationBegan: 'Provide date cohabitation residing with person began'
+        },
+        othernames: {
+          heading: {
+            maiden: 'Provide maiden name',
+            used: 'Provide dates name was used'
+          }
+        },
+        label: {
+          divorced: 'Divorced/Dissolved',
+          widowed: 'Widowed',
+          annulled: 'Annulled'
+        }
+      },
+      othernames: {
+        heading: {
+          maiden: 'Provide maiden name',
+          used: 'Provide dates name was used'
         }
       }
     }

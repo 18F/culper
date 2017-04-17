@@ -168,6 +168,8 @@ class Relationships extends ValidationElement {
                        nextLabel={i18n.t('relationships.destination.relatives')}>
             <RelationshipStatus name="status"
                        {...this.props.RelationshipStatus}
+                       subsection="status"
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateRelationshipStatus}
                        onValidate={this.handleValidation}
                        />
