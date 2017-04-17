@@ -1632,7 +1632,7 @@ const en = {
           country: 'Provide country of citizenship',
           dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
           how: 'How did ou acquire this non-U.S. citizenship you now have or previously had?',
-          renounce: 'Have you taken any action to renounce your foreign citizenship?',
+          renounced: 'Have you taken any action to renounce your foreign citizenship?',
           renouncedexplanation: 'Provide explanation',
           current: 'Do you currently hold citizenship with this country?',
           currentexplanation: 'Provide explanation'
@@ -1704,7 +1704,7 @@ const en = {
             message: 'Provide the how you acquired this citizenship',
             note: ''
           },
-          renounce: {
+          renounced: {
             title: 'Need help with the renouncement?',
             message: 'If you have renounced this citizenship select "yes"',
             note: ''

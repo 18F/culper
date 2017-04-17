@@ -477,22 +477,80 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          HasForeignPassport: 'No'
-        },
-        expected: true
-      },
-      {
-        state: {
-          HasForeignPassport: 'Yes'
+          Passports: [
+            {
+              Item: {}
+            }
+          ]
         },
         expected: false
       },
       {
         state: {
-          HasForeignPassport: 'Yes',
           Passports: [
             {
+              Has: 'No'
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        state: {
+          Passports: [
+            {
+              Has: 'Yes',
               Item: {
+                Country: 'United States',
+                Issued: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Location: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
+                },
+                Number: {
+                  value: 'number'
+                },
+                Expiration: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Used: 'Yes',
+                Countries: [
+                  {
+                    Item: {
+                      Country: '',
+                      Dates: {
+                        from: {
+                          date: new Date('1/1/2010')
+                        },
+                        to: {
+                          date: new Date('1/1/2012')
+                        },
+                        present: false
+                      }
+                    }
+                  }
+                ]
               }
             }
           ]
@@ -501,9 +559,9 @@ describe('citizenship multiple component validation', function () {
       },
       {
         state: {
-          HasForeignPassport: 'Yes',
           Passports: [
             {
+              Has: 'Yes',
               Item: {
                 Country: 'United States',
                 Issued: {
@@ -598,9 +656,9 @@ describe('citizenship multiple component validation', function () {
               }
             }
           ],
-          HasForeignPassport: 'Yes',
           Passports: [
             {
+              Has: 'Yes',
               Item: {
                 Country: 'United States',
                 Issued: {

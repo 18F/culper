@@ -68,6 +68,7 @@ export default class CitizenshipItem extends ValidationElement {
                help="citizenship.multiple.help.citizenship.country">
           <Country name="Country"
                    {...this.state.Country}
+                   className="citizenship-country"
                    onUpdate={this.updateCountry}
                    onValidate={this.props.onValidate}
                    />
@@ -77,6 +78,7 @@ export default class CitizenshipItem extends ValidationElement {
                help="citizenship.multiple.help.citizenship.dates">
           <DateRange name="Dates"
                      {...this.state.Dates}
+                     className="citizenship-dates"
                      onUpdate={this.updateDates}
                      onValidate={this.props.onValidate}
                      />
@@ -86,6 +88,7 @@ export default class CitizenshipItem extends ValidationElement {
                help="citizenship.multiple.help.citizenship.how">
           <Textarea name="How"
                     {...this.state.How}
+                    className="citizenship-how"
                     onUpdate={this.updateHow}
                     onValidate={this.props.onValidate}
                     />
@@ -94,7 +97,7 @@ export default class CitizenshipItem extends ValidationElement {
         <Branch name="Renounced"
                 label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
                 labelSize="h3"
-                className="renounced"
+                className="citizenship-renounced"
                 value={this.state.Renounced}
                 help="citizenship.multiple.help.citizenship.renounced"
                 onUpdate={this.updateRenounced}
@@ -106,6 +109,7 @@ export default class CitizenshipItem extends ValidationElement {
                  help="citizenship.multiple.help.citizenship.renouncedexplanation">
             <Textarea name="RenouncedExplanation"
                       {...this.state.RenouncedExplanation}
+                      className="citizenship-renounced-explanation"
                       onUpdate={this.updateRenouncedExplanation}
                       onValidate={this.props.onValidate}
                       />
@@ -115,7 +119,7 @@ export default class CitizenshipItem extends ValidationElement {
         <Branch name="Current"
                 label={i18n.t('citizenship.multiple.heading.citizenship.current')}
                 labelSize="h3"
-                className="current"
+                className="citizenship-current"
                 value={this.state.Current}
                 help="citizenship.multiple.help.citizenship.current"
                 onUpdate={this.updateCurrent}
@@ -127,6 +131,7 @@ export default class CitizenshipItem extends ValidationElement {
                  help="citizenship.multiple.help.citizenship.currentexplanation">
             <Textarea name="CurrentExplanation"
                       {...this.state.CurrentExplanation}
+                      className="citizenship-current-explanation"
                       onUpdate={this.updateCurrentExplanation}
                       onValidate={this.props.onValidate}
                       />

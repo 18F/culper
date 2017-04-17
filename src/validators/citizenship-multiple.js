@@ -1,14 +1,12 @@
 import DateRangeValidator from './daterange'
 import AddressValidator from './address'
 import NameValidator from './name'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class CitizenshipMultipleValidator {
   constructor (state = {}, props = {}) {
     this.hasMultiple = state.HasMultiple
     this.citizenships = state.Citizenships || []
-
-    this.hasForeignPassport = state.HasForeignPassport
     this.passports = state.Passports || []
   }
 
@@ -34,32 +32,24 @@ export default class CitizenshipMultipleValidator {
     return true
   }
 
-  validHasForeignPassport () {
-    return !!this.hasForeignPassport && (this.hasForeignPassport === 'Yes' || this.hasForeignPassport === 'No')
-  }
-
   validPassports () {
-    if (this.hasForeignPassport !== 'Yes') {
-      return true
-    }
-
-    if (this.passports.length === 0) {
+    const bc = new BranchCollection(this.passports)
+    if (!bc.validKeyValues()) {
       return false
     }
 
-    for (const passport of this.passports) {
-      if (new PassportItemValidator(passport.Item, null).isValid() !== true) {
-        return false
-      }
+    if (bc.hasNo()) {
+      return true
     }
 
-    return true
+    return bc.each(item => {
+      return new PassportItemValidator(item.Item, null).isValid()
+    })
   }
 
   isValid () {
     return this.validHasMultiple() &&
       this.validCitizenships() &&
-      this.validHasForeignPassport() &&
       this.validPassports()
   }
 }

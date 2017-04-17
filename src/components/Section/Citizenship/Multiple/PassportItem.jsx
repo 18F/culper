@@ -99,18 +99,22 @@ export default class PassportItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.issued')}
                help="citizenship.multiple.help.passport.issued"
+               adjustFor="labels"
                shrink={true}>
           <DateControl name="Issued"
                        {...this.state.Issued}
+                       className="passport-issued"
                        onUpdate={this.updateIssued}
                        onValidate={this.props.onValidate}
                        />
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.location')}
-               help="citizenship.multiple.help.passport.location">
+               help="citizenship.multiple.help.passport.location"
+               adjustFor="big-buttons">
           <Address name="Location"
                    {...this.state.Location}
+                   className="passport-location"
                    onUpdate={this.updateLocation}
                    onValidate={this.props.onValidate}
                    />
@@ -119,6 +123,7 @@ export default class PassportItem extends ValidationElement {
         <Field title={i18n.t('citizenship.multiple.heading.passport.name')}>
           <Name name="Name"
                 {...this.state.Name}
+                className="passport-name"
                 onUpdate={this.updateName}
                 onValidate={this.props.onValidate}
                 />
@@ -128,6 +133,7 @@ export default class PassportItem extends ValidationElement {
                help="citizenship.multiple.help.passport.number">
           <Text name="Number"
                 {...this.state.Number}
+                className="passport-number"
                 onUpdate={this.updateNumber}
                 onValidate={this.props.onValidate}
                 />
@@ -135,9 +141,11 @@ export default class PassportItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.expiration')}
                help="citizenship.multiple.help.passport.expiration"
+               adjustFor="labels"
                shrink={true}>
           <DateControl name="Expiration"
                        {...this.state.Expiration}
+                       className="passport-expiration"
                        onUpdate={this.updateExpiration}
                        onValidate={this.props.onValidate}
                        />
@@ -146,7 +154,7 @@ export default class PassportItem extends ValidationElement {
         <Branch name="Used"
                 label={i18n.t('citizenship.multiple.heading.passport.used')}
                 labelSize="h3"
-                className="used"
+                className="passport-used"
                 value={this.state.Used}
                 help="citizenship.multiple.help.passport.used"
                 onUpdate={this.updateUsed}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
 import { dateSummary } from '../../History/summaries'
 import CitizenshipItem from './CitizenshipItem'
 import PassportItem from './PassportItem'
@@ -25,7 +25,6 @@ export default class Multiple extends ValidationElement {
     this.state = {
       HasMultiple: props.HasMultiple,
       Citizenships: props.Citizenships,
-      HasForeignPassport: props.HasForeignPassport,
       Passports: props.Passports,
       errorCodes: []
     }
@@ -33,7 +32,6 @@ export default class Multiple extends ValidationElement {
     this.onUpdate = this.onUpdate.bind(this)
     this.updateHasMultiple = this.updateHasMultiple.bind(this)
     this.updateCitizenships = this.updateCitizenships.bind(this)
-    this.updateHasForeignPassport = this.updateHasForeignPassport.bind(this)
     this.updatePassports = this.updatePassports.bind(this)
   }
 
@@ -80,10 +78,6 @@ export default class Multiple extends ValidationElement {
 
   updateCitizenships (values) {
     this.onUpdate('Citizenships', values)
-  }
-
-  updateHasForeignPassport (values) {
-    this.onUpdate('HasForeignPassport', values)
   }
 
   updatePassports (values) {
@@ -149,29 +143,17 @@ export default class Multiple extends ValidationElement {
           </Accordion>
         </Show>
 
-        <Branch name="has_foreign_passport"
-                label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
-                labelSize="h3"
-                className="has-foreignpassport"
-                value={this.state.HasForeignPassport}
-                help="citizenship.multiple.help.hasforeignpassport"
-                onUpdate={this.updateHasForeignPassport}
-                onValidate={this.handleValidation}
-                />
-
-        <Show when={this.state.HasForeignPassport === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.Passports}
-                     onUpdate={this.updatePassports}
-                     onValidate={this.handleValidation}
-                     summary={this.summaryPassports}
-                     description={i18n.t('citizenship.multiple.collection.passport.summary.title')}
-                     appendTitle={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
-                     appendMessage={i18n.m('citizenship.multiple.collection.passport.appendMessage')}
-                     appendLabel={i18n.t('citizenship.multiple.collection.passport.append')}>
-            <PassportItem name="Item" bind={true} />
-          </Accordion>
-        </Show>
+        <BranchCollection label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
+                          labelSize="h3"
+                          appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
+                          appendSize="h3"
+                          help="citizenship.multiple.help.hasforeignpassport"
+                          className="has-foreignpassport"
+                          items={this.state.Passports}
+                          onUpdate={this.updatePassports}
+                          onValidate={this.handleValidation}>
+          <PassportItem name="Item" bind={true} />
+        </BranchCollection>
       </div>
     )
   }
@@ -180,6 +162,5 @@ export default class Multiple extends ValidationElement {
 Multiple.defaultProps = {
   HasMultiple: '',
   Citizenships: [],
-  HasForeignPassport: '',
   Passports: []
 }
