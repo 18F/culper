@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Address, Help, HelpIcon, Telephone } from '../../../Form'
+import { ValidationElement, Branch, Address, Field, Telephone } from '../../../Form'
 
 export default class PhysicalAddress extends ValidationElement {
   constructor (props) {
@@ -91,40 +91,39 @@ export default class PhysicalAddress extends ValidationElement {
             {options}
           </div>
 
-          <h4>{i18n.t('history.employment.default.physicalAddress.heading.address')}</h4>
-          <div className={klass}>
-            <Help id="history.employment.default.physicalAddress.address.help">
-              <Address name="address"
-                       className="address"
-                       {...this.props.Address}
-                       label={i18n.t('history.employment.default.physicalAddress.address.label')}
-                       placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
-                       onUpdate={this.handleAddressChange}
+          <Field title={i18n.t('history.employment.default.physicalAddress.heading.address')}
+                 titleSize="h4"
+                 help="history.employment.default.physicalAddress.address.help"
+                 adjustFor="labels"
+                 shrink={true}>
+            <Address name="address"
+                     className="address"
+                     {...this.props.Address}
+                     label={i18n.t('history.employment.default.physicalAddress.address.label')}
+                     placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
+                     onUpdate={this.handleAddressChange}
+                     onFocus={this.handleFocus}
+                     onBlur={this.handleBlur}
+                     />
+          </Field>
+
+          <Field title={i18n.t('history.employment.default.physicalAddress.heading.telephone')}
+                 titleSize="h4"
+                 help="history.employment.default.physicalAddress.telephone.help"
+                 adjustFor="labels">
+            <Telephone name="telephone"
+                       {...this.props.Telephone}
+                       label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
                        onFocus={this.handleFocus}
                        onBlur={this.handleBlur}
                        />
-              <HelpIcon className="address"/>
-            </Help>
-          </div>
-
-          <h4>{i18n.t('history.employment.default.physicalAddress.heading.telephone')}</h4>
-          <div className={klass}>
-            <Help id="history.employment.default.physicalAddress.telephone.help">
-              <Telephone name="telephone"
-                         {...this.props.Telephone}
-                         label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
-                         onFocus={this.handleFocus}
-                         onBlur={this.handleBlur}
-                         />
-              <HelpIcon className="telephone"/>
-            </Help>
-          </div>
+          </Field>
         </div>
       )
     }
 
     return (
-      <div className={klass + ' physical-address no-label'}>
+      <div className={klass + ' physical-address'}>
         {options}
       </div>
     )

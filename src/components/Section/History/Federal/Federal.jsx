@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Accordion, Help, HelpIcon, DateRange, Text, Address } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, Field, DateRange, Text, Address } from '../../../Form'
 import { dateSummary } from '../summaries'
 import { FederalServiceValidator } from '../../../../validators'
 
@@ -93,7 +93,7 @@ export default class Federal extends ValidationElement {
    */
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
-      ? item.Name.value
+          ? item.Name.value
       : i18n.t('history.federal.collection.summary.unknown')
     const dates = dateSummary(item)
 
@@ -111,7 +111,6 @@ export default class Federal extends ValidationElement {
       <div className="federal">
         <h3>{i18n.t('history.federal.heading.branch')}</h3>
         <Branch name="has_federalservice"
-                className="eapp-field-wrap"
                 value={this.state.HasFederalService}
                 help="history.federal.help.branch"
                 onUpdate={this.updateBranch}>
@@ -124,47 +123,37 @@ export default class Federal extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('history.federal.collection.summary.title')}
                      appendLabel={i18n.t('history.federal.collection.append')}>
-            <h3>{i18n.t('history.federal.heading.dates')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="history.federal.help.dates">
-                <DateRange name="Dates"
-                           bind={true}
-                           />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('history.federal.heading.name')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="history.federal.help.name">
-                <Text name="Name"
-                      className="text"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('history.federal.heading.position')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="history.federal.help.position">
-                <Text name="Position"
-                      className="text"
-                      bind={true}
-                      />
-                <HelpIcon />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('history.federal.heading.address')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="history.federal.help.address">
-                <Address name="Address"
+            <Field title={i18n.t('history.federal.heading.dates')}
+                   help="history.federal.help.dates"
+                   adjustFor="daterange">
+              <DateRange name="Dates"
                          bind={true}
                          />
-                <HelpIcon />
-              </Help>
-            </div>
+            </Field>
+
+            <Field title={i18n.t('history.federal.heading.name')}
+                   help="history.federal.help.name">
+              <Text name="Name"
+                    className="text"
+                    bind={true}
+                    />
+            </Field>
+
+            <Field title={i18n.t('history.federal.heading.position')}
+                   help="history.federal.help.position">
+              <Text name="Position"
+                    className="text"
+                    bind={true}
+                    />
+            </Field>
+
+            <Field title={i18n.t('history.federal.heading.address')}
+                   help="history.federal.help.address"
+                   adjustFor="labels">
+              <Address name="Address"
+                       bind={true}
+                       />
+            </Field>
           </Accordion>
         </Show>
       </div>

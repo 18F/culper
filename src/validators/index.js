@@ -26,11 +26,12 @@ import CardAbuseValidator from './cardabuse'
 import CreditValidator from './credit'
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
 import NonpaymentValidator from './nonpayment'
-import DeliquentValidator from './deliquent'
+import DelinquentValidator from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
+import CitizenshipValidator from './citizenship'
 
 export {
   AddressValidator,
@@ -64,10 +65,11 @@ export {
   CreditValidator,
   HospitalizationsValidator,
   NonpaymentValidator,
-  DeliquentValidator,
+  DelinquentValidator,
   DiagnosesValidator,
   ExistingConditionsValidator,
   PsychologicalValidator,
   CompetenceValidator,
-  HospitalizationValidator
+  HospitalizationValidator,
+  CitizenshipValidator
 }

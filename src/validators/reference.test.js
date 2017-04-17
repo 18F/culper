@@ -95,4 +95,27 @@ describe('Reference component validation', function () {
       expect(new ReferenceValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
+
+  it('should validate relationship', function () {
+    const tests = [
+      {
+        state: {
+          Relationship: ['Friend']
+        },
+        expected: true
+      },
+      {
+        state: {
+          Relationship: ['SomethingElse'],
+          RelationshipOther: {
+            value: 'Test'
+          }
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new ReferenceValidator(test.state, null).validRelationship()).toBe(test.expected)
+    })
+  })
 })

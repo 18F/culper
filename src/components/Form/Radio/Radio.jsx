@@ -8,7 +8,6 @@ export default class Radio extends ValidationElement {
     this.state = {
       uid: super.guid(),
       checked: props.checked,
-      disabled: props.disabled,
       value: props.value,
       focus: props.focus || false,
       error: props.error || false,
@@ -88,17 +87,22 @@ export default class Radio extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = ''
+    let klass = `${this.props.className || ''}`
+
     if (!this.props.native) {
-      klass = 'eapp-blocks-radio'
+      klass += ' block'
+    }
+
+    if (this.props.children) {
+      klass += ' extended'
+    }
+
+    if (this.props.disabled) {
+      klass += ' disabled'
     }
 
     if (this.state.error) {
       klass += ' usa-input-error'
-    }
-
-    if (this.props.className) {
-      klass += ` ${this.props.className}`
     }
 
     return klass.trim()

@@ -1,0 +1,45 @@
+.delinquent {
+  .delinquent-infractions {
+    z-index: 1;
+
+    .block {
+      display: block !important;
+    }
+
+    label::before {
+      vertical-align: top !important;
+      margin-top: 0.8rem !important;
+    }
+
+    label > span > div {
+      display: inline-block;
+      width: 89%;
+      text-align: left;
+      vertical-align: top;
+      margin-top: 0.3rem;
+    }
+
+    .no-toggle {
+      display: inline !important;
+    }
+  }
+
+  .delinquent-date,
+  .delinquent-resolved {
+    width: initial !important;
+  }
+
+  .fa.fa-dollar {
+    margin-left: -2rem;
+  }
+
+  .delinquent-amount {
+    width: 100%;
+    margin-left: 1rem;
+    display: inline-block;
+
+    label {
+      margin-left: 1rem;
+    }
+  }
+}

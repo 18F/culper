@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { HospitalizationValidator } from '../../../../validators'
-import { Address, ValidationElement, Help, HelpIcon, Text, Textarea, DateRange, BranchCollection, RadioGroup, Radio, Show } from '../../../Form'
+import { Address, ValidationElement, Field, Text, Textarea, DateRange, RadioGroup, Radio, Show } from '../../../Form'
 
 export default class Hospitalization extends ValidationElement {
   constructor (props) {
@@ -78,8 +78,7 @@ export default class Hospitalization extends ValidationElement {
   render () {
     return (
       <div className="hospitalization">
-        <h3>{i18n.t(`psychological.hospitalization.heading.admission`)}</h3>
-        <div className="eapp-field-wrap">
+        <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}>
           <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission}>
             <Radio
               className="voluntary-option"
@@ -100,63 +99,50 @@ export default class Hospitalization extends ValidationElement {
               </div>
             </Radio>
           </RadioGroup>
-        </div>
+        </Field>
 
         <Show when={this.props.Admission}>
-          <div>
-            <h3>{i18n.t(`psychological.hospitalization.heading.explanation`)}</h3>
-            <div className="eapp-field-wrap no-label">
-              <Help id={`psychological.hospitalization.help.explanation`}>
-                <Textarea name="Explanation"
-                  className="explanation"
-                  {...this.props.Explanation}
-                  onUpdate={this.updateExplanation}
-                  onValidate={this.handleValidation}
-                />
-                <HelpIcon />
-              </Help>
-            </div>
-          </div>
+          <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
+                 help="psychological.hospitalization.help.explanation">
+            <Textarea name="Explanation"
+                      className="explanation"
+                      {...this.props.Explanation}
+                      onUpdate={this.updateExplanation}
+                      onValidate={this.handleValidation}
+                      />
+          </Field>
         </Show>
 
-        <h3>{i18n.t(`psychological.hospitalization.heading.treatment`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={`psychological.hospitalization.help.treatment`}>
-            <DateRange name="TreatmentDate"
-              {...this.props.TreatmentDate}
-              receiveProps={this.props.receiveProps}
-              onUpdate={this.updateTreatmentDate}
-              onValidate={this.handleValidation}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.hospitalization.heading.treatment`)}
+               help="psychological.hospitalization.help.treatment"
+               adjustFor="daterange">
+          <DateRange name="TreatmentDate"
+                     {...this.props.TreatmentDate}
+                     receiveProps={this.props.receiveProps}
+                     onUpdate={this.updateTreatmentDate}
+                     onValidate={this.handleValidation}
+                     />
+        </Field>
 
-        <h3>{i18n.t(`psychological.hospitalization.heading.facility`)}</h3>
-        <div className="eapp-field-wrap no-label">
-          <Help id={`psychological.hospitalization.help.facility`}>
-            <Text name="Facility"
-              className="facility"
-              {...this.props.Facility}
-              onUpdate={this.updateFacility}
-              onValidate={this.handleValidation}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
+               help="psychological.hospitalization.help.facility">
+          <Text name="Facility"
+                className="facility"
+                {...this.props.Facility}
+                onUpdate={this.updateFacility}
+                onValidate={this.handleValidation}
+                />
+        </Field>
 
-        <h3>{i18n.t(`psychological.hospitalization.heading.address`)}</h3>
-        <div className="eapp-field-wrap">
-          <Help id={ `psychological.hospitalization.help.address` }>
-            <Address name="FacilityAddress"
-              {...this.props.FacilityAddress}
-              label={i18n.t(`psychological.hospitalization.label.address`)}
-              onUpdate={this.updateFacilityAddress}
-              onValidate={this.handleValidation}
-            />
-            <HelpIcon />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
+               help="psychological.hospitalization.help.address">
+          <Address name="FacilityAddress"
+                   {...this.props.FacilityAddress}
+                   label={i18n.t(`psychological.hospitalization.label.address`)}
+                   onUpdate={this.updateFacilityAddress}
+                   onValidate={this.handleValidation}
+                   />
+        </Field>
 
       </div>
     )

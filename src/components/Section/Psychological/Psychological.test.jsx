@@ -42,7 +42,23 @@ describe('The legal section', () => {
   })
 
   it('can complete section', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const appState = {
+      Psychological: {
+        Competence: {
+          IsIncompetent: 'No'
+        },
+        Consultation: {
+          Consulted: 'No'
+        },
+        Diagnoses: {
+          Diagnosed: 'No'
+        },
+        Hospitalization: {
+          Hospitalized: 'No'
+        }
+      }
+    }
+    const store = mockStore({ application: appState, authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
     component.find('.competence .no input').simulate('change')
@@ -57,14 +73,16 @@ describe('The legal section', () => {
     component.find('.hospitalizations .no input').simulate('blur')
     expect(component.find('.hospitalizations .accordion').length).toBe(0)
 
-    component.find('.diagnosed .no input').simulate('change')
-    component.find('.diagnosed .no input').simulate('blur')
-    expect(component.find('.diagnoses .accordion').length).toBe(0)
-
+    component.find('.diagnosed .yes input').simulate('change')
+    component.find('.diagnosed .yes input').simulate('blur')
     component.find('.didnotconsult .no input').simulate('change')
     component.find('.didnotconsult .no input').simulate('blur')
     component.find('.intreatment .no input').simulate('change')
     component.find('.intreatment .no input').simulate('blur')
+    expect(component.find('.diagnoses .accordion').length).toBe(1)
+
+    component.find('.diagnosed .no input').simulate('change')
+    component.find('.diagnosed .no input').simulate('blur')
     expect(component.find('.diagnoses .accordion').length).toBe(0)
 
     component.find('.hascondition .no input').simulate('change')

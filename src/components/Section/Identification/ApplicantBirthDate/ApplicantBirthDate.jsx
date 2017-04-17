@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateControl, Show, Help, HelpIcon } from '../../../Form'
 import { api } from '../../../../services/api'
+import { ValidationElement, Field, DateControl, Show } from '../../../Form'
 
 export default class ApplicantBirthDate extends ValidationElement {
   constructor (props) {
@@ -140,22 +140,23 @@ export default class ApplicantBirthDate extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Help id="identification.birthdate.help">
+        <Field help="identification.birthdate.help"
+               adjustFor="labels"
+               shrink={true}>
           <DateControl name={this.props.name}
                        value={this.state.value}
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate}
                        onValidate={this.handleValidation}
                        />
-          <HelpIcon />
           <Show when={this.state.errorCodes.includes('age')}>
-            <div className="message eapp-error-message">
+            <div className="message error">
               <i className="fa fa-exclamation"></i>
               <h5>{i18n.t('error.birthdate.age.title')}</h5>
               {i18n.m('error.birthdate.age.message')}
             </div>
           </Show>
-        </Help>
+        </Field>
       </div>
     )
   }

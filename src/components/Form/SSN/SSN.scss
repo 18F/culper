@@ -1,0 +1,18 @@
+.ssn {
+  .first {
+    width: 9rem !important;
+    display: inline-block;
+  }
+
+  .middle {
+    width: 8rem !important;
+    display: inline-block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .last {
+    width: 10rem !important;
+    display: inline-block;
+  }
+}

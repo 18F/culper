@@ -25,11 +25,14 @@
   .middle,
   .last,
   .suffix,
-  .suffix-other,
-  .text-right {
+  .suffix-other {
     display: inline-block;
     width: 92%;
     max-width: 64rem !important;
+  }
+
+  .suffix label {
+    width: 7.7rem;
   }
 
   .suffix-other {

@@ -26,24 +26,11 @@
   }
 
   .taxes-amount {
+    width: 100%;
     margin-left: 1rem;
 
     label {
       margin-left: 1rem;
-    }
-  }
-
-  .taxes-year.coupled-flags,
-  .taxes-amount.coupled-flags {
-    clear: both;
-    z-index: 1;
-
-    .eapp-blocks-checkbox {
-      float: right;
-
-      label.no-toggle {
-        margin-right: 0 !important;
-      }
     }
   }
 }

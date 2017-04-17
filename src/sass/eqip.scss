@@ -54,9 +54,26 @@ a:focus {
 
     .eapp-structure-right {
       width: 79%;
+      padding: 0 17.5%;
+
+      @media screen and (max-width: 1380px) {
+        padding: 0 12%;
+      }
+
+      @media screen and (max-width: 1024px) {
+        padding: 0 5.5%;
+      }
 
       &.eapp-title {
         vertical-align: bottom;
+      }
+
+      > .eapp-form,
+      > .title {
+        width: 100%;
+        max-width: 106rem;
+        min-width: 70rem;
+        margin: 0 auto;
       }
     }
   }
@@ -125,34 +142,9 @@ a:focus {
         padding: 1rem 1.5rem;
         color: $eapp-grey;
         text-decoration: none;
-      }
-    }
 
-    /* section title styling, trying to be flexible for long section titles, text should flow up into header */
-    .title {
-      width: 87.5%;
-      max-height: 14.5rem;
-      overflow: hidden;
-      margin: 0 auto;
-      color: #fff;
-      font-size: 5rem;
-      font-weight: $eapp-bold;
-
-      @media screen and (max-width: 1100px) {
-        font-size: 4rem;
-      }
-
-      .title-text {
-        display: block;
-        margin: 0 17.5%;
-        line-height: 1.2;
-
-        @media screen and (max-width: 1380px) {
-          margin: 0 12%;
-        }
-
-        @media screen and (max-width: 1024px) {
-          margin: 0 5.5%;
+        &:hover {
+          color: #fff;
         }
       }
     }
@@ -178,8 +170,8 @@ a:focus {
 
 /* frame out the live form area for consistency */
 .eapp-core {
-  padding-top: 5rem;
-  padding-bottom: 4rem;
+  padding-top: 5rem !important;
+  padding-bottom: 4rem !important;
 }
 
 .hidden {
@@ -209,9 +201,14 @@ a:focus {
   max-width: 100%;
 }
 
-select, input {
-  &[disabled],
-  &[readonly] {
-    background-color: #ddd;
+.disabled,
+[disabled],
+[readonly] {
+  background-color: #fff;
+  opacity: 0.35;
+
+  &[type='checkbox'],
+  &[type='radio'] {
+    opacity: 0;
   }
 }

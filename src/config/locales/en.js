@@ -64,7 +64,24 @@ const en = {
     label: {
       first: 'First name',
       last: 'Last name',
-      middle: 'Middle name or initial'
+      middle: 'Middle name or initial',
+      initialOnly: 'Initial Only',
+      noMiddle: 'No middle name',
+      other: 'Other',
+      suffix: 'Suffix',
+      optional: 'Optional',
+      jr: 'Jr',
+      sr: 'Sr',
+      i: 'I',
+      ii: 'II',
+      iii: 'III',
+      iv: 'IV',
+      v: 'V',
+      vi: 'VI',
+      vii: 'VII',
+      viii: 'VIII',
+      ix: 'IX',
+      x: 'X'
     },
     placeholder: {
       first: 'Please enter your first name or initial',
@@ -290,7 +307,10 @@ const en = {
       number: {
         pattern: {
           title: 'Passport number not in acceptable format',
-          message: 'For passport books the number will start with a letter and then 6 to 9 digits.<br>For passport cards the number begins with a "C" and followed by 8 digits.',
+          message: [
+            'For passport books the number will start with a letter and then 6 to 9 digits.',
+            'For passport cards the number begins with a "C" and followed by 8 digits.'
+          ],
           note: ''
         }
       }
@@ -487,7 +507,7 @@ const en = {
     },
     destination: {
       review: 'Review Identification',
-      family: 'Family & friends',
+      relationships: 'Relationships',
       othernames: 'Other names used',
       name: 'Full name',
       birthdate: 'Birth date',
@@ -501,29 +521,32 @@ const en = {
       title: 'Provide your full name',
       last: {
         help: {
-          title: 'Need help with the last name?',
-          message: 'Your last name is required.  If you have only 1 name, enter it in the last name field',
-          note: ''
+          title: 'Need help with your last name?',
+          message: 'If your last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       first: {
         help: {
-          title: 'Need help with the first name?',
-          message: 'If your first name is an initial place the initial in this field.  If you do not have a first name leave this field empty.',
-          note: ''
+          title: 'Need help with your first name?',
+          message: 'If your first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       middle: {
         help: {
-          title: 'Need help with the middle name?',
-          message: 'Enter all of your middle names here.  If your middle name is an initial place the initial in the field.  If you do not have a middle name leave this field empty.',
-          note: ''
+          title: 'Need help with your middle name?',
+          message: [
+            'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+            'If you do not have a middle name leave this field empty and check the "No middle name" checkbox.'
+          ],
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       suffix: {
         help: {
-          title: 'Need help with the suffix?',
-          message: 'If you are a Jr., Sr., etc. select your Suffix from the list provided.  If your suffix does not appear in this list, select Other and enter your suffix in the provided field',
+          title: 'Need help with your suffix?',
+          message: 'If your suffix does not appear in this list, select "Other" and enter your suffix in the provided field',
           note: ''
         }
       }
@@ -533,9 +556,9 @@ const en = {
       info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: {
-          title: 'Need information on other names?',
-          message: 'Provide your other names used and the period of time you used them',
-          note: ''
+          title: 'Need help with you other names used?',
+          message: 'List all other names you have used no matter how long ago.',
+          note: 'Note: Input names one at a time, you will have the ability to add multiple other names.'
         },
         question: 'Have you used any other names?'
       },
@@ -563,8 +586,8 @@ const en = {
     birthdate: {
       title: 'Provide your date of birth',
       help: {
-        title: 'Need help with the birthdate?',
-        message: 'Provide your date of birth, or the closest possible estimate you can provide',
+        title: 'Need help with your birthdate?',
+        message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
         note: ''
       }
     },
@@ -621,14 +644,14 @@ const en = {
       title: 'Provide your contact information',
       help: {
         email: {
-          title: 'Need help with an email address?',
-          message: 'Enter your email address',
-          note: ''
+          title: 'Need help with your email address(es)?',
+          message: 'Enter your primary email address first',
+          note: 'Note: Multiple email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
-          title: 'Need help with a phone number?',
-          message: 'Enter your phone number',
-          note: ''
+          title: 'Need help with you phone number(s)?',
+          message: 'Enter only current phone number(s)',
+          note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
       collection: {
@@ -670,7 +693,7 @@ const en = {
       title: 'Provide your U.S. Social Security Number',
       help: {
         title: 'Need help with your U.S. Social Security Number?',
-        message: 'If you have a Social Security number, please provide it here.  If you do not, please select Not Applicable',
+        message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',
         note: ''
       },
       label: {
@@ -793,7 +816,7 @@ const en = {
       taxes: 'Taxes',
       card: 'Employer card abuse',
       credit: 'Credit counseling',
-      deliquent: 'Deliquent payments',
+      delinquent: 'Delinquent payments',
       nonpayment: 'Non-payment consequence',
       review: 'Review Financial record'
     },
@@ -988,7 +1011,11 @@ const en = {
         file: 'File',
         pay: 'Pay',
         both: 'Both',
-        estimated: 'Estimated'
+        estimated: 'Estimated',
+        notapplicable: 'Not applicable'
+      },
+      para: {
+        or: 'or'
       },
       placeholder: {
         year: '2016',
@@ -1168,13 +1195,13 @@ const en = {
         append: 'Add another credit counseling entry'
       }
     },
-    deliquent: {
+    delinquent: {
       title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
       para: {
-        alimony: '**In the last seven (7) years,** you have been deliquent on alimony or child support payments.',
+        alimony: '**In the last seven (7) years,** you have been delinquent on alimony or child support payments.',
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        federal: 'You are currently deliquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         or: 'Or'
       },
       heading: {
@@ -1200,7 +1227,7 @@ const en = {
       },
       help: {
         branch: {
-          title: 'Need help with deliquent payments?',
+          title: 'Need help with delinquent payments?',
           message: 'If you have had in of the listed items happen to you then select "Yes"',
           note: ''
         },
@@ -1267,8 +1294,8 @@ const en = {
       },
       collection: {
         summary: {
-          title: 'Summary of deliquent payment issues',
-          unknown: 'Provide your deliquent payment details below',
+          title: 'Summary of delinquent payment issues',
+          unknown: 'Provide your delinquent payment details below',
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
@@ -1285,8 +1312,8 @@ const en = {
         cancelled: '**In the last seven (7) years,** you had any account or credit card suspended, charged off, or cancelled for failing to pay as agreed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         evicted: '**In the last seven (7) years,** you were evicted for non-payment?',
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
-        deliquent: '**In the last seven (7) years,** you have been over 120 days deliquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        any: 'You are currently over 120 days deliquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
+        any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         or: 'Or'
       },
       heading: {
@@ -1378,15 +1405,239 @@ const en = {
     }
   },
 
-  family: {
+  citizenship: {
     tour: {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with family & friends at once'
+      para: 'View all the sections associated with citizenship at once'
     },
     destination: {
-      review: 'Review Family & Friends',
+      review: 'Review Citizenship',
+      status: 'Citizenship status',
+      multiple: 'Dual/multiple citizenship'
+    },
+    status: {
+      heading: {
+        title: 'Citizenship Status',
+        citizenshipstatus: 'Provide your current citizenship status',
+        abroad: 'Provide type of documentation of U.S. citizen born abroad',
+        documentnumber: {
+          foreignborn: 'Provide document number for U.S. citizen born abroad',
+          notcitizen: 'Provide document number'
+        },
+        documentissued: 'Provide the date the document was issued',
+        placeissued: 'Provide the place of issuance',
+        documentname: 'Provide the name in which document was issued',
+        certificatenumber: {
+          foreignborn: 'Provide your Certificate of Citizenship number',
+          naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)',
+          derived: 'Provide your Certificate of Citizenship number (N560 or N561)'
+        },
+        certificateissued: {
+          foreignborn: 'Provide the date the certificate was issued',
+          naturalized: 'Provide the date the Certificate of Naturalization was issued',
+          derived: 'Provide the date the certificate was issued'
+        },
+        certificatename: {
+          foreignborn: 'Provide the name in which the certificate was issued',
+          naturalized: 'Provide the name in which the Certificate of Naturalization was issued',
+          derived: 'Provide the name in which the document was issued'
+        },
+        certificatecourtname: 'Provide the name of the court that issued the Certificate of Naturalization',
+        certificatecourtaddress: 'Provide the address of the court that issued the Certificate of Naturalization',
+        bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
+        militarybase: 'Provide the name of the base',
+        entrydate: 'Provide the date of entry into the U.S.',
+        entrylocation: 'Provide the location of entry into the U.S.',
+        priorcitizenship: {
+          naturalized: 'Provide countrny(ies) of prior citizenship',
+          notcitizen: 'Provide your countr(ies) of citizenship'
+        },
+        hasalienregistration: 'Do/did you have a U.S. alien registration number?',
+        alienregistrationnumber: {
+          naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
+          notcitizen: 'Provide your alien registration number (I-551, I-766)'
+        },
+        alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
+        basis: {
+          naturalized: 'Provide the basis of naturalization',
+          derived: 'Provide the basis of derived citizenship'
+        },
+        permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)',
+        residencestatus: 'Provide your residence status',
+        documentexpiration: 'Provide document expiration date',
+        documenttype: 'Provide type of document issued'
+      },
+      label: {
+        citizenshipstatus: {
+          citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
+          foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
+          naturalized: 'I am a naturalized U.S. citizen',
+          derived: 'I am a derived U.S. citizen',
+          notcitizen: 'I am not a U.S. citizen'
+        },
+        abroad: {
+          fs240: 'FS-240',
+          ds1350: 'DS-1350',
+          fs545: 'FS-545',
+          other: 'Other'
+        },
+        basis: {
+          naturalized: 'Based on my own individual naturalization application',
+          derived: 'By operation of law through my U.S. citizen parent',
+          other: 'Other'
+        },
+        documenttype: {
+          i94: 'I-94',
+          visa: 'U.S. Visa',
+          i20: 'I-20',
+          ds2019: 'DS-2019',
+          other: 'Other'
+        }
+      },
+      help: {
+        citizenshipstatus: {
+          title: 'Need help with your citizenship status?',
+          message: 'Select the box that reflects your current citizenship status',
+          note: ''
+        },
+        abroad: {
+          title: 'Need help with documentation of U.S. citizen born abroad?',
+          message: 'Select the type of documentation',
+          note: ''
+        },
+        documentnumber: {
+          title: 'Need help with the document number?',
+          message: 'Provide the document number',
+          note: ''
+        },
+        documentissued: {
+          title: 'Need help with the date the documentation was issued?',
+          message: 'Provide the approximate date the documenation was issued',
+          note: ''
+        },
+        placeissued: {
+          title: 'Need help with the place the documentation was issued?',
+          message: 'Provide the place where the documentation was issued',
+          note: ''
+        },
+        documentname: {
+          title: 'Need help with the name on the documentation?',
+          message: 'Provide the name on the documentation',
+          note: ''
+        },
+        certificatenumber: {
+          title: 'Need help with the certificate number?',
+          message: 'Provide the certificate number',
+          note: ''
+        },
+        certificateissued: {
+          title: 'Need help with the date the certificate was issued?',
+          message: 'Provide the approximate date the certificate was issued',
+          note: ''
+        },
+        certificatename: {
+          title: 'Need help with the name on the certificate?',
+          message: 'Provide the name on the certificate',
+          note: ''
+        },
+        bornonmilitaryinstallation: {
+          title: 'Need help with if you were born on a military installation?',
+          message: 'If you were born on a military installation select "yes"',
+          note: ''
+        },
+        militarybase: {
+          title: 'Need help with military base?',
+          message: 'Provide the name of the military base',
+          note: ''
+        },
+        entrydate: {
+          title: 'Need help with the date of entry in to the U.S.?',
+          message: 'Provide the approximate date of entry',
+          note: ''
+        },
+        entrylocation: {
+          title: 'Need help with the location of entry?',
+          message: 'Provide the location of entry in to the U.S.',
+          note: ''
+        },
+        priorcitizenship: {
+          title: 'Need help with prior citizenship(s)?',
+          message: 'Provide any prior citizenships',
+          note: ''
+        },
+        hasalienregistration: {
+          title: 'Need help if you have an alien registration number?',
+          message: 'If you have an alien registration number select "Yes"',
+          note: ''
+        },
+        alienregistrationnumber: {
+          title: 'Need help with your alien registration number?',
+          message: 'Provide the alien registration number',
+          note: ''
+        },
+        alienregistrationexpiration: {
+          title: 'Need help with your alien registration expiration date?',
+          message: 'Provide the date of expiration for the alien registration',
+          note: ''
+        },
+        certificatecourtname: {
+          title: 'Need help with the court name?',
+          message: 'Provide the court name',
+          note: ''
+        },
+        certificatecourtaddress: {
+          title: 'Need help with address of the court who issued the certificate?',
+          message: 'Provide the address of the court who issued the certificate',
+          note: ''
+        },
+        basis: {
+          naturalized: {
+            title: 'Need help with the basis of naturalization?',
+            message: 'Provide the basis of naturalization',
+            note: ''
+          },
+          derived: {
+            title: 'Need help with the basis of derived citizenship?',
+            message: 'Provide the basis of the derive citizenship',
+            note: ''
+          }
+        },
+        permanentresidentcardnumber: {
+          title: 'Need help with your permaenent resident card?',
+          message: 'Provide your permanent resident card number',
+          note: ''
+        },
+        residencestatus: {
+          title: 'Need help with your residence status?',
+          message: 'Provide your residence status',
+          note: ''
+        },
+        documentexpiration: {
+          title: 'Need help with the documentation expiration date?',
+          message: 'Provide the approximate date of expiration',
+          note: ''
+        },
+        documenttype: {
+          title: 'Need help with the type of documentation?',
+          message: 'Provide the type of documentation',
+          note: ''
+        }
+      }
+    }
+  },
+
+  relationships: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      para: 'View all the sections associated with relationships at once'
+    },
+    destination: {
+      review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
       friends: 'People who know you well'
@@ -3822,6 +4073,7 @@ const en = {
       placeholder: {
         number: 'A########'
       },
+      name: 'Provide the name in which passport was first issued',
       number: 'Provide your U.S. passport number',
       card: 'Passport card',
       issued: 'Provide the issue date of the passport',
@@ -4157,7 +4409,24 @@ const en = {
       label: {
         first: 'First name',
         last: 'Last name',
-        middle: 'Middle name or initial'
+        middle: 'Middle name or initial',
+        initialOnly: 'Initial Only',
+        noMiddle: 'No middle name',
+        other: 'Other',
+        suffix: 'Suffix',
+        optional: 'Optional',
+        jr: 'Jr',
+        sr: 'Sr',
+        i: 'I',
+        ii: 'II',
+        iii: 'III',
+        iv: 'IV',
+        v: 'V',
+        vi: 'VI',
+        vii: 'VII',
+        viii: 'VIII',
+        ix: 'IX',
+        x: 'X'
       },
       placeholder: {
         first: 'Enter first name of the person who knows you',
@@ -4210,6 +4479,12 @@ const en = {
       diagnoses: 'Diagnoses',
       existingConditions: 'Existing conditions',
       review: 'Review'
+    },
+    default: {
+      label: {
+        toDate: 'N/A',
+        fromDate: 'N/A'
+      }
     },
     intro: {
       para1: 'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
@@ -4353,6 +4628,28 @@ const en = {
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization:'
+      },
+      help: {
+        incompetent: {
+          title: 'Need help with mental health hospitalization?',
+          message: 'Have you EVER been hospitalized for a mental health condition?',
+          note: ''
+        },
+        treatment: {
+          title: 'Need help the dates of treatment?',
+          message: 'Provide the dates when you were treated ',
+          note: ''
+        },
+        facility: {
+          title: 'Need help the facility where treatment was provided?',
+          message: 'Provide the name of the facility where treatment was provided',
+          note: ''
+        },
+        address: {
+          title: 'Need help with treatment facility?',
+          message: 'Provide the address of the facility where treatment was provided',
+          note: ''
+        }
       }
     },
     diagnosis: {
@@ -4364,6 +4661,18 @@ const en = {
         facility: 'Agency/organization/facility',
         explanation: 'Provide explanation'
       },
+      help: {
+        condition: {
+          title: 'Need help with health condition',
+          message: 'Provide the name of the diagnosis or health condition',
+          note: ''
+        },
+        diagnosed: {
+          title: 'Need help with treatment dates',
+          message: 'Provide the dates of couseling or treatment',
+          note: ''
+        }
+      },
       person: {
         heading: {
           name: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition',
@@ -4373,6 +4682,18 @@ const en = {
           address: 'This address is',
           name: 'Name',
           phone: 'Telephone'
+        },
+        help: {
+          address: {
+            title: 'Need help with health care professional address',
+            message: 'Provide the address of the health care professional',
+            note: ''
+          },
+          name: {
+            title: 'Need help the name of the healthcare professional?',
+            message: 'Provide the name of the healthcare professional',
+            note: ''
+          }
         }
       },
       facility: {
@@ -4381,7 +4702,21 @@ const en = {
           address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
         },
         label: {
+          name: 'Name',
+          phone: 'Telephone',
           address: 'This address is'
+        },
+        help: {
+          address: {
+            title: 'Need help with treatment facility?',
+            message: 'Provide the address of the facility where treatment was provided',
+            note: ''
+          },
+          name: {
+            title: 'Need help the facility where treatment was provided?',
+            message: 'Provide the name of the facility where treatment was provided',
+            note: ''
+          }
         }
       }
     },
@@ -4416,6 +4751,40 @@ const en = {
           appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment:'
+        }
+      },
+      help: {
+        diagnosed: {
+          title: 'Help with diagnoses',
+          message: 'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+          note: ''
+        },
+        didNotConsult: {
+          title: 'Help with occasions when not consulting',
+          message: 'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
+          note: ''
+        },
+        inTreatment: {
+          title: 'Help with current treatment',
+          message: 'Are you currently in treatment?',
+          note: ''
+        },
+        condition: {
+          title: 'Help with diagnosis',
+          message: 'Identify the diagnosis or health condition',
+          note: ''
+        }
+      },
+      person: {
+        help: {
+          name: {
+            title: 'Help with healthcare professional',
+            message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+          },
+          address: {
+            title: 'Help with healthcare professional address',
+            message: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+          }
         }
       }
     },
@@ -4478,6 +4847,18 @@ const en = {
           facility: 'Agency/organization/facility',
           explanation: 'Provide explanation'
         },
+        help: {
+          condition: {
+            title: 'Need help with health condition',
+            message: 'Provide the name of the diagnosis or health condition',
+            note: ''
+          },
+          diagnosed: {
+            title: 'Need help with treatment dates',
+            message: 'Provide the dates of couseling or treatment',
+            note: ''
+          }
+        },
         person: {
           heading: {
             name: 'Provide the name and telephone number of the health care professional',
@@ -4487,6 +4868,18 @@ const en = {
             address: 'This address is',
             name: 'Name',
             phone: 'Telephone'
+          },
+          help: {
+            address: {
+              title: 'Need help with health care professional address',
+              message: 'Provide the address of the health care professional',
+              note: ''
+            },
+            name: {
+              title: 'Need help the name of the healthcare professional?',
+              message: 'Provide the name of the healthcare professional',
+              note: ''
+            }
           }
         },
         facility: {
@@ -4498,6 +4891,18 @@ const en = {
             address: 'This address is',
             name: 'Name',
             phone: 'Telephone'
+          },
+          help: {
+            address: {
+              title: 'Need help with treatment facility?',
+              message: 'Provide the address of the facility where treatment was provided',
+              note: ''
+            },
+            name: {
+              title: 'Need help the facility where treatment was provided?',
+              message: 'Provide the name of the facility where treatment was provided',
+              note: ''
+            }
           }
         }
       }

@@ -2,16 +2,7 @@
 
 .btn-wrap {
   display: table;
-  padding: 0 17.5%;
   width: 100%;
-
-  @media screen and (max-width: 1380px) {
-    padding: 0 12%;
-  }
-
-  @media screen and (max-width: 1024px) {
-    padding: 0 5.5%;
-  }
 
   .btn-container {
     display: table-row;
@@ -83,17 +74,41 @@
 }
 
 .top-btns {
+  margin: 4.6rem -17.5%;
+  padding: 0 17.5%;
+  border-bottom: 2px solid #e2e7ef;
+
+  @media screen and (max-width: 1380px) {
+    margin: 4.6rem -12%;
+    padding: 0 12%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin: 4.6rem -5.5%;
+    padding: 0 5.5%;
+  }
+
   .btn-wrap {
-    border-bottom: 2px solid #e2e7ef;
-    padding-top: 7rem;
     padding-bottom: 7rem;
-    margin-bottom: 7rem;
   }
 }
 
 .bottom-btns {
+  margin: 4.6rem -17.5%;
+  padding: 0 17.5%;
+  border-top: 2px solid #e2e7ef;
+
+  @media screen and (max-width: 1380px) {
+    margin: 4.6rem -12%;
+    padding: 0 12%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin: 4.6rem -5.5%;
+    padding: 0 5.5%;
+  }
+
   .btn-wrap {
-    border-top: 2px solid #e2e7ef;
     padding-top: 7rem;
   }
 }

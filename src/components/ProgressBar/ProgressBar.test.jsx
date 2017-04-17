@@ -21,5 +21,30 @@ describe('The progress bar component', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><ProgressBar /></Provider>)
     expect(component.find('div').length).toEqual(2)
+    expect(component.find('#progress-bar').props().style.width).toBe('0%')
+  })
+
+  it('increments counter', () => {
+    const application = {
+      Completed: {
+        psychological: {
+          status: 'complete'
+        }
+      }
+    }
+    const store = mockStore({
+      application: application,
+      section: {
+        section: 'psychological',
+        subsection: 'competence'
+      },
+      authentication: {
+        authenticated: true,
+        twofactor: true
+      }
+    })
+    const component = mount(<Provider store={store}><ProgressBar /></Provider>)
+    expect(component.find('div').length).toEqual(2)
+    expect(component.find('#progress-bar').props().style.width).toBe('0%')
   })
 })

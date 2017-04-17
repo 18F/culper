@@ -173,7 +173,12 @@ export default class Accordion extends ValidationElement {
       if (React.isValidElement(child)) {
         if (child.props.bind) {
           childProps = {...item[child.props.name]}
-          childProps.onUpdate = (value) => { this.updateChild(item, index, child.props.name, value) }
+          childProps.onUpdate = (value) => {
+            const propName = child.props.name
+                  ? child.props.name
+                  : value && value.name ? value.name : 'Extra'
+            this.updateChild(item, index, propName, value)
+          }
           childProps.onValidate = this.props.onValidate
         }
       }
@@ -261,7 +266,7 @@ export default class Accordion extends ValidationElement {
       <div className={klassAppend}>
         {title}
         {message}
-        <div className="eapp-field-wrap">
+        <div>
           <button className="add usa-button-outline" onClick={this.add}>
             <span>{this.props.appendLabel}</span>
             <i className="fa fa-plus-circle"></i>
@@ -284,7 +289,7 @@ export default class Accordion extends ValidationElement {
             {this.content()}
           </div>
 
-          <button className="add" onClick={this.add}>
+          <button className="add usa-button-outline" onClick={this.add}>
             {this.props.appendLabel}
           </button>
         </div>

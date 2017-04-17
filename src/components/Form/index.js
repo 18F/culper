@@ -1,6 +1,5 @@
 // Validation
 import ValidationElement from './ValidationElement'
-import { Help, HelpIcon } from './Help'
 
 // Basic form elements
 import Generic from './Generic'
@@ -19,6 +18,7 @@ import Svg from './Svg'
 import Suggestions from './Suggestions'
 import NotApplicable from './NotApplicable'
 import Accordion from './Accordion'
+import Field from './Field'
 
 // Composite components
 import Type from './Type'
@@ -45,11 +45,11 @@ import PetitionType from './PetitionType'
 import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
+import SSN from './SSN'
+import BirthPlace from './BirthPlace'
 
 export {
   ValidationElement,
-  Help,
-  HelpIcon,
   Generic,
   Text,
   Email,
@@ -89,5 +89,8 @@ export {
   BranchCollection,
   Suggestions,
   NotApplicable,
-  Accordion
+  Accordion,
+  Field,
+  SSN,
+  BirthPlace
 }

@@ -4,6 +4,7 @@ import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 import { DiagnosesValidator } from '../../../../validators'
+import { dateRangeFormat } from '../summaryHelper'
 
 export default class Diagnoses extends ValidationElement {
   constructor (props) {
@@ -79,8 +80,9 @@ export default class Diagnoses extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
-    const date = (o.Diagnosed || {}).from ? `${o.Diagnosed.from.month}/${o.Diagnosed.from.year}` : ''
-    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${date}` : i18n.t('psychological.diagnoses.collection.summary')
+    const date = (o.Diagnosed || {})
+    const formattedDate = dateRangeFormat(date)
+    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${formattedDate}` : i18n.t('psychological.diagnoses.collection.summary')
     const type = i18n.t('psychological.diagnoses.collection.itemType')
 
     return (
@@ -114,59 +116,62 @@ export default class Diagnoses extends ValidationElement {
         {i18n.m('psychological.heading.diagnoses')}
         <h3>{i18n.t('psychological.diagnoses.heading.para')}</h3>
         <Branch name="diagnosed"
-          className="eapp-field-wrap no-label diagnosed"
+          className="diagnosed"
           value={this.state.Diagnosed}
-          help="psychological.diagnoses.help.incompetent"
+          help="psychological.diagnoses.help.diagnosed"
           onValidate={this.handleValidation}
           onUpdate={this.updateDiagnosed}>
         </Branch>
 
         <Show when={this.state.Diagnosed === 'Yes'}>
-          <Accordion minimum="1"
-            items={this.state.DiagnosisList}
-            onUpdate={this.updateDiagnosisList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
-            <Diagnosis name="Diagnosis"
-              bind={true} />
-          </Accordion>
+          <div>
+            <Accordion minimum="1"
+              items={this.state.DiagnosisList}
+              onUpdate={this.updateDiagnosisList}
+              summary={this.summary}
+              onValidate={this.handleValidation}
+              appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
+              appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
+              appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
+              <Diagnosis name="Diagnosis"
+                bind={true} />
+            </Accordion>
+
+            <h3>{i18n.t('psychological.diagnoses.heading.didNotConsult')}</h3>
+            <Branch name="didNotConsult"
+              className="didnotconsult"
+              value={this.state.DidNotConsult}
+              help="psychological.diagnoses.help.didNotConsult"
+              onValidate={this.handleValidation}
+              onUpdate={this.updateDidNotConsult}>
+            </Branch>
+
+            <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
+            <Branch name="inTreatment"
+              className="intreatment"
+              value={this.state.InTreatment}
+              help="psychological.diagnoses.help.inTreatment"
+              onValidate={this.handleValidation}
+              onUpdate={this.updateInTreatment}>
+            </Branch>
+
+            <Show when={this.state.InTreatment === 'Yes'}>
+              <Accordion minimum="1"
+                items={this.state.TreatmentList}
+                onUpdate={this.updateTreatmentList}
+                summary={this.treatmentSummary}
+                onValidate={this.handleValidation}
+                appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
+                appendMessage={i18n.m('psychological.diagnoses.treatment.collection.appendMessage')}
+                appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
+                <Treatment name="Treatment"
+                  prefix="diagnoses.professional"
+                  bind={true} />
+              </Accordion>
+            </Show>
+          </div>
         </Show>
 
-        <h3>{i18n.t('psychological.diagnoses.heading.didNotConsult')}</h3>
-        <Branch name="didNotConsult"
-          className="eapp-field-wrap no-label didnotconsult"
-          value={this.state.DidNotConsult}
-          help="psychological.diagnoses.help.didNotConsult"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateDidNotConsult}>
-        </Branch>
-
-        <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
-        <Branch name="inTreatment"
-          className="eapp-field-wrap no-label intreatment"
-          value={this.state.InTreatment}
-          help="psychological.diagnoses.help.inTreatment"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateInTreatment}>
-        </Branch>
-
-        <Show when={this.state.InTreatment === 'Yes'}>
-          <Accordion minimum="1"
-            items={this.state.TreatmentList}
-            onUpdate={this.updateTreatmentList}
-            summary={this.treatmentSummary}
-            onValidate={this.handleValidation}
-            appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.diagnoses.treatment.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
-            <Treatment name="Treatment"
-              prefix="diagnoses.professional"
-              bind={true} />
-          </Accordion>
-        </Show>
       </div>
     )
   }

@@ -1,0 +1,33 @@
+.relatives {
+  .smaller {
+    display: block;
+    font-size: smaller;
+    margin-top: -0.5rem;
+  }
+
+  .up-a-bit {
+    top: 25% !important;
+  }
+
+  .relatives-relation {
+    label {
+      height: 10rem;
+      width: 18rem;
+      overflow: hidden;
+
+      > span {
+        display: block;
+        height: 100%;
+
+        > div {
+          position: relative;
+          top: 35%;
+
+          > p {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}

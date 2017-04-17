@@ -1,16 +1,18 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { OtherNamesValidator } from '../../../../validators'
-import { ValidationElement, Help, HelpIcon, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
+import { ValidationElement, Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
 export default class OtherNames extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       List: props.List || [],
       HasOtherNames: props.HasOtherNames,
       errorCodes: []
     }
+
     this.myDispatch = this.myDispatch.bind(this)
   }
 
@@ -107,7 +109,6 @@ export default class OtherNames extends ValidationElement {
         <p>{i18n.t('identification.othernames.info')}</p>
         <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
-                className="eapp-field-wrap"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
                 onUpdate={this.onUpdate.bind(this)}>
@@ -119,46 +120,39 @@ export default class OtherNames extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
-                     appendClass="eapp-field-wrap"
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
 
             <h3>{i18n.t('identification.othernames.heading.name')}</h3>
             <Name name="Name"
                   key="name"
-                  className="eapp-field-wrap"
                   bind={true}
                   />
 
-            <h3>{i18n.t('identification.othernames.heading.maiden')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="alias.maiden.help">
-                <MaidenName name="MaidenName"
-                            bind={true}
-                            />
-                <HelpIcon className="maiden-help-icon" />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('identification.othernames.heading.used')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="alias.used.help">
-                <DateRange name="DatesUsed"
-                           bind={true}
-                           />
-                <HelpIcon className="used-help-icon" />
-              </Help>
-            </div>
-
-            <h3>{i18n.t('identification.othernames.heading.reason')}</h3>
-            <div className="eapp-field-wrap">
-              <Help id="alias.reason.help">
-                <Textarea name="Reason"
-                          className="reason"
+            <Field title={i18n.t('identification.othernames.heading.maiden')}
+                   help="alias.maiden.help"
+                   adjustFor="buttons"
+                   shrink={true}>
+              <MaidenName name="MaidenName"
                           bind={true}
                           />
-                <HelpIcon className="reason-help-icon" />
-              </Help>
-            </div>
+            </Field>
+
+            <Field title={i18n.t('identification.othernames.heading.used')}
+                   help="alias.used.help"
+                   adjustFor="daterange"
+                   shrink={true}>
+              <DateRange name="DatesUsed"
+                         bind={true}
+                         />
+            </Field>
+
+            <Field title={i18n.t('identification.othernames.heading.reason')}
+                   help="alias.reason.help">
+              <Textarea name="Reason"
+                        className="reason"
+                        bind={true}
+                        />
+            </Field>
           </Accordion>
         </Show>
       </div>

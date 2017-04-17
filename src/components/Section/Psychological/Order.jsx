@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Help, HelpIcon, Text, DateControl, BranchCollection, Svg } from '../../Form'
+import { Address, ValidationElement, Field, Text, DateControl, BranchCollection, Svg } from '../../Form'
 
 export default class Order extends ValidationElement {
   constructor (props) {
@@ -51,57 +51,48 @@ export default class Order extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="order">
-        <div className="eapp-field-wrap">
-          <h3>{i18n.t(`psychological.${prefix}.heading.occurred`)}</h3>
-          <Help id={`psychological.${prefix}.help.occurred`}>
-            <DateControl name="Occurred"
-              {...this.props.Occurred}
-              label={i18n.t(`psychological${prefix}.label.occurred`)}
-              hideDay={true}
-              onUpdate={this.updateOccurred}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="date-help-icon" />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.occurred`)}
+               help={`psychological.${prefix}.help.occurred`}
+               adjustFor="labels"
+               shrink={true}>
+          <DateControl name="Occurred"
+                       {...this.props.Occurred}
+                       label={i18n.t(`psychological${prefix}.label.occurred`)}
+                       hideDay={true}
+                       onUpdate={this.updateOccurred}
+                       onValidate={this.props.onValidate}
+                       />
+        </Field>
 
-        <div className="eapp-field-wrap no-label">
-          <h3>{i18n.t(`psychological.${prefix}.heading.courtName`)}</h3>
-          <Help id={`psychological.${prefix}.help.courtName`}>
-            <Text name="CourtName"
-              className="courtname"
-              {...this.props.CourtName}
-              onUpdate={this.updateCourtName}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="text-help-icon" />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.courtName`)}
+               help={`psychological.${prefix}.help.courtName`}>
+          <Text name="CourtName"
+                className="courtname"
+                {...this.props.CourtName}
+                onUpdate={this.updateCourtName}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-        <div className="eapp-field-wrap">
-          <h3>{i18n.t(`psychological.${prefix}.heading.courtAddress`)}</h3>
-          <Help id={`psychological.${prefix}.help.courtAddress`}>
-            <Address name="CourtAddress"
-              {...this.props.CourtAddress}
-              label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-              onUpdate={this.updateCourtAddress}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="address-help-icon" />
-          </Help>
-        </div>
-        <div className="eapp-field-wrap no-label">
-          <h3>{i18n.t(`psychological.${prefix}.heading.disposition`)}</h3>
-          <Help id={`psychological.${prefix}.help.disposition`}>
-            <Text name="Disposition"
-              className="disposition"
-              {...this.props.Disposition}
-              onUpdate={this.updateDisposition}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="text-help-icon" />
-          </Help>
-        </div>
+        <Field title={i18n.t(`psychological.${prefix}.heading.courtAddress`)}
+               help={`psychological.${prefix}.help.courtAddress`}>
+          <Address name="CourtAddress"
+                   {...this.props.CourtAddress}
+                   label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
+                   onUpdate={this.updateCourtAddress}
+                   onValidate={this.props.onValidate}
+                   />
+        </Field>
+
+        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
+               help={`psychological.${prefix}.help.disposition`}>
+          <Text name="Disposition"
+                className="disposition"
+                {...this.props.Disposition}
+                onUpdate={this.updateDisposition}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
         <BranchCollection
           className="appeals"
@@ -110,48 +101,40 @@ export default class Order extends ValidationElement {
           items={this.props.Appeals}
           onValidate={this.props.onValidate}
           onUpdate={this.updateAppeals}
-        >
+          >
 
-        <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
-        <Svg src="img/date-down-arrow.svg" className="more arrow" />
+          <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
+          <Svg src="img/date-down-arrow.svg" className="more arrow" />
 
-        <div className="eapp-field-wrap no-label">
-          <h3>{i18n.t(`psychological.${prefix}.heading.appealCourtName`)}</h3>
-          <Help id={`psychological.${prefix}.help.disposition`}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
+                 help={`psychological.${prefix}.help.disposition`}>
             <Text name="CourtName"
-              className="courtname"
-              bind={true}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="text-help-icon" />
-          </Help>
-        </div>
+                  className="courtname"
+                  bind={true}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
 
-        <div className="eapp-field-wrap">
-          <h3>{i18n.t(`psychological.${prefix}.heading.appealCourtName`)}</h3>
-          <Help id={ `psychological.${prefix}.help.courtAddress` }>
+          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
+                 help={ `psychological.${prefix}.help.courtAddress` }
+                 adjustFor="big-buttons">
             <Address name="CourtAddress"
-              bind={true}
-              label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="address-help-icon" />
-          </Help>
-        </div>
+                     bind={true}
+                     label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
+                     onValidate={this.props.onValidate}
+                     />
+          </Field>
 
-        <div className="eapp-field-wrap no-label">
-          <h3>{i18n.t(`psychological.${prefix}.heading.disposition`)}</h3>
-          <Help id={`psychological.${prefix}.help.disposition`}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
+                 help={`psychological.${prefix}.help.disposition`}>
             <Text name="Disposition"
-              className="disposition"
-              bind={true}
-              onValidate={this.props.onValidate}
-            />
-            <HelpIcon className="text-help-icon" />
-          </Help>
-        </div>
-      </BranchCollection>
-    </div>
+                  className="disposition"
+                  bind={true}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
+        </BranchCollection>
+      </div>
     )
   }
 }

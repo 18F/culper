@@ -1,11 +1,11 @@
 import React from 'react'
+import { i18n } from '../../../config'
+import { NameValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
-import { Help, HelpIcon } from '../Help'
+import Field from '../Field'
 import Text from '../Text'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
-import { NameValidator } from '../../../validators'
-import { i18n } from '../../../config'
 
 export default class Name extends ValidationElement {
   constructor (props) {
@@ -165,7 +165,9 @@ export default class Name extends ValidationElement {
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
-        <Help id="identification.name.first.help" errorPrefix="name">
+        <Field help="identification.name.first.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <Text name="first"
                 ref="first"
                 label={i18n.t(`${prefix}.label.first`)}
@@ -179,8 +181,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <HelpIcon />
-          <div className="text-right">
+          <div className="flags">
             <div className="inline">
               <input id="firstInitialOnly"
                      name="firstInitialOnly"
@@ -188,11 +189,13 @@ export default class Name extends ValidationElement {
                      value="firstInitial"
                      checked={this.props.firstInitialOnly}
                      onChange={this.handleChange} />
-              <label>Initial Only</label>
+              <label>{i18n.t(`${prefix}.label.initialOnly`)}</label>
             </div>
           </div>
-        </Help>
-        <Help id="identification.name.middle.help" errorPrefix="name">
+        </Field>
+        <Field help="identification.name.middle.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <Text name="middle"
                 ref="middle"
                 label={i18n.t(`${prefix}.label.middle`)}
@@ -207,8 +210,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <HelpIcon />
-          <div className="middle-options text-right">
+          <div className="middle-options flags">
             <div className="inline">
               <input id="noMiddleName"
                      name="noMiddleName"
@@ -216,7 +218,7 @@ export default class Name extends ValidationElement {
                      value="noMiddleName"
                      checked={this.props.noMiddleName}
                      onChange={this.handleChange} />
-              <label>No middle name</label>
+              <label>{i18n.t(`${prefix}.label.noMiddle`)}</label>
             </div>
             <div className="inline">
               <input id="middleInitialOnly"
@@ -225,11 +227,13 @@ export default class Name extends ValidationElement {
                      value="middleInitial"
                      checked={this.props.middleInitialOnly}
                      onChange={this.handleChange} />
-              <label>Initial Only</label>
+              <label>{i18n.t(`${prefix}.label.initialOnly`)}</label>
             </div>
           </div>
-        </Help>
-        <Help id="identification.name.last.help" errorPrefix="name">
+        </Field>
+        <Field help="identification.name.last.help"
+               errorPrefix="name"
+               adjustFor="labels">
           <Text name="last"
                 ref="last"
                 label={i18n.t(`${prefix}.label.last`)}
@@ -243,8 +247,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
-          <HelpIcon />
-          <div className="text-right">
+          <div className="flags">
             <div className="inline">
               <input id="lastInitialOnly"
                      name="lastInitialOnly"
@@ -252,16 +255,18 @@ export default class Name extends ValidationElement {
                      value="lastInitial"
                      checked={this.props.lastInitialOnly}
                      onChange={this.handleChange} />
-              <label>Initial Only</label>
+              <label>{i18n.t(`${prefix}.label.initialOnly`)}</label>
             </div>
           </div>
-        </Help>
-        <Help id="identification.name.suffix.help" errorPrefix="name">
-          <label>Suffix <span className="optional">(Optional)</span></label>
+        </Field>
+        <Field help="identification.name.suffix.help"
+               errorPrefix="name"
+               adjustFor="labels">
+          <label>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></label>
 
           <RadioGroup className="option-list suffix" selectedValue={this.state.suffix}>
             <Radio name="suffix"
-                   label="Jr"
+                   label={i18n.t(`${prefix}.label.jr`)}
                    value="Jr"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -269,7 +274,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="Sr"
+                   label={i18n.t(`${prefix}.label.sr`)}
                    value="Sr"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -277,7 +282,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="I"
+                   label={i18n.t(`${prefix}.label.i`)}
                    value="I"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -285,7 +290,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="II"
+                   label={i18n.t(`${prefix}.label.ii`)}
                    value="II"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -293,7 +298,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="III"
+                   label={i18n.t(`${prefix}.label.iii`)}
                    value="III"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -301,7 +306,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="IV"
+                   label={i18n.t(`${prefix}.label.iv`)}
                    value="IV"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -309,7 +314,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="V"
+                   label={i18n.t(`${prefix}.label.v`)}
                    value="V"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -317,7 +322,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="VI"
+                   label={i18n.t(`${prefix}.label.vi`)}
                    value="VI"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -325,7 +330,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="VII"
+                   label={i18n.t(`${prefix}.label.vii`)}
                    value="VII"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -333,7 +338,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="VIII"
+                   label={i18n.t(`${prefix}.label.viii`)}
                    value="VIII"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -341,7 +346,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="IX"
+                   label={i18n.t(`${prefix}.label.ix`)}
                    value="IX"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -349,7 +354,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="X"
+                   label={i18n.t(`${prefix}.label.x`)}
                    value="X"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -357,7 +362,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
-                   label="Other"
+                   label={i18n.t(`${prefix}.label.other`)}
                    value="Other"
                    onChange={this.handleChange}
                    onValidate={this.handleValidation}
@@ -365,10 +370,9 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
           </RadioGroup>
-          <HelpIcon className="suffix-help-icon" />
           <div className={this.suffixOtherClass()}>
             <Text name="suffixOther"
-                  label="Other"
+                  label={i18n.t(`${prefix}.label.other`)}
                   maxlength="100"
                   value={this.state.suffixOther}
                   onChange={this.handleChange}
@@ -377,7 +381,7 @@ export default class Name extends ValidationElement {
                   onBlur={this.props.onBlur}
                   />
           </div>
-        </Help>
+        </Field>
       </div>
     )
   }

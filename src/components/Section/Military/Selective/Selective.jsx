@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { SelectiveServiceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Text, Textarea, Help, HelpIcon } from '../../../Form'
+import { ValidationElement, Branch, Show, Text, Textarea, Field } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -112,7 +112,7 @@ export default class Selective extends ValidationElement {
     return (
       <div className="selective">
         <Branch name="was_bornafter"
-                className="eapp-field-wrap no-label born"
+                className="born"
                 value={this.state.WasBornAfter}
                 help="military.selective.help.born"
                 onUpdate={this.updateBornAfter}
@@ -123,7 +123,7 @@ export default class Selective extends ValidationElement {
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="eapp-field-wrap no-label registered"
+                    className="registered"
                     value={this.state.HasRegistered}
                     help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}
@@ -132,47 +132,48 @@ export default class Selective extends ValidationElement {
 
             <Show when={this.state.HasRegistered === 'Yes'}>
               <div>
-                <h3>{i18n.t('military.selective.heading.number')}</h3>
-                <div className="eapp-field-wrap no-margin-bottom">
-                  <Help id="military.selective.help.number">
-                    <Text name="RegistrationNumber"
-                          className="registration-number"
-                          label={i18n.t('military.selective.label.number')}
-                          onUpdate={this.updateRegistrationNumber}
-                          onValidate={this.handleValidation}
-                          />
-                  </Help>
-                </div>
+                <Field title={i18n.t('military.selective.heading.number')}
+                       help="military.selective.help.number"
+                       adjustFor="labels">
+                  <Text name="RegistrationNumber"
+                        className="registration-number"
+                        label={i18n.t('military.selective.label.number')}
+                        onUpdate={this.updateRegistrationNumber}
+                        onValidate={this.handleValidation}
+                        />
+                </Field>
               </div>
             </Show>
 
             <Show when={this.state.HasRegistered === 'No'}>
               <div>
-                <div className="eapp-field-wrap no-margin-bottom">
-                  <Help id="military.selective.help.explanation">
-                    <Textarea name="Explanation"
-                              className="explanation"
-                              label={i18n.t('military.selective.label.explanation')}
-                              onUpdate={this.updateExplanation}
-                              onValidate={this.handleValidation}
-                              />
-                  </Help>
-                </div>
+                <Field help="military.selective.help.explanation"
+                       className="no-margin-bottom"
+                       adjustFor="labels">
+                  <Textarea name="Explanation"
+                            className="explanation"
+                            label={i18n.t('military.selective.label.explanation')}
+                            onUpdate={this.updateExplanation}
+                            onValidate={this.handleValidation}
+                            />
+                </Field>
               </div>
             </Show>
 
-            <div className="eapp-field-wrap">
-              <div className="help">
-                <div className="message eapp-help-message">
-                  <i className="fa fa-question"></i>
-                  <h5>{i18n.m('military.selective.help.remember.title')}</h5>
-                  {i18n.m('military.selective.help.remember.message')}
-                  <div>
-                    <p>
-                      <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
-                        https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
-                      </a>
-                    </p>
+            <div className="field">
+              <div className="table">
+                <div className="messages">
+                  <div className="message help">
+                    <i className="fa fa-question"></i>
+                    <h5>{i18n.m('military.selective.help.remember.title')}</h5>
+                    {i18n.m('military.selective.help.remember.message')}
+                    <div>
+                      <p>
+                        <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
+                          https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
+                        </a>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

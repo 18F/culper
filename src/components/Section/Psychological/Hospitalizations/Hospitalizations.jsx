@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
 import Hospitalization from './Hospitalization'
 import { HospitalizationsValidator } from '../../../../validators'
+import { dateRangeFormat } from '../summaryHelper'
 
 export default class Hospitalizations extends ValidationElement {
   constructor (props) {
@@ -57,8 +58,9 @@ export default class Hospitalizations extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Hospitalization || {}
-    const treatmentDate = (o.TreatmentDate || {}).date ? `${o.TreatmentDate.month}/${o.Occurred.year}` : ''
-    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${treatmentDate}` : i18n.t('psychological.hospitalization.collection.summary')
+    const treatmentDate = (o.TreatmentDate || {})
+    const formattedTreatmentDate = dateRangeFormat(treatmentDate)
+    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${formattedTreatmentDate}` : i18n.t('psychological.hospitalization.collection.summary')
     const type = i18n.t('psychological.hospitalization.collection.itemType')
 
     return (
@@ -78,7 +80,6 @@ export default class Hospitalizations extends ValidationElement {
       <div className="hospitalizations">
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
-          className="eapp-field-wrap no-label "
           value={this.state.Hospitalized}
           help="psychological.hospitalization.help.incompetent"
           onValidate={this.handleValidation}

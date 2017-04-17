@@ -42,7 +42,7 @@ const errorReducer = function (sectionName) {
 export default combineReducers({
   Identification: reducer('Identification'),
   Financial: reducer('Financial'),
-  Family: reducer('Family'),
+  Relationships: reducer('Relationships'),
   Citizenship: reducer('Citizenship'),
   Military: reducer('Military'),
   History: reducer('History'),

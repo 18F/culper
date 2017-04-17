@@ -1,5 +1,5 @@
 import React from 'react'
-import { Help, HelpIcon, Radio, RadioGroup } from '../../Form'
+import { Field, Radio, RadioGroup } from '../../Form'
 
 /**
  * Branch is a component that stores whether Yes/No options were selected. It contains a callback
@@ -24,59 +24,37 @@ export default class Branch extends React.Component {
 
   render () {
     const klass = `branch ${this.props.className || ''}`.trim()
-
-    if (this.props.help) {
-      return (
-        <div className={klass}>
-          <div className="content">
-            {this.props.children}
-          </div>
-          <div>
-            <Help id={this.props.help}>
-              <label>{this.props.label || ''}</label>
-              <RadioGroup className="option-list branch" selectedValue={this.props.value}>
-                <Radio name={this.props.name}
-                       label={this.props.yesLabel}
-                       value={this.props.yesValue}
-                       className="yes"
-                       onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-                       onValidate={this.props.onValidate}
-                       />
-                <Radio name={this.props.name}
-                       label={this.props.noLabel}
-                       value={this.props.noValue}
-                       className="no"
-                       onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-                       onValidate={this.props.onValidate}
-                       />
-              </RadioGroup>
-              <HelpIcon className="branch-help-icon" />
-            </Help>
-          </div>
-        </div>
-      )
-    }
+    const adjustFor = 'buttons'
 
     return (
       <div className={klass}>
         <div className="content">
           {this.props.children}
         </div>
-        <label>{this.props.label || ''}</label>
-        <RadioGroup className="option-list branch" selectedValue={this.props.value}>
-          <Radio name={this.props.name}
-                 label={this.props.yesLabel}
-                 value={this.props.yesValue}
-                 className="yes"
-                 onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-                 />
-          <Radio name={this.props.name}
-                 label={this.props.noLabel}
-                 value={this.props.noValue}
-                 className="no"
-                 onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-                 />
-        </RadioGroup>
+        <div>
+          <Field title={this.props.label}
+                 titleSize={this.props.labelSize}
+                 help={this.props.help}
+                 adjustFor={adjustFor}
+                 shrink={true}>
+            <RadioGroup className="option-list branch" selectedValue={this.props.value}>
+              <Radio name={this.props.name}
+                     label={this.props.yesLabel}
+                     value={this.props.yesValue}
+                     className="yes"
+                     onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                     onValidate={this.props.onValidate}
+                     />
+              <Radio name={this.props.name}
+                     label={this.props.noLabel}
+                     value={this.props.noValue}
+                     className="no"
+                     onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                     onValidate={this.props.onValidate}
+                     />
+            </RadioGroup>
+          </Field>
+        </div>
       </div>
     )
   }
@@ -88,5 +66,6 @@ Branch.defaultProps = {
   yesValue: 'Yes',
   noLabel: 'No',
   noValue: 'No',
+  labelSize: 'label',
   value: null
 }
