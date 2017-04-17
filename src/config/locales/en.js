@@ -1632,6 +1632,164 @@ const en = {
           note: ''
         }
       }
+    },
+
+    multiple: {
+      heading: {
+        title: 'Dual/Multiple citizenship & foreign passport information',
+        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
+        citizenship: {
+          country: 'Provide country of citizenship',
+          dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
+          how: 'How did ou acquire this non-U.S. citizenship you now have or previously had?',
+          renounced: 'Have you taken any action to renounce your foreign citizenship?',
+          renouncedexplanation: 'Provide explanation',
+          current: 'Do you currently hold citizenship with this country?',
+          currentexplanation: 'Provide explanation'
+        },
+        hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
+        passport: {
+          country: 'Provide the country in which the passport (or identity card) was issued',
+          issued: 'Provide the date the passport (or identity card) was issued',
+          location: 'Provide the place the passport (or identity card) was issued',
+          name: 'Provide the name in which passport (or identity card) was issued',
+          number: 'Provide the passport (or identity card) number',
+          expiration: 'Provide the passport (or identity card) expiration date',
+          used: 'Have you EVER used this passport (or identity card) for foreign travel?'
+        },
+        travel: {
+          country: 'Provide the country to which you traveled on this passport (or identity card)',
+          dates: 'Provide the dates involved'
+        }
+      },
+      collection: {
+        citizenship: {
+          summary: {
+            title: 'Summary of dual/multiple citizenships',
+            item: 'Country',
+            unknown: 'Provide citizenship details below'
+          },
+          appendTitle: 'Do you have an additional citizenship to provide?',
+          appendMessage: 'If yes use the button below to add another',
+          append: 'Add another citizenship'
+        },
+        passport: {
+          summary: {
+            title: 'Summary of foreign passports',
+            item: 'Country',
+            unknown: 'Provide passport details below'
+          },
+          appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
+          appendMessage: 'If yes use the button below to add another foreign passport',
+          append: 'Add another foreign passport'
+        },
+        travel: {
+          summary: {
+            title: 'Summary of foreign travel',
+            item: 'Country',
+            unknown: 'Provide travel details below'
+          },
+          append: 'Add another foreign travel'
+        }
+      },
+      help: {
+        hasmultiple: {
+          title: 'Need help with multilpe citizenships?',
+          message: 'If you have ever had a non-U.S. citizenship then select "yes"',
+          note: ''
+        },
+        citizenship: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates',
+            note: ''
+          },
+          how: {
+            title: 'Need help with the how you acquired this citizenship?',
+            message: 'Provide the how you acquired this citizenship',
+            note: ''
+          },
+          renounced: {
+            title: 'Need help with the renouncement?',
+            message: 'If you have renounced this citizenship select "yes"',
+            note: ''
+          },
+          renouncedexplanation: {
+            title: 'Need help explaining your renouncement?',
+            message: 'Provide the explanation for the renouncement',
+            note: ''
+          },
+          current: {
+            title: 'Need help with the current citizenship?',
+            message: 'If you still retain citizenship select "yes"',
+            note: ''
+          },
+          currentexplanation: {
+            title: 'Need help explaining your current citizenship?',
+            message: 'Provide the explanation for the current citizenship',
+            note: ''
+          }
+        },
+        hasforeignpassport: {
+          title: 'Need help with foreign passports or identity cards?',
+          message: 'If you have ever had a foreign passport or identity card then select "yes"',
+          note: ''
+        },
+        passport: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          issued: {
+            title: 'Need help with the dates issued?',
+            message: 'Provide the approximate date the item was issued',
+            note: ''
+          },
+          location: {
+            title: 'Need help with the place it was issued?',
+            message: 'Provide the location the passport (or identity card) was issued',
+            note: ''
+          },
+          name: {
+            title: 'Need help with the name?',
+            message: 'Provide the name on the passport (or identity card)',
+            note: ''
+          },
+          number: {
+            title: 'Need help with the passport number?',
+            message: 'Provide the passport (or identity card) number',
+            note: ''
+          },
+          expiration: {
+            title: 'Need help with the expiration date?',
+            message: 'Provide the approximate date the item expires',
+            note: ''
+          },
+          used: {
+            title: 'Need help determining if the passport was used?',
+            message: 'If you have used the passport for travel then select "yes"',
+            note: ''
+          }
+        },
+        travel: {
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates',
+            note: ''
+          }
+        }
+      }
     }
   },
 
