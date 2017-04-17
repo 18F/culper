@@ -61,9 +61,11 @@
 
   .nonumber {
     display: inline-block;
+    vertical-align: top;
 
     label {
       width: 14rem;
+      margin-top: 2.5rem;
     }
   }
 }
