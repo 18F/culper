@@ -8,6 +8,7 @@ import Text from '../Text'
 import Show from '../Show'
 import Field from '../Field'
 import DateControl from '../DateControl'
+import NotApplicable from '../NotApplicable'
 
 export default class ForeignBornDocuments extends ValidationElement {
   constructor (props) {
@@ -16,7 +17,9 @@ export default class ForeignBornDocuments extends ValidationElement {
     this.state = {
       DocumentType: props.DocumentType,
       OtherExplanation: props.OtherExplanation,
-      DocumentNumber: props.DocumentNumber
+      DocumentNumber: props.DocumentNumber,
+      DocumentExpiration: props.DocumentExpiration,
+      DocumentExpirationNotApplicable: props.DocumentExpirationNotApplicable
     }
 
     this.handleFocus = this.handleFocus.bind(this)
@@ -25,6 +28,7 @@ export default class ForeignBornDocuments extends ValidationElement {
     this.updateOtherExplanation = this.updateOtherExplanation.bind(this)
     this.updateDocumentNumber = this.updateDocumentNumber.bind(this)
     this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
+    this.updateDocumentExpirationNotApplicable = this.updateDocumentExpirationNotApplicable.bind(this)
   }
 
   update (field, values) {
@@ -34,7 +38,8 @@ export default class ForeignBornDocuments extends ValidationElement {
           DocumentType: this.state.DocumentType,
           OtherExplanation: this.state.OtherExplanation,
           DocumentNumber: this.state.DocumentNumber,
-          DocumentExpiration: this.state.DocumentExpiration
+          DocumentExpiration: this.state.DocumentExpiration,
+          DocumentExpirationNotApplicable: this.state.DocumentExpirationNotApplicable
         })
       }
     })
@@ -81,6 +86,10 @@ export default class ForeignBornDocuments extends ValidationElement {
 
   updateDocumentExpiration (values) {
     this.update('DocumentExpiration', values)
+  }
+
+  updateDocumentExpirationNotApplicable (values) {
+    this.update('DocumentExpirationNotApplicable', !values.applicable)
   }
 
   render () {
@@ -248,6 +257,7 @@ export default class ForeignBornDocuments extends ValidationElement {
               label="Provide explanation"
               {...this.state.OtherExplanation}
               onUpdate={this.updateOtherExplanation}
+              onValidate={this.props.onValidate}
             />
           </Show>
         </Field>
@@ -259,6 +269,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             label="Document Number"
             {...this.state.DocumentNumber}
             onUpdate={this.updateDocumentNumber}
+              onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -266,10 +277,17 @@ export default class ForeignBornDocuments extends ValidationElement {
           help="foreignBornDocuments.help.documentExpiration"
           shrink={true}
           adjustFor="labels">
-          <DateControl name="documentExpiration"
-            {...this.state.DocumentExpiration}
-            onUpdate={this.updateDocumentExpiration}
-          />
+          <NotApplicable name="OtherNameNotApplicable"
+            applicable={this.state.DocumentExpirationNotApplicable}
+            label={i18n.t('reference.label.idk')}
+            or={i18n.m('reference.para.or')}
+            onUpdate={this.updateDocumentExpirationNotApplicable}>
+            <DateControl name="documentExpiration"
+              {...this.state.DocumentExpiration}
+              onUpdate={this.updateDocumentExpiration}
+              onValidate={this.props.onValidate}
+            />
+          </NotApplicable>
         </Field>
       </div>
     )
