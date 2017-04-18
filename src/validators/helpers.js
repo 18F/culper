@@ -204,5 +204,5 @@ export const validSSN = (ssn) => {
   if (ssn.notApplicable === true) {
     return true
   }
-  return ssn.first && ssn.middle && ssn.last
+  return !!ssn.first && !!ssn.middle && !!ssn.last
 }

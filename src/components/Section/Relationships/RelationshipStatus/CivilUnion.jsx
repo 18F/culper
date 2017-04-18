@@ -27,8 +27,6 @@ export default class CivilUnion extends ValidationElement {
       AddressSeparatedNotApplicable: props.AddressSeparatedNotApplicable,
       Divorced: props.Divorced,
       DivorcedList: props.DivorcedList,
-      HasCohabitant: props.HasCohabitant,
-      CohabitantList: props.CohabitantList,
       errorCodes: []
     }
 
@@ -52,7 +50,6 @@ export default class CivilUnion extends ValidationElement {
     this.updateAddressSeparatedNotApplicable = this.updateAddressSeparatedNotApplicable.bind(this)
     this.updateDivorced = this.updateDivorced.bind(this)
     this.updateDivorcedList = this.updateDivorcedList.bind(this)
-    this.updateHasCohabitant = this.updateHasCohabitant.bind(this)
   }
 
   update (field, values) {
@@ -165,14 +162,6 @@ export default class CivilUnion extends ValidationElement {
 
   updateDivorcedList (values) {
     this.update('DivorcedList', values)
-  }
-
-  updateHasCohabitant (values) {
-    this.update('HasCohabitant', values)
-  }
-
-  updateCohabitantList (values) {
-    this.update('CohabitantList', values)
   }
 
   handleValidation (event, status, error) {

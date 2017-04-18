@@ -8,12 +8,13 @@ export default class Cohabitant extends React.Component {
     this.state = {
       Name: props.Name,
       Birthdate: props.Birthdate,
-      Birthplace: props.Birthplace,
+      BirthPlace: props.BirthPlace,
       ForeignBornDocument: props.ForeignBornDocument,
       SSN: props.SSN,
       OtherName: props.OtherName,
-      MaidenName: props.MaidenName,
-      MaidenNameUsed: props.MaidenNameUsed,
+      OtherNameNotApplicable: props.OtherNameNotApplicable,
+      OtherNameMaiden: props.OtherNameMaiden,
+      OtherNameUsed: props.OtherNameUsed,
       CohabitationBegan: props.CohabitationBegan
     }
 
@@ -23,8 +24,9 @@ export default class Cohabitant extends React.Component {
     this.updateForeignBornDocument = this.updateForeignBornDocument.bind(this)
     this.updateSSN = this.updateSSN.bind(this)
     this.updateOtherName = this.updateOtherName.bind(this)
-    this.updateMaidenName = this.updateMaidenName.bind(this)
-    this.updateMaidenNameUsed = this.updateMaidenNameUsed.bind(this)
+    this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
+    this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
+    this.updateOtherNameUsed = this.updateOtherNameUsed.bind(this)
     this.updateCohabitationBegan = this.updateCohabitationBegan.bind(this)
   }
 
@@ -34,12 +36,13 @@ export default class Cohabitant extends React.Component {
         this.props.onUpdate({
           Name: this.state.Name,
           Birthdate: this.state.Birthdate,
-          Birthplace: this.state.BirthPlace,
+          BirthPlace: this.state.BirthPlace,
           ForeignBornDocument: this.state.ForeignBornDocument,
           SSN: this.state.SSN,
           OtherName: this.state.OtherName,
-          MaidenName: this.state.MaidenName,
-          MaidenNameUsed: this.state.MaidenNameUsed,
+          OtherNameNotApplicable: this.state.OtherNameNotApplicable,
+          OtherNameMaiden: this.state.OtherNameMaiden,
+          OtherNameUsed: this.state.OtherNameUsed,
           CohabitationBegan: this.state.CohabitationBegan
         })
       }
@@ -55,7 +58,7 @@ export default class Cohabitant extends React.Component {
   }
 
   updateBirthPlace (values) {
-    this.update('Birthplace', values)
+    this.update('BirthPlace', values)
   }
 
   updateForeignBornDocument (values) {
@@ -70,12 +73,12 @@ export default class Cohabitant extends React.Component {
     this.update('OtherName', values)
   }
 
-  updateMaidenName (values) {
-    this.update('MaidenName', values)
+  updateOtherNameMaiden (values) {
+    this.update('OtherNameMaiden', values)
   }
 
-  updateMaidenNameUsed (values) {
-    this.update('MaidenNameUsed', values)
+  updateOtherNameUsed (values) {
+    this.update('OtherNameUsed', values)
   }
 
   updateCohabitationBegan (values) {
@@ -89,6 +92,8 @@ export default class Cohabitant extends React.Component {
           adjustFor="labels">
           <Name name="Name"
             {...this.state.Name}
+            onUpdate={this.updateName}
+            onValidate={this.handleValidation}
           />
         </Field>
 
@@ -129,29 +134,38 @@ export default class Cohabitant extends React.Component {
           />
         </Field>
         <Field title={i18n.t('relationships.status.cohabitant.heading.othernames')}>
-          <Name name="othername"
-            {...this.state.Othername}
-            onUpdate={this.updateOtherName}
-            onValidate={this.handleValidation}
-          />
-        </Field>
+          <NotApplicable name="OtherNameNotApplicable"
+            applicable={this.state.OtherNameNotApplicable}
+            label={i18n.t('reference.label.idk')}
+            or={i18n.m('reference.para.or')}
+            onUpdate={this.updateOtherNameNotApplicable}>
+            <Name name="othername"
+              {...this.state.OtherName}
+              onUpdate={this.updateOtherName}
+              onValidate={this.handleValidation}
+            />
+            <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.maiden')}
+              help="alias.maiden.help"
+              adjustFor="buttons"
+              shrink={true}>
+              <MaidenName name="OtherNameMaiden"
+                {...this.state.OtherNameMaiden}
+                onUpdate={this.updateOtherNameMaiden}
+                onValidate={this.handleValidation}
+              />
+            </Field>
 
-        <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.maiden')}
-          help="alias.maiden.help"
-          adjustFor="buttons"
-          shrink={true}>
-          <MaidenName name="MaidenName"
-            {...this.state.MaidenName}
-          />
-        </Field>
-
-        <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.used')}
-          help="alias.used.help"
-          adjustFor="daterange"
-          shrink={true}>
-          <DateRange name="DatesUsed"
-            {...this.state.MaidenNameUsed}
-          />
+            <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.used')}
+              help="alias.used.help"
+              adjustFor="daterange"
+              shrink={true}>
+              <DateRange name="OtherNameUsed"
+                {...this.state.OtherNameUsed}
+                onUpdate={this.updateOtherNameUsed}
+                onValidate={this.handleValidation}
+              />
+            </Field>
+          </NotApplicable>
         </Field>
 
         <Field help="relationships.status.cohabitant.help.cohabitationBegan"
