@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
 import Divorce from './Divorce'
+import { CivilUnionValidator } from '../../../../validators'
 
 export default class CivilUnion extends ValidationElement {
   constructor (props) {
@@ -81,7 +82,7 @@ export default class CivilUnion extends ValidationElement {
   }
 
   isValid () {
-    return true
+    return new CivilUnionValidator(this.state).isValid()
   }
 
   updateName (values) {
@@ -182,6 +183,22 @@ export default class CivilUnion extends ValidationElement {
       const statusObject = { [this.props.name]: { status: complexStatus } }
       super.handleValidation(event, statusObject, errorObject)
     })
+  }
+
+  divorceSummary (item, index) {
+    const itemType = i18n.t('relationships.status.divorce.collection.itemType')
+    const o = (item || {}).Divorce || {}
+    const date = (o.DateDivorced || {}).date ? `${o.DateDivorced.month}/${o.DateDivorced.year}` : ''
+    const status = o.Status || ''
+    const name = o.Name
+      ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
+      : i18n.t('relationships.relatives.collection.summary.unknown')
+    return (
+      <span>
+        <span className="index">{itemType}</span>
+        <span className="info"><strong>{name} {date} {status}</strong></span>
+      </span>
+    )
   }
 
   render () {
@@ -374,12 +391,12 @@ export default class CivilUnion extends ValidationElement {
               <Accordion minimum="1"
                 items={this.state.DivorcedList}
                 onUpdate={this.updateDivorcedList}
-                summary={() => { return <span>Hello</span> }}
+                summary={this.divorceSummary}
                 onValidate={this.handleValidation}
-                description={i18n.t('psychological.competence.collection.description')}
-                appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-                appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
-                appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
+                description={i18n.t('relationships.status.divorce.collection.description')}
+                appendTitle={i18n.t('relationships.status.divorce.collection.appendTitle')}
+                appendMessage={i18n.m('relationships.status.divorce.collection.appendMessage')}
+                appendLabel={i18n.t('relationships.status.divorce.collection.appendLabel')}>
                 <Divorce name="Divorce"
                   bind={true}
                 />

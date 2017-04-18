@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, RadioGroup, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
+import { dateRangeFormat } from '../../Psychological/summaryHelper'
 import Cohabitant from './Cohabitant'
 import CivilUnion from './CivilUnion'
 
@@ -54,6 +55,21 @@ export default class RelationshipStatus extends ValidationElement {
 
   updateCohabitantList (values) {
     this.update('CohabitantList', values)
+  }
+
+  cohabitantSummary (item, index) {
+    const itemType = i18n.t('relationships.status.cohabitant.collection.appendLabel')
+    const o = (item || {}).Cohabitant || {}
+    const date = (o.CohabitationBegan || {}).date ? `${o.CohabitationBegan.month}/${o.CohabitationBegan.year}` : ''
+    const name = o.Name
+      ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
+      : i18n.t('relationships.relatives.collection.summary.unknown')
+    return (
+      <span>
+        <span className="index">{itemType}</span>
+        <span className="info"><strong>{name} {date}</strong></span>
+      </span>
+    )
   }
 
   handleValidation (event, status, error) {
@@ -135,13 +151,13 @@ export default class RelationshipStatus extends ValidationElement {
           <Accordion minimum="1"
             items={this.state.CohabitantList}
             onUpdate={this.updateCohabitantList}
-            summary={() => { return <span>Hello</span> }}
+            summary={this.cohabitantSummary}
             onValidate={this.handleValidation}
-            description={i18n.t('psychological.competence.collection.description')}
-            appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
-            <Cohabitant name="Cohabitant" />
+            description={i18n.t('relationships.status.cohabitant.collection.description')}
+            appendTitle={i18n.t('relationships.status.cohabitant.collection.appendTitle')}
+            appendMessage={i18n.m('relationships.status.cohabitant.collection.appendMessage')}
+            appendLabel={i18n.t('relationships.status.cohabitant.collection.appendLabel')}>
+            <Cohabitant name="Cohabitant" bind={true} />
           </Accordion>
         </Show>
       </div>

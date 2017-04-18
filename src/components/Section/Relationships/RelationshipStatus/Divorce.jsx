@@ -107,8 +107,8 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field help="relationships.status.endedDetails.help.birthdate"
-          title={i18n.t('relationships.status.endedDetails.heading.birthdate')}
+        <Field help="relationships.status.divorce.help.birthdate"
+          title={i18n.t('relationships.status.divorce.heading.birthdate')}
           shrink={true}
           adjustFor="labels">
           <DateControl name="birthdate"
@@ -120,7 +120,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field help="relationships.status.help.birthplace"
-          title={i18n.t('relationships.status.endedDetails.heading.birthplace')}>
+          title={i18n.t('relationships.status.divorce.heading.birthplace')}>
           <BirthPlace name="birthplace"
             className="birthplace"
             {...this.state.BirthPlace}
@@ -129,7 +129,7 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.status.endedDetails.heading.telephone')}
+        <Field title={i18n.t('relationships.status.divorce.heading.telephone')}
           help="alias.used.help"
           adjustFor="telephone"
           shrink={true}>
@@ -140,8 +140,8 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field help="relationships.status.endedDetails.help.recognized"
-          title={i18n.t('relationships.status.endedDetails.heading.recognized')}
+        <Field help="relationships.status.divorce.help.recognized"
+          title={i18n.t('relationships.status.divorce.heading.recognized')}
           shrink={true}
           adjustFor="labels">
           <DateControl name="Recognized"
@@ -152,8 +152,8 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field help="relationships.status.endedDetails.help.address"
-          title={i18n.t('relationships.status.endedDetails.heading.address')}
+        <Field help="relationships.status.divorce.help.address"
+          title={i18n.t('relationships.status.divorce.heading.address')}
           shrink={true}
           adjustFor="labels">
           <Address name="address"
@@ -164,8 +164,8 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field help="relationships.status.endedDetails.help.dateDivorced"
-          title={i18n.t('relationships.status.endedDetails.heading.dateDivorced')}
+        <Field help="relationships.status.divorce.help.dateDivorced"
+          title={i18n.t('relationships.status.divorce.heading.dateDivorced')}
           shrink={true}
           adjustFor="labels">
           <DateControl name="DateDivorced"
@@ -176,23 +176,23 @@ export default class Divorce extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.status.endedDetails.heading.status')}
+        <Field title={i18n.t('relationships.status.divorce.heading.status')}
           className="status">
           <RadioGroup name="status" selectedValue={this.state.Status}>
             <Radio
-              label={i18n.m('relationships.status.endedDetails.label.divorced')}
+              label={i18n.m('relationships.status.divorce.label.divorced')}
               value="Divorced"
               className="divorced"
               onUpdate={this.updateStatus}
             />
             <Radio
-              label={i18n.m('relationships.status.endedDetails.label.widowed')}
+              label={i18n.m('relationships.status.divorce.label.widowed')}
               value="Widowed"
               className="widowed"
               onUpdate={this.updateStatus}
             />
             <Radio
-              label={i18n.m('relationships.status.endedDetails.label.annulled')}
+              label={i18n.m('relationships.status.divorce.label.annulled')}
               value="Annulled"
               className="annulled"
               onUpdate={this.updateStatus}
@@ -203,24 +203,24 @@ export default class Divorce extends React.Component {
         <Show when={['Divorced', 'Annulled'].includes(this.state.Status)}>
           <div>
             <div>TODO: City, State</div>
-            <Field title={i18n.t('relationships.status.endedDetails.heading.deceased')} className="deceased">
+            <Field title={i18n.t('relationships.status.divorce.heading.deceased')} className="deceased">
               <RadioGroup name="deceased" selectedValue={this.state.Deceased}>
                 <Radio
                   className="yes"
-                  label={i18n.t('relationships.status.endedDetails.deceased.label.yes')}
+                  label={i18n.t('relationships.status.divorce.deceased.label.yes')}
                   label="Yes"
                   value="Yes"
                   onUpdate={this.updateDeceased}
                 />
                 <Radio
                   className="no"
-                  label={i18n.t('relationships.status.endedDetails.deceased.label.no')}
+                  label={i18n.t('relationships.status.divorce.deceased.label.no')}
                   value="No"
                   className="widowed"
                   onUpdate={this.updateDeceased}
                 />
                 <Radio
-                  label={i18n.t('relationships.status.endedDetails.deceased.label.dontKnow')}
+                  label={i18n.t('relationships.status.divorce.deceased.label.dontKnow')}
                   className="dk"
                   value="DK"
                   onUpdate={this.updateDeceased}
@@ -229,7 +229,7 @@ export default class Divorce extends React.Component {
             </Field>
 
             <Show when={this.state.Deceased === 'Yes'}>
-              <Field title={i18n.t('relationships.status.endedDetails.heading.deceasedAddress')}>
+              <Field title={i18n.t('relationships.status.divorce.heading.deceasedAddress')}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                   className="deceased-notapplicable"
                   applicable={this.state.DeceasedAddressNotApplicable}

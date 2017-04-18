@@ -4,9 +4,9 @@ import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
 import DivorceValidator from './divorce'
 import ForeignBornDocument from './foreignborndocument'
-import { validBranch, validSSN, validGenericTextfield, validDateField, validPhoneNumber } from './helpers'
+import { validBranch, validSSN, validDateField, validPhoneNumber } from './helpers'
 
-export default class CivilUnion {
+export default class CivilUnionValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
     this.birthdate = state.Birthdate

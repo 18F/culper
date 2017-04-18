@@ -2124,7 +2124,9 @@ const en = {
         enteredCivilUnion: 'Provide date when you entered into your civil marriage, civil union, or domestic partnership.',
         locationSeparated: 'If legally separated, provide the location of the record',
         divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
-        hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?'
+        hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
+        addressSeparated: 'If legally separated, provide the location of the record.'
+
       },
       para: {
         never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
@@ -2140,7 +2142,7 @@ const en = {
           widowed: 'Widowed'
         }
       },
-      endedDetails: {
+      divorce: {
         heading: {
           name: 'Provide the full name',
           address: 'Provide location',
@@ -2164,6 +2166,13 @@ const en = {
             no: 'No',
             dontKnow: 'I don\'t know'
           }
+        },
+        collection: {
+          description: '',
+          appendTitle: 'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
+          appendMessage: 'If yes please use the button below to add another person',
+          appendLabel: 'Add another person',
+          itemType: 'Person'
         }
       },
       cohabitant: {
@@ -2188,6 +2197,13 @@ const en = {
           divorced: 'Divorced/Dissolved',
           widowed: 'Widowed',
           annulled: 'Annulled'
+        },
+        collection: {
+          description: '',
+          appendTitle: 'Do you have an additional cohabitant to report?',
+          appendMessage: 'If yes please use the button below to add another cohabitant.',
+          appendLabel: 'Add another cohabitant',
+          itemType: 'Cohabitant'
         }
       },
       othernames: {
