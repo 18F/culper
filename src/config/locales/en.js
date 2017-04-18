@@ -488,7 +488,8 @@ const en = {
     },
     timeOfDay: {
       day: 'Day only',
-      night: 'Night only'
+      night: 'Night only',
+      both: 'Both'
     },
     numberType: {
       cell: 'Cell',
@@ -733,17 +734,17 @@ const en = {
         height: {
           title: 'Need help entering your height?',
           message: [
-                    'Please use feet and inches only.',
-                    'Feet must be a number between 1 and 9. Inches must be between 0 and 11.'
-                   ],
+            'Please use feet and inches only.',
+            'Feet must be a number between 1 and 9. Inches must be between 0 and 11.'
+          ],
           note: ''
         },
         weight: {
           title: 'Need help entering your weight?',
           message: [
-                    'Please use pounds only.',
-                    'Weight must be a number between 10 and 999.'
-                   ],
+            'Please use pounds only.',
+            'Weight must be a number between 10 and 999.'
+          ],
           note: ''
         },
         eye: {
