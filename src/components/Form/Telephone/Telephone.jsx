@@ -462,6 +462,14 @@ export default class Telephone extends ValidationElement {
                    onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
                    onValidate={this.handleValidation}
                    />
+            <Radio native={true}
+                   className="time both"
+                   label={i18n.t('telephone.timeOfDay.both')}
+                   value="Both"
+                   disabled={this.state.noNumber}
+                   onChange={this.handleTimeOfDayChange.bind(this, 'Both')}
+                   onValidate={this.handleValidation}
+                   />
           </RadioGroup>
         </div>
 

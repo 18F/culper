@@ -291,6 +291,7 @@ export default class Accordion extends ValidationElement {
 
           <button className="add usa-button-outline" onClick={this.add}>
             {this.props.appendLabel}
+            <i className="fa fa-plus-circle"></i>
           </button>
         </div>
 
