@@ -7,6 +7,7 @@ import { updateApplication, reportErrors, reportCompletion } from '../../../acti
 import { ValidationElement, IntroHeader } from '../../Form'
 import { SectionViews, SectionView } from '../SectionView'
 import Status from './Status'
+import Multiple from './Multiple'
 
 class Citizenship extends ValidationElement {
   constructor (props) {
@@ -128,10 +129,16 @@ class Citizenship extends ValidationElement {
                     onUpdate={this.onUpdate.bind(this, 'Status')}
                     onValidate={this.onValidate.bind(this)}
                     />
+            <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
+            <Multiple name="multiple"
+                      {...this.props.Multiple}
+                      onUpdate={this.onUpdate.bind(this, 'Multiple')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
           </SectionView>
 
           <SectionView name="status"
-                       back="relationships"
+                       back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}
                        next="citizenship/multiple"
                        nextLabel={i18n.t('citizenship.destination.multiple')}>
@@ -141,6 +148,19 @@ class Citizenship extends ValidationElement {
                     onUpdate={this.onUpdate.bind(this, 'Status')}
                     onValidate={this.onValidate.bind(this)}
                     />
+          </SectionView>
+
+          <SectionView name="multiple"
+                       back="citizenship/status"
+                       backLabel={i18n.t('citizenship.destination.status')}
+                       next="citizenship/review"
+                       nextLabel={i18n.t('citizenship.destination.review')}>
+            <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
+            <Multiple name="multiple"
+                      {...this.props.Multiple}
+                      onUpdate={this.onUpdate.bind(this, 'Multiple')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
           </SectionView>
         </SectionViews>
       </div>
@@ -158,6 +178,7 @@ function mapStateToProps (state) {
     Section: section,
     Citizenship: citizenship,
     Status: citizenship.Status || {},
+    Multiple: citizenship.Multiple || {},
     Errors: errors.citizenship || [],
     Completed: completed.citizenship || []
   }

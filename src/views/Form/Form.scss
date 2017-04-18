@@ -186,6 +186,7 @@ select {
       height: 7.6rem;
       min-width: 12rem;
       cursor: pointer;
+      overflow: visible;
 
       input[type='checkbox'],
       input[type='radio'] {

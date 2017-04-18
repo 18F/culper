@@ -151,6 +151,8 @@ export default class DateRange extends ValidationElement {
                        />
           <div className="from-present">
             <span className="or"> or </span>
+          </div>
+          <div className="from-present">
             <Checkbox name="present"
                       label="Present"
                       value="present"
