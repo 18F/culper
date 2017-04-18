@@ -34,6 +34,8 @@ import CompetenceValidator from './competence'
 import CitizenshipValidator from './citizenship'
 import CitizenshipMultipleValidator from './citizenship-multiple'
 import CivilUnionValidator from './civilunion'
+import MaritalValidator from './marital'
+import CohabitantsValidator from './cohabitant'
 
 export {
   AddressValidator,
@@ -75,5 +77,7 @@ export {
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
-  CivilUnionValidator
+  CivilUnionValidator,
+  MaritalValidator,
+  CohabitantsValidator
 }

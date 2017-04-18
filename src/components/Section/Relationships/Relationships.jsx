@@ -7,7 +7,8 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Relatives from './Relatives'
-import RelationshipStatus from './RelationshipStatus'
+import Marital from './RelationshipStatus/Marital'
+import Cohabitants from './RelationshipStatus/Cohabitants'
 
 class Relationships extends ValidationElement {
   constructor (props) {
@@ -24,7 +25,8 @@ class Relationships extends ValidationElement {
     this.updateMarital = this.updateMarital.bind(this)
     this.updateFriends = this.updateFriends.bind(this)
     this.updateRelatives = this.updateRelatives.bind(this)
-    this.updateRelationshipStatus = this.updateRelationshipStatus.bind(this)
+    this.updateMarital = this.updateMarital.bind(this)
+    this.updateCohabitants = this.updateCohabitants.bind(this)
   }
 
   componentDidMount () {
@@ -94,8 +96,12 @@ class Relationships extends ValidationElement {
     this.onUpdate('Relatives', values)
   }
 
-  updateRelationshipStatus (values) {
-    this.onUpdate('RelationshipStatus', values)
+  updateMarital (values) {
+    this.onUpdate('Marital', values)
+  }
+
+  updateCohabitants (values) {
+    this.onUpdate('Cohabitants', values)
   }
 
   /**
@@ -165,9 +171,35 @@ class Relationships extends ValidationElement {
             backLabel={i18n.t('financial.destination.bankruptcy')}
             next="relationships/relatives"
             nextLabel={i18n.t('relationships.destination.relatives')}>
-            <RelationshipStatus name="status"
-              {...this.props.RelationshipStatus}
-              onUpdate={this.updateRelationshipStatus}
+            <Marital name="status"
+              {...this.props.Marital}
+              onUpdate={this.updateMarital}
+              onValidate={this.handleValidation}
+              subsection={this.props.subsection}
+              trisection={this.props.trisection}
+            />
+          </SectionView>
+          <SectionView name="status/marital"
+            back=""
+            backLabel={i18n.t('financial.destination.bankruptcy')}
+            next="relationships/relatives"
+            nextLabel={i18n.t('relationships.destination.relatives')}>
+            <Marital name="status"
+              {...this.props.Marital}
+              onUpdate={this.updateMarital}
+              onValidate={this.handleValidation}
+              subsection={this.props.subsection}
+              trisection={this.props.trisection}
+            />
+          </SectionView>
+          <SectionView name="status/cohabitant"
+            back=""
+            backLabel={i18n.t('financial.destination.bankruptcy')}
+            next="relationships/relatives"
+            nextLabel={i18n.t('relationships.destination.relatives')}>
+            <Cohabitants name="Cohabitants"
+              {...this.props.Cohabitants}
+              onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
           </SectionView>
@@ -187,8 +219,8 @@ function mapStateToProps (state) {
     Section: section,
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
-    RelationshipStatus: relationships.RelationshipStatus || {},
     Marital: relationships.Marital || {},
+    Cohabitants: relationships.Cohabitants || {},
     Friends: relationships.Friends || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || []

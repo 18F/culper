@@ -18,7 +18,7 @@ ReactDOM.render(
       <Route path="/" component={App} onEnter={onEnter}>
         <IndexRedirect to="/form/identification/name" />
         <Route path="/help" component={Help} />
-        <Route path="/form(/:section(/:subsection(/:trisection)))" component={Form} />
+        <Route path="/form(/:section(/:subsection(/**)))" component={Form} />
       </Route>
       <Route path="/login" component={Login} />
     </Router>

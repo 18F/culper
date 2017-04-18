@@ -2,9 +2,36 @@ import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
-import { validSSN, validDateField } from './helpers'
+import { validSSN, validDateField, validBranch } from './helpers'
 
-export default class CohabitantValidator {
+export default class CohabitantsValidator {
+  constructor (state = {}) {
+    this.hasCohabitant = state.HasCohabitant
+    this.cohabitantList = state.CohabitantList || []
+  }
+
+  isValid () {
+    if (!validBranch(this.hasCohabitant)) {
+      return false
+    }
+    if (this.hasCohabitant === 'No') {
+      return true
+    }
+
+    if (!this.cohabitantList.length) {
+      return false
+    }
+
+    for (let item of this.cohabitantList) {
+      if (!new CohabitantValidator(item.Cohabitant).isValid()) {
+        return false
+      }
+    }
+    return true
+  }
+}
+
+export class CohabitantValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
     this.birthdate = state.Birthdate
