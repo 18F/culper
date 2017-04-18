@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Field, DateControl, ValidationElement, Show, RadioGroup, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
+import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable } from '../../../Form'
 
 export default class Cohabitant extends React.Component {
   constructor (props) {
@@ -81,16 +81,21 @@ export default class Cohabitant extends React.Component {
     this.update('OtherNameUsed', values)
   }
 
+  updateOtherNameNotApplicable (values) {
+    this.update('OtherNameNotApplicable', values)
+  }
+
   updateCohabitationBegan (values) {
     this.update('CohabitationBegan', values)
   }
 
   render () {
     return (
-      <div>
+      <div className="cohabitant">
         <Field title={i18n.t('relationships.status.cohabitant.heading.name')}
           adjustFor="labels">
           <Name name="Name"
+            className="cohabitant-name"
             {...this.state.Name}
             onUpdate={this.updateName}
             onValidate={this.handleValidation}
@@ -102,6 +107,7 @@ export default class Cohabitant extends React.Component {
           shrink={true}
           adjustFor="labels">
           <DateControl name="birthdate"
+            className="birthdate"
             {...this.state.Birthdate}
             onUpdate={this.updateBirthdate}
             onValidate={this.handleValidation}
@@ -135,11 +141,13 @@ export default class Cohabitant extends React.Component {
         </Field>
         <Field title={i18n.t('relationships.status.cohabitant.heading.othernames')}>
           <NotApplicable name="OtherNameNotApplicable"
+            className="othername"
             applicable={this.state.OtherNameNotApplicable}
             label={i18n.t('reference.label.idk')}
             or={i18n.m('reference.para.or')}
             onUpdate={this.updateOtherNameNotApplicable}>
             <Name name="othername"
+              className="othername"
               {...this.state.OtherName}
               onUpdate={this.updateOtherName}
               onValidate={this.handleValidation}
@@ -149,6 +157,7 @@ export default class Cohabitant extends React.Component {
               adjustFor="buttons"
               shrink={true}>
               <MaidenName name="OtherNameMaiden"
+                className="othername"
                 {...this.state.OtherNameMaiden}
                 onUpdate={this.updateOtherNameMaiden}
                 onValidate={this.handleValidation}
@@ -160,6 +169,7 @@ export default class Cohabitant extends React.Component {
               adjustFor="daterange"
               shrink={true}>
               <DateRange name="OtherNameUsed"
+                className="othername"
                 {...this.state.OtherNameUsed}
                 onUpdate={this.updateOtherNameUsed}
                 onValidate={this.handleValidation}
@@ -173,6 +183,7 @@ export default class Cohabitant extends React.Component {
           shrink={true}
           adjustFor="labels">
           <DateControl name="cohabitationBegan"
+            className="cohabitation-began"
             {...this.state.CohabitationBegan}
             onUpdate={this.updateCohabitationBegan}
             onValidate={this.handleValidation}

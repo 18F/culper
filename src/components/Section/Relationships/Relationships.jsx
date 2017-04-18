@@ -130,49 +130,46 @@ class Relationships extends ValidationElement {
             <div className="relationships intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
-                            Completed={this.props.Completed}
-                            tour={i18n.t('relationships.tour.para')}
-                            review={i18n.t('relationships.review.para')}
-                            onTour={this.handleTour}
-                            onReview={this.handleReview}
-                            />
+                  Completed={this.props.Completed}
+                  tour={i18n.t('relationships.tour.para')}
+                  review={i18n.t('relationships.review.para')}
+                  onTour={this.handleTour}
+                  onReview={this.handleReview}
+                />
               </div>
             </div>
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
-                       showTop="true"
-                       back="relationships/relatives"
-                       backLabel={i18n.t('relationships.destination.relatives')}
-                       next="military/selective"
-                       next={i18n.t('military.destination.selective')}
-                       >
+            title="Let&rsquo;s make sure everything looks right"
+            showTop="true"
+            back="relationships/relatives"
+            backLabel={i18n.t('relationships.destination.relatives')}
+            next="military/selective"
+            next={i18n.t('military.destination.selective')}>
           </SectionView>
 
           <SectionView name="relatives"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="relationships/review"
-                       nextLabel={i18n.t('relationships.destination.review')}>
+            back="financial/bankruptcy"
+            backLabel={i18n.t('financial.destination.bankruptcy')}
+            next="relationships/review"
+            nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
-                       {...this.props.Relatives}
-                       onUpdate={this.updateRelatives}
-                       onValidate={this.handleValidation}
-                       />
+              {...this.props.Relatives}
+              onUpdate={this.updateRelatives}
+              onValidate={this.handleValidation}
+            />
           </SectionView>
           <SectionView name="status"
-                       back=""
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="relationships/relatives"
-                       nextLabel={i18n.t('relationships.destination.relatives')}>
+            back=""
+            backLabel={i18n.t('financial.destination.bankruptcy')}
+            next="relationships/relatives"
+            nextLabel={i18n.t('relationships.destination.relatives')}>
             <RelationshipStatus name="status"
-                       {...this.props.RelationshipStatus}
-                       subsection="status"
-                       dispatch={this.props.dispatch}
-                       onUpdate={this.updateRelationshipStatus}
-                       onValidate={this.handleValidation}
-                       />
+              {...this.props.RelationshipStatus}
+              onUpdate={this.updateRelationshipStatus}
+              onValidate={this.handleValidation}
+            />
           </SectionView>
         </SectionViews>
       </div>
