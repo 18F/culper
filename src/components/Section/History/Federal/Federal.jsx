@@ -100,8 +100,8 @@ export default class Federal extends ValidationElement {
     return (
       <span>
         <span className="index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</span>
-        <span className="">{agency}</span>
-        <span className="dates">{dates}</span>
+        <span className=""><strong>{agency}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
       </span>
     )
   }

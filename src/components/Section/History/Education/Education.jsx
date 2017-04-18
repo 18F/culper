@@ -138,8 +138,8 @@ export class EducationItem extends ValidationElement {
         <span className="index">
           {i18n.t('history.education.collection.diploma.summary.item')} {index + 1}:
         </span>
-        <span className="">{ text }</span>
-        <span className="dates">{ dd }</span>
+        <span className=""><strong>{ text }</strong></span>
+        <span className="dates"><strong>{ dd }</strong></span>
       </span>
     )
   }

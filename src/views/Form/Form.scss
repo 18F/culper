@@ -102,7 +102,6 @@ select {
 
 .block {
   display: inline-block;
-  // vertical-align: top;
 
   label {
     display: block;
@@ -111,7 +110,6 @@ select {
     width: 15rem;
     max-width: 64rem;
     min-width: 7.7rem;
-    margin-bottom: 1.2rem;
     margin-right: 1.6rem;
     margin-top: 0;
     text-align: center;
@@ -119,7 +117,7 @@ select {
     border: 1px solid $eapp-grey-dark;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    line-height: 4.6rem;
+    line-height: 4.6rem !important;
     padding-left: 1rem;
     padding-right: 1rem;
     overflow: hidden;

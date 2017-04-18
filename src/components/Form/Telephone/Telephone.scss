@@ -1,14 +1,22 @@
 .telephone {
   display: inline-block;
 
-  .number.three {
-    width: 8rem;
-  }
-  .number.four {
-    width: 9rem;
-  }
-  .number.ten {
-    width: 14rem;
+  .number {
+    &.three {
+      width: 8rem;
+    }
+
+    &.four {
+      width: 9rem;
+    }
+
+    &.ten {
+      width: 14rem;
+    }
+
+    label {
+      min-height: 2.7rem;
+    }
   }
 
   .separator {
@@ -27,7 +35,7 @@
   }
 
   .type {
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 
     span {
       margin-left: 1rem;
@@ -43,13 +51,14 @@
   }
 
   .timeofday {
-    margin-bottom: 4rem;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
     margin-left: 1.5rem;
     z-index: 1;
 
     .time {
-      min-width: 10rem;
       display: inline-block;
+      margin-right: 2rem;
     }
   }
 

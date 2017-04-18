@@ -94,7 +94,7 @@ export default class Nonpayment extends ValidationElement {
       <span>
         <span className="index">{i18n.t('financial.nonpayment.collection.summary.item')} {index + 1}:</span>
         <span><strong>{text}</strong></span>
-        <span className="dates">{from}</span>
+        <span className="dates"><strong>{from}</strong></span>
       </span>
     )
   }

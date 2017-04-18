@@ -109,4 +109,18 @@ describe('The SSN component', () => {
     const component = mount(<SSN name={'ssn'} first="abc" />)
     component.find('input#first').simulate('change')
   })
+
+  it('loads value that is an incorrect length', () => {
+    const component = mount(<SSN name="ssn" value="1234" />)
+    expect(component.find({ type: 'text', name: 'first', value: '123' }).length).toBe(1)
+    expect(component.find({ type: 'text', name: 'middle', value: '4' }).length).toBe(1)
+    expect(component.find({ type: 'text', name: 'last', value: '' }).length).toBe(1)
+  })
+
+  it('disallows use of clipboard', () => {
+    const component = mount(<SSN name="ssn" />)
+    component.find({ type: 'text', name: 'first' }).simulate('paste', { target: { value: '111' } })
+    expect(component.find({ type: 'text', name: 'first', value: '111' }).length).toBe(0)
+    expect(component.find({ type: 'text', name: 'first', value: '' }).length).toBe(1)
+  })
 })
