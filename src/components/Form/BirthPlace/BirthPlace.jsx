@@ -212,8 +212,7 @@ export default class BirthPlace extends ValidationElement {
       return (
         <div className={klass}>
           {this.options()}
-          <Field help="identification.birthplace.help.state"
-                 adjustFor="labels">
+          <Field adjustFor="labels">
             <MilitaryState name="state"
                            label={i18n.t('identification.birthplace.label.state')}
                            value={this.state.state}
