@@ -1,9 +1,8 @@
-import AddressValidator from './address'
 import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
-import DivorceValidator from './divorce'
-import { validBranch, validSSN, validGenericTextfield, validDateField, validPhoneNumber } from './helpers'
+import ForeignBornDocument from './foreignborndocument'
+import { validSSN, validDateField } from './helpers'
 
 export default class CohabitantValidator {
   constructor (state = {}, props = {}) {
@@ -30,7 +29,7 @@ export default class CohabitantValidator {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new BirthPlaceValidator(this.birthPlace).isValid() &&
-      // validate foreignBornDocument
+      new ForeignBornDocument(this.foreignBornDocument).isValid() &&
       validSSN(this.ssn)
   }
 }

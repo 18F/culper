@@ -3,6 +3,7 @@ import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
 import DivorceValidator from './divorce'
+import ForeignBornDocument from './foreignborndocument'
 import { validBranch, validSSN, validGenericTextfield, validDateField, validPhoneNumber } from './helpers'
 
 export default class CivilUnion {
@@ -73,7 +74,7 @@ export default class CivilUnion {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new BirthPlaceValidator(this.birthplace).isValid() &&
-      // validate foreignBornDocument
+      new ForeignBornDocument(this.foreignBornDocument).isValid() &&
       validPhoneNumber(this.telephone) &&
       validSSN(this.ssn) &&
       validBranch(this.separated) &&

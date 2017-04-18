@@ -255,6 +255,13 @@ describe('CivilUnion validation', function () {
               date: new Date('1/1/2016')
             },
             present: false
+          },
+          ForeignBornDocument: {
+            DocumentType: 'FS240',
+            DocumentExpirationNotApplicable: true,
+            DocumentNumber: {
+              value: 'A1234'
+            }
           }
         },
         expected: true
