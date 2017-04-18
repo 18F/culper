@@ -1,7 +1,9 @@
 import AddressValidator from './address'
 import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
-import { validGenericTextfield, validDateField, validPhoneNumber } from './helpers'
+import DateRangeValidator from './daterange'
+import DivorceValidator from './divorce'
+import { validBranch, validSSN, validGenericTextfield, validDateField, validPhoneNumber } from './helpers'
 
 export default class CivilUnion {
   constructor (state = {}, props = {}) {
@@ -12,15 +14,59 @@ export default class CivilUnion {
     this.ssn = state.SSN
     this.otherName = state.OtherName
     this.otherNameMaiden = state.OtherNameMaiden
+    this.otherNameNotApplicable = state.OtherNameNotApplicable
     this.datesUsed = state.DatesUsed
+    this.address = state.Address
     this.telephone = state.Telephone
     this.separated = state.Separated
     this.dateSeparated = state.DateSeparated
     this.addressSeparated = state.AddressSeparated
+    this.addressSeparatedNotApplicable = state.AddressSeparatedNotApplicable
+    this.divorced = state.Divorced
+    this.divorcedList = state.DivorcedList
   }
 
-  validStatus () {
-    return ['Divorced', 'Widowed', 'Annulled'].includes(this.status)
+  validOtherName () {
+    if (this.otherNameNotApplicable) {
+      return true
+    }
+    return new NameValidator(this.otherName).isValid() &&
+      new DateRangeValidator(this.datesUsed).isValid()
+  }
+
+  validSeparated () {
+    if (!validBranch(this.separated)) {
+      return false
+    }
+
+    if (this.separated === 'No') {
+      return true
+    }
+
+    let addressValid = true
+    if (!this.addressSeparatedNotApplicable) {
+      addressValid = new AddressValidator(this.addressSeparated).isValid()
+    }
+
+    return validDateField(this.dateSeparated) && addressValid
+  }
+
+  validDivorced () {
+    if (!validBranch(this.divorced)) {
+      return false
+    }
+    if (this.divorced === 'No') {
+      return true
+    }
+    if (!this.divorcedList || !this.divorcedList.length) {
+      return false
+    }
+    for (let item of this.divorcedList) {
+      if (!new DivorceValidator(item.Divorce).isValid()) {
+        return false
+      }
+    }
+    return true
   }
 
   isValid () {
@@ -29,10 +75,10 @@ export default class CivilUnion {
       new BirthPlaceValidator(this.birthplace).isValid() &&
       // validate foreignBornDocument
       validPhoneNumber(this.telephone) &&
-
+      validSSN(this.ssn) &&
+      validBranch(this.separated) &&
       new AddressValidator(this.address).isValid() &&
-      validDateField(this.dateDivorced) &&
-      this.validStatus() &&
-      this.validDeceased()
+      this.validSeparated() &&
+      this.validDivorced()
   }
 }

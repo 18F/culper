@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, RadioGroup, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
+import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
 import EndedDetails from './EndedDetails'
 
 export default class CivilUnion extends ValidationElement {
@@ -15,6 +15,7 @@ export default class CivilUnion extends ValidationElement {
       SSN: props.SSN,
       OtherName: props.OtherName,
       OtherNameMaiden: props.OtherNameMaiden,
+      OtherNameNotApplicable: props.OtherNameNotApplicable,
       DatesUsed: props.DatesUsed,
       EnteredCivilUnion: props.EnteredCivilUnion,
       Address: props.Address,
@@ -23,6 +24,7 @@ export default class CivilUnion extends ValidationElement {
       Separated: props.Separated,
       DateSeparated: props.DateSeparated,
       AddressSeparated: props.AddressSeparated,
+      AddressSeparatedNotApplicable: props.AddressSeparatedNotApplicable,
       Divorced: props.Divorced,
       DivorcedList: props.DivorcedList,
       HasCohabitant: props.HasCohabitant,
@@ -38,6 +40,7 @@ export default class CivilUnion extends ValidationElement {
     this.updateSSN = this.updateSSN.bind(this)
     this.updateOtherName = this.updateOtherName.bind(this)
     this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
+    this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
     this.updateDatesUsed = this.updateDatesUsed.bind(this)
     this.updateEnteredCivilUnion = this.updateEnteredCivilUnion.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
@@ -46,6 +49,7 @@ export default class CivilUnion extends ValidationElement {
     this.updateSeparated = this.updateSeparated.bind(this)
     this.updateDateSeparated = this.updateDateSeparated.bind(this)
     this.updateAddressSeparated = this.updateAddressSeparated.bind(this)
+    this.updateAddressSeparatedNotApplicable = this.updateAddressSeparatedNotApplicable.bind(this)
     this.updateDivorced = this.updateDivorced.bind(this)
     this.updateDivorcedList = this.updateDivorcedList.bind(this)
     this.updateHasCohabitant = this.updateHasCohabitant.bind(this)
@@ -62,6 +66,7 @@ export default class CivilUnion extends ValidationElement {
           SSN: this.state.SSN,
           OtherName: this.state.OtherName,
           OtherNameMaiden: this.state.OtherNameMaiden,
+          OtherNameNotApplicable: this.state.OtherNameNotApplicable,
           DatesUsed: this.state.DatesUsed,
           EnteredCivilUnion: this.state.EnteredCivilUnion,
           Address: this.state.Address,
@@ -70,6 +75,7 @@ export default class CivilUnion extends ValidationElement {
           Separated: this.state.Separated,
           DateSeparated: this.state.DateSeparated,
           AddressSeparated: this.state.AddressSeparated,
+          AddressSeparatedNotApplicable: this.state.AddressSeparatedNotApplicable,
           Divorced: this.state.Divorced,
           DivorcedList: this.state.DivorcedList
         })
@@ -117,6 +123,10 @@ export default class CivilUnion extends ValidationElement {
     this.update('DatesUsed', values)
   }
 
+  updateOtherNameNotApplicable (value) {
+    this.update('OtherNameNotApplicable', value.applicable)
+  }
+
   updateEnteredCivilUnion (values) {
     this.update('EnteredCivilUnion', values)
   }
@@ -143,6 +153,10 @@ export default class CivilUnion extends ValidationElement {
 
   updateAddressSeparated (values) {
     this.update('AddressSeparated', values)
+  }
+
+  updateAddressSeparatedNotApplicable (values) {
+    this.update('AddressSeparatedNotApplicable', values)
   }
 
   updateDivorced (values) {
@@ -237,33 +251,38 @@ export default class CivilUnion extends ValidationElement {
             <Field help="relationships.status.help.othernames"
               title={i18n.t('relationships.status.heading.othernames')}>
               <p>{i18n.t('relationships.status.para.othernames')}</p>
-              <Name name="othername"
-                value={this.state.Othername}
-                onUpdate={this.updateOtherName}
-                onValidate={this.handleValidation}
-              />
-            </Field>
+              <NotApplicable name="OtherNameNotApplicable"
+                applicable={this.state.OtherNameNotApplicable}
+                label={i18n.t('reference.label.idk')}
+                or={i18n.m('reference.para.or')}
+                onUpdate={this.updateOtherNameNotApplicable}>
+                <Name name="othername"
+                  value={this.state.Othername}
+                  onUpdate={this.updateOtherName}
+                  onValidate={this.handleValidation}
+                />
+                <Field title={i18n.t('relationships.status.othernames.heading.maiden')}
+                  help="alias.maiden.help"
+                  adjustFor="buttons"
+                  shrink={true}>
+                  <MaidenName name="MaidenName"
+                    {...this.OtherNameMaiden}
+                    onUpdate={this.updateOtherNameMaiden}
+                    onValidate={this.handleValidation}
+                  />
+                </Field>
 
-            <Field title={i18n.t('relationships.status.othernames.heading.maiden')}
-              help="alias.maiden.help"
-              adjustFor="buttons"
-              shrink={true}>
-              <MaidenName name="MaidenName"
-                {...this.OtherNameMaiden}
-                onUpdate={this.updateOtherNameMaiden}
-                onValidate={this.handleValidation}
-              />
-            </Field>
-
-            <Field title={i18n.t('relationships.status.othernames.heading.used')}
-              help="alias.used.help"
-              adjustFor="daterange"
-              shrink={true}>
-              <DateRange name="DatesUsed"
-                {...this.DatesUsed}
-                onUpdate={this.updateDatesUsed}
-                onValidate={this.handleValidation}
-              />
+                <Field title={i18n.t('relationships.status.othernames.heading.used')}
+                  help="alias.used.help"
+                  adjustFor="daterange"
+                  shrink={true}>
+                  <DateRange name="DatesUsed"
+                    {...this.DatesUsed}
+                    onUpdate={this.updateDatesUsed}
+                    onValidate={this.handleValidation}
+                  />
+                </Field>
+              </NotApplicable>
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.enteredCivilUnion')}>
@@ -330,11 +349,17 @@ export default class CivilUnion extends ValidationElement {
                 <Field title={i18n.t('relationships.status.heading.addressSeparated')}
                   adjustFor="address"
                   help="alias.used.help">
-                  <Address name="addressSeparated"
-                    {...this.state.AddressSeparated}
-                    onUpdate={this.updateAddressSeparated}
-                    onValidate={this.props.onValidate}
-                  />
+                  <NotApplicable name="OtherNameNotApplicable"
+                    applicable={this.state.AddressSeparatedNotApplicable}
+                    label={i18n.t('reference.label.idk')}
+                    or={i18n.m('reference.para.or')}
+                    onUpdate={this.updateAddressSeparatedNotApplicable}>
+                    <Address name="addressSeparated"
+                      {...this.state.AddressSeparated}
+                      onUpdate={this.updateAddressSeparated}
+                      onValidate={this.props.onValidate}
+                    />
+                  </NotApplicable>
                 </Field>
               </div>
             </Show>
@@ -358,7 +383,7 @@ export default class CivilUnion extends ValidationElement {
                 appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
                 appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
                 appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
-                <EndedDetails Name="Details" />
+                <EndedDetails Name="Divorce" />
               </Accordion>
             </Show>
           </div>
