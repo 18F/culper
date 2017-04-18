@@ -41,8 +41,8 @@ export const ResidenceSummary = (props) => {
       <span className="index">
         {i18n.t('history.residence.collection.summary.item')}:
       </span>
-      <span className="employer">{address}</span>
-      <span className="dates">{dates}</span>
+      <span className="employer"><strong>{address}</strong></span>
+      <span className="dates"><strong>{dates}</strong></span>
     </span>
   )
 }
@@ -63,8 +63,8 @@ export const EmploymentSummary = (props) => {
       <span className="index">
         {i18n.t('history.employment.default.collection.summary.employer')}:
       </span>
-      <span className="employer">{ employer }</span>
-      <span className="dates">{ dates }</span>
+      <span className="employer"><strong>{ employer }</strong></span>
+      <span className="dates"><strong>{ dates }</strong></span>
     </span>
   )
 }
@@ -85,8 +85,8 @@ export const EducationSummary = (props) => {
       <span className="index">
         {i18n.t('history.education.collection.school.summary.item')}:
       </span>
-      <span className="employer">{ school }</span>
-      <span className="dates">{ dates }</span>
+      <span className="employer"><strong>{ school }</strong></span>
+      <span className="dates"><strong>{ dates }</strong></span>
     </span>
   )
 }
@@ -137,14 +137,6 @@ export const InjectGaps = (list = [], start) => {
   }
 
   return list
-}
-
-/**
- * Helper function to determine of an item is a particular type and has
- * a date range
- */
-const typeWithDates = (type, item) => {
-  return item.type === type && item.Item && item.Item.Dates
 }
 
 /**
