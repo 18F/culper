@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Field, RadioGroup, Radio,
-         Text, Textarea, Name, Address, DateControl, Country } from '../../../Form'
+         Text, Name, Address, DateControl, Country } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
