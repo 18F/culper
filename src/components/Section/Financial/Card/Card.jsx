@@ -91,7 +91,7 @@ export default class Card extends ValidationElement {
       <span>
         <span className="index">{i18n.t('financial.card.collection.summary.item')} {index + 1}:</span>
         <span><strong>{agency}</strong></span>
-        <span className="dates">{from}</span>
+        <span className="dates"><strong>{from}</strong></span>
       </span>
     )
   }

@@ -93,12 +93,8 @@ export default class OtherNames extends ValidationElement {
         <span className="index">
           {i18n.t('identification.othernames.collection.summary.name')} {index + 1}:
         </span>
-        <span>
-          {name}
-        </span>
-        <span className="dates">
-          {dates}
-        </span>
+        <span><strong>{name}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
       </span>
     )
   }

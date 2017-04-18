@@ -107,8 +107,8 @@ export default class Bankruptcy extends ValidationElement {
     return (
       <span>
         <span className="index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</span>
-        <span>{address1}<br />{address2}</span>
-        <span className="dates">{from}</span>
+        <span><strong>{address1}{address1.length > 0 && address2.length > 1 ? <br /> : null}{address2}</strong></span>
+        <span className="dates"><strong>{from}</strong></span>
       </span>
     )
   }

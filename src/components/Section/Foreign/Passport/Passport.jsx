@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PassportValidator } from '../../../../validators'
-import { ValidationElement, Field, Text, Suggestions, Name, DateControl, Branch, Comments, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Field, Text, Suggestions, Name, DateControl, Branch, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {

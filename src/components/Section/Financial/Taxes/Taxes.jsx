@@ -87,7 +87,7 @@ export default class Taxes extends ValidationElement {
       <span>
         <span className="index">{i18n.t('financial.taxes.collection.summary.item')} {index + 1}:</span>
         <span><strong>{agency}</strong></span>
-        <span className="dates">{year}</span>
+        <span className="dates"><strong>{year}</strong></span>
       </span>
     )
   }
