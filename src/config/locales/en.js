@@ -657,9 +657,9 @@ const en = {
       },
       collection: {
         summary: {
-          title: 'Summary of e-mail addresses',
-          email: 'E-mail',
-          unknownEmail: 'Provide your e-mail address below',
+          title: 'Summary of email addresses',
+          email: 'Email',
+          unknownEmail: 'Provide your email address below',
           unknownPhone: 'Provide your telephone number below',
           phoneNumber: 'Phone number'
         },
@@ -669,10 +669,10 @@ const en = {
           },
           append: 'Add another phone number'
         },
-        append: 'Add another e-mail'
+        append: 'Add another email'
       },
       heading: {
-        email: 'Your e-mail addresses',
+        email: 'Your email addresses',
         phoneNumber: 'Your phone numbers',
         comments: 'Add optional comments'
       },
