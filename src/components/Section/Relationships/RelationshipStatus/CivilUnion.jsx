@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
-import EndedDetails from './EndedDetails'
+import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
+import Divorce from './Divorce'
 
 export default class CivilUnion extends ValidationElement {
   constructor (props) {
@@ -186,15 +186,17 @@ export default class CivilUnion extends ValidationElement {
 
   render () {
     return (
-      <div className="relationship-status">
+      <div className="civil-union">
           <div>
             <p>{i18n.t('relationships.status.para.never')}</p>
 
             <Field title={i18n.t('relationships.status.heading.name')}
               adjustFor="labels">
               <Name name="Name"
+                className="civil"
                 {...this.state.Name}
                 onUpdate={this.updateName}
+                onValidate={this.handleValidation}
               />
             </Field>
 
@@ -203,6 +205,7 @@ export default class CivilUnion extends ValidationElement {
               shrink={true}
               adjustFor="labels">
               <DateControl name="birthdate"
+                className="birthdate"
                 {...this.state.Birthdate}
                 onUpdate={this.updateBirthdate}
                 onValidate={this.handleValidation}
@@ -210,9 +213,9 @@ export default class CivilUnion extends ValidationElement {
             </Field>
 
             <Field help="relationships.status.help.birthplace"
-              title={i18n.t('relationships.status.heading.birthplace')}
-            >
+              title={i18n.t('relationships.status.heading.birthplace')}>
               <BirthPlace name="birthplace"
+                className="birthplace"
                 {...this.state.BirthPlace}
                 onUpdate={this.updateBirthPlace}
                 onValidate={this.handleValidation}
@@ -238,6 +241,7 @@ export default class CivilUnion extends ValidationElement {
             </Field>
 
             <Field help="relationships.status.help.othernames"
+              className="othername"
               title={i18n.t('relationships.status.heading.othernames')}>
               <p>{i18n.t('relationships.status.para.othernames')}</p>
               <NotApplicable name="OtherNameNotApplicable"
@@ -266,6 +270,7 @@ export default class CivilUnion extends ValidationElement {
                   adjustFor="daterange"
                   shrink={true}>
                   <DateRange name="DatesUsed"
+                    className="datesused"
                     {...this.DatesUsed}
                     onUpdate={this.updateDatesUsed}
                     onValidate={this.handleValidation}
@@ -276,6 +281,7 @@ export default class CivilUnion extends ValidationElement {
 
             <Field title={i18n.t('relationships.status.heading.enteredCivilUnion')}>
               <DateControl name="enteredCivilUnion"
+                className="entered"
                 {...this.state.EnteredCivilUnion}
                 onUpdate={this.updateEnteredCivilUnion}
                 onValidate={this.handleValidation}
@@ -329,6 +335,7 @@ export default class CivilUnion extends ValidationElement {
                 <Field title={i18n.t('relationships.status.heading.dateSeparated')}
                   help="alias.used.help">
                   <DateControl name="DateSeparated"
+                    className="dateseparated"
                     {...this.state.DateSeparated}
                     onUpdate={this.updateDateSeparated}
                     onValidate={this.props.onValidate}
@@ -337,6 +344,7 @@ export default class CivilUnion extends ValidationElement {
 
                 <Field title={i18n.t('relationships.status.heading.addressSeparated')}
                   adjustFor="address"
+                  className="address-separated"
                   help="alias.used.help">
                   <NotApplicable name="OtherNameNotApplicable"
                     applicable={this.state.AddressSeparatedNotApplicable}
@@ -372,7 +380,9 @@ export default class CivilUnion extends ValidationElement {
                 appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
                 appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
                 appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
-                <EndedDetails Name="Divorce" />
+                <Divorce name="Divorce"
+                  bind={true}
+                />
               </Accordion>
             </Show>
           </div>

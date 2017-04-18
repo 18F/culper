@@ -2121,6 +2121,7 @@ const en = {
         email: 'Provide email address',
         separated: 'Are you separated?',
         dateSeparated: 'Provide date of separation',
+        enteredCivilUnion: 'Provide date when you entered into your civil marriage, civil union, or domestic partnership.',
         locationSeparated: 'If legally separated, provide the location of the record',
         divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
         hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?'
@@ -2156,6 +2157,13 @@ const en = {
           divorced: 'Divorced/Dissolved',
           widowed: 'Widowed',
           annulled: 'Annulled'
+        },
+        deceased: {
+          label: {
+            yes: 'Yes',
+            no: 'No',
+            dontKnow: 'I don\'t know'
+          }
         }
       },
       cohabitant: {

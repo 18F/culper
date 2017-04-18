@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Branch, Field, DateControl, ValidationElement, Show, RadioGroup, Radio, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange } from '../../../Form'
+import { Address, Field, DateControl, Show, RadioGroup, Radio, Telephone, Name, BirthPlace, NotApplicable } from '../../../Form'
 
-export default class EndedDetails extends React.Component {
+export default class Divorce extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -28,6 +28,7 @@ export default class EndedDetails extends React.Component {
     this.updateStatus = this.updateStatus.bind(this)
     this.updateDeceased = this.updateDeceased.bind(this)
     this.updateDeceasedAddress = this.updateDeceasedAddress.bind(this)
+    this.updateDeceasedAddressNotApplicable = this.updateDeceasedAddressNotApplicable.bind(this)
   }
 
   update (field, values) {
@@ -43,7 +44,8 @@ export default class EndedDetails extends React.Component {
           DateDivorced: this.state.DateDivorced,
           Status: this.state.Status,
           Deceased: this.state.Deceased,
-          DeceasedAddress: this.state.DeceasedAddress
+          DeceasedAddress: this.state.DeceasedAddress,
+          DeceasedAddressNotApplicable: this.state.DeceasedAddressNotApplicable
         })
       }
     })
@@ -89,9 +91,13 @@ export default class EndedDetails extends React.Component {
     this.update('DeceasedAddress', values)
   }
 
+  updateDeceasedAddressNotApplicable (values) {
+    this.update('DeceasedAddressNotApplicable', !values.applicable)
+  }
+
   render () {
     return (
-      <div>
+      <div className="divorce">
         <Field title={i18n.t('relationships.status.heading.name')}
           adjustFor="labels">
           <Name name="Name"
@@ -106,6 +112,7 @@ export default class EndedDetails extends React.Component {
           shrink={true}
           adjustFor="labels">
           <DateControl name="birthdate"
+            className="birthdate"
             {...this.state.Birthdate}
             onUpdate={this.updateBirthdate}
             onValidate={this.handleValidation}
@@ -115,6 +122,7 @@ export default class EndedDetails extends React.Component {
         <Field help="relationships.status.help.birthplace"
           title={i18n.t('relationships.status.endedDetails.heading.birthplace')}>
           <BirthPlace name="birthplace"
+            className="birthplace"
             {...this.state.BirthPlace}
             onUpdate={this.updateBirthPlace}
             onValidate={this.handleValidation}
@@ -137,6 +145,7 @@ export default class EndedDetails extends React.Component {
           shrink={true}
           adjustFor="labels">
           <DateControl name="Recognized"
+            className="recognized"
             {...this.state.Recognized}
             onUpdate={this.updateRecognized}
             onValidate={this.handleValidation}
@@ -148,6 +157,7 @@ export default class EndedDetails extends React.Component {
           shrink={true}
           adjustFor="labels">
           <Address name="address"
+            className="location"
             {...this.state.Address}
             onUpdate={this.updateAddress}
             onValidate={this.handleValidation}
@@ -159,13 +169,15 @@ export default class EndedDetails extends React.Component {
           shrink={true}
           adjustFor="labels">
           <DateControl name="DateDivorced"
+            className="date-divorced"
             {...this.state.DateDivorced}
             onUpdate={this.updateDateDivorced}
             onValidate={this.handleValidation}
           />
         </Field>
 
-        <Field title={i18n.t('relationships.status.endedDetails.heading.status')}>
+        <Field title={i18n.t('relationships.status.endedDetails.heading.status')}
+          className="status">
           <RadioGroup name="status" selectedValue={this.state.Status}>
             <Radio
               label={i18n.m('relationships.status.endedDetails.label.divorced')}
@@ -191,21 +203,25 @@ export default class EndedDetails extends React.Component {
         <Show when={['Divorced', 'Annulled'].includes(this.state.Status)}>
           <div>
             <div>TODO: City, State</div>
-            <Field title={i18n.t('relationships.status.endedDetails.heading.deceased')}>
+            <Field title={i18n.t('relationships.status.endedDetails.heading.deceased')} className="deceased">
               <RadioGroup name="deceased" selectedValue={this.state.Deceased}>
                 <Radio
+                  className="yes"
+                  label={i18n.t('relationships.status.endedDetails.deceased.label.yes')}
                   label="Yes"
                   value="Yes"
                   onUpdate={this.updateDeceased}
                 />
                 <Radio
-                  label="No"
+                  className="no"
+                  label={i18n.t('relationships.status.endedDetails.deceased.label.no')}
                   value="No"
                   className="widowed"
                   onUpdate={this.updateDeceased}
                 />
                 <Radio
-                  label="I don't know"
+                  label={i18n.t('relationships.status.endedDetails.deceased.label.dontKnow')}
+                  className="dk"
                   value="DK"
                   onUpdate={this.updateDeceased}
                 />
@@ -214,10 +230,18 @@ export default class EndedDetails extends React.Component {
 
             <Show when={this.state.Deceased === 'Yes'}>
               <Field title={i18n.t('relationships.status.endedDetails.heading.deceasedAddress')}>
-                <Address
-                  {...this.state.DeceasedAddress}
-                  onUpdate={this.updateDeceasedAddress}
-                />
+                <NotApplicable name="DeceasedAddressNotApplicable"
+                  className="deceased-notapplicable"
+                  applicable={this.state.DeceasedAddressNotApplicable}
+                  label={i18n.t('reference.label.idk')}
+                  or={i18n.m('reference.para.or')}
+                  onUpdate={this.updateDeceasedAddressNotApplicable}>
+                  <Address
+                    className="address-deceased"
+                    {...this.state.DeceasedAddress}
+                    onUpdate={this.updateDeceasedAddress}
+                  />
+                </NotApplicable>
               </Field>
             </Show>
           </div>

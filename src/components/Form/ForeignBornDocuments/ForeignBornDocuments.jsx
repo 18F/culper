@@ -269,7 +269,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             label="Document Number"
             {...this.state.DocumentNumber}
             onUpdate={this.updateDocumentNumber}
-              onValidate={this.props.onValidate}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
