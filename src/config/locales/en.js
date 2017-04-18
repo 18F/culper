@@ -2604,10 +2604,11 @@ const en = {
         unit: 'Years covered'
       },
       collection: {
+        caption: 'Where you have lived',
         summary: {
           title: 'Summary of places you have lived',
           item: 'Address',
-          unknown: 'Unknown',
+          unknown: 'Provide residence details',
           incomplete: 'This residence\'s information is incomplete'
         },
         append: 'Add another residence'
@@ -2692,11 +2693,13 @@ const en = {
           label: 'NA'
         },
         collection: {
+          caption: 'Employment activities',
           append: 'Add another employer',
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
-            incomplete: 'This employer\'s information is incomplete'
+            incomplete: 'This employer\'s information is incomplete',
+            unknown: 'Provide employer details'
           }
         },
         activity: {
@@ -4036,11 +4039,12 @@ const en = {
         diplomas: 'Degrees/Diplomas earned'
       },
       collection: {
+        caption: 'Where you went to school',
         school: {
           summary: {
             title: 'Summary of education',
             item: 'School',
-            unknown: 'Unknown',
+            unknown: 'Provide your education details',
             incomplete: 'This education\'s information is incomplete'
           },
           append: 'Add another school'
@@ -4049,7 +4053,7 @@ const en = {
           summary: {
             title: 'Summary of degrees/diplomas',
             item: 'Degree',
-            unknown: 'Unknown'
+            unknown: 'Provide your degree/diploma details'
           },
           append: 'Add another diploma/degree'
         }

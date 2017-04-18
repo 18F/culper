@@ -38,6 +38,27 @@
     margin: 0 -5.5%;
   }
 
+  > .caption {
+    display: block;
+    padding: 1rem 10%;
+    background-color: #fff;
+    border-bottom: solid 1px #e5e5e5;
+    font-weight: 600;
+
+    @media screen and (max-width: 1380px) {
+      padding: 1rem 7.5%;
+    }
+
+    @media screen and (max-width: 1024px) {
+      padding: 1rem 5.5%;
+    }
+
+    .svg {
+      height: 2.5rem !important;
+      vertical-align: bottom;
+    }
+  }
+
   > strong {
     display: block;
     line-height: 5rem;

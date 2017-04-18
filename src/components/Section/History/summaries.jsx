@@ -5,6 +5,15 @@ import { Svg, Show } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
 
+export const ResidenceCaption = (props) => {
+  return (
+    <span>
+      <Svg src="img/residence-house.svg" />
+      {i18n.t('history.residence.collection.caption')}
+    </span>
+  )
+}
+
 /**
  * Renders a formatted summary information for a residence row
  */
@@ -33,11 +42,13 @@ export const ResidenceSummary = (props) => {
 
   const dates = dateSummary(item)
   const hasErrors = props.Item && !new ResidenceValidator(item, null).isValid()
-  const svg = hasErrors ? 'img/exclamation-point.svg' : 'img/residence-house.svg'
+  const svg = hasErrors
+        ? <Svg src="img/exclamation-point.svg" />
+        : null
 
   return (
     <span>
-      <Svg src={svg} />
+      {svg}
       <span className="index">
         {i18n.t('history.residence.collection.summary.item')}:
       </span>
@@ -47,24 +58,46 @@ export const ResidenceSummary = (props) => {
   )
 }
 
+export const EmploymentCaption = (props) => {
+  return (
+    <span>
+      <Svg src="img/employer-briefcase.svg" />
+      {i18n.t('history.employment.default.collection.caption')}
+    </span>
+  )
+}
+
 /**
  * Renders a formatted summary information for an employment row
  */
 export const EmploymentSummary = (props) => {
   let item = props.Item || {}
-  const employer = (item.Employment && item.Employment.value ? item.Employment.value : 'N/A')
+  const employer = item.Employment && item.Employment.value
+        ? item.Employment.value
+        : i18n.t('history.employment.default.collection.summary.unknown')
   const dates = dateSummary(item)
   const hasErrors = props.Item && !new EmploymentValidator(item, null).isValid()
-  const svg = hasErrors === true ? 'img/exclamation-point.svg' : 'img/employer-briefcase.svg'
+  const svg = hasErrors === true
+    ? <Svg src="img/exclamation-point.svg" />
+        : null
 
   return (
     <span>
-      <Svg src={svg} />
+      {svg}
       <span className="index">
         {i18n.t('history.employment.default.collection.summary.employer')}:
       </span>
       <span className="employer"><strong>{ employer }</strong></span>
       <span className="dates"><strong>{ dates }</strong></span>
+    </span>
+  )
+}
+
+export const EducationCaption = (props) => {
+  return (
+    <span>
+      <Svg src="img/school-cap.svg" />
+      {i18n.t('history.education.collection.caption')}
     </span>
   )
 }
@@ -77,11 +110,13 @@ export const EducationSummary = (props) => {
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
   const dates = dateSummary(item)
   const hasErrors = props.Item && !new EducationValidator(item, null).isValid()
-  const svg = hasErrors === true ? 'img/exclamation-point.svg' : 'img/school-cap.svg'
+  const svg = hasErrors === true
+    ? <Svg src="img/exclamation-point.svg" />
+    : null
 
   return (
     <span>
-      <Svg src={svg} />
+      {svg}
       <span className="index">
         {i18n.t('history.education.collection.school.summary.item')}:
       </span>
@@ -100,8 +135,8 @@ export const InjectGaps = (list = [], start) => {
 
   // Find all our "holes" for this type
   const ranges = list
-      .filter(item => { return item.Item && item.Item.Dates })
-      .map(item => { return item.Item.Dates })
+        .filter(item => { return item.Item && item.Item.Dates })
+    .map(item => { return item.Item.Dates })
   let holes = gaps(ranges, start)
 
   for (const item of list) {

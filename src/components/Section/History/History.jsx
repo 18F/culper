@@ -11,7 +11,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary } from './summaries'
+import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary, EmploymentCaption, EducationCaption, ResidenceCaption } from './summaries'
 import { ResidenceItem } from './Residence'
 import { EmploymentItem } from './Employment'
 import { EducationItem } from './Education'
@@ -20,9 +20,9 @@ import { ResidenceValidator, EmploymentValidator, EducationValidator, FederalSer
 import { openState } from '../../Form/Accordion/Accordion'
 
 const byline = (item, index, initial, translation, validator) => {
-  if (item.Item && !validator(item.Item)) {
+  if (!item.open && !initial && item.Item && !validator(item.Item)) {
     return (
-      <div className={`byline ${openState(item, initial)}`.trim()}>
+      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
         <div className="incomplete">{i18n.t(translation)}</div>
       </div>
     )
@@ -46,7 +46,6 @@ class History extends ValidationElement {
     this.employmentRangesList = this.employmentRangesList.bind(this)
     this.schoolRangesList = this.schoolRangesList.bind(this)
     this.diplomaRangesList = this.diplomaRangesList.bind(this)
-
     this.onValidate = this.onValidate.bind(this)
     this.updateResidence = this.updateResidence.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
@@ -55,6 +54,9 @@ class History extends ValidationElement {
     this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
     this.customResidenceDetails = this.customResidenceDetails.bind(this)
     this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
+    this.customResidenceByline = this.customResidenceByline.bind(this)
+    this.customEmploymentByline = this.customEmploymentByline.bind(this)
+    this.customEducationByline = this.customEducationByline.bind(this)
   }
 
   componentDidMount () {
@@ -472,20 +474,24 @@ class History extends ValidationElement {
     return callback()
   }
 
+  overrideInitial (initial) {
+    return this.props.subsection === 'review' ? false : initial
+  }
+
   customResidenceByline (item, index, initial) {
-    return byline(item, index, initial, 'history.residence.collection.summary.incomplete', (item) => {
+    return byline(item, index, this.overrideInitial(initial), 'history.residence.collection.summary.incomplete', (item) => {
       return new ResidenceValidator(item, null).isValid()
     })
   }
 
   customEmploymentByline (item, index, initial) {
-    return byline(item, index, initial, 'history.employment.default.collection.summary.incomplete', (item) => {
+    return byline(item, index, this.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', (item) => {
       return new EmploymentValidator(item, null).isValid()
     })
   }
 
   customEducationByline (item, index, initial) {
-    return byline(item, index, initial, 'history.education.collection.school.summary.incomplete', (item) => {
+    return byline(item, index, this.overrideInitial(initial), 'history.education.collection.school.summary.incomplete', (item) => {
       return new EducationValidator(item, null).isValid()
     })
   }
@@ -525,6 +531,7 @@ class History extends ValidationElement {
                        sort={this.sort}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
+                       caption={ResidenceCaption}
                        summary={ResidenceSummary}
                        byline={this.customResidenceByline}
                        customSummary={this.customSummary}
@@ -542,6 +549,7 @@ class History extends ValidationElement {
                        sort={this.sort}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
+                       caption={EmploymentCaption}
                        summary={EmploymentSummary}
                        byline={this.customEmploymentByline}
                        customSummary={this.customSummary}
@@ -560,6 +568,7 @@ class History extends ValidationElement {
                          sort={this.sort}
                          onUpdate={this.updateEducation}
                          onValidate={this.onValidate}
+                         caption={EducationCaption}
                          summary={EducationSummary}
                          byline={this.customEducationByline}
                          description={i18n.t('history.education.collection.school.summary.title')}

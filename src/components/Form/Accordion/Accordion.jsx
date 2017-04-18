@@ -276,6 +276,12 @@ export default class Accordion extends ValidationElement {
     )
   }
 
+  caption () {
+    return this.props.caption
+      ? <div className="caption">{this.props.caption()}</div>
+      : null
+  }
+
   render () {
     const klass = `accordion ${this.props.className}`.trim()
     const description = this.props.items.length < 2 ? '' : this.props.description
@@ -284,6 +290,7 @@ export default class Accordion extends ValidationElement {
       <div ref="accordion">
         <div className={klass}>
           <strong>{description}</strong>
+          {this.caption()}
 
           <div className="items">
             {this.content()}
@@ -316,6 +323,7 @@ Accordion.defaultProps = {
   closeLabel: i18n.t('collection.close'),
   removeLabel: i18n.t('collection.remove'),
   description: i18n.t('collection.summary'),
+  caption: null,
   scrollTo: '',
   sort: (a, b) => { return -1 },
   onUpdate: () => {},
