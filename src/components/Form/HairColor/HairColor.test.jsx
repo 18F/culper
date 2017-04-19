@@ -26,8 +26,6 @@ describe('The HairColor component', () => {
     const component = mount(<HairColor name={expected.name} label={expected.label} value={expected.value} onUpdate={expected.onUpdate} />)
     component.find('input[name="hair-bald"]').simulate('change')
     expect(component.find('label.checked').length).toBe(1)
-    component.find('input[name="hair-bald"]').simulate('change')
-    expect(component.find('label.checked').length).toBe(0)
     expect(updates).toBeGreaterThan(0)
   })
 })
