@@ -2368,6 +2368,49 @@ const en = {
           note: ''
         }
       }
+    },
+    people: {
+      heading: {
+        title: 'People know who you well'
+      },
+      para: {
+        intro: '### Provide three people who know you well and who preferably live in the U.S.\n\nThey should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you **covers at least the last seven (7) years.**\n\n **Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.**'
+      },
+      person: {
+        heading: {
+          knownDates: 'Provide dates known',
+          name: 'Provide full name',
+          rank: 'Provide rank/title',
+          relationship: 'Provide relationship to you',
+          mobileTelephone: 'Provide mobile/cell phone number for this person',
+          otherTelephone: 'Provide another phone number for this person',
+          email: 'Provide e-mail address for this person',
+          address: 'Provide home or work address for this person'
+        },
+        label: {
+          address: 'This address is',
+          or: 'or',
+          emailNotApplicable: 'I don\'t know',
+          rankNotApplicable: 'Not applicable',
+          relationship: {
+            title: 'Check all that apply.',
+            neighbor: 'Neighbor',
+            friend: 'Friend',
+            landlord: 'Landlord',
+            business: 'Business',
+            other: 'Other'
+          }
+        },
+        collection: {
+          summary: {
+            unknown: 'Provide details'
+          },
+          appendLabel: 'Add another person',
+          appendMessage: 'If yes use the button below to add another instance',
+          appendTitle: 'Do you have an additional person who knows you well to list?',
+          itemType: 'Person'
+        }
+      }
     }
   },
 

@@ -9,6 +9,7 @@ import { SectionViews, SectionView } from '../SectionView'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
 import Cohabitants from './RelationshipStatus/Cohabitants'
+import People from './People'
 import { RelationshipsValidator } from '../../../validators'
 
 class Relationships extends ValidationElement {
@@ -161,9 +162,20 @@ class Relationships extends ValidationElement {
               onValidate={this.handleValidation}
             />
           </SectionView>
-          <SectionView name="relatives"
+          <SectionView name="friends"
             back="relationships/status/cohabitant"
             backLabel={i18n.t('relationships.destination.cohabitant')}
+            next="relationships/relatives"
+            nextLabel={i18n.t('relationships.destination.relatives')}>
+            <People name="friends"
+              {...this.props.Friend}
+              onUpdate={this.updateFriends}
+              onValidate={this.handleValidation}
+            />
+          </SectionView>
+          <SectionView name="relatives"
+            back="relationships/friends"
+            backLabel={i18n.t('relationships.destination.friends')}
             next="relationships/review"
             nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
@@ -187,6 +199,11 @@ class Relationships extends ValidationElement {
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
               onUpdate={this.updateCohabitants}
+              onValidate={this.handleValidation}
+            />
+            <People name="friends"
+              {...this.props.Friends}
+              onUpdate={this.updateFriends}
               onValidate={this.handleValidation}
             />
             <Relatives name="relatives"

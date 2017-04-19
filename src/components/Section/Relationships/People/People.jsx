@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
+import { Accordion, ValidationElement }  from '../../../Form'
+import Person from './Person'
 //import { PeopleValidator } from '../../../../validators'
 
 export default class People extends ValidationElement {
@@ -8,12 +9,12 @@ export default class People extends ValidationElement {
     super(props)
 
     this.state = {
-      IsIncompetent: props.IsIncompetent,
       List: props.List,
       errorCodes: []
     }
 
     this.update = this.update.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   update (field, values) {
@@ -24,6 +25,10 @@ export default class People extends ValidationElement {
         })
       }
     })
+  }
+
+  updateList (values) {
+    this.update('List', values)
   }
 
   isValid () {
@@ -53,14 +58,15 @@ export default class People extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Person || {}
-    const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('relationships.people.collection.summaryCourtName')
-    const type = i18n.t('relationships.people.collection.itemType')
+    const name = o.Name
+      ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
+      : i18n.t('relationships.people.person.collection.summary.unknown')
+    const type = i18n.t('relationships.people.person.collection.itemType')
 
     return (
       <span>
-        <span className="index">{type}</span>
-        <span className="info"><strong>{courtName}</strong></span>
+        <span className="index">{type} {index + 1}:</span>
+        <span className="info"><strong>{name}</strong></span>
       </span>
     )
   }
@@ -68,17 +74,18 @@ export default class People extends ValidationElement {
   render () {
     return (
       <div className="competence">
-        <h2>{i18n.t('relationships.heading.people')}</h2>
+        <h2>{i18n.t('relationships.people.heading.title')}</h2>
+        {i18n.m('relationships.people.para.intro')}
           <Accordion minimum="1"
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
             onValidate={this.handleValidation}
-            description={i18n.t('relationships.people.collection.description')}
-            appendTitle={i18n.t('relationships.people.collection.appendTitle')}
-            appendMessage={i18n.m('relationships.people.collection.appendMessage')}
-            appendLabel={i18n.t('relationships.people.collection.appendLabel')}>
-            <div>Stuff</div>
+            description={i18n.t('relationships.people.person.collection.description')}
+            appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
+            appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
+            appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
+            <Person name="Person" bind={true} />
           </Accordion>
       </div>
     )
@@ -87,10 +94,4 @@ export default class People extends ValidationElement {
 
 People.defaultProps = {
   List: []
-}
-
-const help = {
-  heading: {
-    people: 'People who know you well'
-  }
 }

@@ -44,7 +44,7 @@ const navigation = [
           { name: 'Cohabitants', url: 'cohabitant' }
         ]
       },
-      { hidden: true, name: 'People who know you well', url: 'friends' },
+      { name: 'People who know you well', url: 'friends' },
       { name: 'Relatives', url: 'relatives' }
     ]
   },

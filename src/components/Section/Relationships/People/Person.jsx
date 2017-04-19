@@ -38,8 +38,17 @@ export default class Person extends React.Component {
     this.setState({ [name]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          name: this.props.name,
-          ...this.state
+          Name: this.state.Name,
+          KnownDates: this.state.KnownDates,
+          Rank: this.state.Rank,
+          RankNotApplicable: this.state.RankNotApplicable,
+          Relationship: this.state.Relationship,
+          RelationshipOther: this.state.RelationshipOther,
+          MobileTelephone: this.state.MobileTelephone,
+          OtherTelephone: this.state.OtherTelephone,
+          Email: this.state.Email,
+          EmailNotApplicable: this.state.EmailNotApplicable,
+          Address: this.state.Address
         })
       }
     })
@@ -102,8 +111,7 @@ export default class Person extends React.Component {
   render () {
     return (
       <div className="person">
-        <Field title={i18n.t('relationships.person.heading.knownDates')}>
-          {i18n.m('relationships.relatives.para.alias')}
+        <Field title={i18n.t('relationships.people.person.heading.knownDates')}>
           <DateRange name="KnownDates"
             className="known-dates"
             {...this.state.KnownDates}
@@ -112,7 +120,7 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.person.heading.name')}>
+        <Field title={i18n.t('relationships.people.person.heading.name')}>
           <Name name="Name"
             className="name"
             {...this.state.Name}
@@ -121,12 +129,12 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.person.heading.rank')}>
+        <Field title={i18n.t('relationships.people.person.heading.rank')}>
           <NotApplicable name="RankNotApplicable"
             className="rank-notapplicable"
             {...this.state.RankNotApplicable}
-            label={i18n.t('relationships.person.label.rankNotApplicable')}
-            or={i18n.m('relationships.person.label.or')}
+            label={i18n.t('relationships.people.person.label.rankNotApplicable')}
+            or={i18n.m('relationships.people.person.label.or')}
             onUpdate={this.updateRankNotApplicable}>
             <Text name="Rank"
               className="rank"
@@ -137,17 +145,17 @@ export default class Person extends React.Component {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t(`relationships.person.heading.relationship`)}
+        <Field title={i18n.t(`relationships.people.person.heading.relationship`)}
           className="relationships"
-          help={`relationships.person.help.relationship`}
+          help={`relationships.people.person.help.relationship`}
           onUpdate={this.updateRelationship}
           adjustFor="labels"
           shrink={true}>
-          <label>{i18n.t(`relationships.person.label.relationship`)}</label>
+          <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
             selectedValues={this.state.Relationship}>
             <Checkbox name="relationship-neighbor"
-              label={i18n.t(`relationships.person.label.relationship.neighbor`)}
+              label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
               value="Neighbor"
               onChange={this.updateRelationship}>
               <div className="relationship-icon neighbor">
@@ -155,7 +163,7 @@ export default class Person extends React.Component {
               </div>
             </Checkbox>
             <Checkbox name="relationship-friend"
-              label={i18n.t(`relationships.person.label.relationship.friend`)}
+              label={i18n.t(`relationships.people.person.label.relationship.friend`)}
               value="Friend"
               onChange={this.updateRelationship}>
               <div className="relationship-icon friend">
@@ -163,7 +171,7 @@ export default class Person extends React.Component {
               </div>
             </Checkbox>
             <Checkbox name="relationship-landlord"
-              label={i18n.t(`relationships.person.label.relationship.landlord`)}
+              label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
               value="Landlord"
               onChange={this.updateRelationship}>
               <div className="relationship-icon landlord">
@@ -171,7 +179,7 @@ export default class Person extends React.Component {
               </div>
             </Checkbox>
             <Checkbox name="relationship-business"
-              label={i18n.t(`relationships.person.label.relationship.business`)}
+              label={i18n.t(`relationships.people.person.label.relationship.business`)}
               value="Business"
               onChange={this.updateRelationship}>
               <div className="relationship-icon business">
@@ -179,7 +187,7 @@ export default class Person extends React.Component {
               </div>
             </Checkbox>
             <Checkbox name="relationship-other"
-              label={i18n.t(`relationships.person.label.relationship.other`)}
+              label={i18n.t(`relationships.people.person.label.relationship.other`)}
               value="Other"
               onChange={this.updateRelationship}>
               <div className="relationship-icon other">
@@ -190,7 +198,7 @@ export default class Person extends React.Component {
 
           <Show when={this.state.Relationship.includes('Other')}>
             <Text name="RelationshipOther"
-              label={i18n.t(`relationships.person.label.relationship.explanation`)}
+              label={i18n.t(`relationships.people.person.label.relationship.explanation`)}
               maxlength="100"
               className="relationship-other"
               {...this.state.RelationshipOther}
@@ -200,7 +208,7 @@ export default class Person extends React.Component {
           </Show>
         </Field>
 
-        <Field title={i18n.t('relationships.person.heading.mobileTelephone')} className="mobile-telephone">
+        <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')} className="mobile-telephone">
           <Telephone name="MobileTelephone"
             {...this.state.MobileTelephone}
             onUpdate={this.updateMobileTelephone}
@@ -208,7 +216,7 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.person.heading.otherTelephone')} className="other-telephone">
+        <Field title={i18n.t('relationships.people.person.heading.otherTelephone')} className="other-telephone">
           <Telephone name="OtherTelephone"
             {...this.state.OtherTelephone}
             onUpdate={this.updateOtherTelephone}
@@ -216,12 +224,12 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.person.heading.email')}>
+        <Field title={i18n.t('relationships.people.person.heading.email')}>
           <NotApplicable name="EmailNotApplicable"
             className="email-notapplicable"
             {...this.state.EmailNotApplicable}
-            label={i18n.t('relationships.person.label.emailNotApplicable')}
-            or={i18n.m('relationships.person.label.or')}
+            label={i18n.t('relationships.people.person.label.emailNotApplicable')}
+            or={i18n.m('relationships.people.person.label.or')}
             onUpdate={this.updateEmailNotApplicable}>
             <Email name="Email"
               className="email"
@@ -232,8 +240,9 @@ export default class Person extends React.Component {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('relationships.person.heading.address')}>
+        <Field title={i18n.t('relationships.people.person.heading.address')}>
           <Address name="Address"
+            label={i18n.t('relationships.people.person.label.address')}
             className="address"
             {...this.state.Address}
             onUpdate={this.updateAddress}
