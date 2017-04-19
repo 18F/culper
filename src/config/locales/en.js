@@ -2213,6 +2213,38 @@ const en = {
           maiden: 'Provide maiden name',
           used: 'Provide dates name was used'
         }
+      },
+      help: {
+        birthdate: {
+          title: 'Need help with the birthdate?',
+          message: 'Provide the date of birth',
+          note: ''
+        },
+        birthplace: {
+          title: 'Need help with the birth place?',
+          message: 'Provide the place of birth',
+          note: ''
+        },
+        foreignBornDocument: {
+          title: 'Need help with selecting the appropriate documentation?',
+          message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+          note: ''
+        },
+        othernames: {
+          title: 'Need help with other names used?',
+          message: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.',
+          note: ''
+        },
+        separated: {
+          title: 'Need help with separated?',
+          message: 'Mark whether you are separated',
+          note: ''
+        },
+        divorced: {
+          title: 'Need help with this question?',
+          message: 'Mark whether you are currently divorced',
+          note: ''
+        }
       }
     }
   },

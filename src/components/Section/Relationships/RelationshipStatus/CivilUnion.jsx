@@ -244,8 +244,7 @@ export default class CivilUnion extends ValidationElement {
               />
             </Field>
 
-            <Field help="relationships.status.help.ssn"
-              title={i18n.t('relationships.status.heading.ssn')}>
+            <Field title={i18n.t('relationships.status.heading.ssn')}>
               <SSN name="ssn"
                 {...this.state.SSN}
                 onUpdate={this.updateSSN}
@@ -279,7 +278,6 @@ export default class CivilUnion extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.status.othernames.heading.used')}
-                  help="alias.used.help"
                   adjustFor="daterange"
                   shrink={true}>
                   <DateRange name="DatesUsed"
@@ -337,7 +335,7 @@ export default class CivilUnion extends ValidationElement {
               <Branch name="separated"
                 className="separated"
                 value={this.state.Separated}
-                help="relationships.status.heading.separated"
+                help="relationships.status.separated"
                 onUpdate={this.updateSeparated}
                 onValidate={this.props.onValidate}>
               </Branch>
@@ -377,7 +375,7 @@ export default class CivilUnion extends ValidationElement {
               <Branch name="divorced"
                 className="divorced"
                 value={this.state.Divorced}
-                help="relationships.status.heading.divorced"
+                help="relationships.status.divorced"
                 onUpdate={this.updateDivorced}
                 onValidate={this.props.onValidate}>
               </Branch>
