@@ -199,3 +199,10 @@ export const battery = (tests, validator, fn) => {
     expect(new validator(test.state, null)[fn]()).toBe(test.expected)
   })
 }
+
+export const validSSN = (ssn) => {
+  if (ssn.notApplicable === true) {
+    return true
+  }
+  return !!ssn.first && !!ssn.middle && !!ssn.last
+}

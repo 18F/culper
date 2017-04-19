@@ -1,5 +1,5 @@
 export default class BirthPlaceValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.domestic = state.domestic
     this.country = state.country
     this.city = state.city
@@ -48,7 +48,7 @@ export default class BirthPlaceValidator {
    * Validates a birthplace
    */
   isValid () {
-    if (this.domestic) {
+    if (this.domestic === 'Yes') {
       return this.validDomestic()
     } else {
       return this.validInternational()
