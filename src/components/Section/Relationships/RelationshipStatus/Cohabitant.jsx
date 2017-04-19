@@ -98,7 +98,7 @@ export default class Cohabitant extends ValidationElement {
             className="cohabitant-name"
             {...this.state.Name}
             onUpdate={this.updateName}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -110,7 +110,7 @@ export default class Cohabitant extends ValidationElement {
             className="birthdate"
             {...this.state.Birthdate}
             onUpdate={this.updateBirthdate}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -119,7 +119,7 @@ export default class Cohabitant extends ValidationElement {
             label={i18n.t('relationships.status.cohabitant.label.birthplace')}
             {...this.state.BirthPlace}
             onUpdate={this.updateBirthPlace}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
         <Field help="relationships.status.cohabitant.help.foreignBornDocument"
@@ -127,7 +127,7 @@ export default class Cohabitant extends ValidationElement {
           <ForeignBornDocuments name="foreignBornDocument"
             {...this.state.ForeignBornDocument}
             onUpdate={this.updateForeignBornDocument}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -136,7 +136,7 @@ export default class Cohabitant extends ValidationElement {
           <SSN name="ssn"
             {...this.state.SSN}
             onUpdate={this.updateSSN}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
         <Field title={i18n.t('relationships.status.cohabitant.heading.othernames')}>
@@ -150,7 +150,7 @@ export default class Cohabitant extends ValidationElement {
               className="othername"
               {...this.state.OtherName}
               onUpdate={this.updateOtherName}
-              onValidate={this.handleValidation}
+              onValidate={this.props.onValidate}
             />
             <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.maiden')}
               help="alias.maiden.help"
@@ -160,7 +160,7 @@ export default class Cohabitant extends ValidationElement {
                 className="othername"
                 {...this.state.OtherNameMaiden}
                 onUpdate={this.updateOtherNameMaiden}
-                onValidate={this.handleValidation}
+                onValidate={this.props.onValidate}
               />
             </Field>
 
@@ -172,7 +172,7 @@ export default class Cohabitant extends ValidationElement {
                 className="othername"
                 {...this.state.OtherNameUsed}
                 onUpdate={this.updateOtherNameUsed}
-                onValidate={this.handleValidation}
+                onValidate={this.props.onValidate}
               />
             </Field>
           </NotApplicable>
@@ -186,7 +186,7 @@ export default class Cohabitant extends ValidationElement {
             className="cohabitation-began"
             {...this.state.CohabitationBegan}
             onUpdate={this.updateCohabitationBegan}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
       </div>
