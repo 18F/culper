@@ -17,6 +17,7 @@ export default class Cohabitants extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateHasCohabitant = this.updateHasCohabitant.bind(this)
     this.updateCohabitantList = this.updateCohabitantList.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -58,10 +59,6 @@ export default class Cohabitants extends ValidationElement {
   }
 
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -86,7 +83,7 @@ export default class Cohabitants extends ValidationElement {
             value={this.state.HasCohabitant}
             help="relationships.status.help.hasCohabitant"
             onUpdate={this.updateHasCohabitant}
-            onValidate={this.props.onValidate}>
+            onValidate={this.handleValidation}>
           </Branch>
         </Field>
 

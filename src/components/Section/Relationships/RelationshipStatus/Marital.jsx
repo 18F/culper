@@ -17,6 +17,7 @@ export default class Marital extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
     this.updateCivilUnion = this.updateCivilUnion.bind(this)
+    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -31,7 +32,7 @@ export default class Marital extends ValidationElement {
   }
 
   isValid () {
-    return new MaritalValidator(this.state.CivilUnion).isValid()
+    return new MaritalValidator(this.state).isValid()
   }
 
   updateStatus (values) {
@@ -71,31 +72,37 @@ export default class Marital extends ValidationElement {
               label={i18n.m('relationships.status.label.status.never')}
               value="Never"
               onChange={this.updateStatus}
+              onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.status.label.status.inCivilUnion')}
               value="InCivilUnion"
               onChange={this.updateStatus}
+              onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.status.label.status.separated')}
               value="Separated"
               onChange={this.updateStatus}
+              onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.status.label.status.annulled')}
               value="Annulled"
               onChange={this.updateStatus}
+              onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.status.label.status.divorced')}
               value="Divorced"
               onChange={this.updateStatus}
+              onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.status.label.status.widowed')}
               value="Widowed"
               onChange={this.updateStatus}
+              onValidate={this.handleValidation}
             />
           </RadioGroup>
         </Field>
@@ -104,6 +111,7 @@ export default class Marital extends ValidationElement {
           <CivilUnion name="civilUnion"
             {...this.state.CivilUnion}
             onUpdate={this.updateCivilUnion}
+            onValidate={this.handleValidation}
           />
         </Show>
       </div>

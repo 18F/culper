@@ -1805,7 +1805,8 @@ const en = {
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
-      friends: 'People who know you well'
+      friends: 'People who know you well',
+      cohabitant: 'Cohabitant'
     },
     relatives: {
       collection: {

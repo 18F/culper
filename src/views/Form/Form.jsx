@@ -31,7 +31,7 @@ class Form extends React.Component {
     }
     // Splat is a react-router param added when wildcard (/**/) route paths are designated
     const splat = this.props.params.splat ? `/${this.props.params.splat}` : ''
-    const subsection = `${this.props.params.subsection}${splat}`.trim()
+    const subsection = `${this.props.params.subsection || ''}${splat}`.trim()
     return (
       <div id="eapp-form" className="eapp-form">
         <div id="info">
@@ -46,7 +46,8 @@ class Form extends React.Component {
 Form.propTypes = {
   params: React.PropTypes.shape({
     section: React.PropTypes.string,
-    subsection: React.PropTypes.string
+    subsection: React.PropTypes.string,
+    splat: React.PropTypes.string
   })
 }
 

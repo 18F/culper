@@ -36,6 +36,7 @@ import CitizenshipMultipleValidator from './citizenship-multiple'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
+import RelationshipsValidator from './relationships'
 
 export {
   AddressValidator,
@@ -79,5 +80,6 @@ export {
   CitizenshipMultipleValidator,
   CivilUnionValidator,
   MaritalValidator,
-  CohabitantsValidator
+  CohabitantsValidator,
+  RelationshipsValidator
 }

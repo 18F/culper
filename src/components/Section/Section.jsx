@@ -44,7 +44,7 @@ class Section extends React.Component {
           <Financial subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="relationships">
-          <Relationships subsection={this.props.subsection} trisection={this.props.trisection} />
+          <Relationships subsection={this.props.subsection} />
         </SectionView>
         <SectionView name="citizenship">
           <Citizenship subsection={this.props.subsection} />
