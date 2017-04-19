@@ -225,10 +225,10 @@ export default class CivilUnion extends ValidationElement {
               />
             </Field>
 
-            <Field help="relationships.status.help.birthplace"
-              title={i18n.t('relationships.status.heading.birthplace')}>
+            <Field title={i18n.t('relationships.status.heading.birthplace')}>
               <BirthPlace name="birthplace"
                 className="birthplace"
+                label={i18n.t('relationships.status.label.birthplace')}
                 {...this.state.BirthPlace}
                 onUpdate={this.updateBirthPlace}
                 onValidate={this.handleValidation}
@@ -322,7 +322,7 @@ export default class CivilUnion extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.email')}
-              help="alias.used.help"
+              help="relationships.status.help.email"
               adjustFor="email">
               <Email name="Email"
                 {...this.state.Email}

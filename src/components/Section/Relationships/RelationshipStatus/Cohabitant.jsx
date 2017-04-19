@@ -114,9 +114,9 @@ export default class Cohabitant extends ValidationElement {
           />
         </Field>
 
-        <Field help="relationships.status.cohabitanthelp.birthplace"
-          title={i18n.t('relationships.status.cohabitant.heading.birthplace')}>
+        <Field title={i18n.t('relationships.status.cohabitant.heading.birthplace')}>
           <BirthPlace name="birthplace"
+            label={i18n.t('relationships.status.cohabitant.label.birthplace')}
             {...this.state.BirthPlace}
             onUpdate={this.updateBirthPlace}
             onValidate={this.handleValidation}

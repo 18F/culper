@@ -122,6 +122,7 @@ export default class Divorce extends React.Component {
         <Field help="relationships.status.help.birthplace"
           title={i18n.t('relationships.status.divorce.heading.birthplace')}>
           <BirthPlace name="birthplace"
+            label={i18n.t('relationships.status.divorce.label.birthplace')}
             className="birthplace"
             {...this.state.BirthPlace}
             onUpdate={this.updateBirthPlace}
@@ -130,7 +131,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.status.divorce.heading.telephone')}
-          help="alias.used.help"
+          help="relationships.status.divorce.help.telephone"
           adjustFor="telephone"
           shrink={true}>
           <Telephone name="Telephone"
