@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Branch, Field, ValidationElement, Show, RadioGroup, Radio } from '../../../Form'
+import { Accordion, Branch, ValidationElement, Show } from '../../../Form'
 import Cohabitant from './Cohabitant'
 import { CohabitantsValidator } from '../../../../validators'
 
@@ -17,7 +17,6 @@ export default class Cohabitants extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateHasCohabitant = this.updateHasCohabitant.bind(this)
     this.updateCohabitantList = this.updateCohabitantList.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -77,15 +76,15 @@ export default class Cohabitants extends ValidationElement {
   render () {
     return (
       <div className="cohabitants">
-        <Field title={i18n.t('relationships.status.heading.hasCohabitant')}>
-          <Branch name="hasCohabitant"
-            className="has-cohabitant"
-            value={this.state.HasCohabitant}
-            help="relationships.status.help.hasCohabitant"
-            onUpdate={this.updateHasCohabitant}
-            onValidate={this.handleValidation}>
-          </Branch>
-        </Field>
+        <Branch name="hasCohabitant"
+          label={i18n.t('relationships.status.heading.hasCohabitant')}
+          labelSize="h3"
+          className="has-cohabitant"
+          value={this.state.HasCohabitant}
+          help="relationships.status.help.hasCohabitant"
+          onUpdate={this.updateHasCohabitant}
+          onValidate={this.handleValidation}>
+        </Branch>
 
         <Show when={this.state.HasCohabitant === 'Yes'}>
           <Accordion minimum="1"

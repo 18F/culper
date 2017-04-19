@@ -43,12 +43,4 @@ class Form extends React.Component {
   }
 }
 
-Form.propTypes = {
-  params: React.PropTypes.shape({
-    section: React.PropTypes.string,
-    subsection: React.PropTypes.string,
-    splat: React.PropTypes.string
-  })
-}
-
 export default AuthenticatedView(Form)

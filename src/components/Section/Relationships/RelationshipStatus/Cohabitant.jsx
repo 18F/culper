@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable } from '../../../Form'
+import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement } from '../../../Form'
 
-export default class Cohabitant extends React.Component {
+export default class Cohabitant extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {

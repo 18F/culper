@@ -21,7 +21,6 @@ class Relationships extends ValidationElement {
 
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.updateMarital = this.updateMarital.bind(this)
     this.updateFriends = this.updateFriends.bind(this)
@@ -180,6 +179,21 @@ class Relationships extends ValidationElement {
             backLabel={i18n.t('relationships.destination.relatives')}
             next="military/selective"
             next={i18n.t('military.destination.selective')}>
+            <Marital name="marital"
+              {...this.props.Marital}
+              onUpdate={this.updateMarital}
+              onValidate={this.handleValidation}
+            />
+            <Cohabitants name="cohabitants"
+              {...this.props.Cohabitants}
+              onUpdate={this.updateCohabitants}
+              onValidate={this.handleValidation}
+            />
+            <Relatives name="relatives"
+              {...this.props.Relatives}
+              onUpdate={this.updateRelatives}
+              onValidate={this.handleValidation}
+            />
           </SectionView>
         </SectionViews>
       </div>

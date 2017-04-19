@@ -17,7 +17,6 @@ export default class Marital extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
     this.updateCivilUnion = this.updateCivilUnion.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {

@@ -103,7 +103,7 @@ export default class Divorce extends React.Component {
           <Name name="Name"
             {...this.state.Name}
             onUpdate={this.updateName}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -115,7 +115,7 @@ export default class Divorce extends React.Component {
             className="birthdate"
             {...this.state.Birthdate}
             onUpdate={this.updateBirthdate}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -125,7 +125,7 @@ export default class Divorce extends React.Component {
             className="birthplace"
             {...this.state.BirthPlace}
             onUpdate={this.updateBirthPlace}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -136,7 +136,7 @@ export default class Divorce extends React.Component {
           <Telephone name="Telephone"
             {...this.state.Telephone}
             onUpdate={this.updateTelephone}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -148,7 +148,7 @@ export default class Divorce extends React.Component {
             className="recognized"
             {...this.state.Recognized}
             onUpdate={this.updateRecognized}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -160,7 +160,7 @@ export default class Divorce extends React.Component {
             className="location"
             {...this.state.Address}
             onUpdate={this.updateAddress}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -172,7 +172,7 @@ export default class Divorce extends React.Component {
             className="date-divorced"
             {...this.state.DateDivorced}
             onUpdate={this.updateDateDivorced}
-            onValidate={this.handleValidation}
+            onValidate={this.props.onValidate}
           />
         </Field>
 
@@ -184,18 +184,21 @@ export default class Divorce extends React.Component {
               value="Divorced"
               className="divorced"
               onUpdate={this.updateStatus}
+              onValidate={this.props.onValidate}
             />
             <Radio
               label={i18n.m('relationships.status.divorce.label.widowed')}
               value="Widowed"
               className="widowed"
               onUpdate={this.updateStatus}
+              onValidate={this.props.onValidate}
             />
             <Radio
               label={i18n.m('relationships.status.divorce.label.annulled')}
               value="Annulled"
               className="annulled"
               onUpdate={this.updateStatus}
+              onValidate={this.props.onValidate}
             />
           </RadioGroup>
         </Field>
@@ -210,6 +213,7 @@ export default class Divorce extends React.Component {
                   label="Yes"
                   value="Yes"
                   onUpdate={this.updateDeceased}
+                  onValidate={this.props.onValidate}
                 />
                 <Radio
                   className="no"
@@ -217,12 +221,14 @@ export default class Divorce extends React.Component {
                   value="No"
                   className="widowed"
                   onUpdate={this.updateDeceased}
+                  onValidate={this.props.onValidate}
                 />
                 <Radio
                   label={i18n.t('relationships.status.divorce.deceased.label.dontKnow')}
                   className="dk"
                   value="DK"
                   onUpdate={this.updateDeceased}
+                  onValidate={this.props.onValidate}
                 />
               </RadioGroup>
             </Field>
@@ -234,11 +240,13 @@ export default class Divorce extends React.Component {
                   applicable={this.state.DeceasedAddressNotApplicable}
                   label={i18n.t('reference.label.idk')}
                   or={i18n.m('reference.para.or')}
+                  onValidate={this.props.onValidate}
                   onUpdate={this.updateDeceasedAddressNotApplicable}>
                   <Address
                     className="address-deceased"
                     {...this.state.DeceasedAddress}
                     onUpdate={this.updateDeceasedAddress}
+                    onValidate={this.props.onValidate}
                   />
                 </NotApplicable>
               </Field>
