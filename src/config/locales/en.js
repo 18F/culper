@@ -602,7 +602,7 @@ const en = {
       branch: {
         help: {
           title: 'Need help with your place of birth?',
-          message: 'Enter information regarding your place of birth',
+          message: 'Select "NEED ANSWER" if you are a United States citizen born abroad.',
           note: ''
         }
       },
@@ -646,20 +646,20 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email address(es)?',
-          message: 'Enter your primary email address first.',
-          note: 'Note: Multiple email addresses are not required but may assist in the completion of your background investigation.'
+          message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
+          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
-          title: 'Need help with you phone number(s)?',
+          title: 'Need help with your phone number(s)?',
           message: 'Enter only current phone number(s).',
           note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
       collection: {
         summary: {
-          title: 'Summary of e-mail addresses',
-          email: 'E-mail',
-          unknownEmail: 'Provide your e-mail address below',
+          title: 'Summary of email addresses',
+          email: 'Email',
+          unknownEmail: 'Provide your email address below',
           unknownPhone: 'Provide your telephone number below',
           phoneNumber: 'Phone number'
         },
@@ -669,10 +669,10 @@ const en = {
           },
           append: 'Add another phone number'
         },
-        append: 'Add another e-mail'
+        append: 'Add another email'
       },
       heading: {
-        email: 'Your e-mail addresses',
+        email: 'Your email addresses',
         phoneNumber: 'Your phone numbers',
         comments: 'Add optional comments'
       },
