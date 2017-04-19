@@ -89,10 +89,6 @@ export default class CivilUnion extends ValidationElement {
     this.update('Name', values)
   }
 
-  updateStatus (values) {
-    this.update('Status', values.target.value)
-  }
-
   updateBirthdate (values) {
     this.update('Birthdate', values)
   }

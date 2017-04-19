@@ -12,20 +12,18 @@ describe('The relationship status component', () => {
     expect(component.find('.marital').length).toEqual(1)
   })
 
-  //it('performs updates', () => {
-    //let updates = 0
-    //const expected = {
-      //name: 'relatives',
-      //onUpdate: () => { updates++ }
-    //}
+  it('performs updates', () => {
+    let updates = 0
+    const expected = {
+      name: 'relatives',
+      onUpdate: () => { updates++ }
+    }
 
-    //const component = mount(<Marital {...expected} />)
-    //expect(component.find('.relationship-status').length).toEqual(1)
-    //component.find('.status-options .never input').simulate('change')
-
-    //component.find('input#first').simulate('change')
-    //component.find('input#month').first().simulate('change', { target: { value: '1' } })
-    //component.find('.birthplace .no input').simulate('change')
-    //expect(updates).toBe(3)
-  //})
+    const component = mount(<Marital {...expected} />)
+    expect(component.find('.marital').length).toEqual(1)
+    component.find('.status-options input[value="InCivilUnion"]').simulate('change')
+    component.find('.civil-union .civil input#first').simulate('change')
+    component.find('.status-options input[value="Never"]').simulate('change')
+    expect(updates).toBe(3)
+  })
 })
