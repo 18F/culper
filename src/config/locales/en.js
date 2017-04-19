@@ -758,7 +758,7 @@ const en = {
         hair: {
           title: 'Need help selecting your hair color?',
           message: 'Choose the hair color that most closely represents your hair.',
-          note: 'Note: You can select multiple colors if necessary.'
+          note: ''
         },
         sex: {
           title: 'Need help with your sex?',
