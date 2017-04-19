@@ -33,7 +33,7 @@ export default class ExistingConditionsValidator {
   }
 
   validTreatmentList () {
-    if (this.receivedTreatment === 'No') {
+    if (this.receivedTreatment === 'No' || this.receivedTreatment === 'Decline') {
       return true
     }
 

@@ -1,0 +1,35 @@
+.foreign-born-documents {
+  .born {
+    label {
+      width: 28rem;
+      padding: 1rem;
+    }
+  }
+
+  .naturalized {
+    label {
+      width: 40rem;
+      padding: 1rem;
+    }
+  }
+
+  .derived {
+    label {
+      width: 40rem;
+    }
+  }
+
+  .notcitizen {
+    label {
+      width: 28rem;
+      padding: 1rem;
+    }
+  }
+
+  .other {
+    label {
+      width: 28rem;
+      padding: 1rem;
+    }
+  }
+}
