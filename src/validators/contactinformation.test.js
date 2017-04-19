@@ -30,7 +30,7 @@ describe('Contact Information validation', function () {
             }
           ]
         },
-        expected: true
+        expected: false
       },
       {
         state: {
@@ -134,6 +134,11 @@ describe('Contact Information validation', function () {
       {
         state: {
           Emails: [
+            {
+              Email: {
+                value: 'foobar2@local.dev'
+              }
+            },
             {
               Email: {
                 value: 'foobar2@local.dev'
