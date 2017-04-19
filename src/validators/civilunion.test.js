@@ -58,7 +58,7 @@ describe('CivilUnion validation', function () {
                 date: new Date('1/1/2016')
               },
               BirthPlace: {
-                domestic: true,
+                domestic: 'Yes',
                 country: 'United States',
                 city: 'Arlington',
                 county: 'Arlington',
@@ -208,7 +208,7 @@ describe('CivilUnion validation', function () {
             date: new Date('1/1/2016')
           },
           BirthPlace: {
-            domestic: true,
+            domestic: 'Yes',
             country: 'United States',
             city: 'Arlington',
             county: 'Arlington',

@@ -66,7 +66,7 @@ export default class Cohabitant extends React.Component {
   }
 
   updateSSN (values) {
-    this.update('SSN', values)
+    this.update('SSN', values.value)
   }
 
   updateOtherName (values) {

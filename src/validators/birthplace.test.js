@@ -96,7 +96,7 @@ describe('Birthplace component validation', function () {
       },
       {
         state: {
-          domestic: true,
+          domestic: 'Yes',
           country: 'United States',
           city: 'Arlington',
           county: 'Arlington',

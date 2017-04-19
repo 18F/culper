@@ -81,7 +81,8 @@ export default class BirthPlace extends ValidationElement {
             city: this.state.city,
             state: this.state.state,
             county: this.state.county,
-            country: this.state.country
+            country: this.state.country,
+            domestic: this.state.domestic
           })
         }
       })

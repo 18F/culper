@@ -154,7 +154,7 @@ export default class CivilUnion extends ValidationElement {
   }
 
   updateAddressSeparatedNotApplicable (values) {
-    this.update('AddressSeparatedNotApplicable', values)
+    this.update('AddressSeparatedNotApplicable', !values.applicable)
   }
 
   updateDivorced (values) {
@@ -251,7 +251,7 @@ export default class CivilUnion extends ValidationElement {
             <Field help="relationships.status.help.ssn"
               title={i18n.t('relationships.status.heading.ssn')}>
               <SSN name="ssn"
-                value={this.state.SSN}
+                {...this.state.SSN}
                 onUpdate={this.updateSSN}
                 onValidate={this.handleValidation}
               />

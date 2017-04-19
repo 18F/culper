@@ -202,7 +202,6 @@ export default class Divorce extends React.Component {
 
         <Show when={['Divorced', 'Annulled'].includes(this.state.Status)}>
           <div>
-            <div>TODO: City, State</div>
             <Field title={i18n.t('relationships.status.divorce.heading.deceased')} className="deceased">
               <RadioGroup name="deceased" selectedValue={this.state.Deceased}>
                 <Radio
