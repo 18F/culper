@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Name, DateRange, Field, NotApplicable, Telephone, Email, Text, Address } from '../../../Form'
+import { Name, DateRange, Field, NotApplicable, Telephone, Email, Text, Address, Show, CheckboxGroup, Checkbox, Svg } from '../../../Form'
 
 export default class Person extends React.Component {
   constructor (props) {
@@ -11,6 +11,8 @@ export default class Person extends React.Component {
       KnownDates: props.KnownDates,
       Rank: props.Rank,
       RankNotApplicable: props.RankNotApplicable,
+      Relationship: props.Relationship,
+      RelationshipOther: props.RelationshipOther,
       MobileTelephone: props.MobileTelephone,
       OtherTelephone: props.OtherTelephone,
       Email: props.Email,
@@ -23,6 +25,8 @@ export default class Person extends React.Component {
     this.updateKnownDates = this.updateKnownDates.bind(this)
     this.updateRank = this.updateRank.bind(this)
     this.updateRankNotApplicable = this.updateRankNotApplicable.bind(this)
+    this.updateRelationship = this.updateRelationship.bind(this)
+    this.updateRelationshipOther = this.updateRelationshipOther.bind(this)
     this.updateMobileTelephone = this.updateMobileTelephone.bind(this)
     this.updateOtherTelephone = this.updateOtherTelephone.bind(this)
     this.updateEmail = this.updateEmail.bind(this)
@@ -55,6 +59,24 @@ export default class Person extends React.Component {
 
   updateRankNotApplicable (values) {
     this.update('RankNotApplicable', values)
+  }
+
+  updateRelationship (event) {
+    let relations = event.target.value
+    let selected = [...this.state.Relationship]
+
+    if (selected.includes(relations)) {
+      // Remove the relationship if it was previously selected
+      selected.splice(selected.indexOf(relations), 1)
+    } else {
+      // Add the new relationship
+      selected.push(relations)
+    }
+    this.update('Relationship', selected)
+  }
+
+  updateRelationshipOther (values) {
+    this.update('RelationshipOther', values)
   }
 
   updateMobileTelephone (values) {
@@ -115,6 +137,69 @@ export default class Person extends React.Component {
           </NotApplicable>
         </Field>
 
+        <Field title={i18n.t(`relationships.person.heading.relationship`)}
+          className="relationships"
+          help={`relationships.person.help.relationship`}
+          onUpdate={this.updateRelationship}
+          adjustFor="labels"
+          shrink={true}>
+          <label>{i18n.t(`relationships.person.label.relationship`)}</label>
+          <CheckboxGroup className="relationship option-list eapp-extend-labels"
+            selectedValues={this.state.Relationship}>
+            <Checkbox name="relationship-neighbor"
+              label={i18n.t(`relationships.person.label.relationship.neighbor`)}
+              value="Neighbor"
+              onChange={this.updateRelationship}>
+              <div className="relationship-icon neighbor">
+                <Svg src="img/neighbor-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-friend"
+              label={i18n.t(`relationships.person.label.relationship.friend`)}
+              value="Friend"
+              onChange={this.updateRelationship}>
+              <div className="relationship-icon friend">
+                <Svg src="img/friend-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-landlord"
+              label={i18n.t(`relationships.person.label.relationship.landlord`)}
+              value="Landlord"
+              onChange={this.updateRelationship}>
+              <div className="relationship-icon landlord">
+                <Svg src="img/landlord-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-business"
+              label={i18n.t(`relationships.person.label.relationship.business`)}
+              value="Business"
+              onChange={this.updateRelationship}>
+              <div className="relationship-icon business">
+                <Svg src="img/business-associate-icon.svg" />
+              </div>
+            </Checkbox>
+            <Checkbox name="relationship-other"
+              label={i18n.t(`relationships.person.label.relationship.other`)}
+              value="Other"
+              onChange={this.updateRelationship}>
+              <div className="relationship-icon other">
+                <Svg src="img/other-icon.svg" />
+              </div>
+            </Checkbox>
+          </CheckboxGroup>
+
+          <Show when={this.state.Relationship.includes('Other')}>
+            <Text name="RelationshipOther"
+              label={i18n.t(`relationships.person.label.relationship.explanation`)}
+              maxlength="100"
+              className="relationship-other"
+              {...this.state.RelationshipOther}
+              onUpdate={this.updateRelationshipOther}
+              onValidate={this.props.onValidate}
+            />
+          </Show>
+        </Field>
+
         <Field title={i18n.t('relationships.person.heading.mobileTelephone')} className="mobile-telephone">
           <Telephone name="MobileTelephone"
             {...this.state.MobileTelephone}
@@ -160,4 +245,6 @@ export default class Person extends React.Component {
   }
 }
 
-Person.defaultProps = {}
+Person.defaultProps = {
+  Relationship: []
+}
