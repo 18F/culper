@@ -602,8 +602,8 @@ const en = {
       branch: {
         help: {
           title: 'Need help with your place of birth?',
-          message: 'Select "NEED ANSWER" if you are a United States citizen born abroad.',
-          note: ''
+          message: 'This is your physical place of birth.',
+          note: 'Example: United States citizens born in another country would list that other country.'
         }
       },
       help: {
