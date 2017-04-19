@@ -141,7 +141,7 @@ export default class ContactInformation extends ValidationElement {
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
         <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
-          <Accordion minimum="1"
+          <Accordion minimum="2"
                      items={this.state.Emails}
                      onUpdate={this.contactDispatch.bind(this, 'Emails')}
                      onValidate={this.handleValidation}
@@ -177,7 +177,6 @@ export default class ContactInformation extends ValidationElement {
             </Field>
           </Accordion>
         </div>
-
       </div>
     )
   }
