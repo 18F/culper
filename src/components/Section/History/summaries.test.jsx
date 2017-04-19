@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { ResidenceSummary, EmploymentSummary, EducationSummary, InjectGaps } from './summaries'
+import { ResidenceSummary, EmploymentSummary, EducationSummary, InjectGaps,
+         ResidenceCaption, EmploymentCaption, EducationCaption } from './summaries'
 
 describe('The summary components', () => {
   it('can display residence summary', () => {
@@ -122,5 +123,26 @@ describe('The summary components', () => {
     expect(residence.filter(item => item.type === 'Gap').length).toEqual(1)
     expect(employment.filter(item => item.type === 'Employment').length).toEqual(1)
     expect(employment.filter(item => item.type === 'Gap').length).toEqual(1)
+  })
+
+  it('can render captions', () => {
+    const tests = [
+      {
+        component: mount(<ResidenceCaption />),
+        src: 'img/residence-house.svg'
+      },
+      {
+        component: mount(<EmploymentCaption />),
+        src: 'img/employer-briefcase.svg'
+      },
+      {
+        component: mount(<EducationCaption />),
+        src: 'img/school-cap.svg'
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(test.component.find('img').node.src).toBe(test.src)
+    })
   })
 })
