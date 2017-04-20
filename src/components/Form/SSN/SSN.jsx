@@ -192,7 +192,7 @@ export default class SSN extends ValidationElement {
       <div className={klass}>
         <Field help="identification.ssn.help"
                shrink={true}>
-          <div>
+          <div className="initial-width">
             <Text name="first"
                   ref="first"
                   className="first eapp-short-input"
