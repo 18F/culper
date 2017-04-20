@@ -25,8 +25,12 @@ describe('The education component', () => {
     const expected = {
       name: 'education',
       Dates: {
-        from: new Date(),
-        to: new Date()
+        from: {
+          date: new Date()
+        },
+        to: {
+          date: new Date()
+        }
       }
     }
     const component = mount(<EducationItem {...expected} />)
@@ -39,12 +43,26 @@ describe('The education component', () => {
       Diplomas: [
         {
           Has: 'Yes',
-          Diploma: { }
+          Diploma: {
+            Diploma: 'Other',
+            DiplomaOther: 'PhD in awesomeness',
+            Date: {
+              date: new Date()
+            }
+          }
+        },
+        {
+          Has: 'Yes',
+          Diploma: {
+            Diploma: 'High School Diploma',
+            DiplomaOther: '',
+            Date: {}
+          }
         }
       ]
     }
     const component = mount(<EducationItem {...expected} />)
-    expect(component.find('.diploma').length).toEqual(1)
+    expect(component.find('.diploma').length).toEqual(2)
   })
 
   it('should not ask for diplomas/degrees if we say "no"', () => {
@@ -55,5 +73,31 @@ describe('The education component', () => {
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.diploma').length).toEqual(0)
+  })
+
+  it('can trigger updates', () => {
+    let updates = 0
+    const expected = {
+      name: 'education',
+      Dates: {
+        from: {
+          date: new Date('1/1/2010')
+        },
+        to: {
+          date: new Date()
+        }
+      },
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<EducationItem {...expected} />)
+    component.find('.school-name input').simulate('change', { target: { name: 'Name', value: 'some text' } })
+    component.find('.daterange .from .month input#month').simulate('change', { target: { name: 'month', value: '0' } })
+    component.find('.mailing input').first().simulate('change', { target: { name: 'address', value: '123 Some Rd' } })
+    component.find('.type input').first().simulate('change')
+    component.find('.name .first input').first().simulate('change', { target: { name: 'first', value: 'John' } })
+    component.find('.branch .yes input').first().simulate('change')
+    component.find({ type: 'radio', name: 'diploma-other' }).simulate('change')
+    component.find({ type: 'text', name: 'DiplomaOther' }).simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
+    expect(updates).toEqual(8)
   })
 })
