@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement }  from '../../../Form'
+import { Accordion, ValidationElement } from '../../../Form'
 import Person from './Person'
-//import { PeopleValidator } from '../../../../validators'
+import { PeopleValidator } from '../../../../validators'
 
 export default class People extends ValidationElement {
   constructor (props) {
@@ -32,15 +32,10 @@ export default class People extends ValidationElement {
   }
 
   isValid () {
-    return true
-    //return new PeopleValidator(this.state).isValid()
+    return new PeopleValidator(this.state).isValid()
   }
 
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {

@@ -24,7 +24,7 @@ class Relationships extends ValidationElement {
     this.handleReview = this.handleReview.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.updateMarital = this.updateMarital.bind(this)
-    this.updateFriends = this.updateFriends.bind(this)
+    this.updatePeople = this.updatePeople.bind(this)
     this.updateRelatives = this.updateRelatives.bind(this)
     this.updateMarital = this.updateMarital.bind(this)
     this.updateCohabitants = this.updateCohabitants.bind(this)
@@ -84,8 +84,8 @@ class Relationships extends ValidationElement {
     this.onUpdate('Marital', values)
   }
 
-  updateFriends (values) {
-    this.onUpdate('Friends', values)
+  updatePeople (values) {
+    this.onUpdate('People', values)
   }
 
   updateRelatives (values) {
@@ -154,28 +154,28 @@ class Relationships extends ValidationElement {
           <SectionView name="status/cohabitant"
             back="relationships/status/marital"
             backLabel={i18n.t('relationships.destination.marital')}
-            next="relationships/relatives"
-            nextLabel={i18n.t('relationships.destination.relatives')}>
+            next="relationships/people"
+            nextLabel={i18n.t('relationships.destination.people')}>
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
               onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
           </SectionView>
-          <SectionView name="friends"
+          <SectionView name="people"
             back="relationships/status/cohabitant"
             backLabel={i18n.t('relationships.destination.cohabitant')}
             next="relationships/relatives"
             nextLabel={i18n.t('relationships.destination.relatives')}>
-            <People name="friends"
-              {...this.props.Friend}
-              onUpdate={this.updateFriends}
+            <People name="people"
+              {...this.props.People}
+              onUpdate={this.updatePeople}
               onValidate={this.handleValidation}
             />
           </SectionView>
           <SectionView name="relatives"
-            back="relationships/friends"
-            backLabel={i18n.t('relationships.destination.friends')}
+            back="relationships/people"
+            backLabel={i18n.t('relationships.destination.people')}
             next="relationships/review"
             nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
@@ -201,9 +201,9 @@ class Relationships extends ValidationElement {
               onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
-            <People name="friends"
-              {...this.props.Friends}
-              onUpdate={this.updateFriends}
+            <People name="people"
+              {...this.props.People}
+              onUpdate={this.updatePeople}
               onValidate={this.handleValidation}
             />
             <Relatives name="relatives"
@@ -230,7 +230,7 @@ function mapStateToProps (state) {
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
     Cohabitants: relationships.Cohabitants || {},
-    Friends: relationships.Friends || {},
+    People: relationships.People || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || []
   }

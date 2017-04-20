@@ -3,8 +3,26 @@ import NameValidator from './name'
 import AddressValidator from './address'
 import { validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
 
+export default class PeopleValidator {
+  constructor (state = {}) {
+    this.people = state.List || []
+  }
+
+  isValid () {
+    if (this.people.length < 1) {
+      return false
+    }
+    for (let item of this.people) {
+      if (!new PersonValidator(item.Person).isValid()) {
+        return false
+      }
+    }
+    return true
+  }
+}
+
 export class PersonValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.name = state.Name
     this.knownDates = state.KnownDates
     this.rank = state.Rank

@@ -37,6 +37,7 @@ import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
 import RelationshipsValidator from './relationships'
+import PeopleValidator from './people'
 
 export {
   AddressValidator,
@@ -81,5 +82,6 @@ export {
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
-  RelationshipsValidator
+  RelationshipsValidator,
+  PeopleValidator
 }

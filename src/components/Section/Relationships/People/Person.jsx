@@ -135,6 +135,7 @@ export default class Person extends React.Component {
             {...this.state.RankNotApplicable}
             label={i18n.t('relationships.people.person.label.rankNotApplicable')}
             or={i18n.m('relationships.people.person.label.or')}
+            onValidate={this.props.onValidate}
             onUpdate={this.updateRankNotApplicable}>
             <Text name="Rank"
               className="rank"
@@ -148,7 +149,6 @@ export default class Person extends React.Component {
         <Field title={i18n.t(`relationships.people.person.heading.relationship`)}
           className="relationships"
           help={`relationships.people.person.help.relationship`}
-          onUpdate={this.updateRelationship}
           adjustFor="labels"
           shrink={true}>
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
@@ -157,6 +157,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-neighbor"
               label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
               value="Neighbor"
+              onValidate={this.props.onValidate}
               onChange={this.updateRelationship}>
               <div className="relationship-icon neighbor">
                 <Svg src="img/neighbor-icon.svg" />
@@ -165,6 +166,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-friend"
               label={i18n.t(`relationships.people.person.label.relationship.friend`)}
               value="Friend"
+              onValidate={this.props.onValidate}
               onChange={this.updateRelationship}>
               <div className="relationship-icon friend">
                 <Svg src="img/friend-icon.svg" />
@@ -173,6 +175,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-landlord"
               label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
               value="Landlord"
+              onValidate={this.props.onValidate}
               onChange={this.updateRelationship}>
               <div className="relationship-icon landlord">
                 <Svg src="img/landlord-icon.svg" />
@@ -181,6 +184,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-business"
               label={i18n.t(`relationships.people.person.label.relationship.business`)}
               value="Business"
+              onValidate={this.props.onValidate}
               onChange={this.updateRelationship}>
               <div className="relationship-icon business">
                 <Svg src="img/business-associate-icon.svg" />
@@ -189,6 +193,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-other"
               label={i18n.t(`relationships.people.person.label.relationship.other`)}
               value="Other"
+              onValidate={this.props.onValidate}
               onChange={this.updateRelationship}>
               <div className="relationship-icon other">
                 <Svg src="img/other-icon.svg" />
@@ -230,6 +235,7 @@ export default class Person extends React.Component {
             {...this.state.EmailNotApplicable}
             label={i18n.t('relationships.people.person.label.emailNotApplicable')}
             or={i18n.m('relationships.people.person.label.or')}
+            onValidate={this.props.onValidate}
             onUpdate={this.updateEmailNotApplicable}>
             <Email name="Email"
               className="email"
