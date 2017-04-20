@@ -218,4 +218,20 @@ describe('The accordion component', () => {
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.byline').length).toEqual(1)
   })
+
+  it('can support caption', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const text = 'Test caption'
+    const expected = {
+      minimum: 1,
+      items: items,
+      caption: () => { return <span>{text}</span> }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.caption').length).toEqual(1)
+    expect(component.find('.caption').text()).toBe(text)
+  })
 })
