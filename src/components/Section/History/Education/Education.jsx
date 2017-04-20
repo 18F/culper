@@ -20,7 +20,6 @@ export class EducationItem extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      HasDegree: props.HasDegree,
       Dates: props.Dates,
       Type: props.Type,
       Name: props.Name,
@@ -32,7 +31,6 @@ export class EducationItem extends ValidationElement {
 
     this.onUpdate = this.onUpdate.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
-    this.updateBranchDegree = this.updateBranchDegree.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateReference = this.updateReference.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -49,7 +47,6 @@ export class EducationItem extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          HasDegree: this.state.HasDegree,
           Dates: this.state.Dates,
           Type: this.state.Type,
           Name: this.state.Name,
@@ -67,10 +64,6 @@ export class EducationItem extends ValidationElement {
    */
   handleTypeChange (event) {
     this.onUpdate('Type', event.target.value)
-  }
-
-  updateBranchDegree (values) {
-    this.onUpdate('HasDegree', values)
   }
 
   updateName (values) {
@@ -104,8 +97,8 @@ export class EducationItem extends ValidationElement {
   reference () {
     // Some shortcuts so our conditional isn't unreadable
     const dates = this.state.Dates || {}
-    const from = dates.from
-    const to = dates.to
+    const from = (dates.from || {}).date
+    const to = (dates.to || {}).date
 
     if (withinThreeYears(from, to)) {
       return (

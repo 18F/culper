@@ -6,6 +6,34 @@ import { newGuid } from '../../Form/ValidationElement'
 import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
+export const CustomSummary = (validation, summary, more, item, index, initial, callback, toggle, openText, remove, byline) => {
+  const target = item.Item || {}
+  const errors = item.Item && !validation(target)
+
+  return (
+    <div>
+      <div className="summary">
+        <span className={`left ${openState(item, initial)}`}>
+          <a onClick={toggle()}>
+            <span className="button-with-icon">
+              <i className={chevron(item)} aria-hidden="true"></i>
+              <span className="toggle">{openText()}</span>
+            </span>
+            {summary(target, errors)}
+          </a>
+          {more(target, errors)}
+        </span>
+        <a className="right remove" onClick={remove()}>
+          <span className="button-with-icon">
+            <i className="fa fa-trash" aria-hidden="true"></i>
+            <span>{i18n.t('collection.remove')}</span>
+          </span>
+        </a>
+      </div>
+      {byline()}
+    </div>
+  )
+}
 export const ResidenceCaption = (props) => {
   return (
     <span>
@@ -75,35 +103,25 @@ const PersonSummary = (item, errors) => {
 }
 
 export const ResidenceCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
-  const residence = item.Item || {}
-  const errors = item.Item && !new ResidenceValidator(residence, null).isValid()
-  const personSummary = PersonSummary(residence, errors)
+  return CustomSummary(
+    (x) => { return new ResidenceValidator(x, null).isValid() },
+    (x, e) => { return ResidenceSummary(x, e) },
+    (x, e) => {
+      const ps = PersonSummary(x, e)
+      if (ps === null) {
+        return null
+      }
 
-  return (
-    <div>
-      <div className="summary">
-        <span className={`left ${openState(item, initial)}`}>
-          <a onClick={toggle()}>
-            <span className="button-with-icon">
-              <i className={chevron(item)} aria-hidden="true"></i>
-              <span className="toggle">{openText()}</span>
-            </span>
-            {ResidenceSummary(residence, errors)}
-          </a>
-          <a className={personSummary === null ? 'hidden' : ''} onClick={toggle()}>
-            {personSummary}
-          </a>
-        </span>
-        <a className="right remove" onClick={remove()}>
-          <span className="button-with-icon">
-            <i className="fa fa-trash" aria-hidden="true"></i>
-            <span>{i18n.t('collection.remove')}</span>
-          </span>
-        </a>
-      </div>
-      {byline()}
-    </div>
-  )
+      return (<a onClick={toggle()}>{ps}</a>)
+    },
+    item,
+    index,
+    initial,
+    callback,
+    toggle,
+    openText,
+    remove,
+    byline)
 }
 
 export const EmploymentCaption = (props) => {
@@ -162,41 +180,24 @@ const ActivitySummary = (item, errors) => {
 }
 
 export const EmploymentCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
-  const employment = item.Item || {}
-  const errors = item.Item && !new EmploymentValidator(employment, null).isValid()
-  const activitySummary = ActivitySummary(employment, errors)
+  return CustomSummary(
+    (x) => { return new EmploymentValidator(x, null).isValid() },
+    (x, e) => { return EmploymentSummary(x, e) },
+    (x, e) => {
+      return ActivitySummary(x, e)
         .filter(activity => activity !== null)
         .map(activity => {
-          return (
-            <a key={newGuid()} onClick={toggle()}>
-              {activity}
-            </a>
-          )
+          return (<a key={newGuid()} onClick={toggle()}>{activity}</a>)
         })
-
-  return (
-    <div>
-      <div className="summary">
-        <span className={`left ${openState(item, initial)}`}>
-          <a onClick={toggle()}>
-            <span className="button-with-icon">
-              <i className={chevron(item)} aria-hidden="true"></i>
-              <span className="toggle">{openText()}</span>
-            </span>
-            {EmploymentSummary(employment, errors)}
-          </a>
-          {activitySummary}
-        </span>
-        <a className="right remove" onClick={remove()}>
-          <span className="button-with-icon">
-            <i className="fa fa-trash" aria-hidden="true"></i>
-            <span>{i18n.t('collection.remove')}</span>
-          </span>
-        </a>
-      </div>
-      {byline()}
-    </div>
-  )
+    },
+    item,
+    index,
+    initial,
+    callback,
+    toggle,
+    openText,
+    remove,
+    byline)
 }
 
 export const EducationCaption = (props) => {
@@ -257,9 +258,11 @@ const DiplomaSummary = (item, errors) => {
 }
 
 export const EducationCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
-  const education = item.Item || {}
-  const errors = item.Item && !new EducationValidator(education, null).isValid()
-  const diplomaSummary = DiplomaSummary(education, errors)
+  return CustomSummary(
+    (x) => { return new EducationValidator(x, null).isValid() },
+    (x, e) => { return EducationSummary(x, e) },
+    (x, e) => {
+      return DiplomaSummary(x, e)
         .filter(diploma => diploma !== null)
         .map(diploma => {
           return (
@@ -268,30 +271,15 @@ export const EducationCustomSummary = (item, index, initial, callback, toggle, o
             </a>
           )
         })
-
-  return (
-    <div>
-      <div className="summary">
-        <span className={`left ${openState(item, initial)}`}>
-          <a onClick={toggle()}>
-            <span className="button-with-icon">
-              <i className={chevron(item)} aria-hidden="true"></i>
-              <span className="toggle">{openText()}</span>
-            </span>
-            {EducationSummary(education, errors)}
-          </a>
-          {diplomaSummary}
-        </span>
-        <a className="right remove" onClick={remove()}>
-          <span className="button-with-icon">
-            <i className="fa fa-trash" aria-hidden="true"></i>
-            <span>{i18n.t('collection.remove')}</span>
-          </span>
-        </a>
-      </div>
-      {byline()}
-    </div>
-  )
+    },
+    item,
+    index,
+    initial,
+    callback,
+    toggle,
+    openText,
+    remove,
+    byline)
 }
 
 /**
