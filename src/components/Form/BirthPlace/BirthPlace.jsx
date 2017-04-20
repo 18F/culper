@@ -81,7 +81,8 @@ export default class BirthPlace extends ValidationElement {
             city: this.state.city,
             state: this.state.state,
             county: this.state.county,
-            country: this.state.country
+            country: this.state.country,
+            domestic: this.state.domestic
           })
         }
       })
@@ -194,7 +195,7 @@ export default class BirthPlace extends ValidationElement {
       <Branch name="is_domestic"
               help="identification.birthplace.branch.help"
               value={this.state.domestic}
-              label={i18n.t('identification.birthplace.question.label')}
+              label={this.props.label}
               onUpdate={this.onUpdate.bind(this)}>
       </Branch>
     )
@@ -291,4 +292,8 @@ export default class BirthPlace extends ValidationElement {
       </div>
     )
   }
+}
+
+BirthPlace.defaultProps = {
+  label: i18n.t('identification.birthplace.question.label')
 }

@@ -36,7 +36,14 @@ const navigation = [
     url: 'relationships',
     hidden: false,
     subsections: [
-      { hidden: true, name: 'Marital status', url: 'marital' },
+      {
+        name: 'Marital & relationship status',
+        url: 'status',
+        subsections: [
+          { name: 'Marital', url: 'marital' },
+          { name: 'Cohabitants', url: 'cohabitant' }
+        ]
+      },
       { hidden: true, name: 'People who know you well', url: 'friends' },
       { name: 'Relatives', url: 'relatives' }
     ]

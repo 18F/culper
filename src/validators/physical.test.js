@@ -74,15 +74,15 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         state: {
-          HairColor: ['Black', 'Brown']
+          HairColor: ''
         },
-        expected: true
+        expected: false
       },
       {
         state: {
-          HairColor: []
+          HairColor: 'Brown'
         },
-        expected: false
+        expected: true
       },
       {
         state: {
@@ -92,7 +92,7 @@ describe('Physical attributes validation', function () {
       },
       {
         state: {
-          HairColor: ['SomethingDifferent']
+          HairColor: 'SomethingDifferent'
         },
         expected: false
       }
@@ -172,7 +172,7 @@ describe('Physical attributes validation', function () {
             inches: 0
           },
           Weight: 100,
-          HairColor: ['Black', 'Brown'],
+          HairColor: 'Brown',
           EyeColor: 'Black',
           Sex: 'female'
         },
@@ -185,7 +185,7 @@ describe('Physical attributes validation', function () {
             inches: 0
           },
           Weight: -1,
-          HairColor: ['Black', 'Brown'],
+          HairColor: 'Brown',
           EyeColor: 'Black',
           Sex: 'female'
         },
@@ -198,4 +198,3 @@ describe('Physical attributes validation', function () {
     })
   })
 })
-

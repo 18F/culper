@@ -558,8 +558,11 @@ const en = {
       branch: {
         help: {
           title: 'Need help with you other names used?',
-          message: 'List all other names you have used no matter how long ago.',
-          note: 'Note: Input names one at a time, you will have the ability to add multiple other names.'
+          message: [
+              'List all other names you have used no matter how long ago.',
+              'Input names one at a time, you will have the ability to add multiple other names.'
+            ],
+          note: 'Example: Full name is Michael and nickname Mike. "Mike" would be the other name used.'
         },
         question: 'Have you used any other names?'
       },
@@ -602,8 +605,8 @@ const en = {
       branch: {
         help: {
           title: 'Need help with your place of birth?',
-          message: 'Select "NEED ANSWER" if you are a United States citizen born abroad.',
-          note: ''
+          message: 'This is your physical place of birth.',
+          note: 'Example: United States citizens born in another country would list that other country.'
         }
       },
       help: {
@@ -742,7 +745,7 @@ const en = {
         weight: {
           title: 'Need help entering your weight?',
           message: [
-            'Please use pounds only.',
+            'Please use pounds and whole numbers only.',
             'Weight must be a number between 10 and 999.'
           ],
           note: ''
@@ -755,12 +758,12 @@ const en = {
         hair: {
           title: 'Need help selecting your hair color?',
           message: 'Choose the hair color that most closely represents your hair.',
-          note: 'Note: You can select multiple colors if necessary.'
+          note: ''
         },
         sex: {
           title: 'Need help with your sex?',
           message: 'Please select the sex at your time of birth.',
-          note: 'Note: If additional information is appropriate please use "Add a comment" below to detail it.'
+          note: 'Note: If additional information is appropriate please use "Add a comment" above to detail it.'
         }
       },
       label: {
@@ -1805,7 +1808,8 @@ const en = {
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
-      friends: 'People who know you well'
+      friends: 'People who know you well',
+      cohabitant: 'Cohabitant'
     },
     relatives: {
       collection: {
@@ -1819,7 +1823,7 @@ const en = {
         append: 'Add another relative'
       },
       heading: {
-        title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
+        title: 'Add each relative applicable to you, regardless if they are living or deceased.',
         needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
         name: 'Provide your relative\'s full name',
@@ -2104,6 +2108,266 @@ const en = {
         aliasdates: {
           title: 'Need help with the date range the other name was used?',
           message: 'Provide the approximate date range the name was used',
+          note: ''
+        }
+      }
+    },
+    status: {
+      heading: {
+        title: 'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.',
+        name: 'Provide full name',
+        birthdate: 'Provide birthdate',
+        birthplace: 'Provide place of birth',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
+        ssn: 'Provide U.S. Social Security Number',
+        othernames: 'Provide other names used',
+        address: 'Provide current address, if different than your current address',
+        telephone: 'Provide telephone number',
+        email: 'Provide email address',
+        separated: 'Are you separated?',
+        dateSeparated: 'Provide date of separation',
+        enteredCivilUnion: 'Provide date when you entered into your civil marriage, civil union, or domestic partnership.',
+        locationSeparated: 'If legally separated, provide the location of the record',
+        divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
+        hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
+        addressSeparated: 'If legally separated, provide the location of the record.'
+
+      },
+      para: {
+        never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
+        othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
+      },
+      label: {
+        birthplace: 'Was this person born in the United States of America?',
+        status: {
+          never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
+          separated: 'Separated',
+          annulled: 'Annulled',
+          divorced: 'Divorced/dissolved',
+          widowed: 'Widowed'
+        }
+      },
+      divorce: {
+        heading: {
+          name: 'Provide the full name',
+          address: 'Provide location',
+          birthdate: 'Provide birthdate',
+          telephone: 'Provide telephone number',
+          birthplace: 'Provide the place of birth.',
+          dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
+          recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+          deceased: 'Is this person deceased?',
+          deceasedAddress: 'Provide last known address of the person from whom you are divorced/dissolved or annulled',
+          status: 'Provide status'
+        },
+        label: {
+          divorced: 'Divorced/Dissolved',
+          widowed: 'Widowed',
+          annulled: 'Annulled',
+          birthplace: 'Was this person born in the United States of America'
+        },
+        deceased: {
+          label: {
+            yes: 'Yes',
+            no: 'No',
+            dontKnow: 'I don\'t know'
+          }
+        },
+        collection: {
+          description: '',
+          appendTitle: 'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
+          appendMessage: 'If yes please use the button below to add another person',
+          appendLabel: 'Add another person',
+          itemType: 'Person'
+        },
+        help: {
+          birthdate: {
+            title: 'Need help with the birthdate?',
+            message: 'Provide the date of birth',
+            note: ''
+          },
+          birthplace: {
+            title: 'Need help with the birth place?',
+            message: 'Provide the place of birth',
+            note: ''
+          },
+          recognized: {
+            title: 'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
+            message: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+            note: ''
+          },
+          separated: {
+            title: 'Need help with separated?',
+            message: 'Mark whether you are separated',
+            note: ''
+          },
+          divorced: {
+            title: 'Need help with this question?',
+            message: 'Mark whether you are currently divorced',
+            note: ''
+          },
+          email: {
+            title: 'Need help with providing email?',
+            message: 'Enter the email of the person',
+            note: ''
+          },
+          telephone: {
+            title: 'Need help with providing a telephone number?',
+            message: 'Enter the telephone number of the person',
+            note: ''
+          },
+          address: {
+            title: 'Need help with providing address?',
+            message: 'Provide the address of the person',
+            note: ''
+          },
+          dateDivorced: {
+            title: 'Need help with providing date divorced/dissolved?',
+            message: 'Provide the date divorced/dissolved, annulled or widowed',
+            note: ''
+          }
+        }
+      },
+      cohabitant: {
+        heading: {
+          name: 'Provide the cohabitant full name',
+          address: 'Provide location',
+          birthdate: 'Provide birthdate',
+          telephone: 'Provide telephone number',
+          birthplace: 'Provide the place of birth.',
+          foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
+          ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+          othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+          cohabitationBegan: 'Provide date cohabitation residing with person began'
+        },
+        othernames: {
+          heading: {
+            maiden: 'Provide maiden name',
+            used: 'Provide dates name was used'
+          }
+        },
+        label: {
+          divorced: 'Divorced/Dissolved',
+          widowed: 'Widowed',
+          annulled: 'Annulled',
+          birthplace: 'Was this person born in the United States of America'
+        },
+        collection: {
+          description: '',
+          appendTitle: 'Do you have an additional cohabitant to report?',
+          appendMessage: 'If yes please use the button below to add another cohabitant.',
+          appendLabel: 'Add another cohabitant',
+          itemType: 'Cohabitant'
+        },
+        help: {
+          birthdate: {
+            title: 'Need help with the birthdate?',
+            message: 'Provide the date of birth',
+            note: ''
+          },
+          birthplace: {
+            title: 'Need help with the birth place?',
+            message: 'Provide the place of birth',
+            note: ''
+          },
+          recognized: {
+            title: 'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
+            message: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+            note: ''
+          },
+          separated: {
+            title: 'Need help with separated?',
+            message: 'Mark whether you are separated',
+            note: ''
+          },
+          divorced: {
+            title: 'Need help with this question?',
+            message: 'Mark whether you are currently divorced',
+            note: ''
+          },
+          email: {
+            title: 'Need help with providing email?',
+            message: 'Enter the email of the person',
+            note: ''
+          },
+          telephone: {
+            title: 'Need help with providing a telephone number?',
+            message: 'Enter the telephone number of the person',
+            note: ''
+          },
+          address: {
+            title: 'Need help with providing address?',
+            message: 'Provide the address of the person',
+            note: ''
+          },
+          dateDivorced: {
+            title: 'Need help with providing date divorced/dissolved?',
+            message: 'Provide the date divorced/dissolved, annulled or widowed',
+            note: ''
+          },
+          foreignBornDocument: {
+            title: 'Need help with selecting the appropriate documentation?',
+            message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+            note: ''
+          },
+          ssn: {
+            title: 'Need help with social security number?',
+            message: 'Provide the social security number of the person',
+            note: ''
+          },
+          cohabitationBegan: {
+            title: 'Need help with when cohabitation began?',
+            message: 'Provide date cohabitation residing with person began',
+            note: ''
+          }
+        }
+      },
+      othernames: {
+        heading: {
+          maiden: 'Provide maiden name',
+          used: 'Provide dates name was used'
+        }
+      },
+      help: {
+        birthdate: {
+          title: 'Need help with the birthdate?',
+          message: 'Provide the date of birth',
+          note: ''
+        },
+        birthplace: {
+          title: 'Need help with the birth place?',
+          message: 'Provide the place of birth',
+          note: ''
+        },
+        foreignBornDocument: {
+          title: 'Need help with selecting the appropriate documentation?',
+          message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+          note: ''
+        },
+        othernames: {
+          title: 'Need help with other names used?',
+          message: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.',
+          note: ''
+        },
+        separated: {
+          title: 'Need help with separated?',
+          message: 'Mark whether you are separated',
+          note: ''
+        },
+        divorced: {
+          title: 'Need help with this question?',
+          message: 'Mark whether you are currently divorced',
+          note: ''
+        },
+        email: {
+          title: 'Need help with providing email?',
+          message: 'Enter the email of the person',
+          note: ''
+        },
+        hasCohabitant: {
+          title: 'Need help with this question?',
+          message: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
           note: ''
         }
       }
@@ -5077,6 +5341,54 @@ const en = {
             }
           }
         }
+      }
+    }
+  },
+  foreignBornDocuments: {
+    heading: {
+      documentNumber: 'Provide document number',
+      documentExpiration: 'Provide document expiration date, if applicable'
+    },
+    para: {
+      bornToUSParents: 'Born Abroad to U.S. Parents:',
+      naturalized: 'Naturalized:',
+      derived: 'Derived',
+      notCitizen: 'Not a U.S. Citizen',
+      other: 'Other'
+    },
+    bornToUSParents: {
+      label: {
+        fs240: 'FS 240 or 545',
+        ds1350: 'DS 1350'
+      }
+    },
+    naturalized: {
+      label: {
+        alien: 'Alien Registration (on Certificate of Naturalization—utilize USCIS, CIS, or INS Registration number)',
+        permanentResident: 'Permanent Resident Card (I-551)',
+        certificateOfNaturalization: 'Certificate of Naturalization (N550 or N570)'
+      }
+    },
+    derived: {
+      label: {
+        alien: 'Alien Registration (on Certificate of Naturalization—utilize USCIS, CIS, or INS Registration number)',
+        permanentResident: 'Permanent Resident Card (I-551)',
+        certificateOfNaturalization: 'Certificate of Naturalization (N560 or N561)'
+      }
+    },
+    notCitizen: {
+      label: {
+        permanentResident: 'I-551 Permanent Resident',
+        employmentAuthorization: 'I-766 Employment Authorization',
+        arrivalDepartureRecord: 'I-94 Arrival-Departure Record',
+        visa: 'U.S. Visa (red foil number)',
+        nonImmigrantStudent: 'I-20 Certificate of Eligibility for Non-Immigrant-F1-Student',
+        exchangeVisitor: 'DS-2019 Certificate of Eligibility of Exchange Visitor-J1-Status'
+      }
+    },
+    other: {
+      label: {
+        other: 'Other (Provide explanation)'
       }
     }
   }
