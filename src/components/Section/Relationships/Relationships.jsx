@@ -7,6 +7,9 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Relatives from './Relatives'
+import Marital from './RelationshipStatus/Marital'
+import Cohabitants from './RelationshipStatus/Cohabitants'
+import { RelationshipsValidator } from '../../../validators'
 
 class Relationships extends ValidationElement {
   constructor (props) {
@@ -18,22 +21,29 @@ class Relationships extends ValidationElement {
 
     this.handleTour = this.handleTour.bind(this)
     this.handleReview = this.handleReview.bind(this)
-    this.onValidate = this.onValidate.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.updateMarital = this.updateMarital.bind(this)
     this.updateFriends = this.updateFriends.bind(this)
     this.updateRelatives = this.updateRelatives.bind(this)
+    this.updateMarital = this.updateMarital.bind(this)
+    this.updateCohabitants = this.updateCohabitants.bind(this)
+  }
+
+  componentWillReceiveProps (props) {
+    if (props.subsection === 'status') {
+      this.props.dispatch(push(`/form/relationships/status/marital`))
+    }
   }
 
   componentDidMount () {
-    let current = this.launch(this.props.Relationships, this.props.subsection, 'relatives')
+    let current = this.launch(this.props.Relationships, this.props.subsection, 'status/marital')
     if (current !== '') {
       this.props.dispatch(push(`/form/relationships/${current}`))
     }
   }
 
   handleTour (event) {
-    this.props.dispatch(push('/form/relationships/relatives'))
+    this.props.dispatch(push('/form/relationships/status/marital'))
   }
 
   handleReview (event) {
@@ -43,7 +53,7 @@ class Relationships extends ValidationElement {
   /**
    * Report errors and completion status
    */
-  onValidate (event, status, errorCodes) {
+  handleValidation (event, status, errorCodes) {
     if (!event) {
       return
     }
@@ -52,18 +62,7 @@ class Relationships extends ValidationElement {
       let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
       this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
     }
-
-    let cstatus = 'neutral'
-    if (this.hasStatus('relatives', status, true) &&
-        this.hasStatus('marital', status, true) &&
-        this.hasStatus('friends', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('relatives', status, false) ||
-               this.hasStatus('marital', status, false) ||
-               this.hasStatus('friends', status, false)) {
-      cstatus = 'incomplete'
-    }
-
+    const cstatus = new RelationshipsValidator(null, this.props).completionStatus(status)
     let completed = {
       ...this.props.Completed,
       ...status,
@@ -92,12 +91,8 @@ class Relationships extends ValidationElement {
     this.onUpdate('Relatives', values)
   }
 
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
+  updateCohabitants (values) {
+    this.onUpdate('Cohabitants', values)
   }
 
   /**
@@ -124,36 +119,81 @@ class Relationships extends ValidationElement {
             <div className="relationships intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
-                            Completed={this.props.Completed}
-                            tour={i18n.t('relationships.tour.para')}
-                            review={i18n.t('relationships.review.para')}
-                            onTour={this.handleTour}
-                            onReview={this.handleReview}
-                            />
+                  Completed={this.props.Completed}
+                  tour={i18n.t('relationships.tour.para')}
+                  review={i18n.t('relationships.review.para')}
+                  onTour={this.handleTour}
+                  onReview={this.handleReview}
+                />
               </div>
             </div>
           </SectionView>
-
-          <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
-                       showTop="true"
-                       back="relationships/relatives"
-                       backLabel={i18n.t('relationships.destination.relatives')}
-                       next="military/selective"
-                       next={i18n.t('military.destination.selective')}
-                       >
+          <SectionView name="status"
+            back="financial/bankruptcy"
+            backLabel={i18n.t('financial.destination.bankruptcy')}
+            next="relationships/status/cohabitant"
+            nextLabel={i18n.t('relationships.destination.cohabitant')}>
+            <Marital name="marital"
+              {...this.props.Marital}
+              onUpdate={this.updateMarital}
+              onValidate={this.handleValidation}
+            />
           </SectionView>
-
+          <SectionView name="status/marital"
+            back="financial/bankruptcy"
+            backLabel={i18n.t('financial.destination.bankruptcy')}
+            next="relationships/status/cohabitant"
+            nextLabel={i18n.t('relationships.destination.cohabitant')}>
+            <Marital name="marital"
+              {...this.props.Marital}
+              onUpdate={this.updateMarital}
+              onValidate={this.handleValidation}
+            />
+          </SectionView>
+          <SectionView name="status/cohabitant"
+            back="relationships/status/marital"
+            backLabel={i18n.t('relationships.destination.marital')}
+            next="relationships/relatives"
+            nextLabel={i18n.t('relationships.destination.relatives')}>
+            <Cohabitants name="cohabitants"
+              {...this.props.Cohabitants}
+              onUpdate={this.updateCohabitants}
+              onValidate={this.handleValidation}
+            />
+          </SectionView>
           <SectionView name="relatives"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="relationships/review"
-                       nextLabel={i18n.t('relationships.destination.review')}>
+            back="relationships/status/cohabitant"
+            backLabel={i18n.t('relationships.destination.cohabitant')}
+            next="relationships/review"
+            nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
-                       {...this.props.Relatives}
-                       onUpdate={this.updateRelatives}
-                       onValidate={this.handleValidation}
-                       />
+              {...this.props.Relatives}
+              onUpdate={this.updateRelatives}
+              onValidate={this.handleValidation}
+            />
+          </SectionView>
+          <SectionView name="review"
+            title="Let&rsquo;s make sure everything looks right"
+            showTop="true"
+            back="relationships/relatives"
+            backLabel={i18n.t('relationships.destination.relatives')}
+            next="military/selective"
+            next={i18n.t('military.destination.selective')}>
+            <Marital name="marital"
+              {...this.props.Marital}
+              onUpdate={this.updateMarital}
+              onValidate={this.handleValidation}
+            />
+            <Cohabitants name="cohabitants"
+              {...this.props.Cohabitants}
+              onUpdate={this.updateCohabitants}
+              onValidate={this.handleValidation}
+            />
+            <Relatives name="relatives"
+              {...this.props.Relatives}
+              onUpdate={this.updateRelatives}
+              onValidate={this.handleValidation}
+            />
           </SectionView>
         </SectionViews>
       </div>
@@ -172,6 +212,7 @@ function mapStateToProps (state) {
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
+    Cohabitants: relationships.Cohabitants || {},
     Friends: relationships.Friends || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || []

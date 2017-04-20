@@ -85,18 +85,13 @@ export default class PhysicalValidator {
       return false
     }
 
-    if (!this.hairColor.length) {
-      return false
-    }
-
     let found = false
-    for (let selectedColor of this.hairColor) {
-      for (let validColor of hairColors) {
-        if (validColor === selectedColor) {
-          found = true
-        }
+    for (let validColor of hairColors) {
+      if (validColor === this.hairColor) {
+        found = true
       }
     }
+
     return found
   }
 
@@ -111,6 +106,7 @@ export default class PhysicalValidator {
         found = true
       }
     }
+
     return found
   }
 

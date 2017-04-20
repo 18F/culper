@@ -29,23 +29,18 @@ class Form extends React.Component {
     if (!this.props.params.section) {
       return null
     }
-
+    // Splat is a react-router param added when wildcard (/**/) route paths are designated
+    const splat = this.props.params.splat ? `/${this.props.params.splat}` : ''
+    const subsection = `${this.props.params.subsection || ''}${splat}`.trim()
     return (
       <div id="eapp-form" className="eapp-form">
         <div id="info">
-          <Section section={this.props.params.section} subsection={this.props.params.subsection} />
+          <Section section={this.props.params.section} subsection={subsection} />
           <SavedIndicator interval="3000" />
         </div>
       </div>
     )
   }
-}
-
-Form.propTypes = {
-  params: React.PropTypes.shape({
-    section: React.PropTypes.string,
-    subsection: React.PropTypes.string
-  })
 }
 
 export default AuthenticatedView(Form)
