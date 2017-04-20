@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { gaps } from './dateranges'
-import { Svg, Show } from '../../Form'
+import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
+import { openState, chevron } from '../../Form/Accordion/Accordion'
 
 export const ResidenceCaption = (props) => {
   return (
@@ -17,9 +18,7 @@ export const ResidenceCaption = (props) => {
 /**
  * Renders a formatted summary information for a residence row
  */
-export const ResidenceSummary = (props) => {
-  const item = props.Item || {}
-
+export const ResidenceSummary = (item, errors) => {
   let address = ''
   let address1 = ''
   let address2 = ''
@@ -41,8 +40,7 @@ export const ResidenceSummary = (props) => {
   }
 
   const dates = dateSummary(item)
-  const hasErrors = props.Item && !new ResidenceValidator(item, null).isValid()
-  const svg = hasErrors
+  const svg = errors
         ? <Svg src="img/exclamation-point.svg" />
         : null
 
@@ -58,6 +56,56 @@ export const ResidenceSummary = (props) => {
   )
 }
 
+const PersonSummary = (item, errors) => {
+  if (!item.Reference) {
+    return null
+  }
+
+  let name = ''
+  if (item.Reference.FullName) {
+    name = `${item.Reference.FullName.first || ''} ${item.Reference.FullName.middle || ''} ${item.Reference.FullName.last || ''}`.trim()
+  }
+
+  return (
+    <span>
+      <span className="index">{i18n.t('history.residence.collection.summary.item2')}: </span>
+      <span><strong>{name}</strong></span>
+    </span>
+  )
+}
+
+export const ResidenceCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
+  const residence = item.Item || {}
+  const errors = item.Item && !new ResidenceValidator(residence, null).isValid()
+  const personSummary = PersonSummary(residence, errors)
+
+  return (
+    <div>
+      <div className="summary">
+        <span className={`left ${openState(item, initial)}`}>
+          <a onClick={toggle()}>
+            <span className="button-with-icon">
+              <i className={chevron(item)} aria-hidden="true"></i>
+              <span className="toggle">{openText()}</span>
+            </span>
+            {ResidenceSummary(residence, errors)}
+          </a>
+          <a className={personSummary === null ? 'hidden' : ''} onClick={toggle()}>
+            {personSummary}
+          </a>
+        </span>
+        <a className="right remove" onClick={remove()}>
+          <span className="button-with-icon">
+            <i className="fa fa-trash" aria-hidden="true"></i>
+            <span>{i18n.t('collection.remove')}</span>
+          </span>
+        </a>
+      </div>
+      {byline()}
+    </div>
+  )
+}
+
 export const EmploymentCaption = (props) => {
   return (
     <span>
@@ -70,14 +118,12 @@ export const EmploymentCaption = (props) => {
 /**
  * Renders a formatted summary information for an employment row
  */
-export const EmploymentSummary = (props) => {
-  let item = props.Item || {}
+export const EmploymentSummary = (item, errors) => {
   const employer = item.Employment && item.Employment.value
         ? item.Employment.value
-        : i18n.t('history.employment.default.collection.summary.unknown')
+    : i18n.t('history.employment.default.collection.summary.unknown')
   const dates = dateSummary(item)
-  const hasErrors = props.Item && !new EmploymentValidator(item, null).isValid()
-  const svg = hasErrors === true
+  const svg = errors === true
     ? <Svg src="img/exclamation-point.svg" />
         : null
 
@@ -93,6 +139,66 @@ export const EmploymentSummary = (props) => {
   )
 }
 
+const ActivitySummary = (item, errors) => {
+  if (!item.Additional || item.Additional.HasAdditionalActivity !== 'Yes' || (item.Additional.List || []).length === 0) {
+    return []
+  }
+
+  return item.Additional.List.map(activity => {
+    const dates = dateSummary({ Dates: activity.DatesEmployed })
+
+    if ((activity.Position || {}).value && dates) {
+      return (
+        <span>
+          <span className="index">{i18n.t('history.education.default.collection.summary.item2')}: </span>
+          <span><strong>{activity.Position.value}</strong></span>
+          <span className="dates"><strong>{dates}</strong></span>
+        </span>
+      )
+    }
+
+    return null
+  })
+}
+
+export const EmploymentCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
+  const employment = item.Item || {}
+  const errors = item.Item && !new EmploymentValidator(employment, null).isValid()
+  const activitySummary = ActivitySummary(employment, errors)
+        .filter(activity => activity !== null)
+        .map(activity => {
+          return (
+            <a key={newGuid()} onClick={toggle()}>
+              {activity}
+            </a>
+          )
+        })
+
+  return (
+    <div>
+      <div className="summary">
+        <span className={`left ${openState(item, initial)}`}>
+          <a onClick={toggle()}>
+            <span className="button-with-icon">
+              <i className={chevron(item)} aria-hidden="true"></i>
+              <span className="toggle">{openText()}</span>
+            </span>
+            {EmploymentSummary(employment, errors)}
+          </a>
+          {activitySummary}
+        </span>
+        <a className="right remove" onClick={remove()}>
+          <span className="button-with-icon">
+            <i className="fa fa-trash" aria-hidden="true"></i>
+            <span>{i18n.t('collection.remove')}</span>
+          </span>
+        </a>
+      </div>
+      {byline()}
+    </div>
+  )
+}
+
 export const EducationCaption = (props) => {
   return (
     <span>
@@ -105,14 +211,12 @@ export const EducationCaption = (props) => {
 /**
  * Renders a formatted summary information for an education row
  */
-export const EducationSummary = (props) => {
-  let item = props.Item || {}
+export const EducationSummary = (item, errors) => {
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
   const dates = dateSummary(item)
-  const hasErrors = props.Item && !new EducationValidator(item, null).isValid()
-  const svg = hasErrors === true
-    ? <Svg src="img/exclamation-point.svg" />
-    : null
+  const svg = errors
+        ? <Svg src="img/exclamation-point.svg" />
+        : null
 
   return (
     <span>
@@ -126,6 +230,70 @@ export const EducationSummary = (props) => {
   )
 }
 
+const DiplomaSummary = (item, errors) => {
+  if ((item.Diplomas || []).length === 0) {
+    return []
+  }
+
+  return item.Diplomas.map((degree, index) => {
+    const dd = degree.Diploma || {}
+    const other = (dd.DiplomaOther || {}).value || ''
+    const diploma = dd.Diploma || ''
+    const val = diploma
+          ? diploma === 'Other' ? other : diploma
+          : other
+
+    if (val) {
+      return (
+        <span>
+          <span className="index">{i18n.t('history.education.collection.school.summary.item2')} {index + 1}: </span>
+          <span><strong>{val}</strong></span>
+        </span>
+      )
+    }
+
+    return null
+  })
+}
+
+export const EducationCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
+  const education = item.Item || {}
+  const errors = item.Item && !new EducationValidator(education, null).isValid()
+  const diplomaSummary = DiplomaSummary(education, errors)
+        .filter(diploma => diploma !== null)
+        .map(diploma => {
+          return (
+            <a key={newGuid()} onClick={toggle()}>
+              {diploma}
+            </a>
+          )
+        })
+
+  return (
+    <div>
+      <div className="summary">
+        <span className={`left ${openState(item, initial)}`}>
+          <a onClick={toggle()}>
+            <span className="button-with-icon">
+              <i className={chevron(item)} aria-hidden="true"></i>
+              <span className="toggle">{openText()}</span>
+            </span>
+            {EducationSummary(education, errors)}
+          </a>
+          {diplomaSummary}
+        </span>
+        <a className="right remove" onClick={remove()}>
+          <span className="button-with-icon">
+            <i className="fa fa-trash" aria-hidden="true"></i>
+            <span>{i18n.t('collection.remove')}</span>
+          </span>
+        </a>
+      </div>
+      {byline()}
+    </div>
+  )
+}
+
 /**
  * Inject new list items as `Gaps`
  */
@@ -135,8 +303,8 @@ export const InjectGaps = (list = [], start) => {
 
   // Find all our "holes" for this type
   const ranges = list
-        .filter(item => { return item.Item && item.Item.Dates })
-    .map(item => { return item.Item.Dates })
+    .filter(item => { return item.Item && item.Item.Dates })
+         .map(item => { return item.Item.Dates })
   let holes = gaps(ranges, start)
 
   for (const item of list) {

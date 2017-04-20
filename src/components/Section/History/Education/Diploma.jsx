@@ -96,7 +96,7 @@ export class DiplomaItem extends ValidationElement {
                   label={i18n.t('history.education.label.diploma.other')}
                   className="other"
                   maxlength="100"
-                  onUpdate={this.onUpdate.bind(this, 'OtherRole')}
+                  onUpdate={this.updateDiplomaOther}
                   onValidate={this.props.onValidate}
                   />
           </Show>
@@ -116,4 +116,10 @@ export class DiplomaItem extends ValidationElement {
       </div>
     )
   }
+}
+
+DiplomaItem.defaultProps = {
+  Diploma: '',
+  DiplomaOther: {},
+  Date: {}
 }

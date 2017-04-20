@@ -2609,7 +2609,8 @@ const en = {
           title: 'Summary of places you have lived',
           item: 'Address',
           unknown: 'Provide residence details',
-          incomplete: 'This residence\'s information is incomplete'
+          incomplete: 'This residence\'s information is incomplete',
+          item2: 'Person'
         },
         append: 'Add another residence'
       },
@@ -2699,7 +2700,8 @@ const en = {
             title: 'Summary of your work history',
             employer: 'Employer',
             incomplete: 'This employer\'s information is incomplete',
-            unknown: 'Provide employer details'
+            unknown: 'Provide employer details',
+            item2: 'Title'
           }
         },
         activity: {
@@ -4045,7 +4047,8 @@ const en = {
             title: 'Summary of education',
             item: 'School',
             unknown: 'Provide your education details',
-            incomplete: 'This education\'s information is incomplete'
+            incomplete: 'This education\'s information is incomplete',
+            item2: 'Diploma'
           },
           append: 'Add another school'
         },

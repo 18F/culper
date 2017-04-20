@@ -11,7 +11,8 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps, EmploymentSummary, ResidenceSummary, EducationSummary, EmploymentCaption, EducationCaption, ResidenceCaption } from './summaries'
+import { InjectGaps, EmploymentCustomSummary, ResidenceCustomSummary, EducationCustomSummary,
+         EmploymentCaption, EducationCaption, ResidenceCaption } from './summaries'
 import { ResidenceItem } from './Residence'
 import { EmploymentItem } from './Employment'
 import { EducationItem } from './Education'
@@ -299,13 +300,11 @@ class History extends ValidationElement {
     }
 
     for (const i of this.props.Education.List) {
-      if (!i.Item) {
+      if (!i.Item || !i.Item.Dates || !i.Item.Dates.to || !i.Item.Dates.from) {
         continue
       }
 
-      if (i.Item.Dates) {
-        dates.push(i.Item.Dates)
-      }
+      dates.push(i.Item.Dates)
     }
 
     return dates
@@ -324,13 +323,11 @@ class History extends ValidationElement {
 
       if (i.Item.Diplomas) {
         for (const d of i.Item.Diplomas) {
-          if (!d.Diploma || !d.Diploma.Date) {
+          if (!d.Diploma || !d.Diploma.Date || !d.Diploma.Date.date) {
             continue
           }
 
-          if (d.Diploma.Date) {
-            dates.push(d.Diploma.Date)
-          }
+          dates.push(d.Diploma.Date)
         }
       }
     }
@@ -416,7 +413,7 @@ class History extends ValidationElement {
     return holes > 0
   }
 
-  customSummary (item, index, initial, callback) {
+  customSummary (item, index, initial, callback, toggle, openText, remove, byline) {
     if (item.type === 'Gap') {
       return null
     }
@@ -532,9 +529,8 @@ class History extends ValidationElement {
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
                        caption={ResidenceCaption}
-                       summary={ResidenceSummary}
                        byline={this.customResidenceByline}
-                       customSummary={this.customSummary}
+                       customSummary={ResidenceCustomSummary}
                        customDetails={this.customResidenceDetails}
                        description={i18n.t('history.residence.collection.summary.title')}
                        appendLabel={i18n.t('history.residence.collection.append')}
@@ -550,9 +546,8 @@ class History extends ValidationElement {
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
                        caption={EmploymentCaption}
-                       summary={EmploymentSummary}
                        byline={this.customEmploymentByline}
-                       customSummary={this.customSummary}
+                       customSummary={EmploymentCustomSummary}
                        customDetails={this.customEmploymentDetails}
                        description={i18n.t('history.employment.default.collection.summary.title')}
                        appendLabel={i18n.t('history.employment.default.collection.append')}
@@ -569,8 +564,8 @@ class History extends ValidationElement {
                          onUpdate={this.updateEducation}
                          onValidate={this.onValidate}
                          caption={EducationCaption}
-                         summary={EducationSummary}
                          byline={this.customEducationByline}
+                         customSummary={EducationCustomSummary}
                          description={i18n.t('history.education.collection.school.summary.title')}
                          appendLabel={i18n.t('history.education.collection.school.append')}
                          >
@@ -607,9 +602,8 @@ class History extends ValidationElement {
                        items={this.props.Residence}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
-                       summary={ResidenceSummary}
                        byline={this.customResidenceByline}
-                       customSummary={this.customSummary}
+                       customSummary={ResidenceCustomSummary}
                        customDetails={this.customResidenceDetails}
                        description={i18n.t('history.residence.collection.summary.title')}
                        appendLabel={i18n.t('history.residence.collection.append')}
@@ -642,10 +636,9 @@ class History extends ValidationElement {
                        items={this.props.Employment}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
-                       summary={EmploymentSummary}
                        byline={this.customEmploymentByline}
                        customDetails={this.customEmploymentDetails}
-                       customSummary={this.customSummary}
+                       customSummary={EmploymentCustomSummary}
                        customDetails={this.customEmploymentDetails}
                        description={i18n.t('history.employment.default.collection.summary.title')}
                        appendLabel={i18n.t('history.employment.default.collection.append')}
@@ -695,8 +688,8 @@ class History extends ValidationElement {
                            items={this.props.Education.List}
                            onUpdate={this.updateEducation}
                            onValidate={this.onValidate}
-                           summary={EducationSummary}
                            byline={this.customEducationByline}
+                           customSummary={EducationCustomSummary}
                            description={i18n.t('history.education.collection.school.summary.title')}
                            appendLabel={i18n.t('history.education.collection.school.append')}
                            >

@@ -7,7 +7,7 @@ export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()
 }
 
-const chevron = (item = {}) => {
+export const chevron = (item = {}) => {
   return `toggle fa fa-chevron-${item.open ? 'up' : 'down'}`
 }
 
@@ -239,7 +239,14 @@ export default class Accordion extends ValidationElement {
     return this.props.items.sort(this.props.sort).map((item, index, arr) => {
       return (
         <div className="item" id={item.uuid} key={item.uuid}>
-          {this.props.customSummary(item, index, initial, () => { return this.summary(item, index, initial) })}
+          {
+            this.props.customSummary(item, index, initial,
+                                     () => { return this.summary(item, index, initial) },
+                                     () => { return this.toggle.bind(this, item) },
+                                     () => { return this.openText(item) },
+                                     () => { return this.remove.bind(this.item) },
+                                     () => { return this.props.byline(item, index, initial) })
+          }
           {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
         </div>
       )
@@ -338,7 +345,7 @@ Accordion.defaultProps = {
   byline: (item, index, initial = false) => {
     return null
   },
-  customSummary: (item, index, initial, callback) => {
+  customSummary: (item, index, initial, callback, toggle, openText, remove, byline) => {
     return callback()
   },
   customDetails: (item, index, initial, callback) => {

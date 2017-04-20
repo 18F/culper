@@ -192,12 +192,31 @@
         float: right;
       }
 
+      > a {
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+      }
+
+      // All but the first anchor
+      > a:nth-child(n+2) {
+        display: block;
+        line-height: 1rem;
+        padding-bottom: 3rem;
+        padding-right: 7rem;
+
+        .dates {
+          height: 1.8rem;
+        }
+      }
+
+      > a > span:last-of-type,
       > span:last-of-type {
         > span:first-of-type {
           margin-right: 1rem;
         }
 
-        > span.dates {
+        > .dates {
           float: right;
           text-align: right;
           height: 4.9rem;
@@ -205,6 +224,14 @@
       }
 
       &:hover {
+        color: $eapp-blue;
+
+        > span:last-of-type > span {
+          border-bottom: 1px dashed $eapp-blue;
+        }
+      }
+
+      &:hover a {
         color: $eapp-blue;
 
         > span:last-of-type > span {

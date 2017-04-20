@@ -221,16 +221,13 @@ export class EducationItem extends ValidationElement {
 
           {this.reference()}
 
-          <BranchCollection
-            branchHelp="history.employment.default.reprimand.help"
-            branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
-            branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
-            items={this.state.Diplomas}
-            onUpdate={this.updateDiplomas}
-            onValidate={this.props.onValidate}>
-            <div>
-              <DiplomaItem name="Diploma" bind={true} />
-            </div>
+          <BranchCollection branchHelp="history.employment.default.reprimand.help"
+                            branch={<h3>{i18n.t('history.education.heading.degree')}</h3>}
+                            branchTail={<h3>{i18n.t('history.education.heading.degreeTail')}</h3>}
+                            items={this.state.Diplomas}
+                            onUpdate={this.updateDiplomas}
+                            onValidate={this.props.onValidate}>
+            <DiplomaItem name="Diploma" bind={true} />
           </BranchCollection>
         </div>
       </div>
