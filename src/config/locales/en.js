@@ -2403,7 +2403,7 @@ const en = {
         },
         collection: {
           summary: {
-            unknown: 'Provide details'
+            unknown: 'Provide the person\'s information below'
           },
           appendLabel: 'Add another person',
           appendMessage: 'If yes use the button below to add another instance',
