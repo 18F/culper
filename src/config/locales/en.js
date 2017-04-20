@@ -602,8 +602,8 @@ const en = {
       branch: {
         help: {
           title: 'Need help with your place of birth?',
-          message: 'Select "NEED ANSWER" if you are a United States citizen born abroad.',
-          note: ''
+          message: 'This is your physical place of birth.',
+          note: 'Example: United States citizens born in another country would list that other country.'
         }
       },
       help: {
@@ -1820,7 +1820,7 @@ const en = {
         append: 'Add another relative'
       },
       heading: {
-        title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
+        title: 'Add each relative applicable to you, regardless if they are living or deceased.',
         needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
         name: 'Provide your relative\'s full name',
