@@ -558,8 +558,11 @@ const en = {
       branch: {
         help: {
           title: 'Need help with you other names used?',
-          message: 'List all other names you have used no matter how long ago.',
-          note: 'Note: Input names one at a time, you will have the ability to add multiple other names.'
+          message: [
+              'List all other names you have used no matter how long ago.',
+              'Input names one at a time, you will have the ability to add multiple other names.'
+            ],
+          note: 'Example: Full name is Michael and nickname Mike. "Mike" would be the other name used.'
         },
         question: 'Have you used any other names?'
       },
@@ -602,8 +605,8 @@ const en = {
       branch: {
         help: {
           title: 'Need help with your place of birth?',
-          message: 'Select "NEED ANSWER" if you are a United States citizen born abroad.',
-          note: ''
+          message: 'This is your physical place of birth.',
+          note: 'Example: United States citizens born in another country would list that other country.'
         }
       },
       help: {
@@ -742,7 +745,7 @@ const en = {
         weight: {
           title: 'Need help entering your weight?',
           message: [
-            'Please use pounds only.',
+            'Please use pounds and whole numbers only.',
             'Weight must be a number between 10 and 999.'
           ],
           note: ''
@@ -755,12 +758,12 @@ const en = {
         hair: {
           title: 'Need help selecting your hair color?',
           message: 'Choose the hair color that most closely represents your hair.',
-          note: 'Note: You can select multiple colors if necessary.'
+          note: ''
         },
         sex: {
           title: 'Need help with your sex?',
           message: 'Please select the sex at your time of birth.',
-          note: 'Note: If additional information is appropriate please use "Add a comment" below to detail it.'
+          note: 'Note: If additional information is appropriate please use "Add a comment" above to detail it.'
         }
       },
       label: {
@@ -1820,7 +1823,7 @@ const en = {
         append: 'Add another relative'
       },
       heading: {
-        title: 'Select each type of relative applicable to you, regardless if they are living or deceased.',
+        title: 'Add each relative applicable to you, regardless if they are living or deceased.',
         needmore: 'Since you answered yes we need more information',
         relation: 'Provide relative type',
         name: 'Provide your relative\'s full name',
