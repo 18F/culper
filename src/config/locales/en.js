@@ -557,7 +557,7 @@ const en = {
       info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: {
-          title: 'Need help with you other names used?',
+          title: 'Need help with your other names used?',
           message: [
               'List all other names you have used no matter how long ago.',
               'Input names one at a time, you will have the ability to add multiple other names.'
@@ -648,13 +648,13 @@ const en = {
       title: 'Provide your contact information',
       help: {
         email: {
-          title: 'Need help with your email address(es)?',
+          title: 'Need help with your email addresses?',
           message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
           note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
-          title: 'Need help with your phone number(s)?',
-          message: 'Enter only current phone number(s).',
+          title: 'Need help with your phone numbers?',
+          message: 'Enter only current phone numbers.',
           note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
