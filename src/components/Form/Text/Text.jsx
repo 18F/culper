@@ -89,6 +89,9 @@ export default class Text extends ValidationElement {
                onCopy={this.props.onCopy}
                onCut={this.props.onCut}
                onPaste={this.props.onPaste}
+               clipboard={this.props.clipboard}
+               tabBack={this.props.tabBack}
+               tabNext={this.props.tabNext}
                ref="text"
                />
     )

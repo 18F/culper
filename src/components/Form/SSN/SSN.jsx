@@ -21,8 +21,6 @@ export default class SSN extends ValidationElement {
       valid: props.valid || false,
       errorCodes: []
     }
-
-    this.disallowClipboard = this.disallowClipboard.bind(this)
   }
 
   /**
@@ -39,20 +37,12 @@ export default class SSN extends ValidationElement {
           first: value,
           value: '' + value + this.state.middle + this.state.last
         }
-
-        if (this.props.autotab && value.length === 3) {
-          this.refs.middle.refs.text.refs.input.focus()
-        }
         break
 
       case 'middle':
         updated = {
           middle: value,
           value: '' + this.state.first + value + this.state.last
-        }
-
-        if (this.props.autotab && value.length === 2) {
-          this.refs.last.refs.text.refs.input.focus()
         }
         break
 
@@ -87,37 +77,6 @@ export default class SSN extends ValidationElement {
     } else {
       super.handleChange(event)
     }
-  }
-
-  /**
-   * Handle the key down event.
-   */
-  handleKeyDown (event) {
-    if (!this.props.autotab) {
-      super.handleKeyDown(event)
-      return
-    }
-
-    let input = event.target
-    let part = input.id
-    let value = input.value
-
-    // 8  => backspace
-    // 46 => delete
-    let backspace = event.keyCode === 8 || event.keyCode === 46
-    if (backspace && value.length < 1) {
-      switch (part) {
-        case 'last':
-          this.refs.middle.refs.text.refs.input.focus()
-          break
-
-        case 'middle':
-          this.refs.first.refs.text.refs.input.focus()
-          break
-      }
-    }
-
-    super.handleKeyDown(event)
   }
 
   /**
@@ -178,13 +137,6 @@ export default class SSN extends ValidationElement {
     return val.substring(start, end)
   }
 
-  /**
-   * Prevents clipboard events from making changes to the value of the elements
-   */
-  disallowClipboard (event) {
-    event.preventDefault()
-  }
-
   render () {
     const klass = `ssn ${this.props.className || ''}`.trim()
 
@@ -199,15 +151,14 @@ export default class SSN extends ValidationElement {
                   placeholder={i18n.t('identification.ssn.placeholder.first')}
                   maxlength="3"
                   pattern="^[0-9]*$"
+                  clipboard={false}
                   value={this.state.first}
                   disabled={this.state.notApplicable}
                   onChange={this.handleChange}
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  onCopy={this.disallowClipboard}
-                  onCut={this.disallowClipboard}
-                  onPaste={this.disallowClipboard}
+                  tabNext={() => { this.refs.middle.refs.text.refs.input.focus() }}
                   />
             <Text name="middle"
                   ref="middle"
@@ -215,16 +166,15 @@ export default class SSN extends ValidationElement {
                   placeholder={i18n.t('identification.ssn.placeholder.middle')}
                   maxlength="2"
                   pattern="^[0-9]*$"
+                  clipboard={false}
                   value={this.state.middle}
                   disabled={this.state.notApplicable}
                   onChange={this.handleChange}
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  onKeyDown={this.handleKeyDown}
-                  onCopy={this.disallowClipboard}
-                  onCut={this.disallowClipboard}
-                  onPaste={this.disallowClipboard}
+                  tabBack={() => { this.refs.first.refs.text.refs.input.focus() }}
+                  tabNext={() => { this.refs.last.refs.text.refs.input.focus() }}
                   />
             <Text name="last"
                   ref="last"
@@ -232,16 +182,14 @@ export default class SSN extends ValidationElement {
                   placeholder={i18n.t('identification.ssn.placeholder.last')}
                   maxlength="4"
                   pattern="^[0-9]*$"
+                  clipboard={false}
                   value={this.state.last}
                   disabled={this.state.notApplicable}
                   onChange={this.handleChange}
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  onKeyDown={this.handleKeyDown}
-                  onCopy={this.disallowClipboard}
-                  onCut={this.disallowClipboard}
-                  onPaste={this.disallowClipboard}
+                  tabBack={() => { this.refs.middle.refs.text.refs.input.focus() }}
                   />
             <div className="flags">
               <Checkbox name="notApplicable"
