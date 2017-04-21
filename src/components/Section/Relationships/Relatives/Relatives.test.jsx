@@ -9,18 +9,6 @@ describe('The relatives component', () => {
     }
 
     const component = mount(<Relatives {...expected} />)
-    expect(component.find('.relatives-relation').length).toEqual(1)
-    expect(component.find('.accordion').length).toEqual(0)
-  })
-
-  it('selecting relations displays accordion', () => {
-    const expected = {
-      name: 'relatives'
-    }
-
-    const component = mount(<Relatives {...expected} />)
-    expect(component.find('.relatives-relation').length).toEqual(1)
-    component.find({ type: 'checkbox', value: 'Mother' }).simulate('change')
     expect(component.find('.accordion').length).toEqual(1)
   })
 
