@@ -1,6 +1,29 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 
+export const autotab = (event, maxlength, back, next) => {
+  const input = event.target
+  const value = input.value
+  const code = event.keyCode
+  const backCodes = [8, 46]
+  const nextCodes = [
+    // 0 through 9
+    48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
+
+    // 0 through 9 on the numpad
+    96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+
+    // a through z
+    65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+  ]
+
+  if (backCodes.includes(code) && value.length < 1) {
+    back()
+  } else if (nextCodes.includes(code) && value.length >= parseInt(maxlength, 10)) {
+    next()
+  }
+}
+
 export default class Generic extends ValidationElement {
   constructor (props) {
     super(props)
@@ -12,6 +35,8 @@ export default class Generic extends ValidationElement {
       valid: props.valid,
       errorCode: null
     }
+
+    this.handleKeyUp = this.handleKeyUp.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -108,76 +133,53 @@ export default class Generic extends ValidationElement {
   }
 
   /**
-   * Handle the key down event.
+   * Handle the key up event.
    */
-  handleKeyDown (event) {
-    event.persist()
-    super.handleKeyDown(event)
+  handleKeyUp (event) {
+    autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
+  }
+
+  /**
+   * Prevents clipboard events from making changes to the value of the elements
+   */
+  disallowClipboard (event) {
+    event.preventDefault()
   }
 
   /**
    * Generated name for the error message.
    */
   errorName () {
-    return '' + this.props.name + '-error'
+    return `${this.props.name || ''}-error`
   }
 
   /**
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = (this.props.className || '')
-
-    if (!this.props.disabled) {
-      if (this.state.error) {
-        klass += ' usa-input-error'
-      }
-    }
-
-    return klass.trim()
+    return `${this.props.className || ''} ${!this.props.disabled && (this.state.error || this.props.error) ? 'usa-input-error' : ''}`.trim()
   }
 
   /**
    * Style classes applied to the label element.
    */
   labelClass () {
-    let klass = ''
-
-    if (!this.props.disabled) {
-      if (this.state.error) {
-        klass += ' usa-input-error-label'
-      }
-    } else {
-      klass += ' disabled'
+    if (this.props.disabled) {
+      return 'disabled'
     }
 
-    return klass.trim()
+    return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
   }
 
   /**
    * Style classes applied to the input element.
    */
   inputClass () {
-    let klass = ''
-
-    if (!this.props.disabled) {
-      if (this.state.focus) {
-        klass += ' usa-input-focus'
-      }
-
-      if (this.state.valid) {
-        klass += ' usa-input-success'
-      }
+    if (this.props.disabled) {
+      return null
     }
 
-    return klass.trim()
-  }
-
-  /**
-   * Return a boolean value used for attributes which stutter.
-   */
-  redundant (flag, attribute) {
-    return flag || false
+    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid && this.props.valid ? 'usa-input-success' : ''}`.trim()
   }
 
   render () {
@@ -203,10 +205,10 @@ export default class Generic extends ValidationElement {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
-               onKeyDown={this.handleKeyDown}
-               onCopy={this.props.onCopy}
-               onCut={this.props.onCut}
-               onPaste={this.props.onPaste}
+               onKeyUp={this.handleKeyUp}
+               onCopy={this.props.clipboard ? this.props.onCopy : this.disallowClipboard}
+               onCut={this.props.clipboard ? this.props.onCut : this.disallowClipboard}
+               onPaste={this.props.clipboard ? this.props.onPaste : this.disallowClipboard}
                ref="input"
                />
       </div>
@@ -219,5 +221,9 @@ Generic.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  errorCode: null
+  errorCode: null,
+  maxlength: 255,
+  clipboard: true,
+  tabNext: () => {},
+  tabBack: () => {}
 }

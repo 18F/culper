@@ -1,5 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import Generic from '../Generic'
 
 const trimLeadingZero = (num) => {
   if (isNaN(num)) {
@@ -15,9 +16,8 @@ export default class Number extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: trimLeadingZero(props.value),
       max: props.max,
-      focus: props.focus,
       error: props.error,
       valid: props.valid,
       errorCode: null
@@ -50,11 +50,12 @@ export default class Number extends ValidationElement {
     event.persist()
 
     // Prevent non-numerical values from being entered
-    if (!event.target.value.match(/^(\s*|\d+)$/)) {
-      return
+    let value = event.target.value
+    if (!value.match(/^(\s*|\d+)$/)) {
+      value = value.replace(/\D/g, '')
     }
 
-    this.setState({ value: trimLeadingZero(event.target.value) }, () => {
+    this.setState({ value: trimLeadingZero(value) }, () => {
       super.handleChange(event)
       this.handleValidation(event, null)
       if (this.props.onUpdate) {
@@ -63,26 +64,6 @@ export default class Number extends ValidationElement {
           value: this.state.value
         })
       }
-    })
-  }
-
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    event.persist()
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    event.persist()
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
     })
   }
 
@@ -120,14 +101,6 @@ export default class Number extends ValidationElement {
         }
         hits++
       }
-
-      if (status && this.props.maxlength && this.props.maxlength > 0) {
-        status = ('' + this.state.value).length <= parseInt(this.props.maxlength)
-        if (status === false) {
-          errorCode = 'length'
-        }
-        hits++
-      }
     }
 
     // If nothing was tested then go back to neutral
@@ -143,87 +116,37 @@ export default class Number extends ValidationElement {
     })
   }
 
-  /**
-   * Generated name for the error message.
-   */
-  errorName () {
-    return '' + this.props.name + '-error'
-  }
-
-  /**
-   * Style classes applied to the wrapper.
-   */
-  divClass () {
-    let klass = this.props.className || ''
-
-    if (!this.props.disabled) {
-      if (this.state.error) {
-        klass += ' usa-input-error'
-      }
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the label element.
-   */
-  labelClass () {
-    let klass = ''
-
-    if (!this.props.disabled) {
-      if (this.state.error) {
-        klass += ' usa-input-error-label'
-      }
-    } else {
-      klass += ' disabled'
-    }
-
-    return klass.trim()
-  }
-
-  /**
-   * Style classes applied to the input element.
-   */
-  inputClass () {
-    let klass = ''
-
-    if (!this.props.disabled) {
-      if (this.state.focus) {
-        klass += ' usa-input-focus'
-      }
-
-      if (this.state.valid) {
-        klass += ' usa-input-success'
-      }
-    }
-
-    return klass.trim()
-  }
-
   render () {
+    // console.log('number value:', this.state.value)
     return (
-      <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.props.name}>
-          {this.props.label}
-        </label>
-        <input className={this.inputClass()}
-               id={this.props.name}
-               name={this.props.name}
-               type="text"
-               ref="input"
+      <Generic name={this.props.name}
+               label={this.props.label}
                placeholder={this.props.placeholder}
-               aria-describedby={this.errorName()}
+               type="text"
+               className={this.props.className}
                disabled={this.props.disabled}
-               maxLength={this.props.maxlength}
-               readOnly={this.props.readonly}
+               minlength={this.props.minlength}
+               maxlength={this.props.maxlength}
+               pattern={this.props.pattern}
+               readonly={this.props.readonly}
+               required={this.props.required}
                value={this.state.value}
+               focus={this.props.focus}
+               error={this.state.error}
+               valid={this.state.valid}
                onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
+               onFocus={this.props.onFocus}
+               onBlur={this.props.onBlur}
+               onValidate={this.handleValidation}
+               onKeyDown={this.props.onKeyDown}
+               onCopy={this.props.onCopy}
+               onCut={this.props.onCut}
+               onPaste={this.props.onPaste}
+               clipboard={this.props.clipboard}
+               tabBack={this.props.tabBack}
+               tabNext={this.props.tabNext}
+               ref="number"
                />
-      </div>
     )
   }
 }
@@ -232,6 +155,7 @@ Number.defaultProps = {
   disabled: false,
   value: '',
   max: '',
+  pattern: '^(\\s*|\\d+)$',
   focus: false,
   error: false,
   valid: false,

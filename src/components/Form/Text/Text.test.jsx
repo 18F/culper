@@ -8,13 +8,13 @@ describe('The text component', () => {
       name: 'input-error',
       label: 'Text input error',
       type: 'text',
-      error: true,
+      error: false,
       focus: false,
       valid: false,
-      readonly: true
+      readonly: false
     }
 
-    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} readonly={expected.readonly} />)
+    const component = mount(<Text {...expected} />)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
@@ -28,7 +28,7 @@ describe('The text component', () => {
       focus: true,
       valid: false
     }
-    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Text {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
@@ -44,7 +44,7 @@ describe('The text component', () => {
       focus: false,
       valid: true
     }
-    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Text {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -61,7 +61,7 @@ describe('The text component', () => {
       valid: false,
       onUpdate: () => { updates++ }
     }
-    const component = mount(<Text name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} onUpdate={expected.onUpdate} />)
+    const component = mount(<Text {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
