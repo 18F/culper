@@ -12,7 +12,7 @@ describe('The generic component', () => {
       focus: false,
       valid: false
     }
-    const component = shallow(<Generic name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic {...expected} />)
     expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(1)
@@ -27,7 +27,7 @@ describe('The generic component', () => {
       focus: true,
       valid: false
     }
-    const component = shallow(<Generic name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
@@ -42,7 +42,7 @@ describe('The generic component', () => {
       focus: false,
       valid: true
     }
-    const component = shallow(<Generic name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
     expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
@@ -57,8 +57,46 @@ describe('The generic component', () => {
       focus: false,
       valid: false
     }
-    const component = shallow(<Generic name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = shallow(<Generic {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input#' + expected.name).length).toEqual(1)
+  })
+
+  it('skip validation on fake event', () => {
+    let persisted = false
+    const expected = {
+      name: 'input-type-text'
+    }
+    const component = shallow(<Generic {...expected} />)
+    component.find('input').simulate('blur', { persist: () => { persisted = true }, target: null })
+    expect(persisted).toBe(true)
+  })
+
+  it('can autotab forward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'input-type-text',
+      maxlength: '1',
+      tabNext: () => { tabbed = true }
+    }
+    const component = shallow(<Generic {...expected} />)
+    component.find('input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(false)
+    component.find('input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    expect(tabbed).toBe(true)
+  })
+
+  it('can autotab backward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'input-type-text',
+      maxlength: '1',
+      tabBack: () => { tabbed = true }
+    }
+    const component = shallow(<Generic {...expected} />)
+    component.find('input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    expect(tabbed).toBe(false)
+    component.find('input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
   })
 })
