@@ -111,7 +111,9 @@ export default class Person extends React.Component {
   render () {
     return (
       <div className="person">
-        <Field title={i18n.t('relationships.people.person.heading.knownDates')}>
+        <Field title={i18n.t('relationships.people.person.heading.knownDates')}
+          help="relationships.people.person.help.KnownDates"
+        >
           <DateRange name="KnownDates"
             className="known-dates"
             {...this.state.KnownDates}
@@ -129,7 +131,9 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.people.person.heading.rank')}>
+        <Field title={i18n.t('relationships.people.person.heading.rank')}
+          help="relationships.people.person.help.rank"
+        >
           <NotApplicable name="RankNotApplicable"
             className="rank-notapplicable"
             {...this.state.RankNotApplicable}
@@ -213,7 +217,9 @@ export default class Person extends React.Component {
           </Show>
         </Field>
 
-        <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')} className="mobile-telephone">
+        <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
+          help={`relationships.people.person.help.mobileTelephone`}
+          className="mobile-telephone">
           <Telephone name="MobileTelephone"
             {...this.state.MobileTelephone}
             onUpdate={this.updateMobileTelephone}
@@ -221,7 +227,9 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.people.person.heading.otherTelephone')} className="other-telephone">
+        <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
+          help={`relationships.people.person.help.otherTelephone`}
+          className="other-telephone">
           <Telephone name="OtherTelephone"
             {...this.state.OtherTelephone}
             onUpdate={this.updateOtherTelephone}
@@ -229,7 +237,9 @@ export default class Person extends React.Component {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.people.person.heading.email')}>
+        <Field title={i18n.t('relationships.people.person.heading.email')}
+          help={`relationships.people.person.help.email`}
+        >
           <NotApplicable name="EmailNotApplicable"
             className="email-notapplicable"
             {...this.state.EmailNotApplicable}

@@ -2411,6 +2411,43 @@ const en = {
             other: 'Other'
           }
         },
+        help: {
+          knownDates: {
+            title: 'Need help with known dates',
+            message: 'Provide the dates known for the person who knows you well',
+            note: ''
+          },
+          rank: {
+            title: 'Need help with the rank/title?',
+            message: 'Provide the rank/title of the person who knows you well',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relationship?',
+            message: 'Provide relationship to you for the person who knows you well',
+            note: ''
+          },
+          mobileTelephone: {
+            title: 'Need help with the mobile telephone?',
+            message: 'Provide a mobile number for the person who knows you well',
+            note: ''
+          },
+          otherTelephone: {
+            title: 'Need help with the other telephone?',
+            message: 'Provide another number for the person who knows you well',
+            note: ''
+          },
+          email: {
+            title: 'Need help with the email?',
+            message: 'Provide the email for the person who knows you well',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the address?',
+            message: 'Provide the address for the person who knows you well',
+            note: ''
+          }
+        },
         collection: {
           summary: {
             unknown: 'Provide the person\'s information below'
