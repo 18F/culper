@@ -48,16 +48,16 @@ export default class NotApplicable extends React.Component {
     // When there is nothing special do the status quo
     return (
       <div className={`not-applicable ${this.props.or ? 'with-or' : ''}`.trim()}>
+        <div className={`${klass} ${dithered} content`.trim()}>
+          {this.renderChildren()}
+        </div>
         <div className={`${klass} button`.trim()}>
+          <span className="or">{this.props.or}</span>
           <Checkbox name={this.props.name}
                     label={this.props.label}
                     checked={!this.state.applicable}
                     onUpdate={this.onUpdate}
                     />
-          <span className="or">{this.props.or}</span>
-        </div>
-        <div className={`${klass} ${dithered} content`.trim()}>
-          {this.renderChildren()}
         </div>
       </div>
     )
