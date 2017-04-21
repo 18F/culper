@@ -88,7 +88,7 @@ export default class Height extends ValidationElement {
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
                   onValidate={this.handleValidation}
-                  tabNext={() => { this.refs.inches.refs.number.refs.input.focus() }}
+                  tabNext={() => { this.props.tab(this.refs.inches.refs.number.refs.input) }}
                   />
         </div>
         <div className="inches">
@@ -109,7 +109,7 @@ export default class Height extends ValidationElement {
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
                   onValidate={this.handleValidation}
-                  tabBack={() => { this.refs.feet.refs.number.refs.input.focus() }}
+                  tabBack={() => { this.props.tab(this.refs.feet.refs.number.refs.input) }}
                   />
         </div>
       </div>
@@ -121,5 +121,6 @@ Height.defaultProps = {
   feet: '',
   inches: '',
   error: false,
-  valid: false
+  valid: false,
+  tab: (input) => { input.focus() }
 }

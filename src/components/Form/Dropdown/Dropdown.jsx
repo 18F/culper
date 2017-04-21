@@ -214,48 +214,29 @@ export default class Dropdown extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    let klass = this.props.className || ''
-    klass += ' dropdown'
-
-    if (this.state.error) {
-      klass += ' usa-input-error'
-    }
-
-    return klass.trim()
+    return `dropdown ${this.props.className || ''} ${!this.props.disabled && (this.state.error || this.props.error) ? 'usa-input-error' : ''}`.trim()
   }
 
   /**
    * Style classes applied to the label element.
    */
   labelClass () {
-    let klass = ''
-
-    if (this.state.error) {
-      klass += ' usa-input-error-label'
-    }
-
     if (this.props.disabled) {
-      klass += ' disabled'
+      return 'disabled'
     }
 
-    return klass.trim()
+    return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
   }
 
   /**
    * Style classes applied to the input element.
    */
   inputClass () {
-    let klass = ''
-
-    if (this.state.focus) {
-      klass += ' usa-input-focus'
+    if (this.props.disabled) {
+      return null
     }
 
-    if (this.state.valid) {
-      klass += ' usa-input-success'
-    }
-
-    return klass.trim()
+    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid && this.props.valid ? 'usa-input-success' : ''}`.trim()
   }
 
   render () {

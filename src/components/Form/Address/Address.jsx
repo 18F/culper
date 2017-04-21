@@ -253,7 +253,7 @@ export default class Address extends ValidationElement {
                                    onValidate={this.handleValidation}
                                    onFocus={this.props.onFocus}
                                    onBlur={this.props.onBlur}
-                                   tabNext={() => { this.refs.us_zipcode.refs.zipcode.refs.text.refs.input.focus() }}
+                                   tabNext={() => { this.props.tab(this.refs.us_zipcode.refs.zipcode.refs.text.refs.input) }}
                       />
                       <ZipCode name="zipcode"
                                ref="us_zipcode"
@@ -347,7 +347,7 @@ export default class Address extends ValidationElement {
                             onValidate={this.handleValidation}
                             onFocus={this.props.onFocus}
                             onBlur={this.props.onBlur}
-                            tabNext={() => { this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input.focus() }}
+                            tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
                       />
                       <ZipCode name="zipcode"
                                ref="apo_zipcode"
@@ -447,7 +447,8 @@ export default class Address extends ValidationElement {
 Address.defaultProps = {
   suggestions: [],
   validate: false,
-  geocodeErrorCode: null
+  geocodeErrorCode: null,
+  tab: (input) => { input.focus() }
 }
 
 /**

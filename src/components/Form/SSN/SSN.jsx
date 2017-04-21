@@ -16,9 +16,9 @@ export default class SSN extends ValidationElement {
       middle: this.props.middle || this.ripper(props.value, 3, 5),
       last: this.props.last || this.ripper(props.value, 5, 9),
       notApplicable: props.notApplicable,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       errorCodes: []
     }
   }
@@ -158,7 +158,7 @@ export default class SSN extends ValidationElement {
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  tabNext={() => { this.refs.middle.refs.text.refs.input.focus() }}
+                  tabNext={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
                   />
             <Text name="middle"
                   ref="middle"
@@ -173,8 +173,8 @@ export default class SSN extends ValidationElement {
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  tabBack={() => { this.refs.first.refs.text.refs.input.focus() }}
-                  tabNext={() => { this.refs.last.refs.text.refs.input.focus() }}
+                  tabBack={() => { this.props.tab(this.refs.first.refs.text.refs.input) }}
+                  tabNext={() => { this.props.tab(this.refs.last.refs.text.refs.input) }}
                   />
             <Text name="last"
                   ref="last"
@@ -189,7 +189,7 @@ export default class SSN extends ValidationElement {
                   onValidate={this.handleValidation}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  tabBack={() => { this.refs.middle.refs.text.refs.input.focus() }}
+                  tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
                   />
             <div className="flags">
               <Checkbox name="notApplicable"
@@ -209,4 +209,16 @@ export default class SSN extends ValidationElement {
       </div>
     )
   }
+}
+
+SSN.defaultProps = {
+  value: '',
+  first: '',
+  middle: '',
+  last: '',
+  notApplicable: false,
+  focus: false,
+  error: false,
+  valid: false,
+  tab: (input) => { input.focus() }
 }
