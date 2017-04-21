@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement, Suggestions } from '../../../Form'
+import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement, Suggestions, Show } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 
 export default class Cohabitant extends ValidationElement {
@@ -171,14 +171,17 @@ export default class Cohabitant extends ValidationElement {
             onValidate={this.props.onValidate}
           />
         </Field>
-        <Field help="relationships.status.cohabitant.help.foreignBornDocument"
-          title={i18n.t('relationships.status.cohabitant.heading.foreignBornDocument')}>
-          <ForeignBornDocuments name="foreignBornDocument"
-            {...this.state.ForeignBornDocument}
-            onUpdate={this.updateForeignBornDocument}
-            onValidate={this.props.onValidate}
-          />
-        </Field>
+
+        <Show when={this.state.BirthPlace && this.state.BirthPlace.country !== 'United States'}>
+          <Field help="relationships.status.cohabitant.help.foreignBornDocument"
+            title={i18n.t('relationships.status.cohabitant.heading.foreignBornDocument')}>
+            <ForeignBornDocuments name="foreignBornDocument"
+              {...this.state.ForeignBornDocument}
+              onUpdate={this.updateForeignBornDocument}
+              onValidate={this.props.onValidate}
+            />
+          </Field>
+        </Show>
 
         <Field help="relationships.status.cohabitant.help.ssn"
           title={i18n.t('relationships.status.cohabitant.heading.ssn')}>
