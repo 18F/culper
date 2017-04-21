@@ -557,7 +557,7 @@ const en = {
       info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
       branch: {
         help: {
-          title: 'Need help with you other names used?',
+          title: 'Need help with your other names used?',
           message: [
               'List all other names you have used no matter how long ago.',
               'Input names one at a time, you will have the ability to add multiple other names.'
@@ -648,13 +648,13 @@ const en = {
       title: 'Provide your contact information',
       help: {
         email: {
-          title: 'Need help with your email address(es)?',
+          title: 'Need help with your email addresses?',
           message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
           note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation.'
         },
         phoneNumber: {
-          title: 'Need help with your phone number(s)?',
-          message: 'Enter only current phone number(s).',
+          title: 'Need help with your phone numbers?',
+          message: 'Enter only current phone numbers.',
           note: 'Note: Additional numbers provided may assist in the completion of your background investigation.'
         }
       },
@@ -2955,11 +2955,13 @@ const en = {
         unit: 'Years covered'
       },
       collection: {
+        caption: 'Where you have lived',
         summary: {
           title: 'Summary of places you have lived',
           item: 'Address',
-          unknown: 'Unknown',
-          incomplete: 'This residence\'s information is incomplete'
+          unknown: 'Provide residence details',
+          incomplete: 'This residence\'s information is incomplete',
+          item2: 'Person'
         },
         append: 'Add another residence'
       },
@@ -3043,11 +3045,14 @@ const en = {
           label: 'NA'
         },
         collection: {
+          caption: 'Employment activities',
           append: 'Add another employer',
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
-            incomplete: 'This employer\'s information is incomplete'
+            incomplete: 'This employer\'s information is incomplete',
+            unknown: 'Provide employer details',
+            item2: 'Title'
           }
         },
         activity: {
@@ -4387,12 +4392,14 @@ const en = {
         diplomas: 'Degrees/Diplomas earned'
       },
       collection: {
+        caption: 'Where you went to school',
         school: {
           summary: {
             title: 'Summary of education',
             item: 'School',
-            unknown: 'Unknown',
-            incomplete: 'This education\'s information is incomplete'
+            unknown: 'Provide your education details',
+            incomplete: 'This education\'s information is incomplete',
+            item2: 'Diploma'
           },
           append: 'Add another school'
         },
@@ -4400,7 +4407,7 @@ const en = {
           summary: {
             title: 'Summary of degrees/diplomas',
             item: 'Degree',
-            unknown: 'Unknown'
+            unknown: 'Provide your degree/diploma details'
           },
           append: 'Add another diploma/degree'
         }

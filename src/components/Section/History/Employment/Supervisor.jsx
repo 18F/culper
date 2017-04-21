@@ -140,7 +140,6 @@ export default class Supervisor extends ValidationElement {
                adjustFor="labels">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
-                     label={i18n.t('history.employment.default.supervisor.telephone.label')}
                      onBlur={this.handleBlur}
                      onFocus={this.handleFocus}
                      onUpdate={this.onUpdate.bind(this, 'Telephone')}
