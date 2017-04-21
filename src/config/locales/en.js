@@ -515,7 +515,7 @@ const en = {
       birthplace: 'Birth place',
       contacts: 'Contacts',
       ssn: 'Social security number',
-      physical: 'Physical attributes',
+      physical: 'Identifying information',
       psychological: 'Psychological and emotional health'
     },
     name: {
@@ -559,9 +559,9 @@ const en = {
         help: {
           title: 'Need help with your other names used?',
           message: [
-              'List all other names you have used no matter how long ago.',
-              'Input names one at a time, you will have the ability to add multiple other names.'
-            ],
+            'List all other names you have used no matter how long ago.',
+            'Input names one at a time, you will have the ability to add multiple other names.'
+          ],
           note: 'Example: Full name is Michael and nickname Mike. "Mike" would be the other name used.'
         },
         question: 'Have you used any other names?'
@@ -714,7 +714,7 @@ const en = {
       }
     },
     traits: {
-      title: 'Provide your physical attributes',
+      title: 'Provide your identifying information',
       heading: {
         hair: 'Hair color',
         eye: 'Eye color',
