@@ -313,4 +313,17 @@ describe('The Address component', () => {
       cb()
     }, 300)
   })
+
+  it('can autotab forward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'address',
+      tab: () => { tabbed = true }
+    }
+    const component = mount(<Address {...expected} />)
+    component.find('input#state').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(false)
+    component.find('input#state').simulate('keyup', { keyCode: 48, target: { value: 'FL' } })
+    expect(tabbed).toBe(true)
+  })
 })

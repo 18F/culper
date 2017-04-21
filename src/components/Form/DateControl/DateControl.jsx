@@ -305,6 +305,7 @@ export default class DateControl extends ValidationElement {
                       ref="month"
                       label="Month"
                       placeholder="00"
+                      maxlength="2"
                       receiveProps={this.props.receiveProps}
                       value={this.state.month}
                       disabled={this.state.disabled}
@@ -314,6 +315,7 @@ export default class DateControl extends ValidationElement {
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
                       onValidate={this.handleValidation}
+                      tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}
                       >
               <option value="Janurary">1</option>
               <option value="February">2</option>
@@ -349,6 +351,8 @@ export default class DateControl extends ValidationElement {
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     onValidate={this.handleValidation}
+                    tabBack={() => { this.refs.month.refs.autosuggest.input.focus() }}
+                    tabNext={() => { this.refs.year.refs.number.refs.input.focus() }}
                     />
           </div>
           <div className="usa-form-group year">
@@ -371,6 +375,7 @@ export default class DateControl extends ValidationElement {
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     onValidate={this.handleValidation}
+                    tabBack={() => { this.refs.day.refs.number.refs.input.focus() }}
                     />
           </div>
         </div>

@@ -14,7 +14,7 @@ describe('The SSN component', () => {
       }
     }
     const component = mount(<SSN name={expected.name} label={expected.label} value={expected.value} onBlur={expected.handleBlur} />)
-    component.find('input#last').simulate('change')
+    component.find({ type: 'text', name: 'first' }).simulate('keyup', { keyCode: 48, target: { value: '111' } })
     expect(component.find('.usa-input-error-label').length).toEqual(0)
     expect(blurs).toEqual(0)
   })
@@ -122,5 +122,55 @@ describe('The SSN component', () => {
     component.find({ type: 'text', name: 'first' }).simulate('paste', { target: { value: '111' } })
     expect(component.find({ type: 'text', name: 'first', value: '111' }).length).toBe(0)
     expect(component.find({ type: 'text', name: 'first', value: '' }).length).toBe(1)
+  })
+
+  it('can autotab forward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'ssn',
+      tab: () => { tabbed = true }
+    }
+    const component = mount(<SSN {...expected} />)
+
+    tabbed = false
+    component.find('input#first').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(false)
+
+    tabbed = false
+    component.find('input#first').simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find('input#middle').simulate('keyup', { keyCode: 8, target: { value: '1' } })
+    expect(tabbed).toBe(false)
+
+    tabbed = false
+    component.find('input#middle').simulate('keyup', { keyCode: 48, target: { value: '12' } })
+    expect(tabbed).toBe(true)
+  })
+
+  it('can autotab backward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'ssn',
+      tab: () => { tabbed = true }
+    }
+    const component = mount(<SSN {...expected} />)
+
+    tabbed = false
+    component.find('input#last').simulate('keyup', { keyCode: 48, target: { value: '1234' } })
+    expect(tabbed).toBe(false)
+
+    tabbed = false
+    component.find('input#last').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find('input#middle').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    expect(tabbed).toBe(false)
+
+    tabbed = false
+    component.find('input#middle').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
   })
 })

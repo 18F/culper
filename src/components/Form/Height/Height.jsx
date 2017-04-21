@@ -73,6 +73,7 @@ export default class Height extends ValidationElement {
         <div className="feet">
           <Number id={this.partName('feet')}
                   name="feet"
+                  ref="feet"
                   label={i18n.t('identification.traits.label.feet')}
                   placeholder={i18n.t('identification.traits.placeholder.feet')}
                   disabled={this.props.disabled}
@@ -87,11 +88,13 @@ export default class Height extends ValidationElement {
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
                   onValidate={this.handleValidation}
+                  tabNext={() => { this.props.tab(this.refs.inches.refs.number.refs.input) }}
                   />
         </div>
         <div className="inches">
           <Number id={this.partName('inches')}
                   name="inches"
+                  ref="inches"
                   label={i18n.t('identification.traits.label.inches')}
                   placeholder={i18n.t('identification.traits.placeholder.inches')}
                   disabled={this.props.disabled}
@@ -106,6 +109,7 @@ export default class Height extends ValidationElement {
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
                   onValidate={this.handleValidation}
+                  tabBack={() => { this.props.tab(this.refs.feet.refs.number.refs.input) }}
                   />
         </div>
       </div>
@@ -117,5 +121,6 @@ Height.defaultProps = {
   feet: '',
   inches: '',
   error: false,
-  valid: false
+  valid: false,
+  tab: (input) => { input.focus() }
 }

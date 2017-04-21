@@ -12,7 +12,7 @@ const navigation = [
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },
       { name: 'SSN', url: 'ssn' },
-      { name: 'Physical attributes', url: 'physical' }
+      { name: 'Your identifying information', url: 'physical' }
     ]
   },
   {
