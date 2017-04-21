@@ -157,6 +157,7 @@ class Relationships extends ValidationElement {
             nextLabel={i18n.t('relationships.destination.relatives')}>
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
+              spouse={this.props.Spouse}
               onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
@@ -186,6 +187,7 @@ class Relationships extends ValidationElement {
             />
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
+              spouse={this.props.Spouse}
               onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
@@ -212,6 +214,7 @@ function mapStateToProps (state) {
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
+    Spouse: extractSpouse(relationships.Marital),
     Cohabitants: relationships.Cohabitants || {},
     Friends: relationships.Friends || {},
     Errors: errors.relationships || [],
@@ -221,6 +224,13 @@ function mapStateToProps (state) {
 
 Relationships.defaultProps = {
   subsection: ''
+}
+
+const extractSpouse = (marital) => {
+  if (!marital || !marital.CivilUnion || !marital.CivilUnion.Name) {
+    return null
+  }
+  return marital.CivilUnion.Name
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Relationships))

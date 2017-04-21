@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement } from '../../../Form'
+import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement, Suggestions } from '../../../Form'
+import { CohabitantValidator } from '../../../../validators/cohabitant'
 
 export default class Cohabitant extends ValidationElement {
   constructor (props) {
@@ -15,7 +16,8 @@ export default class Cohabitant extends ValidationElement {
       OtherNameNotApplicable: props.OtherNameNotApplicable,
       OtherNameMaiden: props.OtherNameMaiden,
       OtherNameUsed: props.OtherNameUsed,
-      CohabitationBegan: props.CohabitationBegan
+      CohabitationBegan: props.CohabitationBegan,
+      SameSpouse: props.SameSpouse
     }
 
     this.updateName = this.updateName.bind(this)
@@ -28,6 +30,9 @@ export default class Cohabitant extends ValidationElement {
     this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
     this.updateOtherNameUsed = this.updateOtherNameUsed.bind(this)
     this.updateCohabitationBegan = this.updateCohabitationBegan.bind(this)
+    this.renderSpouseSuggestion = this.renderSpouseSuggestion.bind(this)
+    this.dismissSpouseSuggestion = this.dismissSpouseSuggestion.bind(this)
+    this.onSpouseSuggestion = this.onSpouseSuggestion.bind(this)
   }
 
   update (field, values) {
@@ -43,13 +48,21 @@ export default class Cohabitant extends ValidationElement {
           OtherNameNotApplicable: this.state.OtherNameNotApplicable,
           OtherNameMaiden: this.state.OtherNameMaiden,
           OtherNameUsed: this.state.OtherNameUsed,
-          CohabitationBegan: this.state.CohabitationBegan
+          CohabitationBegan: this.state.CohabitationBegan,
+          SameSpouseConfirmed: this.state.SameSpouseConfirmed
         })
       }
     })
   }
 
   updateName (values) {
+    if (this.props.SameSpouseConfirmed) {
+      return
+    }
+    const similarSpouse = new CohabitantValidator({Name: values}).similarSpouse(this.props.spouse)
+    if (similarSpouse) {
+      this.update('SameSpouse', true)
+    }
     this.update('Name', values)
   }
 
@@ -89,18 +102,54 @@ export default class Cohabitant extends ValidationElement {
     this.update('CohabitationBegan', values)
   }
 
+  renderSpouseSuggestion () {
+    const spouse = this.props.spouse
+    const name = spouse
+      ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last || ''}`.trim()
+      : ''
+    return (
+      <div>
+        {name}
+      </div>
+    )
+  }
+
+  dismissSpouseSuggestion () {
+    this.update('SameSpouse', false)
+    this.update('Name', {})
+  }
+
+  onSpouseSuggestion () {
+    this.update('SameSpouseConfirmed', true)
+    this.update('SameSpouse', false)
+  }
+
   render () {
     return (
       <div className="cohabitant">
-        <Field title={i18n.t('relationships.status.cohabitant.heading.name')}
-          adjustFor="labels">
-          <Name name="Name"
-            className="cohabitant-name"
-            {...this.state.Name}
-            onUpdate={this.updateName}
-            onValidate={this.props.onValidate}
-          />
-        </Field>
+        <Suggestions
+          suggestionTitle={i18n.t('relationships.status.cohabitant.suggestion.title')}
+          suggestionParagraph={i18n.m('relationships.status.cohabitant.suggestion.paragraph')}
+          suggestionLabel={i18n.t('relationships.status.cohabitant.suggestion.label')}
+          suggestionDismissLabel={i18n.t('relationships.status.cohabitant.suggestion.dismissLabel')}
+          suggestionLabel={i18n.t('relationships.status.cohabitant.suggestion.label')}
+          suggestionUseLabel={i18n.t('relationships.status.cohabitant.suggestion.useLabel')}
+          suggestions={[this.props.spouse]}
+          renderSuggestion={this.renderSpouseSuggestion}
+          withSuggestions={false}
+          show={this.state.SameSpouse}
+          onDismiss={this.dismissSpouseSuggestion}
+          onSuggestion={this.onSpouseSuggestion}>
+          <Field title={i18n.t('relationships.status.cohabitant.heading.name')}
+            adjustFor="labels">
+            <Name name="Name"
+              className="cohabitant-name"
+              {...this.state.Name}
+              onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
+            />
+          </Field>
+        </Suggestions>
 
         <Field help="relationships.status.cohabitant.help.birthdate"
           title={i18n.t('relationships.status.cohabitant.heading.birthdate')}
@@ -192,4 +241,8 @@ export default class Cohabitant extends ValidationElement {
       </div>
     )
   }
+}
+
+Cohabitant.defaultProps = {
+  SameSpouse: false
 }

@@ -44,6 +44,18 @@ export class CohabitantValidator {
     this.otherNameUsed = state.OtherNameUsed
   }
 
+  similarSpouse (spouse) {
+    if (!this.name || !spouse) {
+      return false
+    }
+
+    if (this.name.first === spouse.first && this.name.last === spouse.last && this.name.middle === spouse.middle) {
+      return true
+    }
+
+    return false
+  }
+
   validOtherName () {
     if (this.otherNameNotApplicable) {
       return true

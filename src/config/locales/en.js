@@ -2241,6 +2241,13 @@ const en = {
           othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
           cohabitationBegan: 'Provide date cohabitation residing with person began'
         },
+        suggestion: {
+          title: 'Is this person your spouse?',
+          paragraph: 'It looks like the information you have entered matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
+          dismissLabel: 'Close and clear name',
+          label: 'Spouse match',
+          useLabel: 'This is not my spouse'
+        },
         othernames: {
           heading: {
             maiden: 'Provide maiden name',
