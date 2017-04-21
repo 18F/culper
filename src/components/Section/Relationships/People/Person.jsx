@@ -112,7 +112,7 @@ export default class Person extends React.Component {
     return (
       <div className="person">
         <Field title={i18n.t('relationships.people.person.heading.knownDates')}
-          help="relationships.people.person.help.KnownDates"
+          help="relationships.people.person.help.knownDates"
         >
           <DateRange name="KnownDates"
             className="known-dates"
@@ -256,7 +256,9 @@ export default class Person extends React.Component {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('relationships.people.person.heading.address')}>
+        <Field title={i18n.t('relationships.people.person.heading.address')}
+          help={`relationships.people.person.help.address`}
+        >
           <Address name="Address"
             label={i18n.t('relationships.people.person.label.address')}
             className="address"
