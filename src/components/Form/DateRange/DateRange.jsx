@@ -76,10 +76,10 @@ export default class DateRange extends ValidationElement {
       // This will force a blur/validation
       this.refs.to.refs.month.refs.autosuggest.input.focus()
       this.refs.to.refs.month.refs.autosuggest.input.blur()
-      this.refs.to.refs.day.refs.input.focus()
-      this.refs.to.refs.day.refs.input.blur()
-      this.refs.to.refs.year.refs.input.focus()
-      this.refs.to.refs.year.refs.input.blur()
+      this.refs.to.refs.day.refs.number.refs.input.focus()
+      this.refs.to.refs.day.refs.number.refs.input.blur()
+      this.refs.to.refs.year.refs.number.refs.input.focus()
+      this.refs.to.refs.year.refs.number.refs.input.blur()
       this.handleValidation(event, null, null)
 
       if (this.props.onUpdate) {

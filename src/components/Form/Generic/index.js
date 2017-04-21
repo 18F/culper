@@ -1,2 +1,3 @@
-import Generic from './Generic'
+import Generic, { autotab } from './Generic'
 export default Generic
+export { autotab }
