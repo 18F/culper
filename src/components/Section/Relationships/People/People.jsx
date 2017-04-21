@@ -5,6 +5,7 @@ import Person from './Person'
 import { PeopleValidator } from '../../../../validators'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
+import { dateRangeFormat } from './../../Psychological/summaryHelper'
 
 export default class People extends ValidationElement {
   constructor (props) {
@@ -56,8 +57,9 @@ export default class People extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Person || {}
+    const date = dateRangeFormat(o.KnownDates)
     const name = o.Name
-      ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
+      ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''} ${date}`.trim()
       : i18n.t('relationships.people.person.collection.summary.unknown')
     const type = i18n.t('relationships.people.person.collection.itemType')
 
@@ -89,7 +91,7 @@ export default class People extends ValidationElement {
         <h2>{i18n.t('relationships.people.heading.title')}</h2>
         {i18n.m('relationships.people.para.intro')}
 
-        <div className="summary progress">
+        <div className="summaryprogress progress">
           <SummaryProgress className="people-summary"
             List={this.peopleSummaryList}
             title={i18n.t('relationships.people.summaryProgress.title')}
@@ -101,7 +103,7 @@ export default class People extends ValidationElement {
             </div>
           </SummaryProgress>
         </div>
-        <div className="summary counter">
+        <div className="summaryprogress counter">
           <PeopleCounter List={this.state.List} />
         </div>
 
@@ -110,7 +112,6 @@ export default class People extends ValidationElement {
           onUpdate={this.updateList}
           summary={this.summary}
           onValidate={this.handleValidation}
-          description={i18n.t('relationships.people.person.collection.description')}
           appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
           appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
           appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
