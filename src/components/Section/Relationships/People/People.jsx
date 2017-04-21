@@ -1,8 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement } from '../../../Form'
+import { Accordion, ValidationElement, Svg } from '../../../Form'
 import Person from './Person'
 import { PeopleValidator } from '../../../../validators'
+import SummaryProgress from '../../History/SummaryProgress'
+import PeopleCounter from './PeopleCounter'
 
 export default class People extends ValidationElement {
   constructor (props) {
@@ -15,6 +17,7 @@ export default class People extends ValidationElement {
 
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
+    this.peopleSummaryList = this.peopleSummaryList.bind(this)
   }
 
   update (field, values) {
@@ -66,22 +69,53 @@ export default class People extends ValidationElement {
     )
   }
 
+  peopleSummaryList () {
+    return this.state.List.reduce((dates, item) => {
+      if (!item || !item.Person || !item.Person.KnownDates) {
+        return dates
+      }
+
+      const knownDates = item.Person.KnownDates
+      if (knownDates.from.date && knownDates.to.date) {
+        return dates.concat(item.Person.KnownDates)
+      }
+      return dates
+    }, [])
+  }
+
   render () {
     return (
-      <div className="competence">
+      <div className="people">
         <h2>{i18n.t('relationships.people.heading.title')}</h2>
         {i18n.m('relationships.people.para.intro')}
-          <Accordion minimum="1"
-            items={this.state.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('relationships.people.person.collection.description')}
-            appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
-            appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
-            appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
-            <Person name="Person" bind={true} />
-          </Accordion>
+
+        <div className="summary progress">
+          <SummaryProgress className="people-summary"
+            List={this.peopleSummaryList}
+            title={i18n.t('relationships.people.summaryProgress.title')}
+            unit={i18n.t('relationships.people.summaryProgress.unit')}
+            total={7}
+          >
+            <div className="summary-icon">
+              <Svg src="img/people-who-know-you.svg" />
+            </div>
+          </SummaryProgress>
+        </div>
+        <div className="summary counter">
+          <PeopleCounter List={this.state.List} />
+        </div>
+
+        <Accordion minimum="1"
+          items={this.state.List}
+          onUpdate={this.updateList}
+          summary={this.summary}
+          onValidate={this.handleValidation}
+          description={i18n.t('relationships.people.person.collection.description')}
+          appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
+          appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
+          appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
+          <Person name="Person" bind={true} />
+        </Accordion>
       </div>
     )
   }

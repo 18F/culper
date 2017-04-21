@@ -8,6 +8,17 @@ export default class PeopleValidator {
     this.people = state.List || []
   }
 
+  validCount () {
+    let count = 0
+    for (let item of this.people) {
+      if (!new PersonValidator(item.Person).isValid()) {
+        continue
+      }
+      count++
+    }
+    return count
+  }
+
   isValid () {
     if (this.people.length < 1) {
       return false
