@@ -235,165 +235,167 @@ export default class CivilUnion extends ValidationElement {
               />
             </Field>
 
-            <Field help="relationships.status.help.foreignBornDocument"
-              title={i18n.t('relationships.status.heading.foreignBornDocument')}>
-              <ForeignBornDocuments name="foreignBornDocument"
-                {...this.state.ForeignBornDocument}
-                onUpdate={this.updateForeignBornDocument}
-                onValidate={this.handleValidation}
-              />
-            </Field>
+            <Show when={this.state.BirthPlace && this.state.BirthPlace.country !== 'United States'}>
+              <Field help="relationships.status.help.foreignBornDocument"
+                     title={i18n.t('relationships.status.heading.foreignBornDocument')}>
+                <ForeignBornDocuments name="foreignBornDocument"
+                                      {...this.state.ForeignBornDocument}
+                                      onUpdate={this.updateForeignBornDocument}
+                                      onValidate={this.handleValidation}
+                                      />
+              </Field>
+            </Show>
 
             <Field title={i18n.t('relationships.status.heading.ssn')}>
               <SSN name="ssn"
-                {...this.state.SSN}
-                onUpdate={this.updateSSN}
-                onValidate={this.handleValidation}
-              />
+                   {...this.state.SSN}
+                   onUpdate={this.updateSSN}
+                   onValidate={this.handleValidation}
+                   />
             </Field>
 
             <Field help="relationships.status.help.othernames"
-              className="othername"
-              title={i18n.t('relationships.status.heading.othernames')}>
+                   className="othername"
+                   title={i18n.t('relationships.status.heading.othernames')}>
               <p>{i18n.t('relationships.status.para.othernames')}</p>
               <NotApplicable name="OtherNameNotApplicable"
-                applicable={this.state.OtherNameNotApplicable}
-                label={i18n.t('reference.label.idk')}
-                or={i18n.m('reference.para.or')}
-                onUpdate={this.updateOtherNameNotApplicable}>
+                             applicable={this.state.OtherNameNotApplicable}
+                             label={i18n.t('reference.label.idk')}
+                             or={i18n.m('reference.para.or')}
+                             onUpdate={this.updateOtherNameNotApplicable}>
                 <Name name="othername"
-                  value={this.state.Othername}
-                  onUpdate={this.updateOtherName}
-                  onValidate={this.handleValidation}
-                />
+                      value={this.state.Othername}
+                      onUpdate={this.updateOtherName}
+                      onValidate={this.handleValidation}
+                      />
                 <Field title={i18n.t('relationships.status.othernames.heading.maiden')}
-                  help="alias.maiden.help"
-                  adjustFor="buttons"
-                  shrink={true}>
+                       help="alias.maiden.help"
+                       adjustFor="buttons"
+                       shrink={true}>
                   <MaidenName name="MaidenName"
-                    {...this.OtherNameMaiden}
-                    onUpdate={this.updateOtherNameMaiden}
-                    onValidate={this.handleValidation}
-                  />
+                              {...this.OtherNameMaiden}
+                              onUpdate={this.updateOtherNameMaiden}
+                              onValidate={this.handleValidation}
+                              />
                 </Field>
 
                 <Field title={i18n.t('relationships.status.othernames.heading.used')}
-                  adjustFor="daterange"
-                  shrink={true}>
+                       adjustFor="daterange"
+                       shrink={true}>
                   <DateRange name="DatesUsed"
-                    className="datesused"
-                    {...this.DatesUsed}
-                    onUpdate={this.updateDatesUsed}
-                    onValidate={this.handleValidation}
-                  />
+                             className="datesused"
+                             {...this.DatesUsed}
+                             onUpdate={this.updateDatesUsed}
+                             onValidate={this.handleValidation}
+                             />
                 </Field>
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.enteredCivilUnion')}>
               <DateControl name="enteredCivilUnion"
-                className="entered"
-                {...this.state.EnteredCivilUnion}
-                onUpdate={this.updateEnteredCivilUnion}
-                onValidate={this.handleValidation}
-              />
+                           className="entered"
+                           {...this.state.EnteredCivilUnion}
+                           onUpdate={this.updateEnteredCivilUnion}
+                           onValidate={this.handleValidation}
+                           />
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.address')}
-              help="alias.used.help"
-              adjustFor="address"
-              shrink={true}>
+                   help="alias.used.help"
+                   adjustFor="address"
+                   shrink={true}>
               <Address name="Address"
-                {...this.state.Address}
-                onUpdate={this.updateAddress}
-                onValidate={this.handleValidation}
-              />
+                       {...this.state.Address}
+                       onUpdate={this.updateAddress}
+                       onValidate={this.handleValidation}
+                       />
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.telephone')}
-              help="alias.used.help"
-              adjustFor="telephone"
-              shrink={true}>
+                   help="alias.used.help"
+                   adjustFor="telephone"
+                   shrink={true}>
               <Telephone name="Telephone"
-                {...this.state.Telephone}
-                onUpdate={this.updateTelephone}
-                onValidate={this.handleValidation}
-              />
+                         {...this.state.Telephone}
+                         onUpdate={this.updateTelephone}
+                         onValidate={this.handleValidation}
+                         />
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.email')}
-              help="relationships.status.help.email"
-              adjustFor="email">
+                   help="relationships.status.help.email"
+                   adjustFor="email">
               <Email name="Email"
-                {...this.state.Email}
-                onUpdate={this.updateEmail}
-                onValidate={this.handleValidation}
-              />
+                     {...this.state.Email}
+                     onUpdate={this.updateEmail}
+                     onValidate={this.handleValidation}
+                     />
             </Field>
 
             <Field title={i18n.t('relationships.status.heading.separated')}>
               <Branch name="separated"
-                className="separated"
-                value={this.state.Separated}
-                help="relationships.status.separated"
-                onUpdate={this.updateSeparated}
-                onValidate={this.props.onValidate}>
+                      className="separated"
+                      value={this.state.Separated}
+                      help="relationships.status.separated"
+                      onUpdate={this.updateSeparated}
+                      onValidate={this.props.onValidate}>
               </Branch>
             </Field>
 
             <Show when={this.state.Separated === 'Yes'}>
               <div>
                 <Field title={i18n.t('relationships.status.heading.dateSeparated')}
-                  help="alias.used.help">
+                       help="alias.used.help">
                   <DateControl name="DateSeparated"
-                    className="dateseparated"
-                    {...this.state.DateSeparated}
-                    onUpdate={this.updateDateSeparated}
-                    onValidate={this.props.onValidate}
-                  />
+                               className="dateseparated"
+                               {...this.state.DateSeparated}
+                               onUpdate={this.updateDateSeparated}
+                               onValidate={this.props.onValidate}
+                               />
                 </Field>
 
                 <Field title={i18n.t('relationships.status.heading.addressSeparated')}
-                  adjustFor="address"
-                  className="address-separated"
-                  help="alias.used.help">
+                       adjustFor="address"
+                       className="address-separated"
+                       help="alias.used.help">
                   <NotApplicable name="OtherNameNotApplicable"
-                    applicable={this.state.AddressSeparatedNotApplicable}
-                    label={i18n.t('reference.label.idk')}
-                    or={i18n.m('reference.para.or')}
-                    onUpdate={this.updateAddressSeparatedNotApplicable}>
+                                 applicable={this.state.AddressSeparatedNotApplicable}
+                                 label={i18n.t('reference.label.idk')}
+                                 or={i18n.m('reference.para.or')}
+                                 onUpdate={this.updateAddressSeparatedNotApplicable}>
                     <Address name="addressSeparated"
-                      {...this.state.AddressSeparated}
-                      onUpdate={this.updateAddressSeparated}
-                      onValidate={this.props.onValidate}
-                    />
+                             {...this.state.AddressSeparated}
+                             onUpdate={this.updateAddressSeparated}
+                             onValidate={this.props.onValidate}
+                             />
                   </NotApplicable>
                 </Field>
               </div>
             </Show>
             <Field title={i18n.t('relationships.status.heading.divorced')}>
               <Branch name="divorced"
-                className="divorced"
-                value={this.state.Divorced}
-                help="relationships.status.divorced"
-                onUpdate={this.updateDivorced}
-                onValidate={this.props.onValidate}>
+                      className="divorced"
+                      value={this.state.Divorced}
+                      help="relationships.status.divorced"
+                      onUpdate={this.updateDivorced}
+                      onValidate={this.props.onValidate}>
               </Branch>
             </Field>
 
             <Show when={this.state.Divorced === 'Yes'}>
               <Accordion minimum="1"
-                items={this.state.DivorcedList}
-                onUpdate={this.updateDivorcedList}
-                summary={this.divorceSummary}
-                onValidate={this.handleValidation}
-                description={i18n.t('relationships.status.divorce.collection.description')}
-                appendTitle={i18n.t('relationships.status.divorce.collection.appendTitle')}
-                appendMessage={i18n.m('relationships.status.divorce.collection.appendMessage')}
-                appendLabel={i18n.t('relationships.status.divorce.collection.appendLabel')}>
+                         items={this.state.DivorcedList}
+                         onUpdate={this.updateDivorcedList}
+                         summary={this.divorceSummary}
+                         onValidate={this.handleValidation}
+                         description={i18n.t('relationships.status.divorce.collection.description')}
+                         appendTitle={i18n.t('relationships.status.divorce.collection.appendTitle')}
+                         appendMessage={i18n.m('relationships.status.divorce.collection.appendMessage')}
+                         appendLabel={i18n.t('relationships.status.divorce.collection.appendLabel')}>
                 <Divorce name="Divorce"
-                  bind={true}
-                />
+                         bind={true}
+                         />
               </Accordion>
             </Show>
           </div>
@@ -405,4 +407,3 @@ export default class CivilUnion extends ValidationElement {
 CivilUnion.defaultProps = {
   List: []
 }
-

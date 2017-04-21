@@ -23,7 +23,7 @@ describe('The cohabitant component', () => {
     expect(component.find('.civil-union').length).toEqual(1)
     component.find('.civil input#first').simulate('change')
     component.find('.birthdate input#month').simulate('change', { target: { value: '12' } })
-    component.find('.birthplace .yes input').simulate('change')
+    component.find('.birthplace .no input').simulate('change')
     component.find('.maiden-name .yes input').simulate('change')
     component.find('.foreign-born-documents input').first().simulate('click')
     component.find('.foreign-born-documents .other input').simulate('click')
