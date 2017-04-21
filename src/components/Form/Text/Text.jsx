@@ -8,7 +8,6 @@ export default class Text extends ValidationElement {
 
     this.state = {
       value: props.value || '',
-      focus: props.focus || false,
       error: props.error || false,
       valid: props.valid || false
     }
@@ -34,24 +33,6 @@ export default class Text extends ValidationElement {
           name: this.props.name
         })
       }
-    })
-  }
-
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
     })
   }
 
@@ -82,13 +63,16 @@ export default class Text extends ValidationElement {
                error={this.props.error}
                valid={this.props.valid}
                onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               onValidate={this.handleValidation.bind(this)}
+               onFocus={this.props.onFocus}
+               onBlur={this.props.onBlur}
+               onValidate={this.handleValidation}
                onKeyDown={this.props.onKeyDown}
                onCopy={this.props.onCopy}
                onCut={this.props.onCut}
                onPaste={this.props.onPaste}
+               clipboard={this.props.clipboard}
+               tabBack={this.props.tabBack}
+               tabNext={this.props.tabNext}
                ref="text"
                />
     )
