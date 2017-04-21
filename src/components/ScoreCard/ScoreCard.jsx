@@ -28,11 +28,14 @@ class ScoreCard extends React.Component {
   }
 
   render () {
+    const completed = this.completed()
+    const total = this.total()
+
     return (
-      <div className="score-card">
-        <span className="score-card-done">{this.completed()}</span>
+      <div className={`score-card ${completed >= total ? 'completed' : ''}`.trim()}>
+        <span className="score-card-done">{completed}</span>
         /
-        <span className="score-card-total">{this.total()}</span>
+        <span className="score-card-total">{total}</span>
         <span className="score-card-text">{i18n.t('scorecard.complete')}</span>
       </div>
     )
