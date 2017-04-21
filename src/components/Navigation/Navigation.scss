@@ -103,12 +103,14 @@
 
   .section {
     font-size: 1.9rem;
-
+    border-bottom: 1px solid $eapp-grey-dark;
     > span > a {
       position: relative;
-      border-bottom: 1px solid $eapp-grey-dark;
       border-left: 4px solid transparent;
       padding-left: 3.7rem;
+    }
+    > span > a.active {
+      border-bottom: 1px solid $eapp-grey-dark;
     }
 
     a {
@@ -150,12 +152,8 @@
         }
       }
       .subsection > * {
-        padding-left: 2.2rem;
+        padding-left: 2.8rem;
       }
-    }
-
-    .subsection:last-child {
-      border-bottom: 1px solid $eapp-grey-dark;
     }
   }
 }

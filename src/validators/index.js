@@ -33,6 +33,10 @@ import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
 import CitizenshipValidator from './citizenship'
 import CitizenshipMultipleValidator from './citizenship-multiple'
+import CivilUnionValidator from './civilunion'
+import MaritalValidator from './marital'
+import CohabitantsValidator from './cohabitant'
+import RelationshipsValidator from './relationships'
 
 export {
   AddressValidator,
@@ -73,5 +77,9 @@ export {
   CompetenceValidator,
   HospitalizationValidator,
   CitizenshipValidator,
-  CitizenshipMultipleValidator
+  CitizenshipMultipleValidator,
+  CivilUnionValidator,
+  MaritalValidator,
+  CohabitantsValidator,
+  RelationshipsValidator
 }
