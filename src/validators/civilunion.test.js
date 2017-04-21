@@ -1,4 +1,4 @@
-import CivilUnion from './civilunion'
+import CivilUnionValidator from './civilunion'
 
 describe('CivilUnion validation', function () {
   it('validates divorce', () => {
@@ -91,7 +91,7 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnion(test.state, null).validDivorced()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.state, null).validDivorced()).toBe(test.expected)
     })
   })
 
@@ -144,7 +144,7 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnion(test.state, null).validSeparated()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.state, null).validSeparated()).toBe(test.expected)
     })
   })
 
@@ -183,7 +183,7 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnion(test.state, null).validOtherName()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.state, null).validOtherName()).toBe(test.expected)
     })
   })
 
@@ -268,7 +268,38 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnion(test.state, null).isValid()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.state, null).isValid()).toBe(test.expected)
+    })
+  })
+
+  it('validates foreign born documents', () => {
+    const tests = [
+      {
+        state: {
+          BirthPlace: {
+            domestic: 'No',
+            country: 'Germany',
+            city: 'Munich'
+          },
+          ForeignBornDocument: {
+            DocumentType: 'FS240',
+            DocumentExpirationNotApplicable: true,
+            DocumentNumber: {
+              value: 'A1234'
+            }
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          BirthPlace: {}
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CivilUnionValidator(test.state, null).validForeignBornDocument()).toBe(test.expected)
     })
   })
 })
