@@ -8,8 +8,8 @@ export default class ZipCode extends ValidationElement {
 
     this.state = {
       value: props.value,
-      error: props.error || false,
-      valid: props.valid || false
+      error: props.error,
+      valid: props.valid
     }
   }
 
@@ -52,6 +52,7 @@ export default class ZipCode extends ValidationElement {
   render () {
     return (
       <Text name={this.props.name}
+            ref="zipcode"
             label={this.props.label}
             placeholder={this.props.placeholder}
             className={this.props.className}
@@ -66,7 +67,15 @@ export default class ZipCode extends ValidationElement {
             onValidate={this.handleValidation}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
+            tabBack={this.props.tabBack}
+            tabNext={this.props.tabNext}
             />
     )
   }
+}
+
+ZipCode.defaultProps = {
+  value: '',
+  error: false,
+  valid: false
 }

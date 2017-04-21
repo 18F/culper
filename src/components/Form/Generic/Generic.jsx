@@ -1,6 +1,29 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 
+export const autotab = (event, maxlength, back, next) => {
+  const input = event.target
+  const value = input.value
+  const code = event.keyCode
+  const backCodes = [8, 46]
+  const nextCodes = [
+    // 0 through 9
+    48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
+
+    // 0 through 9 on the numpad
+    96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+
+    // a through z
+    65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+  ]
+
+  if (backCodes.includes(code) && value.length < 1) {
+    back()
+  } else if (nextCodes.includes(code) && value.length >= parseInt(maxlength, 10)) {
+    next()
+  }
+}
+
 export default class Generic extends ValidationElement {
   constructor (props) {
     super(props)
@@ -113,26 +136,7 @@ export default class Generic extends ValidationElement {
    * Handle the key up event.
    */
   handleKeyUp (event) {
-    const input = event.target
-    const value = input.value
-    const code = event.keyCode
-    const backCodes = [8, 46]
-    const nextCodes = [
-      // 0 through 9
-      48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
-
-      // 0 through 9 on the numpad
-      96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
-
-      // a through z
-      65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
-    ]
-
-    if (backCodes.includes(code) && value.length < 1) {
-      this.props.tabBack()
-    } else if (nextCodes.includes(code) && value.length >= this.props.maxlength) {
-      this.props.tabNext()
-    }
+    autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
   }
 
   /**
@@ -153,7 +157,7 @@ export default class Generic extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    return `${this.props.className || ''} ${!this.props.disabled && this.state.error ? 'usa-input-error' : ''}`.trim()
+    return `${this.props.className || ''} ${!this.props.disabled && (this.state.error || this.props.error) ? 'usa-input-error' : ''}`.trim()
   }
 
   /**
@@ -164,7 +168,7 @@ export default class Generic extends ValidationElement {
       return 'disabled'
     }
 
-    return `${this.state.error ? 'usa-input-error-label' : ''}`.trim()
+    return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
   }
 
   /**
@@ -175,7 +179,7 @@ export default class Generic extends ValidationElement {
       return null
     }
 
-    return `${this.state.focus ? 'usa-input-focus' : ''} ${this.state.valid ? 'usa-input-success' : ''}`.trim()
+    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid && this.props.valid ? 'usa-input-success' : ''}`.trim()
   }
 
   render () {

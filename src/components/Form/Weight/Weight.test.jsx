@@ -10,7 +10,7 @@ describe('The Weight component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Pounds',
-      value: 10,
+      value: '10',
       onBlur: () => { blur++ },
       onFocus: () => { focus++ }
     }

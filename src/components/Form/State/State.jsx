@@ -17,6 +17,8 @@ export default class State extends ValidationElement {
                 onFocus={this.props.onFocus}
                 value={this.props.value}
                 required={this.props.required}
+                tabBack={this.props.tabBack}
+                tabNext={this.props.tabNext}
                 >
         <option value="Alabama">AL</option>
         <option value="Alaska">AK</option>

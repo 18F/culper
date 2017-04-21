@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import ReactMarkdown from 'react-markdown'
 import Autosuggest from 'react-autosuggest'
+import { autotab } from '../Generic'
 
 const trimLeadingZero = (num) => {
   if (isNaN(num)) {
@@ -46,17 +47,19 @@ export default class Dropdown extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value || '',
+      value: props.value,
       options: [],
       suggestions: [],
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid
     }
 
+    this.handleKeyUp = this.handleKeyUp.bind(this)
     this.onSuggestionChange = this.onSuggestionChange.bind(this)
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
   }
 
   componentDidMount () {
@@ -76,7 +79,7 @@ export default class Dropdown extends ValidationElement {
         // value.
         let event = {
           target: {
-            id: this.props.id || '',
+            id: this.props.id,
             name: this.props.name,
             value: this.state.value
           },
@@ -155,6 +158,20 @@ export default class Dropdown extends ValidationElement {
     })
   }
 
+  /**
+   * Handle the key up event.
+   */
+  handleKeyUp (event) {
+    autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
+  }
+
+  /**
+   * Prevents clipboard events from making changes to the value of the elements
+   */
+  disallowClipboard (event) {
+    event.preventDefault()
+  }
+
   getSuggestions (value) {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
@@ -187,6 +204,10 @@ export default class Dropdown extends ValidationElement {
     this.setState({
       suggestions: []
     })
+  }
+
+  onSuggestionSelected (event) {
+    this.props.tabNext()
   }
 
   /**
@@ -246,9 +267,14 @@ export default class Dropdown extends ValidationElement {
       placeholder: this.props.placeholder,
       disabled: this.props.disabled,
       pattern: this.props.pattern,
-      readOnly: this.props.readOnly,
+      maxLength: this.props.maxlength,
+      readOnly: this.props.readonly,
       onChange: this.onSuggestionChange,
-      onBlur: this.handleBlur
+      onBlur: this.handleBlur,
+      onKeyUp: this.handleKeyUp,
+      onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
+      onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
+      onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard
     }
 
     return (
@@ -260,6 +286,7 @@ export default class Dropdown extends ValidationElement {
         <Autosuggest suggestions={this.state.suggestions}
                      onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                      onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                     onSuggestionSelected={this.onSuggestionSelected}
                      getSuggestionValue={getSuggestionValue}
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
@@ -268,4 +295,23 @@ export default class Dropdown extends ValidationElement {
       </div>
     )
   }
+}
+
+Dropdown.defaultProps = {
+  id: '',
+  name: 'dropdown',
+  label: '',
+  placeholder: '',
+  value: '',
+  maxlength: 255,
+  disabled: false,
+  pattern: '',
+  readonly: false,
+  className: '',
+  focus: false,
+  error: false,
+  valid: false,
+  clipboard: true,
+  tabNext: () => {},
+  tabBack: () => {}
 }
