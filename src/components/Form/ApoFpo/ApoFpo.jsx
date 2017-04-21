@@ -46,6 +46,8 @@ export default class ApoFpo extends ValidationElement {
             valid={this.state.valid}
             onChange={this.handleChange}
             onValidate={this.handleValidation}
+            tabBack={this.props.tabBack}
+            tabNext={this.props.tabNext}
             />
     )
   }

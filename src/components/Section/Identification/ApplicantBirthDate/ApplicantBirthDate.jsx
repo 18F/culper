@@ -150,10 +150,16 @@ export default class ApplicantBirthDate extends ValidationElement {
                        onValidate={this.handleValidation}
                        />
           <Show when={this.state.errorCodes.includes('age')}>
-            <div className="message error">
-              <i className="fa fa-exclamation"></i>
-              <h5>{i18n.t('error.birthdate.age.title')}</h5>
-              {i18n.m('error.birthdate.age.message')}
+            <div className="field">
+              <div className="table">
+                <div className="messages">
+                  <div className="message error">
+                    <i className="fa fa-exclamation"></i>
+                    <h5>{i18n.t('error.birthdate.age.title')}</h5>
+                    {i18n.m('error.birthdate.age.message')}
+                  </div>
+                </div>
+              </div>
             </div>
           </Show>
         </Field>
