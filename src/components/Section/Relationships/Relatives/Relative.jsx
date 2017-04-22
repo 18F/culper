@@ -6,7 +6,6 @@ import { ValidationElement, Branch, Show, Svg, BranchCollection,
          Field, NotApplicable
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
-import { subtext } from './Relatives'
 import Alias from './Alias'
 
 /**
@@ -19,6 +18,17 @@ const sendUpdate = (fn, name, props) => {
       ...props
     })
   }
+}
+
+const subtext = (text, subtext) => {
+  return (
+    <div className="up-a-bit">
+      <p>
+        {i18n.t(text)}<br />
+        <span className="smaller">{i18n.t(subtext)}</span>
+      </p>
+    </div>
+  )
 }
 
 export default class Relative extends ValidationElement {

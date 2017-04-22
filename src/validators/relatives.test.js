@@ -1,29 +1,6 @@
 import RelativesValidator, { RelativeValidator } from './relatives'
 
 describe('Relatives validation', function () {
-  it('validate initial relations', () => {
-    const tests = [
-      {
-        state: {
-          Relations: [],
-          List: []
-        },
-        expected: false
-      },
-      {
-        state: {
-          Relations: ['Mother'],
-          List: []
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new RelativesValidator(test.state, null).validRelations()).toBe(test.expected)
-    })
-  })
-
   it('validate relative relationship', () => {
     const tests = [
       {
@@ -187,6 +164,13 @@ describe('Relatives validation', function () {
           MaidenName: {}
         },
         expected: false
+      },
+      {
+        state: {
+          MaidenSameAsListed: 'Yes',
+          MaidenName: {}
+        },
+        expected: true
       },
       {
         state: {
@@ -354,6 +338,85 @@ describe('Relatives validation', function () {
 
     tests.forEach(test => {
       expect(new RelativeValidator(test.state, null).validAddress()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative requires citizenship documentation abroad', () => {
+    const tests = [
+      {
+        state: {
+          Relations: ['Father'],
+          Citizenship: ['United States'],
+          IsDeceased: 'Yes',
+          Birthplace: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Citizenship: ['United States'],
+          Birthplace: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Citizenship: ['United States'],
+          Birthplace: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Address: {
+            addressType: 'APOFPO',
+            address: '1234 Some Rd',
+            state: 'APO',
+            city: 'APO',
+            zipcode: '00000'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Citizenship: ['United States'],
+          Birthplace: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Citizenship: ['United States']
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).requiresCitizenshipDocumentation()).toBe(test.expected)
     })
   })
 
@@ -1385,7 +1448,18 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Mother'],
+          List: [
+            {
+              Item: {
+                Relations: ['Mother']
+              }
+            }
+          ]
+        },
+        expected: false
+      },
+      {
+        state: {
           List: [
             {
               Item: {
