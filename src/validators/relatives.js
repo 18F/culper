@@ -5,19 +5,10 @@ import { validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
   constructor (state = {}, props = {}) {
-    this.relations = state.Relations || []
     this.list = state.List || []
   }
 
-  validRelations () {
-    return this.relations.length > 0
-  }
-
   validItems () {
-    if (this.relations.length === 0) {
-      return true
-    }
-
     if (this.list.length === 0) {
       return false
     }
@@ -32,7 +23,7 @@ export default class RelativesValidator {
   }
 
   isValid () {
-    return this.validRelations() && this.validItems()
+    return this.validItems()
   }
 }
 
