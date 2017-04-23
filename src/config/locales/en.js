@@ -1808,7 +1808,7 @@ const en = {
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
-      friends: 'People who know you well',
+      people: 'People who know you well',
       cohabitant: 'Cohabitant'
     },
     relatives: {
@@ -2369,6 +2369,93 @@ const en = {
           title: 'Need help with this question?',
           message: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
           note: ''
+        }
+      }
+    },
+    people: {
+      heading: {
+        title: 'People know who you well'
+      },
+      label: {
+        unit: 'People added'
+      },
+      summaryProgress: {
+        title: 'People who know you well 7 year coverage',
+        unit: 'Years'
+      },
+      para: {
+        intro: '### Provide three people who know you well and who preferably live in the U.S.\n\nThey should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you **covers at least the last seven (7) years.**\n\n **Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.**'
+      },
+      person: {
+        heading: {
+          knownDates: 'Provide dates known',
+          name: 'Provide full name',
+          rank: 'Provide rank/title',
+          relationship: 'Provide relationship to you',
+          mobileTelephone: 'Provide mobile/cell phone number for this person',
+          otherTelephone: 'Provide another phone number for this person',
+          email: 'Provide e-mail address for this person',
+          address: 'Provide home or work address for this person'
+        },
+        label: {
+          address: 'This address is',
+          or: 'or',
+          emailNotApplicable: 'I don\'t know',
+          rankNotApplicable: 'Not applicable',
+          relationship: {
+            title: 'Check all that apply.',
+            neighbor: 'Neighbor',
+            friend: 'Friend',
+            landlord: 'Landlord',
+            business: 'Business',
+            other: 'Other'
+          }
+        },
+        help: {
+          knownDates: {
+            title: 'Need help with known dates',
+            message: 'Provide the dates known for the person who knows you well',
+            note: ''
+          },
+          rank: {
+            title: 'Need help with the rank/title?',
+            message: 'Provide the rank/title of the person who knows you well',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relationship?',
+            message: 'Provide relationship to you for the person who knows you well',
+            note: ''
+          },
+          mobileTelephone: {
+            title: 'Need help with the mobile telephone?',
+            message: 'Provide a mobile number for the person who knows you well',
+            note: ''
+          },
+          otherTelephone: {
+            title: 'Need help with the other telephone?',
+            message: 'Provide another number for the person who knows you well',
+            note: ''
+          },
+          email: {
+            title: 'Need help with the email?',
+            message: 'Provide the email for the person who knows you well',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the address?',
+            message: 'Provide the address for the person who knows you well',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            unknown: 'Provide the person\'s information below'
+          },
+          appendLabel: 'Add another person',
+          appendMessage: 'If yes use the button below to add another instance',
+          appendTitle: 'Do you have an additional person who knows you well to list?',
+          itemType: 'Person'
         }
       }
     }
