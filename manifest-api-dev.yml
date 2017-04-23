@@ -1,0 +1,15 @@
+---
+applications:
+- name: eqip-prototype-api-dev
+  memory: 64M
+  instances: 2
+  domain: fr.cloud.gov
+  host: eqip-prototype-api-dev
+  buildpack: https://github.com/cloudfoundry/go-buildpack
+  path: api
+  command: ./api
+  services:
+    - eqip-postgres
+  env:
+    GOVERSION: go1.7.5
+    ALLOW_2FA_RESET: 1
