@@ -49,6 +49,7 @@ export default class Cohabitant extends ValidationElement {
           OtherNameMaiden: this.state.OtherNameMaiden,
           OtherNameUsed: this.state.OtherNameUsed,
           CohabitationBegan: this.state.CohabitationBegan,
+          SameSpouse: this.state.SameSpouse,
           SameSpouseConfirmed: this.state.SameSpouseConfirmed
         })
       }
@@ -79,7 +80,7 @@ export default class Cohabitant extends ValidationElement {
   }
 
   updateSSN (values) {
-    this.update('SSN', values.value)
+    this.update('SSN', values.value || '')
   }
 
   updateOtherName (values) {
@@ -128,6 +129,7 @@ export default class Cohabitant extends ValidationElement {
     return (
       <div className="cohabitant">
         <Suggestions
+          className="spouse-suggestion"
           suggestionTitle={i18n.t('relationships.status.cohabitant.suggestion.title')}
           suggestionParagraph={i18n.m('relationships.status.cohabitant.suggestion.paragraph')}
           suggestionLabel={i18n.t('relationships.status.cohabitant.suggestion.label')}
@@ -247,5 +249,15 @@ export default class Cohabitant extends ValidationElement {
 }
 
 Cohabitant.defaultProps = {
+  Name: {},
+  Birthdate: {},
+  BirthPlace: {},
+  ForeignBornDocument: {},
+  SSN: {},
+  OtherName: {},
+  OtherNameNotApplicable: {},
+  OtherNameMaiden: {},
+  OtherNameUsed: {},
+  CohabitationBegan: {},
   SameSpouse: false
 }
