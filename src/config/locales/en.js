@@ -2304,7 +2304,7 @@ const en = {
         paragraph: 'This name matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
         dismissLabel: 'This is not my spouse',
         label: 'Spouse match',
-        useLabel: 'Enter a different person'
+        useLabel: 'This is my spouse'
       },
       othernames: {
         heading: {
