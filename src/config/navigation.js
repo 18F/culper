@@ -31,6 +31,19 @@ const navigation = [
     ]
   },
   {
+    name: 'Your history',
+    title: 'Your history',
+    url: 'history',
+    hidden: false,
+    subsections: [
+      { name: 'Where have you lived', url: 'residence' },
+      { name: 'Employment activities', url: 'employment' },
+      { name: 'Where you went to school', url: 'education' },
+      { name: 'Former federal service', url: 'federal' },
+      { hidden: true, name: 'Employment record', url: 'employment' }
+    ]
+  },
+  {
     name: 'Relationships',
     title: 'Relationships',
     url: 'relationships',
@@ -67,19 +80,6 @@ const navigation = [
       { name: 'U.S. military', url: 'history' },
       { name: 'Disciplinary procedures', url: 'disciplinary' },
       { name: 'Foreign military', url: 'foreign' }
-    ]
-  },
-  {
-    name: 'Your history',
-    title: 'Your history',
-    url: 'history',
-    hidden: false,
-    subsections: [
-      { name: 'Where have you lived', url: 'residence' },
-      { name: 'Employment activities', url: 'employment' },
-      { name: 'Where you went to school', url: 'education' },
-      { name: 'Former federal service', url: 'federal' },
-      { hidden: true, name: 'Employment record', url: 'employment' }
     ]
   },
   {
