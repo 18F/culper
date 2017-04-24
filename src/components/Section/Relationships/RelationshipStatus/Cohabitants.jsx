@@ -43,7 +43,7 @@ export default class Cohabitants extends ValidationElement {
   }
 
   summary (item, index) {
-    const itemType = i18n.t('relationships.status.cohabitant.collection.appendLabel')
+    const itemType = i18n.t('relationships.cohabitant.collection.itemType')
     const o = (item || {}).Cohabitant || {}
     const date = (o.CohabitationBegan || {}).date ? `${o.CohabitationBegan.month}/${o.CohabitationBegan.year}` : ''
     const name = o.Name
@@ -77,11 +77,11 @@ export default class Cohabitants extends ValidationElement {
     return (
       <div className="cohabitants">
         <Branch name="hasCohabitant"
-          label={i18n.t('relationships.status.heading.hasCohabitant')}
+          label={i18n.t('relationships.cohabitant.heading.hasCohabitant')}
           labelSize="h3"
           className="has-cohabitant"
           value={this.state.HasCohabitant}
-          help="relationships.status.help.hasCohabitant"
+          help="relationships.cohabitant.help.hasCohabitant"
           onUpdate={this.updateHasCohabitant}
           onValidate={this.handleValidation}>
         </Branch>
@@ -92,10 +92,10 @@ export default class Cohabitants extends ValidationElement {
             onUpdate={this.updateCohabitantList}
             summary={this.summary}
             onValidate={this.handleValidation}
-            description={i18n.t('relationships.status.cohabitant.collection.description')}
-            appendTitle={i18n.t('relationships.status.cohabitant.collection.appendTitle')}
-            appendMessage={i18n.m('relationships.status.cohabitant.collection.appendMessage')}
-            appendLabel={i18n.t('relationships.status.cohabitant.collection.appendLabel')}>
+            description={i18n.t('relationships.cohabitant.collection.description')}
+            appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
+            appendMessage={i18n.m('relationships.cohabitant.collection.appendMessage')}
+            appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
             <Cohabitant name="Cohabitant" spouse={this.props.spouse} bind={true} />
           </Accordion>
         </Show>
