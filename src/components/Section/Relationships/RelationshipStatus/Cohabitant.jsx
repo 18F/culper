@@ -33,6 +33,7 @@ export default class Cohabitant extends ValidationElement {
     this.renderSpouseSuggestion = this.renderSpouseSuggestion.bind(this)
     this.dismissSpouseSuggestion = this.dismissSpouseSuggestion.bind(this)
     this.onSpouseSuggestion = this.onSpouseSuggestion.bind(this)
+    this.clear = this.clear.bind(this)
   }
 
   update (field, values) {
@@ -52,6 +53,28 @@ export default class Cohabitant extends ValidationElement {
           SameSpouse: this.state.SameSpouse,
           SameSpouseConfirmed: this.state.SameSpouseConfirmed
         })
+      }
+    })
+  }
+
+  clear () {
+    const state = {
+      Name: {},
+      Birthdate: null,
+      BirthPlace: null,
+      ForeignBornDocument: null,
+      SSN: null,
+      OtherName: null,
+      OtherNameNotApplicable: null,
+      OtherNameMaiden: null,
+      OtherNameUsed: null,
+      CohabitationBegan: null,
+      SameSpouse: false,
+      SameSpouseConfirmed: false
+    }
+    this.setState(state, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate(state)
       }
     })
   }
@@ -115,12 +138,12 @@ export default class Cohabitant extends ValidationElement {
     )
   }
 
-  dismissSpouseSuggestion () {
+  onSpouseSuggestion () {
     this.update('SameSpouse', false)
-    this.update('Name', {})
+    this.clear()
   }
 
-  onSpouseSuggestion () {
+  dismissSpouseSuggestion () {
     this.update('SameSpouseConfirmed', true)
     this.update('SameSpouse', false)
   }
@@ -139,7 +162,7 @@ export default class Cohabitant extends ValidationElement {
           suggestions={[this.props.spouse]}
           renderSuggestion={this.renderSpouseSuggestion}
           withSuggestions={false}
-          show={this.state.SameSpouse}
+          show={this.props.SameSpouse}
           onDismiss={this.dismissSpouseSuggestion}
           onSuggestion={this.onSpouseSuggestion}>
           <Field title={i18n.t('relationships.status.cohabitant.heading.name')}

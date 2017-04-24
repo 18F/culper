@@ -2131,7 +2131,10 @@ const en = {
         divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
         hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
         addressSeparated: 'If legally separated, provide the location of the record.'
-
+      },
+      notApplicable: {
+        or: 'Or',
+        label: 'Not applicable'
       },
       para: {
         never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
@@ -2242,11 +2245,11 @@ const en = {
           cohabitationBegan: 'Provide date cohabitation residing with person began'
         },
         suggestion: {
-          title: 'Is this person your spouse?',
-          paragraph: 'It looks like the information you have entered matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
-          dismissLabel: 'Close and clear name',
+          title: 'Looks like you\'ve entered this person before',
+          paragraph: 'This name matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
+          dismissLabel: 'This is not my spouse',
           label: 'Spouse match',
-          useLabel: 'This is not my spouse'
+          useLabel: 'Enter a different person'
         },
         othernames: {
           heading: {

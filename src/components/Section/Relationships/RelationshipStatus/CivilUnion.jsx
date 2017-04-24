@@ -263,11 +263,11 @@ export default class CivilUnion extends ValidationElement {
               <p>{i18n.t('relationships.status.para.othernames')}</p>
               <NotApplicable name="OtherNameNotApplicable"
                              applicable={this.state.OtherNameNotApplicable}
-                             label={i18n.t('reference.label.idk')}
-                             or={i18n.m('reference.para.or')}
+                             label={i18n.t('relationships.status.notApplicable.label')}
+                             or={i18n.t('relationships.status.notApplicable.or')}
                              onUpdate={this.updateOtherNameNotApplicable}>
                 <Name name="othername"
-                      value={this.state.Othername}
+                      {...this.state.OtherName}
                       onUpdate={this.updateOtherName}
                       onValidate={this.handleValidation}
                       />
@@ -276,7 +276,7 @@ export default class CivilUnion extends ValidationElement {
                        adjustFor="buttons"
                        shrink={true}>
                   <MaidenName name="MaidenName"
-                              {...this.OtherNameMaiden}
+                              {...this.state.OtherNameMaiden}
                               onUpdate={this.updateOtherNameMaiden}
                               onValidate={this.handleValidation}
                               />
@@ -287,7 +287,7 @@ export default class CivilUnion extends ValidationElement {
                        shrink={true}>
                   <DateRange name="DatesUsed"
                              className="datesused"
-                             {...this.DatesUsed}
+                             {...this.state.DatesUsed}
                              onUpdate={this.updateDatesUsed}
                              onValidate={this.handleValidation}
                              />
@@ -364,8 +364,8 @@ export default class CivilUnion extends ValidationElement {
                        help="alias.used.help">
                   <NotApplicable name="OtherNameNotApplicable"
                                  applicable={this.state.AddressSeparatedNotApplicable}
-                                 label={i18n.t('reference.label.idk')}
-                                 or={i18n.m('reference.para.or')}
+                                 label={i18n.t('relationships.status.notApplicable.label')}
+                                 or={i18n.t('relationships.status.notApplicable.or')}
                                  onUpdate={this.updateAddressSeparatedNotApplicable}>
                     <Address name="addressSeparated"
                              {...this.state.AddressSeparated}
