@@ -1,0 +1,14 @@
+@import 'eqip-colors';
+
+.people-counter {
+  color: $eapp-grey-darker;
+  font-weight: bold;
+
+  .count {
+    font-size: 26pt;
+
+    &.covered {
+      color: $eapp-green;
+    }
+  }
+}

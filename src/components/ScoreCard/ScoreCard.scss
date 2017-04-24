@@ -2,23 +2,21 @@
 @import 'eqip-fonts';
 
 .score-card {
-  height: 10rem;
-  background: $eapp-green;
-  font-size: 4.8rem;
+  font-size: 6.5rem;
   font-weight: $eapp-bold;
-  color: $eapp-green-dark;
+  color: $eapp-grey-darker;
   text-align: center;
-  padding-top: 0.4rem;
+  margin: 0;
+  padding-bottom: 3.8rem;
+  border-bottom: 3px solid $eapp-grey;
 
-  .score-card-done {
-    color: #fefefe;
+  &.completed {
+    color: $eapp-green;
   }
 
   .score-card-text {
     display: block;
-    font-size: 1.7rem;
-    font-weight: $eapp-book;
-    color: #fefefe;
+    font-size: 2.2rem;
     line-height: 0.5;
   }
 }
