@@ -148,6 +148,7 @@ class Relationships extends ValidationElement {
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
               onSpouseUpdate={this.updateSpouse}
+              currentAddress={this.props.CurrentAddress}
             />
           </SectionView>
           <SectionView name="status/marital"
@@ -160,6 +161,7 @@ class Relationships extends ValidationElement {
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
               onSpouseUpdate={this.updateSpouse}
+              currentAddress={this.props.CurrentAddress}
             />
           </SectionView>
           <SectionView name="status/cohabitant"
@@ -208,6 +210,7 @@ class Relationships extends ValidationElement {
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
               onSpouseUpdate={this.updateSpouse}
+              currentAddress={this.props.CurrentAddress}
             />
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
@@ -238,6 +241,7 @@ function mapStateToProps (state) {
   let relationships = app.Relationships || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
+  let history = app.History || {}
   return {
     Section: section,
     Relationships: relationships,
@@ -245,6 +249,7 @@ function mapStateToProps (state) {
     Marital: relationships.Marital || {},
     Spouse: extractSpouse(relationships.Marital),
     Cohabitants: relationships.Cohabitants || {},
+    CurrentAddress: history.CurrentAddress,
     People: relationships.People || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || []

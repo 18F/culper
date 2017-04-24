@@ -20,6 +20,7 @@ export default class State extends ValidationElement {
                 required={this.props.required}
                 tabBack={this.props.tabBack}
                 tabNext={this.props.tabNext}
+                receiveProps={true}
                 >
         <option value="Alabama">AL</option>
         <option value="Alaska">AK</option>
