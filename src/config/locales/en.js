@@ -2112,9 +2112,23 @@ const en = {
         }
       }
     },
-    status: {
+    marital: {
       heading: {
-        title: 'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.',
+        title: 'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.'
+      },
+      label: {
+        status: {
+          never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
+          separated: 'Separated',
+          annulled: 'Annulled',
+          divorced: 'Divorced/dissolved',
+          widowed: 'Widowed'
+        }
+      }
+    },
+    civilUnion: {
+      heading: {
         name: 'Provide full name',
         birthdate: 'Provide birthdate',
         birthplace: 'Provide place of birth',
@@ -2129,7 +2143,6 @@ const en = {
         enteredCivilUnion: 'Provide date when you entered into your civil marriage, civil union, or domestic partnership.',
         locationSeparated: 'If legally separated, provide the location of the record',
         divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
-        hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
         addressSeparated: 'If legally separated, provide the location of the record.'
       },
       notApplicable: {
@@ -2141,15 +2154,7 @@ const en = {
         othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
       },
       label: {
-        birthplace: 'Was this person born in the United States of America?',
-        status: {
-          never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
-          inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
-          separated: 'Separated',
-          annulled: 'Annulled',
-          divorced: 'Divorced/dissolved',
-          widowed: 'Widowed'
-        }
+        birthplace: 'Was this person born in the United States of America?'
       },
       divorce: {
         heading: {
@@ -2232,107 +2237,6 @@ const en = {
           }
         }
       },
-      cohabitant: {
-        heading: {
-          name: 'Provide the cohabitant full name',
-          address: 'Provide location',
-          birthdate: 'Provide birthdate',
-          telephone: 'Provide telephone number',
-          birthplace: 'Provide the place of birth.',
-          foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
-          ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
-          othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
-          cohabitationBegan: 'Provide date cohabitation residing with person began'
-        },
-        suggestion: {
-          title: 'Looks like you\'ve entered this person before',
-          paragraph: 'This name matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
-          dismissLabel: 'This is not my spouse',
-          label: 'Spouse match',
-          useLabel: 'Enter a different person'
-        },
-        othernames: {
-          heading: {
-            maiden: 'Provide maiden name',
-            used: 'Provide dates name was used'
-          }
-        },
-        label: {
-          divorced: 'Divorced/Dissolved',
-          widowed: 'Widowed',
-          annulled: 'Annulled',
-          birthplace: 'Was this person born in the United States of America'
-        },
-        collection: {
-          description: '',
-          appendTitle: 'Do you have an additional cohabitant to report?',
-          appendMessage: 'If yes please use the button below to add another cohabitant.',
-          appendLabel: 'Add another cohabitant',
-          itemType: 'Cohabitant'
-        },
-        help: {
-          birthdate: {
-            title: 'Need help with the birthdate?',
-            message: 'Provide the date of birth',
-            note: ''
-          },
-          birthplace: {
-            title: 'Need help with the birth place?',
-            message: 'Provide the place of birth',
-            note: ''
-          },
-          recognized: {
-            title: 'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
-            message: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
-            note: ''
-          },
-          separated: {
-            title: 'Need help with separated?',
-            message: 'Mark whether you are separated',
-            note: ''
-          },
-          divorced: {
-            title: 'Need help with this question?',
-            message: 'Mark whether you are currently divorced',
-            note: ''
-          },
-          email: {
-            title: 'Need help with providing email?',
-            message: 'Enter the email of the person',
-            note: ''
-          },
-          telephone: {
-            title: 'Need help with providing a telephone number?',
-            message: 'Enter the telephone number of the person',
-            note: ''
-          },
-          address: {
-            title: 'Need help with providing address?',
-            message: 'Provide the address of the person',
-            note: ''
-          },
-          dateDivorced: {
-            title: 'Need help with providing date divorced/dissolved?',
-            message: 'Provide the date divorced/dissolved, annulled or widowed',
-            note: ''
-          },
-          foreignBornDocument: {
-            title: 'Need help with selecting the appropriate documentation?',
-            message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
-            note: ''
-          },
-          ssn: {
-            title: 'Need help with social security number?',
-            message: 'Provide the social security number of the person',
-            note: ''
-          },
-          cohabitationBegan: {
-            title: 'Need help with when cohabitation began?',
-            message: 'Provide date cohabitation residing with person began',
-            note: ''
-          }
-        }
-      },
       othernames: {
         heading: {
           maiden: 'Provide maiden name',
@@ -2378,6 +2282,113 @@ const en = {
         hasCohabitant: {
           title: 'Need help with this question?',
           message: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
+          note: ''
+        }
+      }
+    },
+    cohabitant: {
+      heading: {
+        hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
+        name: 'Provide the cohabitant full name',
+        address: 'Provide location',
+        birthdate: 'Provide birthdate',
+        telephone: 'Provide telephone number',
+        birthplace: 'Provide the place of birth.',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
+        ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+        othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+        cohabitationBegan: 'Provide date cohabitation residing with person began'
+      },
+      suggestion: {
+        title: 'Looks like you\'ve entered this person before',
+        paragraph: 'This name matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
+        dismissLabel: 'This is not my spouse',
+        label: 'Spouse match',
+        useLabel: 'Enter a different person'
+      },
+      othernames: {
+        heading: {
+          maiden: 'Provide maiden name',
+          used: 'Provide dates name was used'
+        }
+      },
+      label: {
+        divorced: 'Divorced/Dissolved',
+        widowed: 'Widowed',
+        annulled: 'Annulled',
+        birthplace: 'Was this person born in the United States of America'
+      },
+      collection: {
+        description: '',
+        appendTitle: 'Do you have an additional cohabitant to report?',
+        appendMessage: 'If yes please use the button below to add another cohabitant.',
+        appendLabel: 'Add another cohabitant',
+        itemType: 'Cohabitant'
+      },
+      help: {
+        birthdate: {
+          title: 'Need help with the birthdate?',
+          message: 'Provide the date of birth',
+          note: ''
+        },
+        birthplace: {
+          title: 'Need help with the birth place?',
+          message: 'Provide the place of birth',
+          note: ''
+        },
+        recognized: {
+          title: 'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
+          message: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+          note: ''
+        },
+        separated: {
+          title: 'Need help with separated?',
+          message: 'Mark whether you are separated',
+          note: ''
+        },
+        divorced: {
+          title: 'Need help with this question?',
+          message: 'Mark whether you are currently divorced',
+          note: ''
+        },
+        email: {
+          title: 'Need help with providing email?',
+          message: 'Enter the email of the person',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with providing a telephone number?',
+          message: 'Enter the telephone number of the person',
+          note: ''
+        },
+        address: {
+          title: 'Need help with providing address?',
+          message: 'Provide the address of the person',
+          note: ''
+        },
+        dateDivorced: {
+          title: 'Need help with providing date divorced/dissolved?',
+          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          note: ''
+        },
+        foreignBornDocument: {
+          title: 'Need help with selecting the appropriate documentation?',
+          message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+          note: ''
+        },
+        ssn: {
+          title: 'Need help with social security number?',
+          message: 'Provide the social security number of the person',
+          note: ''
+        },
+        cohabitationBegan: {
+          title: 'Need help with when cohabitation began?',
+          message: 'Provide date cohabitation residing with person began',
+          note: ''
+        },
+        hasCohabitant: {
+          title: 'Need help with when deciding if you have had a cohabitant?',
+          message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
           note: ''
         }
       }

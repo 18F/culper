@@ -65,40 +65,40 @@ export default class Marital extends ValidationElement {
   render () {
     return (
       <div className="marital">
-        <Field title={i18n.t('relationships.status.heading.title')}>
+        <Field title={i18n.t('relationships.marital.heading.title')}>
           <RadioGroup name="status" className="status-options" selectedValue={this.state.Status}>
             <Radio
-              label={i18n.m('relationships.status.label.status.never')}
+              label={i18n.m('relationships.marital.label.status.never')}
               value="Never"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
-              label={i18n.m('relationships.status.label.status.inCivilUnion')}
+              label={i18n.m('relationships.marital.label.status.inCivilUnion')}
               value="InCivilUnion"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
-              label={i18n.m('relationships.status.label.status.separated')}
+              label={i18n.m('relationships.marital.label.status.separated')}
               value="Separated"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
-              label={i18n.m('relationships.status.label.status.annulled')}
+              label={i18n.m('relationships.marital.label.status.annulled')}
               value="Annulled"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
-              label={i18n.m('relationships.status.label.status.divorced')}
+              label={i18n.m('relationships.marital.label.status.divorced')}
               value="Divorced"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
-              label={i18n.m('relationships.status.label.status.widowed')}
+              label={i18n.m('relationships.marital.label.status.widowed')}
               value="Widowed"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
