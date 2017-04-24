@@ -87,6 +87,9 @@ export default class CivilUnion extends ValidationElement {
 
   updateName (values) {
     this.update('Name', values)
+    if (this.props.onSpouseUpdate) {
+      this.props.onSpouseUpdate(values)
+    }
   }
 
   updateBirthdate (values) {

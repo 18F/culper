@@ -28,6 +28,7 @@ class Relationships extends ValidationElement {
     this.updateRelatives = this.updateRelatives.bind(this)
     this.updateMarital = this.updateMarital.bind(this)
     this.updateCohabitants = this.updateCohabitants.bind(this)
+    this.updateSpouse = this.updateSpouse.bind(this)
   }
 
   componentWillReceiveProps (props) {
@@ -97,6 +98,14 @@ class Relationships extends ValidationElement {
   }
 
   /**
+   * Listens for updates when a spouses name is updated. This is to notify
+   * other parts of the app that this information has changed
+   */
+  updateSpouse (values) {
+    this.props.dispatch(updateApplication('Relationships', 'ClearSameSpouseConfirmed', true))
+  }
+
+  /**
    * Determine the desired behaviour when visiting the
    * root of a route
    */
@@ -138,6 +147,7 @@ class Relationships extends ValidationElement {
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
+              onSpouseUpdate={this.updateSpouse}
             />
           </SectionView>
           <SectionView name="status/marital"
@@ -149,6 +159,7 @@ class Relationships extends ValidationElement {
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
+              onSpouseUpdate={this.updateSpouse}
             />
           </SectionView>
           <SectionView name="status/cohabitant"
@@ -196,6 +207,7 @@ class Relationships extends ValidationElement {
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
+              onSpouseUpdate={this.updateSpouse}
             />
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
