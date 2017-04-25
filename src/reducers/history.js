@@ -22,6 +22,7 @@ export const populateCurrentAddress = (history) => {
     return history
   }
 
+  let found = false
   for (let r of history.Residence) {
     if (!r.Item) {
       continue
@@ -32,7 +33,12 @@ export const populateCurrentAddress = (history) => {
     if (r.Item.Dates.present) {
       // We have an address with a present date
       history.CurrentAddress = {...r.Item.Address}
+      found = true
     }
+  }
+
+  if (!found) {
+    history.CurrentAddress = null
   }
   return history
 }

@@ -132,6 +132,7 @@ export default class CivilUnion extends ValidationElement {
   }
 
   updateAddress (values) {
+    this.update('UseCurrentAddress', false)
     this.update('Address', values)
   }
 
@@ -168,10 +169,12 @@ export default class CivilUnion extends ValidationElement {
   }
 
   updateUseCurrentAddress (cb) {
-    this.update('UseCurrentAddress', cb.checked)
     if (cb.checked) {
       this.updateAddress(this.props.currentAddress)
+    } else {
+      this.updateAddress({})
     }
+    this.update('UseCurrentAddress', cb.checked)
   }
 
   handleValidation (event, status, error) {
@@ -315,7 +318,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.address')}
-            help="alias.used.help"
+            help="relationships.civilUnion.help.address"
             adjustFor="address"
             shrink={true}>
             <Show when={this.props.currentAddress}>
@@ -334,7 +337,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}
-            help="alias.used.help"
+            help="relationships.civilUnion.help.telephone"
             adjustFor="telephone"
             shrink={true}>
             <Telephone name="Telephone"
@@ -358,7 +361,7 @@ export default class CivilUnion extends ValidationElement {
             <Branch name="separated"
               className="separated"
               value={this.state.Separated}
-              help="relationships.civilUnion.separated"
+              help="relationships.civilUnion.help.separated"
               onUpdate={this.updateSeparated}
               onValidate={this.props.onValidate}>
             </Branch>
@@ -367,7 +370,7 @@ export default class CivilUnion extends ValidationElement {
           <Show when={this.state.Separated === 'Yes'}>
             <div>
               <Field title={i18n.t('relationships.civilUnion.heading.dateSeparated')}
-                help="relationships.civilUnion.separated.dateSeparated">
+                help="relationships.civilUnion.help.dateSeparated">
                 <DateControl name="DateSeparated"
                   className="dateseparated"
                   {...this.state.DateSeparated}
@@ -378,7 +381,7 @@ export default class CivilUnion extends ValidationElement {
 
               <Field title={i18n.t('relationships.civilUnion.heading.addressSeparated')}
                 className="address-separated"
-                help="relationships.civilUnion.separated.addressSeparated">
+                help="relationships.civilUnion.help.addressSeparated">
                 <NotApplicable name="OtherNameNotApplicable"
                   applicable={this.state.AddressSeparatedNotApplicable}
                   label={i18n.t('relationships.civilUnion.notApplicable.label')}
@@ -397,7 +400,7 @@ export default class CivilUnion extends ValidationElement {
             <Branch name="divorced"
               className="divorced"
               value={this.state.Divorced}
-              help="relationships.civilUnion.divorced"
+              help="relationships.civilUnion.help.divorced"
               onUpdate={this.updateDivorced}
               onValidate={this.props.onValidate}>
             </Branch>

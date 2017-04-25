@@ -2244,6 +2244,26 @@ const en = {
         }
       },
       help: {
+        address: {
+          title: 'Need help with the marital address?',
+          message: 'Provide the last known address ',
+          note: ''
+        },
+        addressSeparated: {
+          title: 'Need help with the marital address?',
+          message: 'Provide the location of the record if legally separated',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with the telephone number?',
+          message: 'Provide the telephone number',
+          note: ''
+        },
+        dateSeparated: {
+          title: 'Need help with the date of separation?',
+          message: 'Provide the date of separation',
+          note: ''
+        },
         birthdate: {
           title: 'Need help with the birthdate?',
           message: 'Provide the date of birth',
