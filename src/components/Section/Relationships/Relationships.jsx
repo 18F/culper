@@ -152,8 +152,8 @@ class Relationships extends ValidationElement {
             />
           </SectionView>
           <SectionView name="status/marital"
-            back="financial/bankruptcy"
-            backLabel={i18n.t('financial.destination.bankruptcy')}
+            back="history/federal"
+            backLabel={i18n.t('history.destination.federal')}
             next="relationships/status/cohabitant"
             nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
