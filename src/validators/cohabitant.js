@@ -44,6 +44,25 @@ export class CohabitantValidator {
     this.otherNameUsed = state.OtherNameUsed
   }
 
+  similarSpouse (spouse) {
+    if (!this.name || !spouse) {
+      return false
+    }
+
+    if (this.name.first === spouse.first && this.name.last === spouse.last && this.name.middle === spouse.middle) {
+      return true
+    }
+
+    return false
+  }
+
+  validForeignBornDocument () {
+    if (new BirthPlaceValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
+      return new ForeignBornDocument(this.foreignBornDocument).isValid()
+    }
+    return true
+  }
+
   validOtherName () {
     if (this.otherNameNotApplicable) {
       return true
@@ -56,7 +75,7 @@ export class CohabitantValidator {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new BirthPlaceValidator(this.birthPlace).isValid() &&
-      new ForeignBornDocument(this.foreignBornDocument).isValid() &&
+      this.validForeignBornDocument() &&
       validSSN(this.ssn)
   }
 }

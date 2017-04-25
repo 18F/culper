@@ -52,7 +52,7 @@ export default class NotApplicable extends React.Component {
           {this.renderChildren()}
         </div>
         <div className={`${klass} button`.trim()}>
-          <span className="or">{this.props.or}</span>
+          <div className="or">{this.props.or}</div>
           <Checkbox name={this.props.name}
                     label={this.props.label}
                     checked={!this.state.applicable}

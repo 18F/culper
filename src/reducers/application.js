@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import merge from 'deepmerge'
+import relationshipsReducer from './relationships'
 
 const defaultState = {}
 
@@ -42,7 +43,7 @@ const errorReducer = function (sectionName) {
 export default combineReducers({
   Identification: reducer('Identification'),
   Financial: reducer('Financial'),
-  Relationships: reducer('Relationships'),
+  Relationships: relationshipsReducer,
   Citizenship: reducer('Citizenship'),
   Military: reducer('Military'),
   History: reducer('History'),
