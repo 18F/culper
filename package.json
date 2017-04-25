@@ -62,7 +62,7 @@
     "gulp-sass": "2.3.2",
     "gulp-sourcemaps": "2.2.0",
     "http-server": "0.9.0",
-    "jest": "17.0.3",
+    "jest": "19.0.2",
     "json-loader": "0.5.4",
     "react-addons-test-utils": "15.3.2",
     "react-autosuggest": "8.0.0",
@@ -78,7 +78,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "./node_modules/.bin/gulp lint && ./node_modules/.bin/jest -u --coverage",
+    "test": "./node_modules/.bin/gulp lint && ./node_modules/.bin/jest -u --logHeapUsage --coverage",
     "lint": "./node_modules/.bin/gulp lint",
     "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watchdog"
