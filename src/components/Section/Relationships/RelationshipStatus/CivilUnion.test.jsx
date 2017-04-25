@@ -45,6 +45,6 @@ describe('The cohabitant component', () => {
     component.find('.dateseparated input#month').simulate('change', { target: { value: '12' } })
     component.find('.address-separated input#address').simulate('change')
     component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
-    expect(updates).toBe(25)
+    expect(updates).toBe(24)
   })
 })

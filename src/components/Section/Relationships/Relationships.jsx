@@ -28,6 +28,7 @@ class Relationships extends ValidationElement {
     this.updateRelatives = this.updateRelatives.bind(this)
     this.updateMarital = this.updateMarital.bind(this)
     this.updateCohabitants = this.updateCohabitants.bind(this)
+    this.updateSpouse = this.updateSpouse.bind(this)
   }
 
   componentWillReceiveProps (props) {
@@ -97,6 +98,14 @@ class Relationships extends ValidationElement {
   }
 
   /**
+   * Listens for updates when a spouses name is updated. This is to notify
+   * other parts of the app that this information has changed
+   */
+  updateSpouse (values) {
+    this.props.dispatch(updateApplication('Relationships', 'ClearSameSpouseConfirmed', true))
+  }
+
+  /**
    * Determine the desired behaviour when visiting the
    * root of a route
    */
@@ -138,6 +147,7 @@ class Relationships extends ValidationElement {
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
+              onSpouseUpdate={this.updateSpouse}
             />
           </SectionView>
           <SectionView name="status/marital"
@@ -149,6 +159,7 @@ class Relationships extends ValidationElement {
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
+              onSpouseUpdate={this.updateSpouse}
             />
           </SectionView>
           <SectionView name="status/cohabitant"
@@ -158,6 +169,7 @@ class Relationships extends ValidationElement {
             nextLabel={i18n.t('relationships.destination.people')}>
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
+              spouse={this.props.Spouse}
               onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
@@ -195,9 +207,11 @@ class Relationships extends ValidationElement {
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
+              onSpouseUpdate={this.updateSpouse}
             />
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
+              spouse={this.props.Spouse}
               onUpdate={this.updateCohabitants}
               onValidate={this.handleValidation}
             />
@@ -229,6 +243,7 @@ function mapStateToProps (state) {
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
+    Spouse: extractSpouse(relationships.Marital),
     Cohabitants: relationships.Cohabitants || {},
     People: relationships.People || {},
     Errors: errors.relationships || [],
@@ -238,6 +253,13 @@ function mapStateToProps (state) {
 
 Relationships.defaultProps = {
   subsection: ''
+}
+
+const extractSpouse = (marital) => {
+  if (!marital || !marital.CivilUnion || !marital.CivilUnion.Name) {
+    return null
+  }
+  return marital.CivilUnion.Name
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Relationships))

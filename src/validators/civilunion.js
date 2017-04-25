@@ -10,7 +10,7 @@ export default class CivilUnionValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
     this.birthdate = state.Birthdate
-    this.birthplace = state.BirthPlace
+    this.birthPlace = state.BirthPlace
     this.foreignBornDocument = state.ForeignBornDocument
     this.ssn = state.SSN
     this.otherName = state.OtherName
@@ -70,11 +70,18 @@ export default class CivilUnionValidator {
     return true
   }
 
+  validForeignBornDocument () {
+    if (new BirthPlaceValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
+      return new ForeignBornDocument(this.foreignBornDocument).isValid()
+    }
+    return true
+  }
+
   isValid () {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
-      new BirthPlaceValidator(this.birthplace).isValid() &&
-      new ForeignBornDocument(this.foreignBornDocument).isValid() &&
+      new BirthPlaceValidator(this.birthPlace).isValid() &&
+      this.validForeignBornDocument() &&
       validPhoneNumber(this.telephone) &&
       validSSN(this.ssn) &&
       validBranch(this.separated) &&
