@@ -7,10 +7,10 @@ export default class MultipleDropdown extends ValidationElement {
     super(props)
 
     this.state = {
-      input: this.props.input,
-      loading: this.props.loading,
-      options: this.props.options,
-      value: this.props.value,
+      input: props.input,
+      loading: props.loading,
+      options: props.options.concat(this.parseChildren()),
+      value: props.value,
       error: props.error || false,
       valid: props.valid || false,
       errors: []
@@ -22,34 +22,15 @@ export default class MultipleDropdown extends ValidationElement {
     this.handleRemove = this.handleRemove.bind(this)
   }
 
-  componentDidMount () {
-    if (this.props.children) {
-      let arr = []
-      for (let child of this.props.children) {
-        if (child && child.type === 'option') {
-          arr.push({
-            name: child.props.children || '',
-            value: child.props.value
-          })
+  parseChildren () {
+    return !this.props.children
+      ? []
+      : this.props.children.filter(child => child.type === 'option').map(child => {
+        return {
+          name: child.props.children || '',
+          value: child.props.value
         }
-      }
-
-      this.setState({options: arr}, () => {
-        // Force validation. Particularly on first render we need to revalidate the
-        // value.
-        let event = {
-          target: {
-            id: this.props.id,
-            name: this.props.name,
-            value: this.state.value
-          },
-          persist: function () {},
-          fake: true
-        }
-
-        this.handleValidation(event)
       })
-    }
   }
 
   /**
@@ -57,7 +38,6 @@ export default class MultipleDropdown extends ValidationElement {
    */
   handleChange (value) {
     this.setState({ value: value }, () => {
-      console.log('in it')
       if (this.props.onUpdate) {
         this.props.onUpdate(value)
       }
@@ -116,17 +96,6 @@ export default class MultipleDropdown extends ValidationElement {
     }
 
     return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
-  }
-
-  /**
-   * Style classes applied to the input element.
-   */
-  inputClass () {
-    if (this.props.disabled) {
-      return null
-    }
-
-    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid && this.props.valid ? 'usa-input-success' : ''}`.trim()
   }
 
   render () {

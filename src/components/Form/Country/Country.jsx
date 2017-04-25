@@ -14,6 +14,17 @@ export default class Country extends ValidationElement {
       valid: props.valid || false,
       errors: []
     }
+
+    this.onUpdate = this.onUpdate.bind(this)
+  }
+
+  onUpdate (value) {
+    if (this.props.onUpdate) {
+      this.props.onUpdate({
+        name: this.props.name,
+        value: value
+      })
+    }
   }
 
   /**
@@ -21,13 +32,8 @@ export default class Country extends ValidationElement {
    */
   handleChange (event) {
     this.setState({ value: event.target.value }, () => {
+      this.onUpdate(event.target.value)
       super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: event.target.value
-        })
-      }
     })
   }
 
@@ -105,7 +111,7 @@ export default class Country extends ValidationElement {
                           placeholder={this.props.placeholder}
                           className={klass}
                           disabled={this.props.disabled}
-                          onChange={this.handleChange}
+                          onUpdate={this.onUpdate}
                           onValidate={this.handleValidation}
                           onFocus={this.handleFocus}
                           onBlur={this.handleBlur}

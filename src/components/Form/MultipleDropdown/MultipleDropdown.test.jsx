@@ -3,14 +3,65 @@ import { mount } from 'enzyme'
 import MultipleDropdown from './MultipleDropdown'
 
 describe('The MultipleDropdown component', () => {
-  it('can autotab forward', () => {
+  it('display selected values', () => {
+    const expected = {
+      name: 'multiple-dropdown',
+      value: [{ name: 'United States', value: 'United States' }],
+      options: [
+        { name: 'United States', value: 'United States' },
+        { name: 'Germany', value: 'Germany' }
+      ],
+      input: 'Uni'
+    }
+    const component = mount(<MultipleDropdown {...expected} />)
+    expect(component.find('.ic-token').length).toBe(1)
+  })
+
+  it('can be disabled', () => {
+    const expected = {
+      name: 'multiple-dropdown',
+      disabled: true
+    }
+    const component = mount(<MultipleDropdown {...expected} />)
+    expect(component.find('.disabled').length).toBe(1)
+  })
+
+  it('can handle remove', () => {
     let updates = 0
     const expected = {
       name: 'multiple-dropdown',
+      value: [{ name: 'United States', value: 'United States' }],
+      options: [
+        { name: 'United States', value: 'United States' },
+        { name: 'Germany', value: 'Germany' }
+      ],
       onUpdate: () => { updates++ }
     }
     const component = mount(<MultipleDropdown {...expected} />)
-    component.find('input').simulate('change', { target: { value: 'United States' } })
+    component.find('.ic-token-delete-button').simulate('click')
     expect(updates).toBe(1)
   })
+
+  // it('can handle change', () => {
+  //   let updates = 0
+  //   const expected = {
+  //     name: 'multiple-dropdown',
+  //     options: [
+  //       { name: 'United States', value: 'United States' },
+  //       { name: 'Germany', value: 'Germany' }
+  //     ],
+  //     onUpdate: () => { updates++ }
+  //   }
+  //   const component = mount(<MultipleDropdown {...expected} />)
+  //   component.find('input').simulate('change', { target: { value: 'Germany' } })
+  //   // component.find('input').simulate('keydown', { keyCode: 188, target: { value: 'Germany' } })
+  //   console.log(component.html())
+  //   expect(updates).toBe(1)
+  // })
+
+  // it('can handle select', () => {
+  // })
+
+  // it('can handle input', () => {
+  // })
 })

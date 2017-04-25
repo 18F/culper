@@ -22,9 +22,9 @@ export default class MilitaryState extends ValidationElement {
                tabBack={this.props.tabBack}
                tabNext={this.props.tabNext}
                >
-          <option value="AA">AA</option>
-          <option value="AE">AE</option>
-          <option value="AP">AP</option>
+          <option key="aa" value="AA">AA</option>
+          <option key="ae" value="AE">AE</option>
+          <option key="ap" value="AP">AP</option>
         </State>
       )
     } else {
@@ -44,9 +44,9 @@ export default class MilitaryState extends ValidationElement {
                   tabBack={this.props.tabBack}
                   tabNext={this.props.tabNext}
                   >
-          <option value="AA">U.S. Armed Forces - Americas</option>
-          <option value="AE">U.S. Armed Forces - Europe</option>
-          <option value="AP">U.S. Armed Forces - Pacific</option>
+          <option key="aa" value="AA">U.S. Armed Forces - Americas</option>
+          <option key="ae" value="AE">U.S. Armed Forces - Europe</option>
+          <option key="ap" value="AP">U.S. Armed Forces - Pacific</option>
         </Dropdown>
       )
     }

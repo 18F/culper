@@ -72,7 +72,11 @@ describe('The relative component', () => {
   it('display documentation information if relative requires citizenship documentation', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['United States'],
+      Citizenship: {
+        value: [
+          { name: 'United States', value: 'United States' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -95,7 +99,11 @@ describe('The relative component', () => {
   it('display items if not deceased and not a citizen but lives in the U.S.', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['Germany'],
+      Citizenship: {
+        value: [
+          { name: 'Germany', value: 'Germany' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -115,7 +123,11 @@ describe('The relative component', () => {
   it('display items if not deceased and not a citizen and lives abroad', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['Germany'],
+      Citizenship: {
+        value: [
+          { name: 'Germany', value: 'Germany' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -135,7 +147,11 @@ describe('The relative component', () => {
   it('display employer relationship if affiliated', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['Germany'],
+      Citizenship: {
+        value: [
+          { name: 'Germany', value: 'Germany' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -202,7 +218,8 @@ describe('The relative component', () => {
     component.find('.relative-courtaddress .city input').simulate('change', { target: { name: 'city', value: 'The city' } })
 
     // Is a not citizen and not deceased
-    component.find('.relative-citizenship input#Citizenship').simulate('change', { target: { name: 'country', value: 'Germany' } })
+    component.find('.relative-citizenship .ic-token-delete-button').simulate('click')
+    component.find('.relative-citizenship input').simulate('change', { target: { name: 'country', value: 'Germany' } })
 
     // Is not a citizen but lives in the United States
     component.find('.relative-address .domestic input').simulate('change')
