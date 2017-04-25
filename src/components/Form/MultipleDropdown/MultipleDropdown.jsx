@@ -1,0 +1,178 @@
+import React from 'react'
+import ValidationElement from '../ValidationElement'
+import TokenInput, { Option } from 'react-tokeninput'
+
+export default class MultipleDropdown extends ValidationElement {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      input: this.props.input,
+      loading: this.props.loading,
+      options: this.props.options,
+      value: this.props.value,
+      error: props.error || false,
+      valid: props.valid || false,
+      errors: []
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleInput = this.handleInput.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
+  }
+
+  componentDidMount () {
+    if (this.props.children) {
+      let arr = []
+      for (let child of this.props.children) {
+        if (child && child.type === 'option') {
+          arr.push({
+            name: child.props.children || '',
+            value: child.props.value
+          })
+        }
+      }
+
+      this.setState({options: arr}, () => {
+        // Force validation. Particularly on first render we need to revalidate the
+        // value.
+        let event = {
+          target: {
+            id: this.props.id,
+            name: this.props.name,
+            value: this.state.value
+          },
+          persist: function () {},
+          fake: true
+        }
+
+        this.handleValidation(event)
+      })
+    }
+  }
+
+  /**
+   * Handle the change event.
+   */
+  handleChange (value) {
+    this.setState({ value: value }, () => {
+      console.log('in it')
+      if (this.props.onUpdate) {
+        this.props.onUpdate(value)
+      }
+    })
+  }
+
+  /**
+   * Handle the remove event.
+   */
+  handleRemove (value) {
+    this.handleChange(this.state.value.filter(x => x !== value))
+  }
+
+  /**
+   * Handle the select event.
+   */
+  handleSelect (value, element) {
+    if (typeof value === 'string') {
+      value = { id: value, name: value }
+    }
+
+    // If it is currently not selected then add it to the array
+    if (this.state.value.every(x => x.value !== value.value)) {
+      this.handleChange(this.state.value.concat([value]))
+    }
+  }
+
+  /**
+   * Handle new input.
+   */
+  handleInput (userInput) {
+    this.setState({ input: userInput })
+  }
+
+  filter (value) {
+    const inputValue = value.trim().toLowerCase()
+    const inputLength = inputValue.length
+    return inputLength === 0
+      ? []
+      : this.state.options.filter(opt => opt.name.toLowerCase().slice(0, inputLength) === inputValue || opt.value.toLowerCase().slice(0, inputLength) === inputValue)
+  }
+
+  /**
+   * Style classes applied to the wrapper.
+   */
+  divClass () {
+    return `multiple-dropdown ${this.props.className || ''} ${!this.props.disabled && (this.state.error || this.props.error) ? 'usa-input-error' : ''}`.trim()
+  }
+
+  /**
+   * Style classes applied to the label element.
+   */
+  labelClass () {
+    if (this.props.disabled) {
+      return 'disabled'
+    }
+
+    return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
+  }
+
+  /**
+   * Style classes applied to the input element.
+   */
+  inputClass () {
+    if (this.props.disabled) {
+      return null
+    }
+
+    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid && this.props.valid ? 'usa-input-success' : ''}`.trim()
+  }
+
+  render () {
+    const options = this.filter(this.state.input).map(opt => {
+      return (
+        <Option key={opt.value}
+                value={opt}
+                isFocusable={true}>
+          {opt.name}
+        </Option>
+      )
+    })
+
+    return (
+      <div className={this.divClass()}>
+        <label className={this.labelClass()}
+               htmlFor={this.props.name}>
+          {this.props.label}
+        </label>
+        <TokenInput menuContent={options}
+                    onChange={this.handleChange}
+                    onInput={this.handleInput}
+                    onSelect={this.handleSelect}
+                    onRemove={this.handleRemove}
+                    selected={this.state.value}
+                    placeholder={this.props.placeholder}
+                    />
+      </div>
+    )
+  }
+}
+
+MultipleDropdown.defaultProps = {
+  name: 'multiple-dropdown',
+  label: '',
+  placeholder: '',
+  maxlength: 255,
+  disabled: false,
+  pattern: '',
+  readonly: false,
+  className: '',
+  focus: false,
+  error: false,
+  valid: false,
+  input: '',
+  loading: false,
+  options: [],
+  value: []
+}

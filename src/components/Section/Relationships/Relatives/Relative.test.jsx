@@ -170,7 +170,7 @@ describe('The relative component', () => {
     component.find('.relative-birthdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.relative-birthplace .international input').simulate('change')
     component.find('.relative-birthplace .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
-    component.find('.relative-citizenship input#Citizenship').simulate('change', { target: { name: 'country', value: 'United States' } })
+    component.find('.relative-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
     component.find('.relative-deceased .no input').simulate('change')
 
     // Are you my mother?

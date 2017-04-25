@@ -421,6 +421,7 @@ export default class Relative extends ValidationElement {
         <Field title={i18n.t('relationships.relatives.heading.citizenship')}
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
+                   multiple={true}
                    value={this.state.Citizenship.first}
                    className="relative-citizenship"
                    onUpdate={this.updateCitizenship}
