@@ -2526,8 +2526,8 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       }
     },
     apoFpo: {
@@ -2547,8 +2547,8 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
         label: 'APO/FPO State Code'
@@ -5010,8 +5010,8 @@ const en = {
     heading: {
       intro: 'Why we are asking',
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
-      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
-      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
+      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?',
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.)',
       hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, is not a reason to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
@@ -5086,7 +5086,7 @@ const en = {
         },
         incompetent: {
           title: 'Need help with this question?',
-          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
         }
       },
       collection: {
@@ -5155,7 +5155,7 @@ const en = {
     },
     hospitalization: {
       heading: {
-        admission: 'Was the admission voluntary or involuntary',
+        admission: 'Was the admission voluntary or involuntary?',
         treatment: 'Provide the dates of treatment',
         facility: 'Provide the facility where treatment was provided',
         address: 'Provide the address of the facility where treatment was provided',
