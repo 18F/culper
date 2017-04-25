@@ -203,8 +203,8 @@ class Relationships extends ValidationElement {
             showTop="true"
             back="relationships/relatives"
             backLabel={i18n.t('relationships.destination.relatives')}
-            next="military/selective"
-            next={i18n.t('military.destination.selective')}>
+            next="citizenship/status"
+            nextLabel={i18n.t('citizenship.destination.status')}>
             <Marital name="marital"
               {...this.props.Marital}
               onUpdate={this.updateMarital}
