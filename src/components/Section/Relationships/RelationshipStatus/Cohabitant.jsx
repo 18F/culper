@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement } from '../../../Form'
+import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement, Suggestions, Show } from '../../../Form'
+import { CohabitantValidator } from '../../../../validators/cohabitant'
 
 export default class Cohabitant extends ValidationElement {
   constructor (props) {
@@ -15,7 +16,8 @@ export default class Cohabitant extends ValidationElement {
       OtherNameNotApplicable: props.OtherNameNotApplicable,
       OtherNameMaiden: props.OtherNameMaiden,
       OtherNameUsed: props.OtherNameUsed,
-      CohabitationBegan: props.CohabitationBegan
+      CohabitationBegan: props.CohabitationBegan,
+      SameSpouse: props.SameSpouse
     }
 
     this.updateName = this.updateName.bind(this)
@@ -28,6 +30,10 @@ export default class Cohabitant extends ValidationElement {
     this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
     this.updateOtherNameUsed = this.updateOtherNameUsed.bind(this)
     this.updateCohabitationBegan = this.updateCohabitationBegan.bind(this)
+    this.renderSpouseSuggestion = this.renderSpouseSuggestion.bind(this)
+    this.dismissSpouseSuggestion = this.dismissSpouseSuggestion.bind(this)
+    this.onSpouseSuggestion = this.onSpouseSuggestion.bind(this)
+    this.clear = this.clear.bind(this)
   }
 
   update (field, values) {
@@ -43,13 +49,44 @@ export default class Cohabitant extends ValidationElement {
           OtherNameNotApplicable: this.state.OtherNameNotApplicable,
           OtherNameMaiden: this.state.OtherNameMaiden,
           OtherNameUsed: this.state.OtherNameUsed,
-          CohabitationBegan: this.state.CohabitationBegan
+          CohabitationBegan: this.state.CohabitationBegan,
+          SameSpouse: this.state.SameSpouse,
+          SameSpouseConfirmed: this.state.SameSpouseConfirmed
         })
       }
     })
   }
 
+  clear () {
+    const state = {
+      Name: {},
+      Birthdate: null,
+      BirthPlace: null,
+      ForeignBornDocument: null,
+      SSN: null,
+      OtherName: null,
+      OtherNameNotApplicable: null,
+      OtherNameMaiden: null,
+      OtherNameUsed: null,
+      CohabitationBegan: null,
+      SameSpouse: false,
+      SameSpouseConfirmed: false
+    }
+    this.setState(state, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate(state)
+      }
+    })
+  }
+
   updateName (values) {
+    if (this.props.SameSpouseConfirmed) {
+      return
+    }
+    const similarSpouse = new CohabitantValidator({Name: values}).similarSpouse(this.props.spouse)
+    if (similarSpouse) {
+      this.update('SameSpouse', true)
+    }
     this.update('Name', values)
   }
 
@@ -66,7 +103,7 @@ export default class Cohabitant extends ValidationElement {
   }
 
   updateSSN (values) {
-    this.update('SSN', values.value)
+    this.update('SSN', values.value || '')
   }
 
   updateOtherName (values) {
@@ -89,21 +126,58 @@ export default class Cohabitant extends ValidationElement {
     this.update('CohabitationBegan', values)
   }
 
+  renderSpouseSuggestion () {
+    const spouse = this.props.spouse
+    const name = spouse
+      ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last || ''}`.trim()
+      : ''
+    return (
+      <div>
+        {name}
+      </div>
+    )
+  }
+
+  onSpouseSuggestion () {
+    this.update('SameSpouse', false)
+    this.clear()
+  }
+
+  dismissSpouseSuggestion () {
+    this.update('SameSpouseConfirmed', true)
+    this.update('SameSpouse', false)
+  }
+
   render () {
     return (
       <div className="cohabitant">
-        <Field title={i18n.t('relationships.status.cohabitant.heading.name')}
-          adjustFor="labels">
-          <Name name="Name"
-            className="cohabitant-name"
-            {...this.state.Name}
-            onUpdate={this.updateName}
-            onValidate={this.props.onValidate}
-          />
-        </Field>
+        <Suggestions
+          className="spouse-suggestion"
+          suggestionTitle={i18n.t('relationships.cohabitant.suggestion.title')}
+          suggestionParagraph={i18n.m('relationships.cohabitant.suggestion.paragraph')}
+          suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
+          suggestionDismissLabel={i18n.t('relationships.cohabitant.suggestion.dismissLabel')}
+          suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
+          suggestionUseLabel={i18n.t('relationships.cohabitant.suggestion.useLabel')}
+          suggestions={[this.props.spouse]}
+          renderSuggestion={this.renderSpouseSuggestion}
+          withSuggestions={false}
+          show={this.props.SameSpouse}
+          onDismiss={this.dismissSpouseSuggestion}
+          onSuggestion={this.onSpouseSuggestion}>
+          <Field title={i18n.t('relationships.cohabitant.heading.name')}
+            adjustFor="labels">
+            <Name name="Name"
+              className="cohabitant-name"
+              {...this.state.Name}
+              onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
+            />
+          </Field>
+        </Suggestions>
 
-        <Field help="relationships.status.cohabitant.help.birthdate"
-          title={i18n.t('relationships.status.cohabitant.heading.birthdate')}
+        <Field help="relationships.cohabitant.help.birthdate"
+          title={i18n.t('relationships.cohabitant.heading.birthdate')}
           shrink={true}
           adjustFor="labels">
           <DateControl name="birthdate"
@@ -114,32 +188,34 @@ export default class Cohabitant extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('relationships.status.cohabitant.heading.birthplace')}>
+        <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}>
           <BirthPlace name="birthplace"
-            label={i18n.t('relationships.status.cohabitant.label.birthplace')}
+            label={i18n.t('relationships.cohabitant.label.birthplace')}
             {...this.state.BirthPlace}
             onUpdate={this.updateBirthPlace}
             onValidate={this.props.onValidate}
           />
         </Field>
-        <Field help="relationships.status.cohabitant.help.foreignBornDocument"
-          title={i18n.t('relationships.status.cohabitant.heading.foreignBornDocument')}>
-          <ForeignBornDocuments name="foreignBornDocument"
-            {...this.state.ForeignBornDocument}
-            onUpdate={this.updateForeignBornDocument}
-            onValidate={this.props.onValidate}
-          />
-        </Field>
 
-        <Field help="relationships.status.cohabitant.help.ssn"
-          title={i18n.t('relationships.status.cohabitant.heading.ssn')}>
+        <Show when={this.state.BirthPlace && this.state.BirthPlace.country !== 'United States'}>
+          <Field help="relationships.cohabitant.help.foreignBornDocument"
+            title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}>
+            <ForeignBornDocuments name="foreignBornDocument"
+              {...this.state.ForeignBornDocument}
+              onUpdate={this.updateForeignBornDocument}
+              onValidate={this.props.onValidate}
+            />
+          </Field>
+        </Show>
+
+        <Field title={i18n.t('relationships.cohabitant.heading.ssn')}>
           <SSN name="ssn"
             {...this.state.SSN}
             onUpdate={this.updateSSN}
             onValidate={this.props.onValidate}
           />
         </Field>
-        <Field title={i18n.t('relationships.status.cohabitant.heading.othernames')}>
+        <Field title={i18n.t('relationships.cohabitant.heading.othernames')}>
           <NotApplicable name="OtherNameNotApplicable"
             className="othername"
             applicable={this.state.OtherNameNotApplicable}
@@ -152,7 +228,7 @@ export default class Cohabitant extends ValidationElement {
               onUpdate={this.updateOtherName}
               onValidate={this.props.onValidate}
             />
-            <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.maiden')}
+            <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
               help="alias.maiden.help"
               adjustFor="buttons"
               shrink={true}>
@@ -164,7 +240,7 @@ export default class Cohabitant extends ValidationElement {
               />
             </Field>
 
-            <Field title={i18n.t('relationships.status.cohabitant.othernames.heading.used')}
+            <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
               help="alias.used.help"
               adjustFor="daterange"
               shrink={true}>
@@ -178,8 +254,8 @@ export default class Cohabitant extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field help="relationships.status.cohabitant.help.cohabitationBegan"
-          title={i18n.t('relationships.status.cohabitant.heading.cohabitationBegan')}
+        <Field help="relationships.cohabitant.help.cohabitationBegan"
+          title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
           shrink={true}
           adjustFor="labels">
           <DateControl name="cohabitationBegan"
@@ -192,4 +268,18 @@ export default class Cohabitant extends ValidationElement {
       </div>
     )
   }
+}
+
+Cohabitant.defaultProps = {
+  Name: {},
+  Birthdate: {},
+  BirthPlace: {},
+  ForeignBornDocument: {},
+  SSN: {},
+  OtherName: {},
+  OtherNameNotApplicable: {},
+  OtherNameMaiden: {},
+  OtherNameUsed: {},
+  CohabitationBegan: {},
+  SameSpouse: false
 }

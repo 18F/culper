@@ -210,4 +210,79 @@ describe('Cohabitant validation', function () {
       expect(new CohabitantsValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
+
+  it('validates foreign born documents', () => {
+    const tests = [
+      {
+        state: {
+          BirthPlace: {
+            domestic: 'No',
+            country: 'Germany',
+            city: 'Munich'
+          },
+          ForeignBornDocument: {
+            DocumentType: 'FS240',
+            DocumentExpirationNotApplicable: true,
+            DocumentNumber: {
+              value: 'A1234'
+            }
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          BirthPlace: {}
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CohabitantValidator(test.state, null).validForeignBornDocument()).toBe(test.expected)
+    })
+  })
+
+  it('validates similar spouse', () => {
+    const tests = [
+      {
+        state: {
+          name: null
+        },
+        expected: false
+      },
+      {
+        state: {
+          Name: {
+            first: 'John',
+            middle: 'S',
+            last: 'Doe'
+          }
+        },
+        spouse: {
+          first: 'John',
+          middle: 'S',
+          last: 'Doe'
+        },
+        expected: true
+      },
+      {
+        state: {
+          Name: {
+            first: 'John',
+            middle: 'S',
+            last: 'Doe'
+          }
+        },
+        spouse: {
+          first: 'John',
+          middle: 'S',
+          last: 'Does'
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CohabitantValidator(test.state, null).similarSpouse(test.spouse)).toBe(test.expected)
+    })
+  })
 })
