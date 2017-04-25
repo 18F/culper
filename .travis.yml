@@ -1,5 +1,10 @@
 language: node
 
+cache:
+  directories:
+    - ./src/__snapshots__
+    - ./node_modules
+
 services:
   - docker
 
