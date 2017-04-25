@@ -4,6 +4,8 @@ cache:
   directories:
     - ./src/__snapshots__
     - ./node_modules
+    - ./api/.glide
+    - ./api/vendor
 
 services:
   - docker
