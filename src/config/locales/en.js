@@ -1461,7 +1461,7 @@ const en = {
         entrydate: 'Provide the date of entry into the U.S.',
         entrylocation: 'Provide the location of entry into the U.S.',
         priorcitizenship: {
-          naturalized: 'Provide countrny(ies) of prior citizenship',
+          naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'
         },
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
