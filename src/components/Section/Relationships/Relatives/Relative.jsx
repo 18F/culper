@@ -40,7 +40,7 @@ export default class Relative extends ValidationElement {
       Name: props.Name,
       Birthdate: props.Birthdate,
       Birthplace: props.Birthplace,
-      Citizenship: props.Citizenship, // Needs new component
+      Citizenship: props.Citizenship,
       MaidenSameAsListed: props.MaidenSameAsListed,
       MaidenName: props.MaidenName,
       Aliases: props.Aliases,
@@ -148,7 +148,7 @@ export default class Relative extends ValidationElement {
   }
 
   updateCitizenship (values) {
-    this.onUpdate('Citizenship', [values.value])
+    this.onUpdate('Citizenship', values)
   }
 
   updateMaidenSameAsListed (values) {
@@ -421,7 +421,8 @@ export default class Relative extends ValidationElement {
         <Field title={i18n.t('relationships.relatives.heading.citizenship')}
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
-                   value={this.state.Citizenship.first}
+                   multiple={true}
+                   value={this.state.Citizenship.value}
                    className="relative-citizenship"
                    onUpdate={this.updateCitizenship}
                    />
