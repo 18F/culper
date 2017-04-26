@@ -1,15 +1,9 @@
 .hospitalization {
   .admission {
     .block label {
-      font-weight: 600;
       width: 20rem;
-      padding: 0.5rem;
-
-      div {
-        p {
-          margin-bottom: 0.4rem;
-        }
-      }
+      height: 6rem;
+      line-height: 6rem !important;
     }
   }
 }

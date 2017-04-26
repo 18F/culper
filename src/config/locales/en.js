@@ -5183,8 +5183,8 @@ const en = {
       },
       label: {
         address: 'This address is',
-        voluntaryAdmission: 'Voluntary\n\n(Provide Explanation)',
-        involuntaryAdmission: 'Involuntary\n\n(Provide Explanation)'
+        voluntaryAdmission: 'Voluntary',
+        involuntaryAdmission: 'Involuntary'
       },
       collection: {
         summary: 'Click to provide details',

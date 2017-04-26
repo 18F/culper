@@ -86,7 +86,7 @@ export default class Hospitalization extends ValidationElement {
               onValidate={this.handleValidation}
               onUpdate={this.updateAdmission}>
               <div className="voluntary">
-                {i18n.m('psychological.hospitalization.label.voluntaryAdmission')}
+                {i18n.t('psychological.hospitalization.label.voluntaryAdmission')}
               </div>
             </Radio>
             <Radio
@@ -95,23 +95,21 @@ export default class Hospitalization extends ValidationElement {
               onValidate={this.handleValidation}
               onUpdate={this.updateAdmission}>
               <div className="involuntary">
-                {i18n.m('psychological.hospitalization.label.involuntaryAdmission')}
+                {i18n.t('psychological.hospitalization.label.involuntaryAdmission')}
               </div>
             </Radio>
           </RadioGroup>
         </Field>
 
-        <Show when={this.props.Admission}>
-          <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
-                 help="psychological.hospitalization.help.explanation">
-            <Textarea name="Explanation"
-                      className="explanation"
-                      {...this.props.Explanation}
-                      onUpdate={this.updateExplanation}
-                      onValidate={this.handleValidation}
-                      />
-          </Field>
-        </Show>
+        <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
+               help="psychological.hospitalization.help.explanation">
+          <Textarea name="Explanation"
+                    className="explanation"
+                    {...this.props.Explanation}
+                    onUpdate={this.updateExplanation}
+                    onValidate={this.handleValidation}
+                    />
+        </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.treatment`)}
                help="psychological.hospitalization.help.treatment"
