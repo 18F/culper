@@ -160,6 +160,7 @@ export default class ExistingConditions extends ValidationElement {
 
             <Show when={this.state.ReceivedTreatment === 'Yes'}>
               <Accordion minimum="1"
+                defaultState={this.props.defaultState}
                 items={this.state.TreatmentList}
                 onUpdate={this.updateTreatmentList}
                 summary={this.summary}
@@ -201,5 +202,6 @@ export default class ExistingConditions extends ValidationElement {
 }
 
 ExistingConditions.defaultProps = {
-  TreatmentList: []
+  TreatmentList: [],
+  defaultState: true
 }

@@ -187,21 +187,25 @@ class Psychological extends ValidationElement {
 
             <Competence name="Competence"
               {...this.props.Competence}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
             <hr />
             <Consultation name="Consultations"
               {...this.props.Consultations}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
             <hr />
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
             <hr />
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
@@ -209,6 +213,7 @@ class Psychological extends ValidationElement {
             <Show when={this.props.ShowExistingConditions}>
               <ExistingConditions name="ExistingConditions"
                 {...this.props.ExistingConditions}
+                defaultState={false}
                 onValidate={this.onValidate}
                 onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
               />

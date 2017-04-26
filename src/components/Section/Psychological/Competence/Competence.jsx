@@ -90,6 +90,7 @@ export default class Competence extends ValidationElement {
 
         <Show when={this.state.IsIncompetent === 'Yes'}>
           <Accordion minimum="1"
+            defaultState={this.props.defaultState}
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
@@ -107,5 +108,6 @@ export default class Competence extends ValidationElement {
 }
 
 Competence.defaultProps = {
-  List: []
+  List: [],
+  defaultState: true
 }

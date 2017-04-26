@@ -88,6 +88,7 @@ export default class Hospitalizations extends ValidationElement {
 
         <Show when={this.state.Hospitalized === 'Yes'}>
           <Accordion minimum="1"
+            defaultState={this.props.defaultState}
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
@@ -107,5 +108,6 @@ export default class Hospitalizations extends ValidationElement {
 }
 
 Hospitalization.defaultProps = {
-  List: []
+  List: [],
+  defaultState: true
 }

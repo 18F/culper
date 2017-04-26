@@ -126,6 +126,7 @@ export default class Diagnoses extends ValidationElement {
         <Show when={this.state.Diagnosed === 'Yes'}>
           <div>
             <Accordion minimum="1"
+              defaultState={this.props.defaultState}
               items={this.state.DiagnosisList}
               onUpdate={this.updateDiagnosisList}
               summary={this.summary}
@@ -157,6 +158,7 @@ export default class Diagnoses extends ValidationElement {
 
             <Show when={this.state.InTreatment === 'Yes'}>
               <Accordion minimum="1"
+                defaultState={this.props.defaultState}
                 items={this.state.TreatmentList}
                 onUpdate={this.updateTreatmentList}
                 summary={this.treatmentSummary}
@@ -180,5 +182,6 @@ export default class Diagnoses extends ValidationElement {
 Diagnoses.defaultProps = {
   List: [],
   DiagnosisList: [],
-  TreatmentList: []
+  TreatmentList: [],
+  defaultState: true
 }

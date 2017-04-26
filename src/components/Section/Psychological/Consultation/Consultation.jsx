@@ -92,6 +92,7 @@ export default class Consultation extends ValidationElement {
 
         <Show when={this.state.Consulted === 'Yes'}>
           <Accordion minimum="1"
+            defaultState={this.props.defaultState}
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
@@ -109,5 +110,6 @@ export default class Consultation extends ValidationElement {
 }
 
 Consultation.defaultProps = {
-  List: []
+  List: [],
+  defaultState: true
 }
