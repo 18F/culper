@@ -33,7 +33,7 @@ export class RelativeValidator {
     this.name = state.Name
     this.birthdate = state.Birthdate
     this.birthplace = state.Birthplace
-    this.citizenship = state.Citizenship || []
+    this.citizenship = state.Citizenship
     this.maidenSameAsListed = state.MaidenSameAsListed
     this.maidenName = state.MaidenName
     this.aliases = state.Aliases || []
@@ -63,24 +63,26 @@ export class RelativeValidator {
   }
 
   citizen () {
-    return !!this.citizenship && this.citizenship.some(x => x === 'United States')
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.some(x => x.value === 'United States')
   }
 
   requiresCitizenshipDocumentation () {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
-    if (this.relations && this.relations.some(x => relations.includes(x)) && this.citizen() && this.birthplace.addressType === 'International' && this.isDeceased === 'Yes') {
+    const citizen = this.citizen()
+
+    if (this.relations && this.relations.some(x => relations.includes(x)) && citizen && this.birthplace.addressType === 'International' && this.isDeceased === 'Yes') {
       return true
     }
 
-    if (this.address && this.address.addressType === 'United States' && this.birthplace.addressType === 'International' && this.citizen()) {
+    if (this.address && this.address.addressType === 'United States' && this.birthplace.addressType === 'International' && citizen) {
       return true
     }
 
-    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.addressType === 'International' && this.citizen()) {
+    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.addressType === 'International' && citizen) {
       return true
     }
 
-    if (this.birthplace && this.birthplace.addressType === 'International' && this.citizen()) {
+    if (this.birthplace && this.birthplace.addressType === 'International' && citizen) {
       return true
     }
 
@@ -104,7 +106,7 @@ export class RelativeValidator {
   }
 
   validCitizenship () {
-    return !!this.citizenship && this.citizenship.length > 0
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
   }
 
   validMaidenName () {
