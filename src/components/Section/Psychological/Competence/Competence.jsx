@@ -66,13 +66,16 @@ export default class Competence extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Competence || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.competence.collection.summaryCourtName')
+    const courtName = (o.CourtName || {}).value ? o.CourtName.value : null
     const type = i18n.t('psychological.competence.collection.itemType')
 
     return (
-      <span>
+      <span className="content">
         <span className="index">{type}</span>
-        <span className="info"><strong>{courtName}</strong></span>
+        <span className="courtname">
+          {courtName || i18n.t('psychological.competence.collection.summaryCourtName')}
+        </span>
+        <span className="occurred">{courtName && occurred}</span>
       </span>
     )
   }

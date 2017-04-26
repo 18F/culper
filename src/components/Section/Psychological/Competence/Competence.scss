@@ -1,0 +1,25 @@
+.competence {
+  .summary {
+    .left {
+      .content {
+        margin-top: 2.8rem;
+        display: table;
+        line-height: 1.5;
+
+        .index {
+          display: table-cell;
+          width: 6rem;
+        }
+        .courtname {
+          font-weight: 600;
+          display: table-cell;
+          width: 45rem;
+        }
+        .occurred {
+          font-weight: 600;
+          display: table-cell;
+        }
+      }
+    }
+  }
+}
