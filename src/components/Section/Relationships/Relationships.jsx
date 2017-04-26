@@ -148,11 +148,12 @@ class Relationships extends ValidationElement {
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
               onSpouseUpdate={this.updateSpouse}
+              currentAddress={this.props.CurrentAddress}
             />
           </SectionView>
           <SectionView name="status/marital"
-            back="financial/bankruptcy"
-            backLabel={i18n.t('financial.destination.bankruptcy')}
+            back="history/federal"
+            backLabel={i18n.t('history.destination.federal')}
             next="relationships/status/cohabitant"
             nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
@@ -160,6 +161,7 @@ class Relationships extends ValidationElement {
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
               onSpouseUpdate={this.updateSpouse}
+              currentAddress={this.props.CurrentAddress}
             />
           </SectionView>
           <SectionView name="status/cohabitant"
@@ -201,13 +203,14 @@ class Relationships extends ValidationElement {
             showTop="true"
             back="relationships/relatives"
             backLabel={i18n.t('relationships.destination.relatives')}
-            next="military/selective"
-            next={i18n.t('military.destination.selective')}>
+            next="citizenship/status"
+            nextLabel={i18n.t('citizenship.destination.status')}>
             <Marital name="marital"
               {...this.props.Marital}
               onUpdate={this.updateMarital}
               onValidate={this.handleValidation}
               onSpouseUpdate={this.updateSpouse}
+              currentAddress={this.props.CurrentAddress}
             />
             <Cohabitants name="cohabitants"
               {...this.props.Cohabitants}
@@ -238,6 +241,7 @@ function mapStateToProps (state) {
   let relationships = app.Relationships || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
+  let history = app.History || {}
   return {
     Section: section,
     Relationships: relationships,
@@ -245,6 +249,7 @@ function mapStateToProps (state) {
     Marital: relationships.Marital || {},
     Spouse: extractSpouse(relationships.Marital),
     Cohabitants: relationships.Cohabitants || {},
+    CurrentAddress: history.CurrentAddress,
     People: relationships.People || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || []

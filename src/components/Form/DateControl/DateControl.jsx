@@ -317,18 +317,18 @@ export default class DateControl extends ValidationElement {
                       onValidate={this.handleValidation}
                       tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}
                       >
-              <option value="Janurary">1</option>
-              <option value="February">2</option>
-              <option value="March">3</option>
-              <option value="April">4</option>
-              <option value="May">5</option>
-              <option value="June">6</option>
-              <option value="July">7</option>
-              <option value="August">8</option>
-              <option value="September">9</option>
-              <option value="October">10</option>
-              <option value="November">11</option>
-              <option value="December">12</option>
+              <option key="jan" value="Janurary">1</option>
+              <option key="feb" value="February">2</option>
+              <option key="mar" value="March">3</option>
+              <option key="apr" value="April">4</option>
+              <option key="may" value="May">5</option>
+              <option key="jun" value="June">6</option>
+              <option key="jul" value="July">7</option>
+              <option key="aug" value="August">8</option>
+              <option key="sep" value="September">9</option>
+              <option key="oct" value="October">10</option>
+              <option key="nov" value="November">11</option>
+              <option key="dec" value="December">12</option>
             </Dropdown>
           </div>
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>

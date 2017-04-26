@@ -106,8 +106,7 @@ export default class Order extends ValidationElement {
           <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
           <Svg src="img/date-down-arrow.svg" className="more arrow" />
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 help={`psychological.${prefix}.help.disposition`}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}>
             <Text name="CourtName"
                   className="courtname"
                   bind={true}
@@ -116,7 +115,6 @@ export default class Order extends ValidationElement {
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 help={ `psychological.${prefix}.help.courtAddress` }
                  adjustFor="big-buttons">
             <Address name="CourtAddress"
                      bind={true}

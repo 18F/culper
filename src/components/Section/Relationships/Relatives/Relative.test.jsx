@@ -72,7 +72,11 @@ describe('The relative component', () => {
   it('display documentation information if relative requires citizenship documentation', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['United States'],
+      Citizenship: {
+        value: [
+          { name: 'United States', value: 'United States' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -95,7 +99,11 @@ describe('The relative component', () => {
   it('display items if not deceased and not a citizen but lives in the U.S.', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['Germany'],
+      Citizenship: {
+        value: [
+          { name: 'Germany', value: 'Germany' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -115,7 +123,11 @@ describe('The relative component', () => {
   it('display items if not deceased and not a citizen and lives abroad', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['Germany'],
+      Citizenship: {
+        value: [
+          { name: 'Germany', value: 'Germany' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -135,7 +147,11 @@ describe('The relative component', () => {
   it('display employer relationship if affiliated', () => {
     const expected = {
       name: 'relative',
-      Citizenship: ['Germany'],
+      Citizenship: {
+        value: [
+          { name: 'Germany', value: 'Germany' }
+        ]
+      },
       Birthplace: {
         addressType: 'International',
         address: '1234 Some Rd',
@@ -154,7 +170,7 @@ describe('The relative component', () => {
     expect(component.find('.relative-employer-relationship').length).toEqual(1)
   })
 
-  it('trigger updates when changing values', () => {
+  it('initial questions presented', () => {
     let updates = 0
     const expected = {
       name: 'relative',
@@ -170,15 +186,47 @@ describe('The relative component', () => {
     component.find('.relative-birthdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.relative-birthplace .international input').simulate('change')
     component.find('.relative-birthplace .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
-    component.find('.relative-citizenship input#Citizenship').simulate('change', { target: { name: 'country', value: 'United States' } })
+    component.find('.relative-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
     component.find('.relative-deceased .no input').simulate('change')
+    expect(updates).toBe(8)
+  })
 
-    // Are you my mother?
+  it('are you my mother?', () => {
+    let updates = 0
+    const expected = {
+      name: 'relative',
+      Relations: ['Mother'],
+      Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
+      Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
+      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
+      IsDeceased: 'No',
+      onUpdate: (obj) => {
+        updates++
+      }
+    }
+    const component = mount(<Relative {...expected} />)
     component.find('.relative-maiden-diff .no input').simulate('change')
     expect(component.find('.relative-maidenname').length).toBeGreaterThan(0)
     component.find('.relative-maidenname .last input').simulate('change', { target: { value: 'maidenname' } })
+    expect(updates).toBe(2)
+  })
 
-    // Is immediate relationships
+  it('is immediate relationships?', () => {
+    let updates = 0
+    const expected = {
+      name: 'relative',
+      Relations: ['Mother'],
+      Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
+      Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
+      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
+      IsDeceased: 'No',
+      onUpdate: (obj) => {
+        updates++
+      }
+    }
+    const component = mount(<Relative {...expected} />)
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)
     component.find('.relative-alias .branch .yes input').simulate('change')
     component.find('.alias-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
@@ -189,22 +237,50 @@ describe('The relative component', () => {
     component.find('.alias-dates .datecontrol.to .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.alias-dates .datecontrol.to .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.alias-dates .datecontrol.to .year input').simulate('change', { target: { name: 'year', value: '2005' } })
+    expect(updates).toBe(9)
+  })
 
-    // Is a citizen but lives abroad
-    component.find('.relative-address .international input').simulate('change')
-    component.find('.relative-address .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
-    expect(component.find('.relative-abroad').length).toBeGreaterThan(0)
+  it('is a citizen but lives abroad?', () => {
+    let updates = 0
+    const expected = {
+      name: 'relative',
+      Relations: ['Mother'],
+      Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
+      Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
+      Birthplace: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
+      Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
+      IsDeceased: 'No',
+      Address: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
+      onUpdate: (obj) => {
+        updates++
+      }
+    }
+    const component = mount(<Relative {...expected} />)
     component.find('.relative-abroad .abroad-fs input').simulate('change')
     component.find('.relative-naturalized .naturalized-alien input').simulate('change')
     component.find('.relative-derived .derived-alien input').simulate('change')
     component.find('.relative-documentnumber input').simulate('change', { target: { value: 'documentnumber' } })
     component.find('.relative-courtname input').simulate('change', { target: { value: 'courtname' } })
     component.find('.relative-courtaddress .city input').simulate('change', { target: { name: 'city', value: 'The city' } })
+    expect(updates).toBe(6)
+  })
 
-    // Is a not citizen and not deceased
-    component.find('.relative-citizenship input#Citizenship').simulate('change', { target: { name: 'country', value: 'Germany' } })
-
-    // Is not a citizen but lives in the United States
+  it('is not a citizen but lives in the United States?', () => {
+    let updates = 0
+    const expected = {
+      name: 'relative',
+      Relations: ['Mother'],
+      Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
+      Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
+      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
+      IsDeceased: 'No',
+      Address: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      onUpdate: (obj) => {
+        updates++
+      }
+    }
+    const component = mount(<Relative {...expected} />)
     component.find('.relative-address .domestic input').simulate('change')
     component.find('.relative-address .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
     expect(component.find('.relative-document').length).toBeGreaterThan(0)
@@ -213,8 +289,25 @@ describe('The relative component', () => {
     component.find('.relative-expiration .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-expiration .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.relative-expiration .year input').simulate('change', { target: { name: 'year', value: '2005' } })
+    expect(updates).toBe(7)
+  })
 
-    // Is not a citizen and lives outside the United States
+  it('is not a citizen and lives outside the United States?', () => {
+    let updates = 0
+    const expected = {
+      name: 'relative',
+      Relations: ['Mother'],
+      Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
+      Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
+      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
+      IsDeceased: 'No',
+      Address: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
+      onUpdate: (obj) => {
+        updates++
+      }
+    }
+    const component = mount(<Relative {...expected} />)
     component.find('.relative-address .international input').simulate('change')
     component.find('.relative-address .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
@@ -230,7 +323,9 @@ describe('The relative component', () => {
     component.find('.relative-employer-address .city input').simulate('change', { target: { name: 'city', value: 'The city' } })
     component.find('.relative-affiliation .yes input').simulate('change')
     component.find('.relative-employer-relationship textarea').simulate('change', { target: { value: 'employer relationship' } })
-
-    expect(updates).toBeGreaterThan(6)
+    component.find({ type: 'checkbox', name: 'EmployerNotApplicable' }).simulate('change')
+    component.find({ type: 'checkbox', name: 'EmployerAddressNotApplicable' }).simulate('change')
+    component.find({ type: 'checkbox', name: 'EmployerRelationshipNotApplicable' }).simulate('change')
+    expect(updates).toBe(16)
   })
 })
