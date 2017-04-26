@@ -189,23 +189,23 @@ class Psychological extends ValidationElement {
               {...this.props.Competence}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
-
+            <hr />
             <Consultation name="Consultations"
               {...this.props.Consultations}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
-
+            <hr />
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
-
+            <hr />
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
-
+            <hr />
             <Show when={this.props.ShowExistingConditions}>
               <ExistingConditions name="ExistingConditions"
                 {...this.props.ExistingConditions}
