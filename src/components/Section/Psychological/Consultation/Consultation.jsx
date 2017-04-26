@@ -63,13 +63,16 @@ export default class Consultation extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Consultation || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.consultation.collection.summaryCourtName')
+    const courtName = (o.CourtName || {}).value ? o.CourtName.value : null
     const type = i18n.t('psychological.consultation.collection.itemType')
 
     return (
-      <span>
+      <span className="content">
         <span className="index">{type}</span>
-        <span className="info"><strong>{courtName}</strong></span>
+        <span className="courtname">
+          {courtName || i18n.t('psychological.consultation.collection.summaryCourtName')}
+        </span>
+        <span className="occurred">{courtName && occurred}</span>
       </span>
     )
   }
