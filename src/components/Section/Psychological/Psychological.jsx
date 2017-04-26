@@ -123,7 +123,6 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.m('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
-            { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para2') }
             { i18n.m('psychological.intro.para3') }
             { i18n.m('psychological.intro.para4') }
