@@ -8,9 +8,6 @@ import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthActions'
 
-// // Included so that when webpack processes this, it automatically loads necessary polyfills
-// import 'babel-polyfill'
-
 const app = document.getElementById('app')
 
 ReactDOM.render(
