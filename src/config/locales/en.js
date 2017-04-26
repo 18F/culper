@@ -1461,7 +1461,7 @@ const en = {
         entrydate: 'Provide the date of entry into the U.S.',
         entrylocation: 'Provide the location of entry into the U.S.',
         priorcitizenship: {
-          naturalized: 'Provide countrny(ies) of prior citizenship',
+          naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'
         },
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
@@ -2244,6 +2244,26 @@ const en = {
         }
       },
       help: {
+        address: {
+          title: 'Need help with the marital address?',
+          message: 'Provide the last known address ',
+          note: ''
+        },
+        addressSeparated: {
+          title: 'Need help with the marital address?',
+          message: 'Provide the location of the record if legally separated',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with the telephone number?',
+          message: 'Provide the telephone number',
+          note: ''
+        },
+        dateSeparated: {
+          title: 'Need help with the date of separation?',
+          message: 'Provide the date of separation',
+          note: ''
+        },
         birthdate: {
           title: 'Need help with the birthdate?',
           message: 'Provide the date of birth',
@@ -2526,8 +2546,8 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       }
     },
     apoFpo: {
@@ -2547,8 +2567,8 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
         label: 'APO/FPO State Code'
@@ -5010,8 +5030,8 @@ const en = {
     heading: {
       intro: 'Why we are asking',
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
-      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
-      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
+      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?',
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.)',
       hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, is not a reason to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
@@ -5086,7 +5106,7 @@ const en = {
         },
         incompetent: {
           title: 'Need help with this question?',
-          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
         }
       },
       collection: {
@@ -5155,7 +5175,7 @@ const en = {
     },
     hospitalization: {
       heading: {
-        admission: 'Was the admission voluntary or involuntary',
+        admission: 'Was the admission voluntary or involuntary?',
         treatment: 'Provide the dates of treatment',
         facility: 'Provide the facility where treatment was provided',
         address: 'Provide the address of the facility where treatment was provided',

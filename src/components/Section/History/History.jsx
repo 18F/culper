@@ -515,8 +515,8 @@ class History extends ValidationElement {
                        title="Let&rsquo;s make sure your history is covered"
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
-                       next="foreign/passport"
-                       nextLabel={i18n.t('foreign.destination.passport')}>
+                       next="relationships/status/marital"
+                       nextLabel={i18n.t('relationships.destination.marital')}>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
             <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
@@ -585,8 +585,8 @@ class History extends ValidationElement {
           </SectionView>
 
           <SectionView name="residence"
-                       back="military/foreign"
-                       backLabel={i18n.t('military.destination.foreign')}
+                       back="financial/nonpayment"
+                       backLabel={i18n.t('financial.destination.nonpayment')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
             <h2>{i18n.t('history.residence.title')}</h2>
