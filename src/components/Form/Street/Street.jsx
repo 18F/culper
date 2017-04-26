@@ -13,6 +13,12 @@ export default class Street extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      value: nextProps.value
+    })
+  }
+
   /**
    * Handle the change event.
    */

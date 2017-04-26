@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import merge from 'deepmerge'
 import relationshipsReducer from './relationships'
+import historyReducer from './history'
 
 const defaultState = {}
 
@@ -46,7 +46,7 @@ export default combineReducers({
   Relationships: relationshipsReducer,
   Citizenship: reducer('Citizenship'),
   Military: reducer('Military'),
-  History: reducer('History'),
+  History: historyReducer,
   Foreign: reducer('Foreign'),
   TBD: reducer('Tbd'),
   Legal: reducer('Legal'),

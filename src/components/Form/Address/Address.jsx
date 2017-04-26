@@ -44,6 +44,17 @@ export default class Address extends ValidationElement {
     this.doUpdate = this.doUpdate.bind(this)
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      address: nextProps.address,
+      city: nextProps.city,
+      zipcode: nextProps.zipcode,
+      state: nextProps.state,
+      country: nextProps.country,
+      addressType: nextProps.addressType
+    })
+  }
+
   componentWillUnmount () {
     this.handleAsyncValidation = null
   }
@@ -448,7 +459,8 @@ Address.defaultProps = {
   suggestions: [],
   validate: false,
   geocodeErrorCode: null,
-  tab: (input) => { input.focus() }
+  tab: (input) => { input.focus() },
+  addressType: 'United States'
 }
 
 /**

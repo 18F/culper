@@ -112,6 +112,7 @@ export default class Marital extends ValidationElement {
             onUpdate={this.updateCivilUnion}
             onValidate={this.handleValidation}
             onSpouseUpdate={this.props.onSpouseUpdate}
+            currentAddress={this.props.currentAddress}
           />
         </Show>
       </div>
