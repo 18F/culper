@@ -41,27 +41,4 @@ describe('The MultipleDropdown component', () => {
     component.find('.ic-token-delete-button').simulate('click')
     expect(updates).toBe(1)
   })
-
-  // it('can handle change', () => {
-  //   let updates = 0
-  //   const expected = {
-  //     name: 'multiple-dropdown',
-  //     options: [
-  //       { name: 'United States', value: 'United States' },
-  //       { name: 'Germany', value: 'Germany' }
-  //     ],
-  //     onUpdate: () => { updates++ }
-  //   }
-  //   const component = mount(<MultipleDropdown {...expected} />)
-  //   component.find('input').simulate('change', { target: { value: 'Germany' } })
-  //   // component.find('input').simulate('keydown', { keyCode: 188, target: { value: 'Germany' } })
-  //   console.log(component.html())
-  //   expect(updates).toBe(1)
-  // })
-
-  // it('can handle select', () => {
-  // })
-
-  // it('can handle input', () => {
-  // })
 })
