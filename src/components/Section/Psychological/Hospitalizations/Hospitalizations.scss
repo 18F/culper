@@ -1,0 +1,26 @@
+.hospitalizations {
+  .summary {
+    .left {
+      .content {
+        margin-top: 2.8rem;
+        display: table;
+        line-height: 1.5;
+
+        .index {
+          display: table-cell;
+          width: 13rem;
+        }
+        .facility {
+          font-weight: 600;
+          display: table-cell;
+          width: 45rem;
+        }
+        .treatmentdate {
+          font-weight: 600;
+          display: table-cell;
+          width: 16rem;
+        }
+      }
+    }
+  }
+}

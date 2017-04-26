@@ -60,13 +60,14 @@ export default class Hospitalizations extends ValidationElement {
     const o = (item || {}).Hospitalization || {}
     const treatmentDate = (o.TreatmentDate || {})
     const formattedTreatmentDate = dateRangeFormat(treatmentDate)
-    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${formattedTreatmentDate}` : i18n.t('psychological.hospitalization.collection.summary')
+    const facility = (o.Facility || {}).value ? o.Facility.value : null
     const type = i18n.t('psychological.hospitalization.collection.itemType')
 
     return (
-      <span>
+      <span className="content">
         <span className="index">{type}</span>
-        <span className="info"><strong>{facility}</strong></span>
+        <span className="facility">{facility || i18n.t('psychological.hospitalization.collection.summary')}</span>
+        <span className="treatmentdate">{facility && formattedTreatmentDate}</span>
       </span>
     )
   }
