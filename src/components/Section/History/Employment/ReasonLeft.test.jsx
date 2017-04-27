@@ -68,12 +68,6 @@ describe('The reason left component', () => {
         Reasons: [{Has: 'Yes', Reason: {Reason: 'Performance'}}],
         explanationText: i18n.t('history.employment.default.left.performance.text'),
         dateText: i18n.t('history.employment.default.left.performance.date')
-      },
-      {
-        name: 'peace_i_am_out',
-        Reasons: [{Has: 'Yes', Reason: {Reason: 'Other'}}],
-        explanationText: i18n.t('history.employment.default.left.other.text'),
-        dateText: i18n.t('history.employment.default.left.other.date')
       }
     ]
     for (const dreams of expectations) {

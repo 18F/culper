@@ -51,10 +51,9 @@ export default class ReasonOptions extends React.Component {
         return i18n.t('history.employment.default.left.charges.text')
       case 'Performance':
         return i18n.t('history.employment.default.left.performance.text')
-      case 'Other':
-      default:
-        return i18n.t('history.employment.default.left.other.text')
     }
+
+    return null
   }
 
   labelDate () {
@@ -67,10 +66,9 @@ export default class ReasonOptions extends React.Component {
         return i18n.t('history.employment.default.left.charges.date')
       case 'Performance':
         return i18n.t('history.employment.default.left.performance.date')
-      case 'Other':
-      default:
-        return i18n.t('history.employment.default.left.other.date')
     }
+
+    return null
   }
 
   render () {
@@ -79,7 +77,6 @@ export default class ReasonOptions extends React.Component {
     return (
       <div className={this.props.className}>
         <Field title="Select the type of incident"
-               help="history.employment.default.left.help"
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason}>
@@ -104,12 +101,6 @@ export default class ReasonOptions extends React.Component {
             <Radio name="employment_performance"
                    label={i18n.t('history.employment.default.left.performance.option')}
                    value="Performance"
-                   onUpdate={this.updateReason}
-                   onValidate={this.props.onValidate}
-                   />
-            <Radio name="employment_other"
-                   label={i18n.t('history.employment.default.left.other.option')}
-                   value="Other"
                    onUpdate={this.updateReason}
                    onValidate={this.props.onValidate}
                    />

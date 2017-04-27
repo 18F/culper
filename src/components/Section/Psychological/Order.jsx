@@ -78,15 +78,24 @@ export default class Order extends ValidationElement {
                    />
         </Field>
 
-        <BranchCollection
-          className="appeals"
-          branchHelp={`psychological.${prefix}.help.appealed`}
-          branch={<h3>{ i18n.t(`psychological.${prefix}.heading.appealed`) }</h3>}
-          branchTail={<h3>{ i18n.t(`psychological.${prefix}.heading.appealedAnother`) }</h3>}
-          items={this.props.Appeals}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateAppeals}
-          >
+        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
+               help={`psychological.${prefix}.help.disposition`}>
+          <Text name="Disposition"
+                className="disposition"
+                {...this.props.Disposition}
+                onUpdate={this.updateDisposition}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
+
+        <BranchCollection className="appeals"
+                          label={i18n.t(`psychological.${prefix}.heading.appealed`)}
+                          appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
+                          help={`psychological.${prefix}.help.appealed`}
+                          items={this.props.Appeals}
+                          onValidate={this.props.onValidate}
+                          onUpdate={this.updateAppeals}
+                          >
 
           <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
           <Svg src="img/date-down-arrow.svg" className="more arrow" />
