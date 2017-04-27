@@ -84,7 +84,6 @@ export default class Hospitalizations extends ValidationElement {
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
           value={this.state.Hospitalized}
-          help="psychological.hospitalization.help.incompetent"
           onValidate={this.handleValidation}
           onUpdate={this.updateHospitalized}>
         </Branch>

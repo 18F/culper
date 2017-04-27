@@ -5203,19 +5203,19 @@ const en = {
           note: ''
         },
         treatment: {
-          title: 'Need help the dates of treatment?',
-          message: 'Provide the dates when you were treated ',
-          note: ''
+          title: 'Need help the date range of your hospitalization?',
+          message: 'Provide the full date range (admission to release) of your hospitalization.',
+          note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
         },
         facility: {
-          title: 'Need help the facility where treatment was provided?',
-          message: 'Provide the name of the facility where treatment was provided',
+          title: 'Need help with this facility name?',
+          message: 'Enter the name of the facility where you were hospitalized.',
           note: ''
         },
         address: {
-          title: 'Need help with treatment facility?',
-          message: 'Provide the address of the facility where treatment was provided',
-          note: ''
+          title: 'Not sure of the facility address?',
+          message: 'Try looking up the facility name, a physical or mailing address should be associated with it.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -5235,8 +5235,8 @@ const en = {
           note: ''
         },
         diagnosed: {
-          title: 'Need help with treatment dates',
-          message: 'Provide the dates of couseling or treatment',
+          title: 'Need help the date range of your diagnosis or health condition?',
+          message: 'Provide the full date range (admission to release) of your hospitalization.',
           note: ''
         }
       },
