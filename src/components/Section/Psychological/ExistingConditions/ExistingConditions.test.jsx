@@ -31,7 +31,6 @@ describe('The ExistingConditions component', () => {
     component.find('.hascondition .no input').simulate('change')
     component.find({type: 'radio', name: 'treatment', value: 'Decline'}).simulate('click')
     component.find('.didnotfollow .no input').simulate('change')
-    component.find('div').first().simulate('blur')
     expect(updates).toBe(3)
   })
 })
