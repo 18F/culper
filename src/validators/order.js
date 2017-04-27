@@ -5,7 +5,6 @@ export default class OrderValidator {
   constructor (state = {}, props) {
     this.courtAddress = state.CourtAddress
     this.courtName = state.CourtName
-    this.disposition = state.Disposition
     this.occurred = state.Occurred
     this.appeals = state.Appeals
   }
@@ -13,10 +12,6 @@ export default class OrderValidator {
   validCourt () {
     return validGenericTextfield(this.courtName) &&
       new AddressValidator(this.courtAddress).isValid()
-  }
-
-  validDisposition () {
-    return validGenericTextfield(this.disposition)
   }
 
   validOccurred () {
@@ -35,13 +30,13 @@ export default class OrderValidator {
 
     return branchValidator.each(item => {
       return validGenericTextfield(item.CourtName) &&
-        new AddressValidator(item.CourtAddress)
+        new AddressValidator(item.CourtAddress) &&
+        validGenericTextfield(item.Disposition)
     })
   }
 
   isValid () {
     return this.validCourt() &&
-      this.validDisposition() &&
       this.validOccurred() &&
       this.validAppeals()
   }
