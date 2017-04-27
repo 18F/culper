@@ -116,8 +116,11 @@ export default class Diagnoses extends ValidationElement {
   render () {
     return (
       <div className="diagnoses">
-        {i18n.m('psychological.heading.diagnoses')}
-        <Field title={i18n.t('psychological.diagnoses.heading.para')}>
+        <div>
+          {i18n.m('psychological.heading.diagnoses')}
+        </div>
+        <Field title={i18n.t('psychological.diagnoses.heading.diagnoses')}>
+          <p>{i18n.t('psychological.diagnoses.heading.examples')}</p>
           <Branch name="diagnosed"
             className="diagnosed"
             value={this.state.Diagnosed}
