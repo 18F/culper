@@ -5034,7 +5034,7 @@ const en = {
       consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?',
       consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.)',
       hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
-      diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, is not a reason to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
+      diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
       intro: 'Introduction',
@@ -5073,6 +5073,7 @@ const en = {
         appealCourtName: 'Provide the name of the higher court or administrative agency',
         appealCourtAddress: 'Provide the address of the court or administrative agency',
         appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        appealedAnother: 'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
         needMore: 'Since you answered yes, we need more information'
       },
       label: {
@@ -5111,12 +5112,12 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Click to provide details',
-        description: 'description',
+        summaryCourtName: 'Provide your order details below',
+        description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
-        itemType: 'Order:'
+        itemType: 'Order'
       }
     },
     consultation: {
@@ -5128,6 +5129,7 @@ const en = {
         appealCourtName: 'Name of court or administrative agency',
         appealCourtAddress: 'Provide the address of the court or administrative agency',
         appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        appealedAnother: 'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
         needMore: 'Since you answered yes, we need more information'
       },
       label: {
@@ -5166,12 +5168,12 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Click to provide details',
-        description: 'description',
+        summaryCourtName: 'Provide your order details below',
+        description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
-        itemType: 'Order:'
+        itemType: 'Order'
       }
     },
     hospitalization: {
@@ -5184,15 +5186,16 @@ const en = {
       },
       label: {
         address: 'This address is',
-        voluntaryAdmission: 'Voluntary\n\n(Provide Explanation)',
-        involuntaryAdmission: 'Involuntary\n\n(Provide Explanation)'
+        voluntaryAdmission: 'Voluntary',
+        involuntaryAdmission: 'Involuntary'
       },
       collection: {
-        summary: 'Click to provide details',
+        description: 'Summary of hospitalizations',
+        summary: 'Provide your hospitalization details below',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
-        itemType: 'Hospitalization:'
+        itemType: 'Hospitalization'
       },
       help: {
         incompetent: {
@@ -5201,19 +5204,19 @@ const en = {
           note: ''
         },
         treatment: {
-          title: 'Need help the dates of treatment?',
-          message: 'Provide the dates when you were treated ',
-          note: ''
+          title: 'Need help the date range of your hospitalization?',
+          message: 'Provide the full date range (admission to release) of your hospitalization.',
+          note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
         },
         facility: {
-          title: 'Need help the facility where treatment was provided?',
-          message: 'Provide the name of the facility where treatment was provided',
+          title: 'Need help with this facility name?',
+          message: 'Enter the name of the facility where you were hospitalized.',
           note: ''
         },
         address: {
-          title: 'Need help with treatment facility?',
-          message: 'Provide the address of the facility where treatment was provided',
-          note: ''
+          title: 'Not sure of the facility address?',
+          message: 'Try looking up the facility name, a physical or mailing address should be associated with it.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -5233,8 +5236,8 @@ const en = {
           note: ''
         },
         diagnosed: {
-          title: 'Need help with treatment dates',
-          message: 'Provide the dates of couseling or treatment',
+          title: 'Need help the date range of your diagnosis or health condition?',
+          message: 'Provide the full date range (admission to release) of your hospitalization.',
           note: ''
         }
       },
@@ -5288,15 +5291,17 @@ const en = {
     diagnoses: {
       heading: {
         didNotConsult: 'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
-        para: 'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        diagnoses: 'Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        examples: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
         inTreatment: 'Are you currently in treatment?'
       },
       collection: {
+        description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
         appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
-        itemType: 'Diagnosis:'
+        itemType: 'Diagnosis'
       },
       professional: {
         heading: {
@@ -5311,11 +5316,12 @@ const en = {
       },
       treatment: {
         collection: {
-          summary: 'Provide your diagnosis details below',
+          description: 'Summary of treatments',
+          summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you are currently in treatment?',
           appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
-          itemType: 'Treatment:'
+          itemType: 'Treatment'
         }
       },
       help: {
@@ -5396,11 +5402,12 @@ const en = {
       },
       treatment: {
         collection: {
+          description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
           appendMessage: 'If yes, use the button below to add another instance',
           appendLabel: 'Add another treatment',
-          itemType: 'Instance:'
+          itemType: 'Treatment'
         }
       },
       diagnosis: {

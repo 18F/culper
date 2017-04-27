@@ -60,13 +60,16 @@ export default class Hospitalizations extends ValidationElement {
     const o = (item || {}).Hospitalization || {}
     const treatmentDate = (o.TreatmentDate || {})
     const formattedTreatmentDate = dateRangeFormat(treatmentDate)
-    const facility = (o.Facility || {}).value ? `${o.Facility.value} ${formattedTreatmentDate}` : i18n.t('psychological.hospitalization.collection.summary')
+    const facility = (o.Facility || {}).value ? o.Facility.value : null
     const type = i18n.t('psychological.hospitalization.collection.itemType')
 
     return (
-      <span>
-        <span className="index">{type}</span>
-        <span className="info"><strong>{facility}</strong></span>
+      <span className="content">
+        <span className="index">{type} {index + 1}:</span>
+        <span className="facility">
+          <strong>{facility || i18n.t('psychological.hospitalization.collection.summary')}</strong>
+        </span>
+        <span className="treatmentdate"><strong>{facility && formattedTreatmentDate}</strong></span>
       </span>
     )
   }
@@ -81,17 +84,18 @@ export default class Hospitalizations extends ValidationElement {
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
           value={this.state.Hospitalized}
-          help="psychological.hospitalization.help.incompetent"
           onValidate={this.handleValidation}
           onUpdate={this.updateHospitalized}>
         </Branch>
 
         <Show when={this.state.Hospitalized === 'Yes'}>
           <Accordion minimum="1"
+            defaultState={this.props.defaultState}
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
             onValidate={this.handleValidation}
+            description={i18n.t('psychological.hospitalization.collection.description')}
             appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
             appendMessage={i18n.m('psychological.hospitalization.collection.appendMessage')}
             appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
@@ -107,5 +111,6 @@ export default class Hospitalizations extends ValidationElement {
 }
 
 Hospitalization.defaultProps = {
-  List: []
+  List: [],
+  defaultState: true
 }

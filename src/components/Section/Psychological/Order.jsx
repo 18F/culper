@@ -10,7 +10,6 @@ export default class Order extends ValidationElement {
     this.updateOccurred = this.updateOccurred.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateDisposition = this.updateDisposition.bind(this)
     this.updateAppeals = this.updateAppeals.bind(this)
   }
 
@@ -20,7 +19,6 @@ export default class Order extends ValidationElement {
         Occurred: this.props.Occurred,
         CourtName: this.props.CourtName,
         CourtAddress: this.props.CourtAddress,
-        Disposition: this.props.Disposition,
         Appeals: this.props.Appeals,
         [field]: values
       })
@@ -41,10 +39,6 @@ export default class Order extends ValidationElement {
 
   updateAppeals (values) {
     this.update('Appeals', values)
-  }
-
-  updateDisposition (values) {
-    this.update('Disposition', values)
   }
 
   render () {
@@ -95,7 +89,8 @@ export default class Order extends ValidationElement {
         </Field>
 
         <BranchCollection className="appeals"
-                          label={ i18n.t(`psychological.${prefix}.heading.appealed`) }
+                          label={i18n.t(`psychological.${prefix}.heading.appealed`)}
+                          appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
                           help={`psychological.${prefix}.help.appealed`}
                           items={this.props.Appeals}
                           onValidate={this.props.onValidate}

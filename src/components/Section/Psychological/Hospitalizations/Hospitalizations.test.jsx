@@ -15,6 +15,118 @@ describe('The Hospitalizations component', () => {
     component.find('.hospitalizations .yes input').simulate('change')
     expect(component.find('.hospitalization').length).toBe(1)
     component.find({type: 'radio', value: 'Voluntary'}).simulate('change')
+    component.find('textarea#Explanation').simulate('change', { target: { value: 'Testing' } })
+    component.find('input#Facility').simulate('change', { target: { value: 'Testing' } })
+    expect(updates).toBe(4)
+  })
+
+  it('Loads data', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const component = mount(<Hospitalizations onUpdate={onUpdate} List={List} Hospitalized={'Yes'} />)
+    component.find('input#Facility').simulate('change', { target: { value: 'Testing' } })
     expect(updates).toBe(2)
   })
 })
+
+const List = [
+  {
+    type: 'Employment',
+    Item: {
+      EmploymentActivity: {
+        value: 'FederalContractor'
+      },
+      Dates: {
+        from: {
+          date: new Date('1/1/2010')
+        },
+        to: {
+          date: new Date('1/1/2012')
+        },
+        present: false
+      },
+      Employment: {
+        value: 'SW'
+      },
+      Status: {
+        value: 'Some status'
+      },
+      Title: {
+        value: 'Dev'
+      },
+      Address: {
+        addressType: 'United States',
+        address: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      Additional: {
+        HasAdditionalActivity: 'No',
+        List: []
+      },
+      Telephone: {
+        noNumber: '',
+        number: '2028675309',
+        numberType: 'Cell',
+        timeOfDay: 'Day'
+      },
+      Supervisor: {
+        Address: {
+          addressType: 'United States',
+          address: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'Virginia',
+          zipcode: '22202'
+        },
+        Email: {
+          value: 'foo@local.dev'
+        },
+        SupervisorName: {
+          value: 'John Doe'
+        },
+        Telephone: {
+          noNumber: '',
+          number: '2021112222',
+          numberType: 'Cell',
+          timeOfDay: 'Day'
+        },
+        Title: {
+          value: 'The Foo'
+        }
+      },
+      ReasonLeft: {
+        Reasons: [
+          {
+            Has: 'Yes',
+            Reason: 'Fired',
+            Date: {
+              date: new Date('1/1/2016'),
+              day: '1',
+              month: '1',
+              year: '2016'
+            },
+            Text: {
+              value: 'Some excuse'
+            }
+          }
+        ]
+      },
+      Reprimand: {
+        Reasons: [
+          {
+            Date: {
+              date: new Date('1/1/2015'),
+              month: '1',
+              year: '2015'
+            },
+            Has: 'Yes',
+            Text: {
+              value: 'Foo'
+            }
+          }
+        ]
+      }
+    }
+  }
+]
