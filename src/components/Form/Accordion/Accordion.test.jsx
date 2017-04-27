@@ -34,6 +34,7 @@ describe('The accordion component', () => {
     const expected = {
       minimum: 1,
       items: items,
+      timeout: 0,
       onUpdate: (x) => { items = x }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
