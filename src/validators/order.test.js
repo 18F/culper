@@ -1,6 +1,6 @@
 import OrderValidator from './order'
 
-describe('Competence validation', function () {
+describe('Order validation', function () {
   it('validates court', () => {
     const tests = [
       {
@@ -47,6 +47,9 @@ describe('Competence validation', function () {
                 city: 'Arlington',
                 state: 'Virginia',
                 zipcode: '22202'
+              },
+              Disposition: {
+                value: 'Stuff'
               }
             }
           ]
