@@ -5139,14 +5139,14 @@ const en = {
           note: ''
         },
         courtName: {
-          title: 'Need help with the court name?',
-          message: 'The court that declared you incompetent',
+          title: 'Need help with this court or agency name?',
+          message: 'Enter the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
-          title: 'Need help with the court address?',
-          message: 'The court address',
-          note: ''
+          title: 'Not sure of the court or agency address?',
+          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         disposition: {
           title: 'Need help with the disposition?',
