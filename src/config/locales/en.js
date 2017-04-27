@@ -365,6 +365,18 @@ const en = {
         note: ''
       }
     },
+    domestic_extension: {
+      pattern: {
+        title: 'Invalid telephone extension',
+        message: 'The extension must be between 0 and 10 digits',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        note: ''
+      }
+    },
     dsn_first: {
       pattern: {
         title: 'This field must have 3 digits',

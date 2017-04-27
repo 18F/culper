@@ -27,9 +27,9 @@ export default class Telephone extends ValidationElement {
     super(props)
     this.state = {
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
       type: props.type || 'Domestic',
       numberType: props.numberType,
       timeOfDay: props.timeOfDay || 'Both',
@@ -307,13 +307,13 @@ export default class Telephone extends ValidationElement {
               />
         <span className="separator"></span>
         <Text name="domestic_extension"
-              className="number four"
-              placeholder="0000"
+              className="number six"
+              placeholder="000000"
               label={i18n.t('telephone.domestic.extension.label')}
               aria-describedby=""
               disabled={this.state.noNumber}
-              maxlength="4"
-              pattern="\d{0,4}"
+              maxlength="10"
+              pattern="^\d{0,10}$"
               readonly={this.props.readonly}
               required={this.props.required}
               value={this.state.extension}
@@ -374,13 +374,13 @@ export default class Telephone extends ValidationElement {
               />
         <span className="separator"></span>
         <Text name="domestic_extension"
-              className="number four"
-              placeholder="0000"
+              className="number six"
+              placeholder="000000"
               label={i18n.t('telephone.international.extension.label')}
               aria-describedby=""
               disabled={this.state.noNumber}
-              maxlength="4"
-              pattern="\d{0,4}"
+              maxlength="10"
+              pattern="\d{0,10}"
               readonly={this.props.readonly}
               required={this.props.required}
               value={this.state.extension}
