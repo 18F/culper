@@ -26,10 +26,10 @@ export default class Telephone extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      value: props.value || false,
-      focus: props.focus || flase,
+      value: props.value,
+      focus: props.focus || false,
       error: props.error || false,
-      valid: props.valid,
+      valid: props.valid || false,
       type: props.type || 'Domestic',
       numberType: props.numberType,
       timeOfDay: props.timeOfDay || 'Both',
