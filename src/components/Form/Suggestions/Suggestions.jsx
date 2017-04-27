@@ -57,6 +57,19 @@ export default class Suggestions extends React.Component {
     return this.props.show || (!this.props.dismissSuggestions && this.props.withSuggestions && this.props.suggestions.length > 0)
   }
 
+  alternate () {
+    if (this.props.suggestionDismissAlternate) {
+      return (
+        <a href="javascript:;;" className="right" onClick={this.dismissSuggestions}>
+          <span>{this.props.suggestionDismissAlternate}</span>
+          <i className="fa fa-arrow-circle-right"></i>
+        </a>
+      )
+    }
+
+    return null
+  }
+
   render () {
     if (!this.visible()) {
       return this.props.children
@@ -82,6 +95,7 @@ export default class Suggestions extends React.Component {
                     <span>{this.props.suggestionDismissLabel}</span>
                     <i className="fa fa-arrow-circle-right"></i>
                   </a>
+                  {this.alternate()}
                 </div>
               </div>
             </div>
@@ -97,6 +111,7 @@ Suggestions.defaultProps = {
   suggestionParagrah: '',
   suggestionLabel: '',
   suggestionDismissLabel: '',
+  suggestionDismissAlternate: '',
   suggestionUseLabel: '',
   dismissSuggestions: false,
   withSuggestions: false,
