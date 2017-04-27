@@ -3162,11 +3162,6 @@ const en = {
             option: 'Unsatisfactory performance',
             text: 'Provide the reason(s) for unsatisfactory performance',
             date: 'Provide the date you left by mutual agreement following a notice of unsatisfactory performance'
-          },
-          other: {
-            option: 'Other',
-            text: 'Do you have another reason for leaving to report for this employment?',
-            date: 'Provide the date you left'
           }
         },
         reprimand: {
