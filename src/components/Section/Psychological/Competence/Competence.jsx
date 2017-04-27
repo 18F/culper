@@ -83,7 +83,6 @@ export default class Competence extends ValidationElement {
         <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
           value={this.state.IsIncompetent}
-          help="psychological.competence.help.incompetent"
           onValidate={this.handleValidation}
           onUpdate={this.updateIsIncompentent}>
         </Branch>

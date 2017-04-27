@@ -118,7 +118,6 @@ export default class Diagnoses extends ValidationElement {
         <Branch name="diagnosed"
           className="diagnosed"
           value={this.state.Diagnosed}
-          help="psychological.diagnoses.help.diagnosed"
           onValidate={this.handleValidation}
           onUpdate={this.updateDiagnosed}>
         </Branch>

@@ -102,8 +102,7 @@ export default class Hospitalization extends ValidationElement {
         </Field>
 
         <Show when={this.props.Admission}>
-          <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
-                 help="psychological.hospitalization.help.explanation">
+          <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}>
             <Textarea name="Explanation"
                       className="explanation"
                       {...this.props.Explanation}
