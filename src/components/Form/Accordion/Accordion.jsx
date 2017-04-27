@@ -17,14 +17,14 @@ export const doScroll = (first, item, scrollTo) => {
   }
 
   // Get the position of the element we want to be visible
-  const pos = findPosition(document.getElementById(item.uuid))
+  const pos = findPosition(document.getElementById(item.uuid))[0]
 
   // Get the top most point we want to display at least on the first addition
-  const top = findPosition(scrollTo)
+  const top = findPosition(scrollTo)[0]
 
   // Find the offset from the top most element to the first item in the accordion for
   // a fixed offset to constantly be applied
-  const offset = findPosition(document.getElementById(first)) - top
+  const offset = findPosition(document.getElementById(first))[0] - top
 
   // Scroll to that position
   window.scroll({ top: pos - offset, left: 0, behavior: 'smooth' })
@@ -113,16 +113,19 @@ export default class Accordion extends ValidationElement {
       const sindex = index < 0 ? 0 : index
       const shift = (sindex / 10) * 0.3142
       const timeout = this.props.timeout + (this.props.timeout * shift)
-      console.log('timeout', timeout)
 
+      // Get the element to which we should scroll to
       const scrollTo = this.props.scrollTo
             ? document.getElementById(this.props.scrollTo)
             : this.refs.accordion
 
+      // Get the identifier to the first item
+      const first = this.props.items[0].uuid
+
       if (timeout === 0) {
-        doScroll(this.props.items[0], item, scrollTo)
+        doScroll(first, item, scrollTo)
       } else {
-        window.setTimeout(() => { doScroll(this.props.items[0], item, scrollTo) }, timeout)
+        window.setTimeout(() => { doScroll(first, item, scrollTo) }, timeout)
       }
     })
   }
