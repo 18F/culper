@@ -380,7 +380,7 @@ export default class Telephone extends ValidationElement {
               aria-describedby=""
               disabled={this.state.noNumber}
               maxlength="10"
-              pattern="\d{0,10}"
+              pattern="^\d{0,10}$"
               readonly={this.props.readonly}
               required={this.props.required}
               value={this.state.extension}
