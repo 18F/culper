@@ -79,7 +79,6 @@ export default class ReasonOptions extends React.Component {
     return (
       <div className={this.props.className}>
         <Field title="Select the type of incident"
-               help="history.employment.default.left.help"
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason}>

@@ -94,14 +94,13 @@ export default class Order extends ValidationElement {
                 />
         </Field>
 
-        <BranchCollection
-          className="appeals"
-          branchHelp={`psychological.${prefix}.help.appealed`}
-          branch={<h3>{ i18n.t(`psychological.${prefix}.heading.appealed`) }</h3>}
-          items={this.props.Appeals}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateAppeals}
-          >
+        <BranchCollection className="appeals"
+                          label={ i18n.t(`psychological.${prefix}.heading.appealed`) }
+                          help={`psychological.${prefix}.help.appealed`}
+                          items={this.props.Appeals}
+                          onValidate={this.props.onValidate}
+                          onUpdate={this.updateAppeals}
+                          >
 
           <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
           <Svg src="img/date-down-arrow.svg" className="more arrow" />

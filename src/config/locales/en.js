@@ -3134,14 +3134,15 @@ const en = {
         },
         left: {
           title: 'Provide the reason for leaving the employment activity',
-          para: 'For this employment have any of the following happened to you in the last seven (7) years?',
-          list: '- Fired\n- Quit after being told you would be fired\n- Left by mutual agreement following charges or allegations of misconduct\n- Left by mutual agreement following notice of unsatisfactory performance',
+          branch: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          append: 'In the last seven (7) years do you have another reason for leaving to report for this employment?',
+          list: [
+            '- Fired',
+            '- Quit after being told you would be fired',
+            '- Left by mutual agreement following charges or allegations of misconduct',
+            '- Left by mutual agreement following notice of unsatisfactory performance'
+          ],
           comments: 'Provide any additional comments for why you left this employment activity',
-          help: {
-            title: '',
-            message: '',
-            note: ''
-          },
           fired: {
             option: 'Fired',
             text: 'Provide the reason for being fired',

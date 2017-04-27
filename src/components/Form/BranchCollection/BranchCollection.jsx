@@ -84,14 +84,14 @@ export default class BranchCollection extends React.Component {
    */
   branch (props) {
     return (
-      <Branch
-        name={this.props.branchName}
-        help={this.props.help || this.props.branchHelp}
-        onValidate={this.props.onValidate}
-        {...props}
-        className={props.className}
-        >
-        {props.children || this.props.branch}
+      <Branch name={props.name}
+              label={props.label}
+              labelSize={props.labelSize}
+              help={props.help}
+              value={props.value}
+              onUpdate={props.onUpdate}
+              onValidate={props.onValidate}>
+        {props.children}
       </Branch>
     )
   }
@@ -111,10 +111,14 @@ export default class BranchCollection extends React.Component {
         <div>
           {
             this.branch({
+              name: this.props.branchName,
               label: this.props.label,
               labelSize: this.props.labelSize,
+              help: this.props.help,
               value: null,
-              onUpdate: this.onDefaultBranchClick.bind(this)
+              children: this.props.content,
+              onUpdate: this.onDefaultBranchClick.bind(this),
+              onValidate: this.props.onValidate
             })
           }
         </div>
@@ -129,10 +133,14 @@ export default class BranchCollection extends React.Component {
         <div key={item.index}>
           {
             this.branch({
+              name: this.props.branchName,
               label: this.props.label,
               labelSize: this.props.labelSize,
+              help: this.props.help,
               value: 'No',
-              onUpdate: this.onBranchClick.bind(this, item, 0)
+              children: this.props.content,
+              onUpdate: this.onBranchClick.bind(this, item, 0),
+              onValidate: this.props.onValidate
             })
           }
         </div>
@@ -140,32 +148,48 @@ export default class BranchCollection extends React.Component {
     }
 
     // When more than 1 item is in
-    const top = (index, item) => {
+    const top = (index, item, arr) => {
+      if (index === 0) {
+        return this.branch({
+          name: this.props.branchName,
+          label: this.props.label,
+          labelSize: this.props.labelSize,
+          value: item[this.props.valueKey],
+          help: this.props.help,
+          children: this.props.content,
+          onUpdate: this.onBranchClick.bind(this, item, index),
+          onValidate: this.props.onValidate
+        })
+      }
+
       return this.branch({
-        label: this.props.label,
-        labelSize: this.props.labelSize,
+        name: this.props.branchName,
+        label: this.props.appendLabel,
+        labelSize: this.props.appendSize,
+        help: this.props.help,
         value: item[this.props.valueKey],
-        onUpdate: this.onBranchClick.bind(this, item, index)
+        children: this.props.appendContent,
+        onUpdate: this.onBranchClick.bind(this, item, index),
+        onValidate: this.props.onValidate
       })
     }
 
     // Render the branch question at the very end
-    const bottom = (index, item) => {
-      var value = null
-      if (hasNo) {
+    const bottom = (index, item, arr) => {
+      if (index < arr.length - 1 || hasNo) {
         return null
       }
 
-      return items.length - 1 === index
-        ? this.branch({
-          className: 'last-branch',
-          label: this.props.appendLabel,
-          labelSize: this.props.appendSize,
-          onUpdate: this.onLastBranchClick.bind(this),
-          children: this.props.branchTail || this.props.branch,
-          value: value
-        })
-      : null
+      return this.branch({
+        name: this.props.branchName,
+        className: 'last-branch',
+        label: this.props.appendLabel,
+        labelSize: this.props.appendSize,
+        help: this.props.help,
+        onUpdate: this.onLastBranchClick.bind(this),
+        children: this.appendContent,
+        value: null
+      })
     }
 
     const kiddos = (index, item) => {
@@ -174,12 +198,12 @@ export default class BranchCollection extends React.Component {
         : null
     }
 
-    const rows = items.map((item, index) => {
+    const rows = items.map((item, index, arr) => {
       return (
         <div key={item.index}>
-          { top(index, item) }
+          { top(index, item, arr) }
           <div>{ kiddos(index, item) }</div>
-          { bottom(index, item) }
+          { bottom(index, item, arr) }
         </div>
       )
     })
@@ -207,14 +231,17 @@ BranchCollection.defaultProps = {
   branchName: 'branchcollection',
 
   // Branch help id
-  branchHelp: '',
+  help: '',
 
   // Key name that stores whether yes/no has been selected
   valueKey: 'Has',
 
-  branch: null,
-
-  branchTail: null,
+  label: '',
+  labelSize: 'h3',
+  content: null,
+  appendLabel: '',
+  appendSize: 'h3',
+  appendContent: null,
 
   onUpdate: () => {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')
