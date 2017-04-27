@@ -1,8 +1,11 @@
-.consultation {
+.diagnoses {
   .summary {
     .left {
       .content {
-        .occurred {
+        .index {
+          padding-right: 1rem;
+        }
+        .diagnosisdate {
           float: right;
           height: 4.9rem;
         }

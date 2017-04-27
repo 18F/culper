@@ -73,9 +73,9 @@ export default class Competence extends ValidationElement {
       <span className="content">
         <span className="index">{type}</span>
         <span className="courtname">
-          {courtName || i18n.t('psychological.competence.collection.summaryCourtName')}
+          <strong>{courtName || i18n.t('psychological.competence.collection.summaryCourtName')}</strong>
         </span>
-        <span className="occurred">{courtName && occurred}</span>
+        <span className="occurred"><strong>{courtName && occurred}</strong></span>
       </span>
     )
   }

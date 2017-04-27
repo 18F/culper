@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
+import { Accordion, ValidationElement, Branch, Show, Field } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 import { DiagnosesValidator } from '../../../../validators'
@@ -81,14 +81,17 @@ export default class Diagnoses extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
     const date = (o.Diagnosed || {})
-    const formattedDate = dateRangeFormat(date)
-    const facility = (o.Condition || {}).value ? `${o.Condition.value} ${formattedDate}` : i18n.t('psychological.diagnoses.collection.summary')
+    const diagnosisDate = dateRangeFormat(date)
+    const facility = (o.Condition || {}).value ? o.Condition.value : null
     const type = i18n.t('psychological.diagnoses.collection.itemType')
 
     return (
-      <span>
+      <span className="content">
         <span className="index">{type}</span>
-        <span className="info"><strong>{facility}</strong></span>
+        <span>
+          <strong>{facility || i18n.t('psychological.diagnoses.collection.summary')}</strong>
+        </span>
+        <span className="diagnosisdate"><strong>{facility && diagnosisDate}</strong></span>
       </span>
     )
   }
@@ -114,18 +117,19 @@ export default class Diagnoses extends ValidationElement {
     return (
       <div className="diagnoses">
         {i18n.m('psychological.heading.diagnoses')}
-        <h3>{i18n.t('psychological.diagnoses.heading.para')}</h3>
-        <Branch name="diagnosed"
-          className="diagnosed"
-          value={this.state.Diagnosed}
-          help="psychological.diagnoses.help.diagnosed"
-          onValidate={this.handleValidation}
-          onUpdate={this.updateDiagnosed}>
-        </Branch>
-
+        <Field title={i18n.t('psychological.diagnoses.heading.para')}>
+          <Branch name="diagnosed"
+            className="diagnosed"
+            value={this.state.Diagnosed}
+            help="psychological.diagnoses.help.diagnosed"
+            onValidate={this.handleValidation}
+            onUpdate={this.updateDiagnosed}>
+          </Branch>
+        </Field>
         <Show when={this.state.Diagnosed === 'Yes'}>
           <div>
             <Accordion minimum="1"
+              className="diagnosis-collection"
               defaultState={this.props.defaultState}
               items={this.state.DiagnosisList}
               onUpdate={this.updateDiagnosisList}

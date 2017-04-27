@@ -88,13 +88,18 @@ export default class ExistingConditions extends ValidationElement {
     const o = (item || {}).Diagnosis || {}
     const treatmentDate = (o.Diagnosed || {})
     const formattedTreatmentDate = dateRangeFormat(treatmentDate)
-    const condition = (o.Condition || {}).value ? `${o.Condition.value} ${formattedTreatmentDate}` : i18n.t('psychological.existingConditions.treatment.collection.summary')
+    const condition = (o.Condition || {}).value ? o.Condition.value : null
     const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
     return (
 
-      <span>
+      <span className="content">
         <span className="index">{type}</span>
-        <span className="info"><strong>{condition}</strong></span>
+        <span className="info">
+          <strong>
+            {condition || i18n.t('psychological.existingConditions.treatment.collection.summary')}
+          </strong>
+        </span>
+        <span className="treatmentdate"><strong>{condition && formattedTreatmentDate}</strong></span>
       </span>
     )
   }

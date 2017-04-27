@@ -66,8 +66,10 @@ export default class Hospitalizations extends ValidationElement {
     return (
       <span className="content">
         <span className="index">{type}</span>
-        <span className="facility">{facility || i18n.t('psychological.hospitalization.collection.summary')}</span>
-        <span className="treatmentdate">{facility && formattedTreatmentDate}</span>
+        <span className="facility">
+          <strong>{facility || i18n.t('psychological.hospitalization.collection.summary')}</strong>
+        </span>
+        <span className="treatmentdate"><strong>{facility && formattedTreatmentDate}</strong></span>
       </span>
     )
   }
