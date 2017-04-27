@@ -1,114 +1,127 @@
 @import 'eqip-colors';
 
-.btn-wrap {
-  display: table;
-  width: 100%;
+.section-view {
+  hr {
+    border-bottom: 2px solid #e2e7ef;
+    height: 2px;
+    color: #e2e7ef;
+    background: #e2e7ef;
+    font-size: 0;
+    border: 0;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
 
-  .btn-container {
-    display: table-row;
+  .btn-wrap {
+    display: table;
+    width: 100%;
 
-    .btn-cell,
-    .btn-spacer {
-      display: table-cell;
-      vertical-align: middle;
-    }
+    .btn-container {
+      display: table-row;
 
-    .btn-cell {
-      width: 40%;
-      border-radius: 3px;
-      transition: background-color 0.3s;
-      background-color: $eapp-blue;
-
-      .next {
-        text-align: right;
+      .btn-cell,
+      .btn-spacer {
+        display: table-cell;
+        vertical-align: middle;
       }
 
-      &:hover {
-        background-color: $eapp-blue-dark;
-      }
+      .btn-cell {
+        width: 40%;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+        background-color: $eapp-blue;
 
-      button {
-        margin: 0;
-        line-height: normal !important;
-        width: 100%;
-        padding: 2rem;
-        background: none;
+        .next {
+          text-align: right;
+        }
 
         &:hover {
-          background: none;
+          background-color: $eapp-blue-dark;
         }
 
-        .actions {
-          display: table;
+        button {
+          margin: 0;
+          line-height: normal !important;
           width: 100%;
+          padding: 2rem;
+          background: none;
 
-          .direction {
-            font-weight: 600;
+          &:hover {
+            background: none;
           }
 
-          .text, .icon {
-            display: table-cell;
-            vertical-align: middle;
-          }
+          .actions {
+            display: table;
+            width: 100%;
 
-          .icon {
-            width: 2.4rem;
-          }
+            .direction {
+              font-weight: 600;
+            }
 
-          &.next {
-            text-align: right;
-          }
+            .text, .icon {
+              display: table-cell;
+              vertical-align: middle;
+            }
 
-          &.back {
-            text-align: left;
+            .icon {
+              width: 2.4rem;
+            }
+
+            &.next {
+              text-align: right;
+            }
+
+            &.back {
+              text-align: left;
+            }
           }
         }
       }
+
+      .label {
+        font-weight: normal;
+        min-height: 2rem;
+      }
+    }
+  }
+
+  .top-btns {
+    margin: 4.6rem -17.5%;
+    padding: 0 17.5%;
+    border-bottom: 2px solid #e2e7ef;
+
+    @media screen and (max-width: 1380px) {
+      margin: 4.6rem -12%;
+      padding: 0 12%;
     }
 
-    .label {
-      font-weight: normal;
-      min-height: 2rem;
+    @media screen and (max-width: 1024px) {
+      margin: 4.6rem -5.5%;
+      padding: 0 5.5%;
+    }
+
+    .btn-wrap {
+      padding-bottom: 7rem;
     }
   }
-}
 
-.top-btns {
-  margin: 4.6rem -17.5%;
-  padding: 0 17.5%;
-  border-bottom: 2px solid #e2e7ef;
+  .bottom-btns {
+    margin: 4.6rem -17.5%;
+    padding: 0 17.5%;
+    border-top: 2px solid #e2e7ef;
 
-  @media screen and (max-width: 1380px) {
-    margin: 4.6rem -12%;
-    padding: 0 12%;
-  }
+    @media screen and (max-width: 1380px) {
+      margin: 4.6rem -12%;
+      padding: 0 12%;
+    }
 
-  @media screen and (max-width: 1024px) {
-    margin: 4.6rem -5.5%;
-    padding: 0 5.5%;
-  }
+    @media screen and (max-width: 1024px) {
+      margin: 4.6rem -5.5%;
+      padding: 0 5.5%;
+    }
 
-  .btn-wrap {
-    padding-bottom: 7rem;
-  }
-}
-
-.bottom-btns {
-  margin: 4.6rem -17.5%;
-  padding: 0 17.5%;
-  border-top: 2px solid #e2e7ef;
-
-  @media screen and (max-width: 1380px) {
-    margin: 4.6rem -12%;
-    padding: 0 12%;
-  }
-
-  @media screen and (max-width: 1024px) {
-    margin: 4.6rem -5.5%;
-    padding: 0 5.5%;
-  }
-
-  .btn-wrap {
-    padding-top: 7rem;
+    .btn-wrap {
+      padding-top: 7rem;
+    }
   }
 }

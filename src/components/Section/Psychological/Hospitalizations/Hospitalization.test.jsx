@@ -31,4 +31,38 @@ describe('The Hospitalization component', () => {
     component.find('textarea').simulate('change')
     expect(updates).toBe(1)
   })
+
+  it('Loads data', () => {
+    let updates = 0
+    const item = {
+      Facility: {
+        value: 'Place 1'
+      },
+      FacilityAddress: {
+        addressType: 'United States',
+        address: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      TreatmentDate: {
+        from: {
+          date: new Date('1/1/2010')
+        },
+        to: {
+          date: new Date('1/1/2012')
+        },
+        present: false
+      },
+      Admission: 'Voluntary',
+      Explanation: {
+        value: 'Because I can'
+      }
+    }
+    const onUpdate = () => { updates++ }
+    const component = mount(<Hospitalization onUpdate={onUpdate} {...item}/>)
+    expect(component.find('.hospitalization').length).toBe(1)
+    component.find('textarea').simulate('change')
+    expect(updates).toBe(1)
+  })
 })
