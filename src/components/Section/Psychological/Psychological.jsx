@@ -123,7 +123,6 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.m('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
-            { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para2') }
             { i18n.m('psychological.intro.para3') }
             { i18n.m('psychological.intro.para4') }
@@ -188,28 +187,33 @@ class Psychological extends ValidationElement {
 
             <Competence name="Competence"
               {...this.props.Competence}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
-
+            <hr />
             <Consultation name="Consultations"
               {...this.props.Consultations}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
-
+            <hr />
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
-
+            <hr />
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
+              defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
-
+            <hr />
             <Show when={this.props.ShowExistingConditions}>
               <ExistingConditions name="ExistingConditions"
                 {...this.props.ExistingConditions}
+                defaultState={false}
                 onValidate={this.onValidate}
                 onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
               />

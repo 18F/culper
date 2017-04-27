@@ -44,10 +44,6 @@ export default class Competence extends ValidationElement {
   }
 
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -66,13 +62,16 @@ export default class Competence extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Competence || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.competence.collection.summaryCourtName')
+    const courtName = (o.CourtName || {}).value ? o.CourtName.value : null
     const type = i18n.t('psychological.competence.collection.itemType')
 
     return (
-      <span>
-        <span className="index">{type}</span>
-        <span className="info"><strong>{courtName}</strong></span>
+      <span className="content">
+        <span className="index">{type} {index + 1}:</span>
+        <span className="courtname">
+          <strong>{courtName || i18n.t('psychological.competence.collection.summaryCourtName')}</strong>
+        </span>
+        <span className="occurred"><strong>{courtName && occurred}</strong></span>
       </span>
     )
   }
@@ -89,6 +88,7 @@ export default class Competence extends ValidationElement {
 
         <Show when={this.state.IsIncompetent === 'Yes'}>
           <Accordion minimum="1"
+            defaultState={this.props.defaultState}
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
@@ -106,5 +106,6 @@ export default class Competence extends ValidationElement {
 }
 
 Competence.defaultProps = {
-  List: []
+  List: [],
+  defaultState: true
 }
