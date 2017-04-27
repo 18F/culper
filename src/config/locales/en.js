@@ -5110,12 +5110,12 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Click to provide details',
-        description: 'description',
+        summaryCourtName: 'Provide your order details below',
+        description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
-        itemType: 'Order:'
+        itemType: 'Order'
       }
     },
     consultation: {
@@ -5165,12 +5165,12 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Click to provide details',
-        description: 'description',
+        summaryCourtName: 'Provide your order details below',
+        description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
-        itemType: 'Order:'
+        itemType: 'Order'
       }
     },
     hospitalization: {
@@ -5187,11 +5187,12 @@ const en = {
         involuntaryAdmission: 'Involuntary'
       },
       collection: {
-        summary: 'Click to provide details',
+        description: 'Summary of hospitalizations',
+        summary: 'Provide your hospitalization details below',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
-        itemType: 'Hospitalization:'
+        itemType: 'Hospitalization'
       },
       help: {
         incompetent: {
@@ -5291,11 +5292,12 @@ const en = {
         inTreatment: 'Are you currently in treatment?'
       },
       collection: {
+        description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
         appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
-        itemType: 'Diagnosis:'
+        itemType: 'Diagnosis'
       },
       professional: {
         heading: {
@@ -5310,11 +5312,12 @@ const en = {
       },
       treatment: {
         collection: {
-          summary: 'Provide your diagnosis details below',
+          description: 'Summary of treatments',
+          summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you are currently in treatment?',
           appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
-          itemType: 'Treatment:'
+          itemType: 'Treatment'
         }
       },
       help: {
@@ -5395,11 +5398,12 @@ const en = {
       },
       treatment: {
         collection: {
+          description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
           appendMessage: 'If yes, use the button below to add another instance',
           appendLabel: 'Add another treatment',
-          itemType: 'Instance:'
+          itemType: 'Treatment'
         }
       },
       diagnosis: {

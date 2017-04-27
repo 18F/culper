@@ -93,7 +93,7 @@ export default class ExistingConditions extends ValidationElement {
     return (
 
       <span className="content">
-        <span className="index">{type}</span>
+        <span className="index">{type} {index + 1}:</span>
         <span className="info">
           <strong>
             {condition || i18n.t('psychological.existingConditions.treatment.collection.summary')}
@@ -170,6 +170,7 @@ export default class ExistingConditions extends ValidationElement {
                 onUpdate={this.updateTreatmentList}
                 summary={this.summary}
                 onValidate={this.handleValidation}
+                description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                 appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
                 appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
                 appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>

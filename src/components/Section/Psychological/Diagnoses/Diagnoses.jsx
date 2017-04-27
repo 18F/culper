@@ -87,7 +87,7 @@ export default class Diagnoses extends ValidationElement {
 
     return (
       <span className="content">
-        <span className="index">{type}</span>
+        <span className="index">{type} {index + 1}:</span>
         <span>
           <strong>{facility || i18n.t('psychological.diagnoses.collection.summary')}</strong>
         </span>
@@ -103,7 +103,7 @@ export default class Diagnoses extends ValidationElement {
 
     return (
       <span>
-        <span className="index">{type}</span>
+        <span className="index">{type} {index + 1}:</span>
         <span className="info"><strong>{name}</strong></span>
       </span>
     )
@@ -135,6 +135,7 @@ export default class Diagnoses extends ValidationElement {
               onUpdate={this.updateDiagnosisList}
               summary={this.summary}
               onValidate={this.handleValidation}
+              description={i18n.t('psychological.diagnoses.collection.description')}
               appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
               appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
               appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>

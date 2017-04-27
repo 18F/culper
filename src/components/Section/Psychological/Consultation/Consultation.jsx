@@ -68,11 +68,13 @@ export default class Consultation extends ValidationElement {
 
     return (
       <span className="content">
-        <span className="index">{type}</span>
+        <span className="index">{type} {index + 1}:</span>
         <span className="courtname">
-          {courtName || i18n.t('psychological.consultation.collection.summaryCourtName')}
+          <strong>
+            {courtName || i18n.t('psychological.consultation.collection.summaryCourtName')}
+          </strong>
         </span>
-        <span className="occurred">{courtName && occurred}</span>
+        <span className="occurred"><strong>{courtName && occurred}</strong></span>
       </span>
     )
   }
