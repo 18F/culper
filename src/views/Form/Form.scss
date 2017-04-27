@@ -17,6 +17,7 @@ input[type='text'], textarea, select {
 input[type='checkbox'], input[type='radio'] {
   position: absolute;
   margin-left: 0;
+  width: 0;
 
   + label {
     position: relative;

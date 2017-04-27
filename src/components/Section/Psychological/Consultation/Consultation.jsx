@@ -41,10 +41,6 @@ export default class Consultation extends ValidationElement {
   }
 
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -63,13 +59,18 @@ export default class Consultation extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Consultation || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? `${o.CourtName.value} ${occurred}` : i18n.t('psychological.consultation.collection.summaryCourtName')
+    const courtName = (o.CourtName || {}).value ? o.CourtName.value : null
     const type = i18n.t('psychological.consultation.collection.itemType')
 
     return (
-      <span>
-        <span className="index">{type}</span>
-        <span className="info"><strong>{courtName}</strong></span>
+      <span className="content">
+        <span className="index">{type} {index + 1}:</span>
+        <span className="courtname">
+          <strong>
+            {courtName || i18n.t('psychological.consultation.collection.summaryCourtName')}
+          </strong>
+        </span>
+        <span className="occurred"><strong>{courtName && occurred}</strong></span>
       </span>
     )
   }
@@ -85,13 +86,13 @@ export default class Consultation extends ValidationElement {
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
           value={this.state.Consulted}
-          help="psychological.consultation.help.incompetent"
           onValidate={this.handleValidation}
           onUpdate={this.updateConsulted}>
         </Branch>
 
         <Show when={this.state.Consulted === 'Yes'}>
           <Accordion minimum="1"
+            defaultState={this.props.defaultState}
             items={this.state.List}
             onUpdate={this.updateList}
             summary={this.summary}
@@ -109,5 +110,6 @@ export default class Consultation extends ValidationElement {
 }
 
 Consultation.defaultProps = {
-  List: []
+  List: [],
+  defaultState: true
 }
