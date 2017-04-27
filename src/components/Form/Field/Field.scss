@@ -101,36 +101,35 @@
           }
         }
 
+        > .comments {
+          padding-bottom: 1rem;
+        }
+
         > .comments-button {
           display: block;
 
           i {
             margin-left: 1rem;
+
+            &.fa-times-circle {
+              color: $eapp-red;
+            }
           }
 
           &.add,
           &.add:link,
           &.add:visited,
           &.add:hover,
-          &.add:active {
-            color: $eapp-blue;
-            text-decoration: none;
-
-            span {
-              border-bottom: 1px $eapp-blue dashed;
-            }
-          }
-
+          &.add:active,
           &.remove,
           &.remove:link,
           &.remove:visited,
           &.remove:hover,
           &.remove:active {
-            color: $eapp-red;
             text-decoration: none;
 
             span {
-              border-bottom: 1px $eapp-red dashed;
+              border-bottom: 1px $eapp-blue dashed;
             }
           }
         }
