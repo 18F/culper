@@ -82,6 +82,7 @@ export default class Order extends ValidationElement {
           className="appeals"
           branchHelp={`psychological.${prefix}.help.appealed`}
           branch={<h3>{ i18n.t(`psychological.${prefix}.heading.appealed`) }</h3>}
+          branchTail={<h3>{ i18n.t(`psychological.${prefix}.heading.appealedAnother`) }</h3>}
           items={this.props.Appeals}
           onValidate={this.props.onValidate}
           onUpdate={this.updateAppeals}
