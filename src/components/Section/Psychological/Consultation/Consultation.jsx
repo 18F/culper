@@ -85,7 +85,6 @@ export default class Consultation extends ValidationElement {
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
           value={this.state.Consulted}
-          help="psychological.consultation.help.incompetent"
           onValidate={this.handleValidation}
           onUpdate={this.updateConsulted}>
         </Branch>

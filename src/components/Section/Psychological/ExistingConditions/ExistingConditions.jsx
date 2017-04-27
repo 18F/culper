@@ -110,7 +110,6 @@ export default class ExistingConditions extends ValidationElement {
         <Branch name="hascondition"
                 className="eapp-field-wrap no-label hascondition"
                 value={this.state.HasCondition}
-                help="psychological.existingConditions.help.hasCondition"
                 onValidate={this.handleValidation}
                 onUpdate={this.updateHasCondition}>
         </Branch>
