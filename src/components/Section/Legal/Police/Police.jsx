@@ -213,12 +213,6 @@ export default class Police extends ValidationElement {
     )
   }
 
-  domesticViolenceBranch () {
-    return (
-      <h3>{i18n.m('legal.police.label.domesticViolence')}</h3>
-    )
-  }
-
   otherOffenseBranch () {
     return (
       <div>
@@ -367,12 +361,11 @@ export default class Police extends ValidationElement {
           </Accordion>
         </Show>
 
-        <BranchCollection
-          branchHelp="legal.police.branchCollection.domesticViolence"
-          branch={this.domesticViolenceBranch()}
-          items={this.state.DomesticViolence}
-          onUpdate={this.updateDomesticViolence}
-          >
+        <BranchCollection help="legal.police.branchCollection.domesticViolence"
+                          label={i18n.m('legal.police.label.domesticViolence')}
+                          items={this.state.DomesticViolence}
+                          onUpdate={this.updateDomesticViolence}
+                          >
           <DomesticViolence name="domestic"
                             bind={true}
                             onValidate={this.handleValidation}

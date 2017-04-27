@@ -98,10 +98,12 @@ export class EmploymentItem extends ValidationElement {
   }
 
   showLeaving () {
+    const activity = (this.state.EmploymentActivity || {}).value
     const sevenYearsAgo = daysAgo(today, 365 * 7)
     const from = (this.state.Dates || {}).from
     const to = (this.state.Dates || {}).to
-    return (from && from.date >= sevenYearsAgo) || (to && to.date >= sevenYearsAgo)
+    return (from && from.date >= sevenYearsAgo) || (to && to.date >= sevenYearsAgo) &&
+      ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'SelfEmployment', 'Unemployment', 'Other'].includes(activity)
   }
 
   localizeByActivity () {
@@ -254,19 +256,21 @@ export class EmploymentItem extends ValidationElement {
           </div>
         </Show>
 
-        <h3>{i18n.t('history.employment.default.left.title')}</h3>
-        <ReasonLeft name="ReasonLeft"
-                    {...this.props.ReasonLeft}
-                    onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
-                    onValidate={this.props.onValidate}
-                    />
-
         <Show when={this.showLeaving()}>
-          <Reprimand name="Reprimand"
-                     {...this.props.Reprimand}
-                     onUpdate={this.onUpdate.bind(this, 'Reprimand')}
-                     onValidate={this.props.onValidate}
-                     />
+          <div>
+            <h3>{i18n.t('history.employment.default.left.title')}</h3>
+            <ReasonLeft name="ReasonLeft"
+                        {...this.props.ReasonLeft}
+                        onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
+                        onValidate={this.props.onValidate}
+                        />
+
+            <Reprimand name="Reprimand"
+                       {...this.props.Reprimand}
+                       onUpdate={this.onUpdate.bind(this, 'Reprimand')}
+                       onValidate={this.props.onValidate}
+                       />
+          </div>
         </Show>
       </div>
     )

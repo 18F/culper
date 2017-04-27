@@ -27,35 +27,32 @@ export default class Branch extends React.Component {
     const adjustFor = 'buttons'
 
     return (
-      <div className={klass}>
+      <Field title={this.props.label}
+              titleSize={this.props.labelSize}
+              className={klass}
+              help={this.props.help}
+              adjustFor={adjustFor}
+              shrink={true}>
         <div className="content">
           {this.props.children}
         </div>
-        <div>
-          <Field title={this.props.label}
-                 titleSize={this.props.labelSize}
-                 help={this.props.help}
-                 adjustFor={adjustFor}
-                 shrink={true}>
-            <RadioGroup className="option-list branch" selectedValue={this.props.value}>
-              <Radio name={this.props.name}
-                     label={this.props.yesLabel}
-                     value={this.props.yesValue}
-                     className="yes"
-                     onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-                     onValidate={this.props.onValidate}
-                     />
-              <Radio name={this.props.name}
-                     label={this.props.noLabel}
-                     value={this.props.noValue}
-                     className="no"
-                     onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-                     onValidate={this.props.onValidate}
-                     />
-            </RadioGroup>
-          </Field>
-        </div>
-      </div>
+        <RadioGroup className="option-list branch" selectedValue={this.props.value}>
+          <Radio name={this.props.name}
+                  label={this.props.yesLabel}
+                  value={this.props.yesValue}
+                  className="yes"
+                  onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
+                  onValidate={this.props.onValidate}
+                  />
+          <Radio name={this.props.name}
+                  label={this.props.noLabel}
+                  value={this.props.noValue}
+                  className="no"
+                  onChange={this.yesNoClicked.bind(this, this.props.noValue)}
+                  onValidate={this.props.onValidate}
+                  />
+        </RadioGroup>
+      </Field>
     )
   }
 }

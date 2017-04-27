@@ -24,8 +24,7 @@ describe('The employment component', () => {
       '.daterange',
       '.address',
       '.telephone',
-      '.supervisor',
-      '.reason-leaving'
+      '.supervisor'
     ]
 
     const component = mount(<EmploymentItem {...expected} />)

@@ -31,19 +31,12 @@ export default class Reprimand extends ValidationElement {
   }
 
   render () {
-    const branch = (
-      <div>
-        <h3>{i18n.t('history.employment.default.reprimand.para')}</h3>
-      </div>
-    )
-
     return (
-      <BranchCollection
-        branchHelp="history.employment.default.reprimand.help"
-        branch={branch}
-        items={this.state.Reasons}
-        onUpdate={this.updateReasons}
-        >
+      <BranchCollection label={i18n.t('history.employment.default.reprimand.para')}
+                        help="history.employment.default.reprimand.help"
+                        items={this.state.Reasons}
+                        onUpdate={this.updateReasons}
+                        >
         <div>
           <Field className="explanation-left">
             <Textarea name="Text"
