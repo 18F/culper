@@ -57,7 +57,6 @@ export default class Number extends ValidationElement {
 
     this.setState({ value: trimLeadingZero(value) }, () => {
       super.handleChange(event)
-      this.handleValidation(event, null)
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
