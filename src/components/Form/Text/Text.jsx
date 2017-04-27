@@ -61,7 +61,7 @@ export default class Text extends ValidationElement {
                value={this.state.value}
                focus={this.props.focus}
                error={this.props.error}
-               valid={this.state.valid}
+               valid={this.props.valid}
                onChange={this.handleChange}
                onFocus={this.props.onFocus}
                onBlur={this.props.onBlur}
