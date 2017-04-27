@@ -23,4 +23,15 @@ describe('The ExistingConditions component', () => {
 
     expect(updates).toBe(8)
   })
+
+  it('Selects no to everything', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const component = mount(<ExistingConditions onUpdate={onUpdate} />)
+    component.find('.hascondition .no input').simulate('change')
+    component.find({type: 'radio', name: 'treatment', value: 'Decline'}).simulate('click')
+    component.find('.didnotfollow .no input').simulate('change')
+    component.find('div').first().simulate('blur')
+    expect(updates).toBe(3)
+  })
 })
