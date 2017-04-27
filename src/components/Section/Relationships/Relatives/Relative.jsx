@@ -282,7 +282,6 @@ export default class Relative extends ValidationElement {
     const validator = new RelativeValidator(this.state, null)
     const mother = this.state.Relations.some(x => x === 'Mother')
     const immediateFamily = this.state.Relations.some(x => ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(x))
-    const aliasTitle = (<h3>{i18n.t('relationships.relatives.heading.alias.branch')}</h3>)
 
     return (
       <div className="relative-item">
@@ -454,7 +453,7 @@ export default class Relative extends ValidationElement {
           <div>
             <BranchCollection items={this.state.Aliases}
                               branchName="has_alias"
-                              branch={aliasTitle}
+                              label={i18n.t('relationships.relatives.heading.alias.branch')}
                               className="relative-alias"
                               onUpdate={this.updateAliases}
                               onValidate={this.props.onValidate}>

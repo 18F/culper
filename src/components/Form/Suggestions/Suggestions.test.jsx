@@ -70,6 +70,26 @@ describe('The suggestions component', () => {
     expect(dismissed).toBe(true)
   })
 
+  it('can use alternate dismiss', () => {
+    let dismissed = false
+    const expected = {
+      renderSuggestion: renderSuggestion,
+      onDismiss: () => { dismissed = true },
+      suggestions: ['suggestion1', 'suggestion2'],
+      withSuggestions: 'true',
+      suggestionTitle: 'Suggestion title',
+      suggestionParagraph: 'Suggestion paragraph',
+      suggestionLabel: 'Suggestion label',
+      suggestionDismissLabel: 'Dismiss',
+      suggestionDismissAlternate: 'Another dismiss',
+      suggestionUseLabel: 'Use'
+    }
+    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    expect(component.find('.modal').length).toEqual(1)
+    component.find('.dismiss a.right').simulate('click')
+    expect(dismissed).toBe(true)
+  })
+
   it('can use suggestion', () => {
     let used = false
     const expected = {

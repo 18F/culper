@@ -165,6 +165,7 @@ export default class Field extends ValidationElement {
     return (
       <Textarea name={this.props.commentsName}
                 value={this.state.commentsValue}
+                className="comments"
                 onUpdate={this.props.onUpdate}
                 onValidate={this.props.onValidate}
                 />
