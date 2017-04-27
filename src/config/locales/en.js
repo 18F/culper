@@ -5128,6 +5128,7 @@ const en = {
         appealCourtName: 'Name of court or administrative agency',
         appealCourtAddress: 'Provide the address of the court or administrative agency',
         appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        appealedAnother: 'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
         needMore: 'Since you answered yes, we need more information'
       },
       label: {
