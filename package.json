@@ -69,6 +69,7 @@
     "react-markdown": "^2.4.4",
     "react-test-renderer": "^15.3.2",
     "react-tokeninput": "^2.4.0",
+    "smoothscroll-polyfill": "^0.3.5",
     "uswds": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-stream": "^3.2.0"
