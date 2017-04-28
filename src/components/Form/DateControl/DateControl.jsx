@@ -4,6 +4,7 @@ import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
+import DateControlValidator from '../../../validators/datecontrol'
 
 const trimLeadingZero = (num) => {
   if (isNaN(num)) {
@@ -25,6 +26,7 @@ export default class DateControl extends ValidationElement {
       focus: props.focus,
       error: props.error,
       valid: props.valid,
+      maxDate: props.maxDate,
       month: trimLeadingZero(props.month) || this.datePart('m', props.value),
       day: trimLeadingZero(props.day) || props.hideDay ? 1 : this.datePart('d', props.value),
       year: trimLeadingZero(props.year) || this.datePart('y', props.value),
@@ -245,11 +247,23 @@ export default class DateControl extends ValidationElement {
     }
 
     let valid = validDate(this.state.month, this.state.day, this.state.year)
+    const validator = new DateControlValidator(this.state, this.props)
+
     if (!valid && !error) {
       if (this.state.day > daysInMonth(this.state.month, this.state.year)) {
         error = 'day.max'
       } else {
         error = { day: null }
+      }
+    }
+
+    // Make sure we have a valid date and that no other errors are present
+    // before validating max date
+    if (valid && !validator.hasErrors(error)) {
+      if (validator.validMaxDate()) {
+        error = { datecontrol: null }
+      } else {
+        error = 'datecontrol.max'
       }
     }
 
@@ -278,16 +292,9 @@ export default class DateControl extends ValidationElement {
             s = valid
           }
 
-          super.handleValidation(event, s, codes)
+          super.handleValidation(event, s, error)
         }
       })
-  }
-
-  /**
-   * Generated name for the error message.
-   */
-  errorName (part) {
-    return '' + this.props.name + '-' + part + '-error'
   }
 
   render () {

@@ -103,6 +103,28 @@ describe('The date component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
+  it('renders with date exceeding max', () => {
+    let errors = 0
+    const expected = {
+      name: 'input-type-text',
+      label: 'DateControl input label',
+      value: '1-1-2016',
+      maxDate: new Date('1/1/2000'),
+      error: false,
+      focus: false,
+      valid: false,
+      onValidate: (event, status, error) => {
+        if (error === 'datecontrol.max') {
+          errors++
+        }
+      }
+    }
+    const component = mount(<DateControl {...expected} />)
+    component.find('input#year').simulate('change')
+    component.find('input#year').simulate('blur')
+    expect(errors).toBe(2)
+  })
+
   it('renders with undefined date', () => {
     const expected = {
       name: 'input-type-text',
@@ -136,5 +158,21 @@ describe('The date component', () => {
     expect(component.find('input#day').nodes[0].value).toEqual('')
     expect(component.find('input#year').nodes[0].value).toEqual('')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
+  })
+
+  it('updates with estimated', () => {
+    let updates = 0
+    const expected = {
+      name: 'input-type-text',
+      label: 'DateControl input label',
+      value: '1-1-2010',
+      error: false,
+      focus: false,
+      valid: false,
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<DateControl {...expected} />)
+    component.find('input[type="checkbox"]').simulate('change')
+    expect(updates).toBe(1)
   })
 })
