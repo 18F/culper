@@ -78,8 +78,7 @@ export default class Order extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-               help={`psychological.${prefix}.help.disposition`}>
+        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
           <Text name="Disposition"
                 className="disposition"
                 {...this.props.Disposition}
@@ -91,7 +90,6 @@ export default class Order extends ValidationElement {
         <BranchCollection className="appeals"
                           label={i18n.t(`psychological.${prefix}.heading.appealed`)}
                           appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
-                          help={`psychological.${prefix}.help.appealed`}
                           items={this.props.Appeals}
                           onValidate={this.props.onValidate}
                           onUpdate={this.updateAppeals}

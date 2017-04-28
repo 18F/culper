@@ -5106,16 +5106,6 @@ const en = {
           message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
-        disposition: {
-          title: 'Need help with the disposition?',
-          message: 'Enter the disposition for this order',
-          note: ''
-        },
-        appealed: {
-          title: 'Need help with whether this matter was appealed?',
-          message: 'Was this matter appealed to a higher court or administrative agency?',
-          note: ''
-        },
         incompetent: {
           title: 'Need help with this question?',
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
