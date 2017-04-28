@@ -54,8 +54,8 @@
     }
   }
 
-  label.bold {
-    font-weight: 600;
+  > label {
+    margin-top: 0.6rem;
   }
 
   .address-suggestion {

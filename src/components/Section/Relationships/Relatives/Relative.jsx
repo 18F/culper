@@ -432,7 +432,7 @@ export default class Relative extends ValidationElement {
             <h3>{i18n.t('relationships.relatives.heading.maiden')}</h3>
             <Branch name="maiden_diff"
                     help="relationships.relatives.help.maiden"
-                    className="eapp-field-wrap no-label relative-maiden-diff"
+                    className="eapp-field-wrap relative-maiden-diff"
                     value={this.state.MaidenSameAsListed}
                     yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
                     noLabel={i18n.t('relationships.relatives.label.maiden.diff')}
@@ -857,7 +857,7 @@ export default class Relative extends ValidationElement {
                                  or={i18n.m('relationships.relatives.para.or')}
                                  onUpdate={this.updateEmployerRelationshipNotApplicable}>
                     <Branch name="has_affiliation"
-                            className="no-label relative-affiliation"
+                            className="relative-affiliation"
                             value={this.state.HasAffiliation}
                             help="relationships.relatives.help.affiliation"
                             onUpdate={this.updateHasAffiliation}

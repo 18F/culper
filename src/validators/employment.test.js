@@ -233,8 +233,7 @@ describe('Employment component validation', function () {
             zipcode: '22202'
           },
           Additional: {
-            HasAdditionalActivity: 'No',
-            List: []
+            List: [{ Has: 'No' }]
           },
           Telephone: {
             noNumber: '',
@@ -394,9 +393,9 @@ describe('Employment component validation', function () {
             ]
           },
           Additional: {
-            HasAdditionalActivity: 'Yes',
             List: [
               {
+                Has: 'Yes',
                 Position: {
                   value: 'Dev1'
                 },
@@ -638,8 +637,7 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            HasAdditionalActivity: 'Yes',
-            List: []
+            List: [{ Has: 'Yes' }]
           }
         },
         expected: false
@@ -650,9 +648,9 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            HasAdditionalActivity: 'Yes',
             List: [
               {
+                Has: 'Yes',
                 Position: {
                   value: 'Dev1'
                 },
@@ -680,9 +678,9 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            HasAdditionalActivity: 'Yes',
             List: [
               {
+                Has: 'Yes',
                 Position: {
                   value: ''
                 },
@@ -710,9 +708,9 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            HasAdditionalActivity: 'Foo',
             List: [
               {
+                Has: 'Foo',
                 Position: {
                   value: ''
                 },
