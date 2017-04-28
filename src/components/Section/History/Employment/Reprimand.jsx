@@ -32,24 +32,26 @@ export default class Reprimand extends ValidationElement {
 
   render () {
     return (
-      <BranchCollection label={i18n.t('history.employment.default.reprimand.para')}
+      <BranchCollection label={i18n.t('history.employment.default.reprimand.label')}
+                        appendLabel={i18n.t('history.employment.default.reprimand.append')}
                         help="history.employment.default.reprimand.help"
                         items={this.state.Reasons}
-                        onUpdate={this.updateReasons}
-                        >
+                        onUpdate={this.updateReasons}>
         <div>
-          <Field className="explanation-left">
+          <Field title={i18n.t('history.employment.default.reprimand.description.label')}
+                 titleSize="h4"
+                 className="explanation-left">
             <Textarea name="Text"
                       bind={true}
-                      label={i18n.t('history.employment.default.reprimand.description.label')}
                       maxlength="100"
                       onValidate={this.props.onValidate}
                       />
           </Field>
-          <Field className="date-left"
+          <Field title={i18n.t('history.employment.default.reprimand.date.label')}
+                 titleSize="h4"
+                 className="date-left"
                  adjustFor="labels"
                  shrink={true}>
-            <label>{i18n.t('history.employment.default.reprimand.date.label')}</label>
             <DateControl name="Date"
                          bind={true}
                          hideDay={true}

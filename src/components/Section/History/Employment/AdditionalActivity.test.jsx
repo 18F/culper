@@ -5,8 +5,8 @@ import AdditionalActivity from './AdditionalActivity'
 describe('The employment additional activity component', () => {
   it('renders default additional activity', () => {
     const component = mount(<AdditionalActivity name="activity" />)
-    expect(component.find({type: 'radio', name: 'additionalActivity', value: 'Yes'}).hasClass('selected')).toBe(false)
-    expect(component.find({type: 'radio', name: 'additionalActivity', value: 'No'}).hasClass('selected')).toBe(false)
+    expect(component.find('.branch .yes').length).toBe(1)
+    expect(component.find('.branch .no').length).toBe(1)
   })
 
   it('toggles yes/no for additional activity', () => {
@@ -14,11 +14,10 @@ describe('The employment additional activity component', () => {
     let onUpdate = () => { updates++ }
     const component = mount(<AdditionalActivity name="activity" onUpdate={onUpdate} />)
 
-    const selected = component.find({type: 'radio', name: 'additionalActivity', value: 'Yes'})
-    selected.simulate('change')
-    expect(component.find('.accordion').length).toBeGreaterThan(0)
-    component.find({type: 'radio', name: 'additionalActivity', value: 'No'}).simulate('change')
-    expect(component.find('.accordion').length).toBe(0)
+    component.find('.branch .yes input').at(0).simulate('change')
+    expect(component.find({ type: 'text', name: 'Position' }).length).toBe(1)
+    component.find('.branch .no input').at(0).simulate('change')
+    expect(component.find({ type: 'text', name: 'Position' }).length).toBe(0)
     expect(updates).toBeGreaterThan(1)
   })
 
@@ -30,6 +29,7 @@ describe('The employment additional activity component', () => {
       },
       items: [
         {
+          Has: 'Yes',
           Position: {
             name: 'Position',
             value: 'Dev'
@@ -40,9 +40,8 @@ describe('The employment additional activity component', () => {
     }
 
     const component = mount(<AdditionalActivity {...expected} />)
-    expect(component.find('.accordion').length).toBeGreaterThan(0)
-    let position = component.find('input[name="Position"]')
-    position.simulate('change')
+    component.find('.branch .yes input').at(0).simulate('change')
+    component.find({ type: 'text', name: 'Position' }).simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
 })

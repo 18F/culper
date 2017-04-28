@@ -26,7 +26,7 @@
       }
 
       .btn-cell {
-        width: 40%;
+        width: 30%;
         border-radius: 3px;
         transition: background-color 0.3s;
         background-color: $eapp-blue;
@@ -43,7 +43,7 @@
           margin: 0;
           line-height: normal !important;
           width: 100%;
-          padding: 2rem;
+          padding: 1.5rem 2rem;
           background: none;
 
           &:hover {
