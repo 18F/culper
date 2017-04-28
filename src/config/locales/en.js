@@ -2515,6 +2515,7 @@ const en = {
   },
 
   address: {
+    label: 'This address is',
     options: {
       us: {
         label: 'In the<br>United States'
@@ -3178,7 +3179,8 @@ const en = {
           }
         },
         reprimand: {
-          para: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          label: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+          append: 'Do you have another instance of discipline or a warning to provide?',
           description: {
             label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
           },
@@ -5103,16 +5105,6 @@ const en = {
           title: 'Not sure of the court or agency address?',
           message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
-        },
-        disposition: {
-          title: 'Need help with the disposition?',
-          message: 'Enter the disposition for this order',
-          note: ''
-        },
-        appealed: {
-          title: 'Need help with whether this matter was appealed?',
-          message: 'Was this matter appealed to a higher court or administrative agency?',
-          note: ''
         },
         incompetent: {
           title: 'Need help with this question?',

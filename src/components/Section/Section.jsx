@@ -11,6 +11,7 @@ import Military from './Military'
 import History from './History'
 import Legal from './Legal'
 import Psychological from './Psychological'
+import Design from './Design'
 import { SectionView, SectionViews } from './SectionView'
 
 class Section extends React.Component {
@@ -63,6 +64,9 @@ class Section extends React.Component {
         </SectionView>
         <SectionView name="psychological">
           <Psychological subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="design">
+          <Design subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
     )

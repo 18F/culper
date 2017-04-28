@@ -113,7 +113,7 @@ export default class ExistingConditions extends ValidationElement {
         <h3>{i18n.t('psychological.existingConditions.heading.hasCondition')}</h3>
         {i18n.m('psychological.existingConditions.para.hasCondition')}
         <Branch name="hascondition"
-                className="eapp-field-wrap no-label hascondition"
+                className="eapp-field-wrap hascondition"
                 value={this.state.HasCondition}
                 onValidate={this.handleValidation}
                 onUpdate={this.updateHasCondition}>
@@ -151,8 +151,7 @@ export default class ExistingConditions extends ValidationElement {
             </Field>
 
             <Show when={this.state.ReceivedTreatment === 'No'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
-                help="psychological.existingConditions.help.explanation">
+              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
                   className="explanation"
                   {...this.props.Explanation}
@@ -181,16 +180,14 @@ export default class ExistingConditions extends ValidationElement {
 
             <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
             <Branch name="didNotFollow"
-              className="eapp-field-wrap no-label didnotfollow"
+              className="eapp-field-wrap didnotfollow"
               value={this.state.DidNotFollow}
-              help="psychological.existingConditions.help.didNotFollow"
               onValidate={this.handleValidation}
               onUpdate={this.updateDidNotFollow}>
             </Branch>
 
             <Show when={this.state.DidNotFollow === 'Yes'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
-                help="psychological.existingConditions.help.didNotFollowExplanation">
+              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
                   className="explanation"
                   {...this.props.DidNotFollowExplanation}

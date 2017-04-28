@@ -118,7 +118,7 @@ export default class Delinquent extends ValidationElement {
     return (
       <div className="delinquent">
         <Branch name="has_delinquent"
-                className="delinquent-branch eapp-field-wrap no-label"
+                className="delinquent-branch eapp-field-wrap"
                 value={this.state.HasDelinquent}
                 help="financial.delinquent.help.branch"
                 onUpdate={this.updateBranch}>

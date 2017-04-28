@@ -252,7 +252,7 @@ export class EmploymentItem extends ValidationElement {
                                 {...this.props.Additional}
                                 onUpdate={this.onUpdate.bind(this, 'Additional')}
                                 onValidate={this.props.onValidate}
-                                className="additional-activity" />
+                                />
           </div>
         </Show>
 

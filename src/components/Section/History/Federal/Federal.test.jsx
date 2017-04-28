@@ -11,7 +11,7 @@ describe('The federal component', () => {
     component.find({type: 'radio', name: 'has_federalservice', value: 'Yes'}).simulate('change')
     expect(component.find('.accordion').length).toBeGreaterThan(0)
     expect(component.find('.accordion .daterange').length).toBeGreaterThan(0)
-    expect(component.find('.accordion .text').length).toBeGreaterThan(0)
+    expect(component.find('.accordion input').length).toBeGreaterThan(0)
     expect(component.find('.accordion .address').length).toBeGreaterThan(0)
   })
 

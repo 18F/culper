@@ -72,7 +72,6 @@ export default class PhysicalAddress extends ValidationElement {
   options () {
     return (
       <Branch name="physicalAddress"
-              className="no-label"
               value={this.state.HasDifferentAddress}
               help="history.employment.default.physicalAddress.help"
               onUpdate={this.onBranchUpdate}>

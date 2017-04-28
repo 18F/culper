@@ -178,7 +178,7 @@ export default class Address extends ValidationElement {
 
     return (
       <div className={klass}>
-        <label className="bold">{this.props.label}</label>
+        <label>{this.props.label}</label>
         <RadioGroup className="address-options" selectedValue={this.state.addressType}>
           <Radio name="addressType"
                  label={i18n.m('address.options.us.label')}
@@ -468,6 +468,7 @@ export default class Address extends ValidationElement {
 
 Address.defaultProps = {
   suggestions: [],
+  label: i18n.t('address.label'),
   validate: false,
   geocodeErrorCode: null,
   tab: (input) => { input.focus() },

@@ -151,7 +151,7 @@ select {
     // Block style radio and checkboxes that are NOT toggles
     &.no-toggle {
       display: block;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0;
       margin-right: 1.6rem;
       text-align: center;
       background: transparent;
