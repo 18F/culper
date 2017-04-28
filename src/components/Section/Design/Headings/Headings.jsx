@@ -20,36 +20,10 @@ export default class Headings extends ValidationElement {
   }
 
   summary (item, index) {
-    let number = i18n.t('identification.contacts.collection.summary.unknownPhone')
-    if (item.Telephone && !item.noNumber && item.Telephone.number) {
-      number = item.Telephone.number
-
-      switch (item.Telephone.type) {
-        case 'DSN':
-          number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
-          break
-
-        case 'International':
-          number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
-          if (item.Telephone.extension) {
-            number += ` x${item.Telephone.extension}`
-          }
-          break
-
-        case 'Domestic':
-        default:
-          number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
-          if (item.Telephone.extension) {
-            number += ` x${item.Telephone.extension}`
-          }
-          break
-      }
-    }
-
     return (
       <span>
         <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>
-        <span><strong>{number}</strong></span>
+        <span><strong>{i18n.t('identification.contacts.collection.summary.unknownPhone')}</strong></span>
       </span>
     )
   }
