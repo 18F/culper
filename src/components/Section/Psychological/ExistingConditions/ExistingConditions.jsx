@@ -151,8 +151,7 @@ export default class ExistingConditions extends ValidationElement {
             </Field>
 
             <Show when={this.state.ReceivedTreatment === 'No'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
-                help="psychological.existingConditions.help.explanation">
+              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
                   className="explanation"
                   {...this.props.Explanation}
@@ -183,14 +182,12 @@ export default class ExistingConditions extends ValidationElement {
             <Branch name="didNotFollow"
               className="eapp-field-wrap no-label didnotfollow"
               value={this.state.DidNotFollow}
-              help="psychological.existingConditions.help.didNotFollow"
               onValidate={this.handleValidation}
               onUpdate={this.updateDidNotFollow}>
             </Branch>
 
             <Show when={this.state.DidNotFollow === 'Yes'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
-                help="psychological.existingConditions.help.didNotFollowExplanation">
+              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
                   className="explanation"
                   {...this.props.DidNotFollowExplanation}
