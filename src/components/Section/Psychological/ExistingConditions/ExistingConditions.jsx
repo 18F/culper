@@ -88,13 +88,18 @@ export default class ExistingConditions extends ValidationElement {
     const o = (item || {}).Diagnosis || {}
     const treatmentDate = (o.Diagnosed || {})
     const formattedTreatmentDate = dateRangeFormat(treatmentDate)
-    const condition = (o.Condition || {}).value ? `${o.Condition.value} ${formattedTreatmentDate}` : i18n.t('psychological.existingConditions.treatment.collection.summary')
+    const condition = (o.Condition || {}).value ? o.Condition.value : null
     const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
     return (
 
-      <span>
-        <span className="index">{type}</span>
-        <span className="info"><strong>{condition}</strong></span>
+      <span className="content">
+        <span className="index">{type} {index + 1}:</span>
+        <span className="info">
+          <strong>
+            {condition || i18n.t('psychological.existingConditions.treatment.collection.summary')}
+          </strong>
+        </span>
+        <span className="treatmentdate"><strong>{condition && formattedTreatmentDate}</strong></span>
       </span>
     )
   }
@@ -110,7 +115,6 @@ export default class ExistingConditions extends ValidationElement {
         <Branch name="hascondition"
                 className="eapp-field-wrap no-label hascondition"
                 value={this.state.HasCondition}
-                help="psychological.existingConditions.help.hasCondition"
                 onValidate={this.handleValidation}
                 onUpdate={this.updateHasCondition}>
         </Branch>
@@ -147,8 +151,7 @@ export default class ExistingConditions extends ValidationElement {
             </Field>
 
             <Show when={this.state.ReceivedTreatment === 'No'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
-                help="psychological.existingConditions.help.explanation">
+              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
                   className="explanation"
                   {...this.props.Explanation}
@@ -160,10 +163,12 @@ export default class ExistingConditions extends ValidationElement {
 
             <Show when={this.state.ReceivedTreatment === 'Yes'}>
               <Accordion minimum="1"
+                defaultState={this.props.defaultState}
                 items={this.state.TreatmentList}
                 onUpdate={this.updateTreatmentList}
                 summary={this.summary}
                 onValidate={this.handleValidation}
+                description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                 appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
                 appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
                 appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
@@ -177,14 +182,12 @@ export default class ExistingConditions extends ValidationElement {
             <Branch name="didNotFollow"
               className="eapp-field-wrap no-label didnotfollow"
               value={this.state.DidNotFollow}
-              help="psychological.existingConditions.help.didNotFollow"
               onValidate={this.handleValidation}
               onUpdate={this.updateDidNotFollow}>
             </Branch>
 
             <Show when={this.state.DidNotFollow === 'Yes'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
-                help="psychological.existingConditions.help.didNotFollowExplanation">
+              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
                   className="explanation"
                   {...this.props.DidNotFollowExplanation}
@@ -201,5 +204,6 @@ export default class ExistingConditions extends ValidationElement {
 }
 
 ExistingConditions.defaultProps = {
-  TreatmentList: []
+  TreatmentList: [],
+  defaultState: true
 }

@@ -56,10 +56,6 @@ export default class Hospitalization extends ValidationElement {
   }
 
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -86,7 +82,7 @@ export default class Hospitalization extends ValidationElement {
               onValidate={this.handleValidation}
               onUpdate={this.updateAdmission}>
               <div className="voluntary">
-                {i18n.m('psychological.hospitalization.label.voluntaryAdmission')}
+                {i18n.t('psychological.hospitalization.label.voluntaryAdmission')}
               </div>
             </Radio>
             <Radio
@@ -95,53 +91,50 @@ export default class Hospitalization extends ValidationElement {
               onValidate={this.handleValidation}
               onUpdate={this.updateAdmission}>
               <div className="involuntary">
-                {i18n.m('psychological.hospitalization.label.involuntaryAdmission')}
+                {i18n.t('psychological.hospitalization.label.involuntaryAdmission')}
               </div>
             </Radio>
           </RadioGroup>
         </Field>
 
-        <Show when={this.props.Admission}>
-          <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
-                 help="psychological.hospitalization.help.explanation">
-            <Textarea name="Explanation"
-                      className="explanation"
-                      {...this.props.Explanation}
-                      onUpdate={this.updateExplanation}
-                      onValidate={this.handleValidation}
-                      />
-          </Field>
-        </Show>
+        <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}>
+          <Textarea name="Explanation"
+            className="explanation"
+            {...this.props.Explanation}
+            onUpdate={this.updateExplanation}
+            onValidate={this.handleValidation}
+          />
+        </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.treatment`)}
-               help="psychological.hospitalization.help.treatment"
-               adjustFor="daterange">
+          help="psychological.hospitalization.help.treatment"
+          adjustFor="daterange">
           <DateRange name="TreatmentDate"
-                     {...this.props.TreatmentDate}
-                     receiveProps={this.props.receiveProps}
-                     onUpdate={this.updateTreatmentDate}
-                     onValidate={this.handleValidation}
-                     />
+            {...this.props.TreatmentDate}
+            receiveProps={this.props.receiveProps}
+            onUpdate={this.updateTreatmentDate}
+            onValidate={this.handleValidation}
+          />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
-               help="psychological.hospitalization.help.facility">
+          help="psychological.hospitalization.help.facility">
           <Text name="Facility"
-                className="facility"
-                {...this.props.Facility}
-                onUpdate={this.updateFacility}
-                onValidate={this.handleValidation}
-                />
+            className="facility"
+            {...this.props.Facility}
+            onUpdate={this.updateFacility}
+            onValidate={this.handleValidation}
+          />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
-               help="psychological.hospitalization.help.address">
+          help="psychological.hospitalization.help.address">
           <Address name="FacilityAddress"
-                   {...this.props.FacilityAddress}
-                   label={i18n.t(`psychological.hospitalization.label.address`)}
-                   onUpdate={this.updateFacilityAddress}
-                   onValidate={this.handleValidation}
-                   />
+            {...this.props.FacilityAddress}
+            label={i18n.t(`psychological.hospitalization.label.address`)}
+            onUpdate={this.updateFacilityAddress}
+            onValidate={this.handleValidation}
+          />
         </Field>
 
       </div>

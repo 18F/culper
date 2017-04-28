@@ -46,13 +46,6 @@ export default class ReasonLeft extends ValidationElement {
   }
 
   render () {
-    const branch = (
-      <div>
-        <h3>{i18n.t('history.employment.default.left.para')}</h3>
-        {i18n.m('history.employment.default.left.list')}
-      </div>
-    )
-
     return (
       <div className="reason-leaving">
         <Field help="history.employment.default.reasonDescription"
@@ -66,13 +59,14 @@ export default class ReasonLeft extends ValidationElement {
                     />
         </Field>
 
-        <BranchCollection branchHelp="history.employment.default.reasonOptions"
-                          branch={branch}
+        <BranchCollection label={i18n.t('history.employment.default.left.branch')}
+                          appendLabel={i18n.t('history.employment.default.left.append')}
+                          help="history.employment.default.reasonOptions"
+                          content={i18n.m('history.employment.default.left.list')}
                           items={this.state.Reasons}
                           onUpdate={this.updateReasons}
                           >
-          <ReasonOptions name="Reason"
-                         bind={true} />
+          <ReasonOptions name="Reason" bind={true} />
         </BranchCollection>
       </div>
     )

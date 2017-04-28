@@ -10,6 +10,10 @@
       width: 9rem;
     }
 
+    &.six {
+      width: 10rem;
+    }
+
     &.ten {
       width: 14rem;
     }
@@ -46,7 +50,6 @@
       font-weight: 600;
       border-bottom: 1px #0071bc dashed;
       text-decoration: none;
-
     }
   }
 
@@ -73,7 +76,7 @@
     vertical-align: top;
 
     label {
-      width: 14rem;
+      width: 13rem;
       margin-top: 2.5rem;
     }
   }

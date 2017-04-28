@@ -13,6 +13,10 @@
   > a {
     i {
       margin-left: 1rem;
+
+      &.fa-times-circle {
+        color: $eapp-red;
+      }
     }
 
     &.add-comment,
@@ -33,7 +37,6 @@
     &.remove-comment:visited,
     &.remove-comment:hover,
     &.remove-comment:active {
-      color: $eapp-red;
       text-decoration: none;
 
       span {

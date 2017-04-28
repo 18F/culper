@@ -40,7 +40,7 @@ export default class Relative extends ValidationElement {
       Name: props.Name,
       Birthdate: props.Birthdate,
       Birthplace: props.Birthplace,
-      Citizenship: props.Citizenship, // Needs new component
+      Citizenship: props.Citizenship,
       MaidenSameAsListed: props.MaidenSameAsListed,
       MaidenName: props.MaidenName,
       Aliases: props.Aliases,
@@ -148,7 +148,7 @@ export default class Relative extends ValidationElement {
   }
 
   updateCitizenship (values) {
-    this.onUpdate('Citizenship', [values.value])
+    this.onUpdate('Citizenship', values)
   }
 
   updateMaidenSameAsListed (values) {
@@ -282,7 +282,6 @@ export default class Relative extends ValidationElement {
     const validator = new RelativeValidator(this.state, null)
     const mother = this.state.Relations.some(x => x === 'Mother')
     const immediateFamily = this.state.Relations.some(x => ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(x))
-    const aliasTitle = (<h3>{i18n.t('relationships.relatives.heading.alias.branch')}</h3>)
 
     return (
       <div className="relative-item">
@@ -421,7 +420,8 @@ export default class Relative extends ValidationElement {
         <Field title={i18n.t('relationships.relatives.heading.citizenship')}
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
-                   value={this.state.Citizenship.first}
+                   multiple={true}
+                   value={this.state.Citizenship.value}
                    className="relative-citizenship"
                    onUpdate={this.updateCitizenship}
                    />
@@ -453,7 +453,7 @@ export default class Relative extends ValidationElement {
           <div>
             <BranchCollection items={this.state.Aliases}
                               branchName="has_alias"
-                              branch={aliasTitle}
+                              label={i18n.t('relationships.relatives.heading.alias.branch')}
                               className="relative-alias"
                               onUpdate={this.updateAliases}
                               onValidate={this.props.onValidate}>

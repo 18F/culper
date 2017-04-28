@@ -58,8 +58,7 @@ export default class Diagnosis extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="diagnosis">
-        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}
-               help={`psychological.${prefix}.help.condition`}>
+        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}>
           <Text name="Condition"
                 className="condition"
                 {...this.props.Condition}

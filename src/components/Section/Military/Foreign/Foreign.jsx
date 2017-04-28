@@ -61,14 +61,15 @@ export default class Foreign extends ValidationElement {
       <div className="foreign">
         <BranchCollection items={this.props.List}
                           branchName="has_foreign"
-                          branchHelp="military.foreign.help.served"
+                          appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
+                          appendSize="h2"
+                          help="military.foreign.help.served"
                           onUpdate={this.updateList}
                           onValidate={this.handleValidation}>
           <ForeignService name="Item"
                           bind={true}
                           onValidate={this.handleValidation}
                           />
-          <h2>{i18n.t('military.foreign.collection.foreign.appendTitle')}</h2>
         </BranchCollection>
       </div>
     )

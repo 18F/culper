@@ -44,6 +44,17 @@ export default class Address extends ValidationElement {
     this.doUpdate = this.doUpdate.bind(this)
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      address: nextProps.address,
+      city: nextProps.city,
+      zipcode: nextProps.zipcode,
+      state: nextProps.state,
+      country: nextProps.country,
+      addressType: nextProps.addressType
+    })
+  }
+
   componentWillUnmount () {
     this.handleAsyncValidation = null
   }
@@ -214,11 +225,12 @@ export default class Address extends ValidationElement {
             suggestionTitle={this.suggestionTitle()}
             suggestionLabel={this.suggestionLabel()}
             suggestionParagraph={this.suggestionParagraph()}
-            suggestionDismissLabel={'Use this address instead'}
+            suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
             suggestionDismissContent={this.suggestionDismissContent()}
+            suggestionDismissAlternate={this.dismissAlternative()}
             onDismiss={this.onSuggestionDismiss.bind(this)}
             onSuggestion={this.onSuggestion.bind(this)}
-            suggestionUseLabel={'Use this address'}>
+            suggestionUseLabel={i18n.t('suggestions.address.use')}>
             <div>
               <Show when={this.state.addressType === 'United States'}>
                 <div>
@@ -378,9 +390,11 @@ export default class Address extends ValidationElement {
     if (this.state.geocodeErrorCode) {
       return true
     }
+
     if (this.state.suggestions && this.state.suggestions.length) {
       return true
     }
+
     return false
   }
 
@@ -394,6 +408,14 @@ export default class Address extends ValidationElement {
 
   suggestionParagraph () {
     return (<p>{i18n.t(`${this.state.geocodeErrorCode}.para`)}</p>)
+  }
+
+  dismissAlternative () {
+    if (this.state.geocodeErrorCode === 'error.geocode.defaultAddress') {
+      return i18n.t('suggestions.address.alternate')
+    }
+
+    return null
   }
 
   onSuggestionDismiss () {
@@ -448,7 +470,8 @@ Address.defaultProps = {
   suggestions: [],
   validate: false,
   geocodeErrorCode: null,
-  tab: (input) => { input.focus() }
+  tab: (input) => { input.focus() },
+  addressType: 'United States'
 }
 
 /**
@@ -458,6 +481,7 @@ export const handleGeocodeResponse = (response) => {
   if (!response.Errors || !response.Errors.length) {
     return {complexStatus: true, suggestions: [], codes: []}
   }
+
   if (response.Errors && response.Errors.length) {
     for (const err of response.Errors) {
       if (err.Fieldname === 'Address') {
@@ -469,6 +493,7 @@ export const handleGeocodeResponse = (response) => {
             geocodeError: true
           }
         }
+
         return {
           complexStatus: false,
           geocodeError: true,

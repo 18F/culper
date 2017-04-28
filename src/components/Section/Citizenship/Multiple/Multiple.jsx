@@ -144,9 +144,7 @@ export default class Multiple extends ValidationElement {
         </Show>
 
         <BranchCollection label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
-                          labelSize="h3"
                           appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
-                          appendSize="h3"
                           help="citizenship.multiple.help.hasforeignpassport"
                           className="has-foreignpassport"
                           items={this.state.Passports}

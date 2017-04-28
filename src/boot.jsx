@@ -7,8 +7,10 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthActions'
-// Included so that when webpack processes this, it automatically loads necessary polyfills
-import 'babel-polyfill'
+
+// This polyfill gives us more control over smooth scrolling throughout the application
+import smoothscroll from 'smoothscroll-polyfill'
+smoothscroll.polyfill()
 
 const app = document.getElementById('app')
 

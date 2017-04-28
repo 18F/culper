@@ -45,6 +45,26 @@ describe('The cohabitant component', () => {
     component.find('.dateseparated input#month').simulate('change', { target: { value: '12' } })
     component.find('.address-separated input#address').simulate('change')
     component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
-    expect(updates).toBe(24)
+    expect(updates).toBe(25)
+  })
+
+  it('renders current address', () => {
+    let updates = 0
+    const expected = {
+      name: 'cohabitant',
+      onUpdate: () => { updates++ },
+      currentAddress: {
+        address: '123 Some Rd',
+        city: 'Arlington',
+        state: 'VA'
+      }
+    }
+
+    const component = mount(<CivilUnion {...expected} />)
+    expect(component.find('.current-address').length).toEqual(1)
+    component.find('.current-address input').simulate('change')
+    expect(updates).toBe(3)
+    component.find('.current-address input').simulate('change')
+    expect(component.find('.current-address label.checked').length).toEqual(0)
   })
 })

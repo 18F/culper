@@ -129,19 +129,28 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: []
+          Citizenship: {}
         },
         expected: false
       },
       {
         state: {
-          Citizenship: ['United States']
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          Citizenship: ['United States', 'Germany']
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' },
+              { name: 'Germany', value: 'Germany' }
+            ]
+          }
         },
         expected: true
       }
@@ -346,7 +355,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           IsDeceased: 'Yes',
           Birthplace: {
             addressType: 'International',
@@ -359,7 +372,11 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -378,7 +395,11 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -397,7 +418,11 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -409,7 +434,11 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: ['United States']
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          }
         },
         expected: false
       }
@@ -439,7 +468,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -461,7 +494,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -482,7 +519,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -526,7 +567,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -548,7 +593,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -569,7 +618,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -613,7 +666,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -635,7 +692,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -656,7 +717,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -700,7 +765,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -722,7 +791,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -743,7 +816,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -790,7 +867,11 @@ describe('Relatives validation', function () {
         state: {
           Relations: ['Father'],
           IsDeceased: 'No',
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -811,7 +892,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -832,7 +917,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -878,7 +967,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -900,7 +993,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -921,7 +1018,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           Birthplace: {
             addressType: 'International',
             address: '1234 Some Rd',
@@ -963,7 +1064,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           IsDeceased: 'No'
         },
         expected: true
@@ -971,7 +1076,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['Germany'],
+          Citizenship: {
+            value: [
+              { name: 'Germany', value: 'Germany' }
+            ]
+          },
           IsDeceased: 'No',
           Document: ''
         },
@@ -980,7 +1089,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['Germany'],
+          Citizenship: {
+            value: [
+              { name: 'Germany', value: 'Germany' }
+            ]
+          },
           IsDeceased: 'No',
           Document: 'Employment'
         },
@@ -1005,7 +1118,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           IsDeceased: 'No'
         },
         expected: true
@@ -1013,7 +1130,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['Germany'],
+          Citizenship: {
+            value: [
+              { name: 'Germany', value: 'Germany' }
+            ]
+          },
           IsDeceased: 'No',
           ResidenceDocumentNumber: {}
         },
@@ -1022,7 +1143,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['Germany'],
+          Citizenship: {
+            value: [
+              { name: 'Germany', value: 'Germany' }
+            ]
+          },
           IsDeceased: 'No',
           ResidenceDocumentNumber: {
             value: '000000000'
@@ -1049,7 +1174,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['United States'],
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
           IsDeceased: 'No'
         },
         expected: true
@@ -1057,7 +1186,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['Germany'],
+          Citizenship: {
+            value: [
+              { name: 'Germany', value: 'Germany' }
+            ]
+          },
           IsDeceased: 'No',
           Expiration: {}
         },
@@ -1066,7 +1199,11 @@ describe('Relatives validation', function () {
       {
         state: {
           Relations: ['Father'],
-          Citizenship: ['Germany'],
+          Citizenship: {
+            value: [
+              { name: 'Germany', value: 'Germany' }
+            ]
+          },
           IsDeceased: 'No',
           Expiration: {
             day: '1',
@@ -1487,7 +1624,11 @@ describe('Relatives validation', function () {
                   state: 'Virginia',
                   zipcode: '22202'
                 },
-                Citizenship: ['United States'],
+                Citizenship: {
+                  value: [
+                    { name: 'United States', value: 'United States' }
+                  ]
+                },
                 MaidenName: {
                   first: 'Foo',
                   firstInitialOnly: false,

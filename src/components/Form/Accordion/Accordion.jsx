@@ -11,13 +11,32 @@ export const chevron = (item = {}) => {
   return `toggle fa fa-chevron-${item.open ? 'up' : 'down'}`
 }
 
+export const doScroll = (first, item, scrollTo) => {
+  if (!first || !item || !scrollTo) {
+    return
+  }
+
+  // Get the position of the element we want to be visible
+  const pos = findPosition(document.getElementById(item.uuid))[0]
+
+  // Get the top most point we want to display at least on the first addition
+  const top = findPosition(scrollTo)[0]
+
+  // Find the offset from the top most element to the first item in the accordion for
+  // a fixed offset to constantly be applied
+  const offset = findPosition(document.getElementById(first))[0] - top
+
+  // Scroll to that position
+  window.scroll({ top: pos - offset, left: 0, behavior: 'smooth' })
+}
+
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
       initial: props.initial,
-      scrollToIndex: -1
+      scrollToId: ''
     }
 
     this.update = this.update.bind(this)
@@ -72,22 +91,43 @@ export default class Accordion extends ValidationElement {
    * item in to view.
    */
   componentDidUpdate () {
-    if (this.state.scrollToIndex !== -1) {
-      // Get the position of the element we want to be visible
-      const pos = findPosition(document.getElementById(this.props.items[this.state.scrollToIndex].uuid))
-
-      // Get the top most point we want to display at least on the first addition
-      const top = this.props.scrollTo
-            ? findPosition(document.getElementById(this.props.scrollTo))
-            : findPosition(this.refs.accordion)
-
-      // Find the offset from the top most element to the first item in the accordion for
-      // a fixed offset to constantly be applied
-      const offset = findPosition(document.getElementById(this.props.items[0].uuid)) - top
-
-      // Scroll to that position
-      window.scroll(0, pos - offset)
+    if (!this.state.scrollToId) {
+      return
     }
+
+    // Capture the UUID in a constant variable to ensure we don't lose scope
+    const id = this.state.scrollToId
+
+    // Reset the values to prohibit multiple calls due to various
+    // asynchronous behaviours potentially coming from outside this
+    // component
+    this.setState({ initial: false, scrollToId: '' }, () => {
+      // Find the item by UUID instead of index because we can't true the index
+      // will always be the same
+      const item = this.props.items.filter(x => x.uuid === id)[0]
+
+      // Calculate a magic number to phase the timeout value. This always
+      // for any CSS keyframe animations or transitions to take place prior
+      // to finding coordinates.
+      const index = this.props.items.findIndex(x => x.uuid === id)
+      const sindex = index < 0 ? 0 : index
+      const shift = (sindex / 10) * 0.3142
+      const timeout = this.props.timeout + (this.props.timeout * shift)
+
+      // Get the element to which we should scroll to
+      const scrollTo = this.props.scrollTo
+            ? document.getElementById(this.props.scrollTo)
+            : this.refs.accordion
+
+      // Get the identifier to the first item
+      const first = this.props.items[0].uuid
+
+      if (timeout === 0) {
+        doScroll(first, item, scrollTo)
+      } else {
+        window.setTimeout(() => { doScroll(first, item, scrollTo) }, timeout)
+      }
+    })
   }
 
   /**
@@ -103,15 +143,16 @@ export default class Accordion extends ValidationElement {
    * Flip the `open` bit for the item.
    */
   toggle (item) {
-    this.update(this.props.items.map(x => {
+    const items = [...this.props.items].map(x => {
       if (x.uuid === item.uuid) {
         x.open = !x.open
       }
 
       return x
-    }))
+    })
 
-    this.setState({ initial: false, scrollToIndex: -1 })
+    this.update(items)
+    this.setState({ initial: false, scrollToId: '' })
   }
 
   /**
@@ -131,8 +172,10 @@ export default class Accordion extends ValidationElement {
       item.open = false
     }
 
-    this.update(items.concat([this.newItem()]))
-    this.setState({ initial: false, scrollToIndex: items.length - 1 })
+    const item = this.newItem()
+    items = items.concat([item])
+    this.update(items)
+    this.setState({ initial: false, scrollToId: item.uuid })
   }
 
   /**
@@ -141,7 +184,7 @@ export default class Accordion extends ValidationElement {
   remove (item) {
     // Confirm deletion first
     if (this.props.skipWarning || window.confirm(i18n.t('collection.warning')) === true) {
-      let items = this.props.items.filter(x => {
+      let items = [...this.props.items].filter(x => {
         return x.uuid !== item.uuid
       })
 
@@ -150,7 +193,7 @@ export default class Accordion extends ValidationElement {
       }
 
       this.update(items)
-      this.setState({ initial: false, scrollToIndex: -1 })
+      this.setState({ initial: false, scrollToId: '' })
     }
   }
 
@@ -192,10 +235,16 @@ export default class Accordion extends ValidationElement {
     })
   }
 
+  /**
+   * Return the appropriate verbiage to use based on the items open state
+   */
   openText (item = {}) {
     return item.open ? this.props.closeLabel : this.props.openLabel
   }
 
+  /**
+   * Render the item summary which can be overriden with `customSummary`
+   */
   summary (item, index, initial = false) {
     return (
       <div>
@@ -219,6 +268,9 @@ export default class Accordion extends ValidationElement {
     )
   }
 
+  /**
+   * Render the item details which can be overriden with `customDetails`
+   */
   details (item, index, initial = false) {
     return (
       <div className={`details ${openState(item, initial)}`}>
@@ -236,7 +288,11 @@ export default class Accordion extends ValidationElement {
   content () {
     // Ensure we have the minimum amount of items required
     const initial = this.state.initial
-    return this.props.items.sort(this.props.sort).map((item, index, arr) => {
+    const items = this.props.sort
+          ? [...this.props.items].sort(this.props.sort)
+          : [...this.props.items]
+
+    return items.map((item, index, arr) => {
       return (
         <div className="item" id={item.uuid} key={item.uuid}>
           {
@@ -253,6 +309,9 @@ export default class Accordion extends ValidationElement {
     })
   }
 
+  /**
+   * Render the accordion addendum notice
+   */
   addendum () {
     if (!this.props.appendTitle && !this.props.appendMessage) {
       return null
@@ -283,6 +342,10 @@ export default class Accordion extends ValidationElement {
     )
   }
 
+  /**
+   * Render the accordion caption which is essentially a `table-caption`
+   * for the accordion
+   */
   caption () {
     return this.props.caption
       ? <div className="caption">{this.props.caption()}</div>
@@ -332,7 +395,8 @@ Accordion.defaultProps = {
   description: i18n.t('collection.summary'),
   caption: null,
   scrollTo: '',
-  sort: (a, b) => { return -1 },
+  timeout: 500,
+  sort: null,
   onUpdate: () => {},
   onValidate: () => {},
   summary: (item, index, initial = false) => {

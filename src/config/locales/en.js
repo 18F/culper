@@ -365,6 +365,18 @@ const en = {
         note: ''
       }
     },
+    domestic_extension: {
+      pattern: {
+        title: 'Invalid telephone extension',
+        message: 'The extension must be between 0 and 10 digits',
+        note: ''
+      },
+      length: {
+        title: 'This field must have 4 digits',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        note: ''
+      }
+    },
     dsn_first: {
       pattern: {
         title: 'This field must have 3 digits',
@@ -1461,7 +1473,7 @@ const en = {
         entrydate: 'Provide the date of entry into the U.S.',
         entrylocation: 'Provide the location of entry into the U.S.',
         priorcitizenship: {
-          naturalized: 'Provide countrny(ies) of prior citizenship',
+          naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'
         },
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
@@ -2244,6 +2256,26 @@ const en = {
         }
       },
       help: {
+        address: {
+          title: 'Need help with the marital address?',
+          message: 'Provide the last known address ',
+          note: ''
+        },
+        addressSeparated: {
+          title: 'Need help with the marital address?',
+          message: 'Provide the location of the record if legally separated',
+          note: ''
+        },
+        telephone: {
+          title: 'Need help with the telephone number?',
+          message: 'Provide the telephone number',
+          note: ''
+        },
+        dateSeparated: {
+          title: 'Need help with the date of separation?',
+          message: 'Provide the date of separation',
+          note: ''
+        },
         birthdate: {
           title: 'Need help with the birthdate?',
           message: 'Provide the date of birth',
@@ -2526,8 +2558,8 @@ const en = {
         placeholder: 'Enter country'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       }
     },
     apoFpo: {
@@ -2547,8 +2579,8 @@ const en = {
         placeholder: 'Enter state'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
         label: 'APO/FPO State Code'
@@ -2581,7 +2613,8 @@ const en = {
       para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
       label: 'Suggested address',
       use: 'Use this address',
-      dismiss: 'Use this address instead'
+      dismiss: 'Use this address instead',
+      alternate: 'Manually correct this address'
     }
   },
 
@@ -3114,14 +3147,15 @@ const en = {
         },
         left: {
           title: 'Provide the reason for leaving the employment activity',
-          para: 'For this employment have any of the following happened to you in the last seven (7) years?',
-          list: '- Fired\n- Quit after being told you would be fired\n- Left by mutual agreement following charges or allegations of misconduct\n- Left by mutual agreement following notice of unsatisfactory performance',
+          branch: 'For this employment have any of the following happened to you in the last seven (7) years?',
+          append: 'In the last seven (7) years do you have another reason for leaving to report for this employment?',
+          list: [
+            '- Fired',
+            '- Quit after being told you would be fired',
+            '- Left by mutual agreement following charges or allegations of misconduct',
+            '- Left by mutual agreement following notice of unsatisfactory performance'
+          ],
           comments: 'Provide any additional comments for why you left this employment activity',
-          help: {
-            title: '',
-            message: '',
-            note: ''
-          },
           fired: {
             option: 'Fired',
             text: 'Provide the reason for being fired',
@@ -3141,11 +3175,6 @@ const en = {
             option: 'Unsatisfactory performance',
             text: 'Provide the reason(s) for unsatisfactory performance',
             date: 'Provide the date you left by mutual agreement following a notice of unsatisfactory performance'
-          },
-          other: {
-            option: 'Other',
-            text: 'Do you have another reason for leaving to report for this employment?',
-            date: 'Provide the date you left'
           }
         },
         reprimand: {
@@ -5010,10 +5039,10 @@ const en = {
     heading: {
       intro: 'Why we are asking',
       competence: 'Has a court or administrative agency ever issued an order declaring you mentally incompetent?',
-      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional',
-      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\n(An order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response. An order by a military court would be within the scope of the question and would require an affirmative response)',
+      consultation: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?',
+      consultation2: '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\nAn order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.',
       hospitalization: 'Have you EVER been hospitalized for a mental health condition?',
-      diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, is not a reason to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
+      diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
       intro: 'Introduction',
@@ -5052,6 +5081,7 @@ const en = {
         appealCourtName: 'Provide the name of the higher court or administrative agency',
         appealCourtAddress: 'Provide the address of the court or administrative agency',
         appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        appealedAnother: 'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
         needMore: 'Since you answered yes, we need more information'
       },
       label: {
@@ -5060,42 +5090,32 @@ const en = {
       },
       help: {
         occurred: {
-          title: 'Need help the date occurred?',
-          message: 'The date issued',
-          note: ''
+          title: 'Need help with the date this occurred?',
+          message: 'Enter the date this official order was issued.',
+          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
         },
         courtName: {
-          title: 'Need help with the court name?',
-          message: 'The court that declared you incompetent',
+          title: 'Need help with this court or agency name?',
+          message: 'Enter the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
-          title: 'Need help with the court address?',
-          message: 'The court address',
-          note: ''
-        },
-        disposition: {
-          title: 'Need help with the disposition?',
-          message: 'Enter the disposition for this order',
-          note: ''
-        },
-        appealed: {
-          title: 'Need help with whether this matter was appealed?',
-          message: 'Was this matter appealed to a higher court or administrative agency?',
-          note: ''
+          title: 'Not sure of the court or agency address?',
+          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         incompetent: {
           title: 'Need help with this question?',
-          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional'
+          message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
         }
       },
       collection: {
-        summaryCourtName: 'Click to provide details',
-        description: 'description',
+        summaryCourtName: 'Provide your order details below',
+        description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
-        itemType: 'Order:'
+        itemType: 'Order'
       }
     },
     consultation: {
@@ -5107,6 +5127,7 @@ const en = {
         appealCourtName: 'Name of court or administrative agency',
         appealCourtAddress: 'Provide the address of the court or administrative agency',
         appealed: 'Was this matter appealed to a higher  court or administrative agency?',
+        appealedAnother: 'Do you have an additional instance where this matter was appealed to a higher court or administrative agency?',
         needMore: 'Since you answered yes, we need more information'
       },
       label: {
@@ -5120,14 +5141,14 @@ const en = {
           note: ''
         },
         courtName: {
-          title: 'Need help with the court name?',
-          message: 'The court that declared you incompetent',
+          title: 'Need help with this court or agency name?',
+          message: 'Enter the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
-          title: 'Need help with the court address?',
-          message: 'The court address',
-          note: ''
+          title: 'Not sure of the court or agency address?',
+          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         disposition: {
           title: 'Need help with the disposition?',
@@ -5145,17 +5166,17 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Click to provide details',
-        description: 'description',
+        summaryCourtName: 'Provide your order details below',
+        description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
-        itemType: 'Order:'
+        itemType: 'Order'
       }
     },
     hospitalization: {
       heading: {
-        admission: 'Was the admission voluntary or involuntary',
+        admission: 'Was the admission voluntary or involuntary?',
         treatment: 'Provide the dates of treatment',
         facility: 'Provide the facility where treatment was provided',
         address: 'Provide the address of the facility where treatment was provided',
@@ -5163,15 +5184,16 @@ const en = {
       },
       label: {
         address: 'This address is',
-        voluntaryAdmission: 'Voluntary\n\n(Provide Explanation)',
-        involuntaryAdmission: 'Involuntary\n\n(Provide Explanation)'
+        voluntaryAdmission: 'Voluntary',
+        involuntaryAdmission: 'Involuntary'
       },
       collection: {
-        summary: 'Click to provide details',
+        description: 'Summary of hospitalizations',
+        summary: 'Provide your hospitalization details below',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
         appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
-        itemType: 'Hospitalization:'
+        itemType: 'Hospitalization'
       },
       help: {
         incompetent: {
@@ -5180,19 +5202,19 @@ const en = {
           note: ''
         },
         treatment: {
-          title: 'Need help the dates of treatment?',
-          message: 'Provide the dates when you were treated ',
-          note: ''
+          title: 'Need help the date range of your hospitalization?',
+          message: 'Provide the full date range (admission to release) of your hospitalization.',
+          note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
         },
         facility: {
-          title: 'Need help the facility where treatment was provided?',
-          message: 'Provide the name of the facility where treatment was provided',
+          title: 'Need help with this facility name?',
+          message: 'Enter the name of the facility where you were hospitalized.',
           note: ''
         },
         address: {
-          title: 'Need help with treatment facility?',
-          message: 'Provide the address of the facility where treatment was provided',
-          note: ''
+          title: 'Not sure of the facility address?',
+          message: 'Try looking up the facility name, a physical or mailing address should be associated with it.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -5212,8 +5234,8 @@ const en = {
           note: ''
         },
         diagnosed: {
-          title: 'Need help with treatment dates',
-          message: 'Provide the dates of couseling or treatment',
+          title: 'Need help the date range of your diagnosis or health condition?',
+          message: 'Provide the full date range (admission to release) of your hospitalization.',
           note: ''
         }
       },
@@ -5267,15 +5289,17 @@ const en = {
     diagnoses: {
       heading: {
         didNotConsult: 'In the last seven years, have there been any occasions when you did not consult with a medical professional before altering or discontinuing, or failing to start a prescribed course of treatment for any of the listed diagnoses?',
-        para: 'Have you EVER been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        diagnoses: 'Have you EVER been diagnosed by a physician or other health professional with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
+        examples: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
         inTreatment: 'Are you currently in treatment?'
       },
       collection: {
+        description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
         appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
-        itemType: 'Diagnosis:'
+        itemType: 'Diagnosis'
       },
       professional: {
         heading: {
@@ -5290,11 +5314,12 @@ const en = {
       },
       treatment: {
         collection: {
-          summary: 'Provide your diagnosis details below',
+          description: 'Summary of treatments',
+          summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you are currently in treatment?',
           appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
-          itemType: 'Treatment:'
+          itemType: 'Treatment'
         }
       },
       help: {
@@ -5375,11 +5400,12 @@ const en = {
       },
       treatment: {
         collection: {
+          description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
           appendMessage: 'If yes, use the button below to add another instance',
           appendLabel: 'Add another treatment',
-          itemType: 'Instance:'
+          itemType: 'Treatment'
         }
       },
       diagnosis: {
@@ -5499,6 +5525,263 @@ const en = {
         other: 'Other (Provide explanation)'
       }
     }
+  },
+  countries: {
+    unitedStates: 'United States',
+    afghanistan: 'Afghanistan',
+    akrotiriSovereignBaseArea: 'Akrotiri Sovereign Base Area',
+    albania: 'Albania',
+    algeria: 'Algeria',
+    andorra: 'Andorra',
+    angola: 'Angola',
+    anguilla: 'Anguilla',
+    antarctica: 'Antarctica',
+    antiguaAndBarbuda: 'Antigua and Barbuda',
+    argentina: 'Argentina',
+    armenia: 'Armenia',
+    aruba: 'Aruba',
+    ashmoreAndCartierIslands: 'Ashmore and Cartier Islands',
+    australia: 'Australia',
+    austria: 'Austria',
+    azerbaijan: 'Azerbaijan',
+    bahamas: 'Bahamas, The',
+    bahrain: 'Bahrain',
+    bangladesh: 'Bangladesh',
+    barbados: 'Barbados',
+    bassasDaIndia: 'Bassas da India',
+    belarus: 'Belarus',
+    belgium: 'Belgium',
+    belize: 'Belize',
+    benin: 'Benin',
+    bermuda: 'Bermuda',
+    bhutan: 'Bhutan',
+    bolivia: 'Bolivia',
+    bosniaAndHerzegovina: 'Bosnia and Herzegovina',
+    botswana: 'Botswana',
+    bouvetIsland: 'Bouvet Island',
+    brazil: 'Brazil',
+    britishIndianOceanTerritory: 'British Indian Ocean Territory',
+    britishVirginIslands: 'British Virgin Islands',
+    brunei: 'Brunei',
+    bulgaria: 'Bulgaria',
+    burkinaFaso: 'Burkina Faso',
+    burma: 'Burma',
+    burundi: 'Burundi',
+    cambodia: 'Cambodia',
+    cameroon: 'Cameroon',
+    canada: 'Canada',
+    capeVerde: 'Cape Verde',
+    caymanIslands: 'Cayman Islands',
+    centralAfricanRepublic: 'Central African Republic',
+    chad: 'Chad',
+    chile: 'Chile',
+    china: 'China',
+    christmasIsland: 'Christmas Island',
+    clippertonIsland: 'Clipperton Island',
+    cocosKeelingIslands: 'Cocos Keeling Islands',
+    colombia: 'Colombia',
+    comoros: 'Comoros',
+    congo: 'Congo',
+    congoDemocraticRepublic: 'Congo, Democratic Republic of the',
+    cookIslands: 'Cook Islands',
+    coralSeaIslands: 'Coral Sea Islands',
+    costaRica: 'Costa Rica',
+    coteIvoire: 'Cote d\'Ivoire',
+    croatia: 'Croatia',
+    cuba: 'Cuba',
+    cyprus: 'Cyprus',
+    czechRepublic: 'Czech Republic',
+    denmark: 'Denmark',
+    dhekeliaSovereignBaseArea: 'Dhekelia Sovereign Base Area',
+    djibouti: 'Djibouti',
+    dominica: 'Dominica',
+    dominicanRepublic: 'Dominican Republic',
+    eastTimor: 'East Timor',
+    ecuador: 'Ecuador',
+    egypt: 'Egypt',
+    elSalvador: 'El Salvador',
+    equatorialGuinea: 'Equatorial Guinea',
+    eritrea: 'Eritrea',
+    estonia: 'Estonia',
+    ethiopia: 'Ethiopia',
+    etorofuHabomaiKunashiriAndShikotanIslands: 'Etorofu, Habomai, Kunashiri And Shikotan Islands',
+    europaIsland: 'Europa Island',
+    falklandIslandsIslasMalvinas: 'Falkland Islands Islas Malvinas',
+    faroeIslands: 'Faroe Islands',
+    fiji: 'Fiji',
+    finland: 'Finland',
+    france: 'France',
+    frenchGuiana: 'French Guiana',
+    frenchPolynesia: 'French Polynesia',
+    frenchSouthernAndAntarcticLands: 'French Southern and Antarctic Lands',
+    gabon: 'Gabon',
+    gambia: 'Gambia, The',
+    gazaStrip: 'Gaza Strip',
+    georgia: 'Georgia',
+    germany: 'Germany',
+    ghana: 'Ghana',
+    gibraltar: 'Gibraltar',
+    gloriosoIslands: 'Glorioso Islands',
+    greece: 'Greece',
+    greenland: 'Greenland',
+    grenada: 'Grenada',
+    guadeloupe: 'Guadeloupe',
+    guatemala: 'Guatemala',
+    guernsey: 'Guernsey',
+    guinea: 'Guinea',
+    guineaBissau: 'Guinea-Bissau',
+    guyana: 'Guyana',
+    haiti: 'Haiti',
+    heardIslandAndMcDonaldIslands: 'Heard Island and McDonald Islands',
+    honduras: 'Honduras',
+    hongKong: 'Hong Kong',
+    hungary: 'Hungary',
+    iceland: 'Iceland',
+    india: 'India',
+    indonesia: 'Indonesia',
+    iran: 'Iran',
+    iraq: 'Iraq',
+    ireland: 'Ireland',
+    isleOfMan: 'Isle of Man',
+    israel: 'Israel',
+    italy: 'Italy',
+    jamaica: 'Jamaica',
+    janMayen: 'Jan Mayen',
+    japan: 'Japan',
+    jersey: 'Jersey',
+    jordan: 'Jordan',
+    juanDeNovaIsland: 'Juan de Nova Island',
+    kazakhstan: 'Kazakhstan',
+    kenya: 'Kenya',
+    kiribati: 'Kiribati',
+    kosovo: 'Kosovo',
+    kuwait: 'Kuwait',
+    kyrgyzstan: 'Kyrgyzstan',
+    laos: 'Laos',
+    latvia: 'Latvia',
+    lebanon: 'Lebanon',
+    lesotho: 'Lesotho',
+    liberia: 'Liberia',
+    libya: 'Libya',
+    liechtenstein: 'Liechtenstein',
+    lithuania: 'Lithuania',
+    luxembourg: 'Luxembourg',
+    macau: 'Macau',
+    macedonia: 'Macedonia',
+    madagascar: 'Madagascar',
+    malawi: 'Malawi',
+    malaysia: 'Malaysia',
+    maldives: 'Maldives',
+    mali: 'Mali',
+    malta: 'Malta',
+    marshallIslands: 'Marshall Islands',
+    martinique: 'Martinique',
+    mauritania: 'Mauritania',
+    mauritius: 'Mauritius',
+    mayotte: 'Mayotte',
+    mexico: 'Mexico',
+    micronesiaFederatedStates: 'Micronesia, Federated States of',
+    moldova: 'Moldova',
+    monaco: 'Monaco',
+    mongolia: 'Mongolia',
+    montenegro: 'Montenegro',
+    montserrat: 'Montserrat',
+    morocco: 'Morocco',
+    mozambique: 'Mozambique',
+    namibia: 'Namibia',
+    nauru: 'Nauru',
+    nepal: 'Nepal',
+    netherlands: 'Netherlands',
+    netherlandsAntilles: 'Netherlands Antilles',
+    newCaledonia: 'New Caledonia',
+    newZealand: 'New Zealand',
+    nicaragua: 'Nicaragua',
+    niger: 'Niger',
+    nigeria: 'Nigeria',
+    niue: 'Niue',
+    norfolkIsland: 'Norfolk Island',
+    northKorea: 'North Korea',
+    norway: 'Norway',
+    oman: 'Oman',
+    pakistan: 'Pakistan',
+    palau: 'Palau',
+    panama: 'Panama',
+    papuaNewGuinea: 'Papua New Guinea',
+    paracelIslands: 'Paracel Islands',
+    paraguay: 'Paraguay',
+    peru: 'Peru',
+    philippines: 'Philippines',
+    pitcairnIslands: 'Pitcairn Islands',
+    poland: 'Poland',
+    portugal: 'Portugal',
+    qatar: 'Qatar',
+    reunion: 'Reunion',
+    romania: 'Romania',
+    russia: 'Russia',
+    rwanda: 'Rwanda',
+    saintBarthelemy: 'Saint Barthelemy',
+    saintHelena: 'Saint Helena',
+    saintKittsAndNevis: 'Saint Kitts and Nevis',
+    saintLucia: 'Saint Lucia',
+    saintMartin: 'Saint Martin',
+    saintPierreAndMiquelon: 'Saint Pierre and Miquelon',
+    saintVincentAndTheGrenadines: 'Saint Vincent and the Grenadines',
+    samoa: 'Samoa',
+    sanMarino: 'San Marino',
+    saoTomeAndPrincipe: 'Sao Tome and Principe',
+    saudiArabia: 'Saudi Arabia',
+    senegal: 'Senegal',
+    serbia: 'Serbia',
+    seychelles: 'Seychelles',
+    sierraLeone: 'Sierra Leone',
+    singapore: 'Singapore',
+    slovakia: 'Slovakia',
+    slovenia: 'Slovenia',
+    solomonIslands: 'Solomon Islands',
+    somalia: 'Somalia',
+    southAfrica: 'South Africa',
+    southGeorgiaAndTheSouthSandwichIslands: 'South Georgia and the South Sandwich Islands',
+    southKorea: 'South Korea',
+    spain: 'Spain',
+    spratlyIslands: 'Spratly Islands',
+    sriLanka: 'Sri Lanka',
+    sudan: 'Sudan',
+    suriname: 'Suriname',
+    svalbard: 'Svalbard',
+    swaziland: 'Swaziland',
+    sweden: 'Sweden',
+    switzerland: 'Switzerland',
+    syria: 'Syria',
+    taiwan: 'Taiwan',
+    tajikistan: 'Tajikistan',
+    tanzania: 'Tanzania',
+    thailand: 'Thailand',
+    togo: 'Togo',
+    tokelau: 'Tokelau',
+    tonga: 'Tonga',
+    trinidadAndTobago: 'Trinidad and Tobago',
+    tromelinIsland: 'Tromelin Island',
+    tunisia: 'Tunisia',
+    turkey: 'Turkey',
+    turkmenistan: 'Turkmenistan',
+    turksAndCaicosIslands: 'Turks and Caicos Islands',
+    tuvalu: 'Tuvalu',
+    uganda: 'Uganda',
+    ukraine: 'Ukraine',
+    unitedArabEmirates: 'United Arab Emirates',
+    unitedKingdom: 'United Kingdom',
+    uruguay: 'Uruguay',
+    uzbekistan: 'Uzbekistan',
+    vanuatu: 'Vanuatu',
+    vaticanCity: 'Vatican City',
+    venezuela: 'Venezuela',
+    vietnam: 'Vietnam',
+    wallisAndFutuna: 'Wallis and Futuna',
+    westBank: 'West Bank',
+    westernSahara: 'Western Sahara',
+    yemen: 'Yemen',
+    zambia: 'Zambia',
+    zimbabwe: 'Zimbabwe'
   }
 }
 

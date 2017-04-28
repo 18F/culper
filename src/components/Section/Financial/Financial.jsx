@@ -144,8 +144,8 @@ class Financial extends ValidationElement {
                        showTop="true"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="military"
-                       nextLabel={i18n.t('military.destination.selective')}>
+                       next="history"
+                       nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}

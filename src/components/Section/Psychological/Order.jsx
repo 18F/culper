@@ -10,7 +10,6 @@ export default class Order extends ValidationElement {
     this.updateOccurred = this.updateOccurred.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateDisposition = this.updateDisposition.bind(this)
     this.updateAppeals = this.updateAppeals.bind(this)
   }
 
@@ -20,7 +19,6 @@ export default class Order extends ValidationElement {
         Occurred: this.props.Occurred,
         CourtName: this.props.CourtName,
         CourtAddress: this.props.CourtAddress,
-        Disposition: this.props.Disposition,
         Appeals: this.props.Appeals,
         [field]: values
       })
@@ -41,10 +39,6 @@ export default class Order extends ValidationElement {
 
   updateAppeals (values) {
     this.update('Appeals', values)
-  }
-
-  updateDisposition (values) {
-    this.update('Disposition', values)
   }
 
   render () {
@@ -84,8 +78,7 @@ export default class Order extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-               help={`psychological.${prefix}.help.disposition`}>
+        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
           <Text name="Disposition"
                 className="disposition"
                 {...this.props.Disposition}
@@ -94,20 +87,18 @@ export default class Order extends ValidationElement {
                 />
         </Field>
 
-        <BranchCollection
-          className="appeals"
-          branchHelp={`psychological.${prefix}.help.appealed`}
-          branch={<h3>{ i18n.t(`psychological.${prefix}.heading.appealed`) }</h3>}
-          items={this.props.Appeals}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateAppeals}
-          >
+        <BranchCollection className="appeals"
+                          label={i18n.t(`psychological.${prefix}.heading.appealed`)}
+                          appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
+                          items={this.props.Appeals}
+                          onValidate={this.props.onValidate}
+                          onUpdate={this.updateAppeals}
+                          >
 
           <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
           <Svg src="img/date-down-arrow.svg" className="more arrow" />
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 help={`psychological.${prefix}.help.disposition`}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}>
             <Text name="CourtName"
                   className="courtname"
                   bind={true}
@@ -116,7 +107,6 @@ export default class Order extends ValidationElement {
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 help={ `psychological.${prefix}.help.courtAddress` }
                  adjustFor="big-buttons">
             <Address name="CourtAddress"
                      bind={true}

@@ -15,6 +15,12 @@ export default class City extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      value: nextProps.value
+    })
+  }
+
   /**
    * Handle the change event.
    */
