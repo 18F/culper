@@ -372,8 +372,8 @@ const en = {
         note: ''
       },
       length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        title: 'Invalid telephone extension',
+        message: 'The extension must be between 0 and 10 digits',
         note: ''
       }
     },
