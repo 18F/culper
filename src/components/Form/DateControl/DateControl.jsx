@@ -279,10 +279,6 @@ export default class DateControl extends ValidationElement {
           }
 
           super.handleValidation(event, s, codes)
-
-          if (codes.length === 0 && this.props.onFlush) {
-            this.props.onFlush()
-          }
         }
       })
   }
