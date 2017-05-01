@@ -132,6 +132,9 @@ export const daysInMonth = (month, year) => {
  * Determine if a date is valid with leap years considered
  */
 export const validDate = (month, day, year) => {
+  if (isNaN(month) || isNaN(day) || isNaN(year)) {
+    return false
+  }
   const m = parseInt(month || 0)
   const d = parseInt(day || 0)
   const y = parseInt(year || 0)
