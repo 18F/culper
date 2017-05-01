@@ -372,8 +372,8 @@ const en = {
         note: ''
       },
       length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        title: 'Invalid telephone extension',
+        message: 'The extension must be between 0 and 10 digits',
         note: ''
       }
     },
@@ -467,6 +467,42 @@ const en = {
         title: 'The year is below the accepted limits',
         message: 'The year must be four (4) digit year',
         note: ''
+      }
+    },
+    hospitalization: {
+      to: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization to date value cannot exceed todays date'
+          }
+        }
+      },
+      from: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization from date value cannot exceed todays date'
+          }
+        }
+      }
+    },
+    diagnosis: {
+      to: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis to date value cannot exceed todays date'
+          }
+        }
+      },
+      from: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis from date value cannot exceed todays date'
+          }
+        }
       }
     }
   },

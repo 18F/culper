@@ -112,25 +112,25 @@ export default class Dropdown extends ValidationElement {
 
   handleValidation (event, status, errorCodes) {
     let value = trimLeadingZero(this.state.value)
-    let valid = value.length > 0 ? false : null
+    status = value.length > 0 ? false : null
 
-    if (valid !== null) {
+    if (status !== null) {
       this.state.options.forEach(x => {
         if (x.name.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()) {
-          valid = true
+          status = true
           value = x.name
         }
       })
 
-      if (valid === false) {
+      if (status === false) {
         errorCodes = 'notfound'
       }
     }
 
     this.setState({
       value: trimLeadingZero(value),
-      error: valid === false,
-      valid: valid === true
+      error: status === false,
+      valid: status === true
     },
     () => {
       const e = { [this.props.name]: errorCodes }

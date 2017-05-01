@@ -17,7 +17,6 @@ export default class Field extends ValidationElement {
 
     this.toggleHelp = this.toggleHelp.bind(this)
     this.toggleComments = this.toggleComments.bind(this)
-    this.onFlush = this.onFlush.bind(this)
   }
 
   /**
@@ -93,13 +92,6 @@ export default class Field extends ValidationElement {
         this.scrollIntoView()
       }
     })
-  }
-
-  /**
-   * Some children need to flush all errors.
-   */
-  onFlush () {
-    this.setState({ errors: [] })
   }
 
   /**
@@ -255,7 +247,6 @@ export default class Field extends ValidationElement {
       if (React.isValidElement(child)) {
         // Inject ourselves in to the validation callback
         if (child.props.onValidate) {
-          extendedProps.onFlush = this.onFlush
           extendedProps.onValidate = (event, status, errors) => {
             this.handleValidation(event, status, errors)
             if (child.props.onValidate) {

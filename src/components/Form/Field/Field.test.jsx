@@ -73,12 +73,15 @@ describe('The field component', () => {
   })
 
   it('comments can toggle', () => {
+    let updates = 0
     const expected = {
-      comments: true
+      comments: true,
+      onUpdate: () => { updates++ }
     }
     const component = mount(<Field {...expected} />)
     expect(component.find('textarea').length).toEqual(0)
     component.find('.comments-button.add').simulate('click')
     expect(component.find('textarea').length).toEqual(1)
+    expect(updates).toBe(1)
   })
 })

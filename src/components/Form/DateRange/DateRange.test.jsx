@@ -46,8 +46,12 @@ describe('The date range component', () => {
       valid: false,
       onUpdate: () => { updates++ },
       present: true,
-      from: new Date('4/1/2010'),
-      to: new Date('1/1/2000')
+      from: {
+        date: new Date('4/1/2010')
+      },
+      to: {
+        date: new Date('1/1/2000')
+      }
     }
     const component = mount(<DateRange {...expected} />)
     component.find('input[name="present"]').simulate('change')
@@ -64,11 +68,17 @@ describe('The date range component', () => {
       focus: false,
       valid: false,
       onUpdate: () => { updates++ },
-      from: new Date('1/1/2000'),
-      to: new Date('4/1/2010')
+      from: {
+        date: new Date('1/1/2000')
+      },
+      to: {
+        date: new Date('4/1/2010')
+      },
+      receiveProps: true
     }
     const component = mount(<DateRange {...expected} />)
     component.find({ type: 'checkbox', value: 'present' }).simulate('change')
+    component.setProps({value: '1-1-2010'})
     expect(updates).toBeGreaterThan(0)
   })
 })
