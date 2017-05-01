@@ -240,7 +240,7 @@ export default class DateControl extends ValidationElement {
       year = status != null ? status : null
     }
 
-    let isValidDate = validDate(this.state.month, this.state.day, this.state.year)
+    const isValidDate = validDate(this.state.month, this.state.day, this.state.year)
     const validator = new DateControlValidator(this.state, this.props)
 
     if (!isValidDate && !error) {
