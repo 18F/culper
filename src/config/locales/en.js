@@ -5408,11 +5408,6 @@ const en = {
         receivedTreatment: 'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
       },
       help: {
-        hasCondition: {
-          title: 'Help with adverse impacts',
-          message: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
-          note: ''
-        },
         receivedTreatment: {
           title: 'Help with counseling or treatment',
           message: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
