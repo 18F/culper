@@ -1,8 +1,8 @@
 import DateRangeValidator from './daterange'
-import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear, validDateField, withinSevenYears } from './helpers'
 import AddressValidator from './address'
 import ReferenceValidator from './reference'
+import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear,
+         validDateField, withinSevenYears, BranchCollection } from './helpers'
 
 export default class EmploymentValidator {
   constructor (state, props) {
@@ -46,25 +46,22 @@ export default class EmploymentValidator {
     if (!this.additional) {
       return false
     }
-    if (!(this.additional.HasAdditionalActivity === 'No' || this.additional.HasAdditionalActivity === 'Yes')) {
+
+    const branchValidator = new BranchCollection(this.additional.List)
+    if (!branchValidator.validKeyValues()) {
       return false
     }
 
-    if (this.additional.HasAdditionalActivity === 'Yes') {
-      if (!this.additional.List || this.additional.List.length === 0) {
-        return false
-      }
-
-      for (const activity of this.additional.List) {
-        let valid = validGenericTextfield(activity.Position) &&
-          validGenericTextfield(activity.Supervisor) &&
-          new DateRangeValidator(activity.DatesEmployed).isValid()
-        if (!valid) {
-          return false
-        }
-      }
+    if (branchValidator.hasNo()) {
+      return true
     }
-    return true
+
+    return branchValidator.each(item => {
+      console.log('item', item)
+      return validGenericTextfield(item.Position) &&
+        validGenericTextfield(item.Supervisor) &&
+        new DateRangeValidator(item.DatesEmployed).isValid()
+    })
   }
 
   validTelephone () {
@@ -168,14 +165,14 @@ export default class EmploymentValidator {
       case 'NationalGuard':
       case 'USPHS':
         return this.validDates() &&
-          this.validTitle() &&
-          this.validAssignedDuty() &&
-          this.validStatus() &&
-          this.validAddress() &&
-          this.validTelephone() &&
-          this.validSupervisor() &&
-          this.validReasonLeft() &&
-          this.validReprimand()
+        this.validTitle() &&
+        this.validAssignedDuty() &&
+        this.validStatus() &&
+        this.validAddress() &&
+        this.validTelephone() &&
+        this.validSupervisor() &&
+        this.validReasonLeft() &&
+        this.validReprimand()
 
       // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
       case 'OtherFederal':
@@ -184,34 +181,34 @@ export default class EmploymentValidator {
       case 'NonGovernment':
       case 'Other':
         return this.validDates() &&
-          this.validTitle() &&
-          this.validEmployment() &&
-          this.validStatus() &&
-          this.validAddress() &&
-          this.validTelephone() &&
-          this.validSupervisor() &&
-          this.validAdditionalActivity() &&
-          this.validReasonLeft() &&
-          this.validReprimand()
+        this.validTitle() &&
+        this.validEmployment() &&
+        this.validStatus() &&
+        this.validAddress() &&
+        this.validTelephone() &&
+        this.validSupervisor() &&
+        this.validAdditionalActivity() &&
+        this.validReasonLeft() &&
+        this.validReprimand()
 
       // Self employment
       case 'SelfEmployment':
         return this.validDates() &&
-          this.validTitle() &&
-          this.validEmployment() &&
-          this.validStatus() &&
-          this.validAddress() &&
-          this.validPhysicalAddress() &&
-          this.validTelephone() &&
-          this.validReference() &&
-          this.validReasonLeft() &&
-          this.validReprimand()
+        this.validTitle() &&
+        this.validEmployment() &&
+        this.validStatus() &&
+        this.validAddress() &&
+        this.validPhysicalAddress() &&
+        this.validTelephone() &&
+        this.validReference() &&
+        this.validReasonLeft() &&
+        this.validReprimand()
 
       // Unemployment
       case 'Unemployment':
         return this.validDates() &&
-          this.validReference() &&
-          this.validReasonLeft()
+        this.validReference() &&
+        this.validReasonLeft()
       default:
         return false
     }

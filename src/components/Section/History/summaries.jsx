@@ -46,7 +46,7 @@ export const ResidenceCaption = (props) => {
 /**
  * Renders a formatted summary information for a residence row
  */
-export const ResidenceSummary = (item, errors) => {
+export const ResidenceSummary = (item, errors, open) => {
   let address = ''
   let address1 = ''
   let address2 = ''
@@ -68,7 +68,7 @@ export const ResidenceSummary = (item, errors) => {
   }
 
   const dates = dateSummary(item)
-  const svg = errors
+  const svg = errors && !open
         ? <Svg src="img/exclamation-point.svg" />
         : null
 
@@ -105,7 +105,7 @@ const PersonSummary = (item, errors) => {
 export const ResidenceCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
     (x) => { return new ResidenceValidator(x, null).isValid() },
-    (x, e) => { return ResidenceSummary(x, e) },
+    (x, e) => { return ResidenceSummary(x, e, item.open) },
     (x, e) => {
       const ps = PersonSummary(x, e)
       if (ps === null) {
@@ -136,12 +136,12 @@ export const EmploymentCaption = (props) => {
 /**
  * Renders a formatted summary information for an employment row
  */
-export const EmploymentSummary = (item, errors) => {
+export const EmploymentSummary = (item, errors, open) => {
   const employer = item.Employment && item.Employment.value
         ? item.Employment.value
     : i18n.t('history.employment.default.collection.summary.unknown')
   const dates = dateSummary(item)
-  const svg = errors === true
+  const svg = errors && !open
     ? <Svg src="img/exclamation-point.svg" />
         : null
 
@@ -182,7 +182,7 @@ const ActivitySummary = (item, errors) => {
 export const EmploymentCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
     (x) => { return new EmploymentValidator(x, null).isValid() },
-    (x, e) => { return EmploymentSummary(x, e) },
+    (x, e) => { return EmploymentSummary(x, e, item.open) },
     (x, e) => {
       return ActivitySummary(x, e)
         .filter(activity => activity !== null)
@@ -212,10 +212,10 @@ export const EducationCaption = (props) => {
 /**
  * Renders a formatted summary information for an education row
  */
-export const EducationSummary = (item, errors) => {
+export const EducationSummary = (item, errors, open) => {
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
   const dates = dateSummary(item)
-  const svg = errors
+  const svg = errors && !open
         ? <Svg src="img/exclamation-point.svg" />
         : null
 
@@ -260,7 +260,7 @@ const DiplomaSummary = (item, errors) => {
 export const EducationCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
     (x) => { return new EducationValidator(x, null).isValid() },
-    (x, e) => { return EducationSummary(x, e) },
+    (x, e) => { return EducationSummary(x, e, item.open) },
     (x, e) => {
       return DiplomaSummary(x, e)
         .filter(diploma => diploma !== null)

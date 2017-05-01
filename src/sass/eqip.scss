@@ -7,22 +7,34 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 2.75rem;
   margin-top: 0;
   margin-bottom: 0.5rem;
-
-  @media screen and (max-width: 1100px) {
-    font-size: 3rem;
-  }
-
 }
 
 h3 {
-  font-size: 2.3rem;
+  font-size: 1.85rem;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
 
-  @media screen and (max-width: 1100px) {
-    font-size: 1.8rem;
-  }
+h4 {
+  font-size: 1.7rem;
+  line-height: 1.7;
+}
+
+h5 {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+h6 {
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+ul {
+  margin-top: 0;
 }
 
 /* design needs a touch more line height than standards */
@@ -74,7 +86,7 @@ a:focus {
         width: 100%;
         max-width: 106rem;
         min-width: 70rem;
-        margin: 0 auto;
+        margin: 0 auto 2rem auto;
       }
     }
   }

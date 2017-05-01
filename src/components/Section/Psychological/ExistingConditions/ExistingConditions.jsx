@@ -113,7 +113,7 @@ export default class ExistingConditions extends ValidationElement {
         <h3>{i18n.t('psychological.existingConditions.heading.hasCondition')}</h3>
         {i18n.m('psychological.existingConditions.para.hasCondition')}
         <Branch name="hascondition"
-                className="eapp-field-wrap no-label hascondition"
+                className="eapp-field-wrap hascondition"
                 value={this.state.HasCondition}
                 onValidate={this.handleValidation}
                 onUpdate={this.updateHasCondition}>
@@ -180,7 +180,7 @@ export default class ExistingConditions extends ValidationElement {
 
             <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
             <Branch name="didNotFollow"
-              className="eapp-field-wrap no-label didnotfollow"
+              className="eapp-field-wrap didnotfollow"
               value={this.state.DidNotFollow}
               onValidate={this.handleValidation}
               onUpdate={this.updateDidNotFollow}>

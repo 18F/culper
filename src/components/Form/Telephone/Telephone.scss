@@ -1,6 +1,13 @@
 .telephone {
   display: inline-block;
 
+  .numbers {
+    > label {
+      font-weight: bold;
+      margin-bottom: -2.6rem;
+    }
+  }
+
   .number {
     &.three {
       width: 8rem;
@@ -29,8 +36,12 @@
   }
 
   .separator.extension {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .separator.pound {
+    margin-left: 1rem;
   }
 
   .number, .separator {
@@ -54,7 +65,7 @@
   }
 
   .timeofday {
-    margin-top: -1rem;
+    margin-top: -2rem;
     margin-bottom: 2rem;
     margin-left: 1.5rem;
     z-index: 1;

@@ -95,13 +95,13 @@ export default class Gambling extends ValidationElement {
     }
 
     let from = ''
-    if (item.Dates && item.Dates.from) {
-      from = '' + item.Dates.from.getFullYear()
+    if (item.Dates && item.Dates.from && item.Dates.from.date) {
+      from = '' + item.Dates.from.date.getFullYear()
     }
 
     let to = ''
-    if (item.Dates && item.Dates.to) {
-      to = '' + item.Dates.to.getFullYear()
+    if (item.Dates && item.Dates.to && item.Dates.to.date) {
+      to = '' + item.Dates.to.date.getFullYear()
     } else if (item.Dates && item.Dates.present) {
       to = i18n.t('financial.gambling.collection.summary.present')
     }

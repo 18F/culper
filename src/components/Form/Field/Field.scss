@@ -5,15 +5,11 @@
   border-left: 0.75rem solid #fff;
   padding-left: 1rem;
   margin-left: -1.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 7rem;
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
     padding-left: 1rem;
-  }
-
-  @media screen and (max-width: 1100px) {
-    margin-bottom: 1.5rem;
   }
 
   > .title {
@@ -34,27 +30,28 @@
     }
 
     &.h2 {
-      font-size: 4rem;
-
-      @media screen and (max-width: 1100px) {
-        font-size: 3rem;
-      }
+      font-size: 2.75rem;
     }
 
     &.h3 {
-      font-size: 2.3rem;
-
-      @media screen and (max-width: 1100px) {
-        font-size: 1.8rem;
-      }
+      font-size: 1.85rem;
+      margin-top: 1.5rem;
+      line-height: 1.7;
     }
 
     &.h4 {
       font-size: 1.7rem;
+      line-height: 1.7;
     }
 
     &.h5 {
+      font-size: 1.6rem;
+      line-height: 1.6;
+    }
+
+    &.h6 {
       font-size: 1.5rem;
+      line-height: 1.7;
     }
   }
 

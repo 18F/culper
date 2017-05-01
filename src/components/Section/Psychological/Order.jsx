@@ -53,6 +53,8 @@ export default class Order extends ValidationElement {
                        {...this.props.Occurred}
                        label={i18n.t(`psychological${prefix}.label.occurred`)}
                        hideDay={true}
+                       maxDate={new Date()}
+                       prefix="order"
                        onUpdate={this.updateOccurred}
                        onValidate={this.props.onValidate}
                        />

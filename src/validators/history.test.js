@@ -38,8 +38,7 @@ describe('Employment component validation', function () {
                   zipcode: '22202'
                 },
                 Additional: {
-                  HasAdditionalActivity: 'No',
-                  List: []
+                  List: [{ Has: 'No' }]
                 },
                 Telephone: {
                   noNumber: '',

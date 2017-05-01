@@ -198,7 +198,7 @@ export default class Telephone extends ValidationElement {
 
   dsn () {
     return (
-      <div>
+      <div className="numbers">
         <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.dsn.label')}</label>
         <Text name="dsn_first"
               className="number three"
@@ -250,7 +250,7 @@ export default class Telephone extends ValidationElement {
 
   domestic () {
     return (
-      <div>
+      <div className="numbers">
         <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.domestic.label')}</label>
 
         <span className="separator">(</span>
@@ -305,7 +305,7 @@ export default class Telephone extends ValidationElement {
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
               />
-        <span className="separator"></span>
+        <span className="separator pound">#</span>
         <Text name="domestic_extension"
               className="number six"
               placeholder="000000"
@@ -336,7 +336,7 @@ export default class Telephone extends ValidationElement {
 
   international () {
     return (
-      <div className="international">
+      <div className="international numbers">
         <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.international.label')}</label>
         <span className="separator">+</span>
         <Text name="int_first"
@@ -372,7 +372,7 @@ export default class Telephone extends ValidationElement {
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
               />
-        <span className="separator"></span>
+        <span className="separator pound">#</span>
         <Text name="domestic_extension"
               className="number six"
               placeholder="000000"

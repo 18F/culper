@@ -131,6 +131,15 @@ const navigation = [
       { name: 'Diagnoses', url: 'diagnoses' },
       { name: 'Existing Conditions', url: 'conditions', hiddenFunc: hideExistingConditions }
     ]
+  },
+  {
+    title: 'Design guideline',
+    name: 'Design guideline',
+    url: 'design',
+    hidden: true,
+    subsections: [
+      { name: 'Headings', url: 'headings' }
+    ]
   }
 ]
 

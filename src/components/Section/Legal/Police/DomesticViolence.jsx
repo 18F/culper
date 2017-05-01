@@ -53,7 +53,7 @@ export default class DomesticViolence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.domesticExplanation')}
                titleSize="h4">
           <Textarea
-            className="explanation no-label"
+            className="explanation"
             name="explanation"
             onUpdate={this.updateExplanation} />
         </Field>

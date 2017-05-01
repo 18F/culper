@@ -134,7 +134,6 @@ export default class Federal extends ValidationElement {
             <Field title={i18n.t('history.federal.heading.name')}
                    help="history.federal.help.name">
               <Text name="Name"
-                    className="text"
                     bind={true}
                     />
             </Field>
@@ -142,7 +141,6 @@ export default class Federal extends ValidationElement {
             <Field title={i18n.t('history.federal.heading.position')}
                    help="history.federal.help.position">
               <Text name="Position"
-                    className="text"
                     bind={true}
                     />
             </Field>
