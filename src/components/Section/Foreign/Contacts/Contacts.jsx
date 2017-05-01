@@ -1,32 +1,42 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PassportValidator } from '../../../../validators'
-import { ValidationElement, Branch, Accordion } from '../../../Form'
+import { ForeignContactsValidator } from '../../../../validators'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import ForeignNational from './ForeignNational'
 
 export default class Contacts extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
+      HasForeignContacts: props.HasForeignContacts,
       List: props.List,
       error: false,
       valid: false,
       errorCodes: []
     }
 
-    this.onSuggestion = this.onSuggestion.bind(this)
+    this.updateHasForeignContacts = this.updateHasForeignContacts.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    this.handleUpdate('Card', event.target.value, () => {
-      // This allows us to force a blur/validation using
-      // the new regular expression
-      this.refs.number.refs.text.refs.input.focus()
-      this.refs.number.refs.text.refs.input.blur()
+  onUpdate (name, value) {
+    this.setState({ [name]: value }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          HasForeignContacts: this.state.HasForeignContacts,
+          List: this.state.List
+        })
+      }
     })
+  }
+
+  updateHasForeignContacts (value) {
+    this.onUpdate('HasForeignContacts', value)
+  }
+
+  updateList (items) {
+    this.onUpdate('List', items)
   }
 
   /**
@@ -46,47 +56,47 @@ export default class Contacts extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
+      const e = { [this.props.name]: codes }
+      const s = { [this.props.name]: { status: complexStatus } }
       super.handleValidation(event, s, e)
     })
   }
 
-  /**
-   * Handle the update event.
-   */
-  handleUpdate (field, values, callback) {
-    this.setState({ [field]: values }, () => {
-      if (callback) {
-        callback()
-      }
-
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Name: this.state.Name,
-          Number: this.state.Number,
-          Card: this.state.Card,
-          Issued: this.state.Issued,
-          Expiration: this.state.Expiration,
-          Comments: this.state.Comments,
-          HasPassport: this.state.HasPassport
-        })
-      }
-    })
+  isValid () {
+    return new ForeignContactsValidator(this.state, null).isValid()
   }
 
-  isValid () {
-    return new PassportValidator(this.state, null).isValid()
+  summary (item, index) {
+    return ''
   }
 
   render () {
     return (
       <div className="foreign-contacts">
+        <Branch name="has_foreign_contacts"
+                title={i18n.t('foreign.contacts.title')}
+                help="foreign.contacts.branch.help"
+                value={this.state.HasForeignContacts}
+                onUpdate={this.updateHasForeignContacts}
+                onValidate={this.handleValidation}
+                />
+        <Show when={this.state.HasForeignContacts === 'Yes'}>
+          <Accordion minimum="1"
+                     items={this.state.List}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('foreign.contacts.collection.summary.title')}
+                     appendLabel={i18n.t('foreign.contacts.collection.append')}>
+            <ForeignNational name="Item" bind={true} />
+          </Accordion>
+        </Show>
       </div>
     )
   }
 }
 
 Contacts.defaultProps = {
+  HasForeignContacts: '',
   List: []
 }

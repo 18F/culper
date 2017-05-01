@@ -88,7 +88,7 @@ export const validDateField = (obj) => {
   return true
 }
 
-export const validNotApplicable = (notApplicable, logic) => {
+export const validNotApplicable = (notApplicable, logic, notLogic) => {
   // If the `NotApplicable` object is not present then apply the logic
   if (!notApplicable) {
     return logic()
@@ -97,6 +97,8 @@ export const validNotApplicable = (notApplicable, logic) => {
   // If the `NotApplicable` object is present and is applicable then apply the logic
   if (notApplicable && notApplicable.applicable) {
     return logic()
+  } else if (notLogic) {
+    return notLogic()
   }
 
   return true

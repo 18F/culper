@@ -57,7 +57,6 @@ export default class EmploymentValidator {
     }
 
     return branchValidator.each(item => {
-      console.log('item', item)
       return validGenericTextfield(item.Position) &&
         validGenericTextfield(item.Supervisor) &&
         new DateRangeValidator(item.DatesEmployed).isValid()
