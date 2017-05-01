@@ -123,8 +123,6 @@ export default class ExistingConditions extends ValidationElement {
           <div>
             <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
             {i18n.m('psychological.existingConditions.para.receivedTreatment')}
-
-            <Field help={`psychological.existingConditions.help.receivedTreatment`}>
               <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
                 <Radio name="treatment"
                   className="treatment"
