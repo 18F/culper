@@ -10,6 +10,7 @@ export default class Order extends ValidationElement {
     this.updateOccurred = this.updateOccurred.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
+    this.updateDisposition = this.updateDisposition.bind(this)
     this.updateAppeals = this.updateAppeals.bind(this)
   }
 
@@ -19,6 +20,7 @@ export default class Order extends ValidationElement {
         Occurred: this.props.Occurred,
         CourtName: this.props.CourtName,
         CourtAddress: this.props.CourtAddress,
+        Disposition: this.props.Disposition,
         Appeals: this.props.Appeals,
         [field]: values
       })
@@ -35,6 +37,10 @@ export default class Order extends ValidationElement {
 
   updateCourtAddress (values) {
     this.update('CourtAddress', values)
+  }
+
+  updateDisposition (values) {
+    this.update('Disposition', values)
   }
 
   updateAppeals (values) {
