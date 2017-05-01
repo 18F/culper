@@ -73,10 +73,12 @@ describe('The date range component', () => {
       },
       to: {
         date: new Date('4/1/2010')
-      }
+      },
+      receiveProps: true
     }
     const component = mount(<DateRange {...expected} />)
     component.find({ type: 'checkbox', value: 'present' }).simulate('change')
+    component.setProps({value: '1-1-2010'})
     expect(updates).toBeGreaterThan(0)
   })
 })

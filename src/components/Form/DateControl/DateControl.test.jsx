@@ -1,6 +1,6 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
-import DateControl from './DateControl'
+import { mount } from 'enzyme'
+import DateControl, { trimLeadingZero, datePart } from './DateControl'
 
 describe('The date component', () => {
   const children = 4
@@ -133,6 +133,7 @@ describe('The date component', () => {
       value: '',
       focus: false,
       onValidate: (event, status, error) => {},
+      receiveProps: true,
       onUpdate: () => { updates++ }
     }
     const component = mount(<DateControl {...expected} />)
@@ -158,6 +159,7 @@ describe('The date component', () => {
       error: false,
       focus: false,
       valid: false,
+      receiveProps: true,
       onValidate: (event, status, error) => {
         if (error === 'datecontrol.max') {
           errors++
@@ -168,9 +170,8 @@ describe('The date component', () => {
     component.find('input#year').simulate('change')
     component.find('input#year').simulate('blur')
     expect(errors).toBe(2)
-    component.find('input#year').simulate('change', { target: { value: '1999' } })
-    component.find('input#year').simulate('blur')
-    expect(errors).toBe(3)
+    component.setProps({value: '1-1-2009'})
+    expect(errors).toBe(2)
   })
 
   it('renders with undefined date', () => {
@@ -214,6 +215,7 @@ describe('The date component', () => {
       name: 'input-type-text',
       label: 'DateControl input label',
       value: '1-1-2010',
+      receiveProps: true,
       error: false,
       focus: false,
       valid: false,
@@ -222,5 +224,86 @@ describe('The date component', () => {
     const component = mount(<DateControl {...expected} />)
     component.find('input[type="checkbox"]').simulate('change')
     expect(updates).toBe(1)
+  })
+
+  it('trims leading zeros', () => {
+    const tests = [
+      {
+        value: '01',
+        expected: '1'
+      },
+      {
+        value: '1f',
+        expected: '1f'
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(trimLeadingZero(test.value)).toBe(test.expected)
+    })
+  })
+
+  it('parses date part', () => {
+    const tests = [
+      {
+        part: 'm',
+        date: '1/1/2010',
+        expected: '1'
+      },
+      {
+        part: 'mm',
+        date: '1/1/2010',
+        expected: '1'
+      },
+      {
+        part: 'month',
+        date: '1/1/2010',
+        expected: '1'
+      },
+      {
+        part: 'd',
+        date: '1/1/2010',
+        expected: 1
+      },
+      {
+        part: 'dd',
+        date: '1/1/2010',
+        expected: 1
+      },
+      {
+        part: 'day',
+        date: '1/1/2010',
+        expected: 1
+      },
+      {
+        part: 'y',
+        date: '1/1/2010',
+        expected: 2010
+      },
+      {
+        part: 'yy',
+        date: '1/1/2010',
+        expected: 2010
+      },
+      {
+        part: 'year',
+        date: '1/1/2010',
+        expected: 2010
+      },
+      {
+        part: 'd',
+        date: null,
+        expected: ''
+      },
+      {
+        part: 'foo',
+        date: '1/1/2010',
+        expected: ''
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(datePart(test.part, test.date)).toEqual(test.expected)
+    })
   })
 })

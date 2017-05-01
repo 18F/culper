@@ -144,7 +144,7 @@ export default class DateRange extends ValidationElement {
                        className="to"
                        {...this.state.to}
                        estimated={this.state.estimated}
-                       receiveProps={this.state.trickleDown}
+                       receiveProps={this.state.trickleDown || this.state.presentClicked}
                        disabled={this.state.present}
                        onUpdate={this.onUpdate.bind(this, 'to')}
                        maxDate={this.props.maxToDate}

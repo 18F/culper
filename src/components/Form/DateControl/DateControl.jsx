@@ -6,13 +6,45 @@ import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
-const trimLeadingZero = (num) => {
+export const trimLeadingZero = (num) => {
   if (isNaN(num)) {
     return num
   }
 
   const i = parseInt(`0${num}`, 10)
   return i === 0 ? '' : '' + i
+}
+
+export const datePart = (part, date) => {
+  if (!date) {
+    return ''
+  }
+
+  let d = new Date(date)
+
+  // Make sure it is a valid date
+  if (isNaN(d.getTime())) {
+    return ''
+  }
+
+  switch (part) {
+    case 'month':
+    case 'mm':
+    case 'm':
+      return '' + (d.getMonth() + 1)
+
+    case 'day':
+    case 'dd':
+    case 'd':
+      return d.getDate()
+
+    case 'year':
+    case 'yy':
+    case 'y':
+      return d.getFullYear()
+  }
+
+  return ''
 }
 
 export default class DateControl extends ValidationElement {
@@ -27,9 +59,9 @@ export default class DateControl extends ValidationElement {
       error: props.error,
       valid: props.valid,
       maxDate: props.maxDate,
-      month: trimLeadingZero(props.month) || this.datePart('m', props.value),
-      day: trimLeadingZero(props.day) || props.hideDay ? 1 : this.datePart('d', props.value),
-      year: trimLeadingZero(props.year) || this.datePart('y', props.value),
+      month: trimLeadingZero(props.month) || datePart('m', props.value),
+      day: trimLeadingZero(props.day) || props.hideDay ? 1 : datePart('d', props.value),
+      year: trimLeadingZero(props.year) || datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null],
       errorCodes: []
@@ -45,9 +77,9 @@ export default class DateControl extends ValidationElement {
 
       if (next.value) {
         value = next.value
-        month = this.datePart('m', next.value)
-        day = this.datePart('d', next.value)
-        year = this.datePart('y', next.value)
+        month = datePart('m', next.value)
+        day = datePart('d', next.value)
+        year = datePart('y', next.value)
       } else if (next.date) {
         value = next.date
         month = '' + (next.date.getMonth() + 1)
@@ -63,45 +95,6 @@ export default class DateControl extends ValidationElement {
         year: year
       })
     }
-  }
-
-  /**
-   * Retrieve the part of the date requested.
-   */
-  datePart (part, date) {
-    if (!date) {
-      return ''
-    }
-
-    let d = new Date(date)
-
-    // Make sure it is a valid date
-    if (Object.prototype.toString.call(d) === '[object Date]') {
-      if (isNaN(d.getTime())) {
-        return ''
-      }
-    } else {
-      return ''
-    }
-
-    switch (part) {
-      case 'month':
-      case 'mm':
-      case 'm':
-        return '' + (d.getMonth() + 1)
-
-      case 'day':
-      case 'dd':
-      case 'd':
-        return d.getDate()
-
-      case 'year':
-      case 'yy':
-      case 'y':
-        return d.getFullYear()
-    }
-
-    return ''
   }
 
   /**
