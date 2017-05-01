@@ -102,7 +102,6 @@ export default class Diagnosis extends ValidationElement {
         </div>
 
         <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
-               help={`psychological.${prefix}.help.effective`}
                adjustFor="buttons">
           <RadioGroup className="effective" selectedValue={this.props.Effective}>
             <Radio name="effective"
