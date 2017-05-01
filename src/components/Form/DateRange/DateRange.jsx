@@ -127,6 +127,8 @@ export default class DateRange extends ValidationElement {
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate.bind(this, 'from')}
                        receiveProps={this.state.trickleDown}
+                       maxDate={this.props.maxFromDate}
+                       prefix={`${this.props.prefix}.from`}
                        onValidate={this.handleValidation}
                        />
         </div>
@@ -142,9 +144,11 @@ export default class DateRange extends ValidationElement {
                        className="to"
                        {...this.state.to}
                        estimated={this.state.estimated}
-                       receiveProps={this.state.trickleDown || this.state.presentClicked}
+                       receiveProps={this.state.trickleDown}
                        disabled={this.state.present}
                        onUpdate={this.onUpdate.bind(this, 'to')}
+                       maxDate={this.props.maxToDate}
+                       prefix={`${this.props.prefix}.to`}
                        onValidate={this.handleValidation}
                        />
           <div className="from-present">
@@ -167,5 +171,8 @@ export default class DateRange extends ValidationElement {
 DateRange.defaultProps = {
   from: {},
   to: {},
-  present: false
+  present: false,
+  prefix: '',
+  maxToDate: null,
+  maxFromDate: null
 }

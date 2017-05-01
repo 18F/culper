@@ -56,6 +56,7 @@ export default class Diagnosis extends ValidationElement {
 
   render () {
     const prefix = this.props.prefix
+    const currentDate = new Date()
     return (
       <div className="diagnosis">
         <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}>
@@ -74,6 +75,9 @@ export default class Diagnosis extends ValidationElement {
                      {...this.props.Diagnosed}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateDiagnosed}
+                     prefix={prefix}
+                     maxFromDate={currentDate}
+                     maxToDate={currentDate}
                      onValidate={this.props.onValidate}
                      />
         </Field>

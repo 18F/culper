@@ -114,6 +114,9 @@ export default class Hospitalization extends ValidationElement {
             receiveProps={this.props.receiveProps}
             onUpdate={this.updateTreatmentDate}
             onValidate={this.handleValidation}
+            maxFromDate={new Date('1/1/2010')}
+            maxToDate={new Date('1/1/2010')}
+            prefix="hospitalization"
           />
         </Field>
 

@@ -7,25 +7,16 @@ export default class DateControlValidator {
   }
 
   validMaxDate () {
+    // If no max day present, we return true to continue as we have nothing
+    // to compare against
     if (!this.maxDate) {
       return true
     }
+
+    if (!this.month || !this.day || !this.year) {
+      return false
+    }
+
     return (new Date(`${this.month}/${this.day}/${this.year}`) <= this.maxDate)
-  }
-
-  hasErrors (error) {
-    return (this.hasMonthError(error) || this.hasYearError(error) || this.hasDayError(error))
-  }
-
-  hasMonthError (error) {
-    return !!error && !!error.month
-  }
-
-  hasDayError (error) {
-    return !!error && !!error.day
-  }
-
-  hasYearError (error) {
-    return !!error && !!error.year
   }
 }
