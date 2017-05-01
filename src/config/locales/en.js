@@ -5138,9 +5138,9 @@ const en = {
       },
       help: {
         occurred: {
-          title: 'Need help the date occurred?',
-          message: 'The date issued',
-          note: ''
+          title: 'Need help with this date?',
+          message: 'Enter the date the court or agency ordered you to consult with a professional.',
+          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
