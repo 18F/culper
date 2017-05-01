@@ -5,6 +5,9 @@
 
   .state-zip-wrap {
     display: table;
+    input[type='text'] {
+      text-transform: uppercase;
+    }
 
     .state,
     .apofpo,
