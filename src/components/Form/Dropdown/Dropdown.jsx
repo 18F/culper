@@ -236,7 +236,7 @@ export default class Dropdown extends ValidationElement {
       return null
     }
 
-    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid && this.props.valid ? 'usa-input-success' : ''}`.trim()
+    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid ? 'usa-input-success' : ''}`.trim()
   }
 
   render () {
