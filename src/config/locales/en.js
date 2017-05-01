@@ -303,6 +303,18 @@ const en = {
         note: ''
       }
     },
+    apoFpo: {
+      length: {
+        title: 'APO/FPO length',
+        message: 'APO/FPO state code must be 2 letters',
+        note: ''
+      },
+      pattern: {
+        title: 'APO/FPO not in an acceptable format',
+        message: 'APO/FPO state code must be 2 letters',
+        note: 'Note: Typically the value is either AA, AE, or AP.'
+      }
+    },
     passport: {
       number: {
         pattern: {
@@ -2620,7 +2632,8 @@ const en = {
         placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
-        label: 'APO/FPO State Code'
+        label: 'APO/FPO State Code',
+        placeholder: 'Enter state code (AA, AE, AP)'
       },
       apoFpoType: {
         apo: {
