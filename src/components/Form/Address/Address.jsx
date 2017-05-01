@@ -411,7 +411,7 @@ export default class Address extends ValidationElement {
   }
 
   dismissAlternative () {
-    if (this.state.geocodeErrorCode === 'error.geocode.defaultAddress') {
+    if (!this.state.suggestions || this.state.suggestions.length === 0) {
       return i18n.t('suggestions.address.alternate')
     }
 
