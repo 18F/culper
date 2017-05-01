@@ -1,6 +1,9 @@
 package form
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // StateField stores a state location
 type StateField string
@@ -9,7 +12,7 @@ type StateField string
 func (f StateField) Valid() (bool, error) {
 	s := string(f)
 	for _, state := range stateList {
-		if s == state {
+		if strings.EqualFold(state, s) {
 			return true, nil
 		}
 	}

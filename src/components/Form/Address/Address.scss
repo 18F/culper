@@ -12,6 +12,23 @@
       display: table-cell;
       padding-right: 2rem;
       vertical-align: top;
+
+      input[type='text'] {
+        text-transform: uppercase;
+      }
+
+      ::-webkit-input-placeholder {
+        text-transform: none;
+      }
+      :-moz-placeholder {
+        text-transform: none;
+      }
+      ::-moz-placeholder {
+        text-transform: none;
+      }
+      :-ms-input-placeholder {
+        text-transform: none;
+      }
     }
   }
 
