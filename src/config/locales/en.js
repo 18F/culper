@@ -5407,12 +5407,6 @@ const en = {
         hasCondition: 'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer "no" even if you have a mental health or other condition requiring treatment. For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer "no."',
         receivedTreatment: 'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
       },
-      help: {
-        hasCondition: {
-          title: 'Help with adverse impacts',
-          message: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
-          note: ''
-        },
         receivedTreatment: {
           title: 'Help with counseling or treatment',
           message: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
