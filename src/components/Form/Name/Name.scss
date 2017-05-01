@@ -1,9 +1,13 @@
 @import 'eqip-colors';
 
 .name {
-  input[type='text'] {
-    display: inline-block;
-    width: 100%;
+  // This is re-apply the bottom margin between sibling components since
+  // the fields within this component have the margins removed
+  margin-bottom: 7rem;
+
+  // Bring the margins closer together
+  .field {
+    margin-bottom: 0;
   }
 
   .inline {
@@ -15,20 +19,6 @@
     color: $eapp-grey-darker;
     font-style: italic;
     padding-left: 0.5rem;
-  }
-
-  .middle-options {
-    max-width: 64rem;
-  }
-
-  .first,
-  .middle,
-  .last,
-  .suffix,
-  .suffix-other {
-    display: inline-block;
-    width: 92%;
-    max-width: 64rem !important;
   }
 
   .suffix label {
