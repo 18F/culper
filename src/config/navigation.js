@@ -91,7 +91,7 @@ const navigation = [
       { name: 'U.S. passport information', url: 'passport' },
       { hidden: true, name: 'Foreign contacs', url: 'contacts' },
       { hidden: true, name: 'Foreign activities', url: 'activities' },
-      { hidden: true, name: 'Foreign business, professional activities, and government contacts', url: 'business' },
+      { hidden: false, name: 'Foreign business, professional activities, and government contacts', url: 'business' },
       { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }
     ]
   },
