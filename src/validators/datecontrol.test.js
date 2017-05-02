@@ -121,6 +121,18 @@ describe('date control validator', function () {
           minDate: new Date('1/1/2004')
         },
         expected: false
+      },
+      {
+        state: {
+          month: '1',
+          day: '1',
+          year: '2004'
+        },
+        props: {
+          minDate: new Date('1/8/2004'),
+          hideDay: true
+        },
+        expected: true
       }
     ]
 

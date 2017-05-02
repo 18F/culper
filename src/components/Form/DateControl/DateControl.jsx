@@ -254,22 +254,20 @@ export default class DateControl extends ValidationElement {
     // Make sure we have a valid date and that no other errors are present
     // before validating max date
     let handleMinMaxError = false
-    if (isValidDate && !error) {
+    if (isValidDate) {
       const minMaxErrorKey = `${prefix}datecontrol`
+
+      // Clear existing min/max errors
+      super.handleValidation(event, false, {[minMaxErrorKey]: null})
+
+      // Perform checks for min and max
       if (!validator.validMaxDate()) {
         error = `${minMaxErrorKey}.max`
         handleMinMaxError = true
-      } else {
-        // Clear existing min/max errors
-        super.handleValidation(event, false, {[minMaxErrorKey]: null})
       }
-
       if (!validator.validMinDate()) {
         error = `${minMaxErrorKey}.min`
         handleMinMaxError = true
-      } else {
-        // Clear existing min/max errors
-        super.handleValidation(event, false, {[minMaxErrorKey]: null})
       }
     }
 

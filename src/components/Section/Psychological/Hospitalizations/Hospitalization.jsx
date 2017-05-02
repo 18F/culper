@@ -72,7 +72,6 @@ export default class Hospitalization extends ValidationElement {
   }
 
   render () {
-    const currentDate = new Date()
     return (
       <div className="hospitalization">
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}>
@@ -116,7 +115,6 @@ export default class Hospitalization extends ValidationElement {
             onUpdate={this.updateTreatmentDate}
             onValidate={this.handleValidation}
             minDate={this.props.ApplicantBirthDate}
-            maxDate={currentDate}
             prefix="hospitalization"
           />
         </Field>
