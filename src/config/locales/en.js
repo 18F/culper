@@ -4743,6 +4743,7 @@ const en = {
         relationship: 'Provide the nature of relationship',
         aliases: 'Has this foreign national used any other names and/or nicknames?',
         aliases2: 'Any additional other names and/or nicknames for this foreign national?',
+        aliasname: 'Provide the other name or nickname',
         citizenship: 'Provide country(ies) of citizenship',
         birthdate: 'Provide date of birth',
         birthplace: 'Provide place of birth',
@@ -4754,7 +4755,7 @@ const en = {
         explanation: 'Explanation'
       },
       para: {
-        includes: 'Include associates as well as relatives, not previously listed in Section 18',
+        includes: 'Include associates as well as relatives, not previously listed in the relatives section.',
         definition: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
         or: 'Or',
         checkall: 'Check all that apply'
@@ -4807,13 +4808,13 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of foreign contacts',
-          item: 'Foreign National',
+          item: 'Foreign national',
           unknown: 'Provide the foreign national below'
         },
         appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
         appendMessage: [
-          'Include associates as well as relatives, not previously listed in section 18',
-          'If yes use the button below to add another association'
+          'Include associates as well as relatives, not previously listed in the relatives section.',
+          'If yes use the button below to add another association.'
         ],
         append: 'Add another association'
       }
