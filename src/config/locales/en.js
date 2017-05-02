@@ -4759,7 +4759,6 @@ const en = {
         }
       }
     },
-
     contacts: {
       heading: {
         title: 'Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
@@ -4817,21 +4816,81 @@ const en = {
         ]
       },
       help: {
-        branch: {},
-        firstcontact: {},
-        lastcontact: {},
-        methods: {},
-        frequency: {},
-        relationship: {},
-        aliases: {},
-        citizenship: {},
-        birthdate: {},
-        birthplace: {},
-        address: {},
-        employer: {},
-        employeraddress: {},
-        hasaffiliations: {},
-        affiliations: {}
+        branch: {
+          title: 'Need help determining if you know any foreign nationals?',
+          message: 'If you know anyone who is not a U.S. citizen or national then please click "yes"',
+          note: 'Note: A foreign national is defined as any person who is not a citizen or national of the U.S.'
+        },
+        firstcontact: {
+          title: 'Need help with the date of your first contact?',
+          message: 'Provide the approximate date of our first contact with the individual',
+          note: ''
+        },
+        lastcontact: {
+          title: 'Need help with the date of your last contact?',
+          message: 'Provide the approximate date of the last contact you had with the individual',
+          note: ''
+        },
+        methods: {
+          title: 'Need help with the methods of your communication?',
+          message: 'Check all the communication methods you may use in your correspondence',
+          note: ''
+        },
+        frequency: {
+          title: 'Need help with the frequency of your communication?',
+          message: 'Select the appropriate frequency of your correspondence',
+          note: ''
+        },
+        relationship: {
+          title: 'Need help with your relationship with this foreign national?',
+          message: 'Check all the which apply to your relationship with the individual',
+          note: ''
+        },
+        aliases: {
+          title: 'Need help with any other names or nicknames?',
+          message: 'If you are aware of any nicknames or other names the individual may have used then pleas provide them',
+          note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Provide one or more citizenships the foreign natural has',
+          note: ''
+        },
+        birthdate: {
+          title: 'Need help with their date of birth?',
+          message: 'Provide the approximate date of birth of the individual',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        birthplace: {
+          title: 'Need help with their place of birth?',
+          message: 'Provide the place of birth of the individual',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        address: {
+          title: 'Need help with their current address?',
+          message: 'Provide their most recent address',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        employer: {
+          title: 'Need help with the employer?',
+          message: 'Provide the name of their most recent employer',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        employeraddress: {
+          title: 'Need help with the employer address?',
+          message: 'Provide the address of their most recent employer',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        hasaffiliations: {
+          title: 'Does this person have any affiliations?',
+          message: 'If the person has a relationship with a foreign government, military, security, defense industry, or intelligence service then select "yes"',
+          note: ''
+        },
+        affiliations: {
+          title: 'Need help describing their affiliations?',
+          message: 'Describe the individuals relationship(s) with the foreign affiliations',
+          note: ''
+        }
       },
       collection: {
         summary: {

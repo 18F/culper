@@ -275,30 +275,35 @@ export default class ForeignNational extends ValidationElement {
                       value="In person"
                       className="methods-inperson"
                       onUpdate={this.updateMethods}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="methods-telephone"
                       label={i18n.m('foreign.contacts.label.telephone')}
                       value="Telephone"
                       className="methods-telephone"
                       onUpdate={this.updateMethods}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="methods-electronic"
                       label={i18n.m('foreign.contacts.label.electronic')}
                       value="Electronic"
                       className="methods-electronic"
                       onUpdate={this.updateMethods}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="methods-written"
                       label={i18n.m('foreign.contacts.label.written')}
                       value="Written"
                       className="methods-written"
                       onUpdate={this.updateMethods}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="methods-other"
                       label={i18n.m('foreign.contacts.label.other')}
                       value="Other"
                       className="methods-other"
                       onUpdate={this.updateMethods}
+                      onValidate={this.props.onValidate}
                       />
           </CheckboxGroup>
         </Field>
@@ -323,36 +328,42 @@ export default class ForeignNational extends ValidationElement {
                    value="Daily"
                    className="frequency-daily"
                    onUpdate={this.updateFrequency}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="frequency-weekly"
                    label={i18n.m('foreign.contacts.label.weekly')}
                    value="Weekly"
                    className="frequency-weekly"
                    onUpdate={this.updateFrequency}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="frequency-monthly"
                    label={i18n.m('foreign.contacts.label.monthly')}
                    value="Monthly"
                    className="frequency-monthly"
                    onUpdate={this.updateFrequency}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="frequency-quarterly"
                    label={i18n.m('foreign.contacts.label.quarterly')}
                    value="Quarterly"
                    className="frequency-quarterly"
                    onUpdate={this.updateFrequency}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="frequency-annually"
                    label={i18n.m('foreign.contacts.label.annually')}
                    value="Annually"
                    className="frequency-annually"
                    onUpdate={this.updateFrequency}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="frequency-other"
                    label={i18n.m('foreign.contacts.label.other')}
                    value="Other"
                    className="frequency-other"
                    onUpdate={this.updateFrequency}
+                   onValidate={this.props.onValidate}
                    />
           </RadioGroup>
         </Field>
@@ -378,24 +389,28 @@ export default class ForeignNational extends ValidationElement {
                       value="Professional"
                       className="relationship-professional"
                       onUpdate={this.updateRelationship}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="relationship-personal"
                       label={i18n.m('foreign.contacts.label.personal')}
                       value="Personal"
                       className="relationship-personal"
                       onUpdate={this.updateRelationship}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="relationship-obligation"
                       label={i18n.m('foreign.contacts.label.obligation')}
                       value="Obligation"
                       className="relationship-obligation"
                       onUpdate={this.updateRelationship}
+                      onValidate={this.props.onValidate}
                       />
             <Checkbox name="relationship-other"
                       label={i18n.m('foreign.contacts.label.other')}
                       value="Other"
                       className="relationship-other"
                       onUpdate={this.updateRelationship}
+                      onValidate={this.props.onValidate}
                       />
           </CheckboxGroup>
         </Field>
