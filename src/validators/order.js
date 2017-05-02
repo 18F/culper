@@ -3,8 +3,10 @@ import { validGenericTextfield, validGenericMonthYear, BranchCollection } from '
 
 export default class OrderValidator {
   constructor (state = {}, props) {
+    this.prefix = (props || {}).prefix || 'order'
     this.courtAddress = state.CourtAddress
     this.courtName = state.CourtName
+    this.disposition = state.Disposition
     this.occurred = state.Occurred
     this.appeals = state.Appeals
   }
@@ -16,6 +18,14 @@ export default class OrderValidator {
 
   validOccurred () {
     return validGenericMonthYear(this.occurred)
+  }
+
+  validDisposition () {
+    if (this.prefix === 'competence') {
+      return true
+    }
+
+    return validGenericTextfield(this.disposition)
   }
 
   validAppeals () {
@@ -37,6 +47,7 @@ export default class OrderValidator {
 
   isValid () {
     return this.validCourt() &&
+      this.validDisposition() &&
       this.validOccurred() &&
       this.validAppeals()
   }
