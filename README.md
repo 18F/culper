@@ -2,10 +2,10 @@
 
 [![Slack][badge_chat]][1]
 
-|         | Builds                             | Coverage                        | GPA                                | Go                                              | Accessibility                           |
-| ------- | ---------------------------------- | ------------------------------- | ---------------------------------- | ----------------------------------------------- | --------------------------------------- |
-| Release | [![Build Status][badge_ci_18f]][2] | [![codecov][badge_cov_18f]][24] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] | [![Accessibility][badge_access_18f]][4] |
-| Staging | [![Build Status][badge_ci_tt]][5]  | [![codecov][badge_cov_tt]][25]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  | [![Accessibility][badge_access_tt]][7]  |
+|         | Builds                             | Coverage                        | GPA                                | Go                                              |
+| ------- | ---------------------------------- | ------------------------------- | ---------------------------------- | ----------------------------------------------- |
+| Release | [![Build Status][badge_ci_18f]][2] | [![codecov][badge_cov_18f]][24] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] |
+| Staging | [![Build Status][badge_ci_tt]][5]  | [![codecov][badge_cov_tt]][25]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  |
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
 [U.S. Digital Services Playbook][8]:
@@ -261,12 +261,10 @@ Please refer to the [contributing documentation][18].
 [badge_ci_18f]: https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master
 [badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
 [badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
-[badge_access_18f]: https://continua11y.18f.gov/18F/e-QIP-prototype.svg?branch=master
 [badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
 [badge_ci_tt]: https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master
 [badge_cc_tt]: https://codeclimate.com/github/truetandem/e-QIP-prototype/badges/gpa.svg
 [badge_cov_tt]: https://codecov.io/gh/truetandem/e-QIP-prototype/branch/master/graph/badge.svg
-[badge_access_tt]: https://continua11y.18f.gov/truetandem/e-QIP-prototype.svg?branch=master
 [badge_goreportcard_tt]: https://goreportcard.com/badge/github.com/truetandem/e-QIP-prototype
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
 [2]: https://travis-ci.org/18F/e-QIP-prototype

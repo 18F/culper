@@ -38,7 +38,7 @@ deploy:
     script: "./bin/deploy.sh staging"
     skip_cleanup: true
     on:
-      branch: master
+      branch: enter-the-void
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh production"
