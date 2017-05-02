@@ -5229,7 +5229,7 @@ const en = {
       heading: {
         admission: 'Was the admission voluntary or involuntary?',
         treatment: 'Provide the dates of treatment',
-        facility: 'Provide the facility where treatment was provided',
+        facility: 'Provide the name of the facility where treatment was provided',
         address: 'Provide the address of the facility where treatment was provided',
         explanation: 'Provide explanation'
       },
