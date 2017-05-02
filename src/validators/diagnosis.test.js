@@ -38,10 +38,22 @@ describe('Diagnosis validation', function () {
           }
         },
         expected: false
+      },
+      {
+        state: {
+          Effective: 'Nope',
+          Explanation: {
+            value: 'The explanation'
+          }
+        },
+        props: {
+          prefix: 'existingConditions.diagnosis'
+        },
+        expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new DiagnosisValidator(test.state, null).validEffective()).toBe(test.expected)
+      expect(new DiagnosisValidator(test.state, test.props).validEffective()).toBe(test.expected)
     })
   })
 

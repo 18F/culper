@@ -104,7 +104,7 @@ export default class ExistingConditions extends ValidationElement {
     )
   }
   isValid () {
-    return new ExistingConditionsValidator(this.state).isValid()
+    return new ExistingConditionsValidator(this.state, { prefix: this.props.prefix }).isValid()
   }
 
   render () {

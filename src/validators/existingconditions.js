@@ -9,6 +9,7 @@ export default class ExistingConditionsValidator {
     this.treatmentList = state.TreatmentList || []
     this.didNotFollow = state.DidNotFollow
     this.didNotFollowExplanation = state.DidNotFollowExplanation
+    this.prefix = (props || {}).prefix
   }
 
   validReceivedTreatment () {
@@ -42,7 +43,7 @@ export default class ExistingConditionsValidator {
     }
 
     for (let item of this.treatmentList) {
-      if (!new DiagnosisValidator(item.Treatment).isValid()) {
+      if (!new DiagnosisValidator(item.Treatment, { prefix: this.prefix }).isValid()) {
         return false
       }
     }

@@ -10,9 +10,14 @@ export default class DiagnosisValidator {
     this.effective = state.Effective || {}
     this.treatmentFacility = state.TreatmentFacility || {}
     this.explanation = state.Explanation || {}
+    this.prefix = (props || {}).prefix
   }
 
   validEffective () {
+    if (this.prefix === 'existingConditions.diagnosis') {
+      return true
+    }
+
     if (this.effective !== 'Yes' && this.effective !== 'No') {
       return false
     }
