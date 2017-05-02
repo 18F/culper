@@ -13,8 +13,8 @@ export default class BirthPlace extends ValidationElement {
   constructor (props) {
     super(props)
     let domestic = (props.country === undefined ? null : (props.country === 'United States' ? 'Yes' : 'No'))
-    let disabledCountry = null
-    let disabledState = null
+    let disabledCountry = props.disabledCountry
+    let disabledState = props.disabledState
 
     if (domestic !== null) {
       disabledCountry = props.country === 'United States'
@@ -116,25 +116,6 @@ export default class BirthPlace extends ValidationElement {
       }
 
       super.handleValidation(event, s, e)
-
-      // api
-      //   .validateApplicantBirthplace({
-      //     City: this.state.city,
-      //     State: this.state.state,
-      //     County: this.state.county,
-      //     Country: this.state.country
-      //   })
-      //   .then((response) => {
-      //     // TODO: Display and assign the errors as necessary
-      //     if (response.Errors) {
-      //     }
-
-      //     if (response.Suggestions) {
-      //     }
-      //   })
-      //   .then(() => {
-      //     super.handleValidation(event, status)
-      //   })
     })
   }
 
@@ -191,9 +172,13 @@ export default class BirthPlace extends ValidationElement {
   }
 
   options () {
+    if (!this.props.branch) {
+      return null
+    }
+
     return (
       <Branch name="is_domestic"
-              help="identification.birthplace.branch.help"
+              help={this.props.help}
               value={this.state.domestic}
               label={this.props.label}
               onUpdate={this.onUpdate.bind(this)}>
@@ -204,7 +189,7 @@ export default class BirthPlace extends ValidationElement {
   render () {
     const klass = `birthplace ${this.props.className || ''}`.trim()
 
-    if (this.state.disabledCountry === null && this.state.disabledState === null) {
+    if (this.props.branch && !this.state.disabledCountry && !this.state.disabledState) {
       return (
         <div className={klass}>
           {this.options()}
@@ -295,5 +280,9 @@ export default class BirthPlace extends ValidationElement {
 }
 
 BirthPlace.defaultProps = {
-  label: i18n.t('identification.birthplace.question.label')
+  label: i18n.t('identification.birthplace.question.label'),
+  help: 'identification.birthplace.branch.help',
+  branch: true,
+  disabledCountry: false,
+  disabledState: false
 }

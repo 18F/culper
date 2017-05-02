@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PassportValidator } from '../../../../validators'
-import { ValidationElement, Field, Text, Suggestions, Name, DateControl, Branch, Radio, RadioGroup } from '../../../Form'
+import { ValidationElement, Field, Show, Text, Suggestions, Name,
+         DateControl, Branch, Radio, RadioGroup } from '../../../Form'
 
 export default class Passport extends ValidationElement {
   constructor (props) {
@@ -123,99 +124,12 @@ export default class Passport extends ValidationElement {
     return true
   }
 
-  /**
-   * Render children only when we explicit state there is passport information
-   */
-  visibleComponents () {
-    if (this.state.HasPassport !== 'Yes') {
-      return ''
-    }
-
+  render () {
     let re = this.state.reBook
     if (this.state.Card === 'Card') {
       re = this.state.reCard
     }
 
-    return (
-      <div>
-        <h3>{i18n.t('foreign.passport.name')}</h3>
-        <Suggestions suggestions={this.props.suggestedNames}
-                     renderSuggestion={this.renderSuggestion}
-                     onSuggestion={this.onSuggestion}
-                     withSuggestions="true"
-                     dismissSuggestions={this.dismissSuggestions()}
-                     suggestionTitle={i18n.t('suggestions.name.title')}
-                     suggestionParagraph={i18n.m('suggestions.name.para')}
-                     suggestionLabel={i18n.t('suggestions.name.label')}
-                     suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
-                     suggestionUseLabel={i18n.t('suggestions.name.use')}
-                     >
-          <Name name="name"
-                {...this.state.Name}
-                onUpdate={this.handleUpdate.bind(this, 'Name')}
-                onValidate={this.handleValidation}
-                />
-        </Suggestions>
-
-        <Field title={i18n.t('foreign.passport.number')}
-               help="foreign.passport.help.number"
-               errorPrefix="passport"
-               adjustFor="buttons"
-               shrink={true}>
-          <div>
-            <RadioGroup className="passport-card option-list"
-                        selectedValue={this.state.Card}>
-              <Radio name="passport-book"
-                     label={i18n.t('foreign.passport.label.book')}
-                     value="Book"
-                     onChange={this.handleChange}
-                     />
-              <Radio name="passport-card"
-                     label={i18n.t('foreign.passport.label.card')}
-                     value="Card"
-                     onChange={this.handleChange}
-                     />
-            </RadioGroup>
-            <Text name="number"
-                  value={this.state.Number.value}
-                  label={i18n.t('foreign.passport.label.number')}
-                  placeholder={i18n.t('foreign.passport.placeholder.number')}
-                  pattern={re}
-                  maxlength="9"
-                  className="number"
-                  ref="number"
-                  onUpdate={this.handleUpdate.bind(this, 'Number')}
-                  onValidate={this.handleValidation}
-                  />
-          </div>
-        </Field>
-
-        <Field title={i18n.t('foreign.passport.issued')}
-               help="foreign.passport.help.issued"
-               adjustFor="labels"
-               shrink={true}>
-          <DateControl name="issued"
-                       {...this.state.Issued}
-                       onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                       onValidate={this.handleValidation}
-                       />
-        </Field>
-
-        <Field title={i18n.t('foreign.passport.expiration')}
-               help="foreign.passport.help.expiration"
-               adjustFor="labels"
-               shrink={true}>
-          <DateControl name="expiration"
-                       {...this.state.Expiration}
-                       onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                       onValidate={this.handleValidation}
-                       />
-        </Field>
-      </div>
-    )
-  }
-
-  render () {
     return (
       <div className="passport">
         <p>
@@ -233,7 +147,83 @@ export default class Passport extends ValidationElement {
                 help="foreign.passport.branch.help"
                 >
         </Branch>
-        {this.visibleComponents()}
+        <Show when={this.state.HasPassport === 'Yes'}>
+          <div>
+            <h3>{i18n.t('foreign.passport.name')}</h3>
+            <Suggestions suggestions={this.props.suggestedNames}
+                         renderSuggestion={this.renderSuggestion}
+                         onSuggestion={this.onSuggestion}
+                         withSuggestions="true"
+                         dismissSuggestions={this.dismissSuggestions()}
+                         suggestionTitle={i18n.t('suggestions.name.title')}
+                         suggestionParagraph={i18n.m('suggestions.name.para')}
+                         suggestionLabel={i18n.t('suggestions.name.label')}
+                         suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
+                         suggestionUseLabel={i18n.t('suggestions.name.use')}
+                         >
+              <Name name="name"
+                    {...this.state.Name}
+                    onUpdate={this.handleUpdate.bind(this, 'Name')}
+                    onValidate={this.handleValidation}
+                    />
+            </Suggestions>
+
+            <Field title={i18n.t('foreign.passport.number')}
+                   help="foreign.passport.help.number"
+                   errorPrefix="passport"
+                   adjustFor="buttons"
+                   shrink={true}>
+              <div>
+                <RadioGroup className="passport-card option-list"
+                            selectedValue={this.state.Card}>
+                  <Radio name="passport-book"
+                         label={i18n.t('foreign.passport.label.book')}
+                         value="Book"
+                         onChange={this.handleChange}
+                         />
+                  <Radio name="passport-card"
+                         label={i18n.t('foreign.passport.label.card')}
+                         value="Card"
+                         onChange={this.handleChange}
+                         />
+                </RadioGroup>
+                <Text name="number"
+                      value={this.state.Number.value}
+                      label={i18n.t('foreign.passport.label.number')}
+                      placeholder={i18n.t('foreign.passport.placeholder.number')}
+                      pattern={re}
+                      maxlength="9"
+                      className="number"
+                      ref="number"
+                      onUpdate={this.handleUpdate.bind(this, 'Number')}
+                      onValidate={this.handleValidation}
+                      />
+              </div>
+            </Field>
+
+            <Field title={i18n.t('foreign.passport.issued')}
+                   help="foreign.passport.help.issued"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="issued"
+                           {...this.state.Issued}
+                           onUpdate={this.handleUpdate.bind(this, 'Issued')}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+
+            <Field title={i18n.t('foreign.passport.expiration')}
+                   help="foreign.passport.help.expiration"
+                   adjustFor="labels"
+                   shrink={true}>
+              <DateControl name="expiration"
+                           {...this.state.Expiration}
+                           onUpdate={this.handleUpdate.bind(this, 'Expiration')}
+                           onValidate={this.handleValidation}
+                           />
+            </Field>
+          </div>
+        </Show>
       </div>
     )
   }
