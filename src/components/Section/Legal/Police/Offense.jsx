@@ -233,8 +233,10 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCited === 'Yes'}>
           <div>
-            <h3 className="more title">{i18n.t('legal.police.heading.needmore')}</h3>
-            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            <Field title={i18n.t('legal.police.heading.needmore')}
+                   className="more title">
+              <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            </Field>
 
             <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
             <Field title={i18n.t('legal.police.heading.citedby')}
@@ -288,8 +290,10 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCharged === 'Yes'}>
           <div>
-            <h3 className="more title">{i18n.t('legal.police.heading.needmore')}</h3>
-            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            <Field title={i18n.t('legal.police.heading.needmore')}
+                   className="more title">
+              <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            </Field>
 
             <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
             <Field title={i18n.t('legal.police.heading.courtname')}
@@ -415,9 +419,9 @@ export default class Offense extends ValidationElement {
                     {i18n.t('legal.police.heading.awaitingTrial')}
                   </div>
                 </Branch>
-            <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
-                   titleSize="label"
-                   adjustFor="labels">
+                <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
+                       titleSize="label"
+                       adjustFor="labels">
                   <Textarea
                     className="awaiting-trial-explanation"
                     {...this.state.AwaitingTrialExplanation}

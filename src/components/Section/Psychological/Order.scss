@@ -1,21 +1,12 @@
 @import 'eqip-colors';
 
 .order {
-  .courtname,
-  .disposition {
-    width: 92%;
-    max-width: 64rem;
-    display: inline-block;
-  }
-
   .more.title {
     color: $eapp-blue-dark;
   }
 
   .more.arrow {
-    text-align: center;
     height: 8rem;
-    width: 100%;
-    margin: 0 auto 2rem auto;
+    margin-left: 25.25rem;
   }
 }
