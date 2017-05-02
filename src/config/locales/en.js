@@ -995,7 +995,7 @@ const en = {
         append: 'Add bankruptcy'
       },
       heading: {
-        petitionType: 'Petition Type',
+        petitionType: 'Select the applicable bankruptcy petition type',
         courtNumber: 'Provide the bankruptcy court docket/account number',
         dateFiled: 'Provide the date bankruptcy was filed',
         dateDischarged: 'Provide the date of bankruptcy discharge',
