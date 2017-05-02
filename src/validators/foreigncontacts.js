@@ -46,6 +46,8 @@ export class ForeignNationalValidator {
     this.relationshipExplanation = state.RelationshipExplanation
     this.aliases = state.Aliases || []
     this.citizenship = state.Citizenship
+    this.birthdate = state.Birthdate
+    this.birthdateNotApplicable = state.BirthdateNotApplicable
     this.birthplace = state.Birthplace
     this.birthplaceNotApplicable = state.BirthplaceNotApplicable
     this.address = state.Address
@@ -115,6 +117,12 @@ export class ForeignNationalValidator {
     return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
   }
 
+  validBirthdate () {
+    return validNotApplicable(this.birthdateNotApplicable, () => {
+      return validDateField(this.birthdate)
+    })
+  }
+
   validBirthplace () {
     return validNotApplicable(this.birthplaceNotApplicable, () => {
       return !!this.birthplace && new BirthPlaceValidator(this.birthplace, null).isValid()
@@ -160,6 +168,7 @@ export class ForeignNationalValidator {
       this.validRelationship() &&
       this.validAliases() &&
       this.validCitizenship() &&
+      this.validBirthdate() &&
       this.validBirthplace() &&
       this.validAddress() &&
       this.validEmployer() &&

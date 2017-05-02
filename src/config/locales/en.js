@@ -4681,6 +4681,93 @@ const en = {
           note: ''
         }
       }
+    },
+
+    contacts: {
+      heading: {
+        title: 'Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
+        name: 'Provide the full name of the foreign national, if known',
+        firstcontact: 'Provide the approximate date of first contact',
+        lastcontact: 'Provide the approximate date of last contact',
+        methods: 'Provide methods of contact',
+        frequency: 'Provide approximate frequency of contact',
+        relationship: 'Provide the nature of relationship',
+        aliases: 'Has this foreign national used any other names and/or nicknames?',
+        aliases2: 'Any additional other names and/or nicknames for this foreign national?',
+        citizenship: 'Provide country(ies) of citizenship',
+        birthdate: 'Provide date of birth',
+        birthplace: 'Provide place of birth',
+        address: 'Provide current address',
+        employer: 'Provide the name of the foreign national\'s current employer, or provide the name of their most recent employer if not currently employed',
+        employeraddress: 'Provid the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
+        hasaffiliations: 'Is this foreign national affiliated with a foreign government, military, security, defense industry, or intelligence service?',
+        affiliations: 'Describe the contact\'s relationship with the foreign government, military, security, defense industry, or intelligence service',
+        explanation: 'Explanation'
+      },
+      para: {
+        includes: 'Include associates as well as relatives, not previously listed in Section 18',
+        definition: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
+        or: 'Or',
+        checkall: 'Check all that apply'
+      },
+      label: {
+        idk: 'I don\'t know',
+        inperson: 'In person',
+        telephone: 'Telephone',
+        electronic: [
+          'Electronic',
+          '(such as e-mail, texting, chat rooms, etc)'
+        ],
+        written: 'Written correspondence',
+        daily: 'Daily',
+        weekly: 'Weekly',
+        monthly: 'Monthly',
+        quarterly: 'Quarterly',
+        annually: 'Annually',
+        professional: 'Professional or business',
+        personal: [
+          'Personal',
+          '(such as family ties, friendship, affection, common interests, etc)'
+        ],
+        obligation: [
+          'Obligation',
+          '(provide explanation)'
+        ],
+        other: [
+          'Other',
+          '(provide explanation)'
+        ]
+      },
+      help: {
+        branch: {},
+        firstcontact: {},
+        lastcontact: {},
+        methods: {},
+        frequency: {},
+        relationship: {},
+        aliases: {},
+        citizenship: {},
+        birthdate: {},
+        birthplace: {},
+        address: {},
+        employer: {},
+        employeraddress: {},
+        hasaffiliations: {},
+        affiliations: {}
+      },
+      collection: {
+        summary: {
+          title: 'Summary of foreign contacts',
+          item: 'Foreign National',
+          unknown: 'Provide the foreign national below'
+        },
+        appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
+        appendMessage: [
+          'Include associates as well as relatives, not previously listed in section 18',
+          'If yes use the button below to add another association'
+        ],
+        append: 'Add another association'
+      }
     }
   },
 

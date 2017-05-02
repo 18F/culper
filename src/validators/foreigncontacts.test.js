@@ -334,6 +334,48 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validCitizenship')
   })
 
+  it('validate foreign national date of birth', function () {
+    const tests = [
+      {
+        state: {},
+        expected: false
+      },
+      {
+        state: {
+          BirthdateNotApplicable: {
+            applicable: false
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          BirthdateNotApplicable: {
+            applicable: true
+          },
+          Birthdate: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          BirthdateNotApplicable: {
+            applicable: true
+          },
+          Birthdate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          }
+        },
+        expected: true
+      }
+    ]
+
+    battery(tests, ForeignNationalValidator, 'validBirthdate')
+  })
+
   it('validate foreign national place of birth', function () {
     const tests = [
       {
@@ -589,6 +631,9 @@ describe('Foreign contacts component validation', function () {
                   value: [
                     { name: 'United States', value: 'United States' }
                   ]
+                },
+                BirthdateNotApplicable: {
+                  applicable: false
                 },
                 BirthplaceNotApplicable: {
                   applicable: false

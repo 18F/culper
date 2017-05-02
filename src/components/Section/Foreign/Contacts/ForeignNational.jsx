@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Name, Textarea, DateControl,
          CheckboxGroup, Checkbox, RadioGroup, Radio, Country, BirthPlace,
-         Address, Text, NotApplicable, Show } from '../../../Form'
+         Address, Text, NotApplicable, Show, BranchCollection } from '../../../Form'
 
 export default class ForeignNational extends ValidationElement {
   constructor (props) {
@@ -22,6 +22,8 @@ export default class ForeignNational extends ValidationElement {
       RelationshipExplanation: props.RelationshipExplanation,
       Aliases: props.Aliases,
       Citizenship: props.Citizenship,
+      Birthdate: props.Birthdate,
+      BirthdateNotApplicable: props.BirthdateNotApplicable,
       Birthplace: props.Birthplace,
       BirthplaceNotApplicable: props.BirthplaceNotApplicable,
       Address: props.Address,
@@ -51,6 +53,8 @@ export default class ForeignNational extends ValidationElement {
     this.updateRelationshipExplanation = this.updateRelationshipExplanation.bind(this)
     this.updateAliases = this.updateAliases.bind(this)
     this.updateCitizenship = this.updateCitizenship.bind(this)
+    this.updateBirthdate = this.updateBirthdate.bind(this)
+    this.updateBirthdateNotApplicable = this.updateBirthdateNotApplicable.bind(this)
     this.updateBirthplace = this.updateBirthplace.bind(this)
     this.updateBirthplaceNotApplicable = this.updateBirthplaceNotApplicable.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
@@ -147,6 +151,14 @@ export default class ForeignNational extends ValidationElement {
     this.onUpdate('Citizenship', value)
   }
 
+  updateBirthdate (value) {
+    this.onUpdate('Birthdate', value)
+  }
+
+  updateBirthdateNotApplicable (value) {
+    this.onUpdate('BirthdateNotApplicable', value)
+  }
+
   updateBirthplace (value) {
     this.onUpdate('Birthplace', value)
   }
@@ -191,7 +203,11 @@ export default class ForeignNational extends ValidationElement {
     return (
       <div className="foreign-national">
         <h3>{i18n.t('foreign.contacts.heading.name')}</h3>
-        <NotApplicable name="NameNotApplicable">
+        <NotApplicable name="NameNotApplicable"
+                       label={i18n.t('foreign.contacts.label.idk')}
+                       or={i18n.m('foreign.contacts.para.or')}
+                       onUpdate={this.updateNameNotApplicable}
+                       onValidate={this.props.onValidate}>
           <Name name="Name"
                 {...this.state.Name}
                 onUpdate={this.updateName}
@@ -199,6 +215,17 @@ export default class ForeignNational extends ValidationElement {
                 />
         </NotApplicable>
         <span>Need NameExplanation</span>
+
+        <Show when={this.state.NameNotApplicable.applicable === false}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+            <Textarea name="NameExplanation"
+                      className="name-explanation"
+                      {...this.state.NameExplanation}
+                      onUpdate={this.updateNameExplanation}
+                      onValidate={this.props.onValidate}
+                      />
+          </Field>
+        </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.firstcontact')}
                help="foreign.contacts.help.firstcontact">
@@ -220,34 +247,35 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
                help="foreign.contacts.help.methods">
+          {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="methods"
                          selectedValue={this.state.Methods}>
             <Checkbox name="methods-inperson"
-                      label={i18n.m('foreign.contacts.label.methods.inperson')}
+                      label={i18n.m('foreign.contacts.label.inperson')}
                       value="In person"
                       className="methods-inperson"
                       onChange={this.updateMethods}
                       />
             <Checkbox name="methods-telephone"
-                      label={i18n.m('foreign.contacts.label.methods.telephone')}
+                      label={i18n.m('foreign.contacts.label.telephone')}
                       value="Telephone"
                       className="methods-telephone"
                       onChange={this.updateMethods}
                       />
             <Checkbox name="methods-electronic"
-                      label={i18n.m('foreign.contacts.label.methods.electronic')}
+                      label={i18n.m('foreign.contacts.label.electronic')}
                       value="Electronic"
                       className="methods-electronic"
                       onChange={this.updateMethods}
                       />
             <Checkbox name="methods-written"
-                      label={i18n.m('foreign.contacts.label.methods.written')}
+                      label={i18n.m('foreign.contacts.label.written')}
                       value="Written"
                       className="methods-written"
                       onChange={this.updateMethods}
                       />
             <Checkbox name="methods-other"
-                      label={i18n.m('foreign.contacts.label.methods.other')}
+                      label={i18n.m('foreign.contacts.label.other')}
                       value="Other"
                       className="methods-other"
                       onChange={this.updateMethods}
@@ -255,42 +283,53 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
+        <Show when={this.state.Methods.some(x => x === 'Other')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+            <Textarea name="MethodsExplanation"
+                      className="methods-explanation"
+                      {...this.state.MethodsExplanation}
+                      onUpdate={this.updateMethodsExplanation}
+                      onValidate={this.props.onValidate}
+                      />
+          </Field>
+        </Show>
+
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
                help="foreign.contacts.help.frequency">
           <RadioGroup className="frequency"
                       selectedValue={this.state.Frequency}>
             <Radio name="frequency-daily"
-                   label={i18n.m('foreign.contacts.label.frequency.daily')}
+                   label={i18n.m('foreign.contacts.label.daily')}
                    value="Daily"
                    className="frequency-daily"
                    onChange={this.updateFrequency}
                    />
             <Radio name="frequency-weekly"
-                   label={i18n.m('foreign.contacts.label.frequency.weekly')}
+                   label={i18n.m('foreign.contacts.label.weekly')}
                    value="Weekly"
                    className="frequency-weekly"
                    onChange={this.updateFrequency}
                    />
             <Radio name="frequency-monthly"
-                   label={i18n.m('foreign.contacts.label.frequency.monthly')}
+                   label={i18n.m('foreign.contacts.label.monthly')}
                    value="Monthly"
                    className="frequency-monthly"
                    onChange={this.updateFrequency}
                    />
             <Radio name="frequency-quarterly"
-                   label={i18n.m('foreign.contacts.label.frequency.quarterly')}
+                   label={i18n.m('foreign.contacts.label.quarterly')}
                    value="Quarterly"
                    className="frequency-quarterly"
                    onChange={this.updateFrequency}
                    />
             <Radio name="frequency-annually"
-                   label={i18n.m('foreign.contacts.label.frequency.annually')}
+                   label={i18n.m('foreign.contacts.label.annually')}
                    value="Annually"
                    className="frequency-annually"
                    onChange={this.updateFrequency}
                    />
             <Radio name="frequency-other"
-                   label={i18n.m('foreign.contacts.label.frequency.other')}
+                   label={i18n.m('foreign.contacts.label.other')}
                    value="Other"
                    className="frequency-other"
                    onChange={this.updateFrequency}
@@ -298,30 +337,42 @@ export default class ForeignNational extends ValidationElement {
           </RadioGroup>
         </Field>
 
+        <Show when={this.state.Frequency === 'Other'}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+            <Textarea name="FrequencyExplanation"
+                      className="frequency-explanation"
+                      {...this.state.FrequencyExplanation}
+                      onUpdate={this.updateFrequencyExplanation}
+                      onValidate={this.props.onValidate}
+                      />
+          </Field>
+        </Show>
+
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
                help="foreign.contacts.help.relationship">
+          {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
                          selectedValue={this.state.Relationship}>
             <Checkbox name="relationship-professional"
-                      label={i18n.m('foreign.contacts.label.relationship.professional')}
+                      label={i18n.m('foreign.contacts.label.professional')}
                       value="Professional"
                       className="relationship-professional"
                       onChange={this.updateRelationship}
                       />
             <Checkbox name="relationship-personal"
-                      label={i18n.m('foreign.contacts.label.relationship.personal')}
+                      label={i18n.m('foreign.contacts.label.personal')}
                       value="Personal"
                       className="relationship-personal"
                       onChange={this.updateRelationship}
                       />
             <Checkbox name="relationship-obligation"
-                      label={i18n.m('foreign.contacts.label.relationship.obligation')}
+                      label={i18n.m('foreign.contacts.label.obligation')}
                       value="Obligation"
                       className="relationship-obligation"
                       onChange={this.updateRelationship}
                       />
             <Checkbox name="relationship-other"
-                      label={i18n.m('foreign.contacts.label.relationship.other')}
+                      label={i18n.m('foreign.contacts.label.other')}
                       value="Other"
                       className="relationship-other"
                       onChange={this.updateRelationship}
@@ -329,9 +380,26 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Field title={i18n.t('foreign.contacts.heading.aliases')}
-               help="foreign.contacts.help.aliases">
-        </Field>
+        <Show when={this.state.Relationship.some(x => x === 'Other' || x === 'Obligation')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+            <Textarea name="RelationshipExplanation"
+                      className="relationship-explanation"
+                      {...this.state.RelationshipExplanation}
+                      onUpdate={this.updateRelationshipExplanation}
+                      onValidate={this.props.onValidate}
+                      />
+          </Field>
+        </Show>
+
+        <BranchCollection label={i18n.t('foreign.contacts.heading.aliases')}
+                          appendLabel={i18n.t('foreign.contacts.heading.aliases2')}
+                          help="foreign.contacts.help.aliases"
+                          className="aliases"
+                          items={this.state.Aliases}
+                          onUpdate={this.updateAliases}
+                          onValidate={this.props.onValidate}>
+          <Name name="Alias" bind={true} />
+        </BranchCollection>
 
         <Field title={i18n.t('foreign.contacts.heading.citizenship')}
                help="foreign.contacts.help.citizenship">
@@ -344,9 +412,28 @@ export default class ForeignNational extends ValidationElement {
                    />
         </Field>
 
+        <Field title={i18n.t('foreign.contacts.heading.birthdate')}
+               help="foreign.contacts.help.birthdate">
+          <NotApplicable name="BirthdateNotApplicable"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         onUpdate={this.updateBirthdateNotApplicable}
+                         onValidate={this.props.onValidate}>
+            <DateControl name="Birthdate"
+                         {...this.state.Birthdate}
+                         onUpdate={this.updateBirthdate}
+                         onValidate={this.props.onValidate}
+                         />
+          </NotApplicable>
+        </Field>
+
         <Field title={i18n.t('foreign.contacts.heading.birthplace')}
                help="foreign.contacts.help.birthplace">
-          <NotApplicable name="BirthplaceNotApplicable">
+          <NotApplicable name="BirthplaceNotApplicable"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         onUpdate={this.updateBirthplaceNotApplicable}
+                         onValidate={this.props.onValidate}>
             <BirthPlace name="Birthplace"
                         className="birthplace"
                         {...this.state.Birthplace}
@@ -358,7 +445,11 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
                help="foreign.contacts.help.address">
-          <NotApplicable name="AddressNotApplicable">
+          <NotApplicable name="AddressNotApplicable"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         onUpdate={this.updateAddressNotApplicable}
+                         onValidate={this.props.onValidate}>
             <Address name="Address"
                      className="current-address"
                      {...this.state.Address}
@@ -370,7 +461,11 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.employer')}
                help="foreign.contacts.help.employer">
-          <NotApplicable name="EmployerNotApplicable">
+          <NotApplicable name="EmployerNotApplicable"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         onUpdate={this.updateEmployerNotApplicable}
+                         onValidate={this.props.onValidate}>
             <Text name="Employer"
                   className="employer"
                   {...this.state.Employer}
@@ -382,7 +477,11 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
                help="foreign.contacts.help.employeraddress">
-          <NotApplicable name="EmployerAddressNotApplicable">
+          <NotApplicable name="EmployerAddressNotApplicable"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         onUpdate={this.updateEmployerAddressNotApplicable}
+                         onValidate={this.props.onValidate}>
             <Address name="EmployerAddress"
                      className="employer-address"
                      {...this.state.EmployerAddress}
@@ -432,6 +531,8 @@ ForeignNational.defaultProps = {
   RelationshipExplanation: {},
   Aliases: [],
   Citizenship: [],
+  Birthdate: {},
+  BirthdateNotApplicable: {},
   Birthplace: {},
   BirthplaceNotApplicable: {},
   Address: {},

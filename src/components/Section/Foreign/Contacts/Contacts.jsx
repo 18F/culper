@@ -73,9 +73,11 @@ export default class Contacts extends ValidationElement {
   render () {
     return (
       <div className="foreign-contacts">
+        <h3>{i18n.t('foreign.contacts.heading.title')}</h3>
+        {i18n.t('foreign.contacts.para.includes')}
         <Branch name="has_foreign_contacts"
-                title={i18n.t('foreign.contacts.title')}
-                help="foreign.contacts.branch.help"
+                title={i18n.t('foreign.contacts.para.definition')}
+                help="foreign.contacts.help.branch"
                 value={this.state.HasForeignContacts}
                 onUpdate={this.updateHasForeignContacts}
                 onValidate={this.handleValidation}
@@ -87,6 +89,8 @@ export default class Contacts extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('foreign.contacts.collection.summary.title')}
+                     appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}
+                     appendMessage={i18n.m('foreign.contacts.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.contacts.collection.append')}>
             <ForeignNational name="Item" bind={true} />
           </Accordion>
