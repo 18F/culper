@@ -172,6 +172,7 @@ export default class ExistingConditions extends ValidationElement {
                 appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
                 appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
                 <Diagnosis name="Diagnosis"
+                  ApplicantBirthDate={this.props.ApplicantBirthDate}
                   prefix="existingConditions.diagnosis"
                   bind={true} />
               </Accordion>

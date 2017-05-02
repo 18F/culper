@@ -142,6 +142,7 @@ export default class Diagnoses extends ValidationElement {
               appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
               appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
               <Diagnosis name="Diagnosis"
+                ApplicantBirthDate={this.props.ApplicantBirthDate}
                 bind={true} />
             </Accordion>
 

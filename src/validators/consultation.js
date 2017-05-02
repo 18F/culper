@@ -16,7 +16,7 @@ export default class ConsultationValidator {
     }
 
     for (let order of this.list) {
-      if (!new OrderValidator(order.Consultation).isValid()) {
+      if (!new OrderValidator(order.Consultation, null).isValid()) {
         return false
       }
     }

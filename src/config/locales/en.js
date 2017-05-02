@@ -481,12 +481,28 @@ const en = {
         note: ''
       }
     },
+    order: {
+      datecontrol: {
+        max: {
+          title: 'Invalid date provided',
+          message: 'Order date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid date provided',
+          message: 'Order date value must be on or after your date of birth'
+        }
+      }
+    },
     hospitalization: {
       to: {
         datecontrol: {
           max: {
             title: 'Invalid date provided',
             message: 'Hospitalization to date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization to date value must be on or after your date of birth'
           }
         }
       },
@@ -495,6 +511,10 @@ const en = {
           max: {
             title: 'Invalid date provided',
             message: 'Hospitalization from date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization from date value must be on or after your date of birth'
           }
         }
       }
@@ -505,6 +525,10 @@ const en = {
           max: {
             title: 'Invalid date provided',
             message: 'Diagnosis to date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis to date value must be on or after your date of birth'
           }
         }
       },
@@ -513,6 +537,10 @@ const en = {
           max: {
             title: 'Invalid date provided',
             message: 'Diagnosis from date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis from date value must be on or after your date of birth'
           }
         }
       }

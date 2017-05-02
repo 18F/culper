@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Field, Text, DateControl, BranchCollection, Svg } from '../../Form'
+import { Address, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
 
 export default class Order extends ValidationElement {
   constructor (props) {
@@ -59,7 +59,7 @@ export default class Order extends ValidationElement {
                        {...this.props.Occurred}
                        label={i18n.t(`psychological${prefix}.label.occurred`)}
                        hideDay={true}
-                       maxDate={new Date()}
+                       minDate={this.props.ApplicantBirthDate}
                        prefix="order"
                        onUpdate={this.updateOccurred}
                        onValidate={this.props.onValidate}
@@ -86,14 +86,16 @@ export default class Order extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
-          <Text name="Disposition"
-                className="disposition"
-                {...this.props.Disposition}
-                onUpdate={this.updateDisposition}
-                onValidate={this.props.onValidate}
-                />
-        </Field>
+        <Show when={prefix !== 'competence'}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
+            <Text name="Disposition"
+                  className="disposition"
+                  {...this.props.Disposition}
+                  onUpdate={this.updateDisposition}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
+        </Show>
 
         <BranchCollection className="appeals"
                           label={i18n.t(`psychological.${prefix}.heading.appealed`)}
@@ -103,8 +105,10 @@ export default class Order extends ValidationElement {
                           onUpdate={this.updateAppeals}
                           >
 
-          <h3 className="more title">{i18n.t(`psychological.${prefix}.heading.needMore`)}</h3>
-          <Svg src="img/date-down-arrow.svg" className="more arrow" />
+          <Field title={i18n.t(`psychological.${prefix}.heading.needMore`)}
+                 className="more title">
+            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+          </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}>
             <Text name="CourtName"
