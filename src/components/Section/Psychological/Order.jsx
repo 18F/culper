@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Field, Text, DateControl, BranchCollection, Svg } from '../../Form'
+import { Address, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
 
 export default class Order extends ValidationElement {
   constructor (props) {
@@ -86,14 +86,16 @@ export default class Order extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
-          <Text name="Disposition"
-                className="disposition"
-                {...this.props.Disposition}
-                onUpdate={this.updateDisposition}
-                onValidate={this.props.onValidate}
-                />
-        </Field>
+        <Show when={prefix !== 'competence'}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
+            <Text name="Disposition"
+                  className="disposition"
+                  {...this.props.Disposition}
+                  onUpdate={this.updateDisposition}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
+        </Show>
 
         <BranchCollection className="appeals"
                           label={i18n.t(`psychological.${prefix}.heading.appealed`)}

@@ -16,7 +16,7 @@ export default class CompetenceValidator {
     }
 
     for (let order of this.list) {
-      if (!new OrderValidator(order.Competence).isValid()) {
+      if (!new OrderValidator(order.Competence, { prefix: 'competence' }).isValid()) {
         return false
       }
     }
