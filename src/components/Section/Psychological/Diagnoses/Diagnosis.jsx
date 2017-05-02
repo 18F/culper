@@ -76,6 +76,7 @@ export default class Diagnosis extends ValidationElement {
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateDiagnosed}
                      prefix={prefix}
+                     minDate={this.props.ApplicantBirthDate}
                      maxDate={currentDate}
                      onValidate={this.props.onValidate}
                      />

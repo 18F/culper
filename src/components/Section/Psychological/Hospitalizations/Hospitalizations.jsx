@@ -100,6 +100,7 @@ export default class Hospitalizations extends ValidationElement {
             appendMessage={i18n.m('psychological.hospitalization.collection.appendMessage')}
             appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
             <Hospitalization name="Hospitalization"
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               bind={true}
             />
           </Accordion>

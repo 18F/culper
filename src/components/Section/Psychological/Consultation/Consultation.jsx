@@ -101,7 +101,11 @@ export default class Consultation extends ValidationElement {
             appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
             appendMessage={i18n.m('psychological.consultation.collection.appendMessage')}
             appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
-            <Order name="Consultation" prefix="consultation" bind={true} />
+            <Order
+              name="Consultation"
+              prefix="consultation"
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
+              bind={true} />
           </Accordion>
         </Show>
       </div>

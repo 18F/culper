@@ -86,4 +86,46 @@ describe('date control validator', function () {
       expect(new DateControlValidator(test.state, test.props).validMaxDate()).toBe(test.expected)
     })
   })
+
+  it('validate min date', () => {
+    const tests = [
+      {
+        state: {
+          month: '1',
+          day: '1',
+          year: '2003'
+        },
+        props: {
+          minDate: new Date('1/1/2005')
+        },
+        expected: false
+      },
+      {
+        state: {
+          month: '1',
+          day: '1',
+          year: '2005'
+        },
+        props: {
+          minDate: new Date('1/1/2004')
+        },
+        expected: true
+      },
+      {
+        state: {
+          month: null,
+          day: '1',
+          year: '2005'
+        },
+        props: {
+          minDate: new Date('1/1/2004')
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new DateControlValidator(test.state, test.props).validMinDate()).toBe(test.expected)
+    })
+  })
 })
