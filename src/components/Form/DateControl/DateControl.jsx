@@ -251,20 +251,23 @@ export default class DateControl extends ValidationElement {
       }
     }
 
-    // When set to false, nothing is handled and everything goes on. If set to true,
-    // then receivers of this error can either clear or set the error.
-    let handleMaxError = false
-
     // Make sure we have a valid date and that no other errors are present
     // before validating max date
-    if (isValidDate && !error) {
-      const maxErrorKey = `${prefix}datecontrol`
-      if (validator.validMaxDate()) {
-        error = { [maxErrorKey]: null }
-        handleMaxError = true
-      } else {
-        error = `${maxErrorKey}.max`
-        handleMaxError = true
+    let handleMinMaxError = false
+    if (isValidDate) {
+      const minMaxErrorKey = `${prefix}datecontrol`
+
+      // Clear existing min/max errors
+      super.handleValidation(event, false, {[minMaxErrorKey]: null})
+
+      // Perform checks for min and max
+      if (!validator.validMaxDate()) {
+        error = `${minMaxErrorKey}.max`
+        handleMinMaxError = true
+      }
+      if (!validator.validMinDate()) {
+        error = `${minMaxErrorKey}.min`
+        handleMinMaxError = true
       }
     }
 
@@ -290,7 +293,7 @@ export default class DateControl extends ValidationElement {
           if (!error && (month === null || day === null || year === null)) {
             s = null
           } else {
-            s = (!handleMaxError) && isValidDate
+            s = (!handleMinMaxError) && isValidDate
           }
           super.handleValidation(event, s, error)
         } else {
@@ -410,5 +413,7 @@ DateControl.defaultProps = {
   month: '',
   day: '',
   year: '',
-  prefix: ''
+  prefix: '',
+  maxDate: new Date(),
+  minDate: null
 }

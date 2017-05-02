@@ -12,6 +12,7 @@ import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
 import ExistingConditions from './ExistingConditions/ExistingConditions'
 import PsychologicalValidator, { showQuestion21E } from '../../../validators/psychological'
+import { extractApplicantBirthDate } from '../extractors'
 
 class Psychological extends ValidationElement {
   constructor (props) {
@@ -135,6 +136,7 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
               {...this.props.Competence}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
           </SectionView>
@@ -146,6 +148,7 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.hospitalization') }>
             <Consultation name="Consultations"
               {...this.props.Consultations}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
           </SectionView>
@@ -156,6 +159,7 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.diagnoses') }>
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
@@ -166,6 +170,7 @@ class Psychological extends ValidationElement {
             nextLabel={this.diagnosesNextLabel()}>
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
@@ -177,6 +182,7 @@ class Psychological extends ValidationElement {
             nextLabel={ i18n.t('psychological.destination.review') }>
             <ExistingConditions name="ExistingConditions"
               {...this.props.ExistingConditions}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
             />
@@ -187,24 +193,28 @@ class Psychological extends ValidationElement {
 
             <Competence name="Competence"
               {...this.props.Competence}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Competence')} />
             <hr />
             <Consultation name="Consultations"
               {...this.props.Consultations}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Consultation')} />
             <hr />
             <Hospitalizations name="Hospitalizations"
               {...this.props.Hospitalizations}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
             <hr />
             <Diagnoses name="Diagnoses"
               {...this.props.Diagnoses}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
               defaultState={false}
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
@@ -213,6 +223,7 @@ class Psychological extends ValidationElement {
             <Show when={this.props.ShowExistingConditions}>
               <ExistingConditions name="ExistingConditions"
                 {...this.props.ExistingConditions}
+                ApplicantBirthDate={this.props.ApplicantBirthDate}
                 defaultState={false}
                 onValidate={this.onValidate}
                 onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
@@ -242,7 +253,8 @@ function mapStateToProps (state) {
     ExistingConditions: psychological.ExistingConditions,
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
-    ShowExistingConditions: showQuestion21E(psychological)
+    ShowExistingConditions: showQuestion21E(psychological),
+    ApplicantBirthDate: extractApplicantBirthDate(app)
   }
 }
 
