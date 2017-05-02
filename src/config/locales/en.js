@@ -481,12 +481,28 @@ const en = {
         note: ''
       }
     },
+    order: {
+      datecontrol: {
+        max: {
+          title: 'Invalid date provided',
+          message: 'Order date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid date provided',
+          message: 'Order date value must be on or after your date of birth'
+        }
+      }
+    },
     hospitalization: {
       to: {
         datecontrol: {
           max: {
             title: 'Invalid date provided',
             message: 'Hospitalization to date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization to date value must be on or after your date of birth'
           }
         }
       },
@@ -495,6 +511,10 @@ const en = {
           max: {
             title: 'Invalid date provided',
             message: 'Hospitalization from date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization from date value must be on or after your date of birth'
           }
         }
       }
@@ -505,6 +525,10 @@ const en = {
           max: {
             title: 'Invalid date provided',
             message: 'Diagnosis to date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis to date value must be on or after your date of birth'
           }
         }
       },
@@ -513,6 +537,10 @@ const en = {
           max: {
             title: 'Invalid date provided',
             message: 'Diagnosis from date value cannot exceed todays date'
+          },
+          min: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis from date value must be on or after your date of birth'
           }
         }
       }
@@ -967,7 +995,7 @@ const en = {
         append: 'Add bankruptcy'
       },
       heading: {
-        petitionType: 'Petition Type',
+        petitionType: 'Select the applicable bankruptcy petition type',
         courtNumber: 'Provide the bankruptcy court docket/account number',
         dateFiled: 'Provide the date bankruptcy was filed',
         dateDischarged: 'Provide the date of bankruptcy discharge',
@@ -5317,7 +5345,7 @@ const en = {
       heading: {
         admission: 'Was the admission voluntary or involuntary?',
         treatment: 'Provide the dates of treatment',
-        facility: 'Provide the facility where treatment was provided',
+        facility: 'Provide the name of the facility where treatment was provided',
         address: 'Provide the address of the facility where treatment was provided',
         explanation: 'Provide explanation'
       },
