@@ -31,6 +31,39 @@ describe('Order validation', function () {
     })
   })
 
+  it('validates disposition (conditional)', () => {
+    const tests = [
+      {
+        state: {
+          Disposition: {
+            value: 'Stuff'
+          }
+        },
+        props: null,
+        expected: true
+      },
+      {
+        state: {
+          Disposition: {}
+        },
+        props: null,
+        expected: false
+      },
+      {
+        state: {
+          Disposition: {}
+        },
+        props: {
+          prefix: 'competence'
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new OrderValidator(test.state, test.props).validDisposition()).toBe(test.expected)
+    })
+  })
+
   it('validates appeals', () => {
     const tests = [
       {
