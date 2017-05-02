@@ -303,6 +303,18 @@ const en = {
         note: ''
       }
     },
+    apoFpo: {
+      length: {
+        title: 'APO/FPO length',
+        message: 'APO/FPO state code must be 2 letters',
+        note: ''
+      },
+      pattern: {
+        title: 'APO/FPO not in an acceptable format',
+        message: 'APO/FPO state code must be 2 letters',
+        note: 'Note: Typically the value is either AA, AE, or AP.'
+      }
+    },
     passport: {
       number: {
         pattern: {
@@ -372,8 +384,8 @@ const en = {
         note: ''
       },
       length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        title: 'Invalid telephone extension',
+        message: 'The extension must be between 0 and 10 digits',
         note: ''
       }
     },
@@ -467,6 +479,42 @@ const en = {
         title: 'The year is below the accepted limits',
         message: 'The year must be four (4) digit year',
         note: ''
+      }
+    },
+    hospitalization: {
+      to: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization to date value cannot exceed todays date'
+          }
+        }
+      },
+      from: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Hospitalization from date value cannot exceed todays date'
+          }
+        }
+      }
+    },
+    diagnosis: {
+      to: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis to date value cannot exceed todays date'
+          }
+        }
+      },
+      from: {
+        datecontrol: {
+          max: {
+            title: 'Invalid date provided',
+            message: 'Diagnosis from date value cannot exceed todays date'
+          }
+        }
       }
     }
   },
@@ -2584,7 +2632,8 @@ const en = {
         placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
-        label: 'APO/FPO State Code'
+        label: 'APO/FPO State Code',
+        placeholder: 'Enter state code (AA, AE, AP)'
       },
       apoFpoType: {
         apo: {
@@ -5225,9 +5274,9 @@ const en = {
       },
       help: {
         occurred: {
-          title: 'Need help the date occurred?',
-          message: 'The date issued',
-          note: ''
+          title: 'Need help with this date?',
+          message: 'Enter the date the court or agency ordered you to consult with a professional.',
+          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
@@ -5324,8 +5373,8 @@ const en = {
         },
         diagnosed: {
           title: 'Need help the date range of your diagnosis or health condition?',
-          message: 'Provide the full date range (admission to release) of your hospitalization.',
-          note: ''
+          message: 'Provide the full date range you have had this diagnosis or health condition.',
+          note: 'Note: If this is a current diagnosis or health condition enter the start date and select the "Present" button for the "To date".'
         }
       },
       person: {
@@ -5346,7 +5395,7 @@ const en = {
           },
           name: {
             title: 'Need help the name of the healthcare professional?',
-            message: 'Provide the name of the healthcare professional',
+            message: 'Provide the name of the healthcare professional.',
             note: ''
           }
         }
@@ -5363,9 +5412,9 @@ const en = {
         },
         help: {
           address: {
-            title: 'Need help with treatment facility?',
-            message: 'Provide the address of the facility where treatment was provided',
-            note: ''
+            title: 'Not sure of the agency/organization/facility address?',
+            message: 'Try looking up the agency/organization/facility, a physical or mailing address should be associated with it.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
             title: 'Need help the facility where treatment was provided?',
@@ -5459,11 +5508,6 @@ const en = {
         receivedTreatment: 'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
       },
       help: {
-        hasCondition: {
-          title: 'Help with adverse impacts',
-          message: 'Do you have a mental health or other health condition that substantially adversely affects your judgment, reliability, or trustworthiness even if you are not experiencing such symptoms today?',
-          note: ''
-        },
         receivedTreatment: {
           title: 'Help with counseling or treatment',
           message: 'Did you ever receive or are you currently receiving counseling or treatment for that condition?',
@@ -5513,9 +5557,9 @@ const en = {
             note: ''
           },
           diagnosed: {
-            title: 'Need help with treatment dates',
-            message: 'Provide the dates of couseling or treatment',
-            note: ''
+            title: 'Need help the date range of your counseling or treatment?',
+            message: 'Provide the full date range (start to finish) of your counseling or treatment.',
+            note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
           }
         },
         person: {
@@ -5530,13 +5574,13 @@ const en = {
           },
           help: {
             address: {
-              title: 'Need help with health care professional address',
-              message: 'Provide the address of the health care professional',
-              note: ''
+              title: 'Not sure of this health care professional\'s address?',
+              message: 'Try looking up their name, a physical or mailing address should be associated with it.',
+              note: 'Note: If you can only find a phone number try calling and asking for the address.'
             },
             name: {
-              title: 'Need help the name of the healthcare professional?',
-              message: 'Provide the name of the healthcare professional',
+              title: 'Need help the name and phone number of this healthcare professional?',
+              message: 'Please enter their full name and a current telephone number.',
               note: ''
             }
           }

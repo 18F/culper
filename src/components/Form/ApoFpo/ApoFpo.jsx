@@ -3,34 +3,6 @@ import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 
 export default class ApoFpo extends ValidationElement {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      value: props.value,
-      error: props.error || false,
-      valid: props.valid || false
-    }
-  }
-
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-    })
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
-    })
-  }
-
   render () {
     const klass = `apofpo ${this.props.className || ''}`.trim()
     return (
@@ -41,11 +13,12 @@ export default class ApoFpo extends ValidationElement {
             minlength="2"
             maxlength="2"
             required="true"
-            value={this.state.value}
-            error={this.state.error}
-            valid={this.state.valid}
-            onChange={this.handleChange}
-            onValidate={this.handleValidation}
+            pattern="[a-zA-Z]+"
+            value={this.props.value}
+            error={this.props.error}
+            valid={this.props.valid}
+            onChange={this.props.onChange}
+            onValidate={this.props.onValidate}
             tabBack={this.props.tabBack}
             tabNext={this.props.tabNext}
             />

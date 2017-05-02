@@ -458,8 +458,10 @@ export default class Relative extends ValidationElement {
                               onUpdate={this.updateAliases}
                               onValidate={this.props.onValidate}>
               <div>
-                <h3 className="more title">{i18n.t('relationships.relatives.heading.needmore')}</h3>
-                <Svg src="img/date-down-arrow.svg" className="more arrow" />
+                <Field title={i18n.t('relationships.relatives.heading.needmore')}
+                      className="more title">
+                  <Svg src="img/date-down-arrow.svg" className="more arrow" />
+                </Field>
                 <Alias name="Item" bind={true} />
               </div>
             </BranchCollection>

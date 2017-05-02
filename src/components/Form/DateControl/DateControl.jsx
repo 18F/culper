@@ -4,14 +4,47 @@ import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
+import DateControlValidator from '../../../validators/datecontrol'
 
-const trimLeadingZero = (num) => {
+export const trimLeadingZero = (num) => {
   if (isNaN(num)) {
     return num
   }
 
   const i = parseInt(`0${num}`, 10)
   return i === 0 ? '' : '' + i
+}
+
+export const datePart = (part, date) => {
+  if (!date) {
+    return ''
+  }
+
+  let d = new Date(date)
+
+  // Make sure it is a valid date
+  if (isNaN(d.getTime())) {
+    return ''
+  }
+
+  switch (part) {
+    case 'month':
+    case 'mm':
+    case 'm':
+      return '' + (d.getMonth() + 1)
+
+    case 'day':
+    case 'dd':
+    case 'd':
+      return d.getDate()
+
+    case 'year':
+    case 'yy':
+    case 'y':
+      return d.getFullYear()
+  }
+
+  return ''
 }
 
 export default class DateControl extends ValidationElement {
@@ -25,9 +58,10 @@ export default class DateControl extends ValidationElement {
       focus: props.focus,
       error: props.error,
       valid: props.valid,
-      month: trimLeadingZero(props.month) || this.datePart('m', props.value),
-      day: trimLeadingZero(props.day) || props.hideDay ? 1 : this.datePart('d', props.value),
-      year: trimLeadingZero(props.year) || this.datePart('y', props.value),
+      maxDate: props.maxDate,
+      month: trimLeadingZero(props.month) || datePart('m', props.value),
+      day: trimLeadingZero(props.day) || props.hideDay ? 1 : datePart('d', props.value),
+      year: trimLeadingZero(props.year) || datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null],
       errorCodes: []
@@ -43,9 +77,9 @@ export default class DateControl extends ValidationElement {
 
       if (next.value) {
         value = next.value
-        month = this.datePart('m', next.value)
-        day = this.datePart('d', next.value)
-        year = this.datePart('y', next.value)
+        month = datePart('m', next.value)
+        day = datePart('d', next.value)
+        year = datePart('y', next.value)
       } else if (next.date) {
         value = next.date
         month = '' + (next.date.getMonth() + 1)
@@ -61,45 +95,6 @@ export default class DateControl extends ValidationElement {
         year: year
       })
     }
-  }
-
-  /**
-   * Retrieve the part of the date requested.
-   */
-  datePart (part, date) {
-    if (!date) {
-      return ''
-    }
-
-    let d = new Date(date)
-
-    // Make sure it is a valid date
-    if (Object.prototype.toString.call(d) === '[object Date]') {
-      if (isNaN(d.getTime())) {
-        return ''
-      }
-    } else {
-      return ''
-    }
-
-    switch (part) {
-      case 'month':
-      case 'mm':
-      case 'm':
-        return '' + (d.getMonth() + 1)
-
-      case 'day':
-      case 'dd':
-      case 'd':
-        return d.getDate()
-
-      case 'year':
-      case 'yy':
-      case 'y':
-        return d.getFullYear()
-    }
-
-    return ''
   }
 
   /**
@@ -233,6 +228,7 @@ export default class DateControl extends ValidationElement {
     let month = this.state.validity[0]
     let day = this.state.validity[1]
     let year = this.state.validity[2]
+    let prefix = `${this.props.prefix ? this.props.prefix + '.' : ''}`
 
     if (event.target.name.indexOf('month') !== -1) {
       month = status != null ? status : null
@@ -244,8 +240,10 @@ export default class DateControl extends ValidationElement {
       year = status != null ? status : null
     }
 
-    let valid = validDate(this.state.month, this.state.day, this.state.year)
-    if (!valid && !error) {
+    const isValidDate = validDate(this.state.month, this.state.day, this.state.year)
+    const validator = new DateControlValidator(this.state, this.props)
+
+    if (!isValidDate && !error) {
       if (this.state.day > daysInMonth(this.state.month, this.state.year)) {
         error = 'day.max'
       } else {
@@ -253,11 +251,28 @@ export default class DateControl extends ValidationElement {
       }
     }
 
+    // When set to false, nothing is handled and everything goes on. If set to true,
+    // then receivers of this error can either clear or set the error.
+    let handleMaxError = false
+
+    // Make sure we have a valid date and that no other errors are present
+    // before validating max date
+    if (isValidDate && !error) {
+      const maxErrorKey = `${prefix}datecontrol`
+      if (validator.validMaxDate()) {
+        error = { [maxErrorKey]: null }
+        handleMaxError = true
+      } else {
+        error = `${maxErrorKey}.max`
+        handleMaxError = true
+      }
+    }
+
     const codes = super.mergeError(errorCodes, error)
     this.setState(
       {
-        error: !valid || (month === false && day === false && year === false),
-        valid: valid && month === true && day === true && year === true,
+        error: !isValidDate || (month === false && day === false && year === false),
+        valid: isValidDate && month === true && day === true && year === true,
         validity: [month, day, year],
         errorCodes: codes
       },
@@ -272,31 +287,20 @@ export default class DateControl extends ValidationElement {
           //  2. If all of the children are in a valid state then so is this component
           //  3. All other permutations assume an invalid state
           let s = false
-          if (month === null || day === null || year === null) {
+          if (!error && (month === null || day === null || year === null)) {
             s = null
           } else {
-            s = valid
+            s = (!handleMaxError) && isValidDate
           }
-
-          super.handleValidation(event, s, codes)
-
-          if (codes.length === 0 && this.props.onFlush) {
-            this.props.onFlush()
-          }
+          super.handleValidation(event, s, error)
+        } else {
+          super.handleValidation(event, status, error)
         }
       })
   }
 
-  /**
-   * Generated name for the error message.
-   */
-  errorName (part) {
-    return '' + this.props.name + '-' + part + '-error'
-  }
-
   render () {
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
-
     return (
       <div className={klass}>
         <div>
@@ -405,5 +409,6 @@ DateControl.defaultProps = {
   hideDay: false,
   month: '',
   day: '',
-  year: ''
+  year: '',
+  prefix: ''
 }

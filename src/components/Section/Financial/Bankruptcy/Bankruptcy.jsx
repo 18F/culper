@@ -165,7 +165,6 @@ export default class Bankruptcy extends ValidationElement {
                              bind={true}>
                 <DateControl name="DateDischarged"
                              className="datedischarged"
-                             receiveProps="true"
                              bind={true}
                              hideDay={true} />
               </NotApplicable>

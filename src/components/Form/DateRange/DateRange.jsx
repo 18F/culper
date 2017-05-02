@@ -127,8 +127,9 @@ export default class DateRange extends ValidationElement {
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate.bind(this, 'from')}
                        receiveProps={this.state.trickleDown}
+                       maxDate={this.props.maxDate}
+                       prefix={`${this.props.prefix}.from`}
                        onValidate={this.handleValidation}
-                       onFlush={this.props.onFlush}
                        />
         </div>
         <div className="arrow">
@@ -146,8 +147,9 @@ export default class DateRange extends ValidationElement {
                        receiveProps={this.state.trickleDown || this.state.presentClicked}
                        disabled={this.state.present}
                        onUpdate={this.onUpdate.bind(this, 'to')}
+                       maxDate={this.props.maxDate}
+                       prefix={`${this.props.prefix}.to`}
                        onValidate={this.handleValidation}
-                       onFlush={this.props.onFlush}
                        />
           <div className="from-present">
             <span className="or"> or </span>
@@ -169,5 +171,7 @@ export default class DateRange extends ValidationElement {
 DateRange.defaultProps = {
   from: {},
   to: {},
-  present: false
+  present: false,
+  prefix: '',
+  maxDate: null
 }

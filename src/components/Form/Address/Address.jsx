@@ -353,7 +353,7 @@ export default class Address extends ValidationElement {
                     <ApoFpo name="apoFpo"
                             className="state"
                             label={i18n.t('address.apoFpo.apoFpo.label')}
-                            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
+                            placeholder={i18n.t('address.apoFpo.apoFpo.placeholder')}
                             value={this.state.state}
                             onChange={this.handleChange.bind(this, 'state')}
                             onValidate={this.handleValidation}
@@ -411,7 +411,7 @@ export default class Address extends ValidationElement {
   }
 
   dismissAlternative () {
-    if (this.state.geocodeErrorCode === 'error.geocode.defaultAddress') {
+    if (!this.state.suggestions || this.state.suggestions.length === 0) {
       return i18n.t('suggestions.address.alternate')
     }
 
