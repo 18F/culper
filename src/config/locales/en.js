@@ -4702,8 +4702,24 @@ const en = {
       tbd: 'TBD',
       contacts: 'Foreign Contacts',
       passport: 'U.S. passport information',
-      activities: 'Foreign activities',
-      business: 'Foreign business, professional activities, and government contacts',
+      activities: {
+        direct: 'Direct control',
+        indirect: 'Indirect conttrol',
+        realestate: 'Real estate purchase',
+        benefits: 'Foreign benefits',
+        support: 'Foreign national support'
+      },
+      business: {
+        advice: 'Support provided',
+        family: 'Immediate family foreign support',
+        employment: 'Employment',
+        ventures: 'Other business ventures',
+        events: 'Event participation',
+        contact: 'Immediate family contact',
+        sponsorship: 'Foreign national sponsorship',
+        political: 'Held political office',
+        voting: 'Voting'
+      },
       travel: 'Foreign countries you have visited'
     },
     passport: {
@@ -4904,6 +4920,73 @@ const en = {
           'If yes use the button below to add another association.'
         ],
         append: 'Add another association'
+      }
+    },
+
+    business: {
+      advice: {
+        heading: {
+          title: 'Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
+          description: 'Provide how the financial interest was acquired',
+          name: 'Provide the name of the individual to whom advice or support was provided',
+          organization: 'Provide the name of the foreign organization or foreign business with whom the individual is associated',
+          country: 'Provide the country of origin for the organization or business',
+          dates: 'Provide the date(s) during which this advice or support was provided',
+          compensation: 'Describe what compensation, if any, was provided for your service'
+        },
+        para: {
+          branch: 'Provide a description of advice/support provided'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided advice to foreign businesses?',
+            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
+            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          },
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide how the support was provided',
+            note: ''
+          },
+          name: {
+            title: 'Need help with the name of the contact?',
+            message: 'Provide the name of the individual or a contact of the business',
+            note: ''
+          },
+          organization: {
+            title: 'Need help with the organization name?',
+            message: 'Provide the name of the business',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country of origin?',
+            message: 'Provide the country where the business is based',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates the service was provided?',
+            message: 'Provide the approximate date range your services your provided',
+            note: ''
+          },
+          compensation: {
+            title: 'Need help with compensation?',
+            message: 'Any monetary, favor, trade, or other type of exchange for services render constitutes as compensation',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business advice',
+            item: 'Advice',
+            unknown: 'Provide details of foreign business advice below'
+          },
+          appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
+          appendMessage: [
+            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
       }
     }
   },

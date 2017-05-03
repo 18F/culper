@@ -8,6 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
+import { Advice } from './Business'
 
 class Foreign extends ValidationElement {
   constructor (props) {
@@ -162,15 +163,32 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="business"
-                       back="foreign/activities"
-                       backLabel={i18n.t('foreign.destination.activities')}
-                       next="foreign/travel"
-                       nextLabel={i18n.t('foreign.destination.travel')}>
+                       back="foreign/activities/support"
+                       backLabel={i18n.t('foreign.destination.activities.support')}
+                       next="foreign/business/family"
+                       nextLabel={i18n.t('foreign.destination.business.family')}>
+            <Advice name="advice"
+                    {...this.props.Advice}
+                    onUpdate={this.updateAdvice}
+                    onValidate={this.handleValidation}
+                    />
+          </SectionView>
+
+          <SectionView name="business/advice"
+                       back="foreign/activities/support"
+                       backLabel={i18n.t('foreign.destination.activities.support')}
+                       next="foreign/business/family"
+                       nextLabel={i18n.t('foreign.destination.business.family')}>
+            <Advice name="advice"
+                    {...this.props.Advice}
+                    onUpdate={this.updateAdvice}
+                    onValidate={this.handleValidation}
+                    />
           </SectionView>
 
           <SectionView name="travel"
-                       back="foreign/business"
-                       backLabel={i18n.t('foreign.destination.business')}
+                       back="foreign/business/voting"
+                       backLabel={i18n.t('foreign.destination.business.voting')}
                        next="foreign/review"
                        nextLabel={i18n.t('foreign.destination.review')}>
           </SectionView>

@@ -1,2 +1,2 @@
-import Business from './Business'
-export default Business
+import Advice from './Advice'
+export { Advice }
