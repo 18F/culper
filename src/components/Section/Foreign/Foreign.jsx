@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { Advice, Family } from './Business'
+import { Advice, Family, Employment } from './Business'
 
 class Foreign extends ValidationElement {
   constructor (props) {
@@ -22,6 +22,7 @@ class Foreign extends ValidationElement {
     this.handleReview = this.handleReview.bind(this)
     this.updateAdvice = this.updateAdvice.bind(this)
     this.updateFamily = this.updateFamily.bind(this)
+    this.updateEmployment = this.updateEmployment.bind(this)
   }
 
   componentDidMount () {
@@ -83,6 +84,10 @@ class Foreign extends ValidationElement {
     this.onUpdate('Family', values)
   }
 
+  updateEmployment (values) {
+    this.onUpdate('Employment', values)
+  }
+
   /**
    * Helper to test whether a subsection is complete
    */
@@ -115,12 +120,12 @@ class Foreign extends ValidationElement {
             <div className="foreign intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
-                            Completed={this.props.Completed}
-                            tour={i18n.t('foreign.tour.para')}
-                            review={i18n.t('foreign.review.para')}
-                            onTour={this.handleTour}
-                            onReview={this.handleReview}
-                            />
+                             Completed={this.props.Completed}
+                             tour={i18n.t('foreign.tour.para')}
+                             review={i18n.t('foreign.review.para')}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
               </div>
             </div>
           </SectionView>
@@ -208,6 +213,18 @@ class Foreign extends ValidationElement {
                     />
           </SectionView>
 
+          <SectionView name="business/employment"
+                       back="foreign/business/family"
+                       backLabel={i18n.t('foreign.destination.business.family')}
+                       next="foreign/business/ventures"
+                       nextLabel={i18n.t('foreign.destination.business.ventures')}>
+            <Employment name="employment"
+                        {...this.props.Employment}
+                        onUpdate={this.updateEmployment}
+                        onValidate={this.handleValidation}
+                        />
+          </SectionView>
+
           <SectionView name="travel"
                        back="foreign/business/voting"
                        backLabel={i18n.t('foreign.destination.business.voting')}
@@ -246,6 +263,7 @@ function mapStateToProps (state) {
     Contacts: foreign.Contacts || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
+    Employment: foreign.Employment || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names

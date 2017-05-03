@@ -5049,6 +5049,61 @@ const en = {
           ],
           append: 'Add another interest'
         }
+      },
+
+      employment: {
+        heading: {
+          title: 'Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?',
+          name: 'Provide the name of the foreign national who made the offer',
+          description: 'Provide a description of the position offered',
+          date: 'Provide the date when this offer was extended',
+          address: 'Provide the location where this occurred',
+          acceptance: 'Did you accept the offer?'
+        },
+        help: {
+          branch: {
+            title: '',
+            message: '',
+            note: ''
+          },
+          name: {
+            title: '',
+            message: '',
+            note: ''
+          },
+          description: {
+            title: '',
+            message: '',
+            note: ''
+          },
+          date: {
+            title: '',
+            message: '',
+            note: ''
+          },
+          address: {
+            title: '',
+            message: '',
+            note: ''
+          },
+          acceptance: {
+            title: '',
+            message: '',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business job offers',
+            item: 'Offer',
+            unknown: 'Provide details of foreign business job below'
+          },
+          appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
+          appendMessage: [
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
       }
     }
   },
