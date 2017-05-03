@@ -40,6 +40,7 @@ import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
 import ForeignContactsValidator from './foreigncontacts'
 import ForeignBusinessAdviceValidator from './foreignbusinessadvice'
+import ForeignBusinessFamilyValidator from './foreignbusinessfamily'
 
 export {
   AddressValidator,
@@ -87,5 +88,6 @@ export {
   RelationshipsValidator,
   PeopleValidator,
   ForeignContactsValidator,
-  ForeignBusinessAdviceValidator
+  ForeignBusinessAdviceValidator,
+  ForeignBusinessFamilyValidator
 }
