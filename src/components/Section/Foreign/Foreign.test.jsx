@@ -94,6 +94,10 @@ describe('The foreign section', () => {
       {
         section: 'business/employment',
         action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'business/ventures',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
       }
     ]
 

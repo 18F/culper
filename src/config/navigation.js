@@ -104,7 +104,7 @@ const navigation = [
           { name: 'Support provided', url: 'advice' },
           { name: 'Immediate family foreign support', url: 'family' },
           { name: 'Employment', url: 'employment' },
-          { hidden: true, name: 'Other business ventures', url: 'ventures' },
+          { name: 'Other business ventures', url: 'ventures' },
           { hidden: true, name: 'Event participation', url: 'events' },
           { hidden: true, name: 'Immediate family contact', url: 'contact' },
           { hidden: true, name: 'Foreign national sponsorship', url: 'sponsorship' },

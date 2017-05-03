@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { Advice, Family, Employment } from './Business'
+import { Advice, Family, Employment, Ventures } from './Business'
 
 class Foreign extends ValidationElement {
   constructor (props) {
@@ -23,6 +23,7 @@ class Foreign extends ValidationElement {
     this.updateAdvice = this.updateAdvice.bind(this)
     this.updateFamily = this.updateFamily.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
+    this.updateVentures = this.updateVentures.bind(this)
   }
 
   componentDidMount () {
@@ -86,6 +87,10 @@ class Foreign extends ValidationElement {
 
   updateEmployment (values) {
     this.onUpdate('Employment', values)
+  }
+
+  updateVentures (values) {
+    this.onUpdate('Ventures', values)
   }
 
   /**
@@ -225,6 +230,18 @@ class Foreign extends ValidationElement {
                         />
           </SectionView>
 
+          <SectionView name="business/ventures"
+                       back="foreign/business/employment"
+                       backLabel={i18n.t('foreign.destination.business.employment')}
+                       next="foreign/business/events"
+                       nextLabel={i18n.t('foreign.destination.business.events')}>
+            <Ventures name="ventures"
+                      {...this.props.Ventures}
+                      onUpdate={this.updateVentures}
+                      onValidate={this.handleValidation}
+                      />
+          </SectionView>
+
           <SectionView name="travel"
                        back="foreign/business/voting"
                        backLabel={i18n.t('foreign.destination.business.voting')}
@@ -264,6 +281,7 @@ function mapStateToProps (state) {
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
+    Ventures: foreign.Ventures || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names
