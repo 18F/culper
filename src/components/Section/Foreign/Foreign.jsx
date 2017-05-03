@@ -98,7 +98,7 @@ class Foreign extends ValidationElement {
   launch (storage, subsection, defaultView) {
     subsection = subsection || ''
     if (subsection === '') {
-      let keys = Object.keys(storage)
+      const keys = Object.keys(storage)
       if (keys.length === 0 && storage.constructor === Object) {
         return defaultView
       }
