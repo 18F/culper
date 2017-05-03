@@ -4948,11 +4948,6 @@ const en = {
             message: 'Provide how the support was provided',
             note: ''
           },
-          name: {
-            title: 'Need help with the name of the contact?',
-            message: 'Provide the name of the individual or a contact of the business',
-            note: ''
-          },
           organization: {
             title: 'Need help with the organization name?',
             message: 'Provide the name of the business',
@@ -5010,11 +5005,6 @@ const en = {
             message: 'If you have provided any advice to a foreign individual or business then select "yes"',
             note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
           },
-          name: {
-            title: 'Need help with the government official\'s name?',
-            message: 'Provide the full name of the government official who made the request',
-            note: ''
-          },
           agency: {
             title: 'Need help with the agency name?',
             message: 'Provide the agency name',
@@ -5049,7 +5039,153 @@ const en = {
           ],
           append: 'Add another interest'
         }
+      },
+
+      employment: {
+        heading: {
+          title: 'Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?',
+          name: 'Provide the name of the foreign national who made the offer',
+          description: 'Provide a description of the position offered',
+          date: 'Provide the date when this offer was extended',
+          address: 'Provide the location where this occurred',
+          acceptance: 'Did you accept the offer?'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you were offered a job?',
+            message: 'If you were offered a foreign job select "yes"',
+            note: ''
+          },
+          description: {
+            title: 'Need help describing the offer?',
+            message: 'Describe the position offered.',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of the offer?',
+            message: 'Provide the approximate date the offer was extended to you',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the location?',
+            message: 'Provide the address of the location where the offer took place',
+            note: ''
+          },
+          acceptance: {
+            title: 'Need help with describing the acceptance?',
+            message: [
+              'If you did not accept the offer please state this.',
+              'If you did accept the offer please describe why it was accepted.'
+            ],
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business job offers',
+            item: 'Offer',
+            unknown: 'Provide details of foreign business job below'
+          },
+          appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
+          appendMessage: [
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+
+      ventures: {
+        heading: {
+          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
+          name: 'Provide the name of the foreign national',
+          address: 'Provide the full current address of this foreign national',
+          citizenship: 'Provide the citizenship(s) of this foreign national',
+          description: 'Provide the description of the business venture',
+          relationship: 'Provide your relationship to this foreign national',
+          dates: 'Provide the length of time you have been involved in the business venture',
+          association: 'Provide the nature of the association with this business venture',
+          position: 'Provide the position you held',
+          service: 'Provide the service you provided',
+          support: 'Provide the financial support involved',
+          compensation: 'Provide a description of what compensation was provided for your service'
+        },
+        para: {
+          branch: [
+            'Own, co-own, serve as a business consultant, provide financial support, etc.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help with the business venture?',
+            message: 'If you have, or are currently, associated with a foreign business venture select "yes"',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the foreign national\'s address?',
+            message: 'Provide the current address of the foreign national',
+            note: ''
+          },
+          citizenship: {
+            title: 'Need help with the foreign national\'s citizenship?',
+            message: 'Provide the country(ies) the foreign national has citizenship',
+            note: ''
+          },
+          description: {
+            title: 'Need help describing the business venture?',
+            message: 'Provide an accurate descsription of the business venture',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relation to the foreign national?',
+            message: 'Provide the relationship to the foreign national',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates involved?',
+            message: 'Provide the approximate date range you were involved with the business venture',
+            note: ''
+          },
+          association: {
+            title: 'Need help with the assocition to the venture?',
+            message: 'Provide a description of how you were associated to the business venture',
+            note: ''
+          },
+          position: {
+            title: 'Need help with the position?',
+            message: 'Provide the position you held',
+            note: ''
+          },
+          service: {
+            title: 'Need help with the service provided?',
+            message: 'Provide how the service you provided',
+            note: ''
+          },
+          support: {
+            title: 'Need help describing the financial support?',
+            message: 'Provide any financial support that was provided',
+            note: ''
+          },
+          compensation: {
+            title: 'Need help describing the compensation?',
+            message: 'Any monetary, favor, trade, or other type of exchange for services render constitutes as compensation',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business ventures',
+            item: 'Venture',
+            unknown: 'Provide details of foreign business ventures below'
+          },
+          appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
+          appendMessage: [
+            'Own, co-own, serve as a business consultant, provide financial support, etc.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
       }
+
     }
   },
 
