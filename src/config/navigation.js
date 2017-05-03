@@ -85,8 +85,33 @@ const navigation = [
     subsections: [
       { name: 'U.S. passport information', url: 'passport' },
       { name: 'Foreign contacts', url: 'contacts' },
-      { hidden: true, name: 'Foreign activities', url: 'activities' },
-      { hidden: true, name: 'Foreign business, professional activities, and government contacts', url: 'business' },
+      {
+        hidden: true,
+        name: 'Foreign activities',
+        url: 'activities',
+        subsections: [
+          { name: 'Direct control', url: 'direct' },
+          { name: 'Indirect conttrol', url: 'indirect' },
+          { name: 'Real estate purchase', url: 'realestate' },
+          { name: 'Foreign benefits', url: 'benefits' },
+          { name: 'Foreign national support', url: 'support' }
+        ]
+      },
+      {
+        name: 'Foreign business, professional activities, and government contacts',
+        url: 'business',
+        subsections: [
+          { name: 'Support provided', url: 'advice' },
+          { hidden: true, name: 'Immediate family foreign support', url: 'family' },
+          { hidden: true, name: 'Employment', url: 'employment' },
+          { hidden: true, name: 'Other business ventures', url: 'ventures' },
+          { hidden: true, name: 'Event participation', url: 'events' },
+          { hidden: true, name: 'Immediate family contact', url: 'contact' },
+          { hidden: true, name: 'Foreign national sponsorship', url: 'sponsorship' },
+          { hidden: true, name: 'Held political office', url: 'political' },
+          { hidden: true, name: 'Voting', url: 'voting' }
+        ]
+      },
       { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }
     ]
   },

@@ -35,7 +35,7 @@ describe('The foreign section', () => {
   })
 
   it('can go to each subsection', () => {
-    const sections = ['name', 'birthdate', 'birthplace', 'ssn']
+    const sections = ['passport', 'contacts', 'business', 'business/advice']
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
     sections.forEach((section) => {
