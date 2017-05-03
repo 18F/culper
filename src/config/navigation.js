@@ -102,7 +102,7 @@ const navigation = [
         url: 'business',
         subsections: [
           { name: 'Support provided', url: 'advice' },
-          { hidden: true, name: 'Immediate family foreign support', url: 'family' },
+          { name: 'Immediate family foreign support', url: 'family' },
           { hidden: true, name: 'Employment', url: 'employment' },
           { hidden: true, name: 'Other business ventures', url: 'ventures' },
           { hidden: true, name: 'Event participation', url: 'events' },

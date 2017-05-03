@@ -1,2 +1,3 @@
 import Advice from './Advice'
-export { Advice }
+import Family from './Family'
+export { Advice, Family }

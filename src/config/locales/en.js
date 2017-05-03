@@ -4987,6 +4987,68 @@ const en = {
           ],
           append: 'Add another interest'
         }
+      },
+
+      family: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?',
+          name: 'Provide the name of the government official',
+          agency: 'Provide the name of the agency',
+          country: 'Provide the country with which the government official or agency is affiliated',
+          date: 'Provide the date of the request',
+          circumstances: 'Provide the circumstances of request'
+        },
+        para: {
+          branch: [
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided advice to foreign businesses?',
+            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
+            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          },
+          name: {
+            title: 'Need help with the government official\'s name?',
+            message: 'Provide the full name of the government official who made the request',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency name?',
+            message: 'Provide the agency name',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the affiliated country?',
+            message: 'Provide the country the request was affiliated with',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of the request?',
+            message: 'Provide the approximate date the request was made',
+            note: ''
+          },
+          circumstances: {
+            title: 'Need help with the circumstances?',
+            message: 'Provide all circumstances of the request',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of family foreign business advice',
+            item: 'Advice',
+            unknown: 'Provide details of family foreign business advice below'
+          },
+          appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
+          appendMessage: [
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
       }
     }
   },
