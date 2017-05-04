@@ -300,7 +300,7 @@ export default class Accordion extends ValidationElement {
                                      () => { return this.summary(item, index, initial) },
                                      () => { return this.toggle.bind(this, item) },
                                      () => { return this.openText(item) },
-                                     () => { return this.remove.bind(this.item) },
+                                     () => { return this.remove.bind(this, item) },
                                      () => { return this.props.byline(item, index, initial) })
           }
           {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
