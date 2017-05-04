@@ -5997,7 +5997,7 @@ const en = {
         description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
-        appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
         itemType: 'Diagnosis'
       },
