@@ -5614,6 +5614,10 @@ const en = {
         incompetent: {
           title: 'Need help with this question?',
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
+        },
+        disposition: {
+          title: 'Need help with the final disposition?',
+          message: 'Provide the court ruling regarding the court\'s decision.'
         }
       },
       collection: {
