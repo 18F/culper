@@ -42,12 +42,11 @@ export default class CoOwner extends ValidationElement {
   }
 
   render () {
-    const prefix = this.props.prefix ? `${this.props.prefix}.coOwner` : 'coOwner'
+    const prefix = this.props.prefix
     return (
       <div className="co-owner">
 
         <Field title={i18n.t(`foreign.${prefix}.heading.name`)}
-          help={`foreign.${prefix}.help.name`}
           adjustFor="labels"
           shrink={true}>
           <Name name="Name"

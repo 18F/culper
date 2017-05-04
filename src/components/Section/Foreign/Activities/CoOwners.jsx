@@ -28,7 +28,7 @@ export default class CoOwners extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="co-owners">
-        <BranchCollection className="appeals"
+        <BranchCollection
           label={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwners`)}
           appendLabel={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwnersAppend`)}
           items={this.props.List}
@@ -36,7 +36,7 @@ export default class CoOwners extends ValidationElement {
           onUpdate={this.updateList}>
           <CoOwner name="CoOwner"
             bind={true}
-            prefix={this.props.prefix}
+            prefix={`${this.props.prefix}.coOwner`}
             onValidate={this.props.onValidate}
           />
         </BranchCollection>

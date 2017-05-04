@@ -4868,6 +4868,18 @@ const en = {
             },
             label: {
               address: 'This address is'
+            },
+            help: {
+              countries: {
+                title: 'Need help with this field?',
+                message: 'Provide the co-owners countries of citizenship',
+                note: ''
+              },
+              relationshipNature: {
+                title: 'Need help with this field?',
+                message: 'Provide the nature of your relationship with the co-owner',
+                note: ''
+              }
             }
           },
           coOwners: {
