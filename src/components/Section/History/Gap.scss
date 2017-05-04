@@ -1,37 +1,71 @@
+@import 'eqip-colors';
+@import 'eqip-fonts';
+
 .gap {
   border-right: 0.4rem solid #fff !important;
   border-left: 0.4rem solid #fff !important;
+  padding-top: 1rem;
 
-  .help {
-    padding-top: 1rem;
+  .message {
+    width: 100%;
+    max-width: 64rem;
+    margin: 1.3rem 0;
+    padding: 2rem 3rem 1.3rem 3rem;
+    background: $eapp-blue-lightest;
+    border: 2px solid $eapp-blue-lighter;
+    border-radius: 6px;
 
-    .message {
-      width: 100%;
+    > i {
+      display: block;
+      position: relative;
+      top: -2.9rem;
+      left: -3.9rem;
+      height: 1.6rem;
+      width: 1.6rem;
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1.6rem;
+      text-align: center;
+      background: $eapp-blue-light;
+      border-radius: 50%;
     }
-  }
 
-  .dates {
-    float: right;
+    &.error {
+      background: $eapp-red-lightest;
+      border-color: $eapp-red-light;
+
+      > i {
+        background-color: $eapp-red;
+      }
+    }
+
+    .dates {
+      float: right;
+    }
+
+    button {
+      margin: 0 !important;
+
+      i {
+        margin-left: 1rem;
+      }
+    }
   }
 
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5,
+  h6 {
     padding: 0 !important;
     margin-top: 0;
     display: inline-block;
+    font-family: $eapp-sans;
+    font-size: 13pt;
   }
 
   p {
     padding: 0 !important;
-  }
-
-  button {
-    margin: 0 !important;
-
-    i {
-      margin-left: 1rem;
-    }
   }
 }
