@@ -4940,7 +4940,7 @@ const en = {
               note: ''
             },
             interestType: {
-              title: 'Need help with the direct interest type?',
+              title: 'Need help with the indirect interest type?',
               message: 'Provide the type of financial interest',
               note: ''
             },
@@ -4975,8 +4975,13 @@ const en = {
               note: ''
             },
             explanation: {
-              title: 'Need help with this field?',
+              title: 'Need help with the explanation?',
               message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            },
+            relationship: {
+              title: 'Need help with the relationship?',
+              message: 'Provide this individual’s relationship to you',
               note: ''
             }
           },
