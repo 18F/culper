@@ -4702,8 +4702,24 @@ const en = {
       tbd: 'TBD',
       contacts: 'Foreign Contacts',
       passport: 'U.S. passport information',
-      activities: 'Foreign activities',
-      business: 'Foreign business, professional activities, and government contacts',
+      activities: {
+        direct: 'Direct control',
+        indirect: 'Indirect conttrol',
+        realestate: 'Real estate purchase',
+        benefits: 'Foreign benefits',
+        support: 'Foreign national support'
+      },
+      business: {
+        advice: 'Support provided',
+        family: 'Immediate family foreign support',
+        employment: 'Employment',
+        ventures: 'Other business ventures',
+        events: 'Event participation',
+        contact: 'Immediate family contact',
+        sponsorship: 'Foreign national sponsorship',
+        political: 'Held political office',
+        voting: 'Voting'
+      },
       travel: 'Foreign countries you have visited'
     },
     passport: {
@@ -4758,6 +4774,418 @@ const en = {
           note: ''
         }
       }
+    },
+    contacts: {
+      heading: {
+        title: 'Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
+        name: 'Provide the full name of the foreign national, if known',
+        firstcontact: 'Provide the approximate date of first contact',
+        lastcontact: 'Provide the approximate date of last contact',
+        methods: 'Provide methods of contact',
+        frequency: 'Provide approximate frequency of contact',
+        relationship: 'Provide the nature of relationship',
+        aliases: 'Has this foreign national used any other names and/or nicknames?',
+        aliases2: 'Any additional other names and/or nicknames for this foreign national?',
+        aliasname: 'Provide the other name or nickname',
+        citizenship: 'Provide country(ies) of citizenship',
+        birthdate: 'Provide date of birth',
+        birthplace: 'Provide place of birth',
+        address: 'Provide current address',
+        employer: 'Provide the name of the foreign national\'s current employer, or provide the name of their most recent employer if not currently employed',
+        employeraddress: 'Provid the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
+        hasaffiliations: 'Is this foreign national affiliated with a foreign government, military, security, defense industry, or intelligence service?',
+        affiliations: 'Describe the contact\'s relationship with the foreign government, military, security, defense industry, or intelligence service',
+        explanation: 'Explanation'
+      },
+      para: {
+        includes: 'Include associates as well as relatives, not previously listed in the relatives section.',
+        definition: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
+        or: 'Or',
+        checkall: 'Check all that apply'
+      },
+      label: {
+        idk: 'I don\'t know',
+        inperson: 'In person',
+        telephone: 'Telephone',
+        electronic: [
+          'Electronic',
+          '(such as e-mail, texting, chat rooms, etc)'
+        ],
+        written: 'Written correspondence',
+        daily: 'Daily',
+        weekly: 'Weekly',
+        monthly: 'Monthly',
+        quarterly: 'Quarterly',
+        annually: 'Annually',
+        professional: 'Professional or business',
+        personal: [
+          'Personal',
+          '(such as family ties, friendship, affection, common interests, etc)'
+        ],
+        obligation: [
+          'Obligation',
+          '(provide explanation)'
+        ],
+        other: [
+          'Other',
+          '(provide explanation)'
+        ]
+      },
+      help: {
+        branch: {
+          title: 'Need help determining if you know any foreign nationals?',
+          message: 'If you know anyone who is not a U.S. citizen or national then please click "yes"',
+          note: 'Note: A foreign national is defined as any person who is not a citizen or national of the U.S.'
+        },
+        firstcontact: {
+          title: 'Need help with the date of your first contact?',
+          message: 'Provide the approximate date of our first contact with the individual',
+          note: ''
+        },
+        lastcontact: {
+          title: 'Need help with the date of your last contact?',
+          message: 'Provide the approximate date of the last contact you had with the individual',
+          note: ''
+        },
+        methods: {
+          title: 'Need help with the methods of your communication?',
+          message: 'Check all the communication methods you may use in your correspondence',
+          note: ''
+        },
+        frequency: {
+          title: 'Need help with the frequency of your communication?',
+          message: 'Select the appropriate frequency of your correspondence',
+          note: ''
+        },
+        relationship: {
+          title: 'Need help with your relationship with this foreign national?',
+          message: 'Check all the which apply to your relationship with the individual',
+          note: ''
+        },
+        aliases: {
+          title: 'Need help with any other names or nicknames?',
+          message: 'If you are aware of any nicknames or other names the individual may have used then pleas provide them',
+          note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Provide one or more citizenships the foreign natural has',
+          note: ''
+        },
+        birthdate: {
+          title: 'Need help with their date of birth?',
+          message: 'Provide the approximate date of birth of the individual',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        birthplace: {
+          title: 'Need help with their place of birth?',
+          message: 'Provide the place of birth of the individual',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        address: {
+          title: 'Need help with their current address?',
+          message: 'Provide their most recent address',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        employer: {
+          title: 'Need help with the employer?',
+          message: 'Provide the name of their most recent employer',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        employeraddress: {
+          title: 'Need help with the employer address?',
+          message: 'Provide the address of their most recent employer',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        hasaffiliations: {
+          title: 'Does this person have any affiliations?',
+          message: 'If the person has a relationship with a foreign government, military, security, defense industry, or intelligence service then select "yes"',
+          note: ''
+        },
+        affiliations: {
+          title: 'Need help describing their affiliations?',
+          message: 'Describe the individuals relationship(s) with the foreign affiliations',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of foreign contacts',
+          item: 'Foreign national',
+          unknown: 'Provide the foreign national below'
+        },
+        appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
+        appendMessage: [
+          'Include associates as well as relatives, not previously listed in the relatives section.',
+          'If yes use the button below to add another association.'
+        ],
+        append: 'Add another association'
+      }
+    },
+
+    business: {
+      advice: {
+        heading: {
+          title: 'Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
+          description: 'Provide how the financial interest was acquired',
+          name: 'Provide the name of the individual to whom advice or support was provided',
+          organization: 'Provide the name of the foreign organization or foreign business with whom the individual is associated',
+          country: 'Provide the country of origin for the organization or business',
+          dates: 'Provide the date(s) during which this advice or support was provided',
+          compensation: 'Describe what compensation, if any, was provided for your service'
+        },
+        para: {
+          branch: 'Provide a description of advice/support provided'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided advice to foreign businesses?',
+            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
+            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          },
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide how the support was provided',
+            note: ''
+          },
+          organization: {
+            title: 'Need help with the organization name?',
+            message: 'Provide the name of the business',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country of origin?',
+            message: 'Provide the country where the business is based',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates the service was provided?',
+            message: 'Provide the approximate date range your services your provided',
+            note: ''
+          },
+          compensation: {
+            title: 'Need help with compensation?',
+            message: 'Any monetary, favor, trade, or other type of exchange for services render constitutes as compensation',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business advice',
+            item: 'Advice',
+            unknown: 'Provide details of foreign business advice below'
+          },
+          appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
+          appendMessage: [
+            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+
+      family: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?',
+          name: 'Provide the name of the government official',
+          agency: 'Provide the name of the agency',
+          country: 'Provide the country with which the government official or agency is affiliated',
+          date: 'Provide the date of the request',
+          circumstances: 'Provide the circumstances of request'
+        },
+        para: {
+          branch: [
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided advice to foreign businesses?',
+            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
+            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          },
+          agency: {
+            title: 'Need help with the agency name?',
+            message: 'Provide the agency name',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the affiliated country?',
+            message: 'Provide the country the request was affiliated with',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of the request?',
+            message: 'Provide the approximate date the request was made',
+            note: ''
+          },
+          circumstances: {
+            title: 'Need help with the circumstances?',
+            message: 'Provide all circumstances of the request',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of family foreign business advice',
+            item: 'Advice',
+            unknown: 'Provide details of family foreign business advice below'
+          },
+          appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
+          appendMessage: [
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+
+      employment: {
+        heading: {
+          title: 'Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?',
+          name: 'Provide the name of the foreign national who made the offer',
+          description: 'Provide a description of the position offered',
+          date: 'Provide the date when this offer was extended',
+          address: 'Provide the location where this occurred',
+          acceptance: 'Did you accept the offer?'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you were offered a job?',
+            message: 'If you were offered a foreign job select "yes"',
+            note: ''
+          },
+          description: {
+            title: 'Need help describing the offer?',
+            message: 'Describe the position offered.',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of the offer?',
+            message: 'Provide the approximate date the offer was extended to you',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the location?',
+            message: 'Provide the address of the location where the offer took place',
+            note: ''
+          },
+          acceptance: {
+            title: 'Need help with describing the acceptance?',
+            message: [
+              'If you did not accept the offer please state this.',
+              'If you did accept the offer please describe why it was accepted.'
+            ],
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business job offers',
+            item: 'Offer',
+            unknown: 'Provide details of foreign business job below'
+          },
+          appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
+          appendMessage: [
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+
+      ventures: {
+        heading: {
+          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
+          name: 'Provide the name of the foreign national',
+          address: 'Provide the full current address of this foreign national',
+          citizenship: 'Provide the citizenship(s) of this foreign national',
+          description: 'Provide the description of the business venture',
+          relationship: 'Provide your relationship to this foreign national',
+          dates: 'Provide the length of time you have been involved in the business venture',
+          association: 'Provide the nature of the association with this business venture',
+          position: 'Provide the position you held',
+          service: 'Provide the service you provided',
+          support: 'Provide the financial support involved',
+          compensation: 'Provide a description of what compensation was provided for your service'
+        },
+        para: {
+          branch: [
+            'Own, co-own, serve as a business consultant, provide financial support, etc.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help with the business venture?',
+            message: 'If you have, or are currently, associated with a foreign business venture select "yes"',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the foreign national\'s address?',
+            message: 'Provide the current address of the foreign national',
+            note: ''
+          },
+          citizenship: {
+            title: 'Need help with the foreign national\'s citizenship?',
+            message: 'Provide the country(ies) the foreign national has citizenship',
+            note: ''
+          },
+          description: {
+            title: 'Need help describing the business venture?',
+            message: 'Provide an accurate descsription of the business venture',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relation to the foreign national?',
+            message: 'Provide the relationship to the foreign national',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates involved?',
+            message: 'Provide the approximate date range you were involved with the business venture',
+            note: ''
+          },
+          association: {
+            title: 'Need help with the assocition to the venture?',
+            message: 'Provide a description of how you were associated to the business venture',
+            note: ''
+          },
+          position: {
+            title: 'Need help with the position?',
+            message: 'Provide the position you held',
+            note: ''
+          },
+          service: {
+            title: 'Need help with the service provided?',
+            message: 'Provide how the service you provided',
+            note: ''
+          },
+          support: {
+            title: 'Need help describing the financial support?',
+            message: 'Provide any financial support that was provided',
+            note: ''
+          },
+          compensation: {
+            title: 'Need help describing the compensation?',
+            message: 'Any monetary, favor, trade, or other type of exchange for services render constitutes as compensation',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business ventures',
+            item: 'Venture',
+            unknown: 'Provide details of foreign business ventures below'
+          },
+          appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
+          appendMessage: [
+            'Own, co-own, serve as a business consultant, provide financial support, etc.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      }
+
     }
   },
 

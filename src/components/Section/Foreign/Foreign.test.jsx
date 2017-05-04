@@ -11,6 +11,12 @@ const applicationState = {
   Foreign: {}
 }
 
+const applicationState2 = {
+  Foreign: {
+    Passport: {}
+  }
+}
+
 describe('The foreign section', () => {
   // Setup
   const middlewares = [ thunk ]
@@ -34,12 +40,70 @@ describe('The foreign section', () => {
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
-  it('can go to each subsection', () => {
-    const sections = ['name', 'birthdate', 'birthplace', 'ssn']
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+  it('can take the tour', () => {
+    let dispatched = false
+    const store = mockStore({
+      authentication: { authenticated: true, twofactor: true },
+      application: applicationState2
+    })
+    store.dispatch = () => { dispatched = true }
+    const component = mount(<Provider store={store}><Foreign /></Provider>)
+    component.find('.review-tour button').simulate('click')
+    expect(dispatched).toBe(true)
+  })
 
-    sections.forEach((section) => {
-      const component = mount(<Provider store={store}><Foreign subsection={section} /></Provider>)
+  it('can view full review', () => {
+    let dispatched = false
+    const store = mockStore({
+      authentication: { authenticated: true, twofactor: true },
+      application: applicationState2
+    })
+    store.dispatch = () => { dispatched = true }
+    const component = mount(<Provider store={store}><Foreign /></Provider>)
+    component.find('.review-full button').simulate('click')
+    expect(dispatched).toBe(true)
+  })
+
+  it('can go to each subsection', () => {
+    const store = mockStore({
+      authentication: { authenticated: true, twofactor: true },
+      application: applicationState
+    })
+
+    const tests = [
+      {
+        section: 'passport',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'contacts',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'business',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'business/advice',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'business/family',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'business/employment',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'business/ventures',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      }
+    ]
+
+    tests.forEach((test) => {
+      const component = mount(<Provider store={store}><Foreign subsection={test.section} /></Provider>)
+      test.action(component)
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })

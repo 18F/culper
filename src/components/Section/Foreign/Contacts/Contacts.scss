@@ -1,0 +1,60 @@
+.foreign-contacts {
+  // The first name block needs to have the bottom margin
+  // removed to bring the NotApplicable component closer
+  .na-name.content .name {
+    margin-bottom: 0;
+  }
+
+  .methods .block label,
+  .frequency .block label,
+  .relationship .block label {
+    height: 10rem;
+    width: 18rem;
+    overflow: hidden;
+
+    > span {
+      display: block;
+      height: 100%;
+
+      > div {
+        position: relative;
+        top: 35%;
+
+        > p {
+          padding: 0;
+        }
+      }
+
+      // If this is the first div AND not the last then it
+      // has subtext associated to it and needs to be bumped
+      // upwards.
+      > div:not(:last-of-type) {
+        top: 25%;
+      }
+
+      // All the div's (except the first) are treated as
+      // subtext.
+      > div:not(:first-of-type) {
+        font-size: smaller;
+        margin-top: -3rem;
+      }
+    }
+  }
+
+  // Relationship buttons have more subtext than the others
+  .relationship .block label {
+    width: 28rem;
+  }
+
+  // The text "Written correspondence" runs a little too long
+  .methods .methods-written.block label > span > div {
+    top: 25%;
+  }
+
+  // The "estimated" checkbox of the date control plays a visual
+  // trick making the "or" appear further away than it is. This
+  // brings it closer together to compensate.
+  .na-birthdate.button {
+    margin-top: -3rem;
+  }
+}
