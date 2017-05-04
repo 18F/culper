@@ -5015,6 +5015,107 @@ const en = {
             }
           }
         }
+      },
+      realestate: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
+        },
+        collection: {
+          summary: 'Provide your real estate financial interests here',
+          description: 'Summary of financial interests',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendMessage: 'If yes use the button below to add another interest.',
+          appendLabel: 'Add another interest',
+          itemType: 'Interest'
+        },
+        interest: {
+          para: {
+            checkAll: 'Check all that apply',
+            howAcquired: 'Such as purchase, gift, etc.'
+          },
+          heading: {
+            interestTypes: 'Specify',
+            realEstateType: 'Provide the type of real estate property',
+            address: 'Provide the location/address of property',
+            acquired: 'Provide the date the financial interest was acquired',
+            howAcquired: 'Provide details regarding how it was acquired',
+            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
+            sold: 'Provide the date interest was sold, lost, or otherwise disposed of'
+          },
+          label: {
+            address: 'This address is',
+            soldNotApplicable: 'Not applicable',
+            or: 'or',
+            costEstimated: 'Estimated',
+            interestTypes: {
+              yourself: 'Yourself',
+              spouse: 'Spouse or legally recognized civil union/domestic partner',
+              cohabitant: 'Cohabitant',
+              dependentChildren: 'Dependent children'
+            }
+          },
+          help: {
+            interestTypes: {
+              title: 'Need help with the interest type field?',
+              message: 'Check all that apply',
+              note: ''
+            },
+            realEstateType: {
+              title: 'Need help with the real estate interest type?',
+              message: 'Provide the type of real estate interest',
+              note: ''
+            },
+            acquired: {
+              title: 'Need help with when the interest was acquired?',
+              message: 'Provide the date acquired',
+              note: ''
+            },
+            howAcquired: {
+              title: 'Need help with how the interest was acquired?',
+              message: 'Provide how the financial interest was acquired',
+              note: ''
+            },
+            cost: {
+              title: 'Need help with the cost?',
+              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              note: ''
+            },
+            sold: {
+              title: 'Need help with date reqlinquished?',
+              message: 'Provide the date control or ownership was relinquished',
+              note: ''
+            }
+          },
+          coOwner: {
+            heading: {
+              name: 'Provide full name of co-owner',
+              address: 'Provide co-owner current address',
+              countries: 'Provide co-owner’s country(ies) of citizenship',
+              relationshipNature: 'Provide the nature of your relationship with the co-owner'
+            },
+            label: {
+              address: 'This address is'
+            },
+            help: {
+              countries: {
+                title: 'Need help with co-owners countries of citizenship?',
+                message: 'Provide the co-owners countries of citizenship',
+                note: ''
+              },
+              relationshipNature: {
+                title: 'Need help with the nature of the relationship?',
+                message: 'Provide the nature of your relationship with the co-owner',
+                note: ''
+              }
+            }
+          },
+          coOwners: {
+            heading: {
+              hasCoOwners: 'Are/were/will there any co-owners of this foreign real estate?',
+              hasCoOwnersAppend: 'Are there any additional co-owners for this foreign financial interest controlled on your behalf to report?'
+            }
+          }
+        }
       }
     },
     contacts: {

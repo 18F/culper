@@ -91,7 +91,7 @@ const navigation = [
         subsections: [
           { name: 'Direct control', url: 'direct' },
           { name: 'Indirect control', url: 'indirect' },
-          { hidden: true, name: 'Real estate purchase', url: 'realestate' },
+          { name: 'Real estate purchase', url: 'realestate' },
           { hidden: true, name: 'Foreign benefits', url: 'benefits' },
           { hidden: true, name: 'Foreign national support', url: 'support' }
         ]
