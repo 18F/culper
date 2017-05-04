@@ -86,15 +86,14 @@ const navigation = [
       { name: 'U.S. passport information', url: 'passport' },
       { name: 'Foreign contacts', url: 'contacts' },
       {
-        hidden: true,
         name: 'Foreign activities',
         url: 'activities',
         subsections: [
           { name: 'Direct control', url: 'direct' },
-          { name: 'Indirect conttrol', url: 'indirect' },
-          { name: 'Real estate purchase', url: 'realestate' },
-          { name: 'Foreign benefits', url: 'benefits' },
-          { name: 'Foreign national support', url: 'support' }
+          { hidden: true, name: 'Indirect conttrol', url: 'indirect' },
+          { hidden: true, name: 'Real estate purchase', url: 'realestate' },
+          { hidden: true, name: 'Foreign benefits', url: 'benefits' },
+          { hidden: true, name: 'Foreign national support', url: 'support' }
         ]
       },
       {
