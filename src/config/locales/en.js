@@ -481,6 +481,30 @@ const en = {
         note: ''
       }
     },
+    to: {
+      datecontrol: {
+        max: {
+          title: 'Invalid "to" date provided',
+          message: 'The **to** date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid "from" date provided',
+          message: 'The **to** date value must be on or after your date of birth'
+        }
+      }
+    },
+    from: {
+      datecontrol: {
+        max: {
+          title: 'Invalid date provided',
+          message: 'The **from** date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid date provided',
+          message: 'The **from** date value must be on or after your date of birth'
+        }
+      }
+    },
     order: {
       datecontrol: {
         max: {
@@ -5934,6 +5958,10 @@ const en = {
         incompetent: {
           title: 'Need help with this question?',
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
+        },
+        disposition: {
+          title: 'Need help with the final disposition?',
+          message: 'Provide the court ruling regarding the court\'s decision.'
         }
       },
       collection: {
@@ -6124,7 +6152,7 @@ const en = {
         description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
-        appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
         itemType: 'Diagnosis'
       },

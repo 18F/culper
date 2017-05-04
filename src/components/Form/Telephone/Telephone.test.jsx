@@ -137,4 +137,84 @@ describe('The Telephone component', () => {
     component.find('.phonetype-option.work input').simulate('change')
     expect(updated).toBeGreaterThan(8)
   })
+
+  it('can autotab forward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'telephone',
+      tab: () => { tabbed = true }
+    }
+    const component = mount(<Telephone {...expected} />)
+
+    // Domestic
+    tabbed = false
+    component.find({ type: 'text', name: 'domestic_first' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find({ type: 'text', name: 'domestic_second' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find({ type: 'text', name: 'domestic_third' }).simulate('keyup', { keyCode: 48, target: { value: '1234' } })
+    expect(tabbed).toBe(true)
+
+    // DSN
+    component.find('a.dsn-number').simulate('click')
+
+    tabbed = false
+    component.find({ type: 'text', name: 'dsn_first' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    expect(tabbed).toBe(true)
+
+    // International
+    component.find('a.international-number').simulate('click')
+
+    tabbed = false
+    component.find({ type: 'text', name: 'int_first' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find({ type: 'text', name: 'int_second' }).simulate('keyup', { keyCode: 48, target: { value: '1234567890' } })
+    expect(tabbed).toBe(true)
+  })
+
+  it('can autotab backward', () => {
+    let tabbed = false
+    const expected = {
+      name: 'telephone',
+      tab: () => { tabbed = true }
+    }
+    const component = mount(<Telephone {...expected} />)
+
+    // Domestic
+    tabbed = false
+    component.find({ type: 'text', name: 'domestic_extension' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find({ type: 'text', name: 'domestic_third' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find({ type: 'text', name: 'domestic_second' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    // DSN
+    component.find('a.dsn-number').simulate('click')
+
+    tabbed = false
+    component.find({ type: 'text', name: 'dsn_second' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    // International
+    component.find('a.international-number').simulate('click')
+
+    tabbed = false
+    component.find({ type: 'text', name: 'int_extension' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    tabbed = false
+    component.find({ type: 'text', name: 'int_second' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+  })
 })
