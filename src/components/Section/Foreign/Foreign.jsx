@@ -60,6 +60,7 @@ class Foreign extends ValidationElement {
     let cstatus = 'neutral'
     if (this.hasStatus('passport', status, true) &&
         this.hasStatus('contacts', status, true) &&
+        this.hasStatus('directActivity', status, true) &&
         this.hasStatus('advice', status, true) &&
         this.hasStatus('family', status, true) &&
         this.hasStatus('employment', status, true) &&
@@ -68,6 +69,7 @@ class Foreign extends ValidationElement {
       cstatus = 'complete'
     } else if (this.hasStatus('passport', status, false) ||
                this.hasStatus('contacts', status, false) ||
+               this.hasStatus('directActivity', status, false) ||
                this.hasStatus('advice', status, false) ||
                this.hasStatus('family', status, false) ||
                this.hasStatus('employment', status, false) ||
