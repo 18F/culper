@@ -101,24 +101,28 @@ export default class RealEstateInterest extends ValidationElement {
               label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.yourself`)}
               value="Yourself"
               className="yourself"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
               label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.spouse`)}
               value="Spouse"
               className="spouse"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
               label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.cohabitant`)}
               value="Cohabitant"
               className="cohabitant"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
               label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.dependentChildren`)}
               value="DependentChildren"
               className="dependent-children"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
           </CheckboxGroup>
@@ -183,7 +187,6 @@ export default class RealEstateInterest extends ValidationElement {
               {...this.props.Sold}
               label={i18n.t(`foreign.activities.realestate.interest.label.sold`)}
               hideDay={true}
-              maxDate={new Date()}
               prefix={this.props.prefix}
               onUpdate={this.updateSold}
               onValidate={this.props.onValidate}
