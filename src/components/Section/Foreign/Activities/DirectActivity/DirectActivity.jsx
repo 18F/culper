@@ -84,12 +84,13 @@ export default class DirectActivity extends ValidationElement {
   render () {
     return (
       <div className="direct">
-        <h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>
-        {i18n.m('foreign.activities.direct.para.intro')}
         <Branch name="has_interests"
+          label={<h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>}
+          labelSize="h3"
           value={this.props.HasInterests}
           onValidate={this.handleValidation}
           onUpdate={this.updateHasInterests}>
+          {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>

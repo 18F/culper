@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, Textarea, Name, Address, Country }  from '../../../Form'
+import { ValidationElement, Field, Textarea, Name, Address, Country } from '../../../Form'
 
 export default class CoOwner extends ValidationElement {
   constructor (props) {
@@ -50,7 +50,6 @@ export default class CoOwner extends ValidationElement {
           adjustFor="labels"
           shrink={true}>
           <Name name="Name"
-            className="name"
             {...this.props.Name}
             onUpdate={this.updateName}
             onValidate={this.props.onValidate}
@@ -94,5 +93,4 @@ export default class CoOwner extends ValidationElement {
 
 CoOwner.defaultProps = {
   prefix: 'coOwner'
-
 }

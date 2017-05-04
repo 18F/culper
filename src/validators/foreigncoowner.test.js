@@ -48,7 +48,6 @@ describe('CoOwner validation', function () {
             suffix: 'Jr'
           },
           Address: {
-
             addressType: 'United States',
             address: '1234 Some Rd',
             city: 'Arlington',

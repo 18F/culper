@@ -4778,7 +4778,7 @@ const en = {
     activities: {
       direct: {
         heading: {
-          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?',
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?'
         },
         para: {
           intro: 'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.\n\n**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
@@ -4818,37 +4818,37 @@ const en = {
           },
           help: {
             interestTypes: {
-              title: 'Need help with this field?',
-              message: '',
+              title: 'Need help with the interest type field?',
+              message: 'Check all that apply',
               note: ''
             },
             interestType: {
-              title: 'Need help with this field?',
+              title: 'Need help with the direct interest type?',
               message: 'Provide the type of financial interest',
               note: ''
             },
             acquired: {
-              title: 'Need help with this field?',
+              title: 'Need help with when the interest was acquired?',
               message: 'Provide the date acquired',
               note: ''
             },
             howAcquired: {
-              title: 'Need help with this field?',
+              title: 'Need help with how the interest was acquired?',
               message: 'Provide how the financial interest was acquired',
               note: ''
             },
             cost: {
-              title: 'Need help with this field?',
+              title: 'Need help with the cost?',
               message: 'Provide the cost (in U.S. dollars) at time of acquisition',
               note: ''
             },
             value: {
-              title: 'Need help with this field?',
+              title: 'Need help with the value?',
               message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
               note: ''
             },
             relinquished: {
-              title: 'Need help with this field?',
+              title: 'Need help with date reqlinquished?',
               message: 'Provide the date control or ownership was relinquished',
               note: ''
             },
@@ -4864,19 +4864,18 @@ const en = {
               address: 'Provide co-owner current address',
               countries: 'Provide co-owner’s country(ies) of citizenship',
               relationshipNature: 'Provide the nature of your relationship with the co-owner'
-
             },
             label: {
               address: 'This address is'
             },
             help: {
               countries: {
-                title: 'Need help with this field?',
+                title: 'Need help with co-owners countries of citizenship?',
                 message: 'Provide the co-owners countries of citizenship',
                 note: ''
               },
               relationshipNature: {
-                title: 'Need help with this field?',
+                title: 'Need help with the nature of the relationship?',
                 message: 'Provide the nature of your relationship with the co-owner',
                 note: ''
               }
