@@ -269,7 +269,7 @@ export default class Field extends ValidationElement {
    */
   scrollIntoView () {
     // Grab the bottom position for the help container
-    const helpBottom = this.refs.field.getBoundingClientRect().bottom
+    const helpBottom = this.refs.messages.getBoundingClientRect().bottom
 
     // Grab the current window height
     const winHeight = window.innerHeight
@@ -280,7 +280,7 @@ export default class Field extends ValidationElement {
     const active = this.state.helpActive || this.state.errors.length
 
     if (active && this.props.scrollIntoView && notInView) {
-      this.refs.messages.scrollIntoView(false)
+      window.scrollBy({ top: (helpBottom - winHeight), left: 0, behavior: 'smooth' })
     }
   }
 

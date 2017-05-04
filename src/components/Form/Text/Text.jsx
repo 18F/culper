@@ -60,8 +60,8 @@ export default class Text extends ValidationElement {
                required={this.props.required}
                value={this.state.value}
                focus={this.props.focus}
-               error={this.props.error}
-               valid={this.props.valid}
+               error={this.state.error}
+               valid={this.state.valid}
                onChange={this.handleChange}
                onFocus={this.props.onFocus}
                onBlur={this.props.onBlur}

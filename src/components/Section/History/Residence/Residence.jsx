@@ -134,21 +134,25 @@ export class ResidenceItem extends ValidationElement {
                    label={i18n.t('history.residence.label.role.owned')}
                    value="Owned"
                    onChange={this.handleRoleChange}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="role-rented"
                    label={i18n.t('history.residence.label.role.rented')}
                    value="Rented"
                    onChange={this.handleRoleChange}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="role-military"
                    label={i18n.t('history.residence.label.role.military')}
                    value="Military"
                    onChange={this.handleRoleChange}
+                   onValidate={this.props.onValidate}
                    />
             <Radio name="role-other"
                    label={i18n.t('history.residence.label.role.other')}
                    value="Other"
                    onChange={this.handleRoleChange}
+                   onValidate={this.props.onValidate}
                    />
           </RadioGroup>
           <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
