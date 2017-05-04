@@ -188,8 +188,10 @@ class Psychological extends ValidationElement {
             />
           </SectionView>
           <SectionView name="review"
-            back="psychological/conditions"
-            backLabel={ i18n.t('psychological.destination.existingConditions') }>
+                       title="Let&rsquo;s make sure everything looks right"
+                       showTop="true"
+                       back="psychological/conditions"
+                       backLabel={ i18n.t('psychological.destination.existingConditions') }>
 
             <Competence name="Competence"
               {...this.props.Competence}
