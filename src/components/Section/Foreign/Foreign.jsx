@@ -248,10 +248,10 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="activities/realestate"
-                       back="foreign/activities/direct"
-                       backLabel={i18n.t('foreign.destination.activities.direct')}
-                       next="foreign/activities/realestate"
-                       nextLabel={i18n.t('foreign.destination.activities.realestate')}>
+                       back="foreign/activities/indirect"
+                       backLabel={i18n.t('foreign.destination.activities.indirect')}
+                       next="foreign/activities/support"
+                       nextLabel={i18n.t('foreign.destination.activities.support')}>
             <RealEstateActivity name="realEstateActivity"
                     {...this.props.RealEstateActivity}
                     onUpdate={this.updateRealEstateActivity}

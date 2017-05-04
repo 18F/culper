@@ -91,7 +91,7 @@ export default class RealEstateInterest extends ValidationElement {
     return (
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.realestate.interest.heading.interestTypes`)}
-          help={`foreign.activities.realestate.interest.help.interestType`}
+          help={`foreign.activities.realestate.interest.help.interestTypes`}
           adjustFor="big-buttons">
 
           <p>{i18n.t(`foreign.activities.realestate.interest.para.checkAll`)}</p>
