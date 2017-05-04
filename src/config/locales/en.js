@@ -5184,6 +5184,86 @@ const en = {
           ],
           append: 'Add another interest'
         }
+      },
+
+      conferences: {
+        heading: {
+          title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
+          description: 'Provide the name and description of the event',
+          sponsor: 'Provide the name of the sponsoring organization',
+          city: 'Provide the city where the event was held',
+          country: 'Provide the country where the event was held',
+          dates: 'Provide the dates for the event',
+          purpose: 'Provide the purpose of the event',
+          contact: 'Was there any subsequent contact with any foreign nationals as a result of the event?',
+          contact2: 'Do you have another subsequent contact to report for this event?',
+          explanation: 'Provide explanation'
+        },
+        para: {
+          branch: [
+            'Do not include those you attended or participated in on official business for the U.S. government.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have been to a foreign conference?',
+            message: 'If you have to been to a conference not in the U.S. outside of official U.S. government business select "yes".',
+            note: ''
+          },
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide the name of the conference as well as a general description.',
+            note: ''
+          },
+          sponsor: {
+            title: 'Need help with the sponsoring organization?',
+            message: 'Provide the name(s) of the sponsoring organizations of the conference.',
+            note: ''
+          },
+          city: {
+            title: 'Need help with the city?',
+            message: 'Provide the city the conference was located.',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country the conference was located.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates of the conference?',
+            message: 'Provide the approximate date range of the conference.',
+            note: ''
+          },
+          purpose: {
+            title: 'Need help with the purpose of the conference?',
+            message: 'Describe the purpose of the event.',
+            note: ''
+          },
+          contact: {
+            title: 'Need help concerning contact with a foreign national?',
+            message: 'If you had contact with foreign nationals directly due to the conference select "yes".',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Describe the circumstances and/or outcome of the contact.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business conferences',
+            item: 'Conference',
+            unknown: 'Provide details of conference below'
+          },
+          appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
+          appendMessage: [
+            'Do not include those you attended or participated in on official business for the U.S. government.',
+            'If yes use the button below to add another interest.'
+          ],
+          append: 'Add another interest'
+        }
       }
 
     }
