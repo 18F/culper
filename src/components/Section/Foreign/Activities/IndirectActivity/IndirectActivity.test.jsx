@@ -25,14 +25,19 @@ describe('The IndirectActivity component', () => {
           InterestType: {
             value: 'Foo'
           },
-          InterestTypes: ['Yourself']
+          Firstname: {
+            value: 'John'
+          },
+          Lastname: {
+            value: 'Doe'
+          }
         },
         open: true
       }]
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Yourself - Foo')
+    expect(component.find('.interest strong').text()).toBe('Foo - John Doe')
   })
 
   it('Renders interest types summary information', () => {
@@ -40,14 +45,16 @@ describe('The IndirectActivity component', () => {
       HasInterests: 'Yes',
       List: [{
         IndirectInterest: {
-          InterestTypes: ['Yourself']
-        },
-        open: true
+          InterestType: {
+            value: 'Foo'
+          },
+          open: true
+        }
       }]
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Yourself')
+    expect(component.find('.interest strong').text()).toBe('Foo')
   })
 
   it('Renders with no', () => {
