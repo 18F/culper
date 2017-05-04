@@ -4,6 +4,7 @@ import { NameValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import Text from '../Text'
+import Checkbox from '../Checkbox'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 
@@ -182,15 +183,14 @@ export default class Name extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
           <div className="flags">
-            <div className="inline">
-              <input id="firstInitialOnly"
-                     name="firstInitialOnly"
-                     type="checkbox"
-                     value="firstInitial"
-                     checked={this.props.firstInitialOnly}
-                     onChange={this.handleChange} />
-              <label>{i18n.t(`${prefix}.label.initialOnly`)}</label>
-            </div>
+            <Checkbox name="firstInitialOnly"
+                      label={i18n.t(`${prefix}.label.initialOnly`)}
+                      toggle="false"
+                      value="firstInitial"
+                      checked={this.state.firstInitialOnly}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      />
           </div>
         </Field>
         <Field help="identification.name.middle.help"
@@ -211,24 +211,22 @@ export default class Name extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
           <div className="middle-options flags">
-            <div className="inline">
-              <input id="noMiddleName"
-                     name="noMiddleName"
-                     type="checkbox"
-                     value="noMiddleName"
-                     checked={this.props.noMiddleName}
-                     onChange={this.handleChange} />
-              <label>{i18n.t(`${prefix}.label.noMiddle`)}</label>
-            </div>
-            <div className="inline">
-              <input id="middleInitialOnly"
-                     name="middleInitialOnly"
-                     type="checkbox"
-                     value="middleInitial"
-                     checked={this.props.middleInitialOnly}
-                     onChange={this.handleChange} />
-              <label>{i18n.t(`${prefix}.label.initialOnly`)}</label>
-            </div>
+            <Checkbox name="noMiddleName"
+                      label={i18n.t(`${prefix}.label.noMiddle`)}
+                      toggle="false"
+                      value="noMiddleName"
+                      checked={this.state.noMiddleName}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      />
+            <Checkbox name="middleInitialOnly"
+                      label={i18n.t(`${prefix}.label.initialOnly`)}
+                      toggle="false"
+                      value="middleInitialOnly"
+                      checked={this.state.middleInitialOnly}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      />
           </div>
         </Field>
         <Field help="identification.name.last.help"
@@ -248,15 +246,14 @@ export default class Name extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
           <div className="flags">
-            <div className="inline">
-              <input id="lastInitialOnly"
-                     name="lastInitialOnly"
-                     type="checkbox"
-                     value="lastInitial"
-                     checked={this.props.lastInitialOnly}
-                     onChange={this.handleChange} />
-              <label>{i18n.t(`${prefix}.label.initialOnly`)}</label>
-            </div>
+            <Checkbox name="lastInitialOnly"
+                      label={i18n.t(`${prefix}.label.initialOnly`)}
+                      toggle="false"
+                      value="lastInitial"
+                      checked={this.state.lastInitialOnly}
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      />
           </div>
         </Field>
         <Field help="identification.name.suffix.help"

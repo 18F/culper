@@ -21,6 +21,10 @@
     display: inline-block;
     vertical-align: top;
   }
+
+  .flags > .block {
+    margin-right: -20px;
+  }
 }
 
 .datecontrol.day-hidden {
