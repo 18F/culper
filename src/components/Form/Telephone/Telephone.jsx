@@ -392,7 +392,7 @@ export default class Telephone extends ValidationElement {
               tabNext={() => { this.props.tab(this.refs.int_extension.refs.text.refs.input) }}
               />
         <span className="separator pound">#</span>
-        <Text name="domestic_extension"
+        <Text name="int_extension"
               ref="int_extension"
               className="number six"
               placeholder="000000"
