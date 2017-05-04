@@ -40,10 +40,21 @@ export default class Generic extends ValidationElement {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.value === this.state.value) {
-      return
+    if (nextProps.focus !== this.state.focus) {
+      this.setState({ focus: nextProps.focus })
     }
-    this.setState({ value: nextProps.value })
+
+    if (nextProps.error !== this.state.error) {
+      this.setState({ error: nextProps.error })
+    }
+
+    if (nextProps.valid !== this.state.valid) {
+      this.setState({ valid: nextProps.valid })
+    }
+
+    if (nextProps.value !== this.state.value) {
+      this.setState({ value: nextProps.value })
+    }
   }
 
   /**
@@ -157,7 +168,7 @@ export default class Generic extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    return `${this.props.className || ''} ${!this.props.disabled && (this.state.error || this.props.error) ? 'usa-input-error' : ''}`.trim()
+    return `${this.props.className || ''} ${!this.props.disabled && this.state.error ? 'usa-input-error' : ''}`.trim()
   }
 
   /**
@@ -168,7 +179,7 @@ export default class Generic extends ValidationElement {
       return 'disabled'
     }
 
-    return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
+    return `${this.state.error ? 'usa-input-error-label' : ''}`.trim()
   }
 
   /**
@@ -179,7 +190,7 @@ export default class Generic extends ValidationElement {
       return null
     }
 
-    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid || this.props.valid ? 'usa-input-success' : ''}`.trim()
+    return `${this.state.focus ? 'usa-input-focus' : ''} ${this.state.valid ? 'usa-input-success' : ''}`.trim()
   }
 
   render () {

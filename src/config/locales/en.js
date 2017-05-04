@@ -481,6 +481,30 @@ const en = {
         note: ''
       }
     },
+    to: {
+      datecontrol: {
+        max: {
+          title: 'Invalid "to" date provided',
+          message: 'The **to** date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid "from" date provided',
+          message: 'The **to** date value must be on or after your date of birth'
+        }
+      }
+    },
+    from: {
+      datecontrol: {
+        max: {
+          title: 'Invalid date provided',
+          message: 'The **from** date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid date provided',
+          message: 'The **from** date value must be on or after your date of birth'
+        }
+      }
+    },
     order: {
       datecontrol: {
         max: {
