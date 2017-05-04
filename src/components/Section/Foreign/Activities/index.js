@@ -1,2 +1,3 @@
 import DirectActivity from './DirectActivity/DirectActivity'
-export { DirectActivity }
+import IndirectActivity from './IndirectActivity/IndirectActivity'
+export { DirectActivity, IndirectActivity }

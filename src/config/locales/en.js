@@ -4703,8 +4703,9 @@ const en = {
       contacts: 'Foreign Contacts',
       passport: 'U.S. passport information',
       activities: {
+        activity: 'Foreign activities',
         direct: 'Direct control',
-        indirect: 'Indirect conttrol',
+        indirect: 'Indirect control',
         realestate: 'Real estate purchase',
         benefits: 'Foreign benefits',
         support: 'Foreign national support'
@@ -4885,6 +4886,127 @@ const en = {
             heading: {
               hasCoOwners: 'Are there any co-owners of this foreign financial interest?',
               hasCoOwnersAppend: 'Are there any additional co-owners of this foreign financial interest?'
+            }
+          }
+        }
+      },
+      indirect: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?'
+        },
+        collection: {
+          summary: 'Provide your indirect financial interests here',
+          description: 'Summary of financial interests',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendMessage: 'If yes use the button below to add another interest.',
+          appendLabel: 'Add another interest',
+          itemType: 'Interest'
+        },
+        interest: {
+          para: {
+            checkAll: 'Check all that apply',
+            howAcquired: 'Such as purchase, gift, etc.'
+          },
+          heading: {
+            interestTypes: 'Specify',
+            interestType: 'Provide the type of financial interest',
+            name: 'Provide the name of the individual who controls this financial interest on your behalf',
+            relationship: 'Provide this individual’s relationship to you',
+            acquired: 'Provide the date the financial interest was acquired',
+            howAcquired: 'Provide details regarding how it was acquired',
+            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+            sold: 'Provide the date interest was sold, lost, or otherwise disposed of',
+            explanation: 'Provide explanation if interest was sold, lost, or otherwise disposed of'
+          },
+          label: {
+            firstname: 'First name',
+            lastname: 'Last name',
+            soldNotApplicable: 'Not applicable',
+            or: 'or',
+            costEstimated: 'Estimated',
+            valueEstimated: 'Estimated',
+            interestTypes: {
+              yourself: 'Yourself',
+              spouse: 'Spouse or legally recognized civil union/domestic partner',
+              cohabitant: 'Cohabitant',
+              dependentChildren: 'Dependent children'
+            }
+          },
+          help: {
+            interestTypes: {
+              title: 'Need help with the interest type field?',
+              message: 'Check all that apply',
+              note: ''
+            },
+            interestType: {
+              title: 'Need help with the direct interest type?',
+              message: 'Provide the type of financial interest',
+              note: ''
+            },
+            name: {
+              title: 'Need help with the name of the person?',
+              message: 'Provide the name of the individual who controls this financial interest on your behalf',
+              note: ''
+            },
+            acquired: {
+              title: 'Need help with when the interest was acquired?',
+              message: 'Provide the date acquired',
+              note: ''
+            },
+            howAcquired: {
+              title: 'Need help with how the interest was acquired?',
+              message: 'Provide how the financial interest was acquired',
+              note: ''
+            },
+            cost: {
+              title: 'Need help with the cost?',
+              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            },
+            sold: {
+              title: 'Need help with date reqlinquished?',
+              message: 'Provide the date control or ownership was relinquished',
+              note: ''
+            },
+            explanation: {
+              title: 'Need help with this field?',
+              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            }
+          },
+          coOwner: {
+            heading: {
+              name: 'Provide full name of co-owner',
+              address: 'Provide co-owner current address',
+              countries: 'Provide co-owner’s country(ies) of citizenship',
+              relationshipNature: 'Provide the nature of your relationship with the co-owner'
+            },
+            label: {
+              address: 'This address is'
+            },
+            help: {
+              countries: {
+                title: 'Need help with co-owners countries of citizenship?',
+                message: 'Provide the co-owners countries of citizenship',
+                note: ''
+              },
+              relationshipNature: {
+                title: 'Need help with the nature of the relationship?',
+                message: 'Provide the nature of your relationship with the co-owner',
+                note: ''
+              }
+            }
+          },
+          coOwners: {
+            heading: {
+              hasCoOwners: 'Are there any co-owners of the foreign financial interest controlled on your behalf?',
+              hasCoOwnersAppend: 'Are there any additional co-owners for this foreign financial interest controlled on your behalf to report?'
             }
           }
         }
