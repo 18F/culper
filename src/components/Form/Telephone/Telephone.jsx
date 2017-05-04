@@ -201,6 +201,7 @@ export default class Telephone extends ValidationElement {
       <div className="numbers">
         <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.dsn.label')}</label>
         <Text name="dsn_first"
+              ref="dsn_first"
               className="number three"
               placeholder="000"
               pattern="\d{3}"
@@ -216,9 +217,11 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabNext={() => { this.props.tab(this.refs.dsn_second.refs.text.refs.input) }}
               />
         <span className="separator">-</span>
         <Text name="dsn_second"
+              ref="dsn_second"
               className="number four"
               placeholder="0000"
               pattern="\d{4}"
@@ -235,6 +238,7 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabBack={() => { this.props.tab(this.refs.dsn_first.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
@@ -255,6 +259,7 @@ export default class Telephone extends ValidationElement {
 
         <span className="separator">(</span>
         <Text name="domestic_first"
+              ref="domestic_first"
               className="number three"
               placeholder="000"
               label=""
@@ -269,9 +274,11 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabNext={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
               />
         <span className="separator">)</span>
         <Text name="domestic_second"
+              ref="domestic_second"
               className="number three"
               placeholder="000"
               label=""
@@ -286,9 +293,12 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabBack={() => { this.props.tab(this.refs.domestic_first.refs.text.refs.input) }}
+              tabNext={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }}
               />
         <span className="separator">-</span>
         <Text name="domestic_third"
+              ref="domestic_third"
               className="number four"
               placeholder="0000"
               label=""
@@ -304,9 +314,12 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabBack={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
+              tabNext={() => { this.props.tab(this.refs.domestic_extension.refs.text.refs.input) }}
               />
         <span className="separator pound">#</span>
         <Text name="domestic_extension"
+              ref="domestic_extension"
               className="number six"
               placeholder="000000"
               label={i18n.t('telephone.domestic.extension.label')}
@@ -321,6 +334,7 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabBack={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
@@ -340,6 +354,7 @@ export default class Telephone extends ValidationElement {
         <label className={this.state.noNumber ? 'disabled' : ''}>{i18n.t('telephone.international.label')}</label>
         <span className="separator">+</span>
         <Text name="int_first"
+              ref="int_first"
               className="number three"
               placeholder="000"
               label=""
@@ -354,9 +369,11 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabNext={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
               />
         <span className="separator">-</span>
         <Text name="int_second"
+              ref="int_second"
               className="number ten"
               placeholder="0000000000"
               label=""
@@ -371,9 +388,12 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabBack={() => { this.props.tab(this.refs.int_first.refs.text.refs.input) }}
+              tabNext={() => { this.props.tab(this.refs.int_extension.refs.text.refs.input) }}
               />
         <span className="separator pound">#</span>
         <Text name="domestic_extension"
+              ref="int_extension"
               className="number six"
               placeholder="000000"
               label={i18n.t('telephone.international.extension.label')}
@@ -388,6 +408,7 @@ export default class Telephone extends ValidationElement {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onValidate={this.handleValidation}
+              tabBack={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
         <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
@@ -513,4 +534,8 @@ export default class Telephone extends ValidationElement {
       </div>
     )
   }
+}
+
+Telephone.defaultProps = {
+  tab: (input) => { input.focus() }
 }
