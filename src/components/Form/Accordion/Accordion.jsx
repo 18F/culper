@@ -200,8 +200,9 @@ export default class Accordion extends ValidationElement {
   /**
    * Update an item properties based on a child component.
    */
-  updateChild (item, index, prop, value) {
+  updateChild (item, prop, value) {
     let items = [...this.props.items]
+    const index = items.findIndex(x => x.uuid === item.uuid)
     items[index][prop] = value
     this.update(items)
   }
@@ -220,7 +221,7 @@ export default class Accordion extends ValidationElement {
             const propName = child.props.name
                   ? child.props.name
                   : value && value.name ? value.name : 'Extra'
-            this.updateChild(item, index, propName, value)
+            this.updateChild(item, propName, value)
           }
           childProps.onValidate = this.props.onValidate
         }
