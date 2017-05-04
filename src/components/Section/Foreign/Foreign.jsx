@@ -9,7 +9,7 @@ import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
 import { DirectActivity } from './Activities'
-import { Advice, Family, Employment, Ventures } from './Business'
+import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
   constructor (props) {
@@ -26,6 +26,7 @@ class Foreign extends ValidationElement {
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateVentures = this.updateVentures.bind(this)
     this.updateDirectActivity = this.updateDirectActivity.bind(this)
+    this.updateConferences = this.updateConferences.bind(this)
   }
 
   componentDidMount () {
@@ -58,10 +59,20 @@ class Foreign extends ValidationElement {
 
     let cstatus = 'neutral'
     if (this.hasStatus('passport', status, true) &&
-        this.hasStatus('passport', status, true)) {
+        this.hasStatus('contacts', status, true) &&
+        this.hasStatus('advice', status, true) &&
+        this.hasStatus('family', status, true) &&
+        this.hasStatus('employment', status, true) &&
+        this.hasStatus('ventures', status, true) &&
+        this.hasStatus('conferences', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('passport', status, false) ||
-               this.hasStatus('contacts', status, false)) {
+               this.hasStatus('contacts', status, false) ||
+               this.hasStatus('advice', status, false) ||
+               this.hasStatus('family', status, false) ||
+               this.hasStatus('employment', status, false) ||
+               this.hasStatus('ventures', status, false) ||
+               this.hasStatus('conferences', status, false)) {
       cstatus = 'incomplete'
     }
     let completed = {
@@ -97,6 +108,10 @@ class Foreign extends ValidationElement {
 
   updateDirectActivity (values) {
     this.onUpdate('DirectActivity', values)
+  }
+
+  updateConferences (values) {
+    this.onUpdate('Conferences', values)
   }
 
   /**
@@ -264,6 +279,18 @@ class Foreign extends ValidationElement {
                       />
           </SectionView>
 
+          <SectionView name="business/conferences"
+                       back="foreign/business/ventures"
+                       backLabel={i18n.t('foreign.destination.business.ventures')}
+                       next="foreign/business/contact"
+                       nextLabel={i18n.t('foreign.destination.business.contact')}>
+            <Conferences name="Conferences"
+                         {...this.props.Conferences}
+                         onUpdate={this.updateConferences}
+                         onValidate={this.handleValidation}
+                         />
+          </SectionView>
+
           <SectionView name="travel"
                        back="foreign/business/voting"
                        backLabel={i18n.t('foreign.destination.business.voting')}
@@ -305,6 +332,7 @@ function mapStateToProps (state) {
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
     Ventures: foreign.Ventures || {},
+    Conferences: foreign.Conferences || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names

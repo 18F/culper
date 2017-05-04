@@ -15,7 +15,7 @@ describe('The foreign business employment component', () => {
     expect(component.find('.accordion').length).toBe(0)
   })
 
-  it('display nothing when "no" is clicked', () => {
+  it('display content when "yes" is clicked', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-employment',
