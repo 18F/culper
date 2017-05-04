@@ -8,6 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
+import { DirectActivity } from './Activities'
 import { Advice, Family, Employment, Ventures } from './Business'
 
 class Foreign extends ValidationElement {
@@ -24,6 +25,7 @@ class Foreign extends ValidationElement {
     this.updateFamily = this.updateFamily.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateVentures = this.updateVentures.bind(this)
+    this.updateDirectActivity = this.updateDirectActivity.bind(this)
   }
 
   componentDidMount () {
@@ -91,6 +93,10 @@ class Foreign extends ValidationElement {
 
   updateVentures (values) {
     this.onUpdate('Ventures', values)
+  }
+
+  updateDirectActivity (values) {
+    this.onUpdate('DirectActivity', values)
   }
 
   /**
@@ -175,11 +181,27 @@ class Foreign extends ValidationElement {
                       />
           </SectionView>
 
-          <SectionView name="activites"
+          <SectionView name="activities"
                        back="foreign/contacts"
                        backLabel={i18n.t('foreign.destination.contacts')}
                        next="foreign/business"
                        nextLabel={i18n.t('foreign.destination.business')}>
+            <DirectActivity name="directActivity"
+                    {...this.props.DirectActivity}
+                    onUpdate={this.updateDirectActivity}
+                    onValidate={this.handleValidation}
+                    />
+          </SectionView>
+          <SectionView name="activities/direct"
+                       back="foreign/contacts"
+                       backLabel={i18n.t('foreign.destination.contacts')}
+                       next="foreign/business"
+                       nextLabel={i18n.t('foreign.destination.business')}>
+            <DirectActivity name="directActivity"
+                    {...this.props.DirectActivity}
+                    onUpdate={this.updateDirectActivity}
+                    onValidate={this.handleValidation}
+                    />
           </SectionView>
 
           <SectionView name="business"
@@ -278,6 +300,7 @@ function mapStateToProps (state) {
     Foreign: foreign,
     Passport: foreign.Passport || {},
     Contacts: foreign.Contacts || {},
+    DirectActivity: foreign.DirectActivity || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
