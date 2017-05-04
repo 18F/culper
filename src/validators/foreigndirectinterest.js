@@ -19,17 +19,49 @@ export default class ForeignDirectInterestValidator {
     return !!(this.interestTypes && this.interestTypes.length)
   }
 
+  validInterestType () {
+    return validGenericTextfield(this.interestType)
+  }
+
+  validAcquired () {
+    return validGenericMonthYear(this.acquired)
+  }
+
+  validHowAcquired () {
+    return validGenericTextfield(this.howAcquired)
+  }
+
+  validCost () {
+    return validGenericTextfield(this.cost)
+  }
+
+  validValue () {
+    return validGenericTextfield(this.value)
+  }
+
+  validRelinquishedNotApplicable () {
+    return validNotApplicable(this.relinquishedNotApplicable, () => {
+      return validGenericMonthYear(this.relinquished)
+    })
+  }
+
+  validCoOwners () {
+    return new ForeignCoOwnersValidator(null, this.coOwners).isValid()
+  }
+
+  validExplanation () {
+    return validGenericTextfield(this.explanation)
+  }
+
   isValid () {
     return this.validInterestTypes() &&
-      validGenericTextfield(this.interestType) &&
-      validGenericMonthYear(this.acquired) &&
-      validGenericTextfield(this.howAcquired) &&
-      validGenericTextfield(this.cost) &&
-      validGenericTextfield(this.value) &&
-      validNotApplicable(this.relinquishedNotApplicable, () => {
-        return validGenericMonthYear(this.relinquished)
-      }) &&
-      validGenericTextfield(this.explanation) &&
-      new ForeignCoOwnersValidator(null, this.coOwners).isValid()
+      this.validInterestType() &&
+      this.validAcquired() &&
+      this.validHowAcquired() &&
+      this.validCost() &&
+      this.validValue() &&
+      this.validRelinquishedNotApplicable() &&
+      this.validCoOwners() &&
+      this.validExplanation()
   }
 }
