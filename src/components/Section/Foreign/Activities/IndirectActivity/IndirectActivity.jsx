@@ -87,7 +87,7 @@ export default class IndirectActivity extends ValidationElement {
     return (
       <div className="indirect">
         <Branch name="has_interests"
-          label={<h3>{i18n.t('foreign.activities.indirect.heading.title')}</h3>}
+          label={i18n.t('foreign.activities.indirect.heading.title')}
           labelSize="h3"
           value={this.props.HasInterests}
           onValidate={this.handleValidation}
