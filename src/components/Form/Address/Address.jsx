@@ -118,7 +118,14 @@ export default class Address extends ValidationElement {
     if (!event) {
       return
     }
+
     if (!this.handleAsyncValidation) {
+      return
+    }
+
+    // Currently USPS does not have the capability to
+    // validate internation addresses.
+    if (this.state.addressType === 'International') {
       return
     }
 

@@ -66,7 +66,7 @@ describe('The Name component', () => {
 
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
-      component.find('input#' + ex.part).simulate('change')
+      component.find({ name: ex.part }).simulate('change')
       expect(component.find('.usa-input-error-label').length === component.find('span').length).toEqual(ex.valid)
     })
   })

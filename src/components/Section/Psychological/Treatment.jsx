@@ -42,7 +42,7 @@ export default class Treatment extends ValidationElement {
                adjustFor="labels">
           <Text name="Name"
                 label={i18n.t(`psychological.${prefix}.label.name`)}
-                className="name"
+                className="treatment-name"
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onValidate={this.props.onValidate}

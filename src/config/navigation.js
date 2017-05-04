@@ -90,7 +90,7 @@ const navigation = [
         url: 'activities',
         subsections: [
           { name: 'Direct control', url: 'direct' },
-          { hidden: true, name: 'Indirect conttrol', url: 'indirect' },
+          { name: 'Indirect control', url: 'indirect' },
           { hidden: true, name: 'Real estate purchase', url: 'realestate' },
           { hidden: true, name: 'Foreign benefits', url: 'benefits' },
           { hidden: true, name: 'Foreign national support', url: 'support' }
