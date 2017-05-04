@@ -17,7 +17,7 @@ export default class CoOwner extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         Name: this.props.Name,
-        CurrentAddress: this.props.CurrentAddress,
+        Address: this.props.Address,
         Countries: this.props.Countries,
         RelationshipNature: this.props.RelationshipNature,
         [field]: values

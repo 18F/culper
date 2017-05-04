@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { DirectActivity } from './Activities'
+import { DirectActivity, IndirectActivity } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
@@ -26,6 +26,7 @@ class Foreign extends ValidationElement {
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateVentures = this.updateVentures.bind(this)
     this.updateDirectActivity = this.updateDirectActivity.bind(this)
+    this.updateIndirectActivity = this.updateIndirectActivity.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
   }
 
@@ -61,6 +62,7 @@ class Foreign extends ValidationElement {
     if (this.hasStatus('passport', status, true) &&
         this.hasStatus('contacts', status, true) &&
         this.hasStatus('directActivity', status, true) &&
+        this.hasStatus('indirectActivity', status, true) &&
         this.hasStatus('advice', status, true) &&
         this.hasStatus('family', status, true) &&
         this.hasStatus('employment', status, true) &&
@@ -70,6 +72,7 @@ class Foreign extends ValidationElement {
     } else if (this.hasStatus('passport', status, false) ||
                this.hasStatus('contacts', status, false) ||
                this.hasStatus('directActivity', status, false) ||
+               this.hasStatus('indirectActivity', status, false) ||
                this.hasStatus('advice', status, false) ||
                this.hasStatus('family', status, false) ||
                this.hasStatus('employment', status, false) ||
@@ -110,6 +113,10 @@ class Foreign extends ValidationElement {
 
   updateDirectActivity (values) {
     this.onUpdate('DirectActivity', values)
+  }
+
+  updateIndirectActivity (values) {
+    this.onUpdate('IndirectActivity', values)
   }
 
   updateConferences (values) {
@@ -190,7 +197,7 @@ class Foreign extends ValidationElement {
                        back="foreign/passport"
                        backLabel={i18n.t('foreign.destination.passport')}
                        next="foreign/activities"
-                       nextLabel={i18n.t('foreign.destination.activities')}>
+                       nextLabel={i18n.t('foreign.destination.activities.activity')}>
             <Contacts name="contacts"
                       {...this.props.Contacts}
                       onUpdate={this.onUpdate.bind(this, 'Contacts')}
@@ -201,8 +208,8 @@ class Foreign extends ValidationElement {
           <SectionView name="activities"
                        back="foreign/contacts"
                        backLabel={i18n.t('foreign.destination.contacts')}
-                       next="foreign/business"
-                       nextLabel={i18n.t('foreign.destination.business')}>
+                       next="foreign/activities/indirect"
+                       nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                     {...this.props.DirectActivity}
                     onUpdate={this.updateDirectActivity}
@@ -212,11 +219,23 @@ class Foreign extends ValidationElement {
           <SectionView name="activities/direct"
                        back="foreign/contacts"
                        backLabel={i18n.t('foreign.destination.contacts')}
-                       next="foreign/business"
-                       nextLabel={i18n.t('foreign.destination.business')}>
+                       next="foreign/activities/indirect"
+                       nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                     {...this.props.DirectActivity}
                     onUpdate={this.updateDirectActivity}
+                    onValidate={this.handleValidation}
+                    />
+          </SectionView>
+
+          <SectionView name="activities/indirect"
+                       back="foreign/activities/direct"
+                       backLabel={i18n.t('foreign.destination.activities.direct')}
+                       next="foreign/activities/realestate"
+                       nextLabel={i18n.t('foreign.destination.activities.realestate')}>
+            <IndirectActivity name="indirectActivity"
+                    {...this.props.IndirectActivity}
+                    onUpdate={this.updateIndirectActivity}
                     onValidate={this.handleValidation}
                     />
           </SectionView>
@@ -330,6 +349,7 @@ function mapStateToProps (state) {
     Passport: foreign.Passport || {},
     Contacts: foreign.Contacts || {},
     DirectActivity: foreign.DirectActivity || {},
+    IndirectActivity: foreign.IndirectActivity || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
