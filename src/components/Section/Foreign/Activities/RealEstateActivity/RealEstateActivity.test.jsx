@@ -22,39 +22,81 @@ describe('The RealEstateActivity component', () => {
       HasInterests: 'Yes',
       List: [{
         RealEstateInterest: {
-          InterestType: {
-            value: 'Foo'
-          },
-          Firstname: {
-            value: 'John'
-          },
-          Lastname: {
-            value: 'Doe'
-          }
+          InterestTypes: ['Yourself']
         },
         open: true
       }]
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Foo - John Doe')
+    expect(component.find('.interest strong').text()).toBe('Yourself')
   })
 
   it('Renders interest types summary information', () => {
-    const expected = {
-      HasInterests: 'Yes',
-      List: [{
-        RealEstateInterest: {
-          InterestType: {
-            value: 'Foo'
-          },
-          open: true
-        }
-      }]
-    }
-    const component = mount(<RealEstateActivity {...expected} />)
-    expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Foo')
+    const tests = [
+      {
+        props: {
+          HasInterests: 'Yes',
+          List: [{
+            RealEstateInterest: {
+              InterestTypes: ['Yourself'],
+              Address: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
+              open: true
+            }
+          }]
+        },
+        expected: 'Yourself - 1234 Some Rd, Arlington, Virginia 22202'
+      },
+      {
+        props: {
+          HasInterests: 'Yes',
+          List: [{
+            RealEstateInterest: {
+              InterestTypes: ['Yourself'],
+              Address: {
+                addressType: 'International',
+                address: '1 Rd',
+                city: 'Munich',
+                country: 'Germany'
+              },
+              open: true
+            }
+          }]
+        },
+        expected: 'Yourself - 1 Rd, Munich, Germany'
+      },
+      {
+        props: {
+          HasInterests: 'Yes',
+          List: [{
+            RealEstateInterest: {
+              InterestTypes: ['Yourself'],
+              Address: {
+                addressType: 'United States',
+                address: '1 Rd',
+                city: 'APO',
+                state: 'AA',
+                zipcode: '22222'
+              },
+              open: true
+            }
+          }]
+        },
+        expected: 'Yourself - 1 Rd, APO, AA 22222'
+      }
+    ]
+
+    tests.forEach(test => {
+      const component = mount(<RealEstateActivity {...test.props} />)
+      expect(component.find('.accordion').length).toBe(1)
+      expect(component.find('.interest strong').text()).toBe(test.expected)
+    })
   })
 
   it('Renders with no', () => {

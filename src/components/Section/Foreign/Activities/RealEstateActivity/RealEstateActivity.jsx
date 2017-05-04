@@ -58,14 +58,12 @@ export default class RealEstateActivity extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).RealEstateInterest || {}
-    const firstname = (o.Firstname || {}).value ? o.Firstname.value : ''
-    const lastname = (o.Lastname || {}).value ? o.Lastname.value : ''
-    const name = `${firstname} ${lastname}`.trim()
-    const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
-    const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
+    const who = (o.InterestTypes || []).join(', ')
+    const acquired = (o.Acquired || {}).date ? `${o.Acquired.month}/${o.Acquired.year}` : ''
+    const address = addressSummary(o)
     const type = i18n.t('foreign.activities.realestate.collection.itemType')
 
-    const summary = [interestType, name].reduce((prev, next) => {
+    const summary = [who, address].reduce((prev, next) => {
       if (prev && next) {
         return prev + ' - ' + next
       }
@@ -78,7 +76,7 @@ export default class RealEstateActivity extends ValidationElement {
         <span className="interest">
           <strong>{summary || i18n.t('foreign.activities.realestate.collection.summary')}</strong>
         </span>
-        <span className="cost">{cost}</span>
+        <span className="acquired">{acquired}</span>
       </span>
     )
   }
@@ -120,4 +118,25 @@ RealEstateActivity.defaultProps = {
   HasInterests: '',
   List: [],
   defaultState: true
+}
+
+export const addressSummary = (item) => {
+  let address = ''
+  let address1 = ''
+  let address2 = ''
+  if (item.Address) {
+    address1 += `${item.Address.address || ''}`.trim()
+    if (item.Address.addressType === 'United States' || item.Address.addressType === 'APOFPO') {
+      address2 = `${item.Address.city || ''}, ${item.Address.state || ''} ${item.Address.zipcode || ''}`.trim()
+    } else if (item.Address.addressType === 'International') {
+      address2 = `${item.Address.city || ''}, ${item.Address.country || ''}`.trim()
+    }
+  }
+
+  if (address1.length === 0 || address2.length === 1) {
+    address = ''
+  } else {
+    address = `${address1}, ${address2}`.trim()
+  }
+  return address
 }
