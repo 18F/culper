@@ -7,6 +7,10 @@ import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
 export const CustomSummary = (validation, summary, more, item, index, initial, callback, toggle, openText, remove, byline) => {
+  if (item.type === 'Gap') {
+    return null
+  }
+
   const target = item.Item || {}
   const errors = item.Item && !validation(target)
 

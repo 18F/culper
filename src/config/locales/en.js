@@ -481,6 +481,30 @@ const en = {
         note: ''
       }
     },
+    to: {
+      datecontrol: {
+        max: {
+          title: 'Invalid "to" date provided',
+          message: 'The **to** date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid "from" date provided',
+          message: 'The **to** date value must be on or after your date of birth'
+        }
+      }
+    },
+    from: {
+      datecontrol: {
+        max: {
+          title: 'Invalid date provided',
+          message: 'The **from** date value cannot exceed todays date'
+        },
+        min: {
+          title: 'Invalid date provided',
+          message: 'The **from** date value must be on or after your date of birth'
+        }
+      }
+    },
     order: {
       datecontrol: {
         max: {
@@ -5807,6 +5831,10 @@ const en = {
         incompetent: {
           title: 'Need help with this question?',
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
+        },
+        disposition: {
+          title: 'Need help with the final disposition?',
+          message: 'Provide the court ruling regarding the court\'s decision.'
         }
       },
       collection: {

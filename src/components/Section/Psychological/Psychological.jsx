@@ -188,8 +188,10 @@ class Psychological extends ValidationElement {
             />
           </SectionView>
           <SectionView name="review"
-            back="psychological/conditions"
-            backLabel={ i18n.t('psychological.destination.existingConditions') }>
+                       title="Let&rsquo;s make sure everything looks right"
+                       showTop="true"
+                       back="psychological/conditions"
+                       backLabel={ i18n.t('psychological.destination.existingConditions') }>
 
             <Competence name="Competence"
               {...this.props.Competence}
@@ -219,15 +221,17 @@ class Psychological extends ValidationElement {
               onValidate={this.onValidate}
               onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
             />
-            <hr />
             <Show when={this.props.ShowExistingConditions}>
-              <ExistingConditions name="ExistingConditions"
-                {...this.props.ExistingConditions}
-                ApplicantBirthDate={this.props.ApplicantBirthDate}
-                defaultState={false}
-                onValidate={this.onValidate}
-                onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
-              />
+              <div>
+                <hr />
+                <ExistingConditions name="ExistingConditions"
+                  {...this.props.ExistingConditions}
+                  ApplicantBirthDate={this.props.ApplicantBirthDate}
+                  defaultState={false}
+                  onValidate={this.onValidate}
+                  onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
+                />
+              </div>
             </Show>
           </SectionView>
 
