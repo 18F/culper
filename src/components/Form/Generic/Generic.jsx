@@ -108,8 +108,9 @@ export default class Generic extends ValidationElement {
     status = true
 
     if (this.state.value) {
-      if (status && this.state.value && this.state.value.length > 0) {
-        status = status && (this.state.value.length >= parseInt(this.props.minlength || 0) && this.state.value.length <= parseInt(this.props.maxlength || 256))
+      const val = this.state.value.trim()
+      if (status && val.length > 0) {
+        status = status && (val.length >= parseInt(this.props.minlength || 0) && val.length <= parseInt(this.props.maxlength || 256))
         if (!status) {
           errorCode = 'length'
         }
@@ -119,7 +120,7 @@ export default class Generic extends ValidationElement {
       if (status && this.props.pattern && this.props.pattern.length > 0) {
         try {
           let re = new RegExp(this.props.pattern)
-          status = status && re.test(this.state.value)
+          status = status && re.test(val)
           if (!status) {
             errorCode = 'pattern'
           }
