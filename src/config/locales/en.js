@@ -5140,6 +5140,36 @@ const en = {
             }
           }
         }
+      },
+      benefit: {
+        heading: {
+          interestTypes: 'Specify',
+          benefitType: 'Provide the type of benefit',
+          benefitFrequency: 'Provide the frequency of the benefit',
+          received: 'Provide the date the benefit was received',
+          country: 'Provide the name of the country providing the benefit',
+          value: 'Provide the total value (in U.S. dollars) of the benefit received.'
+        },
+        label: {
+          interestTypes: {
+            yourself: 'Yourself',
+            spouse: 'Spouse or legally recognized civil union/domestic partner',
+            cohabitant: 'Cohabitant',
+            dependentChildren: 'Dependent children'
+          },
+          benefitTypes: {
+            educational: 'Educational',
+            medical: 'Medical',
+            retirement: 'Retirement social welfare',
+            other: 'Other such benefit (Provide explanation)'
+          },
+          benefitFrequency: {
+            oneTime: 'Onetime benefit',
+            future: 'Future benefit',
+            continuing: 'Continuing benefit',
+            other: 'Other (Provide explanation)'
+          }
+        }
       }
     },
     contacts: {

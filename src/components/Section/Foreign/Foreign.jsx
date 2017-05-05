@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { DirectActivity, IndirectActivity, RealEstateActivity } from './Activities'
+import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
@@ -28,6 +28,7 @@ class Foreign extends ValidationElement {
     this.updateDirectActivity = this.updateDirectActivity.bind(this)
     this.updateIndirectActivity = this.updateIndirectActivity.bind(this)
     this.updateRealEstateActivity = this.updateRealEstateActivity.bind(this)
+    this.updateBenefitActivity = this.updateBenefitActivity.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
   }
 
@@ -124,6 +125,10 @@ class Foreign extends ValidationElement {
 
   updateRealEstateActivity (values) {
     this.onUpdate('RealEstateActivity', values)
+  }
+
+  updateBenefitActivity (values) {
+    this.onUpdate('BenefitActivity', values)
   }
 
   updateConferences (values) {
@@ -259,6 +264,17 @@ class Foreign extends ValidationElement {
                     />
           </SectionView>
 
+          <SectionView name="activities/benefits"
+                       back="foreign/activities/indirect"
+                       backLabel={i18n.t('foreign.destination.activities.indirect')}
+                       next="foreign/activities/support"
+                       nextLabel={i18n.t('foreign.destination.activities.support')}>
+            <BenefitActivity name="benefitActivity"
+                    {...this.props.BenefitActivity}
+                    onUpdate={this.updateBenefitActivity}
+                    onValidate={this.handleValidation}
+                    />
+          </SectionView>
           <SectionView name="business"
                        back="foreign/activities/support"
                        backLabel={i18n.t('foreign.destination.activities.support')}
@@ -370,6 +386,7 @@ function mapStateToProps (state) {
     DirectActivity: foreign.DirectActivity || {},
     IndirectActivity: foreign.IndirectActivity || {},
     RealEstateActivity: foreign.RealEstateActivity || {},
+    BenefitActivity: foreign.BenefitActivity || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
