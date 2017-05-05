@@ -5143,12 +5143,16 @@ const en = {
       },
       benefit: {
         heading: {
+          title: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
           interestTypes: 'Specify',
           benefitType: 'Provide the type of benefit',
           benefitFrequency: 'Provide the frequency of the benefit',
           received: 'Provide the date the benefit was received',
           country: 'Provide the name of the country providing the benefit',
           value: 'Provide the total value (in U.S. dollars) of the benefit received.'
+        },
+        para: {
+          checkAll: 'Check all that apply'
         },
         label: {
           interestTypes: {
@@ -5169,6 +5173,14 @@ const en = {
             continuing: 'Continuing benefit',
             other: 'Other (Provide explanation)'
           }
+        },
+        collection: {
+          summary: 'Provide your financial benefits here',
+          description: 'Summary of financial benefits',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
+          appendMessage: 'If yes use the button below to add another benefit.',
+          appendLabel: 'Add another benefit',
+          itemType: 'Benefit'
         },
         oneTime: {
           heading: {

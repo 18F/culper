@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
 import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
-//import { ForeignRealEstateActivityValidator } from '../../../../../validators'
+import { ForeignBenefitActivityValidator } from '../../../../../validators'
 import Benefit from './Benefit'
 
 export default class BenefitActivity extends ValidationElement {
@@ -37,8 +37,7 @@ export default class BenefitActivity extends ValidationElement {
   }
 
   isValid () {
-    return true
-    //return new ForeignRealEstateActivityValidator(null, this.props).isValid()
+    return new ForeignBenefitActivityValidator(null, this.props).isValid()
   }
 
   handleValidation (event, status, error) {
@@ -59,26 +58,7 @@ export default class BenefitActivity extends ValidationElement {
 
   summary (item, index) {
     const o = (item || {}).Benefit || {}
-    const who = (o.InterestTypes || []).join(', ')
-    const acquired = (o.Acquired || {}).date ? `${o.Acquired.month}/${o.Acquired.year}` : ''
-    const type = i18n.t('foreign.activities.benefit.collection.itemType')
-
-    const summary = [who].reduce((prev, next) => {
-      if (prev && next) {
-        return prev + ' - ' + next
-      }
-      return prev
-    })
-
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="interest">
-          <strong>{summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
-        </span>
-        <span className="acquired">{acquired}</span>
-      </span>
-    )
+    return benefitSummary(o, index)
   }
 
   render () {
@@ -119,4 +99,45 @@ BenefitActivity.defaultProps = {
   HasBenefits: '',
   List: [],
   defaultState: true
+}
+
+export const benefitSummary = (item, index) => {
+  const benefit = {}
+  const who = (item.InterestTypes || []).join(', ')
+  const type = i18n.t('foreign.activities.benefit.collection.itemType')
+  let b = null
+  switch (item.BenefitFrequency) {
+    case 'OneTime':
+      b = (item.OneTimeBenefit || {})
+      benefit.Country = (b.Country || {}).value
+      benefit.Date = (b.Received || {}).date ? `${b.Received.month}/${b.Received.year}` : ''
+      break
+    case 'Future':
+      b = (item.FutureBenefit || {})
+      benefit.Country = (b.Country || {}).value
+      benefit.Date = (b.Begin || {}).date ? `${b.Begin.month}/${b.Begin.year}` : ''
+      break
+    case 'Continuing':
+      b = (item.ContinuingBenefit || {})
+      benefit.Country = (b.Country || {}).value
+      benefit.Date = (b.Began || {}).date ? `${b.Began.month}/${b.Began.year}` : ''
+      break
+  }
+
+  const summary = [who, benefit.Country].reduce((prev, next) => {
+    if (prev && next) {
+      return prev + ' - ' + next
+    }
+    return prev
+  })
+
+  return (
+    <span className="content">
+      <span className="index">{type}: {index + 1}</span>
+      <span className="interest">
+        <strong>{ summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
+      </span>
+      <span className="date">{benefit.Date}</span>
+    </span>
+  )
 }

@@ -75,25 +75,25 @@ export default class Benefit extends ValidationElement {
           <CheckboxGroup className="interest-types"
             selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
-              label={i18n.t('foreign.activities.benefit.label.interestTypes.yourself')}
+              label={i18n.m('foreign.activities.benefit.label.interestTypes.yourself')}
               value="Yourself"
               className="yourself"
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t('foreign.activities.benefit.label.interestTypes.spouse')}
+              label={i18n.m('foreign.activities.benefit.label.interestTypes.spouse')}
               value="Spouse"
               className="spouse"
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t('foreign.activities.benefit.label.interestTypes.cohabitant')}
+              label={i18n.m('foreign.activities.benefit.label.interestTypes.cohabitant')}
               value="Cohabitant"
               className="cohabitant"
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t('foreign.activities.benefit.label.interestTypes.dependentChildren')}
+              label={i18n.m('foreign.activities.benefit.label.interestTypes.dependentChildren')}
               value="DependentChildren"
               className="dependent-children"
               onChange={this.updateInterestTypes}
@@ -105,25 +105,25 @@ export default class Benefit extends ValidationElement {
           help={i18n.t('foreign.activities.benefit.help.benefitType')}>
           <RadioGroup className="benefit-types" selectedValue={this.props.BenefitType}>
             <Radio name="benefit_type"
-              label={i18n.t('foreign.activities.benefit.label.benefitTypes.educational')}
+              label={i18n.m('foreign.activities.benefit.label.benefitTypes.educational')}
               value="Educational"
               onChange={this.updateBenefitType}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_type"
-              label={i18n.t('foreign.activities.benefit.label.benefitTypes.medical')}
+              label={i18n.m('foreign.activities.benefit.label.benefitTypes.medical')}
               value="Medical"
               onChange={this.updateBenefitType}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_type"
-              label={i18n.t('foreign.activities.benefit.label.benefitTypes.retirement')}
+              label={i18n.m('foreign.activities.benefit.label.benefitTypes.retirement')}
               value="Retirement"
               onChange={this.updateBenefitType}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_type"
-              label={i18n.t('foreign.activities.benefit.label.benefitTypes.other')}
+              label={i18n.m('foreign.activities.benefit.label.benefitTypes.other')}
               value="Other"
               onChange={this.updateBenefitType}
               onValidate={this.props.onValidate}
@@ -135,25 +135,25 @@ export default class Benefit extends ValidationElement {
           help={i18n.t('foreign.activities.benefit.help.benefitFrequency')}>
           <RadioGroup className="benefit-frequency" selectedValue={this.props.BenefitFrequency}>
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.label.benefitFrequency.oneTime')}
+              label={i18n.m('foreign.activities.benefit.label.benefitFrequency.oneTime')}
               value="OneTime"
               onChange={this.updateBenefitFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.label.benefitFrequency.future')}
+              label={i18n.m('foreign.activities.benefit.label.benefitFrequency.future')}
               value="Future"
               onChange={this.updateBenefitFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.label.benefitFrequency.continuing')}
+              label={i18n.m('foreign.activities.benefit.label.benefitFrequency.continuing')}
               value="Continuing"
               onChange={this.updateBenefitFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.label.benefitFrequency.other')}
+              label={i18n.m('foreign.activities.benefit.label.benefitFrequency.other')}
               value="Other"
               onChange={this.updateBenefitFrequency}
               onValidate={this.props.onValidate}

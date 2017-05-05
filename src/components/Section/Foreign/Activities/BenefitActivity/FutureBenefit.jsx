@@ -87,31 +87,31 @@ export default class FutureBenefit extends ValidationElement {
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.future.label.frequency.annually')}
+              label={i18n.m('foreign.activities.benefit.future.label.frequency.annually')}
               value="Annually"
               onChange={this.updateFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.future.label.frequency.quarterly')}
+              label={i18n.m('foreign.activities.benefit.future.label.frequency.quarterly')}
               value="Quarterly"
               onChange={this.updateFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.future.label.frequency.monthly')}
+              label={i18n.m('foreign.activities.benefit.future.label.frequency.monthly')}
               value="Monthly"
               onChange={this.updateFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.future.label.frequency.weekly')}
+              label={i18n.m('foreign.activities.benefit.future.label.frequency.weekly')}
               value="Weekly"
               onChange={this.updateFrequency}
               onValidate={this.props.onValidate}
             />
             <Radio name="benefit_frequency"
-              label={i18n.t('foreign.activities.benefit.future.label.frequency.other')}
+              label={i18n.m('foreign.activities.benefit.future.label.frequency.other')}
               value="Other"
               onChange={this.updateFrequency}
               onValidate={this.props.onValidate}
