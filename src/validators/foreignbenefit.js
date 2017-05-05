@@ -4,6 +4,7 @@ export default class ForeignBenefitValidator {
   constructor (state = {}, props = {}) {
     this.interestTypes = props.InterestTypes
     this.benefitType = props.BenefitType
+    this.otherBenefitType = props.OtherBenefitType
     this.benefitFrequency = props.BenefitFrequency
     this.oneTimeBenefit = props.OneTimeBenefit
     this.futureBenefit = props.FutureBenefit
@@ -16,8 +17,16 @@ export default class ForeignBenefitValidator {
   }
 
   validBenefitType () {
-    return !!this.benefitType &&
-      ['Educational', 'Medical', 'Retirement', 'Other'].includes(this.benefitType)
+    switch (this.benefitType) {
+      case 'Educational':
+      case 'Medical':
+      case 'Retirement':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherBenefitType)
+      default:
+        return false
+    }
   }
 
   validBenefitFrequency () {
@@ -101,6 +110,8 @@ export class OneTimeBenefitValidator {
 export class FutureBenefitValidator {
   constructor (state = {}, props = {}) {
     this.begin = props.Begin
+    this.frequency = props.Frequency
+    this.otherFrequency = props.OtherFrequency
     this.country = props.Country
     this.value = props.Value
     this.reason = props.Reason
@@ -110,6 +121,20 @@ export class FutureBenefitValidator {
 
   validBegin () {
     return !!this.begin && validDateField(this.begin)
+  }
+
+  validFrequency () {
+    switch (this.frequency) {
+      case 'Annually':
+      case 'Quarterly':
+      case 'Monthly':
+      case 'Weekly':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherFrequency)
+      default:
+        return false
+    }
   }
 
   validCountry () {
@@ -140,6 +165,7 @@ export class FutureBenefitValidator {
 
   isValid () {
     return this.validBegin() &&
+      this.validFrequency() &&
       this.validCountry() &&
       this.validValue() &&
       this.validReason() &&
@@ -153,6 +179,7 @@ export class ContinuingBenefitValidator {
     this.began = props.Began
     this.end = props.End
     this.frequency = props.Frequency
+    this.otherFrequency = props.OtherFrequency
     this.country = props.Country
     this.value = props.Value
     this.reason = props.Reason
@@ -169,7 +196,17 @@ export class ContinuingBenefitValidator {
   }
 
   validFrequency () {
-    return !!this.frequency
+    switch (this.frequency) {
+      case 'Annually':
+      case 'Quarterly':
+      case 'Monthly':
+      case 'Weekly':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherFrequency)
+      default:
+        return false
+    }
   }
 
   validCountry () {

@@ -6,7 +6,10 @@ describe('Foreign Born Benefits', function () {
       {
         props: {
           InterestTypes: ['Yourself'],
-          BenefitType: 'Educational',
+          BenefitType: 'Other',
+          OtherBenefitType: {
+            value: 'Other'
+          },
           BenefitFrequency: 'OneTime',
           OneTimeBenefit: {
             Received: {
@@ -41,6 +44,10 @@ describe('Foreign Born Benefits', function () {
               month: '1',
               day: '1',
               year: '2010'
+            },
+            Frequency: 'Other',
+            OtherFrequency: {
+              value: 'Other'
             },
             Country: {
               value: 'Germany'
@@ -199,6 +206,7 @@ describe('Foreign Born Benefits', function () {
             day: '1',
             year: '2010'
           },
+          Frequency: 'Weekly',
           Country: {
             value: 'Germany'
           },
@@ -317,6 +325,66 @@ describe('Foreign Born Benefits', function () {
 
     tests.forEach(test => {
       expect(new ContinuingBenefitValidator(null, test.props).validObligatedExplanation()).toBe(test.expected)
+    })
+  })
+
+  it('should validate continuing benefit other frequency', function () {
+    const tests = [
+      {
+        props: {
+          Frequency: 'Annually'
+        },
+        expected: true
+      },
+      {
+        props: {
+          Frequency: 'Nope'
+        },
+        expected: false
+      },
+      {
+        props: {
+          Frequency: 'Other',
+          OtherFrequency: {
+            value: 'Something else'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new ContinuingBenefitValidator(null, test.props).validFrequency()).toBe(test.expected)
+    })
+  })
+
+  it('should validate future benefit other frequency', function () {
+    const tests = [
+      {
+        props: {
+          Frequency: 'Annually'
+        },
+        expected: true
+      },
+      {
+        props: {
+          Frequency: 'Nope'
+        },
+        expected: false
+      },
+      {
+        props: {
+          Frequency: 'Other',
+          OtherFrequency: {
+            value: 'Something else'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new FutureBenefitValidator(null, test.props).validFrequency()).toBe(test.expected)
     })
   })
 })

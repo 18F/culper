@@ -75,6 +75,18 @@ describe('The Benefit component', () => {
     expect(updates).toBe(1)
   })
 
+  it('Renders with Other Benefit Type and updates other explanation', () => {
+    let updates = 0
+    const expected = {
+      onUpdate: () => { updates++ },
+      BenefitType: 'Other'
+    }
+
+    const component = mount(<Benefit {...expected} />)
+    component.find('textarea[name="OtherBenefitType"]').simulate('change')
+    expect(updates).toBe(1)
+  })
+
   it('Renders with Continuing benefit and triggers update', () => {
     let updates = 0
     const expected = {

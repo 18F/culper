@@ -22,7 +22,7 @@ export default class OneTimeBenefit extends ValidationElement {
         Received: this.props.Received,
         Country: this.props.Country,
         Value: this.props.Value,
-        ValueEstimated: this.props.Value,
+        ValueEstimated: this.props.ValueEstimated,
         Reason: this.props.Reason,
         Obligated: this.props.Obligated,
         ObligatedExplanation: this.props.ObligatedExplanation,
@@ -43,8 +43,8 @@ export default class OneTimeBenefit extends ValidationElement {
     this.update('Value', values)
   }
 
-  updateValueEstimated (values) {
-    this.update('ValueEstimated', values)
+  updateValueEstimated (cb) {
+    this.update('ValueEstimated', cb.checked)
   }
 
   updateReason (values) {
@@ -123,15 +123,13 @@ export default class OneTimeBenefit extends ValidationElement {
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
-          <div>
-            {i18n.m('foreign.activities.benefit.oneTime.label.obligatedExplanation')}
-              <Textarea name="Explanation"
-                className="explanation"
-                {...this.props.ObligatedExplanation}
-                onUpdate={this.updateObligatedExplanation}
-                onValidate={this.props.onValidate}
-              />
-              </div>
+          <Textarea name="Explanation"
+            label={i18n.m('foreign.activities.benefit.oneTime.label.obligatedExplanation')}
+            className="explanation"
+            {...this.props.ObligatedExplanation}
+            onUpdate={this.updateObligatedExplanation}
+            onValidate={this.props.onValidate}
+          />
         </Show>
       </div>
     )

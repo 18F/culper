@@ -12,6 +12,7 @@ export default class Benefit extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateInterestTypes = this.updateInterestTypes.bind(this)
     this.updateBenefitType = this.updateBenefitType.bind(this)
+    this.updateOtherBenefitType = this.updateOtherBenefitType.bind(this)
     this.updateBenefitFrequency = this.updateBenefitFrequency.bind(this)
     this.updateOneTimeBenefit = this.updateOneTimeBenefit.bind(this)
     this.updateFutureBenefit = this.updateFutureBenefit.bind(this)
@@ -24,6 +25,7 @@ export default class Benefit extends ValidationElement {
       this.props.onUpdate({
         InterestTypes: this.props.InterestTypes,
         BenefitType: this.props.BenefitType,
+        OtherBenefitType: this.props.OtherBenefitType,
         BenefitFrequency: this.props.BenefitFrequency,
         OneTimeBenefit: this.props.OneTimeBenefit,
         FutureBenefit: this.props.FutureBenefit,
@@ -48,6 +50,10 @@ export default class Benefit extends ValidationElement {
 
   updateBenefitType (cb) {
     this.update('BenefitType', cb.target.value)
+  }
+
+  updateOtherBenefitType (values) {
+    this.update('OtherBenefitType', values)
   }
 
   updateBenefitFrequency (cb) {
@@ -112,7 +118,7 @@ export default class Benefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
-          help={i18n.t('foreign.activities.benefit.help.benefitType')}>
+          help={'foreign.activities.benefit.help.benefitType'}>
           <RadioGroup className="benefit-types" selectedValue={this.props.BenefitType}>
             <Radio name="benefit_type"
               label={i18n.m('foreign.activities.benefit.label.benefitTypes.educational')}
@@ -138,11 +144,21 @@ export default class Benefit extends ValidationElement {
               onChange={this.updateBenefitType}
               onValidate={this.props.onValidate}
             />
-          </RadioGroup>
-        </Field>
+          <Show when={this.props.BenefitType === 'Other'}>
+            <div>
+              {i18n.m('foreign.activities.benefit.label.otherBenefitType')}
+              <Textarea name="OtherBenefitType"
+                {...this.props.OtherBenefitType}
+                onUpdate={this.updateOtherBenefitType}
+                onValidate={this.props.onValidate}
+              />
+            </div>
+          </Show>
+        </RadioGroup>
+      </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
-          help={i18n.t('foreign.activities.benefit.help.benefitFrequency')}>
+          help={'foreign.activities.benefit.help.benefitFrequency'}>
           <RadioGroup className="benefit-frequency" selectedValue={this.props.BenefitFrequency}>
             <Radio name="benefit_frequency"
               label={i18n.m('foreign.activities.benefit.label.benefitFrequency.oneTime')}
@@ -169,6 +185,16 @@ export default class Benefit extends ValidationElement {
               onValidate={this.props.onValidate}
             />
           </RadioGroup>
+          <Show when={this.props.BenefitFrequency === 'Other'}>
+            <div>
+              {i18n.m('foreign.activities.benefit.label.otherBenefit')}
+              <Textarea name="OtherBenefit"
+                {...this.props.OtherBenefit}
+                onUpdate={this.updateOtherBenefit}
+                onValidate={this.props.onValidate}
+              />
+            </div>
+          </Show>
         </Field>
 
         <Show when={this.props.BenefitFrequency === 'OneTime'}>
@@ -193,17 +219,6 @@ export default class Benefit extends ValidationElement {
             onUpdate={this.updateContinuingBenefit}
             onValidate={this.props.onValidate}
           />
-        </Show>
-
-        <Show when={this.props.BenefitFrequency === 'Other'}>
-          <div>
-            {i18n.m('foreign.activities.benefit.label.otherBenefit')}
-            <Textarea name="OtherBenefit"
-              {...this.props.OtherBenefit}
-              onUpdate={this.updateOtherBenefit}
-              onValidate={this.props.onValidate}
-            />
-          </div>
         </Show>
       </div>
     )

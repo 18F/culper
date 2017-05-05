@@ -25,6 +25,16 @@ describe('The ContinuingBenefit component', () => {
     expect(updates).toBe(8)
   })
 
+  it('Performs an other frequency update', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const frequency = 'Other'
+    const component = mount(<ContinuingBenefit onUpdate={onUpdate} Frequency={frequency} />)
+    expect(component.find('.continuing-benefit').length).toBe(1)
+    component.find('textarea[name="OtherFrequency"]').simulate('change')
+    expect(updates).toBe(1)
+  })
+
   it('Performs an obligatedExplanation update', () => {
     let updates = 0
     const onUpdate = () => { updates++ }

@@ -10,6 +10,7 @@ export default class ContinuingBenefit extends ValidationElement {
     this.updateBegan = this.updateBegan.bind(this)
     this.updateEnd = this.updateEnd.bind(this)
     this.updateFrequency = this.updateFrequency.bind(this)
+    this.updateOtherFrequency = this.updateOtherFrequency.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateValue = this.updateValue.bind(this)
     this.updateValueEstimated = this.updateValueEstimated.bind(this)
@@ -24,6 +25,7 @@ export default class ContinuingBenefit extends ValidationElement {
         Began: this.props.Began,
         End: this.props.End,
         Frequency: this.props.Frequency,
+        OtherFrequency: this.props.OtherFrequency,
         Country: this.props.Country,
         Value: this.props.Value,
         ValueEstimated: this.props.ValueEstimated,
@@ -44,7 +46,11 @@ export default class ContinuingBenefit extends ValidationElement {
   }
 
   updateFrequency (cb) {
-    this.update('Frequency', cb.target.value)
+    this.update('Frequency', cb.value)
+  }
+
+  updateOtherFrequency (values) {
+    this.update('OtherFrequency', values)
   }
 
   updateCountry (values) {
@@ -55,8 +61,8 @@ export default class ContinuingBenefit extends ValidationElement {
     this.update('Value', values)
   }
 
-  updateValueEstimated (values) {
-    this.update('ValueEstimated', values)
+  updateValueEstimated (cb) {
+    this.update('ValueEstimated', cb.checked)
   }
 
   updateReason (values) {
@@ -137,6 +143,17 @@ export default class ContinuingBenefit extends ValidationElement {
               onValidate={this.props.onValidate}
             />
           </RadioGroup>
+          <Show when={this.props.Frequency === 'Other'}>
+            <div>
+              {i18n.m('foreign.activities.benefit.continuing.para.frequencyOther')}
+              <Textarea name="OtherFrequency"
+                className="other-frequency"
+                {...this.props.OtherFrequency}
+                onUpdate={this.updateOtherFrequency}
+                onValidate={this.props.onValidate}
+              />
+            </div>
+          </Show>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}
@@ -187,15 +204,13 @@ export default class ContinuingBenefit extends ValidationElement {
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
-          <div>
-            {i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
-              <Textarea name="Explanation"
-                className="explanation"
-                {...this.props.ObligatedExplanation}
-                onUpdate={this.updateObligatedExplanation}
-                onValidate={this.props.onValidate}
-              />
-              </div>
+          <Textarea name="Explanation"
+            label={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
+            className="explanation"
+            {...this.props.ObligatedExplanation}
+            onUpdate={this.updateObligatedExplanation}
+            onValidate={this.props.onValidate}
+          />
         </Show>
       </div>
     )

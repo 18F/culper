@@ -189,13 +189,13 @@ const en = {
     },
     month: {
       notfound: {
-        title: 'Month is not recognized',
-        message: 'The month must be between 1 (January) and 12 (December)',
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 1(January) and 12(December)',
         note: ''
       },
       max: {
-        title: 'Month is not recognized',
-        message: 'The month must be between 1 (January) and 12 (December)',
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 1(January) and 12(December)',
         note: ''
       }
     },
@@ -415,25 +415,25 @@ const en = {
     },
     int_first: {
       pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        title: 'There is a problem with this country code',
+        message: 'The country code of the international number should be 3 digits between 0 and 9',
         note: ''
       },
       length: {
-        title: 'This field must have 3 digits',
-        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        title: 'There is a problem with this country code',
+        message: 'The country code of the international number should be 3 digits between 0 and 9',
         note: ''
       }
     },
     int_second: {
       pattern: {
-        title: 'This field must have 10 digits',
-        message: 'The international number must be 10 digits between 0 and 9',
+        title: 'There is a problem with this number',
+        message: 'The international number should be 10 digits between 0 and 9',
         note: ''
       },
       length: {
-        title: 'This field must have 10 digits',
-        message: 'The international number must be 10 digits between 0 and 9',
+        title: 'There is a problem with this number',
+        message: 'The international number should be 10 digits between 0 and 9',
         note: ''
       }
     },
@@ -469,51 +469,51 @@ const en = {
     },
     Email: {
       pattern: {
-        title: 'A valid email address is required',
-        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
-        note: 'Note: Underscores (_) and periods (.) are valid characters'
+        title: 'This email isn\'t valid',
+        message: 'Check for any spelling mistakes in your email address.',
+        note: 'Example of valid email format: name@domain.com'
       }
     },
     Year: {
       min: {
-        title: 'The year is below the accepted limits',
-        message: 'The year must be four (4) digit year',
+        title: 'There is a problem with the year',
+        message: 'The year should be four(4) numbers.',
         note: ''
       }
     },
     to: {
       datecontrol: {
         max: {
-          title: 'Invalid "to" date provided',
-          message: 'The **to** date value cannot exceed todays date'
+          title: 'There is a problem with the "to" date',
+          message: 'The **to** date can\'t be in the future.'
         },
         min: {
-          title: 'Invalid "from" date provided',
-          message: 'The **to** date value must be on or after your date of birth'
+          title: 'There is a problem with the "to" date',
+          message: 'The **to** date should be on or after your date of birth.'
         }
       }
     },
     from: {
       datecontrol: {
         max: {
-          title: 'Invalid date provided',
-          message: 'The **from** date value cannot exceed todays date'
+          title: 'There is a problem with the "from" date',
+          message: 'The **from** date can\'t be in the future.'
         },
         min: {
-          title: 'Invalid date provided',
-          message: 'The **from** date value must be on or after your date of birth'
+          title: 'There is a problem with the "from" date',
+          message: 'The **from** date should be on or after your date of birth.'
         }
       }
     },
     order: {
       datecontrol: {
         max: {
-          title: 'Invalid date provided',
-          message: 'Order date value cannot exceed todays date'
+          title: 'There is a problem with the date',
+          message: 'The order date can\'t be in the future.'
         },
         min: {
-          title: 'Invalid date provided',
-          message: 'Order date value must be on or after your date of birth'
+          title: 'There is a problem with the date',
+          message: 'The order date value should be on or after your date of birth.'
         }
       }
     },
@@ -521,24 +521,24 @@ const en = {
       to: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization to date value cannot exceed todays date'
+            title: 'There is a problem with the "to" date',
+            message: 'The hospitalization **to** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization to date value must be on or after your date of birth'
+            title: 'There is a problem with the "to" date',
+            message: 'The hospitalization **to** date value should be on or after your date of birth.'
           }
         }
       },
       from: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization from date value cannot exceed todays date'
+            title: 'There is a problem with the "from" date',
+            message: 'The hospitalization **from** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization from date value must be on or after your date of birth'
+            title: 'There is a problem with the "from" date',
+            message: 'The hospitalization **from** date value should be on or after your date of birth.'
           }
         }
       }
@@ -547,24 +547,24 @@ const en = {
       to: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis to date value cannot exceed todays date'
+            title: 'There is a problem with the "to" date',
+            message: 'The diagnosis **to** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis to date value must be on or after your date of birth'
+            title: 'There is a problem with the "to" date',
+            message: 'Diagnosis **to** date value should be on or after your date of birth.'
           }
         }
       },
       from: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis from date value cannot exceed todays date'
+            title: 'There is a problem with the "from" date',
+            message: 'Diagnosis **from** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis from date value must be on or after your date of birth'
+            title: 'There is a problem with the "from" date',
+            message: 'Diagnosis **from** date value should be on or after your date of birth.'
           }
         }
       }
@@ -4712,7 +4712,6 @@ const en = {
       }
     }
   },
-
   foreign: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -5141,6 +5140,61 @@ const en = {
           }
         }
       },
+      support: {
+        heading: {
+          title: 'Have you EVER provided financial support for any foreign national?',
+          name: 'Provide the name of the foreign national you support or have supported financially',
+          address: 'Provide the address of the foreign national listed above',
+          relationship: 'Provide the nature of your relationship with the foreign national listed above',
+          amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
+          frequency: 'Provide the frequency of your support',
+          country: 'Provide the name of the country providing this benefit'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided financial support to a foreign national?',
+            message: 'If you have provided any financial support to a foreign national then select "yes".',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the foreign national\'s address?',
+            message: 'Provide the current address of the foreign national',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relation to the foreign national?',
+            message: 'Provide the relationship to the foreign national',
+            note: ''
+          },
+          amount: {
+            title: 'Need help with the amount of financial support?',
+            message: 'Provide the amount of U.S. dollars',
+            note: ''
+          },
+          frequency: {
+            title: 'Need help with the frequency?',
+            message: 'Provide the frequency of support',
+            note: 'Note: Monthly, yearly, once, etc.'
+          },
+          country: {
+            title: 'Need help with the country(ies)?',
+            message: 'List all countries which benefit from this financial support',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign financial support',
+            item: 'Support',
+            unknown: 'Provide details of foreign financial support below'
+          },
+          appendTitle: 'Have you additionally provided financial support for any foreign national?',
+          appendMessage: [
+            'If yes use the button below to add another instance'
+          ],
+          append: 'Add another instance'
+        }
+      },
       benefit: {
         heading: {
           title: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
@@ -5156,6 +5210,7 @@ const en = {
         },
         label: {
           otherBenefit: 'Provide explanation',
+          otherBenefitType: 'Provide explanation',
           interestTypes: {
             yourself: 'Yourself',
             spouse: 'Spouse or legally recognized civil union/domestic partner',
@@ -5172,7 +5227,7 @@ const en = {
             oneTime: 'Onetime benefit',
             future: 'Future benefit',
             continuing: 'Continuing benefit',
-            other: 'Other'
+            other: 'Other (Provide explanation)'
           }
         },
         collection: {
@@ -5182,6 +5237,28 @@ const en = {
           appendMessage: 'If yes use the button below to add another benefit.',
           appendLabel: 'Add another benefit',
           itemType: 'Benefit'
+        },
+        help: {
+          benefit: {
+            title: 'Need help with determining if you have received foreign benefits?',
+            message: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+            note: ''
+          },
+          interestType: {
+            title: 'Need help with the interest type?',
+            message: 'Provide the interest type',
+            note: ''
+          },
+          benefitType: {
+            title: 'Need help with the benefit type?',
+            message: 'Provide the type of benefit',
+            note: ''
+          },
+          benefitFrequency: {
+            title: 'Need help with the benefit frequency?',
+            message: 'Provide the frequency of the benefit',
+            note: ''
+          }
         },
         oneTime: {
           heading: {
@@ -5554,7 +5631,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       family: {
         heading: {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?',
@@ -5611,7 +5687,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       employment: {
         heading: {
           title: 'Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?',
@@ -5664,7 +5739,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       ventures: {
         heading: {
           title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
@@ -5756,7 +5830,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       conferences: {
         heading: {
           title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
@@ -6247,17 +6320,17 @@ const en = {
       help: {
         occurred: {
           title: 'Need help with the date this occurred?',
-          message: 'Enter the date this official order was issued.',
-          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
+          message: 'Tell us the month and year when a court or agency declared you mentally incompetent.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
-          message: 'Enter the name of the court or administrative agency that issued the order.',
+          message: 'Tell us the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
           title: 'Not sure of the court or agency address?',
-          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          message: 'Try looking up the court or agency name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         incompetent: {
@@ -6265,8 +6338,9 @@ const en = {
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
         },
         disposition: {
-          title: 'Need help with the final disposition?',
-          message: 'Provide the court ruling regarding the court\'s decision.'
+          title: 'Need help entering the final disposition?',
+          message: 'Tell us the ruling regarding the court or agency\'s decision.',
+          note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
         }
       },
       collection: {
@@ -6296,24 +6370,24 @@ const en = {
       },
       help: {
         occurred: {
-          title: 'Need help with this date?',
-          message: 'Enter the date the court or agency ordered you to consult with a professional.',
-          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
+          title: 'Need help with the date this occurred?',
+          message: 'Tell us the month and year when a court or agency ordered you to consult with a professional.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
-          message: 'Enter the name of the court or administrative agency that issued the order.',
+          message: 'Tell us the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
           title: 'Not sure of the court or agency address?',
-          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          message: 'Try looking up the court or agency name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: 'Enter the disposition for this order',
-          note: ''
+          message: 'Tell us the ruling regarding the court or agency\'s decision.',
+          note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
@@ -6363,18 +6437,18 @@ const en = {
         },
         treatment: {
           title: 'Need help the date range of your hospitalization?',
-          message: 'Provide the full date range (admission to release) of your hospitalization.',
-          note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
+          message: 'Tell us the full date range (admission to release) of your hospitalization.',
+          note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
         },
         facility: {
           title: 'Need help with this facility name?',
-          message: 'Enter the name of the facility where you were hospitalized.',
+          message: 'Tell us the name of the facility where you were hospitalized.',
           note: ''
         },
         address: {
           title: 'Not sure of the facility address?',
-          message: 'Try looking up the facility name, a physical or mailing address should be associated with it.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          message: 'Try looking up the facility name, this could help you find the address.',
+          note: 'Note: f you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -6395,8 +6469,8 @@ const en = {
         },
         diagnosed: {
           title: 'Need help the date range of your diagnosis or health condition?',
-          message: 'Provide the full date range you have had this diagnosis or health condition.',
-          note: 'Note: If this is a current diagnosis or health condition enter the start date and select the "Present" button for the "To date".'
+          message: 'Tell us the full date range you have had this diagnosis or health condition.',
+          note: 'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
         }
       },
       person: {
@@ -6411,14 +6485,14 @@ const en = {
         },
         help: {
           address: {
-            title: 'Need help with health care professional address',
-            message: 'Provide the address of the health care professional',
-            note: ''
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
             title: 'Need help the name of the healthcare professional?',
-            message: 'Provide the name of the healthcare professional.',
-            note: ''
+            message: 'Tell us the full name of the healthcare professional.',
+            note: 'Note: If you can’t remember this name a family member may be able to help you.'
           }
         }
       },
@@ -6434,14 +6508,14 @@ const en = {
         },
         help: {
           address: {
-            title: 'Not sure of the agency/organization/facility address?',
-            message: 'Try looking up the agency/organization/facility, a physical or mailing address should be associated with it.',
+            title: 'Not sure of the agency/organization/facility\'s address?',
+            message: 'Try looking up the name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
-            title: 'Need help the facility where treatment was provided?',
-            message: 'Provide the name of the facility where treatment was provided',
-            note: ''
+            title: 'Need help entering name of the facility where treatment was provided?',
+            message: 'Tell us the full name of the facility.',
+            note: 'Note: If you can’t remember this facility name a family member may be able to help you.'
           }
         }
       }
@@ -6507,7 +6581,7 @@ const en = {
       person: {
         help: {
           name: {
-            title: 'Help with healthcare professional',
+            title: 'Need help the name of the healthcare professional?',
             message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
           },
           address: {

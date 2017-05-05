@@ -33,4 +33,14 @@ describe('The FutureBenefit component', () => {
     component.find('.explanation textarea[name="Explanation"]').simulate('change')
     expect(updates).toBe(1)
   })
+
+  it('Performs an other frequency update', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const frequency = 'Other'
+    const component = mount(<FutureBenefit onUpdate={onUpdate} Frequency={frequency} />)
+    expect(component.find('.future-benefit').length).toBe(1)
+    component.find('textarea[name="OtherFrequency"]').simulate('change')
+    expect(updates).toBe(1)
+  })
 })

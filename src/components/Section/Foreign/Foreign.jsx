@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity } from './Activities'
+import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
@@ -255,8 +255,8 @@ class Foreign extends ValidationElement {
           <SectionView name="activities/realestate"
                        back="foreign/activities/indirect"
                        backLabel={i18n.t('foreign.destination.activities.indirect')}
-                       next="foreign/activities/support"
-                       nextLabel={i18n.t('foreign.destination.activities.support')}>
+                       next="foreign/activities/benefits"
+                       nextLabel={i18n.t('foreign.destination.activities.benefits')}>
             <RealEstateActivity name="realEstateActivity"
                     {...this.props.RealEstateActivity}
                     onUpdate={this.updateRealEstateActivity}
@@ -265,8 +265,8 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="activities/benefits"
-                       back="foreign/activities/indirect"
-                       backLabel={i18n.t('foreign.destination.activities.indirect')}
+                       back="foreign/activities/realestate"
+                       backLabel={i18n.t('foreign.destination.activities.realestate')}
                        next="foreign/activities/support"
                        nextLabel={i18n.t('foreign.destination.activities.support')}>
             <BenefitActivity name="benefitActivity"
@@ -275,6 +275,18 @@ class Foreign extends ValidationElement {
                     onValidate={this.handleValidation}
                     />
           </SectionView>
+          <SectionView name="activities/support"
+                       back="foreign/activities/benefits"
+                       backLabel={i18n.t('foreign.destination.activities.benefits')}
+                       next="foreign/business/advice"
+                       nextLabel={i18n.t('foreign.destination.business.advice')}>
+            <Support name="support"
+                     {...this.props.Support}
+                     onUpdate={this.updateSupport}
+                     onValidate={this.handleValidation}
+                     />
+          </SectionView>
+
           <SectionView name="business"
                        back="foreign/activities/support"
                        backLabel={i18n.t('foreign.destination.activities.support')}
@@ -387,6 +399,7 @@ function mapStateToProps (state) {
     IndirectActivity: foreign.IndirectActivity || {},
     RealEstateActivity: foreign.RealEstateActivity || {},
     BenefitActivity: foreign.BenefitActivity || {},
+    Support: foreign.Support || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
