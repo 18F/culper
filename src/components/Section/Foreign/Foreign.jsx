@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { DirectActivity, IndirectActivity } from './Activities'
+import { DirectActivity, IndirectActivity, RealEstateActivity } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
@@ -27,6 +27,7 @@ class Foreign extends ValidationElement {
     this.updateVentures = this.updateVentures.bind(this)
     this.updateDirectActivity = this.updateDirectActivity.bind(this)
     this.updateIndirectActivity = this.updateIndirectActivity.bind(this)
+    this.updateRealEstateActivity = this.updateRealEstateActivity.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
   }
 
@@ -63,6 +64,7 @@ class Foreign extends ValidationElement {
         this.hasStatus('contacts', status, true) &&
         this.hasStatus('directActivity', status, true) &&
         this.hasStatus('indirectActivity', status, true) &&
+        this.hasStatus('realEstateActivity', status, true) &&
         this.hasStatus('advice', status, true) &&
         this.hasStatus('family', status, true) &&
         this.hasStatus('employment', status, true) &&
@@ -73,6 +75,7 @@ class Foreign extends ValidationElement {
                this.hasStatus('contacts', status, false) ||
                this.hasStatus('directActivity', status, false) ||
                this.hasStatus('indirectActivity', status, false) ||
+               this.hasStatus('realEstateActivity', status, false) ||
                this.hasStatus('advice', status, false) ||
                this.hasStatus('family', status, false) ||
                this.hasStatus('employment', status, false) ||
@@ -117,6 +120,10 @@ class Foreign extends ValidationElement {
 
   updateIndirectActivity (values) {
     this.onUpdate('IndirectActivity', values)
+  }
+
+  updateRealEstateActivity (values) {
+    this.onUpdate('RealEstateActivity', values)
   }
 
   updateConferences (values) {
@@ -240,6 +247,18 @@ class Foreign extends ValidationElement {
                     />
           </SectionView>
 
+          <SectionView name="activities/realestate"
+                       back="foreign/activities/indirect"
+                       backLabel={i18n.t('foreign.destination.activities.indirect')}
+                       next="foreign/activities/support"
+                       nextLabel={i18n.t('foreign.destination.activities.support')}>
+            <RealEstateActivity name="realEstateActivity"
+                    {...this.props.RealEstateActivity}
+                    onUpdate={this.updateRealEstateActivity}
+                    onValidate={this.handleValidation}
+                    />
+          </SectionView>
+
           <SectionView name="business"
                        back="foreign/activities/support"
                        backLabel={i18n.t('foreign.destination.activities.support')}
@@ -350,6 +369,7 @@ function mapStateToProps (state) {
     Contacts: foreign.Contacts || {},
     DirectActivity: foreign.DirectActivity || {},
     IndirectActivity: foreign.IndirectActivity || {},
+    RealEstateActivity: foreign.RealEstateActivity || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},

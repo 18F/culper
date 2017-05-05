@@ -1,3 +1,4 @@
 import DirectActivity from './DirectActivity/DirectActivity'
 import IndirectActivity from './IndirectActivity/IndirectActivity'
-export { DirectActivity, IndirectActivity }
+import RealEstateActivity from './RealEstateActivity/RealEstateActivity'
+export { DirectActivity, IndirectActivity, RealEstateActivity }
