@@ -189,13 +189,13 @@ const en = {
     },
     month: {
       notfound: {
-        title: 'Month is not recognized',
-        message: 'The month must be between 1 (January) and 12 (December)',
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 1(January) and 12(December)',
         note: ''
       },
       max: {
-        title: 'Month is not recognized',
-        message: 'The month must be between 1 (January) and 12 (December)',
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 1(January) and 12(December)',
         note: ''
       }
     },
@@ -415,25 +415,25 @@ const en = {
     },
     int_first: {
       pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        title: 'There is a problem with this country code',
+        message: 'The country code of the international number should be 3 digits between 0 and 9',
         note: ''
       },
       length: {
-        title: 'This field must have 3 digits',
-        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        title: 'There is a problem with this country code',
+        message: 'The country code of the international number should be 3 digits between 0 and 9',
         note: ''
       }
     },
     int_second: {
       pattern: {
-        title: 'This field must have 10 digits',
-        message: 'The international number must be 10 digits between 0 and 9',
+        title: 'There is a problem with this number',
+        message: 'The international number should be 10 digits between 0 and 9',
         note: ''
       },
       length: {
-        title: 'This field must have 10 digits',
-        message: 'The international number must be 10 digits between 0 and 9',
+        title: 'There is a problem with this number',
+        message: 'The international number should be 10 digits between 0 and 9',
         note: ''
       }
     },
@@ -469,51 +469,51 @@ const en = {
     },
     Email: {
       pattern: {
-        title: 'A valid email address is required',
-        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
-        note: 'Note: Underscores (_) and periods (.) are valid characters'
+        title: 'This email isn\'t valid',
+        message: 'Check for any spelling mistakes in your email address.',
+        note: 'Example of valid email format: name@domain.com'
       }
     },
     Year: {
       min: {
-        title: 'The year is below the accepted limits',
-        message: 'The year must be four (4) digit year',
+        title: 'There is a problem with the year',
+        message: 'The year should be four(4) numbers.',
         note: ''
       }
     },
     to: {
       datecontrol: {
         max: {
-          title: 'Invalid "to" date provided',
-          message: 'The **to** date value cannot exceed todays date'
+          title: 'There is a problem with the "to" date',
+          message: 'The **to** date can\'t be in the future.'
         },
         min: {
-          title: 'Invalid "from" date provided',
-          message: 'The **to** date value must be on or after your date of birth'
+          title: 'There is a problem with the "to" date',
+          message: 'The **to** date should be on or after your date of birth.'
         }
       }
     },
     from: {
       datecontrol: {
         max: {
-          title: 'Invalid date provided',
-          message: 'The **from** date value cannot exceed todays date'
+          title: 'There is a problem with the "from" date',
+          message: 'The **from** date can\'t be in the future.'
         },
         min: {
-          title: 'Invalid date provided',
-          message: 'The **from** date value must be on or after your date of birth'
+          title: 'There is a problem with the "from" date',
+          message: 'The **from** date should be on or after your date of birth.'
         }
       }
     },
     order: {
       datecontrol: {
         max: {
-          title: 'Invalid date provided',
-          message: 'Order date value cannot exceed todays date'
+          title: 'There is a problem with the date',
+          message: 'The order date can\'t be in the future.'
         },
         min: {
-          title: 'Invalid date provided',
-          message: 'Order date value must be on or after your date of birth'
+          title: 'There is a problem with the date',
+          message: 'The order date value should be on or after your date of birth.'
         }
       }
     },
@@ -521,24 +521,24 @@ const en = {
       to: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization to date value cannot exceed todays date'
+            title: 'There is a problem with the "to" date',
+            message: 'The hospitalization **to** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization to date value must be on or after your date of birth'
+            title: 'There is a problem with the "to" date',
+            message: 'The hospitalization **to** date value should be on or after your date of birth.'
           }
         }
       },
       from: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization from date value cannot exceed todays date'
+            title: 'There is a problem with the "from" date',
+            message: 'The hospitalization **from** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization from date value must be on or after your date of birth'
+            title: 'There is a problem with the "from" date',
+            message: 'The hospitalization **from** date value should be on or after your date of birth.'
           }
         }
       }
@@ -547,24 +547,24 @@ const en = {
       to: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis to date value cannot exceed todays date'
+            title: 'There is a problem with the "to" date',
+            message: 'The diagnosis **to** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis to date value must be on or after your date of birth'
+            title: 'There is a problem with the "to" date',
+            message: 'Diagnosis **to** date value should be on or after your date of birth.'
           }
         }
       },
       from: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis from date value cannot exceed todays date'
+            title: 'There is a problem with the "from" date',
+            message: 'Diagnosis **from** date can\'t be in the future.'
           },
           min: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis from date value must be on or after your date of birth'
+            title: 'There is a problem with the "from" date',
+            message: 'Diagnosis **from** date value should be on or after your date of birth.'
           }
         }
       }
