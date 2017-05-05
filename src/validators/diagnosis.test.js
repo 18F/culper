@@ -61,9 +61,7 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          Condition: {
-            value: 'Test'
-          },
+          Condition: 'Test',
           Effective: 'Yes',
           Explanation: {
             value: null

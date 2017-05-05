@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { BankruptcyValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
-         Text, Name, Address, PetitionType, Checkbox, NotApplicable } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, DateControl, Field,
+         Text, Name, Address, PetitionType, Checkbox, NotApplicable, Currency } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -173,13 +173,12 @@ export default class Bankruptcy extends ValidationElement {
             <Field title={i18n.t('financial.bankruptcy.heading.totalAmount')}
                    help="financial.bankruptcy.totalAmount.help">
               <div>
-                <i className="fa fa-dollar"></i>
-                <Number name="TotalAmount"
-                        className="amount"
-                        min="0"
-                        placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
-                        bind={true}
-                        />
+                <Currency name="TotalAmount"
+                          className="amount"
+                          min="0"
+                          placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
+                          bind={true}
+                          />
                 <div className="flags">
                   <Checkbox name="TotalAmountEstimated"
                             ref="estimated"

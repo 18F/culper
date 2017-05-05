@@ -1995,10 +1995,10 @@ const en = {
           stepmother: 'Stepmother',
           stepfather: 'Stepfather',
           fosterparent: 'Foster parent',
-          child: {
-            text: 'Child',
-            subtext: '(including adopted/foster)'
-          },
+          child: [
+            'Child',
+            '(including adopted/foster)'
+          ],
           stepchild: 'Stepchild',
           brother: 'Brother',
           sister: 'Sister',
@@ -2015,49 +2015,49 @@ const en = {
           ds: 'DS 1350'
         },
         naturalized: {
-          alien: {
-            text: 'Alien Registration',
-            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-          },
-          permanent: {
-            text: 'Permanent resident card',
-            subtext: '(I-551)'
-          },
-          certificate: {
-            text: 'Certificate of naturalization',
-            subtext: '(N550 or N570)'
-          }
+          alien: [
+            'Alien Registration',
+            '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          ],
+          permanent: [
+            'Permanent resident card',
+            '(I-551)'
+          ],
+          certificate: [
+            'Certificate of naturalization',
+            '(N550 or N570)'
+          ]
         },
         derived: {
-          alien: {
-            text: 'Alien Registration',
-            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-          },
-          permanent: {
-            text: 'Permanent resident card',
-            subtext: '(I-551)'
-          },
-          certificate: {
-            text: 'Certificate of naturalization',
-            subtext: '(N550 or N570)'
-          },
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          alien: [
+            'Alien Registration',
+            '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          ],
+          permanent: [
+            'Permanent resident card',
+            '(I-551)'
+          ],
+          certificate: [
+            'Certificate of naturalization',
+            '(N550 or N570)'
+          ],
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         methods: {
           inperson: 'In person',
           telephone: 'Telephone',
-          electronic: {
-            text: 'Electronic',
-            subtext: '(such as e-mail, texting, chat rooms, etc.)'
-          },
+          electronic: [
+            'Electronic',
+            '(such as e-mail, texting, chat rooms, etc.)'
+          ],
           written: 'Written correspondence',
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         frequency: {
           daily: 'Daily',
@@ -2065,31 +2065,31 @@ const en = {
           monthly: 'Monthly',
           quarterly: 'Quarterly',
           annually: 'Annually',
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         document: {
           permanent: 'I-551 Permanent Resident',
           employment: 'I-766 Employment Authorization',
           arrival: 'I-94 Arrival-Departure Record',
-          visa: {
-            text: 'U.S. Visa',
-            subtext: '(red foil number)'
-          },
-          f1: {
-            text: 'I-20 Certificate of Eligibility',
-            subtext: '(non-immigrant F1 status)'
-          },
-          j1: {
-            text: 'DS-2019 Certificate of Eligibility',
-            subtext: '(exchange visitor J1 status)'
-          },
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          visa: [
+            'U.S. Visa',
+            '(red foil number)'
+          ],
+          f1: [
+            'I-20 Certificate of Eligibility',
+            '(non-immigrant F1 status)'
+          ],
+          j1: [
+            'DS-2019 Certificate of Eligibility',
+            '(exchange visitor J1 status)'
+          ],
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         maiden: {
           same: 'Same as listed',
@@ -6233,6 +6233,15 @@ const en = {
         effective: 'Was the counseling/treatment effective in managing your symptoms?',
         facility: 'Agency/organization/facility',
         explanation: 'Provide explanation'
+      },
+      label: {
+        psychotic: 'Psychotic disorder',
+        schizophrenia: 'Schizophrenia',
+        schizoaffective: 'Schizoaffective disorder',
+        delusional: 'Delusional disorder',
+        bipolar: 'Bipolar mood disorder',
+        borderline: 'Borderline personality disorder',
+        antisocial: 'Antisocial personality disorder'
       },
       help: {
         condition: {

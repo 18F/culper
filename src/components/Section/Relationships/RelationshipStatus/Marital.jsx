@@ -69,36 +69,42 @@ export default class Marital extends ValidationElement {
           <RadioGroup name="status" className="status-options" selectedValue={this.state.Status}>
             <Radio
               label={i18n.m('relationships.marital.label.status.never')}
+              className="status-never"
               value="Never"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.marital.label.status.inCivilUnion')}
+              className="status-civil-union"
               value="InCivilUnion"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.marital.label.status.separated')}
+              className="status-separated"
               value="Separated"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.marital.label.status.annulled')}
+              className="status-annulled"
               value="Annulled"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.marital.label.status.divorced')}
+              className="status-divorced"
               value="Divorced"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
             />
             <Radio
               label={i18n.m('relationships.marital.label.status.widowed')}
+              className="status-widowed"
               value="Widowed"
               onChange={this.updateStatus}
               onValidate={this.handleValidation}
@@ -122,4 +128,3 @@ export default class Marital extends ValidationElement {
 
 Marital.defaultProps = {
 }
-

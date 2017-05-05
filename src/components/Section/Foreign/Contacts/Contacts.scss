@@ -5,42 +5,6 @@
     margin-bottom: 0;
   }
 
-  .methods .block label,
-  .frequency .block label,
-  .relationship .block label {
-    height: 10rem;
-    width: 18rem;
-    overflow: hidden;
-
-    > span {
-      display: block;
-      height: 100%;
-
-      > div {
-        position: relative;
-        top: 35%;
-
-        > p {
-          padding: 0;
-        }
-      }
-
-      // If this is the first div AND not the last then it
-      // has subtext associated to it and needs to be bumped
-      // upwards.
-      > div:not(:last-of-type) {
-        top: 25%;
-      }
-
-      // All the div's (except the first) are treated as
-      // subtext.
-      > div:not(:first-of-type) {
-        font-size: smaller;
-        margin-top: -3rem;
-      }
-    }
-  }
-
   // Relationship buttons have more subtext than the others
   .relationship .block label {
     width: 28rem;

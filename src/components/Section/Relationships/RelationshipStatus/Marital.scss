@@ -1,21 +1,12 @@
 .marital {
-  .status-options {
-    label {
-      width: 30rem;
-      height: 11rem;
-      padding: 1rem;
-      line-height: 10rem !important;
-      span {
-        line-height: 1.4rem;
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
+  .status-options > .block > label {
+    width: 30rem !important;
   }
 
-  .status {
-    label {
-      width: 30rem;
+  .status-never,
+  .status-civil-union {
+    label > span > div {
+      top: 10%;
     }
   }
 }

@@ -96,6 +96,7 @@ export default class ForeignService extends ValidationElement {
     this.onUpdate('List', value)
   }
 
+  // TODO: Refactor so this is no longer necessary
   labelForMilitary () {
     return (
       <p>
