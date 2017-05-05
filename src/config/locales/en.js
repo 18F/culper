@@ -5140,6 +5140,61 @@ const en = {
             }
           }
         }
+      },
+      support: {
+        heading: {
+          title: 'Have you EVER provided financial support for any foreign national?',
+          name: 'Provide the name of the foreign national you support or have supported financially',
+          address: 'Provide the address of the foreign national listed above',
+          relationship: 'Provide the nature of your relationship with the foreign national listed above',
+          amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
+          frequency: 'Provide the frequency of your support',
+          country: 'Provide the name of the country providing this benefit'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided financial support to a foreign national?',
+            message: 'If you have provided any financial support to a foreign national then select "yes".',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the foreign national\'s address?',
+            message: 'Provide the current address of the foreign national',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relation to the foreign national?',
+            message: 'Provide the relationship to the foreign national',
+            note: ''
+          },
+          amount: {
+            title: 'Need help with the amount of financial support?',
+            message: 'Provide the amount of U.S. dollars',
+            note: ''
+          },
+          frequency: {
+            title: 'Need help with the frequency?',
+            message: 'Provide the frequency of support',
+            note: 'Note: Monthly, yearly, once, etc.'
+          },
+          country: {
+            title: 'Need help with the country(ies)?',
+            message: 'List all countries which benefit from this financial support',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign financial support',
+            item: 'Support',
+            unknown: 'Provide details of foreign financial support below'
+          },
+          appendTitle: 'Have you additionally provided financial support for any foreign national?',
+          appendMessage: [
+            'If yes use the button below to add another instance'
+          ],
+          append: 'Add another instance'
+        }
       }
     },
     contacts: {
@@ -5350,7 +5405,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       family: {
         heading: {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?',
@@ -5407,7 +5461,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       employment: {
         heading: {
           title: 'Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?',
@@ -5460,7 +5513,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       ventures: {
         heading: {
           title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
@@ -5552,7 +5604,6 @@ const en = {
           append: 'Add another interest'
         }
       },
-
       conferences: {
         heading: {
           title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',

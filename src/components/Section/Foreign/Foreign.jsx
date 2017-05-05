@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { DirectActivity, IndirectActivity, RealEstateActivity } from './Activities'
+import { DirectActivity, IndirectActivity, RealEstateActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
@@ -259,6 +259,18 @@ class Foreign extends ValidationElement {
                     />
           </SectionView>
 
+          <SectionView name="activities/support"
+                       back="foreign/activities/benefits"
+                       backLabel={i18n.t('foreign.destination.activities.benefits')}
+                       next="foreign/business/advice"
+                       nextLabel={i18n.t('foreign.destination.business.advice')}>
+            <Support name="support"
+                     {...this.props.Support}
+                     onUpdate={this.updateSupport}
+                     onValidate={this.handleValidation}
+                     />
+          </SectionView>
+
           <SectionView name="business"
                        back="foreign/activities/support"
                        backLabel={i18n.t('foreign.destination.activities.support')}
@@ -370,6 +382,7 @@ function mapStateToProps (state) {
     DirectActivity: foreign.DirectActivity || {},
     IndirectActivity: foreign.IndirectActivity || {},
     RealEstateActivity: foreign.RealEstateActivity || {},
+    Support: foreign.Support || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},
     Employment: foreign.Employment || {},
