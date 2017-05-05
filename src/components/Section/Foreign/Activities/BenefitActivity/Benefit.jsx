@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { ValidationElement, Currency, Field, Text, DateControl, Textarea, Radio, Country, RadioGroup, Show, Checkbox, CheckboxGroup } from '../../../../Form'
+import { ValidationElement, Field, Radio, RadioGroup, Show, Checkbox, CheckboxGroup } from '../../../../Form'
 import OneTimeBenefit from './OneTimeBenefit'
 import FutureBenefit from './FutureBenefit'
 import ContinuingBenefit from './ContinuingBenefit'
@@ -72,7 +72,7 @@ export default class Benefit extends ValidationElement {
           adjustFor="big-buttons">
 
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
-          <CheckboxGroup className="interest-types option-list"
+          <CheckboxGroup className="interest-types"
             selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
               label={i18n.t('foreign.activities.benefit.label.interestTypes.yourself')}
@@ -103,7 +103,7 @@ export default class Benefit extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
           help={i18n.t('foreign.activities.benefit.help.benefitType')}>
-          <RadioGroup className="option-list" selectedValue={this.props.BenefitType}>
+          <RadioGroup className="benefit-types" selectedValue={this.props.BenefitType}>
             <Radio name="benefit_type"
               label={i18n.t('foreign.activities.benefit.label.benefitTypes.educational')}
               value="Educational"
@@ -133,7 +133,7 @@ export default class Benefit extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
           help={i18n.t('foreign.activities.benefit.help.benefitFrequency')}>
-          <RadioGroup className="option-list" selectedValue={this.props.BenefitFrequency}>
+          <RadioGroup className="benefit-frequency" selectedValue={this.props.BenefitFrequency}>
             <Radio name="benefit_frequency"
               label={i18n.t('foreign.activities.benefit.label.benefitFrequency.oneTime')}
               value="OneTime"

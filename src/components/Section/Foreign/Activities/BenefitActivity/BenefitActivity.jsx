@@ -13,7 +13,7 @@ export default class BenefitActivity extends ValidationElement {
     }
 
     this.update = this.update.bind(this)
-    this.updateHasBenefit = this.updateHasBenefit.bind(this)
+    this.updateHasBenefits = this.updateHasBenefits.bind(this)
     this.updateList = this.updateList.bind(this)
     this.isValid = this.isValid.bind(this)
   }
@@ -21,7 +21,7 @@ export default class BenefitActivity extends ValidationElement {
   update (field, values) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
-        HasBenefit: this.props.HasBenefit,
+        HasBenefits: this.props.HasBenefits,
         List: this.props.List,
         [field]: values
       })
@@ -32,8 +32,8 @@ export default class BenefitActivity extends ValidationElement {
     this.update('List', values)
   }
 
-  updateHasBenefit (values) {
-    this.update('HasBenefit', values)
+  updateHasBenefits (values) {
+    this.update('HasBenefits', values)
   }
 
   isValid () {
@@ -83,16 +83,17 @@ export default class BenefitActivity extends ValidationElement {
 
   render () {
     return (
-      <div className="benefit">
-        <Branch name="has_interests"
-          label={<h3>{i18n.t('foreign.activities.benefit.heading.title')}</h3>}
+      <div className="benefit-activity">
+        <Branch name="has_benefit"
+          className="has-benefits"
+          label={i18n.t('foreign.activities.benefit.heading.title')}
           labelSize="h3"
-          value={this.props.HasBenefit}
+          value={this.props.HasBenefits}
           onValidate={this.handleValidation}
-          onUpdate={this.updateHasBenefit}>
+          onUpdate={this.updateHasBenefits}>
         </Branch>
 
-        <Show when={this.props.HasBenefit === 'Yes'}>
+        <Show when={this.props.HasBenefits === 'Yes'}>
           <Accordion minimum="1"
             defaultState={this.props.defaultState}
             items={this.props.List}
@@ -115,7 +116,7 @@ export default class BenefitActivity extends ValidationElement {
 
 BenefitActivity.defaultProps = {
   name: 'benefit',
-  HasBenefit: '',
+  HasBenefits: '',
   List: [],
   defaultState: true
 }
