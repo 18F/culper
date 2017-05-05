@@ -85,7 +85,7 @@ export default class RealEstateActivity extends ValidationElement {
     return (
       <div className="realestate">
         <Branch name="has_interests"
-          label={<h3>{i18n.t('foreign.activities.realestate.heading.title')}</h3>}
+          label={i18n.t('foreign.activities.realestate.heading.title')}
           labelSize="h3"
           value={this.props.HasInterests}
           onValidate={this.handleValidation}
