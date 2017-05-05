@@ -6043,17 +6043,17 @@ const en = {
       help: {
         occurred: {
           title: 'Need help with the date this occurred?',
-          message: 'Enter the date this official order was issued.',
-          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
+          message: 'Tell us the month and year when a court or agency declared you mentally incompetent.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
-          message: 'Enter the name of the court or administrative agency that issued the order.',
+          message: 'Tell us the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
           title: 'Not sure of the court or agency address?',
-          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          message: 'Try looking up the court or agency name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         incompetent: {
@@ -6061,8 +6061,9 @@ const en = {
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
         },
         disposition: {
-          title: 'Need help with the final disposition?',
-          message: 'Provide the court ruling regarding the court\'s decision.'
+          title: 'Need help entering the final disposition?',
+          message: 'Tell us the ruling regarding the court or agency\'s decision.',
+          note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
         }
       },
       collection: {
@@ -6092,24 +6093,24 @@ const en = {
       },
       help: {
         occurred: {
-          title: 'Need help with this date?',
-          message: 'Enter the date the court or agency ordered you to consult with a professional.',
-          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
+          title: 'Need help with the date this occurred?',
+          message: 'Tell us the month and year when a court or agency ordered you to consult with a professional.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
-          message: 'Enter the name of the court or administrative agency that issued the order.',
+          message: 'Tell us the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
           title: 'Not sure of the court or agency address?',
-          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          message: 'Try looking up the court or agency name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: 'Enter the disposition for this order',
-          note: ''
+          message: 'Tell us the ruling regarding the court or agency\'s decision.',
+          note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
@@ -6159,18 +6160,18 @@ const en = {
         },
         treatment: {
           title: 'Need help the date range of your hospitalization?',
-          message: 'Provide the full date range (admission to release) of your hospitalization.',
-          note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
+          message: 'Tell us the full date range (admission to release) of your hospitalization.',
+          note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
         },
         facility: {
           title: 'Need help with this facility name?',
-          message: 'Enter the name of the facility where you were hospitalized.',
+          message: 'Tell us the name of the facility where you were hospitalized.',
           note: ''
         },
         address: {
           title: 'Not sure of the facility address?',
-          message: 'Try looking up the facility name, a physical or mailing address should be associated with it.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          message: 'Try looking up the facility name, this could help you find the address.',
+          note: 'Note: f you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -6191,8 +6192,8 @@ const en = {
         },
         diagnosed: {
           title: 'Need help the date range of your diagnosis or health condition?',
-          message: 'Provide the full date range you have had this diagnosis or health condition.',
-          note: 'Note: If this is a current diagnosis or health condition enter the start date and select the "Present" button for the "To date".'
+          message: 'Tell us the full date range you have had this diagnosis or health condition.',
+          note: 'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
         }
       },
       person: {
@@ -6207,14 +6208,14 @@ const en = {
         },
         help: {
           address: {
-            title: 'Need help with health care professional address',
-            message: 'Provide the address of the health care professional',
-            note: ''
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
             title: 'Need help the name of the healthcare professional?',
-            message: 'Provide the name of the healthcare professional.',
-            note: ''
+            message: 'Tell us the full name of the healthcare professional.',
+            note: 'Note: If you can’t remember this name a family member may be able to help you.'
           }
         }
       },
@@ -6230,14 +6231,14 @@ const en = {
         },
         help: {
           address: {
-            title: 'Not sure of the agency/organization/facility address?',
-            message: 'Try looking up the agency/organization/facility, a physical or mailing address should be associated with it.',
+            title: 'Not sure of the agency/organization/facility\'s address?',
+            message: 'Try looking up the name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
-            title: 'Need help the facility where treatment was provided?',
-            message: 'Provide the name of the facility where treatment was provided',
-            note: ''
+            title: 'Need help entering name of the facility where treatment was provided?',
+            message: 'Tell us the full name of the facility.',
+            note: 'Note: If you can’t remember this facility name a family member may be able to help you.'
           }
         }
       }
@@ -6303,7 +6304,7 @@ const en = {
       person: {
         help: {
           name: {
-            title: 'Help with healthcare professional',
+            title: 'Need help the name of the healthcare professional?',
             message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
           },
           address: {
