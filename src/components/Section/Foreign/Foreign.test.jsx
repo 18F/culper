@@ -84,6 +84,22 @@ describe('The foreign section', () => {
         action: (component) => { component.find('.branch .yes input').simulate('change') }
       },
       {
+        section: 'activities/direct',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'activities/indirect',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'activities/realestate',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
+        section: 'activities/support',
+        action: (component) => { component.find('.branch .yes input').simulate('change') }
+      },
+      {
         section: 'business/advice',
         action: (component) => { component.find('.branch .yes input').simulate('change') }
       },
