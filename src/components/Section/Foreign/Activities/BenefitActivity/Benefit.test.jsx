@@ -93,4 +93,19 @@ describe('The Benefit component', () => {
     component.find('.obligated .no input').simulate('change')
     expect(updates).toBe(1)
   })
+
+  it('Renders with other benefit and triggers update', () => {
+    let updates = 0
+    const expected = {
+      onUpdate: () => { updates++ },
+      BenefitFrequency: 'Other',
+      OtherBenefit: {
+        value: 'Other'
+      }
+    }
+
+    const component = mount(<Benefit {...expected} />)
+    component.find('textarea[name="OtherBenefit"]').simulate('change')
+    expect(updates).toBe(1)
+  })
 })

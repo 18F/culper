@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { ValidationElement, Field, Radio, RadioGroup, Show, Checkbox, CheckboxGroup } from '../../../../Form'
+import { ValidationElement, Field, Radio, RadioGroup, Show, Checkbox, CheckboxGroup, Textarea } from '../../../../Form'
 import OneTimeBenefit from './OneTimeBenefit'
 import FutureBenefit from './FutureBenefit'
 import ContinuingBenefit from './ContinuingBenefit'
@@ -16,6 +16,7 @@ export default class Benefit extends ValidationElement {
     this.updateOneTimeBenefit = this.updateOneTimeBenefit.bind(this)
     this.updateFutureBenefit = this.updateFutureBenefit.bind(this)
     this.updateContinuingBenefit = this.updateContinuingBenefit.bind(this)
+    this.updateOtherBenefit = this.updateOtherBenefit.bind(this)
   }
 
   update (field, values) {
@@ -27,6 +28,7 @@ export default class Benefit extends ValidationElement {
         OneTimeBenefit: this.props.OneTimeBenefit,
         FutureBenefit: this.props.FutureBenefit,
         ContinuingBenefit: this.props.ContinuingBenefit,
+        OtherBenefit: this.props.OtherBenefit,
         [field]: values
       })
     }
@@ -62,6 +64,10 @@ export default class Benefit extends ValidationElement {
 
   updateContinuingBenefit (values) {
     this.update('ContinuingBenefit', values)
+  }
+
+  updateOtherBenefit (values) {
+    this.update('OtherBenefit', values)
   }
 
   render () {
@@ -181,6 +187,13 @@ export default class Benefit extends ValidationElement {
           <ContinuingBenefit name="ContinuingBenefit"
             {...this.props.ContinuingBenefit}
             onUpdate={this.updateContinuingBenefit}
+            onValidate={this.props.onValidate}
+          />
+        </Show>
+        <Show when={this.props.BenefitFrequency === 'Other'}>
+          <Textarea name="OtherBenefit"
+            {...this.props.OtherBenefit}
+            onUpdate={this.updateOtherBenefit}
             onValidate={this.props.onValidate}
           />
         </Show>
