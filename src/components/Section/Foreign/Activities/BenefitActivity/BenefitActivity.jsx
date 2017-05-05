@@ -134,7 +134,7 @@ export const benefitSummary = (item, index) => {
   return (
     <span className="content">
       <span className="index">{type}: {index + 1}</span>
-      <span className="interest">
+      <span className="benefit-summary">
         <strong>{ summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
       </span>
       <span className="date">{benefit.Date}</span>

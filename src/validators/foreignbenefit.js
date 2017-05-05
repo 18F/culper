@@ -8,6 +8,7 @@ export default class ForeignBenefitValidator {
     this.oneTimeBenefit = props.OneTimeBenefit
     this.futureBenefit = props.FutureBenefit
     this.continuingBenefit = props.ContinuingBenefit
+    this.otherBenefit = props.OtherBenefit
   }
 
   validInterestTypes () {
@@ -32,6 +33,8 @@ export default class ForeignBenefitValidator {
         return new FutureBenefitValidator(null, this.futureBenefit).isValid()
       case 'Continuing':
         return new ContinuingBenefitValidator(null, this.continuingBenefit).isValid()
+      case 'Other':
+        return validGenericTextfield(this.otherBenefit)
       default:
         return false
     }

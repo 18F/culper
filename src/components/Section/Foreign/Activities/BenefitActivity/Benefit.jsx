@@ -85,24 +85,28 @@ export default class Benefit extends ValidationElement {
               value="Yourself"
               className="yourself"
               onChange={this.updateInterestTypes}
+              onValidate={this.props.onValidate}
             />
             <Checkbox name="interest-type"
               label={i18n.m('foreign.activities.benefit.label.interestTypes.spouse')}
               value="Spouse"
               className="spouse"
               onChange={this.updateInterestTypes}
+              onValidate={this.props.onValidate}
             />
             <Checkbox name="interest-type"
               label={i18n.m('foreign.activities.benefit.label.interestTypes.cohabitant')}
               value="Cohabitant"
               className="cohabitant"
               onChange={this.updateInterestTypes}
+              onValidate={this.props.onValidate}
             />
             <Checkbox name="interest-type"
               label={i18n.m('foreign.activities.benefit.label.interestTypes.dependentChildren')}
               value="DependentChildren"
               className="dependent-children"
               onChange={this.updateInterestTypes}
+              onValidate={this.props.onValidate}
             />
           </CheckboxGroup>
         </Field>
@@ -190,12 +194,16 @@ export default class Benefit extends ValidationElement {
             onValidate={this.props.onValidate}
           />
         </Show>
+
         <Show when={this.props.BenefitFrequency === 'Other'}>
-          <Textarea name="OtherBenefit"
-            {...this.props.OtherBenefit}
-            onUpdate={this.updateOtherBenefit}
-            onValidate={this.props.onValidate}
-          />
+          <div>
+            {i18n.m('foreign.activities.benefit.label.otherBenefit')}
+            <Textarea name="OtherBenefit"
+              {...this.props.OtherBenefit}
+              onUpdate={this.updateOtherBenefit}
+              onValidate={this.props.onValidate}
+            />
+          </div>
         </Show>
       </div>
     )
@@ -203,4 +211,7 @@ export default class Benefit extends ValidationElement {
 }
 
 Benefit.defaultProps = {
+  InterestTypes: [],
+  BenefitType: '',
+  BenefitFrequency: ''
 }

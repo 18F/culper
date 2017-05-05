@@ -103,7 +103,7 @@ export default class ContinuingBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.frequency')}
-          help={i18n.t('foreign.activities.benefit.continuing.help.frequency')}>
+          help={'foreign.activities.benefit.continuing.help.frequency'}>
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
@@ -162,6 +162,7 @@ export default class ContinuingBenefit extends ValidationElement {
               toggle="false"
               checked={this.props.ValueEstimated}
               onUpdate={this.updateValueEstimated}
+              onValidate={this.props.onValidate}
             />
           </div>
         </Field>

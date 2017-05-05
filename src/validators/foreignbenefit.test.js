@@ -1,7 +1,7 @@
 import ForeignBenefitValidator, { OneTimeBenefitValidator, FutureBenefitValidator, ContinuingBenefitValidator } from './foreignbenefit'
 
 describe('Foreign Born Benefits', function () {
-  it('should validate benefit activity with one time benefit', function () {
+  it('should validate benefit activities', function () {
     const tests = [
       {
         props: {
@@ -89,6 +89,17 @@ describe('Foreign Born Benefits', function () {
             ObligatedExplanation: {
               value: 'Because'
             }
+          }
+        },
+        expected: true
+      },
+      {
+        props: {
+          InterestTypes: ['Yourself'],
+          BenefitType: 'Educational',
+          BenefitFrequency: 'Other',
+          OtherBenefit: {
+            value: 'Sweet'
           }
         },
         expected: true

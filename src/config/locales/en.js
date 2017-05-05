@@ -5155,6 +5155,7 @@ const en = {
           checkAll: 'Check all that apply'
         },
         label: {
+          otherBenefit: 'Provide explanation',
           interestTypes: {
             yourself: 'Yourself',
             spouse: 'Spouse or legally recognized civil union/domestic partner',
@@ -5171,7 +5172,7 @@ const en = {
             oneTime: 'Onetime benefit',
             future: 'Future benefit',
             continuing: 'Continuing benefit',
-            other: 'Other (Provide explanation)'
+            other: 'Other'
           }
         },
         collection: {
@@ -5191,7 +5192,8 @@ const en = {
             obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
           },
           label: {
-            obligatedExplanation: 'If yes provide explanation'
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated'
           },
           para: {
             obligated: 'If yes provide explanation'

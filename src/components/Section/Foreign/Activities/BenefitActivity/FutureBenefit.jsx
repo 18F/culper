@@ -83,7 +83,7 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
-          help={i18n.t('foreign.activities.benefit.future.help.frequency')}>
+          help={'foreign.activities.benefit.future.help.frequency'}>
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
