@@ -90,36 +90,36 @@ export default class RealEstateInterest extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="interest">
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.interestTypes`)}
-          help={`foreign.activities.realestate.interest.help.interestTypes`}
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.interestTypes')}
+          help={'foreign.activities.realestate.interest.help.interestTypes'}
           adjustFor="big-buttons">
+          {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
-          <p>{i18n.t(`foreign.activities.realestate.interest.para.checkAll`)}</p>
           <CheckboxGroup className="interest-types option-list"
             selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.yourself`)}
+              label={i18n.t('foreign.activities.realestate.interest.label.interestTypes.yourself')}
               value="Yourself"
               className="yourself"
               onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.spouse`)}
+              label={i18n.t('foreign.activities.realestate.interest.label.interestTypes.spouse')}
               value="Spouse"
               className="spouse"
               onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.cohabitant`)}
+              label={i18n.t('foreign.activities.realestate.interest.label.interestTypes.cohabitant')}
               value="Cohabitant"
               className="cohabitant"
               onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.realestate.interest.label.interestTypes.dependentChildren`)}
+              label={i18n.t('foreign.activities.realestate.interest.label.interestTypes.dependentChildren')}
               value="DependentChildren"
               className="dependent-children"
               onValidate={this.props.onValidate}
@@ -128,8 +128,8 @@ export default class RealEstateInterest extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.realEstateType`)}
-          help={`foreign.activities.realestate.interest.help.realEstateType`}
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
+          help={'foreign.activities.realestate.interest.help.realEstateType'}
           adjustFor="labels"
           shrink={true}>
           <Text name="RealEstateType"
@@ -140,22 +140,22 @@ export default class RealEstateInterest extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.address`)}>
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}>
           <Address name="Address"
-            label={i18n.t(`foreign.activities.realestate.interest.label.address`)}
+            label={i18n.t('foreign.activities.realestate.interest.label.address')}
             {...this.props.Address}
             onUpdate={this.updateAddress}
             onValidate={this.props.onValidate}
           />
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.acquired`)}
-          help={`foreign.activities.realestate.interest.help.acquired`}
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.acquired')}
+          help={'foreign.activities.realestate.interest.help.acquired'}
           adjustFor="labels">
           <DateControl name="Acquired"
             className="acquired"
             {...this.props.Acquired}
-            label={i18n.t(`foreign.activities.realestate.interest.label.acquired`)}
+            label={i18n.t('foreign.activities.realestate.interest.label.acquired')}
             hideDay={true}
             prefix={this.props.prefix}
             onUpdate={this.updateAcquired}
@@ -163,9 +163,9 @@ export default class RealEstateInterest extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.howAcquired`)}
-          help={`foreign.activities.realestate.interest.help.howAcquired`}>
-          <p>{i18n.t(`foreign.activities.realestate.interest.para.howAcquired`)}</p>
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.howAcquired')}
+          help={'foreign.activities.realestate.interest.help.howAcquired'}>
+          <p>{i18n.t('foreign.activities.realestate.interest.para.howAcquired')}</p>
           <Textarea name="HowAcquired"
             className="how-acquired"
             {...this.props.HowAcquired}
@@ -174,18 +174,18 @@ export default class RealEstateInterest extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.sold`)}
-          help={`foreign.activities.realestate.interest.help.sold`}
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.sold')}
+          help={'foreign.activities.realestate.interest.help.sold'}
           adjustFor="labels">
           <NotApplicable name="SoldNotApplicable"
             {...this.props.SoldNotApplicable}
-            label={i18n.t(`foreign.activities.realestate.interest.label.soldNotApplicable`)}
-            or={i18n.t(`foreign.activities.realestate.interest.label.or`)}
+            label={i18n.t('foreign.activities.realestate.interest.label.soldNotApplicable')}
+            or={i18n.t('foreign.activities.realestate.interest.label.or')}
             onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
               className="sold"
               {...this.props.Sold}
-              label={i18n.t(`foreign.activities.realestate.interest.label.sold`)}
+              label={i18n.t('foreign.activities.realestate.interest.label.sold')}
               hideDay={true}
               prefix={this.props.prefix}
               onUpdate={this.updateSold}
@@ -194,8 +194,8 @@ export default class RealEstateInterest extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.realestate.interest.heading.cost`)}
-          help={`foreign.activities.realestate.interest.help.cost`}>
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.cost')}
+          help={'foreign.activities.realestate.interest.help.cost'}>
           <Currency name="Cost"
             className="cost"
             {...this.props.Cost}
