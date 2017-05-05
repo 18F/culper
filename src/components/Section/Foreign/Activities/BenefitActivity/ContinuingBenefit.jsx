@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { ValidationElement, Currency, Branch, Field, Text, DateControl, Textarea, Radio, Country, RadioGroup, Show, Checkbox, CheckboxGroup } from '../../../../Form'
+import { ValidationElement, Currency, Branch, Field, DateControl, Textarea, Radio, Country, RadioGroup, Show, Checkbox } from '../../../../Form'
 
 export default class ContinuingBenefit extends ValidationElement {
   constructor (props) {
@@ -43,8 +43,8 @@ export default class ContinuingBenefit extends ValidationElement {
     this.update('End', values)
   }
 
-  updateFrequency (values) {
-    this.update('Frequency', values)
+  updateFrequency (cb) {
+    this.update('Frequency', cb.target.value)
   }
 
   updateCountry (values) {
@@ -73,7 +73,7 @@ export default class ContinuingBenefit extends ValidationElement {
 
   render () {
     return (
-      <div className="onetime-benefit">
+      <div className="continuing-benefit">
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.began')}
           help={'foreign.activities.benefit.continuing.help.began'}
           adjustFor="labels">
@@ -82,7 +82,6 @@ export default class ContinuingBenefit extends ValidationElement {
             className="began"
             {...this.props.Began}
             label={i18n.t('foreign.activities.benefit.continuing.label.began')}
-            hideDay={true}
             prefix={this.props.prefix}
             onUpdate={this.updateBegan}
             onValidate={this.props.onValidate}
@@ -97,7 +96,6 @@ export default class ContinuingBenefit extends ValidationElement {
             className="end"
             {...this.props.End}
             label={i18n.t('foreign.activities.benefit.continuing.label.end')}
-            hideDay={true}
             prefix={this.props.prefix}
             onUpdate={this.updateEnd}
             onValidate={this.props.onValidate}
@@ -107,7 +105,7 @@ export default class ContinuingBenefit extends ValidationElement {
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.frequency')}
           help={i18n.t('foreign.activities.benefit.continuing.help.frequency')}>
 
-          <RadioGroup className="option-list" selectedValue={this.props.Frequency}>
+          <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
               label={i18n.t('foreign.activities.benefit.continuing.label.frequency.annually')}
               value="Annually"
@@ -179,6 +177,7 @@ export default class ContinuingBenefit extends ValidationElement {
         </Field>
 
         <Branch name="Obligated"
+          className="obligated"
           label={i18n.t('foreign.activities.benefit.continuing.heading.obligated')}
           labelSize="h3"
           value={this.props.Obligated}

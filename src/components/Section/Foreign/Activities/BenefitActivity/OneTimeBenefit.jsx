@@ -10,6 +10,7 @@ export default class OneTimeBenefit extends ValidationElement {
     this.updateReceived = this.updateReceived.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateValue = this.updateValue.bind(this)
+    this.updateValueEstimated = this.updateValueEstimated.bind(this)
     this.updateReason = this.updateReason.bind(this)
     this.updateObligated = this.updateObligated.bind(this)
     this.updateObligatedExplanation = this.updateObligatedExplanation.bind(this)
@@ -21,6 +22,7 @@ export default class OneTimeBenefit extends ValidationElement {
         Received: this.props.Received,
         Country: this.props.Country,
         Value: this.props.Value,
+        ValueEstimated: this.props.Value,
         Reason: this.props.Reason,
         Obligated: this.props.Obligated,
         ObligatedExplanation: this.props.ObligatedExplanation,
@@ -39,6 +41,10 @@ export default class OneTimeBenefit extends ValidationElement {
 
   updateValue (values) {
     this.update('Value', values)
+  }
+
+  updateValueEstimated (values) {
+    this.update('ValueEstimated', values)
   }
 
   updateReason (values) {
@@ -64,7 +70,6 @@ export default class OneTimeBenefit extends ValidationElement {
             className="received"
             {...this.props.Received}
             label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
-            hideDay={true}
             prefix={this.props.prefix}
             onUpdate={this.updateReceived}
             onValidate={this.props.onValidate}
@@ -88,6 +93,14 @@ export default class OneTimeBenefit extends ValidationElement {
             onUpdate={this.updateValue}
             onValidate={this.props.onValidate}
           />
+          <div className="flags">
+            <Checkbox name="ValueEstimated"
+              label={i18n.t('foreign.activities.benefit.oneTime.label.valueEstimated')}
+              toggle="false"
+              checked={this.props.ValueEstimated}
+              onUpdate={this.updateValueEstimated}
+            />
+          </div>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}
@@ -101,6 +114,7 @@ export default class OneTimeBenefit extends ValidationElement {
         </Field>
 
         <Branch name="Obligated"
+          className="obligated"
           label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
           labelSize="h3"
           value={this.props.Obligated}

@@ -13,9 +13,6 @@ export default class Benefit extends ValidationElement {
     this.updateInterestTypes = this.updateInterestTypes.bind(this)
     this.updateBenefitType = this.updateBenefitType.bind(this)
     this.updateBenefitFrequency = this.updateBenefitFrequency.bind(this)
-    this.updateReceived = this.updateReceived.bind(this)
-    this.updaateCountry = this.updateCountry.bind(this)
-    this.updateValue = this.updateValue.bind(this)
     this.updateOneTimeBenefit = this.updateOneTimeBenefit.bind(this)
     this.updateFutureBenefit = this.updateFutureBenefit.bind(this)
     this.updateContinuingBenefit = this.updateContinuingBenefit.bind(this)
@@ -27,12 +24,9 @@ export default class Benefit extends ValidationElement {
         InterestTypes: this.props.InterestTypes,
         BenefitType: this.props.BenefitType,
         BenefitFrequency: this.props.BenefitFrequency,
-        Received: this.props.Received,
-        Country: this.props.Country,
-        Value: this.props.Value,
         OneTimeBenefit: this.props.OneTimeBenefit,
         FutureBenefit: this.props.FutureBenefit,
-        ContinuingBenfit: this.props.ContinuingBenfit,
+        ContinuingBenefit: this.props.ContinuingBenefit,
         [field]: values
       })
     }
@@ -50,24 +44,12 @@ export default class Benefit extends ValidationElement {
     this.update('InterestTypes', selected)
   }
 
-  updateBenefitType (values) {
-    this.update('BenefitType', values)
+  updateBenefitType (cb) {
+    this.update('BenefitType', cb.target.value)
   }
 
   updateBenefitFrequency (cb) {
     this.update('BenefitFrequency', cb.target.value)
-  }
-
-  updateReceived (values) {
-    this.update('Received', values)
-  }
-
-  updateCountry (values) {
-    this.update('Country', values)
-  }
-
-  updateValue (values) {
-    this.update('Value', values)
   }
 
   updateOneTimeBenefit (values) {
@@ -197,7 +179,7 @@ export default class Benefit extends ValidationElement {
 
         <Show when={this.props.BenefitFrequency === 'Continuing'}>
           <ContinuingBenefit name="ContinuingBenefit"
-            {...this.props.ContinuingBenfit}
+            {...this.props.ContinuingBenefit}
             onUpdate={this.updateContinuingBenefit}
             onValidate={this.props.onValidate}
           />

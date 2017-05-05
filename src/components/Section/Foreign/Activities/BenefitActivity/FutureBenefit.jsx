@@ -37,8 +37,8 @@ export default class FutureBenefit extends ValidationElement {
     this.update('Begin', values)
   }
 
-  updateFrequency (values) {
-    this.update('Frequency', values)
+  updateFrequency (cb) {
+    this.update('Frequency', cb.target.value)
   }
 
   updateCountry (values) {
@@ -67,7 +67,7 @@ export default class FutureBenefit extends ValidationElement {
 
   render () {
     return (
-      <div className="onetime-benefit">
+      <div className="future-benefit">
         <Field title={i18n.t('foreign.activities.benefit.future.heading.begin')}
           help={'foreign.activities.benefit.future.help.begin'}
           adjustFor="labels">
@@ -76,7 +76,6 @@ export default class FutureBenefit extends ValidationElement {
             className="begin"
             {...this.props.Begin}
             label={i18n.t('foreign.activities.benefit.future.label.begin')}
-            hideDay={true}
             prefix={this.props.prefix}
             onUpdate={this.updateBegin}
             onValidate={this.props.onValidate}
@@ -86,7 +85,7 @@ export default class FutureBenefit extends ValidationElement {
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
           help={i18n.t('foreign.activities.benefit.future.help.frequency')}>
 
-          <RadioGroup className="option-list" selectedValue={this.props.Frequency}>
+          <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
               label={i18n.t('foreign.activities.benefit.future.label.frequency.annually')}
               value="Annually"
@@ -158,6 +157,7 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Branch name="Obligated"
+          className="obligated"
           label={i18n.t('foreign.activities.benefit.future.heading.obligated')}
           labelSize="h3"
           value={this.props.Obligated}
