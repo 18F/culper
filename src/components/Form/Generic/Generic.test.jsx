@@ -99,4 +99,17 @@ describe('The generic component', () => {
     component.find('input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
+
+  it('trims whitespace for validation', () => {
+    let persisted = false
+    const expected = {
+      name: 'input-type-text',
+      maxlength: '2',
+      value: '12 '
+    }
+    const component = shallow(<Generic {...expected} />)
+    component.find('input').simulate('blur', { persist: () => { persisted = true }, target: { name: expected.name } })
+    expect(persisted).toBe(true)
+    expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
+  })
 })
