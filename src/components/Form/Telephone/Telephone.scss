@@ -76,10 +76,9 @@
     }
   }
 
-  .phonetype-option {
-    label {
-      width: 12rem;
-    }
+  .phonetype-option.block label {
+    height: initial !important;
+    width: 12rem !important;
   }
 
   .nonumber {

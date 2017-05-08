@@ -92,7 +92,7 @@ const navigation = [
           { name: 'Direct control', url: 'direct' },
           { name: 'Indirect control', url: 'indirect' },
           { name: 'Real estate purchase', url: 'realestate' },
-          { hidden: true, name: 'Foreign benefits', url: 'benefits' },
+          { name: 'Foreign benefits', url: 'benefits' },
           { name: 'Foreign national support', url: 'support' }
         ]
       },

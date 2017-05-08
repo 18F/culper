@@ -1,7 +1,12 @@
 .existingconditions {
   .treatment-list {
+    .yes label,
+    .no label {
+      width: 15rem !important;
+    }
+
     label {
-      width: 16rem;
+      height: initial !important;
     }
   }
 

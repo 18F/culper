@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
+import { ValidationElement, Branch, Show, Accordion, DateControl, Currency, Field,
          NotApplicable, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
@@ -173,13 +173,12 @@ export default class Nonpayment extends ValidationElement {
             <Field title={i18n.t('financial.nonpayment.heading.amount')}
                    help="financial.nonpayment.help.amount">
               <div>
-                <i className="fa fa-dollar"></i>
-                <Number name="Amount"
-                        className="nonpayment-amount"
-                        placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
-                        min="1"
-                        bind={true}
-                        />
+                <Currency name="Amount"
+                          className="nonpayment-amount"
+                          placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
+                          min="1"
+                          bind={true}
+                          />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"

@@ -91,9 +91,7 @@ describe('Diagnosis validation', function () {
           TreatmentList: [
             {
               Treatment: {
-                Condition: {
-                  value: 'Test'
-                },
+                Condition: 'Test',
                 Effective: 'Yes',
                 Explanation: {
                   value: null
