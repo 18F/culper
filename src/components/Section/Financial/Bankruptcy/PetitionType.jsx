@@ -78,6 +78,7 @@ export default class PetitionType extends React.Component {
                 className="trustee"
                 {...this.props.Trustee}
                 placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
+                onValidate={this.props.onValidate}
                 onUpdate={this.updateTrustee}
               />
             </Field>
@@ -88,6 +89,7 @@ export default class PetitionType extends React.Component {
               <Address name="trusteeAddress"
                 {...this.props.Address}
                 label={i18n.t('financial.bankruptcy.trustee.address.label')}
+                onValidate={this.props.onValidate}
                 onUpdate={this.updateAddress}
               />
             </Field>

@@ -57,7 +57,7 @@ describe('Bankruptcy component validation', function () {
             {
               Bankruptcy: {
                 PetitionType: {
-                  value: 'hello'
+                  PetitionType: 'Chapter7'
                 },
                 CourtAddress: {
                   addressType: 'United States',
@@ -110,7 +110,7 @@ describe('Bankruptcy component validation', function () {
             {
               Bankruptcy: {
                 PetitionType: {
-                  value: 'hello'
+                  PetitionType: 'Chapter7'
                 },
                 CourtAddress: {
                   addressType: 'United States',
@@ -162,7 +162,7 @@ describe('Bankruptcy component validation', function () {
             {
               Bankruptcy: {
                 PetitionType: {
-                  value: 'hello'
+                  PetitionType: 'hello'
                 }
               }
             }
@@ -182,7 +182,7 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           PetitionType: {
-            value: 'Chapter7'
+            PetitionType: 'Chapter7'
           }
         },
         expected: true
@@ -196,7 +196,7 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           PetitionType: {
-            value: ''
+            PetitionType: ''
           }
         },
         expected: false
@@ -381,7 +381,7 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           PetitionType: {
-            value: 'Chapter7'
+            PetitionType: 'Chapter7'
           },
           CourtAddress: {
             addressType: 'United States',
@@ -435,39 +435,39 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         state: {
-          value: 'Chapter7'
+          PetitionType: 'Chapter7'
         },
         expected: true
       },
       {
         state: {
-          value: 'Chapter11'
+          PetitionType: 'Chapter11'
         },
         expected: true
       },
       {
         state: {
-          value: 'Chapter12'
+          PetitionType: 'Chapter12'
         },
         expected: true
       },
       {
         state: {
-          value: 'Chapter100'
+          PetitionType: 'Chapter100'
         },
         expected: false
       },
       {
         state: {
-          value: 'Chapter13',
-          address: {
+          PetitionType: 'Chapter13',
+          Address: {
             addressType: 'United States',
             address: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
             zipcode: '22202'
           },
-          trustee: {
+          Trustee: {
             value: 'John Doe'
           }
         },

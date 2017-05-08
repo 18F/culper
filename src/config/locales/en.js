@@ -1015,7 +1015,9 @@ const en = {
           item: 'Petition',
           unknown: 'Provide your bankruptcy below',
           nodates: 'No date',
-          chapter: 'Chapter'
+          chapter: 'Chapter',
+          appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?',
+          appendMessage: 'If yes use the button below to add another bankruptcy petition'
         },
         append: 'Add another petition'
       },

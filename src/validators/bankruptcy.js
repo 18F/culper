@@ -120,21 +120,22 @@ export class BankruptcyItemValidator {
       this.validDateFiled() &&
       this.validDateDischarged() &&
       this.validDischargeExplanation() &&
-      this.validName()
+      this.validName() &&
+      this.validPetitionType()
   }
 }
 
 export class PetitionTypeValidator {
   constructor (state = {}, props) {
     state = state || {}
-    this.address = state.address
-    this.name = state.name
-    this.trustee = state.trustee
-    this.value = state.value
+    this.address = state.Address
+    this.name = state.Name
+    this.trustee = state.Trustee
+    this.petitionType = state.PetitionType
   }
 
   isValid () {
-    switch (this.value) {
+    switch (this.petitionType) {
       case 'Chapter7':
       case 'Chapter11':
       case 'Chapter12':
