@@ -5326,7 +5326,8 @@ const en = {
             }
           },
           para: {
-            obligated: 'If yes provide explanation'
+            obligated: 'If yes provide explanation',
+            frequencyOther: 'Provide explanation'
           },
           help: {
             begin: {
@@ -5383,7 +5384,8 @@ const en = {
             }
           },
           para: {
-            obligated: 'If yes provide explanation'
+            obligated: 'If yes provide explanation',
+            frequencyOther: 'Provide explanation'
           },
           help: {
             began: {
