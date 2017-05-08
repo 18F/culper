@@ -173,6 +173,7 @@ class Financial extends ValidationElement {
                     />
 
             <h2>{i18n.t('financial.delinquent.title')}</h2>
+            {i18n.m('financial.delinquent.para.details')}
             <ul>
               <li>{i18n.m('financial.delinquent.para.alimony')}</li>
               <li>{i18n.m('financial.delinquent.para.judgement')}</li>
@@ -274,6 +275,7 @@ class Financial extends ValidationElement {
                        next="financial/nonpayment"
                        nextLabel={i18n.t('financial.destination.nonpayment')}>
             <h2>{i18n.t('financial.delinquent.title')}</h2>
+            {i18n.m('financial.delinquent.para.details')}
             <ul>
               <li>{i18n.m('financial.delinquent.para.alimony')}</li>
               <li>{i18n.m('financial.delinquent.para.judgement')}</li>

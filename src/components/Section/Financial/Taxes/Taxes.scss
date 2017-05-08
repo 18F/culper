@@ -1,36 +1,6 @@
 .taxes {
   .taxes-failure label {
-    width: 15rem;
-  }
-
-  .taxes-failure,
-  .taxes-year,
-  .taxes-reason,
-  .taxes-agency,
-  .taxes-taxtype,
-  .taxes-amount,
-  .taxes-date,
-  .taxes-description {
-    display: inline-block;
-    max-width: 64rem;
-    width: 92%;
-  }
-
-  .taxes-failure,
-  .taxes-date {
-    width: initial !important;
-  }
-
-  .fa.fa-dollar {
-    margin-left: -2rem;
-  }
-
-  .taxes-amount {
-    width: 100%;
-    margin-left: 1rem;
-
-    label {
-      margin-left: 1rem;
-    }
+    width: 15rem !important;
+    height: initial !important;
   }
 }

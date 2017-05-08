@@ -1,9 +1,8 @@
 .military-service {
-  .service .block label,
   .status .block label,
-  .officer .block label,
-  .discharge-type .block label {
-    width: 18rem;
+  .officer .block label {
+    width: 18rem !important;
+    height: initial !important;
   }
 
   .service-icon,
@@ -12,28 +11,10 @@
     margin-top: 2rem;
   }
 
-  .discharge-type-honorable,
-  .discharge-type-dishonorable,
-  .discharge-type-lessthan,
-  .discharge-type-general,
-  .discharge-type-badconduct,
-  .discharge-type-other {
-    label {
-      height: 9rem;
-      overflow: hidden;
-      padding-top: 3rem;
-    }
-
-    p {
-      padding: 0 !important;
-    }
-  }
-
   .discharge-type-lessthan,
   .discharge-type-other {
-    label {
-      padding-top: 2rem !important;
-      line-height: initial;
+    > label > span > div {
+      top: 25%;
     }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { TaxesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
-         Checkbox, Text, Textarea, NotApplicable } from '../../../Form'
+         Checkbox, Text, Textarea, NotApplicable, Currency } from '../../../Form'
 import FailureType from './FailureType'
 
 export default class Taxes extends ValidationElement {
@@ -167,13 +167,12 @@ export default class Taxes extends ValidationElement {
             <Field title={i18n.t('financial.taxes.heading.amount')}
                    help="financial.taxes.help.amount">
               <div>
-                <i className="fa fa-dollar"></i>
-                <Number name="Amount"
-                        className="taxes-amount"
-                        placeholder={i18n.t('financial.taxes.placeholder.amount')}
-                        min="1"
-                        bind={true}
-                        />
+                <Currency name="Amount"
+                          className="taxes-amount"
+                          placeholder={i18n.t('financial.taxes.placeholder.amount')}
+                          min="1"
+                          bind={true}
+                          />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"

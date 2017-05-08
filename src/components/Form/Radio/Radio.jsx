@@ -32,6 +32,13 @@ export default class Radio extends ValidationElement {
     event.persist()
     this.setState({checked: event.target.checked}, () => {
       super.handleChange(event)
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value,
+          checked: this.state.checked
+        })
+      }
     })
   }
 
