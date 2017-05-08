@@ -96,15 +96,6 @@ export default class ForeignService extends ValidationElement {
     this.onUpdate('List', value)
   }
 
-  labelForMilitary () {
-    return (
-      <p>
-        {i18n.t('military.foreign.label.organization.military')}<br />
-        <span className="smaller">{i18n.t('military.foreign.label.organization.military2')}</span>
-      </p>
-    )
-  }
-
   /**
    * Assists in rendering the summary section.
    */
@@ -135,7 +126,7 @@ export default class ForeignService extends ValidationElement {
                       selectedValue={this.state.Organization}>
             <Radio name="organization-military"
                    className="organization-military"
-                   label={this.labelForMilitary()}
+                   label={i18n.m('military.foreign.label.organization.military')}
                    value="Military"
                    onChange={this.updateOrganization}
                    />

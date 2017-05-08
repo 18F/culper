@@ -126,21 +126,21 @@ export default class ExistingConditions extends ValidationElement {
             <Field>
               <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
                 <Radio name="treatment"
-                  className="treatment"
+                  className="treatment yes"
                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
                   value="Yes"
                   onUpdate={this.updateReceivedTreatment}
                   onValidate={this.handleValidation}
                 />
                 <Radio name="treatment"
-                  className="treatment"
+                  className="treatment no"
                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
                   value="No"
                   onUpdate={this.updateReceivedTreatment}
                   onValidate={this.handleValidation}
                 />
                 <Radio name="treatment"
-                  className="treatment"
+                  className="treatment decline"
                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
                   value="Decline"
                   onUpdate={this.updateReceivedTreatment}
