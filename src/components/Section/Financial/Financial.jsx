@@ -8,7 +8,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Gambling from './Gambling'
-import Bankruptcy from './Bankruptcy'
+import Bankruptcies from './Bankruptcy'
 import Taxes from './Taxes'
 import Card from './Card'
 import Credit from './Credit'
@@ -138,7 +138,7 @@ class Financial extends ValidationElement {
                        next="history"
                        nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
-            <Bankruptcy name="bankruptcy"
+            <Bankruptcies name="bankruptcy"
                         {...this.props.Bankruptcy}
                         onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
                         onValidate={this.onValidate.bind(this)}
@@ -210,7 +210,7 @@ class Financial extends ValidationElement {
                        next="financial/taxes"
                        nextLabel={i18n.t('financial.destination.taxes')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
-            <Bankruptcy name="bankruptcy"
+            <Bankruptcies name="bankruptcy"
                         {...this.props.Bankruptcy}
                         onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
                         onValidate={this.onValidate.bind(this)}
