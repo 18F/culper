@@ -933,7 +933,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      gambling: 'Gambling debts',
+      gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
       card: 'Employer card abuse',
@@ -953,16 +953,17 @@ const en = {
       },
       collection: {
         summary: {
-          title: 'Summary of gambling debt',
-          unknownlosses: 'Provide your gambling debt below',
+          title: 'Summary of financial problems',
+          unknownlosses: 'Provide your financial problem details',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
         },
-        append: 'Add another gambling debt'
+        append: 'Add another financial problem',
+        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
+        appendMessage: 'If yes use the button below to add another financial problem'
       },
       heading: {
-        details: 'Enter your gambling debt',
         dates: 'Provide the date range of your financial problems due to gambling',
         losses: 'Provide an estimate of the amount (in U.S. dollars) of gambling losses incurred',
         description: 'Provide a description of your financial problems due to gambling',
@@ -1318,17 +1319,19 @@ const en = {
       }
     },
     delinquent: {
-      title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
+      title: 'Other than previously listed, have any of the following happened to you?',
       para: {
+        details: 'You will be asked to provide details about each financial obligation that pertains to the items identified below',
         alimony: '**In the last seven (7) years,** you have been delinquent on alimony or child support payments.',
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
@@ -1436,11 +1439,12 @@ const en = {
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
         delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',

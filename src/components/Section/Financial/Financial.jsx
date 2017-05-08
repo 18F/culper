@@ -112,31 +112,22 @@ class Financial extends ValidationElement {
     return subsection
   }
 
-  /**
-   * Intro to the section when information is present
-   */
-  intro () {
-    return (
-      <div className="financial intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors}
-                       Completed={this.props.Completed}
-                       tour={i18n.t('financial.tour.para')}
-                       review={i18n.t('financial.review.para')}
-                       onTour={this.handleTour}
-                       onReview={this.handleReview}
-                       />
-        </div>
-      </div>
-    )
-  }
-
   render () {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            {this.intro()}
+            <div className="financial intro review-screen">
+              <div className="usa-grid-full">
+                <IntroHeader Errors={this.props.Errors}
+                             Completed={this.props.Completed}
+                             tour={i18n.t('financial.tour.para')}
+                             review={i18n.t('financial.review.para')}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
+              </div>
+            </div>
           </SectionView>
 
           <SectionView name="review"
@@ -146,6 +137,13 @@ class Financial extends ValidationElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="history"
                        nextLabel={i18n.t('history.destination.residence')}>
+            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+            <Bankruptcy name="bankruptcy"
+                        {...this.props.Bankruptcy}
+                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
+
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
@@ -153,10 +151,55 @@ class Financial extends ValidationElement {
                       onValidate={this.onValidate.bind(this)}
                       />
 
-            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
-            <Bankruptcy name="bankruptcy"
-                        {...this.props.Bankruptcy}
-                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
+            <h2>{i18n.t('financial.taxes.title')}</h2>
+            <Taxes name="taxes"
+                   {...this.props.Taxes}
+                   onUpdate={this.onUpdate.bind(this, 'Taxes')}
+                   onValidate={this.onValidate.bind(this)}
+                   />
+
+            <h2>{i18n.t('financial.card.title')}</h2>
+            <Card name="card"
+                  {...this.props.Card}
+                  onUpdate={this.onUpdate.bind(this, 'Card')}
+                  onValidate={this.onValidate.bind(this)}
+                  />
+
+            <h2>{i18n.t('financial.credit.title')}</h2>
+            <Credit name="credit"
+                    {...this.props.Credit}
+                    onUpdate={this.onUpdate.bind(this, 'Credit')}
+                    onValidate={this.onValidate.bind(this)}
+                    />
+
+            <h2>{i18n.t('financial.delinquent.title')}</h2>
+            {i18n.m('financial.delinquent.para.details')}
+            <ul>
+              <li>{i18n.m('financial.delinquent.para.alimony')}</li>
+              <li>{i18n.m('financial.delinquent.para.judgement')}</li>
+              <li>{i18n.m('financial.delinquent.para.lien')}</li>
+              <li>{i18n.m('financial.delinquent.para.federal')}</li>
+            </ul>
+            <Delinquent name="delinquent"
+                        {...this.props.Delinquent}
+                        onUpdate={this.onUpdate.bind(this, 'Delinquent')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
+
+            <h2>{i18n.t('financial.nonpayment.title')}</h2>
+            <ul>
+              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
+              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
+              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
+              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
+              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
+              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
+              <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
+              <li>{i18n.m('financial.nonpayment.para.any')}</li>
+            </ul>
+            <Nonpayment name="nonpayment"
+                        {...this.props.Nonpayment}
+                        onUpdate={this.onUpdate.bind(this, 'Nonpayment')}
                         onValidate={this.onValidate.bind(this)}
                         />
           </SectionView>
@@ -232,6 +275,7 @@ class Financial extends ValidationElement {
                        next="financial/nonpayment"
                        nextLabel={i18n.t('financial.destination.nonpayment')}>
             <h2>{i18n.t('financial.delinquent.title')}</h2>
+            {i18n.m('financial.delinquent.para.details')}
             <ul>
               <li>{i18n.m('financial.delinquent.para.alimony')}</li>
               <li>{i18n.m('financial.delinquent.para.judgement')}</li>
@@ -239,10 +283,10 @@ class Financial extends ValidationElement {
               <li>{i18n.m('financial.delinquent.para.federal')}</li>
             </ul>
             <Delinquent name="delinquent"
-                       {...this.props.Delinquent}
-                       onUpdate={this.onUpdate.bind(this, 'Delinquent')}
-                       onValidate={this.onValidate.bind(this)}
-                       />
+                        {...this.props.Delinquent}
+                        onUpdate={this.onUpdate.bind(this, 'Delinquent')}
+                        onValidate={this.onValidate.bind(this)}
+                        />
           </SectionView>
 
           <SectionView name="nonpayment"
