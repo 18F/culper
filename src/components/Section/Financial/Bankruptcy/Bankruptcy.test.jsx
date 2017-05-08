@@ -14,7 +14,7 @@ describe('The Bankruptcy component', () => {
 
     const component = mount(<Bankruptcy onUpdate={onUpdate} />)
     expect(component.find('.bankruptcy').length).toBe(1)
-    component.find('.petition-type .block input').first().simulate('change')
+    component.find('.petition-type .block input').first().simulate('click')
     component.find('.courtnumber input[name="CourtNumber"]').simulate('change')
     component.find('.datefiled input[name="month"]').simulate('change', { target: { value: '1' } })
     component.find('.datedischarged input[name="month"]').simulate('change', { target: { value: '1' } })

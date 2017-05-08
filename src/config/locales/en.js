@@ -1041,6 +1041,12 @@ const en = {
         note: ''
       },
       petitionType: {
+        label: {
+          chapter7: 'Chapter 7',
+          chapter11: 'Chapter 11',
+          chapter12: 'Chapter 12',
+          chapter13: 'Chapter 13'
+        },
         help: {
           title: 'Need help with the applicable bankruptcy petition type?',
           message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',
