@@ -137,11 +137,7 @@ export default class Gambling extends ValidationElement {
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}
                      appendMessage={i18n.m('financial.gambling.collection.appendMessage')}>
-
-            <h3>{i18n.t('financial.gambling.heading.details')}</h3>
-
             <Field title={i18n.t('financial.gambling.heading.dates')}
-                   titleSize="h4"
                    help="financial.gambling.help.dates"
                    adjustFor="daterange">
               <DateRange name="Dates"
@@ -151,7 +147,6 @@ export default class Gambling extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.gambling.heading.losses')}
-                   titleSize="h4"
                    help="financial.gambling.help.losses">
               <div>
                 <i className="fa fa-dollar"></i>
@@ -165,7 +160,6 @@ export default class Gambling extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.gambling.heading.description')}
-                   titleSize="h4"
                    help="financial.gambling.help.description">
               <Textarea name="Description"
                         className="description"
@@ -174,7 +168,6 @@ export default class Gambling extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.gambling.heading.actions')}
-                   titleSize="h4"
                    help="financial.gambling.help.actions">
               <Textarea name="Actions"
                         className="actions"
