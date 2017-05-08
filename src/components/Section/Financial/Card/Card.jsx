@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CardAbuseValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
+import { ValidationElement, Branch, Show, Accordion, DateControl, Currency, Field,
          Address, Checkbox, Text, Textarea } from '../../../Form'
 
 export default class Card extends ValidationElement {
@@ -155,13 +155,12 @@ export default class Card extends ValidationElement {
             <Field title={i18n.t('financial.card.heading.amount')}
                    help="financial.card.help.amount">
               <div>
-                <i className="fa fa-dollar"></i>
-                <Number name="Amount"
-                        className="card-amount"
-                        placeholder={i18n.t('financial.card.placeholder.amount')}
-                        min="1"
-                        bind={true}
-                        />
+                <Currency name="Amount"
+                          className="card-amount"
+                          placeholder={i18n.t('financial.card.placeholder.amount')}
+                          min="1"
+                          bind={true}
+                          />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
                             ref="estimated"

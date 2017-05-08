@@ -113,6 +113,7 @@ export default class DirectInterest extends ValidationElement {
               label={i18n.m('foreign.activities.direct.interest.label.interestTypes.yourself')}
               value="Yourself"
               className="yourself"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
               onValidate={this.props.onValidate}
             />
@@ -120,6 +121,7 @@ export default class DirectInterest extends ValidationElement {
               label={i18n.m('foreign.activities.direct.interest.label.interestTypes.spouse')}
               value="Spouse"
               className="spouse"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
               onValidate={this.props.onValidate}
             />
@@ -127,6 +129,7 @@ export default class DirectInterest extends ValidationElement {
               label={i18n.m('foreign.activities.direct.interest.label.interestTypes.cohabitant')}
               value="Cohabitant"
               className="cohabitant"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
               onValidate={this.props.onValidate}
             />
@@ -134,6 +137,7 @@ export default class DirectInterest extends ValidationElement {
               label={i18n.m('foreign.activities.direct.interest.label.interestTypes.dependentChildren')}
               value="DependentChildren"
               className="dependent-children"
+              onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
               onValidate={this.props.onValidate}
             />
@@ -185,7 +189,7 @@ export default class DirectInterest extends ValidationElement {
           />
           <div className="flags">
             <Checkbox name="CostEstimated"
-              label={i18n.m('foreign.activities.direct.interest.label.costEstimated')}
+              label={i18n.t('foreign.activities.direct.interest.label.costEstimated')}
               toggle="false"
               checked={this.props.CostEstimated}
               onUpdate={this.updateCostEstimated}
@@ -205,7 +209,7 @@ export default class DirectInterest extends ValidationElement {
           />
           <div className="flags">
             <Checkbox name="ValueEstimated"
-              label={i18n.m('foreign.activities.direct.interest.label.valueEstimated')}
+              label={i18n.t('foreign.activities.direct.interest.label.valueEstimated')}
               toggle="false"
               checked={this.props.ValueEstimated}
               onUpdate={this.updateValueEstimated}

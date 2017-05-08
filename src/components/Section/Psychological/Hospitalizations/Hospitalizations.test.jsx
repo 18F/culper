@@ -17,7 +17,7 @@ describe('The Hospitalizations component', () => {
     component.find({type: 'radio', value: 'Voluntary'}).simulate('change')
     component.find('textarea#Explanation').simulate('change', { target: { value: 'Testing' } })
     component.find('input#Facility').simulate('change', { target: { value: 'Testing' } })
-    expect(updates).toBe(4)
+    expect(updates).toBe(5)
   })
 
   it('Loads data', () => {

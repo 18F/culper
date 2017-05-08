@@ -20,8 +20,8 @@ const navigation = [
     title: 'Financial record',
     url: 'financial',
     subsections: [
-      { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
+      { name: 'Gambling', url: 'gambling' },
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
       { name: 'Credit counseling', url: 'credit' },
@@ -92,7 +92,7 @@ const navigation = [
           { name: 'Direct control', url: 'direct' },
           { name: 'Indirect control', url: 'indirect' },
           { name: 'Real estate purchase', url: 'realestate' },
-          { hidden: true, name: 'Foreign benefits', url: 'benefits' },
+          { name: 'Foreign benefits', url: 'benefits' },
           { name: 'Foreign national support', url: 'support' }
         ]
       },
