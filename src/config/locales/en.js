@@ -4834,6 +4834,8 @@ const en = {
           label: {
             relinquishedNotApplicable: 'Not applicable',
             or: 'or',
+            costEstimated: 'Estimated',
+            valueEstimated: 'Estimated',
             interestTypes: {
               yourself: 'Yourself',
               spouse: 'Spouse or legally recognized civil union/domestic partner',
