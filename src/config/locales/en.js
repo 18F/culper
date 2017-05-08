@@ -1011,12 +1011,12 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of Bankruptcy',
-          item: 'Bankruptcy',
+          item: 'Petition',
           unknown: 'Provide your bankruptcy below',
           nodates: 'No date',
           chapter: 'Chapter'
         },
-        append: 'Add bankruptcy'
+        append: 'Add another petition'
       },
       heading: {
         petitionType: 'Select the applicable bankruptcy petition type',
@@ -1027,7 +1027,11 @@ const en = {
         nameDebt: 'Provide the name debt is recorded under',
         courtInvolved: 'Provide the name of the court involved',
         courtAddress: 'Provide the address of the court involved',
-        comments: 'Add optional comments'
+        comments: 'Add optional comments',
+        dischargeExplanation: 'Were you discharged of all debts claimed in the bankruptcy?'
+      },
+      label: {
+        dischargeExplanation: 'Provide explanation'
       },
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
       notApplicable: 'Not applicable',
