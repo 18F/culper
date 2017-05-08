@@ -144,17 +144,17 @@ export default class Benefit extends ValidationElement {
               onChange={this.updateBenefitType}
               onValidate={this.props.onValidate}
             />
-          <Show when={this.props.BenefitType === 'Other'}>
-            <div>
-              {i18n.m('foreign.activities.benefit.label.otherBenefitType')}
-              <Textarea name="OtherBenefitType"
-                {...this.props.OtherBenefitType}
-                onUpdate={this.updateOtherBenefitType}
-                onValidate={this.props.onValidate}
-              />
-            </div>
-          </Show>
         </RadioGroup>
+        <Show when={this.props.BenefitType === 'Other'}>
+          <div>
+            {i18n.m('foreign.activities.benefit.label.otherBenefitType')}
+            <Textarea name="OtherBenefitType"
+              {...this.props.OtherBenefitType}
+              onUpdate={this.updateOtherBenefitType}
+              onValidate={this.props.onValidate}
+            />
+          </div>
+        </Show>
       </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}

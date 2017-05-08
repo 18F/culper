@@ -138,7 +138,7 @@ export const benefitSummary = (item, index) => {
       <span className="benefit-summary">
         <strong>{ summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
       </span>
-      <span className="date">{benefit.Date}</span>
+      <span className="date"><strong>{benefit.Date}</strong></span>
     </span>
   )
 }

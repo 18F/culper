@@ -199,7 +199,7 @@ export default class ContinuingBenefit extends ValidationElement {
           label={i18n.t('foreign.activities.benefit.continuing.heading.obligated')}
           labelSize="h3"
           value={this.props.Obligated}
-          onValidate={this.handleValidation}
+          onValidate={this.props.onValidate}
           onUpdate={this.updateObligated}>
         </Branch>
 

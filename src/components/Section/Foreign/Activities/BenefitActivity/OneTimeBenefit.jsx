@@ -99,6 +99,7 @@ export default class OneTimeBenefit extends ValidationElement {
               toggle="false"
               checked={this.props.ValueEstimated}
               onUpdate={this.updateValueEstimated}
+              onValidate={this.props.onValidate}
             />
           </div>
         </Field>
@@ -118,7 +119,7 @@ export default class OneTimeBenefit extends ValidationElement {
           label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
           labelSize="h3"
           value={this.props.Obligated}
-          onValidate={this.handleValidation}
+          onValidate={this.props.onValidate}
           onUpdate={this.updateObligated}>
         </Branch>
 
