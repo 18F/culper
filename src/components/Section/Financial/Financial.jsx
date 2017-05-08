@@ -204,19 +204,6 @@ class Financial extends ValidationElement {
                         />
           </SectionView>
 
-          <SectionView name="gambling"
-                       back="identification"
-                       backLabel={i18n.t('identification.destination.physical')}
-                       next="financial/bankruptcy"
-                       nextLabel={i18n.t('financial.destination.bankruptcy')}>
-            <h2>{i18n.t('financial.gambling.title')}</h2>
-            <Gambling name="gambling"
-                      {...this.props.Gambling}
-                      onUpdate={this.onUpdate.bind(this, 'Gambling')}
-                      onValidate={this.onValidate.bind(this)}
-                      />
-          </SectionView>
-
           <SectionView name="bankruptcy"
                        back="financial/gambling"
                        backLabel={i18n.t('financial.destination.gambling')}
@@ -228,6 +215,19 @@ class Financial extends ValidationElement {
                         onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
                         onValidate={this.onValidate.bind(this)}
                         />
+          </SectionView>
+
+          <SectionView name="gambling"
+                       back="identification"
+                       backLabel={i18n.t('identification.destination.physical')}
+                       next="financial/bankruptcy"
+                       nextLabel={i18n.t('financial.destination.bankruptcy')}>
+            <h2>{i18n.t('financial.gambling.title')}</h2>
+            <Gambling name="gambling"
+                      {...this.props.Gambling}
+                      onUpdate={this.onUpdate.bind(this, 'Gambling')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
           </SectionView>
 
           <SectionView name="taxes"
