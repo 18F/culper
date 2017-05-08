@@ -29,9 +29,7 @@ describe('The bankruptcy component', () => {
     let bankruptcyData = [
       {
         Bankruptcy: {
-          PetitionType: {
-            value: 'hello'
-          },
+          PetitionType: 'Chapter7',
           CourtAddress: {
             addressType: 'United States',
             address: '1234 Some Rd',
