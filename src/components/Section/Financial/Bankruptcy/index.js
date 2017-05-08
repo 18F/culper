@@ -1,3 +1,2 @@
-import Bankruptcy from './Bankruptcy'
-
-export default Bankruptcy
+import Bankruptcies from './Bankruptcies'
+export default Bankruptcies
