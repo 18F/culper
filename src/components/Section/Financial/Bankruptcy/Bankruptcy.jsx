@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, DateControl, Number, Field,
+import { ValidationElement, Branch, Show, DateControl, Currency, Field,
          Text, Textarea, Name, Address, Checkbox, NotApplicable } from '../../../Form'
 import PetitionType from './PetitionType'
 
@@ -141,9 +141,7 @@ export default class Bankruptcy extends ValidationElement {
 
       <Field title={i18n.t('financial.bankruptcy.heading.totalAmount')}
         help="financial.bankruptcy.totalAmount.help">
-        <div>
-          <i className="fa fa-dollar"></i>
-          <Number name="TotalAmount"
+          <Currency name="TotalAmount"
             onUpdate={this.updateTotalAmount}
             onValidate={this.props.onValidate}
             {...this.props.TotalAmount}
@@ -162,7 +160,6 @@ export default class Bankruptcy extends ValidationElement {
               checked={this.props.TotalAmountEstimated}
             />
           </div>
-        </div>
       </Field>
 
       <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>

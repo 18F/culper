@@ -68,31 +68,31 @@ export default class PetitionType extends React.Component {
               onValidate={this.props.onValidate}
             />
           </RadioGroup>
-
-          <Show when={this.props.PetitionType === 'Chapter13'}>
-            <div className="chapter13">
-              <Field title={i18n.t('financial.bankruptcy.trustee.title')}
-                help="financial.bankruptcy.trustee.help">
-                <Text name="chapter13Trustee"
-                  className="trustee"
-                  {...this.props.Trustee}
-                  placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
-                  onUpdate={this.updateTrustee}
-                />
-              </Field>
-
-              <Field title={i18n.t('financial.bankruptcy.trustee.address.title')}
-                help="financial.bankruptcy.trustee.address.help"
-                adjustFor="labels">
-                <Address name="trusteeAddress"
-                  {...this.props.Address}
-                  label={i18n.t('financial.bankruptcy.trustee.address.label')}
-                  onUpdate={this.updateAddress}
-                />
-              </Field>
-            </div>
-          </Show>
         </Field>
+
+        <Show when={this.props.PetitionType === 'Chapter13'}>
+          <div className="chapter13">
+            <Field title={i18n.t('financial.bankruptcy.trustee.title')}
+              help="financial.bankruptcy.trustee.help">
+              <Text name="chapter13Trustee"
+                className="trustee"
+                {...this.props.Trustee}
+                placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
+                onUpdate={this.updateTrustee}
+              />
+            </Field>
+
+            <Field title={i18n.t('financial.bankruptcy.trustee.address.title')}
+              help="financial.bankruptcy.trustee.address.help"
+              adjustFor="labels">
+              <Address name="trusteeAddress"
+                {...this.props.Address}
+                label={i18n.t('financial.bankruptcy.trustee.address.label')}
+                onUpdate={this.updateAddress}
+              />
+            </Field>
+          </div>
+        </Show>
       </div>
     )
   }

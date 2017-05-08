@@ -128,28 +128,28 @@ export default class IndirectInterest extends ValidationElement {
           <CheckboxGroup className="interest-types option-list"
             selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.indirect.interest.label.interestTypes.yourself`)}
+              label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.yourself`)}
               value="Yourself"
               className="yourself"
               onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.indirect.interest.label.interestTypes.spouse`)}
+              label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.spouse`)}
               value="Spouse"
               className="spouse"
               onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.indirect.interest.label.interestTypes.cohabitant`)}
+              label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.cohabitant`)}
               value="Cohabitant"
               className="cohabitant"
               onValidate={this.props.onValidate}
               onChange={this.updateInterestTypes}
             />
             <Checkbox name="interest-type"
-              label={i18n.t(`foreign.activities.indirect.interest.label.interestTypes.dependentChildren`)}
+              label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.dependentChildren`)}
               value="DependentChildren"
               className="dependent-children"
               onValidate={this.props.onValidate}

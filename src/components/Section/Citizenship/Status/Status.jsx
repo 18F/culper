@@ -223,13 +223,13 @@ export default class Status extends ValidationElement {
           <RadioGroup className="citizenship-status"
                       selectedValue={this.state.CitizenshipStatus}>
             <Radio name="citizenship-status-citizen"
-                   label={i18n.t('citizenship.status.label.citizenshipstatus.citizen')}
+                   label={i18n.m('citizenship.status.label.citizenshipstatus.citizen')}
                    value="Citizen"
                    className="citizenship-status-citizen"
                    onChange={this.updateCitizenshipStatus}
                    />
             <Radio name="citizenship-status-foreignborn"
-                   label={i18n.t('citizenship.status.label.citizenshipstatus.foreignborn')}
+                   label={i18n.m('citizenship.status.label.citizenshipstatus.foreignborn')}
                    value="ForeignBorn"
                    className="citizenship-status-foreignborn"
                    onChange={this.updateCitizenshipStatus}

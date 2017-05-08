@@ -1,18 +1,8 @@
 @import 'eqip-colors';
 
 .offense {
-  .offense-description,
-  .offense-citedby,
-  .offense-explanation,
-  .offense-courtname,
-  .offense-courtcharge,
-  .offense-courtoutcome {
-    display: inline-block;
-    width: 92%;
-  }
-
   .offense-courttype .block label {
-    width: 17rem;
+    height: initial !important;
   }
 
   .more.title {

@@ -20,17 +20,6 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-const subtext = (text, subtext) => {
-  return (
-    <div className="up-a-bit">
-      <p>
-        {i18n.t(text)}<br />
-        <span className="smaller">{i18n.t(subtext)}</span>
-      </p>
-    </div>
-  )
-}
-
 export default class Relative extends ValidationElement {
   constructor (props) {
     super(props)
@@ -321,7 +310,7 @@ export default class Relative extends ValidationElement {
                       onChange={this.updateRelations}
                       />
             <Checkbox name="relation-child"
-                      label={subtext('relationships.relatives.label.relation.child.text', 'relationships.relatives.label.relation.child.subtext')}
+                      label={i18n.m('relationships.relatives.label.relation.child')}
                       value="Child"
                       className="relation-child"
                       onChange={this.updateRelations}
@@ -454,12 +443,13 @@ export default class Relative extends ValidationElement {
             <BranchCollection items={this.state.Aliases}
                               branchName="has_alias"
                               label={i18n.t('relationships.relatives.heading.alias.branch')}
+                              appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
                               className="relative-alias"
                               onUpdate={this.updateAliases}
                               onValidate={this.props.onValidate}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.needmore')}
-                      className="more title">
+                       className="more title">
                   <Svg src="img/date-down-arrow.svg" className="more arrow" />
                 </Field>
                 <Alias name="Item" bind={true} />
@@ -523,19 +513,19 @@ export default class Relative extends ValidationElement {
               <RadioGroup className="relative-naturalized option-list"
                           selectedValue={this.state.Naturalized}>
                 <Radio name="naturalized-alien"
-                       label={subtext('relationships.relatives.label.naturalized.alien.text', 'relationships.relatives.label.naturalized.alien.subtext')}
+                       label={i18n.m('relationships.relatives.label.naturalized.alien')}
                        value="Alien"
                        className="naturalized-alien"
                        onChange={this.updateNaturalized}
                        />
                 <Radio name="naturalized-permanent"
-                       label={subtext('relationships.relatives.label.naturalized.permanent.text', 'relationships.relatives.label.naturalized.permanent.subtext')}
+                       label={i18n.m('relationships.relatives.label.naturalized.permanent')}
                        value="Permanent"
                        className="naturalized-permanent"
                        onChange={this.updateNaturalized}
                        />
                 <Radio name="naturalized-certificate"
-                       label={subtext('relationships.relatives.label.naturalized.certificate.text', 'relationships.relatives.label.naturalized.certificate.subtext')}
+                       label={i18n.m('relationships.relatives.label.naturalized.certificate')}
                        value="Certificate"
                        className="naturalized-certificate"
                        onChange={this.updateNaturalized}
@@ -556,29 +546,29 @@ export default class Relative extends ValidationElement {
                 <RadioGroup className="relative-derived option-list"
                             selectedValue={this.state.Derived}>
                   <Radio name="derived-alien"
-                        label={subtext('relationships.relatives.label.derived.alien.text', 'relationships.relatives.label.derived.alien.subtext')}
-                        value="Alien"
-                        className="derived-alien"
-                        onChange={this.updateDerived}
-                        />
+                         label={i18n.m('relationships.relatives.label.derived.alien')}
+                         value="Alien"
+                         className="derived-alien"
+                         onChange={this.updateDerived}
+                         />
                   <Radio name="derived-permanent"
-                        label={subtext('relationships.relatives.label.derived.permanent.text', 'relationships.relatives.label.derived.permanent.subtext')}
-                        value="Permanent"
-                        className="derived-permanent"
-                        onChange={this.updateDerived}
-                        />
+                         label={i18n.m('relationships.relatives.label.derived.permanent')}
+                         value="Permanent"
+                         className="derived-permanent"
+                         onChange={this.updateDerived}
+                         />
                   <Radio name="derived-certificate"
-                        label={subtext('relationships.relatives.label.derived.certificate.text', 'relationships.relatives.label.derived.certificate.subtext')}
-                        value="Certificate"
-                        className="derived-certificate"
-                        onChange={this.updateDerived}
-                        />
+                         label={i18n.m('relationships.relatives.label.derived.certificate')}
+                         value="Certificate"
+                         className="derived-certificate"
+                         onChange={this.updateDerived}
+                         />
                   <Radio name="derived-other"
-                        label={subtext('relationships.relatives.label.derived.other.text', 'relationships.relatives.label.derived.other.subtext')}
-                        value="Other"
-                        className="derived-other"
-                        onChange={this.updateDerived}
-                        />
+                         label={i18n.m('relationships.relatives.label.derived.other')}
+                         value="Other"
+                         className="derived-other"
+                         onChange={this.updateDerived}
+                         />
                 </RadioGroup>
               </div>
             </Field>
@@ -651,25 +641,25 @@ export default class Relative extends ValidationElement {
                              onChange={this.updateDocument}
                              />
                       <Radio name="document-visa"
-                             label={subtext('relationships.relatives.label.document.visa.text', 'relationships.relatives.label.document.visa.subtext')}
+                             label={i18n.m('relationships.relatives.label.document.visa')}
                              value="Visa"
                              className="document-visa"
                              onChange={this.updateDocument}
                              />
                       <Radio name="document-f1"
-                             label={subtext('relationships.relatives.label.document.f1.text', 'relationships.relatives.label.document.f1.subtext')}
+                             label={i18n.m('relationships.relatives.label.document.f1')}
                              value="F1"
                              className="document-f1"
                              onChange={this.updateDocument}
                              />
                       <Radio name="document-j1"
-                             label={subtext('relationships.relatives.label.document.j1.text', 'relationships.relatives.label.document.j1.subtext')}
+                             label={i18n.m('relationships.relatives.label.document.j1')}
                              value="J1"
                              className="document-j1"
                              onChange={this.updateDocument}
                              />
                       <Radio name="document-other"
-                             label={subtext('relationships.relatives.label.document.other.text', 'relationships.relatives.label.document.other.subtext')}
+                             label={i18n.m('relationships.relatives.label.document.other')}
                              value="Other"
                              className="document-other"
                              onChange={this.updateDocument}
@@ -730,8 +720,8 @@ export default class Relative extends ValidationElement {
                        commentsName="MethodsComments"
                        commentsValue={this.state.MethodsComments}
                        commentsActive={(this.state.Methods || []).some(x => x === 'Other')}
-                       onUpdate={this.updateMethodsComments}
-                       adjustFor="big-buttons">
+                  onUpdate={this.updateMethodsComments}
+                  adjustFor="big-buttons">
                   <div>
                     {i18n.m('relationships.relatives.para.checkall')}
                     <CheckboxGroup className="relative-methods option-list"
@@ -749,7 +739,7 @@ export default class Relative extends ValidationElement {
                                 onChange={this.updateMethods}
                                 />
                       <Checkbox name="methods-electronic"
-                                label={subtext('relationships.relatives.label.methods.electronic.text', 'relationships.relatives.label.methods.electronic.subtext')}
+                                label={i18n.m('relationships.relatives.label.methods.electronic')}
                                 value="Electronic"
                                 className="methods-electronic"
                                 onChange={this.updateMethods}
@@ -761,7 +751,7 @@ export default class Relative extends ValidationElement {
                                 onChange={this.updateMethods}
                                 />
                       <Checkbox name="methods-other"
-                                label={subtext('relationships.relatives.label.methods.other.text', 'relationships.relatives.label.methods.other.subtext')}
+                                label={i18n.m('relationships.relatives.label.methods.other')}
                                 value="Other"
                                 className="methods-other"
                                 onChange={this.updateMethods}
@@ -811,7 +801,7 @@ export default class Relative extends ValidationElement {
                            onChange={this.updateFrequency}
                            />
                     <Radio name="frequency-other"
-                           label={subtext('relationships.relatives.label.frequency.other.text', 'relationships.relatives.label.frequency.other.subtext')}
+                           label={i18n.m('relationships.relatives.label.frequency.other')}
                            value="Other"
                            className="frequency-other"
                            onChange={this.updateFrequency}
