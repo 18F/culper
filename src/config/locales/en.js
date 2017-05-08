@@ -6493,7 +6493,7 @@ const en = {
           title: 'Tell us more about why the counseling/treatment wasn\'t effective?',
           message: 'Let us know why this counseling/treatment didn\'t improve your symptoms.',
           note: 'Go into as much detail as you need to full explain.'
-        },
+        }
       },
       person: {
         heading: {
@@ -6577,8 +6577,8 @@ const en = {
             title: 'Not sure of the health care professional\'s address?',
             message: 'Try looking up their name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
-          },
-        },
+          }
+        }
       },
       treatment: {
         collection: {
