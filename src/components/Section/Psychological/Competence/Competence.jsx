@@ -97,7 +97,10 @@ export default class Competence extends ValidationElement {
             appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
             appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
             appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
-            <Order name="Competence" prefix="competence" bind={true} />
+            <Order name="Competence"
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
+              prefix="competence"
+              bind={true} />
           </Accordion>
         </Show>
       </div>

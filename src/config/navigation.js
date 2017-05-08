@@ -19,7 +19,6 @@ const navigation = [
     name: 'Financial record',
     title: 'Financial record',
     url: 'financial',
-    hidden: false,
     subsections: [
       { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
@@ -34,7 +33,6 @@ const navigation = [
     name: 'Your history',
     title: 'Your history',
     url: 'history',
-    hidden: false,
     subsections: [
       { name: 'Where have you lived', url: 'residence' },
       { name: 'Employment activities', url: 'employment' },
@@ -47,7 +45,6 @@ const navigation = [
     name: 'Relationships',
     title: 'Relationships',
     url: 'relationships',
-    hidden: false,
     subsections: [
       {
         name: 'Marital & relationship status',
@@ -74,7 +71,6 @@ const navigation = [
     name: 'Military history',
     title: 'Military history',
     url: 'military',
-    hidden: false,
     subsections: [
       { name: 'Selective service record', url: 'selective' },
       { name: 'U.S. military', url: 'history' },
@@ -86,19 +82,42 @@ const navigation = [
     name: 'Foreign activities',
     title: 'Foreign activities',
     url: 'foreign',
-    hidden: false,
     subsections: [
       { name: 'U.S. passport information', url: 'passport' },
-      { hidden: true, name: 'Foreign contacs', url: 'contacts' },
-      { hidden: true, name: 'Foreign activities', url: 'activities' },
-      { hidden: true, name: 'Foreign business, professional activities, and government contacts', url: 'business' },
+      { name: 'Foreign contacts', url: 'contacts' },
+      {
+        name: 'Foreign activities',
+        url: 'activities',
+        subsections: [
+          { name: 'Direct control', url: 'direct' },
+          { name: 'Indirect control', url: 'indirect' },
+          { name: 'Real estate purchase', url: 'realestate' },
+          { name: 'Foreign benefits', url: 'benefits' },
+          { name: 'Foreign national support', url: 'support' }
+        ]
+      },
+      {
+        name: 'Foreign business, professional activities, and government contacts',
+        url: 'business',
+        subsections: [
+          { name: 'Support provided', url: 'advice' },
+          { name: 'Immediate family foreign support', url: 'family' },
+          { name: 'Employment', url: 'employment' },
+          { name: 'Other business ventures', url: 'ventures' },
+          { name: 'Event participation', url: 'conferences' },
+          { hidden: true, name: 'Immediate family contact', url: 'contact' },
+          { hidden: true, name: 'Foreign national sponsorship', url: 'sponsorship' },
+          { hidden: true, name: 'Held political office', url: 'political' },
+          { hidden: true, name: 'Voting', url: 'voting' }
+        ]
+      },
       { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }
     ]
   },
   {
-    name: 'TBD', // Recreation
-    title: 'TBD',
-    url: 'tbd',
+    name: 'Substance use',
+    title: 'Substance use',
+    url: 'substance',
     hidden: true,
     subsections: [
       { name: 'Illegal use of drugs and drug activity', url: 'drugs' },
@@ -109,7 +128,6 @@ const navigation = [
     name: 'Investigative and criminal history',
     title: 'Investigative and criminal history',
     url: 'legal',
-    hidden: false,
     subsections: [
       { name: 'Police record', url: 'police' },
       { hidden: true, name: 'Involvement in non-criminal court actions', url: 'court' },
@@ -123,7 +141,6 @@ const navigation = [
     title: 'Psychological and emotional health',
     name: 'Psychological and emotional health',
     url: 'psychological',
-    hidden: false,
     subsections: [
       { name: 'Competence', url: 'competence' },
       { name: 'Consultations', url: 'consultations' },

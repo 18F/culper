@@ -1,16 +1,6 @@
 @import 'eqip-colors';
 
 .relative-item {
-  .smaller {
-    display: block;
-    font-size: smaller;
-    margin-top: -0.5rem;
-  }
-
-  .up-a-bit {
-    top: 25% !important;
-  }
-
   .relative-citizenship {
     ul {
       padding: 0 0 0 2.2rem;
@@ -47,34 +37,29 @@
     }
   }
 
-  .relative-abroad label {
-    width: 15rem;
-    height: 5rem;
-
-    > span > div {
-      top: 20%;
-    }
-  }
-
   .relative-naturalized label,
-  .relative-derived label {
-    width: 27rem;
-
-    > span > div > p {
-      line-height: 1.6;
-    }
+  .relative-derived label,
+  .relative-document label {
+    width: 27rem !important;
   }
 
   .relative-methods label {
-    width: 19rem;
-
-    > span > div > p {
-      line-height: 1.6;
-    }
+    width: 19rem !important;
   }
 
-  .relative-document label {
-    width: 30rem;
+  .methods-written > label > span > div {
+    top: 25%;
+  }
+
+  .naturalized-alien,
+  .derived-alien {
+    > label > span > div:not(:last-of-type) {
+      top: 20%;
+    }
+
+    > label > span > div:not(:first-of-type) {
+      margin-top: -3.5rem;
+    }
   }
 
   .more.title {
@@ -82,10 +67,8 @@
   }
 
   .more.arrow {
-    text-align: center;
     height: 8rem;
-    width: 100%;
-    margin: 0 auto 2rem auto;
+    margin-left: 25.25rem;
   }
 
   .help-icon-employer-address {

@@ -105,4 +105,37 @@ describe('The BirthPlace component', () => {
     expect(updates).toBe(2)
     expect(component.find('input').length).toBe(4)
   })
+
+  it('can hide branching', () => {
+    const expected = {
+      name: 'birthplace-test',
+      branch: false
+    }
+    const component = mount(<BirthPlace {...expected} />)
+    expect(component.find({type: 'radio'}).length).toBe(0)
+  })
+
+  it('can view domestic only', () => {
+    const expected = {
+      name: 'birthplace-test',
+      branch: false,
+      disabledCountry: true
+    }
+    const component = mount(<BirthPlace {...expected} />)
+    expect(component.find({type: 'radio'}).length).toBe(0)
+    expect(component.find('.state').length).toBe(1)
+    expect(component.find('.country').length).toBe(0)
+  })
+
+  it('can view foreign only', () => {
+    const expected = {
+      name: 'birthplace-test',
+      branch: false,
+      disabledState: true
+    }
+    const component = mount(<BirthPlace {...expected} />)
+    expect(component.find({type: 'radio'}).length).toBe(0)
+    expect(component.find('.country').length).toBe(1)
+    expect(component.find('.state').length).toBe(0)
+  })
 })

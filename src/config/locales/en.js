@@ -189,13 +189,13 @@ const en = {
     },
     month: {
       notfound: {
-        title: 'Month is not recognized',
-        message: 'The month must be between 1 (January) and 12 (December)',
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 1(January) and 12(December)',
         note: ''
       },
       max: {
-        title: 'Month is not recognized',
-        message: 'The month must be between 1 (January) and 12 (December)',
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 1(January) and 12(December)',
         note: ''
       }
     },
@@ -303,6 +303,18 @@ const en = {
         note: ''
       }
     },
+    apoFpo: {
+      length: {
+        title: 'APO/FPO length',
+        message: 'APO/FPO state code must be 2 letters',
+        note: ''
+      },
+      pattern: {
+        title: 'APO/FPO not in an acceptable format',
+        message: 'APO/FPO state code must be 2 letters',
+        note: 'Note: Typically the value is either AA, AE, or AP.'
+      }
+    },
     passport: {
       number: {
         pattern: {
@@ -403,25 +415,25 @@ const en = {
     },
     int_first: {
       pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        title: 'There is a problem with this country code',
+        message: 'The country code of the international number should be 3 digits between 0 and 9',
         note: ''
       },
       length: {
-        title: 'This field must have 3 digits',
-        message: 'The country code of the international number must be 3 digits between 0 and 9',
+        title: 'There is a problem with this country code',
+        message: 'The country code of the international number should be 3 digits between 0 and 9',
         note: ''
       }
     },
     int_second: {
       pattern: {
-        title: 'This field must have 10 digits',
-        message: 'The international number must be 10 digits between 0 and 9',
+        title: 'There is a problem with this number',
+        message: 'The international number should be 10 digits between 0 and 9',
         note: ''
       },
       length: {
-        title: 'This field must have 10 digits',
-        message: 'The international number must be 10 digits between 0 and 9',
+        title: 'There is a problem with this number',
+        message: 'The international number should be 10 digits between 0 and 9',
         note: ''
       }
     },
@@ -457,32 +469,76 @@ const en = {
     },
     Email: {
       pattern: {
-        title: 'A valid email address is required',
-        message: 'Email addresses may contain alphanumeric characters separated by an the "at" (@) symbol followed by the domain name',
-        note: 'Note: Underscores (_) and periods (.) are valid characters'
+        title: 'This email isn\'t valid',
+        message: 'Check for any spelling mistakes in your email address.',
+        note: 'Example of valid email format: name@domain.com'
       }
     },
     Year: {
       min: {
-        title: 'The year is below the accepted limits',
-        message: 'The year must be four (4) digit year',
+        title: 'There is a problem with the year',
+        message: 'The year should be four(4) numbers.',
         note: ''
+      }
+    },
+    to: {
+      datecontrol: {
+        max: {
+          title: 'There is a problem with the "to" date',
+          message: 'The **to** date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the "to" date',
+          message: 'The **to** date should be on or after your date of birth.'
+        }
+      }
+    },
+    from: {
+      datecontrol: {
+        max: {
+          title: 'There is a problem with the "from" date',
+          message: 'The **from** date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the "from" date',
+          message: 'The **from** date should be on or after your date of birth.'
+        }
+      }
+    },
+    order: {
+      datecontrol: {
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The order date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The order date value should be on or after your date of birth.'
+        }
       }
     },
     hospitalization: {
       to: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization to date value cannot exceed todays date'
+            title: 'There is a problem with the "to" date',
+            message: 'The hospitalization **to** date can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "to" date',
+            message: 'The hospitalization **to** date value should be on or after your date of birth.'
           }
         }
       },
       from: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Hospitalization from date value cannot exceed todays date'
+            title: 'There is a problem with the "from" date',
+            message: 'The hospitalization **from** date can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "from" date',
+            message: 'The hospitalization **from** date value should be on or after your date of birth.'
           }
         }
       }
@@ -491,16 +547,24 @@ const en = {
       to: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis to date value cannot exceed todays date'
+            title: 'There is a problem with the "to" date',
+            message: 'The diagnosis **to** date can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "to" date',
+            message: 'Diagnosis **to** date value should be on or after your date of birth.'
           }
         }
       },
       from: {
         datecontrol: {
           max: {
-            title: 'Invalid date provided',
-            message: 'Diagnosis from date value cannot exceed todays date'
+            title: 'There is a problem with the "from" date',
+            message: 'Diagnosis **from** date can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "from" date',
+            message: 'Diagnosis **from** date value should be on or after your date of birth.'
           }
         }
       }
@@ -869,7 +933,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      gambling: 'Gambling debts',
+      gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
       card: 'Employer card abuse',
@@ -889,16 +953,17 @@ const en = {
       },
       collection: {
         summary: {
-          title: 'Summary of gambling debt',
-          unknownlosses: 'Provide your gambling debt below',
+          title: 'Summary of financial problems',
+          unknownlosses: 'Provide your financial problem details',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
         },
-        append: 'Add another gambling debt'
+        append: 'Add another financial problem',
+        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
+        appendMessage: 'If yes ues the button below to add another financial problem'
       },
       heading: {
-        details: 'Enter your gambling debt',
         dates: 'Provide the date range of your financial problems due to gambling',
         losses: 'Provide an estimate of the amount (in U.S. dollars) of gambling losses incurred',
         description: 'Provide a description of your financial problems due to gambling',
@@ -955,7 +1020,7 @@ const en = {
         append: 'Add bankruptcy'
       },
       heading: {
-        petitionType: 'Petition Type',
+        petitionType: 'Select the applicable bankruptcy petition type',
         courtNumber: 'Provide the bankruptcy court docket/account number',
         dateFiled: 'Provide the date bankruptcy was filed',
         dateDischarged: 'Provide the date of bankruptcy discharge',
@@ -1061,7 +1126,7 @@ const en = {
         reason: 'Provide the reason(s) for your failure to file or pay required taxes',
         agency: 'Provide the federal, state, or other agency to which you failed to file or pay taxes',
         taxtype: 'Provide the type of taxes you failed to file or pay (such as property, income, sales, etc.)',
-        amount: 'Provide the amount (in U.S. dollars) of taxes',
+        amount: 'Provide the amount (in U.S. dollars) of the taxes',
         date: 'Provide the date satisfied',
         description: 'Provide a description of any action(s) you have taken to satisfy this debt (such as withholdings, frequency and amount of payments, etc.). If you have not taken any action(s) provide explanation.'
       },
@@ -1931,10 +1996,10 @@ const en = {
           stepmother: 'Stepmother',
           stepfather: 'Stepfather',
           fosterparent: 'Foster parent',
-          child: {
-            text: 'Child',
-            subtext: '(including adopted/foster)'
-          },
+          child: [
+            'Child',
+            '(including adopted/foster)'
+          ],
           stepchild: 'Stepchild',
           brother: 'Brother',
           sister: 'Sister',
@@ -1951,49 +2016,49 @@ const en = {
           ds: 'DS 1350'
         },
         naturalized: {
-          alien: {
-            text: 'Alien Registration',
-            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-          },
-          permanent: {
-            text: 'Permanent resident card',
-            subtext: '(I-551)'
-          },
-          certificate: {
-            text: 'Certificate of naturalization',
-            subtext: '(N550 or N570)'
-          }
+          alien: [
+            'Alien Registration',
+            '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          ],
+          permanent: [
+            'Permanent resident card',
+            '(I-551)'
+          ],
+          certificate: [
+            'Certificate of naturalization',
+            '(N550 or N570)'
+          ]
         },
         derived: {
-          alien: {
-            text: 'Alien Registration',
-            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-          },
-          permanent: {
-            text: 'Permanent resident card',
-            subtext: '(I-551)'
-          },
-          certificate: {
-            text: 'Certificate of naturalization',
-            subtext: '(N550 or N570)'
-          },
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          alien: [
+            'Alien Registration',
+            '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          ],
+          permanent: [
+            'Permanent resident card',
+            '(I-551)'
+          ],
+          certificate: [
+            'Certificate of naturalization',
+            '(N550 or N570)'
+          ],
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         methods: {
           inperson: 'In person',
           telephone: 'Telephone',
-          electronic: {
-            text: 'Electronic',
-            subtext: '(such as e-mail, texting, chat rooms, etc.)'
-          },
+          electronic: [
+            'Electronic',
+            '(such as e-mail, texting, chat rooms, etc.)'
+          ],
           written: 'Written correspondence',
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         frequency: {
           daily: 'Daily',
@@ -2001,31 +2066,31 @@ const en = {
           monthly: 'Monthly',
           quarterly: 'Quarterly',
           annually: 'Annually',
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         document: {
           permanent: 'I-551 Permanent Resident',
           employment: 'I-766 Employment Authorization',
           arrival: 'I-94 Arrival-Departure Record',
-          visa: {
-            text: 'U.S. Visa',
-            subtext: '(red foil number)'
-          },
-          f1: {
-            text: 'I-20 Certificate of Eligibility',
-            subtext: '(non-immigrant F1 status)'
-          },
-          j1: {
-            text: 'DS-2019 Certificate of Eligibility',
-            subtext: '(exchange visitor J1 status)'
-          },
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          visa: [
+            'U.S. Visa',
+            '(red foil number)'
+          ],
+          f1: [
+            'I-20 Certificate of Eligibility',
+            '(non-immigrant F1 status)'
+          ],
+          j1: [
+            'DS-2019 Certificate of Eligibility',
+            '(exchange visitor J1 status)'
+          ],
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         maiden: {
           same: 'Same as listed',
@@ -2620,7 +2685,8 @@ const en = {
         placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
-        label: 'APO/FPO State Code'
+        label: 'APO/FPO State Code',
+        placeholder: 'Enter state code (AA, AE, AP)'
       },
       apoFpoType: {
         apo: {
@@ -2915,8 +2981,10 @@ const en = {
       },
       label: {
         organization: {
-          military: 'Military',
-          military2: '(Army, Navy, Air Force, Marines, etc.)',
+          military: [
+            'Military',
+            '(Army, Navy, Air Force, Marines, etc.)'
+          ],
           intelligence: 'Intelligence Service',
           diplomatic: 'Diplomatic Service',
           security: 'Security Forces',
@@ -4647,7 +4715,6 @@ const en = {
       }
     }
   },
-
   foreign: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -4661,8 +4728,25 @@ const en = {
       tbd: 'TBD',
       contacts: 'Foreign Contacts',
       passport: 'U.S. passport information',
-      activities: 'Foreign activities',
-      business: 'Foreign business, professional activities, and government contacts',
+      activities: {
+        activity: 'Foreign activities',
+        direct: 'Direct control',
+        indirect: 'Indirect control',
+        realestate: 'Real estate purchase',
+        benefits: 'Foreign benefits',
+        support: 'Foreign national support'
+      },
+      business: {
+        advice: 'Support provided',
+        family: 'Immediate family foreign support',
+        employment: 'Employment',
+        ventures: 'Other business ventures',
+        events: 'Event participation',
+        contact: 'Immediate family contact',
+        sponsorship: 'Foreign national sponsorship',
+        political: 'Held political office',
+        voting: 'Voting'
+      },
       travel: 'Foreign countries you have visited'
     },
     passport: {
@@ -4717,9 +4801,1121 @@ const en = {
           note: ''
         }
       }
+    },
+    activities: {
+      direct: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?'
+        },
+        para: {
+          intro: 'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.\n\n**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+        },
+        collection: {
+          summary: 'Provide your direct financial interests here',
+          description: 'Summary of financial interests',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendMessage: 'If yes use the button below to add another interest.',
+          appendLabel: 'Add another interest',
+          itemType: 'Interest'
+        },
+        interest: {
+          para: {
+            checkAll: 'Check all that apply',
+            howAcquired: 'Such as purchase, gift, etc.'
+          },
+          heading: {
+            interestTypes: 'Specify',
+            interestType: 'Provide the type of financial interest',
+            acquired: 'Provide the date acquired',
+            howAcquired: 'Provide how the financial interest was acquired',
+            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+            relinquished: 'Provide the date control or ownership was relinquished.',
+            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of. '
+          },
+          label: {
+            relinquishedNotApplicable: 'Not applicable',
+            or: 'or',
+            interestTypes: {
+              yourself: 'Yourself',
+              spouse: 'Spouse or legally recognized civil union/domestic partner',
+              cohabitant: 'Cohabitant',
+              dependentChildren: 'Dependent children'
+            }
+          },
+          help: {
+            interestTypes: {
+              title: 'Need help with the interest type field?',
+              message: 'Check all that apply',
+              note: ''
+            },
+            interestType: {
+              title: 'Need help with the direct interest type?',
+              message: 'Provide the type of financial interest',
+              note: ''
+            },
+            acquired: {
+              title: 'Need help with when the interest was acquired?',
+              message: 'Provide the date acquired',
+              note: ''
+            },
+            howAcquired: {
+              title: 'Need help with how the interest was acquired?',
+              message: 'Provide how the financial interest was acquired',
+              note: ''
+            },
+            cost: {
+              title: 'Need help with the cost?',
+              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            },
+            relinquished: {
+              title: 'Need help with date reqlinquished?',
+              message: 'Provide the date control or ownership was relinquished',
+              note: ''
+            },
+            explanation: {
+              title: 'Need help with this field?',
+              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            }
+          },
+          coOwner: {
+            heading: {
+              name: 'Provide full name of co-owner',
+              address: 'Provide co-owner current address',
+              countries: 'Provide co-owner’s country(ies) of citizenship',
+              relationshipNature: 'Provide the nature of your relationship with the co-owner'
+            },
+            label: {
+              address: 'This address is'
+            },
+            help: {
+              countries: {
+                title: 'Need help with co-owners countries of citizenship?',
+                message: 'Provide the co-owners countries of citizenship',
+                note: ''
+              },
+              relationshipNature: {
+                title: 'Need help with the nature of the relationship?',
+                message: 'Provide the nature of your relationship with the co-owner',
+                note: ''
+              }
+            }
+          },
+          coOwners: {
+            heading: {
+              hasCoOwners: 'Are there any co-owners of this foreign financial interest?',
+              hasCoOwnersAppend: 'Are there any additional co-owners of this foreign financial interest?'
+            }
+          }
+        }
+      },
+      indirect: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?'
+        },
+        collection: {
+          summary: 'Provide your indirect financial interests here',
+          description: 'Summary of financial interests',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendMessage: 'If yes use the button below to add another interest.',
+          appendLabel: 'Add another interest',
+          itemType: 'Interest'
+        },
+        interest: {
+          para: {
+            checkAll: 'Check all that apply',
+            howAcquired: 'Such as purchase, gift, etc.'
+          },
+          heading: {
+            interestTypes: 'Specify',
+            interestType: 'Provide the type of financial interest',
+            name: 'Provide the name of the individual who controls this financial interest on your behalf',
+            relationship: 'Provide this individual’s relationship to you',
+            acquired: 'Provide the date the financial interest was acquired',
+            howAcquired: 'Provide details regarding how it was acquired',
+            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+            sold: 'Provide the date interest was sold, lost, or otherwise disposed of',
+            explanation: 'Provide explanation if interest was sold, lost, or otherwise disposed of'
+          },
+          label: {
+            firstname: 'First name',
+            lastname: 'Last name',
+            soldNotApplicable: 'Not applicable',
+            or: 'or',
+            costEstimated: 'Estimated',
+            valueEstimated: 'Estimated',
+            interestTypes: {
+              yourself: 'Yourself',
+              spouse: 'Spouse or legally recognized civil union/domestic partner',
+              cohabitant: 'Cohabitant',
+              dependentChildren: 'Dependent children'
+            }
+          },
+          help: {
+            interestTypes: {
+              title: 'Need help with the interest type field?',
+              message: 'Check all that apply',
+              note: ''
+            },
+            interestType: {
+              title: 'Need help with the indirect interest type?',
+              message: 'Provide the type of financial interest',
+              note: ''
+            },
+            name: {
+              title: 'Need help with the name of the person?',
+              message: 'Provide the name of the individual who controls this financial interest on your behalf',
+              note: ''
+            },
+            acquired: {
+              title: 'Need help with when the interest was acquired?',
+              message: 'Provide the date acquired',
+              note: ''
+            },
+            howAcquired: {
+              title: 'Need help with how the interest was acquired?',
+              message: 'Provide how the financial interest was acquired',
+              note: ''
+            },
+            cost: {
+              title: 'Need help with the cost?',
+              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            },
+            sold: {
+              title: 'Need help with date reqlinquished?',
+              message: 'Provide the date control or ownership was relinquished',
+              note: ''
+            },
+            explanation: {
+              title: 'Need help with the explanation?',
+              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              note: ''
+            },
+            relationship: {
+              title: 'Need help with the relationship?',
+              message: 'Provide this individual’s relationship to you',
+              note: ''
+            }
+          },
+          coOwner: {
+            heading: {
+              name: 'Provide full name of co-owner',
+              address: 'Provide co-owner current address',
+              countries: 'Provide co-owner’s country(ies) of citizenship',
+              relationshipNature: 'Provide the nature of your relationship with the co-owner'
+            },
+            label: {
+              address: 'This address is'
+            },
+            help: {
+              countries: {
+                title: 'Need help with co-owners countries of citizenship?',
+                message: 'Provide the co-owners countries of citizenship',
+                note: ''
+              },
+              relationshipNature: {
+                title: 'Need help with the nature of the relationship?',
+                message: 'Provide the nature of your relationship with the co-owner',
+                note: ''
+              }
+            }
+          },
+          coOwners: {
+            heading: {
+              hasCoOwners: 'Are there any co-owners of the foreign financial interest controlled on your behalf?',
+              hasCoOwnersAppend: 'Are there any additional co-owners for this foreign financial interest controlled on your behalf to report?'
+            }
+          }
+        }
+      },
+      realestate: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
+        },
+        collection: {
+          summary: 'Provide your real estate financial interests here',
+          description: 'Summary of financial interests',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendMessage: 'If yes use the button below to add another interest.',
+          appendLabel: 'Add another interest',
+          itemType: 'Interest'
+        },
+        interest: {
+          para: {
+            checkAll: 'Check all that apply',
+            howAcquired: 'Such as purchase, gift, etc.'
+          },
+          heading: {
+            interestTypes: 'Specify',
+            realEstateType: 'Provide the type of real estate property',
+            address: 'Provide the location/address of property',
+            acquired: 'Provide the date the financial interest was acquired',
+            howAcquired: 'Provide details regarding how it was acquired',
+            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
+            sold: 'Provide the date interest was sold, lost, or otherwise disposed of'
+          },
+          label: {
+            address: 'This address is',
+            soldNotApplicable: 'Not applicable',
+            or: 'or',
+            costEstimated: 'Estimated',
+            interestTypes: {
+              yourself: 'Yourself',
+              spouse: 'Spouse or legally recognized civil union/domestic partner',
+              cohabitant: 'Cohabitant',
+              dependentChildren: 'Dependent children'
+            }
+          },
+          help: {
+            interestTypes: {
+              title: 'Need help with the interest type field?',
+              message: 'Check all that apply',
+              note: ''
+            },
+            realEstateType: {
+              title: 'Need help with the real estate interest type?',
+              message: 'Provide the type of real estate interest',
+              note: ''
+            },
+            acquired: {
+              title: 'Need help with when the interest was acquired?',
+              message: 'Provide the date acquired',
+              note: ''
+            },
+            howAcquired: {
+              title: 'Need help with how the interest was acquired?',
+              message: 'Provide how the financial interest was acquired',
+              note: ''
+            },
+            cost: {
+              title: 'Need help with the cost?',
+              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              note: ''
+            },
+            sold: {
+              title: 'Need help with date reqlinquished?',
+              message: 'Provide the date control or ownership was relinquished',
+              note: ''
+            }
+          },
+          coOwner: {
+            heading: {
+              name: 'Provide full name of co-owner',
+              address: 'Provide co-owner current address',
+              countries: 'Provide co-owner’s country(ies) of citizenship',
+              relationshipNature: 'Provide the nature of your relationship with the co-owner'
+            },
+            label: {
+              address: 'This address is'
+            },
+            help: {
+              countries: {
+                title: 'Need help with co-owners countries of citizenship?',
+                message: 'Provide the co-owners countries of citizenship',
+                note: ''
+              },
+              relationshipNature: {
+                title: 'Need help with the nature of the relationship?',
+                message: 'Provide the nature of your relationship with the co-owner',
+                note: ''
+              }
+            }
+          },
+          coOwners: {
+            heading: {
+              hasCoOwners: 'Are/were/will there any co-owners of this foreign real estate?',
+              hasCoOwnersAppend: 'Are there any additional co-owners for this foreign financial interest controlled on your behalf to report?'
+            }
+          }
+        }
+      },
+      support: {
+        heading: {
+          title: 'Have you EVER provided financial support for any foreign national?',
+          name: 'Provide the name of the foreign national you support or have supported financially',
+          address: 'Provide the address of the foreign national listed above',
+          relationship: 'Provide the nature of your relationship with the foreign national listed above',
+          amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
+          frequency: 'Provide the frequency of your support',
+          country: 'Provide the name of the country providing this benefit'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided financial support to a foreign national?',
+            message: 'If you have provided any financial support to a foreign national then select "yes".',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the foreign national\'s address?',
+            message: 'Provide the current address of the foreign national',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relation to the foreign national?',
+            message: 'Provide the relationship to the foreign national',
+            note: ''
+          },
+          amount: {
+            title: 'Need help with the amount of financial support?',
+            message: 'Provide the amount of U.S. dollars',
+            note: ''
+          },
+          frequency: {
+            title: 'Need help with the frequency?',
+            message: 'Provide the frequency of support',
+            note: 'Note: Monthly, yearly, once, etc.'
+          },
+          country: {
+            title: 'Need help with the country(ies)?',
+            message: 'List all countries which benefit from this financial support',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign financial support',
+            item: 'Support',
+            unknown: 'Provide details of foreign financial support below'
+          },
+          appendTitle: 'Have you additionally provided financial support for any foreign national?',
+          appendMessage: [
+            'If yes use the button below to add another instance'
+          ],
+          append: 'Add another instance'
+        }
+      },
+      benefit: {
+        heading: {
+          title: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+          interestTypes: 'Specify',
+          benefitType: 'Provide the type of benefit',
+          benefitFrequency: 'Provide the frequency of the benefit',
+          received: 'Provide the date the benefit was received',
+          country: 'Provide the name of the country providing the benefit',
+          value: 'Provide the total value (in U.S. dollars) of the benefit received.'
+        },
+        para: {
+          checkAll: 'Check all that apply'
+        },
+        label: {
+          otherBenefit: 'Provide explanation',
+          otherBenefitType: 'Provide explanation',
+          interestTypes: {
+            yourself: 'Yourself',
+            spouse: 'Spouse or legally recognized civil union/domestic partner',
+            cohabitant: 'Cohabitant',
+            dependentChildren: 'Dependent children'
+          },
+          benefitTypes: {
+            educational: 'Educational',
+            medical: 'Medical',
+            retirement: 'Retirement social welfare',
+            other: 'Other such benefit (Provide explanation)'
+          },
+          benefitFrequency: {
+            oneTime: 'Onetime benefit',
+            future: 'Future benefit',
+            continuing: 'Continuing benefit',
+            other: 'Other (Provide explanation)'
+          }
+        },
+        collection: {
+          summary: 'Provide your financial benefits here',
+          description: 'Summary of financial benefits',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
+          appendMessage: 'If yes use the button below to add another benefit.',
+          appendLabel: 'Add another benefit',
+          itemType: 'Benefit'
+        },
+        help: {
+          benefit: {
+            title: 'Need help with determining if you have received foreign benefits?',
+            message: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+            note: ''
+          },
+          interestType: {
+            title: 'Need help with the interest type?',
+            message: 'Provide the interest type',
+            note: ''
+          },
+          benefitType: {
+            title: 'Need help with the benefit type?',
+            message: 'Provide the type of benefit',
+            note: ''
+          },
+          benefitFrequency: {
+            title: 'Need help with the benefit frequency?',
+            message: 'Provide the frequency of the benefit',
+            note: ''
+          }
+        },
+        oneTime: {
+          heading: {
+            received: 'Provide the date the benefit was received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit received.',
+            reason: 'Provide the reason this benefit was received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated'
+          },
+          para: {
+            obligated: 'If yes provide explanation'
+          },
+          help: {
+            received: {
+              title: 'Need help when benefit was received?',
+              message: 'Provide the date the benefit was received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit was received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        },
+        future: {
+          heading: {
+            begin: 'Provide the date the benefit will begin',
+            frequency: 'Provide the frequency the benefit will be received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            reason: 'Provide the reason this benefit will be received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated',
+            frequency: {
+              annually: 'Annually',
+              quarterly: 'Quarterly',
+              monthly: 'Monthly',
+              weekly: 'Weekly',
+              other: 'Other (Provide explanation)'
+            }
+          },
+          para: {
+            obligated: 'If yes provide explanation',
+            frequencyOther: 'Provide explanation'
+          },
+          help: {
+            begin: {
+              title: 'Need help when benefit will be begin?',
+              message: 'Provide the date the benefit will begin',
+              note: ''
+            },
+            frequency: {
+              title: 'Need help with the benefit frequency?',
+              message: 'Provide the frequency the benefit will be received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit to be received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit will be received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        },
+        continuing: {
+          heading: {
+            began: 'Provide the date the benefit began',
+            end: 'Provide the date the benefit is expected to end',
+            frequency: 'Provide the frequency that this benefit is received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            reason: 'Provide the reason this benefit will be received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated',
+            frequency: {
+              annually: 'Annually',
+              quarterly: 'Quarterly',
+              monthly: 'Monthly',
+              weekly: 'Weekly',
+              other: 'Other (Provide explanation)'
+            }
+          },
+          para: {
+            obligated: 'If yes provide explanation',
+            frequencyOther: 'Provide explanation'
+          },
+          help: {
+            began: {
+              title: 'Need help when the benefit began?',
+              message: 'Provide the date the benefit began',
+              note: ''
+            },
+            end: {
+              title: 'Need help when the benefit will end?',
+              message: 'Provide the date the benefit will end',
+              note: ''
+            },
+            frequency: {
+              title: 'Need help with the benefit frequency?',
+              message: 'Provide the frequency the benefit will be received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit to be received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit will be received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        }
+      }
+    },
+    contacts: {
+      heading: {
+        title: 'Do you have, or have you had, close and/or continuing contact with a foreign national within the last seven (7) years with whom you, or your spouse, or legally recognized civil union/domestic partner, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
+        name: 'Provide the full name of the foreign national, if known',
+        firstcontact: 'Provide the approximate date of first contact',
+        lastcontact: 'Provide the approximate date of last contact',
+        methods: 'Provide methods of contact',
+        frequency: 'Provide approximate frequency of contact',
+        relationship: 'Provide the nature of relationship',
+        aliases: 'Has this foreign national used any other names and/or nicknames?',
+        aliases2: 'Any additional other names and/or nicknames for this foreign national?',
+        aliasname: 'Provide the other name or nickname',
+        citizenship: 'Provide country(ies) of citizenship',
+        birthdate: 'Provide date of birth',
+        birthplace: 'Provide place of birth',
+        address: 'Provide current address',
+        employer: 'Provide the name of the foreign national\'s current employer, or provide the name of their most recent employer if not currently employed',
+        employeraddress: 'Provid the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
+        hasaffiliations: 'Is this foreign national affiliated with a foreign government, military, security, defense industry, or intelligence service?',
+        affiliations: 'Describe the contact\'s relationship with the foreign government, military, security, defense industry, or intelligence service',
+        explanation: 'Explanation'
+      },
+      para: {
+        includes: 'Include associates as well as relatives, not previously listed in the relatives section.',
+        definition: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
+        or: 'Or',
+        checkall: 'Check all that apply'
+      },
+      label: {
+        idk: 'I don\'t know',
+        inperson: 'In person',
+        telephone: 'Telephone',
+        electronic: [
+          'Electronic',
+          '(such as e-mail, texting, chat rooms, etc)'
+        ],
+        written: 'Written correspondence',
+        daily: 'Daily',
+        weekly: 'Weekly',
+        monthly: 'Monthly',
+        quarterly: 'Quarterly',
+        annually: 'Annually',
+        professional: 'Professional or business',
+        personal: [
+          'Personal',
+          '(such as family ties, friendship, affection, common interests, etc)'
+        ],
+        obligation: [
+          'Obligation',
+          '(provide explanation)'
+        ],
+        other: [
+          'Other',
+          '(provide explanation)'
+        ]
+      },
+      help: {
+        branch: {
+          title: 'Need help determining if you know any foreign nationals?',
+          message: 'If you know anyone who is not a U.S. citizen or national then please click "yes"',
+          note: 'Note: A foreign national is defined as any person who is not a citizen or national of the U.S.'
+        },
+        firstcontact: {
+          title: 'Need help with the date of your first contact?',
+          message: 'Provide the approximate date of our first contact with the individual',
+          note: ''
+        },
+        lastcontact: {
+          title: 'Need help with the date of your last contact?',
+          message: 'Provide the approximate date of the last contact you had with the individual',
+          note: ''
+        },
+        methods: {
+          title: 'Need help with the methods of your communication?',
+          message: 'Check all the communication methods you may use in your correspondence',
+          note: ''
+        },
+        frequency: {
+          title: 'Need help with the frequency of your communication?',
+          message: 'Select the appropriate frequency of your correspondence',
+          note: ''
+        },
+        relationship: {
+          title: 'Need help with your relationship with this foreign national?',
+          message: 'Check all the which apply to your relationship with the individual',
+          note: ''
+        },
+        aliases: {
+          title: 'Need help with any other names or nicknames?',
+          message: 'If you are aware of any nicknames or other names the individual may have used then pleas provide them',
+          note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Provide one or more citizenships the foreign natural has',
+          note: ''
+        },
+        birthdate: {
+          title: 'Need help with their date of birth?',
+          message: 'Provide the approximate date of birth of the individual',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        birthplace: {
+          title: 'Need help with their place of birth?',
+          message: 'Provide the place of birth of the individual',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        address: {
+          title: 'Need help with their current address?',
+          message: 'Provide their most recent address',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        employer: {
+          title: 'Need help with the employer?',
+          message: 'Provide the name of their most recent employer',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        employeraddress: {
+          title: 'Need help with the employer address?',
+          message: 'Provide the address of their most recent employer',
+          note: 'Note: If you do not know then you may select "I don\'t know"'
+        },
+        hasaffiliations: {
+          title: 'Does this person have any affiliations?',
+          message: 'If the person has a relationship with a foreign government, military, security, defense industry, or intelligence service then select "yes"',
+          note: ''
+        },
+        affiliations: {
+          title: 'Need help describing their affiliations?',
+          message: 'Describe the individuals relationship(s) with the foreign affiliations',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of foreign contacts',
+          item: 'Foreign national',
+          unknown: 'Provide the foreign national below'
+        },
+        appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
+        appendMessage: [
+          'Include associates as well as relatives, not previously listed in the relatives section.',
+          'If yes use the button below to add another association.'
+        ],
+        append: 'Add another association'
+      }
+    },
+
+    business: {
+      advice: {
+        heading: {
+          title: 'Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
+          description: 'Provide how the financial interest was acquired',
+          name: 'Provide the name of the individual to whom advice or support was provided',
+          organization: 'Provide the name of the foreign organization or foreign business with whom the individual is associated',
+          country: 'Provide the country of origin for the organization or business',
+          dates: 'Provide the date(s) during which this advice or support was provided',
+          compensation: 'Describe what compensation, if any, was provided for your service'
+        },
+        para: {
+          branch: 'Provide a description of advice/support provided'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided advice to foreign businesses?',
+            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
+            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          },
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide how the support was provided',
+            note: ''
+          },
+          organization: {
+            title: 'Need help with the organization name?',
+            message: 'Provide the name of the business',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country of origin?',
+            message: 'Provide the country where the business is based',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates the service was provided?',
+            message: 'Provide the approximate date range your services your provided',
+            note: ''
+          },
+          compensation: {
+            title: 'Need help with compensation?',
+            message: 'Any monetary, favor, trade, or other type of exchange for services render constitutes as compensation',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business advice',
+            item: 'Advice',
+            unknown: 'Provide details of foreign business advice below'
+          },
+          appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
+          appendMessage: [
+            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+      family: {
+        heading: {
+          title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any foreign government official or agency?',
+          name: 'Provide the name of the government official',
+          agency: 'Provide the name of the agency',
+          country: 'Provide the country with which the government official or agency is affiliated',
+          date: 'Provide the date of the request',
+          circumstances: 'Provide the circumstances of request'
+        },
+        para: {
+          branch: [
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have provided advice to foreign businesses?',
+            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
+            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          },
+          agency: {
+            title: 'Need help with the agency name?',
+            message: 'Provide the agency name',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the affiliated country?',
+            message: 'Provide the country the request was affiliated with',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of the request?',
+            message: 'Provide the approximate date the request was made',
+            note: ''
+          },
+          circumstances: {
+            title: 'Need help with the circumstances?',
+            message: 'Provide all circumstances of the request',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of family foreign business advice',
+            item: 'Advice',
+            unknown: 'Provide details of family foreign business advice below'
+          },
+          appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
+          appendMessage: [
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+      employment: {
+        heading: {
+          title: 'Has any foreign national in the last seven (7) years offered you a job, asked you to work as a consultant, or consider employment with them?',
+          name: 'Provide the name of the foreign national who made the offer',
+          description: 'Provide a description of the position offered',
+          date: 'Provide the date when this offer was extended',
+          address: 'Provide the location where this occurred',
+          acceptance: 'Did you accept the offer?'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you were offered a job?',
+            message: 'If you were offered a foreign job select "yes"',
+            note: ''
+          },
+          description: {
+            title: 'Need help describing the offer?',
+            message: 'Describe the position offered.',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of the offer?',
+            message: 'Provide the approximate date the offer was extended to you',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the location?',
+            message: 'Provide the address of the location where the offer took place',
+            note: ''
+          },
+          acceptance: {
+            title: 'Need help with describing the acceptance?',
+            message: [
+              'If you did not accept the offer please state this.',
+              'If you did accept the offer please describe why it was accepted.'
+            ],
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business job offers',
+            item: 'Offer',
+            unknown: 'Provide details of foreign business job below'
+          },
+          appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
+          appendMessage: [
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+      ventures: {
+        heading: {
+          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
+          name: 'Provide the name of the foreign national',
+          address: 'Provide the full current address of this foreign national',
+          citizenship: 'Provide the citizenship(s) of this foreign national',
+          description: 'Provide the description of the business venture',
+          relationship: 'Provide your relationship to this foreign national',
+          dates: 'Provide the length of time you have been involved in the business venture',
+          association: 'Provide the nature of the association with this business venture',
+          position: 'Provide the position you held',
+          service: 'Provide the service you provided',
+          support: 'Provide the financial support involved',
+          compensation: 'Provide a description of what compensation was provided for your service'
+        },
+        para: {
+          branch: [
+            'Own, co-own, serve as a business consultant, provide financial support, etc.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help with the business venture?',
+            message: 'If you have, or are currently, associated with a foreign business venture select "yes"',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the foreign national\'s address?',
+            message: 'Provide the current address of the foreign national',
+            note: ''
+          },
+          citizenship: {
+            title: 'Need help with the foreign national\'s citizenship?',
+            message: 'Provide the country(ies) the foreign national has citizenship',
+            note: ''
+          },
+          description: {
+            title: 'Need help describing the business venture?',
+            message: 'Provide an accurate descsription of the business venture',
+            note: ''
+          },
+          relationship: {
+            title: 'Need help with the relation to the foreign national?',
+            message: 'Provide the relationship to the foreign national',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates involved?',
+            message: 'Provide the approximate date range you were involved with the business venture',
+            note: ''
+          },
+          association: {
+            title: 'Need help with the assocition to the venture?',
+            message: 'Provide a description of how you were associated to the business venture',
+            note: ''
+          },
+          position: {
+            title: 'Need help with the position?',
+            message: 'Provide the position you held',
+            note: ''
+          },
+          service: {
+            title: 'Need help with the service provided?',
+            message: 'Provide how the service you provided',
+            note: ''
+          },
+          support: {
+            title: 'Need help describing the financial support?',
+            message: 'Provide any financial support that was provided',
+            note: ''
+          },
+          compensation: {
+            title: 'Need help describing the compensation?',
+            message: 'Any monetary, favor, trade, or other type of exchange for services render constitutes as compensation',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business ventures',
+            item: 'Venture',
+            unknown: 'Provide details of foreign business ventures below'
+          },
+          appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
+          appendMessage: [
+            'Own, co-own, serve as a business consultant, provide financial support, etc.',
+            'If yes use the button below to add another interest'
+          ],
+          append: 'Add another interest'
+        }
+      },
+      conferences: {
+        heading: {
+          title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
+          description: 'Provide the name and description of the event',
+          sponsor: 'Provide the name of the sponsoring organization',
+          city: 'Provide the city where the event was held',
+          country: 'Provide the country where the event was held',
+          dates: 'Provide the dates for the event',
+          purpose: 'Provide the purpose of the event',
+          contact: 'Was there any subsequent contact with any foreign nationals as a result of the event?',
+          contact2: 'Do you have another subsequent contact to report for this event?',
+          explanation: 'Provide explanation'
+        },
+        para: {
+          branch: [
+            'Do not include those you attended or participated in on official business for the U.S. government.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have been to a foreign conference?',
+            message: 'If you have to been to a conference not in the U.S. outside of official U.S. government business select "yes".',
+            note: ''
+          },
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide the name of the conference as well as a general description.',
+            note: ''
+          },
+          sponsor: {
+            title: 'Need help with the sponsoring organization?',
+            message: 'Provide the name(s) of the sponsoring organizations of the conference.',
+            note: ''
+          },
+          city: {
+            title: 'Need help with the city?',
+            message: 'Provide the city the conference was located.',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country?',
+            message: 'Provide the country the conference was located.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates of the conference?',
+            message: 'Provide the approximate date range of the conference.',
+            note: ''
+          },
+          purpose: {
+            title: 'Need help with the purpose of the conference?',
+            message: 'Describe the purpose of the event.',
+            note: ''
+          },
+          contact: {
+            title: 'Need help concerning contact with a foreign national?',
+            message: 'If you had contact with foreign nationals directly due to the conference select "yes".',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Describe the circumstances and/or outcome of the contact.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign business conferences',
+            item: 'Conference',
+            unknown: 'Provide details of conference below'
+          },
+          appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
+          appendMessage: [
+            'Do not include those you attended or participated in on official business for the U.S. government.',
+            'If yes use the button below to add another interest.'
+          ],
+          append: 'Add another interest'
+        }
+      }
     }
   },
-
   legal: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -5129,22 +6325,27 @@ const en = {
       help: {
         occurred: {
           title: 'Need help with the date this occurred?',
-          message: 'Enter the date this official order was issued.',
-          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
+          message: 'Tell us the month and year when a court or agency declared you mentally incompetent.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
-          message: 'Enter the name of the court or administrative agency that issued the order.',
+          message: 'Tell us the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
           title: 'Not sure of the court or agency address?',
-          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          message: 'Try looking up the court or agency name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         incompetent: {
           title: 'Need help with this question?',
           message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
+        },
+        disposition: {
+          title: 'Need help entering the final disposition?',
+          message: 'Tell us the ruling regarding the court or agency\'s decision.',
+          note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
         }
       },
       collection: {
@@ -5174,24 +6375,24 @@ const en = {
       },
       help: {
         occurred: {
-          title: 'Need help with this date?',
-          message: 'Enter the date the court or agency ordered you to consult with a professional.',
-          note: 'Note: If you are not sure of the exact date estimate it and check the "Estimated" checkbox.'
+          title: 'Need help with the date this occurred?',
+          message: 'Tell us the month and year when a court or agency ordered you to consult with a professional.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         courtName: {
           title: 'Need help with this court or agency name?',
-          message: 'Enter the name of the court or administrative agency that issued the order.',
+          message: 'Tell us the name of the court or administrative agency that issued the order.',
           note: ''
         },
         courtAddress: {
           title: 'Not sure of the court or agency address?',
-          message: 'Try looking up the court or agency name, a physical or mailing address should be associated with it.',
+          message: 'Try looking up the court or agency name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         disposition: {
           title: 'Need help with the disposition?',
-          message: 'Enter the disposition for this order',
-          note: ''
+          message: 'Tell us the ruling regarding the court or agency\'s decision.',
+          note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
         },
         appealed: {
           title: 'Need help with whether this matter was appealed?',
@@ -5216,7 +6417,7 @@ const en = {
       heading: {
         admission: 'Was the admission voluntary or involuntary?',
         treatment: 'Provide the dates of treatment',
-        facility: 'Provide the facility where treatment was provided',
+        facility: 'Provide the name of the facility where treatment was provided',
         address: 'Provide the address of the facility where treatment was provided',
         explanation: 'Provide explanation'
       },
@@ -5241,18 +6442,18 @@ const en = {
         },
         treatment: {
           title: 'Need help the date range of your hospitalization?',
-          message: 'Provide the full date range (admission to release) of your hospitalization.',
-          note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
+          message: 'Tell us the full date range (admission to release) of your hospitalization.',
+          note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
         },
         facility: {
           title: 'Need help with this facility name?',
-          message: 'Enter the name of the facility where you were hospitalized.',
+          message: 'Tell us the name of the facility where you were hospitalized.',
           note: ''
         },
         address: {
           title: 'Not sure of the facility address?',
-          message: 'Try looking up the facility name, a physical or mailing address should be associated with it.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          message: 'Try looking up the facility name, this could help you find the address.',
+          note: 'Note: f you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -5265,6 +6466,15 @@ const en = {
         facility: 'Agency/organization/facility',
         explanation: 'Provide explanation'
       },
+      label: {
+        psychotic: 'Psychotic disorder',
+        schizophrenia: 'Schizophrenia',
+        schizoaffective: 'Schizoaffective disorder',
+        delusional: 'Delusional disorder',
+        bipolar: 'Bipolar mood disorder',
+        borderline: 'Borderline personality disorder',
+        antisocial: 'Antisocial personality disorder'
+      },
       help: {
         condition: {
           title: 'Need help with health condition',
@@ -5273,8 +6483,8 @@ const en = {
         },
         diagnosed: {
           title: 'Need help the date range of your diagnosis or health condition?',
-          message: 'Provide the full date range you have had this diagnosis or health condition.',
-          note: 'Note: If this is a current diagnosis or health condition enter the start date and select the "Present" button for the "To date".'
+          message: 'Tell us the full date range you have had this diagnosis or health condition.',
+          note: 'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
         }
       },
       person: {
@@ -5289,14 +6499,14 @@ const en = {
         },
         help: {
           address: {
-            title: 'Need help with health care professional address',
-            message: 'Provide the address of the health care professional',
-            note: ''
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
             title: 'Need help the name of the healthcare professional?',
-            message: 'Provide the name of the healthcare professional.',
-            note: ''
+            message: 'Tell us the full name of the healthcare professional.',
+            note: 'Note: If you can’t remember this name a family member may be able to help you.'
           }
         }
       },
@@ -5312,14 +6522,14 @@ const en = {
         },
         help: {
           address: {
-            title: 'Not sure of the agency/organization/facility address?',
-            message: 'Try looking up the agency/organization/facility, a physical or mailing address should be associated with it.',
+            title: 'Not sure of the agency/organization/facility\'s address?',
+            message: 'Try looking up the name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           name: {
-            title: 'Need help the facility where treatment was provided?',
-            message: 'Provide the name of the facility where treatment was provided',
-            note: ''
+            title: 'Need help entering name of the facility where treatment was provided?',
+            message: 'Tell us the full name of the facility.',
+            note: 'Note: If you can’t remember this facility name a family member may be able to help you.'
           }
         }
       }
@@ -5335,7 +6545,7 @@ const en = {
         description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
-        appendMessage: 'Health professional examples: a psychiatrist, pyschologist, licensed clinical social worker, or nurse practictioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.\n\nIf yes, use the button below to add another hospitalization',
         appendLabel: 'Add another diagnosis',
         itemType: 'Diagnosis'
       },
@@ -5385,7 +6595,7 @@ const en = {
       person: {
         help: {
           name: {
-            title: 'Help with healthcare professional',
+            title: 'Need help the name of the healthcare professional?',
             message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
           },
           address: {

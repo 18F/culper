@@ -1,18 +1,8 @@
 @import 'eqip-colors';
 
 .offense {
-  .offense-description,
-  .offense-citedby,
-  .offense-explanation,
-  .offense-courtname,
-  .offense-courtcharge,
-  .offense-courtoutcome {
-    display: inline-block;
-    width: 92%;
-  }
-
   .offense-courttype .block label {
-    width: 17rem;
+    height: initial !important;
   }
 
   .more.title {
@@ -20,9 +10,7 @@
   }
 
   .more.arrow {
-    text-align: center;
     height: 8rem;
-    width: 100%;
-    margin: 0 auto 2rem auto;
+    margin-left: 25.25rem;
   }
 }

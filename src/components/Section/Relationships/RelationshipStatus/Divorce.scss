@@ -1,11 +1,7 @@
 .divorce {
-  .status {
-    .blocks {
-      label {
-        width: 17rem;
-        height: 5rem;
-        padding: 1rem;
-      }
-    }
+  .deceased label,
+  .status label {
+    width: 17rem !important;
+    height: initial !important;
   }
 }

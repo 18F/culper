@@ -2,13 +2,12 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
-const trimLeadingZero = (num) => {
-  if (isNaN(num)) {
+export const trimLeadingZero = (num) => {
+  if (isNaN(num) || num === '') {
     return ''
   }
 
-  const i = parseInt(`0${num}`, 10)
-  return i === 0 ? '' : '' + i
+  return '' + parseInt(`0${num}`, 10)
 }
 
 export default class Number extends ValidationElement {

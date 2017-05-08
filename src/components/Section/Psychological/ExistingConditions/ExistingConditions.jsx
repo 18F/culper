@@ -104,7 +104,7 @@ export default class ExistingConditions extends ValidationElement {
     )
   }
   isValid () {
-    return new ExistingConditionsValidator(this.state).isValid()
+    return new ExistingConditionsValidator(this.state, { prefix: this.props.prefix }).isValid()
   }
 
   render () {
@@ -126,21 +126,21 @@ export default class ExistingConditions extends ValidationElement {
             <Field>
               <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
                 <Radio name="treatment"
-                  className="treatment"
+                  className="treatment yes"
                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
                   value="Yes"
                   onUpdate={this.updateReceivedTreatment}
                   onValidate={this.handleValidation}
                 />
                 <Radio name="treatment"
-                  className="treatment"
+                  className="treatment no"
                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
                   value="No"
                   onUpdate={this.updateReceivedTreatment}
                   onValidate={this.handleValidation}
                 />
                 <Radio name="treatment"
-                  className="treatment"
+                  className="treatment decline"
                   label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
                   value="Decline"
                   onUpdate={this.updateReceivedTreatment}
@@ -172,6 +172,7 @@ export default class ExistingConditions extends ValidationElement {
                 appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
                 appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
                 <Diagnosis name="Diagnosis"
+                  ApplicantBirthDate={this.props.ApplicantBirthDate}
                   prefix="existingConditions.diagnosis"
                   bind={true} />
               </Accordion>

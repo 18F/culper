@@ -1,15 +1,22 @@
 .existingconditions {
   .treatment-list {
+    .yes label,
+    .no label {
+      width: 15rem !important;
+    }
+
     label {
-      width: 16rem;
+      height: initial !important;
     }
   }
+
   .summary {
     .left {
       .content {
         .index {
           padding-right: 1rem;
         }
+
         .treatmentdate {
           float: right;
           height: 4.9rem;

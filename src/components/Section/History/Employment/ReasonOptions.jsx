@@ -81,25 +81,25 @@ export default class ReasonOptions extends React.Component {
                shrink={true}>
           <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason}>
             <Radio name="employment_left"
-                   label={i18n.t('history.employment.default.left.fired.option')}
+                   label={i18n.m('history.employment.default.left.fired.option')}
                    value="Fired"
                    onUpdate={this.updateReason}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="employment_quit"
-                   label={i18n.t('history.employment.default.left.quit.option')}
+                   label={i18n.m('history.employment.default.left.quit.option')}
                    value="Quit"
                    onUpdate={this.updateReason}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="employment_charges"
-                   label={i18n.t('history.employment.default.left.charges.option')}
+                   label={i18n.m('history.employment.default.left.charges.option')}
                    value="Charges"
                    onUpdate={this.updateReason}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="employment_performance"
-                   label={i18n.t('history.employment.default.left.performance.option')}
+                   label={i18n.m('history.employment.default.left.performance.option')}
                    value="Performance"
                    onUpdate={this.updateReason}
                    onValidate={this.props.onValidate}

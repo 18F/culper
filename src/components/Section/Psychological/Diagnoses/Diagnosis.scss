@@ -1,16 +1,10 @@
 .diagnosis {
-  .condition {
-    width: 92%;
-    max-width: 64rem;
-    display: inline-block;
-  }
-  h2 {
-    margin-top: 5rem;
-  }
-  .person,
-  .facility {
-    .field > .title {
-      margin-top: 3rem;
+  .diagnosis-condition .diagnosis-condition-schizoaffective,
+  .diagnosis-condition .diagnosis-condition-bipolar,
+  .diagnosis-condition .diagnosis-condition-borderline,
+  .diagnosis-condition .diagnosis-condition-antisocial {
+    label > span > div {
+      top: 25%;
     }
   }
 }

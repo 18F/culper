@@ -55,37 +55,44 @@ export class DiplomaItem extends ValidationElement {
           <RadioGroup className="diploma option-list"
                       selectedValue={this.state.Diploma}>
             <Radio name="diploma-highschool"
-                   label={i18n.t('history.education.label.diploma.highschool')}
+                   className="diploma-highschool"
+                   label={i18n.m('history.education.label.diploma.highschool')}
                    value="High School Diploma"
                    onChange={this.updateDiploma}
                    />
             <Radio name="diploma-associate"
-                   label={i18n.t('history.education.label.diploma.associate')}
+                   className="diploma-associate"
+                   label={i18n.m('history.education.label.diploma.associate')}
                    value="Associate"
                    onChange={this.updateDiploma}
                    />
             <Radio name="diploma-bachelor"
-                   label={i18n.t('history.education.label.diploma.bachelor')}
+                   className="diploma-bachelor"
+                   label={i18n.m('history.education.label.diploma.bachelor')}
                    value="Bachelor"
                    onChange={this.updateDiploma}
                    />
             <Radio name="diploma-master"
-                   label={i18n.t('history.education.label.diploma.master')}
+                   className="diploma-master"
+                   label={i18n.m('history.education.label.diploma.master')}
                    value="Master"
                    onChange={this.updateDiploma}
                    />
             <Radio name="diploma-doctorate"
-                   label={i18n.t('history.education.label.diploma.doctorate')}
+                   className="diploma-doctorate"
+                   label={i18n.m('history.education.label.diploma.doctorate')}
                    value="Doctorate"
                    onChange={this.updateDiploma}
                    />
             <Radio name="diploma-professional"
-                   label={i18n.t('history.education.label.diploma.professional')}
+                   className="diploma-professional"
+                   label={i18n.m('history.education.label.diploma.professional')}
                    value="Professional"
                    onChange={this.updateDiploma}
                    />
             <Radio name="diploma-other"
-                   label={i18n.t('history.education.label.diploma.other')}
+                   className="diploma-other"
+                   label={i18n.m('history.education.label.diploma.other')}
                    value="Other"
                    onChange={this.updateDiploma}
                    />

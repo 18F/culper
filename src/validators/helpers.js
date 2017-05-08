@@ -14,6 +14,13 @@ export const validGenericTextfield = (obj) => {
   return true
 }
 
+export const validCurrency = (obj) => {
+  if (!obj || !obj.value || isNaN(obj.value)) {
+    return false
+  }
+  return true
+}
+
 /**
  * Checks if a status exists in a set of completed fields
  */
@@ -88,7 +95,7 @@ export const validDateField = (obj) => {
   return true
 }
 
-export const validNotApplicable = (notApplicable, logic) => {
+export const validNotApplicable = (notApplicable, logic, notLogic) => {
   // If the `NotApplicable` object is not present then apply the logic
   if (!notApplicable) {
     return logic()
@@ -97,6 +104,8 @@ export const validNotApplicable = (notApplicable, logic) => {
   // If the `NotApplicable` object is present and is applicable then apply the logic
   if (notApplicable && notApplicable.applicable) {
     return logic()
+  } else if (notLogic) {
+    return notLogic()
   }
 
   return true

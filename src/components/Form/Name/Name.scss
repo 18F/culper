@@ -10,22 +10,26 @@
     margin-bottom: 0;
   }
 
-  .inline {
-    display: inline-block;
-    margin-left: 1rem;
-  }
-
   .optional {
     color: $eapp-grey-darker;
     font-style: italic;
     padding-left: 0.5rem;
   }
 
-  .suffix label {
-    width: 7.7rem;
+  .suffix .block label {
+    height: initial !important;
+    width: 7.7rem !important;
   }
 
   .suffix-other {
     padding-top: 4rem;
+  }
+
+  .flags > .block {
+    margin-left: 1rem;
+
+    > label {
+      width: initial;
+    }
   }
 }

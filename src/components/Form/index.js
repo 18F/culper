@@ -48,6 +48,7 @@ import BranchCollection from './BranchCollection'
 import SSN from './SSN'
 import BirthPlace from './BirthPlace'
 import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
+import Currency from './Currency'
 
 export {
   ValidationElement,
@@ -94,5 +95,6 @@ export {
   Field,
   SSN,
   BirthPlace,
-  ForeignBornDocuments
+  ForeignBornDocuments,
+  Currency
 }

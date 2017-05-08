@@ -38,6 +38,17 @@ import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
+import ForeignContactsValidator from './foreigncontacts'
+import ForeignDirectActivityValidator from './foreigndirectactivity'
+import ForeignIndirectActivityValidator from './foreignindirectactivity'
+import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
+import ForeignBenefitActivityValidator from './foreignbenefitactivity'
+import ForeignActivitiesSupportValidator from './foreignsupport'
+import ForeignBusinessAdviceValidator from './foreignbusinessadvice'
+import ForeignBusinessFamilyValidator from './foreignbusinessfamily'
+import ForeignBusinessEmploymentValidator from './foreignbusinessemployment'
+import ForeignBusinessVenturesValidator from './foreignbusinessventures'
+import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
 
 export {
   AddressValidator,
@@ -83,5 +94,16 @@ export {
   MaritalValidator,
   CohabitantsValidator,
   RelationshipsValidator,
-  PeopleValidator
+  PeopleValidator,
+  ForeignContactsValidator,
+  ForeignDirectActivityValidator,
+  ForeignIndirectActivityValidator,
+  ForeignRealEstateActivityValidator,
+  ForeignBenefitActivityValidator,
+  ForeignActivitiesSupportValidator,
+  ForeignBusinessAdviceValidator,
+  ForeignBusinessFamilyValidator,
+  ForeignBusinessEmploymentValidator,
+  ForeignBusinessVenturesValidator,
+  ForeignBusinessConferencesValidator
 }

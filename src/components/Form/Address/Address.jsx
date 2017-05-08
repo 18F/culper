@@ -118,7 +118,14 @@ export default class Address extends ValidationElement {
     if (!event) {
       return
     }
+
     if (!this.handleAsyncValidation) {
+      return
+    }
+
+    // Currently USPS does not have the capability to
+    // validate internation addresses.
+    if (this.state.addressType === 'International') {
       return
     }
 
@@ -353,7 +360,7 @@ export default class Address extends ValidationElement {
                     <ApoFpo name="apoFpo"
                             className="state"
                             label={i18n.t('address.apoFpo.apoFpo.label')}
-                            placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
+                            placeholder={i18n.t('address.apoFpo.apoFpo.placeholder')}
                             value={this.state.state}
                             onChange={this.handleChange.bind(this, 'state')}
                             onValidate={this.handleValidation}
