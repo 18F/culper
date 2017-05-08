@@ -933,7 +933,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      gambling: 'Gambling debts',
+      gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
       card: 'Employer card abuse',
@@ -953,16 +953,17 @@ const en = {
       },
       collection: {
         summary: {
-          title: 'Summary of gambling debt',
-          unknownlosses: 'Provide your gambling debt below',
+          title: 'Summary of financial problems',
+          unknownlosses: 'Provide your financial problem details',
           present: 'Now',
           nodates: 'No dates',
           debt: 'Debt'
         },
-        append: 'Add another gambling debt'
+        append: 'Add another financial problem',
+        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
+        appendMessage: 'If yes use the button below to add another financial problem'
       },
       heading: {
-        details: 'Enter your gambling debt',
         dates: 'Provide the date range of your financial problems due to gambling',
         losses: 'Provide an estimate of the amount (in U.S. dollars) of gambling losses incurred',
         description: 'Provide a description of your financial problems due to gambling',
