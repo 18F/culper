@@ -11,8 +11,11 @@
   }
 
   // The text "Written correspondence" runs a little too long
-  .methods .methods-written.block label > span > div {
-    top: 25%;
+  .methods .methods-written,
+  .relationship .relationship-professional {
+    label > span > div {
+      top: 25%;
+    }
   }
 
   // The "estimated" checkbox of the date control plays a visual
