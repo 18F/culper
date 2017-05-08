@@ -8,7 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
-import { DirectActivity, IndirectActivity, RealEstateActivity, Support } from './Activities'
+import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences } from './Business'
 
 class Foreign extends ValidationElement {
@@ -28,6 +28,7 @@ class Foreign extends ValidationElement {
     this.updateDirectActivity = this.updateDirectActivity.bind(this)
     this.updateIndirectActivity = this.updateIndirectActivity.bind(this)
     this.updateRealEstateActivity = this.updateRealEstateActivity.bind(this)
+    this.updateBenefitActivity = this.updateBenefitActivity.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
   }
 
@@ -65,6 +66,7 @@ class Foreign extends ValidationElement {
         this.hasStatus('directActivity', status, true) &&
         this.hasStatus('indirectActivity', status, true) &&
         this.hasStatus('realEstateActivity', status, true) &&
+        this.hasStatus('benefitActivity', status, true) &&
         this.hasStatus('advice', status, true) &&
         this.hasStatus('family', status, true) &&
         this.hasStatus('employment', status, true) &&
@@ -76,6 +78,7 @@ class Foreign extends ValidationElement {
                this.hasStatus('directActivity', status, false) ||
                this.hasStatus('indirectActivity', status, false) ||
                this.hasStatus('realEstateActivity', status, false) ||
+               this.hasStatus('benefitActivity', status, false) ||
                this.hasStatus('advice', status, false) ||
                this.hasStatus('family', status, false) ||
                this.hasStatus('employment', status, false) ||
@@ -124,6 +127,10 @@ class Foreign extends ValidationElement {
 
   updateRealEstateActivity (values) {
     this.onUpdate('RealEstateActivity', values)
+  }
+
+  updateBenefitActivity (values) {
+    this.onUpdate('BenefitActivity', values)
   }
 
   updateConferences (values) {
@@ -250,8 +257,8 @@ class Foreign extends ValidationElement {
           <SectionView name="activities/realestate"
                        back="foreign/activities/indirect"
                        backLabel={i18n.t('foreign.destination.activities.indirect')}
-                       next="foreign/activities/support"
-                       nextLabel={i18n.t('foreign.destination.activities.support')}>
+                       next="foreign/activities/benefits"
+                       nextLabel={i18n.t('foreign.destination.activities.benefits')}>
             <RealEstateActivity name="realEstateActivity"
                     {...this.props.RealEstateActivity}
                     onUpdate={this.updateRealEstateActivity}
@@ -259,6 +266,17 @@ class Foreign extends ValidationElement {
                     />
           </SectionView>
 
+          <SectionView name="activities/benefits"
+                       back="foreign/activities/realestate"
+                       backLabel={i18n.t('foreign.destination.activities.realestate')}
+                       next="foreign/activities/support"
+                       nextLabel={i18n.t('foreign.destination.activities.support')}>
+            <BenefitActivity name="benefitActivity"
+                    {...this.props.BenefitActivity}
+                    onUpdate={this.updateBenefitActivity}
+                    onValidate={this.handleValidation}
+                    />
+          </SectionView>
           <SectionView name="activities/support"
                        back="foreign/activities/benefits"
                        backLabel={i18n.t('foreign.destination.activities.benefits')}
@@ -382,6 +400,7 @@ function mapStateToProps (state) {
     DirectActivity: foreign.DirectActivity || {},
     IndirectActivity: foreign.IndirectActivity || {},
     RealEstateActivity: foreign.RealEstateActivity || {},
+    BenefitActivity: foreign.BenefitActivity || {},
     Support: foreign.Support || {},
     Advice: foreign.Advice || {},
     Family: foreign.Family || {},

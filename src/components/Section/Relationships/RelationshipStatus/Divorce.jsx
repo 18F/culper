@@ -180,21 +180,21 @@ export default class Divorce extends React.Component {
           className="status">
           <RadioGroup name="status" selectedValue={this.state.Status}>
             <Radio
-              label={i18n.m('relationships.civilUnion.divorce.label.divorced')}
+              label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
               className="divorced"
               onUpdate={this.updateStatus}
               onValidate={this.props.onValidate}
             />
             <Radio
-              label={i18n.m('relationships.civilUnion.divorce.label.widowed')}
+              label={i18n.t('relationships.civilUnion.divorce.label.widowed')}
               value="Widowed"
               className="widowed"
               onUpdate={this.updateStatus}
               onValidate={this.props.onValidate}
             />
             <Radio
-              label={i18n.m('relationships.civilUnion.divorce.label.annulled')}
+              label={i18n.t('relationships.civilUnion.divorce.label.annulled')}
               value="Annulled"
               className="annulled"
               onUpdate={this.updateStatus}

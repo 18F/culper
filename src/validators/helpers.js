@@ -14,6 +14,13 @@ export const validGenericTextfield = (obj) => {
   return true
 }
 
+export const validCurrency = (obj) => {
+  if (!obj || !obj.value || isNaN(obj.value)) {
+    return false
+  }
+  return true
+}
+
 /**
  * Checks if a status exists in a set of completed fields
  */

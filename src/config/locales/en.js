@@ -1995,10 +1995,10 @@ const en = {
           stepmother: 'Stepmother',
           stepfather: 'Stepfather',
           fosterparent: 'Foster parent',
-          child: {
-            text: 'Child',
-            subtext: '(including adopted/foster)'
-          },
+          child: [
+            'Child',
+            '(including adopted/foster)'
+          ],
           stepchild: 'Stepchild',
           brother: 'Brother',
           sister: 'Sister',
@@ -2015,49 +2015,49 @@ const en = {
           ds: 'DS 1350'
         },
         naturalized: {
-          alien: {
-            text: 'Alien Registration',
-            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-          },
-          permanent: {
-            text: 'Permanent resident card',
-            subtext: '(I-551)'
-          },
-          certificate: {
-            text: 'Certificate of naturalization',
-            subtext: '(N550 or N570)'
-          }
+          alien: [
+            'Alien Registration',
+            '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          ],
+          permanent: [
+            'Permanent resident card',
+            '(I-551)'
+          ],
+          certificate: [
+            'Certificate of naturalization',
+            '(N550 or N570)'
+          ]
         },
         derived: {
-          alien: {
-            text: 'Alien Registration',
-            subtext: '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
-          },
-          permanent: {
-            text: 'Permanent resident card',
-            subtext: '(I-551)'
-          },
-          certificate: {
-            text: 'Certificate of naturalization',
-            subtext: '(N550 or N570)'
-          },
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          alien: [
+            'Alien Registration',
+            '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
+          ],
+          permanent: [
+            'Permanent resident card',
+            '(I-551)'
+          ],
+          certificate: [
+            'Certificate of naturalization',
+            '(N550 or N570)'
+          ],
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         methods: {
           inperson: 'In person',
           telephone: 'Telephone',
-          electronic: {
-            text: 'Electronic',
-            subtext: '(such as e-mail, texting, chat rooms, etc.)'
-          },
+          electronic: [
+            'Electronic',
+            '(such as e-mail, texting, chat rooms, etc.)'
+          ],
           written: 'Written correspondence',
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         frequency: {
           daily: 'Daily',
@@ -2065,31 +2065,31 @@ const en = {
           monthly: 'Monthly',
           quarterly: 'Quarterly',
           annually: 'Annually',
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         document: {
           permanent: 'I-551 Permanent Resident',
           employment: 'I-766 Employment Authorization',
           arrival: 'I-94 Arrival-Departure Record',
-          visa: {
-            text: 'U.S. Visa',
-            subtext: '(red foil number)'
-          },
-          f1: {
-            text: 'I-20 Certificate of Eligibility',
-            subtext: '(non-immigrant F1 status)'
-          },
-          j1: {
-            text: 'DS-2019 Certificate of Eligibility',
-            subtext: '(exchange visitor J1 status)'
-          },
-          other: {
-            text: 'Other',
-            subtext: '(provide explanation)'
-          }
+          visa: [
+            'U.S. Visa',
+            '(red foil number)'
+          ],
+          f1: [
+            'I-20 Certificate of Eligibility',
+            '(non-immigrant F1 status)'
+          ],
+          j1: [
+            'DS-2019 Certificate of Eligibility',
+            '(exchange visitor J1 status)'
+          ],
+          other: [
+            'Other',
+            '(provide explanation)'
+          ]
         },
         maiden: {
           same: 'Same as listed',
@@ -2980,8 +2980,10 @@ const en = {
       },
       label: {
         organization: {
-          military: 'Military',
-          military2: '(Army, Navy, Air Force, Marines, etc.)',
+          military: [
+            'Military',
+            '(Army, Navy, Air Force, Marines, etc.)'
+          ],
           intelligence: 'Intelligence Service',
           diplomatic: 'Diplomatic Service',
           security: 'Security Forces',
@@ -4712,7 +4714,6 @@ const en = {
       }
     }
   },
-
   foreign: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -5194,6 +5195,235 @@ const en = {
             'If yes use the button below to add another instance'
           ],
           append: 'Add another instance'
+        }
+      },
+      benefit: {
+        heading: {
+          title: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+          interestTypes: 'Specify',
+          benefitType: 'Provide the type of benefit',
+          benefitFrequency: 'Provide the frequency of the benefit',
+          received: 'Provide the date the benefit was received',
+          country: 'Provide the name of the country providing the benefit',
+          value: 'Provide the total value (in U.S. dollars) of the benefit received.'
+        },
+        para: {
+          checkAll: 'Check all that apply'
+        },
+        label: {
+          otherBenefit: 'Provide explanation',
+          otherBenefitType: 'Provide explanation',
+          interestTypes: {
+            yourself: 'Yourself',
+            spouse: 'Spouse or legally recognized civil union/domestic partner',
+            cohabitant: 'Cohabitant',
+            dependentChildren: 'Dependent children'
+          },
+          benefitTypes: {
+            educational: 'Educational',
+            medical: 'Medical',
+            retirement: 'Retirement social welfare',
+            other: 'Other such benefit (Provide explanation)'
+          },
+          benefitFrequency: {
+            oneTime: 'Onetime benefit',
+            future: 'Future benefit',
+            continuing: 'Continuing benefit',
+            other: 'Other (Provide explanation)'
+          }
+        },
+        collection: {
+          summary: 'Provide your financial benefits here',
+          description: 'Summary of financial benefits',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
+          appendMessage: 'If yes use the button below to add another benefit.',
+          appendLabel: 'Add another benefit',
+          itemType: 'Benefit'
+        },
+        help: {
+          benefit: {
+            title: 'Need help with determining if you have received foreign benefits?',
+            message: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+            note: ''
+          },
+          interestType: {
+            title: 'Need help with the interest type?',
+            message: 'Provide the interest type',
+            note: ''
+          },
+          benefitType: {
+            title: 'Need help with the benefit type?',
+            message: 'Provide the type of benefit',
+            note: ''
+          },
+          benefitFrequency: {
+            title: 'Need help with the benefit frequency?',
+            message: 'Provide the frequency of the benefit',
+            note: ''
+          }
+        },
+        oneTime: {
+          heading: {
+            received: 'Provide the date the benefit was received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit received.',
+            reason: 'Provide the reason this benefit was received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated'
+          },
+          para: {
+            obligated: 'If yes provide explanation'
+          },
+          help: {
+            received: {
+              title: 'Need help when benefit was received?',
+              message: 'Provide the date the benefit was received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit was received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        },
+        future: {
+          heading: {
+            begin: 'Provide the date the benefit will begin',
+            frequency: 'Provide the frequency the benefit will be received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            reason: 'Provide the reason this benefit will be received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated',
+            frequency: {
+              annually: 'Annually',
+              quarterly: 'Quarterly',
+              monthly: 'Monthly',
+              weekly: 'Weekly',
+              other: 'Other (Provide explanation)'
+            }
+          },
+          para: {
+            obligated: 'If yes provide explanation',
+            frequencyOther: 'Provide explanation'
+          },
+          help: {
+            begin: {
+              title: 'Need help when benefit will be begin?',
+              message: 'Provide the date the benefit will begin',
+              note: ''
+            },
+            frequency: {
+              title: 'Need help with the benefit frequency?',
+              message: 'Provide the frequency the benefit will be received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit to be received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit will be received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        },
+        continuing: {
+          heading: {
+            began: 'Provide the date the benefit began',
+            end: 'Provide the date the benefit is expected to end',
+            frequency: 'Provide the frequency that this benefit is received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            reason: 'Provide the reason this benefit will be received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated',
+            frequency: {
+              annually: 'Annually',
+              quarterly: 'Quarterly',
+              monthly: 'Monthly',
+              weekly: 'Weekly',
+              other: 'Other (Provide explanation)'
+            }
+          },
+          para: {
+            obligated: 'If yes provide explanation',
+            frequencyOther: 'Provide explanation'
+          },
+          help: {
+            began: {
+              title: 'Need help when the benefit began?',
+              message: 'Provide the date the benefit began',
+              note: ''
+            },
+            end: {
+              title: 'Need help when the benefit will end?',
+              message: 'Provide the date the benefit will end',
+              note: ''
+            },
+            frequency: {
+              title: 'Need help with the benefit frequency?',
+              message: 'Provide the frequency the benefit will be received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit to be received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit will be received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
         }
       }
     },
@@ -6234,6 +6464,15 @@ const en = {
         effective: 'Was the counseling/treatment effective in managing your symptoms?',
         facility: 'Agency/organization/facility',
         explanation: 'Provide explanation'
+      },
+      label: {
+        psychotic: 'Psychotic disorder',
+        schizophrenia: 'Schizophrenia',
+        schizoaffective: 'Schizoaffective disorder',
+        delusional: 'Delusional disorder',
+        bipolar: 'Bipolar mood disorder',
+        borderline: 'Borderline personality disorder',
+        antisocial: 'Antisocial personality disorder'
       },
       help: {
         condition: {

@@ -190,22 +190,26 @@ export class EducationItem extends ValidationElement {
             <RadioGroup className="type option-list"
                         selectedValue={this.state.Type}>
               <Radio name="type-highschool"
-                     label={i18n.t('history.education.label.type.highschool')}
+                     className="type-highschool"
+                     label={i18n.m('history.education.label.type.highschool')}
                      value="High School"
                      onChange={this.handleTypeChange}
                      />
               <Radio name="type-college"
-                     label={i18n.t('history.education.label.type.college')}
+                     className="type-college"
+                     label={i18n.m('history.education.label.type.college')}
                      value="College"
                      onChange={this.handleTypeChange}
                      />
               <Radio name="type-vocational"
-                     label={i18n.t('history.education.label.type.vocational')}
+                     className="type-vocational"
+                     label={i18n.m('history.education.label.type.vocational')}
                      value="Vocational"
                      onChange={this.handleTypeChange}
                      />
               <Radio name="type-correspondence"
-                     label={i18n.t('history.education.label.type.correspondence')}
+                     className="type-correspondence"
+                     label={i18n.m('history.education.label.type.correspondence')}
                      value="Correspondence"
                      onChange={this.handleTypeChange}
                      />
@@ -214,7 +218,7 @@ export class EducationItem extends ValidationElement {
 
           {this.reference()}
 
-          <BranchCollection help="history.employment.default.reprimand.help"
+          <BranchCollection help="history.education.help.degree"
                             label={i18n.t('history.education.heading.degree')}
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
                             items={this.state.Diplomas}
