@@ -961,7 +961,7 @@ const en = {
         },
         append: 'Add another financial problem',
         appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
-        appendMessage: 'If yes ues the button below to add another financial problem'
+        appendMessage: 'If yes use the button below to add another financial problem'
       },
       heading: {
         dates: 'Provide the date range of your financial problems due to gambling',
@@ -1319,17 +1319,19 @@ const en = {
       }
     },
     delinquent: {
-      title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
+      title: 'Other than previously listed, have any of the following happened to you?',
       para: {
+        details: 'You will be asked to provide details about each financial obligation that pertains to the items identified below',
         alimony: '**In the last seven (7) years,** you have been delinquent on alimony or child support payments.',
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
@@ -1437,11 +1439,12 @@ const en = {
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
         delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
@@ -6486,6 +6489,11 @@ const en = {
           title: 'Need help the date range of your diagnosis or health condition?',
           message: 'Tell us the full date range you have had this diagnosis or health condition.',
           note: 'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
+        },
+        explanation: {
+          title: 'Tell us more about why the counseling/treatment wasn\'t effective?',
+          message: 'Let us know why this counseling/treatment didn\'t improve your symptoms.',
+          note: 'Go into as much detail as you need to full explain.'
         }
       },
       person: {
@@ -6559,6 +6567,18 @@ const en = {
           address: 'This address is',
           name: 'Name',
           phone: 'Telephone'
+        },
+        help: {
+          name: {
+            title: 'Need help the name of the healthcare professional?',
+            message: 'Tell us the full name of the healthcare professional.',
+            note: 'Note: If you can’t remember this name a family member may be able to help you.'
+          },
+          address: {
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          }
         }
       },
       treatment: {
@@ -6597,11 +6617,12 @@ const en = {
         help: {
           name: {
             title: 'Need help the name of the healthcare professional?',
-            message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+            message: 'Tell us the full name of the healthcare professional.'
           },
           address: {
-            title: 'Help with healthcare professional address',
-            message: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           }
         }
       }
@@ -6670,7 +6691,7 @@ const en = {
           diagnosed: {
             title: 'Need help the date range of your counseling or treatment?',
             message: 'Provide the full date range (start to finish) of your counseling or treatment.',
-            note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
+            note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
           }
         },
         person: {
@@ -6690,9 +6711,9 @@ const en = {
               note: 'Note: If you can only find a phone number try calling and asking for the address.'
             },
             name: {
-              title: 'Need help the name and phone number of this healthcare professional?',
-              message: 'Please enter their full name and a current telephone number.',
-              note: ''
+              title: 'Need help the name and number of this healthcare professional?',
+              message: 'Tell us the full name of the healthcare professional and a current phone number for them.',
+              note: 'Note: If you can’t remember these a family member may be able to help you.'
             }
           }
         },
@@ -6708,14 +6729,14 @@ const en = {
           },
           help: {
             address: {
-              title: 'Need help with treatment facility?',
-              message: 'Provide the address of the facility where treatment was provided',
-              note: ''
+              title: 'Not sure of the treatment facility\'s address?',
+              message: 'Try looking up their name, this could help you find the address.',
+              note: 'Note: If you can only find a phone number try calling and asking for the address.'
             },
             name: {
               title: 'Need help the facility where treatment was provided?',
-              message: 'Provide the name of the facility where treatment was provided',
-              note: ''
+              message: 'Tell us the name of the facility where your treatment was.',
+              note: 'Note: If you can’t remember this name a family member may be able to help you.'
             }
           }
         }
