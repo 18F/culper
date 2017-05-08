@@ -1,8 +1,8 @@
 .foreign-born-documents {
   .born {
     label {
-      width: 26rem;
-      padding: 1rem;
+      width: 26rem !important;
+      height: 10rem;
     }
   }
 
@@ -10,22 +10,28 @@
   .derived,
   .notcitizen {
     label {
-      width: 26rem;
-      height: 12rem;
-      padding: 1rem;
-      line-height: 9rem !important;
-      span {
-        line-height: normal;
-        display: inline-block;
-        vertical-align: middle;
-      }
+      width: 26rem !important;
+    }
+  }
+
+  .alien {
+    label > span > div {
+      top: 10%;
+    }
+  }
+
+  .student,
+  .exchange,
+  .certificate {
+    label > span > div {
+      top: 25%;
     }
   }
 
   .other {
     label {
-      width: 28rem;
-      padding: 1rem;
+      width: 28rem !important;
+      height: 10rem;
     }
   }
 }
