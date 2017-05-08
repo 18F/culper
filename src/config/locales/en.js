@@ -1324,11 +1324,12 @@ const en = {
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
@@ -1436,11 +1437,12 @@ const en = {
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
         delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
