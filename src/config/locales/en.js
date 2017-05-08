@@ -4712,7 +4712,6 @@ const en = {
       }
     }
   },
-
   foreign: {
     tour: {
       para: 'Take a guided tour through the section'
@@ -5194,6 +5193,233 @@ const en = {
             'If yes use the button below to add another instance'
           ],
           append: 'Add another instance'
+        }
+      },
+      benefit: {
+        heading: {
+          title: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+          interestTypes: 'Specify',
+          benefitType: 'Provide the type of benefit',
+          benefitFrequency: 'Provide the frequency of the benefit',
+          received: 'Provide the date the benefit was received',
+          country: 'Provide the name of the country providing the benefit',
+          value: 'Provide the total value (in U.S. dollars) of the benefit received.'
+        },
+        para: {
+          checkAll: 'Check all that apply'
+        },
+        label: {
+          otherBenefit: 'Provide explanation',
+          otherBenefitType: 'Provide explanation',
+          interestTypes: {
+            yourself: 'Yourself',
+            spouse: 'Spouse or legally recognized civil union/domestic partner',
+            cohabitant: 'Cohabitant',
+            dependentChildren: 'Dependent children'
+          },
+          benefitTypes: {
+            educational: 'Educational',
+            medical: 'Medical',
+            retirement: 'Retirement social welfare',
+            other: 'Other such benefit (Provide explanation)'
+          },
+          benefitFrequency: {
+            oneTime: 'Onetime benefit',
+            future: 'Future benefit',
+            continuing: 'Continuing benefit',
+            other: 'Other (Provide explanation)'
+          }
+        },
+        collection: {
+          summary: 'Provide your financial benefits here',
+          description: 'Summary of financial benefits',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
+          appendMessage: 'If yes use the button below to add another benefit.',
+          appendLabel: 'Add another benefit',
+          itemType: 'Benefit'
+        },
+        help: {
+          benefit: {
+            title: 'Need help with determining if you have received foreign benefits?',
+            message: 'As a U.S. citizen, have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children received in the last seven (7) years, or are eligible to receive in the future, any educational, medical, retirement, social welfare, or other such benefit from a foreign country?',
+            note: ''
+          },
+          interestType: {
+            title: 'Need help with the interest type?',
+            message: 'Provide the interest type',
+            note: ''
+          },
+          benefitType: {
+            title: 'Need help with the benefit type?',
+            message: 'Provide the type of benefit',
+            note: ''
+          },
+          benefitFrequency: {
+            title: 'Need help with the benefit frequency?',
+            message: 'Provide the frequency of the benefit',
+            note: ''
+          }
+        },
+        oneTime: {
+          heading: {
+            received: 'Provide the date the benefit was received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit received.',
+            reason: 'Provide the reason this benefit was received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated'
+          },
+          para: {
+            obligated: 'If yes provide explanation'
+          },
+          help: {
+            received: {
+              title: 'Need help when benefit was received?',
+              message: 'Provide the date the benefit was received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit was received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        },
+        future: {
+          heading: {
+            begin: 'Provide the date the benefit will begin',
+            frequency: 'Provide the frequency the benefit will be received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            reason: 'Provide the reason this benefit will be received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated',
+            frequency: {
+              annually: 'Annually',
+              quarterly: 'Quarterly',
+              monthly: 'Monthly',
+              weekly: 'Weekly',
+              other: 'Other (Provide explanation)'
+            }
+          },
+          para: {
+            obligated: 'If yes provide explanation'
+          },
+          help: {
+            begin: {
+              title: 'Need help when benefit will be begin?',
+              message: 'Provide the date the benefit will begin',
+              note: ''
+            },
+            frequency: {
+              title: 'Need help with the benefit frequency?',
+              message: 'Provide the frequency the benefit will be received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit to be received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit will be received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
+        },
+        continuing: {
+          heading: {
+            began: 'Provide the date the benefit began',
+            end: 'Provide the date the benefit is expected to end',
+            frequency: 'Provide the frequency that this benefit is received',
+            country: 'Provide the name of the country providing the benefit',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            reason: 'Provide the reason this benefit will be received',
+            obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
+          },
+          label: {
+            obligatedExplanation: 'If yes provide explanation',
+            valueEstimated: 'Estimated',
+            frequency: {
+              annually: 'Annually',
+              quarterly: 'Quarterly',
+              monthly: 'Monthly',
+              weekly: 'Weekly',
+              other: 'Other (Provide explanation)'
+            }
+          },
+          para: {
+            obligated: 'If yes provide explanation'
+          },
+          help: {
+            began: {
+              title: 'Need help when the benefit began?',
+              message: 'Provide the date the benefit began',
+              note: ''
+            },
+            end: {
+              title: 'Need help when the benefit will end?',
+              message: 'Provide the date the benefit will end',
+              note: ''
+            },
+            frequency: {
+              title: 'Need help with the benefit frequency?',
+              message: 'Provide the frequency the benefit will be received',
+              note: ''
+            },
+            country: {
+              title: 'Need help with the country?',
+              message: 'Provide the name of the country providing the benefit',
+              note: ''
+            },
+            value: {
+              title: 'Need help with the value?',
+              message: 'Provide the total value (in U.S. dollars) of the benefit to be received',
+              note: ''
+            },
+            reason: {
+              title: 'Need help with the reason?',
+              message: 'Provide the reason this benefit will be received',
+              note: ''
+            },
+            obligated: {
+              title: 'Need help with knowing if you are obligated?',
+              message: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country',
+              note: ''
+            }
+          }
         }
       }
     },
