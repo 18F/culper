@@ -961,7 +961,7 @@ const en = {
         },
         append: 'Add another financial problem',
         appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
-        appendMessage: 'If yes ues the button below to add another financial problem'
+        appendMessage: 'If yes use the button below to add another financial problem'
       },
       heading: {
         dates: 'Provide the date range of your financial problems due to gambling',
