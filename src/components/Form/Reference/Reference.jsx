@@ -94,14 +94,13 @@ export default class Reference extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Field title={i18n.t(`${prefix}reference.heading.name`)}>
-          <Name name="FullName"
-                prefix={`${this.props.prefix}.name`}
-                {...this.state.FullName}
-                onUpdate={this.onUpdate.bind(this, 'FullName')}
-                onValidate={this.props.onValidate}
-                />
-        </Field>
+        <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
+        <Name name="FullName"
+              prefix={`${this.props.prefix}.name`}
+              {...this.state.FullName}
+              onUpdate={this.onUpdate.bind(this, 'FullName')}
+              onValidate={this.props.onValidate}
+              />
 
         <Field title={i18n.t(`${prefix}reference.heading.contact`)}
                help={`${prefix}reference.help.contact`}
