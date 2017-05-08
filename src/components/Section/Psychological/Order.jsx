@@ -77,7 +77,8 @@ export default class Order extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.${prefix}.heading.courtAddress`)}
-               help={`psychological.${prefix}.help.courtAddress`}>
+               help={`psychological.${prefix}.help.courtAddress`}
+               adjustFor="address">
           <Address name="CourtAddress"
                    {...this.props.CourtAddress}
                    label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
@@ -119,7 +120,7 @@ export default class Order extends ValidationElement {
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 adjustFor="big-buttons">
+                 adjustFor="address">
             <Address name="CourtAddress"
                      bind={true}
                      label={i18n.t(`psychological.${prefix}.label.courtAddress`)}

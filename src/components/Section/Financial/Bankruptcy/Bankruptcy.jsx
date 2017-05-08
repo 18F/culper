@@ -159,7 +159,7 @@ export default class Bankruptcy extends ValidationElement {
 
             <Field title={i18n.t('financial.bankruptcy.heading.dateDischarged')}
                    help="financial.bankruptcy.dateDischarged.help"
-                   adjustFor="buttons"
+                   adjustFor="label"
                    shrink={true}>
               <NotApplicable name="DischargeDateNotApplicable"
                              bind={true}>
@@ -208,7 +208,7 @@ export default class Bankruptcy extends ValidationElement {
 
             <Field title={i18n.t('financial.bankruptcy.heading.courtAddress')}
                    help="financial.bankruptcy.courtAddress.help"
-                   adjustFor="labels">
+                   adjustFor="address">
               <Address name="CourtAddress"
                        label={i18n.t('financial.bankruptcy.courtAddress.label')}
                        bind={true}

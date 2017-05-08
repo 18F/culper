@@ -217,7 +217,7 @@ export default class Reference extends ValidationElement {
 
         <Field title={i18n.t(`${prefix}reference.heading.address`)}
                help={`${prefix}reference.help.address`}
-               adjustFor="labels">
+               adjustFor="address">
           <p>{i18n.t(`${prefix}reference.para.address`)}</p>
           <Address name="Address"
                    {...this.state.Address}

@@ -87,7 +87,7 @@ export default class Procedure extends ValidationElement {
 
         <Field title={i18n.t('military.disciplinary.heading.name')}
                help="military.disciplinary.help.name"
-               adjustFor="labels">
+               adjustFor="p">
           <Text name="Name"
                 {...this.state.Name}
                 label={i18n.m('military.disciplinary.label.name')}
@@ -100,7 +100,7 @@ export default class Procedure extends ValidationElement {
 
         <Field title={i18n.t('military.disciplinary.heading.court')}
                help="military.disciplinary.help.court"
-               adjustFor="labels">
+               adjustFor="p">
           <Textarea name="Court"
                     {...this.state.Court}
                     label={i18n.t('military.disciplinary.label.court')}

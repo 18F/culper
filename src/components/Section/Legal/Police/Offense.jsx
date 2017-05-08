@@ -183,6 +183,7 @@ export default class Offense extends ValidationElement {
 
         <h3>{i18n.t('legal.police.heading.involvement')}</h3>
         <Branch name="involved_violence"
+                adjustFor="p"
                 className="offense-violence"
                 value={this.state.InvolvedViolence}
                 help="legal.police.help.violence"
@@ -192,6 +193,7 @@ export default class Offense extends ValidationElement {
         </Branch>
 
         <Branch name="involved_firearms"
+                adjustFor="p"
                 className="offense-firearms"
                 value={this.state.InvolvedFirearms}
                 help="legal.police.help.firearms"
@@ -201,6 +203,7 @@ export default class Offense extends ValidationElement {
         </Branch>
 
         <Branch name="involved_substances"
+                adjustFor="p"
                 className="offense-substances"
                 value={this.state.InvolvedSubstances}
                 help="legal.police.help.substances"
@@ -211,7 +214,7 @@ export default class Offense extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.address')}
                help="legal.police.help.address"
-               adjustFor="big-buttons"
+               adjustFor="address"
                shrink={true}>
           <Address name="Address"
                    {...this.state.Address}
@@ -224,6 +227,7 @@ export default class Offense extends ValidationElement {
 
         <h3>{i18n.t('legal.police.heading.cited')}</h3>
         <Branch name="was_cited"
+                adjustFor="p"
                 className="offense-cited"
                 value={this.state.WasCited}
                 help="legal.police.help.cited"
@@ -251,7 +255,7 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.agencyaddress')}
                    help="legal.police.help.agencyaddress"
-                   adjustFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="AgencyAddress"
                        {...this.state.AgencyAddress}
@@ -310,7 +314,7 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.courtaddress')}
                    help="legal.police.help.courtaddress"
-                   adjuspFor="big-buttons"
+                   adjuspFor="address"
                    shrink={true}>
               <Address name="CourtAddress"
                        {...this.state.CourtAddress}

@@ -87,6 +87,7 @@ export default class Advice extends ValidationElement {
         <Branch name="has_foreign_advice"
                 label={i18n.t('foreign.business.advice.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.advice.help.branch"
                 value={this.state.HasForeignAdvice}
                 onUpdate={this.updateHasForeignAdvice}
@@ -135,7 +136,8 @@ export default class Advice extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.advice.heading.dates')}
-                   help="foreign.business.advice.help.dates">
+                   help="foreign.business.advice.help.dates"
+                   adjustFor="daterange">
               <DateRange name="Dates"
                          className="advice-dates"
                          bind={true}

@@ -81,7 +81,7 @@ export default class Benefit extends ValidationElement {
       <div className="benefit">
         <Field title={i18n.t('foreign.activities.benefit.heading.interestTypes')}
           help={'foreign.activities.benefit.help.interestType'}
-          adjustFor="big-buttons">
+          adjustFor="p">
 
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
           <CheckboxGroup className="interest-types"
@@ -118,7 +118,8 @@ export default class Benefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
-          help={'foreign.activities.benefit.help.benefitType'}>
+               help={'foreign.activities.benefit.help.benefitType'}
+               adjustFor="big-buttons">
           <RadioGroup className="benefit-types" selectedValue={this.props.BenefitType}>
             <Radio name="benefit_type"
               label={i18n.m('foreign.activities.benefit.label.benefitTypes.educational')}
@@ -159,7 +160,8 @@ export default class Benefit extends ValidationElement {
       </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
-          help={'foreign.activities.benefit.help.benefitFrequency'}>
+               help={'foreign.activities.benefit.help.benefitFrequency'}
+               adjustFor="big-buttons">
           <RadioGroup className="benefit-frequency" selectedValue={this.props.BenefitFrequency}>
             <Radio name="benefit_frequency"
               label={i18n.m('foreign.activities.benefit.label.benefitFrequency.oneTime')}

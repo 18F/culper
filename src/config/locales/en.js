@@ -5647,6 +5647,7 @@ const en = {
         },
         para: {
           branch: [
+            'For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.',
             'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
             'If yes use the button below to add another interest'
           ]

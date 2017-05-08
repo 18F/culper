@@ -188,7 +188,7 @@ export default class OtherOffense extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.courtaddress')}
                help="legal.police.help.courtaddress"
-               adjustFor="big-buttons"
+               adjustFor="address"
                shrink={true}>
           <Address name="CourtAddress"
                    {...this.state.CourtAddress}

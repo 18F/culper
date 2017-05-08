@@ -60,7 +60,7 @@ export default class Treatment extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.address`)}
                help={`psychological.${prefix}.help.address`}
-               adjustFor="big-buttons">
+               adjustFor="address">
           <Address name="Address"
                    {...this.props.Address}
                    label={i18n.t(`psychological.${prefix}.label.address`)}
