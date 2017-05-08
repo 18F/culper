@@ -1,4 +1,4 @@
-import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, BranchCollection, validNotApplicable, validBranch, validSSN } from './helpers'
+import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, BranchCollection, validNotApplicable, validBranch, validSSN, validCurrency } from './helpers'
 
 describe('Helpers for validators', function () {
   it('should return if a property has a status', function () {
@@ -42,6 +42,33 @@ describe('Helpers for validators', function () {
 
     tests.forEach(test => {
       expect(validGenericTextfield(test.Field)).toBe(test.expected)
+    })
+  })
+
+  it('should validate currency field', function () {
+    const tests = [
+      {
+        Field: {
+          value: '1'
+        },
+        expected: true
+      },
+      {
+        Field: {
+          value: ''
+        },
+        expected: false
+      },
+      {
+        Field: {
+          value: 'f'
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(validCurrency(test.Field)).toBe(test.expected)
     })
   })
 
