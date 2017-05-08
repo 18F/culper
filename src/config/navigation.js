@@ -20,8 +20,8 @@ const navigation = [
     title: 'Financial record',
     url: 'financial',
     subsections: [
-      { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
+      { name: 'Gambling debt', url: 'gambling' },
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
       { name: 'Credit counseling', url: 'credit' },
