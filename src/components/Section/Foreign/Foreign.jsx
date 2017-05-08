@@ -66,6 +66,7 @@ class Foreign extends ValidationElement {
         this.hasStatus('directActivity', status, true) &&
         this.hasStatus('indirectActivity', status, true) &&
         this.hasStatus('realEstateActivity', status, true) &&
+        this.hasStatus('benefitActivity', status, true) &&
         this.hasStatus('advice', status, true) &&
         this.hasStatus('family', status, true) &&
         this.hasStatus('employment', status, true) &&
@@ -77,6 +78,7 @@ class Foreign extends ValidationElement {
                this.hasStatus('directActivity', status, false) ||
                this.hasStatus('indirectActivity', status, false) ||
                this.hasStatus('realEstateActivity', status, false) ||
+               this.hasStatus('benefitActivity', status, false) ||
                this.hasStatus('advice', status, false) ||
                this.hasStatus('family', status, false) ||
                this.hasStatus('employment', status, false) ||
