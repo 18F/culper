@@ -87,7 +87,8 @@ export default class Order extends ValidationElement {
         </Field>
 
         <Show when={prefix !== 'competence'}>
-          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
+            help={`psychological.help.disposition`}>
             <Text name="Disposition"
                   className="disposition"
                   {...this.props.Disposition}
