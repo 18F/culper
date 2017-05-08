@@ -41,7 +41,6 @@ import EyeColor from './EyeColor'
 import Sex from './Sex'
 import IntroHeader from './IntroHeader'
 import Branch from './Branch'
-import PetitionType from './PetitionType'
 import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
@@ -84,7 +83,6 @@ export {
   Sex,
   IntroHeader,
   Branch,
-  PetitionType,
   Reference,
   Show,
   Svg,

@@ -1012,12 +1012,14 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of Bankruptcy',
-          item: 'Bankruptcy',
+          item: 'Petition',
           unknown: 'Provide your bankruptcy below',
           nodates: 'No date',
-          chapter: 'Chapter'
+          chapter: 'Chapter',
+          appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?',
+          appendMessage: 'If yes use the button below to add another bankruptcy petition'
         },
-        append: 'Add bankruptcy'
+        append: 'Add another petition'
       },
       heading: {
         petitionType: 'Select the applicable bankruptcy petition type',
@@ -1028,7 +1030,11 @@ const en = {
         nameDebt: 'Provide the name debt is recorded under',
         courtInvolved: 'Provide the name of the court involved',
         courtAddress: 'Provide the address of the court involved',
-        comments: 'Add optional comments'
+        comments: 'Add optional comments',
+        dischargeExplanation: 'Were you discharged of all debts claimed in the bankruptcy?'
+      },
+      label: {
+        dischargeExplanation: 'Provide explanation'
       },
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
       notApplicable: 'Not applicable',
@@ -1038,6 +1044,12 @@ const en = {
         note: ''
       },
       petitionType: {
+        label: {
+          chapter7: 'Chapter 7',
+          chapter11: 'Chapter 11',
+          chapter12: 'Chapter 12',
+          chapter13: 'Chapter 13'
+        },
         help: {
           title: 'Need help with the applicable bankruptcy petition type?',
           message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',

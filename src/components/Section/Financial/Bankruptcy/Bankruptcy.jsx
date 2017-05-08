@@ -1,220 +1,213 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { BankruptcyValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Field,
-         Text, Name, Address, PetitionType, Checkbox, NotApplicable, Currency } from '../../../Form'
+import { ValidationElement, Branch, Show, DateControl, Currency, Field,
+         Text, Textarea, Name, Address, Checkbox, NotApplicable } from '../../../Form'
+import PetitionType from './PetitionType'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
     super(props)
-    this.state = {
-      List: props.List || [],
-      HasBankruptcy: props.HasBankruptcy,
-      errorCodes: []
-    }
-
-    this.myDispatch = this.myDispatch.bind(this)
-    this.summary = this.summary.bind(this)
+    this.updatePetitionType = this.updatePetitionType.bind(this)
+    this.updateCourtNumber = this.updateCourtNumber.bind(this)
+    this.updateDateFiled = this.updateDateFiled.bind(this)
+    this.updateDateDischarged = this.updateDateDischarged.bind(this)
+    this.updateDischargeDateNotApplicable = this.updateDischargeDateNotApplicable.bind(this)
+    this.updateTotalAmount = this.updateTotalAmount.bind(this)
+    this.updateTotalAmountEstimated = this.updateTotalAmountEstimated.bind(this)
+    this.updateNameDebt = this.updateNameDebt.bind(this)
+    this.updateCourtInvolved = this.updateCourtInvolved.bind(this)
+    this.updateCourtAddress = this.updateCourtAddress.bind(this)
+    this.updateHasDischargeExplanation = this.updateHasDischargeExplanation.bind(this)
+    this.updateDischargeExplanation = this.updateDischargeExplanation.bind(this)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
+  update (field, values) {
+    if (this.props.onUpdate) {
+      this.props.onUpdate({
+        PetitionType: this.props.PetitionType,
+        CourtNumber: this.props.CourtNumber,
+        DateFiled: this.props.DateFiled,
+        DischargeDateNotApplicable: this.props.DischargeDateNotApplicable,
+        DateDischarged: this.props.DateDischarged,
+        TotalAmount: this.props.TotalAmount,
+        TotalAmountEstimated: this.props.TotalAmountEstimated,
+        NameDebt: this.props.NameDebt,
+        CourtInvolved: this.props.CourtInvolved,
+        CourtAddress: this.props.CourtAddress,
+        HasDischargeExplanation: this.props.HasDischargeExplanation,
+        DischargeExplanation: this.props.DischargeExplanation,
+        [field]: values
+      })
     }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
-      super.handleValidation(event, s, e)
-    })
   }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new BankruptcyValidator(this.state, null).isValid()
+  updatePetitionType (values) {
+    this.update('PetitionType', values)
   }
 
-  /**
-   * Updates triggered by the branching component.
-   */
-  onUpdate (val, event) {
-    this.setState({ HasBankruptcy: val }, () => {
-      this.myDispatch(val === 'No' ? [] : this.state.List)
-      this.handleValidation(event, null, null)
-    })
+  updateCourtNumber (values) {
+    this.update('CourtNumber', values)
   }
 
-  /**
-   * Dispatch callback initiated from the collection to notify of any new
-   * updates to the items.
-   */
-  myDispatch (collection) {
-    this.setState({ List: collection }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasBankruptcy: this.state.HasBankruptcy
-        })
-      }
-    })
+  updateDateFiled (values) {
+    this.update('DateFiled', values)
   }
 
-  /**
-   * Assists in rendering the summary section.
-   */
-  summary (item, index) {
-    let address1 = ''
-    let address2 = ''
-    if (item.CourtAddress) {
-      address1 += `${item.CourtAddress.address || ''}`.trim()
-      if (item.CourtAddress.addressType === 'United States') {
-        address2 = `${item.CourtAddress.city || ''}, ${item.CourtAddress.state || ''} ${item.CourtAddress.zipcode || ''}`.trim()
-      } else if (item.CourtAddress.addressType === 'APOFPO') {
-        address2 = `${item.CourtAddress.apoFpoType || ''}, ${item.CourtAddress.apoFpo || ''} ${item.CourtAddress.zipcode || ''}`.trim()
-      } else if (item.CourtAddress.addressType === 'International') {
-        address2 = `${item.CourtAddress.city || ''}, ${item.CourtAddress.country || ''}`.trim()
-      }
-    }
+  updateDateDischarged (values) {
+    this.update('DateDischarged', values)
+  }
 
-    if (address1.length === 0 || address2.length === 1) {
-      address1 = i18n.t('financial.bankruptcy.collection.summary.unknown')
-    }
+  updateDischargeDateNotApplicable (values) {
+    this.update('DischargeDateNotApplicable', values)
+  }
 
-    let from = i18n.t('financial.bankruptcy.collection.summary.nodates')
-    if (item.DateFiled && item.DateFiled.month && item.DateFiled.year) {
-      from = '' + item.DateFiled.month + '/' + item.DateFiled.year
-    }
+  updateTotalAmount (values) {
+    this.update('TotalAmount', values)
+  }
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{address1}{address1.length > 0 && address2.length > 1 ? <br /> : null}{address2}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+  updateTotalAmountEstimated (values) {
+    this.update('TotalAmountEstimated', values)
+  }
+
+  updateNameDebt (values) {
+    this.update('NameDebt', values)
+  }
+
+  updateCourtInvolved (values) {
+    this.update('CourtInvolved', values)
+  }
+
+  updateCourtAddress (values) {
+    this.update('CourtAddress', values)
+  }
+
+  updateHasDischargeExplanation (values) {
+    this.update('HasDischargeExplanation', values)
+  }
+
+  updateDischargeExplanation (values) {
+    this.update('DischargeExplanation', values)
   }
 
   render () {
     return (
       <div className="bankruptcy">
-        <Branch name="has_bankruptcydebt"
-                className="bankruptcy-branch"
-                value={this.state.HasBankruptcy}
-                help="financial.bankruptcy.help"
-                onUpdate={this.onUpdate.bind(this)}>
-        </Branch>
-        <Show when={this.state.HasBankruptcy === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
-                     onUpdate={this.myDispatch}
-                     onValidate={this.handleValidation}
-                     summary={this.summary}
-                     description={i18n.t('financial.bankruptcy.collection.summary.title')}
-                     appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
+        <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
+        <PetitionType name="PetitionType"
+                      {...this.props.PetitionType}
+                      onValidate={this.props.onValidate}
+                      onUpdate={this.updatePetitionType}
+                      />
 
-            <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
-            <PetitionType name="PetitionType"
-                          bind={true}
-                          />
+        <Field title={i18n.t('financial.bankruptcy.heading.courtNumber')}
+               help="financial.bankruptcy.courtNumber.help">
+          <Text name="CourtNumber"
+                onUpdate={this.updateCourtNumber}
+                onValidate={this.props.onValidate}
+                {...this.props.CourtNumber}
+                className="courtnumber"
+                placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+                title={i18n.t('financial.bankruptcy.courtNumber.title')}
+                />
+        </Field>
 
-            <Field title={i18n.t('financial.bankruptcy.heading.courtNumber')}
-                   help="financial.bankruptcy.courtNumber.help">
-              <Text name="CourtNumber"
-                    className="courtnumber"
-                    placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
-                    title={i18n.t('financial.bankruptcy.courtNumber.title')}
-                    placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
-                    bind={true}
+        <Field title={i18n.t('financial.bankruptcy.heading.dateFiled')}
+               help="financial.bankruptcy.dateFiled.help"
+               adjustFor="labels">
+          <DateControl name="DateFiled"
+                       onUpdate={this.updateDateFiled}
+                       onValidate={this.props.onValidate}
+                       {...this.props.DateFiled}
+                       className="datefiled"
+                       hideDay={true} />
+        </Field>
+
+        <Field title={i18n.t('financial.bankruptcy.heading.dateDischarged')}
+               help="financial.bankruptcy.dateDischarged.help"
+               adjustFor="label">
+          <NotApplicable name="DischargeDateNotApplicable"
+                         {...this.props.DischargeDateNotApplicable}
+                         onValidate={this.props.onValidate}
+                         onUpdate={this.updateDischargeDateNotApplicable}>
+            <DateControl name="DateDischarged"
+                         className="datedischarged"
+                         onUpdate={this.updateDateDischarged}
+                         onValidate={this.props.onValidate}
+                         {...this.props.DateDischarged}
+                         hideDay={true} />
+          </NotApplicable>
+        </Field>
+
+        <Field title={i18n.t('financial.bankruptcy.heading.totalAmount')}
+               help="financial.bankruptcy.totalAmount.help">
+          <Currency name="TotalAmount"
+                    onUpdate={this.updateTotalAmount}
+                    onValidate={this.props.onValidate}
+                    {...this.props.TotalAmount}
+                    className="amount"
+                    min="0"
+                    placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
                     />
-            </Field>
+          <div className="flags">
+            <Checkbox name="TotalAmountEstimated"
+                      ref="estimated"
+                      onUpdate={this.updateTotalAmountEstimated}
+                      onValidate={this.props.onValidate}
+                      {...this.props.TotalAmountEstimated}
+                      label={i18n.t('financial.bankruptcy.totalAmount.estimated')}
+                      toggle="false"
+                      checked={this.props.TotalAmountEstimated}
+                      />
+          </div>
+        </Field>
 
-            <Field title={i18n.t('financial.bankruptcy.heading.dateFiled')}
-                   help="financial.bankruptcy.dateFiled.help"
-                   adjustFor="labels"
-                   shrink={true}>
-              <DateControl name="DateFiled"
-                           className="datefiled"
-                           bind={true}
-                           hideDay={true} />
-            </Field>
+        <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
+        <Name name="NameDebt"
+              className="namedebt"
+              {...this.props.NameDebt}
+              onUpdate={this.updateNameDebt}
+              onValidate={this.props.onValidate}
+              />
 
-            <Field title={i18n.t('financial.bankruptcy.heading.dateDischarged')}
-                   help="financial.bankruptcy.dateDischarged.help"
-                   adjustFor="label"
-                   shrink={true}>
-              <NotApplicable name="DischargeDateNotApplicable"
-                             bind={true}>
-                <DateControl name="DateDischarged"
-                             className="datedischarged"
-                             bind={true}
-                             hideDay={true} />
-              </NotApplicable>
-            </Field>
+        <Field title={i18n.t('financial.bankruptcy.heading.courtInvolved')}
+               help="financial.bankruptcy.courtInvolved.help">
+          <Text name="CourtInvolved"
+                placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
+                {...this.props.CourtInvolved}
+                className="courtinvolved"
+                onUpdate={this.updateCourtInvolved}
+                onValidate={this.props.onValidate}
+                />
+        </Field>
 
-            <Field title={i18n.t('financial.bankruptcy.heading.totalAmount')}
-                   help="financial.bankruptcy.totalAmount.help">
-              <div>
-                <Currency name="TotalAmount"
-                          className="amount"
-                          min="0"
-                          placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
-                          bind={true}
-                          />
-                <div className="flags">
-                  <Checkbox name="TotalAmountEstimated"
-                            ref="estimated"
-                            label={i18n.t('financial.bankruptcy.totalAmount.estimated')}
-                            toggle="false"
-                            checked={this.state.TotalAmountEstimated}
-                            bind={true}
-                            />
-                </div>
-              </div>
-            </Field>
+        <Field title={i18n.t('financial.bankruptcy.heading.courtAddress')}
+               help="financial.bankruptcy.courtAddress.help"
+               adjustFor="address">
+          <Address name="CourtAddress"
+                   label={i18n.t('financial.bankruptcy.courtAddress.label')}
+                   {...this.props.CourtAddress}
+                   onUpdate={this.updateCourtAddress}
+                   onValidate={this.props.onValidate}
+                   />
+        </Field>
 
-            <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
-            <Name name="NameDebt"
-                  className="namedebt"
-                  bind={true}
-                  />
+        <Branch name="discharge_explanation"
+                label={i18n.t('financial.bankruptcy.heading.dischargeExplanation')}
+                labelSize="h3"
+                className="has-discharge-explanation"
+                value={this.props.HasDischargeExplanation}
+                onUpdate={this.updateHasDischargeExplanation}
+                onValidate={this.props.onValidate}
+                />
 
-            <Field title={i18n.t('financial.bankruptcy.heading.courtInvolved')}
-                   help="financial.bankruptcy.courtInvolved.help">
-              <Text name="CourtInvolved"
-                    placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
-                    className="courtinvolved"
-                    bind={true}
+        <Show when={this.props.HasDischargeExplanation}>
+          <Textarea name="DischargeExplanation"
+                    label={i18n.t('financial.bankruptcy.label.dischargeExplanation')}
+                    {...this.props.DischargeExplanation}
+                    className="discharge-explanation"
+                    onUpdate={this.updateDischargeExplanation}
+                    onValidate={this.props.onValidate}
                     />
-            </Field>
-
-            <Field title={i18n.t('financial.bankruptcy.heading.courtAddress')}
-                   help="financial.bankruptcy.courtAddress.help"
-                   adjustFor="address">
-              <Address name="CourtAddress"
-                       label={i18n.t('financial.bankruptcy.courtAddress.label')}
-                       bind={true}
-                       />
-            </Field>
-          </Accordion>
         </Show>
       </div>
     )
