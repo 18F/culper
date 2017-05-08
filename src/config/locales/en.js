@@ -959,7 +959,9 @@ const en = {
           nodates: 'No dates',
           debt: 'Debt'
         },
-        append: 'Add another gambling debt'
+        append: 'Add another financial problem',
+        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
+        appendMessage: 'If yes ues the button below to add another financial problem'
       },
       heading: {
         details: 'Enter your gambling debt',

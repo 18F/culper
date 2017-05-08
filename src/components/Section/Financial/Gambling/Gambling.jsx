@@ -134,7 +134,9 @@ export default class Gambling extends ValidationElement {
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
-                     appendLabel={i18n.t('financial.gambling.collection.append')}>
+                     appendLabel={i18n.t('financial.gambling.collection.append')}
+                     appendTitle={i18n.t('financial.gambling.collection.appendTitle')}
+                     appendMessage={i18n.m('financial.gambling.collection.appendMessage')}>
 
             <h3>{i18n.t('financial.gambling.heading.details')}</h3>
 
