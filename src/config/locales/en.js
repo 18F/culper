@@ -5923,9 +5923,9 @@ const en = {
           appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
           appendMessage: [
             'Do not include those you attended or participated in on official business for the U.S. government.',
-            'If yes use the button below to add another interest.'
+            'If yes use the button below to add another event.'
           ],
-          append: 'Add another interest'
+          append: 'Add another event'
         }
       }
     }
