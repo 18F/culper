@@ -138,8 +138,7 @@ export default class Bankruptcy extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t('financial.bankruptcy.heading.courtNumber')}
-          help="financial.bankruptcy.courtNumber.help">
+        <Field title={i18n.t('financial.bankruptcy.heading.courtNumber')}>
           <Text name="CourtNumber"
             onUpdate={this.updateCourtNumber}
             onValidate={this.props.onValidate}
@@ -152,7 +151,6 @@ export default class Bankruptcy extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.bankruptcy.heading.dateFiled')}
-          help="financial.bankruptcy.dateFiled.help"
           adjustFor="labels">
           <DateControl name="DateFiled"
             onUpdate={this.updateDateFiled}
@@ -164,7 +162,6 @@ export default class Bankruptcy extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.bankruptcy.heading.dateDischarged')}
-          help="financial.bankruptcy.dateDischarged.help"
           adjustFor="label">
           <NotApplicable name="DischargeDateNotApplicable"
             {...this.props.DischargeDateNotApplicable}
@@ -180,8 +177,7 @@ export default class Bankruptcy extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('financial.bankruptcy.heading.totalAmount')}
-          help="financial.bankruptcy.totalAmount.help">
+        <Field title={i18n.t('financial.bankruptcy.heading.totalAmount')}>
           <Currency name="TotalAmount"
             onUpdate={this.updateTotalAmount}
             onValidate={this.props.onValidate}
@@ -211,8 +207,7 @@ export default class Bankruptcy extends ValidationElement {
           onValidate={this.props.onValidate}
         />
 
-      <Field title={i18n.t('financial.bankruptcy.heading.courtInvolved')}
-        help="financial.bankruptcy.courtInvolved.help">
+      <Field title={i18n.t('financial.bankruptcy.heading.courtInvolved')}>
         <Text name="CourtInvolved"
           placeholder={i18n.t('financial.bankruptcy.courtInvolved.placeholder')}
           {...this.props.CourtInvolved}
@@ -235,8 +230,7 @@ export default class Bankruptcy extends ValidationElement {
 
       <Show when={this.props.PetitionType === 'Chapter13'}>
         <div className="chapter13">
-          <Field title={i18n.t('financial.bankruptcy.trustee.title')}
-            help="financial.bankruptcy.trustee.help">
+          <Field title={i18n.t('financial.bankruptcy.trustee.title')}>
             <Text name="chapter13Trustee"
               className="trustee"
               {...this.props.Trustee}
