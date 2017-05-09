@@ -1040,7 +1040,7 @@ const en = {
       notApplicable: 'Not applicable',
       help: {
         title: 'We are asking about the following bankruptcy petition types.',
-        message: 'Answer yes if you filed a petitioin under Chapter 7, Chapter 11, Chapter 12, or Chapter 13.',
+        message: 'Answer yes if you filed a petition under Chapter 7, Chapter 11, Chapter 12, or Chapter 13.',
         note: 'Note: You will be asked to provide details of the petition or petitions.'
       },
       petitionType: {
