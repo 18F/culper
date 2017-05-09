@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateRange } from '../../../Form'
@@ -71,7 +71,7 @@ export default class Conferences extends ValidationElement {
   summary (item, index) {
     const obj = item || {}
     const city = (obj.City || {}).value || i18n.t('foreign.business.conferences.collection.summary.unknown')
-    const date = dateSummary(item)
+    const date = DateSummary(item.Dates)
 
     return (
       <span>

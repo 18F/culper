@@ -683,7 +683,7 @@ const en = {
           title: 'Summary of other names used',
           name: 'Name',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide your full name below'
         },
         append: 'Add another name'
@@ -956,7 +956,7 @@ const en = {
           title: 'Summary of financial problems',
           unknownlosses: 'Provide your financial problem details',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           debt: 'Debt'
         },
         append: 'Add another financial problem',
@@ -1014,7 +1014,7 @@ const en = {
           title: 'Summary of Bankruptcy',
           item: 'Petition',
           unknown: 'Provide your bankruptcy below',
-          nodates: 'No date',
+          nodates: 'NA',
           chapter: 'Chapter',
           appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?',
           appendMessage: 'If yes use the button below to add another bankruptcy petition'
@@ -4723,7 +4723,7 @@ const en = {
           title: 'Summary of former federal service',
           item: 'Federal service',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide federal service below'
         },
         append: 'Add another former federal service'
