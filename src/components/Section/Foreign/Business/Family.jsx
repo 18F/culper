@@ -70,13 +70,11 @@ export default class Family extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.family.collection.summary.unknown')
-    const country = (obj.Country || {}).value
 
     return (
       <span>
         <span className="index">{i18n.t('foreign.business.family.collection.summary.item')} {index + 1}:</span>
         <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{country}</strong></span>
       </span>
     )
   }
@@ -87,6 +85,7 @@ export default class Family extends ValidationElement {
         <Branch name="has_foreign_family"
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.family.help.branch"
                 value={this.state.HasForeignFamily}
                 onUpdate={this.updateHasForeignFamily}
@@ -127,7 +126,8 @@ export default class Family extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
-                   help="foreign.business.family.help.date">
+                   help="foreign.business.family.help.date"
+                   adjustFor="label">
               <DateControl name="Date"
                            className="family-date"
                            bind={true}

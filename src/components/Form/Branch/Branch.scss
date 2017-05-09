@@ -10,4 +10,13 @@
       margin-left: 0;
     }
   }
+
+  .icon {
+    vertical-align: bottom !important;
+
+    .toggle {
+      margin-top: initial !important;
+      margin-bottom: 2.5rem;
+    }
+  }
 }

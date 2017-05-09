@@ -103,7 +103,7 @@ export default class Supervisor extends ValidationElement {
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.email')}
                help="history.employment.default.supervisor.email.help"
-               adjustFor="buttons"
+               adjustFor="label"
                shrink={true}>
           <NotApplicable name="EmailNotApplicable"
                          {...this.state.EmailNotApplicable}
@@ -124,7 +124,7 @@ export default class Supervisor extends ValidationElement {
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.address')}
                help="history.employment.default.supervisor.address.help"
-               adjustFor="labels">
+               adjustFor="address">
           <Address name="Address"
                    {...this.props.Address}
                    label={i18n.t('history.employment.default.supervisor.address.label')}

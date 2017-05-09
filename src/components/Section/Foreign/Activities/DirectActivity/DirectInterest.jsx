@@ -92,7 +92,7 @@ export default class DirectInterest extends ValidationElement {
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestTypes`)}
           help={`foreign.activities.direct.interest.help.interestType`}
-          adjustFor="big-buttons">
+          adjustFor="p">
 
           <p>{i18n.t(`foreign.activities.direct.interest.para.checkAll`)}</p>
           <CheckboxGroup className="interest-types option-list"
@@ -130,7 +130,6 @@ export default class DirectInterest extends ValidationElement {
 
         <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestType`)}
           help={`foreign.activities.direct.interest.help.interestType`}
-          adjustFor="labels"
           shrink={true}>
           <Text name="InterestType"
             className="interest-type"

@@ -112,93 +112,92 @@ export default class Person extends React.Component {
     return (
       <div className="person">
         <Field title={i18n.t('relationships.people.person.heading.knownDates')}
-          help="relationships.people.person.help.knownDates"
-        >
+               help="relationships.people.person.help.knownDates"
+               >
           <DateRange name="KnownDates"
-            className="known-dates"
-            {...this.state.KnownDates}
-            onUpdate={this.updateKnownDates}
-            onValidate={this.props.onValidate}
-          />
+                     className="known-dates"
+                     {...this.state.KnownDates}
+                     onUpdate={this.updateKnownDates}
+                     onValidate={this.props.onValidate}
+                     />
         </Field>
 
-        <Field title={i18n.t('relationships.people.person.heading.name')}>
-          <Name name="Name"
-            className="name"
-            {...this.state.Name}
-            onUpdate={this.updateName}
-            onValidate={this.props.onValidate}
-          />
-        </Field>
+        <h3>{i18n.t('relationships.people.person.heading.name')}</h3>
+        <Name name="Name"
+              className="name"
+              {...this.state.Name}
+              onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
+              />
 
         <Field title={i18n.t('relationships.people.person.heading.rank')}
-          help="relationships.people.person.help.rank"
-        >
+               help="relationships.people.person.help.rank"
+               >
           <NotApplicable name="RankNotApplicable"
-            className="rank-notapplicable"
-            {...this.state.RankNotApplicable}
-            label={i18n.t('relationships.people.person.label.rankNotApplicable')}
-            or={i18n.m('relationships.people.person.label.or')}
-            onValidate={this.props.onValidate}
-            onUpdate={this.updateRankNotApplicable}>
+                         className="rank-notapplicable"
+                         {...this.state.RankNotApplicable}
+                         label={i18n.t('relationships.people.person.label.rankNotApplicable')}
+                         or={i18n.m('relationships.people.person.label.or')}
+                         onValidate={this.props.onValidate}
+                         onUpdate={this.updateRankNotApplicable}>
             <Text name="Rank"
-              className="rank"
-              {...this.state.Rank}
-              onUpdate={this.updateRank}
-              onValidate={this.props.onValidate}
-            />
+                  className="rank"
+                  {...this.state.Rank}
+                  onUpdate={this.updateRank}
+                  onValidate={this.props.onValidate}
+                  />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t(`relationships.people.person.heading.relationship`)}
-          className="relationships"
-          help={`relationships.people.person.help.relationship`}
-          adjustFor="labels"
-          shrink={true}>
+               className="relationships"
+               help={`relationships.people.person.help.relationship`}
+               adjustFor="labels"
+               shrink={true}>
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
-            selectedValues={this.state.Relationship}>
+                         selectedValues={this.state.Relationship}>
             <Checkbox name="relationship-neighbor"
-              label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
-              value="Neighbor"
-              onValidate={this.props.onValidate}
-              onChange={this.updateRelationship}>
+                      label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
+                      value="Neighbor"
+                      onValidate={this.props.onValidate}
+                      onChange={this.updateRelationship}>
               <div className="relationship-icon neighbor">
                 <Svg src="img/neighbor-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-friend"
-              label={i18n.t(`relationships.people.person.label.relationship.friend`)}
-              value="Friend"
-              onValidate={this.props.onValidate}
-              onChange={this.updateRelationship}>
+                      label={i18n.t(`relationships.people.person.label.relationship.friend`)}
+                      value="Friend"
+                      onValidate={this.props.onValidate}
+                      onChange={this.updateRelationship}>
               <div className="relationship-icon friend">
                 <Svg src="img/friend-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-landlord"
-              label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
-              value="Landlord"
-              onValidate={this.props.onValidate}
-              onChange={this.updateRelationship}>
+                      label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
+                      value="Landlord"
+                      onValidate={this.props.onValidate}
+                      onChange={this.updateRelationship}>
               <div className="relationship-icon landlord">
                 <Svg src="img/landlord-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-business"
-              label={i18n.t(`relationships.people.person.label.relationship.business`)}
-              value="Business"
-              onValidate={this.props.onValidate}
-              onChange={this.updateRelationship}>
+                      label={i18n.t(`relationships.people.person.label.relationship.business`)}
+                      value="Business"
+                      onValidate={this.props.onValidate}
+                      onChange={this.updateRelationship}>
               <div className="relationship-icon business">
                 <Svg src="img/business-associate-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-other"
-              label={i18n.t(`relationships.people.person.label.relationship.other`)}
-              value="Other"
-              onValidate={this.props.onValidate}
-              onChange={this.updateRelationship}>
+                      label={i18n.t(`relationships.people.person.label.relationship.other`)}
+                      value="Other"
+                      onValidate={this.props.onValidate}
+                      onChange={this.updateRelationship}>
               <div className="relationship-icon other">
                 <Svg src="img/other-icon.svg" />
               </div>
@@ -207,65 +206,66 @@ export default class Person extends React.Component {
 
           <Show when={this.state.Relationship.includes('Other')}>
             <Text name="RelationshipOther"
-              label={i18n.t(`relationships.people.person.label.relationship.explanation`)}
-              maxlength="100"
-              className="relationship-other"
-              {...this.state.RelationshipOther}
-              onUpdate={this.updateRelationshipOther}
-              onValidate={this.props.onValidate}
-            />
+                  label={i18n.t(`relationships.people.person.label.relationship.explanation`)}
+                  maxlength="100"
+                  className="relationship-other"
+                  {...this.state.RelationshipOther}
+                  onUpdate={this.updateRelationshipOther}
+                  onValidate={this.props.onValidate}
+                  />
           </Show>
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
-          help={`relationships.people.person.help.mobileTelephone`}
-          className="mobile-telephone">
+               help={`relationships.people.person.help.mobileTelephone`}
+               className="mobile-telephone">
           <Telephone name="MobileTelephone"
-            {...this.state.MobileTelephone}
-            onUpdate={this.updateMobileTelephone}
-            onValidate={this.props.onValidate}
-          />
+                     {...this.state.MobileTelephone}
+                     onUpdate={this.updateMobileTelephone}
+                     onValidate={this.props.onValidate}
+                     />
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
-          help={`relationships.people.person.help.otherTelephone`}
-          className="other-telephone">
+               help={`relationships.people.person.help.otherTelephone`}
+               className="other-telephone">
           <Telephone name="OtherTelephone"
-            {...this.state.OtherTelephone}
-            onUpdate={this.updateOtherTelephone}
-            onValidate={this.props.onValidate}
-          />
+                     {...this.state.OtherTelephone}
+                     onUpdate={this.updateOtherTelephone}
+                     onValidate={this.props.onValidate}
+                     />
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.email')}
-          help={`relationships.people.person.help.email`}
-        >
+               help={`relationships.people.person.help.email`}
+               >
           <NotApplicable name="EmailNotApplicable"
-            className="email-notapplicable"
-            {...this.state.EmailNotApplicable}
-            label={i18n.t('relationships.people.person.label.emailNotApplicable')}
-            or={i18n.m('relationships.people.person.label.or')}
-            onValidate={this.props.onValidate}
-            onUpdate={this.updateEmailNotApplicable}>
+                         className="email-notapplicable"
+                         {...this.state.EmailNotApplicable}
+                         label={i18n.t('relationships.people.person.label.emailNotApplicable')}
+                         or={i18n.m('relationships.people.person.label.or')}
+                         onValidate={this.props.onValidate}
+                         onUpdate={this.updateEmailNotApplicable}>
             <Email name="Email"
-              className="email"
-              {...this.state.Email}
-              onUpdate={this.updateEmail}
-              onValidate={this.props.onValidate}
-            />
+                   className="email"
+                   {...this.state.Email}
+                   onUpdate={this.updateEmail}
+                   onValidate={this.props.onValidate}
+                   />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.address')}
-          help={`relationships.people.person.help.address`}
-        >
+               help={`relationships.people.person.help.address`}
+               adjustFor="address"
+               >
           <Address name="Address"
-            label={i18n.t('relationships.people.person.label.address')}
-            className="address"
-            {...this.state.Address}
-            onUpdate={this.updateAddress}
-            onValidate={this.props.onValidate}
-          />
+                   label={i18n.t('relationships.people.person.label.address')}
+                   className="address"
+                   {...this.state.Address}
+                   onUpdate={this.updateAddress}
+                   onValidate={this.props.onValidate}
+                   />
         </Field>
       </div>
     )

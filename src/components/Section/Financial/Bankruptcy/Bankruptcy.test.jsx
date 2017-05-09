@@ -14,7 +14,7 @@ describe('The Bankruptcy component', () => {
 
     const component = mount(<Bankruptcy onUpdate={onUpdate} />)
     expect(component.find('.bankruptcy').length).toBe(1)
-    component.find('.petition-type .block input').first().simulate('click')
+    component.find('.petition-chapters .block input').first().simulate('click')
     component.find('.courtnumber input[name="CourtNumber"]').simulate('change')
     component.find('.datefiled input[name="month"]').simulate('change', { target: { value: '1' } })
     component.find('.datedischarged input[name="month"]').simulate('change', { target: { value: '1' } })
@@ -36,5 +36,15 @@ describe('The Bankruptcy component', () => {
     expect(component.find('.bankruptcy').length).toBe(1)
     component.find('textarea[name="DischargeExplanation"]').simulate('change')
     expect(updates).toBe(1)
+  })
+
+  it('Performs update with chapter 13 selected', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const petitionType = 'Chapter13'
+    const component = mount(<Bankruptcy onUpdate={onUpdate} PetitionType={petitionType}/>)
+    component.find('input[name="chapter13Trustee"]').simulate('change')
+    component.find('.trustee-address input[name="address"]').simulate('change')
+    expect(updates).toBe(2)
   })
 })

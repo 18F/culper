@@ -24,14 +24,13 @@ export default class Branch extends React.Component {
 
   render () {
     const klass = `branch ${this.props.className || ''}`.trim()
-    const adjustFor = 'buttons'
 
     return (
       <Field title={this.props.label}
              titleSize={this.props.labelSize}
              className={klass}
              help={this.props.help}
-             adjustFor={adjustFor}
+             adjustFor={this.props.adjustFor}
              shrink={true}>
         <div className="content">
           {this.props.children}
@@ -64,5 +63,6 @@ Branch.defaultProps = {
   noLabel: 'No',
   noValue: 'No',
   labelSize: 'label',
+  adjustFor: 'buttons',
   value: null
 }

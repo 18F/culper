@@ -568,6 +568,32 @@ const en = {
           }
         }
       }
+    },
+    bankruptcy: {
+      datefiled: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+          }
+        }
+      },
+      datedischarged: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date discharged" date',
+            message: 'Bankruptcy **date discharged** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "to" date',
+            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
+          }
+        }
+      }
     }
   },
   section: {
@@ -683,7 +709,7 @@ const en = {
           title: 'Summary of other names used',
           name: 'Name',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide your full name below'
         },
         append: 'Add another name'
@@ -956,7 +982,7 @@ const en = {
           title: 'Summary of financial problems',
           unknownlosses: 'Provide your financial problem details',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           debt: 'Debt'
         },
         append: 'Add another financial problem',
@@ -1014,7 +1040,7 @@ const en = {
           title: 'Summary of Bankruptcy',
           item: 'Petition',
           unknown: 'Provide your bankruptcy below',
-          nodates: 'No date',
+          nodates: 'NA',
           chapter: 'Chapter',
           appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?',
           appendMessage: 'If yes use the button below to add another bankruptcy petition'
@@ -1103,7 +1129,7 @@ const en = {
         placeholder: 'Provide court involved'
       },
       trustee: {
-        title: 'Provide the trustee',
+        title: 'Provide the name of the trustee for this bankruptcy',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
         help: {
@@ -4726,7 +4752,7 @@ const en = {
           title: 'Summary of former federal service',
           item: 'Federal service',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide federal service below'
         },
         append: 'Add another former federal service'
@@ -5169,7 +5195,10 @@ const en = {
           relationship: 'Provide the nature of your relationship with the foreign national listed above',
           amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
           frequency: 'Provide the frequency of your support',
-          country: 'Provide the name of the country providing this benefit'
+          citizenship: 'Provide this foreign national\'s country(ies) of citizenship'
+        },
+        label: {
+          estimated: 'Estimated'
         },
         help: {
           branch: {
@@ -5197,9 +5226,9 @@ const en = {
             message: 'Provide the frequency of support',
             note: 'Note: Monthly, yearly, once, etc.'
           },
-          country: {
-            title: 'Need help with the country(ies)?',
-            message: 'List all countries which benefit from this financial support',
+          citizenship: {
+            title: 'Need help with the citizenship of this foreign national?',
+            message: 'List all the known countries the foreign national is a citizen of',
             note: ''
           }
         },
@@ -5598,7 +5627,7 @@ const en = {
       advice: {
         heading: {
           title: 'Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
-          description: 'Provide how the financial interest was acquired',
+          description: 'Provide a description of advice/support provided',
           name: 'Provide the name of the individual to whom advice or support was provided',
           organization: 'Provide the name of the foreign organization or foreign business with whom the individual is associated',
           country: 'Provide the country of origin for the organization or business',
@@ -5649,9 +5678,9 @@ const en = {
           appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
           appendMessage: [
             'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another instance of advice/support'
           ],
-          append: 'Add another interest'
+          append: 'Add another instance of advice/support'
         }
       },
       family: {
@@ -5665,8 +5694,8 @@ const en = {
         },
         para: {
           branch: [
-            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.',
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.'
           ]
         },
         help: {
@@ -5757,18 +5786,18 @@ const en = {
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
           appendMessage: [
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another job offer'
           ],
-          append: 'Add another interest'
+          append: 'Add another job offer'
         }
       },
       ventures: {
         heading: {
           title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?',
-          name: 'Provide the name of the foreign national',
+          name: 'Provide the full name of this foreign national',
           address: 'Provide the full current address of this foreign national',
           citizenship: 'Provide the citizenship(s) of this foreign national',
-          description: 'Provide the description of the business venture',
+          description: 'Provide a description of the business venture',
           relationship: 'Provide your relationship to this foreign national',
           dates: 'Provide the length of time you have been involved in the business venture',
           association: 'Provide the nature of the association with this business venture',
@@ -5857,7 +5886,7 @@ const en = {
         heading: {
           title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
           description: 'Provide the name and description of the event',
-          sponsor: 'Provide the name of the sponsoring organization',
+          sponsor: 'Provide the name of sponsoring organization',
           city: 'Provide the city where the event was held',
           country: 'Provide the country where the event was held',
           dates: 'Provide the dates for the event',
@@ -5927,9 +5956,9 @@ const en = {
           appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
           appendMessage: [
             'Do not include those you attended or participated in on official business for the U.S. government.',
-            'If yes use the button below to add another interest.'
+            'If yes use the button below to add another event.'
           ],
-          append: 'Add another interest'
+          append: 'Add another event'
         }
       }
     }

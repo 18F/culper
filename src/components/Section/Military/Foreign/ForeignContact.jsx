@@ -72,7 +72,7 @@ export default class ForeignContact extends React.Component {
 
         <Field title={i18n.t('military.foreign.heading.contact.address')}
                help="military.foreign.help.contact.address"
-               adjustFor="big-buttons"
+               adjustFor="address"
                shrink={true}>
           <Address name="Address"
                    className="foreign-contact-address"

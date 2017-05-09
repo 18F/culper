@@ -36,7 +36,7 @@ export class SupportValidator {
     this.relationship = state.Relationship
     this.amount = state.Amount
     this.frequency = state.Frequency
-    this.country = state.Country
+    this.citizenship = state.Citizenship
   }
 
   validName () {
@@ -59,8 +59,8 @@ export class SupportValidator {
     return !!this.frequency && validGenericTextfield(this.frequency)
   }
 
-  validCountry () {
-    return !!this.country && !!this.country.value && this.country.value.length > 0
+  validCitizenship () {
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
   }
 
   isValid () {
@@ -69,6 +69,6 @@ export class SupportValidator {
       this.validRelationship() &&
       this.validAmount() &&
       this.validFrequency() &&
-      this.validCountry()
+      this.validCitizenship()
   }
 }

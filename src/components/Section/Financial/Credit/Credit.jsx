@@ -135,7 +135,7 @@ export default class Credit extends ValidationElement {
 
             <Field title={i18n.t('financial.credit.heading.address')}
                    help="financial.credit.help.address"
-                   adjustFor="big-buttons">
+                   adjustFor="address">
               <Address name="Address"
                        className="credit-address"
                        bind={true}

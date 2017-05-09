@@ -44,7 +44,8 @@ export default class TravelItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.travel.dates')}
-               help="citizenship.multiple.help.travel.dates">
+               help="citizenship.multiple.help.travel.dates"
+               adjustFor="daterange">
           <DateRange name="Dates"
                      {...this.state.Dates}
                      onUpdate={this.updateDates}

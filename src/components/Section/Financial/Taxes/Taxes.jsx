@@ -186,7 +186,7 @@ export default class Taxes extends ValidationElement {
 
             <Field title={i18n.t('financial.taxes.heading.date')}
                    help="financial.taxes.help.date"
-                   adjustFor="buttons"
+                   adjustFor="label"
                    shrink={true}>
               <NotApplicable name="DateNotApplicable"
                              label={i18n.t('financial.taxes.label.notapplicable')}
