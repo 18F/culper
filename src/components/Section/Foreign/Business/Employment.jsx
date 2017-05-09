@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Address, Textarea, Name, DateControl } from '../../../Form'
@@ -70,7 +70,7 @@ export default class Employment extends ValidationElement {
   summary (item, index) {
     const obj = item || {}
     const job = `${(item.Description || {}).value || ''}`.trim() || i18n.t('foreign.business.employment.collection.summary.unknown')
-    const date = dateSummary(item)
+    const date = DateSummary(item.Date)
 
     return (
       <span>
