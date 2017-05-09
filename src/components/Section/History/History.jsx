@@ -152,11 +152,13 @@ class History extends ValidationElement {
   }
 
   updateResidence (values) {
-    this.onUpdate('Residence', this.excludeGaps(values))
+    // this.onUpdate('Residence', this.excludeGaps(values))
+    this.onUpdate('Residence', values)
   }
 
   updateEmployment (values) {
-    this.onUpdate('Employment', this.excludeGaps(values))
+    // this.onUpdate('Employment', this.excludeGaps(values))
+    this.onUpdate('Employment', values)
   }
 
   updateEducation (values) {
@@ -524,8 +526,10 @@ class History extends ValidationElement {
             </Show>
             <Accordion minimum="1"
                        defaultState={false}
-                       items={InjectGaps(this.props.Residence, daysAgo(today, 365 * this.totalYears()))}
+                       items={this.props.Residence}
                        sort={this.sort}
+                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
+                       realtime={true}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
                        caption={ResidenceCaption}
@@ -541,8 +545,10 @@ class History extends ValidationElement {
             </Accordion>
             <Accordion minimum="1"
                        defaultState={false}
-                       items={InjectGaps(this.props.Employment, daysAgo(today, 365 * this.totalYears()))}
+                       items={this.props.Employment}
                        sort={this.sort}
+                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
+                       realtime={true}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
                        caption={EmploymentCaption}
@@ -561,6 +567,7 @@ class History extends ValidationElement {
                          defaultState={false}
                          items={this.props.Education.List}
                          sort={this.sort}
+                         realtime={true}
                          onUpdate={this.updateEducation}
                          onValidate={this.onValidate}
                          caption={EducationCaption}
@@ -600,6 +607,9 @@ class History extends ValidationElement {
             <Accordion minimum="1"
                        scrollTo="scrollToHistory"
                        items={this.props.Residence}
+                       sort={this.sort}
+                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
+                       realtime={false}
                        onUpdate={this.updateResidence}
                        onValidate={this.onValidate}
                        byline={this.customResidenceByline}
@@ -634,6 +644,9 @@ class History extends ValidationElement {
             <Accordion minimum="1"
                        scrollTo="scrollToHistory"
                        items={this.props.Employment}
+                       sort={this.sort}
+                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
+                       realtime={false}
                        onUpdate={this.updateEmployment}
                        onValidate={this.onValidate}
                        byline={this.customEmploymentByline}
@@ -686,6 +699,8 @@ class History extends ValidationElement {
                 <Accordion minimum="1"
                            scrollTo="scrollToHistory"
                            items={this.props.Education.List}
+                           sort={this.sort}
+                           realtime={false}
                            onUpdate={this.updateEducation}
                            onValidate={this.onValidate}
                            byline={this.customEducationByline}
