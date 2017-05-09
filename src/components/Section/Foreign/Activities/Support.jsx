@@ -68,15 +68,11 @@ export default class Support extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.activities.support.collection.summary.unknown')
-    const countries = ((obj.Citizenship || {}).value || []).map(x => {
-      return x.name
-    })
 
     return (
       <span>
         <span className="index">{i18n.t('foreign.activities.support.collection.summary.item')} {index + 1}:</span>
         <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{countries.shift()}</strong></span>
       </span>
     )
   }
