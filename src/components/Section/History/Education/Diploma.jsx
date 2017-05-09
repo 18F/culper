@@ -50,7 +50,7 @@ export class DiplomaItem extends ValidationElement {
       <div>
         <Field title={i18n.t('history.education.heading.diploma')}
                help="history.education.help.diploma"
-               adjustFor="buttons"
+               adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="diploma option-list"
                       selectedValue={this.state.Diploma}>

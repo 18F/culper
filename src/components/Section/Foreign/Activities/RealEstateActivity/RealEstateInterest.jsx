@@ -92,7 +92,7 @@ export default class RealEstateInterest extends ValidationElement {
       <div className="interest">
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.interestTypes')}
           help={'foreign.activities.realestate.interest.help.interestTypes'}
-          adjustFor="big-buttons">
+          adjustFor="p">
           {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
           <CheckboxGroup className="interest-types option-list"
@@ -130,7 +130,6 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
           help={'foreign.activities.realestate.interest.help.realEstateType'}
-          adjustFor="labels"
           shrink={true}>
           <Text name="RealEstateType"
             className="realestate-type"
@@ -140,7 +139,8 @@ export default class RealEstateInterest extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}>
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}
+               adjustFor="address">
           <Address name="Address"
             label={i18n.t('foreign.activities.realestate.interest.label.address')}
             {...this.props.Address}
@@ -164,7 +164,8 @@ export default class RealEstateInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.howAcquired')}
-          help={'foreign.activities.realestate.interest.help.howAcquired'}>
+               help={'foreign.activities.realestate.interest.help.howAcquired'}
+               adjustFor="p">
           <p>{i18n.t('foreign.activities.realestate.interest.para.howAcquired')}</p>
           <Textarea name="HowAcquired"
             className="how-acquired"

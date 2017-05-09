@@ -102,9 +102,9 @@ export default class DirectInterest extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="interest">
-        <Field title={i18n.t('foreign.activities.direct.interest.heading.interestTypes')}
-          help={'foreign.activities.direct.interest.help.interestType'}
-          adjustFor="big-buttons">
+        <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestTypes`)}
+          help={`foreign.activities.direct.interest.help.interestType`}
+          adjustFor="p">
 
           <p>{i18n.t('foreign.activities.direct.interest.para.checkAll')}</p>
           <CheckboxGroup className="interest-types option-list"
@@ -144,9 +144,9 @@ export default class DirectInterest extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.direct.interest.heading.interestType')}
-          help={'foreign.activities.direct.interest.help.interestType'}
-          adjustFor="labels">
+        <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestType`)}
+          help={`foreign.activities.direct.interest.help.interestType`}
+          shrink={true}>
           <Text name="InterestType"
             className="interest-type"
             {...this.props.InterestType}

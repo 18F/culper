@@ -118,7 +118,8 @@ export default class Employment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.employment.heading.date')}
-                   help="foreign.business.employment.help.date">
+                   help="foreign.business.employment.help.date"
+                   adjustFor="label">
               <DateControl name="Date"
                            className="employment-date"
                            bind={true}
@@ -126,7 +127,8 @@ export default class Employment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.employment.heading.address')}
-                   help="foreign.business.employment.help.address">
+                   help="foreign.business.employment.help.address"
+                   adjustFor="address">
               <Address name="Address"
                        className="employment-address"
                        bind={true}

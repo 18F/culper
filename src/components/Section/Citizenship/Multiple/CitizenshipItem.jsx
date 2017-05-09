@@ -75,7 +75,8 @@ export default class CitizenshipItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.dates')}
-               help="citizenship.multiple.help.citizenship.dates">
+               help="citizenship.multiple.help.citizenship.dates"
+               adjustFor="daterange">
           <DateRange name="Dates"
                      {...this.state.Dates}
                      className="citizenship-dates"

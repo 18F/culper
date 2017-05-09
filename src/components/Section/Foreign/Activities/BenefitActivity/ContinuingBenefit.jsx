@@ -110,7 +110,8 @@ export default class ContinuingBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.frequency')}
-          help={'foreign.activities.benefit.continuing.help.frequency'}>
+               help={'foreign.activities.benefit.continuing.help.frequency'}
+               adjustFor="big-buttons">
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"

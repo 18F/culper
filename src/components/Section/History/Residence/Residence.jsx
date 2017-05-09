@@ -101,7 +101,7 @@ export class ResidenceItem extends ValidationElement {
                commentsValue={this.state.Comments}
                commentsAdd="history.residence.label.comments"
                onUpdate={this.onUpdate.bind(this, 'Comments')}
-               adjustFor="big-buttons"
+               adjustFor="address"
                shrink={true}>
           <Address name="Address"
                    {...this.state.Address}
@@ -126,7 +126,7 @@ export class ResidenceItem extends ValidationElement {
 
         <Field title={i18n.t('history.residence.heading.role')}
                help="history.residence.help.role"
-               adjustFor="buttons"
+               adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="role option-list"
                       selectedValue={this.state.Role}>

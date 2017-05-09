@@ -70,10 +70,22 @@ export class BankruptcyItemValidator {
     this.dateDischargedNotApplicable = state.DateDischargedNotApplicable
     this.hasDischargeExplanation = state.HasDischargeExplanation
     this.dischargeExplanation = state.DischargeExplanation
+    this.trustee = state.Trustee
+    this.trusteeAddress = state.TrusteeAddress
   }
 
   validPetitionType () {
-    return new PetitionTypeValidator(this.petitionType).isValid()
+    switch (this.petitionType) {
+      case 'Chapter7':
+      case 'Chapter11':
+      case 'Chapter12':
+        return true
+      case 'Chapter13':
+        return validGenericTextfield(this.trustee) &&
+          new AddressValidator(this.trusteeAddress).isValid()
+      default:
+        return false
+    }
   }
 
   validCourtAddress () {
@@ -122,29 +134,5 @@ export class BankruptcyItemValidator {
       this.validDischargeExplanation() &&
       this.validName() &&
       this.validPetitionType()
-  }
-}
-
-export class PetitionTypeValidator {
-  constructor (state = {}, props) {
-    state = state || {}
-    this.address = state.Address
-    this.name = state.Name
-    this.trustee = state.Trustee
-    this.petitionType = state.PetitionType
-  }
-
-  isValid () {
-    switch (this.petitionType) {
-      case 'Chapter7':
-      case 'Chapter11':
-      case 'Chapter12':
-        return true
-      case 'Chapter13':
-        return validGenericTextfield(this.trustee) &&
-          new AddressValidator(this.address).isValid()
-      default:
-        return false
-    }
   }
 }

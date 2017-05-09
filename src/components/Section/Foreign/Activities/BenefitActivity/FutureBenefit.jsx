@@ -90,7 +90,8 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
-          help={'foreign.activities.benefit.future.help.frequency'}>
+               help={'foreign.activities.benefit.future.help.frequency'}
+               adjustFor="big-buttons">
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
@@ -187,13 +188,13 @@ export default class FutureBenefit extends ValidationElement {
         <Show when={this.props.Obligated === 'Yes'}>
           <div>
             {i18n.m('foreign.activities.benefit.future.label.obligatedExplanation')}
-              <Textarea name="Explanation"
-                className="explanation"
-                {...this.props.ObligatedExplanation}
-                onUpdate={this.updateObligatedExplanation}
-                onValidate={this.props.onValidate}
-              />
-              </div>
+            <Textarea name="Explanation"
+              className="explanation"
+              {...this.props.ObligatedExplanation}
+              onUpdate={this.updateObligatedExplanation}
+              onValidate={this.props.onValidate}
+            />
+          </div>
         </Show>
       </div>
     )

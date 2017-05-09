@@ -246,7 +246,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.firstcontact')}
-               help="foreign.contacts.help.firstcontact">
+               help="foreign.contacts.help.firstcontact"
+               adjustFor="label">
           <DateControl name="FirstContact"
                        className="first-contact"
                        {...this.state.FirstContact}
@@ -256,7 +257,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.lastcontact')}
-               help="foreign.contacts.help.lastcontact">
+               help="foreign.contacts.help.lastcontact"
+               adjustFor="label">
           <DateControl name="LastContact"
                        className="last-contact"
                        {...this.state.LastContact}
@@ -266,7 +268,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
-               help="foreign.contacts.help.methods">
+               help="foreign.contacts.help.methods"
+               adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="methods"
                          selectedValues={this.state.Methods}>
@@ -320,7 +323,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               help="foreign.contacts.help.frequency">
+               help="foreign.contacts.help.frequency"
+               adjustFor="big-buttons">
           <RadioGroup className="frequency"
                       selectedValue={this.state.Frequency}>
             <Radio name="frequency-daily"
@@ -380,7 +384,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               help="foreign.contacts.help.relationship">
+               help="foreign.contacts.help.relationship"
+               adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
                          selectedValues={this.state.Relationship}>
@@ -449,7 +454,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthdate')}
-               help="foreign.contacts.help.birthdate">
+               help="foreign.contacts.help.birthdate"
+               adjustFor="label">
           <NotApplicable name="BirthdateNotApplicable"
                          className="na-birthdate"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -465,7 +471,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthplace')}
-               help="foreign.contacts.help.birthplace">
+               help="foreign.contacts.help.birthplace"
+               adjustFor="label">
           <NotApplicable name="BirthplaceNotApplicable"
                          className="na-birthplace"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -485,7 +492,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
-               help="foreign.contacts.help.address">
+               help="foreign.contacts.help.address"
+               adjustFor="address">
           <NotApplicable name="AddressNotApplicable"
                          className="na-address"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -519,7 +527,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
-               help="foreign.contacts.help.employeraddress">
+               help="foreign.contacts.help.employeraddress"
+               adjustFor="address">
           <NotApplicable name="EmployerAddressNotApplicable"
                          className="na-employer-address"
                          label={i18n.t('foreign.contacts.label.idk')}
