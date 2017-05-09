@@ -1075,9 +1075,9 @@ const en = {
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
       notApplicable: 'Not applicable',
       help: {
-        title: 'Need help with bankruptcy?',
-        message: 'Note: If you need to provide any additional comments about this information, enter them below.',
-        note: ''
+        title: 'We are asking about the following bankruptcy petition types.',
+        message: 'Answer yes if you filed a petition under Chapter 7, Chapter 11, Chapter 12, or Chapter 13.',
+        note: 'Note: You will be asked to provide details of the petition or petitions.'
       },
       petitionType: {
         label: {
@@ -1087,8 +1087,11 @@ const en = {
           chapter13: 'Chapter 13'
         },
         help: {
-          title: 'Need help with the applicable bankruptcy petition type?',
-          message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',
+          title: 'Need help with the details of your bankruptcy petition?',
+          message: [
+            'If you don\'t have paperwork you may be able to find your details here:',
+            '[www.pacer.gov](https://www.pacer.gov/)'
+          ],
           note: ''
         }
       },
