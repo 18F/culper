@@ -95,6 +95,11 @@ export default class DateControl extends ValidationElement {
         year: year
       })
     }
+    if (next.disabled !== this.state.disabled) {
+      this.setState({
+        disabled: next.disabled
+      })
+    }
   }
 
   /**
