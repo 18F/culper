@@ -1,15 +1,17 @@
 .history {
-  .type label,
-  .diploma label {
-    width: 25rem;
-    height: 10rem;
-    overflow: hidden;
-    line-height: normal;
-    display: inline-block;
+  .type,
+  .diploma {
+    label {
+      width: 25rem !important;
+    }
+  }
 
-    span {
-      display: inline-block;
-      padding: 12% 0;
+  .type-college,
+  .type-vocational,
+  .type-correspondence,
+  .diploma-professional {
+    label > span > div {
+      top: 25%;
     }
   }
 }

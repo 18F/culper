@@ -39,23 +39,9 @@
     margin-right: 1.5rem;
   }
 
-  .address-options {
-    label {
-      padding-top: 3rem;
-      width: 18rem;
-      height: 9rem;
-      overflow: hidden;
-      line-height: 2.6rem;
-    }
-
-    span p {
-      padding: 0;
-    }
-
-    .domestic label,
-    .international label {
-      padding-top: 2rem;
-    }
+  .domestic.block label > span > div,
+  .international.block label > span > div {
+    top: 25%;
   }
 
   .fields {

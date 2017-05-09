@@ -11,42 +11,20 @@
   }
 
   .benefit {
-    .interest-types,
-    .benefit-types,
     .frequency,
-    .benefit-frequency {
-      .block label {
-        height: 10rem;
-        width: 26rem;
-        overflow: hidden;
+    .benefit-frequency,
+    .benefit-types,
+    .interest-types {
+      .block > label {
+        width: 26rem !important;
+      }
 
-        > span {
-          display: block;
-          height: 100%;
+      .spouse > label > span > div {
+        top: 18%;
+      }
 
-          > div {
-            position: relative;
-            top: 35%;
-
-            > p {
-              padding: 0;
-            }
-          }
-
-          // If this is the first div AND not the last then it
-          // has subtext associated to it and needs to be bumped
-          // upwards.
-          > div:not(:last-of-type) {
-            top: 25%;
-          }
-
-          // All the div's (except the first) are treated as
-          // subtext.
-          > div:not(:first-of-type) {
-            font-size: smaller;
-            margin-top: -3rem;
-          }
-        }
+      .benefit-other > label > span > div {
+        top: 25%;
       }
     }
   }

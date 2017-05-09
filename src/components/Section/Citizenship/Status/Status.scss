@@ -4,38 +4,35 @@
   .citizenship-status-naturalized label,
   .citizenship-status-derived label,
   .citizenship-status-notcitizen label {
-    width: 100%;
     height: 12rem;
-    width: 30rem;
-    padding-top: 1.75rem;
+    width: 30rem !important;
+  }
 
-    > span {
-      display: inline-block;
-      line-height: 1.6;
+  .citizenship-status-citizen label,
+  .citizenship-status-foreignborn label {
+    > span > div {
+      top: 10%;
     }
   }
 
-  .citizenship-status-notcitizen label,
-  .citizenship-status-naturalized label,
-  .citizenship-status-derived label {
-    padding-top: 3rem;
-  }
-
   .citizenship-abroad label {
-    width: 14rem;
+    width: 14rem !important;
+    height: initial !important;
   }
 
   .citizenship-basis label {
-    width: 30rem;
-    height: 8rem;
-    padding-top: 1rem;
+    width: 30rem !important;
+    height: 10rem;
   }
 
-  .citizenship-basis-other label {
-    padding-top: 2.5rem;
+  .citizenship-basis-individual {
+    > label > span > div {
+      top: 25%;
+    }
   }
 
   .citizenship-document-type label {
-    width: 11rem;
+    width: 11rem !important;
+    height: initial !important;
   }
 }
