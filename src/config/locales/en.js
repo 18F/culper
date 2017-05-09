@@ -5662,8 +5662,7 @@ const en = {
         },
         para: {
           branch: [
-            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.'
           ]
         },
         help: {
