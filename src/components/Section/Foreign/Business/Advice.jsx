@@ -70,13 +70,11 @@ export default class Advice extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.advice.collection.summary.unknown')
-    const country = (obj.Country || {}).value
 
     return (
       <span>
         <span className="index">{i18n.t('foreign.business.advice.collection.summary.item')} {index + 1}:</span>
         <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{country}</strong></span>
       </span>
     )
   }
