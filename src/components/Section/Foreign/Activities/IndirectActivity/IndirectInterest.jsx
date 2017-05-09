@@ -228,7 +228,7 @@ export default class IndirectInterest extends ValidationElement {
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.howAcquired`)}
                help={`foreign.activities.indirect.interest.help.howAcquired`}
-               adjustf="p">
+               adjustFor="p">
           <p>{i18n.t(`foreign.activities.indirect.interest.para.howAcquired`)}</p>
           <Textarea name="HowAcquired"
             className="how-acquired"
