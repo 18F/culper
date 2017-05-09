@@ -319,7 +319,7 @@ export default class Status extends ValidationElement {
 
             <Field title={i18n.t('citizenship.status.heading.placeissued')}
                    help="citizenship.status.help.placeissued"
-                   adjustFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="PlaceIssued"
                        className="place-issued"
@@ -329,14 +329,13 @@ export default class Status extends ValidationElement {
                        />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentname')}>
-              <Name name="DocumentName"
-                    className="document-name"
-                    {...this.state.DocumentName}
-                    onUpdate={this.updateDocumentName}
-                    onValidate={this.handleValidation}
-                    />
-            </Field>
+            <h3>{i18n.t('citizenship.status.heading.documentname')}</h3>
+            <Name name="DocumentName"
+                  className="document-name"
+                  {...this.state.DocumentName}
+                  onUpdate={this.updateDocumentName}
+                  onValidate={this.handleValidation}
+                  />
 
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
                    help="citizenship.status.help.certificatenumber">
@@ -360,14 +359,13 @@ export default class Status extends ValidationElement {
                            />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatename.foreignborn')}>
-              <Name name="CertificateName"
-                    className="certificate-name"
-                    {...this.state.CertificateName}
-                    onUpdate={this.updateCertificateName}
-                    onValidate={this.handleValidation}
-                    />
-            </Field>
+            <h3>{i18n.t('citizenship.status.heading.certificatename.foreignborn')}</h3>
+            <Name name="CertificateName"
+                  className="certificate-name"
+                  {...this.state.CertificateName}
+                  onUpdate={this.updateCertificateName}
+                  onValidate={this.handleValidation}
+                  />
 
             <Branch name="born_on_military_installation"
                     label={i18n.t('citizenship.status.heading.bornonmilitaryinstallation')}
@@ -409,7 +407,7 @@ export default class Status extends ValidationElement {
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
                    help="citizenship.status.help.entrylocation"
-                   adjustFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="EntryLocation"
                        className="entry-location"
@@ -473,7 +471,7 @@ export default class Status extends ValidationElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificatecourtaddress')}
                    help="citizenship.status.help.certificatecourtaddress"
-                   adjustFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="CertificateCourtAddress"
                        className="certificate-court-address"
@@ -495,14 +493,13 @@ export default class Status extends ValidationElement {
                            />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatename.naturalized')}>
-              <Name name="CertificateName"
-                    className="certificate-name"
-                    {...this.state.CertificateName}
-                    onUpdate={this.updateCertificateName}
-                    onValidate={this.handleValidation}
-                    />
-            </Field>
+            <h3>{i18n.t('citizenship.status.heading.certificatename.naturalized')}</h3>
+            <Name name="CertificateName"
+                  className="certificate-name"
+                  {...this.state.CertificateName}
+                  onUpdate={this.updateCertificateName}
+                  onValidate={this.handleValidation}
+                  />
 
             <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
                    help="citizenship.status.help.basis.naturalized"
@@ -564,14 +561,13 @@ export default class Status extends ValidationElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatename.derived')}>
-              <Name name="CertificateName"
-                    className="certificate-name"
-                    {...this.state.CertificateName}
-                    onUpdate={this.updateCertificateName}
-                    onValidate={this.handleValidation}
-                    />
-            </Field>
+            <h3>{i18n.t('citizenship.status.heading.certificatename.derived')}</h3>
+            <Name name="CertificateName"
+                  className="certificate-name"
+                  {...this.state.CertificateName}
+                  onUpdate={this.updateCertificateName}
+                  onValidate={this.handleValidation}
+                  />
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.derived')}
                    help="citizenship.status.help.certificateissued"
@@ -639,7 +635,7 @@ export default class Status extends ValidationElement {
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
                    help="citizenship.status.help.entrylocation"
-                   adjustFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="EntryLocation"
                        className="entry-location"
@@ -735,14 +731,13 @@ export default class Status extends ValidationElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentname')}>
-              <Name name="DocumentName"
-                    className="document-name"
-                    {...this.state.DocumentName}
-                    onUpdate={this.updateDocumentName}
-                    onValidate={this.handleValidation}
-                    />
-            </Field>
+            <h3>{i18n.t('citizenship.status.heading.documentname')}</h3>
+            <Name name="DocumentName"
+                  className="document-name"
+                  {...this.state.DocumentName}
+                  onUpdate={this.updateDocumentName}
+                  onValidate={this.handleValidation}
+                  />
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
                    help="citizenship.status.help.documentissued"

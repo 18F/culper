@@ -122,7 +122,7 @@ export default class IndirectInterest extends ValidationElement {
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.interestTypes`)}
           help={`foreign.activities.indirect.interest.help.interestType`}
-          adjustFor="big-buttons">
+          adjustFor="p">
 
           <p>{i18n.t(`foreign.activities.indirect.interest.para.checkAll`)}</p>
           <CheckboxGroup className="interest-types option-list"
@@ -160,7 +160,6 @@ export default class IndirectInterest extends ValidationElement {
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.interestType`)}
           help={`foreign.activities.indirect.interest.help.interestType`}
-          adjustFor="labels"
           shrink={true}>
           <Text name="InterestType"
             className="interest-type"
@@ -229,7 +228,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.howAcquired`)}
-          help={`foreign.activities.indirect.interest.help.howAcquired`}>
+               help={`foreign.activities.indirect.interest.help.howAcquired`}
+               adjustf="p">
           <p>{i18n.t(`foreign.activities.indirect.interest.para.howAcquired`)}</p>
           <Textarea name="HowAcquired"
             className="how-acquired"

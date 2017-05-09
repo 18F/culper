@@ -85,6 +85,7 @@ export default class Family extends ValidationElement {
         <Branch name="has_foreign_family"
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.family.help.branch"
                 value={this.state.HasForeignFamily}
                 onUpdate={this.updateHasForeignFamily}
@@ -125,7 +126,8 @@ export default class Family extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
-                   help="foreign.business.family.help.date">
+                   help="foreign.business.family.help.date"
+                   adjustFor="label">
               <DateControl name="Date"
                            className="family-date"
                            bind={true}

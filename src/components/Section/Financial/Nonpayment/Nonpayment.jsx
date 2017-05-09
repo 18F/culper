@@ -208,7 +208,7 @@ export default class Nonpayment extends ValidationElement {
 
             <Field title={i18n.t('financial.nonpayment.heading.resolved')}
                    help="financial.nonpayment.help.resolved"
-                   adjustFor="buttons"
+                   adjustFor="address"
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
                              label={i18n.t('financial.nonpayment.label.notresolved')}

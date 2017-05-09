@@ -173,7 +173,7 @@ export class EducationItem extends ValidationElement {
                  commentsName="Comments"
                  commentsValue={this.state.Comments}
                  onUpdate={this.updateComments}
-                 adjustFor="big-buttons"
+                 adjustFor="address"
                  shrink={true}>
             <Address name="Address"
                      {...this.state.Address}
@@ -185,7 +185,7 @@ export class EducationItem extends ValidationElement {
 
           <Field title={i18n.t('history.education.heading.type')}
                  help="history.education.help.type"
-                 adjustFor="buttons"
+                 adjustFor="big-buttons"
                  shrink={true}>
             <RadioGroup className="type option-list"
                         selectedValue={this.state.Type}>

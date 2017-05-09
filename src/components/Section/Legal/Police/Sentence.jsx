@@ -102,7 +102,7 @@ export default class Sentence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.incarcerationDates')}
                titleSize="h4"
                help="legal.police.help.incarcerationDates"
-               adjustFor="buttons"
+               adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="IncarcerationDatesNA"
                          {...this.state.IncarcerationDatesNA}
@@ -121,7 +121,7 @@ export default class Sentence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.probationDates')}
                titleSize="h4"
                help="legal.police.help.probationDates"
-               adjustFor="buttons"
+               adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="ProbationDatesNA"
                          {...this.state.ProbationDatesNA}

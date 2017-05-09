@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { BankruptcyValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import Bankruptcy from './Bankruptcy'
-import { addressSummary } from '../../Foreign/Activities/RealEstateActivity/RealEstateActivity'
+import { AddressSummary, DateSummary } from '../../../Summary'
 
 export default class Bankruptcies extends ValidationElement {
   constructor (props) {
@@ -67,16 +67,13 @@ export default class Bankruptcies extends ValidationElement {
    */
   summary (item, index) {
     const b = item.Bankruptcy || {}
-    let address = addressSummary({Address: b.CourtAddress}) || i18n.t('financial.bankruptcy.collection.summary.unknown')
-    let from = i18n.t('financial.bankruptcy.collection.summary.nodates')
-    if (b.DateFiled && b.DateFiled.month && b.DateFiled.year) {
-      from = '' + b.DateFiled.month + '/' + b.DateFiled.year
-    }
+    const address = AddressSummary(b.CourtAddress, i18n.t('financial.bankruptcy.collection.summary.unknown'))
+    const from = DateSummary(b.DateFiled, i18n.t('financial.bankruptcy.collection.summary.nodates'))
 
     return (
       <span>
         <span className="index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{ address }</strong></span>
+        <span><strong>{address}</strong></span>
         <span className="dates"><strong>{from}</strong></span>
       </span>
     )

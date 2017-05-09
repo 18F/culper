@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Address, Textarea, Name, DateControl } from '../../../Form'
@@ -70,7 +70,7 @@ export default class Employment extends ValidationElement {
   summary (item, index) {
     const obj = item || {}
     const job = `${(obj.Description || {}).value || ''}`.trim() || i18n.t('foreign.business.employment.collection.summary.unknown')
-    const date = dateSummary(item)
+    const date = DateSummary(item.Date)
 
     return (
       <span>
@@ -118,7 +118,8 @@ export default class Employment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.employment.heading.date')}
-                   help="foreign.business.employment.help.date">
+                   help="foreign.business.employment.help.date"
+                   adjustFor="label">
               <DateControl name="Date"
                            className="employment-date"
                            bind={true}
@@ -126,7 +127,8 @@ export default class Employment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.employment.heading.address')}
-                   help="foreign.business.employment.help.address">
+                   help="foreign.business.employment.help.address"
+                   adjustFor="address">
               <Address name="Address"
                        className="employment-address"
                        bind={true}
