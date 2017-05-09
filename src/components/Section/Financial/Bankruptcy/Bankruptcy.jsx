@@ -108,28 +108,28 @@ export default class Bankruptcy extends ValidationElement {
           adjustFor="buttons">
           <RadioGroup className="petition-chapters" selectedValue={this.props.PetitionType}>
             <Radio name="petition_type"
-              label={i18n.m('financial.bankruptcy.petitionType.label.chapter7')}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter7')}
               value="Chapter7"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
               onValidate={this.props.onValidate}
             />
             <Radio name="petition_type"
-              label={i18n.m('financial.bankruptcy.petitionType.label.chapter11')}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter11')}
               value="Chapter11"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
               onValidate={this.props.onValidate}
             />
             <Radio name="petition_type"
-              label={i18n.m('financial.bankruptcy.petitionType.label.chapter12')}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter12')}
               value="Chapter12"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
               onValidate={this.props.onValidate}
             />
             <Radio name="petition_type"
-              label={i18n.m('financial.bankruptcy.petitionType.label.chapter13')}
+              label={i18n.t('financial.bankruptcy.petitionType.label.chapter13')}
               value="Chapter13"
               disabled={this.props.disabled}
               onUpdate={this.updatePetitionType}
@@ -165,7 +165,7 @@ export default class Bankruptcy extends ValidationElement {
 
         <Field title={i18n.t('financial.bankruptcy.heading.dateDischarged')}
           help="financial.bankruptcy.dateDischarged.help"
-          adjustFor="buttons">
+          adjustFor="label">
           <NotApplicable name="DischargeDateNotApplicable"
             {...this.props.DischargeDateNotApplicable}
             onValidate={this.props.onValidate}
