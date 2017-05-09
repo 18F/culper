@@ -147,7 +147,7 @@ export default class Federal extends ValidationElement {
 
             <Field title={i18n.t('history.federal.heading.address')}
                    help="history.federal.help.address"
-                   adjustFor="labels">
+                   adjustFor="address">
               <Address name="Address"
                        bind={true}
                        />

@@ -1,4 +1,4 @@
-import BankruptcyValidator, { BankruptcyItemValidator, PetitionTypeValidator } from './bankruptcy'
+import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 
 describe('Bankruptcy component validation', function () {
   it('should validate has bankruptcy branch', function () {
@@ -56,9 +56,7 @@ describe('Bankruptcy component validation', function () {
           List: [
             {
               Bankruptcy: {
-                PetitionType: {
-                  PetitionType: 'Chapter7'
-                },
+                PetitionType: 'Chapter7',
                 CourtAddress: {
                   addressType: 'United States',
                   address: '1234 Some Rd',
@@ -109,9 +107,7 @@ describe('Bankruptcy component validation', function () {
           List: [
             {
               Bankruptcy: {
-                PetitionType: {
-                  PetitionType: 'Chapter7'
-                },
+                PetitionType: 'Chapter7',
                 CourtAddress: {
                   addressType: 'United States',
                   address: '1234 Some Rd',
@@ -161,9 +157,7 @@ describe('Bankruptcy component validation', function () {
           List: [
             {
               Bankruptcy: {
-                PetitionType: {
-                  PetitionType: 'hello'
-                }
+                PetitionType: 'Hello'
               }
             }
           ]
@@ -181,9 +175,7 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         state: {
-          PetitionType: {
-            PetitionType: 'Chapter7'
-          }
+          PetitionType: 'Chapter7'
         },
         expected: true
       },
@@ -195,9 +187,7 @@ describe('Bankruptcy component validation', function () {
       },
       {
         state: {
-          PetitionType: {
-            PetitionType: ''
-          }
+          PetitionType: ''
         },
         expected: false
       }
@@ -380,9 +370,7 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         state: {
-          PetitionType: {
-            PetitionType: 'Chapter7'
-          },
+          PetitionType: 'Chapter7',
           CourtAddress: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -460,7 +448,7 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           PetitionType: 'Chapter13',
-          Address: {
+          TrusteeAddress: {
             addressType: 'United States',
             address: '1234 Some Rd',
             city: 'Arlington',
@@ -476,7 +464,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PetitionTypeValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.state, null).validPetitionType()).toBe(test.expected)
     })
   })
 })

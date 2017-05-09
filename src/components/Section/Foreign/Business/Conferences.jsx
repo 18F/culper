@@ -88,6 +88,7 @@ export default class Conferences extends ValidationElement {
         <Branch name="has_foreign_conferences"
                 label={i18n.t('foreign.business.conferences.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.conferences.help.branch"
                 value={this.state.HasForeignConferences}
                 onUpdate={this.updateHasForeignConferences}
@@ -138,7 +139,8 @@ export default class Conferences extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.dates')}
-                   help="foreign.business.conferences.help.dates">
+                   help="foreign.business.conferences.help.dates"
+                   adjustFor="daterange">
               <DateRange name="Dates"
                          className="conferences-dates"
                          bind={true}

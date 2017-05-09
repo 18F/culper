@@ -215,7 +215,7 @@ export default class Delinquent extends ValidationElement {
 
             <Field title={i18n.t('financial.delinquent.heading.resolved')}
                    help="financial.delinquent.help.resolved"
-                   adjustFor="buttons"
+                   adjustFor="label"
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
                              label={i18n.t('financial.delinquent.label.notresolved')}
@@ -239,7 +239,7 @@ export default class Delinquent extends ValidationElement {
 
             <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
                    help="financial.delinquent.help.courtaddress"
-                   adjustFor="big-buttons">
+                   adjustFor="address">
               <Address name="CourtAddress"
                        className="delinquent-courtaddress"
                        bind={true}

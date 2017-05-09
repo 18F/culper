@@ -29,7 +29,7 @@ export default class Infractions extends ValidationElement {
   render () {
     return (
       <div>
-        {i18n.m('financial.deliquent.para.checkAll')}
+        {i18n.m('financial.delinquent.para.checkAll')}
         <CheckboxGroup className={`option-list ${this.props.className || ''}`.trim()}
                       selectedValues={this.props.value}>
           <Checkbox label={i18n.m('financial.delinquent.para.alimony')}

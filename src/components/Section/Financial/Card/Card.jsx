@@ -126,7 +126,7 @@ export default class Card extends ValidationElement {
 
             <Field title={i18n.t('financial.card.heading.address')}
                    help="financial.card.help.address"
-                   adjustFor="labels">
+                   adjustFor="address">
               <Address name="Address"
                        className="card-address"
                        bind={true}

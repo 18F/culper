@@ -86,7 +86,7 @@ describe('The cohabitant component', () => {
         lastInitialOnly: false,
         suffix: ''
       },
-      SSN : {}
+      SSN: {}
     }
 
     const component = mount(<Cohabitant {...expected} />)

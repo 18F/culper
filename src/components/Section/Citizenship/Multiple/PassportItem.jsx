@@ -111,7 +111,7 @@ export default class PassportItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.location')}
                help="citizenship.multiple.help.passport.location"
-               adjustFor="big-buttons">
+               adjustFor="address">
           <Address name="Location"
                    {...this.state.Location}
                    className="passport-location"
@@ -120,14 +120,13 @@ export default class PassportItem extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('citizenship.multiple.heading.passport.name')}>
-          <Name name="Name"
-                {...this.state.Name}
-                className="passport-name"
-                onUpdate={this.updateName}
-                onValidate={this.props.onValidate}
-                />
-        </Field>
+        <h3>{i18n.t('citizenship.multiple.heading.passport.name')}</h3>
+        <Name name="Name"
+              {...this.state.Name}
+              className="passport-name"
+              onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
+              />
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.number')}
                help="citizenship.multiple.help.passport.number">
