@@ -5166,7 +5166,10 @@ const en = {
           relationship: 'Provide the nature of your relationship with the foreign national listed above',
           amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
           frequency: 'Provide the frequency of your support',
-          country: 'Provide the name of the country providing this benefit'
+          citizenship: 'Provide this foreign national\'s country(ies) of citizenship'
+        },
+        label: {
+          estimated: 'Estimated'
         },
         help: {
           branch: {
@@ -5194,9 +5197,9 @@ const en = {
             message: 'Provide the frequency of support',
             note: 'Note: Monthly, yearly, once, etc.'
           },
-          country: {
-            title: 'Need help with the country(ies)?',
-            message: 'List all countries which benefit from this financial support',
+          citizenship: {
+            title: 'Need help with the citizenship of this foreign national?',
+            message: 'List all the known countries the foreign national is a citizen of',
             note: ''
           }
         },
