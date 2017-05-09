@@ -94,14 +94,13 @@ export default class Reference extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Field title={i18n.t(`${prefix}reference.heading.name`)}>
-          <Name name="FullName"
-                prefix={`${this.props.prefix}.name`}
-                {...this.state.FullName}
-                onUpdate={this.onUpdate.bind(this, 'FullName')}
-                onValidate={this.props.onValidate}
-                />
-        </Field>
+        <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
+        <Name name="FullName"
+              prefix={`${this.props.prefix}.name`}
+              {...this.state.FullName}
+              onUpdate={this.onUpdate.bind(this, 'FullName')}
+              onValidate={this.props.onValidate}
+              />
 
         <Field title={i18n.t(`${prefix}reference.heading.contact`)}
                help={`${prefix}reference.help.contact`}
@@ -199,7 +198,7 @@ export default class Reference extends ValidationElement {
 
         <Field title={i18n.t(`${prefix}reference.heading.email`)}
                help={`${prefix}reference.help.email`}
-               adjustFor="buttons">
+               adjustFor="label">
           <NotApplicable name="EmailNotApplicable"
                          {...this.state.EmailNotApplicable}
                          label={i18n.t('reference.label.idk')}
@@ -217,7 +216,7 @@ export default class Reference extends ValidationElement {
 
         <Field title={i18n.t(`${prefix}reference.heading.address`)}
                help={`${prefix}reference.help.address`}
-               adjustFor="labels">
+               adjustFor="address">
           <p>{i18n.t(`${prefix}reference.para.address`)}</p>
           <Address name="Address"
                    {...this.state.Address}

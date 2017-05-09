@@ -568,6 +568,32 @@ const en = {
           }
         }
       }
+    },
+    bankruptcy: {
+      datefiled: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+          }
+        }
+      },
+      datedischarged: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date discharged" date',
+            message: 'Bankruptcy **date discharged** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "to" date',
+            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
+          }
+        }
+      }
     }
   },
   section: {
@@ -1100,7 +1126,7 @@ const en = {
         placeholder: 'Provide court involved'
       },
       trustee: {
-        title: 'Provide the trustee',
+        title: 'Provide the name of the trustee for this bankruptcy',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
         help: {
@@ -5662,6 +5688,7 @@ const en = {
         },
         para: {
           branch: [
+            'For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.',
             'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
             'If yes use the button below to add another interest'
           ]

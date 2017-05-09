@@ -46,18 +46,15 @@ export default class CoOwner extends ValidationElement {
     return (
       <div className="co-owner">
 
-        <Field title={i18n.t(`foreign.${prefix}.heading.name`)}
-          adjustFor="labels"
-          shrink={true}>
-          <Name name="Name"
-            {...this.props.Name}
-            onUpdate={this.updateName}
-            onValidate={this.props.onValidate}
-          />
-        </Field>
+        <h3>{i18n.t(`foreign.${prefix}.heading.name`)}</h3>
+        <Name name="Name"
+          {...this.props.Name}
+          onUpdate={this.updateName}
+          onValidate={this.props.onValidate}
+        />
 
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
-          adjustFor="labels"
+          adjustFor="address"
           shrink={true}>
           <Address name="Address"
             {...this.props.Address}

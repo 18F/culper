@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Cohabitants from './Cohabitants'
 
-describe('The cohabitant component', () => {
+describe('The cohabitants component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'cohabitant'

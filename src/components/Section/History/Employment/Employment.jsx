@@ -193,7 +193,7 @@ export class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.address`)}
                  help={`${prefix}.address.help`}
-                 adjustFor="labels"
+                 adjustFor="address"
                  shrink={true}>
             <Address name="Address"
                      {...this.props.Address}
