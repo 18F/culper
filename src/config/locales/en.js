@@ -5853,7 +5853,7 @@ const en = {
         heading: {
           title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
           description: 'Provide the name and description of the event',
-          sponsor: 'Provide the name of the sponsoring organization',
+          sponsor: 'Provide the name of sponsoring organization',
           city: 'Provide the city where the event was held',
           country: 'Provide the country where the event was held',
           dates: 'Provide the dates for the event',
