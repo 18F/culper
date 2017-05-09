@@ -5207,7 +5207,7 @@ const en = {
           relationship: 'Provide the nature of your relationship with the foreign national listed above',
           amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
           frequency: 'Provide the frequency of your support',
-          country: 'Provide the name of the country providing this benefit'
+          country: 'Provide this foreign national\'s country(ies) of citizenship'
         },
         help: {
           branch: {
