@@ -5788,7 +5788,7 @@ const en = {
       },
       ventures: {
         heading: {
-          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
+          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?',
           name: 'Provide the name of the foreign national',
           address: 'Provide the full current address of this foreign national',
           citizenship: 'Provide the citizenship(s) of this foreign national',
@@ -6004,7 +6004,7 @@ const en = {
         otherOffenseSentenced: 'Were you sentenced as a result of these charges?'
       },
       para: {
-        intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+        intro1: 'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
         intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
         summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
