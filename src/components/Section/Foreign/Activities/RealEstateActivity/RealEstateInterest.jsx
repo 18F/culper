@@ -130,7 +130,9 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
           help={'foreign.activities.realestate.interest.help.realEstateType'}
+          adjustFor="p"
           shrink={true}>
+          {i18n.m('foreign.activities.realestate.interest.para.realEstateType')}
           <Text name="RealEstateType"
             className="realestate-type"
             {...this.props.RealEstateType}
@@ -157,6 +159,7 @@ export default class RealEstateInterest extends ValidationElement {
             {...this.props.Acquired}
             label={i18n.t('foreign.activities.realestate.interest.label.acquired')}
             hideDay={true}
+            maxDate={null}
             onUpdate={this.updateAcquired}
             onValidate={this.props.onValidate}
           />

@@ -169,7 +169,9 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.howAcquired')}
+          adjustFor="p"
           help={'foreign.activities.direct.interest.help.howAcquired'}>
+          {i18n.m('foreign.activities.direct.interest.para.howAcquired')}
           <Textarea name="HowAcquired"
             className="how-acquired"
             {...this.props.HowAcquired}
