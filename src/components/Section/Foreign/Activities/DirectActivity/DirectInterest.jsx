@@ -184,6 +184,7 @@ export default class DirectInterest extends ValidationElement {
             className="cost"
             {...this.props.Cost}
             onUpdate={this.updateCost}
+            min="0"
             onValidate={this.props.onValidate}
           />
           <div className="flags">
@@ -204,6 +205,7 @@ export default class DirectInterest extends ValidationElement {
             className="value"
             {...this.props.Value}
             onUpdate={this.updateValue}
+            min="0"
             onValidate={this.props.onValidate}
           />
           <div className="flags">

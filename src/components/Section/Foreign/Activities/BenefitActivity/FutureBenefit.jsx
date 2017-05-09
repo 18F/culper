@@ -82,7 +82,6 @@ export default class FutureBenefit extends ValidationElement {
             className="begin"
             {...this.props.Begin}
             label={i18n.t('foreign.activities.benefit.future.label.begin')}
-            prefix={this.props.prefix}
             onUpdate={this.updateBegin}
             onValidate={this.props.onValidate}
             maxDate={null}
@@ -152,6 +151,7 @@ export default class FutureBenefit extends ValidationElement {
           <Currency name="Value"
             className="value"
             {...this.props.Value}
+            min="0"
             onUpdate={this.updateValue}
             onValidate={this.props.onValidate}
           />

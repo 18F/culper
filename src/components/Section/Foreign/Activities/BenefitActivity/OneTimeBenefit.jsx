@@ -70,7 +70,6 @@ export default class OneTimeBenefit extends ValidationElement {
             className="received"
             {...this.props.Received}
             label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
-            prefix={this.props.prefix}
             onUpdate={this.updateReceived}
             onValidate={this.props.onValidate}
           />
@@ -90,6 +89,7 @@ export default class OneTimeBenefit extends ValidationElement {
           <Currency name="Value"
             className="value"
             {...this.props.Value}
+            min="0"
             onUpdate={this.updateValue}
             onValidate={this.props.onValidate}
           />
