@@ -28,14 +28,14 @@ class Financial extends ValidationElement {
   }
 
   componentDidMount () {
-    let current = this.launch(this.props.Financial, this.props.subsection, 'gambling')
+    let current = this.launch(this.props.Financial, this.props.subsection, 'bankruptcy')
     if (current !== '') {
       this.props.dispatch(push(`/form/financial/${current}`))
     }
   }
 
   handleTour (event) {
-    this.props.dispatch(push('/form/financial/gambling'))
+    this.props.dispatch(push('/form/financial/bankruptcy'))
   }
 
   handleReview (event) {
@@ -205,10 +205,10 @@ class Financial extends ValidationElement {
           </SectionView>
 
           <SectionView name="bankruptcy"
-                       back="financial/gambling"
-                       backLabel={i18n.t('financial.destination.gambling')}
-                       next="financial/taxes"
-                       nextLabel={i18n.t('financial.destination.taxes')}>
+                       back="identification/physical"
+                       backLabel={i18n.t('identification.destination.physical')}
+                       next="financial/gambling"
+                       nextLabel={i18n.t('financial.destination.gambling')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
                         {...this.props.Bankruptcy}
@@ -218,10 +218,10 @@ class Financial extends ValidationElement {
           </SectionView>
 
           <SectionView name="gambling"
-                       back="identification"
-                       backLabel={i18n.t('identification.destination.physical')}
-                       next="financial/bankruptcy"
-                       nextLabel={i18n.t('financial.destination.bankruptcy')}>
+                       back="financial/bankruptcy"
+                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       next="financial/taxes"
+                       nextLabel={i18n.t('financial.destination.taxes')}>
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
@@ -231,8 +231,8 @@ class Financial extends ValidationElement {
           </SectionView>
 
           <SectionView name="taxes"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       back="financial/gambling"
+                       backLabel={i18n.t('financial.destination.gambling')}
                        next="financial/card"
                        nextLabel={i18n.t('financial.destination.card')}>
             <h2>{i18n.t('financial.taxes.title')}</h2>
