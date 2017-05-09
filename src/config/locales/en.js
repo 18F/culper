@@ -1126,7 +1126,7 @@ const en = {
         placeholder: 'Provide court involved'
       },
       trustee: {
-        title: 'Provide the name of of the trustee for this bankruptcy',
+        title: 'Provide the name of the trustee for this bankruptcy',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
         help: {
