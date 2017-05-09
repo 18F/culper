@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { AddressSummary } from '../../../../Summary'
 import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
 import { ForeignRealEstateActivityValidator } from '../../../../../validators'
 import RealEstateInterest from './RealEstateInterest'
@@ -60,7 +61,7 @@ export default class RealEstateActivity extends ValidationElement {
     const o = (item || {}).RealEstateInterest || {}
     const who = (o.InterestTypes || []).join(', ')
     const acquired = (o.Acquired || {}).date ? `${o.Acquired.month}/${o.Acquired.year}` : ''
-    const address = addressSummary(o)
+    const address = AddressSummary(o.Address, '')
     const type = i18n.t('foreign.activities.realestate.collection.itemType')
 
     const summary = [who, address].reduce((prev, next) => {
@@ -118,25 +119,4 @@ RealEstateActivity.defaultProps = {
   HasInterests: '',
   List: [],
   defaultState: true
-}
-
-export const addressSummary = (item) => {
-  let address = ''
-  let address1 = ''
-  let address2 = ''
-  if (item.Address) {
-    address1 += `${item.Address.address || ''}`.trim()
-    if (item.Address.addressType === 'United States' || item.Address.addressType === 'APOFPO') {
-      address2 = `${item.Address.city || ''}, ${item.Address.state || ''} ${item.Address.zipcode || ''}`.trim()
-    } else if (item.Address.addressType === 'International') {
-      address2 = `${item.Address.city || ''}, ${item.Address.country || ''}`.trim()
-    }
-  }
-
-  if (address1.length === 0 || address2.length === 1) {
-    address = ''
-  } else {
-    address = `${address1}, ${address2}`.trim()
-  }
-  return address
 }

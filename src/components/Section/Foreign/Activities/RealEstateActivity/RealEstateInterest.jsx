@@ -130,7 +130,9 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
           help={'foreign.activities.realestate.interest.help.realEstateType'}
+          adjustFor="p"
           shrink={true}>
+          {i18n.m('foreign.activities.realestate.interest.para.realEstateType')}
           <Text name="RealEstateType"
             className="realestate-type"
             {...this.props.RealEstateType}
@@ -156,8 +158,7 @@ export default class RealEstateInterest extends ValidationElement {
             className="acquired"
             {...this.props.Acquired}
             label={i18n.t('foreign.activities.realestate.interest.label.acquired')}
-            hideDay={true}
-            prefix={this.props.prefix}
+            maxDate={null}
             onUpdate={this.updateAcquired}
             onValidate={this.props.onValidate}
           />
@@ -182,13 +183,12 @@ export default class RealEstateInterest extends ValidationElement {
             {...this.props.SoldNotApplicable}
             label={i18n.t('foreign.activities.realestate.interest.label.soldNotApplicable')}
             or={i18n.t('foreign.activities.realestate.interest.label.or')}
+            onValidate={this.props.onValidate}
             onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
               className="sold"
               {...this.props.Sold}
               label={i18n.t('foreign.activities.realestate.interest.label.sold')}
-              hideDay={true}
-              prefix={this.props.prefix}
               onUpdate={this.updateSold}
               onValidate={this.props.onValidate}
             />
@@ -200,6 +200,7 @@ export default class RealEstateInterest extends ValidationElement {
           <Currency name="Cost"
             className="cost"
             {...this.props.Cost}
+            min="0"
             onUpdate={this.updateCost}
             onValidate={this.props.onValidate}
           />

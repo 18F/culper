@@ -202,8 +202,6 @@ export default class IndirectInterest extends ValidationElement {
             className="acquired"
             {...this.props.Acquired}
             label={i18n.t(`foreign.activities.indirect.interest.label.acquired`)}
-            hideDay={true}
-            prefix={this.props.prefix}
             onUpdate={this.updateAcquired}
             onValidate={this.props.onValidate}
           />
@@ -215,6 +213,7 @@ export default class IndirectInterest extends ValidationElement {
             className="cost"
             {...this.props.Cost}
             onUpdate={this.updateCost}
+            min="0"
             onValidate={this.props.onValidate}
           />
           <div className="flags">
@@ -245,6 +244,7 @@ export default class IndirectInterest extends ValidationElement {
             className="value"
             {...this.props.Value}
             onUpdate={this.updateValue}
+            min="0"
             onValidate={this.props.onValidate}
           />
           <div className="flags">
@@ -265,13 +265,12 @@ export default class IndirectInterest extends ValidationElement {
             {...this.props.SoldNotApplicable}
             label={i18n.t(`foreign.activities.indirect.interest.label.soldNotApplicable`)}
             or={i18n.t(`foreign.activities.indirect.interest.label.or`)}
+            onValidate={this.props.onValidate}
             onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
               className="sold"
               {...this.props.Sold}
               label={i18n.t(`foreign.activities.indirect.interest.label.sold`)}
-              hideDay={true}
-              prefix={this.props.prefix}
               onUpdate={this.updateSold}
               onValidate={this.props.onValidate}
             />

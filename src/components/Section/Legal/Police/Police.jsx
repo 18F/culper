@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import Offense from './Offense'
 import OtherOffense from './OtherOffense'
 import DomesticViolence from './DomesticViolence'
@@ -202,7 +202,7 @@ export default class Police extends ValidationElement {
     const description = o.Description && o.Description.value
           ? o.Description.value
           : i18n.t('legal.police.collection.summary.unknown')
-    const dates = dateSummary(o)
+    const dates = DateSummary(o.Date)
 
     return (
       <span>

@@ -481,6 +481,16 @@ const en = {
         note: ''
       }
     },
+    datecontrol: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
+      }
+    },
     to: {
       datecontrol: {
         max: {
@@ -709,7 +719,7 @@ const en = {
           title: 'Summary of other names used',
           name: 'Name',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide your full name below'
         },
         append: 'Add another name'
@@ -982,7 +992,7 @@ const en = {
           title: 'Summary of financial problems',
           unknownlosses: 'Provide your financial problem details',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           debt: 'Debt'
         },
         append: 'Add another financial problem',
@@ -1040,7 +1050,7 @@ const en = {
           title: 'Summary of Bankruptcy',
           item: 'Petition',
           unknown: 'Provide your bankruptcy below',
-          nodates: 'No date',
+          nodates: 'NA',
           chapter: 'Chapter',
           appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?',
           appendMessage: 'If yes use the button below to add another bankruptcy petition'
@@ -1065,9 +1075,9 @@ const en = {
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
       notApplicable: 'Not applicable',
       help: {
-        title: 'Need help with bankruptcy?',
-        message: 'Note: If you need to provide any additional comments about this information, enter them below.',
-        note: ''
+        title: 'We are asking about the following bankruptcy petition types.',
+        message: 'Answer yes if you filed a petition under Chapter 7, Chapter 11, Chapter 12, or Chapter 13.',
+        note: 'Note: You will be asked to provide details of the petition or petitions.'
       },
       petitionType: {
         label: {
@@ -1077,8 +1087,11 @@ const en = {
           chapter13: 'Chapter 13'
         },
         help: {
-          title: 'Need help with the applicable bankruptcy petition type?',
-          message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',
+          title: 'Need help with the details of your bankruptcy petition?',
+          message: [
+            'If you don\'t have paperwork you may be able to find your details here:',
+            '[www.pacer.gov](https://www.pacer.gov/)'
+          ],
           note: ''
         }
       },
@@ -4749,7 +4762,7 @@ const en = {
           title: 'Summary of former federal service',
           item: 'Federal service',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide federal service below'
         },
         append: 'Add another former federal service'
@@ -4849,7 +4862,9 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?'
         },
         para: {
-          intro: 'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.\n\n**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+          intro: ['Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
+            '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'],
+          howAcquired: 'Such as purchase, gift, etc.'
         },
         collection: {
           summary: 'Provide your direct financial interests here',
@@ -4877,6 +4892,8 @@ const en = {
           label: {
             relinquishedNotApplicable: 'Not applicable',
             or: 'or',
+            costEstimated: 'Estimated',
+            valueEstimated: 'Estimated',
             interestTypes: {
               yourself: 'Yourself',
               spouse: 'Spouse or legally recognized civil union/domestic partner',
@@ -5098,16 +5115,17 @@ const en = {
         interest: {
           para: {
             checkAll: 'Check all that apply',
-            howAcquired: 'Such as purchase, gift, etc.'
+            howAcquired: 'Such as purchase, gift, etc.',
+            realEstateType: 'Such as home, business, etc'
           },
           heading: {
             interestTypes: 'Specify',
             realEstateType: 'Provide the type of real estate property',
             address: 'Provide the location/address of property',
-            acquired: 'Provide the date the financial interest was acquired',
-            howAcquired: 'Provide details regarding how it was acquired',
-            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            sold: 'Provide the date interest was sold, lost, or otherwise disposed of'
+            acquired: 'Provide the date of purchase or to be acquired',
+            howAcquired: 'Provide how the foreign real estate was or is to be acquired',
+            cost: 'Provide the cost (in U.S. dollars) when sold or expected at time of acquisition',
+            sold: 'Provide the date sold, if applicable'
           },
           label: {
             address: 'This address is',
@@ -5192,7 +5210,10 @@ const en = {
           relationship: 'Provide the nature of your relationship with the foreign national listed above',
           amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
           frequency: 'Provide the frequency of your support',
-          country: 'Provide the name of the country providing this benefit'
+          citizenship: 'Provide this foreign national\'s country(ies) of citizenship'
+        },
+        label: {
+          estimated: 'Estimated'
         },
         help: {
           branch: {
@@ -5220,9 +5241,9 @@ const en = {
             message: 'Provide the frequency of support',
             note: 'Note: Monthly, yearly, once, etc.'
           },
-          country: {
-            title: 'Need help with the country(ies)?',
-            message: 'List all countries which benefit from this financial support',
+          citizenship: {
+            title: 'Need help with the citizenship of this foreign national?',
+            message: 'List all the known countries the foreign national is a citizen of',
             note: ''
           }
         },
@@ -5621,7 +5642,7 @@ const en = {
       advice: {
         heading: {
           title: 'Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
-          description: 'Provide how the financial interest was acquired',
+          description: 'Provide a description of advice/support provided',
           name: 'Provide the name of the individual to whom advice or support was provided',
           organization: 'Provide the name of the foreign organization or foreign business with whom the individual is associated',
           country: 'Provide the country of origin for the organization or business',
@@ -5672,9 +5693,9 @@ const en = {
           appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
           appendMessage: [
             'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another instance of advice/support'
           ],
-          append: 'Add another interest'
+          append: 'Add another instance of advice/support'
         }
       },
       family: {
@@ -5689,8 +5710,7 @@ const en = {
         para: {
           branch: [
             'For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.',
-            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.'
           ]
         },
         help: {
@@ -5781,18 +5801,18 @@ const en = {
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
           appendMessage: [
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another job offer'
           ],
-          append: 'Add another interest'
+          append: 'Add another job offer'
         }
       },
       ventures: {
         heading: {
           title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?',
-          name: 'Provide the name of the foreign national',
+          name: 'Provide the full name of this foreign national',
           address: 'Provide the full current address of this foreign national',
           citizenship: 'Provide the citizenship(s) of this foreign national',
-          description: 'Provide the description of the business venture',
+          description: 'Provide a description of the business venture',
           relationship: 'Provide your relationship to this foreign national',
           dates: 'Provide the length of time you have been involved in the business venture',
           association: 'Provide the nature of the association with this business venture',
@@ -5881,7 +5901,7 @@ const en = {
         heading: {
           title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
           description: 'Provide the name and description of the event',
-          sponsor: 'Provide the name of the sponsoring organization',
+          sponsor: 'Provide the name of sponsoring organization',
           city: 'Provide the city where the event was held',
           country: 'Provide the country where the event was held',
           dates: 'Provide the dates for the event',
@@ -5951,9 +5971,9 @@ const en = {
           appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
           appendMessage: [
             'Do not include those you attended or participated in on official business for the U.S. government.',
-            'If yes use the button below to add another interest.'
+            'If yes use the button below to add another event.'
           ],
-          append: 'Add another interest'
+          append: 'Add another event'
         }
       }
     }

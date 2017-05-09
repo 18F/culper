@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import CitizenshipItem from './CitizenshipItem'
 import PassportItem from './PassportItem'
 
@@ -89,7 +89,7 @@ export default class Multiple extends ValidationElement {
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
           : i18n.t('citizenship.multiple.collection.citizenship.summary.unknown')
-    const dates = dateSummary(itemProperties)
+    const dates = DateSummary(itemProperties.Dates)
 
     return (
       <span>
@@ -105,7 +105,7 @@ export default class Multiple extends ValidationElement {
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
           : i18n.t('citizenship.multiple.collection.passport.summary.unknown')
-    const dates = dateSummary({ Date: itemProperties.Issued })
+    const dates = DateSummary(itemProperties.Issued)
 
     return (
       <span>

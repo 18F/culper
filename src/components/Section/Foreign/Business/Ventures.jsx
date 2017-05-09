@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Text, Textarea, Name, Country, DateRange, Address } from '../../../Form'
@@ -71,7 +71,7 @@ export default class Ventures extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.ventures.collection.summary.unknown')
-    const date = dateSummary(item)
+    const date = DateSummary(item.Dates)
 
     return (
       <span>
@@ -175,6 +175,14 @@ export default class Ventures extends ValidationElement {
                    help="foreign.business.ventures.help.service">
               <Text name="Service"
                     className="ventures-service"
+                    bind={true}
+                    />
+            </Field>
+
+            <Field title={i18n.t('foreign.business.ventures.heading.support')}
+                   help="foreign.business.ventures.help.support">
+              <Text name="Support"
+                    className="ventures-support"
                     bind={true}
                     />
             </Field>
