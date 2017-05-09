@@ -5761,10 +5761,10 @@ const en = {
       ventures: {
         heading: {
           title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?',
-          name: 'Provide the name of the foreign national',
+          name: 'Provide the full name of this foreign national',
           address: 'Provide the full current address of this foreign national',
           citizenship: 'Provide the citizenship(s) of this foreign national',
-          description: 'Provide the description of the business venture',
+          description: 'Provide a description of the business venture',
           relationship: 'Provide your relationship to this foreign national',
           dates: 'Provide the length of time you have been involved in the business venture',
           association: 'Provide the nature of the association with this business venture',

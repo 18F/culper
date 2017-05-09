@@ -225,6 +225,27 @@ describe('Foreign business ventures component validation', function () {
     battery(tests, VenturesValidator, 'validService')
   })
 
+  it('validate foreign business ventures support', () => {
+    const tests = [
+      {
+        state: {
+          Support: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Support: {
+            value: 'this is the support'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    battery(tests, VenturesValidator, 'validSupport')
+  })
+
   it('validate foreign business ventures compensation', () => {
     const tests = [
       {
@@ -315,6 +336,9 @@ describe('Foreign business ventures component validation', function () {
               },
               Service: {
                 value: 'this is the service'
+              },
+              Support: {
+                value: 'this is the support'
               },
               Compensation: {
                 value: 'this is the compensation'

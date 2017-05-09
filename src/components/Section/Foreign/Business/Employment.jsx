@@ -69,7 +69,7 @@ export default class Employment extends ValidationElement {
 
   summary (item, index) {
     const obj = item || {}
-    const job = `${(item.Description || {}).value || ''}`.trim() || i18n.t('foreign.business.employment.collection.summary.unknown')
+    const job = `${(obj.Description || {}).value || ''}`.trim() || i18n.t('foreign.business.employment.collection.summary.unknown')
     const date = dateSummary(item)
 
     return (
