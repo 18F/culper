@@ -54,7 +54,7 @@ describe('The foreign activities support component', () => {
     component.find('.foreign-activities-support-relationship textarea').simulate('change')
     component.find('.foreign-activities-support-amount input').simulate('change')
     component.find('.foreign-activities-support-frequency input').simulate('change')
-    component.find('.foreign-activities-support-country input').simulate('change')
+    component.find('.foreign-activities-support-citizenship input').simulate('change')
     expect(updates).toBe(6)
   })
 })

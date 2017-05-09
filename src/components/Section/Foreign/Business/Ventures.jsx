@@ -179,6 +179,14 @@ export default class Ventures extends ValidationElement {
                     />
             </Field>
 
+            <Field title={i18n.t('foreign.business.ventures.heading.support')}
+                   help="foreign.business.ventures.help.support">
+              <Text name="Support"
+                    className="ventures-support"
+                    bind={true}
+                    />
+            </Field>
+
             <Field title={i18n.t('foreign.business.ventures.heading.compensation')}
                    help="foreign.business.ventures.help.compensation">
               <Textarea name="Compensation"

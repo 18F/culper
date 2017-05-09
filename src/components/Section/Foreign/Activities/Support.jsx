@@ -2,7 +2,8 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ForeignActivitiesSupportValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
-         Text, Textarea, Currency, Name, Address, Country } from '../../../Form'
+         Text, Textarea, Currency, Name, Address, Country,
+         Checkbox } from '../../../Form'
 
 export default class Support extends ValidationElement {
   constructor (props) {
@@ -67,15 +68,11 @@ export default class Support extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.activities.support.collection.summary.unknown')
-    const countries = ((obj.Citizenship || {}).value || []).map(x => {
-      return x.name
-    })
 
     return (
       <span>
         <span className="index">{i18n.t('foreign.activities.support.collection.summary.item')} {index + 1}:</span>
         <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{countries.shift()}</strong></span>
       </span>
     )
   }
@@ -133,6 +130,14 @@ export default class Support extends ValidationElement {
                         className="foreign-activities-support-amount"
                         bind={true}
                         />
+              <div className="flags">
+                <Checkbox name="AmountEstimated"
+                          ref="estimated"
+                          label={i18n.t('foreign.activities.support.label.estimated')}
+                          toggle="false"
+                          bind={true}
+                          />
+              </div>
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.frequency')}
@@ -144,11 +149,11 @@ export default class Support extends ValidationElement {
                     />
             </Field>
 
-            <Field title={i18n.t('foreign.activities.support.heading.country')}
-                   help="foreign.activities.support.help.country"
+            <Field title={i18n.t('foreign.activities.support.heading.citizenship')}
+                   help="foreign.activities.support.help.citizenship"
                    adjustFor="country">
-              <Country name="Country"
-                       className="foreign-activities-support-country"
+              <Country name="Citizenship"
+                       className="foreign-activities-support-citizenship"
                        multiple={true}
                        bind={true}
                        />
