@@ -85,6 +85,7 @@ export default class FutureBenefit extends ValidationElement {
             prefix={this.props.prefix}
             onUpdate={this.updateBegin}
             onValidate={this.props.onValidate}
+            maxDate={null}
           />
         </Field>
 

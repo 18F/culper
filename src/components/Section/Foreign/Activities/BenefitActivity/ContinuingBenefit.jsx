@@ -104,6 +104,7 @@ export default class ContinuingBenefit extends ValidationElement {
             label={i18n.t('foreign.activities.benefit.continuing.label.end')}
             prefix={this.props.prefix}
             onUpdate={this.updateEnd}
+            max={null}
             onValidate={this.props.onValidate}
           />
         </Field>

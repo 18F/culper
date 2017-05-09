@@ -481,6 +481,16 @@ const en = {
         note: ''
       }
     },
+    datecontrol: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
+      }
+    },
     to: {
       datecontrol: {
         max: {
