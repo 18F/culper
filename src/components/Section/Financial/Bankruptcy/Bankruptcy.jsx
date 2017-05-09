@@ -159,6 +159,7 @@ export default class Bankruptcy extends ValidationElement {
             onValidate={this.props.onValidate}
             {...this.props.DateFiled}
             className="datefiled"
+            prefix="bankruptcy.datefiled"
             hideDay={true} />
         </Field>
 
@@ -174,6 +175,7 @@ export default class Bankruptcy extends ValidationElement {
               onUpdate={this.updateDateDischarged}
               onValidate={this.props.onValidate}
               {...this.props.DateDischarged}
+              prefix="bankruptcy.datedischarged"
               hideDay={true} />
           </NotApplicable>
         </Field>

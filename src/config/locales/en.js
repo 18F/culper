@@ -568,6 +568,32 @@ const en = {
           }
         }
       }
+    },
+    bankruptcy: {
+      datefiled: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+          }
+        }
+      },
+      datedischarged: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date discharged" date',
+            message: 'Bankruptcy **date discharged** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "to" date',
+            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
+          }
+        }
+      }
     }
   },
   section: {
