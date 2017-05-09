@@ -5753,9 +5753,9 @@ const en = {
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
           appendMessage: [
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another job offer'
           ],
-          append: 'Add another interest'
+          append: 'Add another job offer'
         }
       },
       ventures: {
