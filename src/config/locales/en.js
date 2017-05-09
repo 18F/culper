@@ -481,6 +481,16 @@ const en = {
         note: ''
       }
     },
+    datecontrol: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
+      }
+    },
     to: {
       datecontrol: {
         max: {
@@ -4852,7 +4862,9 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?'
         },
         para: {
-          intro: 'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.\n\n**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+          intro: ['Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
+            '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'],
+          howAcquired: 'Such as purchase, gift, etc.'
         },
         collection: {
           summary: 'Provide your direct financial interests here',
@@ -4880,6 +4892,8 @@ const en = {
           label: {
             relinquishedNotApplicable: 'Not applicable',
             or: 'or',
+            costEstimated: 'Estimated',
+            valueEstimated: 'Estimated',
             interestTypes: {
               yourself: 'Yourself',
               spouse: 'Spouse or legally recognized civil union/domestic partner',
@@ -5101,16 +5115,17 @@ const en = {
         interest: {
           para: {
             checkAll: 'Check all that apply',
-            howAcquired: 'Such as purchase, gift, etc.'
+            howAcquired: 'Such as purchase, gift, etc.',
+            realEstateType: 'Such as home, business, etc'
           },
           heading: {
             interestTypes: 'Specify',
             realEstateType: 'Provide the type of real estate property',
             address: 'Provide the location/address of property',
-            acquired: 'Provide the date the financial interest was acquired',
-            howAcquired: 'Provide details regarding how it was acquired',
-            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            sold: 'Provide the date interest was sold, lost, or otherwise disposed of'
+            acquired: 'Provide the date of purchase or to be acquired',
+            howAcquired: 'Provide how the foreign real estate was or is to be acquired',
+            cost: 'Provide the cost (in U.S. dollars) when sold or expected at time of acquisition',
+            sold: 'Provide the date sold, if applicable'
           },
           label: {
             address: 'This address is',
