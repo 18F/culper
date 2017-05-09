@@ -4,7 +4,7 @@
   display: inline-block;
 
   input[type='text'] {
-    text-transform: uppercase;
+    text-transform: capitalize;
 
     &::-webkit-input-placeholder {
       text-transform: none;
@@ -26,6 +26,7 @@
     .state,
     .apofpo,
     .zipcode {
+      text-transform: uppercase;
       display: table-cell;
       padding-right: 2rem;
       vertical-align: top;

@@ -80,7 +80,7 @@ describe('The foreign service component', () => {
             }
           ]
         },
-        expected: '1/2015-1/2016'
+        expected: '1/2015 - 1/2016'
       }
     ]
 

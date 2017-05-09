@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
 /**
@@ -92,7 +92,7 @@ export default class History extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const service = o.Service || i18n.t('military.history.collection.summary.unknown')
-    const dates = dateSummary(o)
+    const dates = DateSummary(o.Dates)
 
     return (
       <span>
