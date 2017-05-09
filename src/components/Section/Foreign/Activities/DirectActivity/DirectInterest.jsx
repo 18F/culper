@@ -162,7 +162,6 @@ export default class DirectInterest extends ValidationElement {
             className="acquired"
             {...this.props.Acquired}
             label={i18n.t('foreign.activities.direct.interest.label.acquired')}
-            hideDay={true}
             onUpdate={this.updateAcquired}
             onValidate={this.props.onValidate}
           />
@@ -234,7 +233,6 @@ export default class DirectInterest extends ValidationElement {
               className="relinquished"
               {...this.props.Relinquished}
               label={i18n.t('foreign.activities.direct.interest.label.relinquished')}
-              hideDay={true}
               onUpdate={this.updateRelinquished}
               onValidate={this.props.onValidate}
             />

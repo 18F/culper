@@ -158,7 +158,6 @@ export default class RealEstateInterest extends ValidationElement {
             className="acquired"
             {...this.props.Acquired}
             label={i18n.t('foreign.activities.realestate.interest.label.acquired')}
-            hideDay={true}
             maxDate={null}
             onUpdate={this.updateAcquired}
             onValidate={this.props.onValidate}
@@ -189,7 +188,6 @@ export default class RealEstateInterest extends ValidationElement {
               className="sold"
               {...this.props.Sold}
               label={i18n.t('foreign.activities.realestate.interest.label.sold')}
-              hideDay={true}
               onUpdate={this.updateSold}
               onValidate={this.props.onValidate}
             />
