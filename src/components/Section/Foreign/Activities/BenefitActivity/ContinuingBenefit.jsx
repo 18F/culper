@@ -88,7 +88,6 @@ export default class ContinuingBenefit extends ValidationElement {
             className="began"
             {...this.props.Began}
             label={i18n.t('foreign.activities.benefit.continuing.label.began')}
-            prefix={this.props.prefix}
             onUpdate={this.updateBegan}
             onValidate={this.props.onValidate}
           />
@@ -102,8 +101,8 @@ export default class ContinuingBenefit extends ValidationElement {
             className="end"
             {...this.props.End}
             label={i18n.t('foreign.activities.benefit.continuing.label.end')}
-            prefix={this.props.prefix}
             onUpdate={this.updateEnd}
+            maxDate={null}
             onValidate={this.props.onValidate}
           />
         </Field>
@@ -171,6 +170,7 @@ export default class ContinuingBenefit extends ValidationElement {
           <Currency name="Value"
             className="value"
             {...this.props.Value}
+            min="0"
             onUpdate={this.updateValue}
             onValidate={this.props.onValidate}
           />

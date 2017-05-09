@@ -129,6 +129,7 @@ export default class Support extends ValidationElement {
               <Currency name="Amount"
                         className="foreign-activities-support-amount"
                         bind={true}
+                        min="0"
                         />
               <div className="flags">
                 <Checkbox name="AmountEstimated"
