@@ -139,12 +139,23 @@ export default class Accordion extends ValidationElement {
   }
 
   getItems () {
-    const infected = this.props.realtime || this.state.initial
+    // If this has realtime enabled then we always perform sorting and
+    // additional injections.
+    //
+    // If it is not realtime but still the first entry in to the accordion
+    // then we do the same.
+    //
+    // If we have been previously infected then assume we still are.
+    const infected = this.props.realtime || this.state.initial || this.props.items.some(item => item.type && item.type === 'Gap')
+
+    // If we are infected then inject the anecdote.
     const innoculated = infected
           ? this.props.inject([...this.props.items])
           : [...this.props.items]
 
-    return this.props.sort && infected
+    // If we are not in a dirty environment and have a sorting function then
+    // apply order.
+    return this.props.sort && this.state.initial
       ? innoculated.sort(this.props.sort)
       : innoculated
   }
@@ -170,8 +181,9 @@ export default class Accordion extends ValidationElement {
       return x
     })
 
-    this.update(items)
-    this.setState({ initial: false, scrollToId: '' })
+    this.setState({ initial: false, scrollToId: '' }, () => {
+      this.update(items)
+    })
   }
 
   /**
@@ -186,8 +198,9 @@ export default class Accordion extends ValidationElement {
 
     const item = this.newItem()
     items = items.concat([item])
-    this.update(items)
-    this.setState({ initial: false, scrollToId: item.uuid })
+    this.setState({ initial: false, scrollToId: item.uuid }, () => {
+      this.update(items)
+    })
   }
 
   /**
@@ -204,8 +217,9 @@ export default class Accordion extends ValidationElement {
         items.push(this.newItem())
       }
 
-      this.update(items)
-      this.setState({ initial: false, scrollToId: '' })
+      this.setState({ initial: false, scrollToId: '' }, () => {
+        this.update(items)
+      })
     }
   }
 
@@ -216,7 +230,9 @@ export default class Accordion extends ValidationElement {
     let items = this.getItems()
     const index = items.findIndex(x => x.uuid === item.uuid)
     items[index][prop] = value
-    this.update(items)
+    this.setState({ initial: false, scrollToId: '' }, () => {
+      this.update(items)
+    })
   }
 
   /**
