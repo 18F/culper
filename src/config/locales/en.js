@@ -1163,9 +1163,9 @@ const en = {
       courtAddress: {
         label: 'This address is',
         help: {
-          title: 'Need help with the address of the court involved?',
-          message: 'Enter the address of the court involved',
-          note: ''
+          title: 'Not sure of the facility address?',
+          message: 'Try looking up the facility name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -5520,6 +5520,8 @@ const en = {
       },
       label: {
         idk: 'I don\'t know',
+        yes: 'Yes',
+        no: 'No',
         inperson: 'In person',
         telephone: 'Telephone',
         electronic: [
@@ -6515,7 +6517,7 @@ const en = {
         address: {
           title: 'Not sure of the facility address?',
           message: 'Try looking up the facility name, this could help you find the address.',
-          note: 'Note: f you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },

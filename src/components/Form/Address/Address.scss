@@ -26,10 +26,12 @@
     .state,
     .apofpo,
     .zipcode {
-      text-transform: uppercase;
       display: table-cell;
       padding-right: 2rem;
       vertical-align: top;
+      input {
+        text-transform: uppercase;
+      }
     }
   }
 
