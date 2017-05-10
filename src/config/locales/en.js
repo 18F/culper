@@ -2770,7 +2770,7 @@ const en = {
       para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
       label: 'Suggested address',
       use: 'Use this address',
-      dismiss: 'Use this address instead',
+      dismiss: 'Keep original address',
       alternate: 'Manually correct this address'
     }
   },
