@@ -52,7 +52,7 @@ describe('The foreign national component', () => {
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.affiliations').length).toBe(0)
-    component.find('.has-affiliations .branch .yes input').simulate('change')
+    component.find('.has-affiliations .yes input').simulate('change')
     expect(component.find('.affiliations').length).toBe(1)
   })
 
@@ -88,7 +88,7 @@ describe('The foreign national component', () => {
     component.find('.na-employer.button input').simulate('change')
     component.find('.na-employer-address .city input').simulate('change')
     component.find('.na-employer-address.button input').simulate('change')
-    component.find('.has-affiliations .branch .yes input').simulate('change')
+    component.find('.has-affiliations .yes input').simulate('change')
     component.find('.affiliations textarea').simulate('change')
     expect(updates).toBe(26)
   })
