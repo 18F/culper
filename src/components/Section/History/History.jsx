@@ -152,12 +152,10 @@ class History extends ValidationElement {
   }
 
   updateResidence (values) {
-    // this.onUpdate('Residence', this.excludeGaps(values))
     this.onUpdate('Residence', values)
   }
 
   updateEmployment (values) {
-    // this.onUpdate('Employment', this.excludeGaps(values))
     this.onUpdate('Employment', values)
   }
 
@@ -184,30 +182,29 @@ class History extends ValidationElement {
    * with date range values.
    */
   sort (a, b) {
-    const first = ((a || {}).Item || {}).Dates
-    const second = ((b || {}).Item || {}).Dates
-
-    if (!first && !second) {
-      return 0
+    // Helper to find the date value or default it to 0
+    const getOptionalDate = (obj) => {
+      return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
     }
 
-    if (!first || !first.to || !first.to.date) {
+    const first = getOptionalDate(a)
+    const second = getOptionalDate(b)
+
+    if (first < second) {
+      return 1
+    } else if (first > second) {
       return -1
     }
 
-    if (!second || !second.to || !second.to.date) {
-      return 1
-    }
-
-    return second.to.date.getTime() - first.to.date.getTime()
+    return 0
   }
 
   /**
    * Helper to test whether a subsection is complete
    */
   hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
+    return (this.props.Completed[property] && this.props.Completed[property].status === val) ||
+      (status && status[property] && status[property].status === val)
   }
 
   /**
@@ -436,7 +433,8 @@ class History extends ValidationElement {
         }
       }
     })
-    this.onUpdate(field, this.excludeGaps(items))
+
+    this.onUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(this.sort))
   }
 
   customResidenceDetails (item, index, initial, callback) {

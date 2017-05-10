@@ -55,8 +55,12 @@ export default class Accordion extends ValidationElement {
    */
   componentWillMount () {
     let dirty = false
-
     let items = this.getItems()
+
+    if (items.length !== this.props.items.length) {
+      dirty = true
+    }
+
     if (items.length < this.props.minimum) {
       for (let i = 0; this.props.minimum - items.length > 0; i++) {
         dirty = true
@@ -92,7 +96,7 @@ export default class Accordion extends ValidationElement {
    * item in to view.
    */
   componentDidUpdate () {
-    if (!this.state.scrollToId) {
+    if (!this.state.scrollToId || this.state.initial) {
       return
     }
 
@@ -138,7 +142,10 @@ export default class Accordion extends ValidationElement {
     return { uuid: super.guid(), open: true }
   }
 
-  getItems () {
+  /**
+   * Perform any injections or sorting to the list as deemed necessary.
+   */
+  getItems (skipInnoculation = false) {
     // If this has realtime enabled then we always perform sorting and
     // additional injections.
     //
@@ -149,13 +156,13 @@ export default class Accordion extends ValidationElement {
     const infected = this.props.realtime || this.state.initial || this.props.items.some(item => item.type && item.type === 'Gap')
 
     // If we are infected then inject the anecdote.
-    const innoculated = infected
+    const innoculated = infected && !skipInnoculation
           ? this.props.inject([...this.props.items])
           : [...this.props.items]
 
     // If we are not in a dirty environment and have a sorting function then
     // apply order.
-    return this.props.sort && this.state.initial
+    return this.props.sort && infected
       ? innoculated.sort(this.props.sort)
       : innoculated
   }
@@ -173,7 +180,7 @@ export default class Accordion extends ValidationElement {
    * Flip the `open` bit for the item.
    */
   toggle (item) {
-    const items = this.getItems().map(x => {
+    const items = [...this.props.items].map(x => {
       if (x.uuid === item.uuid) {
         x.open = !x.open
       }
@@ -181,9 +188,8 @@ export default class Accordion extends ValidationElement {
       return x
     })
 
-    this.setState({ initial: false, scrollToId: '' }, () => {
-      this.update(items)
-    })
+    this.update(items)
+    this.setState({ initial: false, scrollToId: '' })
   }
 
   /**
@@ -191,16 +197,15 @@ export default class Accordion extends ValidationElement {
    * default states.
    */
   add () {
-    let items = this.getItems()
+    let items = [...this.props.items]
     for (let item of items) {
       item.open = false
     }
 
     const item = this.newItem()
     items = items.concat([item])
-    this.setState({ initial: false, scrollToId: item.uuid }, () => {
-      this.update(items)
-    })
+    this.update(items)
+    this.setState({ initial: false, scrollToId: item.uuid })
   }
 
   /**
@@ -209,7 +214,7 @@ export default class Accordion extends ValidationElement {
   remove (item) {
     // Confirm deletion first
     if (this.props.skipWarning || window.confirm(i18n.t('collection.warning')) === true) {
-      let items = this.getItems().filter(x => {
+      let items = [...this.props.items].filter(x => {
         return x.uuid !== item.uuid
       })
 
@@ -217,9 +222,8 @@ export default class Accordion extends ValidationElement {
         items.push(this.newItem())
       }
 
-      this.setState({ initial: false, scrollToId: '' }, () => {
-        this.update(items)
-      })
+      this.update(items)
+      this.setState({ initial: false, scrollToId: '' })
     }
   }
 
@@ -227,12 +231,10 @@ export default class Accordion extends ValidationElement {
    * Update an item properties based on a child component.
    */
   updateChild (item, prop, value) {
-    let items = this.getItems()
+    let items = [...this.props.items]
     const index = items.findIndex(x => x.uuid === item.uuid)
     items[index][prop] = value
-    this.setState({ initial: false, scrollToId: '' }, () => {
-      this.update(items)
-    })
+    this.update(items)
   }
 
   /**
@@ -317,7 +319,7 @@ export default class Accordion extends ValidationElement {
   content () {
     // Ensure we have the minimum amount of items required
     const initial = this.state.initial
-    const items = this.getItems()
+    const items = [...this.props.items]
 
     return items.map((item, index, arr) => {
       return (
