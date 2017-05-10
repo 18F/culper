@@ -5520,6 +5520,8 @@ const en = {
       },
       label: {
         idk: 'I don\'t know',
+        yes: 'Yes',
+        no: 'No',
         inperson: 'In person',
         telephone: 'Telephone',
         electronic: [

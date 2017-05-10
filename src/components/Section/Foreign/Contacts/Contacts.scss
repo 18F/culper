@@ -24,4 +24,9 @@
   .na-birthdate.button {
     margin-top: -3rem;
   }
+
+  // The "has affiliations" branching has three options.
+  .has-affiliations .block label {
+    height: initial !important;
+  }
 }
