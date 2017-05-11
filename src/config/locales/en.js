@@ -798,7 +798,7 @@ const en = {
         email: {
           title: 'Need help with your email addresses?',
           message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
-          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation.'
+          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
         },
         phoneNumber: {
           title: 'Need help with your phone numbers?',
@@ -5763,7 +5763,10 @@ const en = {
           description: 'Provide a description of the position offered',
           date: 'Provide the date when this offer was extended',
           address: 'Provide the location where this occurred',
-          acceptance: 'Did you accept the offer?'
+          accepted: 'Did you accept the offer?'
+        },
+        label: {
+          explanation: 'Explanation'
         },
         help: {
           branch: {
@@ -5786,7 +5789,7 @@ const en = {
             message: 'Provide the address of the location where the offer took place',
             note: ''
           },
-          acceptance: {
+          accepted: {
             title: 'Need help with describing the acceptance?',
             message: [
               'If you did not accept the offer please state this.',

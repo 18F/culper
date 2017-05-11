@@ -103,14 +103,27 @@ describe('Foreign business employment component validation', function () {
     const tests = [
       {
         state: {
-          Acceptance: {}
+          Accepted: ''
         },
         expected: false
       },
       {
         state: {
-          Acceptance: {
-            value: 'this is the acceptance'
+          Accepted: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          Accepted: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          Accepted: 'Yes',
+          Explanation: {
+            value: 'this is the explanation'
           }
         },
         expected: true
@@ -144,33 +157,33 @@ describe('Foreign business employment component validation', function () {
           HasForeignEmployment: 'Yes',
           List: [
             {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              Description: {
-                value: 'this is the description'
-              },
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Address: {
-                addressType: 'International',
-                address: '1234 Some Rd',
-                city: 'Munich',
-                country: 'Germany'
-              },
-              Acceptance: {
-                value: 'this is the acceptance'
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
+                },
+                Description: {
+                  value: 'this is the description'
+                },
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Address: {
+                  addressType: 'International',
+                  address: '1234 Some Rd',
+                  city: 'Munich',
+                  country: 'Germany'
+                },
+                Accepted: 'No'
               }
             }
           ]
