@@ -157,7 +157,7 @@ export class ResidenceItem extends ValidationElement {
           </RadioGroup>
           <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
             <Text name="RoleOther"
-                  {...this.state.OtherRole}
+                  {...this.state.RoleOther}
                   label={i18n.t('history.residence.label.role.explanation')}
                   className="other"
                   maxlength="100"
