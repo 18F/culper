@@ -1,13 +1,13 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Police from './Police'
+import Offenses from './Offenses'
 
-describe('The Police record component', () => {
+describe('The Offenses record component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'police-record'
     }
-    const component = mount(<Police {...expected} />)
+    const component = mount(<Offenses {...expected} />)
     expect(component.find('.summons').length).toEqual(1)
     expect(component.find('.arrests').length).toEqual(1)
     expect(component.find('.charges').length).toEqual(1)
@@ -20,7 +20,7 @@ describe('The Police record component', () => {
     const expected = {
       name: 'police-record'
     }
-    const component = mount(<Police {...expected} />)
+    const component = mount(<Offenses {...expected} />)
     component.find('.summons .no input').simulate('change')
     component.find('.arrests .no input').simulate('change')
     component.find('.charges .no input').simulate('change')
@@ -28,7 +28,6 @@ describe('The Police record component', () => {
     component.find('.trial .no input').simulate('change')
     expect(component.find('.accordion').length).toEqual(0)
   })
-
 
   it('selecting yes to having been issued a summons, citation, arrest, charge or trial displays offense', () => {
     const tests = [
@@ -59,7 +58,7 @@ describe('The Police record component', () => {
     }
 
     tests.forEach(test => {
-      const component = mount(<Police {...expected} />)
+      const component = mount(<Offenses {...expected} />)
       component.find(test.selector).simulate('change')
       expect(component.find('.accordion').length).toEqual(test.expect)
     })

@@ -7,6 +7,9 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import Police from './Police'
+import Offenses from './Police/Offenses'
+import OtherOffenses from './Police/OtherOffenses'
+import DomesticViolenceList from './Police/DomesticViolenceList'
 
 class Legal extends ValidationElement {
   constructor (props) {
@@ -21,6 +24,9 @@ class Legal extends ValidationElement {
     this.onValidate = this.onValidate.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.updatePolice = this.updatePolice.bind(this)
+    this.updatePoliceOffenses = this.updatePoliceOffenses.bind(this)
+    this.updatePoliceOtherOffenses = this.updatePoliceOtherOffenses.bind(this)
+    this.updatePoliceDomesticViolence = this.updatePoliceDomesticViolence.bind(this)
   }
 
   componentDidMount () {
@@ -78,6 +84,18 @@ class Legal extends ValidationElement {
     this.onUpdate('Police', values)
   }
 
+  updatePoliceOffenses (values) {
+    this.onUpdate('PoliceOffenses', values)
+  }
+
+  updatePoliceOtherOffenses (values) {
+    this.onUpdate('PoliceOtherOffenses', values)
+  }
+
+  updatePoliceDomesticViolence (values) {
+    this.onUpdate('PoliceDomesticViolence', values)
+  }
+
   /**
    * Helper to test whether a subsection is complete
    */
@@ -130,36 +148,66 @@ class Legal extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
-                       showTop="true"
-                       back="legal/police"
-                       backLabel={i18n.t('legal.destination.police')}
-                       >
+            title="Let&rsquo;s make sure everything looks right"
+            showTop="true"
+            back="legal/police"
+            backLabel={i18n.t('legal.destination.police')}>
             <h2>{i18n.t('legal.police.heading.title')}</h2>
             {i18n.m('legal.police.para.intro1')}
             {i18n.m('legal.police.para.intro2')}
             {i18n.m('legal.police.para.intro3')}
             <Police name="police"
-                    {...this.props.Police}
-                    onUpdate={this.updatePolice}
-                    onValidate={this.onValidate}
-                    />
+              {...this.props.Police}
+              onUpdate={this.updatePolice}
+              onValidate={this.onValidate}
+            />
           </SectionView>
 
           <SectionView name="police"
-                       back="foreign/passport"
-                       backLabel={i18n.t('foreign.destination.passport')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+            back="foreign/passport"
+            backLabel={i18n.t('foreign.destination.passport')}
+            next="legal/review"
+            nextLabel={i18n.t('legal.destination.review')}>
             <h2>{i18n.t('legal.police.heading.title')}</h2>
             {i18n.m('legal.police.para.intro1')}
             {i18n.m('legal.police.para.intro2')}
             {i18n.m('legal.police.para.intro3')}
-            <Police name="police"
-                    {...this.props.Police}
-                    onUpdate={this.updatePolice}
-                    onValidate={this.onValidate}
-                    />
+          </SectionView>
+
+          <SectionView name="police/offenses"
+            back="foreign/passport"
+            backLabel={i18n.t('foreign.destination.passport')}
+            next="legal/review"
+            nextLabel={i18n.t('legal.destination.review')}>
+            <Offenses name="policeOffenses"
+              {...this.props.PoliceOffenses}
+              onUpdate={this.updatePoliceOffenses}
+              onValidate={this.onValidate}
+            />
+          </SectionView>
+
+          <SectionView name="police/additionaloffenses"
+            back="foreign/passport"
+            backLabel={i18n.t('foreign.destination.passport')}
+            next="legal/review"
+            nextLabel={i18n.t('legal.destination.review')}>
+            <OtherOffenses name="otherOffenses"
+              {...this.props.PoliceOtherOffenses}
+              onUpdate={this.updatePoliceOtherOffenses}
+              onValidate={this.onValidate}
+            />
+          </SectionView>
+
+          <SectionView name="police/domesticviolence"
+            back="foreign/passport"
+            backLabel={i18n.t('foreign.destination.passport')}
+            next="legal/review"
+            nextLabel={i18n.t('legal.destination.review')}>
+            <DomesticViolenceList name="domesticViolence"
+              {...this.props.PoliceDomesticViolence}
+              onUpdate={this.updatePoliceDomesticViolence}
+              onValidate={this.onValidate}
+            />
           </SectionView>
         </SectionViews>
       </div>
@@ -177,6 +225,9 @@ function mapStateToProps (state) {
     Section: section,
     Legal: legal,
     Police: legal.Police || {},
+    PoliceOffenses: legal.PoliceOffenses || {},
+    PoliceOtherOffenses: legal.PoliceOtherOffenses || {},
+    PoliceDomesticViolence: legal.PoliceDomesticViolence || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }

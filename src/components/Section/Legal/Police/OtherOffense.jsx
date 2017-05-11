@@ -252,7 +252,7 @@ export default class OtherOffense extends ValidationElement {
                   onValidate={this.props.onValidate}
                   />
           </Field>
-        </Field>
+       </Field>
 
         <Field title={i18n.t('legal.police.heading.courtdate')}
                titleSize="h4"

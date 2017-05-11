@@ -190,8 +190,16 @@ export default class Police extends ValidationElement {
     return new PoliceValidator(this.state, null).answeredYes()
   }
 
+  hasOffensesCount () {
+    return new PoliceValidator(this.state, null).answeredYesCount()
+  }
+
   hasOtherOffenses () {
     return new PoliceValidator(this.state, null).hasOtherOffenses()
+  }
+
+  hasOtherOffensesCount () {
+    return new PoliceValidator(this.state, null).hasOtherOffensesCount()
   }
 
   /**
@@ -283,6 +291,9 @@ export default class Police extends ValidationElement {
         </Branch>
 
         <Show when={this.hasOffenses()}>
+          <Show when={this.hasOffensesCount() > 1}>
+            <div>{i18n.m('legal.police.para.answeredMultiple')}</div>
+          </Show>
           <Accordion minimum="1"
                      items={this.state.List}
                      onUpdate={this.updateList}

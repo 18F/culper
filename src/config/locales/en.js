@@ -6042,7 +6042,8 @@ const en = {
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
-        }
+          },
+        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -6062,8 +6063,7 @@ const en = {
         courtcharge: 'Charge',
         courtoutcome: 'Outcome',
         domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
-        notApplicable: 'Not applicable',
-        or: 'or add date range'
+        notApplicable: 'Not applicable'
       },
       help: {
         summons: {
