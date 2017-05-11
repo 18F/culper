@@ -10,7 +10,7 @@
     width: 100%;
     max-width: 64rem;
     margin: 1.3rem 0;
-    padding: 2rem 3rem 1.3rem 3rem;
+    padding: 0 3rem 1.3rem 3rem;
     background: $eapp-blue-lightest;
     border: 2px solid $eapp-blue-lighter;
     border-radius: 6px;
@@ -18,7 +18,7 @@
     > i {
       display: block;
       position: relative;
-      top: -2.9rem;
+      top: -1rem;
       left: -3.9rem;
       height: 1.6rem;
       width: 1.6rem;
@@ -62,7 +62,6 @@
     margin-top: 0;
     display: inline-block;
     font-family: $eapp-sans;
-    font-size: 13pt;
   }
 
   p {

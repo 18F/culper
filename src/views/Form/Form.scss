@@ -30,23 +30,23 @@ input[type='checkbox'], input[type='radio'] {
 /* placeholder should be a light gray and italics */
 ::-webkit-input-placeholder {
   font-style: italic;
-  color: $eapp-grey;
+  color: $eapp-grey-placeholder;
 }
 
 ::-ms-input-placeholder {
   font-style: italic;
-  color: $eapp-grey;
+  color: $eapp-grey-placeholder;
 }
 
 ::-moz-placeholder {
   font-style: italic;
-  color: $eapp-grey;
+  color: $eapp-grey-placeholder;
   opacity: 1;
 }
 
 :-moz-placeholder {
   font-style: italic;
-  color: $eapp-grey;
+  color: $eapp-grey-placeholder;
   opacity: 1;
 }
 
