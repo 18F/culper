@@ -23,7 +23,7 @@ export class ResidenceItem extends ValidationElement {
       Address: props.Address,
       Comments: props.Comments,
       Role: props.Role,
-      OtherRole: props.OtherRole,
+      RoleOther: props.RoleOther,
       Reference: props.Reference
     }
 
@@ -43,7 +43,7 @@ export class ResidenceItem extends ValidationElement {
           Address: this.state.Address,
           Comments: this.state.Comments,
           Role: this.state.Role,
-          OtherRole: this.state.OtherRole,
+          RoleOther: this.state.RoleOther,
           Reference: this.state.Reference
         })
       }
@@ -156,12 +156,12 @@ export class ResidenceItem extends ValidationElement {
                    />
           </RadioGroup>
           <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
-            <Text name="OtherRole"
+            <Text name="RoleOther"
                   {...this.state.OtherRole}
                   label={i18n.t('history.residence.label.role.explanation')}
                   className="other"
                   maxlength="100"
-                  onUpdate={this.onUpdate.bind(this, 'OtherRole')}
+                  onUpdate={this.onUpdate.bind(this, 'RoleOther')}
                   onValidate={this.props.onValidate}
                   />
           </div>

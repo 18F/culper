@@ -97,11 +97,11 @@ class History extends ValidationElement {
     let valid = false
     switch (this.props.Section.subsection) {
       case 'residence':
-        valid = new ResidenceValidator(this.props.Residence, null).isValid()
+        valid = new ResidenceValidator(this.excludeGaps(this.props.Residence), null).isValid()
         break
 
       case 'employment':
-        valid = new EmploymentValidator(this.props.Employment, null).isValid()
+        valid = new EmploymentValidator(this.excludeGaps(this.props.Employment), null).isValid()
         break
 
       case 'education':
@@ -113,8 +113,8 @@ class History extends ValidationElement {
         break
 
       case 'review':
-        valid = new ResidenceValidator(this.props.Residence, null).isValid() &&
-          new EmploymentValidator(this.props.Employment, null).isValid() &&
+        valid = new ResidenceValidator(this.excludeGaps(this.props.Residence), null).isValid() &&
+          new EmploymentValidator(this.excludeGaps(this.props.Employment), null).isValid() &&
           new EducationValidator(this.props.Education, null).isValid() &&
           new FederalServiceValidator(this.props.Federal, null).isValid()
         break
