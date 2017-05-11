@@ -5763,7 +5763,10 @@ const en = {
           description: 'Provide a description of the position offered',
           date: 'Provide the date when this offer was extended',
           address: 'Provide the location where this occurred',
-          acceptance: 'Did you accept the offer?'
+          accepted: 'Did you accept the offer?'
+        },
+        label: {
+          explanation: 'Explanation'
         },
         help: {
           branch: {
@@ -5786,7 +5789,7 @@ const en = {
             message: 'Provide the address of the location where the offer took place',
             note: ''
           },
-          acceptance: {
+          accepted: {
             title: 'Need help with describing the acceptance?',
             message: [
               'If you did not accept the offer please state this.',
