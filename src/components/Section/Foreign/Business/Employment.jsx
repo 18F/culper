@@ -4,6 +4,7 @@ import { DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Address, Textarea, Name, DateControl } from '../../../Form'
+import JobOffer from './JobOffer'
 
 export default class Employment extends ValidationElement {
   constructor (props) {
@@ -103,45 +104,7 @@ export default class Employment extends ValidationElement {
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.employment.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}>
-            <h3>{i18n.t('foreign.business.employment.heading.name')}</h3>
-            <Name name="Name"
-                  className="employment-name"
-                  bind={true}
-                  />
-
-            <Field title={i18n.t('foreign.business.employment.heading.description')}
-                   help="foreign.business.employment.help.description">
-              <Textarea name="Description"
-                        className="employment-description"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.employment.heading.date')}
-                   help="foreign.business.employment.help.date"
-                   adjustFor="label">
-              <DateControl name="Date"
-                           className="employment-date"
-                           bind={true}
-                           />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.employment.heading.address')}
-                   help="foreign.business.employment.help.address"
-                   adjustFor="address">
-              <Address name="Address"
-                       className="employment-address"
-                       bind={true}
-                       />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.employment.heading.acceptance')}
-                   help="foreign.business.employment.help.acceptance">
-              <Textarea name="Acceptance"
-                        className="employment-acceptance"
-                        bind={true}
-                        />
-            </Field>
+            <JobOffer name="Item" bind={true} />
           </Accordion>
         </Show>
       </div>

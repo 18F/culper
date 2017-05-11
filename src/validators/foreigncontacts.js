@@ -152,7 +152,7 @@ export class ForeignNationalValidator {
       return false
     }
 
-    if (this.hasAffiliations === 'No') {
+    if (this.hasAffiliations === 'No' || this.hasAffiliations === 'I don\'t know') {
       return true
     }
 

@@ -35,8 +35,8 @@ describe('The foreign business employment component', () => {
       onValidate: () => { validated = true }
     }
     const component = mount(<Employment {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    component.find('.branch .yes input').simulate('blur')
+    component.find('.branch .yes input').at(0).simulate('change')
+    component.find('.branch .yes input').at(0).simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -53,7 +53,8 @@ describe('The foreign business employment component', () => {
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')
     component.find('.employment-address .mailing input').simulate('change')
-    component.find('.employment-acceptance textarea').simulate('change')
-    expect(updates).toBe(6)
+    component.find('.employment-accepted .yes input').simulate('change')
+    component.find('.employment-explanation textarea').simulate('change')
+    expect(updates).toBe(7)
   })
 })

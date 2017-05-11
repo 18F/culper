@@ -209,8 +209,8 @@ export default class ForeignNational extends ValidationElement {
     this.onUpdate('EmployerAddressNotApplicable', value)
   }
 
-  updateHasAffiliations (value) {
-    this.onUpdate('HasAffiliations', value)
+  updateHasAffiliations (response) {
+    this.onUpdate('HasAffiliations', response.value)
   }
 
   updateAffiliations (value) {
@@ -544,15 +544,35 @@ export default class ForeignNational extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Branch name="has_affiliations"
-                label={i18n.t('foreign.contacts.heading.hasaffiliations')}
-                labelSize="h3"
-                className="has-affiliations"
-                value={this.state.HasAffiliations}
-                help="foreign.contacts.help.hasaffiliations"
-                onUpdate={this.updateHasAffiliations}
-                onValidate={this.props.onValidate}
-                />
+        <Field title={i18n.t('foreign.contacts.heading.hasaffiliations')}
+               help="foreign.contacts.help.hasaffiliations"
+               adjustFor="buttons">
+          <RadioGroup className="has-affiliations"
+                      selectedValue={this.state.HasAffiliations}>
+            <Radio name="affiliation_yes"
+                   label={i18n.t('foreign.contacts.label.yes')}
+                   value="Yes"
+                   className="yes"
+                   onUpdate={this.updateHasAffiliations}
+                   onValidate={this.props.onValidate}
+                   />
+            <Radio name="affiliation_no"
+                   label={i18n.t('foreign.contacts.label.no')}
+                   value="No"
+                   className="no"
+                   onUpdate={this.updateHasAffiliations}
+                   onValidate={this.props.onValidate}
+                   />
+            <Radio name="affiliation_idk"
+                   label={i18n.t('foreign.contacts.label.idk')}
+                   value="I don't know"
+                   className="idk"
+                   onUpdate={this.updateHasAffiliations}
+                   onValidate={this.props.onValidate}
+                   />
+          </RadioGroup>
+        </Field>
+
         <Show when={this.state.HasAffiliations === 'Yes'}>
           <Field title={i18n.t('foreign.contacts.heading.affiliations')}
                  help="foreign.contacts.help.affiliations">
