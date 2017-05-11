@@ -9,7 +9,7 @@ const scan = (items, julianMax) => {
   let counter = 0
 
   for (const dates of items.sort(rangeSorter)) {
-    if (dates.from && dates.to) {
+    if (dates.from && dates.from.date && dates.to && dates.to.date) {
       const from = julian(dates.from.date)
       const to = julian(dates.to.date)
 
