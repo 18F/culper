@@ -11,6 +11,7 @@ export default class Cohabitants extends ValidationElement {
     this.state = {
       HasCohabitant: props.HasCohabitant,
       CohabitantList: props.CohabitantList,
+      CohabitantListBranch: props.CohabitantListBranch,
       errorCodes: []
     }
 
@@ -24,7 +25,8 @@ export default class Cohabitants extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasCohabitant: this.state.HasCohabitant,
-          CohabitantList: this.state.CohabitantList
+          CohabitantList: this.state.CohabitantList,
+          CohabitantListBranch: this.state.CohabitantListBranch
         })
       }
     })
@@ -39,7 +41,8 @@ export default class Cohabitants extends ValidationElement {
   }
 
   updateCohabitantList (values) {
-    this.update('CohabitantList', values)
+    this.update('CohabitantList', values.items)
+    this.update('CohabitantListBranch', values.branch)
   }
 
   summary (item, index) {
@@ -89,6 +92,7 @@ export default class Cohabitants extends ValidationElement {
         <Show when={this.state.HasCohabitant === 'Yes'}>
           <Accordion minimum="1"
             items={this.state.CohabitantList}
+            branch={this.state.CohabitantListBranch}
             onUpdate={this.updateCohabitantList}
             summary={this.summary}
             onValidate={this.handleValidation}
@@ -105,6 +109,7 @@ export default class Cohabitants extends ValidationElement {
 }
 
 Cohabitants.defaultProps = {
-  List: []
+  HasCohabitant: '',
+  CohabitantList: [],
+  CohabitantListBranch: ''
 }
-

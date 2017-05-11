@@ -14,6 +14,7 @@ export default class ExistingConditions extends ValidationElement {
       ReceivedTreatment: props.ReceivedTreatment,
       Explanation: props.Explanation,
       TreatmentList: props.TreatmentList,
+      TreatmentListBranch: props.TreatmentListBranch,
       DidNotFollow: props.DidNotFollow,
       DidNotFollowExplanation: props.DidNotFollowExplanation,
       errorCodes: []
@@ -53,7 +54,8 @@ export default class ExistingConditions extends ValidationElement {
   }
 
   updateTreatmentList (values) {
-    this.update('TreatmentList', values)
+    this.update('TreatmentList', values.items)
+    this.update('TreatmentListBranch', values.branch)
   }
 
   updateDidNotFollow (values) {
@@ -126,74 +128,75 @@ export default class ExistingConditions extends ValidationElement {
             <Field adjustFor="button">
               <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
                 <Radio name="treatment"
-                  className="treatment yes"
-                  label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
-                  value="Yes"
-                  onUpdate={this.updateReceivedTreatment}
-                  onValidate={this.handleValidation}
-                />
+                       className="treatment yes"
+                       label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
+                       value="Yes"
+                       onUpdate={this.updateReceivedTreatment}
+                       onValidate={this.handleValidation}
+                       />
                 <Radio name="treatment"
-                  className="treatment no"
-                  label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
-                  value="No"
-                  onUpdate={this.updateReceivedTreatment}
-                  onValidate={this.handleValidation}
-                />
+                       className="treatment no"
+                       label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
+                       value="No"
+                       onUpdate={this.updateReceivedTreatment}
+                       onValidate={this.handleValidation}
+                       />
                 <Radio name="treatment"
-                  className="treatment decline"
-                  label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
-                  value="Decline"
-                  onUpdate={this.updateReceivedTreatment}
-                  onValidate={this.handleValidation}
-                />
+                       className="treatment decline"
+                       label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
+                       value="Decline"
+                       onUpdate={this.updateReceivedTreatment}
+                       onValidate={this.handleValidation}
+                       />
               </RadioGroup>
             </Field>
 
             <Show when={this.state.ReceivedTreatment === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
-                  className="explanation"
-                  {...this.props.Explanation}
-                  onUpdate={this.updateExplanation}
-                  onValidate={this.handleValidation}
-                />
+                          className="explanation"
+                          {...this.props.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onValidate={this.handleValidation}
+                          />
               </Field>
             </Show>
 
             <Show when={this.state.ReceivedTreatment === 'Yes'}>
               <Accordion minimum="1"
-                defaultState={this.props.defaultState}
-                items={this.state.TreatmentList}
-                onUpdate={this.updateTreatmentList}
-                summary={this.summary}
-                onValidate={this.handleValidation}
-                description={i18n.t('psychological.existingConditions.treatment.collection.description')}
-                appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
-                appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
-                appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
+                         defaultState={this.props.defaultState}
+                         items={this.state.TreatmentList}
+                         branch={this.state.TreatmentListBranch}
+                         onUpdate={this.updateTreatmentList}
+                         summary={this.summary}
+                         onValidate={this.handleValidation}
+                         description={i18n.t('psychological.existingConditions.treatment.collection.description')}
+                         appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
+                         appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
+                         appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
                 <Diagnosis name="Diagnosis"
-                  ApplicantBirthDate={this.props.ApplicantBirthDate}
-                  prefix="existingConditions.diagnosis"
-                  bind={true} />
+                           ApplicantBirthDate={this.props.ApplicantBirthDate}
+                           prefix="existingConditions.diagnosis"
+                           bind={true} />
               </Accordion>
             </Show>
 
             <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
             <Branch name="didNotFollow"
-              className="eapp-field-wrap didnotfollow"
-              value={this.state.DidNotFollow}
-              onValidate={this.handleValidation}
-              onUpdate={this.updateDidNotFollow}>
+                    className="eapp-field-wrap didnotfollow"
+                    value={this.state.DidNotFollow}
+                    onValidate={this.handleValidation}
+                    onUpdate={this.updateDidNotFollow}>
             </Branch>
 
             <Show when={this.state.DidNotFollow === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
-                  className="explanation"
-                  {...this.props.DidNotFollowExplanation}
-                  onUpdate={this.updateDidNotFollowExplanation}
-                  onValidate={this.handleValidation}
-                />
+                          className="explanation"
+                          {...this.props.DidNotFollowExplanation}
+                          onUpdate={this.updateDidNotFollowExplanation}
+                          onValidate={this.handleValidation}
+                          />
               </Field>
             </Show>
           </div>
@@ -205,5 +208,6 @@ export default class ExistingConditions extends ValidationElement {
 
 ExistingConditions.defaultProps = {
   TreatmentList: [],
+  TreatmentListBranch: '',
   defaultState: true
 }

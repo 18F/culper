@@ -53,8 +53,8 @@ export default class OtherNames extends ValidationElement {
     })
   }
 
-  myDispatch (collection) {
-    this.setState({ List: collection }, () => {
+  myDispatch (values) {
+    this.setState({ List: values.items }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,

@@ -152,16 +152,16 @@ class History extends ValidationElement {
   }
 
   updateResidence (values) {
-    this.onUpdate('Residence', this.excludeGaps(values))
+    this.onUpdate('Residence', this.excludeGaps(values.items))
   }
 
   updateEmployment (values) {
-    this.onUpdate('Employment', this.excludeGaps(values))
+    this.onUpdate('Employment', this.excludeGaps(values.items))
   }
 
   updateEducation (values) {
     let education = this.props.Education || {}
-    education.List = values
+    education.List = values.items
     this.onUpdate('Education', education)
   }
 

@@ -21,6 +21,7 @@ export default class Bankruptcies extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         List: this.props.List,
+        ListBranch: this.props.ListBranch,
         HasBankruptcy: this.props.HasBankruptcy,
         [field]: values
       })
@@ -28,7 +29,8 @@ export default class Bankruptcies extends ValidationElement {
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   updateHasBankrupty (values) {
@@ -91,6 +93,7 @@ export default class Bankruptcies extends ValidationElement {
         <Show when={this.props.HasBankruptcy === 'Yes'}>
           <Accordion minimum="1"
             items={this.props.List}
+            branch={this.props.ListBranch}
             onUpdate={this.updateList}
             onValidate={this.handleValidation}
             summary={this.summary}

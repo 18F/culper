@@ -29,7 +29,8 @@ export default class ForeignService extends ValidationElement {
       Circumstances: props.Circumstances,
       ReasonLeft: props.ReasonLeft,
       MaintainsContact: props.MaintainsContact,
-      List: props.List
+      List: props.List,
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -92,8 +93,9 @@ export default class ForeignService extends ValidationElement {
     }
   }
 
-  updateList (value) {
-    this.onUpdate('List', value)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -261,6 +263,7 @@ export default class ForeignService extends ValidationElement {
             <Accordion minimum="1"
                        className="foreign-contacts-collection"
                        items={this.state.List}
+                       branch={this.state.ListBranch}
                        onUpdate={this.updateList}
                        onValidate={this.props.onValidate}
                        summary={this.summary}

@@ -25,6 +25,7 @@ export default class Multiple extends ValidationElement {
     this.state = {
       HasMultiple: props.HasMultiple,
       Citizenships: props.Citizenships,
+      CitizenshipsBranch: props.CitizenshipsBranch,
       Passports: props.Passports,
       errorCodes: []
     }
@@ -77,7 +78,8 @@ export default class Multiple extends ValidationElement {
   }
 
   updateCitizenships (values) {
-    this.onUpdate('Citizenships', values)
+    this.onUpdate('Citizenships', values.items)
+    this.onUpdate('CitizenshipsBranch', values.branch)
   }
 
   updatePassports (values) {
@@ -132,6 +134,7 @@ export default class Multiple extends ValidationElement {
         <Show when={this.state.HasMultiple === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.Citizenships}
+                     branch={this.state.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onValidate={this.handleValidation}
                      summary={this.summaryCitizenships}
@@ -160,5 +163,6 @@ export default class Multiple extends ValidationElement {
 Multiple.defaultProps = {
   HasMultiple: '',
   Citizenships: [],
+  CitizenshipsBranch: '',
   Passports: []
 }

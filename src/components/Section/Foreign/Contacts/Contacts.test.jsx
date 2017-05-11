@@ -23,7 +23,7 @@ describe('The contacts component', () => {
     }
     const component = mount(<Contacts {...expected} />)
     component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 })

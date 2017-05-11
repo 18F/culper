@@ -12,6 +12,7 @@ export default class Hospitalizations extends ValidationElement {
     this.state = {
       Hospitalized: props.Hospitalized,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -33,7 +34,8 @@ export default class Hospitalizations extends ValidationElement {
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   updateHospitalized (values) {
@@ -83,26 +85,27 @@ export default class Hospitalizations extends ValidationElement {
       <div className="hospitalizations">
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
-          value={this.state.Hospitalized}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateHospitalized}>
+                value={this.state.Hospitalized}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateHospitalized}>
         </Branch>
 
         <Show when={this.state.Hospitalized === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.state.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('psychological.hospitalization.collection.description')}
-            appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.hospitalization.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.state.List}
+                     branch={this.state.ListBranch}
+                     onUpdate={this.updateList}
+                     summary={this.summary}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('psychological.hospitalization.collection.description')}
+                     appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
+                     appendMessage={i18n.m('psychological.hospitalization.collection.appendMessage')}
+                     appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
             <Hospitalization name="Hospitalization"
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              bind={true}
-            />
+                             ApplicantBirthDate={this.props.ApplicantBirthDate}
+                             bind={true}
+                             />
           </Accordion>
 
         </Show>
@@ -113,5 +116,6 @@ export default class Hospitalizations extends ValidationElement {
 
 Hospitalization.defaultProps = {
   List: [],
+  ListBranch: '',
   defaultState: true
 }

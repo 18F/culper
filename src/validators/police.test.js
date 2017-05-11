@@ -106,6 +106,7 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
+          ListBranch: 'No',
           List: [
             {
               Item: {
@@ -166,6 +167,7 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
+          ListBranch: 'No',
           List: [
             {
               Item: {
@@ -196,6 +198,7 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
+          ListBranch: 'No',
           List: [
             {
               Item: {
@@ -222,6 +225,7 @@ describe('Police record validation', function () {
               }
             }
           ],
+          OtherOffensesBranch: 'No',
           OtherOffenses: [
             {
               Item: {
@@ -325,6 +329,7 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
+          ListBranch: 'No',
           List: [
             {
               Item: {
@@ -351,6 +356,7 @@ describe('Police record validation', function () {
               }
             }
           ],
+          OtherOffensesBranch: 'No',
           OtherOffenses: [
             {
               Item: {

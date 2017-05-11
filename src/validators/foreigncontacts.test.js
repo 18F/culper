@@ -656,7 +656,8 @@ describe('Foreign contacts component validation', function () {
                 HasAffiliations: 'No'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

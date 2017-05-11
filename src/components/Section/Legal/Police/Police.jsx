@@ -34,6 +34,7 @@ export default class Police extends ValidationElement {
       HasOtherFirearms: props.HasOtherFirearms,
       HasOtherAlcohol: props.HasOtherAlcohol,
       List: props.List,
+      ListBranch: props.ListBranch,
       OtherOffenses: props.OtherOffenses,
       DomesticViolence: props.DomesticViolence,
       errorCodes: []
@@ -104,12 +105,14 @@ export default class Police extends ValidationElement {
     })
   }
 
-  updateList (collection) {
-    this.onUpdate('List', collection)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
-  updateOtherOffenses (value) {
-    this.onUpdate('OtherOffenses', value, () => {
+  updateOtherOffenses (values) {
+    this.onUpdate('OtherOffensesBranch', values.branch)
+    this.onUpdate('OtherOffenses', values.items, () => {
       this.checkToClear()
     })
   }
@@ -285,6 +288,7 @@ export default class Police extends ValidationElement {
         <Show when={this.hasOffenses()}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -347,6 +351,7 @@ export default class Police extends ValidationElement {
         <Show when={this.hasOtherOffenses()}>
           <Accordion minimum="1"
                      items={this.state.OtherOffenses}
+                     branch={this.state.OtherOffensesBranch}
                      onUpdate={this.updateOtherOffenses}
                      onValidate={this.handleValidation}
                      summary={this.summary}

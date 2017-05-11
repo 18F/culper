@@ -24,13 +24,15 @@ export default class RealEstateActivity extends ValidationElement {
       this.props.onUpdate({
         HasInterests: this.props.HasInterests,
         List: this.props.List,
+        ListBranch: this.props.ListBranch,
         [field]: values
       })
     }
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   updateHasInterests (values) {
@@ -97,6 +99,7 @@ export default class RealEstateActivity extends ValidationElement {
           <Accordion minimum="1"
             defaultState={this.props.defaultState}
             items={this.props.List}
+            branch={this.props.ListBranch}
             onUpdate={this.updateList}
             summary={this.summary}
             onValidate={this.handleValidation}
@@ -118,5 +121,6 @@ RealEstateActivity.defaultProps = {
   name: 'realestate',
   HasInterests: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

@@ -27,7 +27,7 @@
 
 .accordion {
   background-color: #e5e5e5;
-  padding: 0 5rem;
+  padding: 0 5rem 5rem 5rem;
   margin: 0 -17.5%;
 
   @media screen and (max-width: 1380px) {
@@ -108,6 +108,8 @@
         cursor: pointer;
         text-decoration: none;
         margin-bottom: 2.2rem;
+        width: 6rem;
+        float: right;
 
         span {
           border-bottom: 1px dashed $eapp-blue;
@@ -299,7 +301,7 @@ button.usa-button-outline {
   border-radius: 5px;
   padding: 1.7rem 2.3rem 1.7rem 2.3rem;
   background: #fff;
-  margin: 3.4rem 10%;
+  margin: 3.4rem 10% -1.6rem 10%;
 
   &:hover {
     color: #1a4c88;

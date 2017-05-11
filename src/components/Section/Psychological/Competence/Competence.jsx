@@ -11,6 +11,7 @@ export default class Competence extends ValidationElement {
     this.state = {
       IsIncompetent: props.IsIncompetent,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -25,14 +26,16 @@ export default class Competence extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           IsIncompetent: this.state.IsIncompetent,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   updateIsIncompentent (values) {
@@ -90,6 +93,7 @@ export default class Competence extends ValidationElement {
           <Accordion minimum="1"
             defaultState={this.props.defaultState}
             items={this.state.List}
+            branch={this.state.ListBranch}
             onUpdate={this.updateList}
             summary={this.summary}
             onValidate={this.handleValidation}
@@ -109,6 +113,8 @@ export default class Competence extends ValidationElement {
 }
 
 Competence.defaultProps = {
+  IsIncompetent: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

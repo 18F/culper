@@ -11,6 +11,7 @@ export default class Taxes extends ValidationElement {
     this.state = {
       HasTaxes: props.HasTaxes,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -64,11 +65,12 @@ export default class Taxes extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasTaxes: this.state.HasTaxes
         })
       }
@@ -104,6 +106,7 @@ export default class Taxes extends ValidationElement {
         <Show when={this.state.HasTaxes === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -217,5 +220,6 @@ export default class Taxes extends ValidationElement {
 
 Taxes.defaultProps = {
   HasTaxes: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

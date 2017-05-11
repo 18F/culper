@@ -2,8 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
-         Address, Textarea, Name, DateControl } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import JobOffer from './JobOffer'
 
 export default class Employment extends ValidationElement {
@@ -13,6 +12,7 @@ export default class Employment extends ValidationElement {
     this.state = {
       HasForeignEmployment: props.HasForeignEmployment,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -27,7 +27,8 @@ export default class Employment extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignEmployment: this.state.HasForeignEmployment,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -37,8 +38,9 @@ export default class Employment extends ValidationElement {
     this.onUpdate('HasForeignEmployment', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -97,6 +99,7 @@ export default class Employment extends ValidationElement {
         <Show when={this.state.HasForeignEmployment === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}

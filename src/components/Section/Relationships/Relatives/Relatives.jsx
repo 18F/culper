@@ -21,6 +21,7 @@ export default class Relatives extends ValidationElement {
     super(props)
     this.state = {
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -39,7 +40,8 @@ export default class Relatives extends ValidationElement {
   }
 
   updateList (values) {
-    this.onUpdate('List', values)
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -106,6 +108,7 @@ export default class Relatives extends ValidationElement {
 
         <Accordion minimum="1"
                     items={this.state.List}
+                    branch={this.state.ListBranch}
                     onUpdate={this.updateList}
                     summary={this.summary}
                     description={i18n.t('relationships.relatives.collection.summary.title')}
@@ -122,5 +125,6 @@ export default class Relatives extends ValidationElement {
 }
 
 Relatives.defaultProps = {
-  List: []
+  List: [],
+  ListBranch: ''
 }

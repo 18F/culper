@@ -14,6 +14,6 @@ describe('The Competence component', () => {
     const component = mount(<Competence onUpdate={onUpdate} />)
     component.find('.competence .yes input').simulate('change')
     component.find('input[name="CourtName"]').simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(5)
   })
 })

@@ -225,7 +225,8 @@ describe('Foreign business conferences component validation', function () {
       {
         state: {
           HasForeignConferences: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       },
@@ -266,7 +267,8 @@ describe('Foreign business conferences component validation', function () {
                 ]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

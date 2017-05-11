@@ -8,6 +8,7 @@ export default class Gambling extends ValidationElement {
     super(props)
     this.state = {
       List: props.List || [],
+      ListBranch: props.ListBranch || [],
       HasGamblingDebt: props.HasGamblingDebt,
       errorCodes: []
     }
@@ -66,11 +67,12 @@ export default class Gambling extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  myDispatch (collection) {
-    this.setState({ List: collection }, () => {
+  myDispatch (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasGamblingDebt: this.state.HasGamblingDebt
         })
       }
@@ -130,6 +132,7 @@ export default class Gambling extends ValidationElement {
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onValidate={this.handleValidation}
                      summary={this.summary}

@@ -13,6 +13,7 @@ export default class People extends ValidationElement {
 
     this.state = {
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -25,14 +26,16 @@ export default class People extends ValidationElement {
     this.setState({[field]: values}, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   isValid () {
@@ -59,8 +62,8 @@ export default class People extends ValidationElement {
     const o = (item || {}).Person || {}
     const date = dateRangeFormat(o.KnownDates)
     const name = o.Name
-      ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''} ${date}`.trim()
-      : i18n.t('relationships.people.person.collection.summary.unknown')
+          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''} ${date}`.trim()
+          : i18n.t('relationships.people.person.collection.summary.unknown')
     const type = i18n.t('relationships.people.person.collection.itemType')
 
     return (
@@ -93,11 +96,11 @@ export default class People extends ValidationElement {
 
         <div className="summaryprogress progress">
           <SummaryProgress className="people-summary"
-            List={this.peopleSummaryList}
-            title={i18n.t('relationships.people.summaryProgress.title')}
-            unit={i18n.t('relationships.people.summaryProgress.unit')}
-            total={7}
-          >
+                           List={this.peopleSummaryList}
+                           title={i18n.t('relationships.people.summaryProgress.title')}
+                           unit={i18n.t('relationships.people.summaryProgress.unit')}
+                           total={7}
+                           >
             <div className="summary-icon">
               <Svg src="img/people-who-know-you.svg" />
             </div>
@@ -108,13 +111,14 @@ export default class People extends ValidationElement {
         </div>
 
         <Accordion minimum="1"
-          items={this.state.List}
-          onUpdate={this.updateList}
-          summary={this.summary}
-          onValidate={this.handleValidation}
-          appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
-          appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
-          appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
+                   items={this.state.List}
+                   branch={this.state.ListBranch}
+                   onUpdate={this.updateList}
+                   summary={this.summary}
+                   onValidate={this.handleValidation}
+                   appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
+                   appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
+                   appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
           <Person name="Person" bind={true} />
         </Accordion>
       </div>
@@ -123,5 +127,6 @@ export default class People extends ValidationElement {
 }
 
 People.defaultProps = {
-  List: []
+  List: [],
+  ListBranch: ''
 }

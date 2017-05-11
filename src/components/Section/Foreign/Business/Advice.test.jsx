@@ -23,7 +23,7 @@ describe('The foreign business advice component', () => {
     }
     const component = mount(<Advice {...expected} />)
     component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -55,6 +55,6 @@ describe('The foreign business advice component', () => {
     component.find('.advice-country input').simulate('change')
     component.find('.advice-dates .to .day input').simulate('change')
     component.find('.advice-compensation textarea').simulate('change')
-    expect(updates).toBe(6)
+    expect(updates).toBe(6 * 2)
   })
 })

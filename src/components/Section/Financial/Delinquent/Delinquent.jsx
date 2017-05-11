@@ -11,6 +11,7 @@ export default class Delinquent extends ValidationElement {
     this.state = {
       HasDelinquent: props.HasDelinquent,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -64,11 +65,12 @@ export default class Delinquent extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasDelinquent: this.state.HasDelinquent
         })
       }
@@ -126,6 +128,7 @@ export default class Delinquent extends ValidationElement {
         <Show when={this.state.HasDelinquent === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -263,5 +266,6 @@ export default class Delinquent extends ValidationElement {
 
 Delinquent.defaultProps = {
   HasDelinquent: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

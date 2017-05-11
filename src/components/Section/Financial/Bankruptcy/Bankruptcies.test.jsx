@@ -2,7 +2,6 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Bankruptcies from './Bankruptcies'
 
-
 describe('The bankruptcy component', () => {
   it('no error on empty', () => {
     const expected = {
@@ -81,6 +80,6 @@ describe('The bankruptcy component', () => {
 
     const component = mount(<Bankruptcies {...expected} />)
     component.find('.courtnumber input[name="CourtNumber"]').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(4)
   })
 })

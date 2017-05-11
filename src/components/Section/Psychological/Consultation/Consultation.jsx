@@ -11,6 +11,7 @@ export default class Consultation extends ValidationElement {
     this.state = {
       Consulted: props.Consulted,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -26,14 +27,16 @@ export default class Consultation extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Consulted: this.state.Consulted,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('List', values.branch)
   }
 
   updateConsulted (values) {
@@ -94,6 +97,7 @@ export default class Consultation extends ValidationElement {
           <Accordion minimum="1"
             defaultState={this.props.defaultState}
             items={this.state.List}
+            branch={this.state.ListBranch}
             onUpdate={this.updateList}
             summary={this.summary}
             onValidate={this.handleValidation}
@@ -114,6 +118,8 @@ export default class Consultation extends ValidationElement {
 }
 
 Consultation.defaultProps = {
+  Consulted: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

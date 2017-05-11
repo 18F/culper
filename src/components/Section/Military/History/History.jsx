@@ -23,6 +23,7 @@ export default class History extends ValidationElement {
     this.state = {
       HasServed: props.HasServed,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -46,8 +47,9 @@ export default class History extends ValidationElement {
     }
   }
 
-  updateList (collection) {
-    this.onUpdate('List', collection)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -117,6 +119,7 @@ export default class History extends ValidationElement {
         <Show when={this.state.HasServed === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
