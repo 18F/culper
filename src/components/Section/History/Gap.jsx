@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
+import { DateSummary } from '../../Summary'
 
 /**
  * Renders a formatted gap row
@@ -10,15 +11,14 @@ export class Gap extends React.Component {
       return null
     }
 
-    const from = (this.props.dates.from || {}).date || {}
-    const to = (this.props.dates.to || {}).date || {}
+    const dates = DateSummary(this.props.dates)
 
     return (
       <div className="gap details open">
         <div className="message error">
           <i className="fa fa-exclamation"></i>
-          <span className="dates">{`${from.getMonth() + 1}/${from.getFullYear()}-${to.getMonth() + 1}/${to.getFullYear()}`}</span>
-          <h4>{this.props.title}</h4>
+          <span className="dates"><strong>{dates}</strong></span>
+          <h3>{this.props.title}</h3>
           <p>{this.props.para}</p>
           <button className="usa-button-outline" onClick={this.props.onClick}>
             <span>{this.props.btnText}</span>

@@ -12,14 +12,18 @@ describe('Residence component validation', function () {
       {
         state: {
           Role: 'Other',
-          RoleOther: 'Hello world'
+          RoleOther: {
+            value: 'Hello world'
+          }
         },
         expected: true
       },
       {
         state: {
           Role: 'Other',
-          RoleOther: ''
+          RoleOther: {
+            value: ''
+          }
         },
         expected: false
       },
@@ -104,14 +108,18 @@ describe('Residence component validation', function () {
       {
         state: {
           Role: 'Other',
-          RoleOther: 'Hello world'
+          RoleOther: {
+            value: 'Hello world'
+          }
         },
         expected: false
       },
       {
         state: {
           Role: 'Other',
-          RoleOther: ''
+          RoleOther: {
+            value: ''
+          }
         },
         expected: false
       },

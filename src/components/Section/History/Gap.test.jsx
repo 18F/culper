@@ -60,7 +60,7 @@ describe('The gap component', () => {
     }
     const component = mount(<Gap {...expected} />)
     expect(component.find('button').length).toEqual(1)
-    expect(component.find('.dates').text()).toEqual(`${expected.dates.from.date.getMonth() + 1}/${expected.dates.from.date.getFullYear()}-${expected.dates.to.date.getMonth() + 1}/${expected.dates.to.date.getFullYear()}`)
+    expect(component.find('.dates').text()).toEqual(`${expected.dates.from.date.getMonth() + 1}/${expected.dates.from.date.getFullYear()} - ${expected.dates.to.date.getMonth() + 1}/${expected.dates.to.date.getFullYear()}`)
   })
 
   it('displays employment verbiage', () => {
@@ -80,7 +80,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('h4').text()).toEqual('Employment gap')
+    expect(component.find('h3').text()).toEqual('Employment gap')
     expect(component.find('button').text()).toEqual('Add an employer')
     expect(component.find('p').text()).toEqual('There is a gap in your employment. The entire 10 year period must be covered with no gaps.')
   })
@@ -102,7 +102,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('h4').text()).toEqual('Residence gap')
+    expect(component.find('h3').text()).toEqual('Residence gap')
     expect(component.find('button').text()).toEqual('Add an address')
     expect(component.find('p').text()).toEqual('There is a gap in your residence history. The entire 10 year period must be covered with no gaps')
   })
