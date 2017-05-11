@@ -4870,8 +4870,8 @@ const en = {
           summary: 'Provide your direct financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendMessage: 'If yes use the button below to add another direct interest.',
+          appendLabel: 'Add another direct interest',
           itemType: 'Interest'
         },
         interest: {
@@ -4982,8 +4982,8 @@ const en = {
           summary: 'Provide your indirect financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendMessage: 'If yes use the button below to add another indirect interest.',
+          appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
         interest: {
@@ -5108,8 +5108,8 @@ const en = {
           summary: 'Provide your real estate financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendMessage: 'If yes use the button below to add another real estate interest.',
+          appendLabel: 'Add another real estate interest',
           itemType: 'Interest'
         },
         interest: {
@@ -5255,7 +5255,7 @@ const en = {
           },
           appendTitle: 'Have you additionally provided financial support for any foreign national?',
           appendMessage: [
-            'If yes use the button below to add another instance'
+            'If yes use the button below to add another instance.'
           ],
           append: 'Add another instance'
         }
@@ -5695,7 +5695,7 @@ const en = {
           appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
           appendMessage: [
             'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another instance of advice/support'
+            'If yes use the button below to add another instance of advice/support.'
           ],
           append: 'Add another instance of advice/support'
         }
@@ -5751,9 +5751,9 @@ const en = {
           appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
           appendMessage: [
             'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another instance of advice/support.'
           ],
-          append: 'Add another interest'
+          append: 'Add another instance of advice/support'
         }
       },
       employment: {
@@ -5806,7 +5806,7 @@ const en = {
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
           appendMessage: [
-            'If yes use the button below to add another job offer'
+            'If yes use the button below to add another job offer.'
           ],
           append: 'Add another job offer'
         }
@@ -5897,9 +5897,9 @@ const en = {
           appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
           appendMessage: [
             'Own, co-own, serve as a business consultant, provide financial support, etc.',
-            'If yes use the button below to add another interest'
+            'If yes use the button below to add another business venture.'
           ],
-          append: 'Add another interest'
+          append: 'Add another business venture'
         }
       },
       conferences: {
