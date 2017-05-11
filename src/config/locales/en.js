@@ -6057,6 +6057,7 @@ const en = {
         courtcharge: 'Charge',
         courtoutcome: 'Outcome',
         domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
+        domesticViolenceAppend: 'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
         notApplicable: 'Not applicable',
         or: 'or add date range'
       },
