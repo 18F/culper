@@ -1,9 +1,14 @@
 @import 'eqip-colors';
 
 .offense {
-  .offense-courttype .block label {
-    height: initial !important;
+  .offense-courttype {
+    margin-bottom: 1.1rem;
+
+    .block label {
+      height: initial !important;
+    }
   }
+
 
   .more.title {
     color: $eapp-blue-dark;

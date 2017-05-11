@@ -205,8 +205,7 @@ export default class OtherOffense extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.courttype')}
                titleSize="h4"
                help="legal.police.help.courttype"
-               adjustFor="buttons"
-               shrink={true}>
+               adjustFor="buttons">
           <RadioGroup className="offense-courttype option-list"
                       selectedValue={this.state.CourtType}>
             <Radio name="charge-felony"
@@ -231,28 +230,28 @@ export default class OtherOffense extends ValidationElement {
                    onValidate={this.props.onValidate}
                    />
           </RadioGroup>
-        </Field>
 
-        <Field help="legal.police.help.courtcharge"
-               adjustFor="labels">
-          <Text name="CourtCharge"
-                {...this.state.CourtCharge}
-                label={i18n.t('legal.police.label.courtcharge')}
-                className="offense-courtcharge"
-                onUpdate={this.updateCourtCharge}
-                onValidate={this.props.onValidate}
-                />
-        </Field>
+          <Field help="legal.police.help.courtcharge"
+                 adjustFor="labels">
+            <Text name="CourtCharge"
+                  {...this.state.CourtCharge}
+                  label={i18n.t('legal.police.label.courtcharge')}
+                  className="offense-courtcharge"
+                  onUpdate={this.updateCourtCharge}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
 
-        <Field help="legal.police.help.courtoutcome"
-               adjustFor="labels">
-          <Text name="CourtOutcome"
-                {...this.state.CourtOutcome}
-                label={i18n.t('legal.police.label.courtoutcome')}
-                className="offense-courtoutcome"
-                onUpdate={this.updateCourtOutcome}
-                onValidate={this.props.onValidate}
-                />
+          <Field help="legal.police.help.courtoutcome"
+                 adjustFor="labels">
+            <Text name="CourtOutcome"
+                  {...this.state.CourtOutcome}
+                  label={i18n.t('legal.police.label.courtoutcome')}
+                  className="offense-courtoutcome"
+                  onUpdate={this.updateCourtOutcome}
+                  onValidate={this.props.onValidate}
+                  />
+          </Field>
         </Field>
 
         <Field title={i18n.t('legal.police.heading.courtdate')}
