@@ -5,7 +5,7 @@ import { validBranch } from './helpers'
 
 export default class PoliceOtherOffensesValidator {
   constructor (state = {}, props = {}) {
-    this.otherOffenses = state.OtherOffenses || []
+    this.list = state.List || []
     this.hasOtherConviction = state.HasOtherConviction
     this.hasOtherFelony = state.HasOtherFelony
     this.hasOtherDomestic = state.HasOtherDomestic
@@ -60,11 +60,11 @@ export default class PoliceOtherOffensesValidator {
       return true
     }
 
-    if (this.otherOffenses.length === 0) {
+    if (this.list.length === 0) {
       return false
     }
 
-    for (const otherOffense of this.otherOffenses) {
+    for (const otherOffense of this.list) {
       if (new OtherOffenseValidator(otherOffense.Item, null).isValid() !== true) {
         return false
       }

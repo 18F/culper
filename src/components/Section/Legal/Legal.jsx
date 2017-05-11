@@ -6,7 +6,6 @@ import { ValidationElement, IntroHeader } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
-import Police from './Police'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
@@ -156,9 +155,22 @@ class Legal extends ValidationElement {
             {i18n.m('legal.police.para.intro1')}
             {i18n.m('legal.police.para.intro2')}
             {i18n.m('legal.police.para.intro3')}
-            <Police name="police"
-              {...this.props.Police}
-              onUpdate={this.updatePolice}
+
+            <Offenses name="policeOffenses"
+              {...this.props.PoliceOffenses}
+              onUpdate={this.updatePoliceOffenses}
+              onValidate={this.onValidate}
+            />
+
+            <OtherOffenses name="otherOffenses"
+              {...this.props.PoliceOtherOffenses}
+              onUpdate={this.updatePoliceOtherOffenses}
+              onValidate={this.onValidate}
+            />
+
+            <DomesticViolenceList name="domesticViolence"
+              {...this.props.PoliceDomesticViolence}
+              onUpdate={this.updatePoliceDomesticViolence}
               onValidate={this.onValidate}
             />
           </SectionView>

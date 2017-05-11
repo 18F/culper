@@ -1,10 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
-import { DateSummary } from '../../../Summary'
-import Offense from './Offense'
-import OtherOffense from './OtherOffense'
+import { DomesticViolenceValidator } from '../../../../validators'
+import { ValidationElement,  BranchCollection } from '../../../Form'
 import DomesticViolence from './DomesticViolence'
 
 /**
@@ -23,12 +20,12 @@ export default class DomesticViolenceList extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
-      DomesticViolence: props.DomesticViolence,
+      List: props.List,
       errorCodes: []
     }
 
     this.onUpdate = this.onUpdate.bind(this)
-    this.updateDomesticViolence = this.updateDomesticViolence.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   onUpdate (name, values, fn) {
@@ -41,15 +38,8 @@ export default class DomesticViolenceList extends ValidationElement {
     })
   }
 
-
-  checkToClear () {
-
-  }
-
-  updateDomesticViolence (value, event) {
-    this.onUpdate('DomesticViolence', value, () => {
-      this.checkToClear()
-    })
+  updateList (value, event) {
+    this.onUpdate('List', value)
   }
 
   /**
@@ -85,7 +75,7 @@ export default class DomesticViolenceList extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    return new PoliceValidator(this.state, null).isValid()
+    return new DomesticViolenceValidator(this.state.List, null).isValid()
   }
 
   render () {
@@ -95,8 +85,8 @@ export default class DomesticViolenceList extends ValidationElement {
           label={i18n.m('legal.police.label.domesticViolence')}
           labelSize="h2"
           appendLabel={i18n.m('legal.police.label.domesticViolence')}
-          items={this.state.DomesticViolence}
-          onUpdate={this.updateDomesticViolence}>
+          items={this.state.List}
+          onUpdate={this.updateList}>
           <DomesticViolence name="domestic"
             bind={true}
             onValidate={this.handleValidation}

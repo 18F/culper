@@ -53,7 +53,7 @@ export default class Offenses extends ValidationElement {
 
   checkToClear () {
     // If there is no history clear out any previously entered data
-    if (this.state.HasSummons === 'No' && this.state.HasArrests === 'No' && this.state.HasCharges === 'No' && this.state.HasProbation === 'No' && this.state.HasTrial === 'No') {
+    if (!this.hasOffenses()) {
       this.onUpdate('List', [])
     }
   }
@@ -96,10 +96,6 @@ export default class Offenses extends ValidationElement {
    * Handle the validation event.
    */
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -111,11 +107,6 @@ export default class Offenses extends ValidationElement {
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       const errorObject = { [this.props.name]: codes }
       const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
       super.handleValidation(event, statusObject, errorObject)
     })
   }
@@ -213,7 +204,7 @@ export default class Offenses extends ValidationElement {
         <Show when={this.hasOffenses()}>
           <div>
             <Show when={this.hasOffensesCount() > 1}>
-              <div>{i18n.m('legal.police.para.answeredMultiple')}</div>
+              <h4>{i18n.m('legal.police.para.answeredMultiple')}</h4>
             </Show>
             <Accordion minimum="1"
               items={this.state.List}

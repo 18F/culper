@@ -1,11 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceOtherOffensesValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
-import Offense from './Offense'
 import OtherOffense from './OtherOffense'
-import DomesticViolence from './DomesticViolence'
 
 /**
  * Convenience function to send updates along their merry way
@@ -28,15 +26,14 @@ export default class OtherOffenses extends ValidationElement {
       HasOtherDomestic: props.HasOtherDomestic,
       HasOtherFirearms: props.HasOtherFirearms,
       HasOtherAlcohol: props.HasOtherAlcohol,
-      OtherOffenses: props.OtherOffenses,
+      List: props.List,
       errorCodes: []
     }
 
     this.onUpdate = this.onUpdate.bind(this)
     this.checkToClear = this.checkToClear.bind(this)
     this.hasOtherOffenses = this.hasOtherOffenses.bind(this)
-    this.updateDomesticViolence = this.updateDomesticViolence.bind(this)
-    this.updateOtherOffenses = this.updateOtherOffenses.bind(this)
+    this.updateList = this.updateList.bind(this)
     this.updateOtherConviction = this.updateOtherConviction.bind(this)
     this.updateOtherFelony = this.updateOtherFelony.bind(this)
     this.updateOtherDomestic = this.updateOtherDomestic.bind(this)
@@ -56,13 +53,13 @@ export default class OtherOffenses extends ValidationElement {
 
   checkToClear () {
     // If there is no history clear out any previously entered data
-    if (this.state.HasSummons === 'No' && this.state.HasArrests === 'No' && this.state.HasCharges === 'No' && this.state.HasProbation === 'No' && this.state.HasTrial === 'No') {
+    if (!this.hasOtherOffenses()) {
       this.onUpdate('List', [])
     }
   }
 
-  updateOtherOffenses (value) {
-    this.onUpdate('OtherOffenses', value, () => {
+  updateList (value) {
+    this.onUpdate('List', value, () => {
       this.checkToClear()
     })
   }
@@ -97,20 +94,10 @@ export default class OtherOffenses extends ValidationElement {
     })
   }
 
-  updateDomesticViolence (value, event) {
-    this.onUpdate('DomesticViolence', value, () => {
-      this.checkToClear()
-    })
-  }
-
   /**
    * Handle the validation event.
    */
   handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
     let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
     let complexStatus = null
     if (codes.length > 0) {
@@ -122,11 +109,6 @@ export default class OtherOffenses extends ValidationElement {
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
       const errorObject = { [this.props.name]: codes }
       const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
       super.handleValidation(event, statusObject, errorObject)
     })
   }
@@ -230,22 +212,29 @@ export default class OtherOffenses extends ValidationElement {
         </Branch>
 
         <Show when={this.hasOtherOffenses()}>
-          <Accordion minimum="1"
-            items={this.state.OtherOffenses}
-            onUpdate={this.updateOtherOffenses}
-            onValidate={this.handleValidation}
-            summary={this.summary}
-            description={i18n.t('legal.police.collection.summary.title')}
-            appendTitle={i18n.t('legal.police.collection.appendTitle')}
-            appendMessage={this.otherOffenseBranch()}
-            appendLabel={i18n.t('legal.police.collection.append')}>
-            <OtherOffense name="Item"
-              bind={true}
-              onValidate={this.props.onValidate}
-            />
-          </Accordion>
-        </Show>
-      </div>
+          <div>
+            <Show when={this.hasOtherOffensesCount() > 1}>
+              <div>
+                <h4>{i18n.m('legal.police.para.answeredMultiple')}</h4>
+              </div>
+            </Show>
+            <Accordion minimum="1"
+              items={this.state.List}
+              onUpdate={this.updateList}
+              onValidate={this.handleValidation}
+              summary={this.summary}
+              description={i18n.t('legal.police.collection.summary.title')}
+              appendTitle={i18n.t('legal.police.collection.appendTitle')}
+              appendMessage={this.otherOffenseBranch()}
+              appendLabel={i18n.t('legal.police.collection.append')}>
+              <OtherOffense name="Item"
+                bind={true}
+                onValidate={this.props.onValidate}
+              />
+            </Accordion>
+          </div>
+      </Show>
+    </div>
     )
   }
 }

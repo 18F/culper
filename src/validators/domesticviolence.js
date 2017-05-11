@@ -3,15 +3,15 @@ import { validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class DomesticViolence {
   constructor (state = [], props = {}) {
-    this.orders = state
+    this.list = state
   }
 
   isValid () {
-    if (!this.orders || !this.orders.length) {
+    if (!this.list || !this.list.length) {
       return false
     }
 
-    for (let order of this.orders) {
+    for (let order of this.list) {
       if (order.Has === 'No') {
         continue
       }
