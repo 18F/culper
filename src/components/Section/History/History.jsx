@@ -257,7 +257,7 @@ class History extends ValidationElement {
       return dates
     }
 
-    for (const i of this.props.Residence) {
+    for (const i of this.excludeGaps(this.props.Residence)) {
       if (!i.Item) {
         continue
       }
@@ -279,7 +279,7 @@ class History extends ValidationElement {
       return dates
     }
 
-    for (const i of this.props.Employment) {
+    for (const i of this.excludeGaps(this.props.Employment)) {
       if (!i.Item) {
         continue
       }
