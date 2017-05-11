@@ -25,7 +25,7 @@ export default class SummaryProgress extends ValidationElement {
       let left = 0
       let width = 0
 
-      if (dates.from && dates.to) {
+      if (dates.from && dates.from.date && dates.to && dates.to.date) {
         const from = julian(dates.from.date)
         const to = julian(dates.to.date)
 
@@ -41,7 +41,6 @@ export default class SummaryProgress extends ValidationElement {
           }
 
           if (width > 100) {
-            // width = 100 - Math.abs(left)
             width -= Math.abs(left)
           }
 
