@@ -363,7 +363,7 @@ export default class Police extends ValidationElement {
 
         <BranchCollection help="legal.police.branchCollection.domesticViolence"
                           label={i18n.m('legal.police.label.domesticViolence')}
-                          appendLabel={i18n.m('legal.police.label.domesticViolence')}
+                          appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
                           items={this.state.DomesticViolence}
                           onUpdate={this.updateDomesticViolence}
                           >

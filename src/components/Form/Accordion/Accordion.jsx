@@ -39,6 +39,7 @@ export default class Accordion extends ValidationElement {
       scrollToId: ''
     }
 
+    this.getItems = this.getItems.bind(this)
     this.update = this.update.bind(this)
     this.add = this.add.bind(this)
     this.updateChild = this.updateChild.bind(this)
@@ -54,8 +55,12 @@ export default class Accordion extends ValidationElement {
    */
   componentWillMount () {
     let dirty = false
+    let items = this.getItems()
 
-    let items = [...this.props.items]
+    if (items.length !== this.props.items.length) {
+      dirty = true
+    }
+
     if (items.length < this.props.minimum) {
       for (let i = 0; this.props.minimum - items.length > 0; i++) {
         dirty = true
@@ -91,7 +96,7 @@ export default class Accordion extends ValidationElement {
    * item in to view.
    */
   componentDidUpdate () {
-    if (!this.state.scrollToId) {
+    if (!this.state.scrollToId || this.state.initial) {
       return
     }
 
@@ -131,6 +136,38 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * Create a new item with required properties.
+   */
+  newItem () {
+    return { uuid: super.guid(), open: true }
+  }
+
+  /**
+   * Perform any injections or sorting to the list as deemed necessary.
+   */
+  getItems (skipInnoculation = false) {
+    // If this has realtime enabled then we always perform sorting and
+    // additional injections.
+    //
+    // If it is not realtime but still the first entry in to the accordion
+    // then we do the same.
+    //
+    // If we have been previously infected then assume we still are.
+    const infected = this.props.realtime || this.state.initial || this.props.items.some(item => item.type && item.type === 'Gap')
+
+    // If we are infected then inject the anecdote.
+    const innoculated = infected && !skipInnoculation
+          ? this.props.inject([...this.props.items])
+          : [...this.props.items]
+
+    // If we are not in a dirty environment and have a sorting function then
+    // apply order.
+    return this.props.sort && infected
+      ? innoculated.sort(this.props.sort)
+      : innoculated
+  }
+
+  /**
    * Send the updated list of items back to the parent component.
    */
   update (items) {
@@ -153,13 +190,6 @@ export default class Accordion extends ValidationElement {
 
     this.update(items)
     this.setState({ initial: false, scrollToId: '' })
-  }
-
-  /**
-   * Create a new item with required properties.
-   */
-  newItem () {
-    return { uuid: super.guid(), open: true }
   }
 
   /**
@@ -289,9 +319,7 @@ export default class Accordion extends ValidationElement {
   content () {
     // Ensure we have the minimum amount of items required
     const initial = this.state.initial
-    const items = this.props.sort
-          ? [...this.props.items].sort(this.props.sort)
-          : [...this.props.items]
+    const items = [...this.props.items]
 
     return items.map((item, index, arr) => {
       return (
@@ -398,6 +426,8 @@ Accordion.defaultProps = {
   scrollTo: '',
   timeout: 500,
   sort: null,
+  realtime: true,
+  inject: (items) => { return items },
   onUpdate: () => {},
   onValidate: () => {},
   summary: (item, index, initial = false) => {
