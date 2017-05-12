@@ -5088,11 +5088,11 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
         },
         collection: {
-          summary: 'Provide your real estate financial interests here',
-          description: 'Summary of financial interests',
+          summary: 'Provide your real estate purchase here',
+          description: 'Summary of financial purchase',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendLabel: 'Add another real estate interest',
-          itemType: 'Interest'
+          appendLabel: 'Add another real estate purchase',
+          itemType: 'Purchase'
         },
         interest: {
           para: {
