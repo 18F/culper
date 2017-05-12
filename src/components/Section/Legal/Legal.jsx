@@ -57,9 +57,15 @@ class Legal extends ValidationElement {
     }
 
     let cstatus = 'neutral'
-    if (this.hasStatus('police', status, true)) {
+    if (this.hasStatus('offenses', status, true) &&
+      this.hasStatus('otherOffenses', status, true) &&
+      this.hasStatus('domesticViolence', status, true)
+    ) {
       cstatus = 'complete'
-    } else if (this.hasStatus('police', status, false)) {
+    } else if (this.hasStatus('offenses', status, false) ||
+      this.hasStatus('otherOffenses', status, false) ||
+      this.hasStatus('domesticViolence', status, false)
+    ) {
       cstatus = 'incomplete'
     }
 
@@ -156,7 +162,7 @@ class Legal extends ValidationElement {
             {i18n.m('legal.police.para.intro2')}
             {i18n.m('legal.police.para.intro3')}
 
-            <Offenses name="policeOffenses"
+            <Offenses name="offenses"
               {...this.props.PoliceOffenses}
               onUpdate={this.updatePoliceOffenses}
               onValidate={this.onValidate}
@@ -191,7 +197,7 @@ class Legal extends ValidationElement {
             backLabel={i18n.t('foreign.destination.passport')}
             next="legal/review"
             nextLabel={i18n.t('legal.destination.review')}>
-            <Offenses name="policeOffenses"
+            <Offenses name="offenses"
               {...this.props.PoliceOffenses}
               onUpdate={this.updatePoliceOffenses}
               onValidate={this.onValidate}

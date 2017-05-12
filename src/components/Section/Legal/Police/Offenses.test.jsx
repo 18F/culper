@@ -57,15 +57,15 @@ describe('The Offenses record component', () => {
 
   it('renders with valid offense', () => {
     const expected = {
-      name: 'police-record'
+      name: 'police-record',
+      HasSummons: 'No',
+      HasArrests: 'No',
+      HasCharges: 'No',
+      HasProbation: 'No',
+      HasTrial: 'No'
     }
     const component = mount(<Offenses {...expected} />)
-    expect(component.find('.summons').length).toEqual(1)
-    expect(component.find('.arrests').length).toEqual(1)
-    expect(component.find('.charges').length).toEqual(1)
-    expect(component.find('.probation').length).toEqual(1)
-    expect(component.find('.trial').length).toEqual(1)
-    expect(component.find('.accordion').length).toEqual(0)
+    expect(component.find('.accordion').length).toBe(0)
   })
 
   it('clears', () => {

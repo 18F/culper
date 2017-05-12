@@ -413,7 +413,7 @@ describe('Offense validation', function () {
     })
   })
 
-  it('validates court type', () => {
+  it('validates charge type', () => {
     const tests = [
       {
         state: {
@@ -433,7 +433,7 @@ describe('Offense validation', function () {
         state: {
           WasCited: 'Yes',
           WasCharged: 'Yes',
-          CourtType: 'Does not exit'
+          ChargeType: 'Does not exit'
         },
         expected: false
       },
@@ -441,14 +441,14 @@ describe('Offense validation', function () {
         state: {
           WasCited: 'Yes',
           WasCharged: 'Yes',
-          CourtType: 'Felony'
+          ChargeType: 'Felony'
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new OffenseValidator(test.state, null).validCourtType()).toBe(test.expected)
+      expect(new OffenseValidator(test.state, null).validChargeType()).toBe(test.expected)
     })
   })
 
@@ -714,6 +714,107 @@ describe('Offense validation', function () {
 
     tests.forEach(test => {
       expect(new OffenseValidator(test.state, null).validAddress()).toBe(test.expected)
+    })
+  })
+
+  it('validate awaiting trial', () => {
+    const tests = [
+      {
+        state: {
+          WasSentenced: 'No',
+          AwaitingTrial: 'Yes',
+          AwaitingTrialExplanation: {
+            value: 'Yessss'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasSentenced: 'Yes'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasSentenced: 'No',
+          AwaitingTrial: 'Yes',
+          AwaitingTrialExplanation: null
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validAwaitingTrial()).toBe(test.expected)
+    })
+  })
+
+  it('validate offense', () => {
+    const tests = [
+      {
+        state: {
+          Date: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          Description: {
+            value: 'Some description'
+          },
+          InvolvedViolence: 'No',
+          InvolvedFirearms: 'No',
+          InvolvedSubstances: 'No',
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+          WasCited: 'Yes',
+          CitedBy: {
+            value: 'Somebody'
+          },
+          WasCharged: 'No',
+          Explanation: {
+            value: 'Some explanation'
+          },
+          AgencyAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          },
+
+          WasSentenced: 'No',
+          AwaitingTrial: 'Yes',
+          AwaitingTrialExplanation: {
+            value: 'Yessss'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasSentenced: 'Yes'
+        },
+        expected: true
+      },
+      {
+        state: {
+          WasSentenced: 'No',
+          AwaitingTrial: 'Yes',
+          AwaitingTrialExplanation: null
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OffenseValidator(test.state, null).validAwaitingTrial()).toBe(test.expected)
     })
   })
 })

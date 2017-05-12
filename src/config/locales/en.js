@@ -6011,7 +6011,7 @@ const en = {
         courtname: 'Provide the name of the court',
         courtaddress: 'Provide the location of the court',
         chargedetails: 'Charges detail',
-        courttype: 'Type of charge',
+        chargeType: 'Type of charge',
         courtdate: 'Date',
         sentenced: 'Were you sentenced as a result of this offense?',
         needmore: 'Since you answered yes we need more information',
@@ -6151,7 +6151,7 @@ const en = {
           message: 'Provide the address of the court',
           note: ''
         },
-        courttype: {
+        chargeType: {
           title: 'Need help with the type of charge?',
           message: 'Provide the type of charge issued by the court',
           note: ''

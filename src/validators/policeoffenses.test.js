@@ -44,17 +44,6 @@ describe('Police record validation', function () {
     const tests = [
       {
         state: {
-          HasSummons: 'Yes',
-          HasArrests: null,
-          HasCharges: null,
-          HasProbation: null,
-          HasTrial: null,
-          List: []
-        },
-        expected: false
-      },
-      {
-        state: {
           HasSummons: 'No',
           HasArrests: 'No',
           HasCharges: 'No',
@@ -71,17 +60,6 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
-          List: []
-        },
-        expected: false
-      },
-      {
-        state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'Yes',
           List: [
             {
               Item: {
@@ -92,7 +70,7 @@ describe('Police record validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Description: {
-                  value: 'Description of the offense'
+                  value: 'Some description'
                 },
                 InvolvedViolence: 'No',
                 InvolvedFirearms: 'No',
@@ -104,109 +82,27 @@ describe('Police record validation', function () {
                   state: 'Virginia',
                   zipcode: '22202'
                 },
-                WasCited: 'No'
-              }
-            }
-          ]
-        },
-        expected: true
-      },
-      {
-        state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
+                WasCited: 'Yes',
+                CitedBy: {
+                  value: 'Somebody'
                 },
-                Description: {
-                  value: ''
+                WasCharged: 'No',
+                Explanation: {
+                  value: 'Some explanation'
                 },
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'No',
-                InvolvedSubstances: 'No',
-                Address: null,
-                WasCited: 'No'
-              }
-            }
-          ]
-        },
-        expected: false
-      },
-      {
-        state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Description: {
-                  value: 'Description of the offense'
-                },
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'No',
-                InvolvedSubstances: 'No',
-                Address: {
+                AgencyAddress: {
                   addressType: 'United States',
                   address: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
                   zipcode: '22202'
                 },
-                WasCited: 'No'
-              }
-            }
-          ]
-        },
-        expected: true
-      },
-      {
-        state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Description: {
-                  value: 'Description of the offense'
-                },
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'No',
-                InvolvedSubstances: 'No',
-                Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
-                },
-                WasCited: 'No'
+
+                WasSentenced: 'No',
+                AwaitingTrial: 'Yes',
+                AwaitingTrialExplanation: {
+                  value: 'Yessss'
+                }
               }
             }
           ]

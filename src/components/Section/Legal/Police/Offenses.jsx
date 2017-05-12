@@ -116,7 +116,9 @@ export default class Offenses extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    return new PoliceOffensesValidator(this.state, null).isValid()
+    const valid = new PoliceOffensesValidator(this.state, null).isValid()
+    console.info('Offenses Validator: ', valid)
+    return valid
   }
 
   hasOffenses () {
