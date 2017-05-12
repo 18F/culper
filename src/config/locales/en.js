@@ -5992,6 +5992,9 @@ const en = {
     },
     destination: {
       police: 'Police record',
+      offenses: 'Offenses',
+      additionalOffenses: 'Additional offenses',
+      domesticViolence: 'Domestic violence',
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6042,7 +6045,7 @@ const en = {
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
-          },
+        },
         answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.'
       },
       label: {
@@ -6347,6 +6350,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
+      psychological: 'Psychological and emotional health',
       intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',

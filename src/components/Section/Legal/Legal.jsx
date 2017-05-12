@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader } from '../../Form'
+import { ValidationElement, IntroHeader, Field } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
@@ -156,11 +156,15 @@ class Legal extends ValidationElement {
             title="Let&rsquo;s make sure everything looks right"
             showTop="true"
             back="legal/police"
-            backLabel={i18n.t('legal.destination.police')}>
-            <h2>{i18n.t('legal.police.heading.title')}</h2>
-            {i18n.m('legal.police.para.intro1')}
-            {i18n.m('legal.police.para.intro2')}
-            {i18n.m('legal.police.para.intro3')}
+            backLabel={i18n.t('legal.destination.police')}
+            next="psychological/intro"
+            nextLabel={i18n.t('psychological.destination.psychological')}>
+            <Field title={i18n.t('legal.police.heading.title')}
+              titleSize="h2">
+              {i18n.m('legal.police.para.intro1')}
+              {i18n.m('legal.police.para.intro2')}
+              {i18n.m('legal.police.para.intro3')}
+            </Field>
 
             <Offenses name="offenses"
               {...this.props.PoliceOffenses}
@@ -182,10 +186,10 @@ class Legal extends ValidationElement {
           </SectionView>
 
           <SectionView name="police"
-            back="foreign/passport"
-            backLabel={i18n.t('foreign.destination.passport')}
-            next="legal/review"
-            nextLabel={i18n.t('legal.destination.review')}>
+            back="foreign/business/conferences"
+            backLabel={i18n.t('foreign.destination.business.events')}
+            next="legal/police/offenses"
+            nextLabel={i18n.t('legal.destination.offenses')}>
             <h2>{i18n.t('legal.police.heading.title')}</h2>
             {i18n.m('legal.police.para.intro1')}
             {i18n.m('legal.police.para.intro2')}
@@ -193,10 +197,10 @@ class Legal extends ValidationElement {
           </SectionView>
 
           <SectionView name="police/offenses"
-            back="foreign/passport"
-            backLabel={i18n.t('foreign.destination.passport')}
-            next="legal/review"
-            nextLabel={i18n.t('legal.destination.review')}>
+            back="legal/police"
+            backLabel={i18n.t('legal.destination.police')}
+            next="legal/police/additionaloffenses"
+            nextLabel={i18n.t('legal.destination.additionalOffenses')}>
             <Offenses name="offenses"
               {...this.props.PoliceOffenses}
               onUpdate={this.updatePoliceOffenses}
@@ -205,10 +209,10 @@ class Legal extends ValidationElement {
           </SectionView>
 
           <SectionView name="police/additionaloffenses"
-            back="foreign/passport"
-            backLabel={i18n.t('foreign.destination.passport')}
-            next="legal/review"
-            nextLabel={i18n.t('legal.destination.review')}>
+            back="legal/police/offenses"
+            backLabel={i18n.t('legal.destination.offenses')}
+            next="legal/police/domesticviolence"
+            nextLabel={i18n.t('legal.destination.domesticViolence')}>
             <OtherOffenses name="otheroffenses"
               {...this.props.PoliceOtherOffenses}
               onUpdate={this.updatePoliceOtherOffenses}
@@ -217,8 +221,8 @@ class Legal extends ValidationElement {
           </SectionView>
 
           <SectionView name="police/domesticviolence"
-            back="foreign/passport"
-            backLabel={i18n.t('foreign.destination.passport')}
+            back="legal/police/additionaloffenses"
+            backLabel={i18n.t('legal.destination.additionalOffenses')}
             next="legal/review"
             nextLabel={i18n.t('legal.destination.review')}>
             <DomesticViolenceList name="domesticviolence"

@@ -119,9 +119,10 @@ class Psychological extends ValidationElement {
           </SectionView>
 
           <SectionView name="intro"
-            back=""
+            back="legal/police/domesticviolence"
+            backLabel={ i18n.t('legal.destination.domesticViolence') }
             next="psychological/competence"
-            nextLabel={ i18n.m('psychological.destination.competence') }>
+            nextLabel={ i18n.t('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para2') }
