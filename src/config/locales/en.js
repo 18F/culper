@@ -2012,6 +2012,7 @@ const en = {
         us: {
           title: 'U.S. Citizenship Documentation',
           documentation: 'Provide one type of citizenship documentation and document number below:',
+          expiration: 'Provide document expiration date',
           number: 'Provide the document number',
           name: 'Provide the name of the court that issued the Certificate of Naturalization',
           address: 'Provide the address of the court that issued the Certificate of Naturalization'
@@ -2149,7 +2150,8 @@ const en = {
         maiden: {
           same: 'Same as listed',
           diff: 'Different name'
-        }
+        },
+        estimated: 'Estimated'
       },
       help: {
         relation: {
@@ -2205,6 +2207,11 @@ const en = {
         documentnumber: {
           title: 'Need help with the document number?',
           message: 'Provide the document number for the citizenship',
+          note: ''
+        },
+        documentexpiration: {
+          title: 'Need help with the date of expiration?',
+          message: 'Provide the approximate date of expiration',
           note: ''
         },
         courtname: {

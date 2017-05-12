@@ -40,6 +40,7 @@ export default class Relative extends ValidationElement {
       Derived: props.Derived,
       DerivedComments: props.DerivedComments,
       DocumentNumber: props.DocumentNumber,
+      DocumentExpiration: props.DocumentExpiration,
       CourtName: props.CourtName,
       CourtAddress: props.CourtAddress,
       Document: props.Document,
@@ -78,6 +79,7 @@ export default class Relative extends ValidationElement {
     this.updateDerived = this.updateDerived.bind(this)
     this.updateDerivedComments = this.updateDerivedComments.bind(this)
     this.updateDocumentNumber = this.updateDocumentNumber.bind(this)
+    this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
     this.updateDocument = this.updateDocument.bind(this)
@@ -167,6 +169,10 @@ export default class Relative extends ValidationElement {
 
   updateDocumentNumber (values) {
     this.onUpdate('DocumentNumber', values)
+  }
+
+  updateDocumentExpiration (values) {
+    this.onUpdate('DocumentExpiration', values)
   }
 
   updateCourtName (values) {
@@ -604,6 +610,17 @@ export default class Relative extends ValidationElement {
                     />
             </Field>
 
+            <Field title={i18n.t('relationships.relatives.heading.us.expiration')}
+                   help="relationships.relatives.help.documentexpiration"
+                   adjustFor="datecontrol">
+              <DateControl name="DocumentExpiration"
+                           {...this.state.DocumentExpiration}
+                           className="relative-documentexpiration"
+                           onUpdate={this.updateDocumentExpiration}
+                           onValidate={this.props.onValidate}
+                           />
+            </Field>
+
             <Field title={i18n.t('relationships.relatives.heading.us.name')}
                    titleSize="h3"
                    help="relationships.relatives.help.courtname">
@@ -940,6 +957,7 @@ Relative.defaultProps = {
   Derived: '',
   DerivedComments: {},
   DocumentNumber: {},
+  DocumentExpiration: {},
   CourtName: {},
   CourtAddress: {},
   Document: '',

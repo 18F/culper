@@ -23,6 +23,7 @@ describe('The relative component', () => {
     expect(component.find('.relative-naturalized').length).toEqual(0)
     expect(component.find('.relative-derived').length).toEqual(0)
     expect(component.find('.relative-documentnumber').length).toEqual(0)
+    expect(component.find('.relative-documentexpiration').length).toEqual(0)
     expect(component.find('.relative-courtname').length).toEqual(0)
     expect(component.find('.relative-courtaddress').length).toEqual(0)
     expect(component.find('.relative-document').length).toEqual(0)
@@ -261,9 +262,10 @@ describe('The relative component', () => {
     component.find('.relative-naturalized .naturalized-alien input').simulate('change')
     component.find('.relative-derived .derived-alien input').simulate('change')
     component.find('.relative-documentnumber input').simulate('change', { target: { value: 'documentnumber' } })
+    component.find('.relative-documentexpiration .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-courtname input').simulate('change', { target: { value: 'courtname' } })
     component.find('.relative-courtaddress .city input').simulate('change', { target: { name: 'city', value: 'The city' } })
-    expect(updates).toBe(6)
+    expect(updates).toBe(7)
   })
 
   it('is not a citizen but lives in the United States?', () => {

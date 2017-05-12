@@ -44,6 +44,7 @@ export class RelativeValidator {
     this.derived = state.Derived
     this.derivedComments = state.DerivedComments
     this.documentNumber = state.DocumentNumber
+    this.documentExpiration = state.DocumentExpiration
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
     this.document = state.Document
@@ -187,6 +188,14 @@ export class RelativeValidator {
     return validGenericTextfield(this.documentNumber)
   }
 
+  validDocumentExpiration () {
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return !!this.documentExpiration && validDateField(this.documentExpiration)
+  }
+
   validCourtName () {
     if (!this.requiresCitizenshipDocumentation()) {
       return true
@@ -311,6 +320,7 @@ export class RelativeValidator {
       this.validNaturalized() &&
       this.validDerived() &&
       this.validDocumentNumber() &&
+      this.validDocumentExpiration() &&
       this.validCourtName() &&
       this.validCourtAddress() &&
       this.validDocument() &&
