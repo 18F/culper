@@ -6091,13 +6091,13 @@ const en = {
           note: ''
         },
         date: {
-          title: 'Need help withe the date of offense?',
-          message: 'Provide the closest date of the offense',
-          note: ''
+          title: 'Need help with the date this offense?',
+          message: 'Tell us the date the actual offense happened.',
+          note: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         description: {
-          title: 'Need help with the description of the offense?',
-          message: 'Provide an account of the nature of the offense',
+          title: 'Need help describing this offense?',
+          message: 'Give us details about how this offense happened. Be as clear and in depth as you can.',
           note: ''
         },
         violence: {
@@ -6116,8 +6116,8 @@ const en = {
           note: ''
         },
         address: {
-          title: 'Need help with the location of the offense?',
-          message: 'Provide the address where the offense took place',
+          title: 'Need help with this address?',
+          message: 'Tell us where the event happened.',
           note: ''
         },
         cited: {
@@ -6146,9 +6146,9 @@ const en = {
           note: ''
         },
         courtaddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         courttype: {
           title: 'Need help with the type of charge?',
