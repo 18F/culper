@@ -63,8 +63,9 @@ export default class DomesticViolenceList extends ValidationElement {
           label={i18n.m('legal.police.label.domesticViolence')}
           labelSize="h2"
           className="has-order"
-          appendLabel={i18n.m('legal.police.label.domesticViolence')}
+          appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
           items={this.props.List}
+          onValidate={this.handleValidation}
           onUpdate={this.updateList}>
           <DomesticViolence name="domestic"
             bind={true}

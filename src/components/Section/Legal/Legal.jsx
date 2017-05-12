@@ -58,13 +58,13 @@ class Legal extends ValidationElement {
 
     let cstatus = 'neutral'
     if (this.hasStatus('offenses', status, true) &&
-      this.hasStatus('otherOffenses', status, true) &&
-      this.hasStatus('domesticViolence', status, true)
+      this.hasStatus('otheroffenses', status, true) &&
+      this.hasStatus('domesticviolence', status, true)
     ) {
       cstatus = 'complete'
     } else if (this.hasStatus('offenses', status, false) ||
-      this.hasStatus('otherOffenses', status, false) ||
-      this.hasStatus('domesticViolence', status, false)
+      this.hasStatus('otheroffenses', status, false) ||
+      this.hasStatus('domesticviolence', status, false)
     ) {
       cstatus = 'incomplete'
     }
@@ -168,13 +168,13 @@ class Legal extends ValidationElement {
               onValidate={this.onValidate}
             />
 
-            <OtherOffenses name="otherOffenses"
+            <OtherOffenses name="otheroffenses"
               {...this.props.PoliceOtherOffenses}
               onUpdate={this.updatePoliceOtherOffenses}
               onValidate={this.onValidate}
             />
 
-            <DomesticViolenceList name="domesticViolence"
+            <DomesticViolenceList name="domesticviolence"
               {...this.props.PoliceDomesticViolence}
               onUpdate={this.updatePoliceDomesticViolence}
               onValidate={this.onValidate}
@@ -209,7 +209,7 @@ class Legal extends ValidationElement {
             backLabel={i18n.t('foreign.destination.passport')}
             next="legal/review"
             nextLabel={i18n.t('legal.destination.review')}>
-            <OtherOffenses name="otherOffenses"
+            <OtherOffenses name="otheroffenses"
               {...this.props.PoliceOtherOffenses}
               onUpdate={this.updatePoliceOtherOffenses}
               onValidate={this.onValidate}
@@ -221,7 +221,7 @@ class Legal extends ValidationElement {
             backLabel={i18n.t('foreign.destination.passport')}
             next="legal/review"
             nextLabel={i18n.t('legal.destination.review')}>
-            <DomesticViolenceList name="domesticViolence"
+            <DomesticViolenceList name="domesticviolence"
               {...this.props.PoliceDomesticViolence}
               onUpdate={this.updatePoliceDomesticViolence}
               onValidate={this.onValidate}

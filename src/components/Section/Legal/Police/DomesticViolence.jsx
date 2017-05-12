@@ -51,7 +51,7 @@ export default class DomesticViolence extends ValidationElement {
     return (
       <div className="domestic-violence">
         <Field title={i18n.t('legal.police.heading.domesticExplanation')}
-               titleSize="h4">
+               titleSize="h3">
           <Textarea
             className="explanation"
             name="explanation"
@@ -59,7 +59,7 @@ export default class DomesticViolence extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.police.heading.domesticCourtDate')}
-               titleSize="h4"
+               titleSize="h3"
                help="legal.police.help.domesticIssued"
                adjustFor="labels"
                shrink={true}>
@@ -73,7 +73,7 @@ export default class DomesticViolence extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.police.heading.domesticCourtName')}
-               titleSize="h4"
+               titleSize="h3"
                help="legal.police.help.courtname"
                adjustFor="labels">
           <Text name="CourtName"
@@ -86,7 +86,7 @@ export default class DomesticViolence extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.police.heading.domesticCourtAddress')}
-               titleSize="h4"
+               titleSize="h3"
                help="legal.police.help.courtaddress"
                adjustFor="address"
                shrink={true}>

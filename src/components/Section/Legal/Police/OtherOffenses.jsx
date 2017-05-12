@@ -229,7 +229,7 @@ export default class OtherOffenses extends ValidationElement {
               appendLabel={i18n.t('legal.police.collection.append')}>
               <OtherOffense name="Item"
                 bind={true}
-                onValidate={this.props.onValidate}
+                onValidate={this.handleValidation}
               />
             </Accordion>
           </div>

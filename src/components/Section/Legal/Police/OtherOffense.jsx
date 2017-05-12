@@ -202,29 +202,29 @@ export default class OtherOffense extends ValidationElement {
         <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
         {i18n.m('legal.police.para.chargedetails')}
 
-        <Field title={i18n.t('legal.police.heading.courttype')}
+        <Field title={i18n.t('legal.police.heading.chargeType')}
                titleSize="h4"
-               help="legal.police.help.courttype"
+               help="legal.police.help.chargeType"
                adjustFor="buttons">
-          <RadioGroup className="offense-courttype option-list"
+          <RadioGroup className="offense-chargeType option-list"
                       selectedValue={this.state.CourtType}>
             <Radio name="charge-felony"
                    className="charge-felony"
-                   label={i18n.t('legal.police.label.felony')}
+                   label={i18n.m('legal.police.label.felony')}
                    value="Felony"
                    onChange={this.updateCourtType}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="charge-misdemeanor"
                    className="charge-misdemeanor"
-                   label={i18n.t('legal.police.label.misdemeanor')}
+                   label={i18n.m('legal.police.label.misdemeanor')}
                    value="Misdemeanor"
                    onChange={this.updateCourtType}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="charge-other"
                    className="charge-other"
-                   label={i18n.t('legal.police.label.other')}
+                   label={i18n.m('legal.police.label.other')}
                    value="Other"
                    onChange={this.updateCourtType}
                    onValidate={this.props.onValidate}
