@@ -169,8 +169,8 @@ select {
 
     &.checked {
       color: #fff;
-      border: 1px solid $eapp-green;
-      background: $eapp-green;
+      border: 1px solid $eapp-selected;
+      background: $eapp-selected;
     }
 
     &.checked.usa-input-focus,
