@@ -124,9 +124,17 @@
 
   .byline {
     width: 100%;
-    padding: 1rem 7.5%;
+    padding: 1rem 10%;
     transition: border-left-color 0.3s;
     border-right: 0.4rem solid #fff;
+
+    @media screen and (max-width: 1380px) {
+      padding: 1rem 7.5%;
+    }
+
+    @media screen and (max-width: 1024px) {
+      padding: 1rem 5.5%;
+    }
 
     &.close {
       border-left: 0.4rem solid #fff;

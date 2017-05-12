@@ -798,7 +798,7 @@ const en = {
         email: {
           title: 'Need help with your email addresses?',
           message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
-          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation.'
+          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
         },
         phoneNumber: {
           title: 'Need help with your phone numbers?',
@@ -6032,6 +6032,7 @@ const en = {
         courtcharge: 'Charge',
         courtoutcome: 'Outcome',
         domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
+        domesticViolenceAppend: 'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
         notApplicable: 'Not applicable',
         or: 'or add date range'
       },
