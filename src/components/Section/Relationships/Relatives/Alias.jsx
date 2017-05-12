@@ -58,8 +58,9 @@ export default class Alias extends ValidationElement {
               onUpdate={this.updateName}
               />
 
-        <h4>{i18n.t('relationships.relatives.heading.alias.maiden')}</h4>
         <Branch name="MaidenName"
+                label={i18n.t('relationships.relatives.heading.alias.maiden')}
+                labelSize="h4"
                 className="alias-maiden"
                 value={this.state.MaidenName}
                 onUpdate={this.updateMaidenName} >

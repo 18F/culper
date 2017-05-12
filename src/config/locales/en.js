@@ -2001,7 +2001,7 @@ const en = {
         alias: {
           branch: 'Has this relative used any additional names?',
           title: 'Provide other names used and the period of time that your relative used them.',
-          maiden: 'Maiden name?',
+          maiden: 'Was this their maiden name?',
           reason: 'Provide the reason(s) why the name changed.',
           additional: 'Has this relative used any additional names?'
         },
