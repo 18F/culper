@@ -55,6 +55,7 @@ export default class DomesticViolence extends ValidationElement {
           <Textarea
             className="explanation"
             name="explanation"
+            {...this.state.Explanation}
             onUpdate={this.updateExplanation} />
         </Field>
 

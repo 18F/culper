@@ -13,7 +13,7 @@ export default class OtherOffenseValidator {
     this.explanation = state.Explanation
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
-    this.courtType = state.CourtType
+    this.chargeType = state.ChargeType
     this.courtCharge = state.CourtCharge
     this.courtOutcome = state.CourtOutcome
     this.courtDate = state.CourtDate
@@ -49,8 +49,8 @@ export default class OtherOffenseValidator {
     return !!this.courtAddress && new AddressValidator(this.courtAddress, null).isValid()
   }
 
-  validCourtType () {
-    return !!this.courtType && ['Felony', 'Misdemeanor', 'Other'].includes(this.courtType)
+  validChargeType () {
+    return !!this.chargeType && ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
   }
 
   validCourtCharge () {
@@ -84,7 +84,7 @@ export default class OtherOffenseValidator {
       this.validFirearms() &&
       this.validSubstances() &&
       this.validCourtName() &&
-      this.validCourtType() &&
+      this.validChargeType() &&
       this.validCourtCharge() &&
       this.validCourtOutcome() &&
       this.validCourtDate() &&

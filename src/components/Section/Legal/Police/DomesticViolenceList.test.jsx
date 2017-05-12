@@ -8,7 +8,7 @@ describe('The DomesticViolenceList  component', () => {
       name: 'sentence'
     }
     const component = mount(<DomesticViolenceList {...expected} />)
-    expect(component.find('.police').length).toBe(1)
+    expect(component.find('.domestic-violence-list').length).toBe(1)
   })
 
   it('updates value', () => {

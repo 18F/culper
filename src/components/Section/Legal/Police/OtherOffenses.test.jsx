@@ -18,13 +18,17 @@ describe('The offense component', () => {
     expect(updates).toBe(6)
   })
 
-  it('no error on empty', () => {
+  it('Loads all no values', () => {
     const expected = {
       name: 'offense',
-      HasOtherConviction: 'Yes'
+      HasOtherConviction: 'No',
+      HasOtherFelony: 'No',
+      HasOtherDomestic: 'No',
+      HasOtherFirearms: 'No',
+      HasOtherAlcohol: 'No'
     }
     const component = mount(<OtherOffenses {...expected} />)
-    expect(component.find('.accordion').length).toBe(1)
+    expect(component.find('.accordion').length).toBe(0)
   })
 
   it('clears', () => {

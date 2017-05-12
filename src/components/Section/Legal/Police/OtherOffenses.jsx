@@ -164,7 +164,7 @@ export default class OtherOffenses extends ValidationElement {
 
   render () {
     return (
-      <div className="police">
+      <div className="police-other-offenses">
         <h2>{i18n.t('legal.police.para.otherOffense.intro')}</h2>
         <Branch name="has_otherconviction"
           className="otherconviction"

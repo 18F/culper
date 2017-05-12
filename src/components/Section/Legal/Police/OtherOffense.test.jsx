@@ -15,7 +15,7 @@ describe('The offense component', () => {
     expect(component.find('.offense-substances').length).toEqual(1)
     expect(component.find('.offense-courtname').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(1)
-    expect(component.find('.offense-courttype').length).toEqual(1)
+    expect(component.find('.offense-chargetype').length).toEqual(1)
     expect(component.find('.offense-sentenced').length).toEqual(1)
   })
 
@@ -35,7 +35,7 @@ describe('The offense component', () => {
     component.find('.offense-substances .yes input').simulate('change')
     component.find('.offense-courtname input').simulate('change', { target: { value: 'Some court' } })
     component.find('.offense-courtaddress .city input').simulate('change', { target: { value: 'The city' } })
-    component.find('.offense-courttype .charge-felony input').simulate('change')
+    component.find('.offense-chargetype .charge-felony input').simulate('change')
     component.find('.offense-courtcharge input').simulate('change', { target: { value: 'charge' } })
     component.find('.offense-courtoutcome input').simulate('change', { target: { value: 'outcome' } })
     component.find('.offense-courtdate .month input').simulate('change', { target: { name: 'month', value: '1' } })

@@ -106,7 +106,7 @@ describe('Police record validation', function () {
                 InvolvedViolence: 'No',
                 InvolvedFirearms: 'Yes',
                 InvolvedSubstances: 'No',
-                CourtType: 'Felony',
+                ChargeType: 'Felony',
                 CourtAddress: {
                   addressType: 'United States',
                   address: '1234 Some Rd',
@@ -185,7 +185,7 @@ describe('Police record validation', function () {
                 InvolvedViolence: 'No',
                 InvolvedFirearms: 'Yes',
                 InvolvedSubstances: 'No',
-                CourtType: 'Felony',
+                ChargeType: 'Felony',
                 CourtAddress: {
                   addressType: 'United States',
                   address: '1234 Some Rd',

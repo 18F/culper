@@ -30,6 +30,7 @@ export default class OtherOffense extends ValidationElement {
       CourtCharge: props.CourtCharge,
       CourtOutcome: props.CourtOutcome,
       CourtDate: props.CourtDate,
+      ChargeType: props.ChargeType,
       WasSentenced: props.WasSentenced,
       Sentence: props.Sentence,
       AwaitingTrial: props.AwaitingTrial,
@@ -44,7 +45,7 @@ export default class OtherOffense extends ValidationElement {
     this.updateInvolvedSubstances = this.updateInvolvedSubstances.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateCourtType = this.updateCourtType.bind(this)
+    this.updateChargeType = this.updateChargeType.bind(this)
     this.updateCourtCharge = this.updateCourtCharge.bind(this)
     this.updateCourtOutcome = this.updateCourtOutcome.bind(this)
     this.updateCourtDate = this.updateCourtDate.bind(this)
@@ -88,8 +89,8 @@ export default class OtherOffense extends ValidationElement {
     this.onUpdate('CourtAddress', value)
   }
 
-  updateCourtType (event) {
-    this.onUpdate('CourtType', event.target.value)
+  updateChargeType (event) {
+    this.onUpdate('ChargeType', event.target.value)
   }
 
   updateCourtCharge (value) {
@@ -206,27 +207,27 @@ export default class OtherOffense extends ValidationElement {
                titleSize="h4"
                help="legal.police.help.chargeType"
                adjustFor="buttons">
-          <RadioGroup className="offense-chargeType option-list"
-                      selectedValue={this.state.CourtType}>
+          <RadioGroup className="offense-chargetype option-list"
+                      selectedValue={this.state.ChargeType}>
             <Radio name="charge-felony"
                    className="charge-felony"
                    label={i18n.m('legal.police.label.felony')}
                    value="Felony"
-                   onChange={this.updateCourtType}
+                   onChange={this.updateChargeType}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="charge-misdemeanor"
                    className="charge-misdemeanor"
                    label={i18n.m('legal.police.label.misdemeanor')}
                    value="Misdemeanor"
-                   onChange={this.updateCourtType}
+                   onChange={this.updateChargeType}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="charge-other"
                    className="charge-other"
                    label={i18n.m('legal.police.label.other')}
                    value="Other"
-                   onChange={this.updateCourtType}
+                   onChange={this.updateChargeType}
                    onValidate={this.props.onValidate}
                    />
           </RadioGroup>

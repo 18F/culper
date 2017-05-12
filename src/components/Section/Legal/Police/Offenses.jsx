@@ -116,9 +116,7 @@ export default class Offenses extends ValidationElement {
    * a valid state.
    */
   isValid () {
-    const valid = new PoliceOffensesValidator(this.state, null).isValid()
-    console.info('Offenses Validator: ', valid)
-    return valid
+    return new PoliceOffensesValidator(this.state, null).isValid()
   }
 
   hasOffenses () {
@@ -150,7 +148,7 @@ export default class Offenses extends ValidationElement {
 
   render () {
     return (
-      <div className="police">
+      <div className="police-offenses">
         <h2>{i18n.t('legal.police.heading.questions')}</h2>
         <Branch name="has_summons"
           className="summons"
