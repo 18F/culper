@@ -474,8 +474,9 @@ export default class Relative extends ValidationElement {
                   <Svg src="img/date-down-arrow.svg" className="more arrow" />
                 </Field>
                 <Alias name="Item"
-                  onValidate={this.props.onValidate}
-                  bind={true} />
+                       onValidate={this.props.onValidate}
+                       hideMaiden={this.state.Relations.some(x => x === 'Mother')}
+                       bind={true} />
               </div>
             </BranchCollection>
           </div>
@@ -767,8 +768,8 @@ export default class Relative extends ValidationElement {
                        commentsName="MethodsComments"
                        commentsValue={this.state.MethodsComments}
                        commentsActive={(this.state.Methods || []).some(x => x === 'Other')}
-                       onUpdate={this.updateMethodsComments}
-                       adjustFor="big-buttons">
+                  onUpdate={this.updateMethodsComments}
+                  adjustFor="big-buttons">
                   <div>
                     {i18n.m('relationships.relatives.para.checkall')}
                     <CheckboxGroup className="relative-methods option-list"
@@ -903,10 +904,10 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <NotApplicable name="EmployerRelationshipNotApplicable"
-                                label={i18n.t('relationships.relatives.label.idk')}
-                                or={i18n.m('relationships.relatives.para.or')}
-                                onValidate={this.props.onValidate}
-                                onUpdate={this.updateEmployerRelationshipNotApplicable}>
+                               label={i18n.t('relationships.relatives.label.idk')}
+                               or={i18n.m('relationships.relatives.para.or')}
+                               onValidate={this.props.onValidate}
+                               onUpdate={this.updateEmployerRelationshipNotApplicable}>
                   <Branch name="has_affiliation"
                           label={i18n.t('relationships.relatives.heading.employer.affiliated')}
                           labelSize="h3"
@@ -918,7 +919,7 @@ export default class Relative extends ValidationElement {
                   </Branch>
                   <Show when={this.state.HasAffiliation === 'Yes'}>
                     <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}
-                            help="relationships.relatives.help.employerrelationship">
+                           help="relationships.relatives.help.employerrelationship">
                       <Textarea name="EmployerRelationship"
                                 className="relative-employer-relationship"
                                 {...this.state.EmployerRelationship}

@@ -210,6 +210,8 @@ describe('The relative component', () => {
     expect(component.find('.relative-maidenname').length).toBeGreaterThan(0)
     component.find('.relative-maidenname .last input').simulate('change', { target: { value: 'maidenname' } })
     expect(updates).toBe(2)
+    component.find('.relative-alias .branch .yes input').simulate('change')
+    expect(component.find('.alias-maiden').length).toBe(0)
   })
 
   it('is immediate relationships?', () => {
@@ -230,14 +232,13 @@ describe('The relative component', () => {
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)
     component.find('.relative-alias .branch .yes input').simulate('change')
     component.find('.alias-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
-    component.find('.alias-maiden .yes input').simulate('change')
     component.find('.alias-dates .datecontrol.from .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.alias-dates .datecontrol.from .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.alias-dates .datecontrol.from .year input').simulate('change', { target: { name: 'year', value: '2001' } })
     component.find('.alias-dates .datecontrol.to .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.alias-dates .datecontrol.to .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.alias-dates .datecontrol.to .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    expect(updates).toBe(9)
+    expect(updates).toBe(8)
   })
 
   it('is a citizen but lives abroad?', () => {

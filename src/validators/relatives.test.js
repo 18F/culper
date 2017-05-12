@@ -208,11 +208,17 @@ describe('Relatives validation', function () {
       {
         state: {
         },
+        props: {
+          hideMaiden: false
+        },
         expected: false
       },
       {
         state: {
           Aliases: []
+        },
+        props: {
+          hideMaiden: false
         },
         expected: false
       },
@@ -224,6 +230,9 @@ describe('Relatives validation', function () {
             }
           ]
         },
+        props: {
+          hideMaiden: false
+        },
         expected: true
       },
       {
@@ -233,6 +242,9 @@ describe('Relatives validation', function () {
               Has: 'Yes'
             }
           ]
+        },
+        props: {
+          hideMaiden: false
         },
         expected: false
       },
@@ -269,12 +281,15 @@ describe('Relatives validation', function () {
             }
           ]
         },
+        props: {
+          hideMaiden: false
+        },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validAliases()).toBe(test.expected)
+      expect(new RelativeValidator(test.state, test.props).validAliases()).toBe(test.expected)
     })
   })
 

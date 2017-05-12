@@ -128,7 +128,8 @@ export class RelativeValidator {
         continue
       }
 
-      if (has && new AliasValidator(alias.Item, null).isValid() === false) {
+      const props = { hideMaiden: this.relations.some(x => x === 'Mother') }
+      if (has && new AliasValidator(alias.Item, props).isValid() === false) {
         return false
       }
     }
@@ -331,6 +332,7 @@ export class AliasValidator {
     this.maidenName = state.MaidenName
     this.dates = state.Dates
     this.reason = state.Reason
+    this.hideMaiden = props.hideMaiden
   }
 
   validName () {
@@ -338,6 +340,10 @@ export class AliasValidator {
   }
 
   validMaidenName () {
+    if (this.hideMaiden) {
+      return true
+    }
+
     return !!this.maidenName && (this.maidenName === 'No' || this.maidenName === 'Yes')
   }
 
