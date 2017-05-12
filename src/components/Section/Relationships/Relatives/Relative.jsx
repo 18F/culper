@@ -465,7 +465,7 @@ export default class Relative extends ValidationElement {
                 </Field>
                 <Alias name="Item"
                        onValidate={this.props.onValidate}
-                       hideMaiden={this.state.Relation === 'Mother'}
+                       hideMaiden={mother}
                   bind={true} />
               </div>
             </BranchCollection>
@@ -495,16 +495,14 @@ export default class Relative extends ValidationElement {
 
         <Show when={validator.requiresCitizenshipDocumentation()}>
           <div>
-            <h3 className="more title">{i18n.t('relationships.relatives.heading.needmore')}</h3>
-            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            <h2>{i18n.t('relationships.relatives.heading.us.title')}</h2>
 
-            <h3>{i18n.t('relationships.relatives.heading.us.title')}</h3>
-            <h4>{i18n.t('relationships.relatives.heading.us.documentation')}</h4>
-
-            {i18n.m('relationships.relatives.para.abroad')}
-            <Field help="relationships.relatives.help.abroad"
-                   adjustFor="buttons"
+            <Field title={i18n.t('relationships.relatives.heading.us.documentation')}
+                   titleSize="h3"
+                   help="relationships.relatives.help.abroad"
+                   adjustFor="p"
                    shrink={true}>
+              {i18n.m('relationships.relatives.para.abroad')}
               <RadioGroup className="relative-abroad option-list"
                           selectedValue={this.state.Abroad}>
                 <Radio name="abroad-fs"
@@ -524,9 +522,9 @@ export default class Relative extends ValidationElement {
               </RadioGroup>
             </Field>
 
-            {i18n.m('relationships.relatives.para.naturalized')}
             <Field help="relationships.relatives.help.naturalized"
-                   adjustFor="big-buttons">
+                   adjustFor="p">
+              {i18n.m('relationships.relatives.para.naturalized')}
               <RadioGroup className="relative-naturalized option-list"
                           selectedValue={this.state.Naturalized}>
                 <Radio name="naturalized-alien"
@@ -554,51 +552,49 @@ export default class Relative extends ValidationElement {
             </Field>
 
             <Field help="relationships.relatives.help.derived"
-                   adjustFor="big-buttons"
+                   adjustFor="p"
                    comments={true}
                    commentsName="DerivedComments"
                    commentsValue={this.state.DerivedComments}
                    commentsActive={this.state.Derived === 'Other'}
                    onUpdate={this.updateDerivedComments}
                    >
-              <div>
-                {i18n.m('relationships.relatives.para.derived')}
-                <RadioGroup className="relative-derived option-list"
-                            selectedValue={this.state.Derived}>
-                  <Radio name="derived-alien"
-                         label={i18n.m('relationships.relatives.label.derived.alien')}
-                         value="Alien"
-                         className="derived-alien"
-                         onValidate={this.props.onValidate}
-                         onChange={this.updateDerived}
-                         />
-                  <Radio name="derived-permanent"
-                         label={i18n.m('relationships.relatives.label.derived.permanent')}
-                         value="Permanent"
-                         className="derived-permanent"
-                         onValidate={this.props.onValidate}
-                         onChange={this.updateDerived}
-                         />
-                  <Radio name="derived-certificate"
-                         label={i18n.m('relationships.relatives.label.derived.certificate')}
-                         value="Certificate"
-                         className="derived-certificate"
-                         onValidate={this.props.onValidate}
-                         onChange={this.updateDerived}
-                         />
-                  <Radio name="derived-other"
-                         label={i18n.m('relationships.relatives.label.derived.other')}
-                         value="Other"
-                         className="derived-other"
-                         onValidate={this.props.onValidate}
-                         onChange={this.updateDerived}
-                         />
-                </RadioGroup>
-              </div>
+              {i18n.m('relationships.relatives.para.derived')}
+              <RadioGroup className="relative-derived option-list"
+                          selectedValue={this.state.Derived}>
+                <Radio name="derived-alien"
+                        label={i18n.m('relationships.relatives.label.derived.alien')}
+                        value="Alien"
+                        className="derived-alien"
+                        onValidate={this.props.onValidate}
+                        onChange={this.updateDerived}
+                        />
+                <Radio name="derived-permanent"
+                        label={i18n.m('relationships.relatives.label.derived.permanent')}
+                        value="Permanent"
+                        className="derived-permanent"
+                        onValidate={this.props.onValidate}
+                        onChange={this.updateDerived}
+                        />
+                <Radio name="derived-certificate"
+                        label={i18n.m('relationships.relatives.label.derived.certificate')}
+                        value="Certificate"
+                        className="derived-certificate"
+                        onValidate={this.props.onValidate}
+                        onChange={this.updateDerived}
+                        />
+                <Radio name="derived-other"
+                        label={i18n.m('relationships.relatives.label.derived.other')}
+                        value="Other"
+                        className="derived-other"
+                        onValidate={this.props.onValidate}
+                        onChange={this.updateDerived}
+                        />
+              </RadioGroup>
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.number')}
-                   titleSize="h4"
+                   titleSize="h3"
                    help="relationships.relatives.help.documentnumber">
               <Text name="DocumentNumber"
                     className="relative-documentnumber"
@@ -609,7 +605,7 @@ export default class Relative extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.name')}
-                   titleSize="h4"
+                   titleSize="h3"
                    help="relationships.relatives.help.courtname">
               <Text name="CourtName"
                     className="relative-courtname"
@@ -620,7 +616,7 @@ export default class Relative extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
-                   titleSize="h4"
+                   titleSize="h3"
                    help="relationships.relatives.help.courtaddress"
                    adjustFor="address">
               <Address name="CourtAddress"
