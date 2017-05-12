@@ -44,96 +44,7 @@ truetandem/e-QIP-prototype#issue_number Commit description
 [Keywords][13] can be used to change the status of the associated issue
 
 ## Sprint Backlogs
-To view the items completed during each development sprint and to view the burndown chart for each respective sprint, please use the links provided below. 
-
-### Sprint 1 
-```
-Duration: Nov 24, 2016 to Dec 7, 2016
-Story Points Completed: 109
-```
-View Sprint 1 [backlog items][26] completed and [burndown chart][34]
-
-### Sprint 2
-```
-Duration: Dec 8, 2016 to Dec 21, 2016
-Story Points Completed: 116
-```
-View Sprint 2 [backlog items][27] completed and [burndown chart][35]
-
-### Sprint 3
-```
-Duration: Dec 22, 2016 to Jan 4, 2017
-Story Points Completed: 58
-```
-View Sprint 3 [backlog items][28] completed and [burndown chart][36]
-
-### Sprint 4
-```
-Duration: Jan 5, 2017 to Jan 18, 2017
-Story Points Completed: 86
-```
-View Sprint 4 [backlog items][29] completed and [burndown chart][37]
-
-### Sprint 5
-```
-Duration: Jan 19, 2017 to Feb 1, 2017
-Story Points Completed: 148
-```
-View Sprint 5 [backlog items][30] completed and [burndown chart][38]
-
-### Sprint 6
-```
-Duration: Feb 2, 2017 to Feb 15, 2017
-Story Points Completed: 133
-```
-View Sprint 6 [backlog items][31] completed and [burndown chart][39]
-
-### Sprint 7
-```
-Duration: Feb 16, 2017 to Mar 1, 2017
-Story Points Completed: 102
-```
-View Sprint 7 [backlog items][32] completed and [burndown chart][40]
-
-### Sprint 8
-```
-Duration:  Mar 2, 2017 to Mar 15, 2017
-Story Points Completed: 110
-```
-View Sprint 8 [backlog items][33] completed and [burndown chart][41] 
-
-### Sprint 9 
-```
-Duration: Mar 16, 2017 to Mar 29, 2017
-Story Points Completed: 113
-```
-View Sprint 9 [backlog items][42] completed and [burndown chart][45]
-
-### Sprint 10
-```
-Duration: Mar 29, 2017 to Apr 12, 2017
-Story Points Completed: 153
-```
-View Sprint 10 [backlog items][44] completed and [burndown chart][46]
-
-### Sprint 11
-```
-Duration: Apr 13, 2017 to Apr 26, 2017
-Story Points Completed: 118
-```
-View Sprint 11 [backlog items][47] completed and [burndown chart][48]
-
-### Sprint 12 (current sprint)
-```
-Duration: Apr 27, 2017 to May 10, 2017
-Story Points Planned: 115
-```
-View Sprint 12 [backlog items][49] in progress
-
-View Sprint 12 [burndown chart][43]
-
-Team Velocity: **113** pts
-
+To view the items completed during each development sprint and to view the burndown charts for each respective sprint, please visit the [Sprint Backlogs][26] page.
 
 ## Getting to know the code
 
@@ -291,27 +202,4 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/truetandem/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
-[26]: https://github.com/truetandem/e-QIP-prototype/milestone/2?closed=1
-[27]: https://github.com/truetandem/e-QIP-prototype/milestone/3?closed=1
-[28]: https://github.com/truetandem/e-QIP-prototype/milestone/4?closed=1
-[29]: https://github.com/truetandem/e-QIP-prototype/milestone/5?closed=1
-[30]: https://github.com/truetandem/e-QIP-prototype/milestone/6?closed=1
-[31]: https://github.com/truetandem/e-QIP-prototype/milestone/7?closed=1
-[32]: https://github.com/truetandem/e-QIP-prototype/milestone/8?closed=1
-[33]: https://github.com/truetandem/e-QIP-prototype/milestone/9?closed=1
-[34]: https://github.com/truetandem/e-QIP-prototype/issues/613
-[35]: https://github.com/truetandem/e-QIP-prototype/issues/614
-[36]: https://github.com/truetandem/e-QIP-prototype/issues/615
-[37]: https://github.com/truetandem/e-QIP-prototype/issues/616
-[38]: https://github.com/truetandem/e-QIP-prototype/issues/617
-[39]: https://github.com/truetandem/e-QIP-prototype/issues/618
-[40]: https://github.com/truetandem/e-QIP-prototype/issues/619
-[41]: https://github.com/truetandem/e-QIP-prototype/issues/725
-[42]: https://github.com/truetandem/e-QIP-prototype/milestone/10?closed=1
-[43]: http://burndown.io/#truetandem/e-QIP-prototype/13
-[44]: https://github.com/truetandem/e-QIP-prototype/milestone/11?closed=1
-[45]: https://github.com/truetandem/e-QIP-prototype/issues/812
-[46]: https://github.com/truetandem/e-QIP-prototype/issues/968
-[47]: https://github.com/truetandem/e-QIP-prototype/milestone/12?closed=1
-[48]: https://github.com/truetandem/e-QIP-prototype/issues/1077
-[49]: https://github.com/truetandem/e-QIP-prototype/milestone/13
+[26]: SPRINTS.MD
