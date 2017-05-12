@@ -64,7 +64,7 @@ export const ResidenceSummary = (item, errors, open) => {
       <span className="index">
         {i18n.t('history.residence.collection.summary.item')}:
       </span>
-      <span className="employer"><strong>{address}</strong></span>
+      <span className="employer title-case"><strong>{address}</strong></span>
       <span className="dates"><strong>{dates}</strong></span>
     </span>
   )
@@ -80,7 +80,7 @@ const PersonSummary = (item, errors) => {
   return (
     <span>
       <span className="index">{i18n.t('history.residence.collection.summary.item2')}: </span>
-      <span><strong>{name}</strong></span>
+      <span className="title-case"><strong>{name}</strong></span>
     </span>
   )
 }

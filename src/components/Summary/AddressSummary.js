@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const AddressSummary = (props, unknown) => {
   if (!props) {
     return unknown
@@ -21,5 +23,7 @@ export const AddressSummary = (props, unknown) => {
     address = `${address1.toLowerCase()}, ${address2}`.trim()
   }
 
-  return address
+  return (
+    <span className="title-case">{address}</span>
+  )
 }
