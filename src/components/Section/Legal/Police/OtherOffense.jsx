@@ -149,7 +149,6 @@ export default class OtherOffense extends ValidationElement {
         <Branch name="involved_violence"
                 className="offense-violence"
                 value={this.state.InvolvedViolence}
-                help="legal.police.help.violence"
                 onUpdate={this.updateInvolvedViolence}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.violence')}
@@ -158,7 +157,6 @@ export default class OtherOffense extends ValidationElement {
         <Branch name="involved_firearms"
                 className="offense-firearms"
                 value={this.state.InvolvedFirearms}
-                help="legal.police.help.firearms"
                 onUpdate={this.updateInvolvedFirearms}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.firearms')}
@@ -167,7 +165,6 @@ export default class OtherOffense extends ValidationElement {
         <Branch name="involved_substances"
                 className="offense-substances"
                 value={this.state.InvolvedSubstances}
-                help="legal.police.help.substances"
                 onUpdate={this.updateInvolvedSubstances}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.substances')}
@@ -204,7 +201,6 @@ export default class OtherOffense extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.courttype')}
                titleSize="h4"
-               help="legal.police.help.courttype"
                adjustFor="buttons"
                shrink={true}>
           <RadioGroup className="offense-courttype option-list"
@@ -233,8 +229,7 @@ export default class OtherOffense extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field help="legal.police.help.courtcharge"
-               adjustFor="labels">
+        <Field adjustFor="labels">
           <Text name="CourtCharge"
                 {...this.state.CourtCharge}
                 label={i18n.t('legal.police.label.courtcharge')}
@@ -244,8 +239,7 @@ export default class OtherOffense extends ValidationElement {
                 />
         </Field>
 
-        <Field help="legal.police.help.courtoutcome"
-               adjustFor="labels">
+        <Field adjustFor="labels">
           <Text name="CourtOutcome"
                 {...this.state.CourtOutcome}
                 label={i18n.t('legal.police.label.courtoutcome')}
@@ -273,7 +267,6 @@ export default class OtherOffense extends ValidationElement {
         <Branch name="was_sentenced"
                 className="offense-sentenced"
                 value={this.state.WasSentenced}
-                help="legal.police.help.sentenced"
                 onUpdate={this.updateWasSentenced}
                 onValidate={this.props.onValidate}>
         </Branch>
@@ -290,7 +283,6 @@ export default class OtherOffense extends ValidationElement {
             <Branch name="awaiting_trial"
                     className="awaiting-trial"
                     value={this.state.AwaitingTrial}
-                    help="legal.police.help.awaitingTrial"
                     onValidate={this.props.onValidate}
                     onUpdate={this.updateAwaitingTrial}>
               <div>

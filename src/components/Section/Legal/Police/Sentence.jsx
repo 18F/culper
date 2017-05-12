@@ -80,7 +80,6 @@ export default class Sentence extends ValidationElement {
         <Branch name="exceeding_year"
                 className="exceeds-year"
                 value={this.state.ExceedsYear}
-                help="legal.police.help.sentenceDescription"
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateExceedsYear}>
           <div>
@@ -91,7 +90,6 @@ export default class Sentence extends ValidationElement {
         <Branch name="incarcerated"
                 className="incarcerated"
                 value={this.state.Incarcerated}
-                help="legal.police.help.exceedsYear"
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateIncarcerated}>
           <div>
@@ -101,7 +99,6 @@ export default class Sentence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.incarcerationDates')}
                titleSize="h4"
-               help="legal.police.help.incarcerationDates"
                adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="IncarcerationDatesNA"
@@ -120,7 +117,6 @@ export default class Sentence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.probationDates')}
                titleSize="h4"
-               help="legal.police.help.probationDates"
                adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="ProbationDatesNA"
