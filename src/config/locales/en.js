@@ -6032,13 +6032,11 @@ const en = {
         intro1: 'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
         intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
-        summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
-        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
         chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
-          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
-          second: '**Have you EVER been charged** with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
+          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year?',
+          second: '**Have you EVER been charged** with any felony offense?',
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
@@ -6069,7 +6067,7 @@ const en = {
       help: {
         summons: {
           title: 'Need help with a summons, citation, or ticket?',
-          message: 'If you were issued a summons, citation, or ticket answer "Yes" and provide the required information',
+          message: 'Answer "No" if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
           note: ''
         },
         arrests: {
@@ -6079,7 +6077,7 @@ const en = {
         },
         charges: {
           title: 'Need help with a criminal charge?',
-          message: 'If you were charged answer "Yes" and provide the required information',
+          message: 'Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
           note: ''
         },
         probation: {
@@ -6206,7 +6204,17 @@ const en = {
           title: 'Need help with awaiting trial explanation',
           message: 'Provide explanation',
           note: ''
-        }
+        },
+        otherConviction: {
+          title: 'Need help with this conviction question?',
+          message: 'Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.',
+          note: ''
+        },
+        otherFelony: {
+          title: 'Need help with this charge question?',
+          message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
+          note: ''
+        },
       },
       branchCollection: {
         domesticViolence: {
