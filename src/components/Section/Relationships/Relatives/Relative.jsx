@@ -25,7 +25,7 @@ export default class Relative extends ValidationElement {
     super(props)
 
     this.state = {
-      Relations: props.Relations,
+      Relation: props.Relation,
       Name: props.Name,
       Birthdate: props.Birthdate,
       Birthplace: props.Birthplace,
@@ -63,7 +63,7 @@ export default class Relative extends ValidationElement {
     }
 
     this.onUpdate = this.onUpdate.bind(this)
-    this.updateRelations = this.updateRelations.bind(this)
+    this.updateRelation = this.updateRelation.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateBirthdate = this.updateBirthdate.bind(this)
     this.updateBirthplace = this.updateBirthplace.bind(this)
@@ -109,19 +109,8 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateRelations (event) {
-    let relation = event.target.value
-    let selected = [...(this.state.Relations || [])]
-
-    if (selected.includes(relation)) {
-      // Remove the relation if it was previously selected
-      selected.splice(selected.indexOf(relation), 1)
-    } else {
-      // Add the relation if it wasn't already
-      selected.push(relation)
-    }
-
-    this.onUpdate('Relations', selected)
+  updateRelation (event) {
+    this.onUpdate('Relation', event.target.value)
   }
 
   updateName (values) {
@@ -214,7 +203,7 @@ export default class Relative extends ValidationElement {
 
   updateMethods (event) {
     let method = event.target.value
-    let selected = [...(this.state.Relations || [])]
+    let selected = [...(this.state.Methods || [])]
 
     if (selected.includes(method)) {
       // Remove the relation if it was previously selected
@@ -268,130 +257,131 @@ export default class Relative extends ValidationElement {
   }
 
   render () {
+    console.log('relation:', this.state.Relation)
     const validator = new RelativeValidator(this.state, null)
-    const mother = this.state.Relations.some(x => x === 'Mother')
-    const immediateFamily = this.state.Relations.some(x => ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(x))
+    const mother = this.state.Relation === 'Mother'
+    const immediateFamily = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(this.state.Relation)
 
     return (
       <div className="relative-item">
         <Field title={i18n.t('relationships.relatives.heading.relation')}
                help="relationships.relatives.help.relation"
                adjustFor="big-buttons">
-          <CheckboxGroup className="relative-relation option-list"
-                         selectedValues={this.state.Relations}>
-            <Checkbox name="relation-mother"
-                      label={i18n.m('relationships.relatives.label.relation.mother')}
-                      value="Mother"
-                      className="relation-mother"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-father"
-                      label={i18n.m('relationships.relatives.label.relation.father')}
-                      value="Father"
-                      className="relation-father"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepmother"
-                      label={i18n.m('relationships.relatives.label.relation.stepmother')}
-                      value="Stepmother"
-                      className="relation-stepmother"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepfather"
-                      label={i18n.m('relationships.relatives.label.relation.stepfather')}
-                      value="Stepfather"
-                      className="relation-stepfather"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-fosterparent"
-                      label={i18n.m('relationships.relatives.label.relation.fosterparent')}
-                      value="Fosterparent"
-                      className="relation-fosterparent"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-child"
-                      label={i18n.m('relationships.relatives.label.relation.child')}
-                      value="Child"
-                      className="relation-child"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepchild"
-                      label={i18n.m('relationships.relatives.label.relation.stepchild')}
-                      value="Stepchild"
-                      className="relation-stepchild"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-brother"
-                      label={i18n.m('relationships.relatives.label.relation.brother')}
-                      value="Brother"
-                      className="relation-brother"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-sister"
-                      label={i18n.m('relationships.relatives.label.relation.sister')}
-                      value="Sister"
-                      className="relation-sister"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepbrother"
-                      label={i18n.m('relationships.relatives.label.relation.stepbrother')}
-                      value="Stepbrother"
-                      className="relation-stepbrother"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-stepsister"
-                      label={i18n.m('relationships.relatives.label.relation.stepsister')}
-                      value="Stepsister"
-                      className="relation-stepsister"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-halfbrother"
-                      label={i18n.m('relationships.relatives.label.relation.halfbrother')}
-                      value="Half-brother"
-                      className="relation-halfbrother"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-halfsister"
-                      label={i18n.m('relationships.relatives.label.relation.halfsister')}
-                      value="Half-sister"
-                      className="relation-halfsister"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-fatherinlaw"
-                      label={i18n.m('relationships.relatives.label.relation.fatherinlaw')}
-                      value="Father-in-law"
-                      className="relation-fatherinlaw"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-montherinlaw"
-                      label={i18n.m('relationships.relatives.label.relation.montherinlaw')}
-                      value="Monther-in-law"
-                      className="relation-montherinlaw"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-            <Checkbox name="relation-guardian"
-                      label={i18n.m('relationships.relatives.label.relation.guardian')}
-                      value="Guardian"
-                      className="relation-guardian"
-                      onValidate={this.props.onValidate}
-                      onChange={this.updateRelations}
-                      />
-          </CheckboxGroup>
+          <RadioGroup className="relative-relation option-list"
+                      selectedValue={this.state.Relation}>
+            <Radio name="relation-mother"
+                   label={i18n.m('relationships.relatives.label.relation.mother')}
+                   value="Mother"
+                   className="relation-mother"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-father"
+                   label={i18n.m('relationships.relatives.label.relation.father')}
+                   value="Father"
+                   className="relation-father"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-stepmother"
+                   label={i18n.m('relationships.relatives.label.relation.stepmother')}
+                   value="Stepmother"
+                   className="relation-stepmother"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-stepfather"
+                   label={i18n.m('relationships.relatives.label.relation.stepfather')}
+                   value="Stepfather"
+                   className="relation-stepfather"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-fosterparent"
+                   label={i18n.m('relationships.relatives.label.relation.fosterparent')}
+                   value="Fosterparent"
+                   className="relation-fosterparent"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-child"
+                   label={i18n.m('relationships.relatives.label.relation.child')}
+                   value="Child"
+                   className="relation-child"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-stepchild"
+                   label={i18n.m('relationships.relatives.label.relation.stepchild')}
+                   value="Stepchild"
+                   className="relation-stepchild"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-brother"
+                   label={i18n.m('relationships.relatives.label.relation.brother')}
+                   value="Brother"
+                   className="relation-brother"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-sister"
+                   label={i18n.m('relationships.relatives.label.relation.sister')}
+                   value="Sister"
+                   className="relation-sister"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-stepbrother"
+                   label={i18n.m('relationships.relatives.label.relation.stepbrother')}
+                   value="Stepbrother"
+                   className="relation-stepbrother"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-stepsister"
+                   label={i18n.m('relationships.relatives.label.relation.stepsister')}
+                   value="Stepsister"
+                   className="relation-stepsister"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-halfbrother"
+                   label={i18n.m('relationships.relatives.label.relation.halfbrother')}
+                   value="Half-brother"
+                   className="relation-halfbrother"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-halfsister"
+                   label={i18n.m('relationships.relatives.label.relation.halfsister')}
+                   value="Half-sister"
+                   className="relation-halfsister"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-fatherinlaw"
+                   label={i18n.m('relationships.relatives.label.relation.fatherinlaw')}
+                   value="Father-in-law"
+                   className="relation-fatherinlaw"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-montherinlaw"
+                   label={i18n.m('relationships.relatives.label.relation.montherinlaw')}
+                   value="Monther-in-law"
+                   className="relation-montherinlaw"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+            <Radio name="relation-guardian"
+                   label={i18n.m('relationships.relatives.label.relation.guardian')}
+                   value="Guardian"
+                   className="relation-guardian"
+                   onValidate={this.props.onValidate}
+                   onChange={this.updateRelation}
+                   />
+          </RadioGroup>
         </Field>
 
         <h3>{i18n.t('relationships.relatives.heading.name')}</h3>
@@ -475,8 +465,8 @@ export default class Relative extends ValidationElement {
                 </Field>
                 <Alias name="Item"
                        onValidate={this.props.onValidate}
-                       hideMaiden={this.state.Relations.some(x => x === 'Mother')}
-                       bind={true} />
+                       hideMaiden={this.state.Relation === 'Mother'}
+                  bind={true} />
               </div>
             </BranchCollection>
           </div>
@@ -939,7 +929,7 @@ export default class Relative extends ValidationElement {
 }
 
 Relative.defaultProps = {
-  Relations: [],
+  Relation: '',
   Name: {},
   Birthdate: {},
   Birthplace: {},

@@ -29,7 +29,7 @@ export default class RelativesValidator {
 
 export class RelativeValidator {
   constructor (state = {}, props = {}) {
-    this.relations = state.Relations || []
+    this.relation = state.Relation || []
     this.name = state.Name
     this.birthdate = state.Birthdate
     this.birthplace = state.Birthplace
@@ -70,7 +70,7 @@ export class RelativeValidator {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
     const citizen = this.citizen()
 
-    if (this.relations && this.relations.some(x => relations.includes(x)) && citizen && this.birthplace.addressType === 'International' && this.isDeceased === 'Yes') {
+    if (this.relation && relations.includes(this.relation) && citizen && this.birthplace.addressType === 'International' && this.isDeceased === 'Yes') {
       return true
     }
 
@@ -89,8 +89,8 @@ export class RelativeValidator {
     return false
   }
 
-  validRelations () {
-    return this.relations.length > 0
+  validRelation () {
+    return !!this.relation && this.relation.length > 0
   }
 
   validName () {
@@ -128,7 +128,7 @@ export class RelativeValidator {
         continue
       }
 
-      const props = { hideMaiden: this.relations.some(x => x === 'Mother') }
+      const props = { hideMaiden: this.relation === 'Mother' }
       if (has && new AliasValidator(alias.Item, props).isValid() === false) {
         return false
       }
@@ -298,7 +298,7 @@ export class RelativeValidator {
   }
 
   isValid () {
-    return this.validRelations() &&
+    return this.validRelation() &&
       this.validName() &&
       this.validBirthdate() &&
       this.validBirthplace() &&

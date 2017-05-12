@@ -44,7 +44,7 @@ describe('The relative component', () => {
     }
 
     const component = mount(<Relative {...expected} />)
-    component.find({ type: 'checkbox', value: 'Mother' }).simulate('change')
+    component.find({ type: 'radio', value: 'Mother' }).simulate('change')
     component.find('.relative-maiden-diff .no input').simulate('change')
     expect(component.find('.relative-maidenname').length).toEqual(1)
   })
@@ -55,7 +55,7 @@ describe('The relative component', () => {
     }
 
     const component = mount(<Relative {...expected} />)
-    component.find({ type: 'checkbox', value: 'Father' }).simulate('change')
+    component.find({ type: 'radio', value: 'Father' }).simulate('change')
     expect(component.find('.relative-alias').length).toEqual(1)
   })
 
@@ -195,7 +195,7 @@ describe('The relative component', () => {
     let updates = 0
     const expected = {
       name: 'relative',
-      Relations: ['Mother'],
+      Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
@@ -218,7 +218,7 @@ describe('The relative component', () => {
     let updates = 0
     const expected = {
       name: 'relative',
-      Relations: ['Mother'],
+      Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
@@ -245,7 +245,7 @@ describe('The relative component', () => {
     let updates = 0
     const expected = {
       name: 'relative',
-      Relations: ['Mother'],
+      Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
@@ -270,7 +270,7 @@ describe('The relative component', () => {
     let updates = 0
     const expected = {
       name: 'relative',
-      Relations: ['Mother'],
+      Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
@@ -297,7 +297,7 @@ describe('The relative component', () => {
     let updates = 0
     const expected = {
       name: 'relative',
-      Relations: ['Mother'],
+      Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
