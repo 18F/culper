@@ -55,7 +55,7 @@ describe('The BenefitActivity component', () => {
     const component = mount(<BenefitActivity {...expected} />)
     expect(component.find('.benefit-activity').length).toBe(1)
     component.find('.benefit-frequency input').first().simulate('change')
-    expect(updates).toBe(2 * 2)
+    expect(updates).toBe(2)
   })
 
   it('Renders summary based on benefit', () => {

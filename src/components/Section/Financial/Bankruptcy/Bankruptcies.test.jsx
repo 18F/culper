@@ -80,6 +80,6 @@ describe('The bankruptcy component', () => {
 
     const component = mount(<Bankruptcies {...expected} />)
     component.find('.courtnumber input[name="CourtNumber"]').simulate('change')
-    expect(updates).toBe(4)
+    expect(updates).toBe(2)
   })
 })

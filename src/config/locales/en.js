@@ -2340,7 +2340,7 @@ const en = {
           }
         },
         collection: {
-          description: '',
+          description: 'Summary of divorcees',
           appendTitle: 'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
           appendLabel: 'Add another person',
           itemType: 'Person'
@@ -2495,7 +2495,7 @@ const en = {
         birthplace: 'Was this person born in the United States of America'
       },
       collection: {
-        description: '',
+        description: 'Summary of cohabitants',
         appendTitle: 'Do you have an additional cohabitant to report?',
         appendLabel: 'Add another cohabitant',
         itemType: 'Cohabitant'

@@ -18,24 +18,33 @@ export default class BenefitActivity extends ValidationElement {
     this.isValid = this.isValid.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasBenefits: this.props.HasBenefits,
+      let obj = {
         List: this.props.List,
         ListBranch: this.props.ListBranch,
-        [field]: values
-      })
+        HasBenefits: this.props.HasBenefits
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateList (values) {
-    this.update('List', values.items)
-    this.update('ListBranch', values.branch)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   updateHasBenefits (values) {
-    this.update('HasBenefits', values)
+    this.update([
+      { name: 'HasBenefits', value: values }
+    ])
   }
 
   isValid () {

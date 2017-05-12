@@ -19,24 +19,33 @@ export default class RealEstateActivity extends ValidationElement {
     this.isValid = this.isValid.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasInterests: this.props.HasInterests,
+      let obj = {
         List: this.props.List,
         ListBranch: this.props.ListBranch,
-        [field]: values
-      })
+        HasInterests: this.props.HasInterests
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateList (values) {
-    this.update('List', values.items)
-    this.update('ListBranch', values.branch)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   updateHasInterests (values) {
-    this.update('HasInterests', values)
+    this.update([
+      { name: 'HasInterests', value: values }
+    ])
   }
 
   isValid () {
@@ -68,7 +77,7 @@ export default class RealEstateActivity extends ValidationElement {
 
     const summary = [who, address].reduce((prev, next) => {
       if (prev && next) {
-        return prev + ' - ' + next
+        return <span>{prev} - {next}</span>
       }
       return prev
     })
