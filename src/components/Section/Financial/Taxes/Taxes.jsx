@@ -56,7 +56,10 @@ export default class Taxes extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasTaxes: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }

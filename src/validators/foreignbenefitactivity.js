@@ -5,6 +5,7 @@ export default class ForeignBenefitActivityValidator {
   constructor (state, props = {}) {
     this.hasBenefits = props.HasBenefits || ''
     this.list = props.List || []
+    this.listBranch = props.ListBranch
   }
 
   isValid () {
@@ -16,6 +17,10 @@ export default class ForeignBenefitActivityValidator {
     }
 
     if (this.hasBenefits === 'Yes' && !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

@@ -95,8 +95,8 @@ export default class Hospitalizations extends ValidationElement {
                      defaultState={this.props.defaultState}
                      items={this.state.List}
                      branch={this.state.ListBranch}
-                     onUpdate={this.updateList}
                      summary={this.summary}
+                     onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}

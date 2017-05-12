@@ -5,6 +5,7 @@ export default class ForeignBusinessConferencesValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignConferences = state.HasForeignConferences
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -14,6 +15,10 @@ export default class ForeignBusinessConferencesValidator {
 
     if (this.hasForeignConferences === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 

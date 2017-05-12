@@ -56,7 +56,10 @@ export default class Nonpayment extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasNonpayment: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }

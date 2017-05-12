@@ -58,7 +58,10 @@ export default class Gambling extends ValidationElement {
    */
   onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
-      this.myDispatch(val === 'No' ? [] : this.state.List)
+      this.myDispatch({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }

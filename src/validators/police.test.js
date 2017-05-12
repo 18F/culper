@@ -49,7 +49,8 @@ describe('Police record validation', function () {
           HasCharges: null,
           HasProbation: null,
           HasTrial: null,
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -61,6 +62,7 @@ describe('Police record validation', function () {
           HasProbation: 'No',
           HasTrial: 'No',
           List: [],
+          ListBranch: 'No',
           DomesticViolence: [
             {
               Has: 'Yes',
@@ -95,7 +97,8 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -448,7 +451,7 @@ describe('Police record validation', function () {
             }
           ]
         },
-        expected: false
+        expected: true
       }
     ]
 

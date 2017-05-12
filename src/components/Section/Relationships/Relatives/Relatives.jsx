@@ -107,13 +107,14 @@ export default class Relatives extends ValidationElement {
         {i18n.m('relationships.relatives.para.opportunity')}
 
         <Accordion minimum="1"
-                    items={this.state.List}
-                    branch={this.state.ListBranch}
-                    onUpdate={this.updateList}
-                    summary={this.summary}
-                    description={i18n.t('relationships.relatives.collection.summary.title')}
-                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
-                    appendLabel={i18n.t('relationships.relatives.collection.append')}>
+                   items={this.state.List}
+                   branch={this.state.ListBranch}
+                   onUpdate={this.updateList}
+                   onValidate={this.handleValidation}
+                   summary={this.summary}
+                   description={i18n.t('relationships.relatives.collection.summary.title')}
+                   appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
+                   appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
                     bind={true}
                     />

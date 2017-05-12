@@ -84,26 +84,26 @@ export default class Competence extends ValidationElement {
       <div className="competence">
         <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
-          value={this.state.IsIncompetent}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateIsIncompentent}>
+                value={this.state.IsIncompetent}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateIsIncompentent}>
         </Branch>
 
         <Show when={this.state.IsIncompetent === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.state.List}
-            branch={this.state.ListBranch}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('psychological.competence.collection.description')}
-            appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-            appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.state.List}
+                     branch={this.state.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('psychological.competence.collection.description')}
+                     appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
+                     appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
             <Order name="Competence"
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              prefix="competence"
-              bind={true} />
+                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   prefix="competence"
+                   bind={true} />
           </Accordion>
         </Show>
       </div>

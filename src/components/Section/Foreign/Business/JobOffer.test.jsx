@@ -18,6 +18,6 @@ describe('The foreign business job offer component', () => {
     component.find('.employment-address .mailing input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
-    expect(updates).toBe(16)
+    expect(updates).toBe(14)
   })
 })

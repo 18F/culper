@@ -251,7 +251,7 @@ export default class Accordion extends ValidationElement {
       return
     }
 
-    this.update(this.props.item, value)
+    this.update(this.props.items, value)
   }
 
   /**

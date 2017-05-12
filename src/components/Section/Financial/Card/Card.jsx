@@ -55,7 +55,10 @@ export default class Card extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasCardAbuse: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }

@@ -113,8 +113,8 @@ export default class People extends ValidationElement {
         <Accordion minimum="1"
                    items={this.state.List}
                    branch={this.state.ListBranch}
-                   onUpdate={this.updateList}
                    summary={this.summary}
+                   onUpdate={this.updateList}
                    onValidate={this.handleValidation}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>

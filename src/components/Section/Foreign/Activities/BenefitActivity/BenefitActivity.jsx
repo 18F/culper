@@ -81,8 +81,8 @@ export default class BenefitActivity extends ValidationElement {
                      defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
-                     onUpdate={this.updateList}
                      summary={this.summary}
+                     onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}

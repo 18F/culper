@@ -56,7 +56,10 @@ export default class Delinquent extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasDelinquent: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }

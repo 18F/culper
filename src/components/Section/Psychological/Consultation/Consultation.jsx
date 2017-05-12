@@ -36,7 +36,7 @@ export default class Consultation extends ValidationElement {
 
   updateList (values) {
     this.update('List', values.items)
-    this.update('List', values.branch)
+    this.update('ListBranch', values.branch)
   }
 
   updateConsulted (values) {
@@ -88,27 +88,26 @@ export default class Consultation extends ValidationElement {
         <h2>{i18n.t('psychological.heading.consultation')}</h2>
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
-          value={this.state.Consulted}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateConsulted}>
+                value={this.state.Consulted}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateConsulted}>
         </Branch>
 
         <Show when={this.state.Consulted === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.state.List}
-            branch={this.state.ListBranch}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('psychological.consultation.collection.description')}
-            appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
-            appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
-            <Order
-              name="Consultation"
-              prefix="consultation"
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              bind={true} />
+                     defaultState={this.props.defaultState}
+                     items={this.state.List}
+                     branch={this.state.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('psychological.consultation.collection.description')}
+                     appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
+                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
+            <Order name="Consultation"
+                   prefix="consultation"
+                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   bind={true} />
           </Accordion>
         </Show>
       </div>

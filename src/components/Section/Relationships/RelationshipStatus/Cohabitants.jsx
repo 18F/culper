@@ -93,8 +93,8 @@ export default class Cohabitants extends ValidationElement {
           <Accordion minimum="1"
             items={this.state.CohabitantList}
             branch={this.state.CohabitantListBranch}
-            onUpdate={this.updateCohabitantList}
             summary={this.summary}
+            onUpdate={this.updateCohabitantList}
             onValidate={this.handleValidation}
             description={i18n.t('relationships.cohabitant.collection.description')}
             appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}

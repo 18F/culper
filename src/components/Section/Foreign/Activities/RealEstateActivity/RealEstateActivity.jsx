@@ -88,27 +88,27 @@ export default class RealEstateActivity extends ValidationElement {
     return (
       <div className="realestate">
         <Branch name="has_interests"
-          label={i18n.t('foreign.activities.realestate.heading.title')}
-          labelSize="h3"
-          value={this.props.HasInterests}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateHasInterests}>
+                label={i18n.t('foreign.activities.realestate.heading.title')}
+                labelSize="h3"
+                value={this.props.HasInterests}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateHasInterests}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('foreign.activities.realestate.collection.description')}
-            appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
-            appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('foreign.activities.realestate.collection.description')}
+                     appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
+                     appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
             <RealEstateInterest name="RealEstateInterest"
-              bind={true}
-            />
+                                bind={true}
+                                />
           </Accordion>
         </Show>
       </div>

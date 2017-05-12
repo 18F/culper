@@ -162,7 +162,8 @@ describe('Military foreign validation', function () {
                       }
                     }
                   }
-                ]
+                ],
+                ListBranch: 'No'
               }
             }
           ]
@@ -193,7 +194,8 @@ describe('Military foreign validation', function () {
       {
         state: {
           MaintainsContact: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -234,7 +236,8 @@ describe('Military foreign validation', function () {
                 value: 'Monthly'
               }
             }
-          }]
+          }],
+          ListBranch: 'No'
         },
         expected: true
       }

@@ -90,6 +90,7 @@ export default class ForeignService extends ValidationElement {
     // If there is no history clear out any previously entered data
     if (value === 'No') {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 

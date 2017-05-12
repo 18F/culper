@@ -36,6 +36,7 @@ export default class Police extends ValidationElement {
       List: props.List,
       ListBranch: props.ListBranch,
       OtherOffenses: props.OtherOffenses,
+      OtherOffensesBranch: props.OtherOffensesBranch,
       DomesticViolence: props.DomesticViolence,
       errorCodes: []
     }

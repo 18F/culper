@@ -409,8 +409,8 @@ export default class CivilUnion extends ValidationElement {
                        items={this.state.DivorcedList}
                        branch={this.state.DivorcedListBranch}
                        onUpdate={this.updateDivorcedList}
-                       summary={this.divorceSummary}
                        onValidate={this.handleValidation}
+                       summary={this.divorceSummary}
                        description={i18n.t('relationships.civilUnion.divorce.collection.description')}
                        appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
                        appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>

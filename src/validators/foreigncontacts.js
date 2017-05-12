@@ -8,6 +8,7 @@ export default class ForeignContactsValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignContacts = state.HasForeignContacts
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -17,6 +18,10 @@ export default class ForeignContactsValidator {
 
     if (this.hasForeignContacts === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 

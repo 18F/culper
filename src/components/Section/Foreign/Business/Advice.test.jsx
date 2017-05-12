@@ -35,8 +35,8 @@ describe('The foreign business advice component', () => {
       onValidate: () => { validated = true }
     }
     const component = mount(<Advice {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    component.find('.branch .yes input').simulate('blur')
+    component.find('.branch .yes input').at(0).simulate('change')
+    component.find('.branch .yes input').at(0).simulate('blur')
     expect(validated).toBe(true)
   })
 

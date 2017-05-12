@@ -211,7 +211,8 @@ describe('gambling debt component validation', function () {
       {
         state: {
           HasGamblingDebt: 'Foo',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -239,7 +240,8 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }
