@@ -79,8 +79,7 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        addressType: 'International',
-        address: '1234 Some Rd',
+        domestic: 'No',
         city: 'Munich',
         country: 'Germany'
       },
@@ -106,8 +105,7 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        addressType: 'International',
-        address: '1234 Some Rd',
+        domestic: 'No',
         city: 'Munich',
         country: 'Germany'
       },
@@ -130,8 +128,7 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        addressType: 'International',
-        address: '1234 Some Rd',
+        domestic: 'No',
         city: 'Munich',
         country: 'Germany'
       },
@@ -154,8 +151,7 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        addressType: 'International',
-        address: '1234 Some Rd',
+        domestic: 'No',
         city: 'Munich',
         country: 'Germany'
       },
@@ -185,11 +181,11 @@ describe('The relative component', () => {
     component.find('.relative-birthdate .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-birthdate .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.relative-birthdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.relative-birthplace .international input').simulate('change')
-    component.find('.relative-birthplace .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
+    component.find('.relative-birthplace .no input').simulate('change')
+    component.find('.relative-birthplace .city input').simulate('change', { target: { name: 'city', value: 'Munich' } })
     component.find('.relative-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
     component.find('.relative-deceased .no input').simulate('change')
-    expect(updates).toBe(8)
+    expect(updates).toBe(7)
   })
 
   it('are you my mother?', () => {
@@ -199,7 +195,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
       Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
       IsDeceased: 'No',
       onUpdate: (obj) => {
@@ -222,7 +218,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
       Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
       IsDeceased: 'No',
       onUpdate: (obj) => {
@@ -249,7 +245,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
+      Birthplace: { domestic: 'No', city: 'Munich', country: 'Germany' },
       Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
       IsDeceased: 'No',
       Address: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
@@ -275,7 +271,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
       Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
       IsDeceased: 'No',
       Address: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
@@ -302,7 +298,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
       Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
       IsDeceased: 'No',
       Address: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },

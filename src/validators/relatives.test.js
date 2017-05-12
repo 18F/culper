@@ -104,11 +104,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            state: 'VA',
+            domestic: 'Yes'
           }
         },
         expected: true
@@ -377,10 +376,11 @@ describe('Relatives validation', function () {
           },
           IsDeceased: 'Yes',
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           }
         },
         expected: true
@@ -393,10 +393,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           },
           Address: {
             addressType: 'United States',
@@ -416,10 +417,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           },
           Address: {
             addressType: 'APOFPO',
@@ -439,10 +441,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           }
         },
         expected: true
@@ -489,11 +492,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            county: 'Arlington',
+            state: 'VA',
+            domestic: 'Yes'
           },
           IsDeceased: 'No',
           Address: {
@@ -515,8 +518,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -540,8 +542,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -588,11 +589,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -614,8 +614,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -639,8 +638,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -687,11 +685,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -713,8 +710,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -738,8 +734,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -786,11 +781,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -812,8 +806,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -837,8 +830,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -887,11 +879,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -913,8 +904,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -940,8 +930,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -997,11 +986,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           Address: {
             addressType: 'United States',
@@ -1022,8 +1010,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -1047,8 +1034,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -1097,11 +1083,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -1123,8 +1108,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -1148,8 +1132,7 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -1742,11 +1725,10 @@ describe('Relatives validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Birthplace: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  domestic: 'Yes',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  country: 'United States'
                 },
                 Citizenship: {
                   value: [
@@ -1810,6 +1792,7 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
+      console.log('-------------------------------')
       expect(new RelativesValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })

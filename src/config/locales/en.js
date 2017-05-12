@@ -2153,6 +2153,10 @@ const en = {
         },
         estimated: 'Estimated'
       },
+      placeholder: {
+        city: 'Please enter the city of birth',
+        country: 'Please enter the country of birth'
+      },
       help: {
         relation: {
           title: 'Need help selecting relatives?',
