@@ -263,7 +263,6 @@ export default class Relative extends ValidationElement {
   }
 
   render () {
-    console.log('relation:', this.state.Relation)
     const validator = new RelativeValidator(this.state, null)
     const mother = this.state.Relation === 'Mother'
     const immediateFamily = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(this.state.Relation)
