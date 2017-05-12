@@ -105,7 +105,6 @@ export default class RealEstateActivity extends ValidationElement {
             onValidate={this.handleValidation}
             description={i18n.t('foreign.activities.realestate.collection.description')}
             appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
-            appendMessage={i18n.m('foreign.activities.realestate.collection.appendMessage')}
             appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
             <RealEstateInterest name="RealEstateInterest"
               bind={true}

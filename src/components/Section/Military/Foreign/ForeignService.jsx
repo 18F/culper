@@ -269,7 +269,6 @@ export default class ForeignService extends ValidationElement {
                        summary={this.summary}
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
-                       appendMessage={i18n.m('military.foreign.collection.contacts.appendMessage')}
                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
               <ForeignContact name="Item"
                               bind={true}

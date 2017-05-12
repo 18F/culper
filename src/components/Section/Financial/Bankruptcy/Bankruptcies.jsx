@@ -99,7 +99,6 @@ export default class Bankruptcies extends ValidationElement {
             summary={this.summary}
             description={i18n.t('financial.bankruptcy.collection.summary.title')}
             appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
-            appendMessage={i18n.m('financial.bankruptcy.collection.summary.appendMessage')}
             appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
             <Bankruptcy name="Bankruptcy"
               bind={true} />

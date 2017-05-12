@@ -105,7 +105,6 @@ export default class Employment extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
-                     appendMessage={i18n.m('foreign.business.employment.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}>
             <JobOffer name="Item" bind={true} />
           </Accordion>

@@ -125,7 +125,6 @@ export default class History extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
-                     appendMessage={i18n.m('military.history.collection.appendMessage')}
                      appendLabel={i18n.t('military.history.collection.append')}>
             <MilitaryService name="Item"
                              bind={true}

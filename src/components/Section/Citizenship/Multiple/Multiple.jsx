@@ -140,7 +140,6 @@ export default class Multiple extends ValidationElement {
                      summary={this.summaryCitizenships}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
-                     appendMessage={i18n.m('citizenship.multiple.collection.citizenship.appendMessage')}
                      appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}>
             <CitizenshipItem name="Item" bind={true} />
           </Accordion>

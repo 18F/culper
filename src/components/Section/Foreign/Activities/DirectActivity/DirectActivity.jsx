@@ -105,7 +105,6 @@ export default class DirectActivity extends ValidationElement {
             onValidate={this.handleValidation}
             description={i18n.t('foreign.activities.direct.collection.description')}
             appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
-            appendMessage={i18n.m('foreign.activities.direct.collection.appendMessage')}
             appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
             <DirectInterest name="DirectInterest"
               bind={true}

@@ -110,8 +110,6 @@ export default class Delinquent extends ValidationElement {
           <li>{i18n.m('financial.delinquent.para.lien')}</li>
           <li>{i18n.m('financial.delinquent.para.federal')}</li>
         </ul>
-
-        {i18n.m('financial.delinquent.collection.appendMessage')}
       </div>
     )
   }

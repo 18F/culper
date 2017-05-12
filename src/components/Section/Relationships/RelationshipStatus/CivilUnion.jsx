@@ -413,7 +413,6 @@ export default class CivilUnion extends ValidationElement {
                        onValidate={this.handleValidation}
                        description={i18n.t('relationships.civilUnion.divorce.collection.description')}
                        appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
-                       appendMessage={i18n.m('relationships.civilUnion.divorce.collection.appendMessage')}
                        appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
               <Divorce name="Divorce"
                        bind={true}

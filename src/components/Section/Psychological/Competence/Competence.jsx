@@ -99,7 +99,6 @@ export default class Competence extends ValidationElement {
             onValidate={this.handleValidation}
             description={i18n.t('psychological.competence.collection.description')}
             appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
             appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
             <Order name="Competence"
               ApplicantBirthDate={this.props.ApplicantBirthDate}

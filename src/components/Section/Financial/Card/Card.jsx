@@ -116,7 +116,6 @@ export default class Card extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('financial.card.collection.summary.title')}
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.card.collection.appendMessage')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 
             <Field title={i18n.t('financial.card.heading.agency')}

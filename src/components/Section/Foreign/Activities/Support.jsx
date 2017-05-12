@@ -101,7 +101,6 @@ export default class Support extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('foreign.activities.support.collection.summary.title')}
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
-                     appendMessage={i18n.m('foreign.activities.support.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.activities.support.collection.append')}>
             <h3>{i18n.t('foreign.activities.support.heading.name')}</h3>
             <Name name="Name"

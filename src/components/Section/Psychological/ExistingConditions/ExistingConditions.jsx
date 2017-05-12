@@ -172,7 +172,6 @@ export default class ExistingConditions extends ValidationElement {
                          onValidate={this.handleValidation}
                          description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                          appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
-                         appendMessage={i18n.m('psychological.existingConditions.treatment.collection.appendMessage')}
                          appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
                 <Diagnosis name="Diagnosis"
                            ApplicantBirthDate={this.props.ApplicantBirthDate}

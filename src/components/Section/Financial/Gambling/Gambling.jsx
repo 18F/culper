@@ -138,8 +138,7 @@ export default class Gambling extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
-                     appendTitle={i18n.t('financial.gambling.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.gambling.collection.appendMessage')}>
+                     appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
             <Field title={i18n.t('financial.gambling.heading.dates')}
                    help="financial.gambling.help.dates"
                    adjustFor="daterange">

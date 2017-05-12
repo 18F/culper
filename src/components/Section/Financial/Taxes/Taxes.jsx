@@ -112,7 +112,6 @@ export default class Taxes extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('financial.taxes.collection.summary.title')}
                      appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.taxes.collection.appendMessage')}
                      appendLabel={i18n.t('financial.taxes.collection.append')}>
 
             <Field title={i18n.t('financial.taxes.heading.failure')}

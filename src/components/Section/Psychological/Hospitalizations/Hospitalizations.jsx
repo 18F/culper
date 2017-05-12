@@ -100,7 +100,6 @@ export default class Hospitalizations extends ValidationElement {
                      onValidate={this.handleValidation}
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
-                     appendMessage={i18n.m('psychological.hospitalization.collection.appendMessage')}
                      appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
             <Hospitalization name="Hospitalization"
                              ApplicantBirthDate={this.props.ApplicantBirthDate}

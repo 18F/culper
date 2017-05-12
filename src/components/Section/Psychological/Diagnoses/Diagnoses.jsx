@@ -180,7 +180,6 @@ export default class Diagnoses extends ValidationElement {
                          summary={this.treatmentSummary}
                          onValidate={this.handleValidation}
                          appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
-                         appendMessage={i18n.m('psychological.diagnoses.treatment.collection.appendMessage')}
                          appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"

@@ -103,7 +103,6 @@ export default class Consultation extends ValidationElement {
             onValidate={this.handleValidation}
             description={i18n.t('psychological.consultation.collection.description')}
             appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.consultation.collection.appendMessage')}
             appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
             <Order
               name="Consultation"

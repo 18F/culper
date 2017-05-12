@@ -117,7 +117,6 @@ export default class People extends ValidationElement {
                    summary={this.summary}
                    onValidate={this.handleValidation}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
-                   appendMessage={i18n.m('relationships.people.person.collection.appendMessage')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
           <Person name="Person" bind={true} />
         </Accordion>

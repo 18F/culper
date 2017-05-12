@@ -113,7 +113,6 @@ export default class Relatives extends ValidationElement {
                     summary={this.summary}
                     description={i18n.t('relationships.relatives.collection.summary.title')}
                     appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
-                    appendMessage={i18n.m('relationships.relatives.collection.appendMessage')}
                     appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
                     bind={true}

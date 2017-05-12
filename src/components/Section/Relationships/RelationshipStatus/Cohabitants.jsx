@@ -98,7 +98,6 @@ export default class Cohabitants extends ValidationElement {
             onValidate={this.handleValidation}
             description={i18n.t('relationships.cohabitant.collection.description')}
             appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
-            appendMessage={i18n.m('relationships.cohabitant.collection.appendMessage')}
             appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
             <Cohabitant name="Cohabitant" spouse={this.props.spouse} bind={true} />
           </Accordion>

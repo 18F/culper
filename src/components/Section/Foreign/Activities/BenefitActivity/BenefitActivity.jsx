@@ -86,7 +86,6 @@ export default class BenefitActivity extends ValidationElement {
                      onValidate={this.handleValidation}
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
-                     appendMessage={i18n.m('foreign.activities.benefit.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}>
             <Benefit name="Benefit"
                      bind={true}

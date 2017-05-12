@@ -109,7 +109,6 @@ export default class Credit extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('financial.credit.collection.summary.title')}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.credit.collection.appendMessage')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
 
             <Field title={i18n.t('financial.credit.heading.explanation')}

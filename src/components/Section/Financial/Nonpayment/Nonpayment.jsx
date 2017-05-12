@@ -114,8 +114,6 @@ export default class Nonpayment extends ValidationElement {
           <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
           <li>{i18n.m('financial.nonpayment.para.any')}</li>
         </ul>
-
-        {i18n.m('financial.nonpayment.collection.appendMessage')}
       </div>
     )
   }
