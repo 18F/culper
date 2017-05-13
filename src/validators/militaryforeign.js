@@ -46,7 +46,8 @@ export class ForeignServiceValidator {
     this.circumstances = state.Circumstances
     this.reasonLeft = state.ReasonLeft
     this.maintainsContact = state.MaintainsContact
-    this.list = state.List
+    this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validOrganization () {
@@ -92,6 +93,10 @@ export class ForeignServiceValidator {
     }
 
     if (this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

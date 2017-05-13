@@ -114,13 +114,15 @@ describe('Person validator', function () {
     const tests = [
       {
         state: {
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
-          List: [{ Person: {} }, { Person: {} }, { Person: {} }]
+          List: [{ Person: {} }, { Person: {} }, { Person: {} }],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -280,7 +282,8 @@ describe('Person validator', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }
@@ -295,7 +298,8 @@ describe('Person validator', function () {
     const tests = [
       {
         state: {
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: 0
       },
@@ -351,7 +355,8 @@ describe('Person validator', function () {
                 zipcode: '22202'
               }
             }
-          }]
+          }],
+          ListBranch: 'No'
         },
         expected: 1
       }

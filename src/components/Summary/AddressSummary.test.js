@@ -15,7 +15,7 @@ describe('The address summary', () => {
   })
 
   it('display United States address', () => {
-    const expected = '123 some rd, springfield, IL 12345'
+    const expected = <span className="title-case">123 some rd, springfield, IL 12345</span>
     const item = {
       addressType: 'United States',
       address: '123 Some Rd',
@@ -24,11 +24,11 @@ describe('The address summary', () => {
       zipcode: '12345'
     }
     const summary = AddressSummary(item, 'Unknown')
-    expect(summary).toBe(expected)
+    expect(summary).toEqual(expected)
   })
 
   it('display APO/FPO address', () => {
-    const expected = '123 some rd, FPO, AA 12345'
+    const expected = <span className="title-case">123 some rd, FPO, AA 12345</span>
     const item = {
       addressType: 'APOFPO',
       address: '123 Some Rd',
@@ -37,11 +37,11 @@ describe('The address summary', () => {
       zipcode: '12345'
     }
     const summary = AddressSummary(item, 'Unknown')
-    expect(summary).toBe(expected)
+    expect(summary).toEqual(expected)
   })
 
   it('display international address', () => {
-    const expected = '123 some rd, frankfurt, germany'
+    const expected = <span className="title-case">123 some rd, frankfurt, germany</span>
     const item = {
       addressType: 'International',
       address: '123 Some Rd',
@@ -49,6 +49,6 @@ describe('The address summary', () => {
       country: 'Germany'
     }
     const summary = AddressSummary(item, 'Unknown')
-    expect(summary).toBe(expected)
+    expect(summary).toEqual(expected)
   })
 })

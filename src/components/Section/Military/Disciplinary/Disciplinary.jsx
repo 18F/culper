@@ -22,6 +22,7 @@ export default class Disciplinary extends ValidationElement {
     this.state = {
       HasDisciplinary: props.HasDisciplinary,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -45,8 +46,9 @@ export default class Disciplinary extends ValidationElement {
     }
   }
 
-  updateList (collection) {
-    this.onUpdate('List', collection)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -119,6 +121,7 @@ export default class Disciplinary extends ValidationElement {
         <Show when={this.state.HasDisciplinary === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}

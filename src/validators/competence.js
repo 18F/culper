@@ -3,6 +3,7 @@ import OrderValidator from './order'
 export default class CompetenceValidator {
   constructor (state = {}, props) {
     this.list = state.List || []
+    this.listBranch = state.ListBranch
     this.isIncompetent = state.IsIncompetent
   }
 
@@ -12,6 +13,10 @@ export default class CompetenceValidator {
 
   validList () {
     if (this.isIncompetent === 'Yes' && this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

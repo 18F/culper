@@ -8,6 +8,7 @@ export default class PoliceOffensesValidator {
     this.hasProbation = state.HasProbation
     this.hasTrial = state.HasTrial
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validChecks () {
@@ -50,6 +51,10 @@ export default class PoliceOffensesValidator {
     }
 
     if (this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

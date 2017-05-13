@@ -3,7 +3,8 @@ import DateRangeValidator from './daterange'
 export default class GamblingValidator {
   constructor (state, props) {
     this.hasGamblingDebt = state.HasGamblingDebt
-    this.list = state.List
+    this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validHasGamblingDebt () {
@@ -27,6 +28,10 @@ export default class GamblingValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

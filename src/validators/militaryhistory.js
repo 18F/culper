@@ -5,6 +5,7 @@ export default class MilitaryHistoryValidator {
   constructor (state = {}, props = {}) {
     this.hasServed = state.HasServed
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validServed () {
@@ -17,6 +18,10 @@ export default class MilitaryHistoryValidator {
     }
 
     if (this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

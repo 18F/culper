@@ -1591,7 +1591,8 @@ describe('Relatives validation', function () {
                 Relations: ['Mother']
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -1679,7 +1680,8 @@ describe('Relatives validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

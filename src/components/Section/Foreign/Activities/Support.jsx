@@ -12,6 +12,7 @@ export default class Support extends ValidationElement {
     this.state = {
       HasForeignSupport: props.HasForeignSupport,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -27,7 +28,8 @@ export default class Support extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignSupport: this.state.HasForeignSupport,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -37,8 +39,9 @@ export default class Support extends ValidationElement {
     this.onUpdate('HasForeignSupport', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -92,12 +95,12 @@ export default class Support extends ValidationElement {
         <Show when={this.state.HasForeignSupport === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('foreign.activities.support.collection.summary.title')}
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
-                     appendMessage={i18n.m('foreign.activities.support.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.activities.support.collection.append')}>
             <h3>{i18n.t('foreign.activities.support.heading.name')}</h3>
             <Name name="Name"
@@ -169,5 +172,6 @@ export default class Support extends ValidationElement {
 Support.defaultProps = {
   name: 'Support',
   HasForeignSupport: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

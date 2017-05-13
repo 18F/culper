@@ -6,16 +6,21 @@ import { validGenericTextfield, validPhoneNumber, validNotApplicable } from './h
 export default class PeopleValidator {
   constructor (state = {}) {
     this.people = state.List || []
+    this.listBranch = state.ListBranch
   }
 
+  // TODO: Determine if this is being used outside of this file
   validCount () {
     let count = 0
+
     for (let item of this.people) {
       if (!new PersonValidator(item.Person).isValid()) {
         continue
       }
+
       count++
     }
+
     return count
   }
 
@@ -23,11 +28,17 @@ export default class PeopleValidator {
     if (this.people.length < 1) {
       return false
     }
+
+    if (this.listBranch !== 'No') {
+      return false
+    }
+
     for (let item of this.people) {
       if (!new PersonValidator(item.Person).isValid()) {
         return false
       }
     }
+
     return true
   }
 }

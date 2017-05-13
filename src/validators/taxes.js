@@ -5,6 +5,7 @@ export default class TaxesValidator {
   constructor (state = {}, props = {}) {
     this.hasTaxes = state.HasTaxes
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validHasTaxes () {
@@ -25,6 +26,10 @@ export default class TaxesValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

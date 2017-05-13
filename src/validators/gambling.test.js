@@ -66,7 +66,8 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -90,7 +91,8 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -118,7 +120,8 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -146,7 +149,8 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -174,21 +178,24 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: 'Yes',
-          List: null
+          List: null,
+          ListBranch: 'No'
         },
         expected: false
       }
@@ -204,7 +211,8 @@ describe('gambling debt component validation', function () {
       {
         state: {
           HasGamblingDebt: 'Foo',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -232,7 +240,8 @@ describe('gambling debt component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

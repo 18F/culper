@@ -49,7 +49,8 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'No',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -60,6 +61,7 @@ describe('Police record validation', function () {
           HasCharges: 'No',
           HasProbation: 'No',
           HasTrial: 'Yes',
+          ListBranch: 'No',
           List: [
             {
               Item: {
@@ -108,6 +110,54 @@ describe('Police record validation', function () {
           ]
         },
         expected: true
+      },
+      {
+        state: {
+          HasSummons: 'No',
+          HasArrests: 'No',
+          HasCharges: 'No',
+          HasProbation: 'No',
+          HasTrial: 'Yes',
+          ListBranch: 'No',
+          List: [
+            {
+              Item: {
+                InvolvedViolence: 'No',
+                InvolvedFirearms: 'No',
+                InvolvedSubstances: 'No',
+                Address: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                WasCited: 'Yes',
+                CitedBy: {
+                  value: 'Somebody'
+                },
+                WasCharged: 'No',
+                Explanation: {
+                  value: 'Some explanation'
+                },
+                AgencyAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+
+                WasSentenced: 'No',
+                AwaitingTrial: 'Yes',
+                AwaitingTrialExplanation: {
+                  value: 'Yessss'
+                }
+              }
+            }
+          ]
+        },
+        expected: false
       }
     ]
 
