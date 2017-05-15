@@ -1,5 +1,6 @@
 import React from 'react'
 import { newGuid } from '../ValidationElement'
+import Svg from '../Svg'
 
 export default class Suggestions extends React.Component {
   constructor (props) {
@@ -9,6 +10,7 @@ export default class Suggestions extends React.Component {
       dismissSuggestions: props.dismissSuggestions
     }
 
+    this.doNothing = this.doNothing.bind(this)
     this.dismissSuggestions = this.dismissSuggestions.bind(this)
   }
 
@@ -27,6 +29,20 @@ export default class Suggestions extends React.Component {
     this.setState({ dismissSuggestions: true }, () => {
       this.props.onDismiss()
     })
+  }
+
+  /**
+   * Clicking on a non-clickable element withing the modal-content is deemed non-dismissive.
+   *
+   * However, we need to stop propagation of the click event so the modal itself does not
+   * dismiss it in this use case.
+   */
+  doNothing (event) {
+    event.stopPropagation()
+
+    if (event.nativeElement) {
+      event.nativeEvent.stopImmediatePropagation()
+    }
   }
 
   /**
@@ -82,9 +98,13 @@ export default class Suggestions extends React.Component {
     return (
       <div>
         {this.props.children}
-        <div className="modal">
+        <div className="modal" onClick={this.dismissSuggestions}>
           <div className="suggestions-wrap">
-            <div className="suggestions modal-content">
+            <div className="suggestions modal-content" onClick={this.doNothing}>
+              <a href="javascript:;;" title="Click to close" onClick={this.dismissSuggestions}>
+                <Svg src="img/close-icon.svg" />
+              </a>
+
               <h3>{this.props.suggestionTitle}</h3>
               {this.props.suggestionParagraph}
               <div className={klass}>
