@@ -25,6 +25,7 @@ export default class CivilUnionValidator {
     this.addressSeparatedNotApplicable = state.AddressSeparatedNotApplicable
     this.divorced = state.Divorced
     this.divorcedList = state.DivorcedList
+    this.divorcedListBranch = state.DivorcedListBranch
   }
 
   validOtherName () {
@@ -56,17 +57,25 @@ export default class CivilUnionValidator {
     if (!validBranch(this.divorced)) {
       return false
     }
+
     if (this.divorced === 'No') {
       return true
     }
+
     if (!this.divorcedList || !this.divorcedList.length) {
       return false
     }
+
+    if (this.divorcedListBranch !== 'No') {
+      return false
+    }
+
     for (let item of this.divorcedList) {
       if (!new DivorceValidator(item.Divorce).isValid()) {
         return false
       }
     }
+
     return true
   }
 

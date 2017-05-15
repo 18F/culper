@@ -5,6 +5,7 @@ export default class ForeignIndirectActivityValidator {
   constructor (state, props = {}) {
     this.hasInterests = props.HasInterests || ''
     this.list = props.List || []
+    this.listBranch = props.ListBranch
   }
 
   isValid () {
@@ -16,6 +17,10 @@ export default class ForeignIndirectActivityValidator {
     }
 
     if (this.hasInterests === 'Yes' && !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

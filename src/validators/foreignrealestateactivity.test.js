@@ -18,7 +18,8 @@ describe('Foreign RealEstate Activity validation', function () {
       {
         props: {
           HasInterests: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -63,7 +64,8 @@ describe('Foreign RealEstate Activity validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

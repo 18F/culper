@@ -11,6 +11,7 @@ export default class Family extends ValidationElement {
     this.state = {
       HasForeignFamily: props.HasForeignFamily,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -25,7 +26,8 @@ export default class Family extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignFamily: this.state.HasForeignFamily,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -35,8 +37,9 @@ export default class Family extends ValidationElement {
     this.onUpdate('HasForeignFamily', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -96,6 +99,7 @@ export default class Family extends ValidationElement {
         <Show when={this.state.HasForeignFamily === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -151,5 +155,6 @@ export default class Family extends ValidationElement {
 Family.defaultProps = {
   name: 'Family',
   HasForeignFamily: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

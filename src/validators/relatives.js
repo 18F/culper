@@ -6,10 +6,15 @@ import { validDateField, validGenericTextfield } from './helpers'
 export default class RelativesValidator {
   constructor (state = {}, props = {}) {
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validItems () {
     if (this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

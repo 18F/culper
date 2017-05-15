@@ -15,8 +15,8 @@ export default class Headings extends ValidationElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  updateList (items) {
-    this.setState({ List: items })
+  updateList (values) {
+    this.setState({ List: values.items })
   }
 
   summary (item, index) {

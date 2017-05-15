@@ -19,22 +19,33 @@ export default class RealEstateActivity extends ValidationElement {
     this.isValid = this.isValid.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasInterests: this.props.HasInterests,
+      let obj = {
         List: this.props.List,
-        [field]: values
-      })
+        ListBranch: this.props.ListBranch,
+        HasInterests: this.props.HasInterests
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   updateHasInterests (values) {
-    this.update('HasInterests', values)
+    this.update([
+      { name: 'HasInterests', value: values }
+    ])
   }
 
   isValid () {
@@ -66,7 +77,7 @@ export default class RealEstateActivity extends ValidationElement {
 
     const summary = [who, address].reduce((prev, next) => {
       if (prev && next) {
-        return prev + ' - ' + next
+        return <span>{prev} - {next}</span>
       }
       return prev
     })
@@ -86,27 +97,27 @@ export default class RealEstateActivity extends ValidationElement {
     return (
       <div className="realestate">
         <Branch name="has_interests"
-          label={i18n.t('foreign.activities.realestate.heading.title')}
-          labelSize="h3"
-          value={this.props.HasInterests}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateHasInterests}>
+                label={i18n.t('foreign.activities.realestate.heading.title')}
+                labelSize="h3"
+                value={this.props.HasInterests}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateHasInterests}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('foreign.activities.realestate.collection.description')}
-            appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
-            appendMessage={i18n.m('foreign.activities.realestate.collection.appendMessage')}
-            appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('foreign.activities.realestate.collection.description')}
+                     appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
+                     appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
             <RealEstateInterest name="RealEstateInterest"
-              bind={true}
-            />
+                                bind={true}
+                                />
           </Accordion>
         </Show>
       </div>
@@ -118,5 +129,6 @@ RealEstateActivity.defaultProps = {
   name: 'realestate',
   HasInterests: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

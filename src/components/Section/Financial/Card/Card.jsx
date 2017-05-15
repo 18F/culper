@@ -10,6 +10,7 @@ export default class Card extends ValidationElement {
     this.state = {
       HasCardAbuse: props.HasCardAbuse,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -54,7 +55,10 @@ export default class Card extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasCardAbuse: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
@@ -63,11 +67,12 @@ export default class Card extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasCardAbuse: this.state.HasCardAbuse
         })
       }
@@ -108,12 +113,12 @@ export default class Card extends ValidationElement {
         <Show when={this.state.HasCardAbuse === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.card.collection.summary.title')}
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.card.collection.appendMessage')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 
             <Field title={i18n.t('financial.card.heading.agency')}
@@ -189,5 +194,6 @@ export default class Card extends ValidationElement {
 
 Card.defaultProps = {
   HasCardAbuse: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

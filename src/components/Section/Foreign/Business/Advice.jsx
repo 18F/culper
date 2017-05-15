@@ -11,6 +11,7 @@ export default class Advice extends ValidationElement {
     this.state = {
       HasForeignAdvice: props.HasForeignAdvice,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -25,7 +26,8 @@ export default class Advice extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignAdvice: this.state.HasForeignAdvice,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -35,8 +37,9 @@ export default class Advice extends ValidationElement {
     this.onUpdate('HasForeignAdvice', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -96,6 +99,7 @@ export default class Advice extends ValidationElement {
         <Show when={this.state.HasForeignAdvice === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -159,5 +163,6 @@ export default class Advice extends ValidationElement {
 Advice.defaultProps = {
   name: 'Advice',
   HasForeignAdvice: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

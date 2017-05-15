@@ -6,6 +6,7 @@ export default class CardAbuseValidator {
   constructor (state = {}, props = {}) {
     this.hasCardAbuse = state.HasCardAbuse
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validHasCardAbuse () {
@@ -26,6 +27,10 @@ export default class CardAbuseValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

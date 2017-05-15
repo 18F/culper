@@ -18,14 +18,16 @@ describe('CivilUnion validation', function () {
       {
         state: {
           Divorced: 'Yes',
-          DivorcedList: []
+          DivorcedList: [],
+          DivorcedListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           Divorced: 'Yes',
-          DivorcedList: [{Divorce: {}}]
+          DivorcedList: [{Divorce: {}}],
+          DivorcedListBranch: 'No'
         },
         expected: false
       },
@@ -85,7 +87,8 @@ describe('CivilUnion validation', function () {
                 zipcode: '22202'
               }
             }
-          }]
+          }],
+          DivorcedListBranch: 'No'
         },
         expected: true
       }

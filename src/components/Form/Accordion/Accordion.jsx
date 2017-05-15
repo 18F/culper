@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
+import Branch from '../Branch'
 import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
@@ -43,6 +44,7 @@ export default class Accordion extends ValidationElement {
     this.update = this.update.bind(this)
     this.add = this.add.bind(this)
     this.updateChild = this.updateChild.bind(this)
+    this.updateAddendum = this.updateAddendum.bind(this)
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
@@ -170,9 +172,12 @@ export default class Accordion extends ValidationElement {
   /**
    * Send the updated list of items back to the parent component.
    */
-  update (items) {
+  update (items, branch) {
     if (this.props.onUpdate) {
-      this.props.onUpdate(items)
+      this.props.onUpdate({
+        branch: branch,
+        items: items
+      })
     }
   }
 
@@ -188,7 +193,7 @@ export default class Accordion extends ValidationElement {
       return x
     })
 
-    this.update(items)
+    this.update(items, this.props.branch)
     this.setState({ initial: false, scrollToId: '' })
   }
 
@@ -204,7 +209,7 @@ export default class Accordion extends ValidationElement {
 
     const item = this.newItem()
     items = items.concat([item])
-    this.update(items)
+    this.update(items, '')
     this.setState({ initial: false, scrollToId: item.uuid })
   }
 
@@ -222,7 +227,7 @@ export default class Accordion extends ValidationElement {
         items.push(this.newItem())
       }
 
-      this.update(items)
+      this.update(items, '')
       this.setState({ initial: false, scrollToId: '' })
     }
   }
@@ -234,7 +239,19 @@ export default class Accordion extends ValidationElement {
     let items = [...this.props.items]
     const index = items.findIndex(x => x.uuid === item.uuid)
     items[index][prop] = value
-    this.update(items)
+    this.update(items, this.props.branch)
+  }
+
+  /**
+   * Update the accordion addendum branch value.
+   */
+  updateAddendum (value) {
+    if (value === 'Yes') {
+      this.add()
+      return
+    }
+
+    this.update(this.props.items, value)
   }
 
   /**
@@ -339,6 +356,22 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * The append button is only displayed if there is no addendum.
+   */
+  appendButton () {
+    if (this.props.appendTitle || this.props.appendMessage) {
+      return null
+    }
+
+    return (
+      <button className="add usa-button-outline" onClick={this.add}>
+        {this.props.appendLabel}
+        <i className="fa fa-plus-circle"></i>
+      </button>
+    )
+  }
+
+  /**
    * Render the accordion addendum notice
    */
   addendum () {
@@ -346,28 +379,18 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    let title = null
-    if (this.props.appendTitle) {
-      title = <h3>{this.props.appendTitle}</h3>
-    }
-
-    let message = null
-    if (this.props.appendMessage) {
-      message = this.props.appendMessage
-    }
-
+    // TODO: Add `value` and `onUpdate`
     const klassAppend = `addendum ${this.props.appendClass}`.trim()
     return (
-      <div className={klassAppend}>
-        {title}
-        {message}
-        <div>
-          <button className="add usa-button-outline" onClick={this.add}>
-            <span>{this.props.appendLabel}</span>
-            <i className="fa fa-plus-circle"></i>
-          </button>
-        </div>
-      </div>
+      <Branch label={this.props.appendTitle}
+              labelSize="h3"
+              className={klassAppend}
+              help={this.props.appendHelp}
+              value={this.props.branch}
+              onUpdate={this.updateAddendum}
+              onValidate={this.props.onValidate}>
+        {this.props.appendMessage}
+      </Branch>
     )
   }
 
@@ -395,10 +418,7 @@ export default class Accordion extends ValidationElement {
             {this.content()}
           </div>
 
-          <button className="add usa-button-outline" onClick={this.add}>
-            {this.props.appendLabel}
-            <i className="fa fa-plus-circle"></i>
-          </button>
+          {this.appendButton()}
         </div>
 
         {this.addendum()}
@@ -413,9 +433,11 @@ Accordion.defaultProps = {
   minimum: 1,
   defaultState: true,
   items: [],
+  branch: '',
   className: '',
   appendTitle: '',
-  appendMessage: '',
+  appendMessage: null,
+  appendHelp: null,
   appendClass: '',
   appendLabel: i18n.t('collection.append'),
   openLabel: i18n.t('collection.open'),

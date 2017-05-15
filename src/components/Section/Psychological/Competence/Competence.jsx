@@ -11,6 +11,7 @@ export default class Competence extends ValidationElement {
     this.state = {
       IsIncompetent: props.IsIncompetent,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -25,14 +26,16 @@ export default class Competence extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           IsIncompetent: this.state.IsIncompetent,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   updateIsIncompentent (values) {
@@ -81,26 +84,26 @@ export default class Competence extends ValidationElement {
       <div className="competence">
         <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
-          value={this.state.IsIncompetent}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateIsIncompentent}>
+                value={this.state.IsIncompetent}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateIsIncompentent}>
         </Branch>
 
         <Show when={this.state.IsIncompetent === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.state.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('psychological.competence.collection.description')}
-            appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.competence.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.state.List}
+                     branch={this.state.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('psychological.competence.collection.description')}
+                     appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
+                     appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
             <Order name="Competence"
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              prefix="competence"
-              bind={true} />
+                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   prefix="competence"
+                   bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -109,6 +112,8 @@ export default class Competence extends ValidationElement {
 }
 
 Competence.defaultProps = {
+  IsIncompetent: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

@@ -90,44 +90,82 @@ describe('Hospitalization validation', function () {
       {
         state: {
           Hospitalized: 'Yes',
-          List: [{
-            Hospitalization: {
-              Facility: {
-                value: 'Place 1'
-              },
-              FacilityAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202'
-              },
-              TreatmentDate: {
-                from: {
-                  date: new Date('1/1/2010')
+          List: [
+            {
+              Hospitalization: {
+                Facility: {
+                  value: 'Place 1'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                FacilityAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
                 },
-                present: false
-              },
-              Admission: 'Voluntary',
-              Explanation: {
-                value: 'Because I can'
+                TreatmentDate: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Admission: 'Voluntary',
+                Explanation: {
+                  value: 'Because I can'
+                }
               }
             }
-          }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           Hospitalized: 'Nope',
-          List: [{
-            Hospitalization: {
+          List: [
+            {
+              Hospitalization: {
+                Facility: {
+                  value: 'Place 1'
+                },
+                FacilityAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                TreatmentDate: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Admission: 'Voluntary',
+                Explanation: {
+                  value: 'Because I can'
+                }
+              }
+            }
+          ],
+          ListBranch: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          Hospitalized: 'Yes',
+          List: [
+            {
               Facility: {
-                value: 'Place 1'
+                value: null
               },
               FacilityAddress: {
                 addressType: 'United States',
@@ -150,47 +188,16 @@ describe('Hospitalization validation', function () {
                 value: 'Because I can'
               }
             }
-          }
-          ]
+          ],
+          ListBranch: ''
         },
         expected: false
       },
       {
         state: {
           Hospitalized: 'Yes',
-          List: [{
-            Facility: {
-              value: null
-            },
-            FacilityAddress: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202'
-            },
-            TreatmentDate: {
-              from: {
-                date: new Date('1/1/2010')
-              },
-              to: {
-                date: new Date('1/1/2012')
-              },
-              present: false
-            },
-            Admission: 'Voluntary',
-            Explanation: {
-              value: 'Because I can'
-            }
-          }
-          ]
-        },
-        expected: false
-      },
-      {
-        state: {
-          Hospitalized: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       }

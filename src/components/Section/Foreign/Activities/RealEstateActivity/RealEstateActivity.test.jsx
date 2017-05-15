@@ -152,7 +152,8 @@ describe('The RealEstateActivity component', () => {
             }
           }
         }
-      ]
+      ],
+      ListBranch: 'No'
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

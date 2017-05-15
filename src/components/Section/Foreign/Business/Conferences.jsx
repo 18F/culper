@@ -13,6 +13,7 @@ export default class Conferences extends ValidationElement {
     this.state = {
       HasForeignConferences: props.HasForeignConferences,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -37,8 +38,9 @@ export default class Conferences extends ValidationElement {
     this.onUpdate('HasForeignConferences', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -99,6 +101,7 @@ export default class Conferences extends ValidationElement {
         <Show when={this.state.HasForeignConferences === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -168,5 +171,6 @@ export default class Conferences extends ValidationElement {
 Conferences.defaultProps = {
   name: 'Conferences',
   HasForeignConferences: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

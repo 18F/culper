@@ -10,7 +10,9 @@ export default class PoliceValidator {
     this.hasProbation = state.HasProbation
     this.hasTrial = state.HasTrial
     this.list = state.List || []
+    this.listBranch = state.ListBranch
     this.otherOffenses = state.OtherOffenses || []
+    this.otherOffensesBranch = state.OtherOffensesBranch
     this.domesticViolence = state.DomesticViolence || []
     this.hasOtherConviction = state.HasOtherConviction
     this.hasOtherFelony = state.HasOtherFelony
@@ -56,17 +58,28 @@ export default class PoliceValidator {
       return false
     }
 
+    if (this.listBranch !== 'No') {
+      return false
+    }
+
     for (const offense of this.list) {
       if (new OffenseValidator(offense.Item, null).isValid() !== true) {
         return false
       }
     }
 
-    for (const otherOffense of this.otherOffenses) {
-      if (new OtherOffenseValidator(otherOffense.Item, null).isValid() !== true) {
+    if (this.hasOtherOffenses()) {
+      if (this.otherOffensesBranch !== 'No') {
         return false
       }
+
+      for (const otherOffense of this.otherOffenses) {
+        if (new OtherOffenseValidator(otherOffense.Item, null).isValid() !== true) {
+          return false
+        }
+      }
     }
+
     return true
   }
 

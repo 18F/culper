@@ -431,7 +431,8 @@ describe('citizenship multiple component validation', function () {
               Item: {
               }
             }
-          ]
+          ],
+          CitizenshipsBranch: 'No'
         },
         expected: false
       },
@@ -464,7 +465,8 @@ describe('citizenship multiple component validation', function () {
                 }
               }
             }
-          ]
+          ],
+          CitizenshipsBranch: 'No'
         },
         expected: true
       }
@@ -656,6 +658,7 @@ describe('citizenship multiple component validation', function () {
               }
             }
           ],
+          CitizenshipsBranch: 'No',
           Passports: [
             {
               Has: 'Yes',

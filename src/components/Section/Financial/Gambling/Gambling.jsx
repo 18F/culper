@@ -8,6 +8,7 @@ export default class Gambling extends ValidationElement {
     super(props)
     this.state = {
       List: props.List || [],
+      ListBranch: props.ListBranch || [],
       HasGamblingDebt: props.HasGamblingDebt,
       errorCodes: []
     }
@@ -57,7 +58,10 @@ export default class Gambling extends ValidationElement {
    */
   onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
-      this.myDispatch(val === 'No' ? [] : this.state.List)
+      this.myDispatch({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
@@ -66,11 +70,12 @@ export default class Gambling extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  myDispatch (collection) {
-    this.setState({ List: collection }, () => {
+  myDispatch (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasGamblingDebt: this.state.HasGamblingDebt
         })
       }
@@ -130,13 +135,13 @@ export default class Gambling extends ValidationElement {
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
-                     appendTitle={i18n.t('financial.gambling.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.gambling.collection.appendMessage')}>
+                     appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
             <Field title={i18n.t('financial.gambling.heading.dates')}
                    help="financial.gambling.help.dates"
                    adjustFor="daterange">

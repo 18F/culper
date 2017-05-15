@@ -11,6 +11,7 @@ export default class Nonpayment extends ValidationElement {
     this.state = {
       HasNonpayment: props.HasNonpayment,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -55,7 +56,10 @@ export default class Nonpayment extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasNonpayment: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
@@ -64,11 +68,12 @@ export default class Nonpayment extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasNonpayment: this.state.HasNonpayment
         })
       }
@@ -112,8 +117,6 @@ export default class Nonpayment extends ValidationElement {
           <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
           <li>{i18n.m('financial.nonpayment.para.any')}</li>
         </ul>
-
-        {i18n.m('financial.nonpayment.collection.appendMessage')}
       </div>
     )
   }
@@ -130,6 +133,7 @@ export default class Nonpayment extends ValidationElement {
         <Show when={this.state.HasNonpayment === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -250,5 +254,6 @@ export default class Nonpayment extends ValidationElement {
 
 Nonpayment.defaultProps = {
   HasNonpayment: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

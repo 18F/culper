@@ -12,6 +12,7 @@ export default class Ventures extends ValidationElement {
     this.state = {
       HasForeignVentures: props.HasForeignVentures,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -26,7 +27,8 @@ export default class Ventures extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignVentures: this.state.HasForeignVentures,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -36,8 +38,9 @@ export default class Ventures extends ValidationElement {
     this.onUpdate('HasForeignVentures', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -99,6 +102,7 @@ export default class Ventures extends ValidationElement {
         <Show when={this.state.HasForeignVentures === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -204,5 +208,6 @@ export default class Ventures extends ValidationElement {
 Ventures.defaultProps = {
   name: 'Ventures',
   HasForeignVentures: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }
