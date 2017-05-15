@@ -11,6 +11,7 @@ export default class Consultation extends ValidationElement {
     this.state = {
       Consulted: props.Consulted,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -26,14 +27,16 @@ export default class Consultation extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Consulted: this.state.Consulted,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update('List', values.items)
+    this.update('ListBranch', values.branch)
   }
 
   updateConsulted (values) {
@@ -85,27 +88,26 @@ export default class Consultation extends ValidationElement {
         <h2>{i18n.t('psychological.heading.consultation')}</h2>
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
-          value={this.state.Consulted}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateConsulted}>
+                value={this.state.Consulted}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateConsulted}>
         </Branch>
 
         <Show when={this.state.Consulted === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.state.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('psychological.consultation.collection.description')}
-            appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
-            appendMessage={i18n.m('psychological.consultation.collection.appendMessage')}
-            appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
-            <Order
-              name="Consultation"
-              prefix="consultation"
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              bind={true} />
+                     defaultState={this.props.defaultState}
+                     items={this.state.List}
+                     branch={this.state.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('psychological.consultation.collection.description')}
+                     appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
+                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
+            <Order name="Consultation"
+                   prefix="consultation"
+                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -114,6 +116,8 @@ export default class Consultation extends ValidationElement {
 }
 
 Consultation.defaultProps = {
+  Consulted: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

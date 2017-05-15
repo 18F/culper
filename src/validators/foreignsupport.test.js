@@ -170,7 +170,8 @@ describe('Foreign activities support component validation', function () {
       {
         state: {
           HasForeignSupport: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       },
@@ -211,7 +212,8 @@ describe('Foreign activities support component validation', function () {
                 ]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

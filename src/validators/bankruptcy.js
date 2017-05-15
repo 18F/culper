@@ -9,6 +9,7 @@ export default class BankruptcyValidator {
   constructor (state, props) {
     this.hasBankruptcy = state.HasBankruptcy
     this.list = state.List
+    this.listBranch = state.ListBranch
   }
 
   /**
@@ -32,6 +33,10 @@ export default class BankruptcyValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

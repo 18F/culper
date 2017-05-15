@@ -62,7 +62,8 @@ describe('Military disciplinary validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

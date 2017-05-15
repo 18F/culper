@@ -344,21 +344,24 @@ describe('nonpayment component validation', function () {
       {
         state: {
           HasNonpayment: 'No',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: true
       },
       {
         state: {
           HasNonpayment: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       },
       {
         state: {
           HasNonpayment: 'Yes',
-          List: [{}]
+          List: [{}],
+          ListBranch: ''
         },
         expected: false
       },
@@ -407,7 +410,8 @@ describe('nonpayment component validation', function () {
                 value: 'The description'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

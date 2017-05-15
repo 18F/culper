@@ -230,7 +230,6 @@ export default class Offense extends ValidationElement {
                 adjustFor="p"
                 className="offense-cited"
                 value={this.state.WasCited}
-                help="legal.police.help.cited"
                 onUpdate={this.updateWasCited}
                 onValidate={this.props.onValidate}>
         </Branch>
@@ -243,8 +242,7 @@ export default class Offense extends ValidationElement {
             </Field>
 
             <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
-            <Field title={i18n.t('legal.police.heading.citedby')}
-                   help="legal.police.help.citedby">
+            <Field title={i18n.t('legal.police.heading.citedby')}>
               <Text name="CitedBy"
                     {...this.state.CitedBy}
                     className="offense-citedby"
@@ -270,7 +268,6 @@ export default class Offense extends ValidationElement {
             <Branch name="was_charged"
                     className="offense-charged"
                     value={this.state.WasCharged}
-                    help="legal.police.help.charged"
                     onUpdate={this.updateWasCharged}
                     onValidate={this.props.onValidate}>
             </Branch>
@@ -301,7 +298,6 @@ export default class Offense extends ValidationElement {
 
             <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
             <Field title={i18n.t('legal.police.heading.courtname')}
-                   help="legal.police.help.courtname"
                    adjustFor="labels">
               <Text name="CourtName"
                     {...this.state.CourtName}
@@ -330,7 +326,6 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.courttype')}
                    titleSize="h4"
-                   help="legal.police.help.courttype"
                    adjustFor="buttons"
                    shrink={true}>
               <RadioGroup className="offense-courttype option-list"
@@ -359,8 +354,7 @@ export default class Offense extends ValidationElement {
               </RadioGroup>
             </Field>
 
-            <Field help="legal.police.help.courtcharge"
-                   adjustFor="labels">
+            <Field adjustFor="labels">
               <Text name="CourtCharge"
                     {...this.state.CourtCharge}
                     label={i18n.t('legal.police.label.courtcharge')}
@@ -370,8 +364,7 @@ export default class Offense extends ValidationElement {
                     />
             </Field>
 
-            <Field help="legal.police.help.courtoutcome"
-                   adjustFor="labels">
+            <Field adjustFor="labels">
               <Text name="CourtOutcome"
                     {...this.state.CourtOutcome}
                     label={i18n.t('legal.police.label.courtoutcome')}
@@ -399,7 +392,6 @@ export default class Offense extends ValidationElement {
             <Branch name="was_sentenced"
                     className="offense-sentenced"
                     value={this.state.WasSentenced}
-                    help="legal.police.help.sentenced"
                     onUpdate={this.updateWasSentenced}
                     onValidate={this.props.onValidate}>
             </Branch>

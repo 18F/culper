@@ -102,7 +102,8 @@ describe('The DirectActivity component', () => {
             }
           }
         }
-      ]
+      ],
+      ListBranch: 'No'
     }
     const component = mount(<DirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

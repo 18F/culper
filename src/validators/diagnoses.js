@@ -10,7 +10,9 @@ export default class DiagnosesValidator {
     this.didNotConsult = state.DidNotConsult
     this.inTreatment = state.InTreatment
     this.diagnosisList = state.DiagnosisList
+    this.diagnosisListBranch = state.DiagnosisListBranch
     this.treatmentList = state.TreatmentList
+    this.treatmentListBranch = state.TreatmentListBranch
   }
 
   validDiagnosisList () {
@@ -22,11 +24,16 @@ export default class DiagnosesValidator {
       return false
     }
 
+    if (this.diagnosisListBranch !== 'No') {
+      return false
+    }
+
     for (let item of this.diagnosisList) {
       if (!new DiagnosisValidator(item.Diagnosis).isValid()) {
         return false
       }
     }
+
     return true
   }
 
@@ -39,11 +46,16 @@ export default class DiagnosesValidator {
       return false
     }
 
+    if (this.treatmentListBranch !== 'No') {
+      return false
+    }
+
     for (let item of this.treatmentList) {
       if (!new TreatmentValidator(item.Treatment).isValid()) {
         return false
       }
     }
+
     return true
   }
 
@@ -62,4 +74,3 @@ export default class DiagnosesValidator {
       this.validTreatmentList()
   }
 }
-

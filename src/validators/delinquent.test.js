@@ -396,21 +396,24 @@ describe('delinquent component validation', function () {
       {
         state: {
           HasDelinquent: 'No',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           HasDelinquent: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasDelinquent: 'Yes',
-          List: [{}]
+          List: [{}],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -469,7 +472,8 @@ describe('delinquent component validation', function () {
                 value: 'The description'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

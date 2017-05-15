@@ -39,14 +39,16 @@ describe('Bankruptcy component validation', function () {
       {
         state: {
           HasBankruptcy: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasBankruptcy: 'No',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -97,7 +99,8 @@ describe('Bankruptcy component validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -147,7 +150,8 @@ describe('Bankruptcy component validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -160,7 +164,8 @@ describe('Bankruptcy component validation', function () {
                 PetitionType: 'Hello'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       }

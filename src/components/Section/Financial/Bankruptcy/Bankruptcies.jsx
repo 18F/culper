@@ -17,22 +17,33 @@ export default class Bankruptcies extends ValidationElement {
     this.summary = this.summary.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
+      let obj = {
         List: this.props.List,
-        HasBankruptcy: this.props.HasBankruptcy,
-        [field]: values
-      })
+        ListBranch: this.props.ListBranch,
+        HasBankruptcy: this.props.HasBankruptcy
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   updateHasBankrupty (values) {
-    this.update('HasBankruptcy', values)
+    this.update([
+      { name: 'HasBankruptcy', value: values }
+    ])
   }
 
   /**
@@ -83,26 +94,32 @@ export default class Bankruptcies extends ValidationElement {
     return (
       <div className="bankruptcies">
         <Branch name="has_bankruptcydebt"
-          className="bankruptcy-branch"
-          value={this.props.HasBankruptcy}
-          help="financial.bankruptcy.help"
-          onUpdate={this.updateHasBankrupty}>
+                className="bankruptcy-branch"
+                value={this.props.HasBankruptcy}
+                help="financial.bankruptcy.help"
+                onUpdate={this.updateHasBankrupty}>
         </Branch>
         <Show when={this.props.HasBankruptcy === 'Yes'}>
           <Accordion minimum="1"
-            items={this.props.List}
-            onUpdate={this.updateList}
-            onValidate={this.handleValidation}
-            summary={this.summary}
-            description={i18n.t('financial.bankruptcy.collection.summary.title')}
-            appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
-            appendMessage={i18n.m('financial.bankruptcy.collection.summary.appendMessage')}
-            appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     summary={this.summary}
+                     description={i18n.t('financial.bankruptcy.collection.summary.title')}
+                     appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
+                     appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
             <Bankruptcy name="Bankruptcy"
-              bind={true} />
+                        bind={true} />
           </Accordion>
         </Show>
       </div>
     )
   }
+}
+
+Bankruptcies.defaultProps = {
+  List: [],
+  ListBranch: '',
+  HasBankruptcy: ''
 }

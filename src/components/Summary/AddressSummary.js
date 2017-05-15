@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const AddressSummary = (props, unknown) => {
   if (!props) {
     return unknown
@@ -14,12 +16,11 @@ export const AddressSummary = (props, unknown) => {
     address2 = `${(props.city || '').toLowerCase()}, ${(props.country || '').toLowerCase()}`.trim()
   }
 
-  let address = ''
   if (address1.length === 0 || address2.length === 1) {
-    address = unknown
-  } else {
-    address = `${address1.toLowerCase()}, ${address2}`.trim()
+    return unknown
   }
 
-  return address
+  return (
+    <span className="title-case">{`${address1.toLowerCase()}, ${address2}`.trim()}</span>
+  )
 }

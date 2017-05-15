@@ -10,6 +10,7 @@ export default class Credit extends ValidationElement {
     this.state = {
       HasCreditCounseling: props.HasCreditCounseling,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -54,7 +55,10 @@ export default class Credit extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasCreditCounseling: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
@@ -63,11 +67,12 @@ export default class Credit extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasCreditCounseling: this.state.HasCreditCounseling
         })
       }
@@ -101,12 +106,12 @@ export default class Credit extends ValidationElement {
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.credit.collection.summary.title')}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.credit.collection.appendMessage')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
 
             <Field title={i18n.t('financial.credit.heading.explanation')}
@@ -159,5 +164,6 @@ export default class Credit extends ValidationElement {
 
 Credit.defaultProps = {
   HasCreditCounseling: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

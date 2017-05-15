@@ -148,7 +148,8 @@ describe('Foreign business employment component validation', function () {
       {
         state: {
           HasForeignEmployment: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -186,7 +187,8 @@ describe('Foreign business employment component validation', function () {
                 Accepted: 'No'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

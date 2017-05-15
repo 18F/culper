@@ -11,6 +11,7 @@ export default class Taxes extends ValidationElement {
     this.state = {
       HasTaxes: props.HasTaxes,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -55,7 +56,10 @@ export default class Taxes extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasTaxes: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
@@ -64,11 +68,12 @@ export default class Taxes extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasTaxes: this.state.HasTaxes
         })
       }
@@ -104,12 +109,12 @@ export default class Taxes extends ValidationElement {
         <Show when={this.state.HasTaxes === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('financial.taxes.collection.summary.title')}
                      appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
-                     appendMessage={i18n.m('financial.taxes.collection.appendMessage')}
                      appendLabel={i18n.t('financial.taxes.collection.append')}>
 
             <Field title={i18n.t('financial.taxes.heading.failure')}
@@ -217,5 +222,6 @@ export default class Taxes extends ValidationElement {
 
 Taxes.defaultProps = {
   HasTaxes: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }
