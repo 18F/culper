@@ -30,6 +30,7 @@ export default class OtherOffense extends ValidationElement {
       CourtCharge: props.CourtCharge,
       CourtOutcome: props.CourtOutcome,
       CourtDate: props.CourtDate,
+      ChargeType: props.ChargeType,
       WasSentenced: props.WasSentenced,
       Sentence: props.Sentence,
       AwaitingTrial: props.AwaitingTrial,
@@ -44,7 +45,7 @@ export default class OtherOffense extends ValidationElement {
     this.updateInvolvedSubstances = this.updateInvolvedSubstances.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateCourtType = this.updateCourtType.bind(this)
+    this.updateChargeType = this.updateChargeType.bind(this)
     this.updateCourtCharge = this.updateCourtCharge.bind(this)
     this.updateCourtOutcome = this.updateCourtOutcome.bind(this)
     this.updateCourtDate = this.updateCourtDate.bind(this)
@@ -88,8 +89,8 @@ export default class OtherOffense extends ValidationElement {
     this.onUpdate('CourtAddress', value)
   }
 
-  updateCourtType (event) {
-    this.onUpdate('CourtType', event.target.value)
+  updateChargeType (event) {
+    this.onUpdate('ChargeType', event.target.value)
   }
 
   updateCourtCharge (value) {
@@ -170,7 +171,6 @@ export default class OtherOffense extends ValidationElement {
           {i18n.m('legal.police.label.substances')}
         </Branch>
 
-        <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
         <Field title={i18n.t('legal.police.heading.courtname')}
                help="legal.police.help.courtname"
                adjustFor="labels">
@@ -199,37 +199,34 @@ export default class OtherOffense extends ValidationElement {
         <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
         {i18n.m('legal.police.para.chargedetails')}
 
-        <Field title={i18n.t('legal.police.heading.courttype')}
+        <Field title={i18n.t('legal.police.heading.chargeType')}
                titleSize="h4"
-               adjustFor="buttons"
-               shrink={true}>
-          <RadioGroup className="offense-courttype option-list"
-                      selectedValue={this.state.CourtType}>
+               adjustFor="buttons">
+          <RadioGroup className="offense-chargetype option-list"
+                      selectedValue={this.state.ChargeType}>
             <Radio name="charge-felony"
                    className="charge-felony"
                    label={i18n.t('legal.police.label.felony')}
                    value="Felony"
-                   onChange={this.updateCourtType}
+                   onChange={this.updateChargeType}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="charge-misdemeanor"
                    className="charge-misdemeanor"
                    label={i18n.t('legal.police.label.misdemeanor')}
                    value="Misdemeanor"
-                   onChange={this.updateCourtType}
+                   onChange={this.updateChargeType}
                    onValidate={this.props.onValidate}
                    />
             <Radio name="charge-other"
                    className="charge-other"
                    label={i18n.t('legal.police.label.other')}
                    value="Other"
-                   onChange={this.updateCourtType}
+                   onChange={this.updateChargeType}
                    onValidate={this.props.onValidate}
                    />
           </RadioGroup>
-        </Field>
 
-        <Field adjustFor="labels">
           <Text name="CourtCharge"
                 {...this.state.CourtCharge}
                 label={i18n.t('legal.police.label.courtcharge')}
@@ -237,9 +234,6 @@ export default class OtherOffense extends ValidationElement {
                 onUpdate={this.updateCourtCharge}
                 onValidate={this.props.onValidate}
                 />
-        </Field>
-
-        <Field adjustFor="labels">
           <Text name="CourtOutcome"
                 {...this.state.CourtOutcome}
                 label={i18n.t('legal.police.label.courtoutcome')}
@@ -247,7 +241,7 @@ export default class OtherOffense extends ValidationElement {
                 onUpdate={this.updateCourtOutcome}
                 onValidate={this.props.onValidate}
                 />
-        </Field>
+       </Field>
 
         <Field title={i18n.t('legal.police.heading.courtdate')}
                titleSize="h4"

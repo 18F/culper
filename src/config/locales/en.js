@@ -5974,6 +5974,9 @@ const en = {
     },
     destination: {
       police: 'Police record',
+      offenses: 'Offenses',
+      additionalOffenses: 'Additional offenses',
+      domesticViolence: 'Domestic violence',
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -5992,8 +5995,8 @@ const en = {
         courtinfo: 'Court Information',
         courtname: 'Provide the name of the court',
         courtaddress: 'Provide the location of the court',
-        chargedetails: 'Charges detail',
-        courttype: 'Type of charge',
+        chargedetails: 'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
+        chargeType: 'Type of charge',
         courtdate: 'Date',
         sentenced: 'Were you sentenced as a result of this offense?',
         needmore: 'Since you answered yes we need more information',
@@ -6014,7 +6017,7 @@ const en = {
         intro1: 'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
         intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
-        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
+        chargedetails: 'Such as found guilty, found not-guilty, charge dropped or "nolle pros," etc. If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
           first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year?',
@@ -6022,7 +6025,8 @@ const en = {
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
-        }
+        },
+        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -6043,8 +6047,7 @@ const en = {
         courtoutcome: 'Outcome',
         domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
         domesticViolenceAppend: 'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
-        notApplicable: 'Not applicable',
-        or: 'or add date range'
+        notApplicable: 'Not applicable'
       },
       help: {
         summons: {
@@ -6132,7 +6135,7 @@ const en = {
           message: 'Try looking up the court name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
-        courttype: {
+        chargeType: {
           title: 'Need help with the type of charge?',
           message: 'Provide the type of charge issued by the court',
           note: ''
@@ -6196,7 +6199,7 @@ const en = {
           title: 'Need help with this charge question?',
           message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
           note: ''
-        },
+        }
       },
       branchCollection: {
         domesticViolence: {
@@ -6343,6 +6346,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
+      psychological: 'Psychological and emotional health',
       intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',

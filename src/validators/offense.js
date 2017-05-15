@@ -1,6 +1,6 @@
 import AddressValidator from './address'
 import SentenceValidator from './sentence'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validGenericTextfield, validDateField, validBranch } from './helpers'
 
 export default class OffenseValidator {
   constructor (state = {}, props = {}) {
@@ -17,12 +17,14 @@ export default class OffenseValidator {
     this.explanation = state.Explanation
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
-    this.courtType = state.CourtType
+    this.chargeType = state.ChargeType
     this.courtCharge = state.CourtCharge
     this.courtOutcome = state.CourtOutcome
     this.courtDate = state.CourtDate
     this.sentence = state.Sentence
     this.wasSentenced = state.WasSentenced
+    this.awaitingTrial = state.AwaitingTrial
+    this.awaitingTrialExplanation = state.AwaitingTrialExplanation
   }
 
   validDate () {
@@ -101,12 +103,12 @@ export default class OffenseValidator {
     return !!this.courtAddress && new AddressValidator(this.courtAddress, null).isValid()
   }
 
-  validCourtType () {
+  validChargeType () {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
 
-    return !!this.courtType && ['Felony', 'Misdemeanor', 'Other'].includes(this.courtType)
+    return !!this.chargeType && ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
   }
 
   validCourtCharge () {
@@ -149,6 +151,14 @@ export default class OffenseValidator {
     return false
   }
 
+  validAwaitingTrial () {
+    if (this.wasSentenced === 'Yes') {
+      return true
+    }
+    return validBranch(this.awaitingTrial) &&
+      validGenericTextfield(this.awaitingTrialExplanation)
+  }
+
   isValid () {
     return this.validDate() &&
       this.validDescription() &&
@@ -163,10 +173,11 @@ export default class OffenseValidator {
       this.validExplanation() &&
       this.validCourtName() &&
       this.validCourtAddress() &&
-      this.validCourtType() &&
+      this.validChargeType() &&
       this.validCourtCharge() &&
       this.validCourtOutcome() &&
       this.validCourtDate() &&
-      this.validSentenced()
+      this.validSentenced() &&
+      this.validAwaitingTrial()
   }
 }

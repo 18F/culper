@@ -284,3 +284,8 @@
     }
   }
 }
+
+// Handle first of types
+.field:first-of-type > .title {
+  margin-top: 0;
+}

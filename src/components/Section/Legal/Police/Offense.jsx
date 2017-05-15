@@ -36,6 +36,7 @@ export default class Offense extends ValidationElement {
       CourtCharge: props.CourtCharge,
       CourtOutcome: props.CourtOutcome,
       CourtDate: props.CourtDate,
+      ChargeType: props.ChargeType,
       WasSentenced: props.WasSentenced,
       Sentence: props.Sentence,
       AwaitingTrial: props.AwaitingTrial,
@@ -56,7 +57,7 @@ export default class Offense extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateCourtType = this.updateCourtType.bind(this)
+    this.updateChargeType = this.updateChargeType.bind(this)
     this.updateCourtCharge = this.updateCourtCharge.bind(this)
     this.updateCourtOutcome = this.updateCourtOutcome.bind(this)
     this.updateCourtDate = this.updateCourtDate.bind(this)
@@ -124,8 +125,8 @@ export default class Offense extends ValidationElement {
     this.onUpdate('CourtAddress', value)
   }
 
-  updateCourtType (event) {
-    this.onUpdate('CourtType', event.target.value)
+  updateChargeType (event) {
+    this.onUpdate('ChargeType', event.target.value)
   }
 
   updateCourtCharge (value) {
@@ -276,8 +277,7 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCharged === 'No'}>
           <div>
-            <Field help="legal.police.help.explanation"
-                   adjustFor="labels">
+            <Field adjustFor="labels">
               <Textarea name="Explanation"
                         {...this.state.Explanation}
                         label={i18n.t('legal.police.label.explanation')}
@@ -296,7 +296,6 @@ export default class Offense extends ValidationElement {
               <Svg src="img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
-            <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
             <Field title={i18n.t('legal.police.heading.courtname')}
                    adjustFor="labels">
               <Text name="CourtName"
@@ -323,38 +322,35 @@ export default class Offense extends ValidationElement {
 
             <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
             {i18n.m('legal.police.para.chargedetails')}
-
-            <Field title={i18n.t('legal.police.heading.courttype')}
+            <Field title={i18n.t('legal.police.heading.chargeType')}
                    titleSize="h4"
                    adjustFor="buttons"
                    shrink={true}>
-              <RadioGroup className="offense-courttype option-list"
-                          selectedValue={this.state.CourtType}>
+              <RadioGroup className="offense-chargetype option-list"
+                          selectedValue={this.state.ChargeType}>
                 <Radio name="charge-felony"
                        className="charge-felony"
                        label={i18n.t('legal.police.label.felony')}
                        value="Felony"
-                       onChange={this.updateCourtType}
+                       onChange={this.updateChargeType}
                        onValidate={this.props.onValidate}
                        />
                 <Radio name="charge-misdemeanor"
                        className="charge-misdemeanor"
                        label={i18n.t('legal.police.label.misdemeanor')}
                        value="Misdemeanor"
-                       onChange={this.updateCourtType}
+                       onChange={this.updateChargeType}
                        onValidate={this.props.onValidate}
                        />
                 <Radio name="charge-other"
                        className="charge-other"
                        label={i18n.t('legal.police.label.other')}
                        value="Other"
-                       onChange={this.updateCourtType}
+                       onChange={this.updateChargeType}
                        onValidate={this.props.onValidate}
                        />
               </RadioGroup>
-            </Field>
 
-            <Field adjustFor="labels">
               <Text name="CourtCharge"
                     {...this.state.CourtCharge}
                     label={i18n.t('legal.police.label.courtcharge')}
@@ -362,9 +358,6 @@ export default class Offense extends ValidationElement {
                     onUpdate={this.updateCourtCharge}
                     onValidate={this.props.onValidate}
                     />
-            </Field>
-
-            <Field adjustFor="labels">
               <Text name="CourtOutcome"
                     {...this.state.CourtOutcome}
                     label={i18n.t('legal.police.label.courtoutcome')}

@@ -104,7 +104,6 @@ export default class Sentence extends ValidationElement {
           <NotApplicable name="IncarcerationDatesNA"
                          {...this.state.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
-                         or={i18n.t('legal.police.label.or')}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
@@ -122,7 +121,6 @@ export default class Sentence extends ValidationElement {
           <NotApplicable name="ProbationDatesNA"
                          {...this.state.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
-                         or={i18n.t('legal.police.label.or')}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"

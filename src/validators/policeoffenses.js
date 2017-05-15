@@ -1,8 +1,6 @@
 import OffenseValidator from './offense'
-import OtherOffenseValidator from './otheroffense'
-import DomesticViolence from './domesticviolence'
 
-export default class PoliceValidator {
+export default class PoliceOffensesValidator {
   constructor (state = {}, props = {}) {
     this.hasSummons = state.HasSummons
     this.hasArrests = state.HasArrests
@@ -11,14 +9,6 @@ export default class PoliceValidator {
     this.hasTrial = state.HasTrial
     this.list = state.List || []
     this.listBranch = state.ListBranch
-    this.otherOffenses = state.OtherOffenses || []
-    this.otherOffensesBranch = state.OtherOffensesBranch
-    this.domesticViolence = state.DomesticViolence || []
-    this.hasOtherConviction = state.HasOtherConviction
-    this.hasOtherFelony = state.HasOtherFelony
-    this.hasOtherDomestic = state.HasOtherDomestic
-    this.hasOtherFirearms = state.HasOtherFirearms
-    this.hasOtherAlcohol = state.HasOtherAlcohol
   }
 
   validChecks () {
@@ -37,16 +27,22 @@ export default class PoliceValidator {
       this.hasTrial === 'Yes'
   }
 
-  hasOtherOffenses () {
-    return this.hasOtherConviction === 'Yes' ||
-      this.hasOtherFelony === 'Yes' ||
-      this.hasOtherDomestic === 'Yes' ||
-      this.hasOtherFirearms === 'Yes' ||
-      this.hasOtherAlcohol === 'Yes'
-  }
+  answeredYesCount () {
+    let count = 0
+    const branches = [
+      this.hasSummons,
+      this.hasArrests,
+      this.hasCharges,
+      this.hasProbation,
+      this.hasTrial
+    ]
 
-  validDomesticViolence () {
-    return new DomesticViolence(this.domesticViolence).isValid()
+    branches.forEach(branch => {
+      if (branch === 'Yes') {
+        count++
+      }
+    })
+    return count
   }
 
   validItems () {
@@ -67,25 +63,11 @@ export default class PoliceValidator {
         return false
       }
     }
-
-    if (this.hasOtherOffenses()) {
-      if (this.otherOffensesBranch !== 'No') {
-        return false
-      }
-
-      for (const otherOffense of this.otherOffenses) {
-        if (new OtherOffenseValidator(otherOffense.Item, null).isValid() !== true) {
-          return false
-        }
-      }
-    }
-
     return true
   }
 
   isValid () {
     return this.validChecks() &&
-      this.validItems() &&
-      this.validDomesticViolence()
+      this.validItems()
   }
 }
