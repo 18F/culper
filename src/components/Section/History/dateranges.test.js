@@ -1,4 +1,4 @@
-import { validDate, rangeSorter } from './dateranges'
+import { validDate, rangeSorter, daysInMonth } from './dateranges'
 
 describe('date ranges ', function () {
   it('validate valid date', () => {
@@ -119,5 +119,12 @@ describe('date ranges ', function () {
     tests.forEach(test => {
       expect(test.ranges.sort(rangeSorter)).toEqual(test.expected)
     })
+  })
+
+  it('can handle bad data for days in month', () => {
+    expect(daysInMonth('g', '')).toBe(31)
+    expect(daysInMonth('-', '')).toBe(31)
+    expect(daysInMonth('13', '')).toBe(31)
+    expect(daysInMonth('2', '')).toBe(28)
   })
 })
