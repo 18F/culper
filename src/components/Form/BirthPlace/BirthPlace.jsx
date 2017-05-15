@@ -8,6 +8,7 @@ import MilitaryState from '../MilitaryState'
 import County from '../County'
 import Country from '../Country'
 import Branch from '../Branch'
+import Show from '../Show'
 
 export default class BirthPlace extends ValidationElement {
   constructor (props) {
@@ -43,7 +44,7 @@ export default class BirthPlace extends ValidationElement {
       return
     }
 
-    let part = this.extractPart(event.target.id)
+    let part = event.target.id
     let value = event.target.value
     let updated = null
 
@@ -123,13 +124,6 @@ export default class BirthPlace extends ValidationElement {
     return new BirthPlaceValidator(this.state, null).isValid()
   }
 
-  /**
-   * Returns the part name from the pull generated identifier.
-   */
-  extractPart (id) {
-    return id.split('-').pop()
-  }
-
   onUpdate (value, event) {
     let updated = null
     if (value === 'No') {
@@ -201,10 +195,10 @@ export default class BirthPlace extends ValidationElement {
           {this.options()}
           <Field adjustFor="labels">
             <MilitaryState name="state"
-                           label={i18n.t('identification.birthplace.label.state')}
+                           label={this.props.stateLabel}
                            value={this.state.state}
                            className="state"
-                           placeholder={i18n.t('identification.birthplace.placeholder.state')}
+                           placeholder={this.props.statePlaceholder}
                            includeStates="true"
                            required="true"
                            disabled={this.state.disabledState}
@@ -216,10 +210,10 @@ export default class BirthPlace extends ValidationElement {
           </Field>
           <Field adjustFor="labels">
             <City name="city"
-                  label={i18n.t('identification.birthplace.label.city')}
+                  label={this.props.cityLabel}
                   value={this.state.city}
                   className="city"
-                  placeholder={i18n.t('identification.birthplace.placeholder.city')}
+                  placeholder={this.props.cityPlaceholder}
                   maxlength="100"
                   onChange={this.handleChange}
                   onValidate={this.handleValidation}
@@ -227,19 +221,21 @@ export default class BirthPlace extends ValidationElement {
                   onBlur={this.props.onBlur}
                   />
           </Field>
-          <Field adjustFor="labels">
-            <County name="county"
-                    label={i18n.t('identification.birthplace.label.county')}
-                    value={this.state.county}
-                    className="county"
-                    placeholder={i18n.t('identification.birthplace.placeholder.county')}
-                    maxlength="255"
-                    onChange={this.handleChange}
-                    onValidate={this.handleValidation}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    />
-          </Field>
+          <Show when={this.props.hideCounty === false}>
+            <Field adjustFor="labels">
+              <County name="county"
+                      label={this.props.countyLabel}
+                      value={this.state.county}
+                      className="county"
+                      placeholder={this.props.countyPlaceholder}
+                      maxlength="255"
+                      onChange={this.handleChange}
+                      onValidate={this.handleValidation}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
+            </Field>
+          </Show>
         </div>
       )
     }
@@ -249,10 +245,10 @@ export default class BirthPlace extends ValidationElement {
         {this.options()}
         <Field adjustFor="labels">
           <City name="city"
-                label={i18n.t('identification.birthplace.label.city')}
+                label={this.props.cityLabel}
                 value={this.state.city}
                 className="city"
-                placeholder={i18n.t('identification.birthplace.placeholder.city')}
+                placeholder={this.props.cityPlaceholder}
                 maxlength="100"
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -262,10 +258,10 @@ export default class BirthPlace extends ValidationElement {
         </Field>
         <Field adjustFor="labels">
           <Country name="country"
-                   label={i18n.t('identification.birthplace.label.country')}
+                   label={this.props.countryLabel}
                    value={this.state.country}
                    className="country"
-                   placeholder={i18n.t('identification.birthplace.placeholder.country')}
+                   placeholder={this.props.countryPlaceholder}
                    excludeUnitedStates="true"
                    disabled={this.state.disabledCountry}
                    onChange={this.handleChange}
@@ -284,5 +280,14 @@ BirthPlace.defaultProps = {
   help: 'identification.birthplace.branch.help',
   branch: true,
   disabledCountry: false,
-  disabledState: false
+  disabledState: false,
+  hideCounty: false,
+  stateLabel: i18n.t('identification.birthplace.label.state'),
+  statePlaceholder: i18n.t('identification.birthplace.placeholder.state'),
+  cityLabel: i18n.t('identification.birthplace.label.city'),
+  cityPlaceholder: i18n.t('identification.birthplace.placeholder.city'),
+  countyLabel: i18n.t('identification.birthplace.label.county'),
+  countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
+  countryLabel: i18n.t('identification.birthplace.label.country'),
+  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
 }

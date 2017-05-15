@@ -5,20 +5,20 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: []
+          Relation: ''
         },
         expected: false
       },
       {
         state: {
-          Relations: ['Mother']
+          Relation: 'Mother'
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validRelations()).toBe(test.expected)
+      expect(new RelativeValidator(test.state, null).validRelation()).toBe(test.expected)
     })
   })
 
@@ -104,11 +104,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            state: 'VA',
+            domestic: 'Yes'
           }
         },
         expected: true
@@ -208,11 +207,17 @@ describe('Relatives validation', function () {
       {
         state: {
         },
+        props: {
+          hideMaiden: false
+        },
         expected: false
       },
       {
         state: {
           Aliases: []
+        },
+        props: {
+          hideMaiden: false
         },
         expected: false
       },
@@ -224,6 +229,9 @@ describe('Relatives validation', function () {
             }
           ]
         },
+        props: {
+          hideMaiden: false
+        },
         expected: true
       },
       {
@@ -233,6 +241,9 @@ describe('Relatives validation', function () {
               Has: 'Yes'
             }
           ]
+        },
+        props: {
+          hideMaiden: false
         },
         expected: false
       },
@@ -269,12 +280,15 @@ describe('Relatives validation', function () {
             }
           ]
         },
+        props: {
+          hideMaiden: false
+        },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validAliases()).toBe(test.expected)
+      expect(new RelativeValidator(test.state, test.props).validAliases()).toBe(test.expected)
     })
   })
 
@@ -354,7 +368,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
@@ -362,10 +376,11 @@ describe('Relatives validation', function () {
           },
           IsDeceased: 'Yes',
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           }
         },
         expected: true
@@ -378,10 +393,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           },
           Address: {
             addressType: 'United States',
@@ -401,10 +417,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           },
           Address: {
             addressType: 'APOFPO',
@@ -424,10 +441,11 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            city: 'Arlington',
+            county: 'Arlington',
+            state: '',
+            domestic: 'No'
           }
         },
         expected: true
@@ -453,32 +471,32 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'No'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            county: 'Arlington',
+            state: 'VA',
+            domestic: 'Yes'
           },
           IsDeceased: 'No',
           Address: {
@@ -493,15 +511,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -518,15 +535,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -552,32 +568,31 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'No'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -592,15 +607,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -617,15 +631,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -651,32 +664,31 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'No'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -691,15 +703,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -716,15 +727,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -750,32 +760,31 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'No'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -790,15 +799,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -815,15 +823,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -847,25 +854,131 @@ describe('Relatives validation', function () {
     })
   })
 
-  it('validate relative requires citizenship documentation court name', () => {
+  it('validate relative requires citizenship documentation document expiration', () => {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'No'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
+          Birthplace: {
+            domestic: 'Yes',
+            city: 'Arlington',
+            state: 'Virginia',
+            country: 'United States'
+          },
+          IsDeceased: 'No',
+          Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Relation: 'Father',
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
+          Birthplace: {
+            domestic: 'No',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          IsDeceased: 'No',
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          DocumentNumber: {
+            value: '11111111111111111'
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Relation: 'Father',
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
+          Birthplace: {
+            domestic: 'No',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          IsDeceased: 'No',
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          DocumentNumber: {
+            value: '0000000000000'
+          },
+          DocumentExpiration: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validDocumentExpiration()).toBe(test.expected)
+    })
+  })
+
+  it('validate relative requires citizenship documentation court name', () => {
+    const tests = [
+      {
+        state: {
+          Relation: 'Father',
+          IsDeceased: 'Yes'
+        },
+        expected: true
+      },
+      {
+        state: {
+          Relation: 'Father',
+          IsDeceased: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          Relation: 'Father',
           IsDeceased: 'No',
           Citizenship: {
             value: [
@@ -873,11 +986,10 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           Address: {
             addressType: 'United States',
@@ -891,15 +1003,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -916,15 +1027,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -952,32 +1062,31 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'No'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           },
           IsDeceased: 'No',
           Address: {
@@ -992,15 +1101,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -1017,15 +1125,14 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
           },
           Birthplace: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            domestic: 'No',
             city: 'Munich',
             country: 'Germany'
           },
@@ -1056,14 +1163,14 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
@@ -1075,7 +1182,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -1088,7 +1195,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -1110,14 +1217,14 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
@@ -1129,7 +1236,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -1142,7 +1249,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -1166,14 +1273,14 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
@@ -1185,7 +1292,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -1198,7 +1305,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relations: ['Father'],
+          Relation: 'Father',
           Citizenship: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -1588,7 +1695,7 @@ describe('Relatives validation', function () {
           List: [
             {
               Item: {
-                Relations: ['Mother']
+                Relation: 'Mother'
               }
             }
           ],
@@ -1601,7 +1708,7 @@ describe('Relatives validation', function () {
           List: [
             {
               Item: {
-                Relations: ['Mother'],
+                Relation: 'Mother',
                 Name: {
                   first: 'Foo',
                   firstInitialOnly: false,
@@ -1619,11 +1726,10 @@ describe('Relatives validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Birthplace: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  domestic: 'Yes',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  country: 'United States'
                 },
                 Citizenship: {
                   value: [
@@ -1688,6 +1794,7 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
+      console.log('-------------------------------')
       expect(new RelativesValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })

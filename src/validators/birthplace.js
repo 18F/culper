@@ -5,6 +5,7 @@ export default class BirthPlaceValidator {
     this.city = state.city
     this.state = state.state
     this.county = state.county
+    this.hideCounty = (props || {}).hideCounty || false
   }
 
   /**
@@ -19,8 +20,10 @@ export default class BirthPlaceValidator {
       return false
     }
 
-    if (!this.county) {
-      return false
+    if (!this.hideCounty) {
+      if (!this.county) {
+        return false
+      }
     }
 
     if (!this.city) {
@@ -41,6 +44,7 @@ export default class BirthPlaceValidator {
     if (!this.city) {
       return false
     }
+
     return true
   }
 
