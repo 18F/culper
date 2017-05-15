@@ -26,7 +26,8 @@ export default class Offenses extends ValidationElement {
       HasCharges: props.HasCharges,
       HasProbation: props.HasProbation,
       HasTrial: props.HasTrial,
-      List: props.List,
+      List: props.List || [],
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -55,6 +56,7 @@ export default class Offenses extends ValidationElement {
     // If there is no history clear out any previously entered data
     if (!this.hasOffenses()) {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 
@@ -88,8 +90,9 @@ export default class Offenses extends ValidationElement {
     })
   }
 
-  updateList (collection) {
-    this.onUpdate('List', collection)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -199,6 +202,7 @@ export default class Offenses extends ValidationElement {
             </Show>
             <Accordion minimum="1"
               items={this.state.List}
+              branch={this.state.ListBranch}
               onUpdate={this.updateList}
               onValidate={this.handleValidation}
               summary={this.summary}

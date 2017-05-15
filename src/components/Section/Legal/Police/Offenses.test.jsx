@@ -81,7 +81,7 @@ describe('The Offenses record component', () => {
     }
     const component = mount(<Offenses {...expected} />)
     component.find('.summons .no input').simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(5)
     expect(component.find('.accordion').length).toBe(0)
   })
 

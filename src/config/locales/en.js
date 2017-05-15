@@ -6187,7 +6187,7 @@ const en = {
           title: 'Need help with this charge question?',
           message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
           note: ''
-        },
+        }
       },
       branchCollection: {
         domesticViolence: {

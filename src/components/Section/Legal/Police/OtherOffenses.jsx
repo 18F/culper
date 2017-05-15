@@ -27,6 +27,7 @@ export default class OtherOffenses extends ValidationElement {
       HasOtherFirearms: props.HasOtherFirearms,
       HasOtherAlcohol: props.HasOtherAlcohol,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -55,13 +56,13 @@ export default class OtherOffenses extends ValidationElement {
     // If there is no history clear out any previously entered data
     if (!this.hasOtherOffenses()) {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 
-  updateList (value) {
-    this.onUpdate('List', value, () => {
-      this.checkToClear()
-    })
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   updateOtherConviction (value) {
@@ -187,7 +188,6 @@ export default class OtherOffenses extends ValidationElement {
         <Branch name="has_otherdomestic"
           className="otherdomestic"
           value={this.state.HasOtherDomestic}
-          help="legal.police.help.otherDomestic"
           onUpdate={this.updateOtherDomestic}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.para.otherOffense.third')}
@@ -218,6 +218,7 @@ export default class OtherOffenses extends ValidationElement {
             </Show>
             <Accordion minimum="1"
               items={this.state.List}
+              branch={this.state.ListBranch}
               onUpdate={this.updateList}
               onValidate={this.handleValidation}
               summary={this.summary}

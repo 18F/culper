@@ -15,7 +15,7 @@ describe('The offense component', () => {
     component.find('.otherdomestic .no input').simulate('change')
     component.find('.otherfirearms .no input').simulate('change')
     component.find('.otheralcohol .no input').simulate('change')
-    expect(updates).toBe(6)
+    expect(updates).toBe(7)
   })
 
   it('Loads all no values', () => {
@@ -44,7 +44,7 @@ describe('The offense component', () => {
     }
     const component = mount(<OtherOffenses {...expected} />)
     component.find('.otherconviction .no input').simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(5)
     expect(component.find('.accordion').length).toBe(0)
   })
 

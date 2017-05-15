@@ -60,7 +60,7 @@ export default class DomesticViolenceList extends ValidationElement {
     return (
       <div className="domestic-violence-list">
         <BranchCollection help="legal.police.branchCollection.domesticViolence"
-          label={i18n.m('legal.police.label.domesticViolence')}
+          label={i18n.t('legal.police.label.domesticViolence')}
           labelSize="h2"
           className="has-order"
           appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
