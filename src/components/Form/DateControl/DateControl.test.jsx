@@ -306,4 +306,11 @@ describe('The date component', () => {
       expect(datePart(test.part, test.date)).toEqual(test.expected)
     })
   })
+
+  it('does not loops when invalid date', () => {
+    const component = mount(<DateControl />)
+    expect(component.find('.datecontrol').length).toBe(1)
+    component.find('.month input').simulate('change', { target: { name: 'month', value: '13' } })
+    component.find('.month input').simulate('change', { target: { name: 'month', value: 'g' } })
+  })
 })
