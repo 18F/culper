@@ -411,9 +411,9 @@ export default class Relative extends ValidationElement {
 
         <Field title={i18n.t('relationships.relatives.heading.birthplace')}
                help="relationships.relatives.help.birthplace"
-               adjustFor="button">
+               adjustFor="label">
           <BirthPlace name="Birthplace"
-                      label=""
+                      label={i18n.t('relationships.relatives.label.birthplace')}
                       help=""
                       cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
                       countryPlaceholder={i18n.t('relationships.relatives.placeholder.country')}

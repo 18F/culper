@@ -2151,7 +2151,8 @@ const en = {
           same: 'Same as listed',
           diff: 'Different name'
         },
-        estimated: 'Estimated'
+        estimated: 'Estimated',
+        birthplace: 'Was this person born in the United States of America?'
       },
       placeholder: {
         city: 'Please enter the city of birth',
