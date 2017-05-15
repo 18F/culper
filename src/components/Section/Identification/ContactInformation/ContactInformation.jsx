@@ -32,12 +32,12 @@ export default class ContactInformation extends ValidationElement {
     this.handleUpdate('Emails', collection)
   }
 
-  contactDispatch (field, collection) {
-    this.handleUpdate(field, collection)
+  contactDispatch (field, values) {
+    this.handleUpdate(field, values)
   }
 
   handleUpdate (field, values) {
-    this.setState({ [field]: values }, () => {
+    this.setState({ [field]: values.items }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Emails: this.state.Emails,

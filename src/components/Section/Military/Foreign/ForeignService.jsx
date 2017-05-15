@@ -29,7 +29,8 @@ export default class ForeignService extends ValidationElement {
       Circumstances: props.Circumstances,
       ReasonLeft: props.ReasonLeft,
       MaintainsContact: props.MaintainsContact,
-      List: props.List
+      List: props.List,
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -89,11 +90,13 @@ export default class ForeignService extends ValidationElement {
     // If there is no history clear out any previously entered data
     if (value === 'No') {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 
-  updateList (value) {
-    this.onUpdate('List', value)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -261,12 +264,12 @@ export default class ForeignService extends ValidationElement {
             <Accordion minimum="1"
                        className="foreign-contacts-collection"
                        items={this.state.List}
+                       branch={this.state.ListBranch}
                        onUpdate={this.updateList}
                        onValidate={this.props.onValidate}
                        summary={this.summary}
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
-                       appendMessage={i18n.m('military.foreign.collection.contacts.appendMessage')}
                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
               <ForeignContact name="Item"
                               bind={true}

@@ -2,11 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader } from '../../Form'
+import { ValidationElement, IntroHeader, Field } from '../../Form'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
-import Police from './Police'
+import Offenses from './Police/Offenses'
+import OtherOffenses from './Police/OtherOffenses'
+import DomesticViolenceList from './Police/DomesticViolenceList'
 
 class Legal extends ValidationElement {
   constructor (props) {
@@ -21,6 +23,9 @@ class Legal extends ValidationElement {
     this.onValidate = this.onValidate.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.updatePolice = this.updatePolice.bind(this)
+    this.updatePoliceOffenses = this.updatePoliceOffenses.bind(this)
+    this.updatePoliceOtherOffenses = this.updatePoliceOtherOffenses.bind(this)
+    this.updatePoliceDomesticViolence = this.updatePoliceDomesticViolence.bind(this)
   }
 
   componentDidMount () {
@@ -52,9 +57,15 @@ class Legal extends ValidationElement {
     }
 
     let cstatus = 'neutral'
-    if (this.hasStatus('police', status, true)) {
+    if (this.hasStatus('offenses', status, true) &&
+      this.hasStatus('otheroffenses', status, true) &&
+      this.hasStatus('domesticviolence', status, true)
+    ) {
       cstatus = 'complete'
-    } else if (this.hasStatus('police', status, false)) {
+    } else if (this.hasStatus('offenses', status, false) ||
+      this.hasStatus('otheroffenses', status, false) ||
+      this.hasStatus('domesticviolence', status, false)
+    ) {
       cstatus = 'incomplete'
     }
 
@@ -76,6 +87,18 @@ class Legal extends ValidationElement {
 
   updatePolice (values) {
     this.onUpdate('Police', values)
+  }
+
+  updatePoliceOffenses (values) {
+    this.onUpdate('PoliceOffenses', values)
+  }
+
+  updatePoliceOtherOffenses (values) {
+    this.onUpdate('PoliceOtherOffenses', values)
+  }
+
+  updatePoliceDomesticViolence (values) {
+    this.onUpdate('PoliceDomesticViolence', values)
   }
 
   /**
@@ -130,36 +153,83 @@ class Legal extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
-                       showTop="true"
-                       back="legal/police"
-                       backLabel={i18n.t('legal.destination.police')}
-                       >
-            <h2>{i18n.t('legal.police.heading.title')}</h2>
-            {i18n.m('legal.police.para.intro1')}
-            {i18n.m('legal.police.para.intro2')}
-            {i18n.m('legal.police.para.intro3')}
-            <Police name="police"
-                    {...this.props.Police}
-                    onUpdate={this.updatePolice}
-                    onValidate={this.onValidate}
-                    />
+            title="Let&rsquo;s make sure everything looks right"
+            showTop="true"
+            back="legal/police"
+            backLabel={i18n.t('legal.destination.police')}
+            next="psychological/intro"
+            nextLabel={i18n.t('psychological.destination.psychological')}>
+            <Field title={i18n.t('legal.police.heading.title')}
+              titleSize="h2">
+              {i18n.m('legal.police.para.intro1')}
+              {i18n.m('legal.police.para.intro2')}
+              {i18n.m('legal.police.para.intro3')}
+            </Field>
+
+            <Offenses name="offenses"
+              {...this.props.PoliceOffenses}
+              onUpdate={this.updatePoliceOffenses}
+              onValidate={this.onValidate}
+            />
+
+            <OtherOffenses name="otheroffenses"
+              {...this.props.PoliceOtherOffenses}
+              onUpdate={this.updatePoliceOtherOffenses}
+              onValidate={this.onValidate}
+            />
+
+            <DomesticViolenceList name="domesticviolence"
+              {...this.props.PoliceDomesticViolence}
+              onUpdate={this.updatePoliceDomesticViolence}
+              onValidate={this.onValidate}
+            />
           </SectionView>
 
           <SectionView name="police"
-                       back="foreign/passport"
-                       backLabel={i18n.t('foreign.destination.passport')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+            back="foreign/business/conferences"
+            backLabel={i18n.t('foreign.destination.business.events')}
+            next="legal/police/offenses"
+            nextLabel={i18n.t('legal.destination.offenses')}>
             <h2>{i18n.t('legal.police.heading.title')}</h2>
             {i18n.m('legal.police.para.intro1')}
             {i18n.m('legal.police.para.intro2')}
             {i18n.m('legal.police.para.intro3')}
-            <Police name="police"
-                    {...this.props.Police}
-                    onUpdate={this.updatePolice}
-                    onValidate={this.onValidate}
-                    />
+          </SectionView>
+
+          <SectionView name="police/offenses"
+            back="legal/police"
+            backLabel={i18n.t('legal.destination.police')}
+            next="legal/police/additionaloffenses"
+            nextLabel={i18n.t('legal.destination.additionalOffenses')}>
+            <Offenses name="offenses"
+              {...this.props.PoliceOffenses}
+              onUpdate={this.updatePoliceOffenses}
+              onValidate={this.onValidate}
+            />
+          </SectionView>
+
+          <SectionView name="police/additionaloffenses"
+            back="legal/police/offenses"
+            backLabel={i18n.t('legal.destination.offenses')}
+            next="legal/police/domesticviolence"
+            nextLabel={i18n.t('legal.destination.domesticViolence')}>
+            <OtherOffenses name="otheroffenses"
+              {...this.props.PoliceOtherOffenses}
+              onUpdate={this.updatePoliceOtherOffenses}
+              onValidate={this.onValidate}
+            />
+          </SectionView>
+
+          <SectionView name="police/domesticviolence"
+            back="legal/police/additionaloffenses"
+            backLabel={i18n.t('legal.destination.additionalOffenses')}
+            next="legal/review"
+            nextLabel={i18n.t('legal.destination.review')}>
+            <DomesticViolenceList name="domesticviolence"
+              {...this.props.PoliceDomesticViolence}
+              onUpdate={this.updatePoliceDomesticViolence}
+              onValidate={this.onValidate}
+            />
           </SectionView>
         </SectionViews>
       </div>
@@ -177,6 +247,9 @@ function mapStateToProps (state) {
     Section: section,
     Legal: legal,
     Police: legal.Police || {},
+    PoliceOffenses: legal.PoliceOffenses || {},
+    PoliceOtherOffenses: legal.PoliceOtherOffenses || {},
+    PoliceDomesticViolence: legal.PoliceDomesticViolence || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }

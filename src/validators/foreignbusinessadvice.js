@@ -6,6 +6,7 @@ export default class ForeignBusinessAdviceValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignAdvice = state.HasForeignAdvice
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -15,6 +16,10 @@ export default class ForeignBusinessAdviceValidator {
 
     if (this.hasForeignAdvice === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 

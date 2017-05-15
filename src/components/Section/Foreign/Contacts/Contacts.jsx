@@ -11,6 +11,7 @@ export default class Contacts extends ValidationElement {
     this.state = {
       HasForeignContacts: props.HasForeignContacts,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -25,7 +26,8 @@ export default class Contacts extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignContacts: this.state.HasForeignContacts,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -35,8 +37,9 @@ export default class Contacts extends ValidationElement {
     this.onUpdate('HasForeignContacts', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -94,6 +97,7 @@ export default class Contacts extends ValidationElement {
         <Show when={this.state.HasForeignContacts === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -111,5 +115,6 @@ export default class Contacts extends ValidationElement {
 
 Contacts.defaultProps = {
   HasForeignContacts: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

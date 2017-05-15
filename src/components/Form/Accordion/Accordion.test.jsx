@@ -8,7 +8,7 @@ describe('The accordion component', () => {
     let items = []
     const expected = {
       minimum: 0,
-      onUpdate: (x) => { items = x }
+      onUpdate: (x) => { items = x.items }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
     expect(component.find('.accordion').length).toEqual(1)
@@ -19,7 +19,7 @@ describe('The accordion component', () => {
     let items = []
     const expected = {
       minimum: 2,
-      onUpdate: (x) => { items = x }
+      onUpdate: (x) => { items = x.items }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
     expect(component.find('.accordion').length).toEqual(1)
@@ -35,7 +35,7 @@ describe('The accordion component', () => {
       minimum: 1,
       items: items,
       timeout: 0,
-      onUpdate: (x) => { items = x }
+      onUpdate: (x) => { items = x.items }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
     component.find('button.add').simulate('click')
@@ -75,7 +75,7 @@ describe('The accordion component', () => {
       summary: (item, index) => {
         return (<div className="table">Item {index}</div>)
       },
-      onUpdate: (x) => { items = x }
+      onUpdate: (x) => { items = x.items }
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
     expect(items.length).toEqual(2)
@@ -129,7 +129,7 @@ describe('The accordion component', () => {
         { uuid: '3', open: false },
         { uuid: '4', open: false }
       ],
-      onUpdate: (x) => { items = x }
+      onUpdate: (x) => { items = x.items }
     }
 
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
@@ -146,7 +146,7 @@ describe('The accordion component', () => {
     const expected = {
       minimum: 1,
       items: items,
-      onUpdate: (x) => { items = x }
+      onUpdate: (x) => { items = x.items }
     }
 
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
@@ -165,7 +165,7 @@ describe('The accordion component', () => {
     const expected = {
       minimum: 1,
       items: items,
-      onUpdate: (x) => { items = x },
+      onUpdate: (x) => { items = x.items },
       customSummary: (item, index) => { return <div className="custom-summary"></div> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
@@ -180,7 +180,7 @@ describe('The accordion component', () => {
     const expected = {
       minimum: 1,
       items: items,
-      onUpdate: (x) => { items = x },
+      onUpdate: (x) => { items = x.items },
       customDetails: (item, index) => { return <div className="custom-details"></div> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
@@ -195,7 +195,7 @@ describe('The accordion component', () => {
     const expected = {
       minimum: 1,
       items: items,
-      onUpdate: (x) => { items = x },
+      onUpdate: (x) => { items = x.items },
       summary: (item, index, initial) => { return <span className="summary-props">Properties</span> },
       customSummary: (item, index, initial, callback) => { return callback() },
       customDetails: (item, index, initial, callback) => { return callback() }

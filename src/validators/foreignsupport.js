@@ -6,6 +6,7 @@ export default class ForeignActivitiesSupportValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignSupport = state.HasForeignSupport
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -15,6 +16,10 @@ export default class ForeignActivitiesSupportValidator {
 
     if (this.hasForeignSupport === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 

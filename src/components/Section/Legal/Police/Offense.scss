@@ -1,8 +1,11 @@
 @import 'eqip-colors';
 
 .offense {
-  .offense-courttype .block label {
-    height: initial !important;
+  .offense-chargetype {
+    margin-bottom: 1.1rem;
+    .block label {
+      height: initial !important;
+    }
   }
 
   .more.title {

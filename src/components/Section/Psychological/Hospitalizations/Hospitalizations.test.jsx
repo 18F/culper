@@ -17,7 +17,7 @@ describe('The Hospitalizations component', () => {
     component.find({type: 'radio', value: 'Voluntary'}).simulate('change')
     component.find('textarea#Explanation').simulate('change', { target: { value: 'Testing' } })
     component.find('input#Facility').simulate('change', { target: { value: 'Testing' } })
-    expect(updates).toBe(5)
+    expect(updates).toBe(9)
   })
 
   it('Loads data', () => {
@@ -25,7 +25,7 @@ describe('The Hospitalizations component', () => {
     const onUpdate = () => { updates++ }
     const component = mount(<Hospitalizations onUpdate={onUpdate} List={List} Hospitalized={'Yes'} />)
     component.find('input#Facility').simulate('change', { target: { value: 'Testing' } })
-    expect(updates).toBe(2)
+    expect(updates).toBe(4)
   })
 })
 

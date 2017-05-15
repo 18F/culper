@@ -3,6 +3,7 @@ import OrderValidator from './order'
 export default class ConsultationValidator {
   constructor (state = {}, props) {
     this.list = state.List || []
+    this.listBranch = state.ListBranch
     this.consulted = state.Consulted
   }
 
@@ -12,6 +13,10 @@ export default class ConsultationValidator {
 
   validList () {
     if (this.consulted === 'Yes' && this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

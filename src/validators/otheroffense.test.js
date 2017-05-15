@@ -175,14 +175,14 @@ describe('OtherOffense validation', function () {
     const tests = [
       {
         state: {
-          CourtType: 'Felony'
+          ChargeType: 'Felony'
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validCourtType()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validChargeType()).toBe(test.expected)
     })
   })
 
@@ -310,7 +310,7 @@ describe('OtherOffense validation', function () {
           InvolvedViolence: 'No',
           InvolvedFirearms: 'Yes',
           InvolvedSubstances: 'No',
-          CourtType: 'Felony',
+          ChargeType: 'Felony',
           CourtAddress: {
             addressType: 'United States',
             address: '1234 Some Rd',
@@ -378,7 +378,7 @@ describe('OtherOffense validation', function () {
           InvolvedViolence: 'No',
           InvolvedFirearms: 'Yes',
           InvolvedSubstances: 'No',
-          CourtType: 'Felony',
+          ChargeType: 'Felony',
           CourtAddress: {
             addressType: 'United States',
             address: '1234 Some Rd',

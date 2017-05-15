@@ -6,6 +6,7 @@ export default class ForeignBusinessEmploymentValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignEmployment = state.HasForeignEmployment
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -15,6 +16,10 @@ export default class ForeignBusinessEmploymentValidator {
 
     if (this.hasForeignEmployment === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 

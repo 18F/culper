@@ -58,7 +58,8 @@ describe('Military history validation', function () {
                 HasBeenDischarged: 'Yes'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -97,7 +98,8 @@ describe('Military history validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -130,7 +132,8 @@ describe('Military history validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -166,7 +169,8 @@ describe('Military history validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -192,7 +196,8 @@ describe('Military history validation', function () {
                 HasBeenDischarged: 'No'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
@@ -217,7 +222,8 @@ describe('Military history validation', function () {
                 HasBeenDischarged: 'No'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

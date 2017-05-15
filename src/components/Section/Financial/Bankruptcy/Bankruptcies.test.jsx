@@ -2,7 +2,6 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Bankruptcies from './Bankruptcies'
 
-
 describe('The bankruptcy component', () => {
   it('no error on empty', () => {
     const expected = {

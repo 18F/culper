@@ -18,22 +18,33 @@ export default class IndirectActivity extends ValidationElement {
     this.isValid = this.isValid.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasInterests: this.props.HasInterests,
+      let obj = {
         List: this.props.List,
-        [field]: values
-      })
+        ListBranch: this.props.ListBranch,
+        HasInterests: this.props.HasInterests
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   updateHasInterests (values) {
-    this.update('HasInterests', values)
+    this.update([
+      { name: 'HasInterests', value: values }
+    ])
   }
 
   isValid () {
@@ -87,27 +98,27 @@ export default class IndirectActivity extends ValidationElement {
     return (
       <div className="indirect">
         <Branch name="has_interests"
-          label={i18n.t('foreign.activities.indirect.heading.title')}
-          labelSize="h3"
-          value={this.props.HasInterests}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateHasInterests}>
+                label={i18n.t('foreign.activities.indirect.heading.title')}
+                labelSize="h3"
+                value={this.props.HasInterests}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateHasInterests}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('foreign.activities.indirect.collection.description')}
-            appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
-            appendMessage={i18n.m('foreign.activities.indirect.collection.appendMessage')}
-            appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('foreign.activities.indirect.collection.description')}
+                     appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
+                     appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
             <IndirectInterest name="IndirectInterest"
-              bind={true}
-            />
+                              bind={true}
+                              />
           </Accordion>
         </Show>
       </div>
@@ -119,5 +130,6 @@ IndirectActivity.defaultProps = {
   name: 'indirect',
   HasInterests: '',
   List: [],
+  ListBranch: '',
   defaultState: true
 }

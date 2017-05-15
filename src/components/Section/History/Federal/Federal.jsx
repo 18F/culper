@@ -84,8 +84,8 @@ export default class Federal extends ValidationElement {
     this.handleValidation(event, null, null)
   }
 
-  updateCollection (collection) {
-    this.onUpdate('List', collection)
+  updateCollection (values) {
+    this.onUpdate('List', values.items)
   }
 
   /**

@@ -209,21 +209,24 @@ describe('taxes component validation', function () {
       {
         state: {
           HasCardAbuse: 'No',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: true
       },
       {
         state: {
           HasCardAbuse: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       },
       {
         state: {
           HasCardAbuse: 'Yes',
-          List: [{}]
+          List: [{}],
+          ListBranch: ''
         },
         expected: false
       },
@@ -259,7 +262,8 @@ describe('taxes component validation', function () {
                 value: 'The description'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

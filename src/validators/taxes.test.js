@@ -314,21 +314,24 @@ describe('taxes component validation', function () {
       {
         state: {
           HasTaxes: 'No',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           HasTaxes: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasTaxes: 'Yes',
-          List: [{}]
+          List: [{}],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -367,7 +370,8 @@ describe('taxes component validation', function () {
                 value: 'The description'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

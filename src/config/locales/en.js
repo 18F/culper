@@ -996,8 +996,7 @@ const en = {
           debt: 'Debt'
         },
         append: 'Add another financial problem',
-        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
-        appendMessage: 'If yes use the button below to add another financial problem'
+        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?'
       },
       heading: {
         dates: 'Provide the date range of your financial problems due to gambling',
@@ -1052,8 +1051,7 @@ const en = {
           unknown: 'Provide your bankruptcy below',
           nodates: 'NA',
           chapter: 'Chapter',
-          appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?',
-          appendMessage: 'If yes use the button below to add another bankruptcy petition'
+          appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?'
         },
         append: 'Add another petition'
       },
@@ -1249,7 +1247,6 @@ const en = {
           item: 'Agency'
         },
         appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
-        appendMessage: 'If yes use the button below to add another tax filing/payment issue',
         append: 'Add another tax filing/payment issue'
       }
     },
@@ -1313,7 +1310,6 @@ const en = {
           item: 'Employer'
         },
         appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
-        appendMessage: 'If yes use the button below to add another card abuse/counseling issue',
         append: 'Add another card abuse/counseling issue'
       }
     },
@@ -1365,7 +1361,6 @@ const en = {
           item: 'Service'
         },
         appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
-        appendMessage: 'If yes use the button below to add another credit counseling entry',
         append: 'Add another credit counseling entry'
       }
     },
@@ -1475,7 +1470,6 @@ const en = {
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
-        appendMessage: 'If yes use the button below to add another payment issue',
         append: 'Add another payment issue'
       }
     },
@@ -1576,7 +1570,6 @@ const en = {
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
-        appendMessage: 'If yes use the button below to add another non-payment or excessive late payment',
         append: 'Add another non-payment or excessive late payment'
       }
     }
@@ -1841,7 +1834,6 @@ const en = {
             unknown: 'Provide citizenship details below'
           },
           appendTitle: 'Do you have an additional citizenship to provide?',
-          appendMessage: 'If yes use the button below to add another',
           append: 'Add another citizenship'
         },
         passport: {
@@ -1851,7 +1843,6 @@ const en = {
             unknown: 'Provide passport details below'
           },
           appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
-          appendMessage: 'If yes use the button below to add another foreign passport',
           append: 'Add another foreign passport'
         },
         travel: {
@@ -1986,7 +1977,6 @@ const en = {
           item: 'Relative'
         },
         appendTitle: 'Do you have an additional relative to enter?',
-        appendMessage: 'If **Yes** use the button below to add another',
         append: 'Add another relative'
       },
       heading: {
@@ -2001,7 +1991,7 @@ const en = {
         alias: {
           branch: 'Has this relative used any additional names?',
           title: 'Provide other names used and the period of time that your relative used them.',
-          maiden: 'Maiden name?',
+          maiden: 'Was this their maiden name?',
           reason: 'Provide the reason(s) why the name changed.',
           additional: 'Has this relative used any additional names?'
         },
@@ -2012,6 +2002,7 @@ const en = {
         us: {
           title: 'U.S. Citizenship Documentation',
           documentation: 'Provide one type of citizenship documentation and document number below:',
+          expiration: 'Provide document expiration date',
           number: 'Provide the document number',
           name: 'Provide the name of the court that issued the Certificate of Naturalization',
           address: 'Provide the address of the court that issued the Certificate of Naturalization'
@@ -2149,7 +2140,13 @@ const en = {
         maiden: {
           same: 'Same as listed',
           diff: 'Different name'
-        }
+        },
+        estimated: 'Estimated',
+        birthplace: 'Was this person born in the United States of America?'
+      },
+      placeholder: {
+        city: 'Please enter the city of birth',
+        country: 'Please enter the country of birth'
       },
       help: {
         relation: {
@@ -2205,6 +2202,11 @@ const en = {
         documentnumber: {
           title: 'Need help with the document number?',
           message: 'Provide the document number for the citizenship',
+          note: ''
+        },
+        documentexpiration: {
+          title: 'Need help with the date of expiration?',
+          message: 'Provide the approximate date of expiration',
           note: ''
         },
         courtname: {
@@ -2350,9 +2352,8 @@ const en = {
           }
         },
         collection: {
-          description: '',
+          description: 'Summary of divorcees',
           appendTitle: 'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
-          appendMessage: 'If yes please use the button below to add another person',
           appendLabel: 'Add another person',
           itemType: 'Person'
         },
@@ -2506,9 +2507,8 @@ const en = {
         birthplace: 'Was this person born in the United States of America'
       },
       collection: {
-        description: '',
+        description: 'Summary of cohabitants',
         appendTitle: 'Do you have an additional cohabitant to report?',
-        appendMessage: 'If yes please use the button below to add another cohabitant.',
         appendLabel: 'Add another cohabitant',
         itemType: 'Cohabitant'
       },
@@ -2661,7 +2661,6 @@ const en = {
             unknown: 'Provide the person\'s information below'
           },
           appendLabel: 'Add another person',
-          appendMessage: 'If yes use the button below to add another instance',
           appendTitle: 'Do you have an additional person who knows you well to list?',
           itemType: 'Person'
         }
@@ -2770,7 +2769,7 @@ const en = {
       para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
       label: 'Suggested address',
       use: 'Use this address',
-      dismiss: 'Use this address instead',
+      dismiss: 'Keep original address',
       alternate: 'Manually correct this address'
     }
   },
@@ -2944,7 +2943,6 @@ const en = {
           unknown: 'Provide your military history below'
         },
         appendTitle: 'Do you have additional military service to report?',
-        appendMessage: 'If yes use the button below to add more',
         append: 'Add additional military history'
       }
     },
@@ -3111,7 +3109,6 @@ const en = {
             unknown: 'Provide foreign military contact below'
           },
           appendTitle: 'Do you have an additional foreign military service contact to report?',
-          appendMessage: 'If yes use the button below to add another contact',
           append: 'Add another contact'
         }
       }
@@ -4870,8 +4867,7 @@ const en = {
           summary: 'Provide your direct financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendLabel: 'Add another direct interest',
           itemType: 'Interest'
         },
         interest: {
@@ -4982,8 +4978,7 @@ const en = {
           summary: 'Provide your indirect financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
         interest: {
@@ -5105,12 +5100,11 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
         },
         collection: {
-          summary: 'Provide your real estate financial interests here',
-          description: 'Summary of financial interests',
+          summary: 'Provide your real estate purchase here',
+          description: 'Summary of financial purchase',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
-          itemType: 'Interest'
+          appendLabel: 'Add another real estate purchase',
+          itemType: 'Purchase'
         },
         interest: {
           para: {
@@ -5254,9 +5248,6 @@ const en = {
             unknown: 'Provide details of foreign financial support below'
           },
           appendTitle: 'Have you additionally provided financial support for any foreign national?',
-          appendMessage: [
-            'If yes use the button below to add another instance'
-          ],
           append: 'Add another instance'
         }
       },
@@ -5299,7 +5290,6 @@ const en = {
           summary: 'Provide your financial benefits here',
           description: 'Summary of financial benefits',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
-          appendMessage: 'If yes use the button below to add another benefit.',
           appendLabel: 'Add another benefit',
           itemType: 'Benefit'
         },
@@ -5633,8 +5623,7 @@ const en = {
         },
         appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
         appendMessage: [
-          'Include associates as well as relatives, not previously listed in the relatives section.',
-          'If yes use the button below to add another association.'
+          'Include associates as well as relatives, not previously listed in the relatives section.'
         ],
         append: 'Add another association'
       }
@@ -5694,8 +5683,7 @@ const en = {
           },
           appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
           appendMessage: [
-            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another instance of advice/support'
+            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.'
           ],
           append: 'Add another instance of advice/support'
         }
@@ -5750,10 +5738,9 @@ const en = {
           },
           appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
           appendMessage: [
-            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.'
           ],
-          append: 'Add another interest'
+          append: 'Add another instance of advice/support'
         }
       },
       employment: {
@@ -5805,9 +5792,6 @@ const en = {
             unknown: 'Provide details of foreign business job below'
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
-          appendMessage: [
-            'If yes use the button below to add another job offer'
-          ],
           append: 'Add another job offer'
         }
       },
@@ -5896,10 +5880,9 @@ const en = {
           },
           appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
           appendMessage: [
-            'Own, co-own, serve as a business consultant, provide financial support, etc.',
-            'If yes use the button below to add another interest'
+            'Own, co-own, serve as a business consultant, provide financial support, etc.'
           ],
-          append: 'Add another interest'
+          append: 'Add another business venture'
         }
       },
       conferences: {
@@ -5975,8 +5958,7 @@ const en = {
           },
           appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
           appendMessage: [
-            'Do not include those you attended or participated in on official business for the U.S. government.',
-            'If yes use the button below to add another event.'
+            'Do not include those you attended or participated in on official business for the U.S. government.'
           ],
           append: 'Add another event'
         }
@@ -5992,6 +5974,9 @@ const en = {
     },
     destination: {
       police: 'Police record',
+      offenses: 'Offenses',
+      additionalOffenses: 'Additional offenses',
+      domesticViolence: 'Domestic violence',
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6010,8 +5995,8 @@ const en = {
         courtinfo: 'Court Information',
         courtname: 'Provide the name of the court',
         courtaddress: 'Provide the location of the court',
-        chargedetails: 'Charges detail',
-        courttype: 'Type of charge',
+        chargedetails: 'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
+        chargeType: 'Type of charge',
         courtdate: 'Date',
         sentenced: 'Were you sentenced as a result of this offense?',
         needmore: 'Since you answered yes we need more information',
@@ -6032,7 +6017,7 @@ const en = {
         intro1: 'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
         intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
-        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
+        chargedetails: 'Such as found guilty, found not-guilty, charge dropped or "nolle pros," etc. If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
           first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year?',
@@ -6040,7 +6025,8 @@ const en = {
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
-        }
+        },
+        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -6061,8 +6047,7 @@ const en = {
         courtoutcome: 'Outcome',
         domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
         domesticViolenceAppend: 'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
-        notApplicable: 'Not applicable',
-        or: 'or add date range'
+        notApplicable: 'Not applicable'
       },
       help: {
         summons: {
@@ -6150,7 +6135,7 @@ const en = {
           message: 'Try looking up the court name, this could help you find the address.',
           note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
-        courttype: {
+        chargeType: {
           title: 'Need help with the type of charge?',
           message: 'Provide the type of charge issued by the court',
           note: ''
@@ -6214,7 +6199,7 @@ const en = {
           title: 'Need help with this charge question?',
           message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
           note: ''
-        },
+        }
       },
       branchCollection: {
         domesticViolence: {
@@ -6229,7 +6214,13 @@ const en = {
           unknown: 'Provide offense below'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
-        appendMessage: '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)\n- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?\n- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)\n- **In the last seven (7) years** have you been or are you currently on probation or parole?\nAre you currently on trial or awaiting a trial on criminal charges?\n<p>If yes use the button below to add add another offense.</p>',
+        appendMessage: [
+          '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)',
+          '- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+          '- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+          '- **In the last seven (7) years** have you been or are you currently on probation or parole?',
+          'Are you currently on trial or awaiting a trial on criminal charges?'
+        ],
         append: 'Add another offense'
       }
     }
@@ -6355,6 +6346,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
+      psychological: 'Psychological and emotional health',
       intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',
@@ -6428,7 +6420,6 @@ const en = {
         summaryCourtName: 'Provide your order details below',
         description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
-        appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
         itemType: 'Order'
       }
@@ -6484,7 +6475,6 @@ const en = {
         summaryCourtName: 'Provide your order details below',
         description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
-        appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
         itemType: 'Order'
       }
@@ -6506,7 +6496,6 @@ const en = {
         description: 'Summary of hospitalizations',
         summary: 'Provide your hospitalization details below',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
-        appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization'
       },
@@ -6626,7 +6615,7 @@ const en = {
         description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
-        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
         appendLabel: 'Add another diagnosis',
         itemType: 'Diagnosis'
       },
@@ -6658,7 +6647,6 @@ const en = {
           description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you are currently in treatment?',
-          appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
         }
@@ -6740,7 +6728,6 @@ const en = {
           description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
-          appendMessage: 'If yes, use the button below to add another instance',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
         }

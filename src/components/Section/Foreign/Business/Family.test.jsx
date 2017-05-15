@@ -23,7 +23,7 @@ describe('The foreign business family component', () => {
     }
     const component = mount(<Family {...expected} />)
     component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -35,8 +35,8 @@ describe('The foreign business family component', () => {
       onValidate: () => { validated = true }
     }
     const component = mount(<Family {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    component.find('.branch .yes input').simulate('blur')
+    component.find('.branch .yes input').at(0).simulate('change')
+    component.find('.branch .yes input').at(0).simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -54,6 +54,6 @@ describe('The foreign business family component', () => {
     component.find('.family-country input').simulate('change')
     component.find('.family-date .day input').simulate('change')
     component.find('.family-circumstances textarea').simulate('change')
-    expect(updates).toBe(5)
+    expect(updates).toBe(5 * 2)
   })
 })
