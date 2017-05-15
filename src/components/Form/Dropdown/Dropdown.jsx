@@ -175,9 +175,51 @@ export default class Dropdown extends ValidationElement {
   getSuggestions (value) {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
-    return inputLength === 0
-      ? []
-      : this.state.options.filter(opt => opt.name.toLowerCase().slice(0, inputLength) === inputValue || opt.value.toLowerCase().slice(0, inputLength) === inputValue)
+    let suggestions = []
+
+    if (inputLength === 0) {
+      return []
+    }
+
+    // Match first on the value
+    suggestions = this.state.options
+      .sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1
+        }
+
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1
+        }
+
+        return 0
+      })
+      .filter(opt => {
+        return opt.name.toLowerCase().slice(0, inputLength) === inputValue
+      })
+
+    // Match second on the name
+    suggestions = suggestions.concat(
+      this.state.options
+        .filter(opt => {
+          return !suggestions.some(x => x.value === opt.value)
+        })
+        .sort((a, b) => {
+          if (a.value.toLowerCase() < b.value.toLowerCase()) {
+            return -1
+          }
+
+          if (a.value.toLowerCase() > b.value.toLowerCase()) {
+            return 1
+          }
+
+          return 0
+        })
+        .filter(opt => {
+          return opt.value.toLowerCase().slice(0, inputLength) === inputValue
+        }))
+
+    return suggestions
   }
 
   onSuggestionChange (event, change) {

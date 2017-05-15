@@ -318,12 +318,13 @@ describe('The Address component', () => {
     let tabbed = false
     const expected = {
       name: 'address',
+      addressType: 'APOFPO',
       tab: () => { tabbed = true }
     }
     const component = mount(<Address {...expected} />)
-    component.find('input#state').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('input#apoFpo').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('input#state').simulate('keyup', { keyCode: 48, target: { value: 'FL' } })
+    component.find('input#apoFpo').simulate('keyup', { keyCode: 48, target: { value: 'AE' } })
     expect(tabbed).toBe(true)
   })
 })
