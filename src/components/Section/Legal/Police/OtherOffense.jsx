@@ -228,25 +228,20 @@ export default class OtherOffense extends ValidationElement {
                    />
           </RadioGroup>
 
-          <Field adjustFor="labels">
-            <Text name="CourtCharge"
-                  {...this.state.CourtCharge}
-                  label={i18n.t('legal.police.label.courtcharge')}
-                  className="offense-courtcharge"
-                  onUpdate={this.updateCourtCharge}
-                  onValidate={this.props.onValidate}
-                  />
-          </Field>
-
-          <Field adjustFor="labels">
-            <Text name="CourtOutcome"
-                  {...this.state.CourtOutcome}
-                  label={i18n.t('legal.police.label.courtoutcome')}
-                  className="offense-courtoutcome"
-                  onUpdate={this.updateCourtOutcome}
-                  onValidate={this.props.onValidate}
-                  />
-          </Field>
+          <Text name="CourtCharge"
+                {...this.state.CourtCharge}
+                label={i18n.t('legal.police.label.courtcharge')}
+                className="offense-courtcharge"
+                onUpdate={this.updateCourtCharge}
+                onValidate={this.props.onValidate}
+                />
+          <Text name="CourtOutcome"
+                {...this.state.CourtOutcome}
+                label={i18n.t('legal.police.label.courtoutcome')}
+                className="offense-courtoutcome"
+                onUpdate={this.updateCourtOutcome}
+                onValidate={this.props.onValidate}
+                />
        </Field>
 
         <Field title={i18n.t('legal.police.heading.courtdate')}

@@ -277,8 +277,7 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCharged === 'No'}>
           <div>
-            <Field help="legal.police.help.explanation"
-                   adjustFor="labels">
+            <Field adjustFor="labels">
               <Textarea name="Explanation"
                         {...this.state.Explanation}
                         label={i18n.t('legal.police.label.explanation')}
@@ -353,9 +352,7 @@ export default class Offense extends ValidationElement {
                        onValidate={this.props.onValidate}
                        />
               </RadioGroup>
-            </Field>
 
-            <Field adjustFor="labels">
               <Text name="CourtCharge"
                     {...this.state.CourtCharge}
                     label={i18n.t('legal.police.label.courtcharge')}
@@ -363,9 +360,6 @@ export default class Offense extends ValidationElement {
                     onUpdate={this.updateCourtCharge}
                     onValidate={this.props.onValidate}
                     />
-            </Field>
-
-            <Field adjustFor="labels">
               <Text name="CourtOutcome"
                     {...this.state.CourtOutcome}
                     label={i18n.t('legal.police.label.courtoutcome')}
