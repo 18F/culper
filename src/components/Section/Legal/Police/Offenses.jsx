@@ -157,15 +157,11 @@ export default class Offenses extends ValidationElement {
           onUpdate={this.updateSummons}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.summons')}
-          <div className="blue">
-            {i18n.m('legal.police.para.summons')}
-          </div>
         </Branch>
 
         <Branch name="has_arrests"
           className="arrests"
           value={this.state.HasArrests}
-          help="legal.police.help.arrests"
           onUpdate={this.updateArrests}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.arrests')}
@@ -178,15 +174,11 @@ export default class Offenses extends ValidationElement {
           onUpdate={this.updateCharges}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.charges')}
-          <div className="blue">
-            {i18n.m('legal.police.para.charges')}
-          </div>
         </Branch>
 
         <Branch name="has_probation"
           className="probation"
           value={this.state.HasProbation}
-          help="legal.police.help.probation"
           onUpdate={this.updateProbation}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.probation')}
@@ -195,7 +187,6 @@ export default class Offenses extends ValidationElement {
         <Branch name="has_trial"
           className="trial"
           value={this.state.HasTrial}
-          help="legal.police.help.trial"
           onUpdate={this.updateTrial}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.trial')}

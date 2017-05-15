@@ -196,7 +196,6 @@ export default class OtherOffenses extends ValidationElement {
         <Branch name="has_otherfirearms"
           className="otherfirearms"
           value={this.state.HasOtherFirearms}
-          help="legal.police.help.otherFirearms"
           onUpdate={this.updateOtherFirearms}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.para.otherOffense.fourth')}
@@ -205,7 +204,6 @@ export default class OtherOffenses extends ValidationElement {
         <Branch name="has_otheralchohol"
           className="otheralcohol"
           value={this.state.HasOtherAlcohol}
-          help="legal.police.help.otherAlcohol"
           onUpdate={this.updateOtherAlchohol}
           onValidate={this.handleValidation}>
           {i18n.m('legal.police.para.otherOffense.fifth')}
