@@ -270,7 +270,6 @@ export default class Relative extends ValidationElement {
     return (
       <div className="relative-item">
         <Field title={i18n.t('relationships.relatives.heading.relation')}
-               help="relationships.relatives.help.relation"
                adjustFor="big-buttons">
           <RadioGroup className="relative-relation option-list"
                       selectedValue={this.state.Relation}>
@@ -410,7 +409,6 @@ export default class Relative extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.birthplace')}
-               help="relationships.relatives.help.birthplace"
                adjustFor="label">
           <BirthPlace name="Birthplace"
                       label={i18n.t('relationships.relatives.label.birthplace')}
@@ -440,7 +438,6 @@ export default class Relative extends ValidationElement {
           <div>
             <h3>{i18n.t('relationships.relatives.heading.maiden')}</h3>
             <Branch name="maiden_diff"
-                    help="relationships.relatives.help.maiden"
                     className="eapp-field-wrap relative-maiden-diff"
                     value={this.state.MaidenSameAsListed}
                     yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
@@ -486,7 +483,6 @@ export default class Relative extends ValidationElement {
         <Branch name="is_deceased"
                 className="relative-deceased"
                 value={this.state.IsDeceased}
-                help="relationships.relatives.help.deceased"
                 onUpdate={this.updateIsDeceased}
                 onValidate={this.props.onValidate}>
         </Branch>
@@ -509,7 +505,6 @@ export default class Relative extends ValidationElement {
 
             <Field title={i18n.t('relationships.relatives.heading.us.documentation')}
                    titleSize="h3"
-                   help="relationships.relatives.help.abroad"
                    adjustFor="p"
                    shrink={true}>
               {i18n.m('relationships.relatives.para.abroad')}
@@ -532,8 +527,7 @@ export default class Relative extends ValidationElement {
               </RadioGroup>
             </Field>
 
-            <Field help="relationships.relatives.help.naturalized"
-                   adjustFor="p">
+            <Field adjustFor="p">
               {i18n.m('relationships.relatives.para.naturalized')}
               <RadioGroup className="relative-naturalized option-list"
                           selectedValue={this.state.Naturalized}>
@@ -561,8 +555,7 @@ export default class Relative extends ValidationElement {
               </RadioGroup>
             </Field>
 
-            <Field help="relationships.relatives.help.derived"
-                   adjustFor="p"
+            <Field adjustFor="p"
                    comments={true}
                    commentsName="DerivedComments"
                    commentsValue={this.state.DerivedComments}
@@ -604,8 +597,7 @@ export default class Relative extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.number')}
-                   titleSize="h3"
-                   help="relationships.relatives.help.documentnumber">
+                   titleSize="h3">
               <Text name="DocumentNumber"
                     className="relative-documentnumber"
                     {...this.state.DocumentNumber}
@@ -615,7 +607,6 @@ export default class Relative extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.expiration')}
-                   help="relationships.relatives.help.documentexpiration"
                    adjustFor="datecontrol">
               <DateControl name="DocumentExpiration"
                            {...this.state.DocumentExpiration}
@@ -626,8 +617,7 @@ export default class Relative extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.name')}
-                   titleSize="h3"
-                   help="relationships.relatives.help.courtname">
+                   titleSize="h3">
               <Text name="CourtName"
                     className="relative-courtname"
                     {...this.state.CourtName}
@@ -655,7 +645,6 @@ export default class Relative extends ValidationElement {
             <Show when={this.state.Address && this.state.Address.addressType === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
-                       help="relationships.relatives.help.document"
                        comments={true}
                        commentsName="DocumentComments"
                        commentsValue={this.state.DocumentComments}
@@ -719,8 +708,7 @@ export default class Relative extends ValidationElement {
                   </div>
                 </Field>
 
-                <Field title={i18n.t('relationships.relatives.heading.address.number')}
-                       help="relationships.relatives.help.residencedocumentnumber">
+                <Field title={i18n.t('relationships.relatives.heading.address.number')}>
                   <Text name="ResidenceDocumentNumber"
                         className="relative-residence-documentnumber"
                         {...this.state.ResidenceDocumentNumber}
@@ -730,7 +718,6 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.expiration')}
-                       help="relationships.relatives.help.expiration"
                        adjustFor="labels"
                        shrink={true}>
                   <DateControl name="Expiration"
@@ -770,7 +757,6 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.methods')}
-                       help="relationships.relatives.help.methods"
                        comments={true}
                        commentsName="MethodsComments"
                        commentsValue={this.state.MethodsComments}
@@ -821,7 +807,6 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.frequency')}
-                       help="relationships.relatives.help.frequency"
                        comments={true}
                        commentsName="FrequencyComments"
                        commentsValue={this.state.FrequencyComments}
@@ -876,7 +861,6 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.employer.name')}
-                       help="relationships.relatives.help.employer"
                        adjustFor="buttons"
                        shrink={true}>
                   <NotApplicable name="EmployerNotApplicable"
@@ -894,7 +878,6 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.employer.address')}
-                       help="relationships.relatives.help.employeraddress"
                        adjustFor="address">
                   <NotApplicable name="EmployerAddressNotApplicable"
                                  label={i18n.t('relationships.relatives.label.idk')}
@@ -920,13 +903,11 @@ export default class Relative extends ValidationElement {
                           labelSize="h3"
                           className="relative-affiliation"
                           value={this.state.HasAffiliation}
-                          help="relationships.relatives.help.affiliation"
                           onUpdate={this.updateHasAffiliation}
                           onValidate={this.props.onValidate}>
                   </Branch>
                   <Show when={this.state.HasAffiliation === 'Yes'}>
-                    <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}
-                           help="relationships.relatives.help.employerrelationship">
+                    <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}>
                       <Textarea name="EmployerRelationship"
                                 className="relative-employer-relationship"
                                 {...this.state.EmployerRelationship}

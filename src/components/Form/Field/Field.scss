@@ -227,10 +227,15 @@
           padding: 0;
         }
 
-        a {
-          padding: 1.5rem;
-          background-color: #fff;
-          border-radius: 6px;
+        a,
+        a:visited,
+        a:active {
+          padding: 1.5rem 0;
+          color: #004c7e;
+        }
+
+        a:hover {
+          color: #003960;
         }
 
         > i {
