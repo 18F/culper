@@ -61,7 +61,6 @@ export default class DomesticViolence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.domesticCourtDate')}
                titleSize="h3"
-               help="legal.police.help.domesticIssued"
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Issued"
