@@ -1,61 +1,67 @@
-.blocks {
-  .hair-icon.bald svg path {
-    fill: #5b606b;
-  }
+.hair-colors {
+  .blocks {
+    .block label {
+      width: 14rem;
+    }
 
-  .hair-icon.black svg path {
-    fill: #000;
-  }
+    .hair-icon.bald svg path {
+      fill: #5b606b;
+    }
 
-  .hair-icon.blonde svg path {
-    fill: #e6e199;
-    stroke: #aeac8c;
-    stroke-linecap: round;
-  }
+    .hair-icon.black svg path {
+      fill: #000;
+    }
 
-  .hair-icon.brown svg path {
-    fill: #4f3424;
-  }
+    .hair-icon.blonde svg path {
+      fill: #e6e199;
+      stroke: #aeac8c;
+      stroke-linecap: round;
+    }
 
-  .hair-icon.gray svg path {
-    fill: #c7c7c7;
-  }
+    .hair-icon.brown svg path {
+      fill: #4f3424;
+    }
 
-  .hair-icon.red svg path {
-    fill: #b54934;
-  }
+    .hair-icon.gray svg path {
+      fill: #c7c7c7;
+    }
 
-  .hair-icon.sandy svg path {
-    fill: #b29877;
-  }
+    .hair-icon.red svg path {
+      fill: #b54934;
+    }
 
-  .hair-icon.white svg path {
-    fill: #fff;
-    stroke: #c4c4c4;
-    stroke-linecap: round;
-  }
+    .hair-icon.sandy svg path {
+      fill: #b29877;
+    }
 
-  .hair-icon.blue svg path {
-    fill: #79b8d9;
-  }
+    .hair-icon.white svg path {
+      fill: #fff;
+      stroke: #c4c4c4;
+      stroke-linecap: round;
+    }
 
-  .hair-icon.green svg path {
-    fill: #469f3c;
-  }
+    .hair-icon.blue svg path {
+      fill: #79b8d9;
+    }
 
-  .hair-icon.orange svg path {
-    fill: #d06a33;
-  }
+    .hair-icon.green svg path {
+      fill: #469f3c;
+    }
 
-  .hair-icon.pink svg path {
-    fill: #e87e9c;
-  }
+    .hair-icon.orange svg path {
+      fill: #d06a33;
+    }
 
-  .hair-icon.purple svg path {
-    fill: purple;
-  }
+    .hair-icon.pink svg path {
+      fill: #e87e9c;
+    }
 
-  .hair-icon.unknown svg path {
-    fill: #5b606b;
+    .hair-icon.purple svg path {
+      fill: purple;
+    }
+
+    .hair-icon.unknown svg path {
+      fill: #5b606b;
+    }
   }
 }
