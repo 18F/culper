@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Field, Textarea } from '../../../Form'
+import { ValidationElement, Branch, Name, DateRange, Field, Textarea, Show } from '../../../Form'
 
 export default class Alias extends ValidationElement {
   constructor (props) {
@@ -58,12 +58,15 @@ export default class Alias extends ValidationElement {
               onUpdate={this.updateName}
               />
 
-        <h4>{i18n.t('relationships.relatives.heading.alias.maiden')}</h4>
-        <Branch name="MaidenName"
-                className="alias-maiden"
-                value={this.state.MaidenName}
-                onUpdate={this.updateMaidenName} >
-        </Branch>
+        <Show when={this.props.hideMaiden === false}>
+          <Branch name="MaidenName"
+                  label={i18n.t('relationships.relatives.heading.alias.maiden')}
+                  labelSize="h4"
+                  className="alias-maiden"
+                  value={this.state.MaidenName}
+                  onUpdate={this.updateMaidenName} >
+          </Branch>
+        </Show>
 
         <Field help="relationships.relatives.help.aliasdates"
                adjustFor="daterange"
@@ -93,5 +96,6 @@ Alias.defaultProps = {
   Name: {},
   MaidenName: '',
   Dates: {},
-  Reason: {}
+  Reason: {},
+  hideMaiden: false
 }
