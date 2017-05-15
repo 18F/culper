@@ -21,7 +21,7 @@ describe('The ExistingConditions component', () => {
     component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('click')
     component.find('input#Condition').simulate('change')
 
-    expect(updates).toBe(8)
+    expect(updates).toBe(10)
   })
 
   it('Selects no to everything', () => {

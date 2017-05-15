@@ -34,7 +34,9 @@ export default class Police extends ValidationElement {
       HasOtherFirearms: props.HasOtherFirearms,
       HasOtherAlcohol: props.HasOtherAlcohol,
       List: props.List,
+      ListBranch: props.ListBranch,
       OtherOffenses: props.OtherOffenses,
+      OtherOffensesBranch: props.OtherOffensesBranch,
       DomesticViolence: props.DomesticViolence,
       errorCodes: []
     }
@@ -104,12 +106,14 @@ export default class Police extends ValidationElement {
     })
   }
 
-  updateList (collection) {
-    this.onUpdate('List', collection)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
-  updateOtherOffenses (value) {
-    this.onUpdate('OtherOffenses', value, () => {
+  updateOtherOffenses (values) {
+    this.onUpdate('OtherOffensesBranch', values.branch)
+    this.onUpdate('OtherOffenses', values.items, () => {
       this.checkToClear()
     })
   }
@@ -246,7 +250,6 @@ export default class Police extends ValidationElement {
         <Branch name="has_arrests"
                 className="arrests"
                 value={this.state.HasArrests}
-                help="legal.police.help.arrests"
                 onUpdate={this.updateArrests}
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.arrests')}
@@ -267,7 +270,6 @@ export default class Police extends ValidationElement {
         <Branch name="has_probation"
                 className="probation"
                 value={this.state.HasProbation}
-                help="legal.police.help.probation"
                 onUpdate={this.updateProbation}
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.probation')}
@@ -276,7 +278,6 @@ export default class Police extends ValidationElement {
         <Branch name="has_trial"
                 className="trial"
                 value={this.state.HasTrial}
-                help="legal.police.help.trial"
                 onUpdate={this.updateTrial}
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.label.trial')}
@@ -285,6 +286,7 @@ export default class Police extends ValidationElement {
         <Show when={this.hasOffenses()}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -320,7 +322,6 @@ export default class Police extends ValidationElement {
         <Branch name="has_otherdomestic"
                 className="otherdomestic"
                 value={this.state.HasOtherDomestic}
-                help="legal.police.help.otherDomestic"
                 onUpdate={this.updateOtherDomestic}
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.para.otherOffense.third')}
@@ -329,7 +330,6 @@ export default class Police extends ValidationElement {
         <Branch name="has_otherfirearms"
                 className="otherfirearms"
                 value={this.state.HasOtherFirearms}
-                help="legal.police.help.otherFirearms"
                 onUpdate={this.updateOtherFirearms}
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.para.otherOffense.fourth')}
@@ -338,7 +338,6 @@ export default class Police extends ValidationElement {
         <Branch name="has_otheralchohol"
                 className="otheralcohol"
                 value={this.state.HasOtherAlcohol}
-                help="legal.police.help.otherAlcohol"
                 onUpdate={this.updateOtherAlchohol}
                 onValidate={this.handleValidation}>
           {i18n.m('legal.police.para.otherOffense.fifth')}
@@ -347,6 +346,7 @@ export default class Police extends ValidationElement {
         <Show when={this.hasOtherOffenses()}>
           <Accordion minimum="1"
                      items={this.state.OtherOffenses}
+                     branch={this.state.OtherOffensesBranch}
                      onUpdate={this.updateOtherOffenses}
                      onValidate={this.handleValidation}
                      summary={this.summary}

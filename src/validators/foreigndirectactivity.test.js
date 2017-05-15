@@ -18,7 +18,8 @@ describe('Foreign Direct Activity validation', function () {
       {
         props: {
           HasInterests: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       },
@@ -62,7 +63,8 @@ describe('Foreign Direct Activity validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

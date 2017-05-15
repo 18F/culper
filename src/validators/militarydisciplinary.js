@@ -4,6 +4,7 @@ export default class MilitaryDisciplinaryValidator {
   constructor (state = {}, props = {}) {
     this.hasDisciplinary = state.HasDisciplinary
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validDisciplinary () {
@@ -16,6 +17,10 @@ export default class MilitaryDisciplinaryValidator {
     }
 
     if (this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

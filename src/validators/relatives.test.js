@@ -1698,7 +1698,8 @@ describe('Relatives validation', function () {
                 Relation: 'Mother'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -1785,7 +1786,8 @@ describe('Relatives validation', function () {
                 }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

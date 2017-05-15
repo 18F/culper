@@ -8,6 +8,7 @@ export default class CohabitantsValidator {
   constructor (state = {}) {
     this.hasCohabitant = state.HasCohabitant
     this.cohabitantList = state.CohabitantList || []
+    this.cohabitantListBranch = state.CohabitantListBranch
   }
 
   isValid () {
@@ -19,6 +20,10 @@ export default class CohabitantsValidator {
     }
 
     if (!this.cohabitantList.length) {
+      return false
+    }
+
+    if (this.cohabitantListBranch !== 'No') {
       return false
     }
 

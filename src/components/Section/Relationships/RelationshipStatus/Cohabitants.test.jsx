@@ -23,6 +23,6 @@ describe('The cohabitants component', () => {
     expect(component.find('.cohabitants').length).toEqual(1)
     component.find('.has-cohabitant .yes input').simulate('change')
     component.find('.has-cohabitant .no input').simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(4)
   })
 })

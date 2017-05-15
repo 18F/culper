@@ -132,7 +132,8 @@ describe('Foreign business family component validation', function () {
       {
         state: {
           HasForeignFamily: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -167,7 +168,8 @@ describe('Foreign business family component validation', function () {
                 value: 'this is the circumstances'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

@@ -118,7 +118,8 @@ describe('The IndirectActivity component', () => {
             }
           }
         }
-      ]
+      ],
+      ListBranch: 'No'
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

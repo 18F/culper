@@ -175,7 +175,6 @@ export default class Name extends ValidationElement {
                 pattern="^[a-zA-Z\-\.' ]*$"
                 maxlength={this.state.firstInitialOnly ? '1' : '100'}
                 className="first"
-                placeholder={i18n.t(`${prefix}.placeholder.first`)}
                 value={this.state.first}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}
@@ -202,7 +201,6 @@ export default class Name extends ValidationElement {
                 minlength="0"
                 maxlength={this.state.middleInitialOnly ? '1' : '100'}
                 className="middle"
-                placeholder={i18n.t(`${prefix}.placeholder.middle`)}
                 value={this.state.middle}
                 disabled={this.state.noMiddleName}
                 onChange={this.handleChange}
@@ -238,7 +236,6 @@ export default class Name extends ValidationElement {
                 maxlength={this.state.lastInitialOnly ? '1' : '100'}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
-                placeholder={i18n.t(`${prefix}.placeholder.last`)}
                 value={this.state.last}
                 onChange={this.handleChange}
                 onValidate={this.handleValidation}

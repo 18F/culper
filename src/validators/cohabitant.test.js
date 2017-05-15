@@ -126,14 +126,16 @@ describe('Cohabitant validation', function () {
       {
         state: {
           HasCohabitant: 'Yes',
-          CohabitantList: []
+          CohabitantList: [],
+          CohabitantListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasCohabitant: 'Yes',
-          CohabitantList: [{Cohabitant: {}}]
+          CohabitantList: [{Cohabitant: {}}],
+          CohabitantListBranch: 'No'
         },
         expected: false
       },
@@ -201,7 +203,8 @@ describe('Cohabitant validation', function () {
                 }
               }
             }
-          ]
+          ],
+          CohabitantListBranch: 'No'
         },
         expected: true
       }

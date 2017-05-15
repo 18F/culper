@@ -31,28 +31,32 @@ describe('Consultation validation', function () {
                 Appeals: [{ Has: 'No' }]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           List: [],
-          Consulted: 'Yes'
+          Consulted: 'Yes',
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           List: [],
-          Consulted: 'No'
+          Consulted: 'No',
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           List: [],
-          Consulted: 'Nope'
+          Consulted: 'Nope',
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -82,7 +86,8 @@ describe('Consultation validation', function () {
                 Appeals: [{ Has: 'No' }]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       }
