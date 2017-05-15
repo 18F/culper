@@ -296,7 +296,6 @@ export default class Offense extends ValidationElement {
               <Svg src="img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
-            <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
             <Field title={i18n.t('legal.police.heading.courtname')}
                    adjustFor="labels">
               <Text name="CourtName"
@@ -323,7 +322,6 @@ export default class Offense extends ValidationElement {
 
             <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
             {i18n.m('legal.police.para.chargedetails')}
-
             <Field title={i18n.t('legal.police.heading.chargeType')}
                    titleSize="h4"
                    adjustFor="buttons"

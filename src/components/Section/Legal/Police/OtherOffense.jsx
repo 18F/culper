@@ -171,7 +171,6 @@ export default class OtherOffense extends ValidationElement {
           {i18n.m('legal.police.label.substances')}
         </Branch>
 
-        <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
         <Field title={i18n.t('legal.police.heading.courtname')}
                help="legal.police.help.courtname"
                adjustFor="labels">
