@@ -66,6 +66,7 @@ export default class DateControl extends ValidationElement {
       validity: [null, null, null],
       errorCodes: []
     }
+    this.beforeChange = this.beforeChange.bind(this)
   }
 
   componentWillReceiveProps (next) {
@@ -307,6 +308,14 @@ export default class DateControl extends ValidationElement {
       })
   }
 
+  beforeChange (value) {
+    return value.replace(/\D/g, '')
+  }
+
+  monthDisplayText (value, name) {
+    return `${name} (${value})`.trim()
+  }
+
   render () {
     let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
     return (
@@ -324,12 +333,13 @@ export default class DateControl extends ValidationElement {
                       readonly={this.props.readonly}
                       required={this.props.required}
                       onChange={this.handleChange}
+                      beforeChange={this.beforeChange}
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
                       onValidate={this.handleValidation}
-                      tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}
-                      >
-              <option key="jan" value="Janurary">1</option>
+                      displayText={this.monthDisplayText}
+                      tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
+              <option key="jan" value="January">1</option>
               <option key="feb" value="February">2</option>
               <option key="mar" value="March">3</option>
               <option key="apr" value="April">4</option>
