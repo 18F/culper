@@ -65,7 +65,7 @@ const en = {
       first: 'First name',
       last: 'Last name',
       middle: 'Middle name or initial',
-      initialOnly: 'Initial Only',
+      initialOnly: 'Initial only',
       noMiddle: 'No middle name',
       other: 'Other',
       suffix: 'Suffix',
@@ -101,38 +101,55 @@ const en = {
           note: ''
         },
         length: {
-          title: 'The last name does not meet length requirements',
-          message: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
+          title: 'There is a problem with the last name',
+          message: [
+            'You are only allowed 100 characters.',
+            '*and/or*',
+            'If the last name is an initial then check the "Initial only" checkbox.'
+          ],
           note: ''
         },
         pattern: {
-          title: 'The last name has unsupported characters',
-          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
-          note: ''
+          title: 'There is a problem with the last name',
+          message: 'Some of these characters aren\'t allowed.',
+          note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       },
       first: {
         length: {
-          title: 'The first name does not meet the length requirements',
-          message: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
+          title: 'There is a problem with the first name',
+          message: [
+            'You are only allowed 100 characters.',
+            '*and/or*',
+            'If the first name is an initial then check the "Initial only" checkbox.'
+          ],
           note: ''
         },
         pattern: {
-          title: 'The first name has unsupported characters',
-          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
-          note: ''
+          title: 'There is a problem with the first name',
+          message: 'Some of these characters aren\'t allowed.',
+          note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       },
       middle: {
+        required: {
+          title: 'There is a problem with the middle name',
+          message: 'If there is no middle name then check the "No middle name" checkbox.',
+          note: ''
+        },
         length: {
-          title: 'The middle name does not meet the length requirements',
-          message: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
+          title: 'There is a problem with the middle name',
+          message: [
+            'You ase only allowed 100 characters.',
+            '*and/or*',
+            'If the middle name is an initial then check the "Initial only" checkbox.'
+          ],
           note: ''
         },
         pattern: {
-          title: 'The middle name has unsupported characters',
-          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
-          note: ''
+          title: 'There is a problem with the middle name',
+          message: 'Some of these characters aren\'t allowed.',
+          note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       }
     },
@@ -190,36 +207,36 @@ const en = {
     month: {
       notfound: {
         title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December)',
+        message: 'The month should be between 1(January) and 12(December).',
         note: ''
       },
       max: {
         title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December)',
+        message: 'The month should be between 1(January) and 12(December).',
         note: ''
       }
     },
     day: {
       length: {
-        title: 'Day falls outside of the allowable range',
-        message: 'The day must be a valid day for the month',
+        title: 'There is a problem with the Day',
+        message: 'There is not that many days in this month.',
         note: ''
       },
       max: {
-        title: 'Day falls outside of the allowable range',
-        message: 'Cannot exceed the number of days within the month',
+        title: 'There is a problem with the Day',
+        message: 'There is not that many days in this month.',
         note: ''
       }
     },
     year: {
       max: {
-        title: 'The year must be four digits',
-        message: 'The year must be a valid year',
+        title: 'There is a problem with the Year',
+        message: 'The year can\'t be in the future.',
         note: ''
       },
       min: {
-        title: 'The year must be four digits',
-        message: 'The year must be a valid year',
+        title: 'There is a problem with the Year',
+        message: 'This year is too far in the past.',
         note: ''
       }
     },
@@ -265,52 +282,56 @@ const en = {
     },
     city: {
       length: {
-        title: 'City name length',
-        message: 'City name must be between 2 and 100 characters',
+        title: 'There is a problem with the City',
+        message: 'City name should be between 2 and 100 characters.',
         note: ''
       }
     },
     state: {
       notfound: {
-        title: 'State option not supported',
-        message: 'The state name must be one of the available options',
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
         note: ''
       }
     },
     county: {
       length: {
-        title: 'County length',
+        title: 'There is a problem with the County',
         message: 'County name must be between 2 and 100 characters',
         note: ''
       }
     },
     zipcode: {
       pattern: {
-        title: 'Zipcode not in accepted format',
-        message: 'The zipcode can be either the 5 or 9 digit variation',
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
         note: ''
       },
       length: {
-        title: 'Zipcode not in accepted format',
-        message: 'The zipcode can be either the 5 or 9 digit variation',
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
         note: ''
       }
     },
     country: {
       notfound: {
-        title: 'Country option not supported',
-        message: 'The country name must be one of the available options',
+        title: 'There is a problem with the Country',
+        message: 'Country name should be one of the available options.',
         note: ''
       }
     },
     apoFpo: {
       length: {
-        title: 'APO/FPO length',
+        title: 'There is a problem with the State Code',
         message: 'APO/FPO state code must be 2 letters',
         note: ''
       },
       pattern: {
-        title: 'APO/FPO not in an acceptable format',
+        title: 'There is a problem with the State Code',
         message: 'APO/FPO state code must be 2 letters',
         note: 'Note: Typically the value is either AA, AE, or AP.'
       }
@@ -336,104 +357,104 @@ const en = {
     },
     daterange: {
       order: {
-        title: 'Date range order',
-        message: 'The **from** date must precede the **to** date',
+        title: 'There is a problem with the date range',
+        message: 'The **from** date should be before the **to** date.',
         note: ''
       }
     },
     domestic_first: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9',
+        message: 'The area code must be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9',
+        message: 'The area code must be 3 digits between 0 and 9.',
         note: ''
       }
     },
     domestic_second: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
         note: ''
       }
     },
     domestic_third: {
       pattern: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
         note: ''
       }
     },
     domestic_extension: {
       pattern: {
         title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits',
+        message: 'The extension must be between 0 and 10 digits.',
         note: ''
       },
       length: {
         title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits',
+        message: 'The extension must be between 0 and 10 digits.',
         note: ''
       }
     },
     dsn_first: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
         note: ''
       }
     },
     dsn_second: {
       pattern: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
         note: ''
       }
     },
     int_first: {
       pattern: {
         title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9',
+        message: 'The country code of the international number should be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9',
+        message: 'The country code of the international number should be 3 digits between 0 and 9.',
         note: ''
       }
     },
     int_second: {
       pattern: {
         title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9',
+        message: 'The international number should be 10 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9',
+        message: 'The international number should be 10 digits between 0 and 9.',
         note: ''
       }
     },
@@ -5997,7 +6018,7 @@ const en = {
         courtaddress: 'Provide the location of the court',
         chargedetails: 'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
         chargeType: 'Type of charge',
-        courtdate: 'Date',
+        courtdate: 'Date of outcome',
         sentenced: 'Were you sentenced as a result of this offense?',
         needmore: 'Since you answered yes we need more information',
         sentenceDescription: 'Provide a description of the sentence',
@@ -6026,7 +6047,8 @@ const en = {
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
         },
-        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.'
+        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.',
+        or: 'or'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -6116,9 +6138,9 @@ const en = {
           note: ''
         },
         agencyaddress: {
-          title: 'Need help with the law enforcement agency address?',
-          message: 'Provide the address of the law enforcement agency who handled this offense',
-          note: ''
+          title: 'Not sure of the agency address?',
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         charged: {
           title: 'Need help if you were charged, convicted, or awaiting trial?',
@@ -6151,8 +6173,8 @@ const en = {
           note: ''
         },
         courtdate: {
-          title: 'Need help with the court date?',
-          message: 'Provide the court date',
+          title: 'Need help with the outcome date?',
+          message: 'Tell us when the outcome was given (such as found guilty, found...).',
           note: ''
         },
         sentenced: {
@@ -6199,6 +6221,11 @@ const en = {
           title: 'Need help with this charge question?',
           message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
           note: ''
+        },
+        domesticExplanation: {
+          title: 'Not sure what to put here?',
+          message: 'Tell us about the order against you.',
+          note: 'Note: Go into as much detail as you need to fully explain.'
         }
       },
       branchCollection: {
@@ -6284,7 +6311,7 @@ const en = {
         first: 'First name',
         last: 'Last name',
         middle: 'Middle name or initial',
-        initialOnly: 'Initial Only',
+        initialOnly: 'Initial only',
         noMiddle: 'No middle name',
         other: 'Other',
         suffix: 'Suffix',

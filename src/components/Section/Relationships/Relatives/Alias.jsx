@@ -9,7 +9,7 @@ export default class Alias extends ValidationElement {
     this.state = {
       Name: props.Name,
       MaidenName: props.MaidenName,
-      Dates: props.Birthdate,
+      Dates: props.Dates,
       Reason: props.Reason
     }
 
@@ -56,6 +56,7 @@ export default class Alias extends ValidationElement {
               className="alias-name"
               {...this.state.Name}
               onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
               />
 
         <Show when={this.props.hideMaiden === false}>
@@ -64,7 +65,8 @@ export default class Alias extends ValidationElement {
                   labelSize="h4"
                   className="alias-maiden"
                   value={this.state.MaidenName}
-                  onUpdate={this.updateMaidenName} >
+                  onUpdate={this.updateMaidenName}
+                  onValidate={this.props.onValidate}>
           </Branch>
         </Show>
 
@@ -75,16 +77,17 @@ export default class Alias extends ValidationElement {
                      className="alias-dates"
                      {...this.state.Dates}
                      onUpdate={this.updateDates}
+                     onValidate={this.props.onValidate}
                      />
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.alias.reason')}
-               titleSize="h4"
-               help="relationships.relatives.help.reason">
+               titleSize="h4">
           <Textarea name="Reason"
                     className="alias-reason"
                     {...this.state.Reason}
                     onUpdate={this.updateReason}
+                    onValidate={this.props.onValidate}
                     />
         </Field>
       </div>

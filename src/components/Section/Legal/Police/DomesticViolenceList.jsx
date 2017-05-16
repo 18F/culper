@@ -4,7 +4,6 @@ import { DomesticViolenceValidator } from '../../../../validators'
 import { ValidationElement, BranchCollection } from '../../../Form'
 import DomesticViolence from './DomesticViolence'
 
-
 export default class DomesticViolenceList extends ValidationElement {
   constructor (props) {
     super(props)
@@ -59,18 +58,17 @@ export default class DomesticViolenceList extends ValidationElement {
   render () {
     return (
       <div className="domestic-violence-list">
-        <BranchCollection help="legal.police.branchCollection.domesticViolence"
-          label={i18n.t('legal.police.label.domesticViolence')}
-          labelSize="h2"
-          className="has-order"
-          appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
-          items={this.props.List}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateList}>
+        <BranchCollection label={i18n.t('legal.police.label.domesticViolence')}
+                          labelSize="h2"
+                          className="has-order"
+                          appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
+                          items={this.props.List}
+                          onValidate={this.handleValidation}
+                          onUpdate={this.updateList}>
           <DomesticViolence name="domestic"
-            bind={true}
-            onValidate={this.handleValidation}
-          />
+                            bind={true}
+                            onValidate={this.handleValidation}
+                            />
         </BranchCollection>
       </div>
     )

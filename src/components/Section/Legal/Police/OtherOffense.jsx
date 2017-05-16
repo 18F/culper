@@ -172,7 +172,6 @@ export default class OtherOffense extends ValidationElement {
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.courtname')}
-               help="legal.police.help.courtname"
                adjustFor="labels">
           <Text name="CourtName"
                 {...this.state.CourtName}
@@ -275,13 +274,12 @@ export default class OtherOffense extends ValidationElement {
         <Show when={this.state.WasSentenced === 'No'}>
           <div>
             <Branch name="awaiting_trial"
+                    label={i18n.t('legal.police.heading.awaitingTrial')}
+                    labelSize="h4"
                     className="awaiting-trial"
                     value={this.state.AwaitingTrial}
                     onValidate={this.props.onValidate}
                     onUpdate={this.updateAwaitingTrial}>
-              <div>
-                {i18n.t('legal.police.heading.awaitingTrial')}
-              </div>
             </Branch>
             <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
                    titleSize="label"
