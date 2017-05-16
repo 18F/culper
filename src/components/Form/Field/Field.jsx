@@ -55,7 +55,7 @@ export default class Field extends ValidationElement {
    * Handle validation event.
    */
   handleValidation (event, status, errors) {
-    if (!event) {
+    if (!event || !this.props.validate) {
       return
     }
 
@@ -99,6 +99,11 @@ export default class Field extends ValidationElement {
    */
   cleanErrors (old, remove) {
     let arr = []
+
+    // If we have to drop the kids off then clear our queue
+    if (remove.indexOf('drop_the_kids_off') !== -1) {
+      return arr
+    }
 
     for (let err of old) {
       if (err.indexOf(remove) === -1 && !err.endsWith('.')) {
@@ -328,6 +333,7 @@ Field.defaultProps = {
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
+  validate: true,
   shrink: false,
   scrollIntoView: true
 }

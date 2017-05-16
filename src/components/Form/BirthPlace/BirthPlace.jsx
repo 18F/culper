@@ -109,14 +109,9 @@ export default class BirthPlace extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.state.name]: codes }
-      let s = { [this.state.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
-      super.handleValidation(event, s, e)
+      const errorObject = { [this.state.name]: codes }
+      const statusObject = { [this.state.name]: { status: complexStatus } }
+      super.handleValidation(event, statusObject, errorObject)
     })
   }
 
