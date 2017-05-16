@@ -308,7 +308,7 @@ export default class DateControl extends ValidationElement {
       })
   }
 
-  beforeChange (value) {
+  beforeChange (value = '') {
     return value.replace(/\D/g, '')
   }
 
@@ -337,7 +337,8 @@ export default class DateControl extends ValidationElement {
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
                       onValidate={this.handleValidation}
-                      displayText={this.monthDisplayText}>
+                      displayText={this.monthDisplayText}
+                      tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
               <option key="jan" value="January">1</option>
               <option key="feb" value="February">2</option>
               <option key="mar" value="March">3</option>
