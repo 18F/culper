@@ -140,7 +140,7 @@ const en = {
         length: {
           title: 'There is a problem with the middle name',
           message: [
-            'You ase only allowed 100 characters.',
+            'You are only allowed 100 characters.',
             '*and/or*',
             'If the middle name is an initial then check the "Initial only" checkbox.'
           ],
