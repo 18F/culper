@@ -11,6 +11,7 @@ export default class Advice extends ValidationElement {
     this.state = {
       HasForeignAdvice: props.HasForeignAdvice,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -25,7 +26,8 @@ export default class Advice extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignAdvice: this.state.HasForeignAdvice,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -35,8 +37,9 @@ export default class Advice extends ValidationElement {
     this.onUpdate('HasForeignAdvice', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -70,13 +73,11 @@ export default class Advice extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.advice.collection.summary.unknown')
-    const country = (obj.Country || {}).value
 
     return (
       <span>
         <span className="index">{i18n.t('foreign.business.advice.collection.summary.item')} {index + 1}:</span>
         <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{country}</strong></span>
       </span>
     )
   }
@@ -87,6 +88,7 @@ export default class Advice extends ValidationElement {
         <Branch name="has_foreign_advice"
                 label={i18n.t('foreign.business.advice.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.advice.help.branch"
                 value={this.state.HasForeignAdvice}
                 onUpdate={this.updateHasForeignAdvice}
@@ -97,6 +99,7 @@ export default class Advice extends ValidationElement {
         <Show when={this.state.HasForeignAdvice === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -135,7 +138,8 @@ export default class Advice extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.advice.heading.dates')}
-                   help="foreign.business.advice.help.dates">
+                   help="foreign.business.advice.help.dates"
+                   adjustFor="daterange">
               <DateRange name="Dates"
                          className="advice-dates"
                          bind={true}
@@ -159,5 +163,6 @@ export default class Advice extends ValidationElement {
 Advice.defaultProps = {
   name: 'Advice',
   HasForeignAdvice: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

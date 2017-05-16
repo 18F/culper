@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Cohabitants from './Cohabitants'
 
-describe('The cohabitant component', () => {
+describe('The cohabitants component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'cohabitant'
@@ -23,6 +23,6 @@ describe('The cohabitant component', () => {
     expect(component.find('.cohabitants').length).toEqual(1)
     component.find('.has-cohabitant .yes input').simulate('change')
     component.find('.has-cohabitant .no input').simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(4)
   })
 })

@@ -6,6 +6,7 @@ export default class ForeignBusinessEmploymentValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignEmployment = state.HasForeignEmployment
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -18,7 +19,11 @@ export default class ForeignBusinessEmploymentValidator {
         return false
       }
 
-      return this.list.every(item => new EmploymentValidator(item, null).isValid())
+      if (this.listBranch !== 'No') {
+        return false
+      }
+
+      return this.list.every(item => new EmploymentValidator(item.Item, null).isValid())
     }
 
     return false
@@ -35,7 +40,8 @@ export class EmploymentValidator {
     this.description = state.Description
     this.date = state.Date
     this.address = state.Address
-    this.acceptance = state.Acceptance
+    this.accepted = state.Accepted
+    this.explanation = state.Explanation
   }
 
   validName () {
@@ -55,7 +61,15 @@ export class EmploymentValidator {
   }
 
   validAcceptance () {
-    return !!this.acceptance && validGenericTextfield(this.acceptance)
+    if (this.accepted === 'No') {
+      return true
+    }
+
+    if (this.accepted === 'Yes') {
+      return !!this.explanation && validGenericTextfield(this.explanation)
+    }
+
+    return false
   }
 
   isValid () {

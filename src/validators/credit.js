@@ -5,6 +5,7 @@ export default class CreditValidator {
   constructor (state = {}, props = {}) {
     this.hasCreditCounseling = state.HasCreditCounseling
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validHasCreditCounseling () {
@@ -25,6 +26,10 @@ export default class CreditValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

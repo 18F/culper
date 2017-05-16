@@ -20,8 +20,8 @@ const navigation = [
     title: 'Financial record',
     url: 'financial',
     subsections: [
-      { name: 'Gambling debt', url: 'gambling' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
+      { name: 'Gambling', url: 'gambling' },
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
       { name: 'Credit counseling', url: 'credit' },
@@ -129,7 +129,15 @@ const navigation = [
     title: 'Investigative and criminal history',
     url: 'legal',
     subsections: [
-      { name: 'Police record', url: 'police' },
+      {
+        name: 'Police record',
+        url: 'police',
+        subsections: [
+          { name: 'Offenses', url: 'offenses' },
+          { name: 'Additional offenses', url: 'additionaloffenses' },
+          { name: 'Domestic violence', url: 'domesticviolence' }
+        ]
+      },
       { hidden: true, name: 'Involvement in non-criminal court actions', url: 'court' },
       { hidden: true, name: 'Investigations and clearance record', url: 'investigations' },
       { hidden: true, name: 'Financial record', url: 'financial' },

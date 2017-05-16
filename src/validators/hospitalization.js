@@ -5,11 +5,16 @@ import { validGenericTextfield } from './helpers'
 export default class HospitalizationsValidator {
   constructor (state = {}, props) {
     this.list = state.List || []
+    this.listBranch = state.ListBranch
     this.hospitalized = state.Hospitalized
   }
 
   validList () {
     if (this.hospitalized === 'Yes' && this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

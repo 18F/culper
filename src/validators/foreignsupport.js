@@ -6,6 +6,7 @@ export default class ForeignActivitiesSupportValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignSupport = state.HasForeignSupport
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -15,6 +16,10 @@ export default class ForeignActivitiesSupportValidator {
 
     if (this.hasForeignSupport === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 
@@ -36,7 +41,7 @@ export class SupportValidator {
     this.relationship = state.Relationship
     this.amount = state.Amount
     this.frequency = state.Frequency
-    this.country = state.Country
+    this.citizenship = state.Citizenship
   }
 
   validName () {
@@ -59,8 +64,8 @@ export class SupportValidator {
     return !!this.frequency && validGenericTextfield(this.frequency)
   }
 
-  validCountry () {
-    return !!this.country && !!this.country.value && this.country.value.length > 0
+  validCitizenship () {
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
   }
 
   isValid () {
@@ -69,6 +74,6 @@ export class SupportValidator {
       this.validRelationship() &&
       this.validAmount() &&
       this.validFrequency() &&
-      this.validCountry()
+      this.validCitizenship()
   }
 }

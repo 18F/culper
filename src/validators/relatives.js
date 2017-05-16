@@ -1,15 +1,21 @@
 import NameValidator from './name'
 import AddressValidator from './address'
+import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
   constructor (state = {}, props = {}) {
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validItems () {
     if (this.list.length === 0) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 
@@ -29,7 +35,7 @@ export default class RelativesValidator {
 
 export class RelativeValidator {
   constructor (state = {}, props = {}) {
-    this.relations = state.Relations || []
+    this.relation = state.Relation || []
     this.name = state.Name
     this.birthdate = state.Birthdate
     this.birthplace = state.Birthplace
@@ -44,6 +50,7 @@ export class RelativeValidator {
     this.derived = state.Derived
     this.derivedComments = state.DerivedComments
     this.documentNumber = state.DocumentNumber
+    this.documentExpiration = state.DocumentExpiration
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
     this.document = state.Document
@@ -70,27 +77,27 @@ export class RelativeValidator {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
     const citizen = this.citizen()
 
-    if (this.relations && this.relations.some(x => relations.includes(x)) && citizen && this.birthplace.addressType === 'International' && this.isDeceased === 'Yes') {
+    if (this.relation && relations.includes(this.relation) && citizen && this.birthplace.domestic === 'No' && this.isDeceased === 'Yes') {
       return true
     }
 
-    if (this.address && this.address.addressType === 'United States' && this.birthplace.addressType === 'International' && citizen) {
+    if (this.address && this.address.addressType === 'United States' && this.birthplace.domestic === 'No' && citizen) {
       return true
     }
 
-    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.addressType === 'International' && citizen) {
+    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.domestic === 'No' && citizen) {
       return true
     }
 
-    if (this.birthplace && this.birthplace.addressType === 'International' && citizen) {
+    if (this.birthplace && this.birthplace.domestic === 'No' && citizen) {
       return true
     }
 
     return false
   }
 
-  validRelations () {
-    return this.relations.length > 0
+  validRelation () {
+    return !!this.relation && this.relation.length > 0
   }
 
   validName () {
@@ -102,7 +109,7 @@ export class RelativeValidator {
   }
 
   validBirthplace () {
-    return !!this.birthplace && new AddressValidator(this.birthplace, null).isValid()
+    return !!this.birthplace && new BirthPlaceValidator(this.birthplace, { hideCounty: true }).isValid()
   }
 
   validCitizenship () {
@@ -128,7 +135,8 @@ export class RelativeValidator {
         continue
       }
 
-      if (has && new AliasValidator(alias.Item, null).isValid() === false) {
+      const props = { hideMaiden: this.relation === 'Mother' }
+      if (has && new AliasValidator(alias.Item, props).isValid() === false) {
         return false
       }
     }
@@ -184,6 +192,14 @@ export class RelativeValidator {
     }
 
     return validGenericTextfield(this.documentNumber)
+  }
+
+  validDocumentExpiration () {
+    if (!this.requiresCitizenshipDocumentation()) {
+      return true
+    }
+
+    return !!this.documentExpiration && validDateField(this.documentExpiration)
   }
 
   validCourtName () {
@@ -297,7 +313,7 @@ export class RelativeValidator {
   }
 
   isValid () {
-    return this.validRelations() &&
+    return this.validRelation() &&
       this.validName() &&
       this.validBirthdate() &&
       this.validBirthplace() &&
@@ -310,6 +326,7 @@ export class RelativeValidator {
       this.validNaturalized() &&
       this.validDerived() &&
       this.validDocumentNumber() &&
+      this.validDocumentExpiration() &&
       this.validCourtName() &&
       this.validCourtAddress() &&
       this.validDocument() &&
@@ -331,6 +348,7 @@ export class AliasValidator {
     this.maidenName = state.MaidenName
     this.dates = state.Dates
     this.reason = state.Reason
+    this.hideMaiden = props.hideMaiden
   }
 
   validName () {
@@ -338,6 +356,10 @@ export class AliasValidator {
   }
 
   validMaidenName () {
+    if (this.hideMaiden) {
+      return true
+    }
+
     return !!this.maidenName && (this.maidenName === 'No' || this.maidenName === 'Yes')
   }
 

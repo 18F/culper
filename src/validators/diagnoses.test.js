@@ -26,28 +26,32 @@ describe('Diagnoses validation', function () {
                 extension: ''
               }
             }
-          }]
+          }],
+          TreatmentListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           InTreatment: 'No',
-          TreatmentList: []
+          TreatmentList: [],
+          TreatmentListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           InTreatment: 'Yes',
-          TreatmentList: []
+          TreatmentList: [],
+          TreatmentListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           InTreatment: 'Yes',
-          TreatmentList: [{}]
+          TreatmentList: [{}],
+          TreatmentListBranch: 'No'
         },
         expected: false
       }
@@ -119,28 +123,32 @@ describe('Diagnoses validation', function () {
                 }
               }
             }
-          }]
+          }],
+          DiagnosisListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           Diagnosed: 'No',
-          DiagnosisList: []
+          DiagnosisList: [],
+          DiagnosisListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           Diagnosed: 'Yes',
-          DiagnosisList: []
+          DiagnosisList: [],
+          DiagnosisListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           Diagnosed: 'Yes',
-          DiagnosisList: [{}]
+          DiagnosisList: [{}],
+          DiagnosisListBranch: 'No'
         },
         expected: false
       }
@@ -158,7 +166,9 @@ describe('Diagnoses validation', function () {
           InTreatment: 'No',
           DidNotConsult: 'Yes',
           DiagnosisList: [],
-          TreatmentList: []
+          DiagnosisListBranch: 'No',
+          TreatmentList: [],
+          TreatmentListBranch: 'No'
         },
         expected: true
       }]

@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
+import Branch from '../Branch'
 import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
@@ -39,9 +40,11 @@ export default class Accordion extends ValidationElement {
       scrollToId: ''
     }
 
+    this.getItems = this.getItems.bind(this)
     this.update = this.update.bind(this)
     this.add = this.add.bind(this)
     this.updateChild = this.updateChild.bind(this)
+    this.updateAddendum = this.updateAddendum.bind(this)
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
@@ -54,8 +57,12 @@ export default class Accordion extends ValidationElement {
    */
   componentWillMount () {
     let dirty = false
+    let items = this.getItems()
 
-    let items = [...this.props.items]
+    if (items.length !== this.props.items.length) {
+      dirty = true
+    }
+
     if (items.length < this.props.minimum) {
       for (let i = 0; this.props.minimum - items.length > 0; i++) {
         dirty = true
@@ -91,7 +98,7 @@ export default class Accordion extends ValidationElement {
    * item in to view.
    */
   componentDidUpdate () {
-    if (!this.state.scrollToId) {
+    if (!this.state.scrollToId || this.state.initial) {
       return
     }
 
@@ -131,11 +138,46 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * Create a new item with required properties.
+   */
+  newItem () {
+    return { uuid: super.guid(), open: true }
+  }
+
+  /**
+   * Perform any injections or sorting to the list as deemed necessary.
+   */
+  getItems (skipInnoculation = false) {
+    // If this has realtime enabled then we always perform sorting and
+    // additional injections.
+    //
+    // If it is not realtime but still the first entry in to the accordion
+    // then we do the same.
+    //
+    // If we have been previously infected then assume we still are.
+    const infected = this.props.realtime || this.state.initial || this.props.items.some(item => item.type && item.type === 'Gap')
+
+    // If we are infected then inject the anecdote.
+    const innoculated = infected && !skipInnoculation
+          ? this.props.inject([...this.props.items])
+          : [...this.props.items]
+
+    // If we are not in a dirty environment and have a sorting function then
+    // apply order.
+    return this.props.sort && infected
+      ? innoculated.sort(this.props.sort)
+      : innoculated
+  }
+
+  /**
    * Send the updated list of items back to the parent component.
    */
-  update (items) {
+  update (items, branch) {
     if (this.props.onUpdate) {
-      this.props.onUpdate(items)
+      this.props.onUpdate({
+        branch: branch,
+        items: items
+      })
     }
   }
 
@@ -151,15 +193,8 @@ export default class Accordion extends ValidationElement {
       return x
     })
 
-    this.update(items)
+    this.update(items, this.props.branch)
     this.setState({ initial: false, scrollToId: '' })
-  }
-
-  /**
-   * Create a new item with required properties.
-   */
-  newItem () {
-    return { uuid: super.guid(), open: true }
   }
 
   /**
@@ -174,7 +209,7 @@ export default class Accordion extends ValidationElement {
 
     const item = this.newItem()
     items = items.concat([item])
-    this.update(items)
+    this.update(items, '')
     this.setState({ initial: false, scrollToId: item.uuid })
   }
 
@@ -192,7 +227,7 @@ export default class Accordion extends ValidationElement {
         items.push(this.newItem())
       }
 
-      this.update(items)
+      this.update(items, '')
       this.setState({ initial: false, scrollToId: '' })
     }
   }
@@ -204,7 +239,19 @@ export default class Accordion extends ValidationElement {
     let items = [...this.props.items]
     const index = items.findIndex(x => x.uuid === item.uuid)
     items[index][prop] = value
-    this.update(items)
+    this.update(items, this.props.branch)
+  }
+
+  /**
+   * Update the accordion addendum branch value.
+   */
+  updateAddendum (value) {
+    if (value === 'Yes') {
+      this.add()
+      return
+    }
+
+    this.update(this.props.items, value)
   }
 
   /**
@@ -289,9 +336,7 @@ export default class Accordion extends ValidationElement {
   content () {
     // Ensure we have the minimum amount of items required
     const initial = this.state.initial
-    const items = this.props.sort
-          ? [...this.props.items].sort(this.props.sort)
-          : [...this.props.items]
+    const items = [...this.props.items]
 
     return items.map((item, index, arr) => {
       return (
@@ -311,6 +356,22 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * The append button is only displayed if there is no addendum.
+   */
+  appendButton () {
+    if (this.props.appendTitle || this.props.appendMessage) {
+      return null
+    }
+
+    return (
+      <button className="add usa-button-outline" onClick={this.add}>
+        {this.props.appendLabel}
+        <i className="fa fa-plus-circle"></i>
+      </button>
+    )
+  }
+
+  /**
    * Render the accordion addendum notice
    */
   addendum () {
@@ -318,28 +379,18 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    let title = null
-    if (this.props.appendTitle) {
-      title = <h3>{this.props.appendTitle}</h3>
-    }
-
-    let message = null
-    if (this.props.appendMessage) {
-      message = this.props.appendMessage
-    }
-
+    // TODO: Add `value` and `onUpdate`
     const klassAppend = `addendum ${this.props.appendClass}`.trim()
     return (
-      <div className={klassAppend}>
-        {title}
-        {message}
-        <div>
-          <button className="add usa-button-outline" onClick={this.add}>
-            <span>{this.props.appendLabel}</span>
-            <i className="fa fa-plus-circle"></i>
-          </button>
-        </div>
-      </div>
+      <Branch label={this.props.appendTitle}
+              labelSize="h3"
+              className={klassAppend}
+              help={this.props.appendHelp}
+              value={this.props.branch}
+              onUpdate={this.updateAddendum}
+              onValidate={this.props.onValidate}>
+        {this.props.appendMessage}
+      </Branch>
     )
   }
 
@@ -367,10 +418,7 @@ export default class Accordion extends ValidationElement {
             {this.content()}
           </div>
 
-          <button className="add usa-button-outline" onClick={this.add}>
-            {this.props.appendLabel}
-            <i className="fa fa-plus-circle"></i>
-          </button>
+          {this.appendButton()}
         </div>
 
         {this.addendum()}
@@ -385,9 +433,11 @@ Accordion.defaultProps = {
   minimum: 1,
   defaultState: true,
   items: [],
+  branch: '',
   className: '',
   appendTitle: '',
-  appendMessage: '',
+  appendMessage: null,
+  appendHelp: null,
   appendClass: '',
   appendLabel: i18n.t('collection.append'),
   openLabel: i18n.t('collection.open'),
@@ -398,6 +448,8 @@ Accordion.defaultProps = {
   scrollTo: '',
   timeout: 500,
   sort: null,
+  realtime: true,
+  inject: (items) => { return items },
   onUpdate: () => {},
   onValidate: () => {},
   summary: (item, index, initial = false) => {

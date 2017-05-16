@@ -5,6 +5,7 @@ export default class DelinquentValidator {
   constructor (state = {}, props = {}) {
     this.hasDelinquent = state.HasDelinquent
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validHasDelinquent () {
@@ -25,6 +26,10 @@ export default class DelinquentValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

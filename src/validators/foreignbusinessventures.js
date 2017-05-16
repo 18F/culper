@@ -7,6 +7,7 @@ export default class ForeignBusinessVenturesValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignVentures = state.HasForeignVentures
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -16,6 +17,10 @@ export default class ForeignBusinessVenturesValidator {
 
     if (this.hasForeignVentures === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 
@@ -41,6 +46,7 @@ export class VenturesValidator {
     this.association = state.Association
     this.position = state.Position
     this.service = state.Service
+    this.support = state.Support
     this.compensation = state.Compensation
   }
 
@@ -80,6 +86,10 @@ export class VenturesValidator {
     return !!this.service && validGenericTextfield(this.service)
   }
 
+  validSupport () {
+    return !!this.support && validGenericTextfield(this.support)
+  }
+
   validCompensation () {
     return !!this.compensation && validGenericTextfield(this.compensation)
   }
@@ -94,6 +104,7 @@ export class VenturesValidator {
       this.validAssociation() &&
       this.validPosition() &&
       this.validService() &&
+      this.validSupport() &&
       this.validCompensation()
   }
 }

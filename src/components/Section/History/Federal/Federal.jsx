@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, Field, DateRange, Text, Address } from '../../../Form'
-import { dateSummary } from '../summaries'
+import { DateSummary } from '../../../Summary'
 import { FederalServiceValidator } from '../../../../validators'
 
 /**
@@ -84,8 +84,8 @@ export default class Federal extends ValidationElement {
     this.handleValidation(event, null, null)
   }
 
-  updateCollection (collection) {
-    this.onUpdate('List', collection)
+  updateCollection (values) {
+    this.onUpdate('List', values.items)
   }
 
   /**
@@ -95,7 +95,7 @@ export default class Federal extends ValidationElement {
     const agency = item && item.Name && item.Name.value
           ? item.Name.value
       : i18n.t('history.federal.collection.summary.unknown')
-    const dates = dateSummary(item)
+    const dates = DateSummary(item.Dates)
 
     return (
       <span>
@@ -147,7 +147,7 @@ export default class Federal extends ValidationElement {
 
             <Field title={i18n.t('history.federal.heading.address')}
                    help="history.federal.help.address"
-                   adjustFor="labels">
+                   adjustFor="address">
               <Address name="Address"
                        bind={true}
                        />

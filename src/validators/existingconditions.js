@@ -7,6 +7,7 @@ export default class ExistingConditionsValidator {
     this.receivedTreatment = state.ReceivedTreatment
     this.explanation = state.Explanation
     this.treatmentList = state.TreatmentList || []
+    this.treatmentListBranch = state.TreatmentListBranch
     this.didNotFollow = state.DidNotFollow
     this.didNotFollowExplanation = state.DidNotFollowExplanation
     this.prefix = (props || {}).prefix
@@ -20,6 +21,7 @@ export default class ExistingConditionsValidator {
     if (this.receivedTreatment === 'No' && !validGenericTextfield(this.explanation)) {
       return false
     }
+
     return true
   }
 
@@ -27,9 +29,11 @@ export default class ExistingConditionsValidator {
     if (!validBranch(this.didNotFollow)) {
       return false
     }
+
     if (this.didNotFollow === 'Yes' && !validGenericTextfield(this.didNotFollowExplanation)) {
       return false
     }
+
     return true
   }
 
@@ -42,11 +46,16 @@ export default class ExistingConditionsValidator {
       return false
     }
 
+    if (this.treatmentListBranch !== 'No') {
+      return false
+    }
+
     for (let item of this.treatmentList) {
       if (!new DiagnosisValidator(item.Treatment, { prefix: this.prefix }).isValid()) {
         return false
       }
     }
+
     return true
   }
 

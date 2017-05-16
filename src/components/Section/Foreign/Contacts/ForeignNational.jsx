@@ -209,8 +209,8 @@ export default class ForeignNational extends ValidationElement {
     this.onUpdate('EmployerAddressNotApplicable', value)
   }
 
-  updateHasAffiliations (value) {
-    this.onUpdate('HasAffiliations', value)
+  updateHasAffiliations (response) {
+    this.onUpdate('HasAffiliations', response.value)
   }
 
   updateAffiliations (value) {
@@ -246,7 +246,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.firstcontact')}
-               help="foreign.contacts.help.firstcontact">
+               help="foreign.contacts.help.firstcontact"
+               adjustFor="label">
           <DateControl name="FirstContact"
                        className="first-contact"
                        {...this.state.FirstContact}
@@ -256,7 +257,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.lastcontact')}
-               help="foreign.contacts.help.lastcontact">
+               help="foreign.contacts.help.lastcontact"
+               adjustFor="label">
           <DateControl name="LastContact"
                        className="last-contact"
                        {...this.state.LastContact}
@@ -266,7 +268,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
-               help="foreign.contacts.help.methods">
+               help="foreign.contacts.help.methods"
+               adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="methods"
                          selectedValues={this.state.Methods}>
@@ -320,7 +323,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               help="foreign.contacts.help.frequency">
+               help="foreign.contacts.help.frequency"
+               adjustFor="big-buttons">
           <RadioGroup className="frequency"
                       selectedValue={this.state.Frequency}>
             <Radio name="frequency-daily"
@@ -380,7 +384,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               help="foreign.contacts.help.relationship">
+               help="foreign.contacts.help.relationship"
+               adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
                          selectedValues={this.state.Relationship}>
@@ -449,7 +454,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthdate')}
-               help="foreign.contacts.help.birthdate">
+               help="foreign.contacts.help.birthdate"
+               adjustFor="label">
           <NotApplicable name="BirthdateNotApplicable"
                          className="na-birthdate"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -465,7 +471,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthplace')}
-               help="foreign.contacts.help.birthplace">
+               help="foreign.contacts.help.birthplace"
+               adjustFor="label">
           <NotApplicable name="BirthplaceNotApplicable"
                          className="na-birthplace"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -485,7 +492,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
-               help="foreign.contacts.help.address">
+               help="foreign.contacts.help.address"
+               adjustFor="address">
           <NotApplicable name="AddressNotApplicable"
                          className="na-address"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -519,7 +527,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
-               help="foreign.contacts.help.employeraddress">
+               help="foreign.contacts.help.employeraddress"
+               adjustFor="address">
           <NotApplicable name="EmployerAddressNotApplicable"
                          className="na-employer-address"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -535,15 +544,35 @@ export default class ForeignNational extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Branch name="has_affiliations"
-                label={i18n.t('foreign.contacts.heading.hasaffiliations')}
-                labelSize="h3"
-                className="has-affiliations"
-                value={this.state.HasAffiliations}
-                help="foreign.contacts.help.hasaffiliations"
-                onUpdate={this.updateHasAffiliations}
-                onValidate={this.props.onValidate}
-                />
+        <Field title={i18n.t('foreign.contacts.heading.hasaffiliations')}
+               help="foreign.contacts.help.hasaffiliations"
+               adjustFor="buttons">
+          <RadioGroup className="has-affiliations"
+                      selectedValue={this.state.HasAffiliations}>
+            <Radio name="affiliation_yes"
+                   label={i18n.t('foreign.contacts.label.yes')}
+                   value="Yes"
+                   className="yes"
+                   onUpdate={this.updateHasAffiliations}
+                   onValidate={this.props.onValidate}
+                   />
+            <Radio name="affiliation_no"
+                   label={i18n.t('foreign.contacts.label.no')}
+                   value="No"
+                   className="no"
+                   onUpdate={this.updateHasAffiliations}
+                   onValidate={this.props.onValidate}
+                   />
+            <Radio name="affiliation_idk"
+                   label={i18n.t('foreign.contacts.label.idk')}
+                   value="I don't know"
+                   className="idk"
+                   onUpdate={this.updateHasAffiliations}
+                   onValidate={this.props.onValidate}
+                   />
+          </RadioGroup>
+        </Field>
+
         <Show when={this.state.HasAffiliations === 'Yes'}>
           <Field title={i18n.t('foreign.contacts.heading.affiliations')}
                  help="foreign.contacts.help.affiliations">

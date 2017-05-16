@@ -3,6 +3,7 @@ import { i18n } from '../../../config'
 import { gaps } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
+import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
 import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
@@ -51,27 +52,8 @@ export const ResidenceCaption = (props) => {
  * Renders a formatted summary information for a residence row
  */
 export const ResidenceSummary = (item, errors, open) => {
-  let address = ''
-  let address1 = ''
-  let address2 = ''
-  if (item.Address) {
-    address1 += `${item.Address.address || ''}`.trim()
-    if (item.Address.addressType === 'United States') {
-      address2 = `${item.Address.city || ''}, ${item.Address.state || ''} ${item.Address.zipcode || ''}`.trim()
-    } else if (item.Address.addressType === 'APOFPO') {
-      address2 = `${item.Address.apoFpoType || ''}, ${item.Address.apoFpo || ''} ${item.Address.zipcode || ''}`.trim()
-    } else if (item.Address.addressType === 'International') {
-      address2 = `${item.Address.city || ''}, ${item.Address.country || ''}`.trim()
-    }
-  }
-
-  if (address1.length === 0 || address2.length === 1) {
-    address = i18n.t('history.residence.collection.summary.unknown')
-  } else {
-    address = `${address1}, ${address2}`.trim()
-  }
-
-  const dates = dateSummary(item)
+  const address = AddressSummary(item.Address, i18n.t('history.residence.collection.summary.unknown'))
+  const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="img/exclamation-point.svg" />
         : null
@@ -82,7 +64,7 @@ export const ResidenceSummary = (item, errors, open) => {
       <span className="index">
         {i18n.t('history.residence.collection.summary.item')}:
       </span>
-      <span className="employer"><strong>{address}</strong></span>
+      <span className="employer title-case"><strong>{address}</strong></span>
       <span className="dates"><strong>{dates}</strong></span>
     </span>
   )
@@ -93,15 +75,12 @@ const PersonSummary = (item, errors) => {
     return null
   }
 
-  let name = ''
-  if (item.Reference.FullName) {
-    name = `${item.Reference.FullName.first || ''} ${item.Reference.FullName.middle || ''} ${item.Reference.FullName.last || ''}`.trim()
-  }
+  const name = NameSummary(item.Reference.FullName, '')
 
   return (
     <span>
       <span className="index">{i18n.t('history.residence.collection.summary.item2')}: </span>
-      <span><strong>{name}</strong></span>
+      <span className="title-case"><strong>{name}</strong></span>
     </span>
   )
 }
@@ -143,10 +122,10 @@ export const EmploymentCaption = (props) => {
 export const EmploymentSummary = (item, errors, open) => {
   const employer = item.Employment && item.Employment.value
         ? item.Employment.value
-    : i18n.t('history.employment.default.collection.summary.unknown')
-  const dates = dateSummary(item)
+        : i18n.t('history.employment.default.collection.summary.unknown')
+  const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-    ? <Svg src="img/exclamation-point.svg" />
+        ? <Svg src="img/exclamation-point.svg" />
         : null
 
   return (
@@ -167,7 +146,7 @@ const ActivitySummary = (item, errors) => {
   }
 
   return item.Additional.List.map(activity => {
-    const dates = dateSummary({ Dates: activity.DatesEmployed })
+    const dates = DateSummary(activity.DatesEmployed, i18n.t('history.employment.default.noDate.label'))
 
     if ((activity.Position || {}).value && dates) {
       return (
@@ -218,7 +197,7 @@ export const EducationCaption = (props) => {
  */
 export const EducationSummary = (item, errors, open) => {
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
-  const dates = dateSummary(item)
+  const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="img/exclamation-point.svg" />
         : null
@@ -295,8 +274,8 @@ export const InjectGaps = (list = [], start) => {
 
   // Find all our "holes" for this type
   const ranges = list
-    .filter(item => { return item.Item && item.Item.Dates })
-         .map(item => { return item.Item.Dates })
+        .filter(item => { return item.Item && item.Item.Dates })
+        .map(item => { return item.Item.Dates })
   let holes = gaps(ranges, start)
 
   for (const item of list) {
@@ -332,39 +311,4 @@ export const InjectGaps = (list = [], start) => {
   }
 
   return list
-}
-
-/**
- * Helper function to create a date summary
- */
-export const dateSummary = (item) => {
-  let noDateLabel = i18n.t('history.employment.default.noDate.label')
-  function format (d) {
-    return `${d.getMonth() + 1}/${d.getFullYear()}`
-  }
-
-  let vals = []
-  if (!item.Dates) {
-    if (item.Date && item.Date.date) {
-      return format(item.Date.date)
-    }
-
-    return ''
-  }
-
-  if (item.Dates.from && item.Dates.from.date) {
-    vals.push(format(item.Dates.from.date))
-  } else {
-    vals.push(noDateLabel)
-  }
-
-  if (item.Dates.to && item.Dates.to.date) {
-    vals.push(format(item.Dates.to.date))
-  } else {
-    vals.push(noDateLabel)
-  }
-
-  return vals.every(x => x === noDateLabel)
-    ? ''
-    : vals.join('-')
 }

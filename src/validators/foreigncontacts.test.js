@@ -558,6 +558,12 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
+          HasAffiliations: 'I don\'t know'
+        },
+        expected: true
+      },
+      {
+        state: {
           HasAffiliations: 'Yes',
           Affiliations: {}
         },
@@ -650,7 +656,8 @@ describe('Foreign contacts component validation', function () {
                 HasAffiliations: 'No'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

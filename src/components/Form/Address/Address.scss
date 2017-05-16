@@ -4,7 +4,7 @@
   display: inline-block;
 
   input[type='text'] {
-    text-transform: uppercase;
+    text-transform: capitalize;
 
     &::-webkit-input-placeholder {
       text-transform: none;
@@ -29,6 +29,9 @@
       display: table-cell;
       padding-right: 2rem;
       vertical-align: top;
+      input {
+        text-transform: uppercase;
+      }
     }
   }
 

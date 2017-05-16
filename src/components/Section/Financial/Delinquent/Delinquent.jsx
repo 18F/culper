@@ -11,6 +11,7 @@ export default class Delinquent extends ValidationElement {
     this.state = {
       HasDelinquent: props.HasDelinquent,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -55,7 +56,10 @@ export default class Delinquent extends ValidationElement {
    */
   updateBranch (val, event) {
     this.setState({ HasDelinquent: val }, () => {
-      this.updateList(val === 'No' ? [] : this.state.List)
+      this.updateList({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
@@ -64,11 +68,12 @@ export default class Delinquent extends ValidationElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (collection) {
-    this.setState({ List: collection }, () => {
+  updateList (values) {
+    this.setState({ List: values.items, ListBranch: values.branch }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
+          ListBranch: this.state.ListBranch,
           HasDelinquent: this.state.HasDelinquent
         })
       }
@@ -108,8 +113,6 @@ export default class Delinquent extends ValidationElement {
           <li>{i18n.m('financial.delinquent.para.lien')}</li>
           <li>{i18n.m('financial.delinquent.para.federal')}</li>
         </ul>
-
-        {i18n.m('financial.delinquent.collection.appendMessage')}
       </div>
     )
   }
@@ -126,6 +129,7 @@ export default class Delinquent extends ValidationElement {
         <Show when={this.state.HasDelinquent === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -215,7 +219,7 @@ export default class Delinquent extends ValidationElement {
 
             <Field title={i18n.t('financial.delinquent.heading.resolved')}
                    help="financial.delinquent.help.resolved"
-                   adjustFor="buttons"
+                   adjustFor="label"
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
                              label={i18n.t('financial.delinquent.label.notresolved')}
@@ -239,7 +243,7 @@ export default class Delinquent extends ValidationElement {
 
             <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
                    help="financial.delinquent.help.courtaddress"
-                   adjustFor="big-buttons">
+                   adjustFor="address">
               <Address name="CourtAddress"
                        className="delinquent-courtaddress"
                        bind={true}
@@ -263,5 +267,6 @@ export default class Delinquent extends ValidationElement {
 
 Delinquent.defaultProps = {
   HasDelinquent: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

@@ -44,14 +44,14 @@ describe('The RealEstateActivity component', () => {
                 addressType: 'United States',
                 address: '1234 Some Rd',
                 city: 'Arlington',
-                state: 'Virginia',
+                state: 'VA',
                 zipcode: '22202'
               },
               open: true
             }
           }]
         },
-        expected: 'Yourself - 1234 Some Rd, Arlington, Virginia 22202'
+        expected: 'Yourself - 1234 some rd, arlington, VA 22202'
       },
       {
         props: {
@@ -69,7 +69,7 @@ describe('The RealEstateActivity component', () => {
             }
           }]
         },
-        expected: 'Yourself - 1 Rd, Munich, Germany'
+        expected: 'Yourself - 1 rd, munich, germany'
       },
       {
         props: {
@@ -88,7 +88,7 @@ describe('The RealEstateActivity component', () => {
             }
           }]
         },
-        expected: 'Yourself - 1 Rd, APO, AA 22222'
+        expected: 'Yourself - 1 rd, apo, AA 22222'
       }
     ]
 
@@ -152,7 +152,8 @@ describe('The RealEstateActivity component', () => {
             }
           }
         }
-      ]
+      ],
+      ListBranch: 'No'
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

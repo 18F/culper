@@ -168,21 +168,24 @@ describe('credit component validation', function () {
       {
         state: {
           HasCreditCounseling: 'No',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           HasCreditCounseling: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
           HasCreditCounseling: 'Yes',
-          List: [{}]
+          List: [{}],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -215,7 +218,8 @@ describe('credit component validation', function () {
                 value: 'The description'
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

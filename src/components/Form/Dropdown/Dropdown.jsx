@@ -100,16 +100,6 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    event.persist()
-    this.setState({value: trimLeadingZero(event.target.value)}, () => {
-      super.handleChange(event)
-    })
-  }
-
   handleValidation (event, status, errorCodes) {
     let value = trimLeadingZero(this.state.value)
     status = value.length > 0 ? false : null
@@ -175,21 +165,68 @@ export default class Dropdown extends ValidationElement {
   getSuggestions (value) {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
-    return inputLength === 0
-      ? []
-      : this.state.options.filter(opt => opt.name.toLowerCase().slice(0, inputLength) === inputValue || opt.value.toLowerCase().slice(0, inputLength) === inputValue)
+    let suggestions = []
+
+    if (inputLength === 0) {
+      return []
+    }
+
+    // Match first on the value
+    suggestions = this.state.options
+      .sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1
+        }
+
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1
+        }
+
+        return 0
+      })
+      .filter(opt => {
+        return opt.name.toLowerCase().slice(0, inputLength) === inputValue
+      })
+
+    // Match second on the name
+    suggestions = suggestions.concat(
+      this.state.options
+        .filter(opt => {
+          return !suggestions.some(x => x.value === opt.value)
+        })
+        .sort((a, b) => {
+          if (a.value.toLowerCase() < b.value.toLowerCase()) {
+            return -1
+          }
+
+          if (a.value.toLowerCase() > b.value.toLowerCase()) {
+            return 1
+          }
+
+          return 0
+        })
+        .filter(opt => {
+          return opt.value.toLowerCase().slice(0, inputLength) === inputValue
+        }))
+
+    return suggestions
   }
 
   onSuggestionChange (event, change) {
+    let value = change.newValue
+    if (this.props.beforeChange) {
+      value = this.props.beforeChange(value)
+    }
+
     let e = {
       ...event,
       target: {
         id: this.props.name,
         name: this.props.name,
-        value: change.newValue
+        value: value
       }
     }
-    this.setState({value: change.newValue}, () => {
+    this.setState({value: value}, () => {
       super.handleChange(e)
     })
   }
@@ -207,7 +244,9 @@ export default class Dropdown extends ValidationElement {
   }
 
   onSuggestionSelected (event) {
-    this.props.tabNext()
+    this.setState({ focus: false }, () => {
+      this.props.tabNext()
+    })
   }
 
   /**
@@ -240,8 +279,13 @@ export default class Dropdown extends ValidationElement {
   }
 
   render () {
+    let option = this.state.options.filter(v => {
+      return v.name === this.state.value
+    }).shift()
+
+    let value = (option && !this.state.focus) ? this.props.displayText(option.value, option.name) : this.state.value
     const inputProps = {
-      value: this.state.value,
+      value: value,
       className: this.inputClass(),
       id: this.props.name,
       name: this.props.name,
@@ -252,6 +296,7 @@ export default class Dropdown extends ValidationElement {
       readOnly: this.props.readonly,
       onChange: this.onSuggestionChange,
       onBlur: this.handleBlur,
+      onFocus: this.handleFocus,
       onKeyUp: this.handleKeyUp,
       onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
       onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
@@ -294,5 +339,8 @@ Dropdown.defaultProps = {
   valid: false,
   clipboard: true,
   tabNext: () => {},
-  tabBack: () => {}
+  tabBack: () => {},
+  displayText: (value, name) => {
+    return value
+  }
 }

@@ -116,8 +116,14 @@ export const leapYear = (year) => {
  * Returns how many days are in a month based on the given year
  */
 export const daysInMonth = (month, year) => {
-  const m = parseInt(month || 0)
-  const y = parseInt(year || 0)
+  const max = 31
+  const m = parseInt(month || 1) || 1
+  const y = parseInt(year || 0) || 0
+
+  // Bound check on the month
+  if (m < 1 || m > 12) {
+    return max
+  }
 
   // Setup for upperbounds of days in months
   let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -125,7 +131,7 @@ export const daysInMonth = (month, year) => {
     upperBounds[1] = 29
   }
 
-  return upperBounds[m - 1]
+  return Math.min(max, upperBounds[m - 1])
 }
 
 /**

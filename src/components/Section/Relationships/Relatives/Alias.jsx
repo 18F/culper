@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Field, Textarea } from '../../../Form'
+import { ValidationElement, Branch, Name, DateRange, Field, Textarea, Show } from '../../../Form'
 
 export default class Alias extends ValidationElement {
   constructor (props) {
@@ -9,7 +9,7 @@ export default class Alias extends ValidationElement {
     this.state = {
       Name: props.Name,
       MaidenName: props.MaidenName,
-      Dates: props.Birthdate,
+      Dates: props.Dates,
       Reason: props.Reason
     }
 
@@ -56,14 +56,19 @@ export default class Alias extends ValidationElement {
               className="alias-name"
               {...this.state.Name}
               onUpdate={this.updateName}
+              onValidate={this.props.onValidate}
               />
 
-        <h4>{i18n.t('relationships.relatives.heading.alias.maiden')}</h4>
-        <Branch name="MaidenName"
-                className="alias-maiden"
-                value={this.state.MaidenName}
-                onUpdate={this.updateMaidenName} >
-        </Branch>
+        <Show when={this.props.hideMaiden === false}>
+          <Branch name="MaidenName"
+                  label={i18n.t('relationships.relatives.heading.alias.maiden')}
+                  labelSize="h4"
+                  className="alias-maiden"
+                  value={this.state.MaidenName}
+                  onUpdate={this.updateMaidenName}
+                  onValidate={this.props.onValidate}>
+          </Branch>
+        </Show>
 
         <Field help="relationships.relatives.help.aliasdates"
                adjustFor="daterange"
@@ -72,16 +77,17 @@ export default class Alias extends ValidationElement {
                      className="alias-dates"
                      {...this.state.Dates}
                      onUpdate={this.updateDates}
+                     onValidate={this.props.onValidate}
                      />
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.alias.reason')}
-               titleSize="h4"
-               help="relationships.relatives.help.reason">
+               titleSize="h4">
           <Textarea name="Reason"
                     className="alias-reason"
                     {...this.state.Reason}
                     onUpdate={this.updateReason}
+                    onValidate={this.props.onValidate}
                     />
         </Field>
       </div>
@@ -93,5 +99,6 @@ Alias.defaultProps = {
   Name: {},
   MaidenName: '',
   Dates: {},
-  Reason: {}
+  Reason: {},
+  hideMaiden: false
 }

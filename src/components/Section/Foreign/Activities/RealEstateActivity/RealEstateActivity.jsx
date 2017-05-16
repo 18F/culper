@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { AddressSummary } from '../../../../Summary'
 import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
 import { ForeignRealEstateActivityValidator } from '../../../../../validators'
 import RealEstateInterest from './RealEstateInterest'
@@ -18,22 +19,33 @@ export default class RealEstateActivity extends ValidationElement {
     this.isValid = this.isValid.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasInterests: this.props.HasInterests,
+      let obj = {
         List: this.props.List,
-        [field]: values
-      })
+        ListBranch: this.props.ListBranch,
+        HasInterests: this.props.HasInterests
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   updateHasInterests (values) {
-    this.update('HasInterests', values)
+    this.update([
+      { name: 'HasInterests', value: values }
+    ])
   }
 
   isValid () {
@@ -60,12 +72,12 @@ export default class RealEstateActivity extends ValidationElement {
     const o = (item || {}).RealEstateInterest || {}
     const who = (o.InterestTypes || []).join(', ')
     const acquired = (o.Acquired || {}).date ? `${o.Acquired.month}/${o.Acquired.year}` : ''
-    const address = addressSummary(o)
+    const address = AddressSummary(o.Address, '')
     const type = i18n.t('foreign.activities.realestate.collection.itemType')
 
     const summary = [who, address].reduce((prev, next) => {
       if (prev && next) {
-        return prev + ' - ' + next
+        return <span>{prev} - {next}</span>
       }
       return prev
     })
@@ -85,27 +97,27 @@ export default class RealEstateActivity extends ValidationElement {
     return (
       <div className="realestate">
         <Branch name="has_interests"
-          label={i18n.t('foreign.activities.realestate.heading.title')}
-          labelSize="h3"
-          value={this.props.HasInterests}
-          onValidate={this.handleValidation}
-          onUpdate={this.updateHasInterests}>
+                label={i18n.t('foreign.activities.realestate.heading.title')}
+                labelSize="h3"
+                value={this.props.HasInterests}
+                onValidate={this.handleValidation}
+                onUpdate={this.updateHasInterests}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            onUpdate={this.updateList}
-            summary={this.summary}
-            onValidate={this.handleValidation}
-            description={i18n.t('foreign.activities.realestate.collection.description')}
-            appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
-            appendMessage={i18n.m('foreign.activities.realestate.collection.appendMessage')}
-            appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onValidate={this.handleValidation}
+                     description={i18n.t('foreign.activities.realestate.collection.description')}
+                     appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
+                     appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
             <RealEstateInterest name="RealEstateInterest"
-              bind={true}
-            />
+                                bind={true}
+                                />
           </Accordion>
         </Show>
       </div>
@@ -117,26 +129,6 @@ RealEstateActivity.defaultProps = {
   name: 'realestate',
   HasInterests: '',
   List: [],
+  ListBranch: '',
   defaultState: true
-}
-
-export const addressSummary = (item) => {
-  let address = ''
-  let address1 = ''
-  let address2 = ''
-  if (item.Address) {
-    address1 += `${item.Address.address || ''}`.trim()
-    if (item.Address.addressType === 'United States' || item.Address.addressType === 'APOFPO') {
-      address2 = `${item.Address.city || ''}, ${item.Address.state || ''} ${item.Address.zipcode || ''}`.trim()
-    } else if (item.Address.addressType === 'International') {
-      address2 = `${item.Address.city || ''}, ${item.Address.country || ''}`.trim()
-    }
-  }
-
-  if (address1.length === 0 || address2.length === 1) {
-    address = ''
-  } else {
-    address = `${address1}, ${address2}`.trim()
-  }
-  return address
 }

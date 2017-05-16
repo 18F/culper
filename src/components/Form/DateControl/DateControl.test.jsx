@@ -79,7 +79,7 @@ describe('The date component', () => {
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
     expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#month').nodes[0].value).toEqual('1')
+    expect(component.find('input#month').nodes[0].value).toEqual('1 (January)')
     expect(component.find('input#day').nodes[0].value).toEqual('28')
     expect(component.find('input#year').nodes[0].value).toEqual('2016')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -305,5 +305,12 @@ describe('The date component', () => {
     tests.forEach(test => {
       expect(datePart(test.part, test.date)).toEqual(test.expected)
     })
+  })
+
+  it('does not loops when invalid date', () => {
+    const component = mount(<DateControl />)
+    expect(component.find('.datecontrol').length).toBe(1)
+    component.find('.month input').simulate('change', { target: { name: 'month', value: '13' } })
+    component.find('.month input').simulate('change', { target: { name: 'month', value: 'g' } })
   })
 })

@@ -31,13 +31,15 @@ describe('Competence validation', function () {
                 Appeals: [{ Has: 'No' }]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       },
       {
         state: {
           List: [],
+          ListBranch: 'No',
           IsIncompetent: 'Yes'
         },
         expected: false
@@ -45,6 +47,7 @@ describe('Competence validation', function () {
       {
         state: {
           List: [],
+          ListBranch: 'No',
           IsIncompetent: 'No'
         },
         expected: true
@@ -52,6 +55,7 @@ describe('Competence validation', function () {
       {
         state: {
           List: [],
+          ListBranch: 'No',
           IsIncompetent: 'Nope'
         },
         expected: false
@@ -82,7 +86,8 @@ describe('Competence validation', function () {
                 Appeals: [{ Has: 'No' }]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: false
       }

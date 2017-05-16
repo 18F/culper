@@ -65,7 +65,7 @@ const en = {
       first: 'First name',
       last: 'Last name',
       middle: 'Middle name or initial',
-      initialOnly: 'Initial Only',
+      initialOnly: 'Initial only',
       noMiddle: 'No middle name',
       other: 'Other',
       suffix: 'Suffix',
@@ -101,38 +101,55 @@ const en = {
           note: ''
         },
         length: {
-          title: 'The last name does not meet length requirements',
-          message: 'The last name cannot exceed 100 characters or 1 character if it is an initial',
+          title: 'There is a problem with the last name',
+          message: [
+            'You are only allowed 100 characters.',
+            '*and/or*',
+            'If the last name is an initial then check the "Initial only" checkbox.'
+          ],
           note: ''
         },
         pattern: {
-          title: 'The last name has unsupported characters',
-          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
-          note: ''
+          title: 'There is a problem with the last name',
+          message: 'Some of these characters aren\'t allowed.',
+          note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       },
       first: {
         length: {
-          title: 'The first name does not meet the length requirements',
-          message: 'The first name cannot exceed 100 characters or 1 character if it is an initial',
+          title: 'There is a problem with the first name',
+          message: [
+            'You are only allowed 100 characters.',
+            '*and/or*',
+            'If the first name is an initial then check the "Initial only" checkbox.'
+          ],
           note: ''
         },
         pattern: {
-          title: 'The first name has unsupported characters',
-          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
-          note: ''
+          title: 'There is a problem with the first name',
+          message: 'Some of these characters aren\'t allowed.',
+          note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       },
       middle: {
+        required: {
+          title: 'There is a problem with the middle name',
+          message: 'If there is no middle name then check the "No middle name" checkbox.',
+          note: ''
+        },
         length: {
-          title: 'The middle name does not meet the length requirements',
-          message: 'The middle name cannot exceed 100 characters or 1 character if it is an initial',
+          title: 'There is a problem with the middle name',
+          message: [
+            'You ase only allowed 100 characters.',
+            '*and/or*',
+            'If the middle name is an initial then check the "Initial only" checkbox.'
+          ],
           note: ''
         },
         pattern: {
-          title: 'The middle name has unsupported characters',
-          message: 'We only support letters, hyphens (-), periods (.), apostrophes (\'), and spaces',
-          note: ''
+          title: 'There is a problem with the middle name',
+          message: 'Some of these characters aren\'t allowed.',
+          note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       }
     },
@@ -190,36 +207,36 @@ const en = {
     month: {
       notfound: {
         title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December)',
+        message: 'The month should be between 1(January) and 12(December).',
         note: ''
       },
       max: {
         title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December)',
+        message: 'The month should be between 1(January) and 12(December).',
         note: ''
       }
     },
     day: {
       length: {
-        title: 'Day falls outside of the allowable range',
-        message: 'The day must be a valid day for the month',
+        title: 'There is a problem with the Day',
+        message: 'There is not that many days in this month.',
         note: ''
       },
       max: {
-        title: 'Day falls outside of the allowable range',
-        message: 'Cannot exceed the number of days within the month',
+        title: 'There is a problem with the Day',
+        message: 'There is not that many days in this month.',
         note: ''
       }
     },
     year: {
       max: {
-        title: 'The year must be four digits',
-        message: 'The year must be a valid year',
+        title: 'There is a problem with the Year',
+        message: 'The year can\'t be in the future.',
         note: ''
       },
       min: {
-        title: 'The year must be four digits',
-        message: 'The year must be a valid year',
+        title: 'There is a problem with the Year',
+        message: 'This year is too far in the past.',
         note: ''
       }
     },
@@ -265,52 +282,56 @@ const en = {
     },
     city: {
       length: {
-        title: 'City name length',
-        message: 'City name must be between 2 and 100 characters',
+        title: 'There is a problem with the City',
+        message: 'City name should be between 2 and 100 characters.',
         note: ''
       }
     },
     state: {
       notfound: {
-        title: 'State option not supported',
-        message: 'The state name must be one of the available options',
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
         note: ''
       }
     },
     county: {
       length: {
-        title: 'County length',
+        title: 'There is a problem with the County',
         message: 'County name must be between 2 and 100 characters',
         note: ''
       }
     },
     zipcode: {
       pattern: {
-        title: 'Zipcode not in accepted format',
-        message: 'The zipcode can be either the 5 or 9 digit variation',
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
         note: ''
       },
       length: {
-        title: 'Zipcode not in accepted format',
-        message: 'The zipcode can be either the 5 or 9 digit variation',
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
         note: ''
       }
     },
     country: {
       notfound: {
-        title: 'Country option not supported',
-        message: 'The country name must be one of the available options',
+        title: 'There is a problem with the Country',
+        message: 'Country name should be one of the available options.',
         note: ''
       }
     },
     apoFpo: {
       length: {
-        title: 'APO/FPO length',
+        title: 'There is a problem with the State Code',
         message: 'APO/FPO state code must be 2 letters',
         note: ''
       },
       pattern: {
-        title: 'APO/FPO not in an acceptable format',
+        title: 'There is a problem with the State Code',
         message: 'APO/FPO state code must be 2 letters',
         note: 'Note: Typically the value is either AA, AE, or AP.'
       }
@@ -336,104 +357,104 @@ const en = {
     },
     daterange: {
       order: {
-        title: 'Date range order',
-        message: 'The **from** date must precede the **to** date',
+        title: 'There is a problem with the date range',
+        message: 'The **from** date should be before the **to** date.',
         note: ''
       }
     },
     domestic_first: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9',
+        message: 'The area code must be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9',
+        message: 'The area code must be 3 digits between 0 and 9.',
         note: ''
       }
     },
     domestic_second: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9',
+        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
         note: ''
       }
     },
     domestic_third: {
       pattern: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9',
+        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
         note: ''
       }
     },
     domestic_extension: {
       pattern: {
         title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits',
+        message: 'The extension must be between 0 and 10 digits.',
         note: ''
       },
       length: {
         title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits',
+        message: 'The extension must be between 0 and 10 digits.',
         note: ''
       }
     },
     dsn_first: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9',
+        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
         note: ''
       }
     },
     dsn_second: {
       pattern: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9',
+        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
         note: ''
       }
     },
     int_first: {
       pattern: {
         title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9',
+        message: 'The country code of the international number should be 3 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9',
+        message: 'The country code of the international number should be 3 digits between 0 and 9.',
         note: ''
       }
     },
     int_second: {
       pattern: {
         title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9',
+        message: 'The international number should be 10 digits between 0 and 9.',
         note: ''
       },
       length: {
         title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9',
+        message: 'The international number should be 10 digits between 0 and 9.',
         note: ''
       }
     },
@@ -479,6 +500,16 @@ const en = {
         title: 'There is a problem with the year',
         message: 'The year should be four(4) numbers.',
         note: ''
+      }
+    },
+    datecontrol: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
       }
     },
     to: {
@@ -565,6 +596,32 @@ const en = {
           min: {
             title: 'There is a problem with the "from" date',
             message: 'Diagnosis **from** date value should be on or after your date of birth.'
+          }
+        }
+      }
+    },
+    bankruptcy: {
+      datefiled: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "date filed" date',
+            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+          }
+        }
+      },
+      datedischarged: {
+        datecontrol: {
+          max: {
+            title: 'There is a problem with the "date discharged" date',
+            message: 'Bankruptcy **date discharged** can\'t be in the future.'
+          },
+          min: {
+            title: 'There is a problem with the "to" date',
+            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
           }
         }
       }
@@ -683,7 +740,7 @@ const en = {
           title: 'Summary of other names used',
           name: 'Name',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide your full name below'
         },
         append: 'Add another name'
@@ -762,7 +819,7 @@ const en = {
         email: {
           title: 'Need help with your email addresses?',
           message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
-          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation.'
+          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
         },
         phoneNumber: {
           title: 'Need help with your phone numbers?',
@@ -956,12 +1013,11 @@ const en = {
           title: 'Summary of financial problems',
           unknownlosses: 'Provide your financial problem details',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           debt: 'Debt'
         },
         append: 'Add another financial problem',
-        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?',
-        appendMessage: 'If yes ues the button below to add another financial problem'
+        appendTitle: 'Have you EVER experienced additional financial problems due to gambling?'
       },
       heading: {
         dates: 'Provide the date range of your financial problems due to gambling',
@@ -1012,12 +1068,13 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of Bankruptcy',
-          item: 'Bankruptcy',
+          item: 'Petition',
           unknown: 'Provide your bankruptcy below',
-          nodates: 'No date',
-          chapter: 'Chapter'
+          nodates: 'NA',
+          chapter: 'Chapter',
+          appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?'
         },
-        append: 'Add bankruptcy'
+        append: 'Add another petition'
       },
       heading: {
         petitionType: 'Select the applicable bankruptcy petition type',
@@ -1028,19 +1085,32 @@ const en = {
         nameDebt: 'Provide the name debt is recorded under',
         courtInvolved: 'Provide the name of the court involved',
         courtAddress: 'Provide the address of the court involved',
-        comments: 'Add optional comments'
+        comments: 'Add optional comments',
+        dischargeExplanation: 'Were you discharged of all debts claimed in the bankruptcy?'
+      },
+      label: {
+        dischargeExplanation: 'Provide explanation'
       },
       title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
       notApplicable: 'Not applicable',
       help: {
-        title: 'Need help with bankruptcy?',
-        message: 'Note: If you need to provide any additional comments about this information, enter them below.',
-        note: ''
+        title: 'We are asking about the following bankruptcy petition types.',
+        message: 'Answer yes if you filed a petition under Chapter 7, Chapter 11, Chapter 12, or Chapter 13.',
+        note: 'Note: You will be asked to provide details of the petition or petitions.'
       },
       petitionType: {
+        label: {
+          chapter7: 'Chapter 7',
+          chapter11: 'Chapter 11',
+          chapter12: 'Chapter 12',
+          chapter13: 'Chapter 13'
+        },
         help: {
-          title: 'Need help with the applicable bankruptcy petition type?',
-          message: 'Select the applicable bankruptcy petition type. If Chapter 13 is selected, you must provide additional information.',
+          title: 'Need help with the details of your bankruptcy petition?',
+          message: [
+            'If you don\'t have paperwork you may be able to find your details here:',
+            '[www.pacer.gov](https://www.pacer.gov/)'
+          ],
           note: ''
         }
       },
@@ -1088,7 +1158,7 @@ const en = {
         placeholder: 'Provide court involved'
       },
       trustee: {
-        title: 'Provide the trustee',
+        title: 'Provide the name of the trustee for this bankruptcy',
         label: 'Trustee name',
         placeholder: 'Provide name of trustee',
         help: {
@@ -1112,9 +1182,9 @@ const en = {
       courtAddress: {
         label: 'This address is',
         help: {
-          title: 'Need help with the address of the court involved?',
-          message: 'Enter the address of the court involved',
-          note: ''
+          title: 'Not sure of the facility address?',
+          message: 'Try looking up the facility name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -1198,7 +1268,6 @@ const en = {
           item: 'Agency'
         },
         appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
-        appendMessage: 'If yes use the button below to add another tax filing/payment issue',
         append: 'Add another tax filing/payment issue'
       }
     },
@@ -1262,7 +1331,6 @@ const en = {
           item: 'Employer'
         },
         appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
-        appendMessage: 'If yes use the button below to add another card abuse/counseling issue',
         append: 'Add another card abuse/counseling issue'
       }
     },
@@ -1314,22 +1382,23 @@ const en = {
           item: 'Service'
         },
         appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
-        appendMessage: 'If yes use the button below to add another credit counseling entry',
         append: 'Add another credit counseling entry'
       }
     },
     delinquent: {
-      title: 'Other than previously listed, have any of the following happened to you? (You will be asked to provide details about each financial obligation that pertains to the items identified below)',
+      title: 'Other than previously listed, have any of the following happened to you?',
       para: {
+        details: 'You will be asked to provide details about each financial obligation that pertains to the items identified below',
         alimony: '**In the last seven (7) years,** you have been delinquent on alimony or child support payments.',
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
@@ -1422,7 +1491,6 @@ const en = {
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
-        appendMessage: 'If yes use the button below to add another payment issue',
         append: 'Add another payment issue'
       }
     },
@@ -1437,11 +1505,12 @@ const en = {
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
         delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or'
+        or: 'Or',
+        checkAll: 'Check all that apply'
       },
       heading: {
         name: 'Provide the name of agency/organization/individual to which debt is/was owed',
-        infractions: 'Did/does this financial issue include any of the following: (Check all that apply)',
+        infractions: 'Did/does this financial issue include any of the following:',
         accountnumber: 'Provide the associated loan / account number(s) involved',
         propertytype: 'Identify/describe the type of property involved (if any)',
         amount: 'Provide the amount (in U.S. dollars) of the financial issue',
@@ -1522,7 +1591,6 @@ const en = {
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
-        appendMessage: 'If yes use the button below to add another non-payment or excessive late payment',
         append: 'Add another non-payment or excessive late payment'
       }
     }
@@ -1787,7 +1855,6 @@ const en = {
             unknown: 'Provide citizenship details below'
           },
           appendTitle: 'Do you have an additional citizenship to provide?',
-          appendMessage: 'If yes use the button below to add another',
           append: 'Add another citizenship'
         },
         passport: {
@@ -1797,7 +1864,6 @@ const en = {
             unknown: 'Provide passport details below'
           },
           appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
-          appendMessage: 'If yes use the button below to add another foreign passport',
           append: 'Add another foreign passport'
         },
         travel: {
@@ -1932,7 +1998,6 @@ const en = {
           item: 'Relative'
         },
         appendTitle: 'Do you have an additional relative to enter?',
-        appendMessage: 'If **Yes** use the button below to add another',
         append: 'Add another relative'
       },
       heading: {
@@ -1947,7 +2012,7 @@ const en = {
         alias: {
           branch: 'Has this relative used any additional names?',
           title: 'Provide other names used and the period of time that your relative used them.',
-          maiden: 'Maiden name?',
+          maiden: 'Was this their maiden name?',
           reason: 'Provide the reason(s) why the name changed.',
           additional: 'Has this relative used any additional names?'
         },
@@ -1958,6 +2023,7 @@ const en = {
         us: {
           title: 'U.S. Citizenship Documentation',
           documentation: 'Provide one type of citizenship documentation and document number below:',
+          expiration: 'Provide document expiration date',
           number: 'Provide the document number',
           name: 'Provide the name of the court that issued the Certificate of Naturalization',
           address: 'Provide the address of the court that issued the Certificate of Naturalization'
@@ -2095,7 +2161,13 @@ const en = {
         maiden: {
           same: 'Same as listed',
           diff: 'Different name'
-        }
+        },
+        estimated: 'Estimated',
+        birthplace: 'Was this person born in the United States of America?'
+      },
+      placeholder: {
+        city: 'Please enter the city of birth',
+        country: 'Please enter the country of birth'
       },
       help: {
         relation: {
@@ -2151,6 +2223,11 @@ const en = {
         documentnumber: {
           title: 'Need help with the document number?',
           message: 'Provide the document number for the citizenship',
+          note: ''
+        },
+        documentexpiration: {
+          title: 'Need help with the date of expiration?',
+          message: 'Provide the approximate date of expiration',
           note: ''
         },
         courtname: {
@@ -2296,9 +2373,8 @@ const en = {
           }
         },
         collection: {
-          description: '',
+          description: 'Summary of divorcees',
           appendTitle: 'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
-          appendMessage: 'If yes please use the button below to add another person',
           appendLabel: 'Add another person',
           itemType: 'Person'
         },
@@ -2452,9 +2528,8 @@ const en = {
         birthplace: 'Was this person born in the United States of America'
       },
       collection: {
-        description: '',
+        description: 'Summary of cohabitants',
         appendTitle: 'Do you have an additional cohabitant to report?',
-        appendMessage: 'If yes please use the button below to add another cohabitant.',
         appendLabel: 'Add another cohabitant',
         itemType: 'Cohabitant'
       },
@@ -2607,7 +2682,6 @@ const en = {
             unknown: 'Provide the person\'s information below'
           },
           appendLabel: 'Add another person',
-          appendMessage: 'If yes use the button below to add another instance',
           appendTitle: 'Do you have an additional person who knows you well to list?',
           itemType: 'Person'
         }
@@ -2716,7 +2790,7 @@ const en = {
       para: 'Please consider the highlighted change below.<p>Using the US Postal Service suggested address will help us process your case more quickly.</p>',
       label: 'Suggested address',
       use: 'Use this address',
-      dismiss: 'Use this address instead',
+      dismiss: 'Keep original address',
       alternate: 'Manually correct this address'
     }
   },
@@ -2890,7 +2964,6 @@ const en = {
           unknown: 'Provide your military history below'
         },
         appendTitle: 'Do you have additional military service to report?',
-        appendMessage: 'If yes use the button below to add more',
         append: 'Add additional military history'
       }
     },
@@ -3057,7 +3130,6 @@ const en = {
             unknown: 'Provide foreign military contact below'
           },
           appendTitle: 'Do you have an additional foreign military service contact to report?',
-          appendMessage: 'If yes use the button below to add another contact',
           append: 'Add another contact'
         }
       }
@@ -4708,7 +4780,7 @@ const en = {
           title: 'Summary of former federal service',
           item: 'Federal service',
           present: 'Now',
-          nodates: 'No dates',
+          nodates: 'NA',
           unknown: 'Provide federal service below'
         },
         append: 'Add another former federal service'
@@ -4808,14 +4880,15 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?'
         },
         para: {
-          intro: 'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.\n\n**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+          intro: ['Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
+            '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'],
+          howAcquired: 'Such as purchase, gift, etc.'
         },
         collection: {
           summary: 'Provide your direct financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendLabel: 'Add another direct interest',
           itemType: 'Interest'
         },
         interest: {
@@ -4836,6 +4909,8 @@ const en = {
           label: {
             relinquishedNotApplicable: 'Not applicable',
             or: 'or',
+            costEstimated: 'Estimated',
+            valueEstimated: 'Estimated',
             interestTypes: {
               yourself: 'Yourself',
               spouse: 'Spouse or legally recognized civil union/domestic partner',
@@ -4924,8 +4999,7 @@ const en = {
           summary: 'Provide your indirect financial interests here',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
+          appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
         interest: {
@@ -5047,26 +5121,26 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
         },
         collection: {
-          summary: 'Provide your real estate financial interests here',
-          description: 'Summary of financial interests',
+          summary: 'Provide your real estate purchase here',
+          description: 'Summary of financial purchase',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
-          appendMessage: 'If yes use the button below to add another interest.',
-          appendLabel: 'Add another interest',
-          itemType: 'Interest'
+          appendLabel: 'Add another real estate purchase',
+          itemType: 'Purchase'
         },
         interest: {
           para: {
             checkAll: 'Check all that apply',
-            howAcquired: 'Such as purchase, gift, etc.'
+            howAcquired: 'Such as purchase, gift, etc.',
+            realEstateType: 'Such as home, business, etc'
           },
           heading: {
             interestTypes: 'Specify',
             realEstateType: 'Provide the type of real estate property',
             address: 'Provide the location/address of property',
-            acquired: 'Provide the date the financial interest was acquired',
-            howAcquired: 'Provide details regarding how it was acquired',
-            cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            sold: 'Provide the date interest was sold, lost, or otherwise disposed of'
+            acquired: 'Provide the date of purchase or to be acquired',
+            howAcquired: 'Provide how the foreign real estate was or is to be acquired',
+            cost: 'Provide the cost (in U.S. dollars) when sold or expected at time of acquisition',
+            sold: 'Provide the date sold, if applicable'
           },
           label: {
             address: 'This address is',
@@ -5151,7 +5225,10 @@ const en = {
           relationship: 'Provide the nature of your relationship with the foreign national listed above',
           amount: 'Provide the amount (in U.S. dollars) of all financial support provided',
           frequency: 'Provide the frequency of your support',
-          country: 'Provide the name of the country providing this benefit'
+          citizenship: 'Provide this foreign national\'s country(ies) of citizenship'
+        },
+        label: {
+          estimated: 'Estimated'
         },
         help: {
           branch: {
@@ -5179,9 +5256,9 @@ const en = {
             message: 'Provide the frequency of support',
             note: 'Note: Monthly, yearly, once, etc.'
           },
-          country: {
-            title: 'Need help with the country(ies)?',
-            message: 'List all countries which benefit from this financial support',
+          citizenship: {
+            title: 'Need help with the citizenship of this foreign national?',
+            message: 'List all the known countries the foreign national is a citizen of',
             note: ''
           }
         },
@@ -5192,9 +5269,6 @@ const en = {
             unknown: 'Provide details of foreign financial support below'
           },
           appendTitle: 'Have you additionally provided financial support for any foreign national?',
-          appendMessage: [
-            'If yes use the button below to add another instance'
-          ],
           append: 'Add another instance'
         }
       },
@@ -5237,7 +5311,6 @@ const en = {
           summary: 'Provide your financial benefits here',
           description: 'Summary of financial benefits',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
-          appendMessage: 'If yes use the button below to add another benefit.',
           appendLabel: 'Add another benefit',
           itemType: 'Benefit'
         },
@@ -5458,6 +5531,8 @@ const en = {
       },
       label: {
         idk: 'I don\'t know',
+        yes: 'Yes',
+        no: 'No',
         inperson: 'In person',
         telephone: 'Telephone',
         electronic: [
@@ -5569,8 +5644,7 @@ const en = {
         },
         appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
         appendMessage: [
-          'Include associates as well as relatives, not previously listed in the relatives section.',
-          'If yes use the button below to add another association.'
+          'Include associates as well as relatives, not previously listed in the relatives section.'
         ],
         append: 'Add another association'
       }
@@ -5580,7 +5654,7 @@ const en = {
       advice: {
         heading: {
           title: 'Have you in the last seven (7) years provided advice or support to any individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
-          description: 'Provide how the financial interest was acquired',
+          description: 'Provide a description of advice/support provided',
           name: 'Provide the name of the individual to whom advice or support was provided',
           organization: 'Provide the name of the foreign organization or foreign business with whom the individual is associated',
           country: 'Provide the country of origin for the organization or business',
@@ -5630,10 +5704,9 @@ const en = {
           },
           appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
           appendMessage: [
-            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'Answer **"No"** if all your advice or support was authorized pursuant to official U.S. Government business.'
           ],
-          append: 'Add another interest'
+          append: 'Add another instance of advice/support'
         }
       },
       family: {
@@ -5647,8 +5720,8 @@ const en = {
         },
         para: {
           branch: [
-            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.',
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.'
           ]
         },
         help: {
@@ -5686,10 +5759,9 @@ const en = {
           },
           appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
           appendMessage: [
-            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.',
-            'If yes use the button below to add another interest'
+            'Answer **"No"** if all the advice or support was authorized pursuant to official U.S. Government business.'
           ],
-          append: 'Add another interest'
+          append: 'Add another instance of advice/support'
         }
       },
       employment: {
@@ -5699,7 +5771,10 @@ const en = {
           description: 'Provide a description of the position offered',
           date: 'Provide the date when this offer was extended',
           address: 'Provide the location where this occurred',
-          acceptance: 'Did you accept the offer?'
+          accepted: 'Did you accept the offer?'
+        },
+        label: {
+          explanation: 'Explanation'
         },
         help: {
           branch: {
@@ -5722,7 +5797,7 @@ const en = {
             message: 'Provide the address of the location where the offer took place',
             note: ''
           },
-          acceptance: {
+          accepted: {
             title: 'Need help with describing the acceptance?',
             message: [
               'If you did not accept the offer please state this.',
@@ -5738,19 +5813,16 @@ const en = {
             unknown: 'Provide details of foreign business job below'
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
-          appendMessage: [
-            'If yes use the button below to add another interest'
-          ],
-          append: 'Add another interest'
+          append: 'Add another job offer'
         }
       },
       ventures: {
         heading: {
-          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national no described above?',
-          name: 'Provide the name of the foreign national',
+          title: 'Have you in the last seven (7) years been involved in any other type of business venture with a foreign national not described above?',
+          name: 'Provide the full name of this foreign national',
           address: 'Provide the full current address of this foreign national',
           citizenship: 'Provide the citizenship(s) of this foreign national',
-          description: 'Provide the description of the business venture',
+          description: 'Provide a description of the business venture',
           relationship: 'Provide your relationship to this foreign national',
           dates: 'Provide the length of time you have been involved in the business venture',
           association: 'Provide the nature of the association with this business venture',
@@ -5829,17 +5901,16 @@ const en = {
           },
           appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
           appendMessage: [
-            'Own, co-own, serve as a business consultant, provide financial support, etc.',
-            'If yes use the button below to add another interest'
+            'Own, co-own, serve as a business consultant, provide financial support, etc.'
           ],
-          append: 'Add another interest'
+          append: 'Add another business venture'
         }
       },
       conferences: {
         heading: {
           title: 'Have you in the last seven (7) years attended or participated in any conferences, trade shows, seminars, or meetings outside the U.S.?',
           description: 'Provide the name and description of the event',
-          sponsor: 'Provide the name of the sponsoring organization',
+          sponsor: 'Provide the name of sponsoring organization',
           city: 'Provide the city where the event was held',
           country: 'Provide the country where the event was held',
           dates: 'Provide the dates for the event',
@@ -5908,10 +5979,9 @@ const en = {
           },
           appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
           appendMessage: [
-            'Do not include those you attended or participated in on official business for the U.S. government.',
-            'If yes use the button below to add another interest.'
+            'Do not include those you attended or participated in on official business for the U.S. government.'
           ],
-          append: 'Add another interest'
+          append: 'Add another event'
         }
       }
     }
@@ -5925,6 +5995,9 @@ const en = {
     },
     destination: {
       police: 'Police record',
+      offenses: 'Offenses',
+      additionalOffenses: 'Additional offenses',
+      domesticViolence: 'Domestic violence',
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -5943,9 +6016,9 @@ const en = {
         courtinfo: 'Court Information',
         courtname: 'Provide the name of the court',
         courtaddress: 'Provide the location of the court',
-        chargedetails: 'Charges detail',
-        courttype: 'Type of charge',
-        courtdate: 'Date',
+        chargedetails: 'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
+        chargeType: 'Type of charge',
+        courtdate: 'Date of outcome',
         sentenced: 'Were you sentenced as a result of this offense?',
         needmore: 'Since you answered yes we need more information',
         sentenceDescription: 'Provide a description of the sentence',
@@ -5962,20 +6035,20 @@ const en = {
         otherOffenseSentenced: 'Were you sentenced as a result of these charges?'
       },
       para: {
-        intro1: 'For this section report information regardless of whether the record in your case has b een sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+        intro1: 'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
         intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
         intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
-        summons: '(Answer no if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.)',
-        charges: '(Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
-        chargedetails: '**Provide all the charges brought against you for this offense**, and the outcome of each charged offense (such as found guilty, found not-guilty, charge dropped or "nolle pros," etc). If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
+        chargedetails: 'Such as found guilty, found not-guilty, charge dropped or "nolle pros," etc. If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
-          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? (Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.)',
-          second: '**Have you EVER been charged** with any felony offense? (Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.)',
+          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year?',
+          second: '**Have you EVER been charged** with any felony offense?',
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
-        }
+        },
+        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.',
+        or: 'or'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -5995,13 +6068,13 @@ const en = {
         courtcharge: 'Charge',
         courtoutcome: 'Outcome',
         domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
-        notApplicable: 'Not applicable',
-        or: 'or add date range'
+        domesticViolenceAppend: 'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
+        notApplicable: 'Not applicable'
       },
       help: {
         summons: {
           title: 'Need help with a summons, citation, or ticket?',
-          message: 'If you were issued a summons, citation, or ticket answer "Yes" and provide the required information',
+          message: 'Answer "No" if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
           note: ''
         },
         arrests: {
@@ -6011,7 +6084,7 @@ const en = {
         },
         charges: {
           title: 'Need help with a criminal charge?',
-          message: 'If you were charged answer "Yes" and provide the required information',
+          message: 'Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
           note: ''
         },
         probation: {
@@ -6025,13 +6098,13 @@ const en = {
           note: ''
         },
         date: {
-          title: 'Need help withe the date of offense?',
-          message: 'Provide the closest date of the offense',
-          note: ''
+          title: 'Need help with the date this offense?',
+          message: 'Tell us the date the actual offense happened.',
+          note: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         description: {
-          title: 'Need help with the description of the offense?',
-          message: 'Provide an account of the nature of the offense',
+          title: 'Need help describing this offense?',
+          message: 'Give us details about how this offense happened. Be as clear and in depth as you can.',
           note: ''
         },
         violence: {
@@ -6050,8 +6123,8 @@ const en = {
           note: ''
         },
         address: {
-          title: 'Need help with the location of the offense?',
-          message: 'Provide the address where the offense took place',
+          title: 'Need help with this address?',
+          message: 'Tell us where the event happened.',
           note: ''
         },
         cited: {
@@ -6065,9 +6138,9 @@ const en = {
           note: ''
         },
         agencyaddress: {
-          title: 'Need help with the law enforcement agency address?',
-          message: 'Provide the address of the law enforcement agency who handled this offense',
-          note: ''
+          title: 'Not sure of the agency address?',
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         charged: {
           title: 'Need help if you were charged, convicted, or awaiting trial?',
@@ -6080,11 +6153,11 @@ const en = {
           note: ''
         },
         courtaddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
-        courttype: {
+        chargeType: {
           title: 'Need help with the type of charge?',
           message: 'Provide the type of charge issued by the court',
           note: ''
@@ -6100,8 +6173,8 @@ const en = {
           note: ''
         },
         courtdate: {
-          title: 'Need help with the court date?',
-          message: 'Provide the court date',
+          title: 'Need help with the outcome date?',
+          message: 'Tell us when the outcome was given (such as found guilty, found...).',
           note: ''
         },
         sentenced: {
@@ -6138,6 +6211,21 @@ const en = {
           title: 'Need help with awaiting trial explanation',
           message: 'Provide explanation',
           note: ''
+        },
+        otherConviction: {
+          title: 'Need help with this conviction question?',
+          message: 'Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.',
+          note: ''
+        },
+        otherFelony: {
+          title: 'Need help with this charge question?',
+          message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
+          note: ''
+        },
+        domesticExplanation: {
+          title: 'Not sure what to put here?',
+          message: 'Tell us about the order against you.',
+          note: 'Note: Go into as much detail as you need to fully explain.'
         }
       },
       branchCollection: {
@@ -6153,7 +6241,13 @@ const en = {
           unknown: 'Provide offense below'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
-        appendMessage: '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)\n- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?\n- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)\n- **In the last seven (7) years** have you been or are you currently on probation or parole?\nAre you currently on trial or awaiting a trial on criminal charges?\n<p>If yes use the button below to add add another offense.</p>',
+        appendMessage: [
+          '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)',
+          '- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+          '- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+          '- **In the last seven (7) years** have you been or are you currently on probation or parole?',
+          'Are you currently on trial or awaiting a trial on criminal charges?'
+        ],
         append: 'Add another offense'
       }
     }
@@ -6217,7 +6311,7 @@ const en = {
         first: 'First name',
         last: 'Last name',
         middle: 'Middle name or initial',
-        initialOnly: 'Initial Only',
+        initialOnly: 'Initial only',
         noMiddle: 'No middle name',
         other: 'Other',
         suffix: 'Suffix',
@@ -6279,6 +6373,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
+      psychological: 'Psychological and emotional health',
       intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',
@@ -6352,7 +6447,6 @@ const en = {
         summaryCourtName: 'Provide your order details below',
         description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
-        appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
         itemType: 'Order'
       }
@@ -6408,7 +6502,6 @@ const en = {
         summaryCourtName: 'Provide your order details below',
         description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
-        appendMessage: 'If yes, use the button below to add another instance',
         appendLabel: 'Add another order',
         itemType: 'Order'
       }
@@ -6430,7 +6523,6 @@ const en = {
         description: 'Summary of hospitalizations',
         summary: 'Provide your hospitalization details below',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
-        appendMessage: 'If yes, use the button below to add another hospitalization',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization'
       },
@@ -6453,7 +6545,7 @@ const en = {
         address: {
           title: 'Not sure of the facility address?',
           message: 'Try looking up the facility name, this could help you find the address.',
-          note: 'Note: f you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         }
       }
     },
@@ -6485,6 +6577,11 @@ const en = {
           title: 'Need help the date range of your diagnosis or health condition?',
           message: 'Tell us the full date range you have had this diagnosis or health condition.',
           note: 'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
+        },
+        explanation: {
+          title: 'Tell us more about why the counseling/treatment wasn\'t effective?',
+          message: 'Let us know why this counseling/treatment didn\'t improve your symptoms.',
+          note: 'Go into as much detail as you need to full explain.'
         }
       },
       person: {
@@ -6545,7 +6642,7 @@ const en = {
         description: 'Summary of diagnoses',
         summary: 'Provide your diagnosis details below',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
-        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.\n\nIf yes, use the button below to add another hospitalization',
+        appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
         appendLabel: 'Add another diagnosis',
         itemType: 'Diagnosis'
       },
@@ -6558,6 +6655,18 @@ const en = {
           address: 'This address is',
           name: 'Name',
           phone: 'Telephone'
+        },
+        help: {
+          name: {
+            title: 'Need help the name of the healthcare professional?',
+            message: 'Tell us the full name of the healthcare professional.',
+            note: 'Note: If you can’t remember this name a family member may be able to help you.'
+          },
+          address: {
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          }
         }
       },
       treatment: {
@@ -6565,7 +6674,6 @@ const en = {
           description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you are currently in treatment?',
-          appendMessage: 'If yes, use the button below to add another treatment',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
         }
@@ -6596,11 +6704,12 @@ const en = {
         help: {
           name: {
             title: 'Need help the name of the healthcare professional?',
-            message: 'Provide the name and telephone number of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+            message: 'Tell us the full name of the healthcare professional.'
           },
           address: {
-            title: 'Help with healthcare professional address',
-            message: 'Provide the address of the health care professional who diagnosed you, or is currently treating you for such diagnosis, or with whom you have discussed such condition'
+            title: 'Not sure of the health care professional\'s address?',
+            message: 'Try looking up their name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           }
         }
       }
@@ -6646,7 +6755,6 @@ const en = {
           description: 'Summary of treatments',
           summary: 'Provide your treatment details below',
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
-          appendMessage: 'If yes, use the button below to add another instance',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
         }
@@ -6669,7 +6777,7 @@ const en = {
           diagnosed: {
             title: 'Need help the date range of your counseling or treatment?',
             message: 'Provide the full date range (start to finish) of your counseling or treatment.',
-            note: 'Note: If you are not sure of the exact dates estimate them and check the "Estimated" checkbox.'
+            note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
           }
         },
         person: {
@@ -6689,9 +6797,9 @@ const en = {
               note: 'Note: If you can only find a phone number try calling and asking for the address.'
             },
             name: {
-              title: 'Need help the name and phone number of this healthcare professional?',
-              message: 'Please enter their full name and a current telephone number.',
-              note: ''
+              title: 'Need help the name and number of this healthcare professional?',
+              message: 'Tell us the full name of the healthcare professional and a current phone number for them.',
+              note: 'Note: If you can’t remember these a family member may be able to help you.'
             }
           }
         },
@@ -6707,14 +6815,14 @@ const en = {
           },
           help: {
             address: {
-              title: 'Need help with treatment facility?',
-              message: 'Provide the address of the facility where treatment was provided',
-              note: ''
+              title: 'Not sure of the treatment facility\'s address?',
+              message: 'Try looking up their name, this could help you find the address.',
+              note: 'Note: If you can only find a phone number try calling and asking for the address.'
             },
             name: {
               title: 'Need help the facility where treatment was provided?',
-              message: 'Provide the name of the facility where treatment was provided',
-              note: ''
+              message: 'Tell us the name of the facility where your treatment was.',
+              note: 'Note: If you can’t remember this name a family member may be able to help you.'
             }
           }
         }

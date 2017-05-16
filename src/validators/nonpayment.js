@@ -4,6 +4,7 @@ export default class NonpaymentValidator {
   constructor (state = {}, props = {}) {
     this.hasNonpayment = state.HasNonpayment
     this.list = state.List || []
+    this.listBranch = state.ListBranch
   }
 
   validHasNonpayment () {
@@ -24,6 +25,10 @@ export default class NonpaymentValidator {
     }
 
     if (!this.list || !this.list.length) {
+      return false
+    }
+
+    if (this.listBranch !== 'No') {
       return false
     }
 

@@ -92,7 +92,7 @@ export default class RealEstateInterest extends ValidationElement {
       <div className="interest">
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.interestTypes')}
           help={'foreign.activities.realestate.interest.help.interestTypes'}
-          adjustFor="big-buttons">
+          adjustFor="p">
           {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
           <CheckboxGroup className="interest-types option-list"
@@ -130,8 +130,9 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
           help={'foreign.activities.realestate.interest.help.realEstateType'}
-          adjustFor="labels"
+          adjustFor="p"
           shrink={true}>
+          {i18n.m('foreign.activities.realestate.interest.para.realEstateType')}
           <Text name="RealEstateType"
             className="realestate-type"
             {...this.props.RealEstateType}
@@ -140,7 +141,8 @@ export default class RealEstateInterest extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}>
+        <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}
+               adjustFor="address">
           <Address name="Address"
             label={i18n.t('foreign.activities.realestate.interest.label.address')}
             {...this.props.Address}
@@ -156,15 +158,15 @@ export default class RealEstateInterest extends ValidationElement {
             className="acquired"
             {...this.props.Acquired}
             label={i18n.t('foreign.activities.realestate.interest.label.acquired')}
-            hideDay={true}
-            prefix={this.props.prefix}
+            maxDate={null}
             onUpdate={this.updateAcquired}
             onValidate={this.props.onValidate}
           />
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.howAcquired')}
-          help={'foreign.activities.realestate.interest.help.howAcquired'}>
+               help={'foreign.activities.realestate.interest.help.howAcquired'}
+               adjustFor="p">
           <p>{i18n.t('foreign.activities.realestate.interest.para.howAcquired')}</p>
           <Textarea name="HowAcquired"
             className="how-acquired"
@@ -181,13 +183,12 @@ export default class RealEstateInterest extends ValidationElement {
             {...this.props.SoldNotApplicable}
             label={i18n.t('foreign.activities.realestate.interest.label.soldNotApplicable')}
             or={i18n.t('foreign.activities.realestate.interest.label.or')}
+            onValidate={this.props.onValidate}
             onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
               className="sold"
               {...this.props.Sold}
               label={i18n.t('foreign.activities.realestate.interest.label.sold')}
-              hideDay={true}
-              prefix={this.props.prefix}
               onUpdate={this.updateSold}
               onValidate={this.props.onValidate}
             />
@@ -199,6 +200,7 @@ export default class RealEstateInterest extends ValidationElement {
           <Currency name="Cost"
             className="cost"
             {...this.props.Cost}
+            min="0"
             onUpdate={this.updateCost}
             onValidate={this.props.onValidate}
           />

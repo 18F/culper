@@ -32,7 +32,6 @@ export default class MilitaryState extends ValidationElement {
         <Dropdown name={this.props.name}
                   label={this.props.label}
                   placeholder={this.props.placeholder}
-                  maxlength="2"
                   className={this.props.className}
                   disabled={this.props.disabled}
                   onChange={this.props.onChange}

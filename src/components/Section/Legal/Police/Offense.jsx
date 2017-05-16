@@ -36,6 +36,7 @@ export default class Offense extends ValidationElement {
       CourtCharge: props.CourtCharge,
       CourtOutcome: props.CourtOutcome,
       CourtDate: props.CourtDate,
+      ChargeType: props.ChargeType,
       WasSentenced: props.WasSentenced,
       Sentence: props.Sentence,
       AwaitingTrial: props.AwaitingTrial,
@@ -56,7 +57,7 @@ export default class Offense extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
-    this.updateCourtType = this.updateCourtType.bind(this)
+    this.updateChargeType = this.updateChargeType.bind(this)
     this.updateCourtCharge = this.updateCourtCharge.bind(this)
     this.updateCourtOutcome = this.updateCourtOutcome.bind(this)
     this.updateCourtDate = this.updateCourtDate.bind(this)
@@ -124,8 +125,8 @@ export default class Offense extends ValidationElement {
     this.onUpdate('CourtAddress', value)
   }
 
-  updateCourtType (event) {
-    this.onUpdate('CourtType', event.target.value)
+  updateChargeType (event) {
+    this.onUpdate('ChargeType', event.target.value)
   }
 
   updateCourtCharge (value) {
@@ -183,35 +184,34 @@ export default class Offense extends ValidationElement {
 
         <h3>{i18n.t('legal.police.heading.involvement')}</h3>
         <Branch name="involved_violence"
+                adjustFor="p"
                 className="offense-violence"
                 value={this.state.InvolvedViolence}
-                help="legal.police.help.violence"
                 onUpdate={this.updateInvolvedViolence}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.violence')}
         </Branch>
 
         <Branch name="involved_firearms"
+                adjustFor="p"
                 className="offense-firearms"
                 value={this.state.InvolvedFirearms}
-                help="legal.police.help.firearms"
                 onUpdate={this.updateInvolvedFirearms}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.firearms')}
         </Branch>
 
         <Branch name="involved_substances"
+                adjustFor="p"
                 className="offense-substances"
                 value={this.state.InvolvedSubstances}
-                help="legal.police.help.substances"
                 onUpdate={this.updateInvolvedSubstances}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.substances')}
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.address')}
-               help="legal.police.help.address"
-               adjustFor="big-buttons"
+               adjustFor="address"
                shrink={true}>
           <Address name="Address"
                    {...this.state.Address}
@@ -224,9 +224,9 @@ export default class Offense extends ValidationElement {
 
         <h3>{i18n.t('legal.police.heading.cited')}</h3>
         <Branch name="was_cited"
+                adjustFor="p"
                 className="offense-cited"
                 value={this.state.WasCited}
-                help="legal.police.help.cited"
                 onUpdate={this.updateWasCited}
                 onValidate={this.props.onValidate}>
         </Branch>
@@ -239,8 +239,7 @@ export default class Offense extends ValidationElement {
             </Field>
 
             <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
-            <Field title={i18n.t('legal.police.heading.citedby')}
-                   help="legal.police.help.citedby">
+            <Field title={i18n.t('legal.police.heading.citedby')}>
               <Text name="CitedBy"
                     {...this.state.CitedBy}
                     className="offense-citedby"
@@ -251,7 +250,7 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.agencyaddress')}
                    help="legal.police.help.agencyaddress"
-                   adjustFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="AgencyAddress"
                        {...this.state.AgencyAddress}
@@ -266,7 +265,6 @@ export default class Offense extends ValidationElement {
             <Branch name="was_charged"
                     className="offense-charged"
                     value={this.state.WasCharged}
-                    help="legal.police.help.charged"
                     onUpdate={this.updateWasCharged}
                     onValidate={this.props.onValidate}>
             </Branch>
@@ -275,8 +273,7 @@ export default class Offense extends ValidationElement {
 
         <Show when={this.state.WasCharged === 'No'}>
           <div>
-            <Field help="legal.police.help.explanation"
-                   adjustFor="labels">
+            <Field adjustFor="labels">
               <Textarea name="Explanation"
                         {...this.state.Explanation}
                         label={i18n.t('legal.police.label.explanation')}
@@ -295,9 +292,7 @@ export default class Offense extends ValidationElement {
               <Svg src="img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
-            <h2>{i18n.t('legal.police.heading.courtinfo')}</h2>
             <Field title={i18n.t('legal.police.heading.courtname')}
-                   help="legal.police.help.courtname"
                    adjustFor="labels">
               <Text name="CourtName"
                     {...this.state.CourtName}
@@ -310,7 +305,7 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.courtaddress')}
                    help="legal.police.help.courtaddress"
-                   adjuspFor="big-buttons"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="CourtAddress"
                        {...this.state.CourtAddress}
@@ -323,40 +318,35 @@ export default class Offense extends ValidationElement {
 
             <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
             {i18n.m('legal.police.para.chargedetails')}
-
-            <Field title={i18n.t('legal.police.heading.courttype')}
+            <Field title={i18n.t('legal.police.heading.chargeType')}
                    titleSize="h4"
-                   help="legal.police.help.courttype"
                    adjustFor="buttons"
                    shrink={true}>
-              <RadioGroup className="offense-courttype option-list"
-                          selectedValue={this.state.CourtType}>
+              <RadioGroup className="offense-chargetype option-list"
+                          selectedValue={this.state.ChargeType}>
                 <Radio name="charge-felony"
                        className="charge-felony"
                        label={i18n.t('legal.police.label.felony')}
                        value="Felony"
-                       onChange={this.updateCourtType}
+                       onChange={this.updateChargeType}
                        onValidate={this.props.onValidate}
                        />
                 <Radio name="charge-misdemeanor"
                        className="charge-misdemeanor"
                        label={i18n.t('legal.police.label.misdemeanor')}
                        value="Misdemeanor"
-                       onChange={this.updateCourtType}
+                       onChange={this.updateChargeType}
                        onValidate={this.props.onValidate}
                        />
                 <Radio name="charge-other"
                        className="charge-other"
                        label={i18n.t('legal.police.label.other')}
                        value="Other"
-                       onChange={this.updateCourtType}
+                       onChange={this.updateChargeType}
                        onValidate={this.props.onValidate}
                        />
               </RadioGroup>
-            </Field>
 
-            <Field help="legal.police.help.courtcharge"
-                   adjustFor="labels">
               <Text name="CourtCharge"
                     {...this.state.CourtCharge}
                     label={i18n.t('legal.police.label.courtcharge')}
@@ -364,10 +354,6 @@ export default class Offense extends ValidationElement {
                     onUpdate={this.updateCourtCharge}
                     onValidate={this.props.onValidate}
                     />
-            </Field>
-
-            <Field help="legal.police.help.courtoutcome"
-                   adjustFor="labels">
               <Text name="CourtOutcome"
                     {...this.state.CourtOutcome}
                     label={i18n.t('legal.police.label.courtoutcome')}
@@ -395,7 +381,6 @@ export default class Offense extends ValidationElement {
             <Branch name="was_sentenced"
                     className="offense-sentenced"
                     value={this.state.WasSentenced}
-                    help="legal.police.help.sentenced"
                     onUpdate={this.updateWasSentenced}
                     onValidate={this.props.onValidate}>
             </Branch>
@@ -410,15 +395,13 @@ export default class Offense extends ValidationElement {
             <Show when={this.state.WasSentenced === 'No'}>
               <div>
                 <Branch name="awaiting_trial"
+                        label={i18n.t('legal.police.heading.awaitingTrial')}
+                        labelSize="h4"
                         className="awaiting-trial"
                         value={this.state.AwaitingTrial}
-                        help="legal.police.help.awaitingTrial"
                         onValidate={this.props.onValidate}
-                        onUpdate={this.updateAwaitingTrial}>
-                  <div>
-                    {i18n.t('legal.police.heading.awaitingTrial')}
-                  </div>
-                </Branch>
+                        onUpdate={this.updateAwaitingTrial}
+                        />
                 <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
                        titleSize="label"
                        adjustFor="labels">

@@ -74,7 +74,8 @@ export default class Hospitalization extends ValidationElement {
   render () {
     return (
       <div className="hospitalization">
-        <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}>
+        <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
+               adjustFor="big-buttons">
           <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission}>
             <Radio
               className="voluntary-option"
@@ -130,7 +131,8 @@ export default class Hospitalization extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
-          help="psychological.hospitalization.help.address">
+               help="psychological.hospitalization.help.address"
+               adjustFor="address">
           <Address name="FacilityAddress"
             {...this.props.FacilityAddress}
             label={i18n.t(`psychological.hospitalization.label.address`)}

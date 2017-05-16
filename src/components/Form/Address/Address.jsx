@@ -105,9 +105,15 @@ export default class Address extends ValidationElement {
       city: '',
       state: '',
       zipcode: '',
-      country: ''
+      country: '',
+      errorCodes: [],
+      error: false,
+      valid: false
     }, () => {
       this.doUpdate()
+      if (this.props.onValidate) {
+        super.handleValidation(event, null, { drop_the_kids_off: null })
+      }
     })
   }
 
@@ -272,20 +278,19 @@ export default class Address extends ValidationElement {
                                    onValidate={this.handleValidation}
                                    onFocus={this.props.onFocus}
                                    onBlur={this.props.onBlur}
-                                   tabNext={() => { this.props.tab(this.refs.us_zipcode.refs.zipcode.refs.text.refs.input) }}
-                      />
-                      <ZipCode name="zipcode"
-                               ref="us_zipcode"
-                               key="us_zipcode"
-                               className="zipcode"
-                               label={i18n.t('address.us.zipcode.label')}
-                               placeholder={i18n.t('address.us.zipcode.placeholder')}
-                               value={this.state.zipcode}
-                               onChange={this.handleChange.bind(this, 'zipcode')}
-                               onValidate={this.handleValidation}
-                               onFocus={this.props.onFocus}
-                               onBlur={this.props.onBlur}
-                               />
+                                   />
+                    <ZipCode name="zipcode"
+                             ref="us_zipcode"
+                             key="us_zipcode"
+                             className="zipcode"
+                             label={i18n.t('address.us.zipcode.label')}
+                             placeholder={i18n.t('address.us.zipcode.placeholder')}
+                             value={this.state.zipcode}
+                             onChange={this.handleChange.bind(this, 'zipcode')}
+                             onValidate={this.handleValidation}
+                             onFocus={this.props.onFocus}
+                             onBlur={this.props.onBlur}
+                             />
                   </div>
                 </div>
               </Show>

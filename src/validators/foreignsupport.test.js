@@ -117,7 +117,7 @@ describe('Foreign activities support component validation', function () {
     battery(tests, SupportValidator, 'validFrequency')
   })
 
-  it('validate foreign activities support country', () => {
+  it('validate foreign activities support citizenship', () => {
     const tests = [
       {
         state: {},
@@ -125,13 +125,13 @@ describe('Foreign activities support component validation', function () {
       },
       {
         state: {
-          Country: {}
+          Citizenship: {}
         },
         expected: false
       },
       {
         state: {
-          Country: {
+          Citizenship: {
             value: [
               { name: 'United States', value: 'United States' }
             ]
@@ -141,7 +141,7 @@ describe('Foreign activities support component validation', function () {
       },
       {
         state: {
-          Country: {
+          Citizenship: {
             value: [
               { name: 'United States', value: 'United States' },
               { name: 'Germany', value: 'Germany' }
@@ -152,7 +152,7 @@ describe('Foreign activities support component validation', function () {
       }
     ]
 
-    battery(tests, SupportValidator, 'validCountry')
+    battery(tests, SupportValidator, 'validCitizenship')
   })
 
   it('validate foreign activities support', () => {
@@ -170,7 +170,8 @@ describe('Foreign activities support component validation', function () {
       {
         state: {
           HasForeignSupport: 'Yes',
-          List: []
+          List: [],
+          ListBranch: ''
         },
         expected: false
       },
@@ -204,14 +205,15 @@ describe('Foreign activities support component validation', function () {
               Frequency: {
                 value: 'Daily'
               },
-              Country: {
+              Citizenship: {
                 value: [
                   { name: 'United States', value: 'United States' },
                   { name: 'Germany', value: 'Germany' }
                 ]
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

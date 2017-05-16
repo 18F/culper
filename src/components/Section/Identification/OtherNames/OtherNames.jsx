@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { NameSummary, DateSummary } from '../../../Summary'
 import { OtherNamesValidator } from '../../../../validators'
 import { ValidationElement, Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
@@ -47,13 +48,16 @@ export default class OtherNames extends ValidationElement {
 
   onUpdate (val, event) {
     this.setState({ HasOtherNames: val }, () => {
-      this.myDispatch(val === 'No' ? [] : this.state.List)
+      this.myDispatch({
+        items: val === 'No' ? [] : this.state.List,
+        branch: ''
+      })
       this.handleValidation(event, null, null)
     })
   }
 
-  myDispatch (collection) {
-    this.setState({ List: collection }, () => {
+  myDispatch (values) {
+    this.setState({ List: values.items }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           List: this.state.List,
@@ -67,26 +71,8 @@ export default class OtherNames extends ValidationElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    let name = i18n.t('identification.othernames.collection.summary.unknown')
-    if (item.Name) {
-      name = `${item.Name.first || ''} ${item.Name.middle || ''} ${item.Name.last || ''}`.trim()
-    }
-
-    let from = ''
-    if (item.DatesUsed && item.DatesUsed.from && item.DatesUsed.from.date) {
-      from = '' + item.DatesUsed.from.date.getFullYear()
-    }
-
-    let to = ''
-    if (item.DatesUsed && item.DatesUsed.present) {
-      to = i18n.t('identification.othernames.collection.summary.present')
-    } else if (item.DatesUsed && item.DatesUsed.to && item.DatesUsed.to.date) {
-      to = '' + item.DatesUsed.to.date.getFullYear()
-    }
-
-    const dates = from === '' && to === ''
-          ? i18n.t('identification.othernames.collection.summary.nodates')
-          : `${from} - ${to}`
+    const name = NameSummary(item.Name, i18n.t('identification.othernames.collection.summary.unknown'))
+    const dates = DateSummary(item.DatesUsed, i18n.t('identification.othernames.collection.summary.nodates'))
 
     return (
       <span>

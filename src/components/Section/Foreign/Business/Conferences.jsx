@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateRange } from '../../../Form'
@@ -13,6 +13,7 @@ export default class Conferences extends ValidationElement {
     this.state = {
       HasForeignConferences: props.HasForeignConferences,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -37,8 +38,9 @@ export default class Conferences extends ValidationElement {
     this.onUpdate('HasForeignConferences', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -71,7 +73,7 @@ export default class Conferences extends ValidationElement {
   summary (item, index) {
     const obj = item || {}
     const city = (obj.City || {}).value || i18n.t('foreign.business.conferences.collection.summary.unknown')
-    const date = dateSummary(item)
+    const date = DateSummary(item.Dates)
 
     return (
       <span>
@@ -88,6 +90,7 @@ export default class Conferences extends ValidationElement {
         <Branch name="has_foreign_conferences"
                 label={i18n.t('foreign.business.conferences.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.conferences.help.branch"
                 value={this.state.HasForeignConferences}
                 onUpdate={this.updateHasForeignConferences}
@@ -98,6 +101,7 @@ export default class Conferences extends ValidationElement {
         <Show when={this.state.HasForeignConferences === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -138,7 +142,8 @@ export default class Conferences extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.dates')}
-                   help="foreign.business.conferences.help.dates">
+                   help="foreign.business.conferences.help.dates"
+                   adjustFor="daterange">
               <DateRange name="Dates"
                          className="conferences-dates"
                          bind={true}
@@ -166,5 +171,6 @@ export default class Conferences extends ValidationElement {
 Conferences.defaultProps = {
   name: 'Conferences',
   HasForeignConferences: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

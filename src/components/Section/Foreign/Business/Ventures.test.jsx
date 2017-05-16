@@ -23,7 +23,7 @@ describe('The foreign business ventures component', () => {
     }
     const component = mount(<Ventures {...expected} />)
     component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -35,8 +35,8 @@ describe('The foreign business ventures component', () => {
       onValidate: () => { validated = true }
     }
     const component = mount(<Ventures {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    component.find('.branch .yes input').simulate('blur')
+    component.find('.branch .yes input').at(0).simulate('change')
+    component.find('.branch .yes input').at(0).simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -59,6 +59,6 @@ describe('The foreign business ventures component', () => {
     component.find('.ventures-position input').simulate('change')
     component.find('.ventures-service input').simulate('change')
     component.find('.ventures-compensation textarea').simulate('change')
-    expect(updates).toBe(10)
+    expect(updates).toBe(10 * 2)
   })
 })

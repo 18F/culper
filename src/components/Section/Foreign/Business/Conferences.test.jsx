@@ -23,7 +23,7 @@ describe('The foreign business conferences component', () => {
     }
     const component = mount(<Conferences {...expected} />)
     component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -57,6 +57,6 @@ describe('The foreign business conferences component', () => {
     component.find('.conferences-purpose textarea').simulate('change')
     component.find('.has-foreign-contacts .yes input').simulate('change')
     component.find('.conferences-explanation textarea').simulate('change')
-    expect(updates).toBe(8)
+    expect(updates).toBe(8 * 2)
   })
 })

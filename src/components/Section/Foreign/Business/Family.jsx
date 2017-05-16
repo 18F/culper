@@ -11,6 +11,7 @@ export default class Family extends ValidationElement {
     this.state = {
       HasForeignFamily: props.HasForeignFamily,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -25,7 +26,8 @@ export default class Family extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignFamily: this.state.HasForeignFamily,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -35,8 +37,9 @@ export default class Family extends ValidationElement {
     this.onUpdate('HasForeignFamily', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -70,13 +73,11 @@ export default class Family extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.family.collection.summary.unknown')
-    const country = (obj.Country || {}).value
 
     return (
       <span>
         <span className="index">{i18n.t('foreign.business.family.collection.summary.item')} {index + 1}:</span>
         <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{country}</strong></span>
       </span>
     )
   }
@@ -87,6 +88,7 @@ export default class Family extends ValidationElement {
         <Branch name="has_foreign_family"
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.family.help.branch"
                 value={this.state.HasForeignFamily}
                 onUpdate={this.updateHasForeignFamily}
@@ -97,6 +99,7 @@ export default class Family extends ValidationElement {
         <Show when={this.state.HasForeignFamily === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -127,7 +130,8 @@ export default class Family extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
-                   help="foreign.business.family.help.date">
+                   help="foreign.business.family.help.date"
+                   adjustFor="label">
               <DateControl name="Date"
                            className="family-date"
                            bind={true}
@@ -151,5 +155,6 @@ export default class Family extends ValidationElement {
 Family.defaultProps = {
   name: 'Family',
   HasForeignFamily: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }

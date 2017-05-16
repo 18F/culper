@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
 /**
@@ -23,6 +23,7 @@ export default class History extends ValidationElement {
     this.state = {
       HasServed: props.HasServed,
       List: props.List,
+      ListBranch: props.ListBranch,
       errorCodes: []
     }
 
@@ -46,8 +47,9 @@ export default class History extends ValidationElement {
     }
   }
 
-  updateList (collection) {
-    this.onUpdate('List', collection)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -92,7 +94,7 @@ export default class History extends ValidationElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const service = o.Service || i18n.t('military.history.collection.summary.unknown')
-    const dates = dateSummary(o)
+    const dates = DateSummary(o.Dates)
 
     return (
       <span>
@@ -117,12 +119,12 @@ export default class History extends ValidationElement {
         <Show when={this.state.HasServed === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
-                     appendMessage={i18n.m('military.history.collection.appendMessage')}
                      appendLabel={i18n.t('military.history.collection.append')}>
             <MilitaryService name="Item"
                              bind={true}

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, BranchCollection } from '../../../Form'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import CitizenshipItem from './CitizenshipItem'
 import PassportItem from './PassportItem'
 
@@ -25,6 +25,7 @@ export default class Multiple extends ValidationElement {
     this.state = {
       HasMultiple: props.HasMultiple,
       Citizenships: props.Citizenships,
+      CitizenshipsBranch: props.CitizenshipsBranch,
       Passports: props.Passports,
       errorCodes: []
     }
@@ -77,7 +78,8 @@ export default class Multiple extends ValidationElement {
   }
 
   updateCitizenships (values) {
-    this.onUpdate('Citizenships', values)
+    this.onUpdate('Citizenships', values.items)
+    this.onUpdate('CitizenshipsBranch', values.branch)
   }
 
   updatePassports (values) {
@@ -89,7 +91,7 @@ export default class Multiple extends ValidationElement {
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
           : i18n.t('citizenship.multiple.collection.citizenship.summary.unknown')
-    const dates = dateSummary(itemProperties)
+    const dates = DateSummary(itemProperties.Dates)
 
     return (
       <span>
@@ -105,7 +107,7 @@ export default class Multiple extends ValidationElement {
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
           : i18n.t('citizenship.multiple.collection.passport.summary.unknown')
-    const dates = dateSummary({ Date: itemProperties.Issued })
+    const dates = DateSummary(itemProperties.Issued)
 
     return (
       <span>
@@ -132,12 +134,12 @@ export default class Multiple extends ValidationElement {
         <Show when={this.state.HasMultiple === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.Citizenships}
+                     branch={this.state.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onValidate={this.handleValidation}
                      summary={this.summaryCitizenships}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
-                     appendMessage={i18n.m('citizenship.multiple.collection.citizenship.appendMessage')}
                      appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}>
             <CitizenshipItem name="Item" bind={true} />
           </Accordion>
@@ -160,5 +162,6 @@ export default class Multiple extends ValidationElement {
 Multiple.defaultProps = {
   HasMultiple: '',
   Citizenships: [],
+  CitizenshipsBranch: '',
   Passports: []
 }

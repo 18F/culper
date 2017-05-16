@@ -7,6 +7,7 @@ export default class CitizenshipMultipleValidator {
   constructor (state = {}, props = {}) {
     this.hasMultiple = state.HasMultiple
     this.citizenships = state.Citizenships || []
+    this.citizenshipsBranch = state.CitizenshipsBranch
     this.passports = state.Passports || []
   }
 
@@ -20,6 +21,10 @@ export default class CitizenshipMultipleValidator {
     }
 
     if (this.citizenships.length === 0) {
+      return false
+    }
+
+    if (this.citizenshipsBranch !== 'No') {
       return false
     }
 

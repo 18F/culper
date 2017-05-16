@@ -135,7 +135,8 @@ describe('Foreign business advice component validation', function () {
       {
         state: {
           HasForeignAdvice: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
         },
         expected: false
       },
@@ -173,7 +174,8 @@ describe('Foreign business advice component validation', function () {
                 present: false
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }

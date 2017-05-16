@@ -145,7 +145,8 @@ describe('Diagnosis validation', function () {
                 }
               }
             }
-          ]
+          ],
+          TreatmentListBranch: 'No'
         },
         expected: true
       },
@@ -164,7 +165,8 @@ describe('Diagnosis validation', function () {
       {
         state: {
           ReceivedTreatment: 'Yes',
-          TreatmentList: [{Treatment: {}}]
+          TreatmentList: [{Treatment: {}}],
+          TreatmentListBranch: 'No'
         },
         expected: false
       }
@@ -244,7 +246,9 @@ describe('Diagnosis validation', function () {
                 }
               }
             }
-          ]},
+          ],
+          TreatmentListBranch: 'No'
+        },
         expected: true
       }
     ]

@@ -67,47 +67,43 @@ export default class Sentence extends ValidationElement {
   render () {
     return (
       <div className="sentence">
-        <Field help="legal.police.help.sentenceDescription"
+        <Field title={i18n.t('legal.police.heading.sentenceDescription')}
+               titleSize="h4"
                adjustFor="labels">
           <Textarea {...this.state.Description}
                     className="description"
                     name="description"
-                    label={i18n.t('legal.police.heading.sentenceDescription')}
                     onValidate={this.props.onValidate}
                     onUpdate={this.updateDescription} />
         </Field>
 
         <Branch name="exceeding_year"
+                label={i18n.t('legal.police.heading.exceedsYear')}
+                labelSize="h4"
                 className="exceeds-year"
                 value={this.state.ExceedsYear}
-                help="legal.police.help.sentenceDescription"
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateExceedsYear}>
-          <div>
-            {i18n.t('legal.police.heading.exceedsYear')}
-          </div>
         </Branch>
 
         <Branch name="incarcerated"
+                label={i18n.t('legal.police.heading.incarcerated')}
+                labelSize="h4"
                 className="incarcerated"
                 value={this.state.Incarcerated}
-                help="legal.police.help.exceedsYear"
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateIncarcerated}>
-          <div>
-            {i18n.m('legal.police.heading.incarcerated')}
-          </div>
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.incarcerationDates')}
                titleSize="h4"
-               help="legal.police.help.incarcerationDates"
-               adjustFor="buttons"
+               adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="IncarcerationDatesNA"
                          {...this.state.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
-                         or={i18n.t('legal.police.label.or')}
+                         or={i18n.t('legal.police.para.or')}
+                         onValidate={this.props.onValidate}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
@@ -120,13 +116,13 @@ export default class Sentence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.probationDates')}
                titleSize="h4"
-               help="legal.police.help.probationDates"
-               adjustFor="buttons"
+               adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="ProbationDatesNA"
                          {...this.state.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
-                         or={i18n.t('legal.police.label.or')}
+                         or={i18n.t('legal.police.para.or')}
+                         onValidate={this.props.onValidate}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"

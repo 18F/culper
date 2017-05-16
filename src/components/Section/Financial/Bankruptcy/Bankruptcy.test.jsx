@@ -2,85 +2,49 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Bankruptcy from './Bankruptcy'
 
-let bankruptcyData = [
-  {
-    CourtAddress: {
-      address: '123 Some Rd'
-    },
-    CourtInvolved: {
-      name: 'CourtInvolved',
-      value: 'Test Court'
-    },
-    CourtNumber: {
-      name: 'CourtNumber',
-      value: 'A123'
-    },
-    NameDebt: {
-      first: 'John',
-      last: 'Doe'
-    },
-    PetitionType: {
-      name: 'PetitionType',
-      address: {
-        address: '123 Some Rd'
-      },
-      value: 'Chapter13'
-    },
-    TotalAmount: {
-      name: 'TotalAmount',
-      value: '1000'
-    }
-  }
-]
-
-describe('The bankruptcy component', () => {
-  it('no error on empty', () => {
-    const expected = {
-      name: 'bankruptcy'
-    }
-    const component = mount(<Bankruptcy name={expected.name} />)
-    expect(component.find('input[type="radio"]').length).toEqual(2)
-    expect(component.find('.selected').length).toEqual(0)
-    expect(component.find('button.add').length).toEqual(0)
+describe('The Bankruptcy component', () => {
+  it('Renders without errors', () => {
+    const component = mount(<Bankruptcy />)
+    expect(component.find('.bankruptcy').length).toBe(1)
   })
 
-  it('load data and add another gambling debt', () => {
-    const expected = {
-      name: 'bankrupcty'
-    }
-    let onUpdate = () => {}
-    const component = mount(
-      <Bankruptcy
-        name={expected.name}
-        List={bankruptcyData}
-        HasBankruptcy={true}
-        onUpdate={onUpdate}
-      />
-    )
-    component.find({type: 'radio', name: 'has_bankruptcydebt', value: 'Yes'}).simulate('change')
-    expect(component.find('.details').length).toBeGreaterThan(0)
+  it('Performs updates', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
 
-    component.find('button.add').simulate('click')
-
-    // NOTE: The original state was `true` but for this round of usability testing
-    // we are modifying this behavior.
-    // expect(component.find('.row.open').length).toBeGreaterThan(0)
-    expect(component.find('.row.open').length).toBe(0)
+    const component = mount(<Bankruptcy onUpdate={onUpdate} />)
+    expect(component.find('.bankruptcy').length).toBe(1)
+    component.find('.petition-chapters .block input').first().simulate('click')
+    component.find('.courtnumber input[name="CourtNumber"]').simulate('change')
+    component.find('.datefiled input[name="month"]').simulate('change', { target: { value: '1' } })
+    component.find('.datedischarged input[name="month"]').simulate('change', { target: { value: '1' } })
+    component.find('input[name="DischargeDateNotApplicable"]').simulate('change')
+    component.find('.amount input[name="TotalAmount"]').simulate('change')
+    component.find('.namedebt input[name="first"]').simulate('change')
+    component.find('.courtinvolved input[name="CourtInvolved"]').simulate('change')
+    component.find('input[name="TotalAmountEstimated"]').simulate('change')
+    component.find('.address input[name="address"]').simulate('change')
+    component.find('.has-discharge-explanation .yes input').simulate('change')
+    expect(updates).toBe(11)
   })
 
-  it('displays fields when "yes" is selected', () => {
-    const expected = {
-      HasBankruptcy: 'Yes'
-    }
-    const component = mount(<Bankruptcy {...expected} />)
-    expect(component.find('.amount').length).toBeGreaterThan(0)
+  it('Performs update to having discharge explanation', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const dischargeExplanation = 'Yes'
+    const component = mount(<Bankruptcy onUpdate={onUpdate} HasDischargeExplanation={dischargeExplanation}/>)
+    expect(component.find('.bankruptcy').length).toBe(1)
+    component.find('textarea[name="DischargeExplanation"]').simulate('change')
+    expect(updates).toBe(1)
   })
 
-  it('does not display any fields when "no" is selected', () => {
-    const expected = {
-      HasBankruptcy: 'No'
-    }
-    const component = mount(<Bankruptcy {...expected} />)
-    expect(component.find('.amount').length).toEqual(0)
+  it('Performs update with chapter 13 selected', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const petitionType = 'Chapter13'
+    const component = mount(<Bankruptcy onUpdate={onUpdate} PetitionType={petitionType}/>)
+    component.find('input[name="chapter13Trustee"]').simulate('change')
+    component.find('.trustee-address input[name="address"]').simulate('change')
+    expect(updates).toBe(2)
   })
 })

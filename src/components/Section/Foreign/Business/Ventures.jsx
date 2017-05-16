@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { dateSummary } from '../../History/summaries'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Text, Textarea, Name, Country, DateRange, Address } from '../../../Form'
@@ -12,6 +12,7 @@ export default class Ventures extends ValidationElement {
     this.state = {
       HasForeignVentures: props.HasForeignVentures,
       List: props.List,
+      ListBranch: props.ListBranch,
       error: false,
       valid: false,
       errorCodes: []
@@ -26,7 +27,8 @@ export default class Ventures extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           HasForeignVentures: this.state.HasForeignVentures,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -36,8 +38,9 @@ export default class Ventures extends ValidationElement {
     this.onUpdate('HasForeignVentures', value)
   }
 
-  updateList (items) {
-    this.onUpdate('List', items)
+  updateList (values) {
+    this.onUpdate('List', values.items)
+    this.onUpdate('ListBranch', values.branch)
   }
 
   /**
@@ -71,7 +74,7 @@ export default class Ventures extends ValidationElement {
     const obj = item || {}
     const name = obj.Name || {}
     const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.ventures.collection.summary.unknown')
-    const date = dateSummary(item)
+    const date = DateSummary(item.Dates)
 
     return (
       <span>
@@ -88,6 +91,7 @@ export default class Ventures extends ValidationElement {
         <Branch name="has_foreign_ventures"
                 label={i18n.t('foreign.business.ventures.heading.title')}
                 labelSize="h3"
+                adjustFor="p"
                 help="foreign.business.ventures.help.branch"
                 value={this.state.HasForeignVentures}
                 onUpdate={this.updateHasForeignVentures}
@@ -98,6 +102,7 @@ export default class Ventures extends ValidationElement {
         <Show when={this.state.HasForeignVentures === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onValidate={this.handleValidation}
                      summary={this.summary}
@@ -112,7 +117,8 @@ export default class Ventures extends ValidationElement {
                   />
 
             <Field title={i18n.t('foreign.business.ventures.heading.address')}
-                   help="foreign.business.ventures.help.address">
+                   help="foreign.business.ventures.help.address"
+                   adjustFor="address">
               <Address name="Address"
                        className="ventures-address"
                        bind={true}
@@ -145,7 +151,8 @@ export default class Ventures extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.ventures.heading.dates')}
-                   help="foreign.business.ventures.help.dates">
+                   help="foreign.business.ventures.help.dates"
+                   adjustFor="daterange">
               <DateRange name="Dates"
                          className="ventures-dates"
                          bind={true}
@@ -176,6 +183,14 @@ export default class Ventures extends ValidationElement {
                     />
             </Field>
 
+            <Field title={i18n.t('foreign.business.ventures.heading.support')}
+                   help="foreign.business.ventures.help.support">
+              <Text name="Support"
+                    className="ventures-support"
+                    bind={true}
+                    />
+            </Field>
+
             <Field title={i18n.t('foreign.business.ventures.heading.compensation')}
                    help="foreign.business.ventures.help.compensation">
               <Textarea name="Compensation"
@@ -193,5 +208,6 @@ export default class Ventures extends ValidationElement {
 Ventures.defaultProps = {
   name: 'Ventures',
   HasForeignVentures: '',
-  List: []
+  List: [],
+  ListBranch: ''
 }
