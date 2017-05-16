@@ -1,0 +1,10 @@
+---
+applications:
+- name: eqip-prototype-dev
+  path: dist
+  memory: 64M
+  domain: fr.cloud.gov
+  host: eqip-prototype-dev
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  env:
+    FORCE_HTTPS: true
