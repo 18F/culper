@@ -9,7 +9,7 @@ export default class Alias extends ValidationElement {
     this.state = {
       Name: props.Name,
       MaidenName: props.MaidenName,
-      Dates: props.Birthdate,
+      Dates: props.Dates,
       Reason: props.Reason
     }
 
