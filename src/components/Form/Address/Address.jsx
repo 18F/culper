@@ -105,9 +105,15 @@ export default class Address extends ValidationElement {
       city: '',
       state: '',
       zipcode: '',
-      country: ''
+      country: '',
+      errorCodes: [],
+      error: false,
+      valid: false
     }, () => {
       this.doUpdate()
+      if (this.props.onValidate) {
+        super.handleValidation(event, null, { drop_the_kids_off: null })
+      }
     })
   }
 
