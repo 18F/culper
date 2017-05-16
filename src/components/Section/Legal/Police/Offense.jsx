@@ -187,7 +187,6 @@ export default class Offense extends ValidationElement {
                 adjustFor="p"
                 className="offense-violence"
                 value={this.state.InvolvedViolence}
-                help="legal.police.help.violence"
                 onUpdate={this.updateInvolvedViolence}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.violence')}
@@ -197,7 +196,6 @@ export default class Offense extends ValidationElement {
                 adjustFor="p"
                 className="offense-firearms"
                 value={this.state.InvolvedFirearms}
-                help="legal.police.help.firearms"
                 onUpdate={this.updateInvolvedFirearms}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.firearms')}
@@ -207,14 +205,12 @@ export default class Offense extends ValidationElement {
                 adjustFor="p"
                 className="offense-substances"
                 value={this.state.InvolvedSubstances}
-                help="legal.police.help.substances"
                 onUpdate={this.updateInvolvedSubstances}
                 onValidate={this.props.onValidate}>
           {i18n.m('legal.police.label.substances')}
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.address')}
-               help="legal.police.help.address"
                adjustFor="address"
                shrink={true}>
           <Address name="Address"
@@ -309,7 +305,7 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.courtaddress')}
                    help="legal.police.help.courtaddress"
-                   adjuspFor="address"
+                   adjustFor="address"
                    shrink={true}>
               <Address name="CourtAddress"
                        {...this.state.CourtAddress}
@@ -399,15 +395,13 @@ export default class Offense extends ValidationElement {
             <Show when={this.state.WasSentenced === 'No'}>
               <div>
                 <Branch name="awaiting_trial"
+                        label={i18n.t('legal.police.heading.awaitingTrial')}
+                        labelSize="h4"
                         className="awaiting-trial"
                         value={this.state.AwaitingTrial}
-                        help="legal.police.help.awaitingTrial"
                         onValidate={this.props.onValidate}
-                        onUpdate={this.updateAwaitingTrial}>
-                  <div>
-                    {i18n.t('legal.police.heading.awaitingTrial')}
-                  </div>
-                </Branch>
+                        onUpdate={this.updateAwaitingTrial}
+                        />
                 <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
                        titleSize="label"
                        adjustFor="labels">

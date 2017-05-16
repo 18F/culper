@@ -67,34 +67,32 @@ export default class Sentence extends ValidationElement {
   render () {
     return (
       <div className="sentence">
-        <Field help="legal.police.help.sentenceDescription"
+        <Field title={i18n.t('legal.police.heading.sentenceDescription')}
+               titleSize="h4"
                adjustFor="labels">
           <Textarea {...this.state.Description}
                     className="description"
                     name="description"
-                    label={i18n.t('legal.police.heading.sentenceDescription')}
                     onValidate={this.props.onValidate}
                     onUpdate={this.updateDescription} />
         </Field>
 
         <Branch name="exceeding_year"
+                label={i18n.t('legal.police.heading.exceedsYear')}
+                labelSize="h4"
                 className="exceeds-year"
                 value={this.state.ExceedsYear}
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateExceedsYear}>
-          <div>
-            {i18n.t('legal.police.heading.exceedsYear')}
-          </div>
         </Branch>
 
         <Branch name="incarcerated"
+                label={i18n.t('legal.police.heading.incarcerated')}
+                labelSize="h4"
                 className="incarcerated"
                 value={this.state.Incarcerated}
                 onValidate={this.props.onValidate}
                 onUpdate={this.updateIncarcerated}>
-          <div>
-            {i18n.m('legal.police.heading.incarcerated')}
-          </div>
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.incarcerationDates')}
@@ -104,6 +102,8 @@ export default class Sentence extends ValidationElement {
           <NotApplicable name="IncarcerationDatesNA"
                          {...this.state.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
+                         or={i18n.t('legal.police.para.or')}
+                         onValidate={this.props.onValidate}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
@@ -121,6 +121,8 @@ export default class Sentence extends ValidationElement {
           <NotApplicable name="ProbationDatesNA"
                          {...this.state.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
+                         or={i18n.t('legal.police.para.or')}
+                         onValidate={this.props.onValidate}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"

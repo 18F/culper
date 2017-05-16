@@ -6047,7 +6047,8 @@ const en = {
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
         },
-        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.'
+        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.',
+        or: 'or'
       },
       label: {
         summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
@@ -6137,9 +6138,9 @@ const en = {
           note: ''
         },
         agencyaddress: {
-          title: 'Need help with the law enforcement agency address?',
-          message: 'Provide the address of the law enforcement agency who handled this offense',
-          note: ''
+          title: 'Not sure of the agency address?',
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         charged: {
           title: 'Need help if you were charged, convicted, or awaiting trial?',
@@ -6172,8 +6173,8 @@ const en = {
           note: ''
         },
         courtdate: {
-          title: 'Need help with the court date?',
-          message: 'Provide the court date',
+          title: 'Need help with the outcome date?',
+          message: 'Tell us when the outcome was given (such as found guilty, found...).',
           note: ''
         },
         sentenced: {
@@ -6220,6 +6221,11 @@ const en = {
           title: 'Need help with this charge question?',
           message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
           note: ''
+        },
+        domesticExplanation: {
+          title: 'Not sure what to put here?',
+          message: 'Tell us about the order against you.',
+          note: 'Note: Go into as much detail as you need to fully explain.'
         }
       },
       branchCollection: {

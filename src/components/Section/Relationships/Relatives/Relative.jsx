@@ -409,7 +409,8 @@ export default class Relative extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.birthplace')}
-               adjustFor="label">
+               adjustFor="label"
+               validate={false}>
           <BirthPlace name="Birthplace"
                       label={i18n.t('relationships.relatives.label.birthplace')}
                       help=""
