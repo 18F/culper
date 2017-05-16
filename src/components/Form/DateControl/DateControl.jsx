@@ -308,7 +308,7 @@ export default class DateControl extends ValidationElement {
       })
   }
 
-  beforeChange (value = '') {
+  beforeChange (value) {
     return value.replace(/\D/g, '')
   }
 
