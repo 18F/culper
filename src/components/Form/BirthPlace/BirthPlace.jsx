@@ -127,7 +127,8 @@ export default class BirthPlace extends ValidationElement {
         state: '',
         disabledCountry: false,
         disabledState: true,
-        domestic: value
+        domestic: value,
+        errorCodes: []
       }
     } else if (value === 'Yes') {
       updated = {
@@ -135,7 +136,8 @@ export default class BirthPlace extends ValidationElement {
         state: '',
         disabledCountry: true,
         disabledState: false,
-        domestic: value
+        domestic: value,
+        errorCodes: []
       }
     } else {
       updated = {
@@ -143,21 +145,17 @@ export default class BirthPlace extends ValidationElement {
         state: '',
         disabledCountry: true,
         disabledState: true,
-        domestic: value
+        domestic: value,
+        errorCodes: []
       }
     }
 
-    if (updated !== null) {
-      this.setState(updated, () => {
-        if (value === 'No' || value === 'Yes') {
-          this.handleValidation(event, null, null)
-        }
-
-        if (this.props.onUpdate) {
-          this.props.onUpdate(updated)
-        }
-      })
-    }
+    this.setState(updated, () => {
+      super.handleValidation(event, null, { drop_the_kids_off: null })
+      if (this.props.onUpdate) {
+        this.props.onUpdate(updated)
+      }
+    })
   }
 
   options () {
@@ -188,7 +186,7 @@ export default class BirthPlace extends ValidationElement {
       return (
         <div className={klass}>
           {this.options()}
-          <Field adjustFor="labels">
+          <Field key="domestic_state" adjustFor="labels">
             <MilitaryState name="state"
                            label={this.props.stateLabel}
                            value={this.state.state}
@@ -203,7 +201,7 @@ export default class BirthPlace extends ValidationElement {
                            onBlur={this.props.onBlur}
                            />
           </Field>
-          <Field adjustFor="labels">
+          <Field key="domestic_city" adjustFor="labels">
             <City name="city"
                   label={this.props.cityLabel}
                   value={this.state.city}
@@ -217,7 +215,7 @@ export default class BirthPlace extends ValidationElement {
                   />
           </Field>
           <Show when={this.props.hideCounty === false}>
-            <Field adjustFor="labels">
+            <Field key="domestic_county" adjustFor="labels">
               <County name="county"
                       label={this.props.countyLabel}
                       value={this.state.county}
@@ -238,7 +236,7 @@ export default class BirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         {this.options()}
-        <Field adjustFor="labels">
+        <Field key="intl_city" adjustFor="labels">
           <City name="city"
                 label={this.props.cityLabel}
                 value={this.state.city}
@@ -251,7 +249,7 @@ export default class BirthPlace extends ValidationElement {
                 onBlur={this.props.onBlur}
                 />
         </Field>
-        <Field adjustFor="labels">
+        <Field key="intl_country" adjustFor="labels">
           <Country name="country"
                    label={this.props.countryLabel}
                    value={this.state.country}
