@@ -52,6 +52,7 @@ import ForeignBusinessEmploymentValidator from './foreignbusinessemployment'
 import ForeignBusinessVenturesValidator from './foreignbusinessventures'
 import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
 import ForeignBusinessContactValidator from './foreignbusinesscontact'
+import ForeignBusinessSponsorshipValidator from './foreignbusinesssponsorship'
 
 export {
   AddressValidator,
@@ -111,5 +112,6 @@ export {
   ForeignBusinessEmploymentValidator,
   ForeignBusinessVenturesValidator,
   ForeignBusinessConferencesValidator,
-  ForeignBusinessContactValidator
+  ForeignBusinessContactValidator,
+  ForeignBusinessSponsorshipValidator
 }

@@ -6077,6 +6077,100 @@ const en = {
           ],
           append: 'Add another contact'
         }
+      },
+      sponsorship: {
+        heading: {
+          title: 'Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?',
+          name: 'Provide the name of the sponsored foreign national',
+          birthdate: 'Provide the date of birth for the sponsored foreign national',
+          birthplace: 'Provide the place of birth for the sponsored foreign national',
+          address: 'Provide the current street address of the sponsored foreign national',
+          citizenship: 'Provide the country(ies) of citizenship for the sponsored foreign national',
+          organization: 'Provide the name of the organization through which sponsorship was arranged, if applicable',
+          organizationaddress: 'Provide the address of the organization through which the sponsorship was arranged, if applicable',
+          dates: 'Provide the dates of stay in the U.S. for the sponsored foreign national',
+          residence: 'Provide the address of the sponsored foreign national while residing in the U.S.',
+          stay: 'Provide the purpose of the stay in the U.S. for the sponsored foreign national',
+          sponsorship: 'Provide the purpose of sponsorship for the sponsored foreign national'
+        },
+        label: {
+          idk: 'I don\'t know',
+          birthplace: 'Was this person born in the United States of America?'
+        },
+        para: {
+          or: 'or'
+        },
+        placeholder: {
+          city: 'Please enter the city of birth',
+          country: 'Please enter the country of birth'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government sponsorship?',
+            message: 'If you have any foreign government sponsorship then select "yes".',
+            note: ''
+          },
+          birthdate: {
+            title: 'Need help with the date of birth?',
+            message: 'Provide the foreign nationals date of birth.',
+            note: ''
+          },
+          birthplace: {
+            title: 'Need help with the place of birth?',
+            message: 'Provide the foreign nationals place of birth.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the current street address?',
+            message: 'Provide the current street address of the foreign national.',
+            note: ''
+          },
+          citizenship: {
+            title: 'Need help with the foreign nationals citizenship(s)?',
+            message: 'To the best of your knowledge provide the foreign nationals citizenship(s).',
+            note: ''
+          },
+          organization: {
+            title: 'Need help with the organization?',
+            message: 'Provide the organization name through which the sponsorship was arranged.',
+            note: ''
+          },
+          organizationaddress: {
+            title: 'Need help with the organization address?',
+            message: 'Provide the organization address.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates of stay?',
+            message: 'Provide the approximate date range for the period of stay within the U.S.',
+            note: ''
+          },
+          residence: {
+            title: 'Need help with the residence?',
+            message: 'Provide the address of the sponsored foreign national.',
+            note: ''
+          },
+          stay: {
+            title: 'Need help with the purpose of the stay?',
+            message: 'Provide the purpose for the stay within the U.S.',
+            note: ''
+          },
+          sponsorship: {
+            title: 'Need help with the purpose of the sponsorship?',
+            message: 'Provide the purpose of the sponsorship.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign national sponsorship',
+            item: 'Sponsorship',
+            unknown: 'Provide details of sponsorship below'
+          },
+          appendTitle: 'Have you in the last seven (7) years sponsored any additional foreign national to come to the U.S. as a student, for work, or for permanent residence?',
+          appendMessage: [],
+          append: 'Add another sponsorship'
+        }
       }
 
     }
