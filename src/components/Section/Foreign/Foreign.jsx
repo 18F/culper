@@ -9,7 +9,7 @@ import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
 import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
-import { Advice, Family, Employment, Ventures, Conferences } from './Business'
+import { Advice, Family, Employment, Ventures, Conferences, Contact } from './Business'
 
 class Foreign extends ValidationElement {
   constructor (props) {
@@ -30,6 +30,7 @@ class Foreign extends ValidationElement {
     this.updateRealEstateActivity = this.updateRealEstateActivity.bind(this)
     this.updateBenefitActivity = this.updateBenefitActivity.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
+    this.updateContact = this.updateContact.bind(this)
   }
 
   componentDidMount () {
@@ -71,7 +72,8 @@ class Foreign extends ValidationElement {
         this.hasStatus('family', status, true) &&
         this.hasStatus('employment', status, true) &&
         this.hasStatus('ventures', status, true) &&
-        this.hasStatus('conferences', status, true)) {
+        this.hasStatus('conferences', status, true) &&
+        this.hasStatus('contact', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('passport', status, false) ||
                this.hasStatus('contacts', status, false) ||
@@ -83,7 +85,8 @@ class Foreign extends ValidationElement {
                this.hasStatus('family', status, false) ||
                this.hasStatus('employment', status, false) ||
                this.hasStatus('ventures', status, false) ||
-               this.hasStatus('conferences', status, false)) {
+               this.hasStatus('conferences', status, false) ||
+               this.hasStatus('contact', status, false)) {
       cstatus = 'incomplete'
     }
     let completed = {
@@ -135,6 +138,10 @@ class Foreign extends ValidationElement {
 
   updateConferences (values) {
     this.onUpdate('Conferences', values)
+  }
+
+  updateContact (values) {
+    this.onUpdate('Contact', values)
   }
 
   /**
@@ -205,6 +212,66 @@ class Foreign extends ValidationElement {
                       onUpdate={this.onUpdate.bind(this, 'Passport')}
                       onValidate={this.onValidate.bind(this)}
                       />
+            <Contacts name="contacts"
+                      {...this.props.Contacts}
+                      onUpdate={this.onUpdate.bind(this, 'Contacts')}
+                      onValidate={this.onValidate.bind(this)}
+                      />
+            <DirectActivity name="directActivity"
+                    {...this.props.DirectActivity}
+                    onUpdate={this.updateDirectActivity}
+                    onValidate={this.handleValidation}
+                    />
+            <IndirectActivity name="indirectActivity"
+                    {...this.props.IndirectActivity}
+                    onUpdate={this.updateIndirectActivity}
+                    onValidate={this.handleValidation}
+                    />
+            <RealEstateActivity name="realEstateActivity"
+                    {...this.props.RealEstateActivity}
+                    onUpdate={this.updateRealEstateActivity}
+                    onValidate={this.handleValidation}
+                    />
+            <BenefitActivity name="benefitActivity"
+                    {...this.props.BenefitActivity}
+                    onUpdate={this.updateBenefitActivity}
+                    onValidate={this.handleValidation}
+                    />
+            <Support name="support"
+                     {...this.props.Support}
+                     onUpdate={this.updateSupport}
+                     onValidate={this.handleValidation}
+                     />
+            <Advice name="advice"
+                    {...this.props.Advice}
+                    onUpdate={this.updateAdvice}
+                    onValidate={this.handleValidation}
+                    />
+            <Family name="family"
+                    {...this.props.Family}
+                    onUpdate={this.updateFamily}
+                    onValidate={this.handleValidation}
+                    />
+            <Employment name="employment"
+                        {...this.props.Employment}
+                        onUpdate={this.updateEmployment}
+                        onValidate={this.handleValidation}
+                        />
+            <Ventures name="ventures"
+                      {...this.props.Ventures}
+                      onUpdate={this.updateVentures}
+                      onValidate={this.handleValidation}
+                      />
+            <Conferences name="Conferences"
+                         {...this.props.Conferences}
+                         onUpdate={this.updateConferences}
+                         onValidate={this.handleValidation}
+                         />
+            <Contact name="Contact"
+                     {...this.props.Contact}
+                     onUpdate={this.updateContact}
+                     onValidate={this.handleValidation}
+                     />
           </SectionView>
 
           <SectionView name="contacts"
@@ -361,6 +428,18 @@ class Foreign extends ValidationElement {
                          />
           </SectionView>
 
+          <SectionView name="business/contact"
+                       back="foreign/business/conferences"
+                       backLabel={i18n.t('foreign.destination.business.events')}
+                       next="foreign/business/sponsorship"
+                       nextLabel={i18n.t('foreign.destination.business.sponsorship')}>
+            <Contact name="Contact"
+                     {...this.props.Contact}
+                     onUpdate={this.updateContact}
+                     onValidate={this.handleValidation}
+                     />
+          </SectionView>
+
           <SectionView name="travel"
                        back="foreign/business/voting"
                        backLabel={i18n.t('foreign.destination.business.voting')}
@@ -407,6 +486,7 @@ function mapStateToProps (state) {
     Employment: foreign.Employment || {},
     Ventures: foreign.Ventures || {},
     Conferences: foreign.Conferences || {},
+    Contact: foreign.Contact || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names

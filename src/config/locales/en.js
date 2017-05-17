@@ -5983,7 +5983,102 @@ const en = {
           ],
           append: 'Add another event'
         }
+      },
+      contact: {
+        heading: {
+          title: 'Have you or any member of your immediate family in the last seven (7) years had any contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
+          name: 'Provide the name of the individual involved in the contact',
+          location: 'Provide the location of the contact',
+          date: 'Provide the date of contact',
+          governments: 'Provide the foreign government(s) involved',
+          establishment: 'Provide the type of establishment (such as embassy, consulate, agency, military service, intelligence or security service, etc.) involved',
+          representatives: 'Provide the names of foreign representatives involved in contact',
+          purpose: 'Provide the purpose/circumstances of contact',
+          hassubsequent: 'Was there any subsequent contact initiated by you, your immediate family member, or a representative of the foreign organization?',
+          hassubsequent2: 'Do you have another subsequent contact to report for this event?',
+          subsequent: 'Provide the purpose of the subsequent contact',
+          recent: 'Provide the date of most recent contact',
+          future: 'Provide plans for future contact'
+        },
+        para: {
+          intro: 'For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
+          branch: [
+            'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
+            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjuction with a U.S. Government military duty.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government contact?',
+            message: 'If you have any foreign government contact then select "yes".',
+            note: ''
+          },
+          location: {
+            title: 'Need help with the location?',
+            message: 'Provide the location of the contact.',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of contact?',
+            message: 'Provide the approximate date of contact.',
+            note: ''
+          },
+          governments: {
+            title: 'Need help with the governments associated?',
+            message: 'Provide the governments associated with this contact.',
+            note: ''
+          },
+          establishment: {
+            title: 'Need help with the establishment?',
+            message: 'Provide the establishment.',
+            note: ''
+          },
+          representatives: {
+            title: 'Need help with the representatives?',
+            message: 'Provide the representatives.',
+            note: ''
+          },
+          purpose: {
+            title: 'Need help with the purpose of contact?',
+            message: 'Provide the purpose/circumstances of the contact.',
+            note: ''
+          },
+          hassubsequent: {
+            title: 'Need help with any subsequent contacts?',
+            message: 'If there were any subsequent contact initiated by you or your immediate family select "Yes".',
+            note: ''
+          },
+          subsequent: {
+            title: 'Need help with the purpose of the subsequent contact?',
+            message: 'Provide the purpose of the subsequent contact.',
+            note: ''
+          },
+          recent: {
+            title: 'Need help with the recent date of contact?',
+            message: 'Provide the approximate date of the most recent contact.',
+            note: ''
+          },
+          future: {
+            title: 'Need help explaining future plans of contact?',
+            message: 'Provide a description of any future plans of contact.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign government contacts',
+            item: 'Contact',
+            unknown: 'Provide details of contact below'
+          },
+          appendTitle: 'Have you or any member of your immediate family in the last seven (7) years had any additional contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
+          appendMessage: [
+            'Such as embassy, consulate, agency, military service, intelligence or security service, etc.',
+            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S. Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
+          ],
+          append: 'Add another contact'
+        }
       }
+
     }
   },
   legal: {
