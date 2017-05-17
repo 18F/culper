@@ -60,4 +60,17 @@ describe('The OrderedCounseling component', () => {
     component.find('textarea[name="NoActionTakenExplanation"]').simulate('change')
     expect(updates).toBe(2)
   })
+
+  it('Renders with other seeker checked and updates other seeker explanation', () => {
+    let updates = 0
+    const expected = {
+      onUpdate: () => { updates++ },
+      ActionTaken: 'No',
+      Seekers: ['Other']
+    }
+    const component = mount(<OrderedCounseling {...expected} />)
+    expect(component.find('.ordered-counseling').length).toBe(1)
+    component.find('input[name="OtherSeeker"]').simulate('change')
+    expect(updates).toBe(1)
+  })
 })

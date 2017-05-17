@@ -53,6 +53,7 @@ import ForeignBusinessVenturesValidator from './foreignbusinessventures'
 import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
 import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
+import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
 
 export {
   AddressValidator,
@@ -113,5 +114,6 @@ export {
   ForeignBusinessVenturesValidator,
   ForeignBusinessConferencesValidator,
   AlcoholNegativeImpactsValidator,
-  AlcoholOrderedCounselingsValidator
+  AlcoholOrderedCounselingsValidator,
+  AlcoholVoluntaryCounselingsValidator
 }

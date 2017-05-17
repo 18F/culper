@@ -1,19 +1,19 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import OrderedCounselings from './OrderedCounselings'
+import VoluntaryCounselings from './VoluntaryCounselings'
 
-describe('The OrderedCounselings component', () => {
+describe('The VoluntaryCounselings component', () => {
   it('Renders without errors', () => {
-    const component = mount(<OrderedCounselings />)
-    expect(component.find('.ordered-counselings').length).toBe(1)
+    const component = mount(<VoluntaryCounselings />)
+    expect(component.find('.voluntary-counselings').length).toBe(1)
   })
 
   it('Updates branch', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<OrderedCounselings onUpdate={onUpdate} />)
-    expect(component.find('.ordered-counselings').length).toBe(1)
-    component.find('.has-been-ordered .no input').simulate('change')
+    const component = mount(<VoluntaryCounselings onUpdate={onUpdate} />)
+    expect(component.find('.voluntary-counselings').length).toBe(1)
+    component.find('.sought-treatment .no input').simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -21,11 +21,10 @@ describe('The OrderedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      HasBeenOrdered: 'Yes',
+      SoughtTreatment: 'Yes',
       ListBranch: 'No',
       List: [{
-        OrderedCounseling: {
-          ActionTaken: 'Yes',
+        VoluntaryCounseling: {
           CounselingDates: {
             from: {
               date: new Date('1/1/2010')
@@ -56,8 +55,8 @@ describe('The OrderedCounselings component', () => {
         }
       }]
     }
-    const component = mount(<OrderedCounselings {...expected} />)
-    component.find('.seekers .seekers-employer input').simulate('change')
+    const component = mount(<VoluntaryCounselings {...expected} />)
+    component.find('input[name="TreatmentProviderName"]').simulate('change')
     expect(updates).toBe(2)
   })
 })

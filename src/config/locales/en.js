@@ -6256,7 +6256,8 @@ const en = {
     alcohol: {
       heading: {
         negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
-        orderedCounseling: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?'
+        orderedCounseling: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?',
+        voluntaryCounseling: 'Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?'
       },
       negativeImpact: {
         heading: {
@@ -6323,6 +6324,23 @@ const en = {
           description: 'Summary of counselings',
           summary: 'Provide your counseling details below',
           appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        }
+      },
+      voluntaryCounseling: {
+        heading: {
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
+          completedTreatment: 'Did you successfully complete the treatment program?',
+          noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Do you have additional instances where you have voluntarily sought counseling or treatment as a result of your use of alcohol to enter?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
         }

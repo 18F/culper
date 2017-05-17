@@ -9,6 +9,7 @@ import { updateApplication, reportErrors, reportCompletion } from '../../../acti
 import { SectionViews, SectionView } from '../SectionView'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
 import OrderedCounselings from './Alcohol/OrderedCounselings'
+import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
 
 class SubstanceUse extends ValidationElement {
   constructor (props) {
@@ -24,6 +25,7 @@ class SubstanceUse extends ValidationElement {
     this.onValidate = this.onValidate.bind(this)
     this.updateNegativeImpacts = this.updateNegativeImpacts.bind(this)
     this.updateOrderedCounselings = this.updateOrderedCounselings.bind(this)
+    this.updateVoluntaryCounselings = this.updateVoluntaryCounselings.bind(this)
   }
 
   componentDidMount () {
@@ -53,6 +55,10 @@ class SubstanceUse extends ValidationElement {
     this.onUpdate('OrderedCounselings', values)
   }
 
+  updateVoluntaryCounselings (values) {
+    this.onUpdate('VoluntaryCounselings', values)
+  }
+
   /**
    * Report errors and completion status
    */
@@ -64,10 +70,12 @@ class SubstanceUse extends ValidationElement {
 
     let cstatus = 'neutral'
     if (this.hasStatus('negative', status, true) &&
-      this.hasStatus('ordered', status, true)) {
+      this.hasStatus('ordered', status, true) &&
+      this.hasStatus('voluntary', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('negative', status, false) ||
-      this.hasStatus('ordered', status, false)) {
+      this.hasStatus('ordered', status, false) ||
+      this.hasStatus('voluntary', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -140,6 +148,17 @@ class SubstanceUse extends ValidationElement {
               onUpdate={this.updateOrderedCounselings}
             />
           </SectionView>
+          <SectionView name="alcohol/voluntary"
+            back="psychological/intro"
+            backLabel={ i18n.t('psychological.destination.intro') }
+            next="psychological/consultations"
+            nextLabel={ i18n.t('psychological.destination.consultation') }>
+            <VoluntaryCounselings name="voluntary"
+              {...this.props.VoluntaryCounselings}
+              onValidate={this.onValidate}
+              onUpdate={this.updateVoluntaryCounselings}
+            />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -157,6 +176,7 @@ function mapStateToProps (state) {
     SubstanceUse: substance,
     NegativeImpacts: substance.NegativeImpacts || {},
     OrderedCounselings: substance.OrderedCounselings || {},
+    VoluntaryCounselings: substance.VoluntaryCounselings || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }
