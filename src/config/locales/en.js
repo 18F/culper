@@ -6252,7 +6252,48 @@ const en = {
       }
     }
   },
-
+  substance: {
+    alcohol: {
+      heading: {
+        negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?'
+      },
+      negativeImpact: {
+        heading: {
+          occurred: 'Provide the month/year when this negative impact occurred',
+          circumstances: 'Provide an explanation of the circumstances and the negative impact',
+          used: 'Provide dates of involvement or use'
+        },
+        label: {
+          circumstances: 'Circumstances',
+          negativeImpact: 'Negative impact'
+        },
+        help: {
+          occurred: {
+            title: 'Need help with the date the negative impact occurred?',
+            message: 'Provide the month/year when this negative impact occurred',
+            note: ''
+          },
+          circumstances: {
+            title: 'Need help with the circumstances?',
+            message: 'Provide an explanation of the circumstances and the negative impact',
+            note: ''
+          },
+          used: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide dates of involvement or use',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of negative impacts',
+          summary: 'Provide your negative impact details below',
+          appendTitle: 'Has the use of alcohol had other negative impacts on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
+          appendLabel: 'Add another negative impact',
+          itemType: 'Negative impact'
+        }
+      }
+    }
+  },
   alias: {
     maiden: {
       help: {

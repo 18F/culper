@@ -118,10 +118,19 @@ const navigation = [
     name: 'Substance use',
     title: 'Substance use',
     url: 'substance',
-    hidden: true,
+    hidden: false,
     subsections: [
-      { name: 'Illegal use of drugs and drug activity', url: 'drugs' },
-      { name: 'Use of alcohol', url: 'alcohol' }
+      { hidden: true, name: 'Illegal use of drugs and drug activity', url: 'drugs' },
+      {
+        name: 'Use of alcohol',
+        url: 'alcohol',
+        subsections: [
+          {
+            name: 'Negative impact',
+            url: 'negative'
+          }
+        ]
+      }
     ]
   },
   {
