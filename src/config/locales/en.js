@@ -6255,7 +6255,8 @@ const en = {
   substance: {
     alcohol: {
       heading: {
-        negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?'
+        negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
+        orderedCounseling: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?'
       },
       negativeImpact: {
         heading: {
@@ -6290,6 +6291,40 @@ const en = {
           appendTitle: 'Has the use of alcohol had other negative impacts on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
           appendLabel: 'Add another negative impact',
           itemType: 'Negative impact'
+        }
+      },
+      orderedCounseling: {
+        heading: {
+          seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
+          actionTaken: 'Did you take action to seek counseling or treatment?',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
+          completedTreatment: 'Did you successfully complete the treatment program?',
+          noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
+        },
+        label: {
+          seekers: 'Check all that apply',
+          otherSeeker: 'Provide explanation'
+        },
+        seekers: {
+          label: {
+            employer: 'An employer, military commander, or employee assistance program',
+            medicalProfessional: 'A medical professional',
+            mentalHealthProfessional: 'A mental health professional',
+            courtOfficial: 'A court official / judge',
+            notOrdered: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above',
+            other: 'Other (Provide Explanation)'
+          }
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
         }
       }
     }

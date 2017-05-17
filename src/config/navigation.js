@@ -128,6 +128,10 @@ const navigation = [
           {
             name: 'Negative impact',
             url: 'negative'
+          },
+          {
+            name: 'Mandatory counseling or treatment',
+            url: 'ordered'
           }
         ]
       }

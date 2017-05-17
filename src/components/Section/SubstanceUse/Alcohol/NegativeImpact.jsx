@@ -58,19 +58,24 @@ export default class NegativeImpact extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')}
+          adjustFor="labels"
           help={'substance.alcohol.negativeImpact.help.circumstances'}>
-          <Textarea name="Circumstances"
-            {...this.props.Circumstances}
-            label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
-            onUpdate={this.updateCircumstances}
-            onValidate={this.props.onValidate}
-          />
-          <Textarea name="NegativeImpact"
-            {...this.props.NegativeImpact}
-            label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
-            onUpdate={this.updateNegativeImpact}
-            onValidate={this.props.onValidate}
-          />
+          <Field>
+            <Textarea name="Circumstances"
+              {...this.props.Circumstances}
+              label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
+              onUpdate={this.updateCircumstances}
+              onValidate={this.props.onValidate}
+            />
+          </Field>
+          <Field>
+            <Textarea name="NegativeImpact"
+              {...this.props.NegativeImpact}
+              label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
+              onUpdate={this.updateNegativeImpact}
+              onValidate={this.props.onValidate}
+            />
+          </Field>
         </Field>
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.used')}
           help={'substance.alcohol.negativeImpact.help.used'}>

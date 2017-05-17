@@ -8,6 +8,7 @@ import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
+import OrderedCounselings from './Alcohol/OrderedCounselings'
 
 class SubstanceUse extends ValidationElement {
   constructor (props) {
@@ -22,6 +23,7 @@ class SubstanceUse extends ValidationElement {
     this.handleReview = this.handleReview.bind(this)
     this.onValidate = this.onValidate.bind(this)
     this.updateNegativeImpacts = this.updateNegativeImpacts.bind(this)
+    this.updateOrderedCounselings = this.updateOrderedCounselings.bind(this)
   }
 
   componentDidMount () {
@@ -47,6 +49,10 @@ class SubstanceUse extends ValidationElement {
     this.onUpdate('NegativeImpacts', values)
   }
 
+  updateOrderedCounselings (values) {
+    this.onUpdate('OrderedCounselings', values)
+  }
+
   /**
    * Report errors and completion status
    */
@@ -57,9 +63,11 @@ class SubstanceUse extends ValidationElement {
     }
 
     let cstatus = 'neutral'
-    if (this.hasStatus('negative', status, true)) {
+    if (this.hasStatus('negative', status, true) &&
+      this.hasStatus('ordered', status, true)) {
       cstatus = 'complete'
-    } else if (this.hasStatus('negative', status, false)) {
+    } else if (this.hasStatus('negative', status, false) ||
+      this.hasStatus('ordered', status, false)) {
       cstatus = 'incomplete'
     }
 
@@ -121,6 +129,17 @@ class SubstanceUse extends ValidationElement {
               onUpdate={this.updateNegativeImpacts}
             />
           </SectionView>
+          <SectionView name="alcohol/ordered"
+            back="psychological/intro"
+            backLabel={ i18n.t('psychological.destination.intro') }
+            next="psychological/consultations"
+            nextLabel={ i18n.t('psychological.destination.consultation') }>
+            <OrderedCounselings name="ordered"
+              {...this.props.OrderedCounselings}
+              onValidate={this.onValidate}
+              onUpdate={this.updateOrderedCounselings}
+            />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -130,15 +149,16 @@ class SubstanceUse extends ValidationElement {
 function mapStateToProps (state) {
   let section = state.section || {}
   let app = state.application || {}
-  let substanceUse = app.SubstanceUse || {}
+  let substance = app.SubstanceUse || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
     Section: section,
-    SubstanceUse: substanceUse,
-    NegativeImpacts: substanceUse.NegativeImpacts || {},
-    Errors: errors.substanceUse || [],
-    Completed: completed.substanceUse || []
+    SubstanceUse: substance,
+    NegativeImpacts: substance.NegativeImpacts || {},
+    OrderedCounselings: substance.OrderedCounselings || {},
+    Errors: errors.substance || [],
+    Completed: completed.substance || []
   }
 }
 
