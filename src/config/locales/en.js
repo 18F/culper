@@ -6171,6 +6171,69 @@ const en = {
           appendMessage: [],
           append: 'Add another sponsorship'
         }
+      },
+      political: {
+        heading: {
+          title: 'Have you EVER held political office in a foreign country?',
+          position: 'Provide the position held',
+          dates: 'Provide the dates you held political office',
+          country: 'Provide the name of the country involved',
+          reason: 'Provide the reason(s) for these activities',
+          eligibility: 'Provide your current eligibility to hold political office in a foreign country'
+        },
+        label: {
+          idk: 'I don\'t know',
+          birthplace: 'Was this person born in the United States of America?'
+        },
+        para: {
+          or: 'or'
+        },
+        placeholder: {
+          city: 'Please enter the city of birth',
+          country: 'Please enter the country of birth'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government sponsorship?',
+            message: 'If you have any foreign government sponsorship then select "yes".',
+            note: ''
+          },
+          position: {
+            title: 'Need help with the position?',
+            message: 'Provide the position held.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates you held political office.',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country involved?',
+            message: 'Provide the country involved.',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason?',
+            message: 'Describe the reason for these activities.',
+            note: ''
+          },
+          eligibility: {
+            title: 'Need help with your current eligibility?',
+            message: 'Provide your current eligibility for the political office.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign political office',
+            item: 'Office',
+            unknown: 'Provide details of political office below'
+          },
+          appendTitle: 'Have you EVER held any additional political office in a foreign country?',
+          appendMessage: [],
+          append: 'Add another political office'
+        }
       }
 
     }

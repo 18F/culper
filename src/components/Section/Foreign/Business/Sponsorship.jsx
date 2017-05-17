@@ -111,7 +111,6 @@ export default class Sponsorship extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
-                     appendMessage={i18n.m('foreign.business.sponsorship.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}>
             <h3>{i18n.t('foreign.business.sponsorship.heading.name')}</h3>
             <Name name="Name"

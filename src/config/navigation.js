@@ -107,7 +107,7 @@ const navigation = [
           { name: 'Event participation', url: 'conferences' },
           { name: 'Immediate family contact', url: 'contact' },
           { name: 'Foreign national sponsorship', url: 'sponsorship' },
-          { hidden: true, name: 'Held political office', url: 'political' },
+          { name: 'Held political office', url: 'political' },
           { hidden: true, name: 'Voting', url: 'voting' }
         ]
       },
