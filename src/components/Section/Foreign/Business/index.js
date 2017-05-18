@@ -6,4 +6,5 @@ import Conferences from './Conferences'
 import Contact from './Contact'
 import Sponsorship from './Sponsorship'
 import Political from './Political'
-export { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political }
+import Voting from './Voting'
+export { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting }

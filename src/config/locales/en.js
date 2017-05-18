@@ -6234,6 +6234,52 @@ const en = {
           appendMessage: [],
           append: 'Add another political office'
         }
+      },
+      voting: {
+        heading: {
+          title: 'Have you EVER voted in the election of a foreign country?',
+          date: 'Provide the date you voted in the foreign election',
+          country: 'Provide the name of the country involved',
+          reason: 'Provide the reason(s) for these activities',
+          eligibility: 'Provide your current eligibility to vote in a foreign country'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government sponsorship?',
+            message: 'If you have any foreign government sponsorship then select "yes".',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date?',
+            message: 'Provide the date you voted.',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country you voted in?',
+            message: 'Provide the country name.',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason?',
+            message: 'Describe the reason for these activities.',
+            note: ''
+          },
+          eligibility: {
+            title: 'Need help with your current eligibility?',
+            message: 'Provide your current eligibility for voting.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign elections',
+            item: 'Election',
+            unknown: 'Provide details of election below'
+          },
+          appendTitle: 'Do you have other instances of voting in the election of a foreign country to report?',
+          appendMessage: [],
+          append: 'Add another election'
+        }
       }
 
     }

@@ -108,7 +108,7 @@ const navigation = [
           { name: 'Immediate family contact', url: 'contact' },
           { name: 'Foreign national sponsorship', url: 'sponsorship' },
           { name: 'Held political office', url: 'political' },
-          { hidden: true, name: 'Voting', url: 'voting' }
+          { name: 'Voting', url: 'voting' }
         ]
       },
       { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }

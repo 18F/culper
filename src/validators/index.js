@@ -54,6 +54,7 @@ import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
 import ForeignBusinessContactValidator from './foreignbusinesscontact'
 import ForeignBusinessSponsorshipValidator from './foreignbusinesssponsorship'
 import ForeignBusinessPoliticalValidator from './foreignbusinesspolitical'
+import ForeignBusinessVotingValidator from './foreignbusinessvoting'
 
 export {
   AddressValidator,
@@ -115,5 +116,6 @@ export {
   ForeignBusinessConferencesValidator,
   ForeignBusinessContactValidator,
   ForeignBusinessSponsorshipValidator,
-  ForeignBusinessPoliticalValidator
+  ForeignBusinessPoliticalValidator,
+  ForeignBusinessVotingValidator
 }
