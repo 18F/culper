@@ -8,6 +8,7 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { ValidationElement, IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
+import Travel from './Travel'
 import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting } from './Business'
 
@@ -34,6 +35,7 @@ class Foreign extends ValidationElement {
     this.updateSponsorship = this.updateSponsorship.bind(this)
     this.updatePolitical = this.updatePolitical.bind(this)
     this.updateVoting = this.updateVoting.bind(this)
+    this.updateTravel = this.updateTravel.bind(this)
   }
 
   componentDidMount () {
@@ -79,7 +81,8 @@ class Foreign extends ValidationElement {
         this.hasStatus('contact', status, true) &&
         this.hasStatus('sponsorship', status, true) &&
         this.hasStatus('political', status, true) &&
-        this.hasStatus('voting', status, true)) {
+        this.hasStatus('voting', status, true) &&
+        this.hasStatus('travel', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('passport', status, false) ||
                this.hasStatus('contacts', status, false) ||
@@ -95,7 +98,8 @@ class Foreign extends ValidationElement {
                this.hasStatus('contact', status, false) ||
                this.hasStatus('sponsorship', status, false) ||
                this.hasStatus('political', status, false) ||
-               this.hasStatus('voting', status, false)) {
+               this.hasStatus('voting', status, false) ||
+               this.hasStatus('travel', status, false)) {
       cstatus = 'incomplete'
     }
     let completed = {
@@ -163,6 +167,10 @@ class Foreign extends ValidationElement {
 
   updateVoting (values) {
     this.onUpdate('Voting', values)
+  }
+
+  updateTravel (values) {
+    this.onUpdate('Travel', values)
   }
 
   /**
@@ -292,6 +300,11 @@ class Foreign extends ValidationElement {
             <Voting name="Voting"
                     {...this.props.Voting}
                     onUpdate={this.updateVoting}
+                    onValidate={this.handleValidation}
+                    />
+            <Travel name="Travel"
+                    {...this.props.Travel}
+                    onUpdate={this.updateTravel}
                     onValidate={this.handleValidation}
                     />
           </SectionView>
@@ -517,6 +530,11 @@ class Foreign extends ValidationElement {
                        backLabel={i18n.t('foreign.destination.business.voting')}
                        next="foreign/review"
                        nextLabel={i18n.t('foreign.destination.review')}>
+            <Travel name="Travel"
+                    {...this.props.Travel}
+                    onUpdate={this.updateTravel}
+                    onValidate={this.handleValidation}
+                    />
           </SectionView>
         </SectionViews>
       </div>
@@ -562,6 +580,7 @@ function mapStateToProps (state) {
     Sponsorship: foreign.Sponsorship || {},
     Political: foreign.Political || {},
     Voting: foreign.Voting || {},
+    Travel: foreign.Travel || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names

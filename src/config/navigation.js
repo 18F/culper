@@ -111,7 +111,7 @@ const navigation = [
           { name: 'Voting', url: 'voting' }
         ]
       },
-      { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }
+      { name: 'Foreign countries you have visited', url: 'travel' }
     ]
   },
   {

@@ -6281,7 +6281,125 @@ const en = {
           append: 'Add another election'
         }
       }
-
+    },
+    travel: {
+      heading: {
+        outside: 'Have you traveled outside the U.S. in the last past seven (7) years?',
+        official: 'Has your travel in the last (7) years been solely for U.S. Government business/military overseas assignment on official government orders?',
+        country: 'Provide the country visited',
+        dates: 'Provide the dates of your travel to this country',
+        days: 'Provide the total number of days involved in the visit',
+        purpose: 'Provide the purpose of the travel to this country',
+        questioned: 'While traveling to, or in this country, were you questioned, searched, or otherwise detained (other than for normal customs requirements) by the local customs or security service officials when entering or leaving this country?',
+        encounter: 'While traveling to or in this country, were you involved in any encounter with the police?',
+        contacted: 'While traveling to or in this country, were you contacted by, or in contact with any person known or suspected of being involved or associated with foreign intelligence, terrorist, security, or military organizations?',
+        counter: 'While traveling to, or in this country, were you involved in any counterintelligence or security issues not reported?',
+        interest: 'While traveling to or in this country, were you contacted by, or in contact with anyone exhibiting excessive knowledge of or undue interest in you or your job?',
+        sensitive: 'While traveling to or in this country, were you contacted by, or in contact with anyone attempting to obtain classified information or unclassified, sensitive information?',
+        threatened: 'While traveling to, or in this country, were you threatened, coerced, or pressured in any way to cooperate with a foreign government official or foreign intelligence or security service?',
+        explanation: 'Provide explanation'
+      },
+      para: {
+        personal: 'I.e., no personal trips in conjuction with the official U.S. Government business.',
+        checkall: 'Check all that apply',
+        explanation: 'If yes provide explanation.',
+        timeframe: [
+          'Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards.',
+          'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjuction with the official U.S. Government travel.'
+        ]
+      },
+      label: {
+        one: '1-5',
+        six: '6-10',
+        eleven: '11-20',
+        twentyone: '21-30',
+        more: 'More than 30',
+        many: 'Many short trips',
+        business: 'Business/professional',
+        volunteer: 'Volunteer activites',
+        education: 'Education',
+        tourism: 'Tourism',
+        conference: 'Trade shows, conferences, and seminars',
+        family: 'Visit family or friends',
+        other: 'Other'
+      },
+      help: {
+        outside: {
+          title: 'Have you traveled outside the U.S.?',
+          message: 'If it was within the last seven years then click Yes.',
+          note: ''
+        },
+        official: {
+          title: 'Was the travel solely U.S. Government related?',
+          message: 'If it was then click Yes.',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the country?',
+          message: 'Provide the name of the country you visited.',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the dates?',
+          message: 'Provide the approximate dates of your visit.',
+          note: ''
+        },
+        days: {
+          title: 'Need help with how many days?',
+          message: 'Provide how many days the visit lasted.',
+          note: ''
+        },
+        purpose: {
+          title: 'Need help with the purpose?',
+          message: 'Provide the purpose of the visit.',
+          note: ''
+        },
+        questioned: {
+          title: 'Were you questioned during the visit?',
+          message: 'Provide an explanation for the questioning.',
+          note: ''
+        },
+        encounter: {
+          title: 'Did you encounter the police during the visit?',
+          message: 'Provide an explanation for police involvement.',
+          note: ''
+        },
+        contacted: {
+          title: 'Were you contacted of any suspicious people?',
+          message: 'Provide an explanation of the contact.',
+          note: ''
+        },
+        counter: {
+          title: 'Were you involved in any security issues?',
+          message: 'Provide a description of your participation or experience.',
+          note: ''
+        },
+        interest: {
+          title: 'Did anyone seem to have a strong interest in your visit?',
+          message: 'Provide a description detailing the circumstances.',
+          note: ''
+        },
+        sensitive: {
+          title: 'Did anyone attempt to obtain sensitive information from you?',
+          message: 'Provide an accurate description.',
+          note: ''
+        },
+        threatened: {
+          title: 'Any coercion or pressure from the foreign government?',
+          message: 'Provide a detailed account of the circumstances.',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of foreign travel',
+          item: 'Travel',
+          unknown: 'Provide details of your travel below'
+        },
+        appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for othe than solely U.S. Government business on official government orders?',
+        appendMessage: [],
+        append: 'Add another travel'
+      }
     }
   },
   legal: {

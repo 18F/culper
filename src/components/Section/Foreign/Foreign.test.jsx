@@ -138,6 +138,10 @@ describe('The foreign section', () => {
       {
         section: 'business/voting',
         action: (component) => { component.find('.foreign-business-voting .branch .yes input').simulate('change') }
+      },
+      {
+        section: 'travel',
+        action: (component) => { component.find('.foreign-travel .branch .yes input').at(0).simulate('change') }
       }
     ]
 
