@@ -6439,7 +6439,7 @@ const en = {
         needmore: 'Since you answered yes we need more information',
         sentenceDescription: 'Provide a description of the sentence',
         exceedsYear: 'Were you sentenced to imprisonment for a term exceeding 1 year?',
-        incarcerated: 'Were you incarcerated as aresult of that sentence for not less than 1 year?',
+        incarcerated: 'Were you incarcerated as a result of that sentence for not less than 1 year?',
         incarcerationDates: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
         probationDates: 'If conviction resulted in probation or parole, provide the  dates of probation or parole',
         awaitingTrial: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
