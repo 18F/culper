@@ -136,6 +136,10 @@ const navigation = [
           {
             name: 'Voluntary counseling or treatment',
             url: 'voluntary'
+          },
+          {
+            name: 'Additional instances',
+            url: 'additional'
           }
         ]
       }
