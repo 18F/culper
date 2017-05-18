@@ -6319,7 +6319,7 @@ const en = {
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
-          treatmentProviderTelephone: 'Provide telephone number',
+          treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
           completedTreatment: 'Did you successfully complete the treatment program?',
           noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
         },
@@ -6343,6 +6343,43 @@ const en = {
           appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
+        },
+        help: {
+          seekers: {
+            title: 'Need help with determining who has ordered you to seek treatment?',
+            message: 'Check all who ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol',
+            note: ''
+          },
+          counselingDates: {
+            title: 'Need help with the counseling dates?',
+            message: 'Provide the dates when you were in counseling or treatment',
+            note: ''
+          },
+          actionTaken: {
+            title: 'Need help with action taken to seek counseling or treatment',
+            message: 'Select if you have taken action to seek counseling or treatment.',
+            note: ''
+          },
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone number of the treatment provider',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          }
         }
       },
       voluntaryCounseling: {
@@ -6360,6 +6397,38 @@ const en = {
           appendTitle: 'Do you have additional instances where you have voluntarily sought counseling or treatment as a result of your use of alcohol to enter?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
+        },
+        help: {
+          counselingDates: {
+            title: 'Need help with the counseling dates?',
+            message: 'Provide the dates of counseling or treatment',
+            note: ''
+          },
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone number of the treatment provider',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          },
+          noCompletedTreatment: {
+            title: 'Need help with this explanation?',
+            message: 'Provide details as to why you responded No to having successfully completed the treatment program',
+            note: ''
+          }
         }
       },
       receivedCounseling: {
@@ -6380,6 +6449,48 @@ const en = {
           appendTitle: 'Did you receive alcohol-related counseling or treatment another time?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
+        },
+        help: {
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          agencyName: {
+            title: 'Need help with the agency name?',
+            message: 'Provide the name of agency/organization where counseling/treatment was provided',
+            note: ''
+          },
+          agencyAddress: {
+            title: 'Need help with the agency address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentBeganDate: {
+            title: 'Need help with when treatment began?',
+            message: 'Provide the date counseling or treatment began',
+            note: ''
+          },
+          treatmentEndDate: {
+            title: 'Need help with when treatment ended?',
+            message: 'Provide the date counseling or treatment ended',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          },
+          noCompletedTreatment: {
+            title: 'Need help with this explanation?',
+            message: 'Provide details as to why you responded No to having successfully completed the treatment program',
+            note: ''
+          }
         }
       }
     }

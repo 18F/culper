@@ -65,14 +65,17 @@ export default class VoluntaryCounseling extends ValidationElement {
               onValidate={this.props.onValidate}
             />
           </Field>
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderName')}>
+          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderName')}
+            help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderName'}>
             <Text name="TreatmentProviderName"
               {...this.props.TreatmentProviderName}
               onUpdate={this.updateTreatmentProviderName}
               onValidate={this.props.onValidate}
             />
           </Field>
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderAddress')}>
+          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderAddress')}
+            adjustFor="address"
+            help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderAddress'}>
             <Address name="TreatmentProviderAddress"
               className="provider-address"
               {...this.props.TreatmentProviderAddress}
@@ -80,7 +83,8 @@ export default class VoluntaryCounseling extends ValidationElement {
               onValidate={this.props.onValidate}
             />
           </Field>
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}>
+          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}
+            help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'}>
             <Telephone name="TreatmentProviderTelephone"
               className="provider-telephone"
               {...this.props.TreatmentProviderTelephone}
@@ -91,6 +95,7 @@ export default class VoluntaryCounseling extends ValidationElement {
 
           <h3>{i18n.t('substance.alcohol.voluntaryCounseling.heading.completedTreatment')}</h3>
           <Branch name="CompletedTreatment"
+            help={'substance.alcohol.voluntaryCounseling.help.completedTreatment'}
             className="completed-treatment"
             value={this.props.CompletedTreatment}
             onValidate={this.props.onValidate}
@@ -98,7 +103,8 @@ export default class VoluntaryCounseling extends ValidationElement {
           </Branch>
 
           <Show when={this.props.CompletedTreatment === 'No'}>
-            <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment')}>
+            <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment')}
+            help={'substance.alcohol.voluntaryCounseling.help.noCompletedTreatment'}>
               <Textarea name="NoCompletedTreatmentExplanation"
                 {...this.props.NoCompletedTreatmentExplanation}
                 onUpdate={this.updateNoCompletedTreatmentExplanation}

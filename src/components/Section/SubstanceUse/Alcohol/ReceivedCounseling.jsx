@@ -101,14 +101,16 @@ export default class ReceivedCounseling extends ValidationElement {
   render () {
     return (
       <div className="voluntary-counseling">
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
+          help={'substance.alcohol.receivedCounseling.help.treatmentProviderName'}>
             <Text name="TreatmentProviderName"
               {...this.props.TreatmentProviderName}
               onUpdate={this.updateTreatmentProviderName}
               onValidate={this.props.onValidate}
             />
           </Field>
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
+            help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}>
             <Address name="TreatmentProviderAddress"
               className="provider-address"
               {...this.props.TreatmentProviderAddress}
@@ -117,7 +119,8 @@ export default class ReceivedCounseling extends ValidationElement {
             />
           </Field>
 
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
+            help={'substance.alcohol.receivedCounseling.help.agencyName'}>
             <Text name="AgencyName"
               {...this.props.AgencyName}
               onUpdate={this.updateAgencyName}
@@ -136,7 +139,7 @@ export default class ReceivedCounseling extends ValidationElement {
           </Branch>
 
           <Show when={this.props.UseSameAddress === 'No'}>
-            <Field>
+            <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}>
               <Address name="AgencyAddress"
                 className="agency-address"
                 {...this.props.AgencyAddress}
@@ -146,7 +149,8 @@ export default class ReceivedCounseling extends ValidationElement {
             </Field>
           </Show>
 
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}
+            help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}>
             <DateControl name="TreatmentBeganDate"
               className="treatment-began-date"
               {...this.props.TreatmentBeganDate}
@@ -155,7 +159,8 @@ export default class ReceivedCounseling extends ValidationElement {
             />
           </Field>
 
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}
+            help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}>
             <DateControl name="TreatmentEndDate"
               className="treatment-end-date"
               {...this.props.TreatmentEndDate}
@@ -174,6 +179,7 @@ export default class ReceivedCounseling extends ValidationElement {
 
           <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}</h3>
           <Branch name="CompletedTreatment"
+            help={'substance.alcohol.receivedCounseling.help.completedTreatment'}
             className="completed-treatment"
             value={this.props.CompletedTreatment}
             onValidate={this.props.onValidate}
@@ -181,7 +187,8 @@ export default class ReceivedCounseling extends ValidationElement {
           </Branch>
 
           <Show when={this.props.CompletedTreatment === 'No'}>
-            <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}>
+            <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
+              help={'substance.alcohol.receivedCounseling.help.noCompletedTreatment'}>
               <Textarea name="NoCompletedTreatmentExplanation"
                 {...this.props.NoCompletedTreatmentExplanation}
                 onUpdate={this.updateNoCompletedTreatmentExplanation}
