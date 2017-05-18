@@ -6253,6 +6253,22 @@ const en = {
     }
   },
   substance: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      title: 'Let&rsquo;s make sure everything looks right',
+      para: 'View all the sections associated with substance abuse'
+    },
+    destination: {
+      police: {
+        negative: 'Negative impact',
+        ordered: 'Mandatory counseling or treatment',
+        voluntary: 'Voluntary counseling or treatment',
+        additional: 'Additional instances'
+      },
+      review: 'Review substance use'
+    },
     alcohol: {
       heading: {
         negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
@@ -6354,6 +6370,8 @@ const en = {
           agencyName: 'Provide the name of agency/organization where counseling/treatment was provided',
           agencyAddress: 'Provide the address of agency/organization where counseling/treatment was provided',
           completedTreatment: 'Did you successfully complete your counseling or treatment?',
+          treatmentBeganDate: 'Provide the date counseling or treatment began',
+          treatmentEndDate: 'Provide the date counseling or treatment ended',
           noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
         },
         collection: {

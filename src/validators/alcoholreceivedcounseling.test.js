@@ -5,6 +5,40 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
+          UseSameAddress: 'Yes',
+          TreatmentProviderAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          UseSameAddress: 'No',
+          TreatmentProviderAddress: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202'
+          }
+        },
+        expected: false
+      }
+    ]
+    tests.forEach(test => {
+      expect(new ReceivedCounselingValidator(test.state, null).validAddress()).toBe(test.expected)
+    })
+  })
+
+  it('can validate received counseling', () => {
+    const tests = [
+      {
+        state: {
           CounselingDates: {
             from: {
               date: new Date('1/1/2010')
@@ -20,12 +54,25 @@ describe('received counseling component validation', function () {
           AgencyName: {
             value: 'The agency name'
           },
+          UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
             addressType: 'United States',
             address: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
             zipcode: '22202'
+          },
+          TreatmentBeganDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          TreatmentEndDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
           },
           CompletedTreatment: 'Yes'
         },
@@ -75,15 +122,7 @@ describe('received counseling component validation', function () {
           List: [
             {
               ReceivedCounseling: {
-                CounselingDates: {
-                  from: {
-                    date: new Date('1/1/2010')
-                  },
-                  to: {
-                    date: new Date('1/1/2012')
-                  },
-                  present: false
-                },
+                UseSameAddress: 'Yes',
                 TreatmentProviderName: {
                   value: 'The name'
                 },
@@ -96,6 +135,18 @@ describe('received counseling component validation', function () {
                 },
                 AgencyName: {
                   value: 'The agency name'
+                },
+                TreatmentBeganDate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                TreatmentEndDate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
                 },
                 CompletedTreatment: 'Yes'
               }

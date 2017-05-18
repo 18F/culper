@@ -31,7 +31,7 @@ class SubstanceUse extends ValidationElement {
   }
 
   componentDidMount () {
-    let current = this.launch(this.props.SubstanceUse, this.props.subsection, 'intro')
+    let current = this.launch(this.props.SubstanceUse, this.props.subsection, 'negative')
     if (current !== '') {
       this.props.dispatch(push(`/form/substance/alcohol/${current}`))
     }
@@ -126,8 +126,8 @@ class SubstanceUse extends ValidationElement {
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
                   Completed={this.props.Completed}
-                  tour={i18n.t('alcohol.tour.para')}
-                  review={i18n.t('alcohol.review.para')}
+                  tour={i18n.t('substance.tour.para')}
+                  review={i18n.t('substance.review.para')}
                   onTour={this.handleTour}
                   onReview={this.handleReview}
                 />
@@ -135,10 +135,10 @@ class SubstanceUse extends ValidationElement {
             </div>
           </SectionView>
           <SectionView name="alcohol/negative"
-            back="psychological/intro"
-            backLabel={ i18n.t('psychological.destination.intro') }
-            next="psychological/consultations"
-            nextLabel={ i18n.t('psychological.destination.consultation') }>
+            back="foreign/business/conferences"
+            backLabel={ i18n.t('foreign.destination.business.events') }
+            next="substance/alcohol/ordered"
+            nextLabel={ i18n.t('substance.destination.police.ordered') }>
             <NegativeImpacts name="negative"
               {...this.props.NegativeImpacts}
               onValidate={this.onValidate}
@@ -146,10 +146,10 @@ class SubstanceUse extends ValidationElement {
             />
           </SectionView>
           <SectionView name="alcohol/ordered"
-            back="psychological/intro"
-            backLabel={ i18n.t('psychological.destination.intro') }
-            next="psychological/consultations"
-            nextLabel={ i18n.t('psychological.destination.consultation') }>
+            back="substance/alcohol/negative"
+            backLabel={ i18n.t('substance.destination.police.negative') }
+            next="substance/alcohol/voluntary"
+            nextLabel={ i18n.t('substance.destination.police.voluntary') }>
             <OrderedCounselings name="ordered"
               {...this.props.OrderedCounselings}
               onValidate={this.onValidate}
@@ -157,10 +157,10 @@ class SubstanceUse extends ValidationElement {
             />
           </SectionView>
           <SectionView name="alcohol/voluntary"
-            back="psychological/intro"
-            backLabel={ i18n.t('psychological.destination.intro') }
-            next="psychological/consultations"
-            nextLabel={ i18n.t('psychological.destination.consultation') }>
+            back="substance/alcohol/ordered"
+            backLabel={ i18n.t('substance.destination.police.ordered') }
+            next="substance/alcohol/additional"
+            nextLabel={ i18n.t('substance.destination.police.additional') }>
             <VoluntaryCounselings name="voluntary"
               {...this.props.VoluntaryCounselings}
               onValidate={this.onValidate}
@@ -168,10 +168,42 @@ class SubstanceUse extends ValidationElement {
             />
           </SectionView>
           <SectionView name="alcohol/additional"
-            back="psychological/intro"
-            backLabel={ i18n.t('psychological.destination.intro') }
-            next="psychological/consultations"
-            nextLabel={ i18n.t('psychological.destination.consultation') }>
+            back="substance/alcohol/voluntary"
+            backLabel={ i18n.t('substance.destination.police.voluntary') }
+            next="substance/review"
+            nextLabel={ i18n.t('substance.destination.review') }>
+            <ReceivedCounselings name="additional"
+              {...this.props.ReceivedCounselings}
+              onValidate={this.onValidate}
+              onUpdate={this.updateReceivedCounselings}
+            />
+          </SectionView>
+
+          <SectionView name="review"
+            titel={i18n.t('substance.review.title')}
+            back="substance/alcohol/additional"
+            backLabel={ i18n.t('substance.destination.police.additional') }
+            showTop={true}
+            next="alcohol/ordered"
+            nextLabel={ i18n.t('substance.destination.police.ordered') }>
+            <NegativeImpacts name="negative"
+              {...this.props.NegativeImpacts}
+              onValidate={this.onValidate}
+              onUpdate={this.updateNegativeImpacts}
+            />
+            <hr />
+            <OrderedCounselings name="ordered"
+              {...this.props.OrderedCounselings}
+              onValidate={this.onValidate}
+              onUpdate={this.updateOrderedCounselings}
+            />
+            <hr />
+            <VoluntaryCounselings name="voluntary"
+              {...this.props.VoluntaryCounselings}
+              onValidate={this.onValidate}
+              onUpdate={this.updateVoluntaryCounselings}
+            />
+            <hr />
             <ReceivedCounselings name="additional"
               {...this.props.ReceivedCounselings}
               onValidate={this.onValidate}

@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import AddressValidator from './address'
-import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
+import { validBranch, validGenericTextfield, validDateField } from './helpers'
 
 export default class ReceivedCounselingsValidator {
   constructor (state, props) {
@@ -47,6 +47,10 @@ export class ReceivedCounselingValidator {
     this.treatmentProviderName = state.TreatmentProviderName
     this.treatmentProviderAddress = state.TreatmentProviderAddress
     this.agencyName = state.AgencyName
+    this.agencyAddress = state.AgencyAddress
+    this.useSameAddress = state.UseSameAddress
+    this.treatmentBeganDate = state.TreatmentBeganDate
+    this.treatmentEndDate = state.TreatmentEndDate
     this.completedTreatment = state.CompletedTreatment
     this.noCompletedTreatmentExplanation = state.NoCompletedTreatmentExplanation
   }
@@ -62,10 +66,21 @@ export class ReceivedCounselingValidator {
     }
   }
 
+  validAddress () {
+    if (this.useSameAddress === 'Yes') {
+      return new AddressValidator(this.treatmentProviderAddress).isValid()
+    }
+    return new AddressValidator(this.treatmentProviderAddress).isValid() &&
+      new AddressValidator(this.agencyAddress).isValid()
+  }
+
   isValid () {
     return validGenericTextfield(this.treatmentProviderName) &&
-      new AddressValidator(this.treatmentProviderAddress).isValid() &&
+      validBranch(this.useSameAddress) &&
+      this.validAddress() &&
       validGenericTextfield(this.agencyName) &&
-      this.validCompletedTreatment()
+      this.validCompletedTreatment() &&
+      validDateField(this.treatmentBeganDate) &&
+      validDateField(this.treatmentEndDate)
   }
 }

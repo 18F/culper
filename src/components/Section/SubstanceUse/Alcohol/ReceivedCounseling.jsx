@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Text, ValidationElement, Field, Textarea, Branch, Show } from '../../../Form'
+import { Address, DateControl, Checkbox, Text, ValidationElement, Field, Textarea, Branch, Show } from '../../../Form'
 
 export default class ReceivedCounseling extends ValidationElement {
   constructor (props) {
@@ -11,6 +11,10 @@ export default class ReceivedCounseling extends ValidationElement {
     this.updateTreatmentProviderAddress = this.updateTreatmentProviderAddress.bind(this)
     this.updateAgencyName = this.updateAgencyName.bind(this)
     this.updateAgencyAddress = this.updateAgencyAddress.bind(this)
+    this.updateUseSameAddress = this.updateUseSameAddress.bind(this)
+    this.updateTreatmentBeganDate = this.updateTreatmentBeganDate.bind(this)
+    this.updateTreatmentEndDate = this.updateTreatmentEndDate.bind(this)
+    this.updatePresentTreatmentEndDate = this.updatePresentTreatmentEndDate.bind(this)
     this.updateCompletedTreatment = this.updateCompletedTreatment.bind(this)
     this.updateNoCompletedTreatmentExplanation = this.updateNoCompletedTreatmentExplanation.bind(this)
   }
@@ -23,6 +27,10 @@ export default class ReceivedCounseling extends ValidationElement {
         TreatmentProviderAddress: this.props.TreatmentProviderAddress,
         AgencyName: this.props.AgencyName,
         AgencyAddress: this.props.AgencyAddress,
+        UseSameAddress: this.props.UseSameAddress,
+        TreatmentBeganDate: this.props.TreatmentBeganDate,
+        TreatmentEndDate: this.props.TreatmentEndDate,
+        PresentTreatmentEndDate: this.props.PresentTreatmentEndDate,
         CompletedTreatment: this.props.CompletedTreatment,
         NoCompletedTreatmentExplanation: this.props.NoCompletedTreatmentExplanation,
         ...updateValues
@@ -50,8 +58,44 @@ export default class ReceivedCounseling extends ValidationElement {
     this.update({AgencyName: values})
   }
 
+  updateTreatmentBeganDate (values) {
+    this.update({
+      TreatmentBeganDate: values
+    })
+  }
+
+  updateTreatmentEndDate (values) {
+    this.update({
+      TreatmentEndDate: values,
+      PresentTreatmentEndDate: false
+    })
+  }
+
+  updatePresentTreatmentEndDate (event) {
+    const checked = event.target.checked
+    if (event.target.checked) {
+      const date = new Date()
+      this.update({
+        TreatmentEndDate: {
+          date: date,
+          estimated: false,
+          month: String(date.getMonth()),
+          year: String(date.getFullYear()),
+          day: String(date.getDate())
+        },
+        PresentTreatmentEndDate: checked
+      })
+    } else {
+      this.update({ PresentTreatmentEndDate: checked })
+    }
+  }
+
   updateAgencyAddress (values) {
     this.update({AgencyAddress: values})
+  }
+
+  updateUseSameAddress (values) {
+    this.update({UseSameAddress: values})
   }
 
   render () {
@@ -81,12 +125,50 @@ export default class ReceivedCounseling extends ValidationElement {
             />
           </Field>
 
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}>
-            <Address name="AgencyAddress"
-              className="agency-address"
-              {...this.props.AgencyAddress}
-              onUpdate={this.updateAgencyAddress}
+          <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}</h3>
+          <Branch name="UseSameAddress"
+            className="use-same-address"
+            yesLabel="Same as above"
+            noLabel="Different address"
+            value={this.props.UseSameAddress}
+            onValidate={this.props.onValidate}
+            onUpdate={this.updateUseSameAddress}>
+          </Branch>
+
+          <Show when={this.props.UseSameAddress === 'No'}>
+            <Field>
+              <Address name="AgencyAddress"
+                className="agency-address"
+                {...this.props.AgencyAddress}
+                onUpdate={this.updateAgencyAddress}
+                onValidate={this.props.onValidate}
+              />
+            </Field>
+          </Show>
+
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}>
+            <DateControl name="TreatmentBeganDate"
+              className="treatment-began-date"
+              {...this.props.TreatmentBeganDate}
+              onUpdate={this.updateTreatmentBeganDate}
               onValidate={this.props.onValidate}
+            />
+          </Field>
+
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}>
+            <DateControl name="TreatmentEndDate"
+              className="treatment-end-date"
+              {...this.props.TreatmentEndDate}
+              onUpdate={this.updateTreatmentEndDate}
+              receiveProps={true}
+              onValidate={this.props.onValidate}
+            />
+            <Checkbox name="PresentTreatmentEndDate"
+              className="present-treatment-end-date"
+              label="Present"
+              value="present"
+              checked={this.props.PresentTreatmentEndDate}
+              onChange={this.updatePresentTreatmentEndDate}
             />
           </Field>
 

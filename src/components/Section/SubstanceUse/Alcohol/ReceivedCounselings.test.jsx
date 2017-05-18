@@ -25,15 +25,7 @@ describe('The ReceivedCounselings component', () => {
       ListBranch: 'No',
       List: [{
         ReceivedCounseling: {
-          CounselingDates: {
-            from: {
-              date: new Date('1/1/2010')
-            },
-            to: {
-              date: new Date('1/1/2012')
-            },
-            present: false
-          },
+          UseSameAddress: 'Yes',
           TreatmentProviderName: {
             value: 'The name'
           },
@@ -43,6 +35,21 @@ describe('The ReceivedCounselings component', () => {
             city: 'Arlington',
             state: 'Virginia',
             zipcode: '22202'
+          },
+          TreatmentBeganDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          AgencyName: {
+            value: 'The agency name'
+          },
+          TreatmentEndDate: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
           },
           CompletedTreatment: 'Yes'
         }
