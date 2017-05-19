@@ -190,7 +190,7 @@ export default class ReceivedCounseling extends ValidationElement {
             onUpdate={this.updateCompletedTreatment}>
           </Branch>
 
-          <Show when={this.props.CompletedTreatment === 'No'}>
+          <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
             <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
               help={'substance.alcohol.receivedCounseling.help.noCompletedTreatment'}>
               <Textarea name="NoCompletedTreatmentExplanation"

@@ -74,7 +74,10 @@ describe('received counseling component validation', function () {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: 'Yes',
+          NoCompletedTreatmentExplanation: {
+            value: 'Foo'
+          }
         },
         expected: true
       }
@@ -88,7 +91,10 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: 'Yes',
+          NoCompletedTreatmentExplanation: {
+            value: 'Foo'
+          }
         },
         expected: true
       },
@@ -148,7 +154,10 @@ describe('received counseling component validation', function () {
                   year: '2016',
                   date: new Date('1/1/2016')
                 },
-                CompletedTreatment: 'Yes'
+                CompletedTreatment: 'Yes',
+                NoCompletedTreatmentExplanation: {
+                  value: 'Foo'
+                }
               }
             }
           ]

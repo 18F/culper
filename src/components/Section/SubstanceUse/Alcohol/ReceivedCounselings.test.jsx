@@ -51,7 +51,10 @@ describe('The ReceivedCounselings component', () => {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: 'Yes',
+          NoCompletedTreatmentExplanation: {
+            value: 'Foo'
+          }
         }
       }]
     }

@@ -58,7 +58,6 @@ export class ReceivedCounselingValidator {
   validCompletedTreatment () {
     switch (this.completedTreatment) {
       case 'Yes':
-        return true
       case 'No':
         return validGenericTextfield(this.noCompletedTreatmentExplanation)
       default:
