@@ -57,7 +57,8 @@ export default class VoluntaryCounseling extends ValidationElement {
     return (
       <div className="voluntary-counseling">
           <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.counselingDates')}
-            help={'substance.alcohol.voluntaryCounseling.help.counselingDates'}>
+                 help={'substance.alcohol.voluntaryCounseling.help.counselingDates'}
+                 adjustFor="daterange">
             <DateRange name="CounselingDates"
               className="counseling-dates"
               {...this.props.CounselingDates}

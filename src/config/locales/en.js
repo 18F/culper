@@ -6319,7 +6319,7 @@ const en = {
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
-          treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
           completedTreatment: 'Did you successfully complete the treatment program?',
           noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
         },
@@ -6334,7 +6334,7 @@ const en = {
             mentalHealthProfessional: 'A mental health professional',
             courtOfficial: 'A court official / judge',
             notOrdered: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above',
-            other: 'Other (Provide Explanation)'
+            other: ['Other', '(provide explanation)']
           }
         },
         collection: {

@@ -93,7 +93,7 @@ export default class OrderedCounseling extends ValidationElement {
       <div className="ordered-counseling">
         <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
           help={'substance.alcohol.orderedCounseling.help.seekers'}
-          adjustFor="labels">
+          adjustFor="p">
           {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
           <CheckboxGroup className="seekers"
             selectedValues={this.props.Seekers}>
@@ -169,7 +169,8 @@ export default class OrderedCounseling extends ValidationElement {
         <Show when={this.props.ActionTaken === 'Yes'}>
           <div>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.counselingDates')}
-              help={'substance.alcohol.orderedCounseling.help.counselingDates'}>
+                   help={'substance.alcohol.orderedCounseling.help.counselingDates'}
+                   adjustFor="daterange">
               <DateRange name="CounselingDates"
                 className="counseling-dates"
                 {...this.props.CounselingDates}
@@ -186,7 +187,8 @@ export default class OrderedCounseling extends ValidationElement {
               />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderAddress')}
-              help={'substance.alcohol.orderedCounseling.help.treatmentProviderAddress'}>
+                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderAddress'}
+                   adjustFor="address">
               <Address name="TreatmentProviderAddress"
                 className="provider-address"
                 {...this.props.TreatmentProviderAddress}
@@ -215,8 +217,7 @@ export default class OrderedCounseling extends ValidationElement {
             </Branch>
 
             <Show when={this.props.CompletedTreatment === 'No'}>
-              <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noCompletedTreatment')}
-                help={'substance.alcohol.orderedCounseling.help.noCompletedTreatment'}>
+              <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noCompletedTreatment')}>
                 <Textarea name="NoCompletedTreatmentExplanation"
                   {...this.props.NoCompletedTreatmentExplanation}
                   onUpdate={this.updateNoCompletedTreatmentExplanation}
@@ -228,8 +229,7 @@ export default class OrderedCounseling extends ValidationElement {
         </Show>
 
         <Show when={this.props.ActionTaken === 'No'}>
-            <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noActionTakenExplanation')}
-                help={'substance.alcohol.orderedCounseling.help.noActionTakenExplanation'}>
+            <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noActionTakenExplanation')}>
               <Textarea name="NoActionTakenExplanation"
                 {...this.props.NoActionTakenExplanation}
                 onUpdate={this.updateNoActionTakenExplanation}

@@ -78,7 +78,8 @@ export default class NegativeImpact extends ValidationElement {
           </Field>
         </Field>
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.used')}
-          help={'substance.alcohol.negativeImpact.help.used'}>
+               help={'substance.alcohol.negativeImpact.help.used'}
+               adjustFor="daterange">
           <DateRange name="Used"
             className="used"
             {...this.props.Used}

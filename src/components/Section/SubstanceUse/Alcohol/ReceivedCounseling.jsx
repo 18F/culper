@@ -110,7 +110,8 @@ export default class ReceivedCounseling extends ValidationElement {
             />
           </Field>
           <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
-            help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}>
+                 help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
+                 adjustFor="address">
             <Address name="TreatmentProviderAddress"
               className="provider-address"
               {...this.props.TreatmentProviderAddress}
@@ -139,7 +140,8 @@ export default class ReceivedCounseling extends ValidationElement {
           </Branch>
 
           <Show when={this.props.UseSameAddress === 'No'}>
-            <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}>
+            <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
+                   adjustFor="address">
               <Address name="AgencyAddress"
                 className="agency-address"
                 {...this.props.AgencyAddress}
@@ -150,7 +152,8 @@ export default class ReceivedCounseling extends ValidationElement {
           </Show>
 
           <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}
-            help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}>
+                 help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}
+                 adjustFor="datecontrol">
             <DateControl name="TreatmentBeganDate"
               className="treatment-began-date"
               {...this.props.TreatmentBeganDate}
@@ -160,7 +163,8 @@ export default class ReceivedCounseling extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}
-            help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}>
+                 help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}
+                 adjustFor="datecontrol">
             <DateControl name="TreatmentEndDate"
               className="treatment-end-date"
               {...this.props.TreatmentEndDate}
