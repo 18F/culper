@@ -1,0 +1,15 @@
+.ordered-counseling {
+  .blocks.seekers {
+    label {
+      width: 28rem !important;
+    }
+  }
+
+  .seekers-employer > label > span > div {
+    top: 25%;
+  }
+
+  .seekers-not-ordered > label > span > div {
+    top: 10%;
+  }
+}
