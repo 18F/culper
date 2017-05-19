@@ -205,7 +205,7 @@ export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => {
 
 export const battery = (tests, validator, fn) => {
   return tests.forEach((test, index) => {
-    expect(new validator(test.state, null)[fn]()).toBe(test.expected)
+    expect(new validator(test.state, test.props)[fn]()).toBe(test.expected)
   })
 }
 

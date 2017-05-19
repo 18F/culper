@@ -51,6 +51,11 @@ import ForeignBusinessFamilyValidator from './foreignbusinessfamily'
 import ForeignBusinessEmploymentValidator from './foreignbusinessemployment'
 import ForeignBusinessVenturesValidator from './foreignbusinessventures'
 import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
+import ForeignBusinessContactValidator from './foreignbusinesscontact'
+import ForeignBusinessSponsorshipValidator from './foreignbusinesssponsorship'
+import ForeignBusinessPoliticalValidator from './foreignbusinesspolitical'
+import ForeignBusinessVotingValidator from './foreignbusinessvoting'
+import ForeignTravelValidator from './foreigntravel.js'
 
 export {
   AddressValidator,
@@ -109,5 +114,10 @@ export {
   ForeignBusinessFamilyValidator,
   ForeignBusinessEmploymentValidator,
   ForeignBusinessVenturesValidator,
-  ForeignBusinessConferencesValidator
+  ForeignBusinessConferencesValidator,
+  ForeignBusinessContactValidator,
+  ForeignBusinessSponsorshipValidator,
+  ForeignBusinessPoliticalValidator,
+  ForeignBusinessVotingValidator,
+  ForeignTravelValidator
 }
