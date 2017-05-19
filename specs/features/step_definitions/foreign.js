@@ -57,7 +57,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'business/conferences':
       return promise
     case 'business/contact':
-      return promise
+      return completeBusinessContact(promise)
     case 'business/sponsorship':
       return completeBusinessSponsorship(promise)
     case 'business/political':
@@ -101,13 +101,21 @@ defineSupportCode(({Given, Then, When}) => {
 const completePassport = (promise) => {
   return promise
     .then(() => { return setOption('.passport .branch .yes') })
-    .then(() => { return setText('input[name="first"]', 'Charles') })
-    .then(() => { return setText('input[name="middle"]', 'F') })
-    .then(() => { return setText('input[name="last"]', 'Xavier') })
-    .then(() => { return setText('input[name="number"]', 'A12345678') })
-    .then(() => { return setText('input[name="month"]', '11') })
-    .then(() => { return setText('input[name="day"]', '10') })
-    .then(() => { return setText('input[name="year"]', '1775') })
+    .then(() => { return setName('.name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setText('.number input', 'A12345678') })
+    .then(() => { return setDate('.datecontrol', '1', '1', '2010') })
+}
+
+const completeBusinessContact = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-business-contact .branch .yes') })
+    .then(() => { return setName('.foreign-business-contact-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setDomesticAddress('.foreign-business-contact-location', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDate('.foreign-business-contact-date', '1', '1', '2010') })
+    .then(() => { return setText('.foreign-business-contact-governments input', 'Germany') })
+    .then(() => { return setText('.foreign-business-contact-establishment textarea', 'This is a reason for establishment') })
+    .then(() => { return setText('.foreign-business-contact-representatives textarea', 'This is a reason for representatives') })
+    .then(() => { return setText('.foreign-business-contact-purpose textarea', 'This is a purpose') })
 }
 
 const completeBusinessSponsorship = (promise) => {
