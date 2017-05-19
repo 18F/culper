@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateRange, ValidationElement, Field, Textarea, DateControl, Show } from '../../../Form'
+import { DateRange, ValidationElement, Field, Textarea, DateControl } from '../../../Form'
 
 export default class NegativeImpact extends ValidationElement {
   constructor (props) {
