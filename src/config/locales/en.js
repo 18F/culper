@@ -6668,7 +6668,249 @@ const en = {
       }
     }
   },
-
+  substance: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      title: 'Let\'s make sure everything looks right',
+      para: 'View all the sections associated with substance abuse'
+    },
+    destination: {
+      police: {
+        negative: 'Negative impact',
+        ordered: 'Mandatory counseling or treatment',
+        voluntary: 'Voluntary counseling or treatment',
+        additional: 'Additional instances'
+      },
+      review: 'Review substance use'
+    },
+    alcohol: {
+      heading: {
+        negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
+        orderedCounseling: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?',
+        voluntaryCounseling: 'Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?',
+        receivedCounseling: 'Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?'
+      },
+      negativeImpact: {
+        heading: {
+          occurred: 'Provide the month/year when this negative impact occurred',
+          circumstances: 'Provide an explanation of the circumstances and the negative impact',
+          used: 'Provide dates of involvement or use'
+        },
+        label: {
+          circumstances: 'Circumstances',
+          negativeImpact: 'Negative impact'
+        },
+        help: {
+          occurred: {
+            title: 'Need help with the date the negative impact occurred?',
+            message: 'Provide the month/year when this negative impact occurred',
+            note: ''
+          },
+          circumstances: {
+            title: 'Need help with the circumstances?',
+            message: 'Provide an explanation of the circumstances and the negative impact',
+            note: ''
+          },
+          used: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide dates of involvement or use',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of negative impacts',
+          summary: 'Provide your negative impact details below',
+          appendTitle: 'Has the use of alcohol had other negative impacts on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
+          appendLabel: 'Add another negative impact',
+          itemType: 'Negative impact'
+        }
+      },
+      orderedCounseling: {
+        heading: {
+          seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
+          actionTaken: 'Did you take action to seek counseling or treatment?',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
+          completedTreatment: 'Did you successfully complete the treatment program?',
+          noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
+        },
+        label: {
+          seekers: 'Check all that apply',
+          otherSeeker: 'Provide explanation'
+        },
+        seekers: {
+          label: {
+            employer: 'An employer, military commander, or employee assistance program',
+            medicalProfessional: 'A medical professional',
+            mentalHealthProfessional: 'A mental health professional',
+            courtOfficial: 'A court official / judge',
+            notOrdered: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above',
+            other: ['Other', '(provide explanation)']
+          }
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        },
+        help: {
+          seekers: {
+            title: 'Need help with determining who has ordered you to seek treatment?',
+            message: 'Check all who ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol',
+            note: ''
+          },
+          counselingDates: {
+            title: 'Need help with the counseling dates?',
+            message: 'Provide the dates when you were in counseling or treatment',
+            note: ''
+          },
+          actionTaken: {
+            title: 'Need help with action taken to seek counseling or treatment',
+            message: 'Select if you have taken action to seek counseling or treatment.',
+            note: ''
+          },
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone number of the treatment provider',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          }
+        }
+      },
+      voluntaryCounseling: {
+        heading: {
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
+          completedTreatment: 'Did you successfully complete the treatment program?',
+          noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Do you have additional instances where you have voluntarily sought counseling or treatment as a result of your use of alcohol to enter?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        },
+        help: {
+          counselingDates: {
+            title: 'Need help with the counseling dates?',
+            message: 'Provide the dates of counseling or treatment',
+            note: ''
+          },
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone number of the treatment provider',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          },
+          noCompletedTreatment: {
+            title: 'Need help with this explanation?',
+            message: 'Provide details as to why you responded No to having successfully completed the treatment program',
+            note: ''
+          }
+        }
+      },
+      receivedCounseling: {
+        heading: {
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          agencyName: 'Provide the name of agency/organization where counseling/treatment was provided',
+          agencyAddress: 'Provide the address of agency/organization where counseling/treatment was provided',
+          completedTreatment: 'Did you successfully complete your counseling or treatment?',
+          treatmentBeganDate: 'Provide the date counseling or treatment began',
+          treatmentEndDate: 'Provide the date counseling or treatment ended',
+          noCompletedTreatment: 'Provide explanation'
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Did you receive alcohol-related counseling or treatment another time?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        },
+        help: {
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          agencyName: {
+            title: 'Need help with the agency name?',
+            message: 'Provide the name of agency/organization where counseling/treatment was provided',
+            note: ''
+          },
+          agencyAddress: {
+            title: 'Need help with the agency address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentBeganDate: {
+            title: 'Need help with when treatment began?',
+            message: 'Provide the date counseling or treatment began',
+            note: ''
+          },
+          treatmentEndDate: {
+            title: 'Need help with when treatment ended?',
+            message: 'Provide the date counseling or treatment ended',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          },
+          noCompletedTreatment: {
+            title: 'Need help with this explanation?',
+            message: 'Provide details as to why you responded No to having successfully completed the treatment program',
+            note: ''
+          }
+        }
+      }
+    }
+  },
   alias: {
     maiden: {
       help: {

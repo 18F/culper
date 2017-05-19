@@ -118,10 +118,31 @@ const navigation = [
     name: 'Substance use',
     title: 'Substance use',
     url: 'substance',
-    hidden: true,
+    hidden: false,
     subsections: [
-      { name: 'Illegal use of drugs and drug activity', url: 'drugs' },
-      { name: 'Use of alcohol', url: 'alcohol' }
+      { hidden: true, name: 'Illegal use of drugs and drug activity', url: 'drugs' },
+      {
+        name: 'Use of alcohol',
+        url: 'alcohol',
+        subsections: [
+          {
+            name: 'Negative impact',
+            url: 'negative'
+          },
+          {
+            name: 'Mandatory counseling or treatment',
+            url: 'ordered'
+          },
+          {
+            name: 'Voluntary counseling or treatment',
+            url: 'voluntary'
+          },
+          {
+            name: 'Additional instances',
+            url: 'additional'
+          }
+        ]
+      }
     ]
   },
   {
