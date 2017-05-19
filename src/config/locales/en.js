@@ -1045,13 +1045,13 @@ const en = {
           note: ''
         },
         description: {
-          title: 'Need help with the description?',
-          message: 'Enter description of your financial problems due to gambling',
+          title: 'Need help with this description?',
+          message: 'We are looking for a full explanation of this financial problem. Go into as much detail as you need to fully explain.',
           note: ''
         },
         actions: {
           title: 'Need help with the actions taken?',
-          message: 'Enter any action(s) taken to rectify your financial problems due to gambling, provide a description of your actions. If you have not taken any action(s) provide an explanation.',
+          message: 'Tell us if you have starting trying to fix this problem. If you haven\'t started yet tell us why.',
           note: ''
         },
         comments: {
@@ -1069,7 +1069,7 @@ const en = {
         summary: {
           title: 'Summary of Bankruptcy',
           item: 'Petition',
-          unknown: 'Provide your bankruptcy below',
+          unknown: 'Provide your petition details below',
           nodates: 'NA',
           chapter: 'Chapter',
           appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?'
@@ -1194,7 +1194,7 @@ const en = {
         failure: 'Did you fail to file, pay as required, or both?',
         year: 'Provide the year you failed to file or pay your federal, state, or other taxes (Estimated)',
         reason: 'Provide the reason(s) for your failure to file or pay required taxes',
-        agency: 'Provide the federal, state, or other agency to which you failed to file or pay taxes',
+        agency: 'Provide the Federal, state, or other agency to which you failed to file or pay taxes',
         taxtype: 'Provide the type of taxes you failed to file or pay (such as property, income, sales, etc.)',
         amount: 'Provide the amount (in U.S. dollars) of the taxes',
         date: 'Provide the date satisfied',
@@ -1257,7 +1257,7 @@ const en = {
         },
         description: {
           title: 'Need help providing a description?',
-          message: 'Provide a description or explanation taken concerning this debt',
+          message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
           note: ''
         }
       },
@@ -1299,9 +1299,9 @@ const en = {
           note: ''
         },
         address: {
-          title: 'Need help with the agency or company address?',
-          message: 'Provide the last known address of the agency or company involved',
-          note: ''
+          title: 'Not sure of the agency or company address?',
+          message: 'Try looking up the agency or company name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         date: {
           title: 'Need help with the date?',
@@ -1320,7 +1320,7 @@ const en = {
         },
         description: {
           title: 'Need help providing a description?',
-          message: 'Provide a description or explanation taken concerning this issue',
+          message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
           note: ''
         }
       },
@@ -1335,7 +1335,7 @@ const en = {
       }
     },
     credit: {
-      title: 'Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties?',
+      title: 'Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?',
       heading: {
         explanation: 'Provide explanation',
         name: 'Provide the name of the credit counseling organization or resource',
@@ -1346,12 +1346,12 @@ const en = {
       help: {
         branch: {
           title: 'Need help with credit counseling?',
-          message: 'If you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve yoyur financial difficulties then click "Yes"',
+          message: 'If you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties then click "Yes"',
           note: ''
         },
         explanation: {
           title: 'Need help with the explanation?',
-          message: 'Provide an explanation for the counseling',
+          message: 'We are looking for a full explanation of this credit counseling. Go into as much detail as you need to fully explain.',
           note: ''
         },
         name: {
@@ -1360,25 +1360,25 @@ const en = {
           note: ''
         },
         telephone: {
-          title: 'Need help with the telephone number?',
-          message: 'Provide the contact phone number for the counseling organization',
+          title: 'Not sure of this organization\'s phone number?',
+          message: 'Trying looking up their name, this could help you find their number. ',
           note: ''
         },
         address: {
-          title: 'Need help with the counseling organization address?',
-          message: 'Provide the last known address for the counseling organization',
-          note: ''
+          title: 'Not sure of this organization\'s address?',
+          message: 'Try looking up the organization\'s name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         description: {
           title: 'Need help providing a description?',
-          message: 'Provide a description or explanation taken concerning this issue',
+          message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
           note: ''
         }
       },
       collection: {
         summary: {
           title: 'Summary of credit counseling',
-          unknown: 'Provide your counseling details below',
+          unknown: 'Provide your credit counseling details below',
           item: 'Service'
         },
         appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
@@ -1388,7 +1388,7 @@ const en = {
     delinquent: {
       title: 'Other than previously listed, have any of the following happened to you?',
       para: {
-        details: 'You will be asked to provide details about each financial obligation that pertains to the items identified below',
+        details: 'You will be asked to provide details about each financial obligation that pertains to the items identified below.',
         alimony: '**In the last seven (7) years,** you have been delinquent on alimony or child support payments.',
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
@@ -1450,7 +1450,7 @@ const en = {
         },
         reason: {
           title: 'Need help with the reason(s) for the financial issue?',
-          message: 'Provide the reason(s) for the financial issue',
+          message: 'We are looking for a full explanation of this issue. Go into as much detail as you need to fully explain.',
           note: ''
         },
         status: {
@@ -1474,20 +1474,20 @@ const en = {
           note: ''
         },
         courtaddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court involved',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         description: {
           title: 'Need help providing a description?',
-          message: 'Provide a description or explanation taken concerning this issue',
+          message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
           note: ''
         }
       },
       collection: {
         summary: {
           title: 'Summary of delinquent payment issues',
-          unknown: 'Provide your delinquent payment details below',
+          unknown: 'Provide your payment issue details below',
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
@@ -1560,7 +1560,7 @@ const en = {
         },
         reason: {
           title: 'Need help with the reason(s) for the financial issue?',
-          message: 'Provide the reason(s) for the financial issue',
+          message: 'We are looking for a full explanation of this issue. Go into as much detail as you need to fully explain.',
           note: ''
         },
         status: {
@@ -1580,7 +1580,7 @@ const en = {
         },
         description: {
           title: 'Need help providing a description?',
-          message: 'Provide a description or explanation taken concerning this issue',
+          message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
           note: ''
         }
       },
