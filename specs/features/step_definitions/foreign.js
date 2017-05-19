@@ -36,6 +36,34 @@ defineSupportCode(({Given, Then, When}) => {
       return completePassport(promise)
     case 'travel':
       return completeTravel(promise)
+    case 'activities/direct':
+      return promise
+    case 'activities/indirect':
+      return promise
+    case 'activities/realestate':
+      return promise
+    case 'activities/benefits':
+      return promise
+    case 'activities/support':
+      return promise
+    case 'business/advice':
+      return promise
+    case 'business/family':
+      return promise
+    case 'business/employment':
+      return promise
+    case 'business/ventures':
+      return promise
+    case 'business/conferences':
+      return promise
+    case 'business/contact':
+      return promise
+    case 'business/sponsorship':
+      return promise
+    case 'business/political':
+      return promise
+    case 'business/voting':
+      return completeBusinessVoting(promise)
     default:
       return promise
     }
@@ -61,34 +89,6 @@ defineSupportCode(({Given, Then, When}) => {
     }
   })
 
-  When(/^I fill in the foreign business (.*?) section$/, (subsection) => {
-    const section = 'foreign'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
-    switch (subsection) {
-    case 'advice':
-      return promise
-    case 'family':
-      return promise
-    case 'employment':
-      return promise
-    case 'ventures':
-      return promise
-    case 'conferences':
-      return promise
-    case 'contact':
-      return promise
-    case 'sponsorship':
-      return promise
-    case 'political':
-      return promise
-    case 'voting':
-      return promise
-    default:
-      return promise
-    }
-  })
-
   When(/^I click next$/, () => {
     return navigateToNext()
   })
@@ -108,6 +108,15 @@ const completePassport = (promise) => {
     .then(() => { return setText('input[name="month"]', '11') })
     .then(() => { return setText('input[name="day"]', '10') })
     .then(() => { return setText('input[name="year"]', '1775') })
+}
+
+const completeBusinessVoting = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-business-voting .branch .yes') })
+    .then(() => { return setDate('.foreign-business-voting-date', '1', '1', '2010') })
+    .then(() => { return setText('.foreign-business-voting-country input', 'Germany') })
+    .then(() => { return setText('.foreign-business-voting-reason textarea', 'This is a reason') })
+    .then(() => { return setText('.foreign-business-voting-eligibility input', 'No longer eligible') })
 }
 
 const completeTravel = (promise) => {
