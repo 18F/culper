@@ -104,6 +104,7 @@ export default class ReceivedCounseling extends ValidationElement {
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
           help={'substance.alcohol.receivedCounseling.help.treatmentProviderName'}>
             <Text name="TreatmentProviderName"
+              className="treatment-provider-name"
               {...this.props.TreatmentProviderName}
               onUpdate={this.updateTreatmentProviderName}
               onValidate={this.props.onValidate}
@@ -123,6 +124,7 @@ export default class ReceivedCounseling extends ValidationElement {
           <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
             help={'substance.alcohol.receivedCounseling.help.agencyName'}>
             <Text name="AgencyName"
+              className="agency-name"
               {...this.props.AgencyName}
               onUpdate={this.updateAgencyName}
               onValidate={this.props.onValidate}
@@ -194,6 +196,7 @@ export default class ReceivedCounseling extends ValidationElement {
             <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
               help={'substance.alcohol.receivedCounseling.help.noCompletedTreatment'}>
               <Textarea name="NoCompletedTreatmentExplanation"
+                className="no-completed-treatment"
                 {...this.props.NoCompletedTreatmentExplanation}
                 onUpdate={this.updateNoCompletedTreatmentExplanation}
                 onValidate={this.props.onValidate}

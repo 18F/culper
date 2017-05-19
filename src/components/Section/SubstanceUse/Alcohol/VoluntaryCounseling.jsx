@@ -69,6 +69,7 @@ export default class VoluntaryCounseling extends ValidationElement {
           <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderName')}
             help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderName'}>
             <Text name="TreatmentProviderName"
+              className="treatment-provider-name"
               {...this.props.TreatmentProviderName}
               onUpdate={this.updateTreatmentProviderName}
               onValidate={this.props.onValidate}
@@ -107,6 +108,7 @@ export default class VoluntaryCounseling extends ValidationElement {
             <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment')}
             help={'substance.alcohol.voluntaryCounseling.help.noCompletedTreatment'}>
               <Textarea name="NoCompletedTreatmentExplanation"
+                className="no-completed-treatment"
                 {...this.props.NoCompletedTreatmentExplanation}
                 onUpdate={this.updateNoCompletedTreatmentExplanation}
                 onValidate={this.props.onValidate}

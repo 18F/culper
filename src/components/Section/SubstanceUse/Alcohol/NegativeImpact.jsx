@@ -62,6 +62,7 @@ export default class NegativeImpact extends ValidationElement {
           help={'substance.alcohol.negativeImpact.help.circumstances'}>
           <Field>
             <Textarea name="Circumstances"
+              className="circumstances"
               {...this.props.Circumstances}
               label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
               onUpdate={this.updateCircumstances}
@@ -70,6 +71,7 @@ export default class NegativeImpact extends ValidationElement {
           </Field>
           <Field>
             <Textarea name="NegativeImpact"
+              className="negative-impact-explanation"
               {...this.props.NegativeImpact}
               label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
               onUpdate={this.updateNegativeImpact}

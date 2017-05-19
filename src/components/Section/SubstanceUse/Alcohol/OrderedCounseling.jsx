@@ -181,6 +181,7 @@ export default class OrderedCounseling extends ValidationElement {
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderName')}
               help={'substance.alcohol.orderedCounseling.help.treatmentProviderName'}>
               <Text name="TreatmentProviderName"
+                className="treatment-provider-name"
                 {...this.props.TreatmentProviderName}
                 onUpdate={this.updateTreatmentProviderName}
                 onValidate={this.props.onValidate}
@@ -219,6 +220,7 @@ export default class OrderedCounseling extends ValidationElement {
             <Show when={this.props.CompletedTreatment === 'No'}>
               <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noCompletedTreatment')}>
                 <Textarea name="NoCompletedTreatmentExplanation"
+                  className="no-completed-treatment"
                   {...this.props.NoCompletedTreatmentExplanation}
                   onUpdate={this.updateNoCompletedTreatmentExplanation}
                   onValidate={this.props.onValidate}
