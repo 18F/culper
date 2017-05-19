@@ -6257,7 +6257,7 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      title: 'Let&rsquo;s make sure everything looks right',
+      title: 'Let\'s make sure everything looks right',
       para: 'View all the sections associated with substance abuse'
     },
     destination: {

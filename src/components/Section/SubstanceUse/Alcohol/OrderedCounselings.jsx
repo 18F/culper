@@ -57,18 +57,23 @@ export default class OrderedCounselings extends ValidationElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).NegativeImpact || {}
-    const occurred = DateSummary(o.Occurred)
+    const o = (item || {}).OrderedCounseling || {}
+    const seekers = o.Seekers ? o.Seekers.join(', ') : ''
+    const counselingDates = DateSummary(o.CounselingDates)
     const type = i18n.t('substance.alcohol.orderedCounseling.collection.itemType')
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
-          <strong>
-            {occurred || i18n.t('substance.alcohol.orderedCounseling.collection.summary')}
-          </strong>
+          <Show when={!seekers && !counselingDates}>
+            <strong>{i18n.t('substance.alcohol.receivedCounseling.collection.summary')}</strong>
+          </Show>
+          <Show when={seekers || counselingDates}>
+            <strong>{seekers}</strong>
+          </Show>
         </span>
+        <span className="dates"><strong>{counselingDates}</strong></span>
       </span>
     )
   }

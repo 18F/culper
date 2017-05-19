@@ -57,18 +57,23 @@ export default class VoluntaryCounselings extends ValidationElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).NegativeImpact || {}
-    const occurred = DateSummary(o.Occurred)
+    const o = (item || {}).VoluntaryCounseling || {}
+    const counselor = o.TreatmentProviderName ? o.TreatmentProviderName.value : ''
+    const counselingDates = DateSummary(o.CounselingDates)
     const type = i18n.t('substance.alcohol.voluntaryCounseling.collection.itemType')
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
-          <strong>
-            {occurred || i18n.t('substance.alcohol.voluntaryCounseling.collection.summary')}
-          </strong>
+          <Show when={!counselor && !counselingDates}>
+            <strong>{i18n.t('substance.alcohol.voluntaryCounseling.collection.summary')}</strong>
+          </Show>
+          <Show when={counselor || counselingDates}>
+            <strong>{counselor}</strong>
+          </Show>
         </span>
+        <span className="dates"><strong>{counselingDates}</strong></span>
       </span>
     )
   }

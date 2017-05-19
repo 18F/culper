@@ -37,6 +37,13 @@ class SubstanceUse extends ValidationElement {
     }
   }
 
+  componentWillReceiveProps (next) {
+    // Redirect to first alcohol subsection if root subsection is accessed
+    if (next.subsection === 'alcohol') {
+      this.props.dispatch(push(`/form/substance/alcohol/negative`))
+    }
+  }
+
   handleTour (event) {
     this.props.dispatch(push('/form/substance'))
   }
@@ -180,31 +187,35 @@ class SubstanceUse extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-            titel={i18n.t('substance.review.title')}
+            title={i18n.t('substance.review.title')}
             back="substance/alcohol/additional"
             backLabel={ i18n.t('substance.destination.police.additional') }
-            showTop={true}
-            next="alcohol/ordered"
-            nextLabel={ i18n.t('substance.destination.police.ordered') }>
+            showTop="true"
+            next="legal/police"
+            nextLabel={ i18n.t('legal.destination.police') }>
             <NegativeImpacts name="negative"
+              defaultState={false}
               {...this.props.NegativeImpacts}
               onValidate={this.onValidate}
               onUpdate={this.updateNegativeImpacts}
             />
             <hr />
             <OrderedCounselings name="ordered"
+              defaultState={false}
               {...this.props.OrderedCounselings}
               onValidate={this.onValidate}
               onUpdate={this.updateOrderedCounselings}
             />
             <hr />
             <VoluntaryCounselings name="voluntary"
+              defaultState={false}
               {...this.props.VoluntaryCounselings}
               onValidate={this.onValidate}
               onUpdate={this.updateVoluntaryCounselings}
             />
             <hr />
             <ReceivedCounselings name="additional"
+              defaultState={false}
               {...this.props.ReceivedCounselings}
               onValidate={this.onValidate}
               onUpdate={this.updateReceivedCounselings}
