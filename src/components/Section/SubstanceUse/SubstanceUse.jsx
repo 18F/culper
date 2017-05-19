@@ -83,12 +83,12 @@ class SubstanceUse extends ValidationElement {
     let cstatus = 'neutral'
     if (this.hasStatus('negative', status, true) &&
       this.hasStatus('ordered', status, true) &&
-      this.hasStatus('received', status, true) &&
+      this.hasStatus('additional', status, true) &&
       this.hasStatus('voluntary', status, true)) {
       cstatus = 'complete'
     } else if (this.hasStatus('negative', status, false) ||
       this.hasStatus('ordered', status, false) ||
-      this.hasStatus('received', status, false) ||
+      this.hasStatus('additional', status, false) ||
       this.hasStatus('voluntary', status, false)) {
       cstatus = 'incomplete'
     }
