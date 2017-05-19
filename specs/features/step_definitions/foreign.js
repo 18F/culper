@@ -61,7 +61,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'business/sponsorship':
       return promise
     case 'business/political':
-      return promise
+      return completeBusinessPolitical(promise)
     case 'business/voting':
       return completeBusinessVoting(promise)
     default:
@@ -108,6 +108,17 @@ const completePassport = (promise) => {
     .then(() => { return setText('input[name="month"]', '11') })
     .then(() => { return setText('input[name="day"]', '10') })
     .then(() => { return setText('input[name="year"]', '1775') })
+}
+
+const completeBusinessPolitical = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-business-political .branch .yes') })
+    .then(() => { return setText('.foreign-business-political-position input', 'President') })
+    .then(() => { return setDate('.foreign-business-political-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.foreign-business-political-dates .to', '1', '1', '2011') })
+    .then(() => { return setText('.foreign-business-political-country input', 'Germany') })
+    .then(() => { return setText('.foreign-business-political-reason textarea', 'This is a reason') })
+    .then(() => { return setText('.foreign-business-political-eligibility input', 'No longer eligible') })
 }
 
 const completeBusinessVoting = (promise) => {
