@@ -4,6 +4,7 @@ import ValidationElement from '../ValidationElement'
 export default class Checkbox extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       uid: super.guid(),
       checked: props.checked,
@@ -33,6 +34,7 @@ export default class Checkbox extends ValidationElement {
         })
       }
       super.handleChange(event)
+      this.handleValidation(event)
     })
   }
 
@@ -54,6 +56,19 @@ export default class Checkbox extends ValidationElement {
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
+  }
+
+  /**
+   * Execute validation checks on the value.
+   */
+  handleValidation (event) {
+    const value = this.state.value
+    return this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    }))
   }
 
   /**
@@ -167,5 +182,8 @@ Checkbox.defaultProps = {
   checked: false,
   focus: false,
   error: false,
-  valid: false
+  valid: false,
+  onError: (value, arr) => { return arr }
 }
+
+Checkbox.errors = []

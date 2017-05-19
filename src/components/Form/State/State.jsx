@@ -21,73 +21,73 @@ export default class State extends ValidationElement {
                 tabNext={this.props.tabNext}
                 receiveProps={true}
                 >
-        <option key="Alabama" value="Alabama">AL</option>
-        <option key="Alaska" value="Alaska">AK</option>
-        <option key="Arizona" value="Arizona">AZ</option>
-        <option key="Arkansas" value="Arkansas">AR</option>
-        <option key="California" value="California">CA</option>
-        <option key="Colorado" value="Colorado">CO</option>
-        <option key="Connecticut" value="Connecticut">CT</option>
-        <option key="Delaware" value="Delaware">DE</option>
-        <option key="Washington D.C." value="Washington D.C.">DC</option>
-        <option key="Florida" value="Florida">FL</option>
-        <option key="Georgia" value="Georgia">GA</option>
-        <option key="Hawaii" value="Hawaii">HI</option>
-        <option key="Idaho" value="Idaho">ID</option>
-        <option key="Illinois" value="Illinois">IL</option>
-        <option key="Indiana" value="Indiana">IN</option>
-        <option key="Iowa" value="Iowa">IA</option>
-        <option key="Kansas" value="Kansas">KS</option>
-        <option key="Kentucky" value="Kentucky">KY</option>
-        <option key="Louisiana" value="Louisiana">LA</option>
-        <option key="Maine" value="Maine">ME</option>
-        <option key="Maryland" value="Maryland">MD</option>
-        <option key="Massachusetts" value="Massachusetts">MA</option>
-        <option key="Michigan" value="Michigan">MI</option>
-        <option key="Minnesota" value="Minnesota">MN</option>
-        <option key="Mississippi" value="Mississippi">MS</option>
-        <option key="Missouri" value="Missouri">MO</option>
-        <option key="Montana" value="Montana">MT</option>
-        <option key="Nebraska" value="Nebraska">NE</option>
-        <option key="Nevada" value="Nevada">NV</option>
-        <option key="New Hampshire" value="New Hampshire">NH</option>
-        <option key="New Jersey" value="New Jersey">NJ</option>
-        <option key="New Mexico" value="New Mexico">NM</option>
-        <option key="New York" value="New York">NY</option>
-        <option key="North Carolina" value="North Carolina">NC</option>
-        <option key="North Dakota" value="North Dakota">ND</option>
-        <option key="Ohio" value="Ohio">OH</option>
-        <option key="Oklahoma" value="Oklahoma">OK</option>
-        <option key="Oregon" value="Oregon">OR</option>
-        <option key="Pennsylvania" value="Pennsylvania">PA</option>
-        <option key="Rhode Island" value="Rhode Island">RI</option>
-        <option key="South Carolina" value="South Carolina">SC</option>
-        <option key="South Dakota" value="South Dakota">SD</option>
-        <option key="Tennessee" value="Tennessee">TN</option>
-        <option key="Texas" value="Texas">TX</option>
-        <option key="Utah" value="Utah">UT</option>
-        <option key="Vermont" value="Vermont">VT</option>
-        <option key="Virginia" value="Virginia">VA</option>
-        <option key="Washington" value="Washington">WA</option>
-        <option key="West Virginia" value="West Virginia">WV</option>
-        <option key="Wisconsin" value="Wisconsin">WI</option>
-        <option key="Wyoming" value="Wyoming">WY</option>
-        <option key="American Samoa" value="American Samoa">AS</option>
+        <option key="Alabama" value="AL">Alabama</option>
+        <option key="Alaska" value="AK">Alaska</option>
+        <option key="Arizona" value="AZ">Arizona</option>
+        <option key="Arkansas" value="AR">Arkansas</option>
+        <option key="California" value="CA">California</option>
+        <option key="Colorado" value="CO">Colorado</option>
+        <option key="Connecticut" value="CT">Connecticut</option>
+        <option key="Delaware" value="DE">Delaware</option>
+        <option key="Washington D.C." value="DC">Washington D.C.</option>
+        <option key="Florida" value="FL">Florida</option>
+        <option key="Georgia" value="GA">Georgia</option>
+        <option key="Hawaii" value="HI">Hawaii</option>
+        <option key="Idaho" value="ID">Idaho</option>
+        <option key="Illinois" value="IL">Illinois</option>
+        <option key="Indiana" value="IN">Indiana</option>
+        <option key="Iowa" value="IA">Iowa</option>
+        <option key="Kansas" value="KS">Kansas</option>
+        <option key="Kentucky" value="KY">Kentucky</option>
+        <option key="Louisiana" value="LA">Louisiana</option>
+        <option key="Maine" value="ME">Maine</option>
+        <option key="Maryland" value="MD">Maryland</option>
+        <option key="Massachusetts" value="MA">Massachusetts</option>
+        <option key="Michigan" value="MI">Michigan</option>
+        <option key="Minnesota" value="MN">Minnesota</option>
+        <option key="Mississippi" value="MS">Mississippi</option>
+        <option key="Missouri" value="MO">Missouri</option>
+        <option key="Montana" value="MT">Montana</option>
+        <option key="Nebraska" value="NE">Nebraska</option>
+        <option key="Nevada" value="NV">Nevada</option>
+        <option key="New Hampshire" value="NH">New Hampshire</option>
+        <option key="New Jersey" value="NJ">New Jersey</option>
+        <option key="New Mexico" value="NM">New Mexico</option>
+        <option key="New York" value="NY">New York</option>
+        <option key="North Carolina" value="NC">North Carolina</option>
+        <option key="North Dakota" value="ND">North Dakota</option>
+        <option key="Ohio" value="OH">Ohio</option>
+        <option key="Oklahoma" value="OK">Oklahoma</option>
+        <option key="Oregon" value="OR">Oregon</option>
+        <option key="Pennsylvania" value="PA">Pennsylvania</option>
+        <option key="Rhode Island" value="RI">Rhode Island</option>
+        <option key="South Carolina" value="SC">South Carolina</option>
+        <option key="South Dakota" value="SD">South Dakota</option>
+        <option key="Tennessee" value="TN">Tennessee</option>
+        <option key="Texas" value="TX">Texas</option>
+        <option key="Utah" value="UT">Utah</option>
+        <option key="Vermont" value="VT">Vermont</option>
+        <option key="Virginia" value="VA">Virginia</option>
+        <option key="Washington" value="WA">Washington</option>
+        <option key="West Virginia" value="WV">West Virginia</option>
+        <option key="Wisconsin" value="WI">Wisconsin</option>
+        <option key="Wyoming" value="WY">Wyoming</option>
+        <option key="American Samoa" value="AS">American Samoa</option>
         <option key="FQ" value="FQ">FQ</option>
-        <option key="Guam" value="Guam">GU</option>
+        <option key="Guam" value="GU">Guam</option>
         <option key="HQ" value="HQ">HQ</option>
         <option key="DQ" value="DQ">DQ</option>
         <option key="JQ" value="JQ">JQ</option>
         <option key="KQ" value="KQ">KQ</option>
-        <option key="Marshall Islands" value="Marshall Islands">MH</option>
-        <option key="Micronesia" value="Micronesia">FM</option>
+        <option key="Marshall Islands" value="MH">Marshall Islands</option>
+        <option key="Micronesia" value="FM">Micronesia</option>
         <option key="MQ" value="MQ">MQ</option>
         <option key="BQ" value="BQ">BQ</option>
-        <option key="Northern Mariana Islands" value="Northern Mariana Islands">MP</option>
-        <option key="Palau" value="Palau">PW</option>
+        <option key="Northern Mariana Islands" value="MP">Northern Mariana Islands</option>
+        <option key="Palau" value="PW">Palau</option>
         <option key="LQ" value="LQ">LQ</option>
-        <option key="Puerto Rico" value="Puerto Rico">PR</option>
-        <option key="Virgin Islands" value="Virgin Islands">VI</option>
+        <option key="Puerto Rico" value="PR">Puerto Rico</option>
+        <option key="Virgin Islands" value="VI">Virgin Islands</option>
         <option key="WQ" value="WQ">WQ</option>
         { this.props.children }
       </Dropdown>

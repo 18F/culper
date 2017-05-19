@@ -9,14 +9,13 @@ export default class Radio extends ValidationElement {
       uid: super.guid(),
       checked: props.checked,
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
-      native: props.native || false
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid,
+      native: props.native
     }
 
     this.handleClick = this.handleClick.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -85,9 +84,17 @@ export default class Radio extends ValidationElement {
     })
   }
 
-  handleValidation (event, status, errors) {
-    event.persist()
-    super.handleValidation(event, {[this.props.name]: { status: true }}, errors)
+  /**
+   * Execute validation checks on the value.
+   */
+  handleValidation (event) {
+    const value = this.state.value
+    return this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    }))
   }
 
   /**
@@ -215,5 +222,8 @@ Radio.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  native: false
+  native: false,
+  onError: (value, arr) => { return arr }
 }
+
+Radio.errors = []

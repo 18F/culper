@@ -13,15 +13,15 @@ const trimLeadingZero = (num) => {
   return i === 0 ? '' : '' + i
 }
 
-const getSuggestionValue = suggestion => suggestion.name
+const getSuggestionValue = suggestion => suggestion.text
 
 const renderSuggestion = (suggestion, search) => {
-  let text = `${suggestion.name}`
+  let text = `${suggestion.value}`
 
   // If the value is different than the name then display that
   // as well
-  if (suggestion.name !== suggestion.value) {
-    text += ` (${suggestion.value})`
+  if (suggestion.text !== suggestion.value) {
+    text += ` (${suggestion.text})`
   }
 
   // Highlight what was matched
@@ -68,7 +68,7 @@ export default class Dropdown extends ValidationElement {
       for (let child of this.props.children) {
         if (child && child.type === 'option') {
           arr.push({
-            name: child.props.children || '',
+            text: child.props.children || '',
             value: child.props.value
           })
         }
@@ -100,32 +100,17 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
-  handleValidation (event, status, errorCodes) {
-    let value = trimLeadingZero(this.state.value)
-    status = value.length > 0 ? false : null
-
-    if (status !== null) {
-      this.state.options.forEach(x => {
-        if (x.name.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()) {
-          status = true
-          value = x.name
-        }
-      })
-
-      if (status === false) {
-        errorCodes = 'notfound'
+  /**
+   * Execute validation checks on the value.
+   */
+  handleValidation (event) {
+    const value = this.state.value
+    return this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, { options: this.state.options })
       }
-    }
-
-    this.setState({
-      value: trimLeadingZero(value),
-      error: status === false,
-      valid: status === true
-    },
-    () => {
-      const e = { [this.props.name]: errorCodes }
-      super.handleValidation(event, status, e)
-    })
+    }))
   }
 
   /**
@@ -174,51 +159,51 @@ export default class Dropdown extends ValidationElement {
     // Match first on the value
     suggestions = this.state.options
       .sort((a, b) => {
-        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        if (a.value.toLowerCase() < b.value.toLowerCase()) {
           return -1
         }
 
-        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        if (a.value.toLowerCase() > b.value.toLowerCase()) {
           return 1
         }
 
         return 0
       })
       .filter(opt => {
-        return opt.name.toLowerCase().slice(0, inputLength) === inputValue
+        return opt.value.toLowerCase().slice(0, inputLength) === inputValue
       })
 
-    // Match second on the name
+    // Match second on the text
     suggestions = suggestions.concat(
       this.state.options
         .filter(opt => {
-          return !suggestions.some(x => x.value === opt.value)
+          return !suggestions.some(x => x.text === opt.text)
         })
         .sort((a, b) => {
-          if (a.value.toLowerCase() < b.value.toLowerCase()) {
+          if (a.text.toLowerCase() < b.text.toLowerCase()) {
             return -1
           }
 
-          if (a.value.toLowerCase() > b.value.toLowerCase()) {
+          if (a.text.toLowerCase() > b.text.toLowerCase()) {
             return 1
           }
 
           return 0
         })
         .filter(opt => {
-          return opt.value.toLowerCase().slice(0, inputLength) === inputValue
+          return opt.text.toLowerCase().slice(0, inputLength) === inputValue
         }))
 
     return suggestions
   }
 
   onSuggestionChange (event, change) {
-    let value = change.newValue
-    if (this.props.beforeChange) {
-      value = this.props.beforeChange(value)
-    }
+    const option = this.state.options.filter(v => {
+      return v.text === change.newValue
+    }).shift()
 
-    let e = {
+    const value = this.props.beforeChange(option ? option.value : change.newValue)
+    const e = {
       ...event,
       target: {
         id: this.props.name,
@@ -279,11 +264,14 @@ export default class Dropdown extends ValidationElement {
   }
 
   render () {
-    let option = this.state.options.filter(v => {
-      return v.name === this.state.value
+    const option = this.state.options.filter(v => {
+      return v.value === this.state.value
     }).shift()
 
-    let value = (option && !this.state.focus) ? this.props.displayText(option.value, option.name) : this.state.value
+    const value = (option && !this.state.focus)
+        ? this.props.displayText(option.value, option.text)
+        : this.state.value
+
     const inputProps = {
       value: value,
       className: this.inputClass(),
@@ -340,7 +328,20 @@ Dropdown.defaultProps = {
   clipboard: true,
   tabNext: () => {},
   tabBack: () => {},
-  displayText: (value, name) => {
+  beforeChange: (value) => { return value },
+  displayText: (value, text) => {
     return value
-  }
+  },
+  onError: (value, arr) => { return arr }
 }
+
+Dropdown.errors = [
+  {
+    code: 'notfound',
+    func: (value, props) => {
+      props.options.some(x => {
+        return x.text.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()
+      })
+    }
+  }
+]

@@ -16,10 +16,10 @@ export default class Number extends ValidationElement {
 
     this.state = {
       value: trimLeadingZero(props.value),
-      max: props.max,
-      error: props.error,
-      valid: props.valid,
-      errorCode: null
+      max: props.max
+      // error: props.error,
+      // valid: props.valid,
+      // errorCode: null
     }
   }
 
@@ -114,6 +114,24 @@ export default class Number extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `number.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    // Take the original and concatenate our new error values to
+    // it
+    arr.concat(this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   render () {
     // console.log('number value:', this.state.value)
     return (
@@ -144,12 +162,14 @@ export default class Number extends ValidationElement {
                tabBack={this.props.tabBack}
                tabNext={this.props.tabNext}
                ref="number"
+               onError={this.handleErrors}
                />
     )
   }
 }
 
 Number.defaultProps = {
+  name: 'number',
   disabled: false,
   value: '',
   max: '',
@@ -157,5 +177,15 @@ Number.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  errorCode: null
+  errorCode: null,
+  onError: (value, arr) => { return arr }
 }
+
+Number.errors = [
+  {
+    code: 'min',
+    func: (value, props) => {
+      return parseInt(value) >= parseInt(props.min)
+    }
+  }
+]

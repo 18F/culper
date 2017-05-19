@@ -312,8 +312,8 @@ export default class DateControl extends ValidationElement {
     return value.replace(/\D/g, '')
   }
 
-  monthDisplayText (value, name) {
-    return `${name} (${value})`.trim()
+  monthDisplayText (value, text) {
+    return `${value} (${text})`.trim()
   }
 
   render () {
@@ -339,18 +339,18 @@ export default class DateControl extends ValidationElement {
                       onValidate={this.handleValidation}
                       displayText={this.monthDisplayText}
                       tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
-              <option key="jan" value="January">1</option>
-              <option key="feb" value="February">2</option>
-              <option key="mar" value="March">3</option>
-              <option key="apr" value="April">4</option>
-              <option key="may" value="May">5</option>
-              <option key="jun" value="June">6</option>
-              <option key="jul" value="July">7</option>
-              <option key="aug" value="August">8</option>
-              <option key="sep" value="September">9</option>
-              <option key="oct" value="October">10</option>
-              <option key="nov" value="November">11</option>
-              <option key="dec" value="December">12</option>
+              <option key="jan" value="1">January</option>
+              <option key="feb" value="2">February</option>
+              <option key="mar" value="3">March</option>
+              <option key="apr" value="4">April</option>
+              <option key="may" value="5">May</option>
+              <option key="jun" value="6">June</option>
+              <option key="jul" value="7">July</option>
+              <option key="aug" value="8">August</option>
+              <option key="sep" value="9">September</option>
+              <option key="oct" value="10">October</option>
+              <option key="nov" value="11">November</option>
+              <option key="dec" value="12">December</option>
             </Dropdown>
           </div>
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>

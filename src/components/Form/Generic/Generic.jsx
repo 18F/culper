@@ -89,59 +89,17 @@ export default class Generic extends ValidationElement {
 
   /**
    * Execute validation checks on the value.
-   *
-   * Possible return values:
-   *  1. null: In a neutral state
-   *  2. false: Does not meet criterion and is deemed invalid
-   *  3. true: Meets all specified criterion
    */
-  handleValidation (event, status) {
-    let errorCode = null
-
-    event.persist()
-    if (!event || !event.target) {
-      super.handleValidation(event, status)
-      return
-    }
-
-    let hits = 0
-    status = true
-
-    if (this.state.value) {
-      const val = this.state.value.trim()
-      if (status && val.length > 0) {
-        status = status && (val.length >= parseInt(this.props.minlength || 0) && val.length <= parseInt(this.props.maxlength || 256))
-        if (!status) {
-          errorCode = 'length'
-        }
-        hits++
+  handleValidation (event) {
+    const value = `${this.state.value}`.trim()
+    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
       }
+    }))
 
-      if (status && this.props.pattern && this.props.pattern.length > 0) {
-        try {
-          let re = new RegExp(this.props.pattern)
-          status = status && re.test(val)
-          if (!status) {
-            errorCode = 'pattern'
-          }
-          hits++
-        } catch (e) {
-          // Not a valid regular expression
-        }
-      }
-    }
-
-    // If nothing was tested then go back to neutral
-    if (hits === 0) {
-      status = null
-    }
-
-    // Set the internal state
-    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.props.name || 'input'
-      let e = { [prop]: errorCode }
-      super.handleValidation(event, status, super.flattenObject(e))
-    })
+    this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
   }
 
   /**
@@ -234,8 +192,27 @@ Generic.defaultProps = {
   error: false,
   valid: false,
   errorCode: null,
+  pattern: '.*',
+  minlength: 0,
   maxlength: 255,
   clipboard: true,
   tabNext: () => {},
-  tabBack: () => {}
+  tabBack: () => {},
+  onError: (value, arr) => { return arr }
 }
+
+Generic.errors = [
+  {
+    code: 'length',
+    func: (value, props) => {
+      return value.length >= parseInt(props.minlength) && value.length <= parseInt(props.maxlength)
+    }
+  },
+  {
+    code: 'pattern',
+    func: (value, props) => {
+      const re = new RegExp(props.pattern)
+      return re.test(value)
+    }
+  }
+]

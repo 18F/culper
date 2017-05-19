@@ -59,23 +59,6 @@ describe('The radio component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
-  it('bubbles up validate event', () => {
-    let validations = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleValidation: function (event) {
-        validations++
-      }
-    }
-    const component = mount(<Radio name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').simulate('change')
-    expect(validations).toEqual(1)
-  })
-
   it('bubbles up change event', () => {
     let changes = 0
     const expected = {

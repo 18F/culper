@@ -7,9 +7,9 @@ export default class Textarea extends ValidationElement {
 
     this.state = {
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false
+      focus: props.focus,
+      error: props.error,
+      valid: props.valid
     }
   }
 
@@ -51,54 +51,15 @@ export default class Textarea extends ValidationElement {
 
   /**
    * Execute validation checks on the value.
-   *
-   * Possible return values:
-   *  1. null: In a neutral state
-   *  2. false: Does not meet criterion and is deemed invalid
-   *  3. true: Meets all specified criterion
    */
-  handleValidation (event, status) {
-    let errorCode = null
-
-    event.persist()
-    if (!event || !event.target) {
-      super.handleValidation(event, status)
-      return
-    }
-
-    let hits = 0
-    status = true
-
-    if (this.state.value) {
-      hits++
-      if (this.props.pattern && this.props.pattern.length > 0) {
-        try {
-          let re = new RegExp(this.props.pattern)
-          status = status && re.test(this.state.value)
-          if (!status) {
-            errorCode = 'pattern'
-          }
-        } catch (e) {
-          // Not a valid regular expression
-        }
+  handleValidation (event) {
+    const value = this.state.value
+    return this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
       }
-
-      if (this.props.maxlength && parseInt(this.props.maxlength) < this.state.value.length) {
-        status = false
-      }
-    }
-
-    // If nothing was tested then go back to neutral
-    if (hits === 0) {
-      status = null
-    }
-
-    // Set the internal state
-    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      let prop = this.props.name || 'textarea'
-      let e = { [prop]: errorCode }
-      super.handleValidation(event, status, super.flattenObject(e))
-    })
+    }))
   }
 
   /**
@@ -176,3 +137,29 @@ export default class Textarea extends ValidationElement {
     )
   }
 }
+
+Textarea.defaultProps = {
+  name: 'textarea',
+  value: '',
+  focus: false,
+  error: false,
+  valid: false,
+  onError: (value, arr) => { return arr }
+}
+
+Textarea.errors = [
+  {
+    code: 'length',
+    func: (value, props) => {
+      return value.length >= parseInt(props.minlength || 0) &&
+        value.length <= parseInt(props.maxlength || 256)
+    }
+  },
+  {
+    code: 'pattern',
+    func: (value, props) => {
+      const re = new RegExp(props.pattern)
+      return re.test(value)
+    }
+  }
+]
