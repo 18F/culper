@@ -20,6 +20,7 @@
   },
   "scripts": {
     "test": "rm -rf ./screenshots && rm -rf ./tmp-* && npm install && nightwatch",
-    "docker": "sleep 1m; npm test"
+    "docker": "sleep 1m; npm test",
+    "gif": "convert -delay 100 -loop 0"
   }
 }

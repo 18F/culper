@@ -103,6 +103,7 @@ export default class Travel extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.outside')}
                 labelSize="h3"
                 name="has_foreign_travel_outside"
+                className="foreign-travel-outside"
                 help="foreign.travel.help.outside"
                 value={this.props.HasForeignTravelOutside}
                 onUpdate={this.updateHasForeignTravelOutside}
@@ -113,6 +114,7 @@ export default class Travel extends ValidationElement {
           <Branch label={i18n.t('foreign.travel.heading.official')}
                   labelSize="h3"
                   name="has_foreign_travel_official"
+                  className="foreign-travel-official"
                   help="foreign.travel.help.official"
                   value={this.props.HasForeignTravelOfficial}
                   onUpdate={this.updateHasForeignTravelOfficial}
