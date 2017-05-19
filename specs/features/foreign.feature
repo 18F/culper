@@ -8,6 +8,14 @@ Feature: Foreign
     Then I should be in the foreign contacts section
     Then I log out
 
+  Scenario: Complete the foreign business sponsorship section
+    Given I am a registered user
+    And I log in
+    And I fill in the foreign business/sponsorship section
+    And I click next
+    Then I should be in the foreign business/political section
+    Then I log out
+
   Scenario: Complete the foreign business political section
     Given I am a registered user
     And I log in

@@ -59,7 +59,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'business/contact':
       return promise
     case 'business/sponsorship':
-      return promise
+      return completeBusinessSponsorship(promise)
     case 'business/political':
       return completeBusinessPolitical(promise)
     case 'business/voting':
@@ -108,6 +108,25 @@ const completePassport = (promise) => {
     .then(() => { return setText('input[name="month"]', '11') })
     .then(() => { return setText('input[name="day"]', '10') })
     .then(() => { return setText('input[name="year"]', '1775') })
+}
+
+const completeBusinessSponsorship = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-business-sponsorship .branch .yes') })
+    .then(() => { return setName('.foreign-business-sponsorship-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setDate('.foreign-business-sponsorship-birthdate', '1', '1', '2010') })
+    .then(() => { return setOption('.foreign-business-sponsorship-birthplace .branch .yes') })
+    .then(() => { return setText('.foreign-business-sponsorship-birthplace .state input', 'FL') })
+    .then(() => { return setText('.foreign-business-sponsorship-birthplace .city input', 'Seminole') })
+    .then(() => { return setDomesticAddress('.foreign-business-sponsorship-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.foreign-business-sponsorship-citizenship input', 'Germany') })
+    .then(() => { return setText('.foreign-business-sponsorship-organization input', 'Luftwaffe') })
+    .then(() => { return setDomesticAddress('.foreign-business-sponsorship-organizationaddress', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDate('.foreign-business-sponsorship-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.foreign-business-sponsorship-dates .to', '1', '1', '2011') })
+    .then(() => { return setDomesticAddress('.foreign-business-sponsorship-residence', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.foreign-business-sponsorship-stay textarea', 'This is a reason for stay') })
+    .then(() => { return setText('.foreign-business-sponsorship-sponsorship textarea', 'This is a reason for sponsorship') })
 }
 
 const completeBusinessPolitical = (promise) => {
@@ -208,4 +227,23 @@ const setDate = (selector, month, day, year) => {
     .setValue(selector + ' .day input', day)
     .setValue(selector + ' .year input', year)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-date.png')
+}
+
+const setName = (selector, first, middle, last) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector + ' .first input', first)
+    .setValue(selector + ' .middle input', middle)
+    .setValue(selector + ' .last input', last)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-name.png')
+}
+
+const setDomesticAddress = (selector, street, city, state, zipcode) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector + ' .mailing input', street)
+    .setValue(selector + ' .city input', city)
+    .setValue(selector + ' .state input', state)
+    .setValue(selector + ' .zipcode input', zipcode)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-address.png')
 }
