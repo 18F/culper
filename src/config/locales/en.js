@@ -140,7 +140,7 @@ const en = {
         length: {
           title: 'There is a problem with the middle name',
           message: [
-            'You ase only allowed 100 characters.',
+            'You are only allowed 100 characters.',
             '*and/or*',
             'If the middle name is an initial then check the "Initial only" checkbox.'
           ],
@@ -5983,6 +5983,422 @@ const en = {
           ],
           append: 'Add another event'
         }
+      },
+      contact: {
+        heading: {
+          title: 'Have you or any member of your immediate family in the last seven (7) years had any contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
+          name: 'Provide the name of the individual involved in the contact',
+          location: 'Provide the location of the contact',
+          date: 'Provide the date of contact',
+          governments: 'Provide the foreign government(s) involved',
+          establishment: 'Provide the type of establishment (such as embassy, consulate, agency, military service, intelligence or security service, etc.) involved',
+          representatives: 'Provide the names of foreign representatives involved in contact',
+          purpose: 'Provide the purpose/circumstances of contact',
+          hassubsequent: 'Was there any subsequent contact initiated by you, your immediate family member, or a representative of the foreign organization?',
+          hassubsequent2: 'Do you have another subsequent contact to report for this event?',
+          subsequent: 'Provide the purpose of the subsequent contact',
+          recent: 'Provide the date of most recent contact',
+          future: 'Provide plans for future contact'
+        },
+        para: {
+          intro: 'For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
+          branch: [
+            'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
+            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjuction with a U.S. Government military duty.'
+          ]
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government contact?',
+            message: 'If you have any foreign government contact then select "yes".',
+            note: ''
+          },
+          location: {
+            title: 'Need help with the location?',
+            message: 'Provide the location of the contact.',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date of contact?',
+            message: 'Provide the approximate date of contact.',
+            note: ''
+          },
+          governments: {
+            title: 'Need help with the governments associated?',
+            message: 'Provide the governments associated with this contact.',
+            note: ''
+          },
+          establishment: {
+            title: 'Need help with the establishment?',
+            message: 'Provide the establishment.',
+            note: ''
+          },
+          representatives: {
+            title: 'Need help with the representatives?',
+            message: 'Provide the representatives.',
+            note: ''
+          },
+          purpose: {
+            title: 'Need help with the purpose of contact?',
+            message: 'Provide the purpose/circumstances of the contact.',
+            note: ''
+          },
+          hassubsequent: {
+            title: 'Need help with any subsequent contacts?',
+            message: 'If there were any subsequent contact initiated by you or your immediate family select "Yes".',
+            note: ''
+          },
+          subsequent: {
+            title: 'Need help with the purpose of the subsequent contact?',
+            message: 'Provide the purpose of the subsequent contact.',
+            note: ''
+          },
+          recent: {
+            title: 'Need help with the recent date of contact?',
+            message: 'Provide the approximate date of the most recent contact.',
+            note: ''
+          },
+          future: {
+            title: 'Need help explaining future plans of contact?',
+            message: 'Provide a description of any future plans of contact.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign government contacts',
+            item: 'Contact',
+            unknown: 'Provide details of contact below'
+          },
+          appendTitle: 'Have you or any member of your immediate family in the last seven (7) years had any additional contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
+          appendMessage: [
+            'Such as embassy, consulate, agency, military service, intelligence or security service, etc.',
+            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S. Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
+          ],
+          append: 'Add another contact'
+        }
+      },
+      sponsorship: {
+        heading: {
+          title: 'Have you in the last seven (7) years sponsored any foreign national to come to the U.S. as a student, for work, or for permanent residence?',
+          name: 'Provide the name of the sponsored foreign national',
+          birthdate: 'Provide the date of birth for the sponsored foreign national',
+          birthplace: 'Provide the place of birth for the sponsored foreign national',
+          address: 'Provide the current street address of the sponsored foreign national',
+          citizenship: 'Provide the country(ies) of citizenship for the sponsored foreign national',
+          organization: 'Provide the name of the organization through which sponsorship was arranged, if applicable',
+          organizationaddress: 'Provide the address of the organization through which the sponsorship was arranged, if applicable',
+          dates: 'Provide the dates of stay in the U.S. for the sponsored foreign national',
+          residence: 'Provide the address of the sponsored foreign national while residing in the U.S.',
+          stay: 'Provide the purpose of the stay in the U.S. for the sponsored foreign national',
+          sponsorship: 'Provide the purpose of sponsorship for the sponsored foreign national'
+        },
+        label: {
+          idk: 'I don\'t know',
+          birthplace: 'Was this person born in the United States of America?'
+        },
+        para: {
+          or: 'or'
+        },
+        placeholder: {
+          city: 'Please enter the city of birth',
+          country: 'Please enter the country of birth'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government sponsorship?',
+            message: 'If you have any foreign government sponsorship then select "yes".',
+            note: ''
+          },
+          birthdate: {
+            title: 'Need help with the date of birth?',
+            message: 'Provide the foreign nationals date of birth.',
+            note: ''
+          },
+          birthplace: {
+            title: 'Need help with the place of birth?',
+            message: 'Provide the foreign nationals place of birth.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with the current street address?',
+            message: 'Provide the current street address of the foreign national.',
+            note: ''
+          },
+          citizenship: {
+            title: 'Need help with the foreign nationals citizenship(s)?',
+            message: 'To the best of your knowledge provide the foreign nationals citizenship(s).',
+            note: ''
+          },
+          organization: {
+            title: 'Need help with the organization?',
+            message: 'Provide the organization name through which the sponsorship was arranged.',
+            note: ''
+          },
+          organizationaddress: {
+            title: 'Need help with the organization address?',
+            message: 'Provide the organization address.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates of stay?',
+            message: 'Provide the approximate date range for the period of stay within the U.S.',
+            note: ''
+          },
+          residence: {
+            title: 'Need help with the residence?',
+            message: 'Provide the address of the sponsored foreign national.',
+            note: ''
+          },
+          stay: {
+            title: 'Need help with the purpose of the stay?',
+            message: 'Provide the purpose for the stay within the U.S.',
+            note: ''
+          },
+          sponsorship: {
+            title: 'Need help with the purpose of the sponsorship?',
+            message: 'Provide the purpose of the sponsorship.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign national sponsorship',
+            item: 'Sponsorship',
+            unknown: 'Provide details of sponsorship below'
+          },
+          appendTitle: 'Have you in the last seven (7) years sponsored any additional foreign national to come to the U.S. as a student, for work, or for permanent residence?',
+          appendMessage: [],
+          append: 'Add another sponsorship'
+        }
+      },
+      political: {
+        heading: {
+          title: 'Have you EVER held political office in a foreign country?',
+          position: 'Provide the position held',
+          dates: 'Provide the dates you held political office',
+          country: 'Provide the name of the country involved',
+          reason: 'Provide the reason(s) for these activities',
+          eligibility: 'Provide your current eligibility to hold political office in a foreign country'
+        },
+        label: {
+          idk: 'I don\'t know',
+          birthplace: 'Was this person born in the United States of America?'
+        },
+        para: {
+          or: 'or'
+        },
+        placeholder: {
+          city: 'Please enter the city of birth',
+          country: 'Please enter the country of birth'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government sponsorship?',
+            message: 'If you have any foreign government sponsorship then select "yes".',
+            note: ''
+          },
+          position: {
+            title: 'Need help with the position?',
+            message: 'Provide the position held.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'Provide the dates you held political office.',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country involved?',
+            message: 'Provide the country involved.',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason?',
+            message: 'Describe the reason for these activities.',
+            note: ''
+          },
+          eligibility: {
+            title: 'Need help with your current eligibility?',
+            message: 'Provide your current eligibility for the political office.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign political office',
+            item: 'Office',
+            unknown: 'Provide details of political office below'
+          },
+          appendTitle: 'Have you EVER held any additional political office in a foreign country?',
+          appendMessage: [],
+          append: 'Add another political office'
+        }
+      },
+      voting: {
+        heading: {
+          title: 'Have you EVER voted in the election of a foreign country?',
+          date: 'Provide the date you voted in the foreign election',
+          country: 'Provide the name of the country involved',
+          reason: 'Provide the reason(s) for these activities',
+          eligibility: 'Provide your current eligibility to vote in a foreign country'
+        },
+        help: {
+          branch: {
+            title: 'Need help determining if you have any foreign government sponsorship?',
+            message: 'If you have any foreign government sponsorship then select "yes".',
+            note: ''
+          },
+          date: {
+            title: 'Need help with the date?',
+            message: 'Provide the date you voted.',
+            note: ''
+          },
+          country: {
+            title: 'Need help with the country you voted in?',
+            message: 'Provide the country name.',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason?',
+            message: 'Describe the reason for these activities.',
+            note: ''
+          },
+          eligibility: {
+            title: 'Need help with your current eligibility?',
+            message: 'Provide your current eligibility for voting.',
+            note: ''
+          }
+        },
+        collection: {
+          summary: {
+            title: 'Summary of foreign elections',
+            item: 'Election',
+            unknown: 'Provide details of election below'
+          },
+          appendTitle: 'Do you have other instances of voting in the election of a foreign country to report?',
+          appendMessage: [],
+          append: 'Add another election'
+        }
+      }
+    },
+    travel: {
+      heading: {
+        outside: 'Have you traveled outside the U.S. in the last past seven (7) years?',
+        official: 'Has your travel in the last (7) years been solely for U.S. Government business/military overseas assignment on official government orders?',
+        country: 'Provide the country visited',
+        dates: 'Provide the dates of your travel to this country',
+        days: 'Provide the total number of days involved in the visit',
+        purpose: 'Provide the purpose of the travel to this country',
+        questioned: 'While traveling to, or in this country, were you questioned, searched, or otherwise detained (other than for normal customs requirements) by the local customs or security service officials when entering or leaving this country?',
+        encounter: 'While traveling to or in this country, were you involved in any encounter with the police?',
+        contacted: 'While traveling to or in this country, were you contacted by, or in contact with any person known or suspected of being involved or associated with foreign intelligence, terrorist, security, or military organizations?',
+        counter: 'While traveling to, or in this country, were you involved in any counterintelligence or security issues not reported?',
+        interest: 'While traveling to or in this country, were you contacted by, or in contact with anyone exhibiting excessive knowledge of or undue interest in you or your job?',
+        sensitive: 'While traveling to or in this country, were you contacted by, or in contact with anyone attempting to obtain classified information or unclassified, sensitive information?',
+        threatened: 'While traveling to, or in this country, were you threatened, coerced, or pressured in any way to cooperate with a foreign government official or foreign intelligence or security service?',
+        explanation: 'Provide explanation'
+      },
+      para: {
+        personal: 'I.e., no personal trips in conjuction with the official U.S. Government business.',
+        checkall: 'Check all that apply',
+        explanation: 'If yes provide explanation.',
+        timeframe: [
+          'Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards.',
+          'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjuction with the official U.S. Government travel.'
+        ]
+      },
+      label: {
+        one: '1-5',
+        six: '6-10',
+        eleven: '11-20',
+        twentyone: '21-30',
+        more: 'More than 30',
+        many: 'Many short trips',
+        business: 'Business/professional',
+        volunteer: 'Volunteer activites',
+        education: 'Education',
+        tourism: 'Tourism',
+        conference: 'Trade shows, conferences, and seminars',
+        family: 'Visit family or friends',
+        other: 'Other'
+      },
+      help: {
+        outside: {
+          title: 'Have you traveled outside the U.S.?',
+          message: 'If it was within the last seven years then click Yes.',
+          note: ''
+        },
+        official: {
+          title: 'Was the travel solely U.S. Government related?',
+          message: 'If it was then click Yes.',
+          note: ''
+        },
+        country: {
+          title: 'Need help with the country?',
+          message: 'Provide the name of the country you visited.',
+          note: ''
+        },
+        dates: {
+          title: 'Need help with the dates?',
+          message: 'Provide the approximate dates of your visit.',
+          note: ''
+        },
+        days: {
+          title: 'Need help with how many days?',
+          message: 'Provide how many days the visit lasted.',
+          note: ''
+        },
+        purpose: {
+          title: 'Need help with the purpose?',
+          message: 'Provide the purpose of the visit.',
+          note: ''
+        },
+        questioned: {
+          title: 'Were you questioned during the visit?',
+          message: 'Provide an explanation for the questioning.',
+          note: ''
+        },
+        encounter: {
+          title: 'Did you encounter the police during the visit?',
+          message: 'Provide an explanation for police involvement.',
+          note: ''
+        },
+        contacted: {
+          title: 'Were you contacted of any suspicious people?',
+          message: 'Provide an explanation of the contact.',
+          note: ''
+        },
+        counter: {
+          title: 'Were you involved in any security issues?',
+          message: 'Provide a description of your participation or experience.',
+          note: ''
+        },
+        interest: {
+          title: 'Did anyone seem to have a strong interest in your visit?',
+          message: 'Provide a description detailing the circumstances.',
+          note: ''
+        },
+        sensitive: {
+          title: 'Did anyone attempt to obtain sensitive information from you?',
+          message: 'Provide an accurate description.',
+          note: ''
+        },
+        threatened: {
+          title: 'Any coercion or pressure from the foreign government?',
+          message: 'Provide a detailed account of the circumstances.',
+          note: ''
+        }
+      },
+      collection: {
+        summary: {
+          title: 'Summary of foreign travel',
+          item: 'Travel',
+          unknown: 'Provide details of your travel below'
+        },
+        appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for othe than solely U.S. Government business on official government orders?',
+        appendMessage: [],
+        append: 'Add another travel'
       }
     }
   },
@@ -6023,7 +6439,7 @@ const en = {
         needmore: 'Since you answered yes we need more information',
         sentenceDescription: 'Provide a description of the sentence',
         exceedsYear: 'Were you sentenced to imprisonment for a term exceeding 1 year?',
-        incarcerated: 'Were you incarcerated as aresult of that sentence for not less than 1 year?',
+        incarcerated: 'Were you incarcerated as a result of that sentence for not less than 1 year?',
         incarcerationDates: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
         probationDates: 'If conviction resulted in probation or parole, provide the  dates of probation or parole',
         awaitingTrial: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
@@ -6252,7 +6668,249 @@ const en = {
       }
     }
   },
-
+  substance: {
+    tour: {
+      para: 'Take a guided tour through the section'
+    },
+    review: {
+      title: 'Let\'s make sure everything looks right',
+      para: 'View all the sections associated with substance abuse'
+    },
+    destination: {
+      police: {
+        negative: 'Negative impact',
+        ordered: 'Mandatory counseling or treatment',
+        voluntary: 'Voluntary counseling or treatment',
+        additional: 'Additional instances'
+      },
+      review: 'Review substance use'
+    },
+    alcohol: {
+      heading: {
+        negativeImpact: 'In the last seven (7) years has your use of alcohol had a negative impact on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
+        orderedCounseling: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your use of alcohol?',
+        voluntaryCounseling: 'Have you EVER voluntarily sought counseling or treatment as a result of your use of alcohol?',
+        receivedCounseling: 'Have you EVER received counseling or treatment as a result of your use of alcohol in addition to what you have already listed on this form?'
+      },
+      negativeImpact: {
+        heading: {
+          occurred: 'Provide the month/year when this negative impact occurred',
+          circumstances: 'Provide an explanation of the circumstances and the negative impact',
+          used: 'Provide dates of involvement or use'
+        },
+        label: {
+          circumstances: 'Circumstances',
+          negativeImpact: 'Negative impact'
+        },
+        help: {
+          occurred: {
+            title: 'Need help with the date the negative impact occurred?',
+            message: 'Provide the month/year when this negative impact occurred',
+            note: ''
+          },
+          circumstances: {
+            title: 'Need help with the circumstances?',
+            message: 'Provide an explanation of the circumstances and the negative impact',
+            note: ''
+          },
+          used: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide dates of involvement or use',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of negative impacts',
+          summary: 'Provide your negative impact details below',
+          appendTitle: 'Has the use of alcohol had other negative impacts on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
+          appendLabel: 'Add another negative impact',
+          itemType: 'Negative impact'
+        }
+      },
+      orderedCounseling: {
+        heading: {
+          seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
+          actionTaken: 'Did you take action to seek counseling or treatment?',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
+          completedTreatment: 'Did you successfully complete the treatment program?',
+          noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
+        },
+        label: {
+          seekers: 'Check all that apply',
+          otherSeeker: 'Provide explanation'
+        },
+        seekers: {
+          label: {
+            employer: 'An employer, military commander, or employee assistance program',
+            medicalProfessional: 'A medical professional',
+            mentalHealthProfessional: 'A mental health professional',
+            courtOfficial: 'A court official / judge',
+            notOrdered: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above',
+            other: ['Other', '(provide explanation)']
+          }
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        },
+        help: {
+          seekers: {
+            title: 'Need help with determining who has ordered you to seek treatment?',
+            message: 'Check all who ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol',
+            note: ''
+          },
+          counselingDates: {
+            title: 'Need help with the counseling dates?',
+            message: 'Provide the dates when you were in counseling or treatment',
+            note: ''
+          },
+          actionTaken: {
+            title: 'Need help with action taken to seek counseling or treatment',
+            message: 'Select if you have taken action to seek counseling or treatment.',
+            note: ''
+          },
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone number of the treatment provider',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          }
+        }
+      },
+      voluntaryCounseling: {
+        heading: {
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          treatmentProviderTelephone: 'Provide telephone number',
+          completedTreatment: 'Did you successfully complete the treatment program?',
+          noCompletedTreatment: 'You responded “No” to having successfully completed the treatment program. Provide explanation.'
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Do you have additional instances where you have voluntarily sought counseling or treatment as a result of your use of alcohol to enter?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        },
+        help: {
+          counselingDates: {
+            title: 'Need help with the counseling dates?',
+            message: 'Provide the dates of counseling or treatment',
+            note: ''
+          },
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone number of the treatment provider',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          },
+          noCompletedTreatment: {
+            title: 'Need help with this explanation?',
+            message: 'Provide details as to why you responded No to having successfully completed the treatment program',
+            note: ''
+          }
+        }
+      },
+      receivedCounseling: {
+        heading: {
+          counselingDates: 'Provide the dates of counseling or treatment',
+          treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
+          treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
+          agencyName: 'Provide the name of agency/organization where counseling/treatment was provided',
+          agencyAddress: 'Provide the address of agency/organization where counseling/treatment was provided',
+          completedTreatment: 'Did you successfully complete your counseling or treatment?',
+          treatmentBeganDate: 'Provide the date counseling or treatment began',
+          treatmentEndDate: 'Provide the date counseling or treatment ended',
+          noCompletedTreatment: 'Provide explanation'
+        },
+        collection: {
+          description: 'Summary of counselings',
+          summary: 'Provide your counseling details below',
+          appendTitle: 'Did you receive alcohol-related counseling or treatment another time?',
+          appendLabel: 'Add another counseling',
+          itemType: 'Counseling'
+        },
+        help: {
+          treatmentProviderName: {
+            title: 'Need help with the treatment provider name?',
+            message: 'Provide the name of the individual counselor or treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          agencyName: {
+            title: 'Need help with the agency name?',
+            message: 'Provide the name of agency/organization where counseling/treatment was provided',
+            note: ''
+          },
+          agencyAddress: {
+            title: 'Need help with the agency address?',
+            message: 'Provide the address where the counseling/treatment provider is located',
+            note: ''
+          },
+          treatmentBeganDate: {
+            title: 'Need help with when treatment began?',
+            message: 'Provide the date counseling or treatment began',
+            note: ''
+          },
+          treatmentEndDate: {
+            title: 'Need help with when treatment ended?',
+            message: 'Provide the date counseling or treatment ended',
+            note: ''
+          },
+          completedTreatment: {
+            title: 'Need help with your treatment completion?',
+            message: 'Mark if you successfully completed a treatment program',
+            note: ''
+          },
+          noCompletedTreatment: {
+            title: 'Need help with this explanation?',
+            message: 'Provide details as to why you responded No to having successfully completed the treatment program',
+            note: ''
+          }
+        }
+      }
+    }
+  },
   alias: {
     maiden: {
       help: {

@@ -11,6 +11,8 @@ if [ $# -ne 1 ]; then
   exit
 fi
 
+./bin/predeploy.sh $SPACE
+
 if [ $SPACE = 'production' ]; then
   API_NAME="eqip-prototype-api"
   API_MANIFEST="manifest-api.yml"
@@ -21,9 +23,14 @@ elif [ $SPACE = 'staging' ]; then
   API_MANIFEST="manifest-api-staging.yml"
   FRONTEND_NAME="eqip-prototype-staging"
   FRONTEND_MANIFEST="manifest-frontend-staging.yml"
-elif [ $SPACE = 'development' ]; then
-  echo "Development is currently not implemented"
-  exit
+elif [ $SPACE = 'dev' ]; then
+  API_NAME="eqip-prototype-api-dev"
+  API_MANIFEST="manifest-api-dev.yml"
+  FRONTEND_NAME="eqip-prototype-dev"
+  FRONTEND_MANIFEST="manifest-frontend-dev.yml"
+
+  CF_USERNAME=$CF_USERNAME_DEV
+  CF_PASSWORD=$CF_PASSWORD_DEV
 else
   echo "Unknown space: $SPACE"
   exit

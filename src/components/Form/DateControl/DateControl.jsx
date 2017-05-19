@@ -81,20 +81,26 @@ export default class DateControl extends ValidationElement {
         month = datePart('m', next.value)
         day = datePart('d', next.value)
         year = datePart('y', next.value)
+        this.setState({
+          disabled: next.disabled,
+          value: value,
+          month: month,
+          day: day,
+          year: year
+        })
       } else if (next.date) {
         value = next.date
         month = '' + (next.date.getMonth() + 1)
         day = next.date.getDate()
         year = next.date.getFullYear()
+        this.setState({
+          disabled: next.disabled,
+          value: value,
+          month: month,
+          day: day,
+          year: year
+        })
       }
-
-      this.setState({
-        disabled: next.disabled,
-        value: value,
-        month: month,
-        day: day,
-        year: year
-      })
     }
     if (next.disabled !== this.state.disabled) {
       this.setState({
