@@ -105,23 +105,44 @@ const navigation = [
           { name: 'Employment', url: 'employment' },
           { name: 'Other business ventures', url: 'ventures' },
           { name: 'Event participation', url: 'conferences' },
-          { hidden: true, name: 'Immediate family contact', url: 'contact' },
-          { hidden: true, name: 'Foreign national sponsorship', url: 'sponsorship' },
-          { hidden: true, name: 'Held political office', url: 'political' },
-          { hidden: true, name: 'Voting', url: 'voting' }
+          { name: 'Immediate family contact', url: 'contact' },
+          { name: 'Foreign national sponsorship', url: 'sponsorship' },
+          { name: 'Held political office', url: 'political' },
+          { name: 'Voting', url: 'voting' }
         ]
       },
-      { hidden: true, name: 'Foreign countries you have visited', url: 'travel' }
+      { name: 'Foreign countries you have visited', url: 'travel' }
     ]
   },
   {
     name: 'Substance use',
     title: 'Substance use',
     url: 'substance',
-    hidden: true,
+    hidden: false,
     subsections: [
-      { name: 'Illegal use of drugs and drug activity', url: 'drugs' },
-      { name: 'Use of alcohol', url: 'alcohol' }
+      { hidden: true, name: 'Illegal use of drugs and drug activity', url: 'drugs' },
+      {
+        name: 'Use of alcohol',
+        url: 'alcohol',
+        subsections: [
+          {
+            name: 'Negative impact',
+            url: 'negative'
+          },
+          {
+            name: 'Mandatory counseling or treatment',
+            url: 'ordered'
+          },
+          {
+            name: 'Voluntary counseling or treatment',
+            url: 'voluntary'
+          },
+          {
+            name: 'Additional instances',
+            url: 'additional'
+          }
+        ]
+      }
     ]
   },
   {

@@ -129,7 +129,6 @@ export default class Gambling extends ValidationElement {
       <div className="gambling">
         <Branch name="has_gamblingdebt"
                 value={this.state.HasGamblingDebt}
-                help="financial.gambling.branch.help"
                 onUpdate={this.onUpdate.bind(this)}>
         </Branch>
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
@@ -143,7 +142,6 @@ export default class Gambling extends ValidationElement {
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
             <Field title={i18n.t('financial.gambling.heading.dates')}
-                   help="financial.gambling.help.dates"
                    adjustFor="daterange">
               <DateRange name="Dates"
                          label={i18n.t('financial.gambling.label.dates')}
@@ -151,8 +149,7 @@ export default class Gambling extends ValidationElement {
                          />
             </Field>
 
-            <Field title={i18n.t('financial.gambling.heading.losses')}
-                   help="financial.gambling.help.losses">
+            <Field title={i18n.t('financial.gambling.heading.losses')}>
               <Currency name="Losses"
                         className="losses"
                         placeholder={i18n.t('financial.gambling.placeholder.losses')}

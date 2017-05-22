@@ -51,6 +51,7 @@ export default combineReducers({
   TBD: reducer('Tbd'),
   Legal: reducer('Legal'),
   Psychological: reducer('Psychological'),
+  SubstanceUse: reducer('SubstanceUse'),
   Completed: reducer('Completed'),
   Errors: errorReducer('Errors'),
   Saved: (state = {}) => {
