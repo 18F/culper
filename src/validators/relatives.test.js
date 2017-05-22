@@ -57,6 +57,32 @@ describe('Relatives validation', function () {
     })
   })
 
+  it('validate relative citizenship documentation', () => {
+    const tests = [
+      {
+        state: {
+          IsDeceased: 'No',
+          Document: 'Permanent'
+        },
+        expected: true
+      },
+      {
+        state: {
+          IsDeceased: 'No',
+          Document: 'Other',
+          OtherDocument: {
+            value: 'Other stuff'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validDocument()).toBe(test.expected)
+    })
+  })
+
   it('validate relative birth date', () => {
     const tests = [
       {
@@ -1700,6 +1726,19 @@ describe('Relatives validation', function () {
             }
           ],
           ListBranch: 'No'
+        },
+        expected: false
+      },
+      {
+        state: {
+          List: [
+            {
+              Item: {
+                Relation: 'Mother'
+              }
+            }
+          ],
+          ListBranch: 'Nope'
         },
         expected: false
       },

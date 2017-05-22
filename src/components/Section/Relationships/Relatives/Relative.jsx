@@ -44,6 +44,7 @@ export default class Relative extends ValidationElement {
       CourtName: props.CourtName,
       CourtAddress: props.CourtAddress,
       Document: props.Document,
+      OtherDocument: props.OtherDocument,
       DocumentComments: props.DocumentComments,
       ResidenceDocumentNumber: props.ResidenceDocumentNumber,
       Expiration: props.Expiration,
@@ -83,6 +84,7 @@ export default class Relative extends ValidationElement {
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
     this.updateDocument = this.updateDocument.bind(this)
+    this.updateOtherDocument = this.updateOtherDocument.bind(this)
     this.updateDocumentComments = this.updateDocumentComments.bind(this)
     this.updateResidenceDocumentNumber = this.updateResidenceDocumentNumber.bind(this)
     this.updateExpiration = this.updateExpiration.bind(this)
@@ -185,6 +187,10 @@ export default class Relative extends ValidationElement {
 
   updateDocument (event) {
     this.onUpdate('Document', event.target.value)
+  }
+
+  updateOtherDocument (value) {
+    this.onUpdate('OtherDocument', value)
   }
 
   updateDocumentComments (values) {
@@ -649,7 +655,6 @@ export default class Relative extends ValidationElement {
                        comments={true}
                        commentsName="DocumentComments"
                        commentsValue={this.state.DocumentComments}
-                       commentsActive={this.state.Document === 'Other'}
                        onUpdate={this.updateDocumentComments}
                        adjustFor="big-buttons">
                   <div>
@@ -706,6 +711,15 @@ export default class Relative extends ValidationElement {
                              onChange={this.updateDocument}
                              />
                     </RadioGroup>
+
+                    <Show when={this.state.Document === 'Other'}>
+                      <Textarea name="OtherDocument"
+                        className="relative-other-documentnumber"
+                        {...this.state.OtherDocument}
+                        onValidate={this.props.onValidate}
+                        onUpdate={this.updateOtherDocument}
+                      />
+                    </Show>
                   </div>
                 </Field>
 

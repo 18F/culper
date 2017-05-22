@@ -54,6 +54,7 @@ export class RelativeValidator {
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
     this.document = state.Document
+    this.otherDocument = state.OtherDocument
     this.documentComments = state.DocumentComments
     this.residenceDocumentNumber = state.ResidenceDocumentNumber
     this.expiration = state.Expiration
@@ -223,9 +224,19 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.document && this.document.length > 0 &&
-      ((this.document === 'Other' && !!this.documentComments && this.documentComments.length > 0) ||
-       (this.document !== 'Other'))
+    switch (this.document) {
+      case 'Other':
+        return validGenericTextfield(this.otherDocument)
+      case 'Permanent':
+      case 'Employment':
+      case 'Arrival':
+      case 'Visa':
+      case 'F1':
+      case 'J1':
+        return true
+      default:
+        return false
+    }
   }
 
   validResidenceDocumentNumber () {
