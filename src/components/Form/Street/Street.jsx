@@ -7,10 +7,10 @@ export default class Street extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
-      error: props.error || false,
-      valid: props.valid || false
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -37,22 +37,21 @@ export default class Street extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `street.${err.code}`,
+        valid: err.valid
+      }
     })
-  }
 
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   render () {
@@ -65,10 +64,17 @@ export default class Street extends ValidationElement {
             error={this.state.error}
             valid={this.state.valid}
             onChange={this.handleChange}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             />
     )
   }
 }
+
+Street.defaultProps = {
+  value: '',
+  onError: (value, arr) => { return arr }
+}
+
+Street.errors = []

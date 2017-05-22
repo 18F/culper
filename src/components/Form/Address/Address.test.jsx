@@ -16,21 +16,23 @@ describe('The Address component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
-  it('bubbles up validate event', () => {
-    let validations = 0
+  it('bubbles up error event', () => {
+    let hits = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
+      city: '1',
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
-        validations++
+      onError: (value, arr) => {
+        hits++
+        return arr
       }
     }
-    const component = mount(<Address name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').first().simulate('change')
-    expect(validations > 0).toEqual(true)
+    const component = mount(<Address name={expected.name} city={expected.city} onError={expected.onError} />)
+    component.find('.city input').first().simulate('blur')
+    expect(hits > 0).toEqual(true)
   })
 
   it('bubbles up change event', () => {
@@ -241,9 +243,7 @@ describe('The Address component', () => {
           Errors: null
         },
         expected: {
-          complexStatus: true,
-          suggestions: [],
-          codes: []
+          suggestions: []
         }
       },
       {
@@ -257,7 +257,6 @@ describe('The Address component', () => {
           ]
         },
         expected: {
-          complexStatus: false,
           suggestions: [],
           geocodeErrorCode: null,
           geocodeError: true
@@ -279,7 +278,6 @@ describe('The Address component', () => {
           ]
         },
         expected: {
-          complexStatus: false,
           suggestions: [{
             Address: '123 Some Rd',
             City: 'Arlington',

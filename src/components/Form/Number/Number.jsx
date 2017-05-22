@@ -17,10 +17,9 @@ export default class Number extends ValidationElement {
     this.state = {
       value: trimLeadingZero(props.value),
       max: props.max
-      // error: props.error,
-      // valid: props.valid,
-      // errorCode: null
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (next) {
@@ -65,66 +64,16 @@ export default class Number extends ValidationElement {
     })
   }
 
-  /**
-   * Execute validation checks on the value.
-   *
-   * Possible return values:
-   *  1. null: In a neutral state
-   *  2. false: Does not meet criterion and is deemed invalid
-   *  3. true: Meets all specified criterion
-   */
-  handleValidation (event, status) {
-    if (status === false) {
-      super.handleValidation(event, status, null)
-      return
-    }
-
-    let errorCode = null
-    let hits = 0
-    status = true
-
-    if (!isNaN(parseInt(this.state.value))) {
-      if (status && this.props.min) {
-        status = parseInt(this.state.value) >= parseInt(this.props.min)
-        if (status === false) {
-          errorCode = 'min'
-        }
-        hits++
-      }
-
-      if (status && this.props.max) {
-        status = parseInt(this.state.value) <= parseInt(this.state.max)
-        if (status === false) {
-          errorCode = 'max'
-        }
-        hits++
-      }
-    }
-
-    // If nothing was tested then go back to neutral
-    if (hits === 0) {
-      status = null
-    }
-
-    // Set the internal state
-    this.setState({error: status === false, valid: status === true, errorCode: errorCode}, () => {
-      const errorObject = { [this.props.name]: errorCode }
-      const statusObject = { [this.props.name]: { status: status } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
   handleError (value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `number.${err.code}`,
-        valid: err.valid
-      }
-    })
+    // arr = arr.map(err => {
+    //   return {
+    //     code: `number.${err.code}`,
+    //     valid: err.valid
+    //   }
+    // })
 
-    // Take the original and concatenate our new error values to
-    // it
-    arr.concat(this.props.onError(value, this.constructor.errors.map(err => {
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
         valid: err.func(value, this.props)
@@ -133,7 +82,6 @@ export default class Number extends ValidationElement {
   }
 
   render () {
-    // console.log('number value:', this.state.value)
     return (
       <Generic name={this.props.name}
                label={this.props.label}
@@ -147,13 +95,9 @@ export default class Number extends ValidationElement {
                readonly={this.props.readonly}
                required={this.props.required}
                value={this.state.value}
-               focus={this.props.focus}
-               error={this.state.error}
-               valid={this.state.valid}
                onChange={this.handleChange}
                onFocus={this.props.onFocus}
                onBlur={this.props.onBlur}
-               onValidate={this.handleValidation}
                onKeyDown={this.props.onKeyDown}
                onCopy={this.props.onCopy}
                onCut={this.props.onCut}
@@ -162,7 +106,7 @@ export default class Number extends ValidationElement {
                tabBack={this.props.tabBack}
                tabNext={this.props.tabNext}
                ref="number"
-               onError={this.handleErrors}
+               onError={this.handleError}
                />
     )
   }
@@ -174,9 +118,6 @@ Number.defaultProps = {
   value: '',
   max: '',
   pattern: '^(\\s*|\\d+)$',
-  focus: false,
-  error: false,
-  valid: false,
   errorCode: null,
   onError: (value, arr) => { return arr }
 }
@@ -186,6 +127,12 @@ Number.errors = [
     code: 'min',
     func: (value, props) => {
       return parseInt(value) >= parseInt(props.min)
+    }
+  },
+  {
+    code: 'max',
+    func: (value, props) => {
+      return parseInt(value) <= parseInt(props.max)
     }
   }
 ]

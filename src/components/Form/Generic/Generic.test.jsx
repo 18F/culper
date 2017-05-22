@@ -37,6 +37,7 @@ describe('The generic component', () => {
       name: 'input-success',
       label: 'Text input success',
       type: 'text',
+      value: 'test',
       error: false,
       focus: false,
       valid: true

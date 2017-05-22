@@ -3,8 +3,8 @@ import { mount } from 'enzyme'
 import MaidenName from './MaidenName'
 
 describe('The MaidenName component', () => {
-  it('bubbles up validate event', () => {
-    let validations = 0
+  it('bubbles up error event', () => {
+    let hit = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -12,14 +12,15 @@ describe('The MaidenName component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
-        validations++
+      onError: (value, arr) => {
+        hit++
+        return arr
       },
       onChange: () => {}
     }
-    const component = mount(<MaidenName name={expected.name} onValidate={expected.handleValidation} onChange={expected.onChange} />)
-    component.find('input').first().simulate('change')
-    expect(validations > 0).toEqual(true)
+    const component = mount(<MaidenName name={expected.name} onError={expected.onError} onChange={expected.onChange} />)
+    component.find('input').first().simulate('blur')
+    expect(hit > 0).toEqual(true)
   })
 
   it('bubbles up change event', () => {
@@ -38,41 +39,5 @@ describe('The MaidenName component', () => {
     const component = mount(<MaidenName name={expected.name} onChange={expected.handleChange} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
-  })
-
-  it('bubbles up focus event', () => {
-    let foci = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      help: 'Helpful error message',
-      error: true,
-      focus: false,
-      valid: false,
-      handleFocus: function (event) {
-        foci++
-      }
-    }
-    const component = mount(<MaidenName name={expected.name} onFocus={expected.handleFocus} />)
-    component.find('input').first().simulate('focus')
-    expect(foci).toEqual(1)
-  })
-
-  it('bubbles up blur event', () => {
-    let blurs = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      help: 'Helpful error message',
-      error: true,
-      focus: false,
-      valid: false,
-      handleBlur: function (event) {
-        blurs++
-      }
-    }
-    const component = mount(<MaidenName name={expected.name} onBlur={expected.handleBlur} />)
-    component.find('input').first().simulate('blur')
-    expect(blurs).toEqual(1)
   })
 })

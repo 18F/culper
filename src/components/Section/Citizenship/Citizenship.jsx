@@ -1,102 +1,52 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { push } from '../../../middleware/history'
 import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
-import { ValidationElement, IntroHeader } from '../../Form'
+import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
+import AuthenticatedView from '../../../views/AuthenticatedView'
+import { IntroHeader } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
 
-class Citizenship extends ValidationElement {
-  constructor (props) {
-    super(props)
+class Citizenship extends SectionElement {
+  // /**
+  //  * Report errors and completion status
+  //  */
+  // onValidate (event, status, errorCodes) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    this.state = {
-      subsection: props.subsection
-    }
+  //   if (!event.fake) {
+  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
+  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+  //   }
 
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
-  }
+  //   let cstatus = 'neutral'
+  //   if (this.hasStatus('status', status, true) &&
+  //       this.hasStatus('multiple', status, true)) {
+  //     cstatus = 'complete'
+  //   } else if (this.hasStatus('status', status, false) ||
+  //              this.hasStatus('multiple', status, false)) {
+  //     cstatus = 'incomplete'
+  //   }
 
-  componentDidMount () {
-    let current = this.launch(this.props.Citizenship, this.props.subsection, 'status')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/citizenship/${current}`))
-    }
-  }
+  //   let completed = {
+  //     ...this.props.Completed,
+  //     ...status,
+  //     status: cstatus
+  //   }
 
-  handleTour (event) {
-    this.props.dispatch(push('/form/citizenship/status'))
-  }
+  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  // }
 
-  handleReview (event) {
-    this.props.dispatch(push('/form/citizenship/review'))
-  }
-
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
-
-    if (!event.fake) {
-      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = 'neutral'
-    if (this.hasStatus('status', status, true) &&
-        this.hasStatus('multiple', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('status', status, false) ||
-               this.hasStatus('multiple', status, false)) {
-      cstatus = 'incomplete'
-    }
-
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
-  /**
-   * Update storage values for a subsection
-   */
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Citizenship', field, values))
-  }
-
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
-  }
-
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
-  }
+  // /**
+  //  * Helper to test whether a subsection is complete
+  //  */
+  // hasStatus (property, status, val) {
+  //   return (this.props.Completed[property] && this.props.Completed[property].status === val)
+  //     || (status && status[property] && status[property].status === val)
+  // }
 
   render () {
     return (
@@ -106,12 +56,12 @@ class Citizenship extends ValidationElement {
             <div className="intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader Errors={this.props.Errors}
-                            Completed={this.props.Completed}
-                            tour={i18n.t('citizenship.tour.para')}
-                            review={i18n.t('citizenship.review.para')}
-                            onTour={this.handleTour}
-                            onReview={this.handleReview}
-                            />
+                             Completed={this.props.Completed}
+                             tour={i18n.t('citizenship.tour.para')}
+                             review={i18n.t('citizenship.review.para')}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
               </div>
             </div>
           </SectionView>
@@ -126,14 +76,14 @@ class Citizenship extends ValidationElement {
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
-                    onUpdate={this.onUpdate.bind(this, 'Status')}
-                    onValidate={this.onValidate.bind(this)}
+                    onUpdate={this.handleUpdate.bind(this, 'Status')}
+                    onError={this.handleError}
                     />
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
                       {...this.props.Multiple}
-                      onUpdate={this.onUpdate.bind(this, 'Multiple')}
-                      onValidate={this.onValidate.bind(this)}
+                      onUpdate={this.handleUpdate.bind(this, 'Multiple')}
+                      onError={this.handleError}
                       />
           </SectionView>
 
@@ -145,8 +95,8 @@ class Citizenship extends ValidationElement {
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
-                    onUpdate={this.onUpdate.bind(this, 'Status')}
-                    onValidate={this.onValidate.bind(this)}
+                    onUpdate={this.handleUpdate.bind(this, 'Status')}
+                    onError={this.handleError}
                     />
           </SectionView>
 
@@ -158,8 +108,8 @@ class Citizenship extends ValidationElement {
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
                       {...this.props.Multiple}
-                      onUpdate={this.onUpdate.bind(this, 'Multiple')}
-                      onValidate={this.onValidate.bind(this)}
+                      onUpdate={this.handleUpdate.bind(this, 'Multiple')}
+                      onError={this.handleError}
                       />
           </SectionView>
         </SectionViews>
@@ -185,7 +135,10 @@ function mapStateToProps (state) {
 }
 
 Citizenship.defaultProps = {
-  subsection: ''
+  section: '',
+  subsection: '',
+  defaultView: 'status',
+  store: 'Citizenship'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Citizenship))

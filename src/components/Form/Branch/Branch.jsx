@@ -41,14 +41,14 @@ export default class Branch extends React.Component {
                  value={this.props.yesValue}
                  className="yes"
                  onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-                 onValidate={this.props.onValidate}
+                 onError={this.props.onError}
                  />
           <Radio name={this.props.name}
                  label={this.props.noLabel}
                  value={this.props.noValue}
                  className="no"
                  onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-                 onValidate={this.props.onValidate}
+                 onError={this.props.onError}
                  />
         </RadioGroup>
       </Field>

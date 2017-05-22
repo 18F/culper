@@ -54,12 +54,16 @@ export default class Textarea extends ValidationElement {
    */
   handleValidation (event) {
     const value = this.state.value
-    return this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    }))
+    if (value.length) {
+      const errors = this.props.onError(value, this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: err.func(value, this.props)
+        }
+      }))
+
+      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    }
   }
 
   /**

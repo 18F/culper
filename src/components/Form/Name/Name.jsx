@@ -21,12 +21,14 @@ export default class Name extends ValidationElement {
       middleInitialOnly: props.middleInitialOnly,
       noMiddleName: props.noMiddleName,
       suffix: props.suffix,
-      suffixOther: props.suffixOther,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
-      errorCodes: []
+      suffixOther: props.suffixOther
     }
+
+    this.handleError = this.handleError.bind(this)
+    this.handleErrorFirst = this.handleErrorFirst.bind(this)
+    this.handleErrorMiddle = this.handleErrorMiddle.bind(this)
+    this.handleErrorLast = this.handleErrorLast.bind(this)
+    this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
   }
 
   /**
@@ -119,32 +121,37 @@ export default class Name extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  handleErrorFirst (value, arr) {
+    return this.handleError('first', value, arr)
+  }
 
-    const codes = super.mergeError(this.state.errorCodes, error)
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  handleErrorMiddle (value, arr) {
+    return this.handleError('middle', value, arr)
+  }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
+  handleErrorLast (value, arr) {
+    return this.handleError('last', value, arr)
+  }
+
+  handleErrorSuffix (value, arr) {
+    return this.handleError('suffix', value, arr)
+  }
+
+  handleError (code, value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `name.${code}.${err.code}`,
+        valid: err.valid
       }
-
-      super.handleValidation(event, s, e)
     })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   isValid () {
@@ -177,7 +184,7 @@ export default class Name extends ValidationElement {
                 className="first"
                 value={this.state.first}
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onError={this.handleErrorFirst}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -188,7 +195,7 @@ export default class Name extends ValidationElement {
                       value="firstInitial"
                       checked={this.state.firstInitialOnly}
                       onChange={this.handleChange}
-                      onValidate={this.handleValidation}
+                      onError={this.handleErrorFirst}
                       />
           </div>
         </Field>
@@ -204,7 +211,7 @@ export default class Name extends ValidationElement {
                 value={this.state.middle}
                 disabled={this.state.noMiddleName}
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -215,7 +222,7 @@ export default class Name extends ValidationElement {
                       value="noMiddleName"
                       checked={this.state.noMiddleName}
                       onChange={this.handleChange}
-                      onValidate={this.handleValidation}
+                      onError={this.handleErrorMiddle}
                       />
             <Checkbox name="middleInitialOnly"
                       label={i18n.t(`${prefix}.label.initialOnly`)}
@@ -223,7 +230,7 @@ export default class Name extends ValidationElement {
                       value="middleInitialOnly"
                       checked={this.state.middleInitialOnly}
                       onChange={this.handleChange}
-                      onValidate={this.handleValidation}
+                      onError={this.handleErrorMiddle}
                       />
           </div>
         </Field>
@@ -238,7 +245,7 @@ export default class Name extends ValidationElement {
                 pattern="^[a-zA-Z\-\.' ]*$"
                 value={this.state.last}
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onError={this.handleErrorLast}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -249,7 +256,7 @@ export default class Name extends ValidationElement {
                       value="lastInitial"
                       checked={this.state.lastInitialOnly}
                       onChange={this.handleChange}
-                      onValidate={this.handleValidation}
+                      onError={this.handleErrorLast}
                       />
           </div>
         </Field>
@@ -263,7 +270,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.jr`)}
                    value="Jr"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -271,7 +278,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.sr`)}
                    value="Sr"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -279,7 +286,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.i`)}
                    value="I"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -287,7 +294,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.ii`)}
                    value="II"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -295,7 +302,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.iii`)}
                    value="III"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -303,7 +310,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.iv`)}
                    value="IV"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -311,7 +318,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.v`)}
                    value="V"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -319,7 +326,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.vi`)}
                    value="VI"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -327,7 +334,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.vii`)}
                    value="VII"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -335,7 +342,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.viii`)}
                    value="VIII"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -343,7 +350,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.ix`)}
                    value="IX"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -351,7 +358,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.x`)}
                    value="X"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -359,7 +366,7 @@ export default class Name extends ValidationElement {
                    label={i18n.t(`${prefix}.label.other`)}
                    value="Other"
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -370,7 +377,7 @@ export default class Name extends ValidationElement {
                   maxlength="100"
                   value={this.state.suffixOther}
                   onChange={this.handleChange}
-                  onValidate={this.handleValidation}
+                  onError={this.handleErrorSuffix}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   />
@@ -395,5 +402,8 @@ Name.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  errorCodes: []
+  errorCodes: [],
+  onError: (value, arr) => { return arr }
 }
+
+Name.errors = []

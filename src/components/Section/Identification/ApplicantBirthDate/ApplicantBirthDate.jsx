@@ -9,11 +9,11 @@ export default class ApplicantBirthDate extends ValidationElement {
 
     this.state = {
       value: props.value,
-      estimated: props.estimated,
-      errorCodes: []
+      estimated: props.estimated
     }
 
     this.onUpdate = this.onUpdate.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -33,106 +33,19 @@ export default class ApplicantBirthDate extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
+  handleError (value, arr) {
+    const then = new Date(this.state.value)
+    if (isNaN(then.getFullYear()) || then.getFullYear() < 1000) {
+      return this.props.onError(value, arr)
     }
 
-    let errorCodes = []
-    this.state.errorCodes.forEach((e) => {
-      if (e !== 'age' && e !== 'day.max') {
-        errorCodes.push(e)
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(then, this.props)
       }
-    })
-
-    let fullYear = false
-    if (this.state.value !== '') {
-      // Calculation to get the age of something compared to now.
-      let now = new Date()
-      let then = new Date(this.state.value)
-
-      // This is an additional check to delay errors being passed up prematurely
-      fullYear = then.getFullYear() > 999
-      if (fullYear) {
-        let age = now.getFullYear() - then.getFullYear()
-        var m = now.getMonth() - then.getMonth()
-        if (m < 0 || (m === 0 && now.getDate() < then.getDate())) {
-          age--
-        }
-
-        if (age < 17 || age > 129) {
-          status = false
-          error = 'age'
-        }
-      }
-    }
-
-    const codes = super.mergeError(errorCodes, error)
-    let complexStatus = null
-    if (fullYear) {
-      if (codes.length > 0) {
-        complexStatus = false
-      } else {
-        complexStatus = true
-      }
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      if (!fullYear) {
-        return
-      }
-
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Retrieve the part of the date requested.
-   */
-  datePart (part, date) {
-    if (date === undefined) {
-      return ''
-    }
-
-    let d = new Date(date)
-
-    // Make sure it is a valid date
-    if (Object.prototype.toString.call(d) === '[object Date]') {
-      if (isNaN(d.getTime())) {
-        return ''
-      }
-    } else {
-      return ''
-    }
-
-    switch (part) {
-      case 'month':
-      case 'mm':
-      case 'm':
-        return d.getMonth() + 1
-
-      case 'day':
-      case 'dd':
-      case 'd':
-        return d.getDate()
-
-      case 'year':
-      case 'yy':
-      case 'y':
-        return d.getFullYear()
-    }
-
-    return ''
+    })))
   }
 
   render () {
@@ -147,23 +60,31 @@ export default class ApplicantBirthDate extends ValidationElement {
                        value={this.state.value}
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
-          <Show when={this.state.errorCodes.includes('age')}>
-            <div className="field">
-              <div className="table">
-                <div className="messages">
-                  <div className="message error">
-                    <i className="fa fa-exclamation"></i>
-                    <h5>{i18n.t('error.birthdate.age.title')}</h5>
-                    {i18n.m('error.birthdate.age.message')}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Show>
         </Field>
       </div>
     )
   }
 }
+
+ApplicantBirthDate.defaultProps = {
+  onError: (value, arr) => { return arr }
+}
+
+ApplicantBirthDate.errors = [
+  {
+    code: 'birthdate.age',
+    func: (value, props) => {
+      const now = new Date()
+      const m = now.getMonth() - value.getMonth()
+
+      let age = now.getFullYear() - value.getFullYear()
+      if (m < 0 || (m === 0 && now.getDate() < value.getDate())) {
+        age--
+      }
+
+      return age > 16 && age < 130
+    }
+  }
+]

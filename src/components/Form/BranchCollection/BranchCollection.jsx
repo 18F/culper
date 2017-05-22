@@ -90,7 +90,7 @@ export default class BranchCollection extends React.Component {
               help={props.help}
               value={props.value}
               onUpdate={props.onUpdate}
-              onValidate={props.onValidate}>
+              onError={props.onError}>
         {props.children}
       </Branch>
     )
@@ -118,7 +118,7 @@ export default class BranchCollection extends React.Component {
               value: null,
               children: this.props.content,
               onUpdate: this.onDefaultBranchClick.bind(this),
-              onValidate: this.props.onValidate
+              onError: this.props.onError
             })
           }
         </div>
@@ -140,7 +140,7 @@ export default class BranchCollection extends React.Component {
               value: 'No',
               children: this.props.content,
               onUpdate: this.onBranchClick.bind(this, item, 0),
-              onValidate: this.props.onValidate
+              onError: this.props.onError
             })
           }
         </div>
@@ -158,7 +158,7 @@ export default class BranchCollection extends React.Component {
           help: this.props.help,
           children: this.props.content,
           onUpdate: this.onBranchClick.bind(this, item, index),
-          onValidate: this.props.onValidate
+          onError: this.props.onError
         })
       }
 
@@ -170,7 +170,7 @@ export default class BranchCollection extends React.Component {
         value: item[this.props.valueKey],
         children: this.props.appendContent,
         onUpdate: this.onBranchClick.bind(this, item, index),
-        onValidate: this.props.onValidate
+        onError: this.props.onError
       })
     }
 
@@ -247,3 +247,5 @@ BranchCollection.defaultProps = {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')
   }
 }
+
+BranchCollection.errors = []

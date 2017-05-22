@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { SectionViews, SectionView } from '../SectionView'
+import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, Accordion, Svg, Show, Branch } from '../../Form'
+import { Accordion, Svg, Show, Branch } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
 import { push } from '../../../middleware/history'
 import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
-import { SectionViews, SectionView } from '../SectionView'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
@@ -32,22 +33,13 @@ const byline = (item, index, initial, translation, validator) => {
   return null
 }
 
-class History extends ValidationElement {
+class History extends SectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      subsection: props.subsection,
-      errorCodes: []
-    }
-
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
     this.residenceRangeList = this.residenceRangeList.bind(this)
     this.employmentRangesList = this.employmentRangesList.bind(this)
     this.schoolRangesList = this.schoolRangesList.bind(this)
     this.diplomaRangesList = this.diplomaRangesList.bind(this)
-    this.onValidate = this.onValidate.bind(this)
     this.updateResidence = this.updateResidence.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateEducation = this.updateEducation.bind(this)
@@ -60,92 +52,70 @@ class History extends ValidationElement {
     this.customEducationByline = this.customEducationByline.bind(this)
   }
 
-  componentDidMount () {
-    const current = this.launch(this.props.History, this.props.subsection, 'residence')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
-    }
-  }
+  // /**
+  //  * Report errors and completion status
+  //  */
+  // onValidate (event, status, errorCodes) {
+  //   if (!event) {
+  //     return
+  //   }
 
-  handleTour (event) {
-    this.props.dispatch(push(`/form/${this.props.Section.section}/residence`))
-  }
+  //   let errors = []
+  //   if (!event.fake) {
+  //     const merged = super.mergeError(this.state.errorCodes, super.flattenObject(errorCodes))
+  //     const codes = {
+  //       [this.props.Section.subsection]: merged
+  //     }
 
-  handleReview (event) {
-    this.props.dispatch(push(`/form/${this.props.Section.section}/review`))
-  }
+  //     errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], codes)
+  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
+  //   }
 
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
+  //   let valid = false
+  //   switch (this.props.Section.subsection) {
+  //     case 'residence':
+  //       valid = new ResidenceValidator(this.excludeGaps(this.props.Residence), null).isValid()
+  //       break
 
-    let errors = []
-    if (!event.fake) {
-      const merged = super.mergeError(this.state.errorCodes, super.flattenObject(errorCodes))
-      const codes = {
-        [this.props.Section.subsection]: merged
-      }
+  //     case 'employment':
+  //       valid = new EmploymentValidator(this.excludeGaps(this.props.Employment), null).isValid()
+  //       break
 
-      errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], codes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
+  //     case 'education':
+  //       valid = new EducationValidator(this.props.Education, null).isValid()
+  //       break
 
-    let valid = false
-    switch (this.props.Section.subsection) {
-      case 'residence':
-        valid = new ResidenceValidator(this.excludeGaps(this.props.Residence), null).isValid()
-        break
+  //     case 'federal':
+  //       valid = new FederalServiceValidator(this.props.Federal, null).isValid()
+  //       break
 
-      case 'employment':
-        valid = new EmploymentValidator(this.excludeGaps(this.props.Employment), null).isValid()
-        break
+  //     case 'review':
+  //       valid = new ResidenceValidator(this.excludeGaps(this.props.Residence), null).isValid() &&
+  //         new EmploymentValidator(this.excludeGaps(this.props.Employment), null).isValid() &&
+  //         new EducationValidator(this.props.Education, null).isValid() &&
+  //         new FederalServiceValidator(this.props.Federal, null).isValid()
+  //       break
+  //   }
 
-      case 'education':
-        valid = new EducationValidator(this.props.Education, null).isValid()
-        break
+  //   let cstatus = 'neutral'
+  //   if (valid) {
+  //     cstatus = 'complete'
+  //   } else {
+  //     if (errors.length > 0) {
+  //       cstatus = 'incomplete'
+  //     }
+  //   }
 
-      case 'federal':
-        valid = new FederalServiceValidator(this.props.Federal, null).isValid()
-        break
+  //   const completed = {
+  //     ...this.props.Completed,
+  //     ...status,
+  //     status: cstatus
+  //   }
 
-      case 'review':
-        valid = new ResidenceValidator(this.excludeGaps(this.props.Residence), null).isValid() &&
-          new EmploymentValidator(this.excludeGaps(this.props.Employment), null).isValid() &&
-          new EducationValidator(this.props.Education, null).isValid() &&
-          new FederalServiceValidator(this.props.Federal, null).isValid()
-        break
-    }
-
-    let cstatus = 'neutral'
-    if (valid) {
-      cstatus = 'complete'
-    } else {
-      if (errors.length > 0) {
-        cstatus = 'incomplete'
-      }
-    }
-
-    const completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-
-    this.setState({ errorCodes: errors }, () => {
-      this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-    })
-  }
-
-  /**
-   * Update storage values for a subsection
-   */
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('History', field, values))
-  }
+  //   this.setState({ errorCodes: errors }, () => {
+  //     this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  //   })
+  // }
 
   excludeGaps (items) {
     return items.filter(item => !item.type || (item.type && item.type !== 'Gap'))
@@ -199,29 +169,13 @@ class History extends ValidationElement {
     return 0
   }
 
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val) ||
-      (status && status[property] && status[property].status === val)
-  }
-
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
-  }
+  // /**
+  //  * Helper to test whether a subsection is complete
+  //  */
+  // hasStatus (property, status, val) {
+  //   return (this.props.Completed[property] && this.props.Completed[property].status === val) ||
+  //     (status && status[property] && status[property].status === val)
+  // }
 
   /**
    * Figure the total amount of years to collect for the timeline
@@ -529,14 +483,13 @@ class History extends ValidationElement {
                        inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
                        realtime={true}
                        onUpdate={this.updateResidence}
-                       onValidate={this.onValidate}
+                       onError={this.handleError}
                        caption={ResidenceCaption}
                        byline={this.customResidenceByline}
                        customSummary={ResidenceCustomSummary}
                        customDetails={this.customResidenceDetails}
                        description={i18n.t('history.residence.collection.summary.title')}
-                       appendLabel={i18n.t('history.residence.collection.append')}
-                       >
+                       appendLabel={i18n.t('history.residence.collection.append')}>
               <ResidenceItem name="Item"
                              bind={true}
                              />
@@ -548,14 +501,13 @@ class History extends ValidationElement {
                        inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
                        realtime={true}
                        onUpdate={this.updateEmployment}
-                       onValidate={this.onValidate}
+                       onError={this.handleError}
                        caption={EmploymentCaption}
                        byline={this.customEmploymentByline}
                        customSummary={EmploymentCustomSummary}
                        customDetails={this.customEmploymentDetails}
                        description={i18n.t('history.employment.default.collection.summary.title')}
-                       appendLabel={i18n.t('history.employment.default.collection.append')}
-                       >
+                       appendLabel={i18n.t('history.employment.default.collection.append')}>
               <EmploymentItem name="Item"
                               bind={true}
                               />
@@ -567,7 +519,7 @@ class History extends ValidationElement {
                          sort={this.sort}
                          realtime={true}
                          onUpdate={this.updateEducation}
-                         onValidate={this.onValidate}
+                         onError={this.handleError}
                          caption={EducationCaption}
                          byline={this.customEducationByline}
                          customSummary={EducationCustomSummary}
@@ -584,8 +536,8 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
-                     onUpdate={this.onUpdate.bind(this, 'Federal')}
-                     onValidate={this.onValidate}
+                     onUpdate={this.handleUpdate.bind(this, 'Federal')}
+                     onError={this.handleError}
                      />
           </SectionView>
 
@@ -609,13 +561,12 @@ class History extends ValidationElement {
                        inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
                        realtime={false}
                        onUpdate={this.updateResidence}
-                       onValidate={this.onValidate}
+                       onError={this.handleError}
                        byline={this.customResidenceByline}
                        customSummary={ResidenceCustomSummary}
                        customDetails={this.customResidenceDetails}
                        description={i18n.t('history.residence.collection.summary.title')}
-                       appendLabel={i18n.t('history.residence.collection.append')}
-                       >
+                       appendLabel={i18n.t('history.residence.collection.append')}>
               <ResidenceItem name="Item"
                              bind={true}
                              />
@@ -646,14 +597,13 @@ class History extends ValidationElement {
                        inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
                        realtime={false}
                        onUpdate={this.updateEmployment}
-                       onValidate={this.onValidate}
+                       onError={this.handleError}
                        byline={this.customEmploymentByline}
                        customDetails={this.customEmploymentDetails}
                        customSummary={EmploymentCustomSummary}
                        customDetails={this.customEmploymentDetails}
                        description={i18n.t('history.employment.default.collection.summary.title')}
-                       appendLabel={i18n.t('history.employment.default.collection.append')}
-                       >
+                       appendLabel={i18n.t('history.employment.default.collection.append')}>
               <EmploymentItem name="Item"
                               bind={true}
                               />
@@ -700,7 +650,7 @@ class History extends ValidationElement {
                            sort={this.sort}
                            realtime={false}
                            onUpdate={this.updateEducation}
-                           onValidate={this.onValidate}
+                           onError={this.handleError}
                            byline={this.customEducationByline}
                            customSummary={EducationCustomSummary}
                            description={i18n.t('history.education.collection.school.summary.title')}
@@ -723,8 +673,8 @@ class History extends ValidationElement {
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
-                     onUpdate={this.onUpdate.bind(this, 'Federal')}
-                     onValidate={this.onValidate}
+                     onUpdate={this.handleUpdate.bind(this, 'Federal')}
+                     onError={this.handleError}
                      />
           </SectionView>
         </SectionViews>
@@ -767,7 +717,10 @@ function mapStateToProps (state) {
 }
 
 History.defaultProps = {
-  subsection: ''
+  section: '',
+  subsection: '',
+  defaultView: 'residence',
+  store: 'History'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(History))

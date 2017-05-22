@@ -13,7 +13,7 @@ export default class MilitaryState extends ValidationElement {
                className={this.props.className}
                disabled={this.props.disabled}
                onChange={this.props.onChange}
-               onValidate={this.props.onValidate}
+               onError={this.props.onError}
                onBlur={this.props.onBlur}
                onFocus={this.props.onFocus}
                value={this.props.value}
@@ -35,7 +35,7 @@ export default class MilitaryState extends ValidationElement {
                   className={this.props.className}
                   disabled={this.props.disabled}
                   onChange={this.props.onChange}
-                  onValidation={this.props.onValidation}
+                  onError={this.props.onError}
                   onBlur={this.props.onBlur}
                   onFocus={this.props.onFocus}
                   required={this.props.required}

@@ -32,29 +32,31 @@ export default class Generic extends ValidationElement {
       value: props.value,
       focus: props.focus,
       error: props.error,
-      valid: props.valid,
-      errorCode: null
+      valid: props.valid
     }
 
     this.handleKeyUp = this.handleKeyUp.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.focus !== this.state.focus) {
-      this.setState({ focus: nextProps.focus })
-    }
+    let updates = {}
+    // if (nextProps.focus !== this.state.focus) {
+    //   updates = { ...updates, focus: nextProps.focus }
+    // }
 
-    if (nextProps.error !== this.state.error) {
-      this.setState({ error: nextProps.error })
-    }
+    // if (nextProps.error !== this.state.error) {
+    //   this.setState({ error: nextProps.error })
+    // }
 
-    if (nextProps.valid !== this.state.valid) {
-      this.setState({ valid: nextProps.valid })
-    }
+    // if (nextProps.valid !== this.state.valid) {
+    //   updates = { ...updates, valid: nextProps.valid }
+    // }
 
     if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
+      updates = { ...updates, value: nextProps.value }
     }
+
+    this.setState(updates)
   }
 
   /**
@@ -92,6 +94,11 @@ export default class Generic extends ValidationElement {
    */
   handleValidation (event) {
     const value = `${this.state.value}`.trim()
+    if (value.length === 0) {
+      this.setState({ error: false, valid: false })
+      return
+    }
+
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
@@ -191,7 +198,6 @@ Generic.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  errorCode: null,
   pattern: '.*',
   minlength: 0,
   maxlength: 255,

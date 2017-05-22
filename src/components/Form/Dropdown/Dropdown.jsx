@@ -105,12 +105,16 @@ export default class Dropdown extends ValidationElement {
    */
   handleValidation (event) {
     const value = this.state.value
-    return this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, { options: this.state.options })
-      }
-    }))
+    if (value.length) {
+      const errors = this.props.onError(value, this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: err.func(value, { options: this.state.options })
+        }
+      }))
+
+      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    }
   }
 
   /**
@@ -339,7 +343,7 @@ Dropdown.errors = [
   {
     code: 'notfound',
     func: (value, props) => {
-      props.options.some(x => {
+      return props.options.some(x => {
         return x.text.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()
       })
     }

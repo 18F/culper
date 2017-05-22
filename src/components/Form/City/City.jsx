@@ -8,11 +8,10 @@ export default class City extends ValidationElement {
 
     this.state = {
       name: props.name,
-      value: props.value,
-      error: props.error || false,
-      valid: props.valid || false,
-      errors: []
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -30,13 +29,21 @@ export default class City extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errors) {
-    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      super.handleValidation(event, status, errors)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `city.${err.code}`,
+        valid: err.valid
+      }
     })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   /**
@@ -71,10 +78,20 @@ export default class City extends ValidationElement {
             error={this.state.error}
             valid={this.state.valid}
             onChange={this.handleChange}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             />
     )
   }
 }
+
+City.defaultProps = {
+  name: 'city',
+  value: '',
+  error: false,
+  valid: false,
+  errors: []
+}
+
+City.errors = []

@@ -34,6 +34,8 @@ export default class BirthPlace extends ValidationElement {
       disabledCountry: disabledCountry,
       errorCodes: []
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -92,27 +94,21 @@ export default class BirthPlace extends ValidationElement {
     }
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, error)
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.state.name]: codes }
-      const statusObject = { [this.state.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `birthplace.${err.code}`,
+        valid: err.valid
+      }
     })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   isValid () {
@@ -151,7 +147,7 @@ export default class BirthPlace extends ValidationElement {
     }
 
     this.setState(updated, () => {
-      super.handleValidation(event, null, { drop_the_kids_off: null })
+      // super.handleValidation(event, null, { drop_the_kids_off: null })
       if (this.props.onUpdate) {
         this.props.onUpdate(updated)
       }
@@ -168,7 +164,8 @@ export default class BirthPlace extends ValidationElement {
               help={this.props.help}
               value={this.state.domestic}
               label={this.props.label}
-              onUpdate={this.onUpdate.bind(this)}>
+              onUpdate={this.onUpdate.bind(this)}
+              onError={this.handleError}>
       </Branch>
     )
   }
@@ -196,7 +193,7 @@ export default class BirthPlace extends ValidationElement {
                            required="true"
                            disabled={this.state.disabledState}
                            onChange={this.handleChange}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
                            />
@@ -209,7 +206,7 @@ export default class BirthPlace extends ValidationElement {
                   placeholder={this.props.cityPlaceholder}
                   maxlength="100"
                   onChange={this.handleChange}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   />
@@ -223,7 +220,7 @@ export default class BirthPlace extends ValidationElement {
                       placeholder={this.props.countyPlaceholder}
                       maxlength="255"
                       onChange={this.handleChange}
-                      onValidate={this.handleValidation}
+                      onError={this.handleError}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
                       />
@@ -244,7 +241,7 @@ export default class BirthPlace extends ValidationElement {
                 placeholder={this.props.cityPlaceholder}
                 maxlength="100"
                 onChange={this.handleChange}
-                onValidate={this.handleValidation}
+                onError={this.handleError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
@@ -258,7 +255,7 @@ export default class BirthPlace extends ValidationElement {
                    excludeUnitedStates="true"
                    disabled={this.state.disabledCountry}
                    onChange={this.handleChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleError}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
@@ -282,5 +279,8 @@ BirthPlace.defaultProps = {
   countyLabel: i18n.t('identification.birthplace.label.county'),
   countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
   countryLabel: i18n.t('identification.birthplace.label.country'),
-  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
+  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country'),
+  onError: (value, arr) => { return arr }
 }
+
+BirthPlace.errors = []

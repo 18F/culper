@@ -6,7 +6,6 @@ import { navigation } from '../../config'
 import { NavigationValidator } from '../../validators'
 
 class Navigation extends React.Component {
-
   /**
    * There is a bug in the react router which does not add the active
    * class to items in the route hiearchy
@@ -20,36 +19,34 @@ class Navigation extends React.Component {
    *
    * example:
    *  route => /form/identification/name
-   *  error => identification.name.*
    */
   hasErrors (route, pathname) {
-    let crumbs = route.replace('/form/', '').split('/')
-    let error = crumbs[0]
-    if (crumbs.length > 1) {
-      error += '.' + crumbs[1] + '.'
-    }
+    const crumbs = route.replace('/form/', '').split('/')
 
-    let count = 0
-    for (let section in this.props.errors) {
+    for (const section in this.props.errors) {
       if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
         continue
       }
 
-      this.props.errors[section].forEach((e) => {
-        if (e.indexOf(error) === 0) {
-          count++
-        }
-      })
+      return this.props.errors[section]
+        .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
+        .some(e => {
+          if (crumbs.length === 1) {
+            return e.valid === false
+          }
+
+          return e.subsection === crumbs[1] && e.valid === false
+        })
     }
 
-    return count > 0
+    return false
   }
 
   /**
    * Determine if the route is considered complete and valid
    */
   isValid (route, pathname) {
-    let crumbs = route.replace('/form/', '').split('/')
+    const crumbs = route.replace('/form/', '').split('/')
     return new NavigationValidator(null,
       {
         completed: this.props.completed,

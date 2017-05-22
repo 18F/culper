@@ -14,6 +14,10 @@ export default class DateRange extends ValidationElement {
       trickleDown: false,
       title: props.title || 'Date Range'
     }
+
+    this.handleError = this.handleError.bind(this)
+    this.handleErrorFrom = this.handleErrorFrom.bind(this)
+    this.handleErrorTo = this.handleErrorTo.bind(this)
   }
 
   componentWillReceiveProps (next) {
@@ -80,7 +84,7 @@ export default class DateRange extends ValidationElement {
       this.refs.to.refs.day.refs.number.refs.input.blur()
       this.refs.to.refs.year.refs.number.refs.input.focus()
       this.refs.to.refs.year.refs.number.refs.input.blur()
-      this.handleValidation(event, null, null)
+      // this.handleValidation(event, null, null)
 
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -94,22 +98,32 @@ export default class DateRange extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (event && status !== false && this.state.from && this.state.to) {
-      if (this.state.from.date && this.state.to.date) {
-        if (this.state.from.date > this.state.to.date) {
-          status = false
-          error = { daterange: 'order' }
-        } else {
-          error = { daterange: '' }
-        }
+  handleErrorFrom (value, arr) {
+    return this.handleError('from', value, arr)
+  }
+
+  handleErrorTo (value, arr) {
+    return this.handleError('to', value, arr)
+  }
+
+  handleError (code, value, arr) {
+    if (this.state.from.date && this.state.to.date) {
+      // Prepare some properties for the error testing
+      const props = {
+        from: this.state.from,
+        to: this.state.to
       }
+
+      // Take the original and concatenate our new error values to it
+      return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: err.func(null, props)
+        }
+      })))
     }
 
-    super.handleValidation(event, status, error)
+    return arr
   }
 
   render () {
@@ -130,7 +144,7 @@ export default class DateRange extends ValidationElement {
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
                        prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}from`}
-                       onValidate={this.handleValidation}
+                       onError={this.handleErrorFrom}
                        />
         </div>
         <div className="arrow">
@@ -151,7 +165,7 @@ export default class DateRange extends ValidationElement {
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
                        prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}to`}
-                       onValidate={this.handleValidation}
+                       onError={this.handleErrorTo}
                        />
           <div className="from-present">
             <span className="or"> or </span>
@@ -176,5 +190,15 @@ DateRange.defaultProps = {
   present: false,
   prefix: '',
   minDate: null,
-  maxDate: new Date()
+  maxDate: new Date(),
+  onError: (value, arr) => { return arr }
 }
+
+DateRange.errors = [
+  {
+    code: 'daterange.order',
+    func: (value, props) => {
+      return props.from.date && props.to.date && props.from.date > props.to.date
+    }
+  }
+]

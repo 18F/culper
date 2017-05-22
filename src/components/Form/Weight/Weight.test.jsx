@@ -4,17 +4,18 @@ import Weight from './Weight'
 
 describe('The Weight component', () => {
   it('no error on empty', () => {
-    let blur = 0
-    let focus = 0
+    let hits = 0
 
     const expected = {
       name: 'input-focus',
       label: 'Pounds',
       value: '10',
-      onBlur: () => { blur++ },
-      onFocus: () => { focus++ }
+      onError: (value, arr) => {
+        hits++
+        return arr
+      }
     }
-    const component = mount(<Weight name={expected.name} label={expected.label} value={expected.value} onBlur={expected.onBlur} onFocus={expected.onFocus} />)
+    const component = mount(<Weight {...expected} />)
 
     component.find('input#pounds').simulate('change')
     expect(component.find('label').text()).toEqual(expected.label)
@@ -23,7 +24,6 @@ describe('The Weight component', () => {
 
     component.find('input#pounds').simulate('focus')
     component.find('input#pounds').simulate('blur')
-    expect(blur).toBe(1)
-    expect(focus).toBe(1)
+    expect(hits).toBeGreaterThan(0)
   })
 })

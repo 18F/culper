@@ -12,19 +12,7 @@ export function updateApplication (section, property, values) {
  * section.
  */
 export function reportErrors (section, subsection, codes) {
-  let prefix = subsection.length
-      ? [section, subsection].join('.')
-      : section
-
-  let expandedCodes = []
-  codes.forEach((code) => {
-    let c = (prefix + '.' + code).toLowerCase()
-    if (!c.endsWith('.')) {
-      expandedCodes.push(c)
-    }
-  })
-
-  return updateApplication('Errors', section, expandedCodes)
+  return updateApplication('Errors', section, codes)
 }
 
 export function reportCompletion (section, subsection, status) {

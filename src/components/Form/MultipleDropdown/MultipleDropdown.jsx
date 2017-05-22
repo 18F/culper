@@ -11,8 +11,8 @@ export default class MultipleDropdown extends ValidationElement {
       loading: props.loading,
       options: props.options.concat(this.parseChildren()),
       value: props.value,
-      error: props.error || false,
-      valid: props.valid || false,
+      error: props.error,
+      valid: props.valid,
       errors: []
     }
 
@@ -143,5 +143,8 @@ MultipleDropdown.defaultProps = {
   input: '',
   loading: false,
   options: [],
-  value: []
+  value: [],
+  onError: (value, arr) => { return arr }
 }
+
+MultipleDropdown.errors = []

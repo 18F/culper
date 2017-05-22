@@ -29,12 +29,12 @@ export default class NotApplicable extends React.Component {
       let extendedProps = {
         disabled: !this.state.applicable,
         onValidate: (event, status, errors) => {
-          if (this.props.onValidate) {
-            this.props.onValidate(event, status, errors)
+          if (this.props.onError) {
+            this.props.onError(event, status, errors)
           }
 
-          if (child.props.onValidate) {
-            child.props.onValidate(event, status, errors)
+          if (child.props.onError) {
+            child.props.onError(event, status, errors)
           }
         }
       }
@@ -63,6 +63,7 @@ export default class NotApplicable extends React.Component {
                     label={this.props.label}
                     checked={!this.state.applicable}
                     onUpdate={this.onUpdate}
+                    onError={this.props.onError}
                     />
         </div>
       </div>

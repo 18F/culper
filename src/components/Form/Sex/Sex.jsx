@@ -7,12 +7,12 @@ import Radio from '../Radio'
 export default class Sex extends ValidationElement {
   constructor (props) {
     super(props)
-    this.handleChange = this.handleChange.bind(this)
+
     this.state = {
-      value: props.value,
-      error: props.error || false,
-      valid: props.valid || false
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -36,6 +36,23 @@ export default class Sex extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `sex.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   divClass () {
     return (this.props.className || '') + ' sex'
   }
@@ -55,7 +72,7 @@ export default class Sex extends ValidationElement {
                  error={this.state.error}
                  valid={this.state.valid}
                  onChange={this.handleChange}
-                 onValidate={this.handleValidation}
+                 onError={this.handleError}
                  >
             <div className="sex-icon">
               <Svg src="img/female.svg" />
@@ -71,7 +88,7 @@ export default class Sex extends ValidationElement {
                  error={this.state.error}
                  valid={this.state.valid}
                  onChange={this.handleChange}
-                 onValidate={this.handleValidation}
+                 onError={this.handleError}
                  >
             <div className="sex-icon">
               <Svg src="img/male.svg" />
@@ -82,3 +99,10 @@ export default class Sex extends ValidationElement {
     )
   }
 }
+
+Sex.defaultProps = {
+  value: '',
+  onError: (value, arr) => { return arr }
+}
+
+Sex.errors = []

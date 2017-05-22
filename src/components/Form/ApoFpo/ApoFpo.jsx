@@ -25,3 +25,6 @@ export default class ApoFpo extends ValidationElement {
     )
   }
 }
+
+ApoFpo.defaultProps = {}
+ApoFpo.errors = []

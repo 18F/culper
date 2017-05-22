@@ -7,11 +7,10 @@ export default class County extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
-      error: props.error || false,
-      valid: props.valid || false,
-      errors: []
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -23,13 +22,21 @@ export default class County extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errors) {
-    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      super.handleValidation(event, status, errors)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `county.${err.code}`,
+        valid: err.valid
+      }
     })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   /**
@@ -63,10 +70,17 @@ export default class County extends ValidationElement {
             error={this.state.error}
             valid={this.state.valid}
             onChange={this.handleChange}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             />
     )
   }
 }
+
+County.defaultProps = {
+  name: 'county',
+  value: ''
+}
+
+County.errors = []
