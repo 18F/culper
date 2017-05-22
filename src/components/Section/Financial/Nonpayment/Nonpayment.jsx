@@ -127,7 +127,6 @@ export default class Nonpayment extends ValidationElement {
         <Branch name="has_nonpayment"
                 className="nonpayment-branch"
                 value={this.state.HasNonpayment}
-                help="financial.nonpayment.help.branch"
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
@@ -142,40 +141,35 @@ export default class Nonpayment extends ValidationElement {
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
 
-            <Field title={i18n.t('financial.nonpayment.heading.name')}
-                   help="financial.nonpayment.help.name">
+            <Field title={i18n.t('financial.nonpayment.heading.name')}>
               <Text name="Name"
                     className="nonpayment-name"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.infractions')}
-                   help="financial.nonpayment.help.infractions">
+            <Field title={i18n.t('financial.nonpayment.heading.infractions')}>
               <Infractions name="Infractions"
                            className="nonpayment-infractions"
                            bind={true}
                            />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.accountnumber')}
-                   help="financial.nonpayment.help.accountnumber">
+            <Field title={i18n.t('financial.nonpayment.heading.accountnumber')}>
               <Text name="AccountNumber"
                     className="nonpayment-accountnumber"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.propertytype')}
-                   help="financial.nonpayment.help.propertytype">
+            <Field title={i18n.t('financial.nonpayment.heading.propertytype')}>
               <Text name="PropertyType"
                     className="nonpayment-propertytype"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.amount')}
-                   help="financial.nonpayment.help.amount">
+            <Field title={i18n.t('financial.nonpayment.heading.amount')}>
               <div>
                 <Currency name="Amount"
                           className="nonpayment-amount"
@@ -202,8 +196,7 @@ export default class Nonpayment extends ValidationElement {
                         />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.status')}
-                   help="financial.nonpayment.help.status">
+            <Field title={i18n.t('financial.nonpayment.heading.status')}>
               <Text name="Status"
                     className="nonpayment-status"
                     bind={true}
@@ -211,7 +204,6 @@ export default class Nonpayment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.resolved')}
-                   help="financial.nonpayment.help.resolved"
                    adjustFor="address"
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
@@ -227,7 +219,6 @@ export default class Nonpayment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.date')}
-                   help="financial.nonpayment.help.date"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="Date"
