@@ -807,7 +807,7 @@ const en = {
         country: 'Country'
       },
       placeholder: {
-        state: 'Please enter state within the United States',
+        state: 'Please enter state or territory within the United States',
         city: 'Please enter your city of birth',
         county: 'Please enter your county or province of birth',
         country: 'Please enter your country of birth'
