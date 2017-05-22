@@ -1361,7 +1361,7 @@ const en = {
         },
         telephone: {
           title: 'Not sure of this organization\'s phone number?',
-          message: 'Trying looking up their name, this could help you find their number. ',
+          message: 'Try looking up their name, this could help you find their number. ',
           note: ''
         },
         address: {
