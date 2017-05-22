@@ -2147,7 +2147,7 @@ const en = {
           ],
           f1: [
             'I-20 Certificate of Eligibility',
-            '(non-immigrant F1 status)'
+            '(non-immigrant F1 student)'
           ],
           j1: [
             'DS-2019 Certificate of Eligibility',
