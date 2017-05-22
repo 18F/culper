@@ -807,7 +807,7 @@ const en = {
         country: 'Country'
       },
       placeholder: {
-        state: 'Please enter state within the United States',
+        state: 'Please enter state or territory within the United States',
         city: 'Please enter your city of birth',
         county: 'Please enter your county or province of birth',
         country: 'Please enter your country of birth'
@@ -1361,7 +1361,7 @@ const en = {
         },
         telephone: {
           title: 'Not sure of this organization\'s phone number?',
-          message: 'Trying looking up their name, this could help you find their number. ',
+          message: 'Try looking up their name, this could help you find their number. ',
           note: ''
         },
         address: {
@@ -1826,7 +1826,7 @@ const en = {
         citizenship: {
           country: 'Provide country of citizenship',
           dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
-          how: 'How did ou acquire this non-U.S. citizenship you now have or previously had?',
+          how: 'How did you acquire this non-U.S. citizenship you now have or previously had?',
           renounced: 'Have you taken any action to renounce your foreign citizenship?',
           renouncedexplanation: 'Provide explanation',
           current: 'Do you currently hold citizenship with this country?',
@@ -2147,7 +2147,7 @@ const en = {
           ],
           f1: [
             'I-20 Certificate of Eligibility',
-            '(non-immigrant F1 status)'
+            '(non-immigrant F1 student)'
           ],
           j1: [
             'DS-2019 Certificate of Eligibility',
