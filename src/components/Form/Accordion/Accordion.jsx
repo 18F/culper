@@ -27,8 +27,11 @@ export const doScroll = (first, item, scrollTo) => {
   // a fixed offset to constantly be applied
   const offset = findPosition(document.getElementById(first))[0] - top
 
+  // This is the additional offset for bike shedding
+  const offsetDeux = 130
+
   // Scroll to that position
-  window.scroll({ top: pos - offset, left: 0, behavior: 'smooth' })
+  window.scroll({ top: pos - offset - offsetDeux, left: 0, behavior: 'smooth' })
 }
 
 export default class Accordion extends ValidationElement {
