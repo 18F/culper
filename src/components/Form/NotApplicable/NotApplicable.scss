@@ -4,8 +4,14 @@
     margin-bottom: 4.6rem !important;
   }
 
+  // If there is a field within the NotApplicable we want
+  // to remove the last `margin-bottom` to tighten up the `or`
+  // with the last component.
+  .field:last-of-type {
+    margin-bottom: 0;
+  }
+
   .or {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
   }
 }
