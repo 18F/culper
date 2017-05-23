@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Name, Textarea, DateControl,
-         CheckboxGroup, Checkbox, RadioGroup, Radio, Country, BirthPlace,
+         CheckboxGroup, Checkbox, RadioGroup, Radio, Country, InternationalBirthPlace,
          Address, Text, NotApplicable, Show, BranchCollection } from '../../../Form'
 
 export default class ForeignNational extends ValidationElement {
@@ -479,10 +479,7 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          onUpdate={this.updateBirthplaceNotApplicable}
                          onValidate={this.props.onValidate}>
-            <BirthPlace name="Birthplace"
-                        help=""
-                        branch={false}
-                        disabledState={true}
+            <InternationalBirthPlace name="Birthplace"
                         className="birthplace"
                         {...this.state.Birthplace}
                         onUpdate={this.updateBirthplace}

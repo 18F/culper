@@ -22,6 +22,7 @@ export default class InternationalBirthPlace extends ValidationElement {
       this.props.onUpdate({
         city: this.props.city,
         country: this.props.country,
+        domestic: 'No',
         ...updateValues
       })
     }
