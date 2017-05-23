@@ -55,7 +55,6 @@ export class RelativeValidator {
     this.courtAddress = state.CourtAddress
     this.document = state.Document
     this.otherDocument = state.OtherDocument
-    this.documentComments = state.DocumentComments
     this.residenceDocumentNumber = state.ResidenceDocumentNumber
     this.expiration = state.Expiration
     this.firstContact = state.FirstContact

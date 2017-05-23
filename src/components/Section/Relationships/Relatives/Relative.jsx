@@ -85,7 +85,6 @@ export default class Relative extends ValidationElement {
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
     this.updateDocument = this.updateDocument.bind(this)
     this.updateOtherDocument = this.updateOtherDocument.bind(this)
-    this.updateDocumentComments = this.updateDocumentComments.bind(this)
     this.updateResidenceDocumentNumber = this.updateResidenceDocumentNumber.bind(this)
     this.updateExpiration = this.updateExpiration.bind(this)
     this.updateFirstContact = this.updateFirstContact.bind(this)
@@ -191,10 +190,6 @@ export default class Relative extends ValidationElement {
 
   updateOtherDocument (value) {
     this.onUpdate('OtherDocument', value)
-  }
-
-  updateDocumentComments (values) {
-    this.onUpdate('DocumentComments', values)
   }
 
   updateResidenceDocumentNumber (values) {
@@ -652,10 +647,7 @@ export default class Relative extends ValidationElement {
             <Show when={this.state.Address && this.state.Address.addressType === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
-                       comments={true}
-                       commentsName="DocumentComments"
-                       commentsValue={this.state.DocumentComments}
-                       onUpdate={this.updateDocumentComments}
+                       comments={false}
                        adjustFor="big-buttons">
                   <div>
                     {i18n.t('relationships.relatives.para.notcitizen')}
