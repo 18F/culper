@@ -1393,7 +1393,7 @@ const en = {
         judgement: '**In the last seven (7) years,** you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         lien: '**In the last seven (7) years,** you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         federal: 'You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or',
+        or: 'or',
         checkAll: 'Check all that apply'
       },
       heading: {
@@ -1505,7 +1505,7 @@ const en = {
         garnished: '**In the last seven (7) years,** you had your wages, benefits, or assets garnished or attached for any reason?',
         delinquent: '**In the last seven (7) years,** you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
         any: 'You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).',
-        or: 'Or',
+        or: 'or',
         checkAll: 'Check all that apply'
       },
       heading: {
@@ -2052,7 +2052,7 @@ const en = {
         naturalized: 'Naturalized:',
         derived: 'Derived:',
         notcitizen: 'Not a U.S. Citizen:',
-        or: 'Or'
+        or: 'or'
       },
       label: {
         idk: 'I don\'t know',
@@ -2336,7 +2336,7 @@ const en = {
         addressSeparated: 'If legally separated, provide the location of the record.'
       },
       notApplicable: {
-        or: 'Or',
+        or: 'or',
         label: 'Not applicable'
       },
       para: {
@@ -5526,7 +5526,7 @@ const en = {
       para: {
         includes: 'Include associates as well as relatives, not previously listed in the relatives section.',
         definition: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
-        or: 'Or',
+        or: 'or',
         checkall: 'Check all that apply'
       },
       label: {
@@ -6947,7 +6947,7 @@ const en = {
     para: {
       correspondence: 'Provide the following contact information for this person.',
       address: 'Provide street address for this person (including apartment number).',
-      or: 'Or'
+      or: 'or'
     },
     label: {
       relationship: {

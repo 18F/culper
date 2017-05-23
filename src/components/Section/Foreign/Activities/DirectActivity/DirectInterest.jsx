@@ -227,7 +227,7 @@ export default class DirectInterest extends ValidationElement {
           <NotApplicable name="RelinquishedNotApplicable"
             {...this.props.RelinquishedNotApplicable}
             label={i18n.t('foreign.activities.direct.interest.label.relinquishedNotApplicable')}
-            or={i18n.t('foreign.activities.direct.interest.label.or')}
+            or={i18n.m('foreign.activities.direct.interest.label.or')}
             onValidate={this.props.onValidate}
             onUpdate={this.updateRelinquishedNotApplicable}>
             <DateControl name="Relinquished"

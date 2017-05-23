@@ -264,7 +264,7 @@ export default class IndirectInterest extends ValidationElement {
           <NotApplicable name="SoldNotApplicable"
             {...this.props.SoldNotApplicable}
             label={i18n.t(`foreign.activities.indirect.interest.label.soldNotApplicable`)}
-            or={i18n.t(`foreign.activities.indirect.interest.label.or`)}
+            or={i18n.m(`foreign.activities.indirect.interest.label.or`)}
             onValidate={this.props.onValidate}
             onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"

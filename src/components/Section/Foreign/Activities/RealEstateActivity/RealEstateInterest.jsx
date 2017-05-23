@@ -182,7 +182,7 @@ export default class RealEstateInterest extends ValidationElement {
           <NotApplicable name="SoldNotApplicable"
             {...this.props.SoldNotApplicable}
             label={i18n.t('foreign.activities.realestate.interest.label.soldNotApplicable')}
-            or={i18n.t('foreign.activities.realestate.interest.label.or')}
+            or={i18n.m('foreign.activities.realestate.interest.label.or')}
             onValidate={this.props.onValidate}
             onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
