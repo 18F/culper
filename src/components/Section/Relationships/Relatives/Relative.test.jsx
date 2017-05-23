@@ -185,7 +185,7 @@ describe('The relative component', () => {
     component.find('.relative-birthplace .city input').simulate('change', { target: { name: 'city', value: 'Munich' } })
     component.find('.relative-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
     component.find('.relative-deceased .no input').simulate('change')
-    expect(updates).toBe(7)
+    expect(updates).toBe(8)
   })
 
   it('are you my mother?', () => {

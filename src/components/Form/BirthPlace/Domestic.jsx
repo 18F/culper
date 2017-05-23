@@ -1,13 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { BirthPlaceValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import City from '../City'
 import MilitaryState from '../MilitaryState'
 import County from '../County'
-import Country from '../Country'
-import Branch from '../Branch'
 import Show from '../Show'
 
 export default class DomesticBirthPlace extends ValidationElement {
@@ -44,7 +41,7 @@ export default class DomesticBirthPlace extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="birthplace-domestic">
         <Field adjustFor="labels">
           <MilitaryState name="state"
             label={this.props.stateLabel}
@@ -56,8 +53,6 @@ export default class DomesticBirthPlace extends ValidationElement {
             disabled={this.props.disabledState}
             onChange={this.updateState}
             onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
           />
         </Field>
         <Field adjustFor="labels">
@@ -69,8 +64,6 @@ export default class DomesticBirthPlace extends ValidationElement {
             maxlength="100"
             onChange={this.updateCity}
             onValidate={this.handleValidation}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
           />
         </Field>
         <Show when={this.props.hideCounty === false}>
@@ -81,14 +74,22 @@ export default class DomesticBirthPlace extends ValidationElement {
               className="county"
               placeholder={this.props.countyPlaceholder}
               maxlength="255"
-              onChange={this.handleChange}
+              onChange={this.updateCounty}
               onValidate={this.handleValidation}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
             />
           </Field>
         </Show>
       </div>
     )
   }
+}
+
+DomesticBirthPlace.defaultProps = {
+  stateLabel: i18n.t('identification.birthplace.label.state'),
+  statePlaceholder: i18n.t('identification.birthplace.placeholder.state'),
+  cityLabel: i18n.t('identification.birthplace.label.city'),
+  cityPlaceholder: i18n.t('identification.birthplace.placeholder.city'),
+  countyLabel: i18n.t('identification.birthplace.label.county'),
+  countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
+  hideCounty: false
 }

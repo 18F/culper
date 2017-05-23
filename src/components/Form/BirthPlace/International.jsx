@@ -1,13 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { BirthPlaceValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
-import City from '../City'
-import MilitaryState from '../MilitaryState'
 import Country from '../Country'
-import Branch from '../Branch'
-import Show from '../Show'
+import Text from '../Text'
 
 export default class InternationalBirthPlace extends ValidationElement {
   constructor (props) {
@@ -38,9 +34,9 @@ export default class InternationalBirthPlace extends ValidationElement {
 
   render () {
     return (
-      <div>
+      <div className="birthplace-international">
         <Field adjustFor="labels">
-          <City name="city"
+          <Text name="city"
             label={this.props.cityLabel}
             value={this.props.city}
             className="city"
@@ -69,4 +65,11 @@ export default class InternationalBirthPlace extends ValidationElement {
       </div>
     )
   }
+}
+
+InternationalBirthPlace.defaultProps = {
+  cityLabel: i18n.t('identification.birthplace.label.city'),
+  cityPlaceholder: i18n.t('identification.birthplace.placeholder.city'),
+  countryLabel: i18n.t('identification.birthplace.label.country'),
+  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
 }

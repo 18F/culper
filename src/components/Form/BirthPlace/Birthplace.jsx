@@ -2,11 +2,6 @@ import React from 'react'
 import { i18n } from '../../../config'
 import { BirthPlaceValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
-import Field from '../Field'
-import City from '../City'
-import MilitaryState from '../MilitaryState'
-import County from '../County'
-import Country from '../Country'
 import Branch from '../Branch'
 import Show from '../Show'
 import DomesticBirthPlace from './Domestic'
@@ -29,27 +24,23 @@ export default class BirthPlace extends ValidationElement {
    * Handle the validation event.
    */
   handleValidation (event, status, error) {
-    //if (!event) {
-      //return
-    //}
+    const codes = super.mergeError(this.state.errorCodes, error)
+    let complexStatus = null
+    if (codes.length > 0) {
+      complexStatus = false
+    } else if (this.isValid()) {
+      complexStatus = true
+    }
 
-    //const codes = super.mergeError(this.state.errorCodes, error)
-    //let complexStatus = null
-    //if (codes.length > 0) {
-      //complexStatus = false
-    //} else if (this.isValid()) {
-      //complexStatus = true
-    //}
-
-    //this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      //const errorObject = { [this.state.name]: codes }
-      //const statusObject = { [this.state.name]: { status: complexStatus } }
-      //super.handleValidation(event, statusObject, errorObject)
-    //})
+    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+      const errorObject = { [this.state.name]: codes }
+      const statusObject = { [this.state.name]: { status: complexStatus } }
+      super.handleValidation(event, statusObject, errorObject)
+    })
   }
 
   isValid () {
-    return new BirthPlaceValidator(this.state, null).isValid()
+    return new BirthPlaceValidator(this.props, null).isValid()
   }
 
   update (updateValues) {
@@ -105,12 +96,14 @@ export default class BirthPlace extends ValidationElement {
         <Show when={this.props.domestic === 'Yes'}>
           <DomesticBirthPlace
             {...this.props}
+            onValidate={this.handleValidation}
             onUpdate={this.updateDomesticBirthPlace}
           />
         </Show>
         <Show when={this.props.domestic === 'No'}>
           <InternationalBirthPlace
             {...this.props}
+            onValidate={this.handleValidation}
             onUpdate={this.updateInternationalBirthPlace}
           />
         </Show>
@@ -125,13 +118,5 @@ BirthPlace.defaultProps = {
   branch: true,
   disabledCountry: false,
   disabledState: false,
-  hideCounty: false,
-  stateLabel: i18n.t('identification.birthplace.label.state'),
-  statePlaceholder: i18n.t('identification.birthplace.placeholder.state'),
-  cityLabel: i18n.t('identification.birthplace.label.city'),
-  cityPlaceholder: i18n.t('identification.birthplace.placeholder.city'),
-  countyLabel: i18n.t('identification.birthplace.label.county'),
-  countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
-  countryLabel: i18n.t('identification.birthplace.label.country'),
-  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
+  hideCounty: false
 }
