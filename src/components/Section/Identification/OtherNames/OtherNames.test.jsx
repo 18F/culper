@@ -13,7 +13,7 @@ describe('The other names section', () => {
   it('has no names initially', () => {
     const store = mockStore({ authentication: [] })
     const component = mount(<Provider store={store}><OtherNames /></Provider>)
-    expect(component.find('input#first').length).toEqual(0)
+    expect(component.find('.first input').length).toEqual(0)
   })
 
   it('Renders form when yes is selected', () => {
@@ -45,7 +45,7 @@ describe('The other names section', () => {
       HasOtherNames: 'Yes'
     }
     const component = mount(<Provider store={store}><OtherNames {...expected} /></Provider>)
-    expect(component.find('input#first').length).toEqual(1)
+    expect(component.find('.first input').length).toEqual(1)
   })
 
   it('does not display any fields when "no" is selected', () => {
@@ -57,7 +57,6 @@ describe('The other names section', () => {
       HasOtherNames: 'No'
     }
     const component = mount(<Provider store={store}><OtherNames {...expected} /></Provider>)
-    expect(component.find('input#first').length).toEqual(0)
+    expect(component.find('.first input').length).toEqual(0)
   })
 })
-

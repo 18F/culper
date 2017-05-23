@@ -185,7 +185,7 @@ describe('The relative component', () => {
     component.find('.relative-birthplace .city input').simulate('change', { target: { name: 'city', value: 'Munich' } })
     component.find('.relative-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
     component.find('.relative-deceased .no input').simulate('change')
-    expect(updates).toBe(7)
+    expect(updates).toBe(8)
   })
 
   it('are you my mother?', () => {
@@ -308,7 +308,7 @@ describe('The relative component', () => {
     }
     const component = mount(<Relative {...expected} />)
     component.find('.relative-address .international input').simulate('change')
-    component.find('.relative-address .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
+    component.find('.relative-address .country input').simulate('change', { target: { name: 'country', value: 'Germany' } })
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
     component.find('.relative-first-contact .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-first-contact .month input').simulate('change', { target: { name: 'month', value: '1' } })

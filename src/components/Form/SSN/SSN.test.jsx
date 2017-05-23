@@ -89,25 +89,25 @@ describe('The SSN component', () => {
 
   it('loads with first, middle and last values', () => {
     const component = mount(<SSN name={'ssn'} first="111" middle="00" last="0101" />)
-    component.find('input#first').hasClass('usa-input-success')
-    component.find('input#middle').hasClass('usa-input-success')
-    component.find('input#last').hasClass('usa-input-success')
+    component.find('.first input').hasClass('usa-input-success')
+    component.find('.middle input').hasClass('usa-input-success')
+    component.find('.last input').hasClass('usa-input-success')
   })
 
   it('loads with value and signals success', () => {
     const component = mount(<SSN name={'ssn'} value="111001234" />)
-    component.find('input#first').hasClass('usa-input-success')
-    component.find('input#middle').hasClass('usa-input-success')
-    component.find('input#last').hasClass('usa-input-success')
+    component.find('.first input').hasClass('usa-input-success')
+    component.find('.middle input').hasClass('usa-input-success')
+    component.find('.last input').hasClass('usa-input-success')
 
-    component.find('input#first').simulate('change')
-    component.find('input#middle').simulate('change')
-    component.find('input#last').simulate('change')
+    component.find('.first input').simulate('change')
+    component.find('.middle input').simulate('change')
+    component.find('.last input').simulate('change')
   })
 
   it('loads with invalid values and signals error', () => {
     const component = mount(<SSN name={'ssn'} first="abc" />)
-    component.find('input#first').simulate('change')
+    component.find('.first input').simulate('change')
   })
 
   it('loads value that is an incorrect length', () => {
@@ -133,19 +133,19 @@ describe('The SSN component', () => {
     const component = mount(<SSN {...expected} />)
 
     tabbed = false
-    component.find('input#first').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.first input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
 
     tabbed = false
-    component.find('input#first').simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    component.find('.first input').simulate('keyup', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find('input#middle').simulate('keyup', { keyCode: 8, target: { value: '1' } })
+    component.find('.middle input').simulate('keyup', { keyCode: 8, target: { value: '1' } })
     expect(tabbed).toBe(false)
 
     tabbed = false
-    component.find('input#middle').simulate('keyup', { keyCode: 48, target: { value: '12' } })
+    component.find('.middle input').simulate('keyup', { keyCode: 48, target: { value: '12' } })
     expect(tabbed).toBe(true)
   })
 
@@ -158,19 +158,19 @@ describe('The SSN component', () => {
     const component = mount(<SSN {...expected} />)
 
     tabbed = false
-    component.find('input#last').simulate('keyup', { keyCode: 48, target: { value: '1234' } })
+    component.find('.last input').simulate('keyup', { keyCode: 48, target: { value: '1234' } })
     expect(tabbed).toBe(false)
 
     tabbed = false
-    component.find('input#last').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.last input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find('input#middle').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.middle input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
 
     tabbed = false
-    component.find('input#middle').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.middle input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 })

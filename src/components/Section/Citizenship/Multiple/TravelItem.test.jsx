@@ -10,7 +10,7 @@ describe('The travel item component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<TravelItem {...expected} />)
-    component.find('input#Country').simulate('change', { target: { name: 'Country', value: 'United States' } })
+    component.find('.country input').simulate('change', { target: { name: 'Country', value: 'United States' } })
     component.find({ type: 'checkbox', value: 'present' }).simulate('change')
     expect(updates).toBe(2)
   })

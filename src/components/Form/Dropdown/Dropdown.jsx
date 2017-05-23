@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../ValidationElement'
+import ValidationElement, { newGuid } from '../ValidationElement'
 import ReactMarkdown from 'react-markdown'
 import Autosuggest from 'react-autosuggest'
 import { autotab } from '../Generic'
@@ -47,6 +47,7 @@ export default class Dropdown extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       options: [],
       suggestions: [],
@@ -287,7 +288,7 @@ export default class Dropdown extends ValidationElement {
     const inputProps = {
       value: value,
       className: this.inputClass(),
-      id: this.props.name,
+      id: this.state.uid,
       name: this.props.name,
       placeholder: this.props.placeholder,
       disabled: this.props.disabled,
@@ -306,7 +307,7 @@ export default class Dropdown extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.props.name}>
+               htmlFor={this.state.uid}>
           {this.props.label}
         </label>
         <Autosuggest suggestions={this.state.suggestions}
@@ -324,7 +325,6 @@ export default class Dropdown extends ValidationElement {
 }
 
 Dropdown.defaultProps = {
-  id: '',
   name: 'dropdown',
   label: '',
   placeholder: '',
