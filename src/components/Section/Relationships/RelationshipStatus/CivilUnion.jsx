@@ -275,7 +275,7 @@ export default class CivilUnion extends ValidationElement {
                          className="othername"
                          applicable={this.state.OtherNameNotApplicable}
                          label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                         or={i18n.t('relationships.civilUnion.notApplicable.or')}
+                         or={i18n.m('relationships.civilUnion.notApplicable.or')}
                          onUpdate={this.updateOtherNameNotApplicable}>
             <Name name="othername"
                   {...this.state.OtherName}
@@ -382,7 +382,7 @@ export default class CivilUnion extends ValidationElement {
                 <NotApplicable name="OtherNameNotApplicable"
                                applicable={this.state.AddressSeparatedNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                               or={i18n.t('relationships.civilUnion.notApplicable.or')}
+                               or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onUpdate={this.updateAddressSeparatedNotApplicable}>
                   <Address name="addressSeparated"
                            {...this.state.AddressSeparated}
