@@ -1361,7 +1361,7 @@ const en = {
         },
         telephone: {
           title: 'Not sure of this organization\'s phone number?',
-          message: 'Trying looking up their name, this could help you find their number. ',
+          message: 'Try looking up their name, this could help you find their number. ',
           note: ''
         },
         address: {
@@ -6662,7 +6662,7 @@ const en = {
           '- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
           '- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
           '- **In the last seven (7) years** have you been or are you currently on probation or parole?',
-          'Are you currently on trial or awaiting a trial on criminal charges?'
+          '- Are you currently on trial or awaiting a trial on criminal charges?'
         ],
         append: 'Add another offense'
       }
