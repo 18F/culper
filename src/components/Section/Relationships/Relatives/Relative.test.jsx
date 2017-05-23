@@ -19,11 +19,11 @@ describe('The relative component', () => {
     expect(component.find('.alias-dates').length).toEqual(0)
     expect(component.find('.relative-deceased').length).toEqual(1)
     expect(component.find('.relative-address').length).toEqual(0)
-    expect(component.find('.relative-abroad').length).toEqual(0)
-    expect(component.find('.relative-naturalized').length).toEqual(0)
-    expect(component.find('.relative-derived').length).toEqual(0)
     expect(component.find('.relative-documentnumber').length).toEqual(0)
     expect(component.find('.relative-documentexpiration').length).toEqual(0)
+    expect(component.find('.relative-naturalized').length).toEqual(0)
+    expect(component.find('.relative-abroad').length).toEqual(0)
+    expect(component.find('.relative-derived').length).toEqual(0)
     expect(component.find('.relative-courtname').length).toEqual(0)
     expect(component.find('.relative-courtaddress').length).toEqual(0)
     expect(component.find('.relative-document').length).toEqual(0)
@@ -72,7 +72,9 @@ describe('The relative component', () => {
   })
 
   it('display documentation information if relative requires citizenship documentation', () => {
+    let updates = 0
     const expected = {
+      onUpdate: () => { updates++ },
       name: 'relative',
       Citizenship: {
         value: [
@@ -95,6 +97,9 @@ describe('The relative component', () => {
 
     const component = mount(<Relative {...expected} />)
     expect(component.find('.relative-abroad').length).toEqual(1)
+    component.find('.derived-other input').simulate('change')
+    component.find('.derived-other-explanation textarea').simulate('change')
+    expect(updates).toBe(2)
   })
 
   it('display items if not deceased and not a citizen but lives in the U.S.', () => {

@@ -35,10 +35,8 @@ export default class Relative extends ValidationElement {
       Aliases: props.Aliases,
       IsDeceased: props.IsDeceased,
       Address: props.Address,
-      Abroad: props.Abroad,
-      Naturalized: props.Naturalized,
-      Derived: props.Derived,
-      DerivedComments: props.DerivedComments,
+      CitizenshipDocumentation: props.CitizenshipDocumentation,
+      OtherCitizenshipDocumentation: props.OtherCitizenshipDocumentation,
       DocumentNumber: props.DocumentNumber,
       DocumentExpiration: props.DocumentExpiration,
       CourtName: props.CourtName,
@@ -75,10 +73,8 @@ export default class Relative extends ValidationElement {
     this.updateAliases = this.updateAliases.bind(this)
     this.updateIsDeceased = this.updateIsDeceased.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
-    this.updateAbroad = this.updateAbroad.bind(this)
-    this.updateNaturalized = this.updateNaturalized.bind(this)
-    this.updateDerived = this.updateDerived.bind(this)
-    this.updateDerivedComments = this.updateDerivedComments.bind(this)
+    this.updateCitizenshipDocumentation = this.updateCitizenshipDocumentation.bind(this)
+    this.updateOtherCitizenshipDocumentation = this.updateOtherCitizenshipDocumentation.bind(this)
     this.updateDocumentNumber = this.updateDocumentNumber.bind(this)
     this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
     this.updateCourtName = this.updateCourtName.bind(this)
@@ -152,20 +148,12 @@ export default class Relative extends ValidationElement {
     this.onUpdate('Address', values)
   }
 
-  updateAbroad (event) {
-    this.onUpdate('Abroad', event.target.value)
+  updateCitizenshipDocumentation (event) {
+    this.onUpdate('CitizenshipDocumentation', event.target.value)
   }
 
-  updateNaturalized (event) {
-    this.onUpdate('Naturalized', event.target.value)
-  }
-
-  updateDerived (event) {
-    this.onUpdate('Derived', event.target.value)
-  }
-
-  updateDerivedComments (values) {
-    this.onUpdate('DerivedComments', values)
+  updateOtherCitizenshipDocumentation (value) {
+    this.onUpdate('OtherCitizenshipDocumentation', value)
   }
 
   updateDocumentNumber (values) {
@@ -503,141 +491,139 @@ export default class Relative extends ValidationElement {
 
         <Show when={validator.requiresCitizenshipDocumentation()}>
           <div>
-            <h2>{i18n.t('relationships.relatives.heading.us.title')}</h2>
+            <Field title={i18n.t('relationships.relatives.heading.us.title')}
+              titleSize="h2">
+              <h3 className="relative-citizenship-documentation">
+                {i18n.t('relationships.relatives.heading.us.documentation')}
+              </h3>
 
-            <Field title={i18n.t('relationships.relatives.heading.us.documentation')}
-                   titleSize="h3"
-                   adjustFor="p"
-                   shrink={true}>
-              {i18n.m('relationships.relatives.para.abroad')}
+              <label>{i18n.t('relationships.relatives.para.abroad')}</label>
               <RadioGroup className="relative-abroad option-list"
-                          selectedValue={this.state.Abroad}>
+                selectedValue={this.state.CitizenshipDocumentation}>
                 <Radio name="abroad-fs"
-                       label={i18n.m('relationships.relatives.label.abroad.fs')}
-                       value="FS"
-                       className="abroad-fs"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateAbroad}
-                       />
+                  label={i18n.m('relationships.relatives.label.abroad.fs')}
+                  value="FS"
+                  className="abroad-fs"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
                 <Radio name="abroad-ds"
-                       label={i18n.m('relationships.relatives.label.abroad.ds')}
-                       value="DS"
-                       className="abroad-ds"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateAbroad}
-                       />
+                  label={i18n.m('relationships.relatives.label.abroad.ds')}
+                  value="DS"
+                  className="abroad-ds"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
               </RadioGroup>
-            </Field>
 
-            <Field adjustFor="p">
-              {i18n.m('relationships.relatives.para.naturalized')}
+              <label>{i18n.t('relationships.relatives.para.naturalized')}</label>
               <RadioGroup className="relative-naturalized option-list"
-                          selectedValue={this.state.Naturalized}>
+                selectedValue={this.state.CitizenshipDocumentation}>
                 <Radio name="naturalized-alien"
-                       label={i18n.m('relationships.relatives.label.naturalized.alien')}
-                       value="Alien"
-                       className="naturalized-alien"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateNaturalized}
-                       />
+                  label={i18n.m('relationships.relatives.label.naturalized.alien')}
+                  value="NaturalizedAlien"
+                  className="naturalized-alien"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
                 <Radio name="naturalized-permanent"
-                       label={i18n.m('relationships.relatives.label.naturalized.permanent')}
-                       value="Permanent"
-                       className="naturalized-permanent"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateNaturalized}
-                       />
+                  label={i18n.m('relationships.relatives.label.naturalized.permanent')}
+                  value="NaturalizedPermanent"
+                  className="naturalized-permanent"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
                 <Radio name="naturalized-certificate"
-                       label={i18n.m('relationships.relatives.label.naturalized.certificate')}
-                       value="Certificate"
-                       className="naturalized-certificate"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateNaturalized}
-                       />
+                  label={i18n.m('relationships.relatives.label.naturalized.certificate')}
+                  value="NaturalizedCertificate"
+                  className="naturalized-certificate"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
               </RadioGroup>
-            </Field>
 
-            <Field adjustFor="p"
-                   comments={true}
-                   commentsName="DerivedComments"
-                   commentsValue={this.state.DerivedComments}
-                   commentsActive={this.state.Derived === 'Other'}
-                   onUpdate={this.updateDerivedComments}
-                   >
-              {i18n.m('relationships.relatives.para.derived')}
+              <label>{i18n.t('relationships.relatives.para.derived')}</label>
               <RadioGroup className="relative-derived option-list"
-                          selectedValue={this.state.Derived}>
+                selectedValue={this.state.CitizenshipDocumentation}>
                 <Radio name="derived-alien"
-                       label={i18n.m('relationships.relatives.label.derived.alien')}
-                       value="Alien"
-                       className="derived-alien"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateDerived}
-                       />
+                  label={i18n.m('relationships.relatives.label.derived.alien')}
+                  value="DerivedAlien"
+                  className="derived-alien"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
                 <Radio name="derived-permanent"
-                       label={i18n.m('relationships.relatives.label.derived.permanent')}
-                       value="Permanent"
-                       className="derived-permanent"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateDerived}
-                       />
+                  label={i18n.m('relationships.relatives.label.derived.permanent')}
+                  value="DerivedPermanent"
+                  className="derived-permanent"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
                 <Radio name="derived-certificate"
-                       label={i18n.m('relationships.relatives.label.derived.certificate')}
-                       value="Certificate"
-                       className="derived-certificate"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateDerived}
-                       />
+                  label={i18n.m('relationships.relatives.label.derived.certificate')}
+                  value="DerivedCertificate"
+                  className="derived-certificate"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
                 <Radio name="derived-other"
-                       label={i18n.m('relationships.relatives.label.derived.other')}
-                       value="Other"
-                       className="derived-other"
-                       onValidate={this.props.onValidate}
-                       onChange={this.updateDerived}
-                       />
+                  label={i18n.m('relationships.relatives.label.derived.other')}
+                  value="Other"
+                  className="derived-other"
+                  onValidate={this.props.onValidate}
+                  onChange={this.updateCitizenshipDocumentation}
+                />
               </RadioGroup>
+              <Show when={this.state.CitizenshipDocumentation === 'Other'}>
+                <Textarea name="OtherCitizenshipDocumentation"
+                  className="derived-other-explanation"
+                  {...this.state.OtherCitizenshipDocumentation}
+                  onValidate={this.props.onValidate}
+                  onUpdate={this.updateOtherCitizenshipDocumentation}
+                />
+              </Show>
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.number')}
-                   titleSize="h3">
+              titleSize="h3">
               <Text name="DocumentNumber"
-                    className="relative-documentnumber"
-                    {...this.state.DocumentNumber}
-                    onValidate={this.props.onValidate}
-                    onUpdate={this.updateDocumentNumber}
-                    />
+                className="relative-documentnumber"
+                {...this.state.DocumentNumber}
+                onValidate={this.props.onValidate}
+                onUpdate={this.updateDocumentNumber}
+              />
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.expiration')}
-                   adjustFor="datecontrol">
+              adjustFor="datecontrol">
               <DateControl name="DocumentExpiration"
-                           {...this.state.DocumentExpiration}
-                           className="relative-documentexpiration"
-                           onUpdate={this.updateDocumentExpiration}
-                           onValidate={this.props.onValidate}
-                           />
+                {...this.state.DocumentExpiration}
+                className="relative-documentexpiration"
+                onUpdate={this.updateDocumentExpiration}
+                onValidate={this.props.onValidate}
+              />
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.name')}
-                   titleSize="h3">
+              titleSize="h3">
               <Text name="CourtName"
-                    className="relative-courtname"
-                    {...this.state.CourtName}
-                    onValidate={this.props.onValidate}
-                    onUpdate={this.updateCourtName}
-                    />
+                className="relative-courtname"
+                {...this.state.CourtName}
+                onValidate={this.props.onValidate}
+                onUpdate={this.updateCourtName}
+              />
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
-                   titleSize="h3"
-                   help="relationships.relatives.help.courtaddress"
-                   adjustFor="address">
+              titleSize="h3"
+              help="relationships.relatives.help.courtaddress"
+              adjustFor="address">
               <Address name="CourtAddress"
-                       className="relative-courtaddress"
-                       {...this.state.CourtAddress}
-                       onValidate={this.props.onValidate}
-                       onUpdate={this.updateCourtAddress}
-                       />
+                className="relative-courtaddress"
+                {...this.state.CourtAddress}
+                onValidate={this.props.onValidate}
+                onUpdate={this.updateCourtAddress}
+              />
             </Field>
           </div>
         </Show>

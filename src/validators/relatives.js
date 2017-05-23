@@ -45,10 +45,8 @@ export class RelativeValidator {
     this.aliases = state.Aliases || []
     this.isDeceased = state.IsDeceased
     this.address = state.Address
-    this.abroad = state.Abroad
-    this.naturalized = state.Naturalized
-    this.derived = state.Derived
-    this.derivedComments = state.DerivedComments
+    this.citizenshipDocumentation = state.CitizenshipDocumentation
+    this.otherCitizenshipDocumentation = state.OtherCitizenshipDocumentation
     this.documentNumber = state.DocumentNumber
     this.documentExpiration = state.DocumentExpiration
     this.courtName = state.CourtName
@@ -160,30 +158,26 @@ export class RelativeValidator {
     return !!this.address && new AddressValidator(this.address, null).isValid()
   }
 
-  validAbroad () {
+  validCitizenshipDocumentation () {
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
 
-    return !!this.abroad && this.abroad.length > 0
-  }
-
-  validNaturalized () {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
+    switch (this.citizenshipDocumentation) {
+      case 'Other':
+        return validGenericTextfield(this.otherCitizenshipDocumentation)
+      case 'FS':
+      case 'DS':
+      case 'NaturalizedAlien':
+      case 'NaturalizedPermanent':
+      case 'NaturalizedCertificate':
+      case 'DerivedAlien':
+      case 'DerivedPermanent':
+      case 'DerivedCertificate':
+        return true
+      default:
+        return false
     }
-
-    return !!this.naturalized && this.naturalized.length > 0
-  }
-
-  validDerived () {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    return !!this.derived && this.derived.length > 0 &&
-      ((this.derived === 'Other' && !!this.derivedComments && this.derivedComments.length > 0) ||
-       (this.derived !== 'Other'))
   }
 
   validDocumentNumber () {
@@ -332,9 +326,7 @@ export class RelativeValidator {
       this.validAliases() &&
       this.validIsDeceased() &&
       this.validAddress() &&
-      this.validAbroad() &&
-      this.validNaturalized() &&
-      this.validDerived() &&
+      this.validCitizenshipDocumentation() &&
       this.validDocumentNumber() &&
       this.validDocumentExpiration() &&
       this.validCourtName() &&
