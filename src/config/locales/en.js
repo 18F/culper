@@ -339,7 +339,7 @@ const en = {
     passport: {
       number: {
         pattern: {
-          title: 'Passport number not in acceptable format',
+          title: 'There is a problem with the passport number',
           message: [
             'For passport books the number will start with a letter and then 6 to 9 digits.',
             'For passport cards the number begins with a "C" and followed by 8 digits.'
@@ -350,8 +350,8 @@ const en = {
     },
     Losses: {
       min: {
-        title: 'Losses below accepted limits',
-        message: 'Reported losses must have a value',
+        title: 'There is a problem with the losses',
+        message: 'The reported losses should have a dollar value.',
         note: ''
       }
     },
@@ -365,72 +365,72 @@ const en = {
     domestic_first: {
       pattern: {
         title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9.',
+        message: 'The area code shoul be 3 numbers long and between 0 and 9.',
         note: ''
       },
       length: {
-        title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9.',
+        title: 'There is a problem with the area code',
+        message: 'The area code shoul be 3 numbers long and between 0 and 9.',
         note: ''
       }
     },
     domestic_second: {
       pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
+        title: 'There is a problem with the phone number',
+        message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
         note: ''
       },
       length: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
+        title: 'There is a problem with the phone number',
+        message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
         note: ''
       }
     },
     domestic_third: {
       pattern: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
+        title: 'There is a problem with the phone number',
+        message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
         note: ''
       },
       length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
+        title: 'There is a problem with the phone number',
+        message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
         note: ''
       }
     },
     domestic_extension: {
       pattern: {
-        title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits.',
+        title: 'There is a problem with the extension',
+        message: 'Extensions should be between 0 and 10.',
         note: ''
       },
       length: {
-        title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits.',
+        title: 'There is a problem with the extensionn',
+        message: 'Extensions should be between 0 and 10.',
         note: ''
       }
     },
     dsn_first: {
       pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+        title: 'There is a problem with the DSN number',
+        message: 'The first part of the DSN number should be 3 numbers long between 0 and 9.',
         note: ''
       },
       length: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+        title: 'There is a problem with the DSN number',
+        message: 'The first part of the DSN number should be 3 numbers long between 0 and 9.',
         note: ''
       }
     },
     dsn_second: {
       pattern: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+        title: 'There is a problem with the DSN number',
+        message: 'The last part of the DSN number must be 4 numbers long between 0 and 9.',
         note: ''
       },
       length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+        title: 'There is a problem with the DSN number',
+        message: 'The last part of the DSN number must be 4 numbers between 0 and 9.',
         note: ''
       }
     },
