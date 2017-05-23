@@ -702,6 +702,7 @@ export default class Relative extends ValidationElement {
                                {...this.state.Expiration}
                                onValidate={this.props.onValidate}
                                onUpdate={this.updateExpiration}
+                               maxDate={null}
                                />
                 </Field>
               </div>
