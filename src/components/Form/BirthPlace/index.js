@@ -1,2 +1,2 @@
-import BirthPlace from './BirthPlace'
+import BirthPlace from './Birthplace'
 export default BirthPlace
