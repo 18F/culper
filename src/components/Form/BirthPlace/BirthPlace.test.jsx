@@ -3,8 +3,6 @@ import { mount } from 'enzyme'
 import BirthPlace from './BirthPlace'
 
 describe('The BirthPlace component', () => {
-  const children = 4
-
   it('no error on empty', () => {
     const expected = {
       name: 'input-focus',
@@ -12,7 +10,7 @@ describe('The BirthPlace component', () => {
       value: ''
     }
     const component = mount(<BirthPlace name={expected.name} label={expected.label} value={expected.value} country=''/>)
-    component.find('input#city').simulate('blur')
+    component.find('.city input').simulate('blur')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 

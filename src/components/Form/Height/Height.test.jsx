@@ -11,11 +11,11 @@ describe('The Height component', () => {
       value: ''
     }
     const component = mount(<Height name={expected.name} label={expected.label} value={expected.value} />)
-    component.find('input#feet').simulate('keyup', { keyCode: 48, target: { value: '1' } })
-    component.find('input#feet').simulate('focus')
-    component.find('input#feet').simulate('blur')
-    expect(component.find('label[htmlFor="feet"]').text()).toEqual(expected.label)
-    expect(component.find('input[name="feet"]').length).toEqual(1)
+    component.find('.feet input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.feet input').simulate('focus')
+    component.find('.feet input').simulate('blur')
+    expect(component.find('.feet label').text()).toEqual(expected.label)
+    expect(component.find('.feet input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
 
     expected = {
@@ -23,9 +23,9 @@ describe('The Height component', () => {
       label: 'Inches',
       value: ''
     }
-    component.find('input#inches').simulate('change')
-    expect(component.find('label[htmlFor="inches"]').text()).toEqual(expected.label)
-    expect(component.find('input[name="inches"]').length).toEqual(1)
+    component.find('.inches input').simulate('change')
+    expect(component.find('.inches label').text()).toEqual(expected.label)
+    expect(component.find('.inches input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -36,9 +36,9 @@ describe('The Height component', () => {
       tab: () => { tabbed = true }
     }
     const component = mount(<Height {...expected} />)
-    component.find('input#feet').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.feet input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('input#feet').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.feet input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(true)
   })
 
@@ -49,9 +49,9 @@ describe('The Height component', () => {
       tab: () => { tabbed = true }
     }
     const component = mount(<Height {...expected} />)
-    component.find('input#inches').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.inches input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('input#inches').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.inches input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 })
