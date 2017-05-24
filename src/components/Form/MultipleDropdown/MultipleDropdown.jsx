@@ -20,6 +20,7 @@ export default class MultipleDropdown extends ValidationElement {
     this.handleInput = this.handleInput.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
   parseChildren () {
@@ -36,8 +37,9 @@ export default class MultipleDropdown extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation (event) {
+  handleBlur (event) {
     const value = this.state.value
+    console.log('handleBlur', value)
     if (value.length) {
       const errors = this.props.onError(value, this.constructor.errors.map(err => {
         return {
@@ -126,6 +128,17 @@ export default class MultipleDropdown extends ValidationElement {
       )
     })
 
+    // The `Country` component may pass the value as a string. This causes an
+    // infinite loop which is less than desirable.
+    let value = this.state.value
+    if (typeof value === 'string') {
+      if (value === '') {
+        value = []
+      } else {
+        value = [{ id: value, name: value }]
+      }
+    }
+
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
@@ -137,7 +150,8 @@ export default class MultipleDropdown extends ValidationElement {
                     onInput={this.handleInput}
                     onSelect={this.handleSelect}
                     onRemove={this.handleRemove}
-                    selected={this.state.value}
+                    onBlur={this.handleBlur}
+                    selected={value}
                     placeholder={this.props.placeholder}
                     />
       </div>

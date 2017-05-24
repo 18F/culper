@@ -8,6 +8,8 @@ export default class Country extends ValidationElement {
   constructor (props) {
     super(props)
 
+    // For the typical Dropdown component a string value is expected.
+    // However, for the MultiDropdown, the value must be an array of objects.
     this.state = {
       value: props.value
     }
@@ -151,7 +153,6 @@ export default class Country extends ValidationElement {
 
 Country.defaultProps = {
   name: 'country',
-  value: '',
   onError: (value, arr) => { return arr }
 }
 

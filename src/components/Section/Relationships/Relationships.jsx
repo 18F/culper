@@ -52,19 +52,19 @@ class Relationships extends SectionElement {
   // }
 
   updateMarital (values) {
-    this.onUpdate('Marital', values)
+    this.handleUpdate('Marital', values)
   }
 
   updatePeople (values) {
-    this.onUpdate('People', values)
+    this.handleUpdate('People', values)
   }
 
   updateRelatives (values) {
-    this.onUpdate('Relatives', values)
+    this.handleUpdate('Relatives', values)
   }
 
   updateCohabitants (values) {
-    this.onUpdate('Cohabitants', values)
+    this.handleUpdate('Cohabitants', values)
   }
 
   /**
