@@ -5666,9 +5666,9 @@ const en = {
         },
         help: {
           branch: {
-            title: 'Need help determining if you have provided advice to foreign businesses?',
-            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
-            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+            title: 'Need help with this question?',
+            message: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business.',
+            note: ''
           },
           description: {
             title: 'Need help with the description?',
