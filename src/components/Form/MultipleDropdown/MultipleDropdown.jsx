@@ -7,6 +7,7 @@ export default class MultipleDropdown extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       input: props.input,
       loading: props.loading,
       options: props.options.concat(this.parseChildren()),
@@ -112,7 +113,7 @@ export default class MultipleDropdown extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.props.name}>
+               htmlFor={this.state.uid}>
           {this.props.label}
         </label>
         <TokenInput menuContent={options}
@@ -120,6 +121,7 @@ export default class MultipleDropdown extends ValidationElement {
                     onInput={this.handleInput}
                     onSelect={this.handleSelect}
                     onRemove={this.handleRemove}
+                    id={this.state.uid}
                     selected={this.state.value}
                     placeholder={this.props.placeholder}
                     />

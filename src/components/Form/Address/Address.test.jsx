@@ -46,7 +46,7 @@ describe('The Address component', () => {
       }
     }
     const component = mount(<Address name={expected.name} onChange={expected.handleChange} />)
-    component.find('input#address').first().simulate('change')
+    component.find('.mailing input').first().simulate('change')
     expect(changes).toEqual(1)
   })
 
@@ -202,8 +202,8 @@ describe('The Address component', () => {
 
     const component = mount(<Address {...expected} />)
     expect(component.find('.suggestions .modal-content').length).toBe(0)
-    component.find('input#address').simulate('change')
-    component.find('input#address').simulate('blur')
+    component.find('.mailing input').simulate('change')
+    component.find('.mailing input').simulate('blur')
     expect(updates).toBe(1)
   })
 
@@ -229,8 +229,8 @@ describe('The Address component', () => {
 
     const component = mount(<Address {...expected} />)
     expect(component.find('.suggestions .modal-content').length).toBe(0)
-    component.find('input#address').simulate('change')
-    component.find('input#address').simulate('blur')
+    component.find('.mailing input').simulate('change')
+    component.find('.mailing input').simulate('blur')
     expect(component.find('.suggestions .modal-content').length).toBe(0)
   })
 
@@ -322,9 +322,9 @@ describe('The Address component', () => {
       tab: () => { tabbed = true }
     }
     const component = mount(<Address {...expected} />)
-    component.find('input#apoFpo').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.state input').simulate('keyup', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('input#apoFpo').simulate('keyup', { keyCode: 48, target: { value: 'AE' } })
+    component.find('.state input').simulate('keyup', { keyCode: 48, target: { value: 'AE' } })
     expect(tabbed).toBe(true)
   })
 })

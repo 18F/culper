@@ -31,7 +31,7 @@ describe('The date range component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<DateRange {...expected} />)
-    component.find('input#day').first().simulate('change')
+    component.find('.day input').first().simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
 

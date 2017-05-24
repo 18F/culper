@@ -57,6 +57,32 @@ describe('Relatives validation', function () {
     })
   })
 
+  it('validate relative documentation', () => {
+    const tests = [
+      {
+        state: {
+          IsDeceased: 'No',
+          Document: 'Permanent'
+        },
+        expected: true
+      },
+      {
+        state: {
+          IsDeceased: 'No',
+          Document: 'Other',
+          OtherDocument: {
+            value: 'Other stuff'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativeValidator(test.state, null).validDocument()).toBe(test.expected)
+    })
+  })
+
   it('validate relative birth date', () => {
     const tests = [
       {
@@ -467,7 +493,7 @@ describe('Relatives validation', function () {
     })
   })
 
-  it('validate relative requires citizenship documentation abroad', () => {
+  it('validate relative requires citizenship documentation', () => {
     const tests = [
       {
         state: {
@@ -505,7 +531,8 @@ describe('Relatives validation', function () {
             city: 'Arlington',
             state: 'Virginia',
             zipcode: '22202'
-          }
+          },
+          CitizenshipDocumentation: 'DerivedAlien'
         },
         expected: true
       },
@@ -535,6 +562,10 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          CitizenshipDocumentation: 'Other',
+          OtherCitizenshipDocumentation: {
+            value: 'Other docs'
+          },
           Relation: 'Father',
           Citizenship: {
             value: [
@@ -553,206 +584,42 @@ describe('Relatives validation', function () {
             city: 'Munich',
             country: 'Germany'
           },
-          Abroad: 'FS'
+          Abroad: ''
+        },
+        expected: true
+      },
+      {
+        state: {
+          CitizenshipDocumentation: 'FS',
+          OtherCitizenshipDocumentation: {
+            value: 'Other docs'
+          },
+          Relation: 'Father',
+          Citizenship: {
+            value: [
+              { name: 'United States', value: 'United States' }
+            ]
+          },
+          Birthplace: {
+            domestic: 'No',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          IsDeceased: 'No',
+          Address: {
+            addressType: 'International',
+            address: '1234 Some Rd',
+            city: 'Munich',
+            country: 'Germany'
+          },
+          Abroad: ''
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validAbroad()).toBe(test.expected)
-    })
-  })
-
-  it('validate relative requires citizenship documentation naturalization', () => {
-    const tests = [
-      {
-        state: {
-          Relation: 'Father',
-          IsDeceased: 'Yes'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          IsDeceased: 'No'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'Yes',
-            city: 'Arlington',
-            state: 'Virginia',
-            country: 'United States'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'No',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          Naturalized: ''
-        },
-        expected: false
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'No',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          Naturalized: 'Alien'
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validNaturalized()).toBe(test.expected)
-    })
-  })
-
-  it('validate relative requires citizenship documentation derived', () => {
-    const tests = [
-      {
-        state: {
-          Relation: 'Father',
-          IsDeceased: 'Yes'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          IsDeceased: 'No'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'Yes',
-            city: 'Arlington',
-            state: 'Virginia',
-            country: 'United States'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'No',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          Derived: ''
-        },
-        expected: false
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'No',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          Derived: 'Alien'
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validDerived()).toBe(test.expected)
+      expect(new RelativeValidator(test.state, null).validCitizenshipDocumentation()).toBe(test.expected)
     })
   })
 
@@ -851,112 +718,6 @@ describe('Relatives validation', function () {
 
     tests.forEach(test => {
       expect(new RelativeValidator(test.state, null).validDocumentNumber()).toBe(test.expected)
-    })
-  })
-
-  it('validate relative requires citizenship documentation document expiration', () => {
-    const tests = [
-      {
-        state: {
-          Relation: 'Father',
-          IsDeceased: 'Yes'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          IsDeceased: 'No'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'Yes',
-            city: 'Arlington',
-            state: 'Virginia',
-            country: 'United States'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'No',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          DocumentNumber: {
-            value: '11111111111111111'
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          Relation: 'Father',
-          Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
-          },
-          Birthplace: {
-            domestic: 'No',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          IsDeceased: 'No',
-          Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
-          },
-          DocumentNumber: {
-            value: '0000000000000'
-          },
-          DocumentExpiration: {
-            day: '1',
-            month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
-          }
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validDocumentExpiration()).toBe(test.expected)
     })
   })
 
@@ -1700,6 +1461,19 @@ describe('Relatives validation', function () {
             }
           ],
           ListBranch: 'No'
+        },
+        expected: false
+      },
+      {
+        state: {
+          List: [
+            {
+              Item: {
+                Relation: 'Mother'
+              }
+            }
+          ],
+          ListBranch: 'Nope'
         },
         expected: false
       },

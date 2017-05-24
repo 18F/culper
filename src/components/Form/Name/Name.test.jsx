@@ -10,7 +10,7 @@ describe('The Name component', () => {
       value: ''
     }
     const component = mount(<Name {...expected} />)
-    component.find('input#last').simulate('change')
+    component.find('.last input').simulate('change')
     expect(component.find('div.hidden').length).toBeGreaterThan(0)
   })
 
@@ -30,7 +30,7 @@ describe('The Name component', () => {
 
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
-      component.find('input#last').simulate('change')
+      component.find('.last input').simulate('change')
       expect(component.find('div.hidden').length).toBeGreaterThan(0)
     })
   })

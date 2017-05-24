@@ -71,10 +71,10 @@ describe('The foreign national component', () => {
     component.find('.methods-other input').simulate('change')
     component.find('.methods-explanation textarea').simulate('change')
     component.find('.methods-other input').simulate('change')
-    component.find('.frequency-other input').simulate('click')
+    component.find('.frequency-other input').simulate('click') // 9
     component.find('.frequency-explanation textarea').simulate('change')
     component.find('.relationship-other input').simulate('change')
-    component.find('.relationship-explanation textarea').simulate('change')
+    component.find('.relationship-explanation textarea').simulate('change') // 12
     component.find('.relationship-other input').simulate('change')
     component.find('.aliases .branch .no input').simulate('change')
     component.find('.citizenship input').simulate('change')

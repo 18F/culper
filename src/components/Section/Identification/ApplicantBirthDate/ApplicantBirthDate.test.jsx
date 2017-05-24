@@ -11,7 +11,7 @@ describe('The applicant birth date component', () => {
     }
     let onUpdate = () => {}
     const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} onUpdate={onUpdate} />)
-    component.find('input#month').simulate('change')
+    component.find('.month input').simulate('change')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -23,7 +23,7 @@ describe('The applicant birth date component', () => {
     }
     let onUpdate = () => {}
     const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} onUpdate={onUpdate} />)
-    component.find('input#month').simulate('change')
+    component.find('.month input').simulate('change')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -34,9 +34,9 @@ describe('The applicant birth date component', () => {
       value: '01/01/2015'
     }
     const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} />)
-    component.find('input#month').simulate('change')
-    component.find('input#day').simulate('change')
-    component.find('input#year').simulate('change')
+    component.find('.month input').simulate('change')
+    component.find('.day input').simulate('change')
+    component.find('.year input').simulate('change')
   })
 
   it('loads data', () => {
@@ -47,8 +47,8 @@ describe('The applicant birth date component', () => {
     }
     let onUpdate = () => {}
     const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} onUpdate={onUpdate} />)
-    component.find('input#month').simulate('change')
-    component.find('input#day').simulate('change')
-    component.find('input#year').simulate('change')
+    component.find('.month input').simulate('change')
+    component.find('.day input').simulate('change')
+    component.find('.year input').simulate('change')
   })
 })
