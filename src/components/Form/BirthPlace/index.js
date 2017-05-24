@@ -1,4 +1,4 @@
-import BirthPlace from './Birthplace'
+import BirthPlace from './BirthPlace'
 import DomesticBirthPlace from './Domestic'
 import InternationalBirthPlace from './International'
 export default BirthPlace

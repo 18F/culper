@@ -19,15 +19,16 @@ describe('The relative component', () => {
     expect(component.find('.alias-dates').length).toEqual(0)
     expect(component.find('.relative-deceased').length).toEqual(1)
     expect(component.find('.relative-address').length).toEqual(0)
-    expect(component.find('.relative-abroad').length).toEqual(0)
-    expect(component.find('.relative-naturalized').length).toEqual(0)
-    expect(component.find('.relative-derived').length).toEqual(0)
     expect(component.find('.relative-documentnumber').length).toEqual(0)
     expect(component.find('.relative-documentexpiration').length).toEqual(0)
+    expect(component.find('.relative-naturalized').length).toEqual(0)
+    expect(component.find('.relative-abroad').length).toEqual(0)
+    expect(component.find('.relative-derived').length).toEqual(0)
     expect(component.find('.relative-courtname').length).toEqual(0)
     expect(component.find('.relative-courtaddress').length).toEqual(0)
     expect(component.find('.relative-document').length).toEqual(0)
     expect(component.find('.relative-residence-documentnumber').length).toEqual(0)
+    expect(component.find('.relative-residence-other-documentnumber').length).toEqual(0)
     expect(component.find('.relative-expiration').length).toEqual(0)
     expect(component.find('.relative-first-contact').length).toEqual(0)
     expect(component.find('.relative-last-contact').length).toEqual(0)
@@ -71,7 +72,9 @@ describe('The relative component', () => {
   })
 
   it('display documentation information if relative requires citizenship documentation', () => {
+    let updates = 0
     const expected = {
+      onUpdate: () => { updates++ },
       name: 'relative',
       Citizenship: {
         value: [
@@ -94,6 +97,9 @@ describe('The relative component', () => {
 
     const component = mount(<Relative {...expected} />)
     expect(component.find('.relative-abroad').length).toEqual(1)
+    component.find('.derived-other input').simulate('change')
+    component.find('.derived-other-explanation textarea').simulate('change')
+    expect(updates).toBe(2)
   })
 
   it('display items if not deceased and not a citizen but lives in the U.S.', () => {
@@ -258,10 +264,9 @@ describe('The relative component', () => {
     component.find('.relative-naturalized .naturalized-alien input').simulate('change')
     component.find('.relative-derived .derived-alien input').simulate('change')
     component.find('.relative-documentnumber input').simulate('change', { target: { value: 'documentnumber' } })
-    component.find('.relative-documentexpiration .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-courtname input').simulate('change', { target: { value: 'courtname' } })
     component.find('.relative-courtaddress .city input').simulate('change', { target: { name: 'city', value: 'The city' } })
-    expect(updates).toBe(7)
+    expect(updates).toBe(6)
   })
 
   it('is not a citizen but lives in the United States?', () => {
@@ -283,12 +288,13 @@ describe('The relative component', () => {
     component.find('.relative-address .domestic input').simulate('change')
     component.find('.relative-address .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
     expect(component.find('.relative-document').length).toBeGreaterThan(0)
-    component.find('.relative-document .document-employment input').simulate('change')
+    component.find('.relative-document .document-other input').simulate('change')
+    component.find('.relative-other-documentnumber textarea').simulate('change', { target: { value: 'documentnumber' } })
     component.find('.relative-residence-documentnumber input').simulate('change', { target: { value: '00000000' } })
     component.find('.relative-expiration .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-expiration .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.relative-expiration .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    expect(updates).toBe(7)
+    expect(updates).toBe(8)
   })
 
   it('is not a citizen and lives outside the United States?', () => {
@@ -308,7 +314,7 @@ describe('The relative component', () => {
     }
     const component = mount(<Relative {...expected} />)
     component.find('.relative-address .international input').simulate('change')
-    component.find('.relative-address .country input#country').simulate('change', { target: { name: 'country', value: 'Germany' } })
+    component.find('.relative-address .country input').simulate('change', { target: { name: 'country', value: 'Germany' } })
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
     component.find('.relative-first-contact .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-first-contact .month input').simulate('change', { target: { name: 'month', value: '1' } })

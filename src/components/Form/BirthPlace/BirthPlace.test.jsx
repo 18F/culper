@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import BirthPlace from './Birthplace'
+import BirthPlace from './BirthPlace'
 
 describe('The BirthPlace component', () => {
   it('no error on empty', () => {

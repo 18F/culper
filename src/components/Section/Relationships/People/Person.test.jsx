@@ -23,7 +23,7 @@ describe('The relative alias component', () => {
 
     const component = mount(<Person {...expected} />)
     expect(component.find('.person').length).toEqual(1)
-    component.find('.known-dates .from input#month').simulate('change', { target: { value: '10' } })
+    component.find('.known-dates .from .month input').simulate('change', { target: { value: '10' } })
     component.find('.name input[name="first"]').simulate('change')
     component.find('.rank input').simulate('change')
     component.find('.rank-notapplicable .button input').simulate('change')

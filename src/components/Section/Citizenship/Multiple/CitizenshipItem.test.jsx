@@ -10,7 +10,7 @@ describe('The citizenship item component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<CitizenshipItem {...expected} />)
-    component.find('.citizenship-country input#Country').simulate('change', { target: { name: 'Country', value: 'United States' } })
+    component.find('.citizenship-country .country input').simulate('change', { target: { name: 'Country', value: 'United States' } })
     component.find({ type: 'checkbox', value: 'present' }).simulate('change')
     component.find('.citizenship-how textarea').simulate('change')
     component.find('.citizenship-renounced .yes input').simulate('change')

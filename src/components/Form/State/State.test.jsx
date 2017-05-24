@@ -6,6 +6,7 @@ describe('The State component', () => {
   it('renders', () => {
     const expected = {
       name: 'state',
+      className: 'state',
       value: ''
     }
     const component = shallow(<State {...expected} />).dive()
@@ -15,19 +16,20 @@ describe('The State component', () => {
   it('renders with short value', () => {
     const expected = {
       name: 'state',
+      className: 'state',
       value: 'Arizona',
       onBlur: () => {},
       onFocus: () => {}
     }
     const component = mount(<State {...expected} />)
-    component.find('input#state').simulate('change', {
+    component.find('.state input').simulate('change', {
       target: {
         value: 'AZ'
       }
     })
-    component.find('input#state').simulate('focus')
+    component.find('.state input').simulate('focus')
     expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
-    component.find('input#state').simulate('blur')
+    component.find('.state input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -35,18 +37,19 @@ describe('The State component', () => {
     const expected = {
       name: 'state',
       value: 'Arizona',
+      className: 'state',
       onBlur: () => {},
       onFocus: () => {}
     }
     const component = mount(<State {...expected} />)
-    component.find('input#state').simulate('change', {
+    component.find('.state input').simulate('change', {
       target: {
         value: 'arizona'
       }
     })
-    component.find('input#state').simulate('focus')
+    component.find('.state input').simulate('focus')
     expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
-    component.find('input#state').simulate('blur')
+    component.find('.state input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 })

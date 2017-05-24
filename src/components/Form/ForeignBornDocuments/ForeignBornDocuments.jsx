@@ -228,40 +228,42 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
             <Show when={this.state.DocumentType === 'Other'}>
               <Textarea name="otherExplanation"
-                label="Provide explanation"
-                {...this.state.OtherExplanation}
-                onUpdate={this.updateOtherExplanation}
-                onValidate={this.props.onValidate}
-              />
+                        className="other-explanation"
+                        label="Provide explanation"
+                        {...this.state.OtherExplanation}
+                        onUpdate={this.updateOtherExplanation}
+                        onValidate={this.props.onValidate}
+                        />
             </Show>
           </Field>
         </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentNumber')}
-          help="foreignBornDocuments.help.documentNumber"
-          adjustFor="labels">
+               help="foreignBornDocuments.help.documentNumber"
+               adjustFor="labels">
           <Text name="documentNumber"
-            label="Document Number"
-            {...this.state.DocumentNumber}
-            onUpdate={this.updateDocumentNumber}
-            onValidate={this.props.onValidate}
-          />
+                label="Document Number"
+                {...this.state.DocumentNumber}
+                className="foreign-born-document-number"
+                onUpdate={this.updateDocumentNumber}
+                onValidate={this.props.onValidate}
+                />
         </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
-          help="foreignBornDocuments.help.documentExpiration"
-          shrink={true}
-          adjustFor="labels">
+               help="foreignBornDocuments.help.documentExpiration"
+               shrink={true}
+               adjustFor="labels">
           <NotApplicable name="OtherNameNotApplicable"
-            applicable={this.state.DocumentExpirationNotApplicable}
-            label={i18n.t('reference.label.idk')}
-            or={i18n.m('reference.para.or')}
-            onUpdate={this.updateDocumentExpirationNotApplicable}>
+                         applicable={this.state.DocumentExpirationNotApplicable}
+                         label={i18n.t('reference.label.idk')}
+                         or={i18n.m('reference.para.or')}
+                         onUpdate={this.updateDocumentExpirationNotApplicable}>
             <DateControl name="documentExpiration"
-              {...this.state.DocumentExpiration}
-              onUpdate={this.updateDocumentExpiration}
-              onValidate={this.props.onValidate}
-            />
+                         {...this.state.DocumentExpiration}
+                         onUpdate={this.updateDocumentExpiration}
+                         onValidate={this.props.onValidate}
+                         />
           </NotApplicable>
         </Field>
       </div>
