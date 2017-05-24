@@ -18,6 +18,7 @@ const withinThreeYears = (from, to) => {
 export class ResidenceItem extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Dates: props.Dates,
       Address: props.Address,
@@ -82,7 +83,7 @@ export class ResidenceItem extends ValidationElement {
           <Reference name="Reference"
                      {...this.state.Reference}
                      onUpdate={this.onUpdate.bind(this, 'Reference')}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </div>
       )
@@ -101,13 +102,14 @@ export class ResidenceItem extends ValidationElement {
                commentsValue={this.state.Comments}
                commentsAdd="history.residence.label.comments"
                onUpdate={this.onUpdate.bind(this, 'Comments')}
+               onError={this.props.onError}
                adjustFor="address"
                shrink={true}>
           <Address name="Address"
                    {...this.state.Address}
                    label={i18n.t('history.residence.label.address')}
                    onUpdate={this.onUpdate.bind(this, 'Address')}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -120,7 +122,7 @@ export class ResidenceItem extends ValidationElement {
                      {...this.state.Dates}
                      label={i18n.t('history.residence.label.dates')}
                      onUpdate={this.onUpdate.bind(this, 'Dates')}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -134,25 +136,25 @@ export class ResidenceItem extends ValidationElement {
                    label={i18n.m('history.residence.label.role.owned')}
                    value="Owned"
                    onChange={this.handleRoleChange}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
             <Radio name="role-rented"
                    label={i18n.m('history.residence.label.role.rented')}
                    value="Rented"
                    onChange={this.handleRoleChange}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
             <Radio name="role-military"
                    label={i18n.m('history.residence.label.role.military')}
                    value="Military"
                    onChange={this.handleRoleChange}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
             <Radio name="role-other"
                    label={i18n.m('history.residence.label.role.other')}
                    value="Other"
                    onChange={this.handleRoleChange}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
           </RadioGroup>
           <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
@@ -162,7 +164,7 @@ export class ResidenceItem extends ValidationElement {
                   className="other"
                   maxlength="100"
                   onUpdate={this.onUpdate.bind(this, 'RoleOther')}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </div>
         </Field>
@@ -171,4 +173,8 @@ export class ResidenceItem extends ValidationElement {
       </div>
     )
   }
+}
+
+ResidenceItem.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

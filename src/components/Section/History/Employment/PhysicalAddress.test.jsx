@@ -27,17 +27,9 @@ describe('The employment physical address component', () => {
 
   it('loads data', () => {
     let counter = 0
-    let blur = 0
-    let focus = 0
     let expected = {
       onUpdate: () => {
         counter++
-      },
-      onBlur: () => {
-        blur++
-      },
-      onFocus: () => {
-        focus++
       },
       address: {
         address: '1234 Some Rd'
@@ -48,10 +40,7 @@ describe('The employment physical address component', () => {
     expect(component.find('.has-different').length).toBeGreaterThan(0)
     let street = component.find('.mailing input').first()
     street.simulate('change')
-    street.simulate('focus')
     street.simulate('blur')
     expect(counter).toBe(1)
-    expect(blur).toBe(1)
-    expect(focus).toBe(1)
   })
 })

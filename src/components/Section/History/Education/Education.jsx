@@ -150,7 +150,7 @@ export class EducationItem extends ValidationElement {
                   className="school-name"
                   maxlength="100"
                   onUpdate={this.updateName}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Field>
 
@@ -163,7 +163,7 @@ export class EducationItem extends ValidationElement {
                        {...this.state.Dates}
                        label={i18n.t('history.education.label.dates')}
                        onUpdate={this.updateDates}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
           </Field>
 
@@ -173,13 +173,14 @@ export class EducationItem extends ValidationElement {
                  commentsName="Comments"
                  commentsValue={this.state.Comments}
                  onUpdate={this.updateComments}
+                 onError={this.props.onError}
                  adjustFor="address"
                  shrink={true}>
             <Address name="Address"
                      {...this.state.Address}
                      label={i18n.t('history.education.label.address')}
                      onUpdate={this.updateAddress}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
           </Field>
 
@@ -194,24 +195,28 @@ export class EducationItem extends ValidationElement {
                      label={i18n.m('history.education.label.type.highschool')}
                      value="High School"
                      onChange={this.handleTypeChange}
+                     onError={this.props.onError}
                      />
               <Radio name="type-college"
                      className="type-college"
                      label={i18n.m('history.education.label.type.college')}
                      value="College"
                      onChange={this.handleTypeChange}
+                     onError={this.props.onError}
                      />
               <Radio name="type-vocational"
                      className="type-vocational"
                      label={i18n.m('history.education.label.type.vocational')}
                      value="Vocational"
                      onChange={this.handleTypeChange}
+                     onError={this.props.onError}
                      />
               <Radio name="type-correspondence"
                      className="type-correspondence"
                      label={i18n.m('history.education.label.type.correspondence')}
                      value="Correspondence"
                      onChange={this.handleTypeChange}
+                     onError={this.props.onError}
                      />
             </RadioGroup>
           </Field>
@@ -223,7 +228,7 @@ export class EducationItem extends ValidationElement {
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
-                            onValidate={this.props.onValidate}>
+                            onError={this.props.onError}>
             <DiplomaItem name="Diploma" bind={true} />
           </BranchCollection>
         </div>
@@ -238,4 +243,8 @@ export class EducationItem extends ValidationElement {
       </div>
     )
   }
+}
+
+EducationItem.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

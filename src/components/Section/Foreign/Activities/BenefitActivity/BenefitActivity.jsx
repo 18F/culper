@@ -8,14 +8,10 @@ export default class BenefitActivity extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      errorCodes: []
-    }
-
     this.update = this.update.bind(this)
     this.updateHasBenefits = this.updateHasBenefits.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.isValid = this.isValid.bind(this)
+    // this.isValid = this.isValid.bind(this)
   }
 
   update (queue) {
@@ -47,25 +43,25 @@ export default class BenefitActivity extends ValidationElement {
     ])
   }
 
-  isValid () {
-    return new ForeignBenefitActivityValidator(null, this.props).isValid()
-  }
+  // isValid () {
+  //   return new ForeignBenefitActivityValidator(null, this.props).isValid()
+  // }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
   summary (item, index) {
     const o = (item || {}).Benefit || {}
@@ -81,7 +77,7 @@ export default class BenefitActivity extends ValidationElement {
                 label={i18n.t('foreign.activities.benefit.heading.title')}
                 labelSize="h3"
                 value={this.props.HasBenefits}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 onUpdate={this.updateHasBenefits}>
         </Branch>
 
@@ -92,7 +88,7 @@ export default class BenefitActivity extends ValidationElement {
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}>
@@ -111,7 +107,8 @@ BenefitActivity.defaultProps = {
   HasBenefits: '',
   List: [],
   ListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr }
 }
 
 export const benefitSummary = (item, index) => {

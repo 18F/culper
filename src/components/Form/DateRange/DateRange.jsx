@@ -198,7 +198,7 @@ DateRange.errors = [
   {
     code: 'daterange.order',
     func: (value, props) => {
-      return props.from.date && props.to.date && props.from.date > props.to.date
+      return props.from.date && props.to.date && props.from.date < props.to.date
     }
   }
 ]

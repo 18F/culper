@@ -13,8 +13,7 @@ export default class People extends ValidationElement {
 
     this.state = {
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.update = this.update.bind(this)
@@ -38,25 +37,25 @@ export default class People extends ValidationElement {
     this.update('ListBranch', values.branch)
   }
 
-  isValid () {
-    return new PeopleValidator(this.state).isValid()
-  }
+  // isValid () {
+  //   return new PeopleValidator(this.state).isValid()
+  // }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
   summary (item, index) {
     const o = (item || {}).Person || {}
@@ -115,7 +114,7 @@ export default class People extends ValidationElement {
                    branch={this.state.ListBranch}
                    summary={this.summary}
                    onUpdate={this.updateList}
-                   onValidate={this.handleValidation}
+                   onError={this.props.onError}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
           <Person name="Person" bind={true} />
@@ -127,5 +126,6 @@ export default class People extends ValidationElement {
 
 People.defaultProps = {
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr }
 }

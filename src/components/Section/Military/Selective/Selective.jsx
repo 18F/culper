@@ -22,8 +22,7 @@ export default class Selective extends ValidationElement {
       WasBornAfter: props.WasBornAfter,
       HasRegistered: props.HasRegistered,
       RegistrationNumber: props.RegistrationNumber,
-      Explanation: props.Explanation,
-      errorCodes: []
+      Explanation: props.Explanation
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -72,41 +71,41 @@ export default class Selective extends ValidationElement {
     this.onUpdate('Explanation', value)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     if (this.state.error === false || this.state.valid === true) {
+  //       super.handleValidation(event, statusObject, errorObject)
+  //       return
+  //     }
 
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new SelectiveServiceValidator(this.state, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new SelectiveServiceValidator(this.state, null).isValid()
+  // }
 
   render () {
     return (
@@ -116,7 +115,7 @@ export default class Selective extends ValidationElement {
                 value={this.state.WasBornAfter}
                 help="military.selective.help.born"
                 onUpdate={this.updateBornAfter}
-                onValidate={this.handleValidation}>
+                onError={this.props.onError}>
         </Branch>
 
         <Show when={this.state.WasBornAfter === 'Yes'}>
@@ -127,7 +126,7 @@ export default class Selective extends ValidationElement {
                     value={this.state.HasRegistered}
                     help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}
-                    onValidate={this.handleValidation}>
+                    onError={this.props.onError}>
             </Branch>
 
             <Show when={this.state.HasRegistered === 'Yes'}>
@@ -139,7 +138,7 @@ export default class Selective extends ValidationElement {
                         className="registration-number"
                         label={i18n.t('military.selective.label.number')}
                         onUpdate={this.updateRegistrationNumber}
-                        onValidate={this.handleValidation}
+                        onError={this.props.onError}
                         />
                 </Field>
               </div>
@@ -154,7 +153,7 @@ export default class Selective extends ValidationElement {
                             className="explanation"
                             label={i18n.t('military.selective.label.explanation')}
                             onUpdate={this.updateExplanation}
-                            onValidate={this.handleValidation}
+                            onError={this.props.onError}
                             />
                 </Field>
               </div>
@@ -183,4 +182,8 @@ export default class Selective extends ValidationElement {
       </div>
     )
   }
+}
+
+Selective.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

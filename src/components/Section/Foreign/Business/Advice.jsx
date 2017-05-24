@@ -11,10 +11,7 @@ export default class Advice extends ValidationElement {
     this.state = {
       HasForeignAdvice: props.HasForeignAdvice,
       List: props.List,
-      ListBranch: props.ListBranch,
-      error: false,
-      valid: false,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateHasForeignAdvice = this.updateHasForeignAdvice.bind(this)
@@ -42,32 +39,32 @@ export default class Advice extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  isValid () {
-    return new ForeignBusinessAdviceValidator(this.state, null).isValid()
-  }
+  // isValid () {
+  //   return new ForeignBusinessAdviceValidator(this.state, null).isValid()
+  // }
 
   summary (item, index) {
     const obj = item || {}
@@ -92,7 +89,7 @@ export default class Advice extends ValidationElement {
                 help="foreign.business.advice.help.branch"
                 value={this.state.HasForeignAdvice}
                 onUpdate={this.updateHasForeignAdvice}
-                onValidate={this.handleValidation}>
+                onError={this.props.onError}>
           {i18n.m('foreign.business.advice.para.branch')}
         </Branch>
 
@@ -101,7 +98,7 @@ export default class Advice extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.advice.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.advice.collection.appendTitle')}
@@ -164,5 +161,6 @@ Advice.defaultProps = {
   name: 'Advice',
   HasForeignAdvice: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr }
 }

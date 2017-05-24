@@ -13,6 +13,7 @@ import { today, daysAgo } from '../dateranges'
 export class EmploymentItem extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       EmploymentActivity: props.EmploymentActivity,
       Employment: props.Employment,
@@ -117,12 +118,11 @@ export class EmploymentItem extends ValidationElement {
       <div>
         <h3>{i18n.t(`history.employment.default.heading.activity`)}</h3>
 
-        <EmploymentActivity
-          {...this.props.EmploymentActivity}
-          onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
-          onValidate={this.props.onValidate}
-          name="EmploymentActivity"
-          />
+        <EmploymentActivity name="EmploymentActivity"
+                            {...this.props.EmploymentActivity}
+                            onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
+                            onError={this.props.onError}
+                            />
 
         <Show when={this.showEmployer()}>
           <Field title={i18n.t(`${prefix}.heading.employer`)}
@@ -131,7 +131,7 @@ export class EmploymentItem extends ValidationElement {
             <Text name="Employment"
                   {...this.props.Employment}
                   onUpdate={this.onUpdate.bind(this, 'Employment')}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   className="text full-width"
                   label={i18n.t(`${prefix}.employer.label`)}
                   />
@@ -147,7 +147,7 @@ export class EmploymentItem extends ValidationElement {
                   onUpdate={this.onUpdate.bind(this, 'Title')}
                   className="text"
                   label={i18n.t(`${prefix}.title.label`)}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Field>
         </Show>
@@ -161,7 +161,7 @@ export class EmploymentItem extends ValidationElement {
                   onUpdate={this.onUpdate.bind(this, 'DutyStation')}
                   className="text full-width"
                   label={i18n.t(`${prefix}.dutyStation.label`)}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Field>
         </Show>
@@ -173,7 +173,7 @@ export class EmploymentItem extends ValidationElement {
             <EmploymentStatus name="Status"
                               {...this.props.Status}
                               onUpdate={this.onUpdate.bind(this, 'Status')}
-                              onValidate={this.props.onValidate}
+                              onError={this.props.onError}
                               />
           </Field>
         </Show>
@@ -186,7 +186,7 @@ export class EmploymentItem extends ValidationElement {
                      {...this.props.Dates}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.onUpdate.bind(this, 'Dates')}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -198,7 +198,7 @@ export class EmploymentItem extends ValidationElement {
             <Address name="Address"
                      {...this.props.Address}
                      onUpdate={this.onUpdate.bind(this, 'Address')}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      label={i18n.t(`${prefix}.address.label`)}
                      />
           </Field>
@@ -209,7 +209,7 @@ export class EmploymentItem extends ValidationElement {
             <PhysicalAddress name="PhysicalAddress"
                              {...this.props.PhysicalAddress}
                              onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
-                             onValidate={this.props.onValidate}
+                             onError={this.props.onError}
                              />
           </Field>
         </Show>
@@ -220,7 +220,7 @@ export class EmploymentItem extends ValidationElement {
             <Telephone name="Telephone"
                        {...this.props.Telephone}
                        onUpdate={this.onUpdate.bind(this, 'Telephone')}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
           </Field>
         </Show>
@@ -229,7 +229,7 @@ export class EmploymentItem extends ValidationElement {
           <Supervisor name="Supervisor"
                       {...this.props.Supervisor}
                       onUpdate={this.onUpdate.bind(this, 'Supervisor')}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
         </Show>
 
@@ -239,7 +239,7 @@ export class EmploymentItem extends ValidationElement {
             <Reference name="Reference"
                        {...this.props.Reference}
                        onUpdate={this.onUpdate.bind(this, 'Reference')}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
           </div>
         </Show>
@@ -251,7 +251,7 @@ export class EmploymentItem extends ValidationElement {
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
                                 onUpdate={this.onUpdate.bind(this, 'Additional')}
-                                onValidate={this.props.onValidate}
+                                onError={this.props.onError}
                                 />
           </div>
         </Show>
@@ -262,17 +262,21 @@ export class EmploymentItem extends ValidationElement {
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
                         onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
-                        onValidate={this.props.onValidate}
+                        onError={this.props.onError}
                         />
 
             <Reprimand name="Reprimand"
                        {...this.props.Reprimand}
                        onUpdate={this.onUpdate.bind(this, 'Reprimand')}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
           </div>
         </Show>
       </div>
     )
   }
+}
+
+EmploymentItem.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

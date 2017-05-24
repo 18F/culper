@@ -7,9 +7,6 @@ import DomesticViolence from './DomesticViolence'
 export default class DomesticViolenceList extends ValidationElement {
   constructor (props) {
     super(props)
-    this.state = {
-      errorCodes: []
-    }
 
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
@@ -28,32 +25,32 @@ export default class DomesticViolenceList extends ValidationElement {
     this.update('List', values)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new DomesticViolenceValidator(this.props.List, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new DomesticViolenceValidator(this.props.List, null).isValid()
+  // }
 
   render () {
     return (
@@ -63,14 +60,18 @@ export default class DomesticViolenceList extends ValidationElement {
                           className="has-order"
                           appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
                           items={this.props.List}
-                          onValidate={this.handleValidation}
+                          onError={this.props.onError}
                           onUpdate={this.updateList}>
           <DomesticViolence name="domestic"
                             bind={true}
-                            onValidate={this.handleValidation}
+                            onError={this.props.onError}
                             />
         </BranchCollection>
       </div>
     )
   }
+}
+
+DomesticViolenceList.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

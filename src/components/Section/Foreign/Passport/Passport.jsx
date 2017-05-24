@@ -21,10 +21,7 @@ export default class Passport extends ValidationElement {
       Comments: props.Comments || '',
       HasPassport: props.HasPassport,
       reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
-      reCard: '^[cC]{1}[0-9]{8}$',
-      error: false,
-      valid: false,
-      errorCodes: []
+      reCard: '^[cC]{1}[0-9]{8}$'
     }
 
     this.onSuggestion = this.onSuggestion.bind(this)
@@ -42,28 +39,28 @@ export default class Passport extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, s, e)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     let e = { [this.props.name]: codes }
+  //     let s = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, s, e)
+  //   })
+  // }
 
   /**
    * Handle the update event.
@@ -88,9 +85,9 @@ export default class Passport extends ValidationElement {
     })
   }
 
-  isValid () {
-    return new PassportValidator(this.state, null).isValid()
-  }
+  // isValid () {
+  //   return new PassportValidator(this.state, null).isValid()
+  // }
 
   /**
    * Handle when the yes/no option has been changed
@@ -144,6 +141,7 @@ export default class Passport extends ValidationElement {
         <Branch name="has_passport"
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
+                onError={this.props.onError}
                 help="foreign.passport.branch.help"
                 >
         </Branch>
@@ -164,7 +162,7 @@ export default class Passport extends ValidationElement {
               <Name name="name"
                     {...this.state.Name}
                     onUpdate={this.handleUpdate.bind(this, 'Name')}
-                    onValidate={this.handleValidation}
+                    onError={this.props.onError}
                     />
             </Suggestions>
 
@@ -180,11 +178,13 @@ export default class Passport extends ValidationElement {
                          label={i18n.t('foreign.passport.label.book')}
                          value="Book"
                          onChange={this.handleChange}
+                         onError={this.props.onError}
                          />
                   <Radio name="passport-card"
                          label={i18n.t('foreign.passport.label.card')}
                          value="Card"
                          onChange={this.handleChange}
+                         onError={this.props.onError}
                          />
                 </RadioGroup>
                 <Text name="number"
@@ -196,7 +196,7 @@ export default class Passport extends ValidationElement {
                       className="number"
                       ref="number"
                       onUpdate={this.handleUpdate.bind(this, 'Number')}
-                      onValidate={this.handleValidation}
+                      onError={this.props.onError}
                       />
               </div>
             </Field>
@@ -208,7 +208,7 @@ export default class Passport extends ValidationElement {
               <DateControl name="issued"
                            {...this.state.Issued}
                            onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                           onValidate={this.handleValidation}
+                           onError={this.props.onError}
                            />
             </Field>
 
@@ -219,7 +219,7 @@ export default class Passport extends ValidationElement {
               <DateControl name="expiration"
                            {...this.state.Expiration}
                            onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                           onValidate={this.handleValidation}
+                           onError={this.props.onError}
                            />
             </Field>
           </div>
@@ -227,4 +227,8 @@ export default class Passport extends ValidationElement {
       </div>
     )
   }
+}
+
+Passport.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

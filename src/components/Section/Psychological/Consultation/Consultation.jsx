@@ -11,14 +11,13 @@ export default class Consultation extends ValidationElement {
     this.state = {
       Consulted: props.Consulted,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.update = this.update.bind(this)
     this.updateConsulted = this.updateConsulted.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.isValid = this.isValid.bind(this)
+    // this.isValid = this.isValid.bind(this)
     this.handleValidation = this.handleValidation.bind(this)
   }
 
@@ -43,21 +42,21 @@ export default class Consultation extends ValidationElement {
     this.update('Consulted', values)
   }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
   summary (item, index) {
     const o = (item || {}).Consultation || {}
@@ -78,9 +77,9 @@ export default class Consultation extends ValidationElement {
     )
   }
 
-  isValid () {
-    return new ConsultationValidator(this.state).isValid()
-  }
+  // isValid () {
+  //   return new ConsultationValidator(this.state).isValid()
+  // }
 
   render () {
     return (
@@ -89,7 +88,7 @@ export default class Consultation extends ValidationElement {
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
                 value={this.state.Consulted}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 onUpdate={this.updateConsulted}>
         </Branch>
 
@@ -100,7 +99,7 @@ export default class Consultation extends ValidationElement {
                      branch={this.state.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      description={i18n.t('psychological.consultation.collection.description')}
                      appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
@@ -119,5 +118,6 @@ Consultation.defaultProps = {
   Consulted: '',
   List: [],
   ListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr }
 }

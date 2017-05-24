@@ -79,8 +79,9 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onValidate: function (event) {
+      onError: (value, arr) => {
         validations++
+        return arr
       }
     }
     const component = mount(<Name {...expected} />)

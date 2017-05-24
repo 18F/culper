@@ -11,10 +11,7 @@ export default class Contacts extends ValidationElement {
     this.state = {
       HasForeignContacts: props.HasForeignContacts,
       List: props.List,
-      ListBranch: props.ListBranch,
-      error: false,
-      valid: false,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateHasForeignContacts = this.updateHasForeignContacts.bind(this)
@@ -42,32 +39,32 @@ export default class Contacts extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const e = { [this.props.name]: codes }
-      const s = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, s, e)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const e = { [this.props.name]: codes }
+  //     const s = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, s, e)
+  //   })
+  // }
 
-  isValid () {
-    return new ForeignContactsValidator(this.state, null).isValid()
-  }
+  // isValid () {
+  //   return new ForeignContactsValidator(this.state, null).isValid()
+  // }
 
   summary (item, index) {
     const obj = (item || {}).Item || {}
@@ -92,14 +89,14 @@ export default class Contacts extends ValidationElement {
                 help="foreign.contacts.help.branch"
                 value={this.state.HasForeignContacts}
                 onUpdate={this.updateHasForeignContacts}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
         <Show when={this.state.HasForeignContacts === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('foreign.contacts.collection.summary.title')}
                      appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}
@@ -116,5 +113,6 @@ export default class Contacts extends ValidationElement {
 Contacts.defaultProps = {
   HasForeignContacts: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr }
 }

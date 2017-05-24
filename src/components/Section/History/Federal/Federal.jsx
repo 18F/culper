@@ -19,10 +19,10 @@ const sendUpdate = (fn, name, props) => {
 export default class Federal extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasFederalService: props.HasFederalService,
-      List: props.List || [],
-      errorCodes: []
+      List: props.List || []
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -30,41 +30,41 @@ export default class Federal extends ValidationElement {
     this.updateCollection = this.updateCollection.bind(this)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     let e = { [this.props.name]: codes }
+  //     let s = { [this.props.name]: { status: complexStatus } }
+  //     if (this.state.error === false || this.state.valid === true) {
+  //       super.handleValidation(event, s, e)
+  //       return
+  //     }
 
-      super.handleValidation(event, s, e)
-    })
-  }
+  //     super.handleValidation(event, s, e)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new FederalServiceValidator(this.state, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new FederalServiceValidator(this.state, null).isValid()
+  // }
 
   onUpdate (name, values) {
     this.setState({ [name]: values }, () => {
@@ -94,7 +94,7 @@ export default class Federal extends ValidationElement {
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
           ? item.Name.value
-      : i18n.t('history.federal.collection.summary.unknown')
+          : i18n.t('history.federal.collection.summary.unknown')
     const dates = DateSummary(item.Dates)
 
     return (
@@ -113,13 +113,14 @@ export default class Federal extends ValidationElement {
         <Branch name="has_federalservice"
                 value={this.state.HasFederalService}
                 help="history.federal.help.branch"
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.state.HasFederalService === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      onUpdate={this.updateCollection}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('history.federal.collection.summary.title')}
                      appendLabel={i18n.t('history.federal.collection.append')}>
@@ -157,4 +158,8 @@ export default class Federal extends ValidationElement {
       </div>
     )
   }
+}
+
+Federal.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

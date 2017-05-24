@@ -364,100 +364,108 @@ const en = {
         note: ''
       }
     },
-    domestic_first: {
-      pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9.',
-        note: ''
+    telephone: {
+      domestic: {
+        first: {
+          pattern: {
+            title: 'This field must have 3 digits',
+            message: 'The area code must be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 3 digits',
+            message: 'The area code must be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        third: {
+          pattern: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        extension: {
+          pattern: {
+            title: 'Invalid telephone extension',
+            message: 'The extension must be between 0 and 10 digits.',
+            note: ''
+          },
+          length: {
+            title: 'Invalid telephone extension',
+            message: 'The extension must be between 0 and 10 digits.',
+            note: ''
+          }
+        }
       },
-      length: {
-        title: 'This field must have 3 digits',
-        message: 'The area code must be 3 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_second: {
-      pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
-        note: ''
+      dsn: {
+        first: {
+          pattern: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+            note: ''
+          }
+        }
       },
-      length: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the telephone number must be 3 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_third: {
-      pattern: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the telephone number must be 4 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_extension: {
-      pattern: {
-        title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits.',
-        note: ''
-      },
-      length: {
-        title: 'Invalid telephone extension',
-        message: 'The extension must be between 0 and 10 digits.',
-        note: ''
-      }
-    },
-    dsn_first: {
-      pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'This field must have 3 digits',
-        message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    dsn_second: {
-      pattern: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'This field must have 4 digits',
-        message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    int_first: {
-      pattern: {
-        title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    int_second: {
-      pattern: {
-        title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9.',
-        note: ''
+      international: {
+        first: {
+          pattern: {
+            title: 'There is a problem with this country code',
+            message: 'The country code of the international number should be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with this country code',
+            message: 'The country code of the international number should be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'There is a problem with this number',
+            message: 'The international number should be 10 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with this number',
+            message: 'The international number should be 10 digits between 0 and 9.',
+            note: ''
+          }
+        }
       }
     },
     geocode: {
@@ -490,7 +498,7 @@ const en = {
         para: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
       }
     },
-    Email: {
+    email: {
       pattern: {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',

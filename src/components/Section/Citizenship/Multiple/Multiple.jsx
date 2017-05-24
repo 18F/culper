@@ -26,8 +26,7 @@ export default class Multiple extends ValidationElement {
       HasMultiple: props.HasMultiple,
       Citizenships: props.Citizenships,
       CitizenshipsBranch: props.CitizenshipsBranch,
-      Passports: props.Passports,
-      errorCodes: []
+      Passports: props.Passports
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -36,36 +35,36 @@ export default class Multiple extends ValidationElement {
     this.updatePassports = this.updatePassports.bind(this)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new CitizenshipMultipleValidator(this.state, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new CitizenshipMultipleValidator(this.state, null).isValid()
+  // }
 
   onUpdate (name, values) {
     this.setState({ [name]: values }, () => {
@@ -128,7 +127,7 @@ export default class Multiple extends ValidationElement {
                 value={this.state.HasMultiple}
                 help="citizenship.multiple.help.hasmultiple"
                 onUpdate={this.updateHasMultiple}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
 
         <Show when={this.state.HasMultiple === 'Yes'}>
@@ -136,7 +135,7 @@ export default class Multiple extends ValidationElement {
                      items={this.state.Citizenships}
                      branch={this.state.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summaryCitizenships}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
@@ -151,7 +150,7 @@ export default class Multiple extends ValidationElement {
                           className="has-foreignpassport"
                           items={this.state.Passports}
                           onUpdate={this.updatePassports}
-                          onValidate={this.handleValidation}>
+                          onError={this.props.onError}>
           <PassportItem name="Item" bind={true} />
         </BranchCollection>
       </div>
@@ -163,5 +162,6 @@ Multiple.defaultProps = {
   HasMultiple: '',
   Citizenships: [],
   CitizenshipsBranch: '',
-  Passports: []
+  Passports: [],
+  onError: (value, arr) => { return arr }
 }

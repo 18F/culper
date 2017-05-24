@@ -65,61 +65,61 @@ export default class Diagnosis extends ValidationElement {
                   className="diagnosis-condition"
                   value={this.props.Condition}
                   onUpdate={this.updateCondition}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Show>
           <Show when={this.props.prefix === 'diagnosis'}>
             <RadioGroup className="diagnosis-condition"
                         selectedValue={this.props.Condition}>
               <Radio name="diagnosis-condition-psychotic"
-                    label={i18n.m('psychological.diagnosis.label.psychotic')}
-                    value="Psychotic disorder"
-                    className="diagnosis-condition-psychotic"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.psychotic')}
+                     value="Psychotic disorder"
+                     className="diagnosis-condition-psychotic"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
               <Radio name="diagnosis-condition-schizophrenia"
-                    label={i18n.m('psychological.diagnosis.label.schizophrenia')}
-                    value="Schizophrenia"
-                    className="diagnosis-condition-schizophrenia"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.schizophrenia')}
+                     value="Schizophrenia"
+                     className="diagnosis-condition-schizophrenia"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
               <Radio name="diagnosis-condition-schizoaffective"
-                    label={i18n.m('psychological.diagnosis.label.schizoaffective')}
-                    value="Schizoaffective disorder"
-                    className="diagnosis-condition-schizoaffective"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.schizoaffective')}
+                     value="Schizoaffective disorder"
+                     className="diagnosis-condition-schizoaffective"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
               <Radio name="diagnosis-condition-delusional"
-                    label={i18n.m('psychological.diagnosis.label.delusional')}
-                    value="Delusional disorder"
-                    className="diagnosis-condition-delusional"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.delusional')}
+                     value="Delusional disorder"
+                     className="diagnosis-condition-delusional"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
               <Radio name="diagnosis-condition-bipolar"
-                    label={i18n.m('psychological.diagnosis.label.bipolar')}
-                    value="Bipolar mood disorder"
-                    className="diagnosis-condition-bipolar"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.bipolar')}
+                     value="Bipolar mood disorder"
+                     className="diagnosis-condition-bipolar"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
               <Radio name="diagnosis-condition-borderline"
-                    label={i18n.m('psychological.diagnosis.label.borderline')}
-                    value="Borderline personality disorder"
-                    className="diagnosis-condition-borderline"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.borderline')}
+                     value="Borderline personality disorder"
+                     className="diagnosis-condition-borderline"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
               <Radio name="diagnosis-condition-antisocial"
-                    label={i18n.m('psychological.diagnosis.label.antisocial')}
-                    value="Antisocial personality disorder"
-                    className="diagnosis-condition-antisocial"
-                    onUpdate={this.updateCondition}
-                    onValidate={this.props.onValidate}
-                    />
+                     label={i18n.m('psychological.diagnosis.label.antisocial')}
+                     value="Antisocial personality disorder"
+                     className="diagnosis-condition-antisocial"
+                     onUpdate={this.updateCondition}
+                     onError={this.props.onError}
+                     />
             </RadioGroup>
           </Show>
         </Field>
@@ -133,7 +133,7 @@ export default class Diagnosis extends ValidationElement {
                      onUpdate={this.updateDiagnosed}
                      prefix={prefix}
                      minDate={this.props.ApplicantBirthDate}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -143,7 +143,7 @@ export default class Diagnosis extends ValidationElement {
                      {...this.props.Treatment}
                      prefix={`${prefix}.person`}
                      onUpdate={this.updateTreatment}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </div>
 
@@ -153,37 +153,39 @@ export default class Diagnosis extends ValidationElement {
                      {...this.props.TreatmentFacility}
                      prefix={`${prefix}.facility`}
                      onUpdate={this.updateTreatmentFacility}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </div>
 
         <Show when={this.props.prefix !== 'existingConditions.diagnosis'}>
           <div>
             <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
-              adjustFor="buttons">
+                   adjustFor="buttons">
               <RadioGroup className="effective" selectedValue={this.props.Effective}>
                 <Radio name="effective"
-                  label="Yes"
-                  value="Yes"
-                  onUpdate={this.updateEffective}>
+                       label="Yes"
+                       value="Yes"
+                       onUpdate={this.updateEffective}
+                       onError={this.props.onError}>
                 </Radio>
                 <Radio name="effective"
-                  label="No"
-                  value="No"
-                  onUpdate={this.updateEffective}>
+                       label="No"
+                       value="No"
+                       onUpdate={this.updateEffective}
+                       onError={this.props.onError}>
                 </Radio>
               </RadioGroup>
             </Field>
 
             <Show when={this.props.Effective === 'No'}>
               <Field title={i18n.t(`psychological.${prefix}.heading.explanation`)}
-                help={`psychological.${prefix}.help.explanation`}>
+                     help={`psychological.${prefix}.help.explanation`}>
                 <Textarea name="Explanation"
-                  className="explanation"
-                  {...this.props.Explanation}
-                  onUpdate={this.updateExplanation}
-                  onValidate={this.props.onValidate}
-                />
+                          className="explanation"
+                          {...this.props.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.props.onError}
+                          />
               </Field>
             </Show>
           </div>
@@ -194,5 +196,6 @@ export default class Diagnosis extends ValidationElement {
 }
 
 Diagnosis.defaultProps = {
-  prefix: 'diagnosis'
+  prefix: 'diagnosis',
+  onError: (value, arr) => { return arr }
 }

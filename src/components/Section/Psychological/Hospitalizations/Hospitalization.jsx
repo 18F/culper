@@ -6,16 +6,13 @@ import { Address, ValidationElement, Field, Text, Textarea, DateRange, RadioGrou
 export default class Hospitalization extends ValidationElement {
   constructor (props) {
     super(props)
-    this.state = {
-      errorCodes: []
-    }
+
     this.update = this.update.bind(this)
     this.updateAdmission = this.updateAdmission.bind(this)
     this.updateTreatmentDate = this.updateTreatmentDate.bind(this)
     this.updateFacility = this.updateFacility.bind(this)
     this.updateFacilityAddress = this.updateFacilityAddress.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -51,25 +48,25 @@ export default class Hospitalization extends ValidationElement {
     this.update('Explanation', values)
   }
 
-  isValid () {
-    return new HospitalizationValidator(this.props).isValid()
-  }
+  // isValid () {
+  //   return new HospitalizationValidator(this.props).isValid()
+  // }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
   render () {
     return (
@@ -80,7 +77,7 @@ export default class Hospitalization extends ValidationElement {
             <Radio
               className="voluntary-option"
               value="Voluntary"
-              onValidate={this.handleValidation}
+              onError={this.props.onError}
               onUpdate={this.updateAdmission}>
               <div className="voluntary">
                 {i18n.t('psychological.hospitalization.label.voluntaryAdmission')}
@@ -89,7 +86,7 @@ export default class Hospitalization extends ValidationElement {
             <Radio
               className="involuntary-option"
               value="Involuntary"
-              onValidate={this.handleValidation}
+              onError={this.props.onError}
               onUpdate={this.updateAdmission}>
               <div className="involuntary">
                 {i18n.t('psychological.hospitalization.label.involuntaryAdmission')}
@@ -100,45 +97,45 @@ export default class Hospitalization extends ValidationElement {
 
         <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}>
           <Textarea name="Explanation"
-            className="explanation"
-            {...this.props.Explanation}
-            onUpdate={this.updateExplanation}
-            onValidate={this.handleValidation}
-          />
+                    className="explanation"
+                    {...this.props.Explanation}
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.treatment`)}
-          help="psychological.hospitalization.help.treatment"
-          adjustFor="daterange">
+               help="psychological.hospitalization.help.treatment"
+               adjustFor="daterange">
           <DateRange name="TreatmentDate"
-            {...this.props.TreatmentDate}
-            receiveProps={this.props.receiveProps}
-            onUpdate={this.updateTreatmentDate}
-            onValidate={this.handleValidation}
-            minDate={this.props.ApplicantBirthDate}
-            prefix="hospitalization"
-          />
+                     {...this.props.TreatmentDate}
+                     receiveProps={this.props.receiveProps}
+                     onUpdate={this.updateTreatmentDate}
+                     onError={this.props.onError}
+                     minDate={this.props.ApplicantBirthDate}
+                     prefix="hospitalization"
+                     />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
-          help="psychological.hospitalization.help.facility">
+               help="psychological.hospitalization.help.facility">
           <Text name="Facility"
-            className="facility"
-            {...this.props.Facility}
-            onUpdate={this.updateFacility}
-            onValidate={this.handleValidation}
-          />
+                className="facility"
+                {...this.props.Facility}
+                onUpdate={this.updateFacility}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
                help="psychological.hospitalization.help.address"
                adjustFor="address">
           <Address name="FacilityAddress"
-            {...this.props.FacilityAddress}
-            label={i18n.t(`psychological.hospitalization.label.address`)}
-            onUpdate={this.updateFacilityAddress}
-            onValidate={this.handleValidation}
-          />
+                   {...this.props.FacilityAddress}
+                   label={i18n.t(`psychological.hospitalization.label.address`)}
+                   onUpdate={this.updateFacilityAddress}
+                   onError={this.props.onError}
+                   />
         </Field>
 
       </div>
@@ -147,5 +144,6 @@ export default class Hospitalization extends ValidationElement {
 }
 
 Hospitalization.defaultProps = {
-  Admission: { value: null }
+  Admission: { value: null },
+  onError: (value, arr) => { return arr }
 }

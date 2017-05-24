@@ -122,29 +122,29 @@ class History extends SectionElement {
   }
 
   updateResidence (values) {
-    this.onUpdate('Residence', values.items)
+    this.handleUpdate('Residence', values.items)
   }
 
   updateEmployment (values) {
-    this.onUpdate('Employment', values.items)
+    this.handleUpdate('Employment', values.items)
   }
 
   updateEducation (values) {
     let education = this.props.Education || {}
     education.List = values.items
-    this.onUpdate('Education', education)
+    this.handleUpdate('Education', education)
   }
 
   updateBranchAttendance (values) {
     let education = this.props.Education || {}
     education.HasAttended = values
-    this.onUpdate('Education', education)
+    this.handleUpdate('Education', education)
   }
 
   updateBranchDegree10 (values) {
     let education = this.props.Education || {}
     education.HasDegree10 = values
-    this.onUpdate('Education', education)
+    this.handleUpdate('Education', education)
   }
 
   /**
@@ -388,7 +388,7 @@ class History extends SectionElement {
       }
     })
 
-    this.onUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(this.sort))
+    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(this.sort))
   }
 
   customResidenceDetails (item, index, initial, callback) {
@@ -473,7 +473,7 @@ class History extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.marital')}>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
-            <Show when={this.state.HasAttended === 'Yes' || this.state.HasDegree10 === 'Yes'}>
+            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               { this.educationSummaryProgress() }
             </Show>
             <Accordion minimum="1"

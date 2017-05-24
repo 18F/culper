@@ -73,7 +73,7 @@ export default class Sentence extends ValidationElement {
           <Textarea {...this.state.Description}
                     className="description"
                     name="description"
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     onUpdate={this.updateDescription} />
         </Field>
 
@@ -82,7 +82,7 @@ export default class Sentence extends ValidationElement {
                 labelSize="h4"
                 className="exceeds-year"
                 value={this.state.ExceedsYear}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onUpdate={this.updateExceedsYear}>
         </Branch>
 
@@ -91,7 +91,7 @@ export default class Sentence extends ValidationElement {
                 labelSize="h4"
                 className="incarcerated"
                 value={this.state.Incarcerated}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onUpdate={this.updateIncarcerated}>
         </Branch>
 
@@ -103,13 +103,13 @@ export default class Sentence extends ValidationElement {
                          {...this.state.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.t('legal.police.para.or')}
-                         onValidate={this.props.onValidate}
+                         onError={this.props.onError}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
                        {...this.state.IncarcerationDates}
                        onUpdate={this.updateIncarcerationDates}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
           </NotApplicable>
         </Field>
@@ -122,17 +122,22 @@ export default class Sentence extends ValidationElement {
                          {...this.state.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.t('legal.police.para.or')}
-                         onValidate={this.props.onValidate}
+                         onError={this.props.onError}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"
                        {...this.state.ProbationDates}
                        onUpdate={this.updateProbationDates}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
           </NotApplicable>
         </Field>
       </div>
     )
   }
+}
+
+Sentence.defaultProps = {
+  onUpdate: () => {},
+  onError: (value, arr) => { return arr }
 }

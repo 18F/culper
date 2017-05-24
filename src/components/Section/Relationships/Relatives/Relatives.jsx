@@ -19,10 +19,10 @@ const sendUpdate = (fn, name, props) => {
 export default class Relatives extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -44,41 +44,41 @@ export default class Relatives extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     if (this.state.error === false || this.state.valid === true) {
+  //       super.handleValidation(event, statusObject, errorObject)
+  //       return
+  //     }
 
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new RelativesValidator(this.status, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new RelativesValidator(this.status, null).isValid()
+  // }
 
   /**
    * Assists in rendering the summary section.
@@ -110,7 +110,7 @@ export default class Relatives extends ValidationElement {
                    items={this.state.List}
                    branch={this.state.ListBranch}
                    onUpdate={this.updateList}
-                   onValidate={this.handleValidation}
+                   onError={this.props.onError}
                    summary={this.summary}
                    description={i18n.t('relationships.relatives.collection.summary.title')}
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
@@ -126,5 +126,6 @@ export default class Relatives extends ValidationElement {
 
 Relatives.defaultProps = {
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr }
 }

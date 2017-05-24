@@ -5,6 +5,7 @@ import { Field, Radio, RadioGroup, Show, Textarea, DateControl } from '../../../
 export default class ReasonOptions extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       Reason: props.Reason,
       Text: props.Text,
@@ -84,25 +85,25 @@ export default class ReasonOptions extends React.Component {
                    label={i18n.m('history.employment.default.left.fired.option')}
                    value="Fired"
                    onUpdate={this.updateReason}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
             <Radio name="employment_quit"
                    label={i18n.m('history.employment.default.left.quit.option')}
                    value="Quit"
                    onUpdate={this.updateReason}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
             <Radio name="employment_charges"
                    label={i18n.m('history.employment.default.left.charges.option')}
                    value="Charges"
                    onUpdate={this.updateReason}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
             <Radio name="employment_performance"
                    label={i18n.m('history.employment.default.left.performance.option')}
                    value="Performance"
                    onUpdate={this.updateReason}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
           </RadioGroup>
           <Show when={this.state.Reason}>
@@ -113,7 +114,7 @@ export default class ReasonOptions extends React.Component {
                           maxlength="100"
                           {...this.state.Text}
                           onUpdate={this.updateText}
-                          onValidate={this.props.onValidate}
+                          onError={this.props.onError}
                           />
               </div>
               <div className="date-left">
@@ -121,7 +122,7 @@ export default class ReasonOptions extends React.Component {
                 <DateControl name="Date"
                              {...this.state.Date}
                              onUpdate={this.updateDate}
-                             onValidate={this.props.onValidate}
+                             onError={this.props.onError}
                              />
               </div>
             </div>
@@ -130,4 +131,8 @@ export default class ReasonOptions extends React.Component {
       </div>
     )
   }
+}
+
+ReasonOptions.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

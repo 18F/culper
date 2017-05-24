@@ -34,6 +34,23 @@ export default class MultipleDropdown extends ValidationElement {
   }
 
   /**
+   * Execute validation checks on the value.
+   */
+  handleValidation (event) {
+    const value = this.state.value
+    if (value.length) {
+      const errors = this.props.onError(value, this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: err.func(value, { options: this.state.options })
+        }
+      })) || []
+
+      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    }
+  }
+
+  /**
    * Handle the change event.
    */
   handleChange (value) {

@@ -16,8 +16,7 @@ export default class ExistingConditions extends ValidationElement {
       TreatmentList: props.TreatmentList,
       TreatmentListBranch: props.TreatmentListBranch,
       DidNotFollow: props.DidNotFollow,
-      DidNotFollowExplanation: props.DidNotFollowExplanation,
-      errorCodes: []
+      DidNotFollowExplanation: props.DidNotFollowExplanation
     }
 
     this.update = this.update.bind(this)
@@ -27,7 +26,6 @@ export default class ExistingConditions extends ValidationElement {
     this.updateDidNotFollow = this.updateDidNotFollow.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
     this.updateDidNotFollowExplanation = this.updateDidNotFollowExplanation.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -70,21 +68,21 @@ export default class ExistingConditions extends ValidationElement {
     this.update('didNotFollowExplanation', values)
   }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
@@ -105,9 +103,10 @@ export default class ExistingConditions extends ValidationElement {
       </span>
     )
   }
-  isValid () {
-    return new ExistingConditionsValidator(this.state, { prefix: this.props.prefix }).isValid()
-  }
+
+  // isValid () {
+  //   return new ExistingConditionsValidator(this.state, { prefix: this.props.prefix }).isValid()
+  // }
 
   render () {
     return (
@@ -117,7 +116,7 @@ export default class ExistingConditions extends ValidationElement {
         <Branch name="hascondition"
                 className="eapp-field-wrap hascondition"
                 value={this.state.HasCondition}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 onUpdate={this.updateHasCondition}>
         </Branch>
 
@@ -132,21 +131,21 @@ export default class ExistingConditions extends ValidationElement {
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
                        value="Yes"
                        onUpdate={this.updateReceivedTreatment}
-                       onValidate={this.handleValidation}
+                       onError={this.props.onError}
                        />
                 <Radio name="treatment"
                        className="treatment no"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
                        value="No"
                        onUpdate={this.updateReceivedTreatment}
-                       onValidate={this.handleValidation}
+                       onError={this.props.onError}
                        />
                 <Radio name="treatment"
                        className="treatment decline"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
                        value="Decline"
                        onUpdate={this.updateReceivedTreatment}
-                       onValidate={this.handleValidation}
+                       onError={this.props.onError}
                        />
               </RadioGroup>
             </Field>
@@ -157,7 +156,7 @@ export default class ExistingConditions extends ValidationElement {
                           className="explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
-                          onValidate={this.handleValidation}
+                          onError={this.props.onError}
                           />
               </Field>
             </Show>
@@ -169,7 +168,7 @@ export default class ExistingConditions extends ValidationElement {
                          branch={this.state.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}
                          summary={this.summary}
-                         onValidate={this.handleValidation}
+                         onError={this.props.onError}
                          description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                          appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
@@ -184,7 +183,7 @@ export default class ExistingConditions extends ValidationElement {
             <Branch name="didNotFollow"
                     className="eapp-field-wrap didnotfollow"
                     value={this.state.DidNotFollow}
-                    onValidate={this.handleValidation}
+                    onError={this.props.onError}
                     onUpdate={this.updateDidNotFollow}>
             </Branch>
 
@@ -194,7 +193,7 @@ export default class ExistingConditions extends ValidationElement {
                           className="explanation"
                           {...this.props.DidNotFollowExplanation}
                           onUpdate={this.updateDidNotFollowExplanation}
-                          onValidate={this.handleValidation}
+                          onError={this.props.onError}
                           />
               </Field>
             </Show>
@@ -208,5 +207,6 @@ export default class ExistingConditions extends ValidationElement {
 ExistingConditions.defaultProps = {
   TreatmentList: [],
   TreatmentListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr }
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { api } from '../../../../services/api'
-import { ValidationElement, Field, DateControl, Show } from '../../../Form'
+import { ValidationElement, Field, DateControl } from '../../../Form'
 
 export default class ApplicantBirthDate extends ValidationElement {
   constructor (props) {

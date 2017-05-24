@@ -13,10 +13,7 @@ export default class Conferences extends ValidationElement {
     this.state = {
       HasForeignConferences: props.HasForeignConferences,
       List: props.List,
-      ListBranch: props.ListBranch,
-      error: false,
-      valid: false,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateHasForeignConferences = this.updateHasForeignConferences.bind(this)
@@ -43,32 +40,32 @@ export default class Conferences extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   if (!event) {
+  //     return
+  //   }
 
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  //   const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  isValid () {
-    return new ForeignBusinessConferencesValidator(this.state, null).isValid()
-  }
+  // isValid () {
+  //   return new ForeignBusinessConferencesValidator(this.state, null).isValid()
+  // }
 
   summary (item, index) {
     const obj = item || {}
@@ -94,7 +91,7 @@ export default class Conferences extends ValidationElement {
                 help="foreign.business.conferences.help.branch"
                 value={this.state.HasForeignConferences}
                 onUpdate={this.updateHasForeignConferences}
-                onValidate={this.handleValidation}>
+                onError={this.props.onError}>
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
 
@@ -103,7 +100,7 @@ export default class Conferences extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.conferences.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.conferences.collection.appendTitle')}
@@ -172,5 +169,6 @@ Conferences.defaultProps = {
   name: 'Conferences',
   HasForeignConferences: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr }
 }

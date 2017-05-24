@@ -7,9 +7,7 @@ export default class ZipCode extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
-      error: props.error,
-      valid: props.valid
+      value: props.value
     }
   }
 
@@ -28,33 +26,6 @@ export default class ZipCode extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status, error)
-    })
-  }
-
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
-  }
-
   render () {
     return (
       <Text name={this.props.name}
@@ -67,12 +38,10 @@ export default class ZipCode extends ValidationElement {
             pattern="^\d{5}(?:[-\s]\d{4})?$"
             required="true"
             value={this.state.value}
-            error={this.state.error}
-            valid={this.state.valid}
             onChange={this.handleChange}
-            onValidate={this.handleValidation}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onError={this.props.onError}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
             tabBack={this.props.tabBack}
             tabNext={this.props.tabNext}
             />
@@ -82,6 +51,5 @@ export default class ZipCode extends ValidationElement {
 
 ZipCode.defaultProps = {
   value: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr }
 }

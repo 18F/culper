@@ -111,7 +111,7 @@ export default class Dropdown extends ValidationElement {
           code: err.code,
           valid: err.func(value, { options: this.state.options })
         }
-      }))
+      })) || []
 
       this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
     }

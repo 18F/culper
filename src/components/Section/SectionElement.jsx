@@ -44,7 +44,7 @@ export default class SectionElement extends React.Component {
       return {
         section: this.props.Section.section,
         subsection: this.props.Section.subsection,
-        code: `number.${err.code}`,
+        code: err.code,
         valid: err.valid
       }
     })

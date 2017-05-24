@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PhysicalValidator } from '../../../../validators'
-import { ValidationElement, Field, Height, Weight, HairColor, EyeColor, Sex, Comments } from '../../../Form'
+import { ValidationElement, Field, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
 
 export default class Physical extends ValidationElement {
   constructor (props) {
@@ -13,8 +13,7 @@ export default class Physical extends ValidationElement {
       HairColor: props.HairColor,
       EyeColor: props.EyeColor,
       Sex: props.Sex,
-      Comments: props.Comments,
-      errorCodes: []
+      Comments: props.Comments
     }
   }
 
@@ -30,31 +29,6 @@ export default class Physical extends ValidationElement {
           Comments: this.state.Comments
         })
       }
-    })
-  }
-
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
-      super.handleValidation(event, s, e)
     })
   }
 
@@ -74,7 +48,7 @@ export default class Physical extends ValidationElement {
           <Height name="height"
                   {...this.props.Height}
                   onUpdate={this.handleUpdate.bind(this, 'Height')}
-                  onValidate={this.handleValidation.bind(this)}
+                  onError={this.props.onError}
                   />
         </Field>
 
@@ -85,7 +59,7 @@ export default class Physical extends ValidationElement {
           <Weight name="weight"
                   value={this.props.Weight}
                   onUpdate={this.handleUpdate.bind(this, 'Weight')}
-                  onValidate={this.handleValidation.bind(this)}
+                  onError={this.props.onError}
                   />
         </Field>
 
@@ -93,12 +67,12 @@ export default class Physical extends ValidationElement {
                adjustFor="big-buttons"
                help="identification.traits.help.hair">
           <HairColor name="hair"
-                      help="identification.traits.help.hair"
-                      className=""
-                      value={this.props.HairColor}
-                      onUpdate={this.handleUpdate.bind(this, 'HairColor')}
-                      onValidate={this.handleValidation.bind(this)}
-                      />
+                     help="identification.traits.help.hair"
+                     className=""
+                     value={this.props.HairColor}
+                     onUpdate={this.handleUpdate.bind(this, 'HairColor')}
+                     onError={this.props.onError}
+                     />
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.eye')}
@@ -108,7 +82,7 @@ export default class Physical extends ValidationElement {
                     className=""
                     value={this.props.EyeColor}
                     onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
-                    onValidate={this.handleValidation.bind(this)}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -118,12 +92,21 @@ export default class Physical extends ValidationElement {
                shrink={true}
                comments={true}>
           <Sex name="sex"
-                value={this.props.Sex}
-                onUpdate={this.handleUpdate.bind(this, 'Sex')}
-                onValidate={this.handleValidation.bind(this)}
-                />
+               value={this.props.Sex}
+               onUpdate={this.handleUpdate.bind(this, 'Sex')}
+               onError={this.props.onError}
+               />
         </Field>
       </div>
     )
   }
+}
+
+Physical.defaultProps = {
+  Height: {},
+  Weight: {},
+  HairColor: [],
+  EyeColor: [],
+  Sex: {},
+  Comments: {}
 }

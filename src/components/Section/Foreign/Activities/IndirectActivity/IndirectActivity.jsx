@@ -8,14 +8,10 @@ export default class IndirectActivity extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      errorCodes: []
-    }
-
     this.update = this.update.bind(this)
     this.updateHasInterests = this.updateHasInterests.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.isValid = this.isValid.bind(this)
+    // this.isValid = this.isValid.bind(this)
   }
 
   update (queue) {
@@ -47,25 +43,25 @@ export default class IndirectActivity extends ValidationElement {
     ])
   }
 
-  isValid () {
-    return new ForeignIndirectActivityValidator(null, this.props).isValid()
-  }
+  // isValid () {
+  //   return new ForeignIndirectActivityValidator(null, this.props).isValid()
+  // }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
   summary (item, index) {
     const o = (item || {}).IndirectInterest || {}
@@ -101,7 +97,7 @@ export default class IndirectActivity extends ValidationElement {
                 label={i18n.t('foreign.activities.indirect.heading.title')}
                 labelSize="h3"
                 value={this.props.HasInterests}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 onUpdate={this.updateHasInterests}>
         </Branch>
 
@@ -112,7 +108,7 @@ export default class IndirectActivity extends ValidationElement {
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      description={i18n.t('foreign.activities.indirect.collection.description')}
                      appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
@@ -131,5 +127,6 @@ IndirectActivity.defaultProps = {
   HasInterests: '',
   List: [],
   ListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr }
 }

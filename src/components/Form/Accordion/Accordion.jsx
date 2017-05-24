@@ -270,7 +270,7 @@ export default class Accordion extends ValidationElement {
                   : value && value.name ? value.name : 'Extra'
             this.updateChild(item, propName, value)
           }
-          childProps.onValidate = this.props.onValidate
+          childProps.onError = this.props.onError
         }
       }
 
@@ -384,7 +384,7 @@ export default class Accordion extends ValidationElement {
               help={this.props.appendHelp}
               value={this.props.branch}
               onUpdate={this.updateAddendum}
-              onValidate={this.props.onValidate}>
+              onError={this.props.onError}>
         {this.props.appendMessage}
       </Branch>
     )
@@ -447,7 +447,7 @@ Accordion.defaultProps = {
   realtime: true,
   inject: (items) => { return items },
   onUpdate: () => {},
-  onValidate: () => {},
+  onError: (value, arr) => { return arr },
   summary: (item, index, initial = false) => {
     return (
       <span>

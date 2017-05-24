@@ -49,7 +49,7 @@ export default class Country extends ValidationElement {
         code: err.code,
         valid: err.func(value, this.props)
       }
-    })))
+    }))) || []
   }
 
   /**

@@ -12,15 +12,12 @@ export default class Support extends ValidationElement {
     this.state = {
       HasForeignSupport: props.HasForeignSupport,
       List: props.List,
-      ListBranch: props.ListBranch,
-      error: false,
-      valid: false,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateHasForeignSupport = this.updateHasForeignSupport.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.isValid = this.isValid.bind(this)
+    // this.isValid = this.isValid.bind(this)
   }
 
   onUpdate (name, value) {
@@ -44,28 +41,28 @@ export default class Support extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  isValid () {
-    return new ForeignActivitiesSupportValidator(this.state, null).isValid()
-  }
+  // isValid () {
+  //   return new ForeignActivitiesSupportValidator(this.state, null).isValid()
+  // }
 
   summary (item, index) {
     const obj = item || {}
@@ -89,7 +86,7 @@ export default class Support extends ValidationElement {
                 help="foreign.activities.support.help.branch"
                 value={this.state.HasForeignSupport}
                 onUpdate={this.updateHasForeignSupport}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
 
         <Show when={this.state.HasForeignSupport === 'Yes'}>
@@ -97,7 +94,7 @@ export default class Support extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('foreign.activities.support.collection.summary.title')}
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
@@ -173,5 +170,6 @@ Support.defaultProps = {
   name: 'Support',
   HasForeignSupport: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr }
 }

@@ -126,7 +126,7 @@ describe('The foreign section', () => {
     ]
 
     tests.forEach((test) => {
-      const component = mount(<Provider store={store}><Foreign subsection={test.section} /></Provider>)
+      const component = mount(<Provider store={store}><Foreign section="foreign" subsection={test.section} /></Provider>)
       test.action(component)
       expect(component.find('div').length).toBeGreaterThan(0)
     })

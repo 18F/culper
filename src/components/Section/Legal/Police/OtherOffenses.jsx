@@ -27,8 +27,7 @@ export default class OtherOffenses extends ValidationElement {
       HasOtherFirearms: props.HasOtherFirearms,
       HasOtherAlcohol: props.HasOtherAlcohol,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -95,32 +94,32 @@ export default class OtherOffenses extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     const errorObject = { [this.props.name]: codes }
+  //     const statusObject = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, statusObject, errorObject)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new PoliceOtherOffensesValidator(this.state, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new PoliceOtherOffensesValidator(this.state, null).isValid()
+  // }
 
   hasOtherOffenses () {
     return new PoliceOtherOffensesValidator(this.state, null).hasOtherOffenses()
@@ -168,44 +167,44 @@ export default class OtherOffenses extends ValidationElement {
       <div className="police-other-offenses">
         <h2>{i18n.t('legal.police.para.otherOffense.intro')}</h2>
         <Branch name="has_otherconviction"
-          className="otherconviction"
-          value={this.state.HasOtherConviction}
-          help="legal.police.help.otherConviction"
-          onUpdate={this.updateOtherConviction}
-          onValidate={this.handleValidation}>
+                className="otherconviction"
+                value={this.state.HasOtherConviction}
+                help="legal.police.help.otherConviction"
+                onUpdate={this.updateOtherConviction}
+                onError={this.props.onError}>
           {i18n.m('legal.police.para.otherOffense.first')}
         </Branch>
 
         <Branch name="has_otherfelony"
-          className="otherfelony"
-          value={this.state.HasOtherFelony}
-          help="legal.police.help.otherFelony"
-          onUpdate={this.updateOtherFelony}
-          onValidate={this.handleValidation}>
+                className="otherfelony"
+                value={this.state.HasOtherFelony}
+                help="legal.police.help.otherFelony"
+                onUpdate={this.updateOtherFelony}
+                onError={this.props.onError}>
           {i18n.m('legal.police.para.otherOffense.second')}
         </Branch>
 
         <Branch name="has_otherdomestic"
-          className="otherdomestic"
-          value={this.state.HasOtherDomestic}
-          onUpdate={this.updateOtherDomestic}
-          onValidate={this.handleValidation}>
+                className="otherdomestic"
+                value={this.state.HasOtherDomestic}
+                onUpdate={this.updateOtherDomestic}
+                onError={this.props.onError}>
           {i18n.m('legal.police.para.otherOffense.third')}
         </Branch>
 
         <Branch name="has_otherfirearms"
-          className="otherfirearms"
-          value={this.state.HasOtherFirearms}
-          onUpdate={this.updateOtherFirearms}
-          onValidate={this.handleValidation}>
+                className="otherfirearms"
+                value={this.state.HasOtherFirearms}
+                onUpdate={this.updateOtherFirearms}
+                onError={this.props.onError}>
           {i18n.m('legal.police.para.otherOffense.fourth')}
         </Branch>
 
         <Branch name="has_otheralchohol"
-          className="otheralcohol"
-          value={this.state.HasOtherAlcohol}
-          onUpdate={this.updateOtherAlchohol}
-          onValidate={this.handleValidation}>
+                className="otheralcohol"
+                value={this.state.HasOtherAlcohol}
+                onUpdate={this.updateOtherAlchohol}
+                onError={this.props.onError}>
           {i18n.m('legal.police.para.otherOffense.fifth')}
         </Branch>
 
@@ -217,23 +216,26 @@ export default class OtherOffenses extends ValidationElement {
               </div>
             </Show>
             <Accordion minimum="1"
-              items={this.state.List}
-              branch={this.state.ListBranch}
-              onUpdate={this.updateList}
-              onValidate={this.handleValidation}
-              summary={this.summary}
-              description={i18n.t('legal.police.collection.summary.title')}
-              appendTitle={i18n.t('legal.police.collection.appendTitle')}
-              appendMessage={this.otherOffenseBranch()}
-              appendLabel={i18n.t('legal.police.collection.append')}>
+                       items={this.state.List}
+                       branch={this.state.ListBranch}
+                       onUpdate={this.updateList}
+                       onError={this.props.onError}
+                       summary={this.summary}
+                       description={i18n.t('legal.police.collection.summary.title')}
+                       appendTitle={i18n.t('legal.police.collection.appendTitle')}
+                       appendMessage={this.otherOffenseBranch()}
+                       appendLabel={i18n.t('legal.police.collection.append')}>
               <OtherOffense name="Item"
-                bind={true}
-                onValidate={this.handleValidation}
-              />
+                            bind={true}
+                            />
             </Accordion>
           </div>
-      </Show>
-    </div>
+        </Show>
+      </div>
     )
   }
+}
+
+OtherOffenses.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

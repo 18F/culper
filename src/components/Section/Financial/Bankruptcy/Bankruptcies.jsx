@@ -8,9 +8,6 @@ import { AddressSummary, DateSummary } from '../../../Summary'
 export default class Bankruptcies extends ValidationElement {
   constructor (props) {
     super(props)
-    this.state = {
-      errorCodes: []
-    }
 
     this.updateList = this.updateList.bind(this)
     this.updateHasBankrupty = this.updateHasBankrupty.bind(this)
@@ -46,32 +43,32 @@ export default class Bankruptcies extends ValidationElement {
     ])
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
+  // /**
+  //  * Handle the validation event.
+  //  */
+  // handleValidation (event, status, error) {
+  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
+  //   let complexStatus = null
+  //   if (codes.length > 0) {
+  //     complexStatus = false
+  //   } else if (this.isValid()) {
+  //     complexStatus = true
+  //   }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, s, e)
-    })
-  }
+  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
+  //     let e = { [this.props.name]: codes }
+  //     let s = { [this.props.name]: { status: complexStatus } }
+  //     super.handleValidation(event, s, e)
+  //   })
+  // }
 
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new BankruptcyValidator(this.props, null).isValid()
-  }
+  // /**
+  //  * Determine if all items in the collection are considered to be in
+  //  * a valid state.
+  //  */
+  // isValid () {
+  //   return new BankruptcyValidator(this.props, null).isValid()
+  // }
 
   /**
    * Assists in rendering the summary section.
@@ -97,14 +94,15 @@ export default class Bankruptcies extends ValidationElement {
                 className="bankruptcy-branch"
                 value={this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"
-                onUpdate={this.updateHasBankrupty}>
+                onUpdate={this.updateHasBankrupty}
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.HasBankruptcy === 'Yes'}>
           <Accordion minimum="1"
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('financial.bankruptcy.collection.summary.title')}
                      appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
@@ -121,5 +119,6 @@ export default class Bankruptcies extends ValidationElement {
 Bankruptcies.defaultProps = {
   List: [],
   ListBranch: '',
-  HasBankruptcy: ''
+  HasBankruptcy: '',
+  onError: (value, arr) => { return arr }
 }

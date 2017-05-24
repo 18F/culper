@@ -60,7 +60,7 @@ export default class Textarea extends ValidationElement {
           code: err.code,
           valid: err.func(value, this.props)
         }
-      }))
+      })) || []
 
       this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
     }
