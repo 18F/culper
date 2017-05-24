@@ -33,8 +33,8 @@ export default class BirthPlace extends ValidationElement {
     }
 
     this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.state.name]: codes }
-      const statusObject = { [this.state.name]: { status: complexStatus } }
+      const errorObject = { [this.props.name]: codes }
+      const statusObject = { [this.props.name]: { status: complexStatus } }
       super.handleValidation(event, statusObject, errorObject)
     })
   }
@@ -57,9 +57,22 @@ export default class BirthPlace extends ValidationElement {
   }
 
   updateBirthPlaceType (values) {
-    this.update({
-      domestic: values
-    })
+    switch (values) {
+      case 'Yes':
+        this.update({
+          domestic: values,
+          country: 'United States'
+        })
+        break
+      case 'No':
+        this.update({
+          domestic: values,
+          state: '',
+          county: '',
+          country: ''
+        })
+        break
+    }
   }
 
   updateDomesticBirthPlace (place) {
@@ -113,6 +126,7 @@ export default class BirthPlace extends ValidationElement {
 }
 
 BirthPlace.defaultProps = {
+  name: 'birthplace',
   label: i18n.t('identification.birthplace.question.label'),
   help: 'identification.birthplace.branch.help',
   branch: true,

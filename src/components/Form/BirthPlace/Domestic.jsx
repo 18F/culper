@@ -36,7 +36,7 @@ export default class DomesticBirthPlace extends ValidationElement {
   }
 
   updateCounty (event) {
-    this.update({ city: event.target.value })
+    this.update({ county: event.target.value })
   }
 
   render () {
