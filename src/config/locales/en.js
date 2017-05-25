@@ -5665,11 +5665,6 @@ const en = {
           branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business'
         },
         help: {
-          branch: {
-            title: 'Need help with this question?',
-            message: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business.',
-            note: ''
-          },
           description: {
             title: 'Need help with the description?',
             message: 'Provide how the support was provided',
