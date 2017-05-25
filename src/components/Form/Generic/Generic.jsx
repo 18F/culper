@@ -1,5 +1,5 @@
 import React from 'react'
-import ValidationElement from '../ValidationElement'
+import ValidationElement, { newGuid } from '../ValidationElement'
 
 export const autotab = (event, maxlength, back, next) => {
   const input = event.target
@@ -29,6 +29,7 @@ export default class Generic extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       focus: props.focus,
       error: props.error,
@@ -198,13 +199,12 @@ export default class Generic extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.props.name}
-               ref="label"
-               >
+               htmlFor={this.state.uid}
+               ref="label">
           {this.props.label}
         </label>
         <input className={this.inputClass()}
-               id={this.props.name}
+               id={this.state.uid}
                name={this.props.name}
                type={this.props.type}
                placeholder={this.props.placeholder}

@@ -24,7 +24,7 @@ describe('The Sentence  component', () => {
     const component = mount(<Sentence {...expected} />)
 
     let selectors = [
-      '#description',
+      '.description textarea',
       { type: 'radio', name: 'exceeding_year', value: 'Yes' },
       { type: 'radio', name: 'incarcerated', value: 'Yes' }
     ]
@@ -34,8 +34,8 @@ describe('The Sentence  component', () => {
     })
 
     selectors = [
-      '.probation-dates input#month',
-      '.incarceration-dates input#month'
+      '.probation-dates .month input',
+      '.incarceration-dates .month input'
     ]
 
     selectors.forEach(selector => {

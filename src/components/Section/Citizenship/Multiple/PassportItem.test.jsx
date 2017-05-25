@@ -10,9 +10,9 @@ describe('The passport item component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<PassportItem {...expected} />)
-    component.find('input#Country').simulate('change', { target: { name: 'Country', value: 'United States' } })
+    component.find('.country input').simulate('change', { target: { name: 'Country', value: 'United States' } })
     component.find('.passport-issued .day input').first().simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.passport-location input#address').simulate('change')
+    component.find('.passport-location .mailing input').simulate('change')
     component.find('.passport-name input').first().simulate('change')
     component.find('.passport-number input').first().simulate('change')
     component.find('.passport-expiration .day input').first().simulate('change', { target: { name: 'day', value: '1' } })

@@ -154,7 +154,7 @@ export default class ExistingConditions extends ValidationElement {
             <Show when={this.state.ReceivedTreatment === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
-                          className="explanation"
+                          className="explanation existing-condition-explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onValidate={this.handleValidation}
@@ -191,7 +191,7 @@ export default class ExistingConditions extends ValidationElement {
             <Show when={this.state.DidNotFollow === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
-                          className="explanation"
+                          className="explanation existing-condition-didnotfollow-explanation"
                           {...this.props.DidNotFollowExplanation}
                           onUpdate={this.updateDidNotFollowExplanation}
                           onValidate={this.handleValidation}

@@ -44,7 +44,7 @@ export default class BirthPlace extends ValidationElement {
       return
     }
 
-    let part = event.target.id
+    let part = event.target.name
     let value = event.target.value
     let updated = null
 

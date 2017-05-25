@@ -22,7 +22,7 @@ describe('The DomesticViolence  component', () => {
     const component = mount(<DomesticViolence {...expected} />)
 
     const selectors = [
-      'textarea#explanation',
+      '.explanation textarea',
       { type: 'text', name: 'address' },
       { type: 'text', name: 'CourtName' },
       { type: 'text', name: 'month' }
@@ -35,4 +35,3 @@ describe('The DomesticViolence  component', () => {
     expect(updates).toEqual(4)
   })
 })
-

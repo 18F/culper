@@ -14,7 +14,7 @@ describe('The number component', () => {
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -30,8 +30,8 @@ describe('The number component', () => {
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('focus')
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('input').length).toEqual(1)
+    expect(component.find('input').hasClass('usa-input-focus')).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -47,7 +47,7 @@ describe('The number component', () => {
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -64,9 +64,9 @@ describe('The number component', () => {
     }
     const component = mount(<Number {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
-    component.find('input#' + expected.name).simulate('change', { target: { value: '1' } })
+    component.find('input').simulate('change', { target: { value: '1' } })
     expect(updates).toBeGreaterThan(0)
   })
 

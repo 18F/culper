@@ -13,9 +13,9 @@ describe('The physical attributes section', () => {
 
   it('no error on first composition', () => {
     const component = mount(<Physical name="physical" />)
-    expect(component.find('input#pounds').length).toEqual(1)
-    expect(component.find('input#feet').length).toEqual(1)
-    expect(component.find('input#inches').length).toEqual(1)
+    expect(component.find('.pounds input').length).toEqual(1)
+    expect(component.find('.feet input').length).toEqual(1)
+    expect(component.find('.inches input').length).toEqual(1)
     expect(component.find('input[name="hair-bald"]').length).toEqual(1)
     expect(component.find('input[name="eye"]').length).toBeGreaterThan(0)
     expect(component.find('input[name="sex"]').length).toBeGreaterThan(0)
@@ -39,9 +39,9 @@ describe('The physical attributes section', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<Physical name="physical" {...data} />)
-    component.find('input#pounds').simulate('change')
-    component.find('input#feet').simulate('change')
-    component.find('input#inches').simulate('change')
+    component.find('.pounds input').simulate('change')
+    component.find('.feet input').simulate('change')
+    component.find('.inches input').simulate('change')
     component.find('input[name="hair-bald"]').simulate('change')
     component.find('input[name="eye"]').first().simulate('change')
     component.find('input[name="sex"]').first().simulate('change')
