@@ -6,17 +6,15 @@ import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Accordion, Svg, Show, Branch } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
-import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
 import { InjectGaps, EmploymentCustomSummary, ResidenceCustomSummary, EducationCustomSummary,
          EmploymentCaption, EducationCaption, ResidenceCaption } from './summaries'
-import { ResidenceItem } from './Residence'
-import { EmploymentItem } from './Employment'
-import { EducationItem } from './Education'
+import Residence from './Residence'
+import Employment from './Employment'
+import Education from './Education'
 import { Gap } from './Gap'
 import { ResidenceValidator, EmploymentValidator, EducationValidator, FederalServiceValidator } from '../../../validators'
 import { openState } from '../../Form/Accordion/Accordion'
@@ -36,6 +34,7 @@ const byline = (item, index, initial, translation, validator) => {
 class History extends SectionElement {
   constructor (props) {
     super(props)
+
     this.residenceRangeList = this.residenceRangeList.bind(this)
     this.employmentRangesList = this.employmentRangesList.bind(this)
     this.schoolRangesList = this.schoolRangesList.bind(this)
@@ -45,11 +44,7 @@ class History extends SectionElement {
     this.updateEducation = this.updateEducation.bind(this)
     this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
     this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
-    this.customResidenceDetails = this.customResidenceDetails.bind(this)
-    this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
-    this.customResidenceByline = this.customResidenceByline.bind(this)
-    this.customEmploymentByline = this.customEmploymentByline.bind(this)
-    this.customEducationByline = this.customEducationByline.bind(this)
+    this.overrideInitial = this.overrideInitial.bind(this)
   }
 
   // /**
@@ -168,14 +163,6 @@ class History extends SectionElement {
 
     return 0
   }
-
-  // /**
-  //  * Helper to test whether a subsection is complete
-  //  */
-  // hasStatus (property, status, val) {
-  //   return (this.props.Completed[property] && this.props.Completed[property].status === val) ||
-  //     (status && status[property] && status[property].status === val)
-  // }
 
   /**
    * Figure the total amount of years to collect for the timeline
@@ -391,60 +378,8 @@ class History extends SectionElement {
     this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(this.sort))
   }
 
-  customResidenceDetails (item, index, initial, callback) {
-    if (item.type === 'Gap') {
-      const dates = (item.Item || {}).Dates || {}
-      return (
-        <Gap title={i18n.t('history.residence.gap.title')}
-             para={i18n.t('history.residence.gap.para')}
-             btnText={i18n.t('history.residence.gap.btnText')}
-             first={index === 0}
-             dates={dates}
-             onClick={this.fillGap.bind(this, 'Residence', dates)}
-             />
-      )
-    }
-
-    return callback()
-  }
-
-  customEmploymentDetails (item, index, initial, callback) {
-    if (item.type === 'Gap') {
-      const dates = (item.Item || {}).Dates || {}
-      return (
-        <Gap title={i18n.t('history.employment.gap.title')}
-             para={i18n.t('history.employment.gap.para')}
-             btnText={i18n.t('history.employment.gap.btnText')}
-             first={index === 0}
-             dates={dates}
-             onClick={this.fillGap.bind(this, 'Employment', dates)}
-             />
-      )
-    }
-
-    return callback()
-  }
-
   overrideInitial (initial) {
     return this.props.subsection === 'review' ? false : initial
-  }
-
-  customResidenceByline (item, index, initial) {
-    return byline(item, index, this.overrideInitial(initial), 'history.residence.collection.summary.incomplete', (item) => {
-      return new ResidenceValidator(item, null).isValid()
-    })
-  }
-
-  customEmploymentByline (item, index, initial) {
-    return byline(item, index, this.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', (item) => {
-      return new EmploymentValidator(item, null).isValid()
-    })
-  }
-
-  customEducationByline (item, index, initial) {
-    return byline(item, index, this.overrideInitial(initial), 'history.education.collection.school.summary.incomplete', (item) => {
-      return new EducationValidator(item, null).isValid()
-    })
   }
 
   render () {
@@ -476,60 +411,40 @@ class History extends SectionElement {
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               { this.educationSummaryProgress() }
             </Show>
-            <Accordion minimum="1"
+
+            <Residence value={this.props.Residence}
                        defaultState={false}
-                       items={this.props.Residence}
-                       sort={this.sort}
-                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
                        realtime={true}
+                       sort={this.sort}
+                       totalYears={this.totalYears()}
+                       overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
-                       caption={ResidenceCaption}
-                       byline={this.customResidenceByline}
-                       customSummary={ResidenceCustomSummary}
-                       customDetails={this.customResidenceDetails}
-                       description={i18n.t('history.residence.collection.summary.title')}
-                       appendLabel={i18n.t('history.residence.collection.append')}>
-              <ResidenceItem name="Item"
-                             bind={true}
-                             />
-            </Accordion>
-            <Accordion minimum="1"
-                       defaultState={false}
-                       items={this.props.Employment}
-                       sort={this.sort}
-                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
-                       realtime={true}
-                       onUpdate={this.updateEmployment}
-                       onError={this.handleError}
-                       caption={EmploymentCaption}
-                       byline={this.customEmploymentByline}
-                       customSummary={EmploymentCustomSummary}
-                       customDetails={this.customEmploymentDetails}
-                       description={i18n.t('history.employment.default.collection.summary.title')}
-                       appendLabel={i18n.t('history.employment.default.collection.append')}>
-              <EmploymentItem name="Item"
-                              bind={true}
-                              />
-            </Accordion>
+                       dispatch={this.props.dispatch}
+                       />
+
+            <Employment value={this.props.Employment}
+                        defaultState={false}
+                        realtime={true}
+                        sort={this.sort}
+                        totalYears={this.totalYears()}
+                        overrideInitial={this.overrideInitial}
+                        onUpdate={this.updateEmployment}
+                        onError={this.handleError}
+                        dispatch={this.props.dispatch}
+                        />
+
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
-              <Accordion minimum="1"
+              <Education value={this.props.Education.List}
                          defaultState={false}
-                         items={this.props.Education.List}
-                         sort={this.sort}
                          realtime={true}
+                         sort={this.sort}
+                         totalYears={this.totalYears()}
+                         overrideInitial={this.overrideInitial}
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
-                         caption={EducationCaption}
-                         byline={this.customEducationByline}
-                         customSummary={EducationCustomSummary}
-                         description={i18n.t('history.education.collection.school.summary.title')}
-                         appendLabel={i18n.t('history.education.collection.school.append')}
-                         >
-                <EducationItem name="Item"
-                               bind={true}
-                               />
-              </Accordion>
+                         dispatch={this.props.dispatch}
+                         />
             </Show>
 
             <p></p>
@@ -554,23 +469,18 @@ class History extends SectionElement {
             {i18n.m('history.residence.info3c')}
             <span id="scrollToHistory"></span>
             { this.residenceSummaryProgress() }
-            <Accordion minimum="1"
+            <Residence value={this.props.Residence}
                        scrollTo="scrollToHistory"
-                       items={this.props.Residence}
+                       defaultState={false}
+                       realtime={true}
                        sort={this.sort}
-                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
-                       realtime={false}
+                       totalYears={this.totalYears()}
+                       overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
-                       byline={this.customResidenceByline}
-                       customSummary={ResidenceCustomSummary}
-                       customDetails={this.customResidenceDetails}
-                       description={i18n.t('history.residence.collection.summary.title')}
-                       appendLabel={i18n.t('history.residence.collection.append')}>
-              <ResidenceItem name="Item"
-                             bind={true}
-                             />
-            </Accordion>
+                       dispatch={this.props.dispatch}
+                       />
+
             <Show when={this.hasGaps(['Residence'])}>
               <div className="not-complete">
                 <hr className="section-divider" />
@@ -590,24 +500,16 @@ class History extends SectionElement {
             {i18n.m('history.employment.para.employment2')}
             <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
-            <Accordion minimum="1"
-                       scrollTo="scrollToHistory"
-                       items={this.props.Employment}
-                       sort={this.sort}
-                       inject={(items) => { return InjectGaps(items, daysAgo(today, 365 * this.totalYears())) }}
-                       realtime={false}
-                       onUpdate={this.updateEmployment}
-                       onError={this.handleError}
-                       byline={this.customEmploymentByline}
-                       customDetails={this.customEmploymentDetails}
-                       customSummary={EmploymentCustomSummary}
-                       customDetails={this.customEmploymentDetails}
-                       description={i18n.t('history.employment.default.collection.summary.title')}
-                       appendLabel={i18n.t('history.employment.default.collection.append')}>
-              <EmploymentItem name="Item"
-                              bind={true}
-                              />
-            </Accordion>
+            <Employment value={this.props.Employment}
+                        scrollTo="scrollToHistory"
+                        sort={this.sort}
+                        totalYears={this.totalYears()}
+                        overrideInitial={this.overrideInitial}
+                        onUpdate={this.updateEmployment}
+                        onError={this.handleError}
+                        dispatch={this.props.dispatch}
+                        />
+
             <Show when={this.hasGaps(['Employment'])}>
               <div className="not-complete">
                 <hr className="section-divider" />
@@ -644,22 +546,15 @@ class History extends SectionElement {
               <div>
                 <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
-                <Accordion minimum="1"
+                <Education value={this.props.Education.List}
                            scrollTo="scrollToHistory"
-                           items={this.props.Education.List}
                            sort={this.sort}
-                           realtime={false}
+                           totalYears={this.totalYears()}
+                           overrideInitial={this.overrideInitial}
                            onUpdate={this.updateEducation}
                            onError={this.handleError}
-                           byline={this.customEducationByline}
-                           customSummary={EducationCustomSummary}
-                           description={i18n.t('history.education.collection.school.summary.title')}
-                           appendLabel={i18n.t('history.education.collection.school.append')}
-                           >
-                  <EducationItem name="Item"
-                                 bind={true}
-                                 />
-                </Accordion>
+                           dispatch={this.props.dispatch}
+                           />
               </div>
             </Show>
           </SectionView>
