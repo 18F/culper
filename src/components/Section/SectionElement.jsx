@@ -59,8 +59,7 @@ export default class SectionElement extends React.Component {
 }
 
 SectionElement.defaultProps = {
-  section: '',
-  subsection: '',
+  Section: { section: '', subsection: '' },
   defaultView: '',
   store: ''
 }

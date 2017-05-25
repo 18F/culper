@@ -7,9 +7,9 @@ import { validGenericMonthYear, validGenericTextfield, validBranch } from './hel
  */
 export default class BankruptcyValidator {
   constructor (state, props) {
-    this.hasBankruptcy = state.HasBankruptcy
-    this.list = state.List
-    this.listBranch = state.ListBranch
+    this.hasBankruptcy = props.HasBankruptcy
+    this.list = props.List
+    this.listBranch = props.ListBranch
   }
 
   /**
@@ -41,7 +41,7 @@ export default class BankruptcyValidator {
     }
 
     for (const item of this.list) {
-      const result = new BankruptcyItemValidator(item.Bankruptcy, null).isValid()
+      const result = new BankruptcyItemValidator(null, item.Bankruptcy).isValid()
       if (!result) {
         return false
       }
@@ -64,19 +64,19 @@ export default class BankruptcyValidator {
  */
 export class BankruptcyItemValidator {
   constructor (state = {}, props = {}) {
-    this.petitionType = state.PetitionType
-    this.courtAddress = state.CourtAddress
-    this.courtInvolved = state.CourtInvolved
-    this.courtNumber = state.CourtNumber
-    this.nameDebt = state.NameDebt
-    this.totalAmount = state.TotalAmount
-    this.dateFiled = state.DateFiled
-    this.dateDischarged = state.DateDischarged
-    this.dateDischargedNotApplicable = state.DateDischargedNotApplicable
-    this.hasDischargeExplanation = state.HasDischargeExplanation
-    this.dischargeExplanation = state.DischargeExplanation
-    this.trustee = state.Trustee
-    this.trusteeAddress = state.TrusteeAddress
+    this.petitionType = props.PetitionType
+    this.courtAddress = props.CourtAddress
+    this.courtInvolved = props.CourtInvolved
+    this.courtNumber = props.CourtNumber
+    this.nameDebt = props.NameDebt
+    this.totalAmount = props.TotalAmount
+    this.dateFiled = props.DateFiled
+    this.dateDischarged = props.DateDischarged
+    this.dateDischargedNotApplicable = props.DateDischargedNotApplicable
+    this.hasDischargeExplanation = props.HasDischargeExplanation
+    this.dischargeExplanation = props.DischargeExplanation
+    this.trustee = props.Trustee
+    this.trusteeAddress = props.TrusteeAddress
   }
 
   validPetitionType () {

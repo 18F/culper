@@ -2,11 +2,12 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateRange } from '../../../Form'
 import ConferenceContacts from './ConferenceContacts'
 
-export default class Conferences extends ValidationElement {
+export default class Conferences extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -40,33 +41,6 @@ export default class Conferences extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  // /**
-  //  * Handle the validation event.
-  //  */
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
-  // isValid () {
-  //   return new ForeignBusinessConferencesValidator(this.state, null).isValid()
-  // }
-
   summary (item, index) {
     const obj = item || {}
     const city = (obj.City || {}).value || i18n.t('foreign.business.conferences.collection.summary.unknown')
@@ -91,7 +65,7 @@ export default class Conferences extends ValidationElement {
                 help="foreign.business.conferences.help.branch"
                 value={this.state.HasForeignConferences}
                 onUpdate={this.updateHasForeignConferences}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
 
@@ -100,7 +74,7 @@ export default class Conferences extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.conferences.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.conferences.collection.appendTitle')}
@@ -170,5 +144,11 @@ Conferences.defaultProps = {
   HasForeignConferences: '',
   List: [],
   ListBranch: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/conferences',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessConferencesValidator(state, props).isValid()
+  }
 }

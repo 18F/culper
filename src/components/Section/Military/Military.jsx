@@ -107,12 +107,14 @@ class Military extends SectionElement {
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
                        />
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
                      />
@@ -120,6 +122,7 @@ class Military extends SectionElement {
             {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
+                          dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
                           />
@@ -127,6 +130,7 @@ class Military extends SectionElement {
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
                      />
@@ -140,6 +144,7 @@ class Military extends SectionElement {
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
                        />
@@ -153,6 +158,7 @@ class Military extends SectionElement {
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
                      />
@@ -167,6 +173,7 @@ class Military extends SectionElement {
             {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
+                          dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
                           />
@@ -181,6 +188,7 @@ class Military extends SectionElement {
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
                      />
@@ -210,8 +218,6 @@ function mapStateToProps (state) {
 }
 
 Military.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'selective',
   store: 'Military'
 }

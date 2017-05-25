@@ -76,12 +76,14 @@ class Citizenship extends SectionElement {
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
                     />
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
                       {...this.props.Multiple}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}
                       />
@@ -95,6 +97,7 @@ class Citizenship extends SectionElement {
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
                     />
@@ -108,6 +111,7 @@ class Citizenship extends SectionElement {
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
                       {...this.props.Multiple}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}
                       />
@@ -135,8 +139,6 @@ function mapStateToProps (state) {
 }
 
 Citizenship.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'status',
   store: 'Citizenship'
 }

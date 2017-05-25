@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { SelectiveServiceValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Text, Textarea, Field } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Text, Textarea, Field } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -15,9 +16,10 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class Selective extends ValidationElement {
+export default class Selective extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       WasBornAfter: props.WasBornAfter,
       HasRegistered: props.HasRegistered,
@@ -47,9 +49,6 @@ export default class Selective extends ValidationElement {
       this.onUpdate('RegistrationNumber', null)
       this.onUpdate('Explanation', null)
     }
-
-    // Force validation checks
-    this.handleValidation(event, null, null)
   }
 
   updateRegistered (value, event) {
@@ -71,42 +70,6 @@ export default class Selective extends ValidationElement {
     this.onUpdate('Explanation', value)
   }
 
-  // /**
-  //  * Handle the validation event.
-  //  */
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     if (this.state.error === false || this.state.valid === true) {
-  //       super.handleValidation(event, statusObject, errorObject)
-  //       return
-  //     }
-
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
-  // /**
-  //  * Determine if all items in the collection are considered to be in
-  //  * a valid state.
-  //  */
-  // isValid () {
-  //   return new SelectiveServiceValidator(this.state, null).isValid()
-  // }
-
   render () {
     return (
       <div className="selective">
@@ -115,7 +78,7 @@ export default class Selective extends ValidationElement {
                 value={this.state.WasBornAfter}
                 help="military.selective.help.born"
                 onUpdate={this.updateBornAfter}
-                onError={this.props.onError}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.state.WasBornAfter === 'Yes'}>
@@ -126,7 +89,7 @@ export default class Selective extends ValidationElement {
                     value={this.state.HasRegistered}
                     help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}
-                    onError={this.props.onError}>
+                    onError={this.handleError}>
             </Branch>
 
             <Show when={this.state.HasRegistered === 'Yes'}>
@@ -138,7 +101,7 @@ export default class Selective extends ValidationElement {
                         className="registration-number"
                         label={i18n.t('military.selective.label.number')}
                         onUpdate={this.updateRegistrationNumber}
-                        onError={this.props.onError}
+                        onError={this.handleError}
                         />
                 </Field>
               </div>
@@ -153,7 +116,7 @@ export default class Selective extends ValidationElement {
                             className="explanation"
                             label={i18n.t('military.selective.label.explanation')}
                             onUpdate={this.updateExplanation}
-                            onError={this.props.onError}
+                            onError={this.handleError}
                             />
                 </Field>
               </div>
@@ -185,5 +148,11 @@ export default class Selective extends ValidationElement {
 }
 
 Selective.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'military',
+  subsection: 'selective',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new SelectiveServiceValidator(state, props).isValid()
+  }
 }

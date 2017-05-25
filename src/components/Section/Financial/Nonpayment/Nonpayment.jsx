@@ -1,11 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Currency, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, DateControl, Currency, Field,
          NotApplicable, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
-export default class Nonpayment extends ValidationElement {
+export default class Nonpayment extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -20,37 +21,6 @@ export default class Nonpayment extends ValidationElement {
     this.summary = this.summary.bind(this)
   }
 
-  // /**
-  //  * Handle the validation event.
-  //  */
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
-  // /**
-  //  * Determine if all items in the collection are considered to be in
-  //  * a valid state.
-  //  */
-  // isValid () {
-  //   return new NonpaymentValidator(this.state, null).isValid()
-  // }
-
   /**
    * Updates triggered by the branching component.
    */
@@ -60,7 +30,6 @@ export default class Nonpayment extends ValidationElement {
         items: val === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -129,14 +98,14 @@ export default class Nonpayment extends ValidationElement {
                 value={this.state.HasNonpayment}
                 help="financial.nonpayment.help.branch"
                 onUpdate={this.updateBranch}
-                onError={this.props.onError}>
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.nonpayment.collection.summary.title')}
                      appendTitle={i18n.t('financial.nonpayment.collection.appendTitle')}
@@ -257,5 +226,11 @@ Nonpayment.defaultProps = {
   HasNonpayment: '',
   List: [],
   ListBranch: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'financial',
+  subsection: 'nonpayment',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new NonpaymentValidator(state, props).isValid()
+  }
 }

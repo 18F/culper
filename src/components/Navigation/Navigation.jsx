@@ -28,15 +28,17 @@ class Navigation extends React.Component {
         continue
       }
 
-      return this.props.errors[section]
-        .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
-        .some(e => {
-          if (crumbs.length === 1) {
-            return e.valid === false
-          }
-
-          return e.subsection === crumbs[1] && e.valid === false
-        })
+      const se = this.props.errors[section]
+      if (crumbs.length === 1) {
+        return se.some(e =>
+                       e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                       e.valid === false)
+      } else if (crumbs.length > 1) {
+        return se.some(e =>
+                       e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                       e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase() &&
+                       e.valid === false)
+      }
     }
 
     return false
@@ -46,13 +48,35 @@ class Navigation extends React.Component {
    * Determine if the route is considered complete and valid
    */
   isValid (route, pathname) {
+    // const crumbs = route.replace('/form/', '').split('/')
+    // return new NavigationValidator(null,
+    //   {
+    //     completed: this.props.completed,
+    //     crumbs: crumbs
+    //   })
+    //   .isValid()
+
     const crumbs = route.replace('/form/', '').split('/')
-    return new NavigationValidator(null,
-      {
-        completed: this.props.completed,
-        crumbs: crumbs
-      })
-      .isValid()
+
+    for (const section in this.props.completed) {
+      if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
+        continue
+      }
+
+      const se = this.props.completed[section]
+      if (crumbs.length === 1) {
+        return se.every(e =>
+                        e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                        e.valid === true)
+      } else if (crumbs.length > 1) {
+        return se.some(e =>
+                       e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                       e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase() &&
+                       e.valid === true)
+      }
+    }
+
+    return false
   }
 
   /**

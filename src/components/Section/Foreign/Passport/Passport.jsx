@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PassportValidator } from '../../../../validators'
-import { ValidationElement, Field, Show, Text, Suggestions, Name,
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Show, Text, Suggestions, Name,
          DateControl, Branch, Radio, RadioGroup } from '../../../Form'
 
-export default class Passport extends ValidationElement {
+export default class Passport extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -24,7 +25,11 @@ export default class Passport extends ValidationElement {
       reCard: '^[cC]{1}[0-9]{8}$'
     }
 
+    this.yesNoClicked = this.yesNoClicked.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
     this.onSuggestion = this.onSuggestion.bind(this)
+    this.dismissSuggestions = this.dismissSuggestions.bind(this)
   }
 
   /**
@@ -38,29 +43,6 @@ export default class Passport extends ValidationElement {
       this.refs.number.refs.text.refs.input.blur()
     })
   }
-
-  // /**
-  //  * Handle the validation event.
-  //  */
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     let e = { [this.props.name]: codes }
-  //     let s = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, s, e)
-  //   })
-  // }
 
   /**
    * Handle the update event.
@@ -85,17 +67,11 @@ export default class Passport extends ValidationElement {
     })
   }
 
-  // isValid () {
-  //   return new PassportValidator(this.state, null).isValid()
-  // }
-
   /**
    * Handle when the yes/no option has been changed
    */
   yesNoClicked (val, event) {
-    this.handleUpdate('HasPassport', val, () => {
-      this.handleValidation(event, null, null)
-    })
+    this.handleUpdate('HasPassport', val)
   }
 
   renderSuggestion (suggestion) {
@@ -141,7 +117,7 @@ export default class Passport extends ValidationElement {
         <Branch name="has_passport"
                 value={this.state.HasPassport}
                 onUpdate={this.yesNoClicked.bind(this)}
-                onError={this.props.onError}
+                onError={this.handleError}
                 help="foreign.passport.branch.help"
                 >
         </Branch>
@@ -162,7 +138,7 @@ export default class Passport extends ValidationElement {
               <Name name="name"
                     {...this.state.Name}
                     onUpdate={this.handleUpdate.bind(this, 'Name')}
-                    onError={this.props.onError}
+                    onError={this.handleError}
                     />
             </Suggestions>
 
@@ -178,13 +154,13 @@ export default class Passport extends ValidationElement {
                          label={i18n.t('foreign.passport.label.book')}
                          value="Book"
                          onChange={this.handleChange}
-                         onError={this.props.onError}
+                         onError={this.handleError}
                          />
                   <Radio name="passport-card"
                          label={i18n.t('foreign.passport.label.card')}
                          value="Card"
                          onChange={this.handleChange}
-                         onError={this.props.onError}
+                         onError={this.handleError}
                          />
                 </RadioGroup>
                 <Text name="number"
@@ -196,7 +172,7 @@ export default class Passport extends ValidationElement {
                       className="number"
                       ref="number"
                       onUpdate={this.handleUpdate.bind(this, 'Number')}
-                      onError={this.props.onError}
+                      onError={this.handleError}
                       />
               </div>
             </Field>
@@ -208,7 +184,7 @@ export default class Passport extends ValidationElement {
               <DateControl name="issued"
                            {...this.state.Issued}
                            onUpdate={this.handleUpdate.bind(this, 'Issued')}
-                           onError={this.props.onError}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -219,7 +195,7 @@ export default class Passport extends ValidationElement {
               <DateControl name="expiration"
                            {...this.state.Expiration}
                            onUpdate={this.handleUpdate.bind(this, 'Expiration')}
-                           onError={this.props.onError}
+                           onError={this.handleError}
                            />
             </Field>
           </div>
@@ -230,5 +206,11 @@ export default class Passport extends ValidationElement {
 }
 
 Passport.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'passport',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new PassportValidator(state, props).isValid()
+  }
 }

@@ -29,9 +29,19 @@ const errorReducer = function (sectionName) {
     // merging of everything every time an action is dispatched. We only
     // perform for the relevant section
     if (action.section === sectionName) {
+      let sectionErrors = state[action.property] || []
+      for (const value of action.values) {
+        const idx = sectionErrors.findIndex(x => x.section === value.section && x.subsection === value.subsection && x.code === value.code)
+        if (idx === -1) {
+          sectionErrors.push(value)
+        } else {
+          sectionErrors[idx] = value
+        }
+      }
+
       return {
         ...state,
-        [action.property]: action.values
+        [action.property]: sectionErrors
       }
     }
 
@@ -51,7 +61,7 @@ export default combineReducers({
   TBD: reducer('Tbd'),
   Legal: reducer('Legal'),
   Psychological: reducer('Psychological'),
-  Completed: reducer('Completed'),
+  Completed: errorReducer('Completed'),
   Errors: errorReducer('Errors'),
   Saved: (state = {}) => {
     // Store when things were last saved

@@ -717,8 +717,6 @@ function mapStateToProps (state) {
 }
 
 History.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'residence',
   store: 'History'
 }

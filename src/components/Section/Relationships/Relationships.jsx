@@ -99,6 +99,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
                      {...this.props.Marital}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
                      onError={this.handleError}
                      onSpouseUpdate={this.updateSpouse}
@@ -112,6 +113,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
                      {...this.props.Marital}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
                      onError={this.handleError}
                      onSpouseUpdate={this.updateSpouse}
@@ -126,6 +128,7 @@ class Relationships extends SectionElement {
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
                          spouse={this.props.Spouse}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
                          />
@@ -137,6 +140,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.relatives')}>
             <People name="people"
                     {...this.props.People}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
                     />
@@ -148,6 +152,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
                        {...this.props.Relatives}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
                        />
@@ -161,6 +166,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.status')}>
             <Marital name="marital"
                      {...this.props.Marital}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
                      onError={this.handleError}
                      onSpouseUpdate={this.updateSpouse}
@@ -169,16 +175,19 @@ class Relationships extends SectionElement {
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
                          spouse={this.props.Spouse}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
                          />
             <People name="people"
                     {...this.props.People}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
                     />
             <Relatives name="relatives"
                        {...this.props.Relatives}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
                        />
@@ -211,8 +220,6 @@ function mapStateToProps (state) {
 }
 
 Relationships.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'marital',
   store: 'Relationships'
 }

@@ -12,25 +12,6 @@ import Physical from './Physical'
 import ContactInformation from './ContactInformation'
 
 class Identification extends SectionElement {
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = this.triageErrors('identification', [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = new IdentificationValidator(null, this.props).completionStatus(status)
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
   render () {
     return (
       <div>
@@ -59,7 +40,8 @@ class Identification extends SectionElement {
 
             <h2>{i18n.t('identification.name.title')}</h2>
             <Name name="name"
-                  {...this.props.ApplicantName }
+                  {...this.props.ApplicantName}
+                  dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                   onError={this.handleError}
                   />
@@ -67,12 +49,14 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
                         />
 
             <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
+                                dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
@@ -81,6 +65,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.birthplace.title')}</h2>
             <BirthPlace name="birthplace"
                         {...this.props.ApplicantBirthPlace}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                         onError={this.handleError}
                         />
@@ -88,6 +73,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
                                 />
@@ -95,6 +81,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <SSN name="ssn"
                  {...this.props.ApplicantSSN}
+                 dispatch={this.props.dispatch}
                  onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                  onError={this.handleError}
                  />
@@ -102,6 +89,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
                       />
@@ -113,6 +101,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.name.title')}</h2>
             <Name name="name"
                   {...this.props.ApplicantName }
+                  dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                   onError={this.handleError}
                   />
@@ -126,6 +115,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
                         />
@@ -138,6 +128,7 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.othernames')}>
             <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
+                                dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
@@ -152,6 +143,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.birthplace.title')}</h2>
             <BirthPlace name="birthplace"
                         {...this.props.ApplicantBirthPlace}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                         onError={this.handleError}
                         />
@@ -165,6 +157,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
                                 />
@@ -178,6 +171,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <SSN name="ssn"
                  {...this.props.ApplicantSSN}
+                 dispatch={this.props.dispatch}
                  onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                  onError={this.handleError}
                  />
@@ -191,6 +185,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
                       />
@@ -236,8 +231,6 @@ export function processApplicantBirthDate (birthDate) {
 }
 
 Identification.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'name',
   store: 'Identification'
 }

@@ -1,11 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show, RadioGroup, Radio, Field, Textarea } from '../../../Form'
-import Diagnosis from '../Diagnoses/Diagnosis'
 import { ExistingConditionsValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion, Branch, Show, RadioGroup, Radio, Field, Textarea } from '../../../Form'
+import Diagnosis from '../Diagnoses/Diagnosis'
 import { dateRangeFormat } from '../summaryHelper'
 
-export default class ExistingConditions extends ValidationElement {
+export default class ExistingConditions extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -68,22 +69,6 @@ export default class ExistingConditions extends ValidationElement {
     this.update('didNotFollowExplanation', values)
   }
 
-  // handleValidation (event, status, error) {
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
     const treatmentDate = (o.Diagnosed || {})
@@ -104,10 +89,6 @@ export default class ExistingConditions extends ValidationElement {
     )
   }
 
-  // isValid () {
-  //   return new ExistingConditionsValidator(this.state, { prefix: this.props.prefix }).isValid()
-  // }
-
   render () {
     return (
       <div className="existingconditions">
@@ -116,7 +97,7 @@ export default class ExistingConditions extends ValidationElement {
         <Branch name="hascondition"
                 className="eapp-field-wrap hascondition"
                 value={this.state.HasCondition}
-                onError={this.props.onError}
+                onError={this.handleError}
                 onUpdate={this.updateHasCondition}>
         </Branch>
 
@@ -131,21 +112,21 @@ export default class ExistingConditions extends ValidationElement {
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
                        value="Yes"
                        onUpdate={this.updateReceivedTreatment}
-                       onError={this.props.onError}
+                       onError={this.handleError}
                        />
                 <Radio name="treatment"
                        className="treatment no"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.no')}
                        value="No"
                        onUpdate={this.updateReceivedTreatment}
-                       onError={this.props.onError}
+                       onError={this.handleError}
                        />
                 <Radio name="treatment"
                        className="treatment decline"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.decline')}
                        value="Decline"
                        onUpdate={this.updateReceivedTreatment}
-                       onError={this.props.onError}
+                       onError={this.handleError}
                        />
               </RadioGroup>
             </Field>
@@ -156,7 +137,7 @@ export default class ExistingConditions extends ValidationElement {
                           className="explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
-                          onError={this.props.onError}
+                          onError={this.handleError}
                           />
               </Field>
             </Show>
@@ -168,7 +149,7 @@ export default class ExistingConditions extends ValidationElement {
                          branch={this.state.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}
                          summary={this.summary}
-                         onError={this.props.onError}
+                         onError={this.handleError}
                          description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                          appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
@@ -183,7 +164,7 @@ export default class ExistingConditions extends ValidationElement {
             <Branch name="didNotFollow"
                     className="eapp-field-wrap didnotfollow"
                     value={this.state.DidNotFollow}
-                    onError={this.props.onError}
+                    onError={this.handleError}
                     onUpdate={this.updateDidNotFollow}>
             </Branch>
 
@@ -193,7 +174,7 @@ export default class ExistingConditions extends ValidationElement {
                           className="explanation"
                           {...this.props.DidNotFollowExplanation}
                           onUpdate={this.updateDidNotFollowExplanation}
-                          onError={this.props.onError}
+                          onError={this.handleError}
                           />
               </Field>
             </Show>
@@ -208,5 +189,11 @@ ExistingConditions.defaultProps = {
   TreatmentList: [],
   TreatmentListBranch: '',
   defaultState: true,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'psychological',
+  subsection: 'conditions',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ExistingConditionsValidator(state, props).isValid()
+  }
 }

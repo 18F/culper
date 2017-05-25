@@ -153,6 +153,7 @@ class Foreign extends SectionElement {
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />
@@ -166,6 +167,7 @@ class Foreign extends SectionElement {
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
+                      dispatch={this.props.dispatch}
                       suggestedNames={this.props.suggestedNames}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
@@ -179,6 +181,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.activity')}>
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
                       />
@@ -191,6 +194,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
                             />
@@ -202,6 +206,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
                             />
@@ -214,6 +219,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.realestate')}>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
                               />
@@ -226,6 +232,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.benefits')}>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
+                                dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
                                 />
@@ -238,6 +245,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.support')}>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
+                             dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
                              />
@@ -249,6 +257,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.advice')}>
             <Support name="support"
                      {...this.props.Support}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
                      />
@@ -261,6 +270,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.family')}>
             <Advice name="advice"
                     {...this.props.Advice}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
                     />
@@ -273,6 +283,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.family')}>
             <Advice name="advice"
                     {...this.props.Advice}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
                     />
@@ -285,6 +296,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.employment')}>
             <Family name="family"
                     {...this.props.Family}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
                     />
@@ -297,6 +309,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.ventures')}>
             <Employment name="employment"
                         {...this.props.Employment}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         />
@@ -309,6 +322,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
                       />
@@ -321,6 +335,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.contact')}>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
                          />
@@ -379,8 +394,6 @@ function mapStateToProps (state) {
 }
 
 Foreign.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'passport',
   store: 'Foreign'
 }

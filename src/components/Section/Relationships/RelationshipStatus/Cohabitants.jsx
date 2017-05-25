@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Branch, ValidationElement, Show } from '../../../Form'
-import Cohabitant from './Cohabitant'
 import { CohabitantsValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion, Branch, Show } from '../../../Form'
+import Cohabitant from './Cohabitant'
 
-export default class Cohabitants extends ValidationElement {
+export default class Cohabitants extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -31,10 +32,6 @@ export default class Cohabitants extends ValidationElement {
     })
   }
 
-  // isValid () {
-  //   return new CohabitantsValidator(this.state).isValid()
-  // }
-
   updateHasCohabitant (values) {
     this.update('HasCohabitant', values)
   }
@@ -59,22 +56,6 @@ export default class Cohabitants extends ValidationElement {
     )
   }
 
-  // handleValidation (event, status, error) {
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
   render () {
     return (
       <div className="cohabitants">
@@ -85,7 +66,7 @@ export default class Cohabitants extends ValidationElement {
                 value={this.state.HasCohabitant}
                 help="relationships.cohabitant.help.hasCohabitant"
                 onUpdate={this.updateHasCohabitant}
-                onError={this.props.onError}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.state.HasCohabitant === 'Yes'}>
@@ -94,7 +75,7 @@ export default class Cohabitants extends ValidationElement {
                      branch={this.state.CohabitantListBranch}
                      summary={this.summary}
                      onUpdate={this.updateCohabitantList}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      description={i18n.t('relationships.cohabitant.collection.description')}
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
@@ -110,5 +91,11 @@ Cohabitants.defaultProps = {
   HasCohabitant: '',
   CohabitantList: [],
   CohabitantListBranch: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'relationships',
+  subsection: 'status/cohabitant',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new CohabitantsValidator(state, props).isValid()
+  }
 }

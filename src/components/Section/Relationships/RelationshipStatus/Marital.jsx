@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, ValidationElement, Show, RadioGroup, Radio } from '../../../Form'
-import CivilUnion from './CivilUnion'
 import { MaritalValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Show, RadioGroup, Radio } from '../../../Form'
+import CivilUnion from './CivilUnion'
 
-export default class Marital extends ValidationElement {
+export default class Marital extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -29,10 +30,6 @@ export default class Marital extends ValidationElement {
     })
   }
 
-  // isValid () {
-  //   return new MaritalValidator(this.state).isValid()
-  // }
-
   updateStatus (values) {
     this.update('Status', values.target.value)
   }
@@ -40,26 +37,6 @@ export default class Marital extends ValidationElement {
   updateCivilUnion (values) {
     this.update('CivilUnion', values)
   }
-
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
 
   render () {
     return (
@@ -70,37 +47,37 @@ export default class Marital extends ValidationElement {
                    className="status-never"
                    value="Never"
                    onChange={this.updateStatus}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.inCivilUnion')}
                    className="status-civil-union"
                    value="InCivilUnion"
                    onChange={this.updateStatus}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.separated')}
                    className="status-separated"
                    value="Separated"
                    onChange={this.updateStatus}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.annulled')}
                    className="status-annulled"
                    value="Annulled"
                    onChange={this.updateStatus}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.divorced')}
                    className="status-divorced"
                    value="Divorced"
                    onChange={this.updateStatus}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.widowed')}
                    className="status-widowed"
                    value="Widowed"
                    onChange={this.updateStatus}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    />
           </RadioGroup>
         </Field>
@@ -109,7 +86,7 @@ export default class Marital extends ValidationElement {
           <CivilUnion name="civilUnion"
                       {...this.state.CivilUnion}
                       onUpdate={this.updateCivilUnion}
-                      onError={this.props.onError}
+                      onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
                       currentAddress={this.props.currentAddress}
                       />
@@ -120,5 +97,11 @@ export default class Marital extends ValidationElement {
 }
 
 Marital.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'relationships',
+  subsection: 'status/marital',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new MaritalValidator(state, props).isValid()
+  }
 }

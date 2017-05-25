@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceOtherOffensesValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import OtherOffense from './OtherOffense'
 
@@ -17,7 +18,7 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class OtherOffenses extends ValidationElement {
+export default class OtherOffenses extends SubsectionElement {
   constructor (props) {
     super(props)
     this.state = {
@@ -94,33 +95,6 @@ export default class OtherOffenses extends ValidationElement {
     })
   }
 
-  // /**
-  //  * Handle the validation event.
-  //  */
-  // handleValidation (event, status, error) {
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
-  // /**
-  //  * Determine if all items in the collection are considered to be in
-  //  * a valid state.
-  //  */
-  // isValid () {
-  //   return new PoliceOtherOffensesValidator(this.state, null).isValid()
-  // }
-
   hasOtherOffenses () {
     return new PoliceOtherOffensesValidator(this.state, null).hasOtherOffenses()
   }
@@ -171,7 +145,7 @@ export default class OtherOffenses extends ValidationElement {
                 value={this.state.HasOtherConviction}
                 help="legal.police.help.otherConviction"
                 onUpdate={this.updateOtherConviction}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('legal.police.para.otherOffense.first')}
         </Branch>
 
@@ -180,7 +154,7 @@ export default class OtherOffenses extends ValidationElement {
                 value={this.state.HasOtherFelony}
                 help="legal.police.help.otherFelony"
                 onUpdate={this.updateOtherFelony}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('legal.police.para.otherOffense.second')}
         </Branch>
 
@@ -188,7 +162,7 @@ export default class OtherOffenses extends ValidationElement {
                 className="otherdomestic"
                 value={this.state.HasOtherDomestic}
                 onUpdate={this.updateOtherDomestic}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('legal.police.para.otherOffense.third')}
         </Branch>
 
@@ -196,7 +170,7 @@ export default class OtherOffenses extends ValidationElement {
                 className="otherfirearms"
                 value={this.state.HasOtherFirearms}
                 onUpdate={this.updateOtherFirearms}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('legal.police.para.otherOffense.fourth')}
         </Branch>
 
@@ -204,7 +178,7 @@ export default class OtherOffenses extends ValidationElement {
                 className="otheralcohol"
                 value={this.state.HasOtherAlcohol}
                 onUpdate={this.updateOtherAlchohol}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('legal.police.para.otherOffense.fifth')}
         </Branch>
 
@@ -219,7 +193,7 @@ export default class OtherOffenses extends ValidationElement {
                        items={this.state.List}
                        branch={this.state.ListBranch}
                        onUpdate={this.updateList}
-                       onError={this.props.onError}
+                       onError={this.handleError}
                        summary={this.summary}
                        description={i18n.t('legal.police.collection.summary.title')}
                        appendTitle={i18n.t('legal.police.collection.appendTitle')}
@@ -237,5 +211,11 @@ export default class OtherOffenses extends ValidationElement {
 }
 
 OtherOffenses.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'legal',
+  subsection: 'police/additionaloffenses',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new PoliceOtherOffensesValidator(state, props).isValid()
+  }
 }

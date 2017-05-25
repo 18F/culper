@@ -3,11 +3,12 @@ import { i18n } from '../../../../config'
 import { Accordion, ValidationElement, Svg } from '../../../Form'
 import Person from './Person'
 import { PeopleValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
 import { dateRangeFormat } from './../../Psychological/summaryHelper'
 
-export default class People extends ValidationElement {
+export default class People extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -36,26 +37,6 @@ export default class People extends ValidationElement {
     this.update('List', values.items)
     this.update('ListBranch', values.branch)
   }
-
-  // isValid () {
-  //   return new PeopleValidator(this.state).isValid()
-  // }
-
-  // handleValidation (event, status, error) {
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
 
   summary (item, index) {
     const o = (item || {}).Person || {}
@@ -114,7 +95,7 @@ export default class People extends ValidationElement {
                    branch={this.state.ListBranch}
                    summary={this.summary}
                    onUpdate={this.updateList}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
           <Person name="Person" bind={true} />
@@ -127,5 +108,11 @@ export default class People extends ValidationElement {
 People.defaultProps = {
   List: [],
   ListBranch: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'relationships',
+  subsection: 'people',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new PeopleValidator(state, props).isValid()
+  }
 }

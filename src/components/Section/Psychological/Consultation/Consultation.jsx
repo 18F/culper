@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
-import Order from '../Order'
 import { ConsultationValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion, Branch, Show } from '../../../Form'
+import Order from '../Order'
 
-export default class Consultation extends ValidationElement {
+export default class Consultation extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -17,8 +18,6 @@ export default class Consultation extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateConsulted = this.updateConsulted.bind(this)
     this.updateList = this.updateList.bind(this)
-    // this.isValid = this.isValid.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -42,22 +41,6 @@ export default class Consultation extends ValidationElement {
     this.update('Consulted', values)
   }
 
-  // handleValidation (event, status, error) {
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
   summary (item, index) {
     const o = (item || {}).Consultation || {}
     const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
@@ -77,10 +60,6 @@ export default class Consultation extends ValidationElement {
     )
   }
 
-  // isValid () {
-  //   return new ConsultationValidator(this.state).isValid()
-  // }
-
   render () {
     return (
       <div className="consultation">
@@ -88,7 +67,7 @@ export default class Consultation extends ValidationElement {
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
                 value={this.state.Consulted}
-                onError={this.props.onError}
+                onError={this.handleError}
                 onUpdate={this.updateConsulted}>
         </Branch>
 
@@ -99,7 +78,7 @@ export default class Consultation extends ValidationElement {
                      branch={this.state.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      description={i18n.t('psychological.consultation.collection.description')}
                      appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
@@ -119,5 +98,11 @@ Consultation.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'psychological',
+  subsection: 'consultations',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ConsultationValidator(state, props).isValid()
+  }
 }

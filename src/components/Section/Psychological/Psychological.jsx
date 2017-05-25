@@ -89,6 +89,7 @@ class Psychological extends SectionElement {
             <Competence name="Competence"
                         {...this.props.Competence}
                         ApplicantBirthDate={this.props.ApplicantBirthDate}
+                        dispatch={this.props.dispatch}
                         onError={this.handleError}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
           </SectionView>
@@ -101,6 +102,7 @@ class Psychological extends SectionElement {
             <Consultation name="Consultations"
                           {...this.props.Consultations}
                           ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          dispatch={this.props.dispatch}
                           onError={this.handleError}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
           </SectionView>
@@ -112,6 +114,7 @@ class Psychological extends SectionElement {
             <Hospitalizations name="Hospitalizations"
                               {...this.props.Hospitalizations}
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
+                              dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
@@ -123,6 +126,7 @@ class Psychological extends SectionElement {
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
                        ApplicantBirthDate={this.props.ApplicantBirthDate}
+                       dispatch={this.props.dispatch}
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
@@ -135,6 +139,7 @@ class Psychological extends SectionElement {
             <ExistingConditions name="ExistingConditions"
                                 {...this.props.ExistingConditions}
                                 ApplicantBirthDate={this.props.ApplicantBirthDate}
+                                dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
                                 />
@@ -149,6 +154,7 @@ class Psychological extends SectionElement {
                         {...this.props.Competence}
                         ApplicantBirthDate={this.props.ApplicantBirthDate}
                         defaultState={false}
+                        dispatch={this.props.dispatch}
                         onError={this.handleError}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
             <hr />
@@ -156,6 +162,7 @@ class Psychological extends SectionElement {
                           {...this.props.Consultations}
                           ApplicantBirthDate={this.props.ApplicantBirthDate}
                           defaultState={false}
+                          dispatch={this.props.dispatch}
                           onError={this.handleError}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
             <hr />
@@ -163,6 +170,7 @@ class Psychological extends SectionElement {
                               {...this.props.Hospitalizations}
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               defaultState={false}
+                              dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
             <hr />
@@ -170,6 +178,7 @@ class Psychological extends SectionElement {
                        {...this.props.Diagnoses}
                        ApplicantBirthDate={this.props.ApplicantBirthDate}
                        defaultState={false}
+                       dispatch={this.props.dispatch}
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
@@ -180,6 +189,7 @@ class Psychological extends SectionElement {
                                     {...this.props.ExistingConditions}
                                     ApplicantBirthDate={this.props.ApplicantBirthDate}
                                     defaultState={false}
+                                    dispatch={this.props.dispatch}
                                     onError={this.handleError}
                                     onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
                                     />
@@ -214,8 +224,6 @@ function mapStateToProps (state) {
 }
 
 Psychological.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'intro',
   store: 'Psychological'
 }

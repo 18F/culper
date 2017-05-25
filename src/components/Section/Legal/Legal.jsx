@@ -116,18 +116,21 @@ class Legal extends SectionElement {
 
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
                       />
 
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
                            />
 
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
+                                  dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   />
@@ -151,6 +154,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.additionalOffenses')}>
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
                       />
@@ -163,6 +167,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.domesticViolence')}>
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
                            />
@@ -175,6 +180,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.review')}>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
+                                  dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   />
@@ -204,8 +210,6 @@ function mapStateToProps (state) {
 }
 
 Legal.defaultProps = {
-  section: '',
-  subsection: '',
   defaultView: 'police',
   store: 'Legal'
 }

@@ -2,10 +2,11 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { DateSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
 import { ValidationElement, Branch, Show, Accordion, Field,
          Text, Textarea, Name, Country, DateRange, Address } from '../../../Form'
 
-export default class Ventures extends ValidationElement {
+export default class Ventures extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -40,33 +41,6 @@ export default class Ventures extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  // /**
-  //  * Handle the validation event.
-  //  */
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
-  // isValid () {
-  //   return new ForeignBusinessVenturesValidator(this.state, null).isValid()
-  // }
-
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
@@ -92,7 +66,7 @@ export default class Ventures extends ValidationElement {
                 help="foreign.business.ventures.help.branch"
                 value={this.state.HasForeignVentures}
                 onUpdate={this.updateHasForeignVentures}
-                onError={this.props.onError}>
+                onError={this.handleError}>
           {i18n.m('foreign.business.ventures.para.branch')}
         </Branch>
 
@@ -101,7 +75,7 @@ export default class Ventures extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.ventures.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.ventures.collection.appendTitle')}
@@ -207,5 +181,11 @@ Ventures.defaultProps = {
   HasForeignVentures: '',
   List: [],
   ListBranch: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/ventures',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessVenturesValidator(state, props).isValid()
+  }
 }
