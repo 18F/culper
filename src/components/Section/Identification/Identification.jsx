@@ -4,8 +4,10 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IdentificationValidator } from '../../../validators'
-import { IntroHeader, Name, SSN, BirthPlace } from '../../Form'
+import { IntroHeader } from '../../Form'
+import ApplicantName from './ApplicantName'
+import ApplicantSSN from './ApplicantSSN'
+import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
@@ -39,12 +41,12 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.physical')}>
 
             <h2>{i18n.t('identification.name.title')}</h2>
-            <Name name="name"
-                  {...this.props.ApplicantName}
-                  dispatch={this.props.dispatch}
-                  onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
-                  onError={this.handleError}
-                  />
+            <ApplicantName name="name"
+                           value={this.props.ApplicantName}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
+                           onError={this.handleError}
+                           />
 
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
@@ -63,12 +65,12 @@ class Identification extends SectionElement {
                                 />
 
             <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <BirthPlace name="birthplace"
-                        {...this.props.ApplicantBirthPlace}
-                        dispatch={this.props.dispatch}
-                        onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
-                        onError={this.handleError}
-                        />
+            <ApplicantBirthPlace name="birthplace"
+                                 value={this.props.ApplicantBirthPlace}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onError={this.handleError}
+                                 />
 
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
@@ -79,12 +81,12 @@ class Identification extends SectionElement {
                                 />
 
             <h2>{i18n.t('identification.ssn.title')}</h2>
-            <SSN name="ssn"
-                 {...this.props.ApplicantSSN}
-                 dispatch={this.props.dispatch}
-                 onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
-                 onError={this.handleError}
-                 />
+            <ApplicantSSN name="ssn"
+                          value={this.props.ApplicantSSN}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
+                          onError={this.handleError}
+                          />
 
             <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
@@ -99,12 +101,12 @@ class Identification extends SectionElement {
                        next="identification/contacts"
                        nextLabel={i18n.t('identification.destination.contacts')}>
             <h2>{i18n.t('identification.name.title')}</h2>
-            <Name name="name"
-                  {...this.props.ApplicantName }
-                  dispatch={this.props.dispatch}
-                  onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
-                  onError={this.handleError}
-                  />
+            <ApplicantName name="name"
+                           value={this.props.ApplicantName}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
+                           onError={this.handleError}
+                           />
           </SectionView>
 
           <SectionView name="othernames"
@@ -141,12 +143,12 @@ class Identification extends SectionElement {
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
             <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <BirthPlace name="birthplace"
-                        {...this.props.ApplicantBirthPlace}
-                        dispatch={this.props.dispatch}
-                        onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
-                        onError={this.handleError}
-                        />
+            <ApplicantBirthPlace name="birthplace"
+                                 value={this.props.ApplicantBirthPlace}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onError={this.handleError}
+                                 />
           </SectionView>
 
           <SectionView name="contacts"
@@ -169,12 +171,12 @@ class Identification extends SectionElement {
                        next="identification/physical"
                        nextLabel={i18n.t('identification.destination.physical')}>
             <h2>{i18n.t('identification.ssn.title')}</h2>
-            <SSN name="ssn"
-                 {...this.props.ApplicantSSN}
-                 dispatch={this.props.dispatch}
-                 onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
-                 onError={this.handleError}
-                 />
+            <ApplicantSSN name="ssn"
+                          value={this.props.ApplicantSSN}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
+                          onError={this.handleError}
+                          />
           </SectionView>
 
           <SectionView name="physical"

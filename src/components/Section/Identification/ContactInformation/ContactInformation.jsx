@@ -1,11 +1,13 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
-import { ValidationElement, Field, Email, Accordion, Telephone } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Email, Accordion, Telephone } from '../../../Form'
 
-export default class ContactInformation extends ValidationElement {
+export default class ContactInformation extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Emails: props.Emails || [],
       PhoneNumbers: props.PhoneNumbers || []
@@ -29,10 +31,6 @@ export default class ContactInformation extends ValidationElement {
         })
       }
     })
-  }
-
-  isValid () {
-    return new ContactInformationValidator(this.state, null).isValid()
   }
 
   /**
@@ -101,7 +99,7 @@ export default class ContactInformation extends ValidationElement {
           <Accordion minimum="2"
                      items={this.state.Emails}
                      onUpdate={this.contactDispatch.bind(this, 'Emails')}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      summary={this.emailSummary}
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
@@ -122,7 +120,7 @@ export default class ContactInformation extends ValidationElement {
           <Accordion minimum="2"
                      items={this.state.PhoneNumbers}
                      onUpdate={this.contactDispatch.bind(this, 'PhoneNumbers')}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
@@ -142,5 +140,11 @@ export default class ContactInformation extends ValidationElement {
 ContactInformation.defaultProps = {
   Emails: [],
   PhoneNumbers: [],
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'identification',
+  subsection: 'contacts',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ContactInformationValidator(state, props).isValid()
+  }
 }

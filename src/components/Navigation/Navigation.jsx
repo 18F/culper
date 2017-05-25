@@ -48,14 +48,6 @@ class Navigation extends React.Component {
    * Determine if the route is considered complete and valid
    */
   isValid (route, pathname) {
-    // const crumbs = route.replace('/form/', '').split('/')
-    // return new NavigationValidator(null,
-    //   {
-    //     completed: this.props.completed,
-    //     crumbs: crumbs
-    //   })
-    //   .isValid()
-
     const crumbs = route.replace('/form/', '').split('/')
 
     for (const section in this.props.completed) {
@@ -127,6 +119,7 @@ class Navigation extends React.Component {
         <div key={subsection.name} className="subsection" >
           <Link to={subUrl} className={subClass}>
             <span className="name">{subsection.name}</span>
+            <span className="eapp-status-icon-valid"></span>
             <span className="eapp-status-icon-error"></span>
           </Link>
           { childSubsections }

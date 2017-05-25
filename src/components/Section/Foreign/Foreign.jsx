@@ -27,53 +27,6 @@ class Foreign extends SectionElement {
     this.updateConferences = this.updateConferences.bind(this)
   }
 
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = 'neutral'
-  //   if (this.hasStatus('passport', status, true) &&
-  //       this.hasStatus('contacts', status, true) &&
-  //       this.hasStatus('directActivity', status, true) &&
-  //       this.hasStatus('indirectActivity', status, true) &&
-  //       this.hasStatus('realEstateActivity', status, true) &&
-  //       this.hasStatus('benefitActivity', status, true) &&
-  //       this.hasStatus('advice', status, true) &&
-  //       this.hasStatus('family', status, true) &&
-  //       this.hasStatus('employment', status, true) &&
-  //       this.hasStatus('ventures', status, true) &&
-  //       this.hasStatus('conferences', status, true)) {
-  //     cstatus = 'complete'
-  //   } else if (this.hasStatus('passport', status, false) ||
-  //              this.hasStatus('contacts', status, false) ||
-  //              this.hasStatus('directActivity', status, false) ||
-  //              this.hasStatus('indirectActivity', status, false) ||
-  //              this.hasStatus('realEstateActivity', status, false) ||
-  //              this.hasStatus('benefitActivity', status, false) ||
-  //              this.hasStatus('advice', status, false) ||
-  //              this.hasStatus('family', status, false) ||
-  //              this.hasStatus('employment', status, false) ||
-  //              this.hasStatus('ventures', status, false) ||
-  //              this.hasStatus('conferences', status, false)) {
-  //     cstatus = 'incomplete'
-  //   }
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
   updatePassport (values) {
     this.handleUpdate('Passport', values)
   }

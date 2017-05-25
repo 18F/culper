@@ -14,53 +14,6 @@ import Delinquent from './Delinquent'
 import Nonpayment from './Nonpayment'
 
 class Financial extends SectionElement {
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = 'neutral'
-  //   if (this.hasStatus('gambling', status, true) &&
-  //       this.hasStatus('bankruptcy', status, true) &&
-  //       this.hasStatus('taxes', status, true) &&
-  //       this.hasStatus('card', status, true) &&
-  //       this.hasStatus('credit', status, true) &&
-  //       this.hasStatus('nonpayment', status, true)) {
-  //     cstatus = 'complete'
-  //   } else if (this.hasStatus('gambling', status, false) ||
-  //              this.hasStatus('bankruptcy', status, false) ||
-  //              this.hasStatus('taxes', status, false) ||
-  //              this.hasStatus('card', status, false) ||
-  //              this.hasStatus('credit', status, false) ||
-  //              this.hasStatus('nonpayment', status, false)) {
-  //     cstatus = 'incomplete'
-  //   }
-
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
-  // /**
-  //  * Helper to test whether a subsection is complete
-  //  */
-  // hasStatus (property, status, val) {
-  //   return (this.props.Completed[property] && this.props.Completed[property].status === val)
-  //     || (status && status[property] && status[property].status === val)
-  // }
-
   render () {
     return (
       <div>

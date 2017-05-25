@@ -1,8 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, DateControl } from '../../../Form'
+import { validDateField } from '../../../../validators/helpers'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, DateControl } from '../../../Form'
 
-export default class ApplicantBirthDate extends ValidationElement {
+export default class ApplicantBirthDate extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -20,7 +22,6 @@ export default class ApplicantBirthDate extends ValidationElement {
    */
   onUpdate (value) {
     this.setState({ value: value.date }, () => {
-      this.handleValidation({}, null, null)
       if (this.props.onUpdate) {
         this.props.onUpdate({
           month: value.month,
@@ -35,11 +36,11 @@ export default class ApplicantBirthDate extends ValidationElement {
   handleError (value, arr) {
     const then = new Date(this.state.value)
     if (isNaN(then.getFullYear()) || then.getFullYear() < 1000) {
-      return this.props.onError(value, arr)
+      return super.handleError(value, arr)
     }
 
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+    return super.handleError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
         valid: err.func(then, this.props)
@@ -68,7 +69,13 @@ export default class ApplicantBirthDate extends ValidationElement {
 }
 
 ApplicantBirthDate.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'identification',
+  subsection: 'birthdate',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return validDateField(state.value)
+  }
 }
 
 ApplicantBirthDate.errors = [

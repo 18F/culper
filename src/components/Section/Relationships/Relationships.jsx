@@ -23,34 +23,6 @@ class Relationships extends SectionElement {
     this.updateSpouse = this.updateSpouse.bind(this)
   }
 
-  // componentWillReceiveProps (props) {
-  //   if (props.subsection === 'status') {
-  //     this.props.dispatch(push(`/form/relationships/status/marital`))
-  //   }
-  // }
-
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // handleValidation (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-  //   const cstatus = new RelationshipsValidator(null, this.props).completionStatus(status)
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
   updateMarital (values) {
     this.handleUpdate('Marital', values)
   }

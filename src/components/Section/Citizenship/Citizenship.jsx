@@ -9,45 +9,6 @@ import Status from './Status'
 import Multiple from './Multiple'
 
 class Citizenship extends SectionElement {
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = 'neutral'
-  //   if (this.hasStatus('status', status, true) &&
-  //       this.hasStatus('multiple', status, true)) {
-  //     cstatus = 'complete'
-  //   } else if (this.hasStatus('status', status, false) ||
-  //              this.hasStatus('multiple', status, false)) {
-  //     cstatus = 'incomplete'
-  //   }
-
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
-  // /**
-  //  * Helper to test whether a subsection is complete
-  //  */
-  // hasStatus (property, status, val) {
-  //   return (this.props.Completed[property] && this.props.Completed[property].status === val)
-  //     || (status && status[property] && status[property].status === val)
-  // }
-
   render () {
     return (
       <div>

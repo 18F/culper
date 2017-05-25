@@ -14,29 +14,6 @@ import PsychologicalValidator, { showQuestion21E } from '../../../validators/psy
 import { extractApplicantBirthDate } from '../extractors'
 
 class Psychological extends SectionElement {
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = new PsychologicalValidator(null, this.props).completionStatus(status)
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
   diagnosesNextLabel () {
     if (this.props.ShowExistingConditions) {
       return i18n.t('psychological.destination.existingConditions')

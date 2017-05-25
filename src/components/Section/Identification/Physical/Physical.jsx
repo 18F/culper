@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PhysicalValidator } from '../../../../validators'
-import { ValidationElement, Field, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
 
-export default class Physical extends ValidationElement {
+export default class Physical extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -32,10 +33,6 @@ export default class Physical extends ValidationElement {
     })
   }
 
-  isValid () {
-    return new PhysicalValidator(this.state, null).isValid()
-  }
-
   render () {
     const klass = `physical ${this.props.className || ''}`.trim()
 
@@ -48,7 +45,7 @@ export default class Physical extends ValidationElement {
           <Height name="height"
                   {...this.props.Height}
                   onUpdate={this.handleUpdate.bind(this, 'Height')}
-                  onError={this.props.onError}
+                  onError={this.handleError}
                   />
         </Field>
 
@@ -59,7 +56,7 @@ export default class Physical extends ValidationElement {
           <Weight name="weight"
                   value={this.props.Weight}
                   onUpdate={this.handleUpdate.bind(this, 'Weight')}
-                  onError={this.props.onError}
+                  onError={this.handleError}
                   />
         </Field>
 
@@ -71,7 +68,7 @@ export default class Physical extends ValidationElement {
                      className=""
                      value={this.props.HairColor}
                      onUpdate={this.handleUpdate.bind(this, 'HairColor')}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      />
         </Field>
 
@@ -82,7 +79,7 @@ export default class Physical extends ValidationElement {
                     className=""
                     value={this.props.EyeColor}
                     onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
-                    onError={this.props.onError}
+                    onError={this.handleError}
                     />
         </Field>
 
@@ -94,7 +91,7 @@ export default class Physical extends ValidationElement {
           <Sex name="sex"
                value={this.props.Sex}
                onUpdate={this.handleUpdate.bind(this, 'Sex')}
-               onError={this.props.onError}
+               onError={this.handleError}
                />
         </Field>
       </div>
@@ -108,5 +105,12 @@ Physical.defaultProps = {
   HairColor: [],
   EyeColor: [],
   Sex: {},
-  Comments: {}
+  Comments: {},
+  onError: (value, arr) => { return arr },
+  section: 'identification',
+  subsection: 'physical',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new PhysicalValidator(state, props).isValid()
+  }
 }

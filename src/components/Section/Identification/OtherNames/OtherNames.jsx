@@ -2,9 +2,10 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NameSummary, DateSummary } from '../../../Summary'
 import { OtherNamesValidator } from '../../../../validators'
-import { ValidationElement, Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
-export default class OtherNames extends ValidationElement {
+export default class OtherNames extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -16,17 +17,12 @@ export default class OtherNames extends ValidationElement {
     this.myDispatch = this.myDispatch.bind(this)
   }
 
-  isValid () {
-    return new OtherNamesValidator(this.state, null).isValid()
-  }
-
   onUpdate (val, event) {
     this.setState({ HasOtherNames: val }, () => {
       this.myDispatch({
         items: val === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -68,13 +64,13 @@ export default class OtherNames extends ValidationElement {
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
                 onUpdate={this.onUpdate.bind(this)}
-                onError={this.props.onError}>
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasOtherNames === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      onUpdate={this.myDispatch}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
@@ -120,5 +116,11 @@ export default class OtherNames extends ValidationElement {
 OtherNames.defaultProps = {
   List: [],
   HasOtherNames: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  section: 'identification',
+  subsection: 'othernames',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new OtherNamesValidator(state, props).isValid()
+  }
 }

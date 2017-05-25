@@ -23,41 +23,6 @@ class Legal extends SectionElement {
     this.updatePoliceDomesticViolence = this.updatePoliceDomesticViolence.bind(this)
   }
 
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = 'neutral'
-  //   if (this.hasStatus('offenses', status, true) &&
-  //     this.hasStatus('otheroffenses', status, true) &&
-  //     this.hasStatus('domesticviolence', status, true)
-  //   ) {
-  //     cstatus = 'complete'
-  //   } else if (this.hasStatus('offenses', status, false) ||
-  //     this.hasStatus('otheroffenses', status, false) ||
-  //     this.hasStatus('domesticviolence', status, false)
-  //   ) {
-  //     cstatus = 'incomplete'
-  //   }
-
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
   updatePolice (values) {
     this.handleUpdate('Police', values)
   }
@@ -73,14 +38,6 @@ class Legal extends SectionElement {
   updatePoliceDomesticViolence (values) {
     this.handleUpdate('PoliceDomesticViolence', values)
   }
-
-  // /**
-  //  * Helper to test whether a subsection is complete
-  //  */
-  // hasStatus (property, status, val) {
-  //   return (this.props.Completed[property] && this.props.Completed[property].status === val)
-  //     || (status && status[property] && status[property].status === val)
-  // }
 
   render () {
     return (

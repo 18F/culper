@@ -20,41 +20,6 @@ class Military extends SectionElement {
     this.updateForeign = this.updateForeign.bind(this)
   }
 
-  // /**
-  //  * Report errors and completion status
-  //  */
-  // onValidate (event, status, errorCodes) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   if (!event.fake) {
-  //     let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-  //     this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-  //   }
-
-  //   let cstatus = 'neutral'
-  //   if (this.hasStatus('selective', status, true)
-  //       && this.hasStatus('history', status, true)
-  //       && this.hasStatus('disciplinary', status, true)
-  //       && this.hasStatus('foreign', status, true)) {
-  //     cstatus = 'complete'
-  //   } else if (this.hasStatus('selective', status, false)
-  //              || this.hasStatus('history', status, false)
-  //              || this.hasStatus('disciplinary', status, false)
-  //              || this.hasStatus('foreign', status, false)) {
-  //     cstatus = 'incomplete'
-  //   }
-
-  //   let completed = {
-  //     ...this.props.Completed,
-  //     ...status,
-  //     status: cstatus
-  //   }
-
-  //   this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  // }
-
   updateSelective (values) {
     this.onUpdate('Selective', values)
   }
@@ -70,14 +35,6 @@ class Military extends SectionElement {
   updateForeign (values) {
     this.onUpdate('Foreign', values)
   }
-
-  // /**
-  //  * Helper to test whether a subsection is complete
-  //  */
-  // hasStatus (property, status, val) {
-  //   return (this.props.Completed[property] && this.props.Completed[property].status === val)
-  //     || (status && status[property] && status[property].status === val)
-  // }
 
   render () {
     return (
