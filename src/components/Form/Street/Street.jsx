@@ -28,15 +28,6 @@ export default class Street extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
-    })
-  }
-
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -61,12 +52,10 @@ export default class Street extends ValidationElement {
             label={this.props.label}
             placeholder={this.props.placeholder}
             value={this.state.value}
-            error={this.state.error}
-            valid={this.state.valid}
             onChange={this.handleChange}
             onError={this.handleError}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
             />
     )
   }

@@ -64,7 +64,6 @@ export default class SSN extends ValidationElement {
     if (updated != null) {
       this.setState(updated, () => {
         super.handleChange(event)
-        // super.handleValidation(event, null, this.state.errorCodes)
         if (this.props.onUpdate) {
           this.props.onUpdate({
             first: this.state.first,

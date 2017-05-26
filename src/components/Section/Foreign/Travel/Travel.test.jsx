@@ -27,7 +27,10 @@ describe('The foreign travel component', () => {
     const expected = {
       name: 'foreign-travel',
       HasForeignTravelOutside: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Travel {...expected} />)
     component.find('.branch .yes input').at(1).simulate('change')

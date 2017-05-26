@@ -48,26 +48,6 @@ export default class Hospitalization extends ValidationElement {
     this.update('Explanation', values)
   }
 
-  // isValid () {
-  //   return new HospitalizationValidator(this.props).isValid()
-  // }
-
-  // handleValidation (event, status, error) {
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
   render () {
     return (
       <div className="hospitalization">

@@ -65,13 +65,6 @@ export default class Number extends ValidationElement {
   }
 
   handleError (value, arr) {
-    // arr = arr.map(err => {
-    //   return {
-    //     code: `number.${err.code}`,
-    //     valid: err.valid
-    //   }
-    // })
-
     // Take the original and concatenate our new error values to it
     return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {

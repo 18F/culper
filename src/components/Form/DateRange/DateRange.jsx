@@ -84,7 +84,6 @@ export default class DateRange extends ValidationElement {
       this.refs.to.refs.day.refs.number.refs.input.blur()
       this.refs.to.refs.year.refs.number.refs.input.focus()
       this.refs.to.refs.year.refs.number.refs.input.blur()
-      // this.handleValidation(event, null, null)
 
       if (this.props.onUpdate) {
         this.props.onUpdate({

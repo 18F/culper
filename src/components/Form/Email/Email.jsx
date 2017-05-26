@@ -29,24 +29,6 @@ export default class Email extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
-  }
-
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -77,12 +59,9 @@ export default class Email extends ValidationElement {
                readonly={this.props.readonly}
                required={this.props.required}
                value={this.state.value}
-               focus={this.state.focus}
-               error={this.state.error}
-               valid={this.state.valid}
                onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
+               onFocus={this.props.Focus}
+               onBlur={this.props.Blur}
                onError={this.handleError}
                />
     )

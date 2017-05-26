@@ -2,18 +2,13 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { DateSummary } from '../../../Summary'
 import { ForeignTravelValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import TravelQuestions from './TravelQuestions'
 
-export default class Travel extends ValidationElement {
+export default class Travel extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      error: props.error,
-      valid: props.valid,
-      errorCodes: []
-    }
 
     this.updateHasForeignTravelOutside = this.updateHasForeignTravelOutside.bind(this)
     this.updateHasForeignTravelOfficial = this.updateHasForeignTravelOfficial.bind(this)
@@ -56,33 +51,6 @@ export default class Travel extends ValidationElement {
     ])
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignTravelValidator(this.state, this.props).isValid()
-  }
-
   summary (item, index) {
     const obj = (item || {}).Item || {}
     const country = (obj.Country || {}).value || i18n.t('foreign.travel.collection.summary.unknown')
@@ -107,7 +75,7 @@ export default class Travel extends ValidationElement {
                 help="foreign.travel.help.outside"
                 value={this.props.HasForeignTravelOutside}
                 onUpdate={this.updateHasForeignTravelOutside}
-                onValidate={this.props.onValidate}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.HasForeignTravelOutside === 'Yes'}>
@@ -118,7 +86,7 @@ export default class Travel extends ValidationElement {
                   help="foreign.travel.help.official"
                   value={this.props.HasForeignTravelOfficial}
                   onUpdate={this.updateHasForeignTravelOfficial}
-                  onValidate={this.props.onValidate}>
+                  onError={this.handleError}>
           </Branch>
         </Show>
 
@@ -127,7 +95,7 @@ export default class Travel extends ValidationElement {
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.travel.collection.summary.title')}
                      appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
@@ -146,6 +114,11 @@ Travel.defaultProps = {
   HasForeignTravelOfficial: '',
   List: [],
   ListBranch: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'travel',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignTravelValidator(state, props).isValid()
+  }
 }

@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { DateSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import { Branch, Show, Accordion, Field,
          Text, Textarea, Name, Country, DateRange, Address } from '../../../Form'
 
 export default class Ventures extends SubsectionElement {
