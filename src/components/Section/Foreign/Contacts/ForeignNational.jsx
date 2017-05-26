@@ -566,7 +566,7 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Show when={this.state.HasAffiliations === 'Yes'}>
-          <Field title={i18n.t('foreign.contacts.heading.affiliations')}
+          <Field title={i18n.t('foreign.contacts.heading.affiliations')}>
             <Textarea name="Affiliations"
                       className="affiliations"
                       {...this.state.Affiliations}
