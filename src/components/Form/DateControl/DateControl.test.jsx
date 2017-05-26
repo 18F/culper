@@ -15,7 +15,7 @@ describe('The date component', () => {
       valid: false
     }
     const component = mount(<DateControl {...expected} />)
-    expect(component.find('input#day').length).toEqual(1)
+    expect(component.find('.day input').length).toEqual(1)
   })
 
   it('renders appropriately with focus', () => {
@@ -27,10 +27,10 @@ describe('The date component', () => {
       valid: false
     }
     const component = mount(<DateControl {...expected} />)
-    component.find('input#day').simulate('focus')
+    component.find('.day input').simulate('focus')
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#day').hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.day input').hasClass('usa-input-focus')).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -43,13 +43,13 @@ describe('The date component', () => {
     const component = mount(<DateControl {...expected} />)
 
     // For validation
-    component.find('input#day').simulate('focus')
-    component.find('input#day').simulate('blur')
+    component.find('.day input').simulate('focus')
+    component.find('.day input').simulate('blur')
 
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#day').nodes[0].value).toEqual('28')
-    expect(component.find('input#day').hasClass('usa-input-success')).toEqual(true)
+    expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.day input').nodes[0].value).toEqual('28')
+    expect(component.find('.day input').hasClass('usa-input-success')).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -63,7 +63,7 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
+    expect(component.find('.day input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -78,10 +78,10 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#month').nodes[0].value).toEqual('1 (January)')
-    expect(component.find('input#day').nodes[0].value).toEqual('28')
-    expect(component.find('input#year').nodes[0].value).toEqual('2016')
+    expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.month input').nodes[0].value).toEqual('1 (January)')
+    expect(component.find('.day input').nodes[0].value).toEqual('28')
+    expect(component.find('.year input').nodes[0].value).toEqual('2016')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -96,10 +96,10 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#month').nodes[0].value).toEqual('')
-    expect(component.find('input#day').nodes[0].value).toEqual('')
-    expect(component.find('input#year').nodes[0].value).toEqual('')
+    expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.month input').nodes[0].value).toEqual('')
+    expect(component.find('.day input').nodes[0].value).toEqual('')
+    expect(component.find('.year input').nodes[0].value).toEqual('')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -120,8 +120,8 @@ describe('The date component', () => {
       }
     }
     const component = mount(<DateControl {...expected} />)
-    component.find('input#year').simulate('change')
-    component.find('input#year').simulate('blur')
+    component.find('.year input').simulate('change')
+    component.find('.year input').simulate('blur')
     expect(errors).toBeGreaterThan(2)
   })
 
@@ -137,15 +137,15 @@ describe('The date component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<DateControl {...expected} />)
-    component.find('input#month').simulate('focus')
-    component.find('input#month').simulate('change', { target: { value: '1' } })
-    component.find('input#month').simulate('blur')
-    component.find('input#day').simulate('change', { target: { value: '10' } })
-    component.find('input#day').simulate('focus')
-    component.find('input#day').simulate('blur')
-    component.find('input#year').simulate('change', { target: { value: '1999' } })
-    component.find('input#year').simulate('focus')
-    component.find('input#year').simulate('blur')
+    component.find('.month input').simulate('focus')
+    component.find('.month input').simulate('change', { target: { value: '1' } })
+    component.find('.month input').simulate('blur')
+    component.find('.day input').simulate('change', { target: { value: '10' } })
+    component.find('.day input').simulate('focus')
+    component.find('.day input').simulate('blur')
+    component.find('.year input').simulate('change', { target: { value: '1999' } })
+    component.find('.year input').simulate('focus')
+    component.find('.year input').simulate('blur')
     expect(updates).toBe(3)
   })
 
@@ -167,8 +167,8 @@ describe('The date component', () => {
       }
     }
     const component = mount(<DateControl {...expected} />)
-    component.find('input#year').simulate('change')
-    component.find('input#year').simulate('blur')
+    component.find('.year input').simulate('change')
+    component.find('.year input').simulate('blur')
     expect(errors).toBeGreaterThan(2)
     component.setProps({value: '1-1-2009'})
     expect(errors).toBeGreaterThan(2)
@@ -184,10 +184,10 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#month').nodes[0].value).toEqual('')
-    expect(component.find('input#day').nodes[0].value).toEqual('')
-    expect(component.find('input#year').nodes[0].value).toEqual('')
+    expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.month input').nodes[0].value).toEqual('')
+    expect(component.find('.day input').nodes[0].value).toEqual('')
+    expect(component.find('.year input').nodes[0].value).toEqual('')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -202,10 +202,10 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
-    expect(component.find('input#day').length).toEqual(1)
-    expect(component.find('input#month').nodes[0].value).toEqual('')
-    expect(component.find('input#day').nodes[0].value).toEqual('')
-    expect(component.find('input#year').nodes[0].value).toEqual('')
+    expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.month input').nodes[0].value).toEqual('')
+    expect(component.find('.day input').nodes[0].value).toEqual('')
+    expect(component.find('.year input').nodes[0].value).toEqual('')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 

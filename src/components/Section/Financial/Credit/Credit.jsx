@@ -100,7 +100,6 @@ export default class Credit extends ValidationElement {
         <Branch name="has_credit"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
-                help="financial.credit.help.branch"
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
@@ -122,8 +121,7 @@ export default class Credit extends ValidationElement {
                         />
             </Field>
 
-            <Field title={i18n.t('financial.credit.heading.name')}
-                   help="financial.credit.help.name">
+            <Field title={i18n.t('financial.credit.heading.name')}>
               <Text name="Name"
                     className="credit-name"
                     bind={true}

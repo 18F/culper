@@ -162,7 +162,7 @@ class History extends ValidationElement {
   updateEducation (values) {
     let education = this.props.Education || {}
     education.List = values.items
-    this.onUpdate('Education', education.items)
+    this.onUpdate('Education', education)
   }
 
   updateBranchAttendance (values) {

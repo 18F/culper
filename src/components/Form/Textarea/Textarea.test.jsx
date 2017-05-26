@@ -12,7 +12,7 @@ describe('The textarea component', () => {
       valid: false
     }
     const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
-    expect(component.find('textarea#' + expected.name).length).toEqual(1)
+    expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -26,8 +26,8 @@ describe('The textarea component', () => {
     }
     const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('textarea#' + expected.name).length).toEqual(1)
-    expect(component.find('textarea#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('textarea').length).toEqual(1)
+    expect(component.find('textarea').hasClass('usa-input-focus')).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -41,7 +41,7 @@ describe('The textarea component', () => {
     }
     const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('textarea#' + expected.name).length).toEqual(1)
+    expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -55,7 +55,7 @@ describe('The textarea component', () => {
     }
     const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('textarea#' + expected.name).length).toEqual(1)
+    expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 

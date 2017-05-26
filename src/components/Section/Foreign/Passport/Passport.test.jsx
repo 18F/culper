@@ -9,9 +9,9 @@ describe('The passport component', () => {
     }
     const component = mount(<Passport name={expected.name} />)
     expect(component.find('input[name="has_passport"]').length).toEqual(2)
-    expect(component.find('input#first').length).toEqual(0)
-    expect(component.find('input#number').length).toEqual(0)
-    expect(component.find('input#month').length).toEqual(0)
+    expect(component.find('.first input').length).toEqual(0)
+    expect(component.find('.number input').length).toEqual(0)
+    expect(component.find('.month input').length).toEqual(0)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -22,8 +22,8 @@ describe('The passport component', () => {
     const component = mount(<Passport {...expected} />)
     component.find({type: 'radio', name: 'has_passport', value: 'Yes'}).simulate('change')
     expect(component.find('input[name="has_passport"]').length).toEqual(2)
-    expect(component.find('input#number').length).toEqual(1)
-    expect(component.find('input#month').length).toEqual(2)
+    expect(component.find('.number input').length).toEqual(1)
+    expect(component.find('.month input').length).toEqual(2)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -33,9 +33,9 @@ describe('The passport component', () => {
     }
     const component = mount(<Passport name={expected.name} HasPassport="No" />)
     expect(component.find('input[name="has_passport"]').length).toEqual(2)
-    expect(component.find('input#first').length).toEqual(0)
-    expect(component.find('input#number').length).toEqual(0)
-    expect(component.find('input#month').length).toEqual(0)
+    expect(component.find('.first input').length).toEqual(0)
+    expect(component.find('.number input').length).toEqual(0)
+    expect(component.find('.month input').length).toEqual(0)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 

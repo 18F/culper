@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Name, Textarea, DateControl,
-         CheckboxGroup, Checkbox, RadioGroup, Radio, Country, BirthPlace,
+         CheckboxGroup, Checkbox, RadioGroup, Radio, Country, InternationalBirthPlace,
          Address, Text, NotApplicable, Show, BranchCollection } from '../../../Form'
 
 export default class ForeignNational extends ValidationElement {
@@ -323,7 +323,6 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               help="foreign.contacts.help.frequency"
                adjustFor="big-buttons">
           <RadioGroup className="frequency"
                       selectedValue={this.state.Frequency}>
@@ -384,7 +383,6 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               help="foreign.contacts.help.relationship"
                adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
@@ -454,7 +452,6 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthdate')}
-               help="foreign.contacts.help.birthdate"
                adjustFor="label">
           <NotApplicable name="BirthdateNotApplicable"
                          className="na-birthdate"
@@ -471,7 +468,6 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthplace')}
-               help="foreign.contacts.help.birthplace"
                adjustFor="label">
           <NotApplicable name="BirthplaceNotApplicable"
                          className="na-birthplace"
@@ -479,10 +475,7 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          onUpdate={this.updateBirthplaceNotApplicable}
                          onValidate={this.props.onValidate}>
-            <BirthPlace name="Birthplace"
-                        help=""
-                        branch={false}
-                        disabledState={true}
+            <InternationalBirthPlace name="Birthplace"
                         className="birthplace"
                         {...this.state.Birthplace}
                         onUpdate={this.updateBirthplace}
@@ -492,7 +485,6 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
-               help="foreign.contacts.help.address"
                adjustFor="address">
           <NotApplicable name="AddressNotApplicable"
                          className="na-address"
@@ -509,8 +501,7 @@ export default class ForeignNational extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('foreign.contacts.heading.employer')}
-               help="foreign.contacts.help.employer">
+        <Field title={i18n.t('foreign.contacts.heading.employer')}>
           <NotApplicable name="EmployerNotApplicable"
                          className="na-employer"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -527,7 +518,6 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
-               help="foreign.contacts.help.employeraddress"
                adjustFor="address">
           <NotApplicable name="EmployerAddressNotApplicable"
                          className="na-employer-address"
@@ -545,7 +535,6 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.hasaffiliations')}
-               help="foreign.contacts.help.hasaffiliations"
                adjustFor="buttons">
           <RadioGroup className="has-affiliations"
                       selectedValue={this.state.HasAffiliations}>
@@ -574,8 +563,7 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Show when={this.state.HasAffiliations === 'Yes'}>
-          <Field title={i18n.t('foreign.contacts.heading.affiliations')}
-                 help="foreign.contacts.help.affiliations">
+          <Field title={i18n.t('foreign.contacts.heading.affiliations')}>
             <Textarea name="Affiliations"
                       className="affiliations"
                       {...this.state.Affiliations}

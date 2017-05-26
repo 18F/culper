@@ -107,7 +107,6 @@ export default class Card extends ValidationElement {
         <Branch name="has_cardabuse"
                 className="card-branch"
                 value={this.state.HasCardAbuse}
-                help="financial.card.help.branch"
                 onUpdate={this.updateBranch}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
@@ -121,8 +120,7 @@ export default class Card extends ValidationElement {
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 
-            <Field title={i18n.t('financial.card.heading.agency')}
-                   help="financial.card.help.agency">
+            <Field title={i18n.t('financial.card.heading.agency')}>
               <Text name="Agency"
                     className="card-agency"
                     bind={true}
@@ -139,7 +137,6 @@ export default class Card extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.card.heading.date')}
-                   help="financial.card.help.date"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="Date"
@@ -149,16 +146,14 @@ export default class Card extends ValidationElement {
                            />
             </Field>
 
-            <Field title={i18n.t('financial.card.heading.reason')}
-                   help="financial.card.help.reason">
+            <Field title={i18n.t('financial.card.heading.reason')}>
               <Textarea name="Reason"
                         className="card-reason"
                         bind={true}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.card.heading.amount')}
-                   help="financial.card.help.amount">
+            <Field title={i18n.t('financial.card.heading.amount')}>
               <div>
                 <Currency name="Amount"
                           className="card-amount"

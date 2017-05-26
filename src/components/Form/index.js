@@ -45,7 +45,7 @@ import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
 import SSN from './SSN'
-import BirthPlace from './BirthPlace'
+import BirthPlace, { DomesticBirthPlace, InternationalBirthPlace } from './BirthPlace'
 import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
 import Currency from './Currency'
 
@@ -93,6 +93,8 @@ export {
   Field,
   SSN,
   BirthPlace,
+  DomesticBirthPlace,
+  InternationalBirthPlace,
   ForeignBornDocuments,
   Currency
 }

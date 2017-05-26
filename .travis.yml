@@ -30,15 +30,15 @@ after_script:
   - npm install -g pa11y-crawl
   - pa11y-crawl --run "docker-compose up" --ci http://localhost:8080
 
-before_deploy:
-  - ./bin/predeploy.sh
+# before_deploy:
+#   - ./bin/predeploy.sh
 
 deploy:
   - provider: script
-    script: "./bin/deploy.sh development"
+    script: "./bin/deploy.sh dev"
     skip_cleanup: true
     on:
-      branch: development
+      branch: develop
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh staging"
