@@ -5517,7 +5517,7 @@ const en = {
         birthplace: 'Provide place of birth',
         address: 'Provide current address',
         employer: 'Provide the name of the foreign national\'s current employer, or provide the name of their most recent employer if not currently employed',
-        employeraddress: 'Provid the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
+        employeraddress: 'Provide the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
         hasaffiliations: 'Is this foreign national affiliated with a foreign government, military, security, defense industry, or intelligence service?',
         affiliations: 'Describe the contact\'s relationship with the foreign government, military, security, defense industry, or intelligence service',
         explanation: 'Explanation'
@@ -5566,18 +5566,18 @@ const en = {
         },
         firstcontact: {
           title: 'Need help with the date of your first contact?',
-          message: 'Provide the approximate date of our first contact with the individual',
-          note: ''
+          message: 'Let us know when you first met this person.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         lastcontact: {
           title: 'Need help with the date of your last contact?',
-          message: 'Provide the approximate date of the last contact you had with the individual',
-          note: ''
+          message: 'Tell us when you last had contact with this person.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         methods: {
           title: 'Need help with the methods of your communication?',
-          message: 'Check all the communication methods you may use in your correspondence',
-          note: ''
+          message: 'Let us know all of the ways you communicated with this person.',
+          note: 'Note: Electronic includes social media.'
         },
         frequency: {
           title: 'Need help with the frequency of your communication?',
@@ -5590,14 +5590,14 @@ const en = {
           note: ''
         },
         aliases: {
-          title: 'Need help with any other names or nicknames?',
-          message: 'If you are aware of any nicknames or other names the individual may have used then pleas provide them',
-          note: ''
+          title: 'Has this person used any other names or nicknames?',
+          message: 'If this person has a nickname, has a different maiden name, or has used any other names answer "Yes".',
+          note: 'Note: If this person has multiple names you will list each one separately.'
         },
         citizenship: {
-          title: 'Need help with their citizenship?',
-          message: 'Provide one or more citizenships the foreign natural has',
-          note: ''
+          title: 'Need help with their citizenship(s)?',
+          message: 'Tell us all of the citizenships this person has.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         },
         birthdate: {
           title: 'Need help with their date of birth?',
@@ -5661,14 +5661,9 @@ const en = {
           compensation: 'Describe what compensation, if any, was provided for your service'
         },
         para: {
-          branch: 'Provide a description of advice/support provided'
+          branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business'
         },
         help: {
-          branch: {
-            title: 'Need help determining if you have provided advice to foreign businesses?',
-            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
-            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
-          },
           description: {
             title: 'Need help with the description?',
             message: 'Provide how the support was provided',
