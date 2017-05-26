@@ -14,11 +14,6 @@ export default class BirthPlace extends ValidationElement {
     this.updateBirthPlaceType = this.updateBirthPlaceType.bind(this)
     this.updateDomesticBirthPlace = this.updateDomesticBirthPlace.bind(this)
     this.updateInternationalBirthPlace = this.updateInternationalBirthPlace.bind(this)
-
-    this.state = {
-      errorCodes: []
-    }
-
     this.handleError = this.handleError.bind(this)
   }
 
@@ -96,25 +91,26 @@ export default class BirthPlace extends ValidationElement {
     return (
       <div className={klass}>
         <Branch name="birthplace_type"
-          help={this.props.help}
-          value={this.props.domestic}
-          label={this.props.label}
-          onUpdate={this.updateBirthPlaceType}>
+                help={this.props.help}
+                value={this.props.domestic}
+                label={this.props.label}
+                onUpdate={this.updateBirthPlaceType}
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.domestic === 'Yes'}>
           <DomesticBirthPlace
             {...this.props}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onUpdate={this.updateDomesticBirthPlace}
-          />
+            />
         </Show>
         <Show when={this.props.domestic === 'No'}>
           <InternationalBirthPlace
             {...this.props}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onUpdate={this.updateInternationalBirthPlace}
-          />
+            />
         </Show>
       </div>
     )

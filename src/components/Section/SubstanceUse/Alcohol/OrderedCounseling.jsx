@@ -92,78 +92,78 @@ export default class OrderedCounseling extends ValidationElement {
     return (
       <div className="ordered-counseling">
         <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
-          help={'substance.alcohol.orderedCounseling.help.seekers'}
-          adjustFor="p">
+               help={'substance.alcohol.orderedCounseling.help.seekers'}
+               adjustFor="p">
           {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
           <CheckboxGroup className="seekers"
-            selectedValues={this.props.Seekers}>
+                         selectedValues={this.props.Seekers}>
 
             <Checkbox name="seekers-employer"
-              label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.employer')}
-              value="Employer"
-              className="seekers-employer"
-              onValidate={this.props.onValidate}
-              onChange={this.updateSeekers}
-            />
+                      label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.employer')}
+                      value="Employer"
+                      className="seekers-employer"
+                      onError={this.props.onError}
+                      onChange={this.updateSeekers}
+                      />
 
             <Checkbox name="seekers-medicalProfessional"
-              label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.medicalProfessional')}
-              value="MedicalProfessional"
-              className="seekers-medical-professional"
-              onValidate={this.props.onValidate}
-              onChange={this.updateSeekers}
-            />
+                      label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.medicalProfessional')}
+                      value="MedicalProfessional"
+                      className="seekers-medical-professional"
+                      onError={this.props.onError}
+                      onChange={this.updateSeekers}
+                      />
 
             <Checkbox name="seekers-mentalHealthProfessional"
-              label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.mentalHealthProfessional')}
-              value="MentalHealthProfessional"
-              className="seekers-mental-health-professional"
-              onValidate={this.props.onValidate}
-              onChange={this.updateSeekers}
-            />
+                      label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.mentalHealthProfessional')}
+                      value="MentalHealthProfessional"
+                      className="seekers-mental-health-professional"
+                      onError={this.props.onError}
+                      onChange={this.updateSeekers}
+                      />
 
             <Checkbox name="seekers-courtOfficial"
-              label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.courtOfficial')}
-              value="CourtOfficial"
-              className="seekers-court-official"
-              onValidate={this.props.onValidate}
-              onChange={this.updateSeekers}
-            />
+                      label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.courtOfficial')}
+                      value="CourtOfficial"
+                      className="seekers-court-official"
+                      onError={this.props.onError}
+                      onChange={this.updateSeekers}
+                      />
 
             <Checkbox name="seekers-notordered"
-              label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.notOrdered')}
-              value="NotOrdered"
-              className="seekers-not-ordered"
-              onValidate={this.props.onValidate}
-              onChange={this.updateSeekers}
-            />
+                      label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.notOrdered')}
+                      value="NotOrdered"
+                      className="seekers-not-ordered"
+                      onError={this.props.onError}
+                      onChange={this.updateSeekers}
+                      />
 
             <Checkbox name="seekers-other"
-              label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.other')}
-              value="Other"
-              className="seekers-other"
-              onValidate={this.props.onValidate}
-              onChange={this.updateSeekers}
-            />
+                      label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.other')}
+                      value="Other"
+                      className="seekers-other"
+                      onError={this.props.onError}
+                      onChange={this.updateSeekers}
+                      />
           </CheckboxGroup>
           <Show when={this.props.Seekers && this.props.Seekers.includes('Other')}>
             <Text name="OtherSeeker"
-              label={i18n.t('substance.alcohol.orderedCounseling.label.otherSeeker')}
-              {...this.props.OtherSeeker}
-              onUpdate={this.updateOtherSeeker}
-              onValidate={this.props.onValidate}
-            />
+                  label={i18n.t('substance.alcohol.orderedCounseling.label.otherSeeker')}
+                  {...this.props.OtherSeeker}
+                  onUpdate={this.updateOtherSeeker}
+                  onError={this.props.onError}
+                  />
           </Show>
         </Field>
 
         <Branch name="ActionTaken"
-          label={i18n.t('substance.alcohol.orderedCounseling.heading.actionTaken')}
-          labelSize="h3"
-          help="substance.alcohol.orderedCounseling.help.actionTaken"
-          className="action-taken"
-          value={this.props.ActionTaken}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateActionTaken}>
+                label={i18n.t('substance.alcohol.orderedCounseling.heading.actionTaken')}
+                labelSize="h3"
+                help="substance.alcohol.orderedCounseling.help.actionTaken"
+                className="action-taken"
+                value={this.props.ActionTaken}
+                onError={this.props.onError}
+                onUpdate={this.updateActionTaken}>
         </Branch>
 
         <Show when={this.props.ActionTaken === 'Yes'}>
@@ -172,72 +172,72 @@ export default class OrderedCounseling extends ValidationElement {
                    help={'substance.alcohol.orderedCounseling.help.counselingDates'}
                    adjustFor="daterange">
               <DateRange name="CounselingDates"
-                className="counseling-dates"
-                {...this.props.CounselingDates}
-                onUpdate={this.updateCounselingDates}
-                onValidate={this.props.onValidate}
-              />
+                         className="counseling-dates"
+                         {...this.props.CounselingDates}
+                         onUpdate={this.updateCounselingDates}
+                         onError={this.props.onError}
+                         />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderName')}
-              help={'substance.alcohol.orderedCounseling.help.treatmentProviderName'}>
+                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderName'}>
               <Text name="TreatmentProviderName"
-                className="treatment-provider-name"
-                {...this.props.TreatmentProviderName}
-                onUpdate={this.updateTreatmentProviderName}
-                onValidate={this.props.onValidate}
-              />
+                    className="treatment-provider-name"
+                    {...this.props.TreatmentProviderName}
+                    onUpdate={this.updateTreatmentProviderName}
+                    onError={this.props.onError}
+                    />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderAddress')}
                    help={'substance.alcohol.orderedCounseling.help.treatmentProviderAddress'}
                    adjustFor="address">
               <Address name="TreatmentProviderAddress"
-                className="provider-address"
-                {...this.props.TreatmentProviderAddress}
-                onUpdate={this.updateTreatmentProviderAddress}
-                onValidate={this.props.onValidate}
-              />
+                       className="provider-address"
+                       {...this.props.TreatmentProviderAddress}
+                       onUpdate={this.updateTreatmentProviderAddress}
+                       onError={this.props.onError}
+                       />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone')}
-              help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}>
+                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}>
               <Telephone name="TreatmentProviderTelephone"
-                className="provider-telephone"
-                {...this.props.TreatmentProviderTelephone}
-                onUpdate={this.updateTreatmentProviderTelephone}
-                onValidate={this.props.onValidate}
-              />
+                         className="provider-telephone"
+                         {...this.props.TreatmentProviderTelephone}
+                         onUpdate={this.updateTreatmentProviderTelephone}
+                         onError={this.props.onError}
+                         />
             </Field>
 
             <Branch name="CompletedTreatment"
-              help={'substance.alcohol.orderedCounseling.help.completedTreatment'}
-              label={i18n.t('substance.alcohol.orderedCounseling.heading.completedTreatment')}
-              labelSize="h3"
-              className="completed-treatment"
-              value={this.props.CompletedTreatment}
-              onValidate={this.props.onValidate}
-              onUpdate={this.updateCompletedTreatment}>
+                    help={'substance.alcohol.orderedCounseling.help.completedTreatment'}
+                    label={i18n.t('substance.alcohol.orderedCounseling.heading.completedTreatment')}
+                    labelSize="h3"
+                    className="completed-treatment"
+                    value={this.props.CompletedTreatment}
+                    onError={this.props.onError}
+                    onUpdate={this.updateCompletedTreatment}>
             </Branch>
 
             <Show when={this.props.CompletedTreatment === 'No'}>
               <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noCompletedTreatment')}>
                 <Textarea name="NoCompletedTreatmentExplanation"
-                  className="no-completed-treatment"
-                  {...this.props.NoCompletedTreatmentExplanation}
-                  onUpdate={this.updateNoCompletedTreatmentExplanation}
-                  onValidate={this.props.onValidate}
-                />
+                          className="no-completed-treatment"
+                          {...this.props.NoCompletedTreatmentExplanation}
+                          onUpdate={this.updateNoCompletedTreatmentExplanation}
+                          onError={this.props.onError}
+                          />
               </Field>
             </Show>
           </div>
         </Show>
 
         <Show when={this.props.ActionTaken === 'No'}>
-            <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noActionTakenExplanation')}>
-              <Textarea name="NoActionTakenExplanation"
-                {...this.props.NoActionTakenExplanation}
-                onUpdate={this.updateNoActionTakenExplanation}
-                onValidate={this.props.onValidate}
-              />
-            </Field>
+          <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noActionTakenExplanation')}>
+            <Textarea name="NoActionTakenExplanation"
+                      {...this.props.NoActionTakenExplanation}
+                      onUpdate={this.updateNoActionTakenExplanation}
+                      onError={this.props.onError}
+                      />
+          </Field>
         </Show>
       </div>
     )
@@ -245,4 +245,5 @@ export default class OrderedCounseling extends ValidationElement {
 }
 
 OrderedCounseling.defaultProps = {
+  onError: (value, arr) => { return arr }
 }
