@@ -205,8 +205,12 @@ export default class Field extends ValidationElement {
    */
   children (el) {
     return React.Children.map(el, (child) => {
+      if (!child || !child.props) {
+        return child
+      }
+
       let props = child.props || {}
-      let extendedProps = {}
+      let extendedProps = { ...props }
 
       if (React.isValidElement(child)) {
         // Inject ourselves in to the validation callback
@@ -216,28 +220,21 @@ export default class Field extends ValidationElement {
             if (props.onError) {
               childErrors = props.onError(value, arr)
             }
-
             this.handleError(value, childErrors)
             return childErrors
           }
         }
-
-        // if (props.children) {
-        //   const typeOfChildren = Object.prototype.toString.call(props.children)
-        //   if (['[object Object]', '[object Array]'].includes(typeOfChildren)) {
-        //     extendedProps.children = this.children(props.children)
-        //   }
-        // }
       }
 
-      if (!child.props) {
-        return React.cloneElement(child)
+      if (props.children) {
+        const typeOfChildren = Object.prototype.toString.call(props.children)
+        if (props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+          console.log('recursion on: ', child)
+          extendedProps.children = this.children(props.children)
+        }
       }
 
-      return React.cloneElement(child, {
-        ...props,
-        ...extendedProps
-      })
+      return React.cloneElement(child, extendedProps)
     })
   }
 

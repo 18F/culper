@@ -243,17 +243,15 @@ const en = {
       }
     },
     weight: {
-      pounds: {
-        min: {
-          title: 'Weight below accepted limits',
-          message: 'We only accept a value between 10 and 999 pounds',
-          note: ''
-        },
-        max: {
-          title: 'Weight exceeds accepted limits',
-          message: 'We only accept a value between 10 and 999 pounds',
-          note: ''
-        }
+      min: {
+        title: 'Weight below accepted limits',
+        message: 'We only accept a value between 10 and 999 pounds',
+        note: ''
+      },
+      max: {
+        title: 'Weight exceeds accepted limits',
+        message: 'We only accept a value between 10 and 999 pounds',
+        note: ''
       }
     },
     height: {
@@ -505,7 +503,7 @@ const en = {
         note: 'Example of valid email format: name@domain.com'
       }
     },
-    Year: {
+    year: {
       min: {
         title: 'There is a problem with the year',
         message: 'The year should be four(4) numbers.',

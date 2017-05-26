@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { BirthPlaceValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
 import Show from '../Show'
@@ -14,24 +13,6 @@ export default class BirthPlace extends ValidationElement {
     this.updateBirthPlaceType = this.updateBirthPlaceType.bind(this)
     this.updateDomesticBirthPlace = this.updateDomesticBirthPlace.bind(this)
     this.updateInternationalBirthPlace = this.updateInternationalBirthPlace.bind(this)
-    this.handleError = this.handleError.bind(this)
-  }
-
-  handleError (value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `birthplace.${err.code}`,
-        valid: err.valid
-      }
-    })
-
-    // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    })))
   }
 
   update (updateValues) {
@@ -95,20 +76,20 @@ export default class BirthPlace extends ValidationElement {
                 value={this.props.domestic}
                 label={this.props.label}
                 onUpdate={this.updateBirthPlaceType}
-                onError={this.handleError}>
+                onError={this.props.onError}>
         </Branch>
 
         <Show when={this.props.domestic === 'Yes'}>
           <DomesticBirthPlace
             {...this.props}
-            onError={this.handleError}
+            onError={this.props.onError}
             onUpdate={this.updateDomesticBirthPlace}
             />
         </Show>
         <Show when={this.props.domestic === 'No'}>
           <InternationalBirthPlace
             {...this.props}
-            onError={this.handleError}
+            onError={this.props.onError}
             onUpdate={this.updateInternationalBirthPlace}
             />
         </Show>
@@ -127,5 +108,3 @@ BirthPlace.defaultProps = {
   hideCounty: false,
   onError: (value, arr) => { return arr }
 }
-
-BirthPlace.errors = []

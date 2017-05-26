@@ -125,70 +125,65 @@ export default class SSN extends ValidationElement {
 
     return (
       <div className={klass}>
-        <Field help="identification.ssn.help"
-               shrink={true}>
-          <div className="initial-width">
-            <Text name="first"
-                  ref="first"
-                  className="first eapp-short-input"
-                  placeholder={i18n.t('identification.ssn.placeholder.first')}
-                  maxlength="3"
-                  pattern="^[0-9]*$"
-                  clipboard={false}
-                  value={this.state.first}
-                  disabled={this.state.notApplicable}
-                  onChange={this.handleChange}
-                  onError={this.handleErrorFirst}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  tabNext={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
-                  />
-            <Text name="middle"
-                  ref="middle"
-                  className="middle eapp-short-input"
-                  placeholder={i18n.t('identification.ssn.placeholder.middle')}
-                  maxlength="2"
-                  pattern="^[0-9]*$"
-                  clipboard={false}
-                  value={this.state.middle}
-                  disabled={this.state.notApplicable}
-                  onChange={this.handleChange}
-                  onError={this.handleErrorMiddle}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  tabBack={() => { this.props.tab(this.refs.first.refs.text.refs.input) }}
-                  tabNext={() => { this.props.tab(this.refs.last.refs.text.refs.input) }}
-                  />
-            <Text name="last"
-                  ref="last"
-                  className="last eapp-short-input"
-                  placeholder={i18n.t('identification.ssn.placeholder.last')}
-                  maxlength="4"
-                  pattern="^[0-9]*$"
-                  clipboard={false}
-                  value={this.state.last}
-                  disabled={this.state.notApplicable}
-                  onChange={this.handleChange}
-                  onError={this.handleErrorLast}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
-                  />
-            <div className="flags">
-              <Checkbox name="notApplicable"
-                        label={i18n.t('identification.ssn.label.notApplicable')}
-                        ref="notApplicable"
-                        toggle="false"
-                        value={this.state.notApplicable}
-                        checked={this.state.notApplicable}
-                        onChange={this.handleChange}
-                        onError={this.handleError}
-                        onFocus={this.props.onFocus}
-                        onBlur={this.props.onBlur}
-                        />
-            </div>
-          </div>
-        </Field>
+        <Text name="first"
+              ref="first"
+              className="first eapp-short-input"
+              placeholder={i18n.t('identification.ssn.placeholder.first')}
+              maxlength="3"
+              pattern="^[0-9]*$"
+              clipboard={false}
+              value={this.state.first}
+              disabled={this.state.notApplicable}
+              onChange={this.handleChange}
+              onError={this.handleErrorFirst}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              tabNext={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
+              />
+        <Text name="middle"
+              ref="middle"
+              className="middle eapp-short-input"
+              placeholder={i18n.t('identification.ssn.placeholder.middle')}
+              maxlength="2"
+              pattern="^[0-9]*$"
+              clipboard={false}
+              value={this.state.middle}
+              disabled={this.state.notApplicable}
+              onChange={this.handleChange}
+              onError={this.handleErrorMiddle}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              tabBack={() => { this.props.tab(this.refs.first.refs.text.refs.input) }}
+              tabNext={() => { this.props.tab(this.refs.last.refs.text.refs.input) }}
+              />
+        <Text name="last"
+              ref="last"
+              className="last eapp-short-input"
+              placeholder={i18n.t('identification.ssn.placeholder.last')}
+              maxlength="4"
+              pattern="^[0-9]*$"
+              clipboard={false}
+              value={this.state.last}
+              disabled={this.state.notApplicable}
+              onChange={this.handleChange}
+              onError={this.handleErrorLast}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
+              />
+        <div className="flags">
+          <Checkbox name="notApplicable"
+                    label={i18n.t('identification.ssn.label.notApplicable')}
+                    ref="notApplicable"
+                    toggle="false"
+                    value={this.state.notApplicable}
+                    checked={this.state.notApplicable}
+                    onChange={this.handleChange}
+                    onError={this.handleError}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.props.onBlur}
+                    />
+        </div>
       </div>
     )
   }
@@ -208,3 +203,6 @@ SSN.defaultProps = {
 }
 
 SSN.errors = []
+
+        // <Field help="identification.ssn.help"
+        //        shrink={true}>

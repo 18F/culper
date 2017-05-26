@@ -60,7 +60,8 @@ export default class County extends ValidationElement {
 
 County.defaultProps = {
   name: 'county',
-  value: ''
+  value: '',
+  onError: (value, arr) => { return arr }
 }
 
 County.errors = []

@@ -46,24 +46,6 @@ export default class City extends ValidationElement {
     })))
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
-  }
-
   render () {
     const klass = `city ${this.props.className || ''}`.trim()
     return (
@@ -75,12 +57,10 @@ export default class City extends ValidationElement {
             required="true"
             className={klass}
             value={this.state.value}
-            error={this.state.error}
-            valid={this.state.valid}
             onChange={this.handleChange}
             onError={this.handleError}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onFocus={this.props.Focus}
+            onBlur={this.props.Blur}
             />
     )
   }
@@ -89,9 +69,7 @@ export default class City extends ValidationElement {
 City.defaultProps = {
   name: 'city',
   value: '',
-  error: false,
-  valid: false,
-  errors: []
+  onError: (value, arr) => { return arr }
 }
 
 City.errors = []

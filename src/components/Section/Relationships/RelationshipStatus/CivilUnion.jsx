@@ -238,11 +238,13 @@ export default class CivilUnion extends ValidationElement {
           </Show>
 
           <h3>{i18n.t('relationships.civilUnion.heading.ssn')}</h3>
-          <SSN name="ssn"
-               {...this.state.SSN}
-               onUpdate={this.updateSSN}
-               onError={this.props.onError}
-               />
+          <Field help="identification.ssn.help">
+            <SSN name="ssn"
+                 {...this.state.SSN}
+                 onUpdate={this.updateSSN}
+                 onError={this.props.onError}
+                 />
+          </Field>
 
           <h3>{i18n.t('relationships.civilUnion.heading.othernames')}</h3>
           <p>{i18n.t('relationships.civilUnion.para.othernames')}</p>

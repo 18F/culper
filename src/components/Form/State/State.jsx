@@ -3,6 +3,28 @@ import ValidationElement from '../ValidationElement'
 import Dropdown from '../Dropdown'
 
 export default class State extends ValidationElement {
+  constructor (props) {
+    super(props)
+    this.handleError = this.handleError.bind(this)
+  }
+
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `state.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   render () {
     return (
       <Dropdown name={this.props.name}
@@ -11,7 +33,7 @@ export default class State extends ValidationElement {
                 className={this.props.className}
                 disabled={this.props.disabled}
                 onChange={this.props.onChange}
-                onError={this.props.onError}
+                onError={this.handleError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 value={this.props.value}

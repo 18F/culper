@@ -1,7 +1,7 @@
 import React from 'react'
 import { validSSN } from '../../../../validators/helpers'
 import SubsectionElement from '../../SubsectionElement'
-import { SSN } from '../../../Form'
+import { Field, SSN } from '../../../Form'
 
 export default class ApplicantSSN extends SubsectionElement {
   render () {
@@ -9,11 +9,13 @@ export default class ApplicantSSN extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <SSN name="ssn"
-             {...this.props.value}
-             onUpdate={this.props.onUpdate}
-             onError={this.handleError}
-             />
+        <Field help="identification.ssn.help">
+          <SSN name="ssn"
+               {...this.props.value}
+               onUpdate={this.props.onUpdate}
+               onError={this.handleError}
+               />
+        </Field>
       </div>
     )
   }

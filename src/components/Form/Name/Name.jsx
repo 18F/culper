@@ -3,6 +3,7 @@ import { i18n } from '../../../config'
 import { NameValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
+import Show from '../Show'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
 import Radio from '../Radio'
@@ -371,7 +372,7 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
           </RadioGroup>
-          <div className={this.suffixOtherClass()}>
+          <Show when={this.state.suffix === 'Other'}>
             <Text name="suffixOther"
                   label={i18n.t(`${prefix}.label.other`)}
                   maxlength="100"
@@ -381,7 +382,7 @@ export default class Name extends ValidationElement {
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   />
-          </div>
+          </Show>
         </Field>
       </div>
     )
