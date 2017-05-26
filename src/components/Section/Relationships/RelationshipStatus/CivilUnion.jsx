@@ -85,10 +85,6 @@ export default class CivilUnion extends ValidationElement {
     })
   }
 
-  // isValid () {
-  //   return new CivilUnionValidator(this.state).isValid()
-  // }
-
   updateName (values) {
     this.update('Name', values)
     if (this.props.onSpouseUpdate) {
@@ -179,26 +175,6 @@ export default class CivilUnion extends ValidationElement {
     this.update('UseCurrentAddress', cb.checked)
   }
 
-  // handleValidation (event, status, error) {
-  //   if (!event) {
-  //     return
-  //   }
-
-  //   let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-  //   let complexStatus = null
-  //   if (codes.length > 0) {
-  //     complexStatus = false
-  //   } else if (this.isValid()) {
-  //     complexStatus = true
-  //   }
-
-  //   this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-  //     const errorObject = { [this.props.name]: codes }
-  //     const statusObject = { [this.props.name]: { status: complexStatus } }
-  //     super.handleValidation(event, statusObject, errorObject)
-  //   })
-  // }
-
   divorceSummary (item, index) {
     const itemType = i18n.t('relationships.civilUnion.divorce.collection.itemType')
     const o = (item || {}).Divorce || {}
@@ -274,7 +250,7 @@ export default class CivilUnion extends ValidationElement {
                          className="othername"
                          applicable={this.state.OtherNameNotApplicable}
                          label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                         or={i18n.t('relationships.civilUnion.notApplicable.or')}
+                         or={i18n.m('relationships.civilUnion.notApplicable.or')}
                          onUpdate={this.updateOtherNameNotApplicable}
                          onError={this.props.onError}>
             <Name name="othername"
@@ -383,7 +359,7 @@ export default class CivilUnion extends ValidationElement {
                 <NotApplicable name="OtherNameNotApplicable"
                                applicable={this.state.AddressSeparatedNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                               or={i18n.t('relationships.civilUnion.notApplicable.or')}
+                               or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onUpdate={this.updateAddressSeparatedNotApplicable}
                                onError={this.props.onError}>
                   <Address name="addressSeparated"

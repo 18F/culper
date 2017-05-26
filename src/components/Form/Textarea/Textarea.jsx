@@ -6,6 +6,7 @@ export default class Textarea extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       focus: props.focus,
       error: props.error,
@@ -120,11 +121,11 @@ export default class Textarea extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.props.name}>
+               htmlFor={this.state.uid}>
           {this.props.label}
         </label>
         <textarea className={this.inputClass()}
-                  id={this.props.name}
+                  id={this.state.uid}
                   name={this.props.name}
                   aria-describedby={this.errorName()}
                   disabled={this.props.disabled}

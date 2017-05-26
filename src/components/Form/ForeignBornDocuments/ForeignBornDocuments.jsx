@@ -213,6 +213,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
             <Show when={this.state.DocumentType === 'Other'}>
               <Textarea name="otherExplanation"
+                        className="other-explanation"
                         label="Provide explanation"
                         {...this.state.OtherExplanation}
                         onUpdate={this.updateOtherExplanation}
@@ -228,6 +229,7 @@ export default class ForeignBornDocuments extends ValidationElement {
           <Text name="documentNumber"
                 label="Document Number"
                 {...this.state.DocumentNumber}
+                className="foreign-born-document-number"
                 onUpdate={this.updateDocumentNumber}
                 onError={this.props.onError}
                 />

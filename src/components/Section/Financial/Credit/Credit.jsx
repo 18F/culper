@@ -70,7 +70,6 @@ export default class Credit extends SubsectionElement {
         <Branch name="has_credit"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
-                help="financial.credit.help.branch"
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
@@ -93,8 +92,7 @@ export default class Credit extends SubsectionElement {
                         />
             </Field>
 
-            <Field title={i18n.t('financial.credit.heading.name')}
-                   help="financial.credit.help.name">
+            <Field title={i18n.t('financial.credit.heading.name')}>
               <Text name="Name"
                     className="credit-name"
                     bind={true}

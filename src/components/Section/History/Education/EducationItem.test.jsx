@@ -91,7 +91,7 @@ describe('The education component', () => {
     }
     const component = mount(<EducationItem {...expected} />)
     component.find('.school-name input').simulate('change', { target: { name: 'Name', value: 'some text' } })
-    component.find('.daterange .from .month input#month').simulate('change', { target: { name: 'month', value: '0' } })
+    component.find('.daterange .from .month input').simulate('change', { target: { name: 'month', value: '0' } })
     component.find('.mailing input').first().simulate('change', { target: { name: 'address', value: '123 Some Rd' } })
     component.find('.type input').first().simulate('change')
     component.find('.name .first input').first().simulate('change', { target: { name: 'first', value: 'John' } })

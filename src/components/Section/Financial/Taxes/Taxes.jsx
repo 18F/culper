@@ -72,7 +72,6 @@ export default class Taxes extends SubsectionElement {
         <Branch name="has_taxes"
                 className="taxes-branch"
                 value={this.state.HasTaxes}
-                help="financial.taxes.help.branch"
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
@@ -88,7 +87,6 @@ export default class Taxes extends SubsectionElement {
                      appendLabel={i18n.t('financial.taxes.collection.append')}>
 
             <Field title={i18n.t('financial.taxes.heading.failure')}
-                   help="financial.taxes.help.failure"
                    adjustFor="buttons"
                    shrink={true}>
               <FailureType name="Failure"
@@ -97,8 +95,7 @@ export default class Taxes extends SubsectionElement {
                            />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.year')}
-                   help="financial.taxes.help.year">
+            <Field title={i18n.t('financial.taxes.heading.year')}>
               <Number name="Year"
                       className="taxes-year"
                       placeholder={i18n.t('financial.taxes.placeholder.year')}
@@ -115,32 +112,28 @@ export default class Taxes extends SubsectionElement {
               </div>
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.reason')}
-                   help="financial.taxes.help.reason">
+            <Field title={i18n.t('financial.taxes.heading.reason')}>
               <Textarea name="Reason"
                         className="taxes-reason"
                         bind={true}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.agency')}
-                   help="financial.taxes.help.agency">
+            <Field title={i18n.t('financial.taxes.heading.agency')}>
               <Text name="Agency"
                     className="taxes-agency"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.taxtype')}
-                   help="financial.taxes.help.taxtype">
+            <Field title={i18n.t('financial.taxes.heading.taxtype')}>
               <Text name="TaxType"
                     className="taxes-taxtype"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.amount')}
-                   help="financial.taxes.help.amount">
+            <Field title={i18n.t('financial.taxes.heading.amount')}>
               <div>
                 <Currency name="Amount"
                           className="taxes-amount"
@@ -160,7 +153,6 @@ export default class Taxes extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.taxes.heading.date')}
-                   help="financial.taxes.help.date"
                    adjustFor="label"
                    shrink={true}>
               <NotApplicable name="DateNotApplicable"
@@ -175,8 +167,7 @@ export default class Taxes extends SubsectionElement {
               </NotApplicable>
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.description')}
-                   help="financial.taxes.help.description">
+            <Field title={i18n.t('financial.taxes.heading.description')}>
               <Textarea name="Description"
                         className="taxes-description"
                         bind={true}

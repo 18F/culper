@@ -18,8 +18,8 @@ describe('The employment component', () => {
       onUpdate: () => { updates++ }
     }
     const selectors = [
-      'input#Title',
-      'input#DutyStation',
+      '.employment-title',
+      '.employment-duty-station',
       '.employment-status',
       '.daterange',
       '.address',

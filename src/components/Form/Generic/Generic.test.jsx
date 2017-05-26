@@ -13,7 +13,7 @@ describe('The generic component', () => {
     }
     const component = mount(<Generic {...expected} />)
     expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(1)
   })
 
@@ -28,8 +28,8 @@ describe('The generic component', () => {
     }
     const component = mount(<Generic {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('input').length).toEqual(1)
+    expect(component.find('input').hasClass('usa-input-focus')).toEqual(true)
   })
 
   it('renders appropriately with validity checks', () => {
@@ -44,8 +44,8 @@ describe('The generic component', () => {
     }
     const component = mount(<Generic {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
+    expect(component.find('input').length).toEqual(1)
+    expect(component.find('input').hasClass('usa-input-success')).toEqual(true)
   })
 
   it('renders sane defaults', () => {
@@ -59,7 +59,7 @@ describe('The generic component', () => {
     }
     const component = mount(<Generic {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input#' + expected.name).length).toEqual(1)
+    expect(component.find('input').length).toEqual(1)
   })
 
   it('can autotab forward', () => {
@@ -100,6 +100,6 @@ describe('The generic component', () => {
     const component = mount(<Generic {...expected} />)
     component.find('input').simulate('blur', { persist: () => { persisted = true }, target: { name: expected.name } })
     expect(persisted).toBe(true)
-    expect(component.find('input#' + expected.name).hasClass('usa-input-success')).toEqual(true)
+    expect(component.find('input').hasClass('usa-input-success')).toEqual(true)
   })
 })

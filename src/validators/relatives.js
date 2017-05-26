@@ -45,16 +45,13 @@ export class RelativeValidator {
     this.aliases = state.Aliases || []
     this.isDeceased = state.IsDeceased
     this.address = state.Address
-    this.abroad = state.Abroad
-    this.naturalized = state.Naturalized
-    this.derived = state.Derived
-    this.derivedComments = state.DerivedComments
+    this.citizenshipDocumentation = state.CitizenshipDocumentation
+    this.otherCitizenshipDocumentation = state.OtherCitizenshipDocumentation
     this.documentNumber = state.DocumentNumber
-    this.documentExpiration = state.DocumentExpiration
     this.courtName = state.CourtName
     this.courtAddress = state.CourtAddress
     this.document = state.Document
-    this.documentComments = state.DocumentComments
+    this.otherDocument = state.OtherDocument
     this.residenceDocumentNumber = state.ResidenceDocumentNumber
     this.expiration = state.Expiration
     this.firstContact = state.FirstContact
@@ -160,30 +157,26 @@ export class RelativeValidator {
     return !!this.address && new AddressValidator(this.address, null).isValid()
   }
 
-  validAbroad () {
+  validCitizenshipDocumentation () {
     if (!this.requiresCitizenshipDocumentation()) {
       return true
     }
 
-    return !!this.abroad && this.abroad.length > 0
-  }
-
-  validNaturalized () {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
+    switch (this.citizenshipDocumentation) {
+      case 'Other':
+        return validGenericTextfield(this.otherCitizenshipDocumentation)
+      case 'FS':
+      case 'DS':
+      case 'NaturalizedAlien':
+      case 'NaturalizedPermanent':
+      case 'NaturalizedCertificate':
+      case 'DerivedAlien':
+      case 'DerivedPermanent':
+      case 'DerivedCertificate':
+        return true
+      default:
+        return false
     }
-
-    return !!this.naturalized && this.naturalized.length > 0
-  }
-
-  validDerived () {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    return !!this.derived && this.derived.length > 0 &&
-      ((this.derived === 'Other' && !!this.derivedComments && this.derivedComments.length > 0) ||
-       (this.derived !== 'Other'))
   }
 
   validDocumentNumber () {
@@ -192,14 +185,6 @@ export class RelativeValidator {
     }
 
     return validGenericTextfield(this.documentNumber)
-  }
-
-  validDocumentExpiration () {
-    if (!this.requiresCitizenshipDocumentation()) {
-      return true
-    }
-
-    return !!this.documentExpiration && validDateField(this.documentExpiration)
   }
 
   validCourtName () {
@@ -223,9 +208,19 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.document && this.document.length > 0 &&
-      ((this.document === 'Other' && !!this.documentComments && this.documentComments.length > 0) ||
-       (this.document !== 'Other'))
+    switch (this.document) {
+      case 'Other':
+        return validGenericTextfield(this.otherDocument)
+      case 'Permanent':
+      case 'Employment':
+      case 'Arrival':
+      case 'Visa':
+      case 'F1':
+      case 'J1':
+        return true
+      default:
+        return false
+    }
   }
 
   validResidenceDocumentNumber () {
@@ -322,11 +317,8 @@ export class RelativeValidator {
       this.validAliases() &&
       this.validIsDeceased() &&
       this.validAddress() &&
-      this.validAbroad() &&
-      this.validNaturalized() &&
-      this.validDerived() &&
+      this.validCitizenshipDocumentation() &&
       this.validDocumentNumber() &&
-      this.validDocumentExpiration() &&
       this.validCourtName() &&
       this.validCourtAddress() &&
       this.validDocument() &&

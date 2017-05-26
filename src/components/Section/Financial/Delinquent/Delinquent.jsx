@@ -92,7 +92,6 @@ export default class Delinquent extends SubsectionElement {
         <Branch name="has_delinquent"
                 className="delinquent-branch eapp-field-wrap"
                 value={this.state.HasDelinquent}
-                help="financial.delinquent.help.branch"
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
@@ -108,40 +107,35 @@ export default class Delinquent extends SubsectionElement {
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.delinquent.collection.append')}>
 
-            <Field title={i18n.t('financial.delinquent.heading.name')}
-                   help="financial.delinquent.help.name">
+            <Field title={i18n.t('financial.delinquent.heading.name')}>
               <Text name="Name"
                     className="delinquent-name"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.delinquent.heading.infractions')}
-                   help="financial.delinquent.help.infractions">
+            <Field title={i18n.t('financial.delinquent.heading.infractions')}>
               <Infractions name="Infractions"
                            className="delinquent-infractions"
                            bind={true}
                            />
             </Field>
 
-            <Field title={i18n.t('financial.delinquent.heading.accountnumber')}
-                   help="financial.delinquent.help.accountnumber">
+            <Field title={i18n.t('financial.delinquent.heading.accountnumber')}>
               <Text name="AccountNumber"
                     className="delinquent-accountnumber"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.delinquent.heading.propertytype')}
-                   help="financial.delinquent.help.propertytype">
+            <Field title={i18n.t('financial.delinquent.heading.propertytype')}>
               <Text name="PropertyType"
                     className="delinquent-propertytype"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.delinquent.heading.amount')}
-                   help="financial.delinquent.help.amount">
+            <Field title={i18n.t('financial.delinquent.heading.amount')}>
               <div>
                 <Currency name="Amount"
                           className="delinquent-amount"
@@ -168,8 +162,7 @@ export default class Delinquent extends SubsectionElement {
                         />
             </Field>
 
-            <Field title={i18n.t('financial.delinquent.heading.status')}
-                   help="financial.delinquent.help.status">
+            <Field title={i18n.t('financial.delinquent.heading.status')}>
               <Text name="Status"
                     className="delinquent-status"
                     bind={true}
@@ -177,7 +170,6 @@ export default class Delinquent extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.delinquent.heading.date')}
-                   help="financial.delinquent.help.date"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="Date"
@@ -188,7 +180,6 @@ export default class Delinquent extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.delinquent.heading.resolved')}
-                   help="financial.delinquent.help.resolved"
                    adjustFor="label"
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
@@ -203,8 +194,7 @@ export default class Delinquent extends SubsectionElement {
               </NotApplicable>
             </Field>
 
-            <Field title={i18n.t('financial.delinquent.heading.courtname')}
-                   help="financial.delinquent.help.courtname">
+            <Field title={i18n.t('financial.delinquent.heading.courtname')}>
               <Text name="CourtName"
                     className="delinquent-courtname"
                     bind={true}

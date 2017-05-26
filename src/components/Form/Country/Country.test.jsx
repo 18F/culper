@@ -20,14 +20,14 @@ describe('The Country component', () => {
       onFocus: () => {}
     }
     const component = mount(<Country {...expected} />)
-    component.find('input#country').simulate('change', {
+    component.find('.country input').simulate('change', {
       target: {
         value: 'Belg'
       }
     })
-    component.find('input#country').simulate('focus')
+    component.find('.country input').simulate('focus')
     expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
-    component.find('input#country').simulate('blur')
+    component.find('.country input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 })

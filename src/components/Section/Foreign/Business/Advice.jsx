@@ -60,7 +60,6 @@ export default class Advice extends SubsectionElement {
                 label={i18n.t('foreign.business.advice.heading.title')}
                 labelSize="h3"
                 adjustFor="p"
-                help="foreign.business.advice.help.branch"
                 value={this.state.HasForeignAdvice}
                 onUpdate={this.updateHasForeignAdvice}
                 onError={this.handleError}>

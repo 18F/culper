@@ -134,7 +134,7 @@ export default class ExistingConditions extends SubsectionElement {
             <Show when={this.state.ReceivedTreatment === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
-                          className="explanation"
+                          className="explanation existing-condition-explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}
@@ -171,7 +171,7 @@ export default class ExistingConditions extends SubsectionElement {
             <Show when={this.state.DidNotFollow === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
-                          className="explanation"
+                          className="explanation existing-condition-didnotfollow-explanation"
                           {...this.props.DidNotFollowExplanation}
                           onUpdate={this.updateDidNotFollowExplanation}
                           onError={this.handleError}

@@ -7,8 +7,9 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
+import Travel from './Travel'
 import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
-import { Advice, Family, Employment, Ventures, Conferences } from './Business'
+import { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting } from './Business'
 
 class Foreign extends SectionElement {
   constructor (props) {
@@ -25,6 +26,11 @@ class Foreign extends SectionElement {
     this.updateRealEstateActivity = this.updateRealEstateActivity.bind(this)
     this.updateBenefitActivity = this.updateBenefitActivity.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
+    this.updateContact = this.updateContact.bind(this)
+    this.updateSponsorship = this.updateSponsorship.bind(this)
+    this.updatePolitical = this.updatePolitical.bind(this)
+    this.updateVoting = this.updateVoting.bind(this)
+    this.updateTravel = this.updateTravel.bind(this)
   }
 
   updatePassport (values) {
@@ -71,13 +77,25 @@ class Foreign extends SectionElement {
     this.handleUpdate('Conferences', values)
   }
 
-  // /**
-  //  * Helper to test whether a subsection is complete
-  //  */
-  // hasStatus (property, status, val) {
-  //   return (this.props.Completed[property] && this.props.Completed[property].status === val)
-  //     || (status && status[property] && status[property].status === val)
-  // }
+  updateContact (values) {
+    this.handleUpdate('Contact', values)
+  }
+
+  updateSponsorship (values) {
+    this.handleUpdate('Sponsorship', values)
+  }
+
+  updatePolitical (values) {
+    this.handleUpdate('Political', values)
+  }
+
+  updateVoting (values) {
+    this.handleUpdate('Voting', values)
+  }
+
+  updateTravel (values) {
+    this.handleUpdate('Travel', values)
+  }
 
   render () {
     return (
@@ -110,6 +128,102 @@ class Foreign extends SectionElement {
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />
+            <Contacts name="contacts"
+                      {...this.props.Contacts}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateContacts}
+                      onError={this.handleError}
+                      />
+            <DirectActivity name="directActivity"
+                            {...this.props.DirectActivity}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDirectActivity}
+                            onError={this.handleError}
+                            />
+            <IndirectActivity name="indirectActivity"
+                              {...this.props.IndirectActivity}
+                              dispatch={this.props.dispatch}
+                              onUpdate={this.updateIndirectActivity}
+                              onError={this.handleError}
+                              />
+            <RealEstateActivity name="realEstateActivity"
+                                {...this.props.RealEstateActivity}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateRealEstateActivity}
+                                onError={this.handleError}
+                                />
+            <BenefitActivity name="benefitActivity"
+                             {...this.props.BenefitActivity}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.updateBenefitActivity}
+                             onError={this.handleError}
+                             />
+            <Support name="support"
+                     {...this.props.Support}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateSupport}
+                     onError={this.handleError}
+                     />
+            <Advice name="advice"
+                    {...this.props.Advice}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateAdvice}
+                    onError={this.handleError}
+                    />
+            <Family name="family"
+                    {...this.props.Family}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateFamily}
+                    onError={this.handleError}
+                    />
+            <Employment name="employment"
+                        {...this.props.Employment}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.updateEmployment}
+                        onError={this.handleError}
+                        />
+            <Ventures name="ventures"
+                      {...this.props.Ventures}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateVentures}
+                      onError={this.handleError}
+                      />
+            <Conferences name="Conferences"
+                         {...this.props.Conferences}
+                         dispatch={this.props.dispatch}
+                         onUpdate={this.updateConferences}
+                         onError={this.handleError}
+                         />
+            <Contact name="Contact"
+                     {...this.props.Contact}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateContact}
+                     onError={this.handleError}
+                     />
+            <Sponsorship name="Sponsorship"
+                         {...this.props.Sponsorship}
+                         dispatch={this.props.dispatch}
+                         onUpdate={this.updateSponsorship}
+                         onError={this.handleError}
+                         />
+            <Political name="Political"
+                       {...this.props.Political}
+                       dispatch={this.props.dispatch}
+                       onUpdate={this.updatePolitical}
+                       onError={this.handleError}
+                       />
+            <Voting name="Voting"
+                    {...this.props.Voting}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateVoting}
+                    onError={this.handleError}
+                    />
+            <Travel name="Travel"
+                    {...this.props.Travel}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateTravel}
+                    onError={this.handleError}
+                    />
           </SectionView>
 
           <SectionView name="passport"
@@ -294,11 +408,69 @@ class Foreign extends SectionElement {
                          />
           </SectionView>
 
+          <SectionView name="business/contact"
+                       back="foreign/business/conferences"
+                       backLabel={i18n.t('foreign.destination.business.events')}
+                       next="foreign/business/sponsorship"
+                       nextLabel={i18n.t('foreign.destination.business.sponsorship')}>
+            <Contact name="Contact"
+                     {...this.props.Contact}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateContact}
+                     onError={this.handleError}
+                     />
+          </SectionView>
+
+          <SectionView name="business/sponsorship"
+                       back="foreign/business/contact"
+                       backLabel={i18n.t('foreign.destination.business.contact')}
+                       next="foreign/business/political"
+                       nextLabel={i18n.t('foreign.destination.business.political')}>
+            <Sponsorship name="Sponsorship"
+                         {...this.props.Sponsorship}
+                         dispatch={this.props.dispatch}
+                         onUpdate={this.updateSponsorship}
+                         onError={this.handleError}
+                         />
+          </SectionView>
+
+          <SectionView name="business/political"
+                       back="foreign/business/sponsorship"
+                       backLabel={i18n.t('foreign.destination.business.sponsorship')}
+                       next="foreign/business/voting"
+                       nextLabel={i18n.t('foreign.destination.business.voting')}>
+            <Political name="Political"
+                       {...this.props.Political}
+                       dispatch={this.props.dispatch}
+                       onUpdate={this.updatePolitical}
+                       onError={this.handleError}
+                       />
+          </SectionView>
+
+          <SectionView name="business/voting"
+                       back="foreign/business/political"
+                       backLabel={i18n.t('foreign.destination.business.political')}
+                       next="foreign/travel"
+                       nextLabel={i18n.t('foreign.destination.travel')}>
+            <Voting name="Voting"
+                    {...this.props.Voting}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateVoting}
+                    onError={this.handleError}
+                    />
+          </SectionView>
+
           <SectionView name="travel"
                        back="foreign/business/voting"
                        backLabel={i18n.t('foreign.destination.business.voting')}
                        next="foreign/review"
                        nextLabel={i18n.t('foreign.destination.review')}>
+            <Travel name="Travel"
+                    {...this.props.Travel}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateTravel}
+                    onError={this.handleError}
+                    />
           </SectionView>
         </SectionViews>
       </div>
@@ -340,6 +512,11 @@ function mapStateToProps (state) {
     Employment: foreign.Employment || {},
     Ventures: foreign.Ventures || {},
     Conferences: foreign.Conferences || {},
+    Contact: foreign.Contact || {},
+    Sponsorship: foreign.Sponsorship || {},
+    Political: foreign.Political || {},
+    Voting: foreign.Voting || {},
+    Travel: foreign.Travel || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names

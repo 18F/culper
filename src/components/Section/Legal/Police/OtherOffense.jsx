@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import Sentence from './Sentence'
 import { ValidationElement, Branch, Show, Address, DateControl,
-         Textarea, Text, RadioGroup, Radio, Field } from '../../../Form'
+         Textarea, Text, RadioGroup, Radio, Field, Svg } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -266,11 +266,17 @@ export default class OtherOffense extends ValidationElement {
         </Branch>
 
         <Show when={this.state.WasSentenced === 'Yes'}>
-          <Sentence name="Sentence"
-                    {...this.state.Sentence}
-                    onUpdate={this.props.onUpdate}
-                    onError={this.props.onError}
-                    />
+          <div>
+            <Field title={i18n.t('legal.police.heading.needmore')}
+                   className="more title">
+              <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            </Field>
+            <Sentence name="Sentence"
+                      {...this.state.Sentence}
+                      onError={this.props.onError}
+                      onUpdate={this.updateSentence}
+                      />
+          </div>
         </Show>
         <Show when={this.state.WasSentenced === 'No'}>
           <div>

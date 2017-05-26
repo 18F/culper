@@ -240,7 +240,7 @@ export default class Divorce extends React.Component {
                                className="deceased-notapplicable"
                                applicable={this.state.DeceasedAddressNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                               or={i18n.t('relationships.civilUnion.notApplicable.or')}
+                               or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onError={this.props.onError}
                                onUpdate={this.updateDeceasedAddressNotApplicable}>
                   <Address
