@@ -504,7 +504,7 @@ export default class ForeignNational extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('foreign.contacts.heading.employer')}
+        <Field title={i18n.t('foreign.contacts.heading.employer')}>
           <NotApplicable name="EmployerNotApplicable"
                          className="na-employer"
                          label={i18n.t('foreign.contacts.label.idk')}
