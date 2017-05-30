@@ -3,6 +3,27 @@ import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 
 export default class ApoFpo extends ValidationElement {
+  constructor (props) {
+    super(props)
+    this.handleError = this.handleError.bind(this)
+  }
+
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `apofpo.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   render () {
     const klass = `apofpo ${this.props.className || ''}`.trim()
     return (
@@ -10,15 +31,11 @@ export default class ApoFpo extends ValidationElement {
             label={this.props.label}
             className={klass}
             placeholder={this.props.placeholder}
-            minlength="2"
             maxlength="2"
-            required="true"
-            pattern="[a-zA-Z]+"
+            pattern="[a-zA-Z]{2}"
             value={this.props.value}
-            error={this.props.error}
-            valid={this.props.valid}
             onChange={this.props.onChange}
-            onValidate={this.props.onValidate}
+            onError={this.handleError}
             tabBack={this.props.tabBack}
             tabNext={this.props.tabNext}
             />
@@ -26,5 +43,10 @@ export default class ApoFpo extends ValidationElement {
   }
 }
 
-ApoFpo.defaultProps = {}
+ApoFpo.defaultProps = {
+  tabBack: () => {},
+  tabNext: () => {},
+  onError: (value, arr) => { return arr }
+}
+
 ApoFpo.errors = []

@@ -36,7 +36,7 @@ export default class Generic extends ValidationElement {
       valid: props.valid
     }
 
-    this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -111,9 +111,9 @@ export default class Generic extends ValidationElement {
   }
 
   /**
-   * Handle the key up event.
+   * Handle the key down event.
    */
-  handleKeyUp (event) {
+  handleKeyDown (event) {
     autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
   }
 
@@ -182,7 +182,7 @@ export default class Generic extends ValidationElement {
                onChange={this.handleChange}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
-               onKeyUp={this.handleKeyUp}
+               onKeyDown={this.handleKeyDown}
                onCopy={this.props.clipboard ? this.props.onCopy : this.disallowClipboard}
                onCut={this.props.clipboard ? this.props.onCut : this.disallowClipboard}
                onPaste={this.props.clipboard ? this.props.onPaste : this.disallowClipboard}

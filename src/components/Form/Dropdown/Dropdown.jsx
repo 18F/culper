@@ -56,7 +56,7 @@ export default class Dropdown extends ValidationElement {
       valid: props.valid
     }
 
-    this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
     this.onSuggestionChange = this.onSuggestionChange.bind(this)
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
@@ -141,7 +141,7 @@ export default class Dropdown extends ValidationElement {
   /**
    * Handle the key up event.
    */
-  handleKeyUp (event) {
+  handleKeyDown (event) {
     autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
   }
 
@@ -290,7 +290,7 @@ export default class Dropdown extends ValidationElement {
       onChange: this.onSuggestionChange,
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
-      onKeyUp: this.handleKeyUp,
+      onKeyDown: this.handleKeyDown,
       onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
       onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
       onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard

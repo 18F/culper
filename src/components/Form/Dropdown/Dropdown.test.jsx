@@ -11,7 +11,7 @@ describe('The Dropdown component', () => {
       className: 'dropdown-test'
     }
     const component = mount(<Dropdown {...expected} />)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     component.find('.dropdown input').simulate('focus')
     component.find('.dropdown input').simulate('blur')
     expect(component.find('div.dropdown-test').length).toEqual(1)
@@ -25,9 +25,9 @@ describe('The Dropdown component', () => {
       tabNext: () => { tabbed = true }
     }
     const component = mount(<Dropdown {...expected} />)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(true)
   })
 
@@ -39,9 +39,9 @@ describe('The Dropdown component', () => {
       tabBack: () => { tabbed = true }
     }
     const component = mount(<Dropdown {...expected} />)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 

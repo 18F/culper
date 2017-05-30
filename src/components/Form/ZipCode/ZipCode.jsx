@@ -9,6 +9,8 @@ export default class ZipCode extends ValidationElement {
     this.state = {
       value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -26,6 +28,22 @@ export default class ZipCode extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `zipcode.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   render () {
     return (
       <Text name={this.props.name}
@@ -33,13 +51,11 @@ export default class ZipCode extends ValidationElement {
             label={this.props.label}
             placeholder={this.props.placeholder}
             className={this.props.className}
-            minlength="5"
-            maxlength="10"
             pattern="^\d{5}(?:[-\s]\d{4})?$"
             required="true"
             value={this.state.value}
             onChange={this.handleChange}
-            onError={this.props.onError}
+            onError={this.handleError}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}
             tabBack={this.props.tabBack}
@@ -53,3 +69,5 @@ ZipCode.defaultProps = {
   value: '',
   onError: (value, arr) => { return arr }
 }
+
+ZipCode.errors = []

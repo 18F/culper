@@ -171,6 +171,7 @@ export default class Passport extends SubsectionElement {
                       maxlength="9"
                       className="number"
                       ref="number"
+                      prefix="passport"
                       onUpdate={this.handleUpdate.bind(this, 'Number')}
                       onError={this.handleError}
                       />

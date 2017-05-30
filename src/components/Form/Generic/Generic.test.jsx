@@ -70,9 +70,9 @@ describe('The generic component', () => {
       tabNext: () => { tabbed = true }
     }
     const component = mount(<Generic {...expected} />)
-    component.find('input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(true)
   })
 
@@ -84,9 +84,9 @@ describe('The generic component', () => {
       tabBack: () => { tabbed = true }
     }
     const component = mount(<Generic {...expected} />)
-    component.find('input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 

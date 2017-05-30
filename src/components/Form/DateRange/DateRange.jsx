@@ -122,7 +122,7 @@ export default class DateRange extends ValidationElement {
       })))
     }
 
-    return arr
+    return this.props.onError(value, arr)
   }
 
   render () {

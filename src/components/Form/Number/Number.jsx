@@ -119,13 +119,21 @@ Number.errors = [
   {
     code: 'min',
     func: (value, props) => {
-      return parseInt(value) >= parseInt(props.min)
+      if (props.min) {
+        return parseInt(value) >= parseInt(props.min)
+      }
+
+      return true
     }
   },
   {
     code: 'max',
     func: (value, props) => {
-      return parseInt(value) <= parseInt(props.max)
+      if (props.max) {
+        return parseInt(value) <= parseInt(props.max)
+      }
+
+      return true
     }
   }
 ]

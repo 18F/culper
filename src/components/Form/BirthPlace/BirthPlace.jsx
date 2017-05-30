@@ -13,6 +13,7 @@ export default class BirthPlace extends ValidationElement {
     this.updateBirthPlaceType = this.updateBirthPlaceType.bind(this)
     this.updateDomesticBirthPlace = this.updateDomesticBirthPlace.bind(this)
     this.updateInternationalBirthPlace = this.updateInternationalBirthPlace.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   update (updateValues) {
@@ -67,6 +68,22 @@ export default class BirthPlace extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `address.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   render () {
     const klass = `birthplace ${this.props.className || ''}`.trim()
     return (
@@ -82,14 +99,14 @@ export default class BirthPlace extends ValidationElement {
         <Show when={this.props.domestic === 'Yes'}>
           <DomesticBirthPlace
             {...this.props}
-            onError={this.props.onError}
+            onError={this.handleError}
             onUpdate={this.updateDomesticBirthPlace}
             />
         </Show>
         <Show when={this.props.domestic === 'No'}>
           <InternationalBirthPlace
             {...this.props}
-            onError={this.props.onError}
+            onError={this.handleError}
             onUpdate={this.updateInternationalBirthPlace}
             />
         </Show>
@@ -108,3 +125,5 @@ BirthPlace.defaultProps = {
   hideCounty: false,
   onError: (value, arr) => { return arr }
 }
+
+BirthPlace.errors = []

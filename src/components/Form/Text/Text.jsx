@@ -37,6 +37,15 @@ export default class Text extends ValidationElement {
   }
 
   handleError (value, arr) {
+    if (this.props.prefix) {
+      arr = arr.map(err => {
+        return {
+          code: `${this.props.prefix}.${err.code}`,
+          valid: err.valid
+        }
+      })
+    }
+
     // Take the original and concatenate our new error values to it
     return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {
@@ -83,6 +92,7 @@ export default class Text extends ValidationElement {
 Text.defaultProps = {
   name: 'text',
   value: '',
+  prefix: '',
   onError: (value, arr) => { return arr }
 }
 

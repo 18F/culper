@@ -100,6 +100,7 @@ export default class Selective extends SubsectionElement {
                   <Text name="RegistrationNumber"
                         className="registration-number"
                         label={i18n.t('military.selective.label.number')}
+                        {...this.state.RegistrationNumber}
                         onUpdate={this.updateRegistrationNumber}
                         onError={this.handleError}
                         />
@@ -115,6 +116,7 @@ export default class Selective extends SubsectionElement {
                   <Textarea name="Explanation"
                             className="explanation"
                             label={i18n.t('military.selective.label.explanation')}
+                            {...this.state.Explanation}
                             onUpdate={this.updateExplanation}
                             onError={this.handleError}
                             />

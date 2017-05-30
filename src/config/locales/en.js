@@ -240,6 +240,21 @@ const en = {
           message: 'This year is too far in the past.',
           note: ''
         }
+      },
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
+      }
+    },
+    daterange: {
+      order: {
+        title: 'There is a problem with the date range',
+        message: 'The **from** date should be before the **to** date.',
+        note: ''
       }
     },
     weight: {
@@ -280,41 +295,52 @@ const en = {
         }
       }
     },
-    city: {
-      length: {
-        title: 'There is a problem with the City',
-        message: 'City name should be between 2 and 100 characters.',
-        note: ''
-      }
-    },
-    state: {
-      notfound: {
-        title: 'There is a problem with the State',
-        message: [
-          'State name must be one of the available options.',
-          '*and/or*',
-          'The state name is too long.'
-        ],
-        note: ''
-      }
-    },
-    county: {
-      length: {
-        title: 'There is a problem with the County',
-        message: 'County name must be between 2 and 100 characters',
-        note: ''
-      }
-    },
-    zipcode: {
-      pattern: {
-        title: 'There is a problem with the ZIP Code',
-        message: 'The ZIP Code should be either 5 or 9 digits.',
-        note: ''
+    address: {
+      city: {
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
+        }
       },
-      length: {
-        title: 'There is a problem with the ZIP Code',
-        message: 'The ZIP Code should be either 5 or 9 digits.',
-        note: ''
+      state: {
+        notfound: {
+          title: 'There is a problem with the State',
+          message: [
+            'State name must be one of the available options.',
+            '*and/or*',
+            'The state name is too long.'
+          ],
+          note: ''
+        }
+      },
+      county: {
+        length: {
+          title: 'There is a problem with the County',
+          message: 'County name must be between 2 and 100 characters',
+          note: ''
+        }
+      },
+      zipcode: {
+        pattern: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code should be either 5 or 9 digits.',
+          note: ''
+        }
+      },
+      country: {
+        notfound: {
+          title: 'There is a problem with the Country',
+          message: 'Country name should be one of the available options.',
+          note: ''
+        }
+      },
+      apofpo: {
+        pattern: {
+          title: 'There is a problem with the State Code',
+          message: 'APO/FPO state code must be 2 letters',
+          note: 'Note: Typically the value is either AA, AE, or AP.'
+        }
       }
     },
     country: {
@@ -324,41 +350,20 @@ const en = {
         note: ''
       }
     },
-    apoFpo: {
-      length: {
-        title: 'There is a problem with the State Code',
-        message: 'APO/FPO state code must be 2 letters',
-        note: ''
-      },
-      pattern: {
-        title: 'There is a problem with the State Code',
-        message: 'APO/FPO state code must be 2 letters',
-        note: 'Note: Typically the value is either AA, AE, or AP.'
-      }
-    },
     passport: {
-      number: {
-        pattern: {
-          title: 'There is a problem with the passport number',
-          message: [
-            'For passport books the number will start with a letter and then 6 to 9 digits.',
-            'For passport cards the number begins with a "C" and followed by 8 digits.'
-          ],
-          note: ''
-        }
+      pattern: {
+        title: 'There is a problem with the passport number',
+        message: [
+          'For passport books the number will start with a letter and then 6 to 9 digits.',
+          'For passport cards the number begins with a "C" and followed by 8 digits.'
+        ],
+        note: ''
       }
     },
-    Losses: {
+    currency: {
       min: {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
-        note: ''
-      }
-    },
-    daterange: {
-      order: {
-        title: 'There is a problem with the date range',
-        message: 'The **from** date should be before the **to** date.',
         note: ''
       }
     },
@@ -502,138 +507,97 @@ const en = {
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       }
-    },
-    year: {
-      min: {
-        title: 'There is a problem with the year',
-        message: 'The year should be four(4) numbers.',
-        note: ''
-      }
-    },
-    datecontrol: {
-      max: {
-        title: 'There is a problem with the date',
-        message: 'The date can\'t be in the future.'
-      },
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be on or after your date of birth.'
-      }
-    },
-    to: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the "to" date',
-          message: 'The **to** date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the "to" date',
-          message: 'The **to** date should be on or after your date of birth.'
-        }
-      }
-    },
-    from: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the "from" date',
-          message: 'The **from** date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the "from" date',
-          message: 'The **from** date should be on or after your date of birth.'
-        }
-      }
-    },
-    order: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the date',
-          message: 'The order date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the date',
-          message: 'The order date value should be on or after your date of birth.'
-        }
-      }
-    },
-    hospitalization: {
-      to: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "to" date',
-            message: 'The hospitalization **to** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'The hospitalization **to** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      from: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "from" date',
-            message: 'The hospitalization **from** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "from" date',
-            message: 'The hospitalization **from** date value should be on or after your date of birth.'
-          }
-        }
-      }
-    },
-    diagnosis: {
-      to: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "to" date',
-            message: 'The diagnosis **to** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'Diagnosis **to** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      from: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "from" date',
-            message: 'Diagnosis **from** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "from" date',
-            message: 'Diagnosis **from** date value should be on or after your date of birth.'
-          }
-        }
-      }
-    },
-    bankruptcy: {
-      datefiled: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "date filed" date',
-            message: 'Bankruptcy **date filed** can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "date filed" date',
-            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      datedischarged: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "date discharged" date',
-            message: 'Bankruptcy **date discharged** can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
-          }
-        }
-      }
     }
+    // order: {
+    //   datecontrol: {
+    //     max: {
+    //       title: 'There is a problem with the date',
+    //       message: 'The order date can\'t be in the future.'
+    //     },
+    //     min: {
+    //       title: 'There is a problem with the date',
+    //       message: 'The order date value should be on or after your date of birth.'
+    //     }
+    //   }
+    // },
+    // hospitalization: {
+    //   to: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The hospitalization **to** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The hospitalization **to** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   from: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'The hospitalization **from** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'The hospitalization **from** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // },
+    // diagnosis: {
+    //   to: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The diagnosis **to** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'Diagnosis **to** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   from: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'Diagnosis **from** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'Diagnosis **from** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // },
+    // bankruptcy: {
+    //   datefiled: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "date filed" date',
+    //         message: 'Bankruptcy **date filed** can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "date filed" date',
+    //         message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   datedischarged: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "date discharged" date',
+    //         message: 'Bankruptcy **date discharged** can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // }
   },
   section: {
     back: 'Back',

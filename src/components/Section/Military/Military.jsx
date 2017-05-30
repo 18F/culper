@@ -21,19 +21,19 @@ class Military extends SectionElement {
   }
 
   updateSelective (values) {
-    this.onUpdate('Selective', values)
+    this.handleUpdate('Selective', values)
   }
 
   updateHistory (values) {
-    this.onUpdate('History', values)
+    this.handleUpdate('History', values)
   }
 
   updateDisciplinary (values) {
-    this.onUpdate('Disciplinary', values)
+    this.handleUpdate('Disciplinary', values)
   }
 
   updateForeign (values) {
-    this.onUpdate('Foreign', values)
+    this.handleUpdate('Foreign', values)
   }
 
   render () {
