@@ -4955,7 +4955,7 @@ const en = {
             },
             explanation: {
               title: 'Need help with this explanation?',
-              message: '',
+              message: 'Tell us how you got rid of your ownership or control of this financial interest.',
               note: ''
             }
           },
