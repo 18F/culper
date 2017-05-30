@@ -376,6 +376,7 @@ export default class Name extends ValidationElement {
             <Text name="suffixOther"
                   label={i18n.t(`${prefix}.label.other`)}
                   maxlength="100"
+                  className="suffix-other"
                   value={this.state.suffixOther}
                   onChange={this.handleChange}
                   onError={this.handleErrorSuffix}

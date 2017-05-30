@@ -53,7 +53,7 @@ export default class Field extends ValidationElement {
     return this.props.comments && (this.state.commentsValue || this.state.commentsActive || this.props.commentsActive)
   }
 
-  handleError (value, arr) {
+  handleError (value, arr = []) {
     let errors = [...this.state.errors]
     for (const e of arr) {
       const idx = errors.findIndex(x => x.code === e.code)
@@ -229,7 +229,6 @@ export default class Field extends ValidationElement {
       if (props.children) {
         const typeOfChildren = Object.prototype.toString.call(props.children)
         if (props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
-          console.log('recursion on: ', child)
           extendedProps.children = this.children(props.children)
         }
       }

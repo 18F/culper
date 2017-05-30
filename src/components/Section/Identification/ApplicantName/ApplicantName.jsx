@@ -27,7 +27,7 @@ ApplicantName.defaultProps = {
   subsection: 'name',
   dispatch: () => {},
   validator: (state, props) => {
-    return new NameValidator(props, props).isValid()
+    return new NameValidator(props.value, null).isValid()
   }
 }
 

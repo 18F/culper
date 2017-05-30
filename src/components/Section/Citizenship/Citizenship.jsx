@@ -16,8 +16,8 @@ class Citizenship extends SectionElement {
           <SectionView name="">
             <div className="intro review-screen">
               <div className="usa-grid-full">
-                <IntroHeader Errors={this.props.Errors}
-                             Completed={this.props.Completed}
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                             completed={() => { return this.props.Completed.length === 2 && this.props.Completed.every(x => x.valid === true) }}
                              tour={i18n.t('citizenship.tour.para')}
                              review={i18n.t('citizenship.review.para')}
                              onTour={this.handleTour}

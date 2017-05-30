@@ -74,7 +74,7 @@ ApplicantBirthDate.defaultProps = {
   subsection: 'birthdate',
   dispatch: () => {},
   validator: (state, props) => {
-    return validDateField(state.value)
+    return !!state && !!state.value
   }
 }
 

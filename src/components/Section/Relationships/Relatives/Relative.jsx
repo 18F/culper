@@ -571,7 +571,7 @@ export default class Relative extends ValidationElement {
                 <Textarea name="OtherCitizenshipDocumentation"
                           className="derived-other-explanation"
                           {...this.state.OtherCitizenshipDocumentation}
-                          onValidate={this.props.onValidate}
+                          onError={this.props.onError}
                           onUpdate={this.updateOtherCitizenshipDocumentation}
                           />
               </Show>
