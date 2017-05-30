@@ -305,6 +305,17 @@
       animation-name: closebox;
     }
   }
+
+  .append-button {
+    padding: 0 10%;
+    @media screen and (max-width: 1380px) {
+      padding: 0 7.5%;
+    }
+
+    @media screen and (max-width: 1024px) {
+      padding: 0 5.5%;
+    }
+  }
 }
 
 .addendum {
@@ -325,7 +336,7 @@ button.usa-button-outline {
   border-radius: 5px;
   padding: 1.7rem 2.3rem 1.7rem 2.3rem;
   background: #fff;
-  margin: 3.4rem 10% -1.6rem 10%;
+  margin: 3.4rem 10% -1.6rem 0;
 
   &:hover {
     color: #1a4c88;
