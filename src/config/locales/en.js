@@ -4903,7 +4903,7 @@ const en = {
             cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
             value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of',
             relinquished: 'Provide the date control or ownership was relinquished',
-            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of '
+            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of'
           },
           label: {
             relinquishedNotApplicable: 'Not applicable',
