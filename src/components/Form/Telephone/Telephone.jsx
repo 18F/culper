@@ -62,6 +62,9 @@ export default class Telephone extends ValidationElement {
     this.handleErrorDsn = this.handleErrorDsn.bind(this)
     this.handleErrorDsnFirst = this.handleErrorDsnFirst.bind(this)
     this.handleErrorDsnSecond = this.handleErrorDsnSecond.bind(this)
+    this.handleErrorNoNumber = this.handleErrorNoNumber.bind(this)
+    this.handleErrorTime = this.handleErrorTime.bind(this)
+    this.handleErrorType = this.handleErrorType.bind(this)
   }
 
   parseNumber (start, end, number) {
@@ -227,6 +230,18 @@ export default class Telephone extends ValidationElement {
     return this.handleError(`dsn.${code}`, value, arr)
   }
 
+  handleErrorNoNumber (value, arr) {
+    return this.handleError('none', value, arr)
+  }
+
+  handleErrorTime (value, arr) {
+    return this.handleError('time', value, arr)
+  }
+
+  handleErrorType (value, arr) {
+    return this.handleError('type', value, arr)
+  }
+
   handleError (code, value, arr) {
     arr = arr.map(err => {
       return {
@@ -290,6 +305,7 @@ export default class Telephone extends ValidationElement {
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
                  onChange={this.handleNoNumberChange.bind(this)}
+                 onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
       </div>
@@ -378,6 +394,7 @@ export default class Telephone extends ValidationElement {
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
                  onChange={this.handleNoNumberChange.bind(this)}
+                 onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
       </div>
@@ -437,7 +454,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
-              onError={this.handleErrorInternationExtension}
+              onError={this.handleErrorInternationalExtension}
               tabBack={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
@@ -446,6 +463,7 @@ export default class Telephone extends ValidationElement {
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
                  onChange={this.handleNoNumberChange.bind(this)}
+                 onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
       </div>
@@ -503,6 +521,7 @@ export default class Telephone extends ValidationElement {
                    value="Day"
                    disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
+                   onError={this.handleErrorTime}
                    />
             <Radio native={true}
                    className="time night"
@@ -510,6 +529,7 @@ export default class Telephone extends ValidationElement {
                    value="Night"
                    disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
+                   onError={this.handleErrorTime}
                    />
             <Radio native={true}
                    className="time both"
@@ -517,6 +537,7 @@ export default class Telephone extends ValidationElement {
                    value="Both"
                    disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Both')}
+                   onError={this.handleErrorTime}
                    />
           </RadioGroup>
         </div>
@@ -530,6 +551,7 @@ export default class Telephone extends ValidationElement {
                    value="Cell"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
+                   onError={this.handleErrorType}
                    />
             <Radio name="numbertype-home"
                    className="phonetype-option home"
@@ -537,6 +559,7 @@ export default class Telephone extends ValidationElement {
                    value="Home"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
+                   onError={this.handleErrorType}
                    />
             <Radio name="numbertype-work"
                    className="phonetype-option work"
@@ -544,6 +567,7 @@ export default class Telephone extends ValidationElement {
                    value="Work"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
+                   onError={this.handleErrorType}
                    />
             <Radio name="numbertype-other"
                    className="phonetype-option other"
@@ -551,6 +575,7 @@ export default class Telephone extends ValidationElement {
                    value="Other"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
+                   onError={this.handleErrorType}
                    />
           </RadioGroup>
         </div>
