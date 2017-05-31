@@ -4924,13 +4924,13 @@ const en = {
               note: ''
             },
             interestType: {
-              title: 'Need help with the direct interest type?',
-              message: 'Provide the type of financial interest',
+              title: 'Specify everyone who had a foreign financial interests?',
+              message: 'Select all people involved with this specific foreign financial interests.',
               note: ''
             },
             acquired: {
               title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -4940,22 +4940,22 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             value: {
               title: 'Need help with the value?',
-              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             relinquished: {
-              title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              title: 'Need help with date relinquished?',
+              message: 'Tell us when you were no longer in control or an owner of this foreign financial interest.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             },
             explanation: {
-              title: 'Need help with this field?',
-              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              title: 'Need help with this explanation?',
+              message: 'Tell us how you got rid of your ownership or control of this financial interest.',
               note: ''
             }
           },
@@ -4971,9 +4971,9 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
                 title: 'Need help with the nature of the relationship?',
