@@ -120,7 +120,6 @@ export default class ForeignService extends ValidationElement {
     return (
       <div className="foreign-service">
         <Field title={i18n.t('military.foreign.heading.organization')}
-               help="military.foreign.help.organization"
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="organization option-list"
@@ -170,8 +169,7 @@ export default class ForeignService extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.name')}
-               help="military.foreign.help.name">
+        <Field title={i18n.t('military.foreign.heading.name')}>
           <Text name="Name"
                 {...this.state.Name}
                 className="foreign-service-name"
@@ -193,8 +191,7 @@ export default class ForeignService extends ValidationElement {
                      />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.country')}
-               help="military.foreign.help.country">
+        <Field title={i18n.t('military.foreign.heading.country')}>
           <Text name="Country"
                 {...this.state.Country}
                 className="foreign-service-country"
@@ -204,8 +201,7 @@ export default class ForeignService extends ValidationElement {
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.rank')}
-               help="military.foreign.help.rank">
+        <Field title={i18n.t('military.foreign.heading.rank')}>
           <Text name="Rank"
                 {...this.state.Rank}
                 className="foreign-service-rank"
@@ -215,8 +211,7 @@ export default class ForeignService extends ValidationElement {
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.division')}
-               help="military.foreign.help.division">
+        <Field title={i18n.t('military.foreign.heading.division')}>
           <Text name="Division"
                 {...this.state.Division}
                 className="foreign-service-division"
@@ -226,8 +221,7 @@ export default class ForeignService extends ValidationElement {
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.circumstances')}
-               help="military.foreign.help.circumstances">
+        <Field title={i18n.t('military.foreign.heading.circumstances')}>
           <Textarea name="Circumstances"
                     {...this.state.Circumstances}
                     className="foreign-service-circumstances"
@@ -237,8 +231,7 @@ export default class ForeignService extends ValidationElement {
                     />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.left')}
-               help="military.foreign.help.left">
+        <Field title={i18n.t('military.foreign.heading.left')}>
           <Textarea name="ReasonLeft"
                     {...this.state.ReasonLeft}
                     className="foreign-service-left"
