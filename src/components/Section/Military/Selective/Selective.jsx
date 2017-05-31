@@ -125,7 +125,6 @@ export default class Selective extends ValidationElement {
             <Branch name="has_registered"
                     className="registered"
                     value={this.state.HasRegistered}
-                    help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}
                     onValidate={this.handleValidation}>
             </Branch>
@@ -133,7 +132,6 @@ export default class Selective extends ValidationElement {
             <Show when={this.state.HasRegistered === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
-                       help="military.selective.help.number"
                        adjustFor="labels">
                   <Text name="RegistrationNumber"
                         className="registration-number"
