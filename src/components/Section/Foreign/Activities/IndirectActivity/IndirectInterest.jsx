@@ -159,7 +159,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.interestType`)}
-          help={`foreign.activities.indirect.interest.help.interestType`}
           shrink={true}>
           <Text name="InterestType"
             className="interest-type"
@@ -169,8 +168,7 @@ export default class IndirectInterest extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.indirect.interest.heading.name`)}
-          help={`foreign.activities.indirect.interest.help.name`}>
+        <Field title={i18n.t(`foreign.activities.indirect.interest.heading.name`)}>
           <Text name="Firstname"
             label={i18n.t(`foreign.activities.indirect.interest.label.firstname`)}
             {...this.props.Firstname}
@@ -195,7 +193,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.acquired`)}
-          help={`foreign.activities.indirect.interest.help.acquired`}
           adjustFor="labels"
           shrink={true}>
           <DateControl name="Acquired"
