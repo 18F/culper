@@ -78,17 +78,15 @@ export default class Travel extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
 
-        <Show when={this.props.HasForeignTravelOutside === 'Yes'}>
-          <Branch label={i18n.t('foreign.travel.heading.official')}
-                  labelSize="h3"
-                  name="has_foreign_travel_official"
-                  className="foreign-travel-official"
-                  help="foreign.travel.help.official"
-                  value={this.props.HasForeignTravelOfficial}
-                  onUpdate={this.updateHasForeignTravelOfficial}
-                  onError={this.handleError}>
-          </Branch>
-        </Show>
+        <Branch label={i18n.t('foreign.travel.heading.official')}
+                labelSize="h3"
+                name="has_foreign_travel_official"
+                className="foreign-travel-official"
+                help="foreign.travel.help.official"
+                value={this.props.HasForeignTravelOfficial}
+                onUpdate={this.updateHasForeignTravelOfficial}
+                onError={this.handleError}>
+        </Branch>
 
         <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
           <Accordion minimum="1"
