@@ -14,13 +14,15 @@ export default class OtherNames extends SubsectionElement {
       HasOtherNames: props.HasOtherNames
     }
 
+    this.onUpdate = this.onUpdate.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
   }
 
-  onUpdate (val, event) {
-    this.setState({ HasOtherNames: val }, () => {
+  onUpdate (value) {
+    console.log('updating hasOtherNames', value)
+    this.setState({ HasOtherNames: value }, () => {
       this.myDispatch({
-        items: val === 'No' ? [] : this.state.List,
+        items: value === 'No' ? [] : this.state.List,
         branch: ''
       })
     })
@@ -63,7 +65,7 @@ export default class OtherNames extends SubsectionElement {
         <Branch name="has_othernames"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
-                onUpdate={this.onUpdate.bind(this)}
+                onUpdate={this.onUpdate}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasOtherNames === 'Yes'}>

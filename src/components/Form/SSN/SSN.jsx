@@ -92,7 +92,7 @@ export default class SSN extends ValidationElement {
   }
 
   handleError (code, value, arr) {
-    arr = arr.map(err => {
+    arr = (arr || []).map(err => {
       return {
         code: `ssn.${code}.${err.code}`,
         valid: err.valid
@@ -130,7 +130,7 @@ export default class SSN extends ValidationElement {
               className="first eapp-short-input"
               placeholder={i18n.t('identification.ssn.placeholder.first')}
               maxlength="3"
-              pattern="^[0-9]*$"
+              pattern="^[0-9]{3}$"
               clipboard={false}
               value={this.state.first}
               disabled={this.state.notApplicable}
@@ -145,7 +145,7 @@ export default class SSN extends ValidationElement {
               className="middle eapp-short-input"
               placeholder={i18n.t('identification.ssn.placeholder.middle')}
               maxlength="2"
-              pattern="^[0-9]*$"
+              pattern="^[0-9]{2}$"
               clipboard={false}
               value={this.state.middle}
               disabled={this.state.notApplicable}
@@ -161,7 +161,7 @@ export default class SSN extends ValidationElement {
               className="last eapp-short-input"
               placeholder={i18n.t('identification.ssn.placeholder.last')}
               maxlength="4"
-              pattern="^[0-9]*$"
+              pattern="^[0-9]{4}$"
               clipboard={false}
               value={this.state.last}
               disabled={this.state.notApplicable}
@@ -203,6 +203,3 @@ SSN.defaultProps = {
 }
 
 SSN.errors = []
-
-        // <Field help="identification.ssn.help"
-        //        shrink={true}>

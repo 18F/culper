@@ -16,7 +16,7 @@ describe('The Diagnosis component', () => {
     component.find('.datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
     component.find('.person .treatment input[name="Name"]').simulate('change')
     component.find('.facility .treatment input[name="Name"]').simulate('change')
-    component.find({ type: 'radio', name: 'effective', value: 'No' }).simulate('click')
+    component.find({ type: 'radio', name: 'effective', value: 'No' }).simulate('change')
     expect(updates).toBe(5)
   })
 

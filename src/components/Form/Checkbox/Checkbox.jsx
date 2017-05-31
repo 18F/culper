@@ -12,6 +12,8 @@ export default class Checkbox extends ValidationElement {
       error: props.error || false,
       valid: props.valid || false
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -25,6 +27,8 @@ export default class Checkbox extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
+    this.handleValidation(event)
+
     this.setState({ checked: event.target.checked }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -33,8 +37,12 @@ export default class Checkbox extends ValidationElement {
           checked: event.target.checked
         })
       }
+
       super.handleChange(event)
-      this.handleValidation(event)
+
+      // HACK: Race condition was found where the majority of the time the `handleError` would
+      // beat the storage routines causing things not to show as valid.
+      window.setTimeout(() => { this.handleError(this.state.value) }, 200)
     })
   }
 
@@ -58,21 +66,22 @@ export default class Checkbox extends ValidationElement {
     })
   }
 
+  handleError (value, arr = []) {
+    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })) || []
+
+    this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+  }
+
   /**
    * Execute validation checks on the value.
    */
   handleValidation (event) {
-    const value = this.state.value
-    if (value) {
-      const errors = this.props.onError(value, this.constructor.errors.map(err => {
-        return {
-          code: err.code,
-          valid: err.func(value, this.props)
-        }
-      })) || []
-
-      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
-    }
+    this.handleError(this.state.value)
   }
 
   /**
