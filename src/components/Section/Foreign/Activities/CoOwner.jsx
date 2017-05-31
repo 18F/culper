@@ -74,8 +74,7 @@ export default class CoOwner extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t(`foreign.${prefix}.heading.relationshipNature`)}
-          help={`foreign.${prefix}.help.relationshipNature`}>
+        <Field title={i18n.t(`foreign.${prefix}.heading.relationshipNature`)}>
           <Textarea name="RelationshipNature"
             className="relationship-nature"
             {...this.props.RelationshipNature}
