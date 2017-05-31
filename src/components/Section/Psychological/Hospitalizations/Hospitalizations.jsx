@@ -26,7 +26,8 @@ export default class Hospitalizations extends SubsectionElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Hospitalized: this.state.Hospitalized,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -92,7 +93,7 @@ export default class Hospitalizations extends SubsectionElement {
   }
 }
 
-Hospitalization.defaultProps = {
+Hospitalizations.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
