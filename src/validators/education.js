@@ -5,7 +5,7 @@ import AddressValidator from './address'
 import ReferenceValidator from './reference'
 
 export default class EducationValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.hasAttended = state.HasAttended
     this.hasDegree10 = state.HasDegree10
     this.list = state.List || []
