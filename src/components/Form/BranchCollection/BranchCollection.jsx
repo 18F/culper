@@ -16,8 +16,9 @@ export default class BranchCollection extends React.Component {
     item[this.props.valueKey] = yes
     items[index] = item
 
-    // If it's not the first item, remove it when user selects no if `removeable` flag is turned on
-    if (this.props.items.length > 1 && this.props.removable && yes === 'No') {
+    // If it's not the last item being marked as No, then remove it. This addresses the issue
+    // where the user must click No twice on the last item.
+    if (index + 1 < this.props.items.length && this.props.removable && yes === 'No') {
       items.splice(index, 1)
     }
 

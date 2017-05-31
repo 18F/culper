@@ -129,9 +129,7 @@ export default class RealEstateInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
-               help={'foreign.activities.realestate.interest.help.realEstateType'}
-               adjustFor="p"
-               shrink={true}>
+               adjustFor="p">
           {i18n.m('foreign.activities.realestate.interest.para.realEstateType')}
           <Text name="RealEstateType"
                 className="realestate-type"
@@ -152,7 +150,6 @@ export default class RealEstateInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.acquired')}
-               help={'foreign.activities.realestate.interest.help.acquired'}
                adjustFor="labels">
           <DateControl name="Acquired"
                        className="acquired"

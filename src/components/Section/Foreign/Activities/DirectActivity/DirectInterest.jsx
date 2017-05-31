@@ -103,7 +103,6 @@ export default class DirectInterest extends ValidationElement {
     return (
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestTypes`)}
-               help={`foreign.activities.direct.interest.help.interestType`}
                adjustFor="p">
 
           <p>{i18n.t('foreign.activities.direct.interest.para.checkAll')}</p>
@@ -140,9 +139,7 @@ export default class DirectInterest extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestType`)}
-               help={`foreign.activities.direct.interest.help.interestType`}
-               shrink={true}>
+        <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestType`)}>
           <Text name="InterestType"
                 className="interest-type"
                 {...this.props.InterestType}
@@ -152,7 +149,6 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.acquired')}
-               help={'foreign.activities.direct.interest.help.acquired'}
                adjustFor="labels">
           <DateControl name="Acquired"
                        className="acquired"
@@ -164,8 +160,7 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.howAcquired')}
-               adjustFor="p"
-               help={'foreign.activities.direct.interest.help.howAcquired'}>
+               adjustFor="p">
           {i18n.m('foreign.activities.direct.interest.para.howAcquired')}
           <Textarea name="HowAcquired"
                     className="how-acquired"
@@ -236,8 +231,7 @@ export default class DirectInterest extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.direct.interest.heading.explanation')}
-               help={'foreign.activities.direct.interest.help.explanation'}>
+        <Field title={i18n.t('foreign.activities.direct.interest.heading.explanation')}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
