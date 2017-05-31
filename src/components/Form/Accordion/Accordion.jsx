@@ -413,8 +413,9 @@ export default class Accordion extends ValidationElement {
           <div className="items">
             {this.content()}
           </div>
-
-          {this.appendButton()}
+          <div className="append-button">
+            {this.appendButton()}
+          </div>
         </div>
 
         {this.addendum()}
