@@ -56,19 +56,23 @@ class Navigation extends React.Component {
       }
 
       const se = this.props.completed[section]
+          .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
+
       if (crumbs.length === 1) {
-        return se.every(e =>
-                        e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                        e.valid === true)
+        return this.countValidations(section) === se.filter(e => e.valid === true).length
       } else if (crumbs.length > 1) {
-        return se.some(e =>
-                       e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                       e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase() &&
-                       e.valid === true)
+        const sse = se.filter(e => e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase())
+        return sse.length > 0 && sse.every(e => e.valid === true)
       }
     }
 
     return false
+  }
+
+  countValidations (section) {
+    return navigation.filter(x => x.url === section).reduce((x, y) => {
+      return x + y.subsections.length
+    }, 0)
   }
 
   /**
@@ -97,8 +101,10 @@ class Navigation extends React.Component {
     if (!section.subsections) {
       return null
     }
-    let location = hashHistory.getCurrentLocation()
-    let pathname = location.pathname
+
+    const location = hashHistory.getCurrentLocation()
+    const pathname = location.pathname
+
     return section.subsections.map(subsection => {
       if (subsection.hidden) {
         return ''
@@ -129,10 +135,11 @@ class Navigation extends React.Component {
   }
 
   render () {
-    let location = hashHistory.getCurrentLocation()
-    let pathname = location.pathname
+    const location = hashHistory.getCurrentLocation()
+    const pathname = location.pathname
     let sectionNum = 0
-    let nav = navigation.map((section) => {
+
+    const nav = navigation.map((section) => {
       if (section.hidden) {
         return ''
       }
