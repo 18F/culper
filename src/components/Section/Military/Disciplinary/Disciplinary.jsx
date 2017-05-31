@@ -113,7 +113,6 @@ export default class Disciplinary extends ValidationElement {
       <div className="disciplinary">
         <Branch name="has_disciplinary"
                 value={this.state.HasDisciplinary}
-                help="military.disciplinary.help.branch"
                 onUpdate={this.updateDisciplinary}
                 onValidate={this.handleValidation}>
         </Branch>
