@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import { ValidationElement, Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Address, Name } from '../../../Form'
+         Textarea, Country, DateControl, BirthPlace, Name } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
 export default class Contact extends ValidationElement {
@@ -127,10 +127,15 @@ export default class Contact extends ValidationElement {
             <Field title={i18n.t('foreign.business.contact.heading.location')}
                    help="foreign.business.contact.help.location"
                    adjustFor="address">
-              <Address name="Location"
-                       className="foreign-business-contact-location"
-                       bind={true}
-                       />
+              <BirthPlace name="Location"
+                          help=""
+                          label={i18n.t('foreign.business.contact.label.location')}
+                          cityPlaceholder={i18n.t('foreign.business.contact.placeholder.city')}
+                          countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
+                          hideCounty={true}
+                          className="foreign-business-contact-location"
+                          bind={true}
+                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.date')}
