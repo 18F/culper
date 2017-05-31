@@ -5,7 +5,7 @@ import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGener
          validDateField, withinSevenYears, BranchCollection } from './helpers'
 
 export default class EmploymentValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.employmentActivity = state.EmploymentActivity || { value: null }
     this.dates = state.Dates
     this.employment = state.Employment

@@ -4,8 +4,7 @@ import { EducationValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
-import { today, daysAgo } from '../dateranges'
-import { InjectGaps, EducationCustomSummary, EducationCaption } from '../summaries'
+import { EducationCustomSummary, EducationCaption } from '../summaries'
 import EducationItem from './EducationItem'
 
 const byline = (item, index, initial, translation, validator) => {
@@ -24,7 +23,7 @@ export default class Education extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.customEmploymentByline = this.customEmploymentByline.bind(this)
+    this.customEducationByline = this.customEducationByline.bind(this)
   }
 
   customEducationByline (item, index, initial) {
