@@ -67,4 +67,24 @@ describe('The BranchCollection component', () => {
     expect(component.find({type: 'radio', value: 'Yes'}).length).toBe(4)
     expect(component.find({type: 'radio', value: 'No'}).length).toBe(4)
   })
+
+  it('Renders multiple yes then removes first', () => {
+    let updated = []
+    const onUpdate = (i) => {
+      updated = i
+    }
+    const items = [
+      { Has: 'Yes' },
+      { Has: 'Yes' },
+      { Has: 'Yes' }
+    ]
+
+    const component = mount(
+      <BranchCollection items={items} content={hello} onUpdate={onUpdate}>
+        <Text bind={true} name="foo" />
+      </BranchCollection>
+    )
+    component.find({type: 'radio', value: 'No'}).first().simulate('change')
+    expect(updated.length).toBe(2)
+  })
 })
