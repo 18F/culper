@@ -27,10 +27,10 @@ describe('The ForeignBornDocuments component', () => {
     expect(component.find('.notcitizen').length).toEqual(6)
     expect(component.find('.other').length).toEqual(1)
 
-    component.find('.born input').first().simulate('click')
+    component.find('.born input').first().simulate('change')
     expect(updates).toBe(1)
 
-    component.find('.other input').simulate('click')
+    component.find('.other input').simulate('change')
     component.find('.other-explanation textarea').simulate('change')
     component.find('.foreign-born-document-number input').simulate('change')
     component.find('.month input').simulate('change', { target: { value: '1' } })

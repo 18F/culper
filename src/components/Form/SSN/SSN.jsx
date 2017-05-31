@@ -92,7 +92,7 @@ export default class SSN extends ValidationElement {
   }
 
   handleError (code, value, arr) {
-    arr = arr.map(err => {
+    arr = (arr || []).map(err => {
       return {
         code: `ssn.${code}.${err.code}`,
         valid: err.valid
@@ -203,6 +203,3 @@ SSN.defaultProps = {
 }
 
 SSN.errors = []
-
-        // <Field help="identification.ssn.help"
-        //        shrink={true}>

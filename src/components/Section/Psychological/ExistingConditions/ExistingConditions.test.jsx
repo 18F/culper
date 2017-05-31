@@ -17,7 +17,7 @@ describe('The ExistingConditions component', () => {
     component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
     component.find('.treatment-list .no input').simulate('change')
     component.find('.existing-condition-explanation textarea').simulate('change')
-    component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('click')
+    component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('change')
     component.find('.diagnosis-condition input').simulate('change')
 
     expect(updates).toBe(10)
@@ -28,7 +28,7 @@ describe('The ExistingConditions component', () => {
     const onUpdate = () => { updates++ }
     const component = mount(<ExistingConditions onUpdate={onUpdate} />)
     component.find('.hascondition .no input').simulate('change')
-    component.find({type: 'radio', name: 'treatment', value: 'Decline'}).simulate('click')
+    component.find({type: 'radio', name: 'treatment', value: 'Decline'}).simulate('change')
     component.find('.didnotfollow .no input').simulate('change')
     expect(updates).toBe(3)
   })
