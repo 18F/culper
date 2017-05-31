@@ -6,7 +6,10 @@ import (
 	"encoding/base32"
 	"encoding/base64"
 	"errors"
+	"log"
 	"net/url"
+	"os"
+	"strconv"
 	"strings"
 	"text/template"
 
@@ -68,10 +71,22 @@ func Generate(account, secret string) (string, error) {
 // Authenticate validates the initial token generated when configuring two-factor
 // authentication for the first time.
 func Authenticate(token, secret string) (ok bool, err error) {
+	// Get the adjustable window size
+	size := 3
+	if os.Getenv("WINDOW_SIZE") != "" {
+		i, e := strconv.Atoi(os.Getenv("WINDOW_SIZE"))
+		if e == nil {
+			size = i
+			log.Println("Setting window size of", i)
+		}
+	}
+
+	// Create the OTP configuration to use for authenticating the token
 	otpc := &dgoogauth.OTPConfig{
 		Secret:      secret,
-		WindowSize:  3,
+		WindowSize:  size,
 		HotpCounter: 0,
+		UTC:         true,
 	}
 	return otpc.Authenticate(token)
 }
