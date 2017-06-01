@@ -235,4 +235,50 @@ describe('The accordion component', () => {
     expect(component.find('.caption').length).toEqual(1)
     expect(component.find('.caption').text()).toBe(text)
   })
+
+  it('clicking on addendum "no" does not add a new item', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+    let branch = ''
+    const expected = {
+      minimum: 1,
+      items: items,
+      appendTitle: 'Addendum title',
+      appendMessage: 'Addendum message',
+      onUpdate: (values) => {
+        items = values.items
+        branch = values.branch
+      }
+    }
+
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.addendum').length).toEqual(1)
+    component.find('.addendum .no input').simulate('click')
+    expect(items.length).toBe(1)
+    expect(branch).toBe('No')
+  })
+
+  it('clicking on addendum "yes" adds a new item', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+    let branch = ''
+    const expected = {
+      minimum: 1,
+      items: items,
+      appendTitle: 'Addendum title',
+      appendMessage: 'Addendum message',
+      onUpdate: (values) => {
+        items = values.items
+        branch = values.branch
+      }
+    }
+
+    const component = mount(<Accordion {...expected}><div><Text name="mytext" bind={true} /></div></Accordion>)
+    expect(component.find('.addendum').length).toEqual(1)
+    component.find('.addendum .yes input').simulate('click')
+    expect(items.length).toBe(2)
+    expect(branch).toBe('')
+  })
 })
