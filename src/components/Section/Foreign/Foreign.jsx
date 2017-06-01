@@ -130,96 +130,112 @@ class Foreign extends SectionElement {
                       />
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
                       />
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            defaultState={false}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
                             />
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              defaultState={false}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
                               />
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
+                                defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
                                 />
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
+                             defaultState={false}
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
                              />
             <Support name="support"
                      {...this.props.Support}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
                      />
             <Advice name="advice"
                     {...this.props.Advice}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
                     />
             <Family name="family"
                     {...this.props.Family}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
                     />
             <Employment name="employment"
                         {...this.props.Employment}
+                        defaultState={false}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         />
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
                       />
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         defaultState={false}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
                          />
             <Contact name="Contact"
                      {...this.props.Contact}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
                      />
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         defaultState={false}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
                          />
             <Political name="Political"
                        {...this.props.Political}
+                       defaultState={false}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
                        />
             <Voting name="Voting"
                     {...this.props.Voting}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
                     />
             <Travel name="Travel"
                     {...this.props.Travel}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}

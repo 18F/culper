@@ -70,6 +70,7 @@ export default class Employment extends SubsectionElement {
         <Show when={this.state.HasForeignEmployment === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -95,5 +96,6 @@ Employment.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBusinessEmploymentValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }
