@@ -117,7 +117,6 @@ describe('The radio component', () => {
     }
     const component = mount(<Radio name="toggle" value="foo" checked="true" onUpdate={onUpdate} />)
     expect(component.find('.checked').length).toEqual(1)
-    console.log('clicking')
     component.find('input').simulate('click')
     expect(checked).toBe(false)
   })

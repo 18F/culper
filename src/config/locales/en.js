@@ -6387,6 +6387,11 @@ const en = {
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
       domesticViolence: 'Domestic violence',
+      investigations: {
+        history: 'Ever been investigated',
+        revoked: 'Denied',
+        debarred: 'Debarment'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6639,7 +6644,109 @@ const en = {
         ],
         append: 'Add another offense'
       }
+    },
+
+    investigations: {
+      history: {
+        heading: {
+          title: 'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+          agency: 'Provide the investigating agency',
+          completed: 'Date the investigation was completed',
+          issued: 'Provide the name of agency that issued the clearance eligibility/access if different from the investigating agency',
+          granted: 'Provide the date clearance eligibility/access was granted',
+          clearance: 'Provide the level of clearance eligibility/access granted',
+          agencyExplanation: 'Provide the name of the bureau, government, or explanation',
+          clearanceExplanation: 'Provide an explanation'
+        },
+        label: {
+          idk: 'I don\'t know',
+          agency: {
+            dod: 'U.S. Department of Defense',
+            dos: 'U.S. Department of State',
+            opm: 'U.S. Office of Personnel Management',
+            fbi: 'Federal Bureau of Investigation',
+            dot: [
+              'U.S. Department of Treasury',
+              '(provide name of bureau)'
+            ],
+            dhs: 'U.S. Department of Homeland Security',
+            foreign: [
+              'Foreign government',
+              '(provide name of government)'
+            ],
+            other: [
+              'Other',
+              '(provide explanation)'
+            ]
+          },
+          level: {
+            none: 'None',
+            confidential: 'Confidential',
+            secret: 'Secret',
+            topsecret: 'Top Secret',
+            sci: [
+              'Sensitive Compartmented Information',
+              '(SCI)'
+            ],
+            q: 'Q',
+            l: 'L',
+            foreign: 'Issued by foreign country',
+            other: [
+              'Other',
+              '(provide explanation)'
+            ]
+          }
+        },
+        para: {
+          or: 'or'
+        },
+        collection: {
+          description: 'Summary of investigations',
+          item: 'Investigation',
+          unknown: 'Provide investigation details below',
+          appendTitle: 'Do you have another investigation to enter?',
+          appendLabel: 'Add another investigation'
+        },
+        help: {
+          agency: {
+            title: 'Need help with this investigative agency?',
+            message: 'If you are not sure of the agency issuing the investigation click "I don\'t know".',
+            note: ''
+          },
+          agencyExplanation: {
+            title: 'Need help explaining this agency?',
+            message: 'Provide any further explanation or name(s) required.',
+            note: ''
+          },
+          completed: {
+            title: 'Need help when this investigation was completed?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          issued: {
+            title: 'Need help with who issued this clearance?',
+            message: 'If an agency besides the one who initiated the investigation issued your clearance please tell us.',
+            note: ''
+          },
+          granted: {
+            title: 'Need help with when this clearance was granted?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          clearance: {
+            title: 'Need help with which clearance was granted?',
+            message: 'If you are not sure of the clearance being issued click "I don\'t know".',
+            note: ''
+          },
+          clearanceExplanation: {
+            title: 'Need help explaining this clearance?',
+            message: 'Provide any further explanation regarding the clearance.',
+            note: ''
+          }
+        }
+      }
     }
+
   },
   substance: {
     tour: {
