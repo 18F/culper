@@ -99,6 +99,7 @@ export default class Delinquent extends SubsectionElement {
           <Accordion minimum="1"
                      items={this.state.List}
                      branch={this.state.ListBranch}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -234,5 +235,6 @@ Delinquent.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DelinquentValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

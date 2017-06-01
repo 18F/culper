@@ -45,6 +45,7 @@ class Financial extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
+                          defaultState={false}
                           />
 
             <h2>{i18n.t('financial.gambling.title')}</h2>
@@ -53,7 +54,8 @@ class Financial extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
-                      />
+                      defaultState={false}
+                    />
 
             <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
@@ -61,6 +63,7 @@ class Financial extends SectionElement {
                    dispatch={this.props.dispatch}
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
+                   defaultState={false}
                    />
 
             <h2>{i18n.t('financial.card.title')}</h2>
@@ -69,6 +72,7 @@ class Financial extends SectionElement {
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
+                  defaultState={false}
                   />
 
             <h2>{i18n.t('financial.credit.title')}</h2>
@@ -77,6 +81,7 @@ class Financial extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
+                    defaultState={false}
                     />
 
             <h2>{i18n.t('financial.delinquent.title')}</h2>
@@ -92,6 +97,7 @@ class Financial extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
+                        defaultState={false}
                         />
 
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
@@ -110,6 +116,7 @@ class Financial extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}
+                        defaultState={false}
                         />
           </SectionView>
 
