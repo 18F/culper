@@ -32,8 +32,9 @@ export default class Radio extends ValidationElement {
   handleChange (event) {
     event.persist()
 
-    this.setState({checked: event.target.checked}, () => {
-      if (this.props.onUpdate) {
+    const called = this.state.value === ''
+    this.setState({ checked: event.target.checked }, () => {
+      if (!called && this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
           value: this.state.value,
@@ -61,8 +62,14 @@ export default class Radio extends ValidationElement {
     const futureChecked = !this.state.checked
     const futureValue = futureChecked ? this.props.value : ''
 
-    this.setState({checked: futureChecked, value: futureValue}, () => {
-      this.handleChange(event)
+    this.setState({ checked: futureChecked, value: futureValue }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          name: this.props.name,
+          value: this.state.value,
+          checked: this.state.checked
+        })
+      }
     })
   }
 
