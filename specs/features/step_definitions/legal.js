@@ -1,8 +1,6 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
-let counter = 0
-
 defineSupportCode(({Given, Then, When}) => {
   When(/^I go to the legal section$/, () => {
     return navigateToSection('legal')
@@ -21,6 +19,12 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
     case 'police':
       return completePoliceRecord(promise)
+    case 'investigations/history':
+      return completeInvestigationsHistory(promise)
+    case 'investigations/revoked':
+      return completeInvestigationsRevoked(promise)
+    case 'investigations/debarred':
+      return completeInvestigationsDebarred(promise)
     default:
       return promise
     }
@@ -70,6 +74,35 @@ const completePoliceRecord = (promise) => {
     .then(() => { return setOption('.offense .branch.offense-sentenced .yes') })
 }
 
+const completeInvestigationsHistory = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-investigations-history-has-history .branch .yes') })
+    .then(() => { return setOption('.legal-investigations-history-agency .investigative-agency-dod') })
+    .then(() => { return setDate('.legal-investigations-history-completed', '7', '10', '2001') })
+    .then(() => { return setDate('.legal-investigations-history-granted', '9', '11', '2001') })
+    .then(() => { return setOption('.legal-investigations-history-clearance .clearance-level-sci') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeInvestigationsRevoked = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-investigations-revoked-has-revocations .branch .yes') })
+    .then(() => { return setDate('.legal-investigations-revoked-date', '1', '1', '2010') })
+    .then(() => { return setText('.legal-investigations-revoked-agency input', 'DoD') })
+    .then(() => { return setText('.legal-investigations-revoked-explanation textarea', 'This is the explanation') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeInvestigationsDebarred = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-investigations-debarred-has-debarment .branch .yes') })
+    .then(() => { return setText('.legal-investigations-debarred-agency input', 'DoD') })
+    .then(() => { return setDate('.legal-investigations-debarred-date', '1', '1', '2010') })
+    .then(() => { return setText('.legal-investigations-debarred-explanation textarea', 'This is the explanation') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+let counter = 0
 const filenum = () => {
   const size = 4
   const num = counter++
@@ -134,4 +167,13 @@ const setText = (selector, text) => {
     .assert.visible(selector)
     .setValue(selector, text)
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-set-text.png')
+}
+
+const setDate = (selector, month, day, year) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector + ' .month input', month)
+    .setValue(selector + ' .day input', day)
+    .setValue(selector + ' .year input', year)
+    .saveScreenshot('./screenshots/Legal/' + filenum() + '-set-date.png')
 }

@@ -98,26 +98,27 @@ describe('Legal investigations history component validation', function () {
     battery(tests, HistoryValidator, 'validCompleted')
   })
 
-  it('validate issued by', () => {
-    const tests = [
-      {
-        props: {
-          Issued: {}
-        },
-        expected: false
-      },
-      {
-        props: {
-          Issued: {
-            value: 'Some other agency'
-          }
-        },
-        expected: true
-      }
-    ]
+  // This is optional
+  // it('validate issued by', () => {
+  //   const tests = [
+  //     {
+  //       props: {
+  //         Issued: {}
+  //       },
+  //       expected: false
+  //     },
+  //     {
+  //       props: {
+  //         Issued: {
+  //           value: 'Some other agency'
+  //         }
+  //       },
+  //       expected: true
+  //     }
+  //   ]
 
-    battery(tests, HistoryValidator, 'validIssued')
-  })
+  //   battery(tests, HistoryValidator, 'validIssued')
+  // })
 
   it('validate date granted', () => {
     const tests = [

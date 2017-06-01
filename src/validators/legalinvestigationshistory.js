@@ -38,7 +38,7 @@ export class HistoryValidator {
     this.agency = props.Agency
     this.completedNotApplicable = props.CompletedNotApplicable
     this.completed = props.Completed
-    this.issued = props.Issued
+    this.issued = props.Issued // optional
     this.grantedNotApplicable = props.GrantedNotApplicable
     this.granted = props.Granted
     this.clearanceNotApplicable = props.ClearanceNotApplicable
@@ -61,9 +61,9 @@ export class HistoryValidator {
     })
   }
 
-  validIssued () {
-    return !!this.issued && validGenericTextfield(this.issued)
-  }
+  // validIssued () {
+  //   return !!this.issued && validGenericTextfield(this.issued)
+  // }
 
   validGranted () {
     return validNotApplicable(this.grantedNotApplicable, () => {
@@ -84,7 +84,7 @@ export class HistoryValidator {
   isValid () {
     return this.validAgency() &&
       this.validCompleted() &&
-      this.validIssued() &&
+      // this.validIssued() &&
       this.validGranted() &&
       this.validClearance()
   }
