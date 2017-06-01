@@ -75,6 +75,7 @@ class Identification extends SectionElement {
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
