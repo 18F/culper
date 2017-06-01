@@ -41,11 +41,11 @@ describe('Foreign business contact component validation', function () {
       {
         props: {
           Location: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            domestic: 'Yes',
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            county: 'Arlington',
+            state: 'VA'
           }
         },
         expected: true
@@ -289,11 +289,11 @@ describe('Foreign business contact component validation', function () {
                 suffix: 'Jr'
               },
               Location: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                domestic: 'Yes',
+                country: 'United States',
                 city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202'
+                county: 'Arlington',
+                state: 'VA'
               },
               Date: {
                 day: '1',

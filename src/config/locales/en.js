@@ -5973,6 +5973,13 @@ const en = {
             'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjuction with a U.S. Government military duty.'
           ]
         },
+        label: {
+          location: 'Did this contact take place in the United States of America?'
+        },
+        placeholder: {
+          city: 'Please enter the city',
+          country: 'Please enter the country'
+        },
         help: {
           branch: {
             title: 'Need help determining if you have any foreign government contact?',

@@ -4,7 +4,7 @@ import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Address, Name } from '../../../Form'
+         Textarea, Country, DateControl, Name, BirthPlace } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
 export default class Contact extends SubsectionElement {
@@ -95,10 +95,15 @@ export default class Contact extends SubsectionElement {
             <Field title={i18n.t('foreign.business.contact.heading.location')}
                    help="foreign.business.contact.help.location"
                    adjustFor="address">
-              <Address name="Location"
-                       className="foreign-business-contact-location"
-                       bind={true}
-                       />
+              <BirthPlace name="Location"
+                          help=""
+                          label={i18n.t('foreign.business.contact.label.location')}
+                          cityPlaceholder={i18n.t('foreign.business.contact.placeholder.city')}
+                          countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
+                          hideCounty={true}
+                          className="foreign-business-contact-location"
+                          bind={true}
+                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.date')}
