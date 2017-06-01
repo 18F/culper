@@ -2806,8 +2806,8 @@ const en = {
       },
       help: {
         born: {
-          title: 'Need help with when you were born?',
-          message: 'The selective service only applies to males born before a cerain date.',
+          title: 'Why are we asking?',
+          message: 'The selective service only applies to men born before after this date.',
           note: ''
         },
         registered: {
@@ -2821,8 +2821,8 @@ const en = {
           note: ''
         },
         explanation: {
-          title: 'Need help providing an explanation?',
-          message: 'To assist in the investigation please provide an explanation why you may be unregistered',
+          title: 'Need help with this explanation?',
+          message: 'To help the investigation let us know why you haven\'t registered.',
           note: ''
         },
         remember: {
@@ -2876,8 +2876,8 @@ const en = {
       },
       help: {
         served: {
-          title: 'Need help determining if you have served?',
-          message: 'If at any point you have served with the active military then you need to report those activities',
+          title: 'Need help with this question?',
+          message: 'If you have ever served in the Air Force, Air National Guard, Army, Army National Guard, Coast Guard, Marine Corps, or Navy answer "Yes".',
           note: ''
         },
         service: {
@@ -2902,7 +2902,7 @@ const en = {
         },
         dates: {
           title: 'Need help with your dates of service?',
-          message: 'Provide the closest dates of service',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         discharged: {
@@ -2923,7 +2923,7 @@ const en = {
           },
           date: {
             title: 'Need help with the date of discharge?',
-            message: 'Provide the closest date of your military discharge',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -2962,12 +2962,12 @@ const en = {
           note: ''
         },
         date: {
-          title: 'Need help with the date?',
-          message: 'Provide the date of the disciplinary procedures',
+          title: 'Need help with this date?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         offenses: {
-          title: 'Need help with the offenses?',
+          title: 'Need help with this description?',
           message: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
           note: ''
         },
@@ -3055,7 +3055,7 @@ const en = {
         },
         dates: {
           title: 'Need help with the period of service?',
-          message: 'The date range you served',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         country: {
@@ -3085,7 +3085,7 @@ const en = {
         },
         maintainscontact: {
           title: 'Need help with contacts with current or former associates?',
-          message: 'If you maintain contact with any current or former foreign associates please provide their contact information',
+          message: 'If you are still in contact with any current or former foreign associates answer "Yes" and provide their contact information below.',
           note: ''
         }
       },
