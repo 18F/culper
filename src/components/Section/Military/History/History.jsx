@@ -84,6 +84,7 @@ export default class History extends SubsectionElement {
         <Show when={this.state.HasServed === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -108,5 +109,6 @@ History.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new MilitaryHistoryValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

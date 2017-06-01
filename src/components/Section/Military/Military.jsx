@@ -71,6 +71,7 @@ class Military extends SectionElement {
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
@@ -79,6 +80,7 @@ class Military extends SectionElement {
             {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
+                          defaultState={false}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
