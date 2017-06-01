@@ -4,7 +4,6 @@ import Political from './Political'
 
 describe('The foreign business political component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-political',
       HasForeignPolitical: 'No'
@@ -14,7 +13,6 @@ describe('The foreign business political component', () => {
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-political',
       HasForeignPolitical: 'Yes'
@@ -28,7 +26,10 @@ describe('The foreign business political component', () => {
     const expected = {
       name: 'foreign-business-political',
       HasForeignPolitical: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Political {...expected} />)
     component.find('.branch .yes input').at(0).simulate('change')

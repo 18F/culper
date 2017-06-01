@@ -75,17 +75,17 @@ export default class FutureBenefit extends ValidationElement {
     return (
       <div className="future-benefit">
         <Field title={i18n.t('foreign.activities.benefit.future.heading.begin')}
-          help={'foreign.activities.benefit.future.help.begin'}
-          adjustFor="labels">
+               help={'foreign.activities.benefit.future.help.begin'}
+               adjustFor="labels">
 
           <DateControl name="Begin"
-            className="begin"
-            {...this.props.Begin}
-            label={i18n.t('foreign.activities.benefit.future.label.begin')}
-            onUpdate={this.updateBegin}
-            onValidate={this.props.onValidate}
-            maxDate={null}
-          />
+                       className="begin"
+                       {...this.props.Begin}
+                       label={i18n.t('foreign.activities.benefit.future.label.begin')}
+                       onUpdate={this.updateBegin}
+                       onError={this.props.onError}
+                       maxDate={null}
+                       />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
@@ -94,109 +94,113 @@ export default class FutureBenefit extends ValidationElement {
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.future.label.frequency.annually')}
-              value="Annually"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.future.label.frequency.annually')}
+                   value="Annually"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.future.label.frequency.quarterly')}
-              value="Quarterly"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.future.label.frequency.quarterly')}
+                   value="Quarterly"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.future.label.frequency.monthly')}
-              value="Monthly"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.future.label.frequency.monthly')}
+                   value="Monthly"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.future.label.frequency.weekly')}
-              value="Weekly"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.future.label.frequency.weekly')}
+                   value="Weekly"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.future.label.frequency.other')}
-              value="Other"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.future.label.frequency.other')}
+                   value="Other"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
           </RadioGroup>
           <Show when={this.props.Frequency === 'Other'}>
             <div>
               {i18n.m('foreign.activities.benefit.future.para.frequencyOther')}
               <Textarea name="OtherFrequency"
-                className="other-frequency"
-                {...this.props.OtherFrequency}
-                onUpdate={this.updateOtherFrequency}
-                onValidate={this.props.onValidate}
-              />
+                        className="other-frequency"
+                        {...this.props.OtherFrequency}
+                        onUpdate={this.updateOtherFrequency}
+                        onError={this.props.onError}
+                        />
             </div>
           </Show>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.country')}
-          help={'foreign.activities.benefit.future.help.country'}>
+               help={'foreign.activities.benefit.future.help.country'}>
           <Country name="Country"
-            {...this.props.Country}
-            onUpdate={this.updateCountry}
-            onValidate={this.props.onValidate}
-          />
+                   {...this.props.Country}
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.value')}
-          help={'foreign.activities.benefit.future.help.value'}>
+               help={'foreign.activities.benefit.future.help.value'}>
           <Currency name="Value"
-            className="value"
-            {...this.props.Value}
-            min="0"
-            onUpdate={this.updateValue}
-            onValidate={this.props.onValidate}
-          />
+                    className="value"
+                    {...this.props.Value}
+                    min="0"
+                    onUpdate={this.updateValue}
+                    onError={this.props.onError}
+                    />
           <div className="flags">
             <Checkbox name="ValueEstimated"
-              label={i18n.t('foreign.activities.benefit.future.label.valueEstimated')}
-              toggle="false"
-              checked={this.props.ValueEstimated}
-              onUpdate={this.updateValueEstimated}
-              onValidate={this.props.onValidate}
-            />
+                      label={i18n.t('foreign.activities.benefit.future.label.valueEstimated')}
+                      toggle="false"
+                      checked={this.props.ValueEstimated}
+                      onUpdate={this.updateValueEstimated}
+                      onError={this.props.onError}
+                      />
           </div>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.reason')}
-          help={'foreign.activities.benefit.future.help.value'}>
+               help={'foreign.activities.benefit.future.help.value'}>
           <Textarea name="Reason"
-            className="reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            onValidate={this.props.onValidate}
-          />
+                    className="reason"
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Branch name="Obligated"
-          className="obligated"
-          label={i18n.t('foreign.activities.benefit.future.heading.obligated')}
-          labelSize="h3"
-          value={this.props.Obligated}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateObligated}>
+                className="obligated"
+                label={i18n.t('foreign.activities.benefit.future.heading.obligated')}
+                labelSize="h3"
+                value={this.props.Obligated}
+                onError={this.props.onError}
+                onUpdate={this.updateObligated}>
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
           <div>
             {i18n.m('foreign.activities.benefit.future.label.obligatedExplanation')}
             <Textarea name="Explanation"
-              className="explanation"
-              {...this.props.ObligatedExplanation}
-              onUpdate={this.updateObligatedExplanation}
-              onValidate={this.props.onValidate}
-            />
+                      className="explanation"
+                      {...this.props.ObligatedExplanation}
+                      onUpdate={this.updateObligatedExplanation}
+                      onError={this.props.onError}
+                      />
           </div>
         </Show>
       </div>
     )
   }
+}
+
+FutureBenefit.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

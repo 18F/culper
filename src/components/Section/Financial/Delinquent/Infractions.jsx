@@ -37,28 +37,28 @@ export default class Infractions extends ValidationElement {
                     className="delinquent-alimony"
                     toggle="false"
                     onChange={this.update}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
           <Checkbox label={i18n.m('financial.delinquent.para.judgement')}
                     value="Judgement"
                     className="delinquent-judgement"
                     toggle="false"
                     onChange={this.update}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
           <Checkbox label={i18n.m('financial.delinquent.para.lien')}
                     value="Lien"
                     className="delinquent-lien"
                     toggle="false"
                     onChange={this.update}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
           <Checkbox label={i18n.m('financial.delinquent.para.federal')}
                     value="Federal"
                     className="delinquent-federal"
                     toggle="false"
                     onChange={this.update}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </CheckboxGroup>
       </div>
@@ -67,5 +67,6 @@ export default class Infractions extends ValidationElement {
 }
 
 Infractions.defaultProps = {
-  value: []
+  value: [],
+  onError: (value, arr) => { return arr }
 }

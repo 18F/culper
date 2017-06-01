@@ -63,76 +63,80 @@ export default class OneTimeBenefit extends ValidationElement {
     return (
       <div className="onetime-benefit">
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.received')}
-          help={'foreign.activities.benefit.oneTime.help.received'}
-          adjustFor="labels">
+               help={'foreign.activities.benefit.oneTime.help.received'}
+               adjustFor="labels">
 
           <DateControl name="Received"
-            className="received"
-            {...this.props.Received}
-            label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
-            onUpdate={this.updateReceived}
-            onValidate={this.props.onValidate}
-          />
+                       className="received"
+                       {...this.props.Received}
+                       label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
+                       onUpdate={this.updateReceived}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.country')}
-          help={'foreign.activities.benefit.oneTime.help.country'}>
+               help={'foreign.activities.benefit.oneTime.help.country'}>
           <Country name="Country"
-            {...this.props.Country}
-            onUpdate={this.updateCountry}
-            onValidate={this.props.onValidate}
-          />
+                   {...this.props.Country}
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.value')}
-          help={'foreign.activities.benefit.oneTime.help.value'}>
+               help={'foreign.activities.benefit.oneTime.help.value'}>
           <Currency name="Value"
-            className="value"
-            {...this.props.Value}
-            min="0"
-            onUpdate={this.updateValue}
-            onValidate={this.props.onValidate}
-          />
+                    className="value"
+                    {...this.props.Value}
+                    min="0"
+                    onUpdate={this.updateValue}
+                    onError={this.props.onError}
+                    />
           <div className="flags">
             <Checkbox name="ValueEstimated"
-              label={i18n.t('foreign.activities.benefit.oneTime.label.valueEstimated')}
-              toggle="false"
-              checked={this.props.ValueEstimated}
-              onUpdate={this.updateValueEstimated}
-              onValidate={this.props.onValidate}
-            />
+                      label={i18n.t('foreign.activities.benefit.oneTime.label.valueEstimated')}
+                      toggle="false"
+                      checked={this.props.ValueEstimated}
+                      onUpdate={this.updateValueEstimated}
+                      onError={this.props.onError}
+                      />
           </div>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}
-          help={'foreign.activities.benefit.oneTime.help.value'}>
+               help={'foreign.activities.benefit.oneTime.help.value'}>
           <Textarea name="Reason"
-            className="reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            onValidate={this.props.onValidate}
-          />
+                    className="reason"
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Branch name="Obligated"
-          className="obligated"
-          label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
-          labelSize="h3"
-          value={this.props.Obligated}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateObligated}>
+                className="obligated"
+                label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
+                labelSize="h3"
+                value={this.props.Obligated}
+                onError={this.props.onError}
+                onUpdate={this.updateObligated}>
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
           <Textarea name="Explanation"
-            label={i18n.m('foreign.activities.benefit.oneTime.label.obligatedExplanation')}
-            className="explanation"
-            {...this.props.ObligatedExplanation}
-            onUpdate={this.updateObligatedExplanation}
-            onValidate={this.props.onValidate}
-          />
+                    label={i18n.m('foreign.activities.benefit.oneTime.label.obligatedExplanation')}
+                    className="explanation"
+                    {...this.props.ObligatedExplanation}
+                    onUpdate={this.updateObligatedExplanation}
+                    onError={this.props.onError}
+                    />
         </Show>
       </div>
     )
   }
+}
+
+OneTimeBenefit.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

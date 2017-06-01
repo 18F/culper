@@ -41,4 +41,18 @@ describe('The MultipleDropdown component', () => {
     component.find('.ic-token-delete-button').simulate('click')
     expect(updates).toBe(1)
   })
+
+  it('avoids infinite loop if value is a string', () => {
+    let updates = 0
+    const expected = {
+      name: 'multiple-dropdown',
+      value: '',
+      options: [
+        { name: 'United States', value: 'United States' },
+        { name: 'Germany', value: 'Germany' }
+      ]
+    }
+    const component = mount(<MultipleDropdown {...expected} />)
+    expect(component.find('input').length).toBe(1)
+  })
 })

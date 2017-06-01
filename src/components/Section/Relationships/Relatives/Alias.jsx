@@ -56,7 +56,7 @@ export default class Alias extends ValidationElement {
               className="alias-name"
               {...this.state.Name}
               onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
+              onError={this.props.onError}
               />
 
         <Show when={this.props.hideMaiden === false}>
@@ -66,7 +66,7 @@ export default class Alias extends ValidationElement {
                   className="alias-maiden"
                   value={this.state.MaidenName}
                   onUpdate={this.updateMaidenName}
-                  onValidate={this.props.onValidate}>
+                  onError={this.props.onError}>
           </Branch>
         </Show>
 
@@ -77,7 +77,7 @@ export default class Alias extends ValidationElement {
                      className="alias-dates"
                      {...this.state.Dates}
                      onUpdate={this.updateDates}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -87,7 +87,7 @@ export default class Alias extends ValidationElement {
                     className="alias-reason"
                     {...this.state.Reason}
                     onUpdate={this.updateReason}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
       </div>
@@ -100,5 +100,6 @@ Alias.defaultProps = {
   MaidenName: '',
   Dates: {},
   Reason: {},
-  hideMaiden: false
+  hideMaiden: false,
+  onError: (value, arr) => { return arr }
 }

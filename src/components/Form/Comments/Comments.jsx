@@ -9,8 +9,7 @@ export default class Comments extends ValidationElement {
 
     this.state = {
       value: this.props.value,
-      visible: this.props.visible,
-      errors: []
+      visible: this.props.visible
     }
 
     this.toggle = this.toggle.bind(this)
@@ -74,6 +73,7 @@ export default class Comments extends ValidationElement {
         <Textarea name="comments"
                   {...this.props}
                   onChange={this.handleChange}
+                  onError={this.props.onError}
                   value={this.state.value}
                   />
         <div className={klass}>
@@ -94,3 +94,5 @@ Comments.defaultProps = {
   addLabel: 'comments.add',
   removeLabel: 'comments.remove'
 }
+
+Comments.errors = []

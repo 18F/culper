@@ -24,7 +24,7 @@ export default class IntroHeader extends React.Component {
   }
 
   render () {
-    if (this.props.Errors && this.props.Errors.length > 0) {
+    if (this.props.errors()) {
       return (
         <div>
           <h1>{i18n.t('intro.errors')}</h1>
@@ -44,7 +44,7 @@ export default class IntroHeader extends React.Component {
       )
     }
 
-    if (this.props.Completed.status === 'complete') {
+    if (this.props.completed()) {
       return (
         <div>
           <div className="text-center"><i className="fa fa-check-circle"></i></div>
@@ -80,8 +80,8 @@ export default class IntroHeader extends React.Component {
 }
 
 IntroHeader.defaultProps = {
-  Errors: [],
-  Completed: {},
+  errors: () => { return false },
+  completed: () => { return false },
   tour: '',
   review: '',
   onTour: () => {},

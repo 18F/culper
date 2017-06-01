@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { PoliceOffensesValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import Offense from './Offense'
 
@@ -17,9 +18,10 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class Offenses extends ValidationElement {
+export default class Offenses extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasSummons: props.HasSummons,
       HasArrests: props.HasArrests,
@@ -27,8 +29,7 @@ export default class Offenses extends ValidationElement {
       HasProbation: props.HasProbation,
       HasTrial: props.HasTrial,
       List: props.List || [],
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -95,33 +96,6 @@ export default class Offenses extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new PoliceOffensesValidator(this.state, null).isValid()
-  }
-
   hasOffenses () {
     return new PoliceOffensesValidator(this.state, null).answeredYes()
   }
@@ -154,44 +128,44 @@ export default class Offenses extends ValidationElement {
       <div className="police-offenses">
         <h2>{i18n.t('legal.police.heading.questions')}</h2>
         <Branch name="has_summons"
-          className="summons"
-          value={this.state.HasSummons}
-          help="legal.police.help.summons"
-          onUpdate={this.updateSummons}
-          onValidate={this.handleValidation}>
+                className="summons"
+                value={this.state.HasSummons}
+                help="legal.police.help.summons"
+                onUpdate={this.updateSummons}
+                onError={this.handleError}>
           {i18n.m('legal.police.label.summons')}
         </Branch>
 
         <Branch name="has_arrests"
-          className="arrests"
-          value={this.state.HasArrests}
-          onUpdate={this.updateArrests}
-          onValidate={this.handleValidation}>
+                className="arrests"
+                value={this.state.HasArrests}
+                onUpdate={this.updateArrests}
+                onError={this.handleError}>
           {i18n.m('legal.police.label.arrests')}
         </Branch>
 
         <Branch name="has_charges"
-          className="charges"
-          value={this.state.HasCharges}
-          help="legal.police.help.charges"
-          onUpdate={this.updateCharges}
-          onValidate={this.handleValidation}>
+                className="charges"
+                value={this.state.HasCharges}
+                help="legal.police.help.charges"
+                onUpdate={this.updateCharges}
+                onError={this.handleError}>
           {i18n.m('legal.police.label.charges')}
         </Branch>
 
         <Branch name="has_probation"
-          className="probation"
-          value={this.state.HasProbation}
-          onUpdate={this.updateProbation}
-          onValidate={this.handleValidation}>
+                className="probation"
+                value={this.state.HasProbation}
+                onUpdate={this.updateProbation}
+                onError={this.handleError}>
           {i18n.m('legal.police.label.probation')}
         </Branch>
 
         <Branch name="has_trial"
-          className="trial"
-          value={this.state.HasTrial}
-          onUpdate={this.updateTrial}
-          onValidate={this.handleValidation}>
+                className="trial"
+                value={this.state.HasTrial}
+                onUpdate={this.updateTrial}
+                onError={this.handleError}>
           {i18n.m('legal.police.label.trial')}
         </Branch>
 
@@ -201,22 +175,32 @@ export default class Offenses extends ValidationElement {
               <h4>{i18n.m('legal.police.para.answeredMultiple')}</h4>
             </Show>
             <Accordion minimum="1"
-              items={this.state.List}
-              branch={this.state.ListBranch}
-              onUpdate={this.updateList}
-              onValidate={this.handleValidation}
-              summary={this.summary}
-              description={i18n.t('legal.police.collection.summary.title')}
-              appendTitle={i18n.t('legal.police.collection.appendTitle')}
-              appendMessage={i18n.m('legal.police.collection.appendMessage')}
-              appendLabel={i18n.t('legal.police.collection.append')}>
+                       items={this.state.List}
+                       branch={this.state.ListBranch}
+                       onUpdate={this.updateList}
+                       onError={this.handleError}
+                       summary={this.summary}
+                       description={i18n.t('legal.police.collection.summary.title')}
+                       appendTitle={i18n.t('legal.police.collection.appendTitle')}
+                       appendMessage={i18n.m('legal.police.collection.appendMessage')}
+                       appendLabel={i18n.t('legal.police.collection.append')}>
               <Offense name="Item"
-                bind={true}
-              />
+                       bind={true}
+                       />
             </Accordion>
           </div>
         </Show>
       </div>
     )
+  }
+}
+
+Offenses.defaultProps = {
+  onError: (value, arr) => { return arr },
+  section: 'legal',
+  subsection: 'police/offenses',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new PoliceOffensesValidator(state, props).isValid()
   }
 }

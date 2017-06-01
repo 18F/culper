@@ -70,7 +70,7 @@ export default class JobOffer extends ValidationElement {
         <Name name="Name"
               className="employment-name"
               onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
+              onError={this.props.onError}
               />
 
         <Field title={i18n.t('foreign.business.employment.heading.description')}
@@ -78,7 +78,7 @@ export default class JobOffer extends ValidationElement {
           <Textarea name="Description"
                     className="employment-description"
                     onUpdate={this.updateDescription}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -88,7 +88,7 @@ export default class JobOffer extends ValidationElement {
           <DateControl name="Date"
                        className="employment-date"
                        onUpdate={this.updateDate}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -98,7 +98,7 @@ export default class JobOffer extends ValidationElement {
           <Address name="Address"
                    className="employment-address"
                    onUpdate={this.updateAddress}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -109,7 +109,7 @@ export default class JobOffer extends ValidationElement {
                 className="employment-accepted"
                 value={this.props.Accepted}
                 onUpdate={this.updateAccepted}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
 
         <Show when={this.props.Accepted === 'Yes'}>
@@ -118,7 +118,7 @@ export default class JobOffer extends ValidationElement {
             <Textarea name="Explanation"
                       className="employment-explanation"
                       onUpdate={this.updateExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -134,5 +134,6 @@ JobOffer.defaultProps = {
   Date: {},
   Address: {},
   Accepted: '',
-  Explanation: {}
+  Explanation: {},
+  onError: (value, arr) => { return arr }
 }

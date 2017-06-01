@@ -1,24 +1,23 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
-import Order from '../Order'
 import { CompetenceValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion, Branch, Show } from '../../../Form'
+import Order from '../Order'
 
-export default class Competence extends ValidationElement {
+export default class Competence extends SubsectionElement {
   constructor (props) {
     super(props)
 
     this.state = {
       IsIncompetent: props.IsIncompetent,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.update = this.update.bind(this)
     this.updateIsIncompentent = this.updateIsIncompentent.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -40,26 +39,6 @@ export default class Competence extends ValidationElement {
 
   updateIsIncompentent (values) {
     this.update('IsIncompetent', values)
-  }
-
-  isValid () {
-    return new CompetenceValidator(this.state).isValid()
-  }
-
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
   }
 
   summary (item, index) {
@@ -85,7 +64,7 @@ export default class Competence extends ValidationElement {
         <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
                 value={this.state.IsIncompetent}
-                onValidate={this.handleValidation}
+                onError={this.handleError}
                 onUpdate={this.updateIsIncompentent}>
         </Branch>
 
@@ -96,7 +75,7 @@ export default class Competence extends ValidationElement {
                      branch={this.state.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      description={i18n.t('psychological.competence.collection.description')}
                      appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
@@ -115,5 +94,12 @@ Competence.defaultProps = {
   IsIncompetent: '',
   List: [],
   ListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr },
+  section: 'psychological',
+  subsection: 'competence',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new CompetenceValidator(state, props).isValid()
+  }
 }

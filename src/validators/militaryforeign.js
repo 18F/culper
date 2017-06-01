@@ -5,7 +5,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class MilitaryForeignValidator {
   constructor (state, props) {
-    this.list = state.List || []
+    this.list = props.List || []
   }
 
   validItems () {

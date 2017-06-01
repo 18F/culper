@@ -1,53 +1,23 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CardAbuseValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Currency, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, DateControl, Currency, Field,
          Address, Checkbox, Text, Textarea } from '../../../Form'
 
-export default class Card extends ValidationElement {
+export default class Card extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasCardAbuse: props.HasCardAbuse,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new CardAbuseValidator(this.state, null).isValid()
   }
 
   /**
@@ -59,7 +29,6 @@ export default class Card extends ValidationElement {
         items: val === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -107,14 +76,15 @@ export default class Card extends ValidationElement {
         <Branch name="has_cardabuse"
                 className="card-branch"
                 value={this.state.HasCardAbuse}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.card.collection.summary.title')}
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
@@ -190,5 +160,12 @@ export default class Card extends ValidationElement {
 Card.defaultProps = {
   HasCardAbuse: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr },
+  section: 'financial',
+  subsection: 'card',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new CardAbuseValidator(state, props).isValid()
+  }
 }

@@ -2,19 +2,14 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
          Textarea, Country, DateControl, Address, Name } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
-export default class Contact extends ValidationElement {
+export default class Contact extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      error: props.error,
-      valid: props.valid,
-      errorCodes: []
-    }
 
     this.updateHasForeignContact = this.updateHasForeignContact.bind(this)
     this.updateList = this.updateList.bind(this)
@@ -49,33 +44,6 @@ export default class Contact extends ValidationElement {
     ])
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignBusinessContactValidator(this.state, this.props).isValid()
-  }
-
   summary (item, index) {
     const obj = item || {}
     const name = NameSummary(obj.Name, i18n.t('foreign.business.contact.collection.summary.unknown'))
@@ -103,7 +71,7 @@ export default class Contact extends ValidationElement {
                 help="foreign.business.contact.help.branch"
                 value={this.props.HasForeignContact}
                 onUpdate={this.updateHasForeignContact}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
@@ -112,7 +80,7 @@ export default class Contact extends ValidationElement {
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.contact.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
@@ -192,6 +160,11 @@ Contact.defaultProps = {
   HasForeignContact: '',
   List: [],
   ListBranch: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/contact',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessContactValidator(state, props).isValid()
+  }
 }

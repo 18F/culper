@@ -204,54 +204,69 @@ const en = {
         }
       }
     },
-    month: {
-      notfound: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December).',
-        note: ''
+    date: {
+      month: {
+        notfound: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        }
+      },
+      day: {
+        length: {
+          title: 'There is a problem with the Day',
+          message: 'There is not that many days in this month.',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Day',
+          message: 'There is not that many days in this month.',
+          note: ''
+        }
+      },
+      year: {
+        max: {
+          title: 'There is a problem with the Year',
+          message: 'The year can\'t be in the future.',
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Year',
+          message: 'This year is too far in the past.',
+          note: ''
+        }
       },
       max: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December).',
-        note: ''
-      }
-    },
-    day: {
-      length: {
-        title: 'There is a problem with the Day',
-        message: 'There is not that many days in this month.',
-        note: ''
-      },
-      max: {
-        title: 'There is a problem with the Day',
-        message: 'There is not that many days in this month.',
-        note: ''
-      }
-    },
-    year: {
-      max: {
-        title: 'There is a problem with the Year',
-        message: 'The year can\'t be in the future.',
-        note: ''
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
       },
       min: {
-        title: 'There is a problem with the Year',
-        message: 'This year is too far in the past.',
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
+      }
+    },
+    daterange: {
+      order: {
+        title: 'There is a problem with the date range',
+        message: 'The **from** date should be before the **to** date.',
         note: ''
       }
     },
     weight: {
-      pounds: {
-        min: {
-          title: 'Weight below accepted limits',
-          message: 'We only accept a value between 10 and 999 pounds',
-          note: ''
-        },
-        max: {
-          title: 'Weight exceeds accepted limits',
-          message: 'We only accept a value between 10 and 999 pounds',
-          note: ''
-        }
+      min: {
+        title: 'Weight below accepted limits',
+        message: 'We only accept a value between 10 and 999 pounds',
+        note: ''
+      },
+      max: {
+        title: 'Weight exceeds accepted limits',
+        message: 'We only accept a value between 10 and 999 pounds',
+        note: ''
       }
     },
     height: {
@@ -280,41 +295,52 @@ const en = {
         }
       }
     },
-    city: {
-      length: {
-        title: 'There is a problem with the City',
-        message: 'City name should be between 2 and 100 characters.',
-        note: ''
-      }
-    },
-    state: {
-      notfound: {
-        title: 'There is a problem with the State',
-        message: [
-          'State name must be one of the available options.',
-          '*and/or*',
-          'The state name is too long.'
-        ],
-        note: ''
-      }
-    },
-    county: {
-      length: {
-        title: 'There is a problem with the County',
-        message: 'County name must be between 2 and 100 characters',
-        note: ''
-      }
-    },
-    zipcode: {
-      pattern: {
-        title: 'There is a problem with the ZIP Code',
-        message: 'The ZIP Code should be either 5 or 9 digits.',
-        note: ''
+    address: {
+      city: {
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
+        }
       },
-      length: {
-        title: 'There is a problem with the ZIP Code',
-        message: 'The ZIP Code should be either 5 or 9 digits.',
-        note: ''
+      state: {
+        notfound: {
+          title: 'There is a problem with the State',
+          message: [
+            'State name must be one of the available options.',
+            '*and/or*',
+            'The state name is too long.'
+          ],
+          note: ''
+        }
+      },
+      county: {
+        length: {
+          title: 'There is a problem with the County',
+          message: 'County name must be between 2 and 100 characters',
+          note: ''
+        }
+      },
+      zipcode: {
+        pattern: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code should be either 5 or 9 digits.',
+          note: ''
+        }
+      },
+      country: {
+        notfound: {
+          title: 'There is a problem with the Country',
+          message: 'Country name should be one of the available options.',
+          note: ''
+        }
+      },
+      apofpo: {
+        pattern: {
+          title: 'There is a problem with the State Code',
+          message: 'APO/FPO state code must be 2 letters',
+          note: 'Note: Typically the value is either AA, AE, or AP.'
+        }
       }
     },
     country: {
@@ -324,138 +350,125 @@ const en = {
         note: ''
       }
     },
-    apoFpo: {
-      length: {
-        title: 'There is a problem with the State Code',
-        message: 'APO/FPO state code must be 2 letters',
-        note: ''
-      },
-      pattern: {
-        title: 'There is a problem with the State Code',
-        message: 'APO/FPO state code must be 2 letters',
-        note: 'Note: Typically the value is either AA, AE, or AP.'
-      }
-    },
     passport: {
-      number: {
-        pattern: {
-          title: 'There is a problem with the passport number',
-          message: [
-            'For passport books the number will start with a letter and then 6 to 9 digits.',
-            'For passport cards the number begins with a "C" and followed by 8 digits.'
-          ],
-          note: ''
-        }
+      pattern: {
+        title: 'There is a problem with the passport number',
+        message: [
+          'For passport books the number will start with a letter and then 6 to 9 digits.',
+          'For passport cards the number begins with a "C" and followed by 8 digits.'
+        ],
+        note: ''
       }
     },
-    Losses: {
+    currency: {
       min: {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
         note: ''
       }
     },
-    daterange: {
-      order: {
-        title: 'There is a problem with the date range',
-        message: 'The **from** date should be before the **to** date.',
-        note: ''
-      }
-    },
-    domestic_first: {
-      pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The area code shoul be 3 numbers long and between 0 and 9.',
-        note: ''
+    telephone: {
+      domestic: {
+        first: {
+          pattern: {
+            title: 'There is a problem with the area code',
+            message: 'The area code should be 3 numbers long and between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the area code',
+            message: 'The area code should be 3 numbers long and between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'There is a problem with the phone number',
+            message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the phone number',
+            message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
+            note: ''
+          }
+        },
+        third: {
+          pattern: {
+            title: 'There is a problem with the phone number',
+            message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the phone number',
+            message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
+            note: ''
+          }
+        },
+        extension: {
+          pattern: {
+            title: 'There is a problem with the extension',
+            message: 'Extensions should be between 0 and 10.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the extensionn',
+            message: 'Extensions should be between 0 and 10.',
+            note: ''
+          }
+        }
       },
-      length: {
-        title: 'There is a problem with the area code',
-        message: 'The area code shoul be 3 numbers long and between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_second: {
-      pattern: {
-        title: 'There is a problem with the phone number',
-        message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
-        note: ''
+      dsn: {
+        first: {
+          pattern: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+            note: ''
+          }
+        }
       },
-      length: {
-        title: 'There is a problem with the phone number',
-        message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_third: {
-      pattern: {
-        title: 'There is a problem with the phone number',
-        message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the phone number',
-        message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_extension: {
-      pattern: {
-        title: 'There is a problem with the extension',
-        message: 'Extensions should be between 0 and 10.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the extensionn',
-        message: 'Extensions should be between 0 and 10.',
-        note: ''
-      }
-    },
-    dsn_first: {
-      pattern: {
-        title: 'There is a problem with the DSN number',
-        message: 'The first part of the DSN number should be 3 numbers long between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the DSN number',
-        message: 'The first part of the DSN number should be 3 numbers long between 0 and 9.',
-        note: ''
-      }
-    },
-    dsn_second: {
-      pattern: {
-        title: 'There is a problem with the DSN number',
-        message: 'The last part of the DSN number must be 4 numbers long between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the DSN number',
-        message: 'The last part of the DSN number must be 4 numbers between 0 and 9.',
-        note: ''
-      }
-    },
-    int_first: {
-      pattern: {
-        title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    int_second: {
-      pattern: {
-        title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9.',
-        note: ''
+      international: {
+        first: {
+          pattern: {
+            title: 'There is a problem with this country code',
+            message: 'The country code of the international number should be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with this country code',
+            message: 'The country code of the international number should be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'There is a problem with this number',
+            message: 'The international number should be 10 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with this number',
+            message: 'The international number should be 10 digits between 0 and 9.',
+            note: ''
+          }
+        }
       }
     },
     geocode: {
@@ -488,144 +501,103 @@ const en = {
         para: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
       }
     },
-    Email: {
+    email: {
       pattern: {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       }
-    },
-    Year: {
-      min: {
-        title: 'There is a problem with the year',
-        message: 'The year should be four(4) numbers.',
-        note: ''
-      }
-    },
-    datecontrol: {
-      max: {
-        title: 'There is a problem with the date',
-        message: 'The date can\'t be in the future.'
-      },
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be on or after your date of birth.'
-      }
-    },
-    to: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the "to" date',
-          message: 'The **to** date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the "to" date',
-          message: 'The **to** date should be on or after your date of birth.'
-        }
-      }
-    },
-    from: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the "from" date',
-          message: 'The **from** date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the "from" date',
-          message: 'The **from** date should be on or after your date of birth.'
-        }
-      }
-    },
-    order: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the date',
-          message: 'The order date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the date',
-          message: 'The order date value should be on or after your date of birth.'
-        }
-      }
-    },
-    hospitalization: {
-      to: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "to" date',
-            message: 'The hospitalization **to** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'The hospitalization **to** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      from: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "from" date',
-            message: 'The hospitalization **from** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "from" date',
-            message: 'The hospitalization **from** date value should be on or after your date of birth.'
-          }
-        }
-      }
-    },
-    diagnosis: {
-      to: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "to" date',
-            message: 'The diagnosis **to** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'Diagnosis **to** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      from: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "from" date',
-            message: 'Diagnosis **from** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "from" date',
-            message: 'Diagnosis **from** date value should be on or after your date of birth.'
-          }
-        }
-      }
-    },
-    bankruptcy: {
-      datefiled: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "date filed" date',
-            message: 'Bankruptcy **date filed** can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "date filed" date',
-            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      datedischarged: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "date discharged" date',
-            message: 'Bankruptcy **date discharged** can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
-          }
-        }
-      }
     }
+    // order: {
+    //   datecontrol: {
+    //     max: {
+    //       title: 'There is a problem with the date',
+    //       message: 'The order date can\'t be in the future.'
+    //     },
+    //     min: {
+    //       title: 'There is a problem with the date',
+    //       message: 'The order date value should be on or after your date of birth.'
+    //     }
+    //   }
+    // },
+    // hospitalization: {
+    //   to: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The hospitalization **to** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The hospitalization **to** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   from: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'The hospitalization **from** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'The hospitalization **from** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // },
+    // diagnosis: {
+    //   to: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The diagnosis **to** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'Diagnosis **to** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   from: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'Diagnosis **from** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'Diagnosis **from** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // },
+    // bankruptcy: {
+    //   datefiled: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "date filed" date',
+    //         message: 'Bankruptcy **date filed** can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "date filed" date',
+    //         message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   datedischarged: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "date discharged" date',
+    //         message: 'Bankruptcy **date discharged** can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // }
   },
   section: {
     back: 'Back',
@@ -4901,9 +4873,9 @@ const en = {
             acquired: 'Provide the date acquired',
             howAcquired: 'Provide how the financial interest was acquired',
             cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
-            relinquished: 'Provide the date control or ownership was relinquished.',
-            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of. '
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of',
+            relinquished: 'Provide the date control or ownership was relinquished',
+            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of'
           },
           label: {
             relinquishedNotApplicable: 'Not applicable',
@@ -4924,13 +4896,13 @@ const en = {
               note: ''
             },
             interestType: {
-              title: 'Need help with the direct interest type?',
-              message: 'Provide the type of financial interest',
+              title: 'Specify everyone who had a foreign financial interests?',
+              message: 'Select all people involved with this specific foreign financial interests.',
               note: ''
             },
             acquired: {
               title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -4940,29 +4912,29 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             value: {
               title: 'Need help with the value?',
-              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             relinquished: {
-              title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              title: 'Need help with date relinquished?',
+              message: 'Tell us when you were no longer in control or an owner of this foreign financial interest.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             },
             explanation: {
-              title: 'Need help with this field?',
-              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              title: 'Need help with this explanation?',
+              message: 'Tell us how you got rid of your ownership or control of this financial interest.',
               note: ''
             }
           },
           coOwner: {
             heading: {
               name: 'Provide full name of co-owner',
-              address: 'Provide co-owner current address',
+              address: 'Provide co-owner\'s current address',
               countries: 'Provide co-owner’s country(ies) of citizenship',
               relationshipNature: 'Provide the nature of your relationship with the co-owner'
             },
@@ -4971,9 +4943,9 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
                 title: 'Need help with the nature of the relationship?',
@@ -4997,7 +4969,7 @@ const en = {
         collection: {
           summary: 'Provide your indirect financial interests here',
           description: 'Summary of financial interests',
-          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
@@ -5014,7 +4986,7 @@ const en = {
             acquired: 'Provide the date the financial interest was acquired',
             howAcquired: 'Provide details regarding how it was acquired',
             cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of',
             sold: 'Provide the date interest was sold, lost, or otherwise disposed of',
             explanation: 'Provide explanation if interest was sold, lost, or otherwise disposed of'
           },
@@ -5034,8 +5006,8 @@ const en = {
           },
           help: {
             interestTypes: {
-              title: 'Need help with the interest type field?',
-              message: 'Check all that apply',
+              title: 'Specify everyone who had a foreign financial interests',
+              message: 'Select all people involved with this specific foreign financial interest.',
               note: ''
             },
             interestType: {
@@ -5049,8 +5021,8 @@ const en = {
               note: ''
             },
             acquired: {
-              title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -5060,27 +5032,27 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             value: {
               title: 'Need help with the value?',
-              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             sold: {
               title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              message: 'Tell us when you got rid of of this foreign financial interest.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             },
             explanation: {
-              title: 'Need help with the explanation?',
-              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              title: 'Need help with this explanation?',
+              message: 'Tell us how you got rid of of this foreign financial interest.',
               note: ''
             },
             relationship: {
-              title: 'Need help with the relationship?',
-              message: 'Provide this individual’s relationship to you',
+              title: 'Need help with this relationship question?',
+              message: 'Let us know how you know this person and give us details of your relationship with them.',
               note: ''
             }
           },
@@ -5096,13 +5068,13 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
-                title: 'Need help with the nature of the relationship?',
-                message: 'Provide the nature of your relationship with the co-owner',
+                title: 'Need help with the nature of this relationship?',
+                message: 'Let us know how you know this person and give us details of your relationship with them.',
                 note: ''
               }
             }
@@ -5155,8 +5127,8 @@ const en = {
           },
           help: {
             interestTypes: {
-              title: 'Need help with the interest type field?',
-              message: 'Check all that apply',
+              title: 'Specify everyone who had a foreign financial interests',
+              message: 'Select all people involved with this specific foreign financial interest.',
               note: ''
             },
             realEstateType: {
@@ -5165,8 +5137,8 @@ const en = {
               note: ''
             },
             acquired: {
-              title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -5176,13 +5148,13 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             sold: {
-              title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              title: 'Need help with this date?',
+              message: 'If the real estate in question was sold tell us when.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             }
           },
           coOwner: {
@@ -5197,13 +5169,13 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
-                title: 'Need help with the nature of the relationship?',
-                message: 'Provide the nature of your relationship with the co-owner',
+                title: 'Need help with the nature of this relationship?',
+                message: 'Let us know how you know this person and give us details of your relationship with them.',
                 note: ''
               }
             }
@@ -5517,7 +5489,7 @@ const en = {
         birthplace: 'Provide place of birth',
         address: 'Provide current address',
         employer: 'Provide the name of the foreign national\'s current employer, or provide the name of their most recent employer if not currently employed',
-        employeraddress: 'Provid the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
+        employeraddress: 'Provide the address of the foreign national\'s current employer, or provide the address of their most recent employer if not currently employed',
         hasaffiliations: 'Is this foreign national affiliated with a foreign government, military, security, defense industry, or intelligence service?',
         affiliations: 'Describe the contact\'s relationship with the foreign government, military, security, defense industry, or intelligence service',
         explanation: 'Explanation'
@@ -5566,18 +5538,18 @@ const en = {
         },
         firstcontact: {
           title: 'Need help with the date of your first contact?',
-          message: 'Provide the approximate date of our first contact with the individual',
-          note: ''
+          message: 'Let us know when you first met this person.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         lastcontact: {
           title: 'Need help with the date of your last contact?',
-          message: 'Provide the approximate date of the last contact you had with the individual',
-          note: ''
+          message: 'Tell us when you last had contact with this person.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         methods: {
           title: 'Need help with the methods of your communication?',
-          message: 'Check all the communication methods you may use in your correspondence',
-          note: ''
+          message: 'Let us know all of the ways you communicated with this person.',
+          note: 'Note: Electronic includes social media.'
         },
         frequency: {
           title: 'Need help with the frequency of your communication?',
@@ -5590,14 +5562,14 @@ const en = {
           note: ''
         },
         aliases: {
-          title: 'Need help with any other names or nicknames?',
-          message: 'If you are aware of any nicknames or other names the individual may have used then pleas provide them',
-          note: ''
+          title: 'Has this person used any other names or nicknames?',
+          message: 'If this person has a nickname, has a different maiden name, or has used any other names answer "Yes".',
+          note: 'Note: If this person has multiple names you will list each one separately.'
         },
         citizenship: {
-          title: 'Need help with their citizenship?',
-          message: 'Provide one or more citizenships the foreign natural has',
-          note: ''
+          title: 'Need help with their citizenship(s)?',
+          message: 'Tell us all of the citizenships this person has.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         },
         birthdate: {
           title: 'Need help with their date of birth?',
@@ -5661,14 +5633,9 @@ const en = {
           compensation: 'Describe what compensation, if any, was provided for your service'
         },
         para: {
-          branch: 'Provide a description of advice/support provided'
+          branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business'
         },
         help: {
-          branch: {
-            title: 'Need help determining if you have provided advice to foreign businesses?',
-            message: 'If you have provided any advice to a foreign individual or business then select "yes"',
-            note: 'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
-          },
           description: {
             title: 'Need help with the description?',
             message: 'Provide how the support was provided',

@@ -113,10 +113,9 @@ describe('The date component', () => {
       error: false,
       focus: false,
       valid: false,
-      onValidate: (event, status, error) => {
-        if (error === 'datecontrol.max') {
-          errors++
-        }
+      onError: (value, arr) => {
+        errors = (arr || []).filter(err => err !== 'datecontrol.max').length
+        return arr
       }
     }
     const component = mount(<DateControl {...expected} />)
@@ -160,10 +159,9 @@ describe('The date component', () => {
       focus: false,
       valid: false,
       receiveProps: true,
-      onValidate: (event, status, error) => {
-        if (error === 'datecontrol.max') {
-          errors++
-        }
+      onError: (value, arr) => {
+        errors = (arr || []).filter(err => err !== 'datecontrol.max').length
+        return arr
       }
     }
     const component = mount(<DateControl {...expected} />)

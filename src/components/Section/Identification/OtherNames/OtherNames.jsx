@@ -2,57 +2,29 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NameSummary, DateSummary } from '../../../Summary'
 import { OtherNamesValidator } from '../../../../validators'
-import { ValidationElement, Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
-export default class OtherNames extends ValidationElement {
+export default class OtherNames extends SubsectionElement {
   constructor (props) {
     super(props)
 
     this.state = {
-      List: props.List || [],
-      HasOtherNames: props.HasOtherNames,
-      errorCodes: []
+      List: props.List,
+      HasOtherNames: props.HasOtherNames
     }
 
+    this.onUpdate = this.onUpdate.bind(this)
     this.myDispatch = this.myDispatch.bind(this)
   }
 
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
-      super.handleValidation(event, s, e)
-    })
-  }
-
-  isValid () {
-    return new OtherNamesValidator(this.state, null).isValid()
-  }
-
-  onUpdate (val, event) {
-    this.setState({ HasOtherNames: val }, () => {
+  onUpdate (value) {
+    console.log('updating hasOtherNames', value)
+    this.setState({ HasOtherNames: value }, () => {
       this.myDispatch({
-        items: val === 'No' ? [] : this.state.List,
+        items: value === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -93,13 +65,14 @@ export default class OtherNames extends ValidationElement {
         <Branch name="has_othernames"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
-                onUpdate={this.onUpdate.bind(this)}>
+                onUpdate={this.onUpdate}
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasOtherNames === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      onUpdate={this.myDispatch}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
@@ -139,5 +112,17 @@ export default class OtherNames extends ValidationElement {
         </Show>
       </div>
     )
+  }
+}
+
+OtherNames.defaultProps = {
+  List: [],
+  HasOtherNames: '',
+  onError: (value, arr) => { return arr },
+  section: 'identification',
+  subsection: 'othernames',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new OtherNamesValidator(state, props).isValid()
   }
 }

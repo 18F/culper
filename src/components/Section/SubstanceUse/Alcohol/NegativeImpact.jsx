@@ -45,49 +45,49 @@ export default class NegativeImpact extends ValidationElement {
     return (
       <div className="negative-impact">
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.occurred')}
-          help={'substance.alcohol.negativeImpact.help.occurred'}
-          adjustFor="labels">
+               help={'substance.alcohol.negativeImpact.help.occurred'}
+               adjustFor="labels">
           <DateControl name="Occurred"
-            className="occurred"
-            {...this.props.Occurred}
-            label={i18n.t('substance.alcohol.negativeImpact.label.occurred')}
-            hideDay={true}
-            onUpdate={this.updateOccurred}
-            onValidate={this.props.onValidate}
-          />
+                       className="occurred"
+                       {...this.props.Occurred}
+                       label={i18n.t('substance.alcohol.negativeImpact.label.occurred')}
+                       hideDay={true}
+                       onUpdate={this.updateOccurred}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')}
-          adjustFor="labels"
-          help={'substance.alcohol.negativeImpact.help.circumstances'}>
+               adjustFor="labels"
+               help={'substance.alcohol.negativeImpact.help.circumstances'}>
           <Field>
             <Textarea name="Circumstances"
-              className="circumstances"
-              {...this.props.Circumstances}
-              label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
-              onUpdate={this.updateCircumstances}
-              onValidate={this.props.onValidate}
-            />
+                      className="circumstances"
+                      {...this.props.Circumstances}
+                      label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
+                      onUpdate={this.updateCircumstances}
+                      onError={this.props.onError}
+                      />
           </Field>
           <Field>
             <Textarea name="NegativeImpact"
-              className="negative-impact-explanation"
-              {...this.props.NegativeImpact}
-              label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
-              onUpdate={this.updateNegativeImpact}
-              onValidate={this.props.onValidate}
-            />
+                      className="negative-impact-explanation"
+                      {...this.props.NegativeImpact}
+                      label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
+                      onUpdate={this.updateNegativeImpact}
+                      onError={this.props.onError}
+                      />
           </Field>
         </Field>
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.used')}
                help={'substance.alcohol.negativeImpact.help.used'}
                adjustFor="daterange">
           <DateRange name="Used"
-            className="used"
-            {...this.props.Used}
-            onUpdate={this.updateUsed}
-            onValidate={this.props.onValidate}
-          />
+                     className="used"
+                     {...this.props.Used}
+                     onUpdate={this.updateUsed}
+                     onError={this.props.onError}
+                     />
         </Field>
       </div>
     )
@@ -95,4 +95,5 @@ export default class NegativeImpact extends ValidationElement {
 }
 
 NegativeImpact.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

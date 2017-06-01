@@ -41,11 +41,7 @@ export default class BirthPlaceValidator {
       return false
     }
 
-    if (!this.city) {
-      return false
-    }
-
-    return true
+    return !!this.city && !!this.country
   }
 
   /**

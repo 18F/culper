@@ -11,7 +11,7 @@ describe('The Dropdown component', () => {
       className: 'dropdown-test'
     }
     const component = mount(<Dropdown {...expected} />)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     component.find('.dropdown input').simulate('focus')
     component.find('.dropdown input').simulate('blur')
     expect(component.find('div.dropdown-test').length).toEqual(1)
@@ -25,9 +25,9 @@ describe('The Dropdown component', () => {
       tabNext: () => { tabbed = true }
     }
     const component = mount(<Dropdown {...expected} />)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(true)
   })
 
@@ -39,9 +39,9 @@ describe('The Dropdown component', () => {
       tabBack: () => { tabbed = true }
     }
     const component = mount(<Dropdown {...expected} />)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 48, target: { value: '1' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('.dropdown input').simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 
@@ -67,13 +67,13 @@ describe('The Dropdown component', () => {
     }
     const component = mount(
       <Dropdown {...expected}>
-        <option name="foo" value="bar">Foo</option>
-        <option name="bar" value="foo">Bar</option>
+        <option value="bar">Foo</option>
+        <option value="foo">Bar</option>
       </Dropdown>
     )
     expect(component.find('div.dropdown-test').length).toEqual(1)
     component.find('input').simulate('focus')
-    expect(component.state().value).toBe('Bar')
+    expect(component.state().value).toBe('foo')
   })
 
   it('executes custom displayText func', () => {
@@ -82,20 +82,20 @@ describe('The Dropdown component', () => {
       value: 'foo',
       maxlength: '1',
       className: 'dropdown-test',
-      displayText: (value, name) => {
-        return `${value}---${name}`.trim()
+      displayText: (value, text) => {
+        return `${value}---${text}`.trim()
       },
       focus: false
     }
     const component = mount(
       <Dropdown {...expected}>
-        <option name="foo" value="bar">Foo</option>
-        <option name="bar" value="foo">Bar</option>
+        <option value="bar">Foo</option>
+        <option value="foo">Bar</option>
       </Dropdown>
     )
     expect(component.find('div.dropdown-test').length).toEqual(1)
     expect(component.find('input').nodes[0].value).toEqual('foo---Bar')
     component.find('input').simulate('focus')
-    expect(component.state().value).toBe('Bar')
+    expect(component.state().value).toBe('foo')
   })
 })

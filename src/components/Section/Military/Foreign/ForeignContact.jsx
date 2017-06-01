@@ -17,6 +17,7 @@ const sendUpdate = (fn, name, props) => {
 export default class ForeignContact extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       Name: props.Name,
       Address: props.Address,
@@ -67,7 +68,7 @@ export default class ForeignContact extends React.Component {
               className="foreign-contact-name"
               {...this.state.Name}
               onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
+              onError={this.props.onError}
               />
 
         <Field title={i18n.t('military.foreign.heading.contact.address')}
@@ -78,7 +79,7 @@ export default class ForeignContact extends React.Component {
                    className="foreign-contact-address"
                    {...this.state.Address}
                    onUpdate={this.updateAddress}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -89,7 +90,7 @@ export default class ForeignContact extends React.Component {
                 className="foreign-contact-title"
                 maxlength="100"
                 onUpdate={this.updateTitle}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -101,7 +102,7 @@ export default class ForeignContact extends React.Component {
                      className="foreign-contact-dates"
                      {...this.state.Dates}
                      onUpdate={this.updateDates}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -112,7 +113,7 @@ export default class ForeignContact extends React.Component {
                 className="foreign-contact-frequency"
                 maxlength="100"
                 onUpdate={this.updateFrequency}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
       </div>
@@ -125,5 +126,6 @@ ForeignContact.defaultProps = {
   Address: {},
   Title: {},
   Dates: {},
-  Frequency: {}
+  Frequency: {},
+  onError: (value, arr) => { return arr }
 }

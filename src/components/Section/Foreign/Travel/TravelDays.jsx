@@ -34,42 +34,42 @@ export default class TravelDays extends ValidationElement {
                   value="1-5"
                   className="days-1-5"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="days-6-10"
                   label={i18n.m('foreign.travel.label.six')}
                   value="6-10"
                   className="days-6-10"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="days-11-20"
                   label={i18n.m('foreign.travel.label.eleven')}
                   value="11-20"
                   className="days-11-20"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="days-21-30"
                   label={i18n.m('foreign.travel.label.twentyone')}
                   value="21-30"
                   className="days-21-30"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="more-than-30"
                   label={i18n.m('foreign.travel.label.more')}
                   value="More than 30"
                   className="more-than-30"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="many-short-trips"
                   label={i18n.m('foreign.travel.label.many')}
                   value="Many short trips"
                   className="many-short-trips"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
       </CheckboxGroup>
     )
@@ -77,5 +77,6 @@ export default class TravelDays extends ValidationElement {
 }
 
 TravelDays.defaultProps = {
-  value: []
+  value: [],
+  onError: (value, arr) => { return arr }
 }
