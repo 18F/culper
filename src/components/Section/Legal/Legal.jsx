@@ -8,7 +8,7 @@ import { IntroHeader, Field } from '../../Form'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
-import { History } from './Investigations'
+import { History, Revoked } from './Investigations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -23,6 +23,7 @@ class Legal extends SectionElement {
     this.updatePoliceOtherOffenses = this.updatePoliceOtherOffenses.bind(this)
     this.updatePoliceDomesticViolence = this.updatePoliceDomesticViolence.bind(this)
     this.updateHistory = this.updateHistory.bind(this)
+    this.updateRevoked = this.updateRevoked.bind(this)
   }
 
   updatePolice (values) {
@@ -43,6 +44,10 @@ class Legal extends SectionElement {
 
   updateHistory (values) {
     this.handleUpdate('History', values)
+  }
+
+  updateRevoked (values) {
+    this.handleUpdate('Revoked', values)
   }
 
   render () {
@@ -181,6 +186,19 @@ class Legal extends SectionElement {
                      onError={this.handleError}
                      />
           </SectionView>
+
+          <SectionView name="investigations/revoked"
+                       back="legal/investigations/history"
+                       backLabel={i18n.t('legal.destination.investigations.history')}
+                       next="legal/investigations/debarred"
+                       nextLabel={i18n.t('legal.destination.investigations.debarred')}>
+            <Revoked name="revoked"
+                     {...this.props.Revoked}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateRevoked}
+                     onError={this.handleError}
+                     />
+          </SectionView>
         </SectionViews>
       </div>
     )
@@ -201,6 +219,7 @@ function mapStateToProps (state) {
     PoliceOtherOffenses: legal.PoliceOtherOffenses || {},
     PoliceDomesticViolence: legal.PoliceDomesticViolence || {},
     History: legal.History || {},
+    Revoked: legal.Revoked || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }

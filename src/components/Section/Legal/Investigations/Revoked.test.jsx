@@ -1,45 +1,45 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import History from './History'
+import Revoked from './Revoked'
 
-describe('The legal investigations history component', () => {
+describe('The legal investigations revoked component', () => {
   it('renders without errors', () => {
-    const component = mount(<History />)
-    expect(component.find('.investigations-history').length).toBe(1)
+    const component = mount(<Revoked />)
+    expect(component.find('.investigations-revoked').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<History onUpdate={onUpdate} />)
-    component.find('.legal-investigations-history-has-history .yes input').simulate('click')
+    const component = mount(<Revoked onUpdate={onUpdate} />)
+    component.find('.legal-investigations-revoked-has-revocations .yes input').simulate('click')
     expect(updates).toBe(1)
   })
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasHistory: 'Yes'
+      HasRevocations: 'Yes'
     }
-    const component = mount(<History {...props} />)
+    const component = mount(<Revoked {...props} />)
     expect(component.find('.accordion').length).toBe(1)
   })
 
   it('renders summary', () => {
     const props = {
-      HasHistory: 'Yes',
+      HasRevocations: 'Yes',
       List: [
         {
           Agency: {
-            Agency: 'U.S. Department of Defense'
+            value: 'U.S. Department of Defense'
           },
-          Granted: {
+          Date: {
             date: new Date('1/1/2010')
           }
         }
       ],
       ListBranch: ''
     }
-    const component = mount(<History {...props} />)
+    const component = mount(<Revoked {...props} />)
     const text = component.find('.accordion .summary .left .content').text()
     expect(text).toContain('U.S. Department of Defense')
     expect(text).toContain('1/2010')

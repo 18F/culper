@@ -6744,6 +6744,41 @@ const en = {
             note: ''
           }
         }
+      },
+      revoked: {
+        heading: {
+          title: 'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+          date: 'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
+          agency: 'Provide the name of the agency that took the action',
+          explanation: 'Provide an explanation of the circumstances of the denial, suspension or revocation action'
+        },
+        para: {
+          downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
+        },
+        collection: {
+          description: 'Summary of revocations',
+          item: 'Revoked',
+          unknown: 'Provide revocation details below',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
+          appendLabel: 'Add another revocation'
+        },
+        help: {
+          date: {
+            title: 'Need help with the date of this revocation, denial, or suspension?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency authorization this termination?',
+            message: 'Provide the agency name to the best of your abilities responsible for authorizing this action.',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help providing an explanation of events?',
+            message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
       }
     }
 

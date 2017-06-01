@@ -193,7 +193,7 @@ describe('Legal investigations history component validation', function () {
     battery(tests, HistoryValidator, 'validClearance')
   })
 
-  it('validate foreign business advice', () => {
+  it('validate investigations history', () => {
     const tests = [
       {
         props: {},
