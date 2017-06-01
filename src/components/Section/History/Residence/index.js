@@ -1,2 +1,2 @@
-import { ResidenceItem } from './Residence'
-export { ResidenceItem }
+import Residence from './Residence'
+export default Residence

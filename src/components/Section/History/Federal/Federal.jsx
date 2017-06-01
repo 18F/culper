@@ -1,8 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Accordion, Field, DateRange, Text, Address } from '../../../Form'
-import { DateSummary } from '../../../Summary'
 import { FederalServiceValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field, DateRange, Text, Address } from '../../../Form'
+import { DateSummary } from '../../../Summary'
 
 /**
  * Convenience function to send updates along their merry way
@@ -16,54 +17,18 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class Federal extends ValidationElement {
+export default class Federal extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasFederalService: props.HasFederalService,
-      List: props.List || [],
-      errorCodes: []
+      List: props.List || []
     }
 
     this.onUpdate = this.onUpdate.bind(this)
     this.updateBranch = this.updateBranch.bind(this)
     this.updateCollection = this.updateCollection.bind(this)
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
-      super.handleValidation(event, s, e)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new FederalServiceValidator(this.state, null).isValid()
   }
 
   onUpdate (name, values) {
@@ -79,9 +44,6 @@ export default class Federal extends ValidationElement {
     if (value === 'No') {
       this.onUpdate('List', [])
     }
-
-    // Force validation checks
-    this.handleValidation(event, null, null)
   }
 
   updateCollection (values) {
@@ -94,7 +56,7 @@ export default class Federal extends ValidationElement {
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
           ? item.Name.value
-      : i18n.t('history.federal.collection.summary.unknown')
+          : i18n.t('history.federal.collection.summary.unknown')
     const dates = DateSummary(item.Dates)
 
     return (
@@ -113,13 +75,14 @@ export default class Federal extends ValidationElement {
         <Branch name="has_federalservice"
                 value={this.state.HasFederalService}
                 help="history.federal.help.branch"
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasFederalService === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      onUpdate={this.updateCollection}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('history.federal.collection.summary.title')}
                      appendLabel={i18n.t('history.federal.collection.append')}>
@@ -156,5 +119,15 @@ export default class Federal extends ValidationElement {
         </Show>
       </div>
     )
+  }
+}
+
+Federal.defaultProps = {
+  onError: (value, arr) => { return arr },
+  section: 'history',
+  subsection: 'federal',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new FederalServiceValidator(state, props).isValid()
   }
 }

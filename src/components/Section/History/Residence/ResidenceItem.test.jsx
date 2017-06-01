@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { ResidenceItem } from './Residence'
+import ResidenceItem from './ResidenceItem'
 
 describe('The residence component', () => {
   it('no error on empty', () => {

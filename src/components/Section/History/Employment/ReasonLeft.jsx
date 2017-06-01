@@ -6,6 +6,7 @@ import ReasonOptions from './ReasonOptions'
 export default class ReasonLeft extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       ReasonDescription: props.ReasonDescription,
       Comments: props.Comments,
@@ -56,6 +57,7 @@ export default class ReasonLeft extends ValidationElement {
                     {...this.state.ReasonDescription}
                     className="reason-description"
                     onUpdate={this.updateReasonDescription}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -65,10 +67,15 @@ export default class ReasonLeft extends ValidationElement {
                           content={i18n.m('history.employment.default.left.list')}
                           items={this.state.Reasons}
                           onUpdate={this.updateReasons}
+                          onError={this.props.onError}
                           >
           <ReasonOptions name="Reason" bind={true} />
         </BranchCollection>
       </div>
     )
   }
+}
+
+ReasonLeft.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

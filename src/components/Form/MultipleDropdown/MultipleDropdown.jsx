@@ -12,8 +12,8 @@ export default class MultipleDropdown extends ValidationElement {
       loading: props.loading,
       options: props.options.concat(this.parseChildren()),
       value: props.value,
-      error: props.error || false,
-      valid: props.valid || false,
+      error: props.error,
+      valid: props.valid,
       errors: []
     }
 
@@ -21,6 +21,7 @@ export default class MultipleDropdown extends ValidationElement {
     this.handleInput = this.handleInput.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
   parseChildren () {
@@ -32,6 +33,24 @@ export default class MultipleDropdown extends ValidationElement {
           value: child.props.value
         }
       })
+  }
+
+  /**
+   * Execute validation checks on the value.
+   */
+  handleBlur (event) {
+    const value = this.state.value
+    console.log('handleBlur', value)
+    if (value.length) {
+      const errors = this.props.onError(value, this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: err.func(value, { options: this.state.options })
+        }
+      })) || []
+
+      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    }
   }
 
   /**
@@ -110,6 +129,17 @@ export default class MultipleDropdown extends ValidationElement {
       )
     })
 
+    // The `Country` component may pass the value as a string. This causes an
+    // infinite loop which is less than desirable.
+    let value = this.state.value
+    if (typeof value === 'string') {
+      if (value === '') {
+        value = []
+      } else {
+        value = [{ id: value, name: value }]
+      }
+    }
+
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
@@ -121,8 +151,9 @@ export default class MultipleDropdown extends ValidationElement {
                     onInput={this.handleInput}
                     onSelect={this.handleSelect}
                     onRemove={this.handleRemove}
+                    onBlur={this.handleBlur}
                     id={this.state.uid}
-                    selected={this.state.value}
+                    selected={value}
                     placeholder={this.props.placeholder}
                     />
       </div>
@@ -145,5 +176,8 @@ MultipleDropdown.defaultProps = {
   input: '',
   loading: false,
   options: [],
-  value: []
+  value: [],
+  onError: (value, arr) => { return arr }
 }
+
+MultipleDropdown.errors = []

@@ -17,6 +17,7 @@ const sendUpdate = (fn, name, props) => {
 export default class Procedure extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Date: props.Date,
       Offenses: props.Offenses,
@@ -71,7 +72,7 @@ export default class Procedure extends ValidationElement {
                        className="procedure-date"
                        hideDay={true}
                        onUpdate={this.updateDate}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -80,7 +81,7 @@ export default class Procedure extends ValidationElement {
                     {...this.state.Offenses}
                     className="procedure-offenses"
                     onUpdate={this.updateOffenses}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -92,7 +93,7 @@ export default class Procedure extends ValidationElement {
                 className="procedure-name"
                 maxlength="100"
                 onUpdate={this.updateName}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -103,7 +104,7 @@ export default class Procedure extends ValidationElement {
                     label={i18n.t('military.disciplinary.label.court')}
                     className="procedure-court"
                     onUpdate={this.updateCourt}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -115,10 +116,14 @@ export default class Procedure extends ValidationElement {
                 className="procedure-outcome"
                 maxlength="100"
                 onUpdate={this.updateOutcome}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
       </div>
     )
   }
+}
+
+Procedure.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

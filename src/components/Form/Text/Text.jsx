@@ -7,10 +7,10 @@ export default class Text extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value || '',
-      error: props.error || false,
-      valid: props.valid || false
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -36,13 +36,23 @@ export default class Text extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errorCodes) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status, errorCodes)
-    })
+  handleError (value, arr) {
+    if (this.props.prefix) {
+      arr = arr.map(err => {
+        return {
+          code: `${this.props.prefix}.${err.code}`,
+          valid: err.valid
+        }
+      })
+    }
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   render () {
@@ -65,7 +75,7 @@ export default class Text extends ValidationElement {
                onChange={this.handleChange}
                onFocus={this.props.onFocus}
                onBlur={this.props.onBlur}
-               onValidate={this.handleValidation}
+               onError={this.handleError}
                onKeyDown={this.props.onKeyDown}
                onCopy={this.props.onCopy}
                onCut={this.props.onCut}
@@ -78,3 +88,12 @@ export default class Text extends ValidationElement {
     )
   }
 }
+
+Text.defaultProps = {
+  name: 'text',
+  value: '',
+  prefix: '',
+  onError: (value, arr) => { return arr }
+}
+
+Text.errors = []

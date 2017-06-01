@@ -70,7 +70,7 @@ export default class CitizenshipItem extends ValidationElement {
                    {...this.state.Country}
                    className="citizenship-country"
                    onUpdate={this.updateCountry}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -81,7 +81,7 @@ export default class CitizenshipItem extends ValidationElement {
                      {...this.state.Dates}
                      className="citizenship-dates"
                      onUpdate={this.updateDates}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -91,7 +91,7 @@ export default class CitizenshipItem extends ValidationElement {
                     {...this.state.How}
                     className="citizenship-how"
                     onUpdate={this.updateHow}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -102,7 +102,7 @@ export default class CitizenshipItem extends ValidationElement {
                 value={this.state.Renounced}
                 help="citizenship.multiple.help.citizenship.renounced"
                 onUpdate={this.updateRenounced}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
 
         <Show when={this.state.Renounced === 'Yes'}>
@@ -112,7 +112,7 @@ export default class CitizenshipItem extends ValidationElement {
                       {...this.state.RenouncedExplanation}
                       className="citizenship-renounced-explanation"
                       onUpdate={this.updateRenouncedExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -124,7 +124,7 @@ export default class CitizenshipItem extends ValidationElement {
                 value={this.state.Current}
                 help="citizenship.multiple.help.citizenship.current"
                 onUpdate={this.updateCurrent}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
 
         <Show when={this.state.Current === 'Yes'}>
@@ -134,7 +134,7 @@ export default class CitizenshipItem extends ValidationElement {
                       {...this.state.CurrentExplanation}
                       className="citizenship-current-explanation"
                       onUpdate={this.updateCurrentExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -150,5 +150,6 @@ CitizenshipItem.defaultProps = {
   Renounced: '',
   RenouncedExplanation: {},
   Current: '',
-  CurrentExplanation: {}
+  CurrentExplanation: {},
+  onError: (value, arr) => { return arr }
 }

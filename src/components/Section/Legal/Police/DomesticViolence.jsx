@@ -53,11 +53,12 @@ export default class DomesticViolence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.domesticExplanation')}
                titleSize="h3"
                help="legal.police.help.domesticExplanation">
-          <Textarea
-            className="explanation"
-            name="explanation"
-            {...this.state.Explanation}
-            onUpdate={this.updateExplanation} />
+          <Textarea className="explanation"
+                    name="explanation"
+                    {...this.state.Explanation}
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.police.heading.domesticCourtDate')}
@@ -69,7 +70,7 @@ export default class DomesticViolence extends ValidationElement {
                        hideDay={true}
                        className="issued"
                        onUpdate={this.updateIssued}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -81,7 +82,7 @@ export default class DomesticViolence extends ValidationElement {
                 label={i18n.t('legal.police.label.courtname')}
                 className="domestic-courtname"
                 onUpdate={this.updateCourtName}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -95,10 +96,14 @@ export default class DomesticViolence extends ValidationElement {
                    label={i18n.t('legal.police.label.address')}
                    className="domestic-courtaddress"
                    onUpdate={this.updateCourtAddress}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
       </div>
     )
   }
+}
+
+DomesticViolence.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

@@ -110,8 +110,9 @@ describe('The RealEstateActivity component', () => {
   it('Renders full validated', () => {
     let status = false
     const expected = {
-      onValidate: (event, s, error) => {
-        status = s.realestate.status
+      onError: (value, arr) => {
+        status = true
+        return arr
       },
       HasInterests: 'Yes',
       List: [

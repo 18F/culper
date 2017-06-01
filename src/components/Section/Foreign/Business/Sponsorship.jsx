@@ -2,19 +2,14 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateControl, Address, Name,
          BirthPlace, DateRange, NotApplicable } from '../../../Form'
 
-export default class Sponsorship extends ValidationElement {
+export default class Sponsorship extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      error: props.error,
-      valid: props.valid,
-      errorCodes: []
-    }
 
     this.updateHasForeignSponsorship = this.updateHasForeignSponsorship.bind(this)
     this.updateList = this.updateList.bind(this)
@@ -49,33 +44,6 @@ export default class Sponsorship extends ValidationElement {
     ])
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignBusinessSponsorshipValidator(this.state, this.props).isValid()
-  }
-
   summary (item, index) {
     const obj = item || {}
     const name = NameSummary(obj.Name, i18n.t('foreign.business.sponsorship.collection.summary.unknown'))
@@ -99,7 +67,7 @@ export default class Sponsorship extends ValidationElement {
                 help="foreign.business.sponsorship.help.branch"
                 value={this.props.HasForeignSponsorship}
                 onUpdate={this.updateHasForeignSponsorship}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.HasForeignSponsorship === 'Yes'}>
@@ -107,7 +75,7 @@ export default class Sponsorship extends ValidationElement {
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
@@ -239,6 +207,11 @@ Sponsorship.defaultProps = {
   HasForeignSponsorship: '',
   List: [],
   ListBranch: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/sponsorship',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessSponsorshipValidator(state, props).isValid()
+  }
 }

@@ -13,15 +13,6 @@ export default class AdditionalActivity extends ValidationElement {
     this.myDispatch = this.myDispatch.bind(this)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
-    })
-  }
-
   myDispatch (collection) {
     this.setState({ List: collection }, () => {
       if (this.props.onUpdate) {
@@ -46,7 +37,7 @@ export default class AdditionalActivity extends ValidationElement {
                           help="history.employment.default.additionalActivity.help"
                           items={this.state.List}
                           onUpdate={this.myDispatch}
-                          onValidate={this.handleValidation}>
+                          onError={this.props.onError}>
           <Field title={i18n.t('history.employment.default.additionalActivity.heading.position')}
                  titleSize="h4"
                  help="history.employment.default.additionalActivity.position.help"
@@ -85,5 +76,6 @@ export default class AdditionalActivity extends ValidationElement {
 }
 
 AdditionalActivity.defaultProps = {
-  List: []
+  List: [],
+  onError: (value, arr) => { return arr }
 }

@@ -5,6 +5,7 @@ import { ValidationElement, Email, Text, Field, Address, Telephone, NotApplicabl
 export default class Supervisor extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       SupervisorName: props.SupervisorName,
       Title: props.Title,
@@ -43,33 +44,6 @@ export default class Supervisor extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
-    })
-  }
-
   render () {
     return (
       <div className="supervisor">
@@ -80,9 +54,7 @@ export default class Supervisor extends ValidationElement {
                 className="text full-width"
                 {...this.props.SupervisorName}
                 label={i18n.t('history.employment.default.supervisor.name.label')}
-                onValidate={this.handleValidation}
-                onBlur={this.handleBlur}
-                onFocus={this.handleFocus}
+                onError={this.props.onError}
                 onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
                 />
         </Field>
@@ -94,10 +66,8 @@ export default class Supervisor extends ValidationElement {
                 {...this.props.Title}
                 className="text full-width"
                 label={i18n.t('history.employment.default.supervisor.title.label')}
-                onBlur={this.handleBlur}
-                onFocus={this.handleFocus}
                 onUpdate={this.onUpdate.bind(this, 'Title')}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -109,15 +79,14 @@ export default class Supervisor extends ValidationElement {
                          {...this.state.EmailNotApplicable}
                          label={i18n.t('reference.label.idk')}
                          or={i18n.m('reference.para.or')}
-                         onUpdate={this.updateEmailNotApplicable}>
+                         onUpdate={this.updateEmailNotApplicable}
+                         onError={this.props.onError}>
             <Email name="Email"
                    {...this.props.Email}
                    className="text"
                    label={i18n.t('history.employment.default.supervisor.email.label')}
-                   onBlur={this.handleBlur}
-                   onFocus={this.handleFocus}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
-                   onValidate={this.handleValidation}
+                   onError={this.props.onError}
                    />
           </NotApplicable>
         </Field>
@@ -128,10 +97,8 @@ export default class Supervisor extends ValidationElement {
           <Address name="Address"
                    {...this.props.Address}
                    label={i18n.t('history.employment.default.supervisor.address.label')}
-                   onBlur={this.handleBlur}
-                   onFocus={this.handleFocus}
                    onUpdate={this.onUpdate.bind(this, 'Address')}
-                   onValidate={this.handleValidation}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -140,10 +107,8 @@ export default class Supervisor extends ValidationElement {
                adjustFor="labels">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
-                     onBlur={this.handleBlur}
-                     onFocus={this.handleFocus}
                      onUpdate={this.onUpdate.bind(this, 'Telephone')}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      />
         </Field>
       </div>
@@ -157,5 +122,6 @@ Supervisor.defaultProps = {
   Email: {},
   EmailNotApplicable: {},
   Address: {},
-  Telephone: {}
+  Telephone: {},
+  onError: (value, arr) => { return arr }
 }

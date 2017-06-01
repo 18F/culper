@@ -8,11 +8,10 @@ export default class Email extends ValidationElement {
 
     this.state = {
       pattern: props.pattern,
-      value: props.value,
-      focus: props.focus,
-      error: props.error,
-      valid: props.valid
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -30,31 +29,21 @@ export default class Email extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `email.${err.code}`,
+        valid: err.valid
+      }
     })
-  }
 
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errors) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status, errors)
-    })
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   render () {
@@ -70,13 +59,10 @@ export default class Email extends ValidationElement {
                readonly={this.props.readonly}
                required={this.props.required}
                value={this.state.value}
-               focus={this.state.focus}
-               error={this.state.error}
-               valid={this.state.valid}
                onChange={this.handleChange}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               onValidate={this.handleValidation}
+               onFocus={this.props.Focus}
+               onBlur={this.props.Blur}
+               onError={this.handleError}
                />
     )
   }
@@ -85,7 +71,7 @@ export default class Email extends ValidationElement {
 Email.defaultProps = {
   pattern: `^([A-z0-9_\.-]+)@([\dA-z\.-]+)\.+([A-z\.]{2,6})$`,
   value: '',
-  focus: false,
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr }
 }
+
+Email.errors = []

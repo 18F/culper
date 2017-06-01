@@ -4,7 +4,6 @@ import Voting from './Voting'
 
 describe('The foreign business voting component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-voting',
       HasForeignVoting: 'No'
@@ -14,7 +13,6 @@ describe('The foreign business voting component', () => {
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-voting',
       HasForeignVoting: 'Yes'
@@ -28,7 +26,10 @@ describe('The foreign business voting component', () => {
     const expected = {
       name: 'foreign-business-voting',
       HasForeignVoting: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Voting {...expected} />)
     component.find('.branch .yes input').at(0).simulate('change')

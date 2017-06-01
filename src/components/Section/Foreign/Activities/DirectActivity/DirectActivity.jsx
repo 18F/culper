@@ -1,21 +1,17 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
+import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignDirectActivityValidator } from '../../../../../validators'
+import SubsectionElement from '../../../SubsectionElement'
 import DirectInterest from './DirectInterest'
 
-export default class DirectActivity extends ValidationElement {
+export default class DirectActivity extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      errorCodes: []
-    }
 
     this.update = this.update.bind(this)
     this.updateHasInterests = this.updateHasInterests.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.isValid = this.isValid.bind(this)
   }
 
   update (queue) {
@@ -45,26 +41,6 @@ export default class DirectActivity extends ValidationElement {
     this.update([
       { name: 'HasInterests', value: values }
     ])
-  }
-
-  isValid () {
-    return new ForeignDirectActivityValidator(null, this.props).isValid()
-  }
-
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
   }
 
   summary (item, index) {
@@ -99,7 +75,7 @@ export default class DirectActivity extends ValidationElement {
                 label={<h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>}
                 labelSize="h3"
                 value={this.props.HasInterests}
-                onValidate={this.handleValidation}
+                onError={this.handleError}
                 onUpdate={this.updateHasInterests}>
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
@@ -111,7 +87,7 @@ export default class DirectActivity extends ValidationElement {
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
@@ -130,5 +106,12 @@ DirectActivity.defaultProps = {
   HasInterests: '',
   List: [],
   ListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'activities/direct',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignDirectActivityValidator(state, props).isValid()
+  }
 }

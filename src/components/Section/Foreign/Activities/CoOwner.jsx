@@ -48,39 +48,39 @@ export default class CoOwner extends ValidationElement {
 
         <h3>{i18n.t(`foreign.${prefix}.heading.name`)}</h3>
         <Name name="Name"
-          {...this.props.Name}
-          onUpdate={this.updateName}
-          onValidate={this.props.onValidate}
-        />
+              {...this.props.Name}
+              onUpdate={this.updateName}
+              onError={this.props.onError}
+              />
 
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
-          adjustFor="address"
-          shrink={true}>
+               adjustFor="address"
+               shrink={true}>
           <Address name="Address"
-            {...this.props.Address}
-            label={i18n.t(`foreign.${prefix}.label.address`)}
-            onUpdate={this.updateAddress}
-            onValidate={this.props.onValidate}
-          />
+                   {...this.props.Address}
+                   label={i18n.t(`foreign.${prefix}.label.address`)}
+                   onUpdate={this.updateAddress}
+                   onError={this.props.onError}
+                   />
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.countries`)}
-          help={`foreign.${prefix}.help.countries`}>
+               help={`foreign.${prefix}.help.countries`}>
           <Country name="Countries"
-            {...this.props.Countries}
-            multiple={true}
-            onUpdate={this.updateCountries}
-            onValidate={this.props.onValidate}
-          />
+                   {...this.props.Countries}
+                   multiple={true}
+                   onUpdate={this.updateCountries}
+                   onError={this.props.onError}
+                   />
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.relationshipNature`)}>
           <Textarea name="RelationshipNature"
-            className="relationship-nature"
-            {...this.props.RelationshipNature}
-            onUpdate={this.updateRelationshipNature}
-            onValidate={this.props.onValidate}
-          />
+                    className="relationship-nature"
+                    {...this.props.RelationshipNature}
+                    onUpdate={this.updateRelationshipNature}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )
@@ -88,5 +88,6 @@ export default class CoOwner extends ValidationElement {
 }
 
 CoOwner.defaultProps = {
-  prefix: 'coOwner'
+  prefix: 'coOwner',
+  onError: (value, arr) => { return arr }
 }

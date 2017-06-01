@@ -7,11 +7,10 @@ export default class County extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
-      error: props.error || false,
-      valid: props.valid || false,
-      errors: []
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -23,31 +22,21 @@ export default class County extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errors) {
-    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      super.handleValidation(event, status, errors)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `county.${err.code}`,
+        valid: err.valid
+      }
     })
-  }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   render () {
@@ -60,13 +49,19 @@ export default class County extends ValidationElement {
             required="true"
             className={this.props.className}
             value={this.state.value}
-            error={this.state.error}
-            valid={this.state.valid}
             onChange={this.handleChange}
-            onValidate={this.handleValidation}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onError={this.handleError}
+            onFocus={this.props.Focus}
+            onBlur={this.props.Blur}
             />
     )
   }
 }
+
+County.defaultProps = {
+  name: 'county',
+  value: '',
+  onError: (value, arr) => { return arr }
+}
+
+County.errors = []

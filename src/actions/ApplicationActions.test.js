@@ -59,13 +59,13 @@ describe('Application actions', function () {
       {
         name: 'ApplicantNameReportError',
         callback: function () {
-          return reportErrors('Identification', 'ApplicantName', ['minlength'])
+          return reportErrors('Identification', 'ApplicantName', [{ code: 'minlength', valid: false }])
         },
         expected: {
           type: 'Errors.Identification',
           section: 'Errors',
           property: 'Identification',
-          values: ['identification.applicantname.minlength']
+          values: [{ code: 'minlength', valid: false }]
         }
       }
     ]

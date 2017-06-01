@@ -9,15 +9,18 @@ import { Field, Radio, RadioGroup } from '../../Form'
 export default class Branch extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
-      value: props.value
+      value: this.props.value
     }
+
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  yesNoClicked (val, event) {
-    this.setState({ value: val }, () => {
+  handleUpdate (values) {
+    this.setState({value: values.value}, () => {
       if (this.props.onUpdate) {
-        this.props.onUpdate(val, event)
+        this.props.onUpdate(values.value)
       }
     })
   }
@@ -40,15 +43,15 @@ export default class Branch extends React.Component {
                  label={this.props.yesLabel}
                  value={this.props.yesValue}
                  className="yes"
-                 onChange={this.yesNoClicked.bind(this, this.props.yesValue)}
-                 onValidate={this.props.onValidate}
+                 onUpdate={this.handleUpdate}
+                 onError={this.props.onError}
                  />
           <Radio name={this.props.name}
                  label={this.props.noLabel}
                  value={this.props.noValue}
                  className="no"
-                 onChange={this.yesNoClicked.bind(this, this.props.noValue)}
-                 onValidate={this.props.onValidate}
+                 onUpdate={this.handleUpdate}
+                 onError={this.props.onError}
                  />
         </RadioGroup>
       </Field>
@@ -64,5 +67,6 @@ Branch.defaultProps = {
   noValue: 'No',
   labelSize: 'label',
   adjustFor: 'buttons',
-  value: null
+  value: '',
+  onError: (value, arr) => { return arr }
 }

@@ -42,18 +42,19 @@ export default class Address extends ValidationElement {
     this.renderSuggestion = this.renderSuggestion.bind(this)
     this.handleAddressTypeChange = this.handleAddressTypeChange.bind(this)
     this.doUpdate = this.doUpdate.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      address: nextProps.address,
-      city: nextProps.city,
-      zipcode: nextProps.zipcode,
-      state: nextProps.state,
-      country: nextProps.country,
-      addressType: nextProps.addressType
-    })
-  }
+  // componentWillReceiveProps (nextProps) {
+  //   this.setState({
+  //     address: nextProps.address,
+  //     city: nextProps.city,
+  //     zipcode: nextProps.zipcode,
+  //     state: nextProps.state,
+  //     country: nextProps.country,
+  //     addressType: nextProps.addressType
+  //   })
+  // }
 
   componentWillUnmount () {
     this.handleAsyncValidation = null
@@ -135,12 +136,9 @@ export default class Address extends ValidationElement {
       return
     }
 
-    this.handleAsyncValidation(event, status, error)
+    this.handleAsyncValidation({...this.state}, [])
       .then(result => {
         this.setState({
-          error: result.complexStatus === false,
-          valid: result.complexStatus === true,
-          errorCodes: result.codes,
           suggestions: result.suggestions,
           geocodeErrorCode: result.geocodeErrorCode
         }, () => {
@@ -153,35 +151,50 @@ export default class Address extends ValidationElement {
       })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `address.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   /**
    * Handles asynchornous validation. Since this component uses a combination of sync/async validation,
    * we create a promise that can handle both scenarios to streamline the flow
    */
-  handleAsyncValidation (event, status, error) {
+  handleAsyncValidation (value, arr) {
     return new Promise((resolve, reject) => {
       // Setup address validator
-      const validator = new AddressValidator(this.state)
+      const validator = new AddressValidator(value)
 
-      // Retrieve codes
-      const codes = super.mergeError(this.state.errorCodes || [], error)
-      if (codes.length > 0) {
-        return resolve({complexStatus: false, codes: codes, suggestions: []})
+      if (arr.length > 0) {
+        return resolve({ suggestions: [] })
       }
 
       // Check if this address has already been verified/validated by user
-      if (this.state.validated) {
-        return resolve({complexStatus: true, codes: [], suggestions: []})
+      if (value.validated) {
+        return resolve({ suggestions: [] })
       }
 
       // No error codes found. Now start to validate location information
       switch (validator.isValid()) {
         case true:
-        // Once preliminary address fields are checked, we validate against geocoding api
+          // Once preliminary address fields are checked, we validate against geocoding api
           validator.geocode().then(handleGeocodeResponse).then(resolve)
           break
 
         default:
-          resolve({complexStatus: false, codes: [], suggestions: []})
+          return resolve({ suggestions: [] })
       }
     })
   }
@@ -200,7 +213,6 @@ export default class Address extends ValidationElement {
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleAddressTypeChange}
-                 onValidate={this.props.onValidate}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -211,7 +223,6 @@ export default class Address extends ValidationElement {
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleAddressTypeChange}
-                 onValidate={this.props.onValidate}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -222,7 +233,6 @@ export default class Address extends ValidationElement {
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleAddressTypeChange}
-                 onValidate={this.props.onValidate}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  />
@@ -254,6 +264,7 @@ export default class Address extends ValidationElement {
                           value={this.state.address}
                           onChange={this.handleChange.bind(this, 'address')}
                           onValidate={this.handleValidation}
+                          onError={this.handleError}
                           onFocus={this.props.onFocus}
                           onBlur={this.props.onBlur}
                           />
@@ -264,6 +275,7 @@ export default class Address extends ValidationElement {
                         value={this.state.city}
                         onChange={this.handleChange.bind(this, 'city')}
                         onValidate={this.handleValidation}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         />
@@ -276,6 +288,7 @@ export default class Address extends ValidationElement {
                                    includeStates="true"
                                    onChange={this.handleChange.bind(this, 'state')}
                                    onValidate={this.handleValidation}
+                                   onError={this.handleError}
                                    onFocus={this.props.onFocus}
                                    onBlur={this.props.onBlur}
                                    />
@@ -288,6 +301,7 @@ export default class Address extends ValidationElement {
                              value={this.state.zipcode}
                              onChange={this.handleChange.bind(this, 'zipcode')}
                              onValidate={this.handleValidation}
+                             onError={this.handleError}
                              onFocus={this.props.onFocus}
                              onBlur={this.props.onBlur}
                              />
@@ -303,6 +317,7 @@ export default class Address extends ValidationElement {
                           value={this.state.address}
                           onChange={this.handleChange.bind(this, 'address')}
                           onValidate={this.handleValidation}
+                          onError={this.handleError}
                           onFocus={this.props.onFocus}
                           onBlur={this.props.onBlur}
                           />
@@ -313,6 +328,7 @@ export default class Address extends ValidationElement {
                         value={this.state.city}
                         onChange={this.handleChange.bind(this, 'city')}
                         onValidate={this.handleValidation}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         />
@@ -323,6 +339,7 @@ export default class Address extends ValidationElement {
                            excludeUnitedStates="true"
                            onChange={this.handleChange.bind(this, 'country')}
                            onValidate={this.handleValidation}
+                           onError={this.handleError}
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
                            />
@@ -337,6 +354,7 @@ export default class Address extends ValidationElement {
                           value={this.state.address}
                           onChange={this.handleChange.bind(this, 'address')}
                           onValidate={this.handleValidation}
+                          onError={this.handleError}
                           onFocus={this.props.onFocus}
                           onBlur={this.props.onBlur}
                           />
@@ -347,7 +365,6 @@ export default class Address extends ValidationElement {
                            value="APO"
                            disabled={this.props.disabled}
                            onChange={this.handleChange.bind(this, 'city')}
-                           onValidate={this.props.handleValidation}
                            onBlur={this.props.onBlur}
                            onFocus={this.props.onFocus}
                            />
@@ -356,7 +373,6 @@ export default class Address extends ValidationElement {
                            value="FPO"
                            disabled={this.props.disabled}
                            onChange={this.handleChange.bind(this, 'city')}
-                           onValidate={this.handleValidation}
                            onBlur={this.props.onBlur}
                            onFocus={this.props.onFocus}
                            />
@@ -369,6 +385,7 @@ export default class Address extends ValidationElement {
                             value={this.state.state}
                             onChange={this.handleChange.bind(this, 'state')}
                             onValidate={this.handleValidation}
+                            onError={this.handleError}
                             onFocus={this.props.onFocus}
                             onBlur={this.props.onBlur}
                             tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
@@ -382,6 +399,7 @@ export default class Address extends ValidationElement {
                                value={this.state.zipcode}
                                onChange={this.handleChange.bind(this, 'zipcode')}
                                onValidate={this.handleValidation}
+                               onError={this.handleError}
                                onFocus={this.props.onFocus}
                                onBlur={this.props.onBlur}
                                />
@@ -484,23 +502,22 @@ Address.defaultProps = {
   validate: false,
   geocodeErrorCode: null,
   tab: (input) => { input.focus() },
-  addressType: 'United States'
+  addressType: 'United States',
+  onError: (value, arr) => { return arr }
 }
+
+Address.errors = []
 
 /**
  * Helper function to extract geocoded information
  */
 export const handleGeocodeResponse = (response) => {
-  if (!response.Errors || !response.Errors.length) {
-    return {complexStatus: true, suggestions: [], codes: []}
-  }
-
   if (response.Errors && response.Errors.length) {
+    // Return the first response recieved (FIFO)
     for (const err of response.Errors) {
       if (err.Fieldname === 'Address') {
         if (!err.Suggestions || !err.Suggestions.length) {
           return {
-            complexStatus: false,
             suggestions: [],
             geocodeErrorCode: err.Error,
             geocodeError: true
@@ -508,7 +525,6 @@ export const handleGeocodeResponse = (response) => {
         }
 
         return {
-          complexStatus: false,
           geocodeError: true,
           geocodeErrorCode: err.Error,
           suggestions: err.Suggestions || []
@@ -516,6 +532,8 @@ export const handleGeocodeResponse = (response) => {
       }
     }
   }
+
+  return { suggestions: [] }
 }
 
 /**
@@ -528,8 +546,8 @@ export const throttle = (callback, wait, context = this) => {
   let callbackArgs = null
 
   const later = () => {
-    callback.apply(context, callbackArgs)
     timeout = null
+    return callback.apply(context, callbackArgs)
   }
 
   return function () {

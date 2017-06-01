@@ -1,54 +1,24 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { TaxesValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateControl, Number, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, DateControl, Number, Field,
          Checkbox, Text, Textarea, NotApplicable, Currency } from '../../../Form'
 import FailureType from './FailureType'
 
-export default class Taxes extends ValidationElement {
+export default class Taxes extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasTaxes: props.HasTaxes,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new TaxesValidator(this.state, null).isValid()
   }
 
   /**
@@ -60,7 +30,6 @@ export default class Taxes extends ValidationElement {
         items: val === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -103,14 +72,15 @@ export default class Taxes extends ValidationElement {
         <Branch name="has_taxes"
                 className="taxes-branch"
                 value={this.state.HasTaxes}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.taxes.collection.summary.title')}
                      appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
@@ -214,5 +184,12 @@ export default class Taxes extends ValidationElement {
 Taxes.defaultProps = {
   HasTaxes: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr },
+  section: 'financial',
+  subsection: 'taxes',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new TaxesValidator(state, props).isValid()
+  }
 }

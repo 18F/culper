@@ -27,12 +27,9 @@ export default class Telephone extends ValidationElement {
     super(props)
     this.state = {
       value: props.value,
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
-      type: props.type || 'Domestic',
+      type: props.type,
       numberType: props.numberType,
-      timeOfDay: props.timeOfDay || 'Both',
+      timeOfDay: props.timeOfDay,
       number: props.number,
       extension: props.extension,
       noNumber: props.noNumber,
@@ -52,6 +49,22 @@ export default class Telephone extends ValidationElement {
     }
 
     this.handleNumberTypeChange = this.handleNumberTypeChange.bind(this)
+    this.handleError = this.handleError.bind(this)
+    this.handleErrorDomestic = this.handleErrorDomestic.bind(this)
+    this.handleErrorDomesticFirst = this.handleErrorDomesticFirst.bind(this)
+    this.handleErrorDomesticSecond = this.handleErrorDomesticSecond.bind(this)
+    this.handleErrorDomesticThird = this.handleErrorDomesticThird.bind(this)
+    this.handleErrorDomesticExtension = this.handleErrorDomesticExtension.bind(this)
+    this.handleErrorInternational = this.handleErrorInternational.bind(this)
+    this.handleErrorInternationalFirst = this.handleErrorInternationalFirst.bind(this)
+    this.handleErrorInternationalSecond = this.handleErrorInternationalSecond.bind(this)
+    this.handleErrorInternationalExtension = this.handleErrorInternationalExtension.bind(this)
+    this.handleErrorDsn = this.handleErrorDsn.bind(this)
+    this.handleErrorDsnFirst = this.handleErrorDsnFirst.bind(this)
+    this.handleErrorDsnSecond = this.handleErrorDsnSecond.bind(this)
+    this.handleErrorNoNumber = this.handleErrorNoNumber.bind(this)
+    this.handleErrorTime = this.handleErrorTime.bind(this)
+    this.handleErrorType = this.handleErrorType.bind(this)
   }
 
   parseNumber (start, end, number) {
@@ -169,31 +182,81 @@ export default class Telephone extends ValidationElement {
     }
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
+  handleErrorDomesticFirst (value, arr) {
+    return this.handleErrorDomestic('first', value, arr)
   }
 
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
+  handleErrorDomesticSecond (value, arr) {
+    return this.handleErrorDomestic('second', value, arr)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status, error)
+  handleErrorDomesticThird (value, arr) {
+    return this.handleErrorDomestic('third', value, arr)
+  }
+
+  handleErrorDomesticExtension (value, arr) {
+    return this.handleErrorDomestic('extension', value, arr)
+  }
+
+  handleErrorDomestic (code, value, arr) {
+    return this.handleError(`domestic.${code}`, value, arr)
+  }
+
+  handleErrorInternationalFirst (value, arr) {
+    return this.handleErrorInternational('first', value, arr)
+  }
+
+  handleErrorInternationalSecond (value, arr) {
+    return this.handleErrorInternational('second', value, arr)
+  }
+
+  handleErrorInternationalExtension (value, arr) {
+    return this.handleErrorInternational('extension', value, arr)
+  }
+
+  handleErrorInternational (code, value, arr) {
+    return this.handleError(`international.${code}`, value, arr)
+  }
+
+  handleErrorDsnFirst (value, arr) {
+    return this.handleErrorDsn('first', value, arr)
+  }
+
+  handleErrorDsnSecond (value, arr) {
+    return this.handleErrorDsn('second', value, arr)
+  }
+
+  handleErrorDsn (code, value, arr) {
+    return this.handleError(`dsn.${code}`, value, arr)
+  }
+
+  handleErrorNoNumber (value, arr) {
+    return this.handleError('none', value, arr)
+  }
+
+  handleErrorTime (value, arr) {
+    return this.handleError('time', value, arr)
+  }
+
+  handleErrorType (value, arr) {
+    return this.handleError('type', value, arr)
+  }
+
+  handleError (code, value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `telephone.${code}.${err.code}`,
+        valid: err.valid
+      }
     })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   dsn () {
@@ -214,9 +277,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.dsn.first}
               onChange={this.handleNumberChange('dsn', 'first').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorDsnFirst}
               tabNext={() => { this.props.tab(this.refs.dsn_second.refs.text.refs.input) }}
               />
         <span className="separator">-</span>
@@ -235,9 +296,7 @@ export default class Telephone extends ValidationElement {
               step="1"
               value={this.state.dsn.second}
               onChange={this.handleNumberChange('dsn', 'second').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorDsnSecond}
               tabBack={() => { this.props.tab(this.refs.dsn_first.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
@@ -246,6 +305,7 @@ export default class Telephone extends ValidationElement {
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
                  onChange={this.handleNoNumberChange.bind(this)}
+                 onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
       </div>
@@ -271,9 +331,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.domestic.first}
               onChange={this.handleNumberChange('domestic', 'first').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorDomesticFirst}
               tabNext={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
               />
         <span className="separator">)</span>
@@ -290,9 +348,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.domestic.second}
               onChange={this.handleNumberChange('domestic', 'second').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorDomesticSecond}
               tabBack={() => { this.props.tab(this.refs.domestic_first.refs.text.refs.input) }}
               tabNext={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }}
               />
@@ -311,9 +367,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.domestic.third}
               onChange={this.handleNumberChange('domestic', 'third').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorDomesticThird}
               tabBack={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
               tabNext={() => { this.props.tab(this.refs.domestic_extension.refs.text.refs.input) }}
               />
@@ -331,9 +385,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorDomesticExtension}
               tabBack={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
@@ -342,6 +394,7 @@ export default class Telephone extends ValidationElement {
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
                  onChange={this.handleNoNumberChange.bind(this)}
+                 onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
       </div>
@@ -366,9 +419,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.international.first}
               onChange={this.handleNumberChange('international', 'first').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorInternationalFirst}
               tabNext={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
               />
         <span className="separator">-</span>
@@ -385,9 +436,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.international.second}
               onChange={this.handleNumberChange('international', 'second').bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorInternationalSecond}
               tabBack={() => { this.props.tab(this.refs.int_first.refs.text.refs.input) }}
               tabNext={() => { this.props.tab(this.refs.int_extension.refs.text.refs.input) }}
               />
@@ -405,9 +454,7 @@ export default class Telephone extends ValidationElement {
               required={this.props.required}
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onValidate={this.handleValidation}
+              onError={this.handleErrorInternationalExtension}
               tabBack={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
@@ -416,6 +463,7 @@ export default class Telephone extends ValidationElement {
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
                  onChange={this.handleNoNumberChange.bind(this)}
+                 onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
       </div>
@@ -473,7 +521,7 @@ export default class Telephone extends ValidationElement {
                    value="Day"
                    disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Day')}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorTime}
                    />
             <Radio native={true}
                    className="time night"
@@ -481,7 +529,7 @@ export default class Telephone extends ValidationElement {
                    value="Night"
                    disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Night')}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorTime}
                    />
             <Radio native={true}
                    className="time both"
@@ -489,7 +537,7 @@ export default class Telephone extends ValidationElement {
                    value="Both"
                    disabled={this.state.noNumber}
                    onChange={this.handleTimeOfDayChange.bind(this, 'Both')}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorTime}
                    />
           </RadioGroup>
         </div>
@@ -503,7 +551,7 @@ export default class Telephone extends ValidationElement {
                    value="Cell"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorType}
                    />
             <Radio name="numbertype-home"
                    className="phonetype-option home"
@@ -511,7 +559,7 @@ export default class Telephone extends ValidationElement {
                    value="Home"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorType}
                    />
             <Radio name="numbertype-work"
                    className="phonetype-option work"
@@ -519,7 +567,7 @@ export default class Telephone extends ValidationElement {
                    value="Work"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorType}
                    />
             <Radio name="numbertype-other"
                    className="phonetype-option other"
@@ -527,7 +575,7 @@ export default class Telephone extends ValidationElement {
                    value="Other"
                    disabled={this.state.noNumber}
                    onChange={this.handleNumberTypeChange}
-                   onValidate={this.handleValidation}
+                   onError={this.handleErrorType}
                    />
           </RadioGroup>
         </div>
@@ -537,5 +585,16 @@ export default class Telephone extends ValidationElement {
 }
 
 Telephone.defaultProps = {
-  tab: (input) => { input.focus() }
+  name: 'telephone',
+  value: '',
+  type: 'Domestic',
+  numberType: '',
+  timeOfDay: 'Both',
+  number: '',
+  extension: '',
+  noNumber: '',
+  tab: (input) => { input.focus() },
+  onError: (value, arr) => { return arr }
 }
+
+Telephone.errors = []
