@@ -101,7 +101,6 @@ export default class MilitaryService extends ValidationElement {
     return (
       <div className="military-service">
         <Field title={i18n.t('military.history.heading.service')}
-               help="military.history.help.service"
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="service option-list eapp-extend-labels"
@@ -188,7 +187,6 @@ export default class MilitaryService extends ValidationElement {
 
         <Show when={this.state.Service === 'AirNationalGuard' || this.state.Service === 'ArmyNationalGuard'}>
           <Field title={i18n.t('military.history.heading.status')}
-                 help="military.history.help.status"
                  adjustFor="buttons"
                  shrink={true}>
             <RadioGroup className="status option-list"
@@ -219,7 +217,6 @@ export default class MilitaryService extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('military.history.heading.officer')}
-               help="military.history.help.officer"
                adjustFor="buttons"
                shrink={true}>
           <RadioGroup className="officer option-list"
@@ -275,7 +272,6 @@ export default class MilitaryService extends ValidationElement {
         <Branch name="has_beendischarged"
                 className="discharged"
                 value={this.state.HasBeenDischarged}
-                help="military.history.help.discharged"
                 onUpdate={this.updateDischarged}
                 onError={this.props.onError}>
         </Branch>
@@ -285,7 +281,6 @@ export default class MilitaryService extends ValidationElement {
             <h2>{i18n.t('military.history.heading.details')}</h2>
 
             <Field title={i18n.t('military.history.heading.discharge.type')}
-                   help="military.history.help.discharge.type"
                    adjustFor="big-buttons"
                    shrink={true}>
               <RadioGroup className="discharge-type option-list"
@@ -346,8 +341,7 @@ export default class MilitaryService extends ValidationElement {
             </Field>
 
             <Show when={this.state.DischargeType && this.state.DischargeType !== 'Honorable'}>
-              <Field help="military.history.help.discharge.reason"
-                     adjustFor="labels">
+              <Field adjustFor="labels">
                 <Textarea name="DischargeReason"
                           {...this.state.DischargeReason}
                           className="discharge-reason"

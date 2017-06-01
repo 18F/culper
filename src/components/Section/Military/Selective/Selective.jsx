@@ -87,7 +87,6 @@ export default class Selective extends SubsectionElement {
             <Branch name="has_registered"
                     className="registered"
                     value={this.state.HasRegistered}
-                    help="military.selective.help.registered"
                     onUpdate={this.updateRegistered}
                     onError={this.handleError}>
             </Branch>
@@ -95,7 +94,6 @@ export default class Selective extends SubsectionElement {
             <Show when={this.state.HasRegistered === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
-                       help="military.selective.help.number"
                        adjustFor="labels">
                   <Text name="RegistrationNumber"
                         className="registration-number"

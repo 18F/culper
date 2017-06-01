@@ -76,8 +76,7 @@ export default class Procedure extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('military.disciplinary.heading.offenses')}
-               help="military.disciplinary.help.offenses">
+        <Field title={i18n.t('military.disciplinary.heading.offenses')}>
           <Textarea name="Offenses"
                     {...this.state.Offenses}
                     className="procedure-offenses"
@@ -87,7 +86,6 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.name')}
-               help="military.disciplinary.help.name"
                adjustFor="p">
           <Text name="Name"
                 {...this.state.Name}
@@ -100,7 +98,6 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.court')}
-               help="military.disciplinary.help.court"
                adjustFor="p">
           <Textarea name="Court"
                     {...this.state.Court}
@@ -112,7 +109,6 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.outcome')}
-               help="military.disciplinary.help.outcome"
                adjustFor="labels">
           <Text name="Outcome"
                 {...this.state.Outcome}
