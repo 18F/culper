@@ -74,6 +74,7 @@ export default class People extends SubsectionElement {
         <h2>{i18n.t('relationships.people.heading.title')}</h2>
         {i18n.m('relationships.people.para.intro')}
 
+        <span id="scrollToPeople"></span>
         <div className="summaryprogress progress">
           <SummaryProgress className="people-summary"
                            List={this.peopleSummaryList}
@@ -91,6 +92,7 @@ export default class People extends SubsectionElement {
         </div>
 
         <Accordion minimum="1"
+                   scrollTo="scrollToPeople"
                    items={this.state.List}
                    branch={this.state.ListBranch}
                    summary={this.summary}

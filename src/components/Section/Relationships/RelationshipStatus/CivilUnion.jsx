@@ -185,7 +185,7 @@ export default class CivilUnion extends ValidationElement {
           : i18n.t('relationships.relatives.collection.summary.unknown')
     return (
       <span>
-        <span className="index">{itemType}</span>
+        <span className="index">{itemType}:</span>
         <span className="info"><strong>{name} {date} {status}</strong></span>
       </span>
     )
@@ -385,7 +385,9 @@ export default class CivilUnion extends ValidationElement {
           </Branch>
 
           <Show when={this.state.Divorced === 'Yes'}>
+            <span id="scrollToCivilUnion"></span>
             <Accordion minimum="1"
+                       scrollTo="scrollToCivilUnion"
                        items={this.state.DivorcedList}
                        branch={this.state.DivorcedListBranch}
                        onUpdate={this.updateDivorcedList}

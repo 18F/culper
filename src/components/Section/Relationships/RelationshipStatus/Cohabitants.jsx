@@ -50,7 +50,7 @@ export default class Cohabitants extends SubsectionElement {
           : i18n.t('relationships.relatives.collection.summary.unknown')
     return (
       <span>
-        <span className="index">{itemType}</span>
+        <span className="index">{itemType}:</span>
         <span className="info"><strong>{name} {date}</strong></span>
       </span>
     )
