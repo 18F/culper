@@ -378,7 +378,6 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    // TODO: Add `value` and `onUpdate`
     const klassAppend = `addendum ${this.props.appendClass}`.trim()
     return (
       <Branch label={this.props.appendTitle}
