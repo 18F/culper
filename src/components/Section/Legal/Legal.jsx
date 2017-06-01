@@ -73,6 +73,7 @@ class Legal extends SectionElement {
 
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
@@ -80,6 +81,7 @@ class Legal extends SectionElement {
 
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           defaultState={false}
                            dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
