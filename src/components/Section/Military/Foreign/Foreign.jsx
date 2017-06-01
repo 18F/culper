@@ -25,7 +25,6 @@ export default class Foreign extends SubsectionElement {
                           branchName="has_foreign"
                           appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
                           appendSize="h2"
-                          help="military.foreign.help.served"
                           onUpdate={this.updateList}
                           onError={this.handleError}>
           <ForeignService name="Item"

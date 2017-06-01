@@ -78,7 +78,6 @@ export default class Disciplinary extends SubsectionElement {
       <div className="disciplinary">
         <Branch name="has_disciplinary"
                 value={this.state.HasDisciplinary}
-                help="military.disciplinary.help.branch"
                 onUpdate={this.updateDisciplinary}
                 onError={this.handleError}>
         </Branch>
