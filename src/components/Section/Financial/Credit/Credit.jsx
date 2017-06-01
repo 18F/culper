@@ -1,12 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CreditValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
          Telephone, Address, Text, Textarea } from '../../../Form'
 
-export default class Credit extends ValidationElement {
+export default class Credit extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasCreditCounseling: props.HasCreditCounseling,
       List: props.List,
@@ -20,37 +22,6 @@ export default class Credit extends ValidationElement {
   }
 
   /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new CreditValidator(this.state, null).isValid()
-  }
-
-  /**
    * Updates triggered by the branching component.
    */
   updateBranch (val, event) {
@@ -59,7 +30,6 @@ export default class Credit extends ValidationElement {
         items: val === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -100,14 +70,15 @@ export default class Credit extends ValidationElement {
         <Branch name="has_credit"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.credit.collection.summary.title')}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
@@ -163,5 +134,12 @@ export default class Credit extends ValidationElement {
 Credit.defaultProps = {
   HasCreditCounseling: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr },
+  section: 'financial',
+  subsection: 'credit',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new CreditValidator(state, props).isValid()
+  }
 }

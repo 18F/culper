@@ -6,6 +6,7 @@ import { CohabitantValidator } from '../../../../validators/cohabitant'
 export default class Cohabitant extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Name: props.Name,
       Birthdate: props.Birthdate,
@@ -129,8 +130,8 @@ export default class Cohabitant extends ValidationElement {
   renderSpouseSuggestion () {
     const spouse = this.props.spouse
     const name = spouse
-      ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last || ''}`.trim()
-      : ''
+          ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last || ''}`.trim()
+          : ''
     return (
       <div>
         {name}
@@ -151,117 +152,119 @@ export default class Cohabitant extends ValidationElement {
   render () {
     return (
       <div className="cohabitant">
-        <Suggestions
-          className="spouse-suggestion"
-          suggestionTitle={i18n.t('relationships.cohabitant.suggestion.title')}
-          suggestionParagraph={i18n.m('relationships.cohabitant.suggestion.paragraph')}
-          suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
-          suggestionDismissLabel={i18n.t('relationships.cohabitant.suggestion.dismissLabel')}
-          suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
-          suggestionUseLabel={i18n.t('relationships.cohabitant.suggestion.useLabel')}
-          suggestions={[this.props.spouse]}
-          renderSuggestion={this.renderSpouseSuggestion}
-          withSuggestions={false}
-          show={this.props.SameSpouse}
-          onDismiss={this.dismissSpouseSuggestion}
-          onSuggestion={this.onSpouseSuggestion}>
+        <Suggestions className="spouse-suggestion"
+                     suggestionTitle={i18n.t('relationships.cohabitant.suggestion.title')}
+                     suggestionParagraph={i18n.m('relationships.cohabitant.suggestion.paragraph')}
+                     suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
+                     suggestionDismissLabel={i18n.t('relationships.cohabitant.suggestion.dismissLabel')}
+                     suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
+                     suggestionUseLabel={i18n.t('relationships.cohabitant.suggestion.useLabel')}
+                     suggestions={[this.props.spouse]}
+                     renderSuggestion={this.renderSpouseSuggestion}
+                     withSuggestions={false}
+                     show={this.props.SameSpouse}
+                     onDismiss={this.dismissSpouseSuggestion}
+                     onSuggestion={this.onSpouseSuggestion}>
           <div>
             <h3>{i18n.t('relationships.cohabitant.heading.name')}</h3>
             <Name name="Name"
-              className="cohabitant-name"
-              {...this.state.Name}
-              onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
-            />
+                  className="cohabitant-name"
+                  {...this.state.Name}
+                  onUpdate={this.updateName}
+                  onError={this.props.onError}
+                  />
           </div>
         </Suggestions>
 
         <Field help="relationships.cohabitant.help.birthdate"
-          title={i18n.t('relationships.cohabitant.heading.birthdate')}
-          shrink={true}
-          adjustFor="labels">
+               title={i18n.t('relationships.cohabitant.heading.birthdate')}
+               shrink={true}
+               adjustFor="labels">
           <DateControl name="birthdate"
-            className="birthdate"
-            {...this.state.Birthdate}
-            onUpdate={this.updateBirthdate}
-            onValidate={this.props.onValidate}
-          />
+                       className="birthdate"
+                       {...this.state.Birthdate}
+                       onUpdate={this.updateBirthdate}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <h3>{i18n.t('relationships.cohabitant.heading.birthplace')}</h3>
         <BirthPlace name="birthplace"
-          label={i18n.t('relationships.cohabitant.label.birthplace')}
-          {...this.state.BirthPlace}
-          onUpdate={this.updateBirthPlace}
-          onValidate={this.props.onValidate}
-        />
+                    label={i18n.t('relationships.cohabitant.label.birthplace')}
+                    {...this.state.BirthPlace}
+                    onUpdate={this.updateBirthPlace}
+                    onError={this.props.onError}
+                    />
 
         <Show when={this.state.BirthPlace && this.state.BirthPlace.country !== 'United States'}>
           <Field help="relationships.cohabitant.help.foreignBornDocument"
-            title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}>
+                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}>
             <ForeignBornDocuments name="foreignBornDocument"
-              {...this.state.ForeignBornDocument}
-              onUpdate={this.updateForeignBornDocument}
-              onValidate={this.props.onValidate}
-            />
+                                  {...this.state.ForeignBornDocument}
+                                  onUpdate={this.updateForeignBornDocument}
+                                  onError={this.props.onError}
+                                  />
           </Field>
         </Show>
 
         <h3>{i18n.t('relationships.cohabitant.heading.ssn')}</h3>
-        <SSN name="ssn"
-          {...this.state.SSN}
-          onUpdate={this.updateSSN}
-          onValidate={this.props.onValidate}
-        />
+        <Field help="identification.ssn.help">
+          <SSN name="ssn"
+               {...this.state.SSN}
+               onUpdate={this.updateSSN}
+               onError={this.props.onError}
+               />
+        </Field>
 
         <h3>{i18n.t('relationships.cohabitant.heading.othernames')}</h3>
         <NotApplicable name="OtherNameNotApplicable"
-          className="othername"
-          applicable={this.state.OtherNameNotApplicable}
-          label={i18n.t('reference.label.idk')}
-          or={i18n.m('reference.para.or')}
-          onUpdate={this.updateOtherNameNotApplicable}>
+                       className="othername"
+                       applicable={this.state.OtherNameNotApplicable}
+                       label={i18n.t('reference.label.idk')}
+                       or={i18n.m('reference.para.or')}
+                       onUpdate={this.updateOtherNameNotApplicable}
+                       onError={this.props.onError}>
           <Name name="othername"
-            className="othername"
-            {...this.state.OtherName}
-            onUpdate={this.updateOtherName}
-            onValidate={this.props.onValidate}
-          />
+                className="othername"
+                {...this.state.OtherName}
+                onUpdate={this.updateOtherName}
+                onError={this.props.onError}
+                />
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
-            help="alias.maiden.help"
-            adjustFor="buttons"
-            shrink={true}>
+                 help="alias.maiden.help"
+                 adjustFor="buttons"
+                 shrink={true}>
             <MaidenName name="OtherNameMaiden"
-              className="othername"
-              {...this.state.OtherNameMaiden}
-              onUpdate={this.updateOtherNameMaiden}
-              onValidate={this.props.onValidate}
-            />
+                        className="othername"
+                        {...this.state.OtherNameMaiden}
+                        onUpdate={this.updateOtherNameMaiden}
+                        onError={this.props.onError}
+                        />
           </Field>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
-            help="alias.used.help"
-            adjustFor="daterange"
-            shrink={true}>
+                 help="alias.used.help"
+                 adjustFor="daterange"
+                 shrink={true}>
             <DateRange name="OtherNameUsed"
-              className="othername"
-              {...this.state.OtherNameUsed}
-              onUpdate={this.updateOtherNameUsed}
-              onValidate={this.props.onValidate}
-            />
+                       className="othername"
+                       {...this.state.OtherNameUsed}
+                       onUpdate={this.updateOtherNameUsed}
+                       onError={this.props.onError}
+                       />
           </Field>
         </NotApplicable>
 
         <Field help="relationships.cohabitant.help.cohabitationBegan"
-          title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
-          shrink={true}
-          adjustFor="labels">
+               title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
+               shrink={true}
+               adjustFor="labels">
           <DateControl name="cohabitationBegan"
-            className="cohabitation-began"
-            {...this.state.CohabitationBegan}
-            onUpdate={this.updateCohabitationBegan}
-            onValidate={this.props.onValidate}
-          />
+                       className="cohabitation-began"
+                       {...this.state.CohabitationBegan}
+                       onUpdate={this.updateCohabitationBegan}
+                       onError={this.props.onError}
+                       />
         </Field>
       </div>
     )
@@ -279,5 +282,6 @@ Cohabitant.defaultProps = {
   OtherNameMaiden: {},
   OtherNameUsed: {},
   CohabitationBegan: {},
-  SameSpouse: false
+  SameSpouse: false,
+  onError: (value, arr) => { return arr }
 }

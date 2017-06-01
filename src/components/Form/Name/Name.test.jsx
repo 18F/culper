@@ -11,7 +11,7 @@ describe('The Name component', () => {
     }
     const component = mount(<Name {...expected} />)
     component.find('.last input').simulate('change')
-    expect(component.find('div.hidden').length).toBeGreaterThan(0)
+    expect(component.find('.suffix-other').length).toBe(0)
   })
 
   it('handles last name patterns', () => {
@@ -31,7 +31,7 @@ describe('The Name component', () => {
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find('.last input').simulate('change')
-      expect(component.find('div.hidden').length).toBeGreaterThan(0)
+      expect(component.find('.suffix-other').length).toBe(0)
     })
   })
 
@@ -79,8 +79,9 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onValidate: function (event) {
+      onError: (value, arr) => {
         validations++
+        return arr
       }
     }
     const component = mount(<Name {...expected} />)

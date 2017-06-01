@@ -36,7 +36,7 @@ export default class ConferenceContacts extends ValidationElement {
                           className="has-foreign-contacts"
                           items={this.state.List}
                           onUpdate={this.updateList}
-                          onValidate={this.props.onValidate}>
+                          onError={this.props.onError}>
           <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
                   help="foreign.business.conferences.help.explanation">
             <Textarea name="Explanation"
@@ -52,5 +52,6 @@ export default class ConferenceContacts extends ValidationElement {
 
 ConferenceContacts.defaultProps = {
   name: 'Contacts',
-  List: []
+  List: [],
+  onError: (value, arr) => { return arr }
 }

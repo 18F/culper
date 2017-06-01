@@ -14,6 +14,10 @@ export default class Height extends ValidationElement {
       valid: props.valid,
       errors: []
     }
+
+    this.handleError = this.handleError.bind(this)
+    this.handleErrorFeet = this.handleErrorFeet.bind(this)
+    this.handleErrorInches = this.handleErrorInches.bind(this)
   }
 
   /**
@@ -31,15 +35,29 @@ export default class Height extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errors) {
-    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      const errorObject = { [this.props.name]: errors }
-      const statusObject = { [this.props.name]: { status: status } }
-      super.handleValidation(event, statusObject, errorObject)
+  handleErrorFeet (value, arr) {
+    return this.handleError('feet', value, arr)
+  }
+
+  handleErrorInches (value, arr) {
+    return this.handleError('inches', value, arr)
+  }
+
+  handleError (code, value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `height.${code}.${err.code}`,
+        valid: err.valid
+      }
     })
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   /**
@@ -87,7 +105,7 @@ export default class Height extends ValidationElement {
                   onChange={this.handleChange.bind(this, 'feet')}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
-                  onValidate={this.handleValidation}
+                  onError={this.handleErrorFeet}
                   tabNext={() => { this.props.tab(this.refs.inches.refs.number.refs.input) }}
                   />
         </div>
@@ -108,7 +126,7 @@ export default class Height extends ValidationElement {
                   onChange={this.handleChange.bind(this, 'inches')}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
-                  onValidate={this.handleValidation}
+                  onError={this.handleErrorInches}
                   tabBack={() => { this.props.tab(this.refs.feet.refs.number.refs.input) }}
                   />
         </div>
@@ -122,5 +140,8 @@ Height.defaultProps = {
   inches: '',
   error: false,
   valid: false,
-  tab: (input) => { input.focus() }
+  tab: (input) => { input.focus() },
+  onError: (value, arr) => { return arr }
 }
+
+Height.errors = []

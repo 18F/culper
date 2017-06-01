@@ -4,7 +4,7 @@ describe('Military foreign validation', function () {
   it('handle whether subject has foreign military', () => {
     const tests = [
       {
-        state: {
+        props: {
           List: [
             {
               Has: ''
@@ -15,7 +15,7 @@ describe('Military foreign validation', function () {
         expected: false
       },
       {
-        state: {
+        props: {
           List: [
             {
               Has: 'No'
@@ -26,7 +26,7 @@ describe('Military foreign validation', function () {
         expected: true
       },
       {
-        state: {
+        props: {
           List: [
             {
               Has: 'Yes'
@@ -39,14 +39,14 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(null, test.props).isValid()).toBe(test.expected)
     })
   })
 
   it('handle overall validity', function () {
     const tests = [
       {
-        state: {
+        props: {
           List: [
             {
               Has: 'Yes'
@@ -57,7 +57,7 @@ describe('Military foreign validation', function () {
         expected: false
       },
       {
-        state: {
+        props: {
           List: [
             {
               Has: 'Yes',
@@ -173,7 +173,7 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(null, test.props).isValid()).toBe(test.expected)
     })
   })
 

@@ -102,111 +102,113 @@ export default class ReceivedCounseling extends ValidationElement {
     return (
       <div className="voluntary-counseling">
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
-          help={'substance.alcohol.receivedCounseling.help.treatmentProviderName'}>
-            <Text name="TreatmentProviderName"
-              className="treatment-provider-name"
-              {...this.props.TreatmentProviderName}
-              onUpdate={this.updateTreatmentProviderName}
-              onValidate={this.props.onValidate}
-            />
-          </Field>
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
-                 help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
+               help={'substance.alcohol.receivedCounseling.help.treatmentProviderName'}>
+          <Text name="TreatmentProviderName"
+                className="treatment-provider-name"
+                {...this.props.TreatmentProviderName}
+                onUpdate={this.updateTreatmentProviderName}
+                onError={this.props.onError}
+                />
+        </Field>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
+               help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
+               adjustFor="address">
+          <Address name="TreatmentProviderAddress"
+                   className="provider-address"
+                   {...this.props.TreatmentProviderAddress}
+                   onUpdate={this.updateTreatmentProviderAddress}
+                   onError={this.props.onError}
+                   />
+        </Field>
+
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
+               help={'substance.alcohol.receivedCounseling.help.agencyName'}>
+          <Text name="AgencyName"
+                className="agency-name"
+                {...this.props.AgencyName}
+                onUpdate={this.updateAgencyName}
+                onError={this.props.onError}
+                />
+        </Field>
+
+        <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}</h3>
+        <Branch name="UseSameAddress"
+                className="use-same-address"
+                yesLabel="Same as above"
+                noLabel="Different address"
+                value={this.props.UseSameAddress}
+                onUpdate={this.updateUseSameAddress}
+                onError={this.props.onError}>
+        </Branch>
+
+        <Show when={this.props.UseSameAddress === 'No'}>
+          <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
                  adjustFor="address">
-            <Address name="TreatmentProviderAddress"
-              className="provider-address"
-              {...this.props.TreatmentProviderAddress}
-              onUpdate={this.updateTreatmentProviderAddress}
-              onValidate={this.props.onValidate}
-            />
+            <Address name="AgencyAddress"
+                     className="agency-address"
+                     {...this.props.AgencyAddress}
+                     onUpdate={this.updateAgencyAddress}
+                     onError={this.props.onError}
+                     />
           </Field>
+        </Show>
 
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
-            help={'substance.alcohol.receivedCounseling.help.agencyName'}>
-            <Text name="AgencyName"
-              className="agency-name"
-              {...this.props.AgencyName}
-              onUpdate={this.updateAgencyName}
-              onValidate={this.props.onValidate}
-            />
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}
+               help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}
+               adjustFor="datecontrol">
+          <DateControl name="TreatmentBeganDate"
+                       className="treatment-began-date"
+                       {...this.props.TreatmentBeganDate}
+                       onUpdate={this.updateTreatmentBeganDate}
+                       onError={this.props.onError}
+                       />
+        </Field>
+
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}
+               help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}
+               adjustFor="datecontrol">
+          <DateControl name="TreatmentEndDate"
+                       className="treatment-end-date"
+                       {...this.props.TreatmentEndDate}
+                       onUpdate={this.updateTreatmentEndDate}
+                       receiveProps={true}
+                       onError={this.props.onError}
+                       />
+          <Checkbox name="PresentTreatmentEndDate"
+                    className="present-treatment-end-date"
+                    label="Present"
+                    value="present"
+                    checked={this.props.PresentTreatmentEndDate}
+                    onChange={this.updatePresentTreatmentEndDate}
+                    onError={this.props.onError}
+                    />
+        </Field>
+
+        <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}</h3>
+        <Branch name="CompletedTreatment"
+                help={'substance.alcohol.receivedCounseling.help.completedTreatment'}
+                className="completed-treatment"
+                value={this.props.CompletedTreatment}
+                onUpdate={this.updateCompletedTreatment}
+                onError={this.props.onError}>
+        </Branch>
+
+        <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
+                 help={'substance.alcohol.receivedCounseling.help.noCompletedTreatment'}>
+            <Textarea name="NoCompletedTreatmentExplanation"
+                      className="no-completed-treatment"
+                      {...this.props.NoCompletedTreatmentExplanation}
+                      onUpdate={this.updateNoCompletedTreatmentExplanation}
+                      onError={this.props.onError}
+                      />
           </Field>
-
-          <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}</h3>
-          <Branch name="UseSameAddress"
-            className="use-same-address"
-            yesLabel="Same as above"
-            noLabel="Different address"
-            value={this.props.UseSameAddress}
-            onValidate={this.props.onValidate}
-            onUpdate={this.updateUseSameAddress}>
-          </Branch>
-
-          <Show when={this.props.UseSameAddress === 'No'}>
-            <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
-                   adjustFor="address">
-              <Address name="AgencyAddress"
-                className="agency-address"
-                {...this.props.AgencyAddress}
-                onUpdate={this.updateAgencyAddress}
-                onValidate={this.props.onValidate}
-              />
-            </Field>
-          </Show>
-
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}
-                 help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}
-                 adjustFor="datecontrol">
-            <DateControl name="TreatmentBeganDate"
-              className="treatment-began-date"
-              {...this.props.TreatmentBeganDate}
-              onUpdate={this.updateTreatmentBeganDate}
-              onValidate={this.props.onValidate}
-            />
-          </Field>
-
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}
-                 help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}
-                 adjustFor="datecontrol">
-            <DateControl name="TreatmentEndDate"
-              className="treatment-end-date"
-              {...this.props.TreatmentEndDate}
-              onUpdate={this.updateTreatmentEndDate}
-              receiveProps={true}
-              onValidate={this.props.onValidate}
-            />
-            <Checkbox name="PresentTreatmentEndDate"
-              className="present-treatment-end-date"
-              label="Present"
-              value="present"
-              checked={this.props.PresentTreatmentEndDate}
-              onChange={this.updatePresentTreatmentEndDate}
-            />
-          </Field>
-
-          <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}</h3>
-          <Branch name="CompletedTreatment"
-            help={'substance.alcohol.receivedCounseling.help.completedTreatment'}
-            className="completed-treatment"
-            value={this.props.CompletedTreatment}
-            onValidate={this.props.onValidate}
-            onUpdate={this.updateCompletedTreatment}>
-          </Branch>
-
-          <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
-            <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
-              help={'substance.alcohol.receivedCounseling.help.noCompletedTreatment'}>
-              <Textarea name="NoCompletedTreatmentExplanation"
-                className="no-completed-treatment"
-                {...this.props.NoCompletedTreatmentExplanation}
-                onUpdate={this.updateNoCompletedTreatmentExplanation}
-                onValidate={this.props.onValidate}
-              />
-            </Field>
-          </Show>
+        </Show>
       </div>
     )
   }
 }
 
 ReceivedCounseling.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

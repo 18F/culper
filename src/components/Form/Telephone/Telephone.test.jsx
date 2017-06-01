@@ -34,21 +34,23 @@ describe('The Telephone component', () => {
     expect(component.find('input[name="dsn_second"]').props().value).toEqual('4567')
   })
 
-  it('bubbles up validate event', () => {
-    let validations = 0
+  it('bubbles up error event', () => {
+    let hits = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
+      number: 'aaa-aaa-aaaaa',
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
-        validations++
+      onError: (value, arr) => {
+        hits++
+        return arr
       }
     }
-    const component = mount(<Telephone name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<Telephone name={expected.name} number={expected.number} onError={expected.onError} />)
     component.find('input').first().simulate('blur')
-    expect(validations > 0).toEqual(true)
+    expect(hits > 0).toEqual(true)
   })
 
   it('bubbles up change event', () => {
@@ -66,40 +68,6 @@ describe('The Telephone component', () => {
     const component = mount(<Telephone name={expected.name} onUpdate={expected.handleChange} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
-  })
-
-  it('bubbles up focus event', () => {
-    let foci = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleFocus: function (event) {
-        foci++
-      }
-    }
-    const component = mount(<Telephone name={expected.name} onFocus={expected.handleFocus} />)
-    component.find('input').first().simulate('focus')
-    expect(foci).toEqual(1)
-  })
-
-  it('bubbles up blur event', () => {
-    let blurs = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleBlur: function (event) {
-        blurs++
-      }
-    }
-    const component = mount(<Telephone name={expected.name} onBlur={expected.handleBlur} />)
-    component.find('input').first().simulate('blur')
-    expect(blurs).toEqual(1)
   })
 
   it('allows deselecting phone number type', () => {
@@ -148,33 +116,33 @@ describe('The Telephone component', () => {
 
     // Domestic
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_first' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    component.find({ type: 'text', name: 'domestic_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_second' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    component.find({ type: 'text', name: 'domestic_second' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_third' }).simulate('keyup', { keyCode: 48, target: { value: '1234' } })
+    component.find({ type: 'text', name: 'domestic_third' }).simulate('keydown', { keyCode: 48, target: { value: '1234' } })
     expect(tabbed).toBe(true)
 
     // DSN
     component.find('a.dsn-number').simulate('click')
 
     tabbed = false
-    component.find({ type: 'text', name: 'dsn_first' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    component.find({ type: 'text', name: 'dsn_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     // International
     component.find('a.international-number').simulate('click')
 
     tabbed = false
-    component.find({ type: 'text', name: 'int_first' }).simulate('keyup', { keyCode: 48, target: { value: '123' } })
+    component.find({ type: 'text', name: 'int_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'int_second' }).simulate('keyup', { keyCode: 48, target: { value: '1234567890' } })
+    component.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 48, target: { value: '1234567890' } })
     expect(tabbed).toBe(true)
   })
 
@@ -188,33 +156,33 @@ describe('The Telephone component', () => {
 
     // Domestic
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_extension' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find({ type: 'text', name: 'domestic_extension' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_third' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find({ type: 'text', name: 'domestic_third' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_second' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find({ type: 'text', name: 'domestic_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     // DSN
     component.find('a.dsn-number').simulate('click')
 
     tabbed = false
-    component.find({ type: 'text', name: 'dsn_second' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find({ type: 'text', name: 'dsn_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     // International
     component.find('a.international-number').simulate('click')
 
     tabbed = false
-    component.find({ type: 'text', name: 'int_extension' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find({ type: 'text', name: 'int_extension' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'int_second' }).simulate('keyup', { keyCode: 8, target: { value: '' } })
+    component.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 })

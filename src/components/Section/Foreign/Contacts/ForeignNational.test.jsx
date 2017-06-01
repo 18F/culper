@@ -30,7 +30,7 @@ describe('The foreign national component', () => {
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.frequency-explanation').length).toBe(0)
-    component.find('.frequency-other input').simulate('click')
+    component.find('.frequency-other input').simulate('change')
     expect(component.find('.frequency-explanation').length).toBe(1)
   })
 
@@ -71,7 +71,7 @@ describe('The foreign national component', () => {
     component.find('.methods-other input').simulate('change')
     component.find('.methods-explanation textarea').simulate('change')
     component.find('.methods-other input').simulate('change')
-    component.find('.frequency-other input').simulate('click') // 9
+    component.find('.frequency-other input').simulate('change') // 9
     component.find('.frequency-explanation textarea').simulate('change')
     component.find('.relationship-other input').simulate('change')
     component.find('.relationship-explanation textarea').simulate('change') // 12

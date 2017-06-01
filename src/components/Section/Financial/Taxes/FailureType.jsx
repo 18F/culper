@@ -25,19 +25,19 @@ export default class FailureType extends ValidationElement {
                value="File"
                className="failure-file"
                onChange={this.update}
-               onValidate={this.props.onValidate}
+               onError={this.props.onError}
                />
         <Radio label={i18n.t('financial.taxes.label.pay')}
                value="Pay"
                className="failure-pay"
                onChange={this.update}
-               onValidate={this.props.onValidate}
+               onError={this.props.onError}
                />
         <Radio label={i18n.t('financial.taxes.label.both')}
                value="Both"
                className="failure-both"
                onChange={this.update}
-               onValidate={this.props.onValidate}
+               onError={this.props.onError}
                />
       </RadioGroup>
     )
@@ -45,5 +45,6 @@ export default class FailureType extends ValidationElement {
 }
 
 FailureType.defaultProps = {
-  value: ''
+  value: '',
+  onError: (value, arr) => { return arr }
 }

@@ -1,2 +1,2 @@
-import { EmploymentItem } from './Employment'
-export { EmploymentItem }
+import Employment from './Employment'
+export default Employment

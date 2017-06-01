@@ -196,10 +196,43 @@ describe('Hospitalization validation', function () {
       {
         state: {
           Hospitalized: 'Yes',
+          ListBranch: 'No',
+          List: [
+            {
+              Facility: {
+                value: null
+              },
+              FacilityAddress: {
+                addressType: 'United States',
+                address: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202'
+              },
+              Admission: 'Voluntary',
+              Explanation: {
+                value: 'Because I can'
+              }
+            }
+          ],
+        },
+        expected: false
+      },
+      {
+        state: {
+          Hospitalized: 'Yes',
           List: [],
           ListBranch: ''
         },
         expected: false
+      },
+      {
+        state: {
+          Hospitalized: 'No',
+          List: [],
+          ListBranch: ''
+        },
+        expected: true
       }
     ]
 

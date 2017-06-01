@@ -4,7 +4,6 @@ import Contact from './Contact'
 
 describe('The foreign business contact component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-contact',
       HasForeignContact: 'No'
@@ -14,7 +13,6 @@ describe('The foreign business contact component', () => {
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-contact',
       HasForeignContact: 'Yes'
@@ -28,7 +26,10 @@ describe('The foreign business contact component', () => {
     const expected = {
       name: 'foreign-business-contact',
       HasForeignContact: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Contact {...expected} />)
     component.find('.branch .yes input').at(0).simulate('change')

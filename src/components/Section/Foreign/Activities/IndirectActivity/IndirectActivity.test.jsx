@@ -68,8 +68,9 @@ describe('The IndirectActivity component', () => {
   it('Renders full validated', () => {
     let status = false
     const expected = {
-      onValidate: (event, s, error) => {
-        status = s.indirect.status
+      onError: (value, arr) => {
+        status = true
+        return arr
       },
       HasInterests: 'Yes',
       List: [

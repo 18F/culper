@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { BirthPlaceValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
 import Show from '../Show'
@@ -14,33 +13,7 @@ export default class BirthPlace extends ValidationElement {
     this.updateBirthPlaceType = this.updateBirthPlaceType.bind(this)
     this.updateDomesticBirthPlace = this.updateDomesticBirthPlace.bind(this)
     this.updateInternationalBirthPlace = this.updateInternationalBirthPlace.bind(this)
-
-    this.state = {
-      errorCodes: []
-    }
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    const codes = super.mergeError(this.state.errorCodes, error)
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new BirthPlaceValidator(this.props, null).isValid()
+    this.handleError = this.handleError.bind(this)
   }
 
   update (updateValues) {
@@ -95,30 +68,47 @@ export default class BirthPlace extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `address.${err.code}`,
+        valid: err.valid
+      }
+    })
+
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
+  }
+
   render () {
     const klass = `birthplace ${this.props.className || ''}`.trim()
     return (
       <div className={klass}>
         <Branch name="birthplace_type"
-          help={this.props.help}
-          value={this.props.domestic}
-          label={this.props.label}
-          onUpdate={this.updateBirthPlaceType}>
+                help={this.props.help}
+                value={this.props.domestic}
+                label={this.props.label}
+                onUpdate={this.updateBirthPlaceType}
+                onError={this.props.onError}>
         </Branch>
 
         <Show when={this.props.domestic === 'Yes'}>
           <DomesticBirthPlace
             {...this.props}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onUpdate={this.updateDomesticBirthPlace}
-          />
+            />
         </Show>
         <Show when={this.props.domestic === 'No'}>
           <InternationalBirthPlace
             {...this.props}
-            onValidate={this.handleValidation}
+            onError={this.handleError}
             onUpdate={this.updateInternationalBirthPlace}
-          />
+            />
         </Show>
       </div>
     )
@@ -132,5 +122,8 @@ BirthPlace.defaultProps = {
   branch: true,
   disabledCountry: false,
   disabledState: false,
-  hideCounty: false
+  hideCounty: false,
+  onError: (value, arr) => { return arr }
 }
+
+BirthPlace.errors = []

@@ -3,19 +3,19 @@ import { mount } from 'enzyme'
 import Radio from './Radio'
 
 describe('The radio component', () => {
-  it('renders appropriately with an error', () => {
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false
-    }
-    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
-    expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
-    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
-    expect(component.find('.usa-input-error-label').length).toEqual(1)
-  })
+  // it('renders appropriately with an error', () => {
+  //   const expected = {
+  //     name: 'input-error',
+  //     label: 'Text input error',
+  //     error: true,
+  //     focus: false,
+  //     valid: false
+  //   }
+  //   const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+  //   expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
+  //   expect(component.find('input').length).toEqual(1)
+  //   expect(component.find('.usa-input-error-label').length).toEqual(1)
+  // })
 
   it('renders appropriately with focus', () => {
     const expected = {
@@ -57,23 +57,6 @@ describe('The radio component', () => {
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
-  })
-
-  it('bubbles up validate event', () => {
-    let validations = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleValidation: function (event) {
-        validations++
-      }
-    }
-    const component = mount(<Radio name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').simulate('change')
-    expect(validations).toEqual(1)
   })
 
   it('bubbles up change event', () => {
@@ -128,9 +111,14 @@ describe('The radio component', () => {
   })
 
   it('can toggle checked state', () => {
-    const component = mount(<Radio name="toggle" value="foo" checked="true" />)
+    let checked = true
+    const onUpdate = (values) => {
+      checked = values.checked
+    }
+    const component = mount(<Radio name="toggle" value="foo" checked="true" onUpdate={onUpdate} />)
     expect(component.find('.checked').length).toEqual(1)
+    console.log('clicking')
     component.find('input').simulate('click')
-    expect(component.find('.checked').length).toEqual(0)
+    expect(checked).toBe(false)
   })
 })
