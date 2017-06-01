@@ -4,7 +4,7 @@ import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Address, Name } from '../../../Form'
+         Textarea, Country, DateControl, Name, BirthPlace } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
 export default class Contact extends SubsectionElement {
