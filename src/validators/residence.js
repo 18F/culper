@@ -12,7 +12,7 @@ const withinThreeYears = (from, to) => {
 }
 
 export default class ResidenceValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.dates = state.Dates
     this.address = state.Address
     this.reference = state.Reference

@@ -62,7 +62,7 @@ export default class Order extends ValidationElement {
                        minDate={this.props.ApplicantBirthDate}
                        prefix="order"
                        onUpdate={this.updateOccurred}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -72,7 +72,7 @@ export default class Order extends ValidationElement {
                 className="courtname"
                 {...this.props.CourtName}
                 onUpdate={this.updateCourtName}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -83,18 +83,18 @@ export default class Order extends ValidationElement {
                    {...this.props.CourtAddress}
                    label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
                    onUpdate={this.updateCourtAddress}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
         <Show when={prefix !== 'competence'}>
           <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-            help={`psychological.consultation.help.disposition`}>
+                 help={`psychological.consultation.help.disposition`}>
             <Text name="Disposition"
                   className="disposition"
                   {...this.props.Disposition}
                   onUpdate={this.updateDisposition}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Field>
         </Show>
@@ -103,7 +103,7 @@ export default class Order extends ValidationElement {
                           label={i18n.t(`psychological.${prefix}.heading.appealed`)}
                           appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
                           items={this.props.Appeals}
-                          onValidate={this.props.onValidate}
+                          onError={this.props.onError}
                           onUpdate={this.updateAppeals}
                           >
 
@@ -116,7 +116,7 @@ export default class Order extends ValidationElement {
             <Text name="CourtName"
                   className="courtname"
                   bind={true}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Field>
 
@@ -125,7 +125,7 @@ export default class Order extends ValidationElement {
             <Address name="CourtAddress"
                      bind={true}
                      label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
           </Field>
 
@@ -134,7 +134,7 @@ export default class Order extends ValidationElement {
             <Text name="Disposition"
                   className="disposition"
                   bind={true}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Field>
         </BranchCollection>
@@ -145,5 +145,6 @@ export default class Order extends ValidationElement {
 
 Order.defaultProps = {
   List: [],
-  prefix: 'order'
+  prefix: 'order',
+  onError: (value, arr) => { return arr }
 }

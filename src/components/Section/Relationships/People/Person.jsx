@@ -118,7 +118,7 @@ export default class Person extends React.Component {
                      className="known-dates"
                      {...this.state.KnownDates}
                      onUpdate={this.updateKnownDates}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -127,7 +127,7 @@ export default class Person extends React.Component {
               className="name"
               {...this.state.Name}
               onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
+              onError={this.props.onError}
               />
 
         <Field title={i18n.t('relationships.people.person.heading.rank')}
@@ -138,13 +138,13 @@ export default class Person extends React.Component {
                          {...this.state.RankNotApplicable}
                          label={i18n.t('relationships.people.person.label.rankNotApplicable')}
                          or={i18n.m('relationships.people.person.label.or')}
-                         onValidate={this.props.onValidate}
+                         onError={this.props.onError}
                          onUpdate={this.updateRankNotApplicable}>
             <Text name="Rank"
                   className="rank"
                   {...this.state.Rank}
                   onUpdate={this.updateRank}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </NotApplicable>
         </Field>
@@ -160,7 +160,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-neighbor"
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
                       value="Neighbor"
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon neighbor">
                 <Svg src="img/neighbor-icon.svg" />
@@ -169,7 +169,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-friend"
                       label={i18n.t(`relationships.people.person.label.relationship.friend`)}
                       value="Friend"
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon friend">
                 <Svg src="img/friend-icon.svg" />
@@ -178,7 +178,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-landlord"
                       label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
                       value="Landlord"
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon landlord">
                 <Svg src="img/landlord-icon.svg" />
@@ -187,7 +187,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-business"
                       label={i18n.t(`relationships.people.person.label.relationship.business`)}
                       value="Business"
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon business">
                 <Svg src="img/business-associate-icon.svg" />
@@ -196,7 +196,7 @@ export default class Person extends React.Component {
             <Checkbox name="relationship-other"
                       label={i18n.t(`relationships.people.person.label.relationship.other`)}
                       value="Other"
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon other">
                 <Svg src="img/other-icon.svg" />
@@ -211,7 +211,7 @@ export default class Person extends React.Component {
                   className="relationship-other"
                   {...this.state.RelationshipOther}
                   onUpdate={this.updateRelationshipOther}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Show>
         </Field>
@@ -222,7 +222,7 @@ export default class Person extends React.Component {
           <Telephone name="MobileTelephone"
                      {...this.state.MobileTelephone}
                      onUpdate={this.updateMobileTelephone}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -232,7 +232,7 @@ export default class Person extends React.Component {
           <Telephone name="OtherTelephone"
                      {...this.state.OtherTelephone}
                      onUpdate={this.updateOtherTelephone}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -244,13 +244,13 @@ export default class Person extends React.Component {
                          {...this.state.EmailNotApplicable}
                          label={i18n.t('relationships.people.person.label.emailNotApplicable')}
                          or={i18n.m('relationships.people.person.label.or')}
-                         onValidate={this.props.onValidate}
+                         onError={this.props.onError}
                          onUpdate={this.updateEmailNotApplicable}>
             <Email name="Email"
                    className="email"
                    {...this.state.Email}
                    onUpdate={this.updateEmail}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
           </NotApplicable>
         </Field>
@@ -264,7 +264,7 @@ export default class Person extends React.Component {
                    className="address"
                    {...this.state.Address}
                    onUpdate={this.updateAddress}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
       </div>
@@ -273,5 +273,6 @@ export default class Person extends React.Component {
 }
 
 Person.defaultProps = {
-  Relationship: []
+  Relationship: [],
+  onError: (value, arr) => { return arr }
 }

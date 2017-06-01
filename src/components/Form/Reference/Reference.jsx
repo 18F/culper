@@ -4,7 +4,6 @@ import ValidationElement from '../ValidationElement'
 import Svg from '../Svg'
 import Field from '../Field'
 import Name from '../Name'
-import Comments from '../Comments'
 import Text from '../Text'
 import DateControl from '../DateControl'
 import Telephone from '../Telephone'
@@ -28,11 +27,7 @@ export default class Reference extends ValidationElement {
       Phone: props.Phone,
       Email: props.Email,
       EmailNotApplicable: props.EmailNotApplicable,
-      Address: props.Address,
-      focus: props.focus,
-      error: props.error,
-      valid: props.valid,
-      errorCodes: []
+      Address: props.Address
     }
 
     this.handleRelationshipChange = this.handleRelationshipChange.bind(this)
@@ -99,7 +94,7 @@ export default class Reference extends ValidationElement {
               prefix={`${this.props.prefix}.name`}
               {...this.state.FullName}
               onUpdate={this.onUpdate.bind(this, 'FullName')}
-              onValidate={this.props.onValidate}
+              onError={this.props.onError}
               />
 
         <Field title={i18n.t(`${prefix}reference.heading.contact`)}
@@ -109,7 +104,7 @@ export default class Reference extends ValidationElement {
           <DateControl name="LastContact"
                        {...this.state.LastContact}
                        onUpdate={this.onUpdate.bind(this, 'LastContact')}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -178,7 +173,7 @@ export default class Reference extends ValidationElement {
                   className="relationship-other"
                   {...this.state.RelationshipOther}
                   onUpdate={this.updateRelationshipOther}
-                  onValidate={this.props.handleValidation}
+                  onError={this.props.onError}
                   />
           </Show>
         </Field>
@@ -192,7 +187,7 @@ export default class Reference extends ValidationElement {
           <Telephone name="Phone"
                      {...this.state.Phone}
                      onUpdate={this.onUpdate.bind(this, 'Phone')}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -209,7 +204,7 @@ export default class Reference extends ValidationElement {
                    className="reference-email"
                    label={i18n.t(`${prefix}reference.label.email`)}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
           </NotApplicable>
         </Field>
@@ -222,7 +217,7 @@ export default class Reference extends ValidationElement {
                    {...this.state.Address}
                    label={i18n.t(`${prefix}reference.label.address`)}
                    onUpdate={this.onUpdate.bind(this, 'Address')}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
       </div>
@@ -243,5 +238,6 @@ Reference.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  prefix: 'reference'
+  prefix: 'reference',
+  onError: (value, arr) => { return arr }
 }

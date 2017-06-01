@@ -32,7 +32,10 @@ describe('The foreign business employment component', () => {
     const expected = {
       name: 'foreign-business-employment',
       HasForeignEmployment: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Employment {...expected} />)
     component.find('.branch .yes input').at(0).simulate('change')

@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
@@ -17,14 +18,14 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class History extends ValidationElement {
+export default class History extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasServed: props.HasServed,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -53,42 +54,6 @@ export default class History extends ValidationElement {
   }
 
   /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new MilitaryHistoryValidator(this.state, null).isValid()
-  }
-
-  /**
    * Assists in rendering the summary section.
    */
   summary (item, index) {
@@ -113,7 +78,7 @@ export default class History extends ValidationElement {
                 value={this.state.HasServed}
                 help="military.history.help.served"
                 onUpdate={this.updateServed}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.state.HasServed === 'Yes'}>
@@ -121,7 +86,7 @@ export default class History extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
@@ -133,5 +98,15 @@ export default class History extends ValidationElement {
         </Show>
       </div>
     )
+  }
+}
+
+History.defaultProps = {
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/advice',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new MilitaryHistoryValidator(state, props).isValid()
   }
 }

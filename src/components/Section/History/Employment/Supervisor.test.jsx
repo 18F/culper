@@ -5,17 +5,9 @@ import Supervisor from './Supervisor'
 describe('The employment supervisor component', () => {
   it('loads a supervisor component with supervisor name', () => {
     let counter = 0
-    let blur = 0
-    let focus = 0
     let expected = {
       onUpdate: () => {
         counter++
-      },
-      onBlur: () => {
-        blur++
-      },
-      onFocus: () => {
-        focus++
       }
     }
 
@@ -23,10 +15,7 @@ describe('The employment supervisor component', () => {
     const selected = component.find({type: 'text', name: 'SupervisorName'})
     selected.simulate('change')
     selected.simulate('blur')
-    selected.simulate('focus')
     expect(counter).toBe(1)
-    expect(blur).toBe(1)
-    expect(focus).toBe(1)
   })
 
   it('can toggle "I don\'t know" button', () => {

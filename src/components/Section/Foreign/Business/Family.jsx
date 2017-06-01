@@ -1,20 +1,18 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ForeignBusinessFamilyValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
          Text, Textarea, Name, Country, DateControl } from '../../../Form'
 
-export default class Family extends ValidationElement {
+export default class Family extends SubsectionElement {
   constructor (props) {
     super(props)
 
     this.state = {
       HasForeignFamily: props.HasForeignFamily,
       List: props.List,
-      ListBranch: props.ListBranch,
-      error: false,
-      valid: false,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateHasForeignFamily = this.updateHasForeignFamily.bind(this)
@@ -42,33 +40,6 @@ export default class Family extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignBusinessFamilyValidator(this.state, null).isValid()
-  }
-
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
@@ -92,7 +63,7 @@ export default class Family extends ValidationElement {
                 help="foreign.business.family.help.branch"
                 value={this.state.HasForeignFamily}
                 onUpdate={this.updateHasForeignFamily}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
@@ -101,7 +72,7 @@ export default class Family extends ValidationElement {
                      items={this.state.List}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.family.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
@@ -156,5 +127,12 @@ Family.defaultProps = {
   name: 'Family',
   HasForeignFamily: '',
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/family',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessFamilyValidator(state, props).isValid()
+  }
 }

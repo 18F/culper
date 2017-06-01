@@ -32,7 +32,10 @@ describe('The foreign activities support component', () => {
     const expected = {
       name: 'foreign-activities-support',
       HasForeignSupport: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Support {...expected} />)
     component.find('.branch .yes input').at(0).simulate('change')

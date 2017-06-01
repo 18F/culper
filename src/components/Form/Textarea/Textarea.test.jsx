@@ -13,7 +13,7 @@ describe('The textarea component', () => {
     }
     const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('textarea').length).toEqual(1)
-    expect(component.find('.usa-input-error-label').length).toEqual(0)
+    expect(component.find('.usa-input-error-label').length).toEqual(1)
   })
 
   it('renders appropriately with focus', () => {
@@ -57,23 +57,6 @@ describe('The textarea component', () => {
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
-  })
-
-  it('bubbles up validate event', () => {
-    let validations = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleValidation: function (event) {
-        validations++
-      }
-    }
-    const component = mount(<Textarea name={expected.name} value="1" onValidate={expected.handleValidation} />)
-    component.find('textarea').simulate('change')
-    expect(validations > 0).toEqual(true)
   })
 
   it('bubbles up change event', () => {

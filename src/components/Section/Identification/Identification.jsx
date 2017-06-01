@@ -1,101 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import { IdentificationValidator } from '../../../validators'
+import { SectionViews, SectionView } from '../SectionView'
+import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { IntroHeader } from '../../Form'
+import ApplicantName from './ApplicantName'
+import ApplicantSSN from './ApplicantSSN'
+import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
-import { IntroHeader, ValidationElement, Name, SSN, BirthPlace } from '../../Form'
-import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
-import { SectionViews, SectionView } from '../SectionView'
 
-class Identification extends ValidationElement {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      subsection: props.subsection
-    }
-
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
-  }
-
-  componentDidMount () {
-    let current = this.launch(this.props.Identification, this.props.subsection, 'name')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/identification/${current}`))
-    }
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push('/form/identification/name'))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push('/form/identification/review'))
-  }
-
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Identification', field, values))
-  }
-
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
-
-    if (!event.fake) {
-      let errors = super.triageErrors('identification', [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = new IdentificationValidator(null, this.props).completionStatus(status)
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
-  intro () {
-    return (
-      <div className="identification intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors}
-                       Completed={this.props.Completed}
-                       tour={i18n.t('identification.tour.para')}
-                       review={i18n.t('identification.review.para')}
-                       onTour={this.handleTour}
-                       onReview={this.handleReview}
-                       />
-        </div>
-      </div>
-    )
-  }
-
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
-  }
-
+class Identification extends SectionElement {
   render () {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            {this.intro()}
+            <div className="identification intro review-screen">
+              <div className="usa-grid-full">
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                             completed={() => { return this.props.Completed.length === 7 && this.props.Completed.every(x => x.valid === true) }}
+                             tour={i18n.t('identification.tour.para')}
+                             review={i18n.t('identification.review.para')}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
+              </div>
+            </div>
           </SectionView>
 
           <SectionView name="review"
@@ -107,52 +41,59 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.physical')}>
 
             <h2>{i18n.t('identification.name.title')}</h2>
-            <Name name="name"
-                  {...this.props.ApplicantName }
-                  onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-                  onValidate={this.onValidate.bind(this)}
-                  />
+            <ApplicantName name="name"
+                           value={this.props.ApplicantName}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
+                           onError={this.handleError}
+                           />
 
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
-                        onUpdate={this.onUpdate.bind(this, 'OtherNames')}
-                        onValidate={this.onValidate.bind(this)}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
+                        onError={this.handleError}
                         />
 
             <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
-                                onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
-                                onValidate={this.onValidate.bind(this)}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
+                                onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
                                 />
 
             <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <BirthPlace name="birthplace"
-                                 {...this.props.ApplicantBirthPlace}
-                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
-                                 onValidate={this.onValidate.bind(this)}
+            <ApplicantBirthPlace name="birthplace"
+                                 value={this.props.ApplicantBirthPlace}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onError={this.handleError}
                                  />
 
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
-                                onUpdate={this.onUpdate.bind(this, 'Contacts')}
-                                onValidate={this.onValidate.bind(this)}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.handleUpdate.bind(this, 'Contacts')}
+                                onError={this.handleError}
                                 />
 
             <h2>{i18n.t('identification.ssn.title')}</h2>
-            <SSN name="ssn"
-                          {...this.props.ApplicantSSN}
-                          onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
-                          onValidate={this.onValidate.bind(this)}
+            <ApplicantSSN name="ssn"
+                          value={this.props.ApplicantSSN}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
+                          onError={this.handleError}
                           />
 
             <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
-                      onUpdate={this.onUpdate.bind(this, 'Physical')}
-                      onValidate={this.onValidate.bind(this)}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.handleUpdate.bind(this, 'Physical')}
+                      onError={this.handleError}
                       />
           </SectionView>
 
@@ -160,11 +101,12 @@ class Identification extends ValidationElement {
                        next="identification/contacts"
                        nextLabel={i18n.t('identification.destination.contacts')}>
             <h2>{i18n.t('identification.name.title')}</h2>
-            <Name name="name"
-                  {...this.props.ApplicantName }
-                  onUpdate={this.onUpdate.bind(this, 'ApplicantName')}
-                  onValidate={this.onValidate.bind(this)}
-                  />
+            <ApplicantName name="name"
+                           value={this.props.ApplicantName}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
+                           onError={this.handleError}
+                           />
           </SectionView>
 
           <SectionView name="othernames"
@@ -175,8 +117,9 @@ class Identification extends ValidationElement {
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
-                        onUpdate={this.onUpdate.bind(this, 'OtherNames')}
-                        onValidate={this.onValidate.bind(this)}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
+                        onError={this.handleError}
                         />
           </SectionView>
 
@@ -187,8 +130,9 @@ class Identification extends ValidationElement {
                        backLabel={i18n.t('identification.destination.othernames')}>
             <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
-                                onUpdate={this.onUpdate.bind(this, 'ApplicantBirthDate')}
-                                onValidate={this.onValidate.bind(this)}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
+                                onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
                                 />
           </SectionView>
@@ -199,10 +143,11 @@ class Identification extends ValidationElement {
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
             <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <BirthPlace name="birthplace"
-                                 {...this.props.ApplicantBirthPlace}
-                                 onUpdate={this.onUpdate.bind(this, 'ApplicantBirthPlace')}
-                                 onValidate={this.onValidate.bind(this)}
+            <ApplicantBirthPlace name="birthplace"
+                                 value={this.props.ApplicantBirthPlace}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onError={this.handleError}
                                  />
           </SectionView>
 
@@ -214,8 +159,9 @@ class Identification extends ValidationElement {
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
-                                onUpdate={this.onUpdate.bind(this, 'Contacts')}
-                                onValidate={this.onValidate.bind(this)}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.handleUpdate.bind(this, 'Contacts')}
+                                onError={this.handleError}
                                 />
           </SectionView>
 
@@ -225,10 +171,11 @@ class Identification extends ValidationElement {
                        next="identification/physical"
                        nextLabel={i18n.t('identification.destination.physical')}>
             <h2>{i18n.t('identification.ssn.title')}</h2>
-            <SSN name="ssn"
-                          {...this.props.ApplicantSSN}
-                          onUpdate={this.onUpdate.bind(this, 'ApplicantSSN')}
-                          onValidate={this.onValidate.bind(this)}
+            <ApplicantSSN name="ssn"
+                          value={this.props.ApplicantSSN}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
+                          onError={this.handleError}
                           />
           </SectionView>
 
@@ -240,8 +187,9 @@ class Identification extends ValidationElement {
             <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
-                      onUpdate={this.onUpdate.bind(this, 'Physical')}
-                      onValidate={this.onValidate.bind(this)}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.handleUpdate.bind(this, 'Physical')}
+                      onError={this.handleError}
                       />
           </SectionView>
         </SectionViews>
@@ -285,7 +233,8 @@ export function processApplicantBirthDate (birthDate) {
 }
 
 Identification.defaultProps = {
-  subsection: ''
+  defaultView: 'name',
+  store: 'Identification'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Identification))

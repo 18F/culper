@@ -1,12 +1,13 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show, Field } from '../../../Form'
+import { DiagnosesValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion, Branch, Show, Field } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
-import { DiagnosesValidator } from '../../../../validators'
 import { dateRangeFormat } from '../summaryHelper'
 
-export default class Diagnoses extends ValidationElement {
+export default class Diagnoses extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -17,8 +18,7 @@ export default class Diagnoses extends ValidationElement {
       DiagnosisList: props.DiagnosisList,
       DiagnosisListBranch: props.DiagnosisListBranch,
       TreatmentList: props.TreatmentList,
-      TreatmentListBranch: props.TreatmentListBranch,
-      errorCodes: []
+      TreatmentListBranch: props.TreatmentListBranch
     }
 
     this.update = this.update.bind(this)
@@ -27,7 +27,6 @@ export default class Diagnoses extends ValidationElement {
     this.updateInTreatment = this.updateInTreatment.bind(this)
     this.updateDiagnosisList = this.updateDiagnosisList.bind(this)
     this.updateTreatmentList = this.updateTreatmentList.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -68,22 +67,6 @@ export default class Diagnoses extends ValidationElement {
     this.update('InTreatment', values)
   }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
     const date = (o.Diagnosed || {})
@@ -115,10 +98,6 @@ export default class Diagnoses extends ValidationElement {
     )
   }
 
-  isValid () {
-    return new DiagnosesValidator(this.state).isValid()
-  }
-
   render () {
     return (
       <div className="diagnoses">
@@ -130,7 +109,7 @@ export default class Diagnoses extends ValidationElement {
           <Branch name="diagnosed"
                   className="diagnosed"
                   value={this.state.Diagnosed}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   onUpdate={this.updateDiagnosed}>
           </Branch>
         </Field>
@@ -143,7 +122,7 @@ export default class Diagnoses extends ValidationElement {
                        branch={this.state.DiagnosisListBranch}
                        onUpdate={this.updateDiagnosisList}
                        summary={this.summary}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        description={i18n.t('psychological.diagnoses.collection.description')}
                        appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
                        appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
@@ -158,7 +137,7 @@ export default class Diagnoses extends ValidationElement {
                     className="didnotconsult"
                     value={this.state.DidNotConsult}
                     help="psychological.diagnoses.help.didNotConsult"
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     onUpdate={this.updateDidNotConsult}>
             </Branch>
 
@@ -167,7 +146,7 @@ export default class Diagnoses extends ValidationElement {
                     className="intreatment"
                     value={this.state.InTreatment}
                     help="psychological.diagnoses.help.inTreatment"
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     onUpdate={this.updateInTreatment}>
             </Branch>
 
@@ -178,7 +157,7 @@ export default class Diagnoses extends ValidationElement {
                          branch={this.state.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}
                          summary={this.treatmentSummary}
-                         onValidate={this.handleValidation}
+                         onError={this.handleError}
                          appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
                 <Treatment name="Treatment"
@@ -200,5 +179,12 @@ Diagnoses.defaultProps = {
   DiagnosisListBranch: '',
   TreatmentList: [],
   TreatmentListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr },
+  section: 'psychological',
+  subsection: 'diagnoses',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new DiagnosesValidator(state, props).isValid()
+  }
 }

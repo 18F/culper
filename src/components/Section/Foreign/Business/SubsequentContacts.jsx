@@ -37,7 +37,7 @@ export default class SubsequentContacts extends ValidationElement {
                           className="has-foreign-contacts"
                           items={this.props.List}
                           onUpdate={this.updateList}
-                          onValidate={this.props.onValidate}>
+                          onError={this.props.onError}>
           <Field title={i18n.t('foreign.business.contact.heading.subsequent')}
                  help="foreign.business.contact.help.subsequent"
                  adjustFor="textarea">
@@ -72,5 +72,6 @@ export default class SubsequentContacts extends ValidationElement {
 
 SubsequentContacts.defaultProps = {
   name: 'SubsequentContacts',
-  List: []
+  List: [],
+  onError: (value, arr) => { return arr }
 }

@@ -15,7 +15,7 @@ describe('The reason options component', () => {
     const component = mount(<ReasonOptions {...expected} />)
     component.find('textarea').simulate('change')
     component.find({type: 'text', name: 'month'}).simulate('change', { target: { value: '1' } })
-    component.find({type: 'radio', value: 'Quit'}).simulate('click')
+    component.find({type: 'radio', value: 'Quit'}).simulate('change')
     expect(updates).toBe(3)
   })
 })

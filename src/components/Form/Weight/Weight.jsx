@@ -8,11 +8,10 @@ export default class Weight extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
-      error: props.error,
-      valid: props.valid,
-      errors: []
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   /**
@@ -27,33 +26,21 @@ export default class Weight extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, errors) {
-    this.setState({error: status === false, valid: status === true, errors: errors}, () => {
-      let e = { [this.props.name]: errors }
-      let s = { [this.props.name]: { status: status } }
-      super.handleValidation(event, s, e)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `weight.${err.code}`,
+        valid: err.valid
+      }
     })
-  }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   /**
@@ -88,9 +75,7 @@ export default class Weight extends ValidationElement {
                   step="1"
                   value={this.state.value}
                   onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onBlur={this.handleBlur}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   />
         </div>
       </div>
@@ -99,7 +84,9 @@ export default class Weight extends ValidationElement {
 }
 
 Weight.defaultProps = {
+  name: 'weight',
   value: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr }
 }
+
+Weight.errors = []

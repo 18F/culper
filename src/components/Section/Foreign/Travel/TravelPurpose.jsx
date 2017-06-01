@@ -34,49 +34,49 @@ export default class TravelPurpose extends ValidationElement {
                   value="Business"
                   className="purpose-business"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="purpose-volunteer"
                   label={i18n.m('foreign.travel.label.volunteer')}
                   value="Volunteer"
                   className="purpose-volunteer"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="purpose-education"
                   label={i18n.m('foreign.travel.label.education')}
                   value="Education"
                   className="purpose-education"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="purpose-tourism"
                   label={i18n.m('foreign.travel.label.tourism')}
                   value="Tourism"
                   className="purpose-tourism"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="purpose-conference"
                   label={i18n.m('foreign.travel.label.conference')}
                   value="Conference"
                   className="purpose-conference"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="purpose-family"
                   label={i18n.m('foreign.travel.label.family')}
                   value="Family"
                   className="purpose-family"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
         <Checkbox name="purpose-other"
                   label={i18n.m('foreign.travel.label.other')}
                   value="Other"
                   className="purpose-other"
                   onUpdate={this.update}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
       </CheckboxGroup>
     )
@@ -84,5 +84,6 @@ export default class TravelPurpose extends ValidationElement {
 }
 
 TravelPurpose.defaultProps = {
-  value: []
+  value: [],
+  onError: (value, arr) => { return arr }
 }

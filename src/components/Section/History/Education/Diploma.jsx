@@ -5,6 +5,7 @@ import { ValidationElement, DateControl, Text, RadioGroup, Radio, Field, Show } 
 export class DiplomaItem extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Diploma: this.props.Diploma,
       DiplomaOther: this.props.DiplomaOther,
@@ -59,42 +60,49 @@ export class DiplomaItem extends ValidationElement {
                    label={i18n.m('history.education.label.diploma.highschool')}
                    value="High School Diploma"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
             <Radio name="diploma-associate"
                    className="diploma-associate"
                    label={i18n.m('history.education.label.diploma.associate')}
                    value="Associate"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
             <Radio name="diploma-bachelor"
                    className="diploma-bachelor"
                    label={i18n.m('history.education.label.diploma.bachelor')}
                    value="Bachelor"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
             <Radio name="diploma-master"
                    className="diploma-master"
                    label={i18n.m('history.education.label.diploma.master')}
                    value="Master"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
             <Radio name="diploma-doctorate"
                    className="diploma-doctorate"
                    label={i18n.m('history.education.label.diploma.doctorate')}
                    value="Doctorate"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
             <Radio name="diploma-professional"
                    className="diploma-professional"
                    label={i18n.m('history.education.label.diploma.professional')}
                    value="Professional"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
             <Radio name="diploma-other"
                    className="diploma-other"
                    label={i18n.m('history.education.label.diploma.other')}
                    value="Other"
                    onChange={this.updateDiploma}
+                   onError={this.props.onError}
                    />
           </RadioGroup>
           <Show when={this.state.Diploma === 'Other'}>
@@ -104,7 +112,7 @@ export class DiplomaItem extends ValidationElement {
                   className="other"
                   maxlength="100"
                   onUpdate={this.updateDiplomaOther}
-                  onValidate={this.props.onValidate}
+                  onError={this.props.onError}
                   />
           </Show>
         </Field>
@@ -117,7 +125,7 @@ export class DiplomaItem extends ValidationElement {
                        {...this.state.Date}
                        hideDay={true}
                        onUpdate={this.updateDate}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
       </div>
@@ -128,5 +136,6 @@ export class DiplomaItem extends ValidationElement {
 DiplomaItem.defaultProps = {
   Diploma: '',
   DiplomaOther: {},
-  Date: {}
+  Date: {},
+  onError: (value, arr) => { return arr }
 }

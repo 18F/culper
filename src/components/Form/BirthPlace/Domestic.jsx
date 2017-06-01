@@ -44,39 +44,39 @@ export default class DomesticBirthPlace extends ValidationElement {
       <div className="birthplace-domestic">
         <Field adjustFor="labels">
           <MilitaryState name="state"
-            label={this.props.stateLabel}
-            value={this.props.state}
-            className="state"
-            placeholder={this.props.statePlaceholder}
-            includeStates="true"
-            required="true"
-            disabled={this.props.disabledState}
-            onChange={this.updateState}
-            onValidate={this.handleValidation}
-          />
+                         label={this.props.stateLabel}
+                         value={this.props.state}
+                         className="state"
+                         placeholder={this.props.statePlaceholder}
+                         includeStates="true"
+                         required="true"
+                         disabled={this.props.disabledState}
+                         onChange={this.updateState}
+                         onError={this.props.onError}
+                         />
         </Field>
         <Field adjustFor="labels">
           <City name="city"
-            label={this.props.cityLabel}
-            value={this.props.city}
-            className="city"
-            placeholder={this.props.cityPlaceholder}
-            maxlength="100"
-            onChange={this.updateCity}
-            onValidate={this.handleValidation}
-          />
+                label={this.props.cityLabel}
+                value={this.props.city}
+                className="city"
+                placeholder={this.props.cityPlaceholder}
+                maxlength="100"
+                onChange={this.updateCity}
+                onError={this.props.onError}
+                />
         </Field>
         <Show when={this.props.hideCounty === false}>
           <Field adjustFor="labels">
             <County name="county"
-              label={this.props.countyLabel}
-              value={this.props.county}
-              className="county"
-              placeholder={this.props.countyPlaceholder}
-              maxlength="255"
-              onChange={this.updateCounty}
-              onValidate={this.handleValidation}
-            />
+                    label={this.props.countyLabel}
+                    value={this.props.county}
+                    className="county"
+                    placeholder={this.props.countyPlaceholder}
+                    maxlength="255"
+                    onChange={this.updateCounty}
+                    onError={this.props.onError}
+                    />
           </Field>
         </Show>
       </div>
@@ -91,5 +91,6 @@ DomesticBirthPlace.defaultProps = {
   cityPlaceholder: i18n.t('identification.birthplace.placeholder.city'),
   countyLabel: i18n.t('identification.birthplace.label.county'),
   countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
-  hideCounty: false
+  hideCounty: false,
+  onError: (value, arr) => { return arr }
 }

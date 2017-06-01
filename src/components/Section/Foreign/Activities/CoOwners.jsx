@@ -28,17 +28,16 @@ export default class CoOwners extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="co-owners">
-        <BranchCollection
-          label={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwners`)}
-          appendLabel={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwnersAppend`)}
-          items={this.props.List}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateList}>
+        <BranchCollection label={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwners`)}
+                          appendLabel={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwnersAppend`)}
+                          items={this.props.List}
+                          onError={this.props.onError}
+                          onUpdate={this.updateList}>
           <CoOwner name="CoOwner"
-            bind={true}
-            prefix={`${this.props.prefix}.coOwner`}
-            onValidate={this.props.onValidate}
-          />
+                   bind={true}
+                   prefix={`${this.props.prefix}.coOwner`}
+                   onError={this.props.onError}
+                   />
         </BranchCollection>
       </div>
     )
@@ -46,4 +45,5 @@ export default class CoOwners extends ValidationElement {
 }
 
 CoOwner.defaultProps = {
+  onError: (value, arr) => { return arr }
 }
