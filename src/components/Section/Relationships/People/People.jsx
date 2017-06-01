@@ -94,6 +94,7 @@ export default class People extends SubsectionElement {
         <Accordion minimum="1"
                    scrollTo="scrollToPeople"
                    items={this.state.List}
+                   defaultState={this.props.defaultState}
                    branch={this.state.ListBranch}
                    summary={this.summary}
                    onUpdate={this.updateList}
@@ -116,5 +117,6 @@ People.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new PeopleValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

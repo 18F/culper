@@ -138,6 +138,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.status')}>
             <Marital name="marital"
                      {...this.props.Marital}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
                      onError={this.handleError}
@@ -146,6 +147,7 @@ class Relationships extends SectionElement {
                      />
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
+                         defaultState={false}
                          spouse={this.props.Spouse}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateCohabitants}
@@ -153,12 +155,14 @@ class Relationships extends SectionElement {
                          />
             <People name="people"
                     {...this.props.People}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
                     />
             <Relatives name="relatives"
                        {...this.props.Relatives}
+                       defaultState={false}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
