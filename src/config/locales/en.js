@@ -6645,7 +6645,6 @@ const en = {
         append: 'Add another offense'
       }
     },
-
     investigations: {
       history: {
         heading: {
@@ -6747,7 +6746,7 @@ const en = {
       },
       revoked: {
         heading: {
-          title: 'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+          title: 'Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?',
           date: 'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
           agency: 'Provide the name of the agency that took the action',
           explanation: 'Provide an explanation of the circumstances of the denial, suspension or revocation action'
@@ -6779,9 +6778,40 @@ const en = {
             note: ''
           }
         }
+      },
+      debarred: {
+        heading: {
+          title: 'Have you EVER been debarred from government employment?',
+          agency: 'Provide the name of the government agency taking debarment action',
+          date: 'Provide the date the debarment occurred',
+          explanation: 'Provide an explanation of the circumstances of the debarment'
+        },
+        collection: {
+          description: 'Summary of debarments',
+          item: 'Debarment',
+          unknown: 'Provide debarment details below',
+          appendTitle: 'Do you have another Government debarment to enter?',
+          appendLabel: 'Add another debarment'
+        },
+        help: {
+          date: {
+            title: 'Need help with the date of this debarment?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency taking the debarment action?',
+            message: 'Provide the agency name to the best of your abilities responsible for this action.',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help providing an explanation of events?',
+            message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
       }
     }
-
   },
   substance: {
     tour: {
