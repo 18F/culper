@@ -7058,7 +7058,8 @@ const en = {
     drugs: {
       heading: {
         drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
-        drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?'
+        drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
+        drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?'
       },
       use: {
         heading: {
@@ -7187,6 +7188,38 @@ const en = {
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
         }
+      },
+      clearance: {
+        heading: {
+          description: 'Provide a description of your involvement',
+          involvementDates: 'Provide the dates of involvement/use',
+          estimatedUse: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while possessing a security clearance'
+        },
+        help: {
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide a description of your involvement',
+            note: ''
+          },
+          involvementDates: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide the dates of involvement/use',
+            note: ''
+          },
+          estimatedUse: {
+            title: 'Need help with the estimated times used?',
+            message: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while possessing a security clearance',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug involvement',
+          summary: 'Provide your drug involvement details below',
+          appendTitle: 'Do you have an additional instance(s) of the illegal use or involvement with a drug or controlled substance while possessing a security clearance to enter?',
+          appendLabel: 'Add another drug involvement',
+          itemType: 'Drug involvement'
+        }
+
       },
       drugType: {
         label: {

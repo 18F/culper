@@ -11,6 +11,7 @@ import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
 import ReceivedCounselings from './Alcohol/ReceivedCounselings'
 import DrugUses from './Drugs/DrugUses'
 import DrugInvolvements from './Drugs/DrugInvolvements'
+import DrugClearanceUses from './Drugs/DrugClearanceUses'
 
 class SubstanceUse extends SectionElement {
   constructor (props) {
@@ -22,6 +23,7 @@ class SubstanceUse extends SectionElement {
     this.updateReceivedCounselings = this.updateReceivedCounselings.bind(this)
     this.updateDrugUses = this.updateDrugUses.bind(this)
     this.updateDrugInvolvements = this.updateDrugInvolvements.bind(this)
+    this.updateDrugClearanceUses = this.updateDrugClearanceUses.bind(this)
   }
 
   // componentWillReceiveProps (next) {
@@ -53,6 +55,10 @@ class SubstanceUse extends SectionElement {
 
   updateDrugInvolvements (values) {
     this.handleUpdate('DrugInvolvements', values)
+  }
+
+  updateDrugClearanceUses (values) {
+    this.handleUpdate('DrugClearanceUses', values)
   }
 
   render () {
@@ -96,6 +102,19 @@ class SubstanceUse extends SectionElement {
               dispatch={this.props.dispatch}
               onError={this.handleError}
               onUpdate={this.updateDrugInvolvements}
+            />
+          </SectionView>
+
+          <SectionView name="drugs/clearance"
+            back="foreign/business/conferences"
+            backLabel={ i18n.t('foreign.destination.business.events') }
+            next=""
+            nextLabel={''}>
+            <DrugClearanceUses name="drugclearanceuses"
+              {...this.props.DrugClearanceUses}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateDrugClearanceUses}
             />
           </SectionView>
 
@@ -211,6 +230,7 @@ function mapStateToProps (state) {
     ReceivedCounselings: substance.ReceivedCounselings || {},
     DrugUses: substance.DrugUses || {},
     DrugInvolvements: substance.DrugInvolvements || {},
+    DrugClearanceUses: substance.DrugClearanceUses || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }

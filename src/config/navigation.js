@@ -131,6 +131,10 @@ const navigation = [
           {
             name: 'Purchase',
             url: 'purchase'
+          },
+          {
+            name: 'Security clearance position',
+            url: 'clearance'
           }
         ]
       },
