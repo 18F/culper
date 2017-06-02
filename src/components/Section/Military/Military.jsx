@@ -95,6 +95,7 @@ class Military extends SectionElement {
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}

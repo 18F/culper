@@ -122,7 +122,7 @@ export default class Multiple extends SubsectionElement {
                           items={this.state.Passports}
                           onUpdate={this.updatePassports}
                           onError={this.handleError}>
-          <PassportItem name="Item" bind={true} />
+          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} />
         </BranchCollection>
       </div>
     )
