@@ -11,7 +11,26 @@
     }
   }
 
-  .relative-relation label,
+  .relative-relation label {
+    height: 6rem;
+    width: 18rem;
+    overflow: hidden;
+
+    > span > div {
+      top: 28%;
+    }
+  }
+
+  .relation-child > label > span {
+    > div:not(:last-of-type) {
+      top: 18%;
+    }
+
+    > div:not(:first-of-type) {
+      margin-top: -3rem;
+    }
+  }
+
   .relative-abroad label,
   .relative-naturalized label,
   .relative-derived label,
@@ -36,6 +55,7 @@
       }
     }
   }
+
   h3.relative-citizenship-documentation {
     margin-bottom: 2.1rem;
   }
