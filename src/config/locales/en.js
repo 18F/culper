@@ -6261,7 +6261,7 @@ const en = {
         official: 'Has your travel in the last (7) years been solely for U.S. Government business/military overseas assignment on official government orders?',
         country: 'Provide the country visited',
         dates: 'Provide the dates of your travel to this country',
-        days: 'Provide the total number of days involved in the visit',
+        days: 'Provide the total number of days involved in the visit(s)',
         purpose: 'Provide the purpose of the travel to this country',
         questioned: 'While traveling to, or in this country, were you questioned, searched, or otherwise detained (other than for normal customs requirements) by the local customs or security service officials when entering or leaving this country?',
         encounter: 'While traveling to or in this country, were you involved in any encounter with the police?',
@@ -6313,9 +6313,9 @@ const en = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
-          message: 'Provide the approximate dates of your visit.',
-          note: ''
+          title: 'Need help with this date range?',
+          message: 'Tell us the full date range you visited this country including many short trips.',
+          note: 'Note: This date range can cover multiple trips to the same country.'
         },
         days: {
           title: 'Need help with how many days?',
