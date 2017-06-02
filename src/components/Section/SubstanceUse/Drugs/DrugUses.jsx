@@ -4,6 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import DrugUse from './DrugUse'
+import { DrugUsesValidator } from '../../../../validators'
 
 export default class DrugUses extends SubsectionElement {
   constructor (props) {
@@ -98,7 +99,6 @@ DrugUses.defaultProps = {
   subsection: 'drugs/usage',
   dispatch: () => {},
   validator: (state, props) => {
-    return true
-    //return new AlcoholDrugUsesValidator(props).isValid()
+    return new DrugUsesValidator(props).isValid()
   }
 }

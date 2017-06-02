@@ -22,12 +22,54 @@ describe('The DrugUses component', () => {
     const onUpdate = () => { updates++ }
     const list = [
       {
-        DrugUse: {}
+        DrugUse: {
+          DrugType: {
+            DrugType: 'Cocaine',
+            DrugTypeOther: null
+          },
+          FirstUse: {
+            day: '1',
+            month: '1',
+            year: '2016',
+            date: new Date('1/1/2016')
+          },
+          RecentUse: {
+            day: '1',
+            month: '1',
+            year: '2016'
+          },
+          NatureOfUse: {
+            value: 'Some use'
+          },
+          UseWhileEmployed: 'Yes',
+          UseWithClearance: 'Yes',
+          UseInFuture: 'No',
+          Explanation: {
+            value: 'Foo'
+          }
+        }
+      },
+      {
+        DrugUse: {
+          DrugType: {
+            DrugType: 'Cocaine',
+            DrugTypeOther: null
+          },
+          NatureOfUse: {
+            value: 'Some use'
+          },
+          UseWhileEmployed: 'Yes',
+          UseWithClearance: 'Yes',
+          UseInFuture: 'No',
+          Explanation: {
+            value: 'Foo'
+          }
+        }
       }
     ]
     const component = mount(<DrugUses onUpdate={onUpdate} UsedDrugs={'Yes'} List={list} />)
     expect(component.find('.drug-uses').length).toBe(1)
-    component.find('.explanation textarea').simulate('change')
+    component.find('.explanation textarea').first().simulate('change')
     expect(updates).toBe(2)
   })
 })
