@@ -412,7 +412,7 @@ const en = {
             note: ''
           },
           length: {
-            title: 'There is a problem with the extensionn',
+            title: 'There is a problem with the extension',
             message: 'Extensions should be between 0 and 10.',
             note: ''
           }
@@ -790,7 +790,7 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email addresses?',
-          message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
+          message: 'Provide at least 2 email addresses, preferably your home (personal) email and your work email.',
           note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
         },
         phoneNumber: {
@@ -1620,7 +1620,7 @@ const en = {
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
         alienregistrationnumber: {
           naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
-          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS registration number)',
           notcitizen: 'Provide your alien registration number (I-551, I-766)'
         },
         alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
@@ -1769,7 +1769,7 @@ const en = {
           }
         },
         permanentresidentcardnumber: {
-          title: 'Need help with your permaenent resident card?',
+          title: 'Need help with your permanent resident card?',
           message: 'Provide your permanent resident card number',
           note: ''
         },
@@ -1849,7 +1849,7 @@ const en = {
       },
       help: {
         hasmultiple: {
-          title: 'Need help with multilpe citizenships?',
+          title: 'Need help with multiple citizenships?',
           message: 'If you have ever had a non-U.S. citizenship then select "yes"',
           note: ''
         },
@@ -2751,7 +2751,7 @@ const en = {
   suggestions: {
     name: {
       title: 'Alternate names found',
-      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>',
+      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential misspellings.</p>',
       label: 'Suggested name',
       use: 'Use this name',
       dismiss: 'Use a different name instead'
@@ -3065,7 +3065,7 @@ const en = {
         },
         rank: {
           title: 'Need help with the highest position/rank held?',
-          message: 'The hightest rank or position held within the service',
+          message: 'The highest rank or position held within the service',
           note: ''
         },
         division: {
@@ -3389,7 +3389,7 @@ const en = {
         },
         physicalAddress: {
           help: {
-            title: 'Need help with the physical addresss?',
+            title: 'Need help with the physical address?',
             message: 'Is/was your physical work address different than your employer\'s address?',
             note: ''
           },
@@ -4525,7 +4525,7 @@ const en = {
         },
         physicalAddress: {
           help: {
-            title: 'Need help with the physical addresss?',
+            title: 'Need help with the physical address?',
             message: 'Is/was your physical work address different than your employer\'s address?',
             note: ''
           },
@@ -4703,7 +4703,7 @@ const en = {
           note: ''
         },
         date: {
-          title: 'Need help with the date of acheivement?',
+          title: 'Need help with the date of achievement?',
           message: 'The date the degree or diploma was awarded',
           note: ''
         }
@@ -4766,7 +4766,7 @@ const en = {
       para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
-      review: 'Review Foreign Actitivies',
+      review: 'Review Foreign Activities',
       history: 'Your History',
       tbd: 'TBD',
       contacts: 'Foreign Contacts',
@@ -5041,7 +5041,7 @@ const en = {
               note: ''
             },
             sold: {
-              title: 'Need help with date reqlinquished?',
+              title: 'Need help with date relinquished?',
               message: 'Tell us when you got rid of of this foreign financial interest.',
               note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             },
@@ -5820,7 +5820,7 @@ const en = {
           },
           description: {
             title: 'Need help describing the business venture?',
-            message: 'Provide an accurate descsription of the business venture',
+            message: 'Provide an accurate description of the business venture',
             note: ''
           },
           relationship: {
@@ -5834,7 +5834,7 @@ const en = {
             note: ''
           },
           association: {
-            title: 'Need help with the assocition to the venture?',
+            title: 'Need help with the association to the venture?',
             message: 'Provide a description of how you were associated to the business venture',
             note: ''
           },
@@ -5943,7 +5943,7 @@ const en = {
             item: 'Conference',
             unknown: 'Provide details of conference below'
           },
-          appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
+          appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings outside the U.S.?',
           appendMessage: [
             'Do not include those you attended or participated in on official business for the U.S. government.'
           ],
@@ -5970,7 +5970,7 @@ const en = {
           intro: 'For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
           branch: [
             'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
-            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjuction with a U.S. Government military duty.'
+            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
           ]
         },
         label: {
@@ -6273,12 +6273,12 @@ const en = {
         explanation: 'Provide explanation'
       },
       para: {
-        personal: 'I.e., no personal trips in conjuction with the official U.S. Government business.',
+        personal: 'I.e., no personal trips in conjunction with the official U.S. Government business.',
         checkall: 'Check all that apply',
         explanation: 'If yes provide explanation.',
         timeframe: [
           'Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards.',
-          'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjuction with the official U.S. Government travel.'
+          'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.'
         ]
       },
       label: {
@@ -6289,7 +6289,7 @@ const en = {
         more: 'More than 30',
         many: 'Many short trips',
         business: 'Business/professional',
-        volunteer: 'Volunteer activites',
+        volunteer: 'Volunteer activities',
         education: 'Education',
         tourism: 'Tourism',
         conference: 'Trade shows, conferences, and seminars',
@@ -6369,7 +6369,7 @@ const en = {
           item: 'Travel',
           unknown: 'Provide details of your travel below'
         },
-        appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for othe than solely U.S. Government business on official government orders?',
+        appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for other than solely U.S. Government business on official government orders?',
         appendMessage: [],
         append: 'Add another travel'
       }
@@ -7241,7 +7241,7 @@ const en = {
       facility: {
         heading: {
           name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
-          address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+          address: 'Provide the address of any agency/organization/facility where counseling/treatment was provided'
         },
         label: {
           name: 'Name',
@@ -7437,7 +7437,7 @@ const en = {
         facility: {
           heading: {
             name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
-            address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+            address: 'Provide the address of any agency/organization/facility where counseling/treatment was provided'
           },
           label: {
             address: 'This address is',
@@ -7768,3 +7768,5 @@ const en = {
 }
 
 export default en
+
+//  LocalWords:  citizenships
