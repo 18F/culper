@@ -74,6 +74,7 @@ export default class Bankruptcies extends SubsectionElement {
         <Show when={this.props.HasBankruptcy === 'Yes'}>
           <Accordion minimum="1"
                      items={this.props.List}
+                     defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -100,5 +101,6 @@ Bankruptcies.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new BankruptcyValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

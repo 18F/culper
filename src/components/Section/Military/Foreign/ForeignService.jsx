@@ -265,6 +265,7 @@ export default class ForeignService extends ValidationElement {
             <Accordion minimum="1"
                        className="foreign-contacts-collection"
                        items={this.state.List}
+                       defaultState={this.props.defaultState}
                        branch={this.state.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.props.onError}
@@ -284,5 +285,6 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

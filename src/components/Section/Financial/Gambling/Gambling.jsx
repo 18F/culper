@@ -99,6 +99,7 @@ export default class Gambling extends SubsectionElement {
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onError={this.handleError}
@@ -155,5 +156,6 @@ Gambling.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new GamblingValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

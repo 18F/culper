@@ -389,6 +389,7 @@ export default class CivilUnion extends ValidationElement {
             <Accordion minimum="1"
                        scrollTo="scrollToCivilUnion"
                        items={this.state.DivorcedList}
+                       defaultState={this.props.defaultState}
                        branch={this.state.DivorcedListBranch}
                        onUpdate={this.updateDivorcedList}
                        onError={this.props.onError}
@@ -429,5 +430,6 @@ CivilUnion.defaultProps = {
   DivorcedList: [],
   DivorcedListBranch: '',
   UseCurrentAddress: false,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

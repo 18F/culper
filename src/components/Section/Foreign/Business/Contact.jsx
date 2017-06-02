@@ -78,6 +78,7 @@ export default class Contact extends SubsectionElement {
         <Show when={this.props.HasForeignContact === 'Yes'}>
           <Accordion minimum="1"
                      items={this.props.List}
+                     defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -171,5 +172,6 @@ Contact.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBusinessContactValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }
