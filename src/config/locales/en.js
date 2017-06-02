@@ -6885,7 +6885,8 @@ const en = {
     },
     drugs: {
       heading: {
-        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?'
+        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
+        drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?'
       },
       use: {
         heading: {
@@ -6932,6 +6933,73 @@ const en = {
           useInFuture: {
             title: 'Need help with the drug use in the future?',
             message: 'Mark if you intend to use this drug or controlled substance in the future',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug uses',
+          summary: 'Provide your drug use details below',
+          appendTitle: 'Do you have an additional instance(s) of illegal use of a drug or controlled substance to enter?',
+          appendLabel: 'Add another drug use',
+          itemType: 'Drug Use'
+        }
+      },
+      involvement: {
+        heading: {
+          drugType: 'Provide the type of drug or controlled substance',
+          firstInvolvement: 'Provide an estimate of the month and year of first involvement',
+          recentInvolvement: 'Provide an estimate of the month and year of most recent involvement',
+          natureOfInvolvement: 'Provide nature of and frequency of activity',
+          involvementWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          involvementWithClearance: 'Was your involvement while possessing a security clearance?',
+          involvementInFuture: 'Do you intend to engage in this activity in the future?',
+          reasons: 'Provide the reason(s) why you engaged in the activity.',
+          explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation'
+        },
+        help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
+          firstInvolvement: {
+            title: 'Need help with the date of first use?',
+            message: 'Provide an estimate of the month and year of first use',
+            note: ''
+          },
+          recentInvolvement: {
+            title: 'Need help with the date of most recent use?',
+            message: 'Provide an estimate of the month and year of first use',
+            note: ''
+          },
+          natureOfInvolvement: {
+            title: 'Need help with the nature of drug use?',
+            message: 'Provide nature of use, frequency, and number of times used',
+            note: ''
+          },
+          involvementWhileEmployed: {
+            title: 'Need help with the use?',
+            message: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+            note: ''
+          },
+          involvementWithClearance: {
+            title: 'Need help with the drug use with a security clearance?',
+            message: 'Was your use while possessing a security clearance?',
+            note: ''
+          },
+          involvementInFuture: {
+            title: 'Need help with the drug use in the future?',
+            message: 'Mark if you intend to use this drug or controlled substance in the future',
+            note: ''
+          },
+          reasons: {
+            title: 'Need help with the reasoning?',
+            message: 'Provide the reason(s) why you engaged in the activity',
             note: ''
           },
           explanation: {

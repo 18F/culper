@@ -127,6 +127,10 @@ const navigation = [
           {
             name: 'Usage',
             url: 'usage'
+          },
+          {
+            name: 'Purchase',
+            url: 'purchase'
           }
         ]
       },

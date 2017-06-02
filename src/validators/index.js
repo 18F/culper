@@ -61,6 +61,7 @@ import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
 import AlcoholReceivedCounselingsValidator from './alcoholreceivedcounseling'
 import DrugUsesValidator from './druguses'
+import DrugInvolvementsValidator from './druginvolvements'
 
 export {
   AddressValidator,
@@ -129,5 +130,6 @@ export {
   AlcoholOrderedCounselingsValidator,
   AlcoholVoluntaryCounselingsValidator,
   AlcoholReceivedCounselingsValidator,
-  DrugUsesValidator
+  DrugUsesValidator,
+  DrugInvolvementsValidator
 }

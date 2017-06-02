@@ -10,6 +10,7 @@ import OrderedCounselings from './Alcohol/OrderedCounselings'
 import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
 import ReceivedCounselings from './Alcohol/ReceivedCounselings'
 import DrugUses from './Drugs/DrugUses'
+import DrugInvolvements from './Drugs/DrugInvolvements'
 
 class SubstanceUse extends SectionElement {
   constructor (props) {
@@ -20,6 +21,7 @@ class SubstanceUse extends SectionElement {
     this.updateVoluntaryCounselings = this.updateVoluntaryCounselings.bind(this)
     this.updateReceivedCounselings = this.updateReceivedCounselings.bind(this)
     this.updateDrugUses = this.updateDrugUses.bind(this)
+    this.updateDrugInvolvements = this.updateDrugInvolvements.bind(this)
   }
 
   // componentWillReceiveProps (next) {
@@ -47,6 +49,10 @@ class SubstanceUse extends SectionElement {
 
   updateDrugUses (values) {
     this.handleUpdate('DrugUses', values)
+  }
+
+  updateDrugInvolvements (values) {
+    this.handleUpdate('DrugInvolvements', values)
   }
 
   render () {
@@ -77,6 +83,19 @@ class SubstanceUse extends SectionElement {
               dispatch={this.props.dispatch}
               onError={this.handleError}
               onUpdate={this.updateDrugUses}
+            />
+          </SectionView>
+
+          <SectionView name="drugs/purchase"
+            back="foreign/business/conferences"
+            backLabel={ i18n.t('foreign.destination.business.events') }
+            next=""
+            nextLabel={''}>
+            <DrugInvolvements name="druginvolvements"
+              {...this.props.DrugInvolvements}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateDrugInvolvements}
             />
           </SectionView>
 
@@ -191,6 +210,7 @@ function mapStateToProps (state) {
     VoluntaryCounselings: substance.VoluntaryCounselings || {},
     ReceivedCounselings: substance.ReceivedCounselings || {},
     DrugUses: substance.DrugUses || {},
+    DrugInvolvements: substance.DrugInvolvements || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }
