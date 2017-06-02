@@ -2613,9 +2613,9 @@ const en = {
         },
         help: {
           knownDates: {
-            title: 'Need help with known dates',
-            message: 'Provide the dates known for the person who knows you well',
-            note: ''
+            title: 'Need help with this date range?',
+            message: 'Tell us the entire time you have known this person.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           rank: {
             title: 'Need help with the rank/title?',
