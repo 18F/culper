@@ -3,7 +3,6 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { DateSummary } from '../../../Summary'
-import DrugUse from './DrugUse'
 import DrugInvolvement from './DrugInvolvement'
 import { DrugInvolvementsValidator } from '../../../../validators'
 
@@ -40,8 +39,8 @@ export default class DrugInvolvements extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).DrugInvolvement || {}
-    const firstUse = DateSummary(o.FirstUse)
-    const recentUse = DateSummary(o.RecentUse)
+    const firstUse = DateSummary(o.FirstInvolvement)
+    const recentUse = DateSummary(o.RecentInvolvement)
     const dates = [firstUse, recentUse].reduce((p, c) => {
       if (p || c) {
         return `${p || 'N/A'} - ${c || 'N/A'}`
@@ -67,7 +66,7 @@ export default class DrugInvolvements extends SubsectionElement {
       <div className="drug-involvements">
         <h2>{i18n.m('substance.drugs.heading.drugInvolvement')}</h2>
         <Branch name="Involved"
-          className="involvementd-drugs"
+          className="involved"
           value={this.props.Involved}
           onError={this.handleError}
           onUpdate={this.updateInvolved}>
@@ -97,7 +96,7 @@ DrugInvolvements.defaultProps = {
   ListBranch: '',
   onError: (value, arr) => { return arr },
   section: 'substance',
-  subsection: 'drugs/usage',
+  subsection: 'drugs/involvement',
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugInvolvementsValidator(props).isValid()
