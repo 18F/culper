@@ -1,103 +1,6 @@
 import CivilUnionValidator from './civilunion'
 
 describe('CivilUnion validation', function () {
-  it('validates divorce', () => {
-    const tests = [
-      {
-        state: {
-          Divorced: 'No'
-        },
-        expected: true
-      },
-      {
-        state: {
-          Divorced: 'Nope'
-        },
-        expected: false
-      },
-      {
-        state: {
-          Divorced: 'Yes',
-          DivorcedList: [],
-          DivorcedListBranch: 'No'
-        },
-        expected: false
-      },
-      {
-        state: {
-          Divorced: 'Yes',
-          DivorcedList: [{Divorce: {}}],
-          DivorcedListBranch: 'No'
-        },
-        expected: false
-      },
-      {
-        state: {
-          Divorced: 'Yes',
-          DivorcedList: [{
-            Divorce: {
-              Status: 'Widowed',
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              DateDivorced: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Birthdate: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              BirthPlace: {
-                domestic: 'Yes',
-                country: 'United States',
-                city: 'Arlington',
-                county: 'Arlington',
-                state: 'VA'
-              },
-              Telephone: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                timeOfDay: 'Both',
-                extension: ''
-              },
-              Recognized: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202'
-              }
-            }
-          }],
-          DivorcedListBranch: 'No'
-        },
-        expected: true
-      }
-    ]
-    tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).validDivorced()).toBe(test.expected)
-    })
-  })
-
   it('validates separated', () => {
     const tests = [
       {
@@ -190,6 +93,36 @@ describe('CivilUnion validation', function () {
     })
   })
 
+  it('validates citizenship', () => {
+    const tests = [
+      {
+        state: {
+          Citizenship: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Citizenship: {
+            value: []
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Citizenship: {
+            value: ['Germany', 'United States']
+          }
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CivilUnionValidator(test.state, null).validCitizenship()).toBe(test.expected)
+    })
+  })
+
   it('validates civil union', () => {
     const tests = [
       {
@@ -258,6 +191,9 @@ describe('CivilUnion validation', function () {
               date: new Date('1/1/2016')
             },
             present: false
+          },
+          Citizenship: {
+            value: ['Germany', 'United States']
           },
           ForeignBornDocument: {
             DocumentType: 'FS240',

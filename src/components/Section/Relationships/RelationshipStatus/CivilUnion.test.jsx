@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import CivilUnion from './CivilUnion'
 
-describe('The cohabitant component', () => {
+describe('The civil union component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'cohabitant'
@@ -45,7 +45,7 @@ describe('The cohabitant component', () => {
     component.find('.dateseparated .month input').simulate('change', { target: { value: '12' } })
     component.find('.address-separated .mailing input').simulate('change')
     component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
-    expect(updates).toBe(27)
+    expect(updates).toBe(25)
   })
 
   it('renders current address', () => {

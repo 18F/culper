@@ -2296,6 +2296,7 @@ const en = {
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Provide other names used',
+        citizenship: 'Provide country(ies) of citizenship',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2463,6 +2464,11 @@ const en = {
           title: 'Need help with this question?',
           message: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
           note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Tell us all of the citizenships this person has.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         }
       }
     },
@@ -2477,6 +2483,7 @@ const en = {
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
         othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+        citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
         cohabitationBegan: 'Provide date cohabitation residing with person began'
       },
       suggestion: {
@@ -2569,6 +2576,11 @@ const en = {
           title: 'Need help with when deciding if you have had a cohabitant?',
           message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
           note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Tell us all of the citizenships this person has.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         }
       }
     },

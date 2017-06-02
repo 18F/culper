@@ -47,6 +47,7 @@ export class CohabitantValidator {
     this.otherNameMaiden = state.OtherNameMaiden
     this.otherNameNotApplicable = state.OtherNameNotApplicable
     this.otherNameUsed = state.OtherNameUsed
+    this.citizenship = state.Citizenship
   }
 
   similarSpouse (spouse) {
@@ -76,11 +77,16 @@ export class CohabitantValidator {
       new DateRangeValidator(this.otherNameUsed).isValid()
   }
 
+  validCitizenship () {
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
+  }
+
   isValid () {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new BirthPlaceValidator(this.birthPlace).isValid() &&
       this.validForeignBornDocument() &&
-      validSSN(this.ssn)
+      validSSN(this.ssn) &&
+      this.validCitizenship()
   }
 }

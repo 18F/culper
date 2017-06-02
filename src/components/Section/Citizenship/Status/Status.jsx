@@ -400,6 +400,7 @@ export default class Status extends SubsectionElement {
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
                        value={this.state.PriorCitizenship.first}
+                       multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
                        />
@@ -632,6 +633,7 @@ export default class Status extends SubsectionElement {
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
                        value={this.state.PriorCitizenship.first}
+                       multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
                        />
@@ -771,7 +773,7 @@ Status.defaultProps = {
   MilitaryBase: {},
   EntryDate: {},
   EntryLocation: {},
-  PriorCitizenship: [],
+  PriorCitizenship: {},
   HasAlienRegistration: '',
   AlienRegistrationNumber: {},
   AlienRegistrationExpiration: {},
