@@ -1728,8 +1728,8 @@ const en = {
         },
         priorcitizenship: {
           title: 'Need help with prior citizenship(s)?',
-          message: 'Provide any prior citizenships',
-          note: ''
+          message: 'Tell us all of the prior citizenships.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         },
         hasalienregistration: {
           title: 'Need help if you have an alien registration number?',
@@ -2158,8 +2158,8 @@ const en = {
         },
         citizenship: {
           title: 'Need help with the citizenship?',
-          message: 'Provide all of the citizenships',
-          note: ''
+          message: 'Tell us all of the citizenships for this person.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         },
         maiden: {
           title: 'Need help with the maiden name?',
@@ -5242,7 +5242,7 @@ const en = {
           citizenship: {
             title: 'Need help with the citizenship of this foreign national?',
             message: 'List all the known countries the foreign national is a citizen of',
-            note: ''
+            note: 'Note: You can provide multiple citizenships in this question.'
           }
         },
         collection: {
@@ -5828,7 +5828,7 @@ const en = {
           citizenship: {
             title: 'Need help with the foreign national\'s citizenship?',
             message: 'Provide the country(ies) the foreign national has citizenship',
-            note: ''
+            note: 'Note: You can provide multiple citizenships in this question.'
           },
           description: {
             title: 'Need help describing the business venture?',
@@ -6011,7 +6011,7 @@ const en = {
           governments: {
             title: 'Need help with the governments associated?',
             message: 'Provide the governments associated with this contact.',
-            note: ''
+            note: 'Note: You can provide multiple government in this question.'
           },
           establishment: {
             title: 'Need help with the establishment?',
@@ -6113,7 +6113,7 @@ const en = {
           citizenship: {
             title: 'Need help with the foreign nationals citizenship(s)?',
             message: 'To the best of your knowledge provide the foreign nationals citizenship(s).',
-            note: ''
+            note: 'Note: You can provide multiple citizenships in this question.'
           },
           organization: {
             title: 'Need help with the organization?',
