@@ -46,6 +46,23 @@
     .eapp-status-icon-error {
       background-image: url('../img/exclamation-point-white-bg.svg');
     }
+
+    .mini {
+      background-image: none;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      top: 2rem;
+      right: 0.6rem;
+    }
+
+    .mini.eapp-status-icon-valid {
+      background-color: $eapp-green;
+    }
+
+    .mini.eapp-status-icon-error {
+      background-color: $eapp-red;
+    }
   }
 
   .active {
