@@ -59,8 +59,8 @@ class Military extends SectionElement {
                        showTop="true"
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
-                       next="history"
-                       nextLabel={i18n.t('history.destination.residence')}>
+                       next="foreign/passport"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}
@@ -68,25 +68,34 @@ class Military extends SectionElement {
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
                        />
+            <hr/>
+
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
                      />
+            <hr/>
+
             <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
             {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
+                          defaultState={false}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
                           />
+            <hr/>
+
             <h2>{i18n.t('military.foreign.heading.title')}</h2>
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}

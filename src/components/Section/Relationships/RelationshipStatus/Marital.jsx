@@ -124,6 +124,7 @@ export default class Marital extends SubsectionElement {
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
                       currentAddress={this.props.currentAddress}
+                      defaultState={this.props.defaultState}
                       />
         </Show>
         <Show when={this.showDivorce()}>
@@ -159,5 +160,6 @@ Marital.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new MaritalValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

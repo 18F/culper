@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
@@ -31,6 +32,13 @@ class Foreign extends SectionElement {
     this.updatePolitical = this.updatePolitical.bind(this)
     this.updateVoting = this.updateVoting.bind(this)
     this.updateTravel = this.updateTravel.bind(this)
+  }
+
+  componentWillReceiveProps (next) {
+    // Redirect to direct control
+    if (next.subsection === 'activities') {
+      this.props.dispatch(push(`/form/foreign/activities/direct`))
+    }
   }
 
   updatePassport (values) {
@@ -118,8 +126,10 @@ class Foreign extends SectionElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="substance/alcohol/negative"
+                       nextLabel={i18n.t('substance.destination.police.negative')}
                        >
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
@@ -128,98 +138,130 @@ class Foreign extends SectionElement {
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />
+            <hr/>
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
                       />
+            <hr/>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            defaultState={false}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
                             />
+            <hr/>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              defaultState={false}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
                               />
+            <hr/>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
+                                defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
                                 />
+            <hr/>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
+                             defaultState={false}
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
                              />
+            <hr/>
             <Support name="support"
                      {...this.props.Support}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
                      />
+            <hr/>
             <Advice name="advice"
                     {...this.props.Advice}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
                     />
+            <hr/>
             <Family name="family"
                     {...this.props.Family}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
                     />
+            <hr/>
             <Employment name="employment"
                         {...this.props.Employment}
+                        defaultState={false}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         />
+            <hr/>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
                       />
+            <hr/>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         defaultState={false}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
                          />
+            <hr/>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
                      />
+            <hr/>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         defaultState={false}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
                          />
+            <hr/>
             <Political name="Political"
                        {...this.props.Political}
+                       defaultState={false}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
                        />
+            <hr/>
             <Voting name="Voting"
                     {...this.props.Voting}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
                     />
+            <hr/>
             <Travel name="Travel"
                     {...this.props.Travel}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
@@ -227,10 +269,10 @@ class Foreign extends SectionElement {
           </SectionView>
 
           <SectionView name="passport"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
-                       next="foreign/review"
-                       nextLabel={i18n.t('foreign.destination.review')}>
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="foreign/contacts"
+                       nextLabel={i18n.t('foreign.destination.contacts')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
@@ -385,7 +427,7 @@ class Foreign extends SectionElement {
           <SectionView name="business/ventures"
                        back="foreign/business/employment"
                        backLabel={i18n.t('foreign.destination.business.employment')}
-                       next="foreign/business/events"
+                       next="foreign/business/conferences"
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}

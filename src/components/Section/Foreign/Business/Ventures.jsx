@@ -73,6 +73,7 @@ export default class Ventures extends SubsectionElement {
         <Show when={this.state.HasForeignVentures === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -187,5 +188,6 @@ Ventures.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBusinessVenturesValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

@@ -70,6 +70,7 @@ export default class Family extends SubsectionElement {
         <Show when={this.state.HasForeignFamily === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -134,5 +135,6 @@ Family.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBusinessFamilyValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

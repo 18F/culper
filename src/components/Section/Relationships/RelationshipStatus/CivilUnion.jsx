@@ -407,5 +407,6 @@ CivilUnion.defaultProps = {
   AddressSeparatedNotApplicable: {},
   Divorced: '',
   UseCurrentAddress: false,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

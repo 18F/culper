@@ -91,6 +91,7 @@ export default class Travel extends SubsectionElement {
         <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
           <Accordion minimum="1"
                      items={this.props.List}
+                     defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -118,5 +119,6 @@ Travel.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignTravelValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }
