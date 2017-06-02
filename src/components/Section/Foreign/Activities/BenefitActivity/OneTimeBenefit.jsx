@@ -75,8 +75,7 @@ export default class OneTimeBenefit extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.country')}
-               help={'foreign.activities.benefit.oneTime.help.country'}>
+        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.country')}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
@@ -84,8 +83,7 @@ export default class OneTimeBenefit extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.value')}
-               help={'foreign.activities.benefit.oneTime.help.value'}>
+        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.value')}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -104,8 +102,7 @@ export default class OneTimeBenefit extends ValidationElement {
           </div>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}
-               help={'foreign.activities.benefit.oneTime.help.value'}>
+        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}
