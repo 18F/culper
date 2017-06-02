@@ -5336,8 +5336,8 @@ const en = {
           },
           help: {
             received: {
-              title: 'Need help when benefit was received?',
-              message: 'Provide the date the benefit was received',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             country: {
@@ -5388,8 +5388,8 @@ const en = {
           },
           help: {
             begin: {
-              title: 'Need help when benefit will be begin?',
-              message: 'Provide the date the benefit will begin',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {
