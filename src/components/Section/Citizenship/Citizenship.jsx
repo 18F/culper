@@ -37,13 +37,16 @@ class Citizenship extends SectionElement {
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
+                    defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
                     />
+            <hr/>
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
                       {...this.props.Multiple}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}

@@ -81,6 +81,7 @@ export default class Federal extends SubsectionElement {
         <Show when={this.state.HasFederalService === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.updateCollection}
                      onError={this.handleError}
                      summary={this.summary}
@@ -129,5 +130,6 @@ Federal.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new FederalServiceValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

@@ -69,6 +69,7 @@ export default class Advice extends SubsectionElement {
         <Show when={this.state.HasForeignAdvice === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -141,5 +142,6 @@ Advice.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBusinessAdviceValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

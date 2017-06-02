@@ -76,6 +76,7 @@ export default class Credit extends SubsectionElement {
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -141,5 +142,6 @@ Credit.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new CreditValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }
