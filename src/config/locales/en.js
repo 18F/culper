@@ -3087,6 +3087,18 @@ const en = {
           title: 'Need help with contacts with current or former associates?',
           message: 'If you are still in contact with any current or former foreign associates answer "Yes" and provide their contact information below.',
           note: ''
+        },
+        contact: {
+          dates: {
+            title: 'Need help with this date range?',
+            message: 'Tell us the full time range you were in contact with this person.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          },
+          frequency: {
+            title: 'Need help with this question?',
+            message: 'Tell us how often you were in contact with this person.',
+            note: ''
+          },
         }
       },
       collection: {
