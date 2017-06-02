@@ -6387,6 +6387,11 @@ const en = {
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
       domesticViolence: 'Domestic violence',
+      investigations: {
+        history: 'Ever been investigated',
+        revoked: 'Denied',
+        debarred: 'Debarment'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6638,6 +6643,173 @@ const en = {
           '- Are you currently on trial or awaiting a trial on criminal charges?'
         ],
         append: 'Add another offense'
+      }
+    },
+    investigations: {
+      history: {
+        heading: {
+          title: 'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+          agency: 'Provide the investigating agency',
+          completed: 'Date the investigation was completed',
+          issued: 'Provide the name of agency that issued the clearance eligibility/access if different from the investigating agency',
+          granted: 'Provide the date clearance eligibility/access was granted',
+          clearance: 'Provide the level of clearance eligibility/access granted',
+          agencyExplanation: 'Provide the name of the bureau, government, or explanation',
+          clearanceExplanation: 'Provide an explanation'
+        },
+        label: {
+          idk: 'I don\'t know',
+          agency: {
+            dod: 'U.S. Department of Defense',
+            dos: 'U.S. Department of State',
+            opm: 'U.S. Office of Personnel Management',
+            fbi: 'Federal Bureau of Investigation',
+            dot: [
+              'U.S. Department of Treasury',
+              '(provide name of bureau)'
+            ],
+            dhs: 'U.S. Department of Homeland Security',
+            foreign: [
+              'Foreign government',
+              '(provide name of government)'
+            ],
+            other: [
+              'Other',
+              '(provide explanation)'
+            ]
+          },
+          level: {
+            none: 'None',
+            confidential: 'Confidential',
+            secret: 'Secret',
+            topsecret: 'Top Secret',
+            sci: [
+              'Sensitive Compartmented Information',
+              '(SCI)'
+            ],
+            q: 'Q',
+            l: 'L',
+            foreign: 'Issued by foreign country',
+            other: [
+              'Other',
+              '(provide explanation)'
+            ]
+          }
+        },
+        para: {
+          or: 'or'
+        },
+        collection: {
+          description: 'Summary of investigations',
+          item: 'Investigation',
+          unknown: 'Provide investigation details below',
+          appendTitle: 'Do you have another investigation to enter?',
+          appendLabel: 'Add another investigation'
+        },
+        help: {
+          agency: {
+            title: 'Need help with this investigative agency?',
+            message: 'If you are not sure of the agency issuing the investigation click "I don\'t know".',
+            note: ''
+          },
+          agencyExplanation: {
+            title: 'Need help explaining this agency?',
+            message: 'Provide any further explanation or name(s) required.',
+            note: ''
+          },
+          completed: {
+            title: 'Need help when this investigation was completed?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          issued: {
+            title: 'Need help with who issued this clearance?',
+            message: 'If an agency besides the one who initiated the investigation issued your clearance please tell us.',
+            note: ''
+          },
+          granted: {
+            title: 'Need help with when this clearance was granted?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          clearance: {
+            title: 'Need help with which clearance was granted?',
+            message: 'If you are not sure of the clearance being issued click "I don\'t know".',
+            note: ''
+          },
+          clearanceExplanation: {
+            title: 'Need help explaining this clearance?',
+            message: 'Provide any further explanation regarding the clearance.',
+            note: ''
+          }
+        }
+      },
+      revoked: {
+        heading: {
+          title: 'Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?',
+          date: 'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
+          agency: 'Provide the name of the agency that took the action',
+          explanation: 'Provide an explanation of the circumstances of the denial, suspension or revocation action'
+        },
+        para: {
+          downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
+        },
+        collection: {
+          description: 'Summary of revocations',
+          item: 'Revoked',
+          unknown: 'Provide revocation details below',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
+          appendLabel: 'Add another revocation'
+        },
+        help: {
+          date: {
+            title: 'Need help with the date of this revocation, denial, or suspension?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency authorization this termination?',
+            message: 'Provide the agency name to the best of your abilities responsible for authorizing this action.',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help providing an explanation of events?',
+            message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
+      },
+      debarred: {
+        heading: {
+          title: 'Have you EVER been debarred from government employment?',
+          agency: 'Provide the name of the government agency taking debarment action',
+          date: 'Provide the date the debarment occurred',
+          explanation: 'Provide an explanation of the circumstances of the debarment'
+        },
+        collection: {
+          description: 'Summary of debarments',
+          item: 'Debarment',
+          unknown: 'Provide debarment details below',
+          appendTitle: 'Do you have another Government debarment to enter?',
+          appendLabel: 'Add another debarment'
+        },
+        help: {
+          date: {
+            title: 'Need help with the date of this debarment?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency taking the debarment action?',
+            message: 'Provide the agency name to the best of your abilities responsible for this action.',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help providing an explanation of events?',
+            message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
       }
     }
   },

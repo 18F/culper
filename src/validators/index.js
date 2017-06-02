@@ -62,6 +62,9 @@ import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
 import AlcoholReceivedCounselingsValidator from './alcoholreceivedcounseling'
 import DrugUsesValidator from './druguses'
 import DrugInvolvementsValidator from './druginvolvements'
+import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
+import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
+import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
 
 export {
   AddressValidator,
@@ -131,5 +134,8 @@ export {
   AlcoholVoluntaryCounselingsValidator,
   AlcoholReceivedCounselingsValidator,
   DrugUsesValidator,
-  DrugInvolvementsValidator
+  DrugInvolvementsValidator,
+  LegalInvestigationsHistoryValidator,
+  LegalInvestigationsRevokedValidator,
+  LegalInvestigationsDebarredValidator
 }
