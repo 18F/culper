@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
@@ -31,6 +32,13 @@ class Foreign extends SectionElement {
     this.updatePolitical = this.updatePolitical.bind(this)
     this.updateVoting = this.updateVoting.bind(this)
     this.updateTravel = this.updateTravel.bind(this)
+  }
+
+  componentWillReceiveProps (next) {
+    // Redirect to direct control
+    if (next.subsection === 'activities') {
+      this.props.dispatch(push(`/form/foreign/activities/direct`))
+    }
   }
 
   updatePassport (values) {
@@ -118,8 +126,10 @@ class Foreign extends SectionElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="substance/alcohol/negative"
+                       nextLabel={i18n.t('substance.destination.police.negative')}
                        >
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
@@ -259,10 +269,10 @@ class Foreign extends SectionElement {
           </SectionView>
 
           <SectionView name="passport"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
-                       next="foreign/review"
-                       nextLabel={i18n.t('foreign.destination.review')}>
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="foreign/contacts"
+                       nextLabel={i18n.t('foreign.destination.contacts')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
@@ -417,7 +427,7 @@ class Foreign extends SectionElement {
           <SectionView name="business/ventures"
                        back="foreign/business/employment"
                        backLabel={i18n.t('foreign.destination.business.employment')}
-                       next="foreign/business/events"
+                       next="foreign/business/conferences"
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}
