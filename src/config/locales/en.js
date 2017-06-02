@@ -6273,7 +6273,7 @@ const en = {
         explanation: 'Provide explanation'
       },
       para: {
-        personal: 'I.e., no personal trips in conjunction with the official U.S. Government business.',
+        personal: '(i.e., no personal trips in conjunction with the official U.S. Government business.)',
         checkall: 'Check all that apply',
         explanation: 'If yes provide explanation.',
         timeframe: [

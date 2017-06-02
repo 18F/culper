@@ -86,6 +86,7 @@ export default class Travel extends SubsectionElement {
                 value={this.props.HasForeignTravelOfficial}
                 onUpdate={this.updateHasForeignTravelOfficial}
                 onError={this.handleError}>
+          {i18n.m('foreign.travel.para.personal')}
         </Branch>
 
         <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
