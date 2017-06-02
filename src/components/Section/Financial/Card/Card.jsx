@@ -82,6 +82,7 @@ export default class Card extends SubsectionElement {
         <Show when={this.state.HasCardAbuse === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -167,5 +168,6 @@ Card.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new CardAbuseValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

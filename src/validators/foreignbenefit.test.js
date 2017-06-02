@@ -135,6 +135,39 @@ describe('Foreign Born Benefits', function () {
     })
   })
 
+  it('should validate benefit types', function () {
+    const tests = [
+      {
+        props: {
+          BenefitType: 'Educational'
+        },
+        expected: true
+      },
+      {
+        props: {
+          BenefitType: 'Medical'
+        },
+        expected: true
+      },
+      {
+        props: {
+          BenefitType: 'Retirement'
+        },
+        expected: true
+      },
+      {
+        props: {
+          BenefitType: 'DoesntExist'
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new ForeignBenefitValidator(null, test.props).validBenefitType()).toBe(test.expected)
+    })
+  })
+
   it('should validate one time benefit', function () {
     const tests = [
       {
