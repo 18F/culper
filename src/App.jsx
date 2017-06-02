@@ -61,7 +61,7 @@ export class App extends React.Component {
         <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
-          <div className="usa-banner">
+          <div className="usa-banner mobile-hidden">
             <div className="usa-accordion">
               <header className="usa-banner-header">
                 <div className="usa-grid usa-banner-inner">
@@ -100,7 +100,7 @@ export class App extends React.Component {
                 <span className="eapp-logo-text">SF86</span>
               </div>
               <div className="eapp-structure-right eapp-title">
-                <div className="eapp-logout">
+                <div className="eapp-logout mobile-hidden">
                   {logoutButton}
                 </div>
                 <SectionTitle />
