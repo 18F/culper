@@ -7059,7 +7059,8 @@ const en = {
       heading: {
         drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
-        drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?'
+        drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
+        drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?'
       },
       use: {
         heading: {
@@ -7216,6 +7217,38 @@ const en = {
           description: 'Summary of drug involvement',
           summary: 'Provide your drug involvement details below',
           appendTitle: 'Do you have an additional instance(s) of the illegal use or involvement with a drug or controlled substance while possessing a security clearance to enter?',
+          appendLabel: 'Add another drug involvement',
+          itemType: 'Drug involvement'
+        }
+
+      },
+      publicSafety: {
+        heading: {
+          description: 'Provide a description of the drugs or controlled substances used and your involvement',
+          involvementDates: 'Provide the dates of involvement/use',
+          estimatedUse: 'Provide an estimate the number of times you used and/or were involved this drug or controlled substance while employed in this capacity'
+        },
+        help: {
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide a description of your involvement',
+            note: ''
+          },
+          involvementDates: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide the dates of involvement/use',
+            note: ''
+          },
+          estimatedUse: {
+            title: 'Need help with the estimated times used?',
+            message: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while possessing a security clearance',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug involvement',
+          summary: 'Provide your drug involvement details below',
+          appendTitle: 'Do you have an additional instance(s) of illegal use or involvement with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety to enter?',
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
         }
