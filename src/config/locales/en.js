@@ -6882,6 +6882,117 @@ const en = {
           }
         }
       }
+    },
+    drugs: {
+      heading: {
+        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?'
+      },
+      use: {
+        heading: {
+          drugType: 'Provide the type of drug or controlled substance',
+          firstUse: 'Provide an estimate of the month and year of first use',
+          recentUse: 'Provide an estimate of the month and year of most recent use',
+          natureOfUse: 'Provide nature of use, frequency, and number of times used',
+          useWhileEmployed: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          useWithClearance: 'Was your use while possessing a security clearance?',
+          useInFuture: 'Do you intend to use this drug or controlled substance in the future?',
+          explanation: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future'
+        },
+        help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
+          firstUse: {
+            title: 'Need help with the date of first use?',
+            message: 'Provide an estimate of the month and year of first use',
+            note: ''
+          },
+          recentUse: {
+            title: 'Need help with the date of most recent use?',
+            message: 'Provide an estimate of the month and year of first use',
+            note: ''
+          },
+          natureOfUse: {
+            title: 'Need help with the nature of drug use?',
+            message: 'Provide nature of use, frequency, and number of times used',
+            note: ''
+          },
+          useWhileEmployed: {
+            title: 'Need help with the use?',
+            message: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+            note: ''
+          },
+          useWithClearance: {
+            title: 'Need help with the drug use with a security clearance?',
+            message: 'Was your use while possessing a security clearance?',
+            note: ''
+          },
+          useInFuture: {
+            title: 'Need help with the drug use in the future?',
+            message: 'Mark if you intend to use this drug or controlled substance in the future',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug uses',
+          summary: 'Provide your drug use details below',
+          appendTitle: 'Do you have an additional instance(s) of illegal use of a drug or controlled substance to enter?',
+          appendLabel: 'Add another drug use',
+          itemType: 'Drug Use'
+        }
+      },
+      drugType: {
+        label: {
+          cocaine: [
+            'Cocaine or crack cocaine',
+            '(Such as rock, freebase, etc.)'
+          ],
+          stimulants: [
+            'Stimulants',
+            '(Such as amphetamines, speed, crystal meth, ecstasy, etc.)'
+          ],
+          thc: [
+            'THC',
+            '(Such as marijuana, weed, pot, hashish, etc.)'
+          ],
+          depressants: [
+            'Depressants',
+            '(Such as barbiturates, methaqualone, tranquilizers, etc.)'
+          ],
+          ketamine: [
+            'Ketamine',
+            '(Such as special K, jet, etc.)'
+          ],
+          narcotics: [
+            'Narcotics',
+            '(Such as opium, morphine, codeine, heroin, etc.)'
+          ],
+          hallucinogenic: [
+            'Hallucinogenic',
+            '(Such as LSD, PCP, mushrooms, etc.)'
+          ],
+          steroids: [
+            'Steroids',
+            '(Such as the clear, juice, etc.)'
+          ],
+          inhalants: [
+            'Inhalants',
+            '(Such as toluene, amyl nitrate, etc.)'
+          ],
+          other: [
+            'Other',
+            '(Provide explanation)'
+          ],
+          drugTypeOther: 'Provide explanation'
+        }
+      }
     }
   },
   alias: {

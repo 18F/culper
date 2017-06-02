@@ -120,7 +120,16 @@ const navigation = [
     url: 'substance',
     hidden: false,
     subsections: [
-      { hidden: true, name: 'Illegal use of drugs and drug activity', url: 'drugs' },
+      {
+        name: 'Illegal use of drugs and drug activity',
+        url: 'drugs',
+        subsections: [
+          {
+            name: 'Usage',
+            url: 'usage'
+          }
+        ]
+      },
       {
         name: 'Use of alcohol',
         url: 'alcohol',
