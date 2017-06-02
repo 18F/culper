@@ -179,8 +179,8 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="investigations"
-                       back="legal/court"
-                       backLabel={i18n.t('legal.destination.court')}
+                       back="legal/police/domesticviolence"
+                       backLabel={i18n.t('legal.destination.domesticViolence')}
                        next="legal/investigations/revoked"
                        nextLabel={i18n.t('legal.destination.investigations.revoked')}>
             <History name="history"
