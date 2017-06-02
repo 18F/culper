@@ -131,7 +131,6 @@ export default class Person extends React.Component {
               />
 
         <Field title={i18n.t('relationships.people.person.heading.rank')}
-               help="relationships.people.person.help.rank"
                >
           <NotApplicable name="RankNotApplicable"
                          className="rank-notapplicable"
@@ -151,7 +150,6 @@ export default class Person extends React.Component {
 
         <Field title={i18n.t(`relationships.people.person.heading.relationship`)}
                className="relationships"
-               help={`relationships.people.person.help.relationship`}
                adjustFor="labels"
                shrink={true}>
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
@@ -217,7 +215,6 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
-               help={`relationships.people.person.help.mobileTelephone`}
                className="mobile-telephone">
           <Telephone name="MobileTelephone"
                      {...this.state.MobileTelephone}
@@ -227,7 +224,6 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
-               help={`relationships.people.person.help.otherTelephone`}
                className="other-telephone">
           <Telephone name="OtherTelephone"
                      {...this.state.OtherTelephone}
@@ -237,7 +233,6 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.email')}
-               help={`relationships.people.person.help.email`}
                >
           <NotApplicable name="EmailNotApplicable"
                          className="email-notapplicable"
@@ -256,7 +251,6 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.address')}
-               help={`relationships.people.person.help.address`}
                adjustFor="address"
                >
           <Address name="Address"
