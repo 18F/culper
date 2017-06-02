@@ -96,7 +96,7 @@ DrugInvolvements.defaultProps = {
   ListBranch: '',
   onError: (value, arr) => { return arr },
   section: 'substance',
-  subsection: 'drugs/involvement',
+  subsection: 'drugs/purchase',
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugInvolvementsValidator(props).isValid()

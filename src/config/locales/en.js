@@ -7140,17 +7140,17 @@ const en = {
             note: ''
           },
           firstInvolvement: {
-            title: 'Need help with the date of first use?',
-            message: 'Provide an estimate of the month and year of first use',
+            title: 'Need help with the date of first involvement?',
+            message: 'Provide an estimate of the month and year of first involvement',
             note: ''
           },
           recentInvolvement: {
-            title: 'Need help with the date of most recent use?',
-            message: 'Provide an estimate of the month and year of first use',
+            title: 'Need help with the date of most recent involvement?',
+            message: 'Provide an estimate of the month and year of first involvement',
             note: ''
           },
           natureOfInvolvement: {
-            title: 'Need help with the nature of drug use?',
+            title: 'Need help with the nature of drug involvement?',
             message: 'Provide nature of use, frequency, and number of times used',
             note: ''
           },
@@ -7181,11 +7181,11 @@ const en = {
           }
         },
         collection: {
-          description: 'Summary of drug uses',
-          summary: 'Provide your drug use details below',
-          appendTitle: 'Do you have an additional instance(s) of illegal use of a drug or controlled substance to enter?',
-          appendLabel: 'Add another drug use',
-          itemType: 'Drug Use'
+          description: 'Summary of drug involvement',
+          summary: 'Provide your drug involvement details below',
+          appendTitle: 'Do you have an additional instance(s) of having been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance to enter?',
+          appendLabel: 'Add another drug involvement',
+          itemType: 'Drug involvement'
         }
       },
       drugType: {
