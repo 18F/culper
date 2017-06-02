@@ -26,4 +26,18 @@ describe('The relationship status component', () => {
     component.find('.status-options input[value="Never"]').simulate('change')
     expect(updates).toBe(3)
   })
+
+  it('shows divorce stuff', () => {
+    let updates = 0
+    const expected = {
+      name: 'relatives',
+      onUpdate: () => { updates++ }
+    }
+
+    const component = mount(<Marital {...expected} />)
+    expect(component.find('.marital').length).toEqual(1)
+    component.find('.status-options input[value="Divorced"]').simulate('change')
+    expect(updates).toBe(3)
+    expect(component.find('.accordion').length).toBe(1)
+  })
 })

@@ -654,7 +654,7 @@ export default class Status extends SubsectionElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="AlienRegistrationExpiration"
-                           className="alient-registration-expiration"
+                           className="alien-registration-expiration"
                            {...this.state.AlienRegistrationExpiration}
                            onUpdate={this.updateAlienRegistrationExpiration}
                            onError={this.handleError}
