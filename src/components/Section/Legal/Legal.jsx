@@ -94,6 +94,7 @@ class Legal extends SectionElement {
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
                       />
+            <hr/>
 
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
@@ -102,6 +103,7 @@ class Legal extends SectionElement {
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
                            />
+            <hr/>
 
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
@@ -109,21 +111,27 @@ class Legal extends SectionElement {
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   />
+            <hr/>
 
             <History name="history"
-                     {...this.props.InvestigationsHistory}
+                     {...this.props.History}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateInvestigationsHistory}
                      onError={this.handleError}
                      />
+            <hr/>
             <Revoked name="revoked"
                      {...this.props.Revoked}
+                     defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateRevoked}
                      onError={this.handleError}
                      />
+            <hr/>
             <Debarred name="debarred"
                       {...this.props.Debarred}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
                       onError={this.handleError}

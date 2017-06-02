@@ -47,6 +47,7 @@ class Financial extends SectionElement {
                           onError={this.handleError}
                           defaultState={false}
                           />
+            <hr />
 
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
@@ -56,6 +57,7 @@ class Financial extends SectionElement {
                       onError={this.handleError}
                       defaultState={false}
                     />
+            <hr />
 
             <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
@@ -65,6 +67,7 @@ class Financial extends SectionElement {
                    onError={this.handleError}
                    defaultState={false}
                    />
+            <hr />
 
             <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
@@ -74,6 +77,7 @@ class Financial extends SectionElement {
                   onError={this.handleError}
                   defaultState={false}
                   />
+            <hr />
 
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
@@ -99,6 +103,7 @@ class Financial extends SectionElement {
                         onError={this.handleError}
                         defaultState={false}
                         />
+            <hr />
 
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
             <ul>

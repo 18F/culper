@@ -47,6 +47,7 @@ class Identification extends SectionElement {
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
                            />
+            <hr />
 
             <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
@@ -55,6 +56,7 @@ class Identification extends SectionElement {
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
                         />
+            <hr />
 
             <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
@@ -63,6 +65,7 @@ class Identification extends SectionElement {
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
                                 />
+            <hr />
 
             <h2>{i18n.t('identification.birthplace.title')}</h2>
             <ApplicantBirthPlace name="birthplace"
@@ -71,6 +74,7 @@ class Identification extends SectionElement {
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
                                  />
+            <hr />
 
             <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
@@ -80,6 +84,7 @@ class Identification extends SectionElement {
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
                                 />
+            <hr />
 
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
@@ -88,6 +93,7 @@ class Identification extends SectionElement {
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
                           />
+            <hr />
 
             <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"

@@ -382,7 +382,7 @@ class History extends SectionElement {
                          />
             </Show>
 
-            <p></p>
+            <hr />
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}

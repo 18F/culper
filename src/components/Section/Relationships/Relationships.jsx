@@ -145,6 +145,8 @@ class Relationships extends SectionElement {
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
                      />
+            <hr/>
+
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
                          defaultState={false}
@@ -153,6 +155,8 @@ class Relationships extends SectionElement {
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
                          />
+            <hr/>
+
             <People name="people"
                     {...this.props.People}
                     defaultState={false}
@@ -160,6 +164,8 @@ class Relationships extends SectionElement {
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
                     />
+            <hr/>
+
             <Relatives name="relatives"
                        {...this.props.Relatives}
                        defaultState={false}

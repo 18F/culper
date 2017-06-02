@@ -68,6 +68,8 @@ class Military extends SectionElement {
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
                        />
+            <hr/>
+
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
@@ -76,6 +78,8 @@ class Military extends SectionElement {
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
                      />
+            <hr/>
+
             <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
             {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
@@ -85,6 +89,8 @@ class Military extends SectionElement {
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
                           />
+            <hr/>
+
             <h2>{i18n.t('military.foreign.heading.title')}</h2>
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
