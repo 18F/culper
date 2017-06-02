@@ -5348,8 +5348,8 @@ const en = {
           },
           help: {
             received: {
-              title: 'Need help when benefit was received?',
-              message: 'Provide the date the benefit was received',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             country: {
@@ -5400,8 +5400,8 @@ const en = {
           },
           help: {
             begin: {
-              title: 'Need help when benefit will be begin?',
-              message: 'Provide the date the benefit will begin',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {
@@ -5437,7 +5437,7 @@ const en = {
             end: 'Provide the date the benefit is expected to end',
             frequency: 'Provide the frequency that this benefit is received',
             country: 'Provide the name of the country providing the benefit',
-            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received',
             reason: 'Provide the reason this benefit will be received',
             obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
           },
@@ -5458,13 +5458,13 @@ const en = {
           },
           help: {
             began: {
-              title: 'Need help when the benefit began?',
-              message: 'Provide the date the benefit began',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             end: {
-              title: 'Need help when the benefit will end?',
-              message: 'Provide the date the benefit will end',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {
