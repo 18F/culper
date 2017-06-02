@@ -13,6 +13,7 @@ import DrugUses from './Drugs/DrugUses'
 import DrugInvolvements from './Drugs/DrugInvolvements'
 import DrugClearanceUses from './Drugs/DrugClearanceUses'
 import DrugPublicSafetyUses from './Drugs/DrugPublicSafetyUses'
+import PrescriptionUses from './Drugs/PrescriptionUses'
 
 class SubstanceUse extends SectionElement {
   constructor (props) {
@@ -26,6 +27,7 @@ class SubstanceUse extends SectionElement {
     this.updateDrugInvolvements = this.updateDrugInvolvements.bind(this)
     this.updateDrugClearanceUses = this.updateDrugClearanceUses.bind(this)
     this.updateDrugPublicSafetyUses = this.updateDrugPublicSafetyUses.bind(this)
+    this.updatePrescriptionUses = this.updatePrescriptionUses.bind(this)
   }
 
   // componentWillReceiveProps (next) {
@@ -65,6 +67,10 @@ class SubstanceUse extends SectionElement {
 
   updateDrugPublicSafetyUses (values) {
     this.handleUpdate('DrugPublicSafetyUses', values)
+  }
+
+  updatePrescriptionUses (values) {
+    this.handleUpdate('PrescriptionUses', values)
   }
 
   render () {
@@ -134,6 +140,19 @@ class SubstanceUse extends SectionElement {
               dispatch={this.props.dispatch}
               onError={this.handleError}
               onUpdate={this.updateDrugPublicSafetyUses}
+            />
+          </SectionView>
+
+          <SectionView name="drugs/misuse"
+            back="foreign/business/conferences"
+            backLabel={ i18n.t('foreign.destination.business.events') }
+            next=""
+            nextLabel={''}>
+            <PrescriptionUses name="prescriptionuses"
+              {...this.props.PrescriptionUses}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updatePrescriptionUses}
             />
           </SectionView>
 
@@ -251,6 +270,7 @@ function mapStateToProps (state) {
     DrugInvolvements: substance.DrugInvolvements || {},
     DrugClearanceUses: substance.DrugClearanceUses || {},
     DrugPublicSafetyUses: substance.DrugPublicSafetyUses || {},
+    PrescriptionUses: substance.PrescriptionUses || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }

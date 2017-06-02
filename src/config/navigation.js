@@ -139,6 +139,10 @@ const navigation = [
           {
             name: 'Public safety position',
             url: 'publicsafety'
+          },
+          {
+            name: 'Misuse',
+            url: 'misuse'
           }
         ]
       },

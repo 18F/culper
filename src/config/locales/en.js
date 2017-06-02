@@ -7060,7 +7060,8 @@ const en = {
         drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
         drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
-        drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?'
+        drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
+        prescriptionUses: 'In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?'
       },
       use: {
         heading: {
@@ -7252,7 +7253,49 @@ const en = {
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
         }
-
+      },
+      prescription: {
+        heading: {
+          prescriptionName: 'Provide the name of the prescription drug that you misused',
+          involvementDates: 'Provide the dates of involvement in the above',
+          reason: 'Provide the reason(s) for and circumstances of the misuse of the prescription drug',
+          useWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
+          useWithClearance: 'Was your involvement while possessing a security clearance?'
+        },
+        help: {
+          prescriptionName: {
+            title: 'Need help with the prescriptin name?',
+            message: 'Provide the name of the prescription drug that you misused',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason?',
+            message: 'Provide the reason(s) for and circumstances of the misuse of the prescription drug',
+            note: ''
+          },
+          involvementDates: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide the dates of involvement/use',
+            note: ''
+          },
+          useWhileEmployed: {
+            title: 'Need help with the use?',
+            message: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
+            note: ''
+          },
+          useWithClearance: {
+            title: 'Need help with the drug use with a security clearance?',
+            message: 'Was your involvement while possessing a security clearance?',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug misuse',
+          summary: 'Provide your drug misuse details below',
+          appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
+          appendLabel: 'Add another drug misuse',
+          itemType: 'Drug misuse'
+        }
       },
       drugType: {
         label: {
