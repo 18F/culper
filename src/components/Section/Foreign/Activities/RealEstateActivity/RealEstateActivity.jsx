@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
 import { AddressSummary } from '../../../../Summary'
-import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
+import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignRealEstateActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import RealEstateInterest from './RealEstateInterest'

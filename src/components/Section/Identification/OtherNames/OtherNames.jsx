@@ -19,7 +19,6 @@ export default class OtherNames extends SubsectionElement {
   }
 
   onUpdate (value) {
-    console.log('updating hasOtherNames', value)
     this.setState({ HasOtherNames: value }, () => {
       this.myDispatch({
         items: value === 'No' ? [] : this.state.List,
