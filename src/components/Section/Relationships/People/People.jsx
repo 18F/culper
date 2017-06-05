@@ -6,7 +6,7 @@ import { PeopleValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
-import { dateRangeFormat } from './../../Psychological/summaryHelper'
+import { DateSummary, NameSummary } from '../../../Summary'
 
 export default class People extends SubsectionElement {
   constructor (props) {
@@ -40,16 +40,15 @@ export default class People extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Person || {}
-    const date = dateRangeFormat(o.KnownDates)
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''} ${date}`.trim()
-          : i18n.t('relationships.people.person.collection.summary.unknown')
+    const name = NameSummary(o.Name, i18n.t('relationships.people.person.collection.summary.unknown'))
+    const date = DateSummary(o.KnownDates)
     const type = i18n.t('relationships.people.person.collection.itemType')
 
     return (
       <span>
         <span className="index">{type} {index + 1}:</span>
         <span className="info"><strong>{name}</strong></span>
+        <span className="dates"><strong>{date}</strong></span>
       </span>
     )
   }
