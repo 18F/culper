@@ -21,7 +21,7 @@ export default class MilitaryHistoryValidator {
       return true
     }
 
-    if (this.list.length === 0) {
+    if (this.hasServed === 'Yes' && !this.list.length) {
       return false
     }
 
@@ -75,7 +75,7 @@ export class MilitaryServiceValidator {
   }
 
   validServiceNumber () {
-    return this.serviceNumber && this.serviceNumber.length > 0
+    return !!this.serviceNumber && validGenericTextfield(this.serviceNumber)
   }
 
   validDates () {
