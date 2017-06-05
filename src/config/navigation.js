@@ -143,6 +143,14 @@ const navigation = [
           {
             name: 'Misuse',
             url: 'misuse'
+          },
+          {
+            name: 'Mandatory counseling or treatment',
+            url: 'ordered'
+          },
+          {
+            name: 'Voluntary counseling or treatment',
+            url: 'voluntary'
           }
         ]
       },

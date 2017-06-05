@@ -7073,7 +7073,8 @@ const en = {
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
         drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
         drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
-        prescriptionUses: 'In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?'
+        prescriptionUses: 'In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
+        orderedTreatments: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?'
       },
       use: {
         heading: {
@@ -7307,6 +7308,89 @@ const en = {
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'
+        }
+      },
+      ordered: {
+        heading: {
+          orderedBy: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances? (Check all that apply)',
+          explanation: 'Provide explanation',
+          actionTaken: 'Did you take action to receive counseling or treatment?',
+          noActionTakenExplanation: 'Provide explanation',
+          drugType: 'Provide the type of drug or controlled substance for which you were treated',
+          treatmentProvider: 'Provide the name of the treatment provider. (Last name, First name)',
+          treatmentProviderAddress: 'Provide the address for this treatment provider',
+          treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
+          treatmentDates: 'Provide the dates of treatment',
+          treatmentCompleted: 'Did you successfully complete the treatment?',
+          noTreatmentExplanation: 'Provide explanation'
+        },
+        help: {
+          orderedBy: {
+            title: 'Need help with who ordered treatment?',
+            message: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Provide explanation',
+            note: ''
+          },
+          actionTaken: {
+            title: 'Need help with taking action to receive counseling or treatment?',
+            message: 'Mark if you took action to receive counseling or treatment',
+            note: ''
+          },
+          noActionTakenExplanation: {
+            title: 'Need help with not having taken action?',
+            message: 'Provide explanation as to why you did not receive treatment',
+            note: ''
+          },
+          treatmentProvider: {
+            title: 'Need help with the treatment provider?',
+            message: 'Provide the name of the treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address of the treatment provider',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone of the treatment provider',
+            note: ''
+          },
+          treatmentDates: {
+            title: 'Need help with the treatment dates?',
+            message: 'Provide the dates of treatment',
+            note: ''
+          },
+          treatmentCompleted: {
+            title: 'Need help with the treatment completion?',
+            message: 'Mark yes if you successfully completed the treatment',
+            note: ''
+          },
+          noTreatmentExplanation: {
+            title: 'Need help with the explanation for not completing treatment?',
+            message: 'Explain why you did not complete treatment',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of treatments',
+          summary: 'Provide your treatment details below',
+          appendTitle: 'Do you have another instance of having been ordered, advised, or asked to seek drug or controlled substance counseling or treatment to enter?',
+          appendLabel: 'Add another treatment',
+          itemType: 'Treatment'
+        },
+        orderedBy: {
+          label: {
+            employer: 'An employer, military commander, or employee assistance program',
+            medicalProfessional: 'A medical professional',
+            mentalHealthProfessional: 'A mental health professional',
+            judge: 'A court official / judge',
+            none: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above.'
+          }
         }
       },
       drugType: {

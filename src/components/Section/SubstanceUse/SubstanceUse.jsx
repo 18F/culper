@@ -14,6 +14,7 @@ import DrugInvolvements from './Drugs/DrugInvolvements'
 import DrugClearanceUses from './Drugs/DrugClearanceUses'
 import DrugPublicSafetyUses from './Drugs/DrugPublicSafetyUses'
 import PrescriptionUses from './Drugs/PrescriptionUses'
+import OrderedTreatments from './Drugs/OrderedTreatments'
 
 class SubstanceUse extends SectionElement {
   constructor (props) {
@@ -28,6 +29,7 @@ class SubstanceUse extends SectionElement {
     this.updateDrugClearanceUses = this.updateDrugClearanceUses.bind(this)
     this.updateDrugPublicSafetyUses = this.updateDrugPublicSafetyUses.bind(this)
     this.updatePrescriptionUses = this.updatePrescriptionUses.bind(this)
+    this.updateOrderedTreatments = this.updateOrderedTreatments.bind(this)
   }
 
   // componentWillReceiveProps (next) {
@@ -71,6 +73,10 @@ class SubstanceUse extends SectionElement {
 
   updatePrescriptionUses (values) {
     this.handleUpdate('PrescriptionUses', values)
+  }
+
+  updateOrderedTreatments (values) {
+    this.handleUpdate('OrderedTreatments', values)
   }
 
   render () {
@@ -153,6 +159,19 @@ class SubstanceUse extends SectionElement {
               dispatch={this.props.dispatch}
               onError={this.handleError}
               onUpdate={this.updatePrescriptionUses}
+            />
+          </SectionView>
+
+          <SectionView name="drugs/ordered"
+            back="foreign/business/conferences"
+            backLabel={ i18n.t('foreign.destination.business.events') }
+            next=""
+            nextLabel={''}>
+            <OrderedTreatments name="ordered"
+              {...this.props.OrderedTreatments}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateOrderedTreatments}
             />
           </SectionView>
 
@@ -271,6 +290,7 @@ function mapStateToProps (state) {
     DrugClearanceUses: substance.DrugClearanceUses || {},
     DrugPublicSafetyUses: substance.DrugPublicSafetyUses || {},
     PrescriptionUses: substance.PrescriptionUses || {},
+    OrderedTreatments: substance.OrderedTreatments || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }
