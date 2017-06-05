@@ -214,6 +214,7 @@ export default class OrderedTreatment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentDates')}
+              adjustFor="daterange"
               help={'substance.drugs.ordered.help.treatmentDates'}>
               <DateRange name="TreatmentDates"
                 className="treatment-dates"

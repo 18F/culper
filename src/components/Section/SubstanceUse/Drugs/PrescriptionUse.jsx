@@ -61,6 +61,7 @@ export default class PrescriptionUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.prescription.heading.involvementDates')}
+          adjustFor="daterange"
           help={'substance.drugs.prescription.help.involvementDates'}>
           <DateRange name="InvolvementDates"
             className="involvement-dates"

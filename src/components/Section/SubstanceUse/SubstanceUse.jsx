@@ -110,8 +110,8 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/usage"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
+            back="foreign/travel"
+            backLabel={ i18n.t('foreign.destination.travel') }
             next="substance/drugs/purchase"
             nextLabel={i18n.t('substance.destination.drugs.purchase')}>
             <DrugUses name="druguses"

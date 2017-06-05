@@ -104,6 +104,7 @@ export default class VoluntaryTreatment extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentDates')}
+          adjustFor="daterange"
           help={'substance.drugs.voluntary.help.treatmentDates'}>
           <DateRange name="TreatmentDates"
             className="treatment-dates"
