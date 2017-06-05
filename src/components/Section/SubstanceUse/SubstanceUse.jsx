@@ -106,8 +106,8 @@ class SubstanceUse extends SectionElement {
           <SectionView name="drugs/usage"
             back="foreign/business/conferences"
             backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            next="substance/drugs/purchase"
+            nextLabel={i18n.t('substance.destination.drugs.purchase')}>
             <DrugUses name="druguses"
               {...this.props.DrugUses}
               dispatch={this.props.dispatch}
@@ -117,10 +117,10 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/purchase"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            back="substance/drugs/usage"
+            backLabel={i18n.t('substance.destination.drugs.usage')}
+            next="substance/drugs/clearance"
+            nextLabel={i18n.t('substance.destination.drugs.clearance')}>
             <DrugInvolvements name="druginvolvements"
               {...this.props.DrugInvolvements}
               dispatch={this.props.dispatch}
@@ -130,10 +130,10 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/clearance"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            back="substance/drugs/purchase"
+            backLabel={i18n.t('substance.destination.drugs.purchase')}
+            next="substance/drugs/publicsafety"
+            nextLabel={i18n.t('substance.destination.drugs.publicsafety')}>
             <DrugClearanceUses name="drugclearanceuses"
               {...this.props.DrugClearanceUses}
               dispatch={this.props.dispatch}
@@ -143,10 +143,10 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/publicsafety"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            back="substance/drugs/clearance"
+            backLabel={i18n.t('substance.destination.drugs.clearance')}
+            next="substance/drugs/misuse"
+            nextLabel={i18n.t('substance.destination.drugs.misuse')}>
             <DrugPublicSafetyUses name="drugpublicsafety"
               {...this.props.DrugPublicSafetyUses}
               dispatch={this.props.dispatch}
@@ -156,10 +156,10 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/misuse"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            back="substance/drugs/publicsafety"
+            backLabel={i18n.t('substance.destination.drugs.publicsafety')}
+            next="substance/drugs/ordered"
+            nextLabel={i18n.t('substance.destination.drugs.ordered')}>
             <PrescriptionUses name="prescriptionuses"
               {...this.props.PrescriptionUses}
               dispatch={this.props.dispatch}
@@ -169,10 +169,10 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/ordered"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            back="substance/drugs/misuse"
+            backLabel={i18n.t('substance.destination.drugs.misuse')}
+            next="substance/drugs/voluntary"
+            nextLabel={i18n.t('substance.destination.drugs.voluntary')}>
             <OrderedTreatments name="ordered"
               {...this.props.OrderedTreatments}
               dispatch={this.props.dispatch}
@@ -182,10 +182,10 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="drugs/voluntary"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next=""
-            nextLabel={''}>
+            back="substance/drugs/ordered"
+            backLabel={i18n.t('substance.destination.drugs.ordered')}
+            next="substance/alcohol/negative"
+            nextLabel={i18n.t('substance.destination.police.negative')}>
             <VoluntaryTreatments name="voluntary"
               {...this.props.VoluntaryTreatments}
               dispatch={this.props.dispatch}
@@ -195,8 +195,8 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="alcohol/negative"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
+            back="substance/drugs/voluntary"
+            backLabel={i18n.t('substance.destination.drugs.voluntary')}
             next="substance/alcohol/ordered"
             nextLabel={ i18n.t('substance.destination.police.ordered') }>
             <NegativeImpacts name="negative"

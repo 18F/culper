@@ -124,6 +124,7 @@ export default class VoluntaryTreatment extends ValidationElement {
 
         <Show when={this.props.TreatmentCompleted === 'No'}>
           <Field title={i18n.t('substance.drugs.voluntary.heading.noTreatmentExplanation')}
+            titleSize="h4"
             help={'substance.drugs.voluntary.help.noTreatmentExplanation'}>
             <Textarea name="NoTreatmentExplanation"
               className="no-treatment-explanation"

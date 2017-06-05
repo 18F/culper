@@ -6852,6 +6852,15 @@ const en = {
         voluntary: 'Voluntary counseling or treatment',
         additional: 'Additional instances'
       },
+      drugs: {
+        usage: 'Usage',
+        purchase: 'Purchase',
+        clearance: 'Security clearance position',
+        publicsafety: 'Public safety position',
+        misuse: 'Misuse',
+        ordered: 'Mandatory counseling or treatment',
+        voluntary: 'Voluntary counseling or treatment'
+      },
       review: 'Review substance use'
     },
     alcohol: {
