@@ -177,6 +177,7 @@ export default class TravelQuestions extends ValidationElement {
                adjustFor="country">
           <Country name="Country"
                    {...this.props.Country}
+                   excludeUnitedStates={true}
                    className="foreign-travel-country"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}

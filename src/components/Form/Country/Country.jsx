@@ -153,6 +153,7 @@ export default class Country extends ValidationElement {
 
 Country.defaultProps = {
   name: 'country',
+  excludeUnitedStates: false,
   onError: (value, arr) => { return arr }
 }
 
