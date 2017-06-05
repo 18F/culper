@@ -15,6 +15,7 @@ import DrugClearanceUses from './Drugs/DrugClearanceUses'
 import DrugPublicSafetyUses from './Drugs/DrugPublicSafetyUses'
 import PrescriptionUses from './Drugs/PrescriptionUses'
 import OrderedTreatments from './Drugs/OrderedTreatments'
+import VoluntaryTreatments from './Drugs/VoluntaryTreatments'
 
 class SubstanceUse extends SectionElement {
   constructor (props) {
@@ -30,6 +31,7 @@ class SubstanceUse extends SectionElement {
     this.updateDrugPublicSafetyUses = this.updateDrugPublicSafetyUses.bind(this)
     this.updatePrescriptionUses = this.updatePrescriptionUses.bind(this)
     this.updateOrderedTreatments = this.updateOrderedTreatments.bind(this)
+    this.updateVoluntaryTreatments = this.updateVoluntaryTreatments.bind(this)
   }
 
   // componentWillReceiveProps (next) {
@@ -77,6 +79,10 @@ class SubstanceUse extends SectionElement {
 
   updateOrderedTreatments (values) {
     this.handleUpdate('OrderedTreatments', values)
+  }
+
+  updateVoluntaryTreatments (values) {
+    this.handleUpdate('VoluntaryTreatments', values)
   }
 
   render () {
@@ -172,6 +178,19 @@ class SubstanceUse extends SectionElement {
               dispatch={this.props.dispatch}
               onError={this.handleError}
               onUpdate={this.updateOrderedTreatments}
+            />
+          </SectionView>
+
+          <SectionView name="drugs/voluntary"
+            back="foreign/business/conferences"
+            backLabel={ i18n.t('foreign.destination.business.events') }
+            next=""
+            nextLabel={''}>
+            <VoluntaryTreatments name="voluntary"
+              {...this.props.VoluntaryTreatments}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateVoluntaryTreatments}
             />
           </SectionView>
 
@@ -291,6 +310,7 @@ function mapStateToProps (state) {
     DrugPublicSafetyUses: substance.DrugPublicSafetyUses || {},
     PrescriptionUses: substance.PrescriptionUses || {},
     OrderedTreatments: substance.OrderedTreatments || {},
+    VoluntaryTreatments: substance.VoluntaryTreatments || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }
