@@ -2,7 +2,6 @@ import AddressValidator from './address'
 import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
-import DivorceValidator from './divorce'
 import ForeignBornDocument from './foreignborndocument'
 import { validBranch, validSSN, validDateField, validPhoneNumber } from './helpers'
 
@@ -17,6 +16,7 @@ export default class CivilUnionValidator {
     this.otherNameMaiden = state.OtherNameMaiden
     this.otherNameNotApplicable = state.OtherNameNotApplicable
     this.datesUsed = state.DatesUsed
+    this.citizenship = state.Citizenship
     this.address = state.Address
     this.telephone = state.Telephone
     this.separated = state.Separated
@@ -24,8 +24,10 @@ export default class CivilUnionValidator {
     this.addressSeparated = state.AddressSeparated
     this.addressSeparatedNotApplicable = state.AddressSeparatedNotApplicable
     this.divorced = state.Divorced
-    this.divorcedList = state.DivorcedList
-    this.divorcedListBranch = state.DivorcedListBranch
+  }
+
+  validCitizenship () {
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
   }
 
   validOtherName () {
@@ -53,32 +55,6 @@ export default class CivilUnionValidator {
     return validDateField(this.dateSeparated) && addressValid
   }
 
-  validDivorced () {
-    if (!validBranch(this.divorced)) {
-      return false
-    }
-
-    if (this.divorced === 'No') {
-      return true
-    }
-
-    if (!this.divorcedList || !this.divorcedList.length) {
-      return false
-    }
-
-    if (this.divorcedListBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.divorcedList) {
-      if (!new DivorceValidator(item.Divorce).isValid()) {
-        return false
-      }
-    }
-
-    return true
-  }
-
   validForeignBornDocument () {
     if (new BirthPlaceValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
       return new ForeignBornDocument(this.foreignBornDocument).isValid()
@@ -96,6 +72,7 @@ export default class CivilUnionValidator {
       validBranch(this.separated) &&
       new AddressValidator(this.address).isValid() &&
       this.validSeparated() &&
-      this.validDivorced()
+      this.validCitizenship() &&
+      !!this.divorced
   }
 }
