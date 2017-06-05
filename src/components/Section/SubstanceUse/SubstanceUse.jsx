@@ -35,17 +35,17 @@ class SubstanceUse extends SectionElement {
     this.updateVoluntaryTreatments = this.updateVoluntaryTreatments.bind(this)
   }
 
-   componentWillReceiveProps (next) {
-     // Redirect to first alcohol subsection if root subsection is accessed
-     switch (next.subsection) {
-       case 'alcohol':
-         this.props.dispatch(push(`/form/substance/alcohol/negative`))
-         break
-       case 'drugs':
-         this.props.dispatch(push(`/form/substance/drugs/usage`))
-         break
-     }
-   }
+  componentWillReceiveProps (next) {
+    // Redirect to first alcohol subsection if root subsection is accessed
+    switch (next.subsection) {
+      case 'alcohol':
+        this.props.dispatch(push(`/form/substance/alcohol/negative`))
+        break
+      case 'drugs':
+        this.props.dispatch(push(`/form/substance/drugs/usage`))
+        break
+    }
+  }
 
   updateNegativeImpacts (values) {
     this.handleUpdate('NegativeImpacts', values)
@@ -323,7 +323,7 @@ function mapStateToProps (state) {
 }
 
 SubstanceUse.defaultProps = {
-  defaultView: 'alcohol/negative',
+  defaultView: 'drugs/usage',
   store: 'SubstanceUse'
 }
 
