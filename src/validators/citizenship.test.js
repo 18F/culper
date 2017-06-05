@@ -344,7 +344,9 @@ describe('citizenship component validation', function () {
             state: 'Virginia',
             zipcode: '22202'
           },
-          PriorCitizenship: ['Germany'],
+          PriorCitizenship: {
+            value: ['Germany']
+          },
           HasAlienRegistration: 'Yes',
           AlienRegistrationNumber: {
             value: 'number'
@@ -439,7 +441,9 @@ describe('citizenship component validation', function () {
             state: 'Virginia',
             zipcode: '22202'
           },
-          PriorCitizenship: ['Germany'],
+          PriorCitizenship: {
+            value: ['Germany']
+          },
           AlienRegistrationNumber: {
             value: 'number'
           },
