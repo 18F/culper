@@ -29,12 +29,15 @@ export default class Checkbox extends ValidationElement {
     event.persist()
     this.handleValidation(event)
 
-    this.setState({ checked: event.target.checked }, () => {
+    const value = event.target.value
+    const checked = event.target.checked
+
+    this.setState({ checked: checked }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          value: event.target.value,
-          checked: event.target.checked
+          value: value,
+          checked: checked
         })
       }
 
