@@ -259,6 +259,63 @@ class SubstanceUse extends SectionElement {
             showTop="true"
             next="legal/police"
             nextLabel={ i18n.t('legal.destination.police') }>
+
+            <DrugUses name="druguses"
+              {...this.props.DrugUses}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateDrugUses}
+            />
+
+            <DrugInvolvements name="druginvolvements"
+              {...this.props.DrugInvolvements}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateDrugInvolvements}
+            />
+
+            <DrugClearanceUses name="drugclearanceuses"
+              {...this.props.DrugClearanceUses}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateDrugClearanceUses}
+            />
+
+            <DrugPublicSafetyUses name="drugpublicsafety"
+              {...this.props.DrugPublicSafetyUses}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateDrugPublicSafetyUses}
+            />
+
+            <PrescriptionUses name="prescriptionuses"
+              {...this.props.PrescriptionUses}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updatePrescriptionUses}
+            />
+
+            <OrderedTreatments name="ordered"
+              {...this.props.OrderedTreatments}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateOrderedTreatments}
+            />
+
+            <VoluntaryTreatments name="voluntary"
+              {...this.props.VoluntaryTreatments}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.handleError}
+              onUpdate={this.updateVoluntaryTreatments}
+            />
+
             <NegativeImpacts name="negative"
               defaultState={false}
               {...this.props.NegativeImpacts}
