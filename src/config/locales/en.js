@@ -2019,7 +2019,7 @@ const en = {
         opportunity: 'An opportunity will be provided to list multiple relatives for each type.',
         checkall: 'Check all that apply.',
         alias: 'Such as maiden, name by former marriage, former name, alias, or nickname.',
-        abroad: 'Born abroad to U.S. Parents',
+        abroad: 'Born abroad to U.S. Parents:',
         naturalized: 'Naturalized:',
         derived: 'Derived:',
         notcitizen: 'Not a U.S. Citizen:',
