@@ -87,6 +87,7 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.firstInvolvement')}
+          adjustFor="datecontrol"
           help={'substance.drugs.involvement.help.firstInvolvement'}>
           <DateControl name="FirstInvolvement"
             className="first-involvement"
@@ -98,6 +99,7 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.recentInvolvement')}
+          adjustFor="datecontrol"
           help={'substance.drugs.involvement.help.recentInvolvement'}>
           <DateControl name="RecentInvolvement"
             className="recent-involvement"

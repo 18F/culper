@@ -49,6 +49,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.publicSafety.heading.involvementDates')}
+          adjustFor="datecontrol"
           help={'substance.drugs.publicSafety.help.involvementDates'}>
           <DateRange name="InvolvementDates"
             className="involvement-dates"

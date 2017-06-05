@@ -81,6 +81,7 @@ export default class DrugUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.firstUse')}
+          adjustFor="datecontrol"
           help={'substance.drugs.use.help.firstUse'}>
           <DateControl name="FirstUse"
             className="first-use"
@@ -92,6 +93,7 @@ export default class DrugUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.recentUse')}
+          adjustFor="datecontrol"
           help={'substance.drugs.use.help.recentUse'}>
           <DateControl name="RecentUse"
             className="recent-use"
