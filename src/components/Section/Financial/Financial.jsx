@@ -47,8 +47,8 @@ class Financial extends SectionElement {
                           onError={this.handleError}
                           defaultState={false}
                           />
-            <hr />
 
+            <hr />
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
@@ -57,8 +57,8 @@ class Financial extends SectionElement {
                       onError={this.handleError}
                       defaultState={false}
                     />
-            <hr />
 
+            <hr />
             <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
@@ -67,8 +67,8 @@ class Financial extends SectionElement {
                    onError={this.handleError}
                    defaultState={false}
                    />
-            <hr />
 
+            <hr />
             <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
@@ -77,8 +77,8 @@ class Financial extends SectionElement {
                   onError={this.handleError}
                   defaultState={false}
                   />
-            <hr />
 
+            <hr />
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
@@ -88,6 +88,7 @@ class Financial extends SectionElement {
                     defaultState={false}
                     />
 
+            <hr />
             <h2>{i18n.t('financial.delinquent.title')}</h2>
             {i18n.m('financial.delinquent.para.details')}
             <ul>
@@ -103,8 +104,8 @@ class Financial extends SectionElement {
                         onError={this.handleError}
                         defaultState={false}
                         />
-            <hr />
 
+            <hr />
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
             <ul>
               <li>{i18n.m('financial.nonpayment.para.repo')}</li>

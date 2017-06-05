@@ -4,32 +4,16 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Accordion, Svg, Show, Branch } from '../../Form'
+import { Svg, Show, Branch } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps, EmploymentCustomSummary, ResidenceCustomSummary, EducationCustomSummary,
-         EmploymentCaption, EducationCaption, ResidenceCaption } from './summaries'
+import { InjectGaps } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
-import { Gap } from './Gap'
-import { ResidenceValidator, EmploymentValidator, EducationValidator, FederalServiceValidator } from '../../../validators'
-import { openState } from '../../Form/Accordion/Accordion'
-
-const byline = (item, index, initial, translation, validator) => {
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
-      </div>
-    )
-  }
-
-  return null
-}
 
 class History extends SectionElement {
   constructor (props) {

@@ -134,6 +134,7 @@ class Psychological extends SectionElement {
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
+
             <hr />
             <Consultation name="Consultations"
                           {...this.props.Consultations}
@@ -142,6 +143,7 @@ class Psychological extends SectionElement {
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+
             <hr />
             <Hospitalizations name="Hospitalizations"
                               {...this.props.Hospitalizations}
@@ -150,6 +152,7 @@ class Psychological extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+
             <hr />
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
@@ -159,6 +162,7 @@ class Psychological extends SectionElement {
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
+
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />

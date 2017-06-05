@@ -127,6 +127,7 @@ class SubstanceUse extends SectionElement {
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
                              />
+
             <hr />
             <OrderedCounselings name="ordered"
                                 defaultState={false}
@@ -135,6 +136,7 @@ class SubstanceUse extends SectionElement {
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
                                 />
+
             <hr />
             <VoluntaryCounselings name="voluntary"
                                   defaultState={false}
@@ -143,6 +145,7 @@ class SubstanceUse extends SectionElement {
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
                                   />
+
             <hr />
             <ReceivedCounselings name="additional"
                                  defaultState={false}

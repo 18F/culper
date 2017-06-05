@@ -42,6 +42,7 @@ class Citizenship extends SectionElement {
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
                     />
+
             <hr/>
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
