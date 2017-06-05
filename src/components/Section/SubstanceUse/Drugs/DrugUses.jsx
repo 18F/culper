@@ -42,8 +42,21 @@ export default class DrugUses extends SubsectionElement {
     const firstUse = DateSummary(o.FirstUse)
     const recentUse = DateSummary(o.RecentUse)
     const dates = [firstUse, recentUse].reduce((p, c) => {
-      if (p || c) {
-        return `${p || 'N/A'} - ${c || 'N/A'}`
+      const first = `First use ${p}`
+      const recent = `Recent use ${c}`
+      if (p && c) {
+        return (
+          <span className="drug-use">
+            <span className="first">{first}</span>
+            <span className="recent">{recent}</span>
+          </span>
+        )
+      }
+      if (p) {
+        return first
+      }
+      if (c) {
+        return recent
       }
       return p
     })
