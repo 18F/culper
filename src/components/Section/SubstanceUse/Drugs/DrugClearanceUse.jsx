@@ -49,7 +49,7 @@ export default class DrugClearanceUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.clearance.heading.involvementDates')}
-          adjustFor="datecontrol"
+          adjustFor="daterange"
           help={'substance.drugs.clearance.help.involvementDates'}>
           <DateRange name="InvolvementDates"
             className="involvement-dates"
