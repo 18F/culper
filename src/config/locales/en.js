@@ -7340,7 +7340,7 @@ const en = {
       },
       ordered: {
         heading: {
-          orderedBy: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances? (Check all that apply)',
+          orderedBy: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
           explanation: 'Provide explanation',
           actionTaken: 'Did you take action to receive counseling or treatment?',
           noActionTakenExplanation: 'You have indicated that you did not receive treatment. Provide explanation',
