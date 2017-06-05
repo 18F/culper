@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n, navigation } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
+import { validations } from '../Navigation'
 
 class ScoreCard extends React.Component {
   sections () {
@@ -19,26 +20,12 @@ class ScoreCard extends React.Component {
       const valid = this.props.completed[section]
             .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
             .length
-      if (this.countValidations(section) === valid) {
+      if (validations(navigation.find(n => n.url === section)) === valid) {
         completed++
       }
     }
 
     return completed
-  }
-
-  countValidations (section) {
-    return navigation.filter(x => x.url === section).reduce((x, y) => {
-      const subs = y.subsections.filter(s => {
-        if (s.hidden || (s.hiddenFunc && s.hiddenFunc(this.props.application))) {
-          return false
-        }
-
-        return true
-      })
-
-      return x + subs.length
-    }, 0)
   }
 
   render () {

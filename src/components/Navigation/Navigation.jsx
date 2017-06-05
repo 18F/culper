@@ -5,6 +5,24 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation } from '../../config'
 import { NavigationValidator } from '../../validators'
 
+export const validations = (section) => {
+  if (!section.subsections) {
+    return 1
+  }
+
+  return section.subsections
+    .filter(subsection => {
+      if (subsection.hidden || (subsection.hiddenFunc && subsection.hiddenFunc(this.props.application))) {
+        return false
+      }
+
+      return true
+    })
+    .reduce((count, subsection) => {
+      return count + validations(subsection)
+    }, 0)
+}
+
 class Navigation extends React.Component {
   /**
    * There is a bug in the react router which does not add the active
@@ -59,7 +77,7 @@ class Navigation extends React.Component {
           .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
 
       if (crumbs.length === 1) {
-        return this.countValidations(section) === se.filter(e => e.valid === true).length
+        return validations(navigation.find(n => n.url === section)) === se.filter(e => e.valid === true).length
       } else if (crumbs.length > 1) {
         const sse = se.filter(e => e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase())
         return sse.length > 0 && sse.every(e => e.valid === true)
@@ -67,20 +85,6 @@ class Navigation extends React.Component {
     }
 
     return false
-  }
-
-  countValidations (section) {
-    return navigation.filter(x => x.url === section).reduce((x, y) => {
-      const subs = y.subsections.filter(s => {
-        if (s.hidden || (s.hiddenFunc && s.hiddenFunc(this.props.application))) {
-          return false
-        }
-
-        return true
-      })
-
-      return x + subs.length
-    }, 0)
   }
 
   /**
