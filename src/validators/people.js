@@ -13,8 +13,8 @@ export default class PeopleValidator {
   validCount () {
     let count = 0
 
-    for (let item of this.people) {
-      if (!new PersonValidator(item.Person).isValid()) {
+    for (const item of this.people) {
+      if (!new PersonValidator(item.Item).isValid()) {
         continue
       }
 
@@ -33,8 +33,8 @@ export default class PeopleValidator {
       return false
     }
 
-    for (let item of this.people) {
-      if (!new PersonValidator(item.Person).isValid()) {
+    for (const item of this.people) {
+      if (!new PersonValidator(item.Item).isValid()) {
         return false
       }
     }
@@ -46,7 +46,7 @@ export default class PeopleValidator {
 export class PersonValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
-    this.knownDates = state.KnownDates
+    this.dates = state.Dates
     this.rank = state.Rank
     this.rankNotApplicable = state.RankNotApplicable
     this.relationship = state.Relationship
@@ -77,7 +77,7 @@ export class PersonValidator {
     return new NameValidator(this.name).isValid() &&
       validNotApplicable(this.rankNotApplicable, () => {
         return validGenericTextfield(this.rank)
-      }) && new DateRangeValidator(this.knownDates).isValid() &&
+      }) && new DateRangeValidator(this.dates).isValid() &&
       this.validRelationship() &&
       validPhoneNumber(this.mobileTelephone) &&
       validPhoneNumber(this.otherTelephone) &&

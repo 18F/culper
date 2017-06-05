@@ -2612,6 +2612,11 @@ const en = {
             explanation: 'Provide explanation'
           }
         },
+        gap: {
+          title: 'Coverage gap',
+          para: 'There is a gap in your 7 year period. The entire 7 years should be covered with no gaps.',
+          button: 'Add another person'
+        },
         help: {
           knownDates: {
             title: 'Need help with this date range?',
@@ -2653,6 +2658,7 @@ const en = {
           summary: {
             unknown: 'Provide the person\'s information below'
           },
+          description: 'Summary of people who know you',
           appendLabel: 'Add another person',
           appendTitle: 'Do you have an additional person who knows you well to list?',
           itemType: 'Person'
