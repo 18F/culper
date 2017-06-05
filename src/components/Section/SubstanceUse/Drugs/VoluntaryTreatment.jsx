@@ -85,6 +85,7 @@ export default class VoluntaryTreatment extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderAddress')}
+          adjustFor="address"
           help={'substance.drugs.voluntary.help.treatmentProviderAddress'}>
           <Address name="TreatmentProviderAddress"
             className="treatment-provider-address"

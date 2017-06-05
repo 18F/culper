@@ -97,9 +97,9 @@ export default class OrderedTreatment extends ValidationElement {
   render () {
     return (
       <div className="drug-ordered-treatment">
-
         <Field title={i18n.t('substance.drugs.ordered.heading.orderedBy')}
           help={'substance.drugs.ordered.help.orderedBy'}>
+          {i18n.m('substance.drugs.ordered.para.orderedBy')}
           <CheckboxGroup className="ordered-by"
             selectedValues={this.props.OrderedBy}>
             <Checkbox name="Employer"
@@ -186,6 +186,7 @@ export default class OrderedTreatment extends ValidationElement {
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProvider')}
               help={'substance.drugs.ordered.help.treatmentProvider'}>
+              {i18n.m('substance.drugs.ordered.para.treatmentProviderAddress')}
               <Text name="TreatmentProvider"
                 className="treatment-provider"
                 {...this.props.TreatmentProvider}
@@ -195,6 +196,7 @@ export default class OrderedTreatment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderAddress')}
+              adjustFor="address"
               help={'substance.drugs.ordered.help.treatmentProviderAddress'}>
               <Address name="TreatmentProviderAddress"
                 className="treatment-provider-address"

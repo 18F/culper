@@ -7343,14 +7343,18 @@ const en = {
           orderedBy: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances? (Check all that apply)',
           explanation: 'Provide explanation',
           actionTaken: 'Did you take action to receive counseling or treatment?',
-          noActionTakenExplanation: 'Provide explanation',
+          noActionTakenExplanation: 'You have indicated that you did not receive treatment. Provide explanation',
           drugType: 'Provide the type of drug or controlled substance for which you were treated',
-          treatmentProvider: 'Provide the name of the treatment provider. (Last name, First name)',
+          treatmentProvider: 'Provide the name of the treatment provider',
           treatmentProviderAddress: 'Provide the address for this treatment provider',
           treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
           treatmentDates: 'Provide the dates of treatment',
           treatmentCompleted: 'Did you successfully complete the treatment?',
-          noTreatmentExplanation: 'Provide explanation'
+          noTreatmentExplanation: 'You have indicated that you did not successfully complete the treatment. Provide explanation'
+        },
+        para: {
+          orderedBy: 'Check all that apply',
+          treatmentProvider: 'Last name, First name'
         },
         help: {
           drugType: {
@@ -7434,7 +7438,7 @@ const en = {
           treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
           treatmentDates: 'Provide the dates of treatment',
           treatmentCompleted: 'Did you successfully complete the treatment?',
-          noTreatmentExplanation: 'Provide explanation'
+          noTreatmentExplanation: 'You have indicated that you did not you successfully complete the treatment. Provide explanation'
         },
         help: {
           drugType: {
