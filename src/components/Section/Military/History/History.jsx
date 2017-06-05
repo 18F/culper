@@ -45,6 +45,7 @@ export default class History extends SubsectionElement {
     // If there is no history clear out any previously entered data
     if (value === 'No') {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 
@@ -104,8 +105,8 @@ export default class History extends SubsectionElement {
 
 History.defaultProps = {
   onError: (value, arr) => { return arr },
-  section: 'foreign',
-  subsection: 'business/advice',
+  section: 'military',
+  subsection: 'history',
   dispatch: () => {},
   validator: (state, props) => {
     return new MilitaryHistoryValidator(state, props).isValid()

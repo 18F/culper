@@ -1,3 +1,4 @@
+import { hideDisciplinaryProcedures } from '../validators/militarydisciplinary'
 import { hideExistingConditions } from '../validators/psychological'
 
 const navigation = [
@@ -74,7 +75,7 @@ const navigation = [
     subsections: [
       { name: 'Selective service record', url: 'selective' },
       { name: 'U.S. military', url: 'history' },
-      { name: 'Disciplinary procedures', url: 'disciplinary' },
+      { name: 'Disciplinary procedures', url: 'disciplinary', hiddenFunc: hideDisciplinaryProcedures },
       { name: 'Foreign military', url: 'foreign' }
     ]
   },

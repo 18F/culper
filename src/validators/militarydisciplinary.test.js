@@ -1,6 +1,47 @@
-import MilitaryDisciplinaryValidator from './militarydisciplinary'
+import MilitaryDisciplinaryValidator, { hideDisciplinaryProcedures } from './militarydisciplinary'
 
 describe('Military disciplinary validation', function () {
+  it('only display disciplinary procedures if military history is present', () => {
+    const tests = [
+      {
+        store: {},
+        hidden: true
+      },
+      {
+        store: {
+          Military: {
+            History: {}
+          }
+        },
+        hidden: true
+      },
+      {
+        store: {
+          Military: {
+            History: {
+              HasServed: 'No'
+            }
+          }
+        },
+        hidden: true
+      },
+      {
+        store: {
+          Military: {
+            History: {
+              HasServed: 'Yes'
+            }
+          }
+        },
+        hidden: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(hideDisciplinaryProcedures(test.store)).toBe(test.hidden)
+    })
+  })
+
   it('handle whether subject has disciplinary procedures', () => {
     const tests = [
       {
@@ -33,6 +74,22 @@ describe('Military disciplinary validation', function () {
       {
         state: {
           HasDisciplinary: 'Yes'
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasDisciplinary: 'Yes',
+          List: [{}],
+          ListBranch: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasDisciplinary: 'Yes',
+          List: [{}],
+          ListBranch: 'No'
         },
         expected: false
       },

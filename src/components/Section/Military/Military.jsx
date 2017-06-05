@@ -4,7 +4,8 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
+import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
+import { IntroHeader, Show } from '../../Form'
 import Selective from './Selective'
 import History from './History'
 import Disciplinary from './Disciplinary'
@@ -68,8 +69,8 @@ class Military extends SectionElement {
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
                        />
-            <hr/>
 
+            <hr/>
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
@@ -78,19 +79,21 @@ class Military extends SectionElement {
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
                      />
-            <hr/>
 
-            <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
-            {i18n.m('military.disciplinary.para.info')}
-            <Disciplinary name="disciplinary"
-                          {...this.props.Disciplinary}
-                          defaultState={false}
-                          dispatch={this.props.dispatch}
-                          onUpdate={this.updateDisciplinary}
-                          onError={this.handleError}
-                          />
-            <hr/>
+            <Show when={!hideDisciplinaryProcedures(this.props.Military)}>
+              <hr/>
+              <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
+              {i18n.m('military.disciplinary.para.info')}
+              <Disciplinary name="disciplinary"
+                            {...this.props.Disciplinary}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDisciplinary}
+                            onError={this.handleError}
+                            />
+            </Show>
 
+            <hr/>
             <h2>{i18n.t('military.foreign.heading.title')}</h2>
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"

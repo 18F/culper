@@ -71,7 +71,15 @@ class Navigation extends React.Component {
 
   countValidations (section) {
     return navigation.filter(x => x.url === section).reduce((x, y) => {
-      return x + y.subsections.length
+      const subs = y.subsections.filter(s => {
+        if (s.hidden || (s.hiddenFunc && s.hiddenFunc(this.props.application))) {
+          return false
+        }
+
+        return true
+      })
+
+      return x + subs.length
     }, 0)
   }
 
