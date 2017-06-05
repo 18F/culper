@@ -186,7 +186,7 @@ export default class OrderedTreatment extends ValidationElement {
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProvider')}
               help={'substance.drugs.ordered.help.treatmentProvider'}>
-              {i18n.m('substance.drugs.ordered.para.treatmentProviderAddress')}
+              {i18n.m('substance.drugs.ordered.para.treatmentProvider')}
               <Text name="TreatmentProvider"
                 className="treatment-provider"
                 {...this.props.TreatmentProvider}

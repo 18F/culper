@@ -7350,7 +7350,7 @@ const en = {
           treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
           treatmentDates: 'Provide the dates of treatment',
           treatmentCompleted: 'Did you successfully complete the treatment?',
-          noTreatmentExplanation: 'You have indicated that you did not successfully complete the treatment. Provide explanation'
+          noTreatmentExplanation: 'You have indicated that you did not successfully complete the treatment. Provide explanation.'
         },
         para: {
           orderedBy: 'Check all that apply',
@@ -7433,12 +7433,15 @@ const en = {
       voluntary: {
         heading: {
           drugType: 'Provide the type of drug or controlled substance for which you were treated',
-          treatmentProvider: 'Provide the name of the treatment provider. (Last name, First name)',
+          treatmentProvider: 'Provide the name of the treatment provider',
           treatmentProviderAddress: 'Provide the address for this treatment provider',
           treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
           treatmentDates: 'Provide the dates of treatment',
           treatmentCompleted: 'Did you successfully complete the treatment?',
-          noTreatmentExplanation: 'You have indicated that you did not you successfully complete the treatment. Provide explanation'
+          noTreatmentExplanation: 'You have indicated that you did not you successfully complete the treatment. Provide explanation.'
+        },
+        para: {
+          treatmentProvider: 'Last name, First name'
         },
         help: {
           drugType: {
