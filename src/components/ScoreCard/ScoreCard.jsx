@@ -13,18 +13,32 @@ class ScoreCard extends React.Component {
   }
 
   completed () {
-    const sections = this.sections()
-    let completedSections = []
+    let completed = 0
 
-    for (let section in this.props.completed) {
-      if (this.props.completed[section].status === 'complete'
-          && !completedSections.includes(section)
-          && sections.includes(section)) {
-        completedSections.push(section)
+    for (const section in this.props.completed) {
+      const valid = this.props.completed[section]
+            .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
+            .length
+      if (this.countValidations(section) === valid) {
+        completed++
       }
     }
 
-    return completedSections.length
+    return completed
+  }
+
+  countValidations (section) {
+    return navigation.filter(x => x.url === section).reduce((x, y) => {
+      const subs = y.subsections.filter(s => {
+        if (s.hidden || (s.hiddenFunc && s.hiddenFunc(this.props.application))) {
+          return false
+        }
+
+        return true
+      })
+
+      return x + subs.length
+    }, 0)
   }
 
   render () {
