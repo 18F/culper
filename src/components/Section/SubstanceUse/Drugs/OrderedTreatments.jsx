@@ -38,9 +38,9 @@ export default class OrderedTreatments extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugOrderedTreatments || {}
-    const range = DateSummary(o.InvolvementDates)
-    const name = (o.PrescriptionName || {}).value
+    const o = (item || {}).OrderedTreatment || {}
+    const range = DateSummary(o.TreatmentDates)
+    const orderedBy = (o.OrderedBy || []).join(', ')
     const type = i18n.t('substance.drugs.ordered.collection.itemType')
 
     return (
@@ -48,7 +48,7 @@ export default class OrderedTreatments extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {name || i18n.t('substance.drugs.ordered.collection.summary')}
+            {orderedBy || i18n.t('substance.drugs.ordered.collection.summary')}
           </strong>
         </span>
         <span className="dates">

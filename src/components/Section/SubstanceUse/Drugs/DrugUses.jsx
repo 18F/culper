@@ -83,6 +83,7 @@ export default class DrugUses extends SubsectionElement {
           value={this.props.UsedDrugs}
           onError={this.handleError}
           onUpdate={this.updateUsedDrugs}>
+          {i18n.m('substance.drugs.use.para.drugUses')}
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>

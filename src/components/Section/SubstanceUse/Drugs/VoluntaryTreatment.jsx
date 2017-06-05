@@ -49,7 +49,7 @@ export default class VoluntaryTreatment extends ValidationElement {
   }
 
   updateTreatmentDates (values) {
-    this.update({TeatmentDates: values})
+    this.update({TreatmentDates: values})
   }
 
   updateTreatmentCompleted (values) {
@@ -66,7 +66,7 @@ export default class VoluntaryTreatment extends ValidationElement {
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.drugType')}
           className="drug-type-voluntary"
-          help={'substance.drugs.voluntary.help.drugtype'}>
+          help={'substance.drugs.voluntary.help.drugType'}>
           <DrugType name="DrugType"
             {...this.props.DrugType}
             onUpdate={this.updateDrugType}

@@ -38,9 +38,9 @@ export default class VoluntaryTreatments extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugVoluntaryTreatments || {}
-    const range = DateSummary(o.InvolvementDates)
-    const name = (o.PrescriptionName || {}).value
+    const o = (item || {}).VoluntaryTreatment || {}
+    const range = DateSummary(o.TreatmentDates)
+    const name = (o.TreatmentProvider || {}).value
     const type = i18n.t('substance.drugs.voluntary.collection.itemType')
 
     return (

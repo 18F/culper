@@ -7088,6 +7088,9 @@ const en = {
           useInFuture: 'Do you intend to use this drug or controlled substance in the future?',
           explanation: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future'
         },
+        para: {
+          drugUses: 'Use of a drug or controlled substance includes injecting, snorting, inhaling, swallowing, experimenting with or otherwise consuming any drug or controlled substance.'
+        },
         help: {
           drugType: {
             title: 'Need help with the drug type?',
@@ -7326,6 +7329,11 @@ const en = {
           noTreatmentExplanation: 'Provide explanation'
         },
         help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
           orderedBy: {
             title: 'Need help with who ordered treatment?',
             message: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
@@ -7405,6 +7413,11 @@ const en = {
           noTreatmentExplanation: 'Provide explanation'
         },
         help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
           treatmentProvider: {
             title: 'Need help with the treatment provider?',
             message: 'Provide the name of the treatment provider',

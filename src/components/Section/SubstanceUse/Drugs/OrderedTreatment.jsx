@@ -83,7 +83,7 @@ export default class OrderedTreatment extends ValidationElement {
   }
 
   updateTreatmentDates (values) {
-    this.update({TeatmentDates: values})
+    this.update({TreatmentDates: values})
   }
 
   updateTreatmentCompleted (values) {
@@ -98,7 +98,8 @@ export default class OrderedTreatment extends ValidationElement {
     return (
       <div className="drug-ordered-treatment">
 
-        <Field title={i18n.t('substance.drugs.ordered.heading.orderedBy')}>
+        <Field title={i18n.t('substance.drugs.ordered.heading.orderedBy')}
+          help={'substance.drugs.ordered.help.orderedBy'}>
           <CheckboxGroup className="ordered-by"
             selectedValues={this.props.OrderedBy}>
             <Checkbox name="Employer"
@@ -160,6 +161,7 @@ export default class OrderedTreatment extends ValidationElement {
 
         <Show when={this.props.ActionTaken === 'No'}>
           <Field title={i18n.t('substance.drugs.ordered.heading.noActionTakenExplanation')}
+            titleSize="h4"
             help={'substance.drugs.ordered.help.noActionTakenExplanation'}>
             <Textarea name="NoActionTakenExplanation"
               className="no-action-taken-explanation"
@@ -174,7 +176,7 @@ export default class OrderedTreatment extends ValidationElement {
           <div>
             <Field title={i18n.t('substance.drugs.ordered.heading.drugType')}
               className="drug-type-ordered"
-              help={'substance.drugs.ordered.help.drugtype'}>
+              help={'substance.drugs.ordered.help.drugType'}>
               <DrugType name="DrugType"
                 {...this.props.DrugType}
                 onUpdate={this.updateDrugType}
@@ -232,6 +234,7 @@ export default class OrderedTreatment extends ValidationElement {
 
             <Show when={this.props.TreatmentCompleted === 'No'}>
               <Field title={i18n.t('substance.drugs.ordered.heading.noTreatmentExplanation')}
+                titleSize="h4"
                 help={'substance.drugs.ordered.help.noTreatmentExplanation'}>
                 <Textarea name="NoTreatmentExplanation"
                   className="no-treatment-explanation"
