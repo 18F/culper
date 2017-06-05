@@ -18,8 +18,6 @@ class Citizenship extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 2 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('citizenship.tour.para')}
-                             review={i18n.t('citizenship.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -28,7 +26,8 @@ class Citizenship extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="citizenship/multiple"
                        backLabel={i18n.t('citizenship.destination.multiple')}

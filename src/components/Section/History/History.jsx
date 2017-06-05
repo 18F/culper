@@ -310,8 +310,6 @@ class History extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('history.tour.para')}
-                             review={i18n.t('history.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -320,7 +318,9 @@ class History extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure your history is covered"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
+                       showTop={true}
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
                        next="relationships/status/marital"

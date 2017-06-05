@@ -23,8 +23,6 @@ class Financial extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 7 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('financial.tour.para')}
-                             review={i18n.t('financial.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -33,7 +31,8 @@ class Financial extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}

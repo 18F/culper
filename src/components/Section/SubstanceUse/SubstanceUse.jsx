@@ -52,8 +52,6 @@ class SubstanceUse extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('substance.tour.para')}
-                             review={i18n.t('substance.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -114,7 +112,8 @@ class SubstanceUse extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title={i18n.t('substance.review.title')}
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        back="substance/alcohol/additional"
                        backLabel={ i18n.t('substance.destination.police.additional') }
                        showTop="true"

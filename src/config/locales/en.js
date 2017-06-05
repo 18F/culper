@@ -2769,15 +2769,21 @@ const en = {
   intro: {
     tour: {
       title: 'One piece at a time',
-      button: 'Take me on the tour!'
+      para: 'Go through the form one piece at a time, each subsection on it\'s own page.',
+      button: 'Take me to the first section'
     },
     review: {
       title: 'Full section view',
+      para: 'See the entire section including all subsections on one page.',
       button: 'Show me the full section'
     },
-    errors: 'Looks like we have a few issues, here is how to fix them.',
-    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    errors: 'Looks like we have a few issues, how would you like to fix them?',
+    neutral: 'Looks like you still have some items left, how would you like to finish them?',
     complete: 'Everything looks good here but you can still review your answers.'
+  },
+  review: {
+    title: 'Review your answers',
+    para: 'View the full section to make sure everything looks right and make changes if needed. You can also skip ahead to the next section and review later.'
   },
 
   military: {
@@ -3098,7 +3104,7 @@ const en = {
             title: 'Need help with this question?',
             message: 'Tell us how often you were in contact with this person.',
             note: ''
-          },
+          }
         }
       },
       collection: {

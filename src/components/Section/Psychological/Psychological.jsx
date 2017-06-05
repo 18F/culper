@@ -37,8 +37,6 @@ class Psychological extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === (this.props.ShowExistingConditions ? 5 : 4) && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('psychological.tour.para')}
-                             review={i18n.t('psychological.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -122,7 +120,8 @@ class Psychological extends SectionElement {
                                 />
           </SectionView>
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="psychological/conditions"
                        backLabel={ i18n.t('psychological.destination.existingConditions') }>

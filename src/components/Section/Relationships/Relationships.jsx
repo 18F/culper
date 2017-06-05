@@ -56,8 +56,6 @@ class Relationships extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('relationships.tour.para')}
-                             review={i18n.t('relationships.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -136,7 +134,8 @@ class Relationships extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}

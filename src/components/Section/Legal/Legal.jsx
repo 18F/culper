@@ -64,8 +64,6 @@ class Legal extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 3 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('legal.tour.para')}
-                             review={i18n.t('legal.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -74,7 +72,8 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="legal/investigations/history"
                        backLabel={i18n.t('legal.destination.investigations.history')}
