@@ -59,8 +59,26 @@ export default class History extends SubsectionElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const service = o.Service || i18n.t('military.history.collection.summary.unknown')
     const dates = DateSummary(o.Dates)
+
+    let service = o.Service || i18n.t('military.history.collection.summary.unknown')
+    switch (service) {
+      case 'AirForce':
+        service = 'Air Force'
+        break
+      case 'AirNationalGuard':
+        service = 'Air National Guard'
+        break
+      case 'ArmyNationalGuard':
+        service = 'Army National Guard'
+        break
+      case 'CoastGuard':
+        service = 'Coast Guard'
+        break
+      case 'MarineCorps':
+        service = 'Marine Corps'
+        break
+    }
 
     return (
       <span>
