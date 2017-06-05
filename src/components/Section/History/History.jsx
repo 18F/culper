@@ -382,10 +382,11 @@ class History extends SectionElement {
                          />
             </Show>
 
-            <p></p>
+            <hr />
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
+                     defaultState={false}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
                      />
@@ -406,7 +407,6 @@ class History extends SectionElement {
             { this.residenceSummaryProgress() }
             <Residence value={this.props.Residence}
                        scrollTo="scrollToHistory"
-                       defaultState={false}
                        realtime={true}
                        sort={this.sort}
                        totalYears={this.totalYears()}

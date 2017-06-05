@@ -72,7 +72,6 @@ export default class ForeignContact extends React.Component {
               />
 
         <Field title={i18n.t('military.foreign.heading.contact.address')}
-               help="military.foreign.help.contact.address"
                adjustFor="address"
                shrink={true}>
           <Address name="Address"
@@ -83,8 +82,7 @@ export default class ForeignContact extends React.Component {
                    />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.contact.title')}
-               help="military.foreign.help.contact.title">
+        <Field title={i18n.t('military.foreign.heading.contact.title')}>
           <Text name="Title"
                 {...this.state.Title}
                 className="foreign-contact-title"

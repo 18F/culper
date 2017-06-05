@@ -89,7 +89,6 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
-               help={'foreign.activities.benefit.future.help.frequency'}
                adjustFor="big-buttons">
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
@@ -137,8 +136,7 @@ export default class FutureBenefit extends ValidationElement {
           </Show>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.future.heading.country')}
-               help={'foreign.activities.benefit.future.help.country'}>
+        <Field title={i18n.t('foreign.activities.benefit.future.heading.country')}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
@@ -146,8 +144,7 @@ export default class FutureBenefit extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.future.heading.value')}
-               help={'foreign.activities.benefit.future.help.value'}>
+        <Field title={i18n.t('foreign.activities.benefit.future.heading.value')}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -166,8 +163,7 @@ export default class FutureBenefit extends ValidationElement {
           </div>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.future.heading.reason')}
-               help={'foreign.activities.benefit.future.help.value'}>
+        <Field title={i18n.t('foreign.activities.benefit.future.heading.reason')}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}

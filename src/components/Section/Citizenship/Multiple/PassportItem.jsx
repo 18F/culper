@@ -163,6 +163,7 @@ export default class PassportItem extends ValidationElement {
         <Show when={this.state.Used === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.Countries}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.updateCountries}
                      onError={this.props.onError}
                      summary={this.summary}
@@ -185,5 +186,6 @@ PassportItem.defaultProps = {
   Expiration: {},
   Used: '',
   Countries: [],
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

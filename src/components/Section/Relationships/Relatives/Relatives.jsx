@@ -73,6 +73,7 @@ export default class Relatives extends SubsectionElement {
 
         <Accordion minimum="1"
                    items={this.state.List}
+                   defaultState={this.props.defaultState}
                    branch={this.state.ListBranch}
                    onUpdate={this.updateList}
                    onError={this.handleError}
@@ -98,5 +99,6 @@ Relatives.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new RelativesValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

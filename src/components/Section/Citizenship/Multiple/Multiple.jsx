@@ -103,6 +103,7 @@ export default class Multiple extends SubsectionElement {
         <Show when={this.state.HasMultiple === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.Citizenships}
+                     defaultState={this.props.defaultState}
                      branch={this.state.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onError={this.handleError}
@@ -121,7 +122,7 @@ export default class Multiple extends SubsectionElement {
                           items={this.state.Passports}
                           onUpdate={this.updatePassports}
                           onError={this.handleError}>
-          <PassportItem name="Item" bind={true} />
+          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} />
         </BranchCollection>
       </div>
     )
@@ -139,5 +140,6 @@ Multiple.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new CitizenshipMultipleValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

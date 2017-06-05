@@ -2613,9 +2613,9 @@ const en = {
         },
         help: {
           knownDates: {
-            title: 'Need help with known dates',
-            message: 'Provide the dates known for the person who knows you well',
-            note: ''
+            title: 'Need help with this date range?',
+            message: 'Tell us the entire time you have known this person.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           rank: {
             title: 'Need help with the rank/title?',
@@ -3087,6 +3087,18 @@ const en = {
           title: 'Need help with contacts with current or former associates?',
           message: 'If you are still in contact with any current or former foreign associates answer "Yes" and provide their contact information below.',
           note: ''
+        },
+        contact: {
+          dates: {
+            title: 'Need help with this date range?',
+            message: 'Tell us the full time range you were in contact with this person.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          },
+          frequency: {
+            title: 'Need help with this question?',
+            message: 'Tell us how often you were in contact with this person.',
+            note: ''
+          },
         }
       },
       collection: {
@@ -5324,8 +5336,8 @@ const en = {
           },
           help: {
             received: {
-              title: 'Need help when benefit was received?',
-              message: 'Provide the date the benefit was received',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             country: {
@@ -5376,8 +5388,8 @@ const en = {
           },
           help: {
             begin: {
-              title: 'Need help when benefit will be begin?',
-              message: 'Provide the date the benefit will begin',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {
@@ -5413,7 +5425,7 @@ const en = {
             end: 'Provide the date the benefit is expected to end',
             frequency: 'Provide the frequency that this benefit is received',
             country: 'Provide the name of the country providing the benefit',
-            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received',
             reason: 'Provide the reason this benefit will be received',
             obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
           },
@@ -5434,13 +5446,13 @@ const en = {
           },
           help: {
             began: {
-              title: 'Need help when the benefit began?',
-              message: 'Provide the date the benefit began',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             end: {
-              title: 'Need help when the benefit will end?',
-              message: 'Provide the date the benefit will end',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {

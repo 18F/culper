@@ -98,6 +98,7 @@ export default class ContactInformation extends SubsectionElement {
         <div className={klass + ' email-collection'}>
           <Accordion minimum="2"
                      items={this.state.Emails}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.contactDispatch.bind(this, 'Emails')}
                      onError={this.handleError}
                      summary={this.emailSummary}
@@ -119,6 +120,7 @@ export default class ContactInformation extends SubsectionElement {
         <div className={klass + ' telephone-collection'}>
           <Accordion minimum="2"
                      items={this.state.PhoneNumbers}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.contactDispatch.bind(this, 'PhoneNumbers')}
                      onError={this.handleError}
                      summary={this.phoneNumberSummary}
@@ -146,5 +148,6 @@ ContactInformation.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ContactInformationValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

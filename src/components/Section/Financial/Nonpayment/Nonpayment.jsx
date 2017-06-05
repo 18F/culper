@@ -102,6 +102,7 @@ export default class Nonpayment extends SubsectionElement {
         <Show when={this.state.HasNonpayment === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}

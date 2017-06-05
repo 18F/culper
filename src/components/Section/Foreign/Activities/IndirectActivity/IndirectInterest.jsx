@@ -121,7 +121,6 @@ export default class IndirectInterest extends ValidationElement {
     return (
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.interestTypes`)}
-               help={`foreign.activities.indirect.interest.help.interestType`}
                adjustFor="p">
 
           <p>{i18n.t(`foreign.activities.indirect.interest.para.checkAll`)}</p>
