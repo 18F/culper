@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { push } from '../../../middleware/history'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { IntroHeader } from '../../Form'
 import { SectionViews, SectionView } from '../SectionView'
@@ -34,12 +35,17 @@ class SubstanceUse extends SectionElement {
     this.updateVoluntaryTreatments = this.updateVoluntaryTreatments.bind(this)
   }
 
-  // componentWillReceiveProps (next) {
-  //   // Redirect to first alcohol subsection if root subsection is accessed
-  //   if (next.subsection === 'alcohol') {
-  //     this.props.dispatch(push(`/form/substance/alcohol/negative`))
-  //   }
-  // }
+   componentWillReceiveProps (next) {
+     // Redirect to first alcohol subsection if root subsection is accessed
+     switch (next.subsection) {
+       case 'alcohol':
+         this.props.dispatch(push(`/form/substance/alcohol/negative`))
+         break
+       case 'drugs':
+         this.props.dispatch(push(`/form/substance/drugs/usage`))
+         break
+     }
+   }
 
   updateNegativeImpacts (values) {
     this.handleUpdate('NegativeImpacts', values)
