@@ -18,6 +18,28 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
+export const serviceNameDisplay = (service) => {
+  switch (service) {
+    case 'AirForce':
+      service = 'Air Force'
+      break
+    case 'AirNationalGuard':
+      service = 'Air National Guard'
+      break
+    case 'ArmyNationalGuard':
+      service = 'Army National Guard'
+      break
+    case 'CoastGuard':
+      service = 'Coast Guard'
+      break
+    case 'MarineCorps':
+      service = 'Marine Corps'
+      break
+  }
+
+  return service
+}
+
 export default class History extends SubsectionElement {
   constructor (props) {
     super(props)
@@ -60,25 +82,7 @@ export default class History extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
-
-    let service = o.Service || i18n.t('military.history.collection.summary.unknown')
-    switch (service) {
-      case 'AirForce':
-        service = 'Air Force'
-        break
-      case 'AirNationalGuard':
-        service = 'Air National Guard'
-        break
-      case 'ArmyNationalGuard':
-        service = 'Army National Guard'
-        break
-      case 'CoastGuard':
-        service = 'Coast Guard'
-        break
-      case 'MarineCorps':
-        service = 'Marine Corps'
-        break
-    }
+    const service = serviceNameDisplay(o.Service || i18n.t('military.history.collection.summary.unknown'))
 
     return (
       <span>

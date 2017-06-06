@@ -20,7 +20,7 @@ class ScoreCard extends React.Component {
       const valid = this.props.completed[section]
             .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
             .length
-      if (validations(navigation.find(n => n.url === section)) === valid) {
+      if (validations(navigation.find(n => n.url === section), this.props) === valid) {
         completed++
       }
     }

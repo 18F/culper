@@ -92,17 +92,38 @@ export default class Selective extends SubsectionElement {
             </Branch>
 
             <Show when={this.state.HasRegistered === 'Yes'}>
-              <Field title={i18n.t('military.selective.heading.number')}
-                     className="no-margin-bottom"
-                     adjustFor="labels">
-                <Text name="RegistrationNumber"
-                      className="registration-number"
-                      label={i18n.t('military.selective.label.number')}
-                      {...this.state.RegistrationNumber}
-                      onUpdate={this.updateRegistrationNumber}
-                      onError={this.handleError}
-                      />
-              </Field>
+              <div>
+                <Field title={i18n.t('military.selective.heading.number')}
+                       className="no-margin-bottom"
+                       adjustFor="labels">
+                  <Text name="RegistrationNumber"
+                        className="registration-number"
+                        label={i18n.t('military.selective.label.number')}
+                        {...this.state.RegistrationNumber}
+                        onUpdate={this.updateRegistrationNumber}
+                        onError={this.handleError}
+                        />
+                </Field>
+
+                <div className="field">
+                  <div className="table">
+                    <div className="messages">
+                      <div className="message help">
+                        <i className="fa fa-question"></i>
+                        <h5>{i18n.m('military.selective.help.remember.title')}</h5>
+                        {i18n.m('military.selective.help.remember.message')}
+                        <div>
+                          <p>
+                            <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
+                              https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Show>
 
             <Show when={this.state.HasRegistered === 'No'}>
@@ -118,25 +139,6 @@ export default class Selective extends SubsectionElement {
                           />
               </Field>
             </Show>
-
-            <div className="field">
-              <div className="table">
-                <div className="messages">
-                  <div className="message help">
-                    <i className="fa fa-question"></i>
-                    <h5>{i18n.m('military.selective.help.remember.title')}</h5>
-                    {i18n.m('military.selective.help.remember.message')}
-                    <div>
-                      <p>
-                        <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
-                          https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </Show>
       </div>
