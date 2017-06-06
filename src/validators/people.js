@@ -4,6 +4,9 @@ import AddressValidator from './address'
 import { validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
 import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../components/Section/History/dateranges'
 
+const minimumYears = 7
+const minimumPeople = 3
+
 export default class PeopleValidator {
   constructor (state = {}) {
     this.people = state.List || []
@@ -25,8 +28,7 @@ export default class PeopleValidator {
   }
 
   validYearRange () {
-    const years = 7
-    const julianMax = julian(daysAgo(today, 365 * years))
+    const julianMax = julian(daysAgo(today, 365 * minimumYears))
 
     const dates = this.people.reduce((dates, item) => {
       if (!item || !item.Item || !item.Item.Dates) {
@@ -78,7 +80,7 @@ export default class PeopleValidator {
     })
 
     const sum = ranges.reduce((a, b) => a + b.width, 0)
-    return Math.min(decimalAdjust('floor', years * (sum / 100), 0), years) >= years
+    return Math.min(decimalAdjust('floor', minimumYears * (sum / 100), 0), minimumYears) >= minimumYears
   }
 
   isValid () {
@@ -96,7 +98,7 @@ export default class PeopleValidator {
       }
     }
 
-    return this.validCount() >= 3 && this.validYearRange()
+    return this.validCount() >= minimumPeople && this.validYearRange()
   }
 }
 
