@@ -59,9 +59,11 @@
 
   // Navigation
   .eapp-structure-wrap > .eapp-structure-row > .eapp-navigation {
-    // TODO: Figure out the toggling capabilities
-    display: none !important;
-    visibility: hidden;
+    width: 100%;
+
+    .form-navigation {
+      margin: 0 1rem;
+    }
   }
 
   // Main content

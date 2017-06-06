@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from './config'
-import { SectionTitle, ProgressBar, ScoreCard, Navigation } from './components'
+import { SectionTitle, ProgressBar, ScoreCard, Navigation, NavigationToggle } from './components'
 import { connect } from 'react-redux'
 import { logout } from './actions/AuthActions'
 
@@ -28,7 +28,7 @@ import { logout } from './actions/AuthActions'
   ------------------------------------------------------------------------------------------------
 */
 
-export class App extends React.Component {
+class App extends React.Component {
   constructor (props) {
     super(props)
     this.logout = this.logout.bind(this)
@@ -52,9 +52,12 @@ export class App extends React.Component {
   }
 
   render () {
-    let logoutButton = this.props.authenticated && this.props.twofactor
+    const logoutButton = this.props.authenticated && this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
+    const klassTitle = `eapp-structure-right eapp-title ${this.props.settings.mobileNavigation ? 'mobile-hidden' : 'visible'}`.trim()
+    const klassNavigation = `eapp-structure-left eapp-navigation ${this.props.settings.mobileNavigation ? 'mobile-visible' : 'mobile-hidden'}`.trim()
+    const klassCore = `eapp-structure-right eapp-core ${this.props.settings.mobileNavigation ? 'mobile-hidden' : 'visible'}`.trim()
 
     return (
       <div className={this.designClass()}>
@@ -98,8 +101,9 @@ export class App extends React.Component {
               <div className="eapp-structure-left eapp-logo" id="logo">
                 <img className="eapp-logo-icon" src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
                 <span className="eapp-logo-text">SF86</span>
+                <NavigationToggle />
               </div>
-              <div className="eapp-structure-right eapp-title">
+              <div className={klassTitle}>
                 <div className="eapp-logout mobile-hidden">
                   {logoutButton}
                 </div>
@@ -113,12 +117,12 @@ export class App extends React.Component {
         <ProgressBar />
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
-            <div className="eapp-structure-left eapp-navigation">
+            <div className={klassNavigation}>
               <ScoreCard />
               <Navigation />
               &nbsp;
             </div>
-            <div className="eapp-structure-right eapp-core">
+            <div className={klassCore}>
               {this.props.children}
               &nbsp;
             </div>
@@ -138,7 +142,11 @@ export class App extends React.Component {
  */
 function mapStateToProps (state) {
   const auth = state.authentication
+  const app = state.application || {}
+  const settings = app.Settings || { mobileNavigation: false }
+
   return {
+    settings: settings,
     authenticated: auth.authenticated,
     twofactor: auth.twofactor,
     token: auth.token

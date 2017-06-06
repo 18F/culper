@@ -3,7 +3,6 @@ import { Link, hashHistory } from 'react-router'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation } from '../../config'
-import { NavigationValidator } from '../../validators'
 
 class Navigation extends React.Component {
   /**
@@ -154,7 +153,7 @@ class Navigation extends React.Component {
       return (
         <div key={section.name} className="section">
           <span className="title">
-            <Link to={url} className={sectionClass}>
+            <Link to={url} className={sectionClass} onClick={this.blah}>
               <span className="number">{sectionNum}</span>
               <span className="name">{section.name}</span>
               <span className="eapp-status-icon-valid"></span>
@@ -175,10 +174,11 @@ class Navigation extends React.Component {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
-  let app = state.application || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const section = state.section || {}
+  const app = state.application || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+
   return {
     application: app,
     section: section,

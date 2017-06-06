@@ -191,6 +191,11 @@ a:focus {
   display: none !important;
 }
 
+.visible {
+  display: initial;
+  visibility: visible;
+}
+
 .clear {
   float: none;
   clear: both;

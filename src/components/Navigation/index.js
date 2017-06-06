@@ -1,2 +1,3 @@
 import Navigation from './Navigation.jsx'
-export { Navigation }
+import NavigationToggle from './NavigationToggle.jsx'
+export { Navigation, NavigationToggle }
