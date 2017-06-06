@@ -18,6 +18,28 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
+export const serviceNameDisplay = (service) => {
+  switch (service) {
+    case 'AirForce':
+      service = 'Air Force'
+      break
+    case 'AirNationalGuard':
+      service = 'Air National Guard'
+      break
+    case 'ArmyNationalGuard':
+      service = 'Army National Guard'
+      break
+    case 'CoastGuard':
+      service = 'Coast Guard'
+      break
+    case 'MarineCorps':
+      service = 'Marine Corps'
+      break
+  }
+
+  return service
+}
+
 export default class History extends SubsectionElement {
   constructor (props) {
     super(props)
@@ -45,6 +67,7 @@ export default class History extends SubsectionElement {
     // If there is no history clear out any previously entered data
     if (value === 'No') {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 
@@ -58,8 +81,8 @@ export default class History extends SubsectionElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const service = o.Service || i18n.t('military.history.collection.summary.unknown')
     const dates = DateSummary(o.Dates)
+    const service = serviceNameDisplay(o.Service || i18n.t('military.history.collection.summary.unknown'))
 
     return (
       <span>
@@ -104,8 +127,8 @@ export default class History extends SubsectionElement {
 
 History.defaultProps = {
   onError: (value, arr) => { return arr },
-  section: 'foreign',
-  subsection: 'business/advice',
+  section: 'military',
+  subsection: 'history',
   dispatch: () => {},
   validator: (state, props) => {
     return new MilitaryHistoryValidator(state, props).isValid()

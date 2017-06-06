@@ -89,23 +89,6 @@ describe('The Name component', () => {
     expect(validations > 0).toEqual(true)
   })
 
-  it('bubbles up change event', () => {
-    let changes = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      onChange: function (event) {
-        changes++
-      }
-    }
-    const component = mount(<Name {...expected} />)
-    component.find('input').first().simulate('change')
-    expect(changes).toEqual(1)
-  })
-
   it('bubbles up focus event', () => {
     let foci = 0
     const expected = {
@@ -138,5 +121,25 @@ describe('The Name component', () => {
     const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
+  })
+
+  it('does updates', () => {
+    let updates = 0
+    const expected = {
+      name: 'name',
+      onUpdate: () => { updates++ }
+    }
+
+    const component = mount(<Name {...expected} />)
+    component.find('.first input').simulate('change')
+    component.find('.first-initial-only input').simulate('change')
+    component.find('.middle input').simulate('change')
+    component.find('.middle-initial-only input').simulate('change')
+    component.find('.middle-none input').simulate('change')
+    component.find('.last input').simulate('change')
+    component.find('.last-initial-only input').simulate('change')
+    component.find('.suffix-more input').simulate('change')
+    component.find('.suffix-other input').simulate('change')
+    expect(updates).toBeGreaterThan(9)
   })
 })

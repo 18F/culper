@@ -8,16 +8,20 @@ export default class MilitaryHistoryValidator {
     this.listBranch = state.ListBranch
   }
 
+  hasHistory () {
+    return this.hasServed === 'Yes'
+  }
+
   validServed () {
     return this.hasServed === 'Yes' || this.hasServed === 'No'
   }
 
   validItems () {
-    if (this.validServed() && this.hasServed === 'No') {
+    if (this.hasServed === 'No') {
       return true
     }
 
-    if (this.list.length === 0) {
+    if (this.hasServed === 'Yes' && !this.list.length) {
       return false
     }
 
@@ -71,7 +75,7 @@ export class MilitaryServiceValidator {
   }
 
   validServiceNumber () {
-    return this.serviceNumber && this.serviceNumber.length > 0
+    return !!this.serviceNumber && validGenericTextfield(this.serviceNumber)
   }
 
   validDates () {

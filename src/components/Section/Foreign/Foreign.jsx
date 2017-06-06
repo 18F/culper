@@ -114,8 +114,6 @@ class Foreign extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 17 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('foreign.tour.para')}
-                             review={i18n.t('foreign.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -124,7 +122,8 @@ class Foreign extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
@@ -138,6 +137,7 @@ class Foreign extends SectionElement {
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />
+
             <hr/>
             <Contacts name="contacts"
                       {...this.props.Contacts}
@@ -146,6 +146,7 @@ class Foreign extends SectionElement {
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
                       />
+
             <hr/>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
@@ -154,6 +155,7 @@ class Foreign extends SectionElement {
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
                             />
+
             <hr/>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
@@ -162,6 +164,7 @@ class Foreign extends SectionElement {
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
                               />
+
             <hr/>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
@@ -170,6 +173,7 @@ class Foreign extends SectionElement {
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
                                 />
+
             <hr/>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
@@ -178,6 +182,7 @@ class Foreign extends SectionElement {
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
                              />
+
             <hr/>
             <Support name="support"
                      {...this.props.Support}
@@ -186,6 +191,7 @@ class Foreign extends SectionElement {
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
                      />
+
             <hr/>
             <Advice name="advice"
                     {...this.props.Advice}
@@ -194,6 +200,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
                     />
+
             <hr/>
             <Family name="family"
                     {...this.props.Family}
@@ -202,6 +209,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
                     />
+
             <hr/>
             <Employment name="employment"
                         {...this.props.Employment}
@@ -210,6 +218,7 @@ class Foreign extends SectionElement {
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         />
+
             <hr/>
             <Ventures name="ventures"
                       {...this.props.Ventures}
@@ -218,6 +227,7 @@ class Foreign extends SectionElement {
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
                       />
+
             <hr/>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
@@ -226,6 +236,7 @@ class Foreign extends SectionElement {
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
                          />
+
             <hr/>
             <Contact name="Contact"
                      {...this.props.Contact}
@@ -234,6 +245,7 @@ class Foreign extends SectionElement {
                      onUpdate={this.updateContact}
                      onError={this.handleError}
                      />
+
             <hr/>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
@@ -242,6 +254,7 @@ class Foreign extends SectionElement {
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
                          />
+
             <hr/>
             <Political name="Political"
                        {...this.props.Political}
@@ -250,6 +263,7 @@ class Foreign extends SectionElement {
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
                        />
+
             <hr/>
             <Voting name="Voting"
                     {...this.props.Voting}
@@ -258,6 +272,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
                     />
+
             <hr/>
             <Travel name="Travel"
                     {...this.props.Travel}

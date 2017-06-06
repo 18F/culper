@@ -39,6 +39,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
     </div>
   )
 }
+
 export const ResidenceCaption = (props) => {
   return (
     <span>

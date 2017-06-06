@@ -4,32 +4,16 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Accordion, Svg, Show, Branch } from '../../Form'
+import { Svg, Show, Branch } from '../../Form'
 import IntroHeader from '../../Form/IntroHeader'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps, EmploymentCustomSummary, ResidenceCustomSummary, EducationCustomSummary,
-         EmploymentCaption, EducationCaption, ResidenceCaption } from './summaries'
+import { InjectGaps } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
-import { Gap } from './Gap'
-import { ResidenceValidator, EmploymentValidator, EducationValidator, FederalServiceValidator } from '../../../validators'
-import { openState } from '../../Form/Accordion/Accordion'
-
-const byline = (item, index, initial, translation, validator) => {
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
-      </div>
-    )
-  }
-
-  return null
-}
 
 class History extends SectionElement {
   constructor (props) {
@@ -326,8 +310,6 @@ class History extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('history.tour.para')}
-                             review={i18n.t('history.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -336,7 +318,9 @@ class History extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure your history is covered"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
+                       showTop={true}
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
                        next="relationships/status/marital"

@@ -7,75 +7,6 @@ import { NavigationValidator } from '../../validators'
 
 class Navigation extends React.Component {
   /**
-   * There is a bug in the react router which does not add the active
-   * class to items in the route hiearchy
-   */
-  isActive (route, pathname) {
-    return pathname.indexOf(route) !== -1
-  }
-
-  /**
-   * Determine if the route has any errors
-   *
-   * example:
-   *  route => /form/identification/name
-   */
-  hasErrors (route, pathname) {
-    const crumbs = route.replace('/form/', '').split('/')
-
-    for (const section in this.props.errors) {
-      if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
-        continue
-      }
-
-      const se = this.props.errors[section]
-      if (crumbs.length === 1) {
-        return se.some(e =>
-                       e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                       e.valid === false)
-      } else if (crumbs.length > 1) {
-        return se.some(e =>
-                       e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                       e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase() &&
-                       e.valid === false)
-      }
-    }
-
-    return false
-  }
-
-  /**
-   * Determine if the route is considered complete and valid
-   */
-  isValid (route, pathname) {
-    const crumbs = route.replace('/form/', '').split('/')
-
-    for (const section in this.props.completed) {
-      if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
-        continue
-      }
-
-      const se = this.props.completed[section]
-          .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
-
-      if (crumbs.length === 1) {
-        return this.countValidations(section) === se.filter(e => e.valid === true).length
-      } else if (crumbs.length > 1) {
-        const sse = se.filter(e => e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase())
-        return sse.length > 0 && sse.every(e => e.valid === true)
-      }
-    }
-
-    return false
-  }
-
-  countValidations (section) {
-    return navigation.filter(x => x.url === section).reduce((x, y) => {
-      return x + y.subsections.length
-    }, 0)
-  }
-
-  /**
    * Get the classes to be applied to a link. This includes the following:
    *  - active
    *  - has-errors
@@ -84,13 +15,13 @@ class Navigation extends React.Component {
   getClassName (route, pathname) {
     let klass = ''
 
-    if (this.isActive(route, pathname)) {
+    if (isActive(route, pathname)) {
       klass += ' active'
     }
 
-    if (this.hasErrors(route, pathname)) {
+    if (hasErrors(route, this.props)) {
       klass += ' has-errors'
-    } else if (this.isValid(route, pathname)) {
+    } else if (isValid(route, this.props)) {
       klass += ' is-valid'
     }
 
@@ -161,7 +92,7 @@ class Navigation extends React.Component {
               <span className="eapp-status-icon-error"></span>
             </Link>
           </span>
-          { this.isActive(url, pathname) ? subsections : '' }
+          { isActive(url, pathname) ? subsections : '' }
         </div>
       )
     })
@@ -188,3 +119,84 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Navigation))
+
+export const validations = (section, props = {}) => {
+  if (!section.subsections) {
+    return 1
+  }
+
+  return section.subsections
+    .filter(subsection => {
+      if (subsection.hidden || (subsection.hiddenFunc && subsection.hiddenFunc(props.application))) {
+        return false
+      }
+
+      return true
+    })
+    .reduce((count, subsection) => {
+      return count + validations(subsection, props)
+    }, 0)
+}
+
+/**
+ * Determine if the route has any errors
+ *
+ * example:
+ *  route => /form/identification/name
+ */
+export const hasErrors = (route, props = {}) => {
+  const crumbs = route.replace('/form/', '').split('/')
+
+  for (const section in props.errors) {
+    if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
+      continue
+    }
+
+    const se = props.errors[section]
+    if (crumbs.length === 1) {
+      return se.some(e =>
+                      e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                      e.valid === false)
+    } else if (crumbs.length > 1) {
+      return se.some(e =>
+                      e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                      e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase() &&
+                      e.valid === false)
+    }
+  }
+
+  return false
+}
+
+/**
+ * Determine if the route is considered complete and valid
+ */
+export const isValid = (route, props = {}) => {
+  const crumbs = route.replace('/form/', '').split('/')
+
+  for (const section in props.completed) {
+    if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
+      continue
+    }
+
+    const se = props.completed[section]
+        .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
+
+    if (crumbs.length === 1) {
+      return validations(navigation.find(n => n.url === section), props) === se.filter(e => e.valid === true).length
+    } else if (crumbs.length > 1) {
+      const sse = se.filter(e => e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase())
+      return sse.length > 0 && sse.every(e => e.valid === true)
+    }
+  }
+
+  return false
+}
+
+/**
+ * There is a bug in the react router which does not add the active
+ * class to items in the route hiearchy
+ */
+export const isActive = (route, pathname) => {
+  return pathname.indexOf(route) !== -1
+}

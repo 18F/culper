@@ -4,7 +4,8 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
+import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
+import { IntroHeader, Show } from '../../Form'
 import Selective from './Selective'
 import History from './History'
 import Disciplinary from './Disciplinary'
@@ -45,8 +46,6 @@ class Military extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('military.tour.para')}
-                             review={i18n.t('military.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -55,7 +54,8 @@ class Military extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
@@ -68,8 +68,8 @@ class Military extends SectionElement {
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
                        />
-            <hr/>
 
+            <hr/>
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
@@ -78,19 +78,21 @@ class Military extends SectionElement {
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
                      />
-            <hr/>
 
-            <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
-            {i18n.m('military.disciplinary.para.info')}
-            <Disciplinary name="disciplinary"
-                          {...this.props.Disciplinary}
-                          defaultState={false}
-                          dispatch={this.props.dispatch}
-                          onUpdate={this.updateDisciplinary}
-                          onError={this.handleError}
-                          />
-            <hr/>
+            <Show when={!hideDisciplinaryProcedures(this.props.Application)}>
+              <hr/>
+              <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
+              {i18n.m('military.disciplinary.para.info')}
+              <Disciplinary name="disciplinary"
+                            {...this.props.Disciplinary}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDisciplinary}
+                            onError={this.handleError}
+                            />
+            </Show>
 
+            <hr/>
             <h2>{i18n.t('military.foreign.heading.title')}</h2>
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
@@ -173,6 +175,7 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Section: section,
+    Application: app || {},
     Military: military,
     Selective: military.Selective || {},
     History: military.History || {},
