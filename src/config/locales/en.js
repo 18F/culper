@@ -663,32 +663,32 @@ const en = {
       title: 'Provide your full name',
       last: {
         help: {
-          title: 'Need help with your last name?',
-          message: 'If your last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
-          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
+          title: 'Need help with this last name?',
+          message: 'If this last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of this full name.'
         }
       },
       first: {
         help: {
-          title: 'Need help with your first name?',
-          message: 'If your first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
-          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
+          title: 'Need help with this first name?',
+          message: 'If this first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of this full name.'
         }
       },
       middle: {
         help: {
-          title: 'Need help with your middle name?',
+          title: 'Need help with this middle name?',
           message: [
-            'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
-            'If you do not have a middle name leave this field empty and check the "No middle name" checkbox.'
+            'If this middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+            'If no middle name leave this field empty and check the "No middle name" checkbox.'
           ],
           note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       suffix: {
         help: {
-          title: 'Need help with your suffix?',
-          message: 'If your suffix does not appear in this list, select "Other" and enter your suffix in the provided field',
+          title: 'Need help with this suffix?',
+          message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field',
           note: ''
         }
       }
