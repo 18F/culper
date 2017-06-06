@@ -79,7 +79,7 @@ class Military extends SectionElement {
                      onError={this.handleError}
                      />
 
-            <Show when={!hideDisciplinaryProcedures(this.props.Military)}>
+            <Show when={!hideDisciplinaryProcedures(this.props.Application)}>
               <hr/>
               <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
               {i18n.m('military.disciplinary.para.info')}
@@ -175,6 +175,7 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Section: section,
+    Application: app || {},
     Military: military,
     Selective: military.Selective || {},
     History: military.History || {},
