@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
-import { ForeignTravelValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import { ValidationElement, Branch, Show, Field,
          Textarea, Country, DateRange } from '../../../Form'
 import TravelDays from './TravelDays'
 import TravelPurpose from './TravelPurpose'
@@ -179,9 +177,10 @@ export default class TravelQuestions extends ValidationElement {
                adjustFor="country">
           <Country name="Country"
                    {...this.props.Country}
+                   excludeUnitedStates={true}
                    className="foreign-travel-country"
                    onUpdate={this.updateCountry}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -192,7 +191,7 @@ export default class TravelQuestions extends ValidationElement {
                      {...this.props.Dates}
                      className="foreign-travel-dates"
                      onUpdate={this.updateDates}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -204,7 +203,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-days"
                       value={this.props.Days}
                       onUpdate={this.updateDays}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
         </Field>
 
@@ -216,7 +215,7 @@ export default class TravelQuestions extends ValidationElement {
                          className="foreign-travel-purpose"
                          value={this.props.Purpose}
                          onUpdate={this.updatePurpose}
-                         onValidate={this.props.onValidate}
+                         onError={this.props.onError}
                          />
         </Field>
 
@@ -227,7 +226,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.questioned"
                 value={this.props.Questioned}
                 onUpdate={this.updateQuestioned}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Questioned === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -237,7 +236,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.QuestionedExplanation}
                       className="foreign-travel-questioned-explanation"
                       onUpdate={this.updateQuestionedExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -249,7 +248,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.encounter"
                 value={this.props.Encounter}
                 onUpdate={this.updateEncounter}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Encounter === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -259,7 +258,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.EncounterExplanation}
                       className="foreign-travel-encounter-explanation"
                       onUpdate={this.updateEncounterExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -271,7 +270,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.contacted"
                 value={this.props.Contacted}
                 onUpdate={this.updateContacted}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Contacted === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -281,7 +280,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.ContactedExplanation}
                       className="foreign-travel-contacted-explanation"
                       onUpdate={this.updateContactedExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -293,7 +292,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.counter"
                 value={this.props.Counter}
                 onUpdate={this.updateCounter}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Counter === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -303,7 +302,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.CounterExplanation}
                       className="foreign-travel-counter-explanation"
                       onUpdate={this.updateCounterExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -315,7 +314,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.interest"
                 value={this.props.Interest}
                 onUpdate={this.updateInterest}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Interest === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -325,7 +324,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.InterestExplanation}
                       className="foreign-travel-interest-explanation"
                       onUpdate={this.updateInterestExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -337,7 +336,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.sensitive"
                 value={this.props.Sensitive}
                 onUpdate={this.updateSensitive}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Sensitive === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -347,7 +346,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.SensitiveExplanation}
                       className="foreign-travel-sensitive-explanation"
                       onUpdate={this.updateSensitiveExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -359,7 +358,7 @@ export default class TravelQuestions extends ValidationElement {
                 help="foreign.travel.help.threatened"
                 value={this.props.Threatened}
                 onUpdate={this.updateThreatened}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Threatened === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
@@ -369,7 +368,7 @@ export default class TravelQuestions extends ValidationElement {
                       {...this.props.ThreatenedExplanation}
                       className="foreign-travel-threatened-explanation"
                       onUpdate={this.updateThreatenedExplanation}
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
         </Show>
@@ -396,5 +395,6 @@ TravelQuestions.defaultProps = {
   Sensitive: '',
   SensitiveExplanation: {},
   Threatened: '',
-  ThreatenedExplanation: {}
+  ThreatenedExplanation: {},
+  onError: (value, arr) => { return arr }
 }

@@ -1,126 +1,94 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader } from '../../Form'
 import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
+import AuthenticatedView from '../../../views/AuthenticatedView'
+import { IntroHeader } from '../../Form'
 import { SectionViews, SectionView } from '../SectionView'
+import SectionElement from '../SectionElement'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
 import OrderedCounselings from './Alcohol/OrderedCounselings'
 import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
 import ReceivedCounselings from './Alcohol/ReceivedCounselings'
+import DrugUses from './Drugs/DrugUses'
+import DrugInvolvements from './Drugs/DrugInvolvements'
+import DrugClearanceUses from './Drugs/DrugClearanceUses'
+import DrugPublicSafetyUses from './Drugs/DrugPublicSafetyUses'
+import PrescriptionUses from './Drugs/PrescriptionUses'
+import OrderedTreatments from './Drugs/OrderedTreatments'
+import VoluntaryTreatments from './Drugs/VoluntaryTreatments'
 
-class SubstanceUse extends ValidationElement {
+class SubstanceUse extends SectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      subsection: props.subsection
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
-    this.onValidate = this.onValidate.bind(this)
     this.updateNegativeImpacts = this.updateNegativeImpacts.bind(this)
     this.updateOrderedCounselings = this.updateOrderedCounselings.bind(this)
     this.updateVoluntaryCounselings = this.updateVoluntaryCounselings.bind(this)
     this.updateReceivedCounselings = this.updateReceivedCounselings.bind(this)
-  }
-
-  componentDidMount () {
-    let current = this.launch(this.props.SubstanceUse, this.props.subsection, 'negative')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/substance/alcohol/${current}`))
-    }
+    this.updateDrugUses = this.updateDrugUses.bind(this)
+    this.updateDrugInvolvements = this.updateDrugInvolvements.bind(this)
+    this.updateDrugClearanceUses = this.updateDrugClearanceUses.bind(this)
+    this.updateDrugPublicSafetyUses = this.updateDrugPublicSafetyUses.bind(this)
+    this.updatePrescriptionUses = this.updatePrescriptionUses.bind(this)
+    this.updateOrderedTreatments = this.updateOrderedTreatments.bind(this)
+    this.updateVoluntaryTreatments = this.updateVoluntaryTreatments.bind(this)
   }
 
   componentWillReceiveProps (next) {
     // Redirect to first alcohol subsection if root subsection is accessed
-    if (next.subsection === 'alcohol') {
-      this.props.dispatch(push(`/form/substance/alcohol/negative`))
+    switch (next.subsection) {
+      case 'alcohol':
+        this.props.dispatch(push(`/form/substance/alcohol/negative`))
+        break
+      case 'drugs':
+        this.props.dispatch(push(`/form/substance/drugs/usage`))
+        break
     }
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push('/form/substance'))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push('/form/substance/review'))
-  }
-
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('SubstanceUse', field, values))
   }
 
   updateNegativeImpacts (values) {
-    this.onUpdate('NegativeImpacts', values)
+    this.handleUpdate('NegativeImpacts', values)
   }
 
   updateOrderedCounselings (values) {
-    this.onUpdate('OrderedCounselings', values)
+    this.handleUpdate('OrderedCounselings', values)
   }
 
   updateVoluntaryCounselings (values) {
-    this.onUpdate('VoluntaryCounselings', values)
+    this.handleUpdate('VoluntaryCounselings', values)
   }
 
   updateReceivedCounselings (values) {
-    this.onUpdate('ReceivedCounselings', values)
+    this.handleUpdate('ReceivedCounselings', values)
   }
 
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event.fake) {
-      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = 'neutral'
-    if (this.hasStatus('negative', status, true) &&
-      this.hasStatus('ordered', status, true) &&
-      this.hasStatus('additional', status, true) &&
-      this.hasStatus('voluntary', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('negative', status, false) ||
-      this.hasStatus('ordered', status, false) ||
-      this.hasStatus('additional', status, false) ||
-      this.hasStatus('voluntary', status, false)) {
-      cstatus = 'incomplete'
-    }
-
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
+  updateDrugUses (values) {
+    this.handleUpdate('DrugUses', values)
   }
 
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val) ||
-       (status && status[property] && status[property].status === val)
+  updateDrugInvolvements (values) {
+    this.handleUpdate('DrugInvolvements', values)
   }
 
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
+  updateDrugClearanceUses (values) {
+    this.handleUpdate('DrugClearanceUses', values)
+  }
 
-    return subsection
+  updateDrugPublicSafetyUses (values) {
+    this.handleUpdate('DrugPublicSafetyUses', values)
+  }
+
+  updatePrescriptionUses (values) {
+    this.handleUpdate('PrescriptionUses', values)
+  }
+
+  updateOrderedTreatments (values) {
+    this.handleUpdate('OrderedTreatments', values)
+  }
+
+  updateVoluntaryTreatments (values) {
+    this.handleUpdate('VoluntaryTreatments', values)
   }
 
   render () {
@@ -130,95 +98,264 @@ class SubstanceUse extends ValidationElement {
           <SectionView name="">
             <div className="legal intro review-screen">
               <div className="usa-grid-full">
-                <IntroHeader Errors={this.props.Errors}
-                  Completed={this.props.Completed}
-                  tour={i18n.t('substance.tour.para')}
-                  review={i18n.t('substance.review.para')}
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                  completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
                   onTour={this.handleTour}
                   onReview={this.handleReview}
-                />
+                  />
               </div>
             </div>
           </SectionView>
+
+          <SectionView name="drugs/usage"
+                       back="foreign/travel"
+                       backLabel={ i18n.t('foreign.destination.travel') }
+                       next="substance/drugs/purchase"
+                       nextLabel={i18n.t('substance.destination.drugs.purchase')}>
+            <DrugUses name="druguses"
+                      {...this.props.DrugUses}
+                      dispatch={this.props.dispatch}
+                      onError={this.handleError}
+                      onUpdate={this.updateDrugUses}
+                      />
+          </SectionView>
+
+          <SectionView name="drugs/purchase"
+                       back="substance/drugs/usage"
+                       backLabel={i18n.t('substance.destination.drugs.usage')}
+                       next="substance/drugs/clearance"
+                       nextLabel={i18n.t('substance.destination.drugs.clearance')}>
+            <DrugInvolvements name="druginvolvements"
+                              {...this.props.DrugInvolvements}
+                              dispatch={this.props.dispatch}
+                              onError={this.handleError}
+                              onUpdate={this.updateDrugInvolvements}
+                              />
+          </SectionView>
+
+          <SectionView name="drugs/clearance"
+                       back="substance/drugs/purchase"
+                       backLabel={i18n.t('substance.destination.drugs.purchase')}
+                       next="substance/drugs/publicsafety"
+                       nextLabel={i18n.t('substance.destination.drugs.publicsafety')}>
+            <DrugClearanceUses name="drugclearanceuses"
+                               {...this.props.DrugClearanceUses}
+                               dispatch={this.props.dispatch}
+                               onError={this.handleError}
+                               onUpdate={this.updateDrugClearanceUses}
+                               />
+          </SectionView>
+
+          <SectionView name="drugs/publicsafety"
+                       back="substance/drugs/clearance"
+                       backLabel={i18n.t('substance.destination.drugs.clearance')}
+                       next="substance/drugs/misuse"
+                       nextLabel={i18n.t('substance.destination.drugs.misuse')}>
+            <DrugPublicSafetyUses name="drugpublicsafety"
+                                  {...this.props.DrugPublicSafetyUses}
+                                  dispatch={this.props.dispatch}
+                                  onError={this.handleError}
+                                  onUpdate={this.updateDrugPublicSafetyUses}
+                                  />
+          </SectionView>
+
+          <SectionView name="drugs/misuse"
+                       back="substance/drugs/publicsafety"
+                       backLabel={i18n.t('substance.destination.drugs.publicsafety')}
+                       next="substance/drugs/ordered"
+                       nextLabel={i18n.t('substance.destination.drugs.ordered')}>
+            <PrescriptionUses name="prescriptionuses"
+                              {...this.props.PrescriptionUses}
+                              dispatch={this.props.dispatch}
+                              onError={this.handleError}
+                              onUpdate={this.updatePrescriptionUses}
+                              />
+          </SectionView>
+
+          <SectionView name="drugs/ordered"
+                       back="substance/drugs/misuse"
+                       backLabel={i18n.t('substance.destination.drugs.misuse')}
+                       next="substance/drugs/voluntary"
+                       nextLabel={i18n.t('substance.destination.drugs.voluntary')}>
+            <OrderedTreatments name="ordered"
+                               {...this.props.OrderedTreatments}
+                               dispatch={this.props.dispatch}
+                               onError={this.handleError}
+                               onUpdate={this.updateOrderedTreatments}
+                               />
+          </SectionView>
+
+          <SectionView name="drugs/voluntary"
+                       back="substance/drugs/ordered"
+                       backLabel={i18n.t('substance.destination.drugs.ordered')}
+                       next="substance/alcohol/negative"
+                       nextLabel={i18n.t('substance.destination.police.negative')}>
+            <VoluntaryTreatments name="voluntary"
+                                 {...this.props.VoluntaryTreatments}
+                                 dispatch={this.props.dispatch}
+                                 onError={this.handleError}
+                                 onUpdate={this.updateVoluntaryTreatments}
+                                 />
+          </SectionView>
+
           <SectionView name="alcohol/negative"
-            back="foreign/business/conferences"
-            backLabel={ i18n.t('foreign.destination.business.events') }
-            next="substance/alcohol/ordered"
-            nextLabel={ i18n.t('substance.destination.police.ordered') }>
+                       back="substance/drugs/voluntary"
+                       backLabel={i18n.t('substance.destination.drugs.voluntary')}
+                       next="substance/alcohol/ordered"
+                       nextLabel={ i18n.t('substance.destination.police.ordered') }>
             <NegativeImpacts name="negative"
-              {...this.props.NegativeImpacts}
-              onValidate={this.onValidate}
-              onUpdate={this.updateNegativeImpacts}
-            />
+                             {...this.props.NegativeImpacts}
+                             dispatch={this.props.dispatch}
+                             onError={this.handleError}
+                             onUpdate={this.updateNegativeImpacts}
+                             />
           </SectionView>
+
           <SectionView name="alcohol/ordered"
-            back="substance/alcohol/negative"
-            backLabel={ i18n.t('substance.destination.police.negative') }
-            next="substance/alcohol/voluntary"
-            nextLabel={ i18n.t('substance.destination.police.voluntary') }>
+                       back="substance/alcohol/negative"
+                       backLabel={ i18n.t('substance.destination.police.negative') }
+                       next="substance/alcohol/voluntary"
+                       nextLabel={ i18n.t('substance.destination.police.voluntary') }>
             <OrderedCounselings name="ordered"
-              {...this.props.OrderedCounselings}
-              onValidate={this.onValidate}
-              onUpdate={this.updateOrderedCounselings}
-            />
+                                {...this.props.OrderedCounselings}
+                                dispatch={this.props.dispatch}
+                                onError={this.handleError}
+                                onUpdate={this.updateOrderedCounselings}
+                                />
           </SectionView>
+
           <SectionView name="alcohol/voluntary"
-            back="substance/alcohol/ordered"
-            backLabel={ i18n.t('substance.destination.police.ordered') }
-            next="substance/alcohol/additional"
-            nextLabel={ i18n.t('substance.destination.police.additional') }>
+                       back="substance/alcohol/ordered"
+                       backLabel={ i18n.t('substance.destination.police.ordered') }
+                       next="substance/alcohol/additional"
+                       nextLabel={ i18n.t('substance.destination.police.additional') }>
             <VoluntaryCounselings name="voluntary"
-              {...this.props.VoluntaryCounselings}
-              onValidate={this.onValidate}
-              onUpdate={this.updateVoluntaryCounselings}
-            />
+                                  {...this.props.VoluntaryCounselings}
+                                  dispatch={this.props.dispatch}
+                                  onError={this.handleError}
+                                  onUpdate={this.updateVoluntaryCounselings}
+                                  />
           </SectionView>
+
           <SectionView name="alcohol/additional"
-            back="substance/alcohol/voluntary"
-            backLabel={ i18n.t('substance.destination.police.voluntary') }
-            next="substance/review"
-            nextLabel={ i18n.t('substance.destination.review') }>
+                       back="substance/alcohol/voluntary"
+                       backLabel={ i18n.t('substance.destination.police.voluntary') }
+                       next="substance/review"
+                       nextLabel={ i18n.t('substance.destination.review') }>
             <ReceivedCounselings name="additional"
-              {...this.props.ReceivedCounselings}
-              onValidate={this.onValidate}
-              onUpdate={this.updateReceivedCounselings}
-            />
+                                 {...this.props.ReceivedCounselings}
+                                 dispatch={this.props.dispatch}
+                                 onError={this.handleError}
+                                 onUpdate={this.updateReceivedCounselings}
+                                 />
           </SectionView>
 
           <SectionView name="review"
-            title={i18n.t('substance.review.title')}
-            back="substance/alcohol/additional"
-            backLabel={ i18n.t('substance.destination.police.additional') }
-            showTop="true"
-            next="legal/police"
-            nextLabel={ i18n.t('legal.destination.police') }>
+                       title={i18n.t('substance.review.title')}
+                       back="substance/alcohol/additional"
+                       backLabel={ i18n.t('substance.destination.police.additional') }
+                       showTop="true"
+                       next="legal/police"
+                       nextLabel={ i18n.t('legal.destination.police') }>
+
+            <hr />
+            <DrugUses name="druguses"
+                      {...this.props.DrugUses}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onError={this.handleError}
+                      onUpdate={this.updateDrugUses}
+                      />
+
+            <hr />
+            <DrugInvolvements name="druginvolvements"
+                              {...this.props.DrugInvolvements}
+                              defaultState={false}
+                              dispatch={this.props.dispatch}
+                              onError={this.handleError}
+                              onUpdate={this.updateDrugInvolvements}
+                              />
+
+            <hr />
+            <DrugClearanceUses name="drugclearanceuses"
+                               {...this.props.DrugClearanceUses}
+                               defaultState={false}
+                               dispatch={this.props.dispatch}
+                               onError={this.handleError}
+                               onUpdate={this.updateDrugClearanceUses}
+                               />
+
+            <hr />
+            <DrugPublicSafetyUses name="drugpublicsafety"
+                                  {...this.props.DrugPublicSafetyUses}
+                                  defaultState={false}
+                                  dispatch={this.props.dispatch}
+                                  onError={this.handleError}
+                                  onUpdate={this.updateDrugPublicSafetyUses}
+                                  />
+
+            <hr />
+            <PrescriptionUses name="prescriptionuses"
+                              {...this.props.PrescriptionUses}
+                              defaultState={false}
+                              dispatch={this.props.dispatch}
+                              onError={this.handleError}
+                              onUpdate={this.updatePrescriptionUses}
+                              />
+
+            <hr />
+            <OrderedTreatments name="ordered"
+                               {...this.props.OrderedTreatments}
+                               defaultState={false}
+                               dispatch={this.props.dispatch}
+                               onError={this.handleError}
+                               onUpdate={this.updateOrderedTreatments}
+                               />
+
+            <hr />
+            <VoluntaryTreatments name="voluntary"
+                                 {...this.props.VoluntaryTreatments}
+                                 defaultState={false}
+                                 dispatch={this.props.dispatch}
+                                 onError={this.handleError}
+                                 onUpdate={this.updateVoluntaryTreatments}
+                                 />
+
+            <hr />
             <NegativeImpacts name="negative"
-              defaultState={false}
-              {...this.props.NegativeImpacts}
-              onValidate={this.onValidate}
-              onUpdate={this.updateNegativeImpacts}
-            />
+                             defaultState={false}
+                             {...this.props.NegativeImpacts}
+                             dispatch={this.props.dispatch}
+                             onError={this.handleError}
+                             onUpdate={this.updateNegativeImpacts}
+                             />
+
             <hr />
             <OrderedCounselings name="ordered"
-              defaultState={false}
-              {...this.props.OrderedCounselings}
-              onValidate={this.onValidate}
-              onUpdate={this.updateOrderedCounselings}
-            />
+                                defaultState={false}
+                                {...this.props.OrderedCounselings}
+                                dispatch={this.props.dispatch}
+                                onError={this.handleError}
+                                onUpdate={this.updateOrderedCounselings}
+                                />
+
             <hr />
             <VoluntaryCounselings name="voluntary"
-              defaultState={false}
-              {...this.props.VoluntaryCounselings}
-              onValidate={this.onValidate}
-              onUpdate={this.updateVoluntaryCounselings}
-            />
+                                  defaultState={false}
+                                  {...this.props.VoluntaryCounselings}
+                                  dispatch={this.props.dispatch}
+                                  onError={this.handleError}
+                                  onUpdate={this.updateVoluntaryCounselings}
+                                  />
+
             <hr />
             <ReceivedCounselings name="additional"
-              defaultState={false}
-              {...this.props.ReceivedCounselings}
-              onValidate={this.onValidate}
-              onUpdate={this.updateReceivedCounselings}
-            />
+                                 defaultState={false}
+                                 {...this.props.ReceivedCounselings}
+                                 dispatch={this.props.dispatch}
+                                 onError={this.handleError}
+                                 onUpdate={this.updateReceivedCounselings}
+                                 />
           </SectionView>
         </SectionViews>
       </div>
@@ -239,13 +376,21 @@ function mapStateToProps (state) {
     OrderedCounselings: substance.OrderedCounselings || {},
     VoluntaryCounselings: substance.VoluntaryCounselings || {},
     ReceivedCounselings: substance.ReceivedCounselings || {},
+    DrugUses: substance.DrugUses || {},
+    DrugInvolvements: substance.DrugInvolvements || {},
+    DrugClearanceUses: substance.DrugClearanceUses || {},
+    DrugPublicSafetyUses: substance.DrugPublicSafetyUses || {},
+    PrescriptionUses: substance.PrescriptionUses || {},
+    OrderedTreatments: substance.OrderedTreatments || {},
+    VoluntaryTreatments: substance.VoluntaryTreatments || {},
     Errors: errors.substance || [],
     Completed: completed.substance || []
   }
 }
 
 SubstanceUse.defaultProps = {
-  subsection: ''
+  defaultView: 'drugs/usage',
+  store: 'SubstanceUse'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(SubstanceUse))

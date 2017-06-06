@@ -1,31 +1,17 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
-import { ValidationElement, Field, Email, Accordion, Telephone } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Field, Email, Accordion, Telephone } from '../../../Form'
 
-export default class ContactInformation extends ValidationElement {
+export default class ContactInformation extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
-      focus: props.focus || false,
-      error: props.error || false,
-      valid: props.valid || false,
-      errorCodes: [],
       Emails: props.Emails || [],
       PhoneNumbers: props.PhoneNumbers || []
     }
-  }
-
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-  }
-
-  /**
-   * Handle the key down event.
-   */
-  handleKeyDown (event) {
   }
 
   emailDispatch (collection) {
@@ -45,37 +31,6 @@ export default class ContactInformation extends ValidationElement {
         })
       }
     })
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-      super.handleValidation(event, s, e)
-    })
-  }
-
-  isValid () {
-    return new ContactInformationValidator(this.state, null).isValid()
   }
 
   /**
@@ -143,8 +98,9 @@ export default class ContactInformation extends ValidationElement {
         <div className={klass + ' email-collection'}>
           <Accordion minimum="2"
                      items={this.state.Emails}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.contactDispatch.bind(this, 'Emails')}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.emailSummary}
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
@@ -164,8 +120,9 @@ export default class ContactInformation extends ValidationElement {
         <div className={klass + ' telephone-collection'}>
           <Accordion minimum="2"
                      items={this.state.PhoneNumbers}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.contactDispatch.bind(this, 'PhoneNumbers')}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
@@ -180,4 +137,17 @@ export default class ContactInformation extends ValidationElement {
       </div>
     )
   }
+}
+
+ContactInformation.defaultProps = {
+  Emails: [],
+  PhoneNumbers: [],
+  onError: (value, arr) => { return arr },
+  section: 'identification',
+  subsection: 'contacts',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ContactInformationValidator(state, props).isValid()
+  },
+  defaultState: true
 }

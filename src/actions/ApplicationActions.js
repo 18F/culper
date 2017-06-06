@@ -12,38 +12,11 @@ export function updateApplication (section, property, values) {
  * section.
  */
 export function reportErrors (section, subsection, codes) {
-  let prefix = subsection.length
-      ? [section, subsection].join('.')
-      : section
-
-  let expandedCodes = []
-  codes.forEach((code) => {
-    let c = (prefix + '.' + code).toLowerCase()
-    if (!c.endsWith('.')) {
-      expandedCodes.push(c)
-    }
-  })
-
-  return updateApplication('Errors', section, expandedCodes)
+  return updateApplication('Errors', section, codes)
 }
 
 export function reportCompletion (section, subsection, status) {
-  // Sample structure
-  //
-  // {
-  //   "section": {
-  //     "status": "incomplete",
-  //     "section1.1": { "status": "complete" },
-  //     "section1.2": { "status": "incomplete" },
-  //     "section1.3": { "status": "neutral" }
-  //   }
-  // }
-
-  // First see if section is present
-  // If subsection is NOT given then set section status
-  // If subsection is given then see it is present
-  // If subsection is given then set subsection status
-  return updateApplication('Completed', section, status)
+  return updateApplication('Completed', section, [{ code: `${section}/${subsection}`.trim(), section: section, subsection: subsection, valid: status }])
 }
 
 export function updateIdentificationApplicantName (values) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field, Country } from '../../../Form'
 import ForeignContact from './ForeignContact'
 import { DateSummary, NameSummary } from '../../../Summary'
 
@@ -19,6 +19,7 @@ const sendUpdate = (fn, name, props) => {
 export default class ForeignService extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Organization: props.Organization,
       Name: props.Name,
@@ -120,7 +121,6 @@ export default class ForeignService extends ValidationElement {
     return (
       <div className="foreign-service">
         <Field title={i18n.t('military.foreign.heading.organization')}
-               help="military.foreign.help.organization"
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="organization option-list"
@@ -130,54 +130,60 @@ export default class ForeignService extends ValidationElement {
                    label={i18n.m('military.foreign.label.organization.military')}
                    value="Military"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
             <Radio name="organization-intelligence"
                    className="organization-intelligence"
                    label={i18n.m('military.foreign.label.organization.intelligence')}
                    value="Intelligence"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
             <Radio name="organization-diplomatic"
                    className="organization-diplomatic"
                    label={i18n.m('military.foreign.label.organization.diplomatic')}
                    value="Diplomatic"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
             <Radio name="organization-security"
                    className="organization-security"
                    label={i18n.m('military.foreign.label.organization.security')}
                    value="Security"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
             <Radio name="organization-militia"
                    className="organization-militia"
                    label={i18n.m('military.foreign.label.organization.militia')}
                    value="Militia"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
             <Radio name="organization-defense"
                    className="organization-defense"
                    label={i18n.m('military.foreign.label.organization.defense')}
                    value="Defense"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
             <Radio name="organization-other"
                    className="organization-other"
                    label={i18n.m('military.foreign.label.organization.other')}
                    value="Other"
                    onChange={this.updateOrganization}
+                   onError={this.props.onError}
                    />
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.name')}
-               help="military.foreign.help.name">
+        <Field title={i18n.t('military.foreign.heading.name')}>
           <Text name="Name"
                 {...this.state.Name}
                 className="foreign-service-name"
                 maxlength="100"
                 onUpdate={this.updateName}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -189,62 +195,58 @@ export default class ForeignService extends ValidationElement {
                      className="foreign-service-dates"
                      {...this.state.Dates}
                      onUpdate={this.updateDates}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.country')}
-               help="military.foreign.help.country">
-          <Text name="Country"
-                {...this.state.Country}
-                className="foreign-service-country"
-                maxlength="100"
-                onUpdate={this.updateCountry}
-                onValidate={this.props.onValidate}
-                />
+               adjustFor="country">
+          <Country name="Country"
+                   {...this.state.Country}
+                   className="foreign-service-country"
+                   maxlength="100"
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.rank')}
-               help="military.foreign.help.rank">
+        <Field title={i18n.t('military.foreign.heading.rank')}>
           <Text name="Rank"
                 {...this.state.Rank}
                 className="foreign-service-rank"
                 maxlength="100"
                 onUpdate={this.updateRank}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.division')}
-               help="military.foreign.help.division">
+        <Field title={i18n.t('military.foreign.heading.division')}>
           <Text name="Division"
                 {...this.state.Division}
                 className="foreign-service-division"
                 maxlength="100"
                 onUpdate={this.updateDivision}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.circumstances')}
-               help="military.foreign.help.circumstances">
+        <Field title={i18n.t('military.foreign.heading.circumstances')}>
           <Textarea name="Circumstances"
                     {...this.state.Circumstances}
                     className="foreign-service-circumstances"
                     maxlength="100"
                     onUpdate={this.updateCircumstances}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.left')}
-               help="military.foreign.help.left">
+        <Field title={i18n.t('military.foreign.heading.left')}>
           <Textarea name="ReasonLeft"
                     {...this.state.ReasonLeft}
                     className="foreign-service-left"
                     maxlength="100"
                     onUpdate={this.updateReasonLeft}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
@@ -254,7 +256,7 @@ export default class ForeignService extends ValidationElement {
                 value={this.state.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
-                onValidate={this.props.onValidate}>
+                onError={this.props.onError}>
         </Branch>
 
         <Show when={this.state.MaintainsContact === 'Yes'}>
@@ -264,9 +266,10 @@ export default class ForeignService extends ValidationElement {
             <Accordion minimum="1"
                        className="foreign-contacts-collection"
                        items={this.state.List}
+                       defaultState={this.props.defaultState}
                        branch={this.state.ListBranch}
                        onUpdate={this.updateList}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        summary={this.summary}
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
@@ -280,4 +283,9 @@ export default class ForeignService extends ValidationElement {
       </div>
     )
   }
+}
+
+ForeignService.defaultProps = {
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

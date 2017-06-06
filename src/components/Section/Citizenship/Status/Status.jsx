@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Field, RadioGroup, Radio,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Field, RadioGroup, Radio,
          Text, Name, Address, DateControl, Country } from '../../../Form'
 
 /**
@@ -16,7 +17,7 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class Status extends ValidationElement {
+export default class Status extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -45,8 +46,7 @@ export default class Status extends ValidationElement {
       PermanentResidentCardNumber: props.PermanentResidentCardNumber,
       ResidenceStatus: props.ResidenceStatus,
       DocumentType: props.DocumentType,
-      DocumentExpiration: props.DocumentExpiration,
-      errorCodes: []
+      DocumentExpiration: props.DocumentExpiration
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -75,37 +75,6 @@ export default class Status extends ValidationElement {
     this.updateResidenceStatus = this.updateResidenceStatus.bind(this)
     this.updateDocumentType = this.updateDocumentType.bind(this)
     this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new CitizenshipValidator(this.state, null).isValid()
   }
 
   onUpdate (name, values) {
@@ -227,30 +196,35 @@ export default class Status extends ValidationElement {
                    value="Citizen"
                    className="citizenship-status-citizen"
                    onChange={this.updateCitizenshipStatus}
+                   onError={this.handleError}
                    />
             <Radio name="citizenship-status-foreignborn"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.foreignborn')}
                    value="ForeignBorn"
                    className="citizenship-status-foreignborn"
                    onChange={this.updateCitizenshipStatus}
+                   onError={this.handleError}
                    />
             <Radio name="citizenship-status-naturalized"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.naturalized')}
                    value="Naturalized"
                    className="citizenship-status-naturalized"
                    onChange={this.updateCitizenshipStatus}
+                   onError={this.handleError}
                    />
             <Radio name="citizenship-status-derived"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.derived')}
                    value="Derived"
                    className="citizenship-status-derived"
                    onChange={this.updateCitizenshipStatus}
+                   onError={this.handleError}
                    />
             <Radio name="citizenship-status-notcitizen"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.notcitizen')}
                    value="NotCitizen"
                    className="citizenship-status-notcitizen"
                    onChange={this.updateCitizenshipStatus}
+                   onError={this.handleError}
                    />
           </RadioGroup>
         </Field>
@@ -265,7 +239,7 @@ export default class Status extends ValidationElement {
                    commentsValue={this.state.Explanation}
                    commentsActive={this.state.AbroadDocumentation === 'Other'}
                    onUpdate={this.updateExplanation}
-                   onValidate={this.handleValidation}>
+                   onError={this.handleError}>
               <RadioGroup className="citizenship-abroad"
                           selectedValue={this.state.AbroadDocumentation}>
                 <Radio name="citizenship-abroad-fs240"
@@ -273,24 +247,28 @@ export default class Status extends ValidationElement {
                        value="FS-240"
                        className="citizenship-abroad-fs240"
                        onChange={this.updateAbroadDocumentation}
+                       onError={this.handleError}
                        />
                 <Radio name="citizenship-abroad-ds1350"
                        label={i18n.t('citizenship.status.label.abroad.ds1350')}
                        value="DS-1350"
                        className="citizenship-abroad-ds1350"
                        onChange={this.updateAbroadDocumentation}
+                       onError={this.handleError}
                        />
                 <Radio name="citizenship-abroad-fs545"
                        label={i18n.t('citizenship.status.label.abroad.fs545')}
                        value="FS-545"
                        className="citizenship-abroad-fs545"
                        onChange={this.updateAbroadDocumentation}
+                       onError={this.handleError}
                        />
                 <Radio name="citizenship-abroad-other"
                        label={i18n.t('citizenship.status.label.abroad.other')}
                        value="Other"
                        className="citizenship-abroad-other"
                        onChange={this.updateAbroadDocumentation}
+                       onError={this.handleError}
                        />
               </RadioGroup>
             </Field>
@@ -301,7 +279,7 @@ export default class Status extends ValidationElement {
                     className="document-number"
                     {...this.state.DocumentNumber}
                     onUpdate={this.updateDocumentNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -313,7 +291,7 @@ export default class Status extends ValidationElement {
                            className="document-issued"
                            {...this.state.DocumentIssued}
                            onUpdate={this.updateDocumentIssued}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -325,7 +303,7 @@ export default class Status extends ValidationElement {
                        className="place-issued"
                        {...this.state.PlaceIssued}
                        onUpdate={this.updatePlaceIssued}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
             </Field>
 
@@ -334,7 +312,7 @@ export default class Status extends ValidationElement {
                   className="document-name"
                   {...this.state.DocumentName}
                   onUpdate={this.updateDocumentName}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   />
 
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
@@ -343,7 +321,7 @@ export default class Status extends ValidationElement {
                     className="certificate-number"
                     {...this.state.CertificateNumber}
                     onUpdate={this.updateCertificateNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -355,7 +333,7 @@ export default class Status extends ValidationElement {
                            className="certificate-issued"
                            {...this.state.CertificateIssued}
                            onUpdate={this.updateCertificateIssued}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -364,7 +342,7 @@ export default class Status extends ValidationElement {
                   className="certificate-name"
                   {...this.state.CertificateName}
                   onUpdate={this.updateCertificateName}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   />
 
             <Branch name="born_on_military_installation"
@@ -374,7 +352,7 @@ export default class Status extends ValidationElement {
                     value={this.state.BornOnMilitaryInstallation}
                     help="citizenship.status.help.bornonmilitaryinstallation"
                     onUpdate={this.updateBornOnMilitaryInstallation}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
 
             <Show when={this.state.BornOnMilitaryInstallation === 'Yes'}>
@@ -384,7 +362,7 @@ export default class Status extends ValidationElement {
                       className="military-base"
                       {...this.state.MilitaryBase}
                       onUpdate={this.updateMilitaryBase}
-                      onValidate={this.handleValidation}
+                      onError={this.handleError}
                       />
               </Field>
             </Show>
@@ -401,7 +379,7 @@ export default class Status extends ValidationElement {
                            className="entry-date"
                            {...this.state.EntryDate}
                            onUpdate={this.updateEntryDate}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -413,7 +391,7 @@ export default class Status extends ValidationElement {
                        className="entry-location"
                        {...this.state.EntryLocation}
                        onUpdate={this.updateEntryLocation}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
             </Field>
 
@@ -422,8 +400,9 @@ export default class Status extends ValidationElement {
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
                        value={this.state.PriorCitizenship.first}
+                       multiple={true}
                        onUpdate={this.updatePriorCitizenship}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
             </Field>
 
@@ -434,7 +413,7 @@ export default class Status extends ValidationElement {
                     value={this.state.HasAlienRegistration}
                     help="citizenship.status.help.hasalienregistration"
                     onUpdate={this.updateHasAlienRegistration}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
 
             <Show when={this.state.HasAlienRegistration === 'Yes'}>
@@ -444,7 +423,7 @@ export default class Status extends ValidationElement {
                       className="alien-registration-number"
                       {...this.state.AlienRegistrationNumber}
                       onUpdate={this.updateAlienRegistrationNumber}
-                      onValidate={this.handleValidation}
+                      onError={this.handleError}
                       />
               </Field>
             </Show>
@@ -455,7 +434,7 @@ export default class Status extends ValidationElement {
                     className="certificate-number"
                     {...this.state.CertificateNumber}
                     onUpdate={this.updateCertificateNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -465,7 +444,7 @@ export default class Status extends ValidationElement {
                     className="certificate-court-name"
                     {...this.state.CertificateCourtName}
                     onUpdate={this.updateCertificateCourtName}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -477,7 +456,7 @@ export default class Status extends ValidationElement {
                        className="certificate-court-address"
                        {...this.state.CertificateCourtAddress}
                        onUpdate={this.updateCertificateCourtAddress}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
             </Field>
 
@@ -489,7 +468,7 @@ export default class Status extends ValidationElement {
                            className="certificate-issued"
                            {...this.state.CertificateIssued}
                            onUpdate={this.updateCertificateIssued}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -498,7 +477,7 @@ export default class Status extends ValidationElement {
                   className="certificate-name"
                   {...this.state.CertificateName}
                   onUpdate={this.updateCertificateName}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   />
 
             <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
@@ -509,7 +488,7 @@ export default class Status extends ValidationElement {
                    commentsValue={this.state.Explanation}
                    commentsActive={this.state.Basis === 'Other'}
                    onUpdate={this.updateExplanation}
-                   onValidate={this.handleValidation}>
+                   onError={this.handleError}>
               <RadioGroup className="citizenship-basis"
                           selectedValue={this.state.Basis}>
                 <Radio name="citizenship-basis-individual"
@@ -517,12 +496,14 @@ export default class Status extends ValidationElement {
                        value="Individual"
                        className="citizenship-basis-individual"
                        onChange={this.updateBasis}
+                       onError={this.handleError}
                        />
                 <Radio name="citizenship-basis-other"
                        label={i18n.m('citizenship.status.label.basis.other')}
                        value="Other"
                        className="citizenship-basis-other"
                        onChange={this.updateBasis}
+                       onError={this.handleError}
                        />
               </RadioGroup>
             </Field>
@@ -537,7 +518,7 @@ export default class Status extends ValidationElement {
                     className="alien-registration-number"
                     {...this.state.AlienRegistrationNumber}
                     onUpdate={this.updateAlienRegistrationNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -547,7 +528,7 @@ export default class Status extends ValidationElement {
                     className="permanent-resident-card-number"
                     {...this.state.PermanentResidentCardNumber}
                     onUpdate={this.updatePermanentResidentCardNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -557,7 +538,7 @@ export default class Status extends ValidationElement {
                     className="certificate-number"
                     {...this.state.CertificateNumber}
                     onUpdate={this.updateCertificateNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -566,7 +547,7 @@ export default class Status extends ValidationElement {
                   className="certificate-name"
                   {...this.state.CertificateName}
                   onUpdate={this.updateCertificateName}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   />
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.derived')}
@@ -577,7 +558,7 @@ export default class Status extends ValidationElement {
                            className="certificate-issued"
                            {...this.state.CertificateIssued}
                            onUpdate={this.updateCertificateIssued}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -589,7 +570,7 @@ export default class Status extends ValidationElement {
                    commentsValue={this.state.Explanation}
                    commentsActive={this.state.Basis === 'Other'}
                    onUpdate={this.updateExplanation}
-                   onValidate={this.handleValidation}>
+                   onError={this.handleError}>
               <RadioGroup className="citizenship-basis"
                           selectedValue={this.state.Basis}>
                 <Radio name="citizenship-basis-individual"
@@ -597,12 +578,14 @@ export default class Status extends ValidationElement {
                        value="Individual"
                        className="citizenship-basis-individual"
                        onChange={this.updateBasis}
+                       onError={this.handleError}
                        />
                 <Radio name="citizenship-basis-other"
                        label={i18n.m('citizenship.status.label.basis.other')}
                        value="Other"
                        className="citizenship-basis-other"
                        onChange={this.updateBasis}
+                       onError={this.handleError}
                        />
               </RadioGroup>
             </Field>
@@ -617,7 +600,7 @@ export default class Status extends ValidationElement {
                     className="residence-status"
                     {...this.state.ResidenceStatus}
                     onUpdate={this.updateResidenceStatus}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -629,7 +612,7 @@ export default class Status extends ValidationElement {
                            className="entry-date"
                            {...this.state.EntryDate}
                            onUpdate={this.updateEntryDate}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -641,7 +624,7 @@ export default class Status extends ValidationElement {
                        className="entry-location"
                        {...this.state.EntryLocation}
                        onUpdate={this.updateEntryLocation}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
             </Field>
 
@@ -650,8 +633,9 @@ export default class Status extends ValidationElement {
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
                        value={this.state.PriorCitizenship.first}
+                       multiple={true}
                        onUpdate={this.updatePriorCitizenship}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
             </Field>
 
@@ -661,7 +645,7 @@ export default class Status extends ValidationElement {
                     className="alien-registration-number"
                     {...this.state.AlienRegistrationNumber}
                     onUpdate={this.updateAlienRegistrationNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -670,10 +654,10 @@ export default class Status extends ValidationElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="AlienRegistrationExpiration"
-                           className="alient-registration-expiration"
+                           className="alien-registration-expiration"
                            {...this.state.AlienRegistrationExpiration}
                            onUpdate={this.updateAlienRegistrationExpiration}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -685,7 +669,7 @@ export default class Status extends ValidationElement {
                    commentsValue={this.state.Explanation}
                    commentsActive={this.state.DocumentType === 'Other'}
                    onUpdate={this.updateExplanation}
-                   onValidate={this.handleValidation}>
+                   onError={this.handleError}>
               <RadioGroup className="citizenship-document-type"
                           selectedValue={this.state.DocumentType}>
                 <Radio name="document-type-i94"
@@ -693,30 +677,35 @@ export default class Status extends ValidationElement {
                        value="I-94"
                        className="document-type-i94"
                        onChange={this.updateDocumentType}
+                       onError={this.handleError}
                        />
                 <Radio name="document-type-visa"
                        label={i18n.t('citizenship.status.label.documenttype.visa')}
                        value="U.S. Visa"
                        className="document-type-visa"
                        onChange={this.updateDocumentType}
+                       onError={this.handleError}
                        />
                 <Radio name="document-type-i20"
                        label={i18n.t('citizenship.status.label.documenttype.i20')}
                        value="I-20"
                        className="document-type-i20"
                        onChange={this.updateDocumentType}
+                       onError={this.handleError}
                        />
                 <Radio name="document-type-ds2019"
                        label={i18n.t('citizenship.status.label.documenttype.ds2019')}
                        value="DS-2019"
                        className="document-type-ds2019"
                        onChange={this.updateDocumentType}
+                       onError={this.handleError}
                        />
                 <Radio name="document-type-other"
                        label={i18n.t('citizenship.status.label.documenttype.other')}
                        value="Other"
                        className="document-type-other"
                        onChange={this.updateDocumentType}
+                       onError={this.handleError}
                        />
               </RadioGroup>
             </Field>
@@ -727,7 +716,7 @@ export default class Status extends ValidationElement {
                     className="document-number"
                     {...this.state.DocumentNumber}
                     onUpdate={this.updateDocumentNumber}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
             </Field>
 
@@ -736,7 +725,7 @@ export default class Status extends ValidationElement {
                   className="document-name"
                   {...this.state.DocumentName}
                   onUpdate={this.updateDocumentName}
-                  onValidate={this.handleValidation}
+                  onError={this.handleError}
                   />
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
@@ -747,7 +736,7 @@ export default class Status extends ValidationElement {
                            className="document-issued"
                            {...this.state.DocumentIssued}
                            onUpdate={this.updateDocumentIssued}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
 
@@ -759,7 +748,7 @@ export default class Status extends ValidationElement {
                            className="document-expiration"
                            {...this.state.DocumentExpiration}
                            onUpdate={this.updateDocumentExpiration}
-                           onValidate={this.handleValidation}
+                           onError={this.handleError}
                            />
             </Field>
           </div>
@@ -784,7 +773,7 @@ Status.defaultProps = {
   MilitaryBase: {},
   EntryDate: {},
   EntryLocation: {},
-  PriorCitizenship: [],
+  PriorCitizenship: {},
   HasAlienRegistration: '',
   AlienRegistrationNumber: {},
   AlienRegistrationExpiration: {},
@@ -794,5 +783,12 @@ Status.defaultProps = {
   PermanentResidentCardNumber: {},
   ResidenceStatus: {},
   DocumentType: '',
-  DocumentExpiration: {}
+  DocumentExpiration: {},
+  onError: (value, arr) => { return arr },
+  section: 'citizenship',
+  subsection: 'status',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new CitizenshipValidator(state, props).isValid()
+  }
 }

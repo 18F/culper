@@ -1,6 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, Checkbox } from '../../../Form'
+import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
+         Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange,
+         Checkbox, Country } from '../../../Form'
 import Divorce from './Divorce'
 import { CivilUnionValidator } from '../../../../validators'
 
@@ -18,6 +20,7 @@ export default class CivilUnion extends ValidationElement {
       OtherNameMaiden: props.OtherNameMaiden,
       OtherNameNotApplicable: props.OtherNameNotApplicable,
       DatesUsed: props.DatesUsed,
+      Citizenship: props.Citizenship,
       EnteredCivilUnion: props.EnteredCivilUnion,
       Address: props.Address,
       Telephone: props.Telephone,
@@ -27,10 +30,7 @@ export default class CivilUnion extends ValidationElement {
       AddressSeparated: props.AddressSeparated,
       AddressSeparatedNotApplicable: props.AddressSeparatedNotApplicable,
       Divorced: props.Divorced,
-      DivorcedList: props.DivorcedList,
-      DivorcedListBranch: props.DivorcedListBranch,
-      UseCurrentAddress: props.UseCurrentAddress,
-      errorCodes: []
+      UseCurrentAddress: props.UseCurrentAddress
     }
 
     this.update = this.update.bind(this)
@@ -43,6 +43,7 @@ export default class CivilUnion extends ValidationElement {
     this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
     this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
     this.updateDatesUsed = this.updateDatesUsed.bind(this)
+    this.updateCitizenship = this.updateCitizenship.bind(this)
     this.updateEnteredCivilUnion = this.updateEnteredCivilUnion.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
     this.updateTelephone = this.updateTelephone.bind(this)
@@ -52,7 +53,6 @@ export default class CivilUnion extends ValidationElement {
     this.updateAddressSeparated = this.updateAddressSeparated.bind(this)
     this.updateAddressSeparatedNotApplicable = this.updateAddressSeparatedNotApplicable.bind(this)
     this.updateDivorced = this.updateDivorced.bind(this)
-    this.updateDivorcedList = this.updateDivorcedList.bind(this)
     this.updateUseCurrentAddress = this.updateUseCurrentAddress.bind(this)
   }
 
@@ -69,6 +69,7 @@ export default class CivilUnion extends ValidationElement {
           OtherNameMaiden: this.state.OtherNameMaiden,
           OtherNameNotApplicable: this.state.OtherNameNotApplicable,
           DatesUsed: this.state.DatesUsed,
+          Citizenship: this.state.Citizenship,
           EnteredCivilUnion: this.state.EnteredCivilUnion,
           Address: this.state.Address,
           Telephone: this.state.Telephone,
@@ -84,10 +85,6 @@ export default class CivilUnion extends ValidationElement {
         })
       }
     })
-  }
-
-  isValid () {
-    return new CivilUnionValidator(this.state).isValid()
   }
 
   updateName (values) {
@@ -123,6 +120,10 @@ export default class CivilUnion extends ValidationElement {
 
   updateDatesUsed (values) {
     this.update('DatesUsed', values)
+  }
+
+  updateCitizenship (values) {
+    this.update('Citizenship', values)
   }
 
   updateOtherNameNotApplicable (value) {
@@ -166,11 +167,6 @@ export default class CivilUnion extends ValidationElement {
     this.update('Divorced', values)
   }
 
-  updateDivorcedList (values) {
-    this.update('DivorcedList', values.items)
-    this.update('DivorcedListBranch', values.branch)
-  }
-
   updateUseCurrentAddress (cb) {
     if (cb.checked) {
       this.updateAddress(this.props.currentAddress)
@@ -178,42 +174,6 @@ export default class CivilUnion extends ValidationElement {
       this.updateAddress({})
     }
     this.update('UseCurrentAddress', cb.checked)
-  }
-
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  divorceSummary (item, index) {
-    const itemType = i18n.t('relationships.civilUnion.divorce.collection.itemType')
-    const o = (item || {}).Divorce || {}
-    const date = (o.DateDivorced || {}).date ? `${o.DateDivorced.month}/${o.DateDivorced.year}` : ''
-    const status = o.Status || ''
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('relationships.relatives.collection.summary.unknown')
-    return (
-      <span>
-        <span className="index">{itemType}</span>
-        <span className="info"><strong>{name} {date} {status}</strong></span>
-      </span>
-    )
   }
 
   render () {
@@ -227,7 +187,7 @@ export default class CivilUnion extends ValidationElement {
                 className="civil"
                 {...this.state.Name}
                 onUpdate={this.updateName}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
 
           <Field help="relationships.civilUnion.help.birthdate"
@@ -238,7 +198,7 @@ export default class CivilUnion extends ValidationElement {
                          className="birthdate"
                          {...this.state.Birthdate}
                          onUpdate={this.updateBirthdate}
-                         onValidate={this.handleValidation}
+                         onError={this.props.onError}
                          />
           </Field>
 
@@ -248,7 +208,7 @@ export default class CivilUnion extends ValidationElement {
                       label={i18n.t('relationships.civilUnion.label.birthplace')}
                       {...this.state.BirthPlace}
                       onUpdate={this.updateBirthPlace}
-                      onValidate={this.handleValidation}
+                      onError={this.props.onError}
                       />
 
           <Show when={this.state.BirthPlace && this.state.BirthPlace.country !== 'United States'}>
@@ -257,17 +217,19 @@ export default class CivilUnion extends ValidationElement {
               <ForeignBornDocuments name="foreignBornDocument"
                                     {...this.state.ForeignBornDocument}
                                     onUpdate={this.updateForeignBornDocument}
-                                    onValidate={this.handleValidation}
+                                    onError={this.props.onError}
                                     />
             </Field>
           </Show>
 
           <h3>{i18n.t('relationships.civilUnion.heading.ssn')}</h3>
-          <SSN name="ssn"
-               {...this.state.SSN}
-               onUpdate={this.updateSSN}
-               onValidate={this.handleValidation}
-               />
+          <Field help="identification.ssn.help">
+            <SSN name="ssn"
+                 {...this.state.SSN}
+                 onUpdate={this.updateSSN}
+                 onError={this.props.onError}
+                 />
+          </Field>
 
           <h3>{i18n.t('relationships.civilUnion.heading.othernames')}</h3>
           <p>{i18n.t('relationships.civilUnion.para.othernames')}</p>
@@ -276,11 +238,12 @@ export default class CivilUnion extends ValidationElement {
                          applicable={this.state.OtherNameNotApplicable}
                          label={i18n.t('relationships.civilUnion.notApplicable.label')}
                          or={i18n.m('relationships.civilUnion.notApplicable.or')}
-                         onUpdate={this.updateOtherNameNotApplicable}>
+                         onUpdate={this.updateOtherNameNotApplicable}
+                         onError={this.props.onError}>
             <Name name="othername"
                   {...this.state.OtherName}
                   onUpdate={this.updateOtherName}
-                  onValidate={this.handleValidation}
+                  onError={this.props.onError}
                   />
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
                    help="alias.maiden.help"
@@ -289,7 +252,7 @@ export default class CivilUnion extends ValidationElement {
               <MaidenName name="MaidenName"
                           {...this.state.OtherNameMaiden}
                           onUpdate={this.updateOtherNameMaiden}
-                          onValidate={this.handleValidation}
+                          onError={this.props.onError}
                           />
             </Field>
 
@@ -300,17 +263,29 @@ export default class CivilUnion extends ValidationElement {
                          className="datesused"
                          {...this.state.DatesUsed}
                          onUpdate={this.updateDatesUsed}
-                         onValidate={this.handleValidation}
+                         onError={this.props.onError}
                          />
             </Field>
           </NotApplicable>
+
+          <Field title={i18n.t('relationships.civilUnion.heading.citizenship')}
+                 help="relationships.civilUnion.help.citizenship"
+                 adjustFor="country">
+            <Country name="Citizenship"
+                     {...this.state.Citizenship}
+                     className="relationships-civilUnion-citizenship"
+                     multiple={true}
+                     onUpdate={this.updateCitizenship}
+                     onError={this.props.onError}
+                     />
+          </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.enteredCivilUnion')}>
             <DateControl name="enteredCivilUnion"
                          className="entered"
                          {...this.state.EnteredCivilUnion}
                          onUpdate={this.updateEnteredCivilUnion}
-                         onValidate={this.handleValidation}
+                         onError={this.props.onError}
                          />
           </Field>
 
@@ -324,12 +299,13 @@ export default class CivilUnion extends ValidationElement {
                         label="Use current address"
                         checked={this.state.UseCurrentAddress}
                         onUpdate={this.updateUseCurrentAddress}
+                        onError={this.props.onError}
                         />
             </Show>
             <Address name="Address"
                      {...this.state.Address}
                      onUpdate={this.updateAddress}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      />
           </Field>
 
@@ -340,7 +316,7 @@ export default class CivilUnion extends ValidationElement {
             <Telephone name="Telephone"
                        {...this.state.Telephone}
                        onUpdate={this.updateTelephone}
-                       onValidate={this.handleValidation}
+                       onError={this.props.onError}
                        />
           </Field>
 
@@ -350,7 +326,7 @@ export default class CivilUnion extends ValidationElement {
             <Email name="Email"
                    {...this.state.Email}
                    onUpdate={this.updateEmail}
-                   onValidate={this.handleValidation}
+                   onError={this.props.onError}
                    />
           </Field>
 
@@ -361,7 +337,7 @@ export default class CivilUnion extends ValidationElement {
                   value={this.state.Separated}
                   help="relationships.civilUnion.help.separated"
                   onUpdate={this.updateSeparated}
-                  onValidate={this.props.onValidate}>
+                  onError={this.props.onError}>
           </Branch>
 
           <Show when={this.state.Separated === 'Yes'}>
@@ -372,7 +348,7 @@ export default class CivilUnion extends ValidationElement {
                              className="dateseparated"
                              {...this.state.DateSeparated}
                              onUpdate={this.updateDateSeparated}
-                             onValidate={this.props.onValidate}
+                             onError={this.props.onError}
                              />
               </Field>
 
@@ -383,11 +359,12 @@ export default class CivilUnion extends ValidationElement {
                                applicable={this.state.AddressSeparatedNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
                                or={i18n.m('relationships.civilUnion.notApplicable.or')}
-                               onUpdate={this.updateAddressSeparatedNotApplicable}>
+                               onUpdate={this.updateAddressSeparatedNotApplicable}
+                               onError={this.props.onError}>
                   <Address name="addressSeparated"
                            {...this.state.AddressSeparated}
                            onUpdate={this.updateAddressSeparated}
-                           onValidate={this.props.onValidate}
+                           onError={this.props.onError}
                            />
                 </NotApplicable>
               </Field>
@@ -401,24 +378,8 @@ export default class CivilUnion extends ValidationElement {
                   value={this.state.Divorced}
                   help="relationships.civilUnion.help.divorced"
                   onUpdate={this.updateDivorced}
-                  onValidate={this.props.onValidate}>
+                  onError={this.props.onError}>
           </Branch>
-
-          <Show when={this.state.Divorced === 'Yes'}>
-            <Accordion minimum="1"
-                       items={this.state.DivorcedList}
-                       branch={this.state.DivorcedListBranch}
-                       onUpdate={this.updateDivorcedList}
-                       onValidate={this.handleValidation}
-                       summary={this.divorceSummary}
-                       description={i18n.t('relationships.civilUnion.divorce.collection.description')}
-                       appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
-                       appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
-              <Divorce name="Divorce"
-                       bind={true}
-                       />
-            </Accordion>
-          </Show>
         </div>
       </div>
     )
@@ -435,6 +396,7 @@ CivilUnion.defaultProps = {
   OtherNameMaiden: {},
   OtherNameNotApplicable: {},
   DatesUsed: {},
+  Citizenship: {},
   EnteredCivilUnion: {},
   Address: {},
   Telephone: {},
@@ -444,7 +406,7 @@ CivilUnion.defaultProps = {
   AddressSeparated: {},
   AddressSeparatedNotApplicable: {},
   Divorced: '',
-  DivorcedList: [],
-  DivorcedListBranch: '',
-  UseCurrentAddress: false
+  UseCurrentAddress: false,
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

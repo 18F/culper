@@ -45,7 +45,9 @@ describe('Military history validation', function () {
                 Service: 'AirNationalGuard',
                 Status: 'ActiveDuty',
                 Officer: 'Enlisted',
-                ServiceNumber: '0123456789',
+                ServiceNumber: {
+                  value: '0123456789'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -72,7 +74,9 @@ describe('Military history validation', function () {
                 Service: 'AirNationalGuard',
                 Status: 'ActiveDuty',
                 Officer: 'Enlisted',
-                ServiceNumber: '0123456789',
+                ServiceNumber: {
+                  value: '0123456789'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -112,7 +116,9 @@ describe('Military history validation', function () {
                 Service: 'AirNationalGuard',
                 Status: 'ActiveDuty',
                 Officer: 'Enlisted',
-                ServiceNumber: '0123456789',
+                ServiceNumber: {
+                  value: '0123456789'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -146,7 +152,9 @@ describe('Military history validation', function () {
                 Service: 'AirNationalGuard',
                 Status: 'ActiveDuty',
                 Officer: 'Enlisted',
-                ServiceNumber: '0123456789',
+                ServiceNumber: {
+                  value: '0123456789'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -183,7 +191,9 @@ describe('Military history validation', function () {
                 Service: 'AirNationalGuard',
                 Status: 'ActiveDuty',
                 Officer: 'Enlisted',
-                ServiceNumber: '0123456789',
+                ServiceNumber: {
+                  value: '0123456789'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -209,7 +219,9 @@ describe('Military history validation', function () {
               Item: {
                 Service: 'Army',
                 Officer: 'Enlisted',
-                ServiceNumber: '0123456789',
+                ServiceNumber: {
+                  value: '0123456789'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')

@@ -2,20 +2,18 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import JobOffer from './JobOffer'
 
-export default class Employment extends ValidationElement {
+export default class Employment extends SubsectionElement {
   constructor (props) {
     super(props)
 
     this.state = {
       HasForeignEmployment: props.HasForeignEmployment,
       List: props.List,
-      ListBranch: props.ListBranch,
-      error: false,
-      valid: false,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.updateHasForeignEmployment = this.updateHasForeignEmployment.bind(this)
@@ -43,33 +41,6 @@ export default class Employment extends ValidationElement {
     this.onUpdate('ListBranch', values.branch)
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignBusinessEmploymentValidator(this.state, null).isValid()
-  }
-
   summary (item, index) {
     const obj = item || {}
     const job = `${(obj.Description || {}).value || ''}`.trim() || i18n.t('foreign.business.employment.collection.summary.unknown')
@@ -93,15 +64,16 @@ export default class Employment extends ValidationElement {
                 help="foreign.business.employment.help.branch"
                 value={this.state.HasForeignEmployment}
                 onUpdate={this.updateHasForeignEmployment}
-                onValidate={this.handleValidation}
+                onError={this.handleError}
                 />
 
         <Show when={this.state.HasForeignEmployment === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
@@ -117,5 +89,13 @@ export default class Employment extends ValidationElement {
 Employment.defaultProps = {
   name: 'Employment',
   HasForeignEmployment: '',
-  List: []
+  List: [],
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/employment',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessEmploymentValidator(state, props).isValid()
+  },
+  defaultState: true
 }

@@ -1,148 +1,40 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader } from '../../Form'
-import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
+import SectionElement from '../SectionElement'
+import AuthenticatedView from '../../../views/AuthenticatedView'
+import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
+import { IntroHeader, Show } from '../../Form'
 import Selective from './Selective'
 import History from './History'
 import Disciplinary from './Disciplinary'
 import Foreign from './Foreign'
 
-class Military extends ValidationElement {
+class Military extends SectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      subsection: props.subsection
-    }
-
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
-    this.onValidate = this.onValidate.bind(this)
-    this.onUpdate = this.onUpdate.bind(this)
     this.updateSelective = this.updateSelective.bind(this)
     this.updateHistory = this.updateHistory.bind(this)
     this.updateDisciplinary = this.updateDisciplinary.bind(this)
     this.updateForeign = this.updateForeign.bind(this)
   }
 
-  componentDidMount () {
-    let current = this.launch(this.props.Military, this.props.subsection, 'selective')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/military/${current}`))
-    }
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push('/form/military/selective'))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push('/form/military/review'))
-  }
-
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
-
-    if (!event.fake) {
-      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = 'neutral'
-    if (this.hasStatus('selective', status, true)
-        && this.hasStatus('history', status, true)
-        && this.hasStatus('disciplinary', status, true)
-        && this.hasStatus('foreign', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('selective', status, false)
-               || this.hasStatus('history', status, false)
-               || this.hasStatus('disciplinary', status, false)
-               || this.hasStatus('foreign', status, false)) {
-      cstatus = 'incomplete'
-    }
-
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
-  /**
-   * Update storage values for a subsection
-   */
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Military', field, values))
-  }
-
   updateSelective (values) {
-    this.onUpdate('Selective', values)
+    this.handleUpdate('Selective', values)
   }
 
   updateHistory (values) {
-    this.onUpdate('History', values)
+    this.handleUpdate('History', values)
   }
 
   updateDisciplinary (values) {
-    this.onUpdate('Disciplinary', values)
+    this.handleUpdate('Disciplinary', values)
   }
 
   updateForeign (values) {
-    this.onUpdate('Foreign', values)
-  }
-
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
-  }
-
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
-  }
-
-  /**
-   * Intro to the section when information is present
-   */
-  intro () {
-    return (
-      <div className="military intro review-screen">
-        <div className="usa-grid-full">
-          <IntroHeader Errors={this.props.Errors}
-                       Completed={this.props.Completed}
-                       tour={i18n.t('military.tour.para')}
-                       review={i18n.t('military.review.para')}
-                       onTour={this.handleTour}
-                       onReview={this.handleReview}
-                       />
-        </div>
-      </div>
-    )
+    this.handleUpdate('Foreign', values)
   }
 
   render () {
@@ -150,41 +42,65 @@ class Military extends ValidationElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="">
-            {this.intro()}
+            <div className="military intro review-screen">
+              <div className="usa-grid-full">
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                             completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
+              </div>
+            </div>
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
-                       next="history"
-                       nextLabel={i18n.t('history.destination.residence')}>
+                       next="foreign/passport"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateSelective}
-                       onValidate={this.onValidate}
+                       onError={this.handleError}
                        />
+
+            <hr/>
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
-                       {...this.props.History}
-                       onUpdate={this.updateHistory}
-                       onValidate={this.onValidate}
-                       />
-            <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
-            {i18n.m('military.disciplinary.para.info')}
-            <Disciplinary name="disciplinary"
-                          {...this.props.Disciplinary}
-                          onUpdate={this.updateDisciplinary}
-                          onValidate={this.onValidate}
-                          />
+                     {...this.props.History}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateHistory}
+                     onError={this.handleError}
+                     />
+
+            <Show when={!hideDisciplinaryProcedures(this.props.Application)}>
+              <hr/>
+              <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
+              {i18n.m('military.disciplinary.para.info')}
+              <Disciplinary name="disciplinary"
+                            {...this.props.Disciplinary}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDisciplinary}
+                            onError={this.handleError}
+                            />
+            </Show>
+
+            <hr/>
             <h2>{i18n.t('military.foreign.heading.title')}</h2>
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
-                     onValidate={this.onValidate}
+                     onError={this.handleError}
                      />
           </SectionView>
 
@@ -196,8 +112,9 @@ class Military extends ValidationElement {
             <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateSelective}
-                       onValidate={this.onValidate}
+                       onError={this.handleError}
                        />
           </SectionView>
 
@@ -209,8 +126,9 @@ class Military extends ValidationElement {
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
-                     onValidate={this.onValidate}
+                     onError={this.handleError}
                      />
           </SectionView>
 
@@ -223,8 +141,9 @@ class Military extends ValidationElement {
             {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
+                          dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
-                          onValidate={this.onValidate}
+                          onError={this.handleError}
                           />
           </SectionView>
 
@@ -237,8 +156,9 @@ class Military extends ValidationElement {
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
-                     onValidate={this.onValidate}
+                     onError={this.handleError}
                      />
           </SectionView>
         </SectionViews>
@@ -255,6 +175,7 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Section: section,
+    Application: app || {},
     Military: military,
     Selective: military.Selective || {},
     History: military.History || {},
@@ -266,7 +187,8 @@ function mapStateToProps (state) {
 }
 
 Military.defaultProps = {
-  subsection: ''
+  defaultView: 'selective',
+  store: 'Military'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Military))

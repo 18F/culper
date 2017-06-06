@@ -1,12 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import ValidationElement from '../../Form/ValidationElement'
-import IntroHeader from '../../Form/IntroHeader'
-import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
+import SectionElement from '../SectionElement'
+import AuthenticatedView from '../../../views/AuthenticatedView'
+import IntroHeader from '../../Form/IntroHeader'
 import Gambling from './Gambling'
 import Bankruptcies from './Bankruptcy'
 import Taxes from './Taxes'
@@ -15,103 +13,7 @@ import Credit from './Credit'
 import Delinquent from './Delinquent'
 import Nonpayment from './Nonpayment'
 
-class Financial extends ValidationElement {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      subsection: props.subsection
-    }
-
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
-  }
-
-  componentDidMount () {
-    let current = this.launch(this.props.Financial, this.props.subsection, 'bankruptcy')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/financial/${current}`))
-    }
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push('/form/financial/bankruptcy'))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push('/form/financial/review'))
-  }
-
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
-
-    if (!event.fake) {
-      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = 'neutral'
-    if (this.hasStatus('gambling', status, true) &&
-        this.hasStatus('bankruptcy', status, true) &&
-        this.hasStatus('taxes', status, true) &&
-        this.hasStatus('card', status, true) &&
-        this.hasStatus('credit', status, true) &&
-        this.hasStatus('nonpayment', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('gambling', status, false) ||
-               this.hasStatus('bankruptcy', status, false) ||
-               this.hasStatus('taxes', status, false) ||
-               this.hasStatus('card', status, false) ||
-               this.hasStatus('credit', status, false) ||
-               this.hasStatus('nonpayment', status, false)) {
-      cstatus = 'incomplete'
-    }
-
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
-  /**
-   * Update storage values for a subsection
-   */
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Financial', field, values))
-  }
-
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
-  }
-
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
-  }
-
+class Financial extends SectionElement {
   render () {
     return (
       <div>
@@ -119,10 +21,8 @@ class Financial extends ValidationElement {
           <SectionView name="">
             <div className="financial intro review-screen">
               <div className="usa-grid-full">
-                <IntroHeader Errors={this.props.Errors}
-                             Completed={this.props.Completed}
-                             tour={i18n.t('financial.tour.para')}
-                             review={i18n.t('financial.review.para')}
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                             completed={() => { return this.props.Completed.length === 7 && this.props.Completed.every(x => x.valid === true) }}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -131,7 +31,8 @@ class Financial extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}
@@ -139,39 +40,54 @@ class Financial extends ValidationElement {
                        nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
-                        {...this.props.Bankruptcy}
-                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
-                        onValidate={this.onValidate.bind(this)}
-                        />
+                          {...this.props.Bankruptcy}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
+                          onError={this.handleError}
+                          defaultState={false}
+                          />
 
+            <hr />
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
-                      onUpdate={this.onUpdate.bind(this, 'Gambling')}
-                      onValidate={this.onValidate.bind(this)}
-                      />
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.handleUpdate.bind(this, 'Gambling')}
+                      onError={this.handleError}
+                      defaultState={false}
+                    />
 
+            <hr />
             <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
-                   onUpdate={this.onUpdate.bind(this, 'Taxes')}
-                   onValidate={this.onValidate.bind(this)}
+                   dispatch={this.props.dispatch}
+                   onUpdate={this.handleUpdate.bind(this, 'Taxes')}
+                   onError={this.handleError}
+                   defaultState={false}
                    />
 
+            <hr />
             <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
-                  onUpdate={this.onUpdate.bind(this, 'Card')}
-                  onValidate={this.onValidate.bind(this)}
+                  dispatch={this.props.dispatch}
+                  onUpdate={this.handleUpdate.bind(this, 'Card')}
+                  onError={this.handleError}
+                  defaultState={false}
                   />
 
+            <hr />
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
-                    onUpdate={this.onUpdate.bind(this, 'Credit')}
-                    onValidate={this.onValidate.bind(this)}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.handleUpdate.bind(this, 'Credit')}
+                    onError={this.handleError}
+                    defaultState={false}
                     />
 
+            <hr />
             <h2>{i18n.t('financial.delinquent.title')}</h2>
             {i18n.m('financial.delinquent.para.details')}
             <ul>
@@ -182,10 +98,13 @@ class Financial extends ValidationElement {
             </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
-                        onUpdate={this.onUpdate.bind(this, 'Delinquent')}
-                        onValidate={this.onValidate.bind(this)}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
+                        onError={this.handleError}
+                        defaultState={false}
                         />
 
+            <hr />
             <h2>{i18n.t('financial.nonpayment.title')}</h2>
             <ul>
               <li>{i18n.m('financial.nonpayment.para.repo')}</li>
@@ -199,8 +118,10 @@ class Financial extends ValidationElement {
             </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
-                        onUpdate={this.onUpdate.bind(this, 'Nonpayment')}
-                        onValidate={this.onValidate.bind(this)}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
+                        onError={this.handleError}
+                        defaultState={false}
                         />
           </SectionView>
 
@@ -211,10 +132,11 @@ class Financial extends ValidationElement {
                        nextLabel={i18n.t('financial.destination.gambling')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
-                        {...this.props.Bankruptcy}
-                        onUpdate={this.onUpdate.bind(this, 'Bankruptcy')}
-                        onValidate={this.onValidate.bind(this)}
-                        />
+                          {...this.props.Bankruptcy}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
+                          onError={this.handleError}
+                          />
           </SectionView>
 
           <SectionView name="gambling"
@@ -225,8 +147,9 @@ class Financial extends ValidationElement {
             <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
-                      onUpdate={this.onUpdate.bind(this, 'Gambling')}
-                      onValidate={this.onValidate.bind(this)}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.handleUpdate.bind(this, 'Gambling')}
+                      onError={this.handleError}
                       />
           </SectionView>
 
@@ -238,8 +161,9 @@ class Financial extends ValidationElement {
             <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
-                   onUpdate={this.onUpdate.bind(this, 'Taxes')}
-                   onValidate={this.onValidate.bind(this)}
+                   dispatch={this.props.dispatch}
+                   onUpdate={this.handleUpdate.bind(this, 'Taxes')}
+                   onError={this.handleError}
                    />
           </SectionView>
 
@@ -251,8 +175,9 @@ class Financial extends ValidationElement {
             <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
-                  onUpdate={this.onUpdate.bind(this, 'Card')}
-                  onValidate={this.onValidate.bind(this)}
+                  dispatch={this.props.dispatch}
+                  onUpdate={this.handleUpdate.bind(this, 'Card')}
+                  onError={this.handleError}
                   />
           </SectionView>
 
@@ -264,8 +189,9 @@ class Financial extends ValidationElement {
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
-                    onUpdate={this.onUpdate.bind(this, 'Credit')}
-                    onValidate={this.onValidate.bind(this)}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.handleUpdate.bind(this, 'Credit')}
+                    onError={this.handleError}
                     />
           </SectionView>
 
@@ -284,8 +210,9 @@ class Financial extends ValidationElement {
             </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
-                        onUpdate={this.onUpdate.bind(this, 'Delinquent')}
-                        onValidate={this.onValidate.bind(this)}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
+                        onError={this.handleError}
                         />
           </SectionView>
 
@@ -307,8 +234,9 @@ class Financial extends ValidationElement {
             </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
-                        onUpdate={this.onUpdate.bind(this, 'Nonpayment')}
-                        onValidate={this.onValidate.bind(this)}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
+                        onError={this.handleError}
                         />
           </SectionView>
         </SectionViews>
@@ -339,7 +267,8 @@ function mapStateToProps (state) {
 }
 
 Financial.defaultProps = {
-  subsection: ''
+  defaultView: 'bankruptcy',
+  store: 'Financial'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Financial))

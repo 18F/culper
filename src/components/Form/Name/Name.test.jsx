@@ -11,7 +11,7 @@ describe('The Name component', () => {
     }
     const component = mount(<Name {...expected} />)
     component.find('.last input').simulate('change')
-    expect(component.find('div.hidden').length).toBeGreaterThan(0)
+    expect(component.find('.suffix-other').length).toBe(0)
   })
 
   it('handles last name patterns', () => {
@@ -31,7 +31,7 @@ describe('The Name component', () => {
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find('.last input').simulate('change')
-      expect(component.find('div.hidden').length).toBeGreaterThan(0)
+      expect(component.find('.suffix-other').length).toBe(0)
     })
   })
 
@@ -79,30 +79,14 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onValidate: function (event) {
+      onError: (value, arr) => {
         validations++
+        return arr
       }
     }
     const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
-  })
-
-  it('bubbles up change event', () => {
-    let changes = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      onChange: function (event) {
-        changes++
-      }
-    }
-    const component = mount(<Name {...expected} />)
-    component.find('input').first().simulate('change')
-    expect(changes).toEqual(1)
   })
 
   it('bubbles up focus event', () => {
@@ -137,5 +121,25 @@ describe('The Name component', () => {
     const component = mount(<Name {...expected} />)
     component.find('input').first().simulate('blur')
     expect(blurs).toEqual(1)
+  })
+
+  it('does updates', () => {
+    let updates = 0
+    const expected = {
+      name: 'name',
+      onUpdate: () => { updates++ }
+    }
+
+    const component = mount(<Name {...expected} />)
+    component.find('.first input').simulate('change')
+    component.find('.first-initial-only input').simulate('change')
+    component.find('.middle input').simulate('change')
+    component.find('.middle-initial-only input').simulate('change')
+    component.find('.middle-none input').simulate('change')
+    component.find('.last input').simulate('change')
+    component.find('.last-initial-only input').simulate('change')
+    component.find('.suffix-more input').simulate('change')
+    component.find('.suffix-other input').simulate('change')
+    expect(updates).toBeGreaterThan(9)
   })
 })

@@ -17,6 +17,7 @@ const sendUpdate = (fn, name, props) => {
 export default class Procedure extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Date: props.Date,
       Offenses: props.Offenses,
@@ -71,22 +72,20 @@ export default class Procedure extends ValidationElement {
                        className="procedure-date"
                        hideDay={true}
                        onUpdate={this.updateDate}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
-        <Field title={i18n.t('military.disciplinary.heading.offenses')}
-               help="military.disciplinary.help.offenses">
+        <Field title={i18n.t('military.disciplinary.heading.offenses')}>
           <Textarea name="Offenses"
                     {...this.state.Offenses}
                     className="procedure-offenses"
                     onUpdate={this.updateOffenses}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.name')}
-               help="military.disciplinary.help.name"
                adjustFor="p">
           <Text name="Name"
                 {...this.state.Name}
@@ -94,24 +93,22 @@ export default class Procedure extends ValidationElement {
                 className="procedure-name"
                 maxlength="100"
                 onUpdate={this.updateName}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.court')}
-               help="military.disciplinary.help.court"
                adjustFor="p">
           <Textarea name="Court"
                     {...this.state.Court}
                     label={i18n.t('military.disciplinary.label.court')}
                     className="procedure-court"
                     onUpdate={this.updateCourt}
-                    onValidate={this.props.onValidate}
+                    onError={this.props.onError}
                     />
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.outcome')}
-               help="military.disciplinary.help.outcome"
                adjustFor="labels">
           <Text name="Outcome"
                 {...this.state.Outcome}
@@ -119,10 +116,14 @@ export default class Procedure extends ValidationElement {
                 className="procedure-outcome"
                 maxlength="100"
                 onUpdate={this.updateOutcome}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
       </div>
     )
   }
+}
+
+Procedure.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
@@ -17,14 +18,36 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class History extends ValidationElement {
+export const serviceNameDisplay = (service) => {
+  switch (service) {
+    case 'AirForce':
+      service = 'Air Force'
+      break
+    case 'AirNationalGuard':
+      service = 'Air National Guard'
+      break
+    case 'ArmyNationalGuard':
+      service = 'Army National Guard'
+      break
+    case 'CoastGuard':
+      service = 'Coast Guard'
+      break
+    case 'MarineCorps':
+      service = 'Marine Corps'
+      break
+  }
+
+  return service
+}
+
+export default class History extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasServed: props.HasServed,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -44,6 +67,7 @@ export default class History extends ValidationElement {
     // If there is no history clear out any previously entered data
     if (value === 'No') {
       this.onUpdate('List', [])
+      this.onUpdate('ListBranch', '')
     }
   }
 
@@ -53,48 +77,12 @@ export default class History extends ValidationElement {
   }
 
   /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new MilitaryHistoryValidator(this.state, null).isValid()
-  }
-
-  /**
    * Assists in rendering the summary section.
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const service = o.Service || i18n.t('military.history.collection.summary.unknown')
     const dates = DateSummary(o.Dates)
+    const service = serviceNameDisplay(o.Service || i18n.t('military.history.collection.summary.unknown'))
 
     return (
       <span>
@@ -113,15 +101,16 @@ export default class History extends ValidationElement {
                 value={this.state.HasServed}
                 help="military.history.help.served"
                 onUpdate={this.updateServed}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.state.HasServed === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
@@ -134,4 +123,15 @@ export default class History extends ValidationElement {
       </div>
     )
   }
+}
+
+History.defaultProps = {
+  onError: (value, arr) => { return arr },
+  section: 'military',
+  subsection: 'history',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new MilitaryHistoryValidator(state, props).isValid()
+  },
+  defaultState: true
 }

@@ -93,7 +93,7 @@ export default class PassportItem extends ValidationElement {
           <Country name="Country"
                    {...this.state.Country}
                    onUpdate={this.updateCountry}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -105,7 +105,7 @@ export default class PassportItem extends ValidationElement {
                        {...this.state.Issued}
                        className="passport-issued"
                        onUpdate={this.updateIssued}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -116,7 +116,7 @@ export default class PassportItem extends ValidationElement {
                    {...this.state.Location}
                    className="passport-location"
                    onUpdate={this.updateLocation}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
 
@@ -125,7 +125,7 @@ export default class PassportItem extends ValidationElement {
               {...this.state.Name}
               className="passport-name"
               onUpdate={this.updateName}
-              onValidate={this.props.onValidate}
+              onError={this.props.onError}
               />
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.number')}
@@ -134,7 +134,7 @@ export default class PassportItem extends ValidationElement {
                 {...this.state.Number}
                 className="passport-number"
                 onUpdate={this.updateNumber}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -146,7 +146,7 @@ export default class PassportItem extends ValidationElement {
                        {...this.state.Expiration}
                        className="passport-expiration"
                        onUpdate={this.updateExpiration}
-                       onValidate={this.props.onValidate}
+                       onError={this.props.onError}
                        />
         </Field>
 
@@ -157,14 +157,15 @@ export default class PassportItem extends ValidationElement {
                 value={this.state.Used}
                 help="citizenship.multiple.help.passport.used"
                 onUpdate={this.updateUsed}
-                onValidate={this.handleValidation}
+                onError={this.props.onError}
                 />
 
         <Show when={this.state.Used === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.Countries}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.updateCountries}
-                     onValidate={this.handleValidation}
+                     onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('citizenship.multiple.collection.travel.summary.title')}
                      appendLabel={i18n.t('citizenship.multiple.collection.travel.append')}>
@@ -184,5 +185,7 @@ PassportItem.defaultProps = {
   Number: {},
   Expiration: {},
   Used: '',
-  Countries: []
+  Countries: [],
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

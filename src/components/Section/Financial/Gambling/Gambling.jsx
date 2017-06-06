@@ -1,56 +1,21 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { GamblingValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, DateRange, Currency, Textarea, Field } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, DateRange, Currency, Textarea, Field } from '../../../Form'
 
-export default class Gambling extends ValidationElement {
+export default class Gambling extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
-      List: props.List || [],
-      ListBranch: props.ListBranch || [],
-      HasGamblingDebt: props.HasGamblingDebt,
-      errorCodes: []
+      List: props.List,
+      ListBranch: props.ListBranch,
+      HasGamblingDebt: props.HasGamblingDebt
     }
 
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      let e = { [this.props.name]: codes }
-      let s = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, s, e)
-        return
-      }
-
-      super.handleValidation(event, s, e)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new GamblingValidator(this.state, null).isValid()
   }
 
   /**
@@ -62,7 +27,6 @@ export default class Gambling extends ValidationElement {
         items: val === 'No' ? [] : this.state.List,
         branch: ''
       })
-      this.handleValidation(event, null, null)
     })
   }
 
@@ -129,14 +93,16 @@ export default class Gambling extends ValidationElement {
       <div className="gambling">
         <Branch name="has_gamblingdebt"
                 value={this.state.HasGamblingDebt}
-                onUpdate={this.onUpdate.bind(this)}>
+                onUpdate={this.onUpdate.bind(this)}
+                onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
@@ -178,4 +144,18 @@ export default class Gambling extends ValidationElement {
       </div>
     )
   }
+}
+
+Gambling.defaultProps = {
+  List: [],
+  ListBranch: '',
+  HasGamblingDebt: '',
+  onError: (value, arr) => { return arr },
+  section: 'financial',
+  subsection: 'gambling',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new GamblingValidator(state, props).isValid()
+  },
+  defaultState: true
 }

@@ -5,6 +5,7 @@ import { ValidationElement, Branch, Address, Field, Telephone } from '../../../F
 export default class PhysicalAddress extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasDifferentAddress: props.HasDifferentAddress,
       Address: props.Address,
@@ -13,6 +14,7 @@ export default class PhysicalAddress extends ValidationElement {
 
     this.onBranchUpdate = this.onBranchUpdate.bind(this)
     this.handleAddressChange = this.handleAddressChange.bind(this)
+    this.updateTelephone = this.updateTelephone.bind(this)
   }
 
   /**
@@ -42,30 +44,9 @@ export default class PhysicalAddress extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status)
+  updateTelephone (value) {
+    this.setState({ Telephone: value }, () => {
+      this.doUpdate()
     })
   }
 
@@ -74,7 +55,8 @@ export default class PhysicalAddress extends ValidationElement {
       <Branch name="physicalAddress"
               value={this.state.HasDifferentAddress}
               help="history.employment.default.physicalAddress.help"
-              onUpdate={this.onBranchUpdate}>
+              onUpdate={this.onBranchUpdate}
+              onError={this.props.onError}>
       </Branch>
     )
   }
@@ -101,8 +83,7 @@ export default class PhysicalAddress extends ValidationElement {
                      label={i18n.t('history.employment.default.physicalAddress.address.label')}
                      placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
                      onUpdate={this.handleAddressChange}
-                     onFocus={this.handleFocus}
-                     onBlur={this.handleBlur}
+                     onError={this.props.onError}
                      />
           </Field>
 
@@ -113,8 +94,8 @@ export default class PhysicalAddress extends ValidationElement {
             <Telephone name="telephone"
                        {...this.props.Telephone}
                        label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
-                       onFocus={this.handleFocus}
-                       onBlur={this.handleBlur}
+                       onUpdate={this.updateTelephone}
+                       onError={this.props.onError}
                        />
           </Field>
         </div>
@@ -127,4 +108,8 @@ export default class PhysicalAddress extends ValidationElement {
       </div>
     )
   }
+}
+
+PhysicalAddress.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

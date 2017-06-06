@@ -5,6 +5,7 @@ import { Address, Field, DateControl, Show, RadioGroup, Radio, Telephone, Name, 
 export default class Divorce extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       Name: props.Name,
       Birthdate: props.Birthdate,
@@ -99,107 +100,107 @@ export default class Divorce extends React.Component {
     return (
       <div className="divorce">
         <Field title={i18n.t('relationships.civilUnion.heading.name')}
-          adjustFor="labels">
+               adjustFor="labels">
           <Name name="Name"
-            {...this.state.Name}
-            onUpdate={this.updateName}
-            onValidate={this.props.onValidate}
-          />
+                {...this.state.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.birthdate"
-          title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
-          shrink={true}
-          adjustFor="labels">
+               title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
+               shrink={true}
+               adjustFor="labels">
           <DateControl name="birthdate"
-            className="birthdate"
-            {...this.state.Birthdate}
-            onUpdate={this.updateBirthdate}
-            onValidate={this.props.onValidate}
-          />
+                       className="birthdate"
+                       {...this.state.Birthdate}
+                       onUpdate={this.updateBirthdate}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}>
           <BirthPlace name="birthplace"
-            label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
-            className="birthplace"
-            {...this.state.BirthPlace}
-            onUpdate={this.updateBirthPlace}
-            onValidate={this.props.onValidate}
-          />
+                      label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
+                      className="birthplace"
+                      {...this.state.BirthPlace}
+                      onUpdate={this.updateBirthPlace}
+                      onError={this.props.onError}
+                      />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
-          help="relationships.civilUnion.divorce.help.telephone"
-          adjustFor="telephone"
-          shrink={true}>
+               help="relationships.civilUnion.divorce.help.telephone"
+               adjustFor="telephone"
+               shrink={true}>
           <Telephone name="Telephone"
-            {...this.state.Telephone}
-            onUpdate={this.updateTelephone}
-            onValidate={this.props.onValidate}
-          />
+                     {...this.state.Telephone}
+                     onUpdate={this.updateTelephone}
+                     onError={this.props.onError}
+                     />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.recognized"
-          title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
-          shrink={true}
-          adjustFor="labels">
+               title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
+               shrink={true}
+               adjustFor="labels">
           <DateControl name="Recognized"
-            className="recognized"
-            {...this.state.Recognized}
-            onUpdate={this.updateRecognized}
-            onValidate={this.props.onValidate}
-          />
+                       className="recognized"
+                       {...this.state.Recognized}
+                       onUpdate={this.updateRecognized}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.address"
-          title={i18n.t('relationships.civilUnion.divorce.heading.address')}
-          shrink={true}
-          adjustFor="labels">
+               title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+               shrink={true}
+               adjustFor="labels">
           <Address name="address"
-            className="location"
-            {...this.state.Address}
-            onUpdate={this.updateAddress}
-            onValidate={this.props.onValidate}
-          />
+                   className="location"
+                   {...this.state.Address}
+                   onUpdate={this.updateAddress}
+                   onError={this.props.onError}
+                   />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.dateDivorced"
-          title={i18n.t('relationships.civilUnion.divorce.heading.dateDivorced')}
-          shrink={true}
-          adjustFor="labels">
+               title={i18n.t('relationships.civilUnion.divorce.heading.dateDivorced')}
+               shrink={true}
+               adjustFor="labels">
           <DateControl name="DateDivorced"
-            className="date-divorced"
-            {...this.state.DateDivorced}
-            onUpdate={this.updateDateDivorced}
-            onValidate={this.props.onValidate}
-          />
+                       className="date-divorced"
+                       {...this.state.DateDivorced}
+                       onUpdate={this.updateDateDivorced}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.status')}
-          className="status">
+               className="status">
           <RadioGroup name="status" selectedValue={this.state.Status}>
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
               className="divorced"
               onUpdate={this.updateStatus}
-              onValidate={this.props.onValidate}
-            />
+              onError={this.props.onError}
+              />
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.widowed')}
               value="Widowed"
               className="widowed"
               onUpdate={this.updateStatus}
-              onValidate={this.props.onValidate}
-            />
+              onError={this.props.onError}
+              />
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.annulled')}
               value="Annulled"
               className="annulled"
               onUpdate={this.updateStatus}
-              onValidate={this.props.onValidate}
-            />
+              onError={this.props.onError}
+              />
           </RadioGroup>
         </Field>
 
@@ -213,41 +214,41 @@ export default class Divorce extends React.Component {
                   label="Yes"
                   value="Yes"
                   onUpdate={this.updateDeceased}
-                  onValidate={this.props.onValidate}
-                />
+                  onError={this.props.onError}
+                  />
                 <Radio
                   className="no"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.no')}
                   value="No"
                   className="widowed"
                   onUpdate={this.updateDeceased}
-                  onValidate={this.props.onValidate}
-                />
+                  onError={this.props.onError}
+                  />
                 <Radio
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.dontKnow')}
                   className="dk"
                   value="DK"
                   onUpdate={this.updateDeceased}
-                  onValidate={this.props.onValidate}
-                />
+                  onError={this.props.onError}
+                  />
               </RadioGroup>
             </Field>
 
             <Show when={this.state.Deceased === 'Yes'}>
               <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
-                  className="deceased-notapplicable"
-                  applicable={this.state.DeceasedAddressNotApplicable}
-                  label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                  or={i18n.m('relationships.civilUnion.notApplicable.or')}
-                  onValidate={this.props.onValidate}
-                  onUpdate={this.updateDeceasedAddressNotApplicable}>
+                               className="deceased-notapplicable"
+                               applicable={this.state.DeceasedAddressNotApplicable}
+                               label={i18n.t('relationships.civilUnion.notApplicable.label')}
+                               or={i18n.m('relationships.civilUnion.notApplicable.or')}
+                               onError={this.props.onError}
+                               onUpdate={this.updateDeceasedAddressNotApplicable}>
                   <Address
                     className="address-deceased"
                     {...this.state.DeceasedAddress}
                     onUpdate={this.updateDeceasedAddress}
-                    onValidate={this.props.onValidate}
-                  />
+                    onError={this.props.onError}
+                    />
                 </NotApplicable>
               </Field>
             </Show>
@@ -256,4 +257,8 @@ export default class Divorce extends React.Component {
       </div>
     )
   }
+}
+
+Divorce.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

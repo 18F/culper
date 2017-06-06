@@ -3,7 +3,6 @@ import { push } from '../../middleware/history'
 import { i18n } from '../../config'
 
 export class SectionViews extends React.Component {
-
   handleTransition (routePath, event) {
     this.props.dispatch(push(`/form/${routePath}`))
   }
@@ -82,6 +81,7 @@ export class SectionViews extends React.Component {
         return (
           <div className="section-view">
             {title}
+            {child.props.para}
             {topButtons}
             <div className="view">
               {child}

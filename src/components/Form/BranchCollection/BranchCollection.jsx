@@ -16,8 +16,9 @@ export default class BranchCollection extends React.Component {
     item[this.props.valueKey] = yes
     items[index] = item
 
-    // If it's not the first item, remove it when user selects no if `removeable` flag is turned on
-    if (this.props.items.length > 1 && this.props.removable && yes === 'No') {
+    // If it's not the last item being marked as No, then remove it. This addresses the issue
+    // where the user must click No twice on the last item.
+    if (index + 1 < this.props.items.length && this.props.removable && yes === 'No') {
       items.splice(index, 1)
     }
 
@@ -90,7 +91,7 @@ export default class BranchCollection extends React.Component {
               help={props.help}
               value={props.value}
               onUpdate={props.onUpdate}
-              onValidate={props.onValidate}>
+              onError={props.onError}>
         {props.children}
       </Branch>
     )
@@ -118,7 +119,7 @@ export default class BranchCollection extends React.Component {
               value: null,
               children: this.props.content,
               onUpdate: this.onDefaultBranchClick.bind(this),
-              onValidate: this.props.onValidate
+              onError: this.props.onError
             })
           }
         </div>
@@ -140,7 +141,7 @@ export default class BranchCollection extends React.Component {
               value: 'No',
               children: this.props.content,
               onUpdate: this.onBranchClick.bind(this, item, 0),
-              onValidate: this.props.onValidate
+              onError: this.props.onError
             })
           }
         </div>
@@ -158,7 +159,7 @@ export default class BranchCollection extends React.Component {
           help: this.props.help,
           children: this.props.content,
           onUpdate: this.onBranchClick.bind(this, item, index),
-          onValidate: this.props.onValidate
+          onError: this.props.onError
         })
       }
 
@@ -170,7 +171,7 @@ export default class BranchCollection extends React.Component {
         value: item[this.props.valueKey],
         children: this.props.appendContent,
         onUpdate: this.onBranchClick.bind(this, item, index),
-        onValidate: this.props.onValidate
+        onError: this.props.onError
       })
     }
 
@@ -247,3 +248,5 @@ BranchCollection.defaultProps = {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')
   }
 }
+
+BranchCollection.errors = []

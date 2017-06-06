@@ -27,16 +27,7 @@ export default class NotApplicable extends React.Component {
   renderChildren () {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {
-        disabled: !this.state.applicable,
-        onValidate: (event, status, errors) => {
-          if (this.props.onValidate) {
-            this.props.onValidate(event, status, errors)
-          }
-
-          if (child.props.onValidate) {
-            child.props.onValidate(event, status, errors)
-          }
-        }
+        disabled: !this.state.applicable
       }
 
       return React.cloneElement(child, {
@@ -63,6 +54,7 @@ export default class NotApplicable extends React.Component {
                     label={this.props.label}
                     checked={!this.state.applicable}
                     onUpdate={this.onUpdate}
+                    onError={this.props.onError}
                     />
         </div>
       </div>
@@ -74,5 +66,6 @@ NotApplicable.defaultProps = {
   name: 'NotApplicable',
   label: i18n.t('financial.bankruptcy.notApplicable'),
   or: '',
-  applicable: true
+  applicable: true,
+  onError: (value, arr) => { return arr }
 }

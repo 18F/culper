@@ -81,139 +81,139 @@ export default class ContinuingBenefit extends ValidationElement {
     return (
       <div className="continuing-benefit">
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.began')}
-          help={'foreign.activities.benefit.continuing.help.began'}
-          adjustFor="labels">
+               help={'foreign.activities.benefit.continuing.help.began'}
+               adjustFor="labels">
 
           <DateControl name="Began"
-            className="began"
-            {...this.props.Began}
-            label={i18n.t('foreign.activities.benefit.continuing.label.began')}
-            onUpdate={this.updateBegan}
-            onValidate={this.props.onValidate}
-          />
+                       className="began"
+                       {...this.props.Began}
+                       label={i18n.t('foreign.activities.benefit.continuing.label.began')}
+                       onUpdate={this.updateBegan}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.end')}
-          help={'foreign.activities.benefit.continuing.help.end'}
-          adjustFor="labels">
+               help={'foreign.activities.benefit.continuing.help.end'}
+               adjustFor="labels">
 
           <DateControl name="End"
-            className="end"
-            {...this.props.End}
-            label={i18n.t('foreign.activities.benefit.continuing.label.end')}
-            onUpdate={this.updateEnd}
-            maxDate={null}
-            onValidate={this.props.onValidate}
-          />
+                       className="end"
+                       {...this.props.End}
+                       label={i18n.t('foreign.activities.benefit.continuing.label.end')}
+                       onUpdate={this.updateEnd}
+                       maxDate={null}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.frequency')}
-               help={'foreign.activities.benefit.continuing.help.frequency'}
                adjustFor="big-buttons">
 
           <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.continuing.label.frequency.annually')}
-              value="Annually"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.continuing.label.frequency.annually')}
+                   value="Annually"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.continuing.label.frequency.quarterly')}
-              value="Quarterly"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.continuing.label.frequency.quarterly')}
+                   value="Quarterly"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.continuing.label.frequency.monthly')}
-              value="Monthly"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.continuing.label.frequency.monthly')}
+                   value="Monthly"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.continuing.label.frequency.weekly')}
-              value="Weekly"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.continuing.label.frequency.weekly')}
+                   value="Weekly"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
             <Radio name="benefit_frequency"
-              label={i18n.m('foreign.activities.benefit.continuing.label.frequency.other')}
-              value="Other"
-              onUpdate={this.updateFrequency}
-              onValidate={this.props.onValidate}
-            />
+                   label={i18n.m('foreign.activities.benefit.continuing.label.frequency.other')}
+                   value="Other"
+                   onUpdate={this.updateFrequency}
+                   onError={this.props.onError}
+                   />
           </RadioGroup>
           <Show when={this.props.Frequency === 'Other'}>
             <div>
               {i18n.m('foreign.activities.benefit.continuing.para.frequencyOther')}
               <Textarea name="OtherFrequency"
-                className="other-frequency"
-                {...this.props.OtherFrequency}
-                onUpdate={this.updateOtherFrequency}
-                onValidate={this.props.onValidate}
-              />
+                        className="other-frequency"
+                        {...this.props.OtherFrequency}
+                        onUpdate={this.updateOtherFrequency}
+                        onError={this.props.onError}
+                        />
             </div>
           </Show>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}
-          help={'foreign.activities.benefit.continuing.help.country'}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}>
           <Country name="Country"
-            {...this.props.Country}
-            onUpdate={this.updateCountry}
-            onValidate={this.props.onValidate}
-          />
+                   {...this.props.Country}
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.value')}
-          help={'foreign.activities.benefit.continuing.help.value'}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.value')}>
           <Currency name="Value"
-            className="value"
-            {...this.props.Value}
-            min="0"
-            onUpdate={this.updateValue}
-            onValidate={this.props.onValidate}
-          />
+                    className="value"
+                    {...this.props.Value}
+                    min="0"
+                    onUpdate={this.updateValue}
+                    onError={this.props.onError}
+                    />
           <div className="flags">
             <Checkbox name="ValueEstimated"
-              label={i18n.t('foreign.activities.benefit.continuing.label.valueEstimated')}
-              toggle="false"
-              checked={this.props.ValueEstimated}
-              onUpdate={this.updateValueEstimated}
-              onValidate={this.props.onValidate}
-            />
+                      label={i18n.t('foreign.activities.benefit.continuing.label.valueEstimated')}
+                      toggle="false"
+                      checked={this.props.ValueEstimated}
+                      onUpdate={this.updateValueEstimated}
+                      onError={this.props.onError}
+                      />
           </div>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.reason')}
-          help={'foreign.activities.benefit.continuing.help.value'}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.reason')}>
           <Textarea name="Reason"
-            className="reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            onValidate={this.props.onValidate}
-          />
+                    className="reason"
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Branch name="Obligated"
-          className="obligated"
-          label={i18n.t('foreign.activities.benefit.continuing.heading.obligated')}
-          labelSize="h3"
-          value={this.props.Obligated}
-          onValidate={this.props.onValidate}
-          onUpdate={this.updateObligated}>
+                className="obligated"
+                label={i18n.t('foreign.activities.benefit.continuing.heading.obligated')}
+                labelSize="h3"
+                value={this.props.Obligated}
+                onError={this.props.onError}
+                onUpdate={this.updateObligated}>
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
           <Textarea name="Explanation"
-            label={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
-            className="explanation"
-            {...this.props.ObligatedExplanation}
-            onUpdate={this.updateObligatedExplanation}
-            onValidate={this.props.onValidate}
-          />
+                    label={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
+                    className="explanation"
+                    {...this.props.ObligatedExplanation}
+                    onUpdate={this.updateObligatedExplanation}
+                    onError={this.props.onError}
+                    />
         </Show>
       </div>
     )
   }
+}
+
+ContinuingBenefit.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

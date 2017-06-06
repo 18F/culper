@@ -56,69 +56,70 @@ export default class VoluntaryCounseling extends ValidationElement {
   render () {
     return (
       <div className="voluntary-counseling">
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.counselingDates')}
-                 help={'substance.alcohol.voluntaryCounseling.help.counselingDates'}
-                 adjustFor="daterange">
-            <DateRange name="CounselingDates"
-              className="counseling-dates"
-              {...this.props.CounselingDates}
-              onUpdate={this.updateCounselingDates}
-              onValidate={this.props.onValidate}
-            />
-          </Field>
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderName')}
-            help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderName'}>
-            <Text name="TreatmentProviderName"
-              className="treatment-provider-name"
-              {...this.props.TreatmentProviderName}
-              onUpdate={this.updateTreatmentProviderName}
-              onValidate={this.props.onValidate}
-            />
-          </Field>
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderAddress')}
-            adjustFor="address"
-            help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderAddress'}>
-            <Address name="TreatmentProviderAddress"
-              className="provider-address"
-              {...this.props.TreatmentProviderAddress}
-              onUpdate={this.updateTreatmentProviderAddress}
-              onValidate={this.props.onValidate}
-            />
-          </Field>
-          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}
-            help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'}>
-            <Telephone name="TreatmentProviderTelephone"
-              className="provider-telephone"
-              {...this.props.TreatmentProviderTelephone}
-              onUpdate={this.updateTreatmentProviderTelephone}
-              onValidate={this.props.onValidate}
-            />
-          </Field>
+        <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.counselingDates')}
+               help={'substance.alcohol.voluntaryCounseling.help.counselingDates'}
+               adjustFor="daterange">
+          <DateRange name="CounselingDates"
+                     className="counseling-dates"
+                     {...this.props.CounselingDates}
+                     onUpdate={this.updateCounselingDates}
+                     onError={this.props.onError}
+                     />
+        </Field>
+        <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderName')}
+               help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderName'}>
+          <Text name="TreatmentProviderName"
+                className="treatment-provider-name"
+                {...this.props.TreatmentProviderName}
+                onUpdate={this.updateTreatmentProviderName}
+                onError={this.props.onError}
+                />
+        </Field>
+        <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderAddress')}
+               adjustFor="address"
+               help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderAddress'}>
+          <Address name="TreatmentProviderAddress"
+                   className="provider-address"
+                   {...this.props.TreatmentProviderAddress}
+                   onUpdate={this.updateTreatmentProviderAddress}
+                   onError={this.props.onError}
+                   />
+        </Field>
+        <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}
+               help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'}>
+          <Telephone name="TreatmentProviderTelephone"
+                     className="provider-telephone"
+                     {...this.props.TreatmentProviderTelephone}
+                     onUpdate={this.updateTreatmentProviderTelephone}
+                     onError={this.props.onError}
+                     />
+        </Field>
 
-          <h3>{i18n.t('substance.alcohol.voluntaryCounseling.heading.completedTreatment')}</h3>
-          <Branch name="CompletedTreatment"
-            help={'substance.alcohol.voluntaryCounseling.help.completedTreatment'}
-            className="completed-treatment"
-            value={this.props.CompletedTreatment}
-            onValidate={this.props.onValidate}
-            onUpdate={this.updateCompletedTreatment}>
-          </Branch>
+        <h3>{i18n.t('substance.alcohol.voluntaryCounseling.heading.completedTreatment')}</h3>
+        <Branch name="CompletedTreatment"
+                help={'substance.alcohol.voluntaryCounseling.help.completedTreatment'}
+                className="completed-treatment"
+                value={this.props.CompletedTreatment}
+                onUpdate={this.updateCompletedTreatment}
+                onError={this.props.onError}>
+        </Branch>
 
-          <Show when={this.props.CompletedTreatment === 'No'}>
-            <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment')}
-            help={'substance.alcohol.voluntaryCounseling.help.noCompletedTreatment'}>
-              <Textarea name="NoCompletedTreatmentExplanation"
-                className="no-completed-treatment"
-                {...this.props.NoCompletedTreatmentExplanation}
-                onUpdate={this.updateNoCompletedTreatmentExplanation}
-                onValidate={this.props.onValidate}
-              />
-            </Field>
-          </Show>
+        <Show when={this.props.CompletedTreatment === 'No'}>
+          <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment')}
+                 help={'substance.alcohol.voluntaryCounseling.help.noCompletedTreatment'}>
+            <Textarea name="NoCompletedTreatmentExplanation"
+                      className="no-completed-treatment"
+                      {...this.props.NoCompletedTreatmentExplanation}
+                      onUpdate={this.updateNoCompletedTreatmentExplanation}
+                      onError={this.props.onError}
+                      />
+          </Field>
+        </Show>
       </div>
     )
   }
 }
 
 VoluntaryCounseling.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

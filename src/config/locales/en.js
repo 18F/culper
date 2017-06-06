@@ -204,54 +204,69 @@ const en = {
         }
       }
     },
-    month: {
-      notfound: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December).',
-        note: ''
+    date: {
+      month: {
+        notfound: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        }
+      },
+      day: {
+        length: {
+          title: 'There is a problem with the Day',
+          message: 'There is not that many days in this month.',
+          note: ''
+        },
+        max: {
+          title: 'There is a problem with the Day',
+          message: 'There is not that many days in this month.',
+          note: ''
+        }
+      },
+      year: {
+        max: {
+          title: 'There is a problem with the Year',
+          message: 'The year can\'t be in the future.',
+          note: ''
+        },
+        min: {
+          title: 'There is a problem with the Year',
+          message: 'This year is too far in the past.',
+          note: ''
+        }
       },
       max: {
-        title: 'There is a problem with the Month',
-        message: 'The month should be between 1(January) and 12(December).',
-        note: ''
-      }
-    },
-    day: {
-      length: {
-        title: 'There is a problem with the Day',
-        message: 'There is not that many days in this month.',
-        note: ''
-      },
-      max: {
-        title: 'There is a problem with the Day',
-        message: 'There is not that many days in this month.',
-        note: ''
-      }
-    },
-    year: {
-      max: {
-        title: 'There is a problem with the Year',
-        message: 'The year can\'t be in the future.',
-        note: ''
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
       },
       min: {
-        title: 'There is a problem with the Year',
-        message: 'This year is too far in the past.',
+        title: 'There is a problem with the date',
+        message: 'The date should be on or after your date of birth.'
+      }
+    },
+    daterange: {
+      order: {
+        title: 'There is a problem with the date range',
+        message: 'The **from** date should be before the **to** date.',
         note: ''
       }
     },
     weight: {
-      pounds: {
-        min: {
-          title: 'Weight below accepted limits',
-          message: 'We only accept a value between 10 and 999 pounds',
-          note: ''
-        },
-        max: {
-          title: 'Weight exceeds accepted limits',
-          message: 'We only accept a value between 10 and 999 pounds',
-          note: ''
-        }
+      min: {
+        title: 'Weight below accepted limits',
+        message: 'We only accept a value between 10 and 999 pounds',
+        note: ''
+      },
+      max: {
+        title: 'Weight exceeds accepted limits',
+        message: 'We only accept a value between 10 and 999 pounds',
+        note: ''
       }
     },
     height: {
@@ -280,41 +295,52 @@ const en = {
         }
       }
     },
-    city: {
-      length: {
-        title: 'There is a problem with the City',
-        message: 'City name should be between 2 and 100 characters.',
-        note: ''
-      }
-    },
-    state: {
-      notfound: {
-        title: 'There is a problem with the State',
-        message: [
-          'State name must be one of the available options.',
-          '*and/or*',
-          'The state name is too long.'
-        ],
-        note: ''
-      }
-    },
-    county: {
-      length: {
-        title: 'There is a problem with the County',
-        message: 'County name must be between 2 and 100 characters',
-        note: ''
-      }
-    },
-    zipcode: {
-      pattern: {
-        title: 'There is a problem with the ZIP Code',
-        message: 'The ZIP Code should be either 5 or 9 digits.',
-        note: ''
+    address: {
+      city: {
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
+        }
       },
-      length: {
-        title: 'There is a problem with the ZIP Code',
-        message: 'The ZIP Code should be either 5 or 9 digits.',
-        note: ''
+      state: {
+        notfound: {
+          title: 'There is a problem with the State',
+          message: [
+            'State name must be one of the available options.',
+            '*and/or*',
+            'The state name is too long.'
+          ],
+          note: ''
+        }
+      },
+      county: {
+        length: {
+          title: 'There is a problem with the County',
+          message: 'County name must be between 2 and 100 characters',
+          note: ''
+        }
+      },
+      zipcode: {
+        pattern: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code should be either 5 or 9 digits.',
+          note: ''
+        }
+      },
+      country: {
+        notfound: {
+          title: 'There is a problem with the Country',
+          message: 'Country name should be one of the available options.',
+          note: ''
+        }
+      },
+      apofpo: {
+        pattern: {
+          title: 'There is a problem with the State Code',
+          message: 'APO/FPO state code must be 2 letters',
+          note: 'Note: Typically the value is either AA, AE, or AP.'
+        }
       }
     },
     country: {
@@ -324,138 +350,125 @@ const en = {
         note: ''
       }
     },
-    apoFpo: {
-      length: {
-        title: 'There is a problem with the State Code',
-        message: 'APO/FPO state code must be 2 letters',
-        note: ''
-      },
-      pattern: {
-        title: 'There is a problem with the State Code',
-        message: 'APO/FPO state code must be 2 letters',
-        note: 'Note: Typically the value is either AA, AE, or AP.'
-      }
-    },
     passport: {
-      number: {
-        pattern: {
-          title: 'There is a problem with the passport number',
-          message: [
-            'For passport books the number will start with a letter and then 6 to 9 digits.',
-            'For passport cards the number begins with a "C" and followed by 8 digits.'
-          ],
-          note: ''
-        }
+      pattern: {
+        title: 'There is a problem with the passport number',
+        message: [
+          'For passport books the number will start with a letter and then 6 to 9 digits.',
+          'For passport cards the number begins with a "C" and followed by 8 digits.'
+        ],
+        note: ''
       }
     },
-    Losses: {
+    currency: {
       min: {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
         note: ''
       }
     },
-    daterange: {
-      order: {
-        title: 'There is a problem with the date range',
-        message: 'The **from** date should be before the **to** date.',
-        note: ''
-      }
-    },
-    domestic_first: {
-      pattern: {
-        title: 'This field must have 3 digits',
-        message: 'The area code shoul be 3 numbers long and between 0 and 9.',
-        note: ''
+    telephone: {
+      domestic: {
+        first: {
+          pattern: {
+            title: 'There is a problem with the area code',
+            message: 'The area code should be 3 numbers long and between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the area code',
+            message: 'The area code should be 3 numbers long and between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'There is a problem with the phone number',
+            message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the phone number',
+            message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
+            note: ''
+          }
+        },
+        third: {
+          pattern: {
+            title: 'There is a problem with the phone number',
+            message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the phone number',
+            message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
+            note: ''
+          }
+        },
+        extension: {
+          pattern: {
+            title: 'There is a problem with the extension',
+            message: 'Extensions should be between 0 and 10.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with the extension',
+            message: 'Extensions should be between 0 and 10.',
+            note: ''
+          }
+        }
       },
-      length: {
-        title: 'There is a problem with the area code',
-        message: 'The area code shoul be 3 numbers long and between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_second: {
-      pattern: {
-        title: 'There is a problem with the phone number',
-        message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
-        note: ''
+      dsn: {
+        first: {
+          pattern: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 3 digits',
+            message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'This field must have 4 digits',
+            message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
+            note: ''
+          }
+        }
       },
-      length: {
-        title: 'There is a problem with the phone number',
-        message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_third: {
-      pattern: {
-        title: 'There is a problem with the phone number',
-        message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the phone number',
-        message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
-        note: ''
-      }
-    },
-    domestic_extension: {
-      pattern: {
-        title: 'There is a problem with the extension',
-        message: 'Extensions should be between 0 and 10.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the extensionn',
-        message: 'Extensions should be between 0 and 10.',
-        note: ''
-      }
-    },
-    dsn_first: {
-      pattern: {
-        title: 'There is a problem with the DSN number',
-        message: 'The first part of the DSN number should be 3 numbers long between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the DSN number',
-        message: 'The first part of the DSN number should be 3 numbers long between 0 and 9.',
-        note: ''
-      }
-    },
-    dsn_second: {
-      pattern: {
-        title: 'There is a problem with the DSN number',
-        message: 'The last part of the DSN number must be 4 numbers long between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with the DSN number',
-        message: 'The last part of the DSN number must be 4 numbers between 0 and 9.',
-        note: ''
-      }
-    },
-    int_first: {
-      pattern: {
-        title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with this country code',
-        message: 'The country code of the international number should be 3 digits between 0 and 9.',
-        note: ''
-      }
-    },
-    int_second: {
-      pattern: {
-        title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9.',
-        note: ''
-      },
-      length: {
-        title: 'There is a problem with this number',
-        message: 'The international number should be 10 digits between 0 and 9.',
-        note: ''
+      international: {
+        first: {
+          pattern: {
+            title: 'There is a problem with this country code',
+            message: 'The country code of the international number should be 3 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with this country code',
+            message: 'The country code of the international number should be 3 digits between 0 and 9.',
+            note: ''
+          }
+        },
+        second: {
+          pattern: {
+            title: 'There is a problem with this number',
+            message: 'The international number should be 10 digits between 0 and 9.',
+            note: ''
+          },
+          length: {
+            title: 'There is a problem with this number',
+            message: 'The international number should be 10 digits between 0 and 9.',
+            note: ''
+          }
+        }
       }
     },
     geocode: {
@@ -488,144 +501,103 @@ const en = {
         para: 'The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.'
       }
     },
-    Email: {
+    email: {
       pattern: {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       }
-    },
-    Year: {
-      min: {
-        title: 'There is a problem with the year',
-        message: 'The year should be four(4) numbers.',
-        note: ''
-      }
-    },
-    datecontrol: {
-      max: {
-        title: 'There is a problem with the date',
-        message: 'The date can\'t be in the future.'
-      },
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be on or after your date of birth.'
-      }
-    },
-    to: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the "to" date',
-          message: 'The **to** date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the "to" date',
-          message: 'The **to** date should be on or after your date of birth.'
-        }
-      }
-    },
-    from: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the "from" date',
-          message: 'The **from** date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the "from" date',
-          message: 'The **from** date should be on or after your date of birth.'
-        }
-      }
-    },
-    order: {
-      datecontrol: {
-        max: {
-          title: 'There is a problem with the date',
-          message: 'The order date can\'t be in the future.'
-        },
-        min: {
-          title: 'There is a problem with the date',
-          message: 'The order date value should be on or after your date of birth.'
-        }
-      }
-    },
-    hospitalization: {
-      to: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "to" date',
-            message: 'The hospitalization **to** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'The hospitalization **to** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      from: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "from" date',
-            message: 'The hospitalization **from** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "from" date',
-            message: 'The hospitalization **from** date value should be on or after your date of birth.'
-          }
-        }
-      }
-    },
-    diagnosis: {
-      to: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "to" date',
-            message: 'The diagnosis **to** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'Diagnosis **to** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      from: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "from" date',
-            message: 'Diagnosis **from** date can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "from" date',
-            message: 'Diagnosis **from** date value should be on or after your date of birth.'
-          }
-        }
-      }
-    },
-    bankruptcy: {
-      datefiled: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "date filed" date',
-            message: 'Bankruptcy **date filed** can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "date filed" date',
-            message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
-          }
-        }
-      },
-      datedischarged: {
-        datecontrol: {
-          max: {
-            title: 'There is a problem with the "date discharged" date',
-            message: 'Bankruptcy **date discharged** can\'t be in the future.'
-          },
-          min: {
-            title: 'There is a problem with the "to" date',
-            message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
-          }
-        }
-      }
     }
+    // order: {
+    //   datecontrol: {
+    //     max: {
+    //       title: 'There is a problem with the date',
+    //       message: 'The order date can\'t be in the future.'
+    //     },
+    //     min: {
+    //       title: 'There is a problem with the date',
+    //       message: 'The order date value should be on or after your date of birth.'
+    //     }
+    //   }
+    // },
+    // hospitalization: {
+    //   to: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The hospitalization **to** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The hospitalization **to** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   from: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'The hospitalization **from** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'The hospitalization **from** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // },
+    // diagnosis: {
+    //   to: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'The diagnosis **to** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'Diagnosis **to** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   from: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'Diagnosis **from** date can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "from" date',
+    //         message: 'Diagnosis **from** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // },
+    // bankruptcy: {
+    //   datefiled: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "date filed" date',
+    //         message: 'Bankruptcy **date filed** can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "date filed" date',
+    //         message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   },
+    //   datedischarged: {
+    //     datecontrol: {
+    //       max: {
+    //         title: 'There is a problem with the "date discharged" date',
+    //         message: 'Bankruptcy **date discharged** can\'t be in the future.'
+    //       },
+    //       min: {
+    //         title: 'There is a problem with the "to" date',
+    //         message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
+    //       }
+    //     }
+    //   }
+    // }
   },
   section: {
     back: 'Back',
@@ -691,32 +663,32 @@ const en = {
       title: 'Provide your full name',
       last: {
         help: {
-          title: 'Need help with your last name?',
-          message: 'If your last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
-          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
+          title: 'Need help with this last name?',
+          message: 'If this last name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of this full name.'
         }
       },
       first: {
         help: {
-          title: 'Need help with your first name?',
-          message: 'If your first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
-          note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
+          title: 'Need help with this first name?',
+          message: 'If this first name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+          note: 'Note: "Initial only" is for single letter names only, not for the initial of this full name.'
         }
       },
       middle: {
         help: {
-          title: 'Need help with your middle name?',
+          title: 'Need help with this middle name?',
           message: [
-            'If your middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
-            'If you do not have a middle name leave this field empty and check the "No middle name" checkbox.'
+            'If this middle name is a single initial letter only type that initial and check the "Initial only" checkbox.',
+            'If no middle name leave this field empty and check the "No middle name" checkbox.'
           ],
           note: 'Note: "Initial only" is for single letter names only, not for the initial of your full name.'
         }
       },
       suffix: {
         help: {
-          title: 'Need help with your suffix?',
-          message: 'If your suffix does not appear in this list, select "Other" and enter your suffix in the provided field',
+          title: 'Need help with this suffix?',
+          message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field',
           note: ''
         }
       }
@@ -818,7 +790,7 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email addresses?',
-          message: 'Provide at least 2 email addresses, preferrably your home (personal) email and your work email.',
+          message: 'Provide at least 2 email addresses, preferably your home (personal) email and your work email.',
           note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
         },
         phoneNumber: {
@@ -1648,7 +1620,7 @@ const en = {
         hasalienregistration: 'Do/did you have a U.S. alien registration number?',
         alienregistrationnumber: {
           naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
-          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS regristration number)',
+          derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS registration number)',
           notcitizen: 'Provide your alien registration number (I-551, I-766)'
         },
         alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
@@ -1756,8 +1728,8 @@ const en = {
         },
         priorcitizenship: {
           title: 'Need help with prior citizenship(s)?',
-          message: 'Provide any prior citizenships',
-          note: ''
+          message: 'Tell us all of the prior citizenships.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         },
         hasalienregistration: {
           title: 'Need help if you have an alien registration number?',
@@ -1797,7 +1769,7 @@ const en = {
           }
         },
         permanentresidentcardnumber: {
-          title: 'Need help with your permaenent resident card?',
+          title: 'Need help with your permanent resident card?',
           message: 'Provide your permanent resident card number',
           note: ''
         },
@@ -1877,7 +1849,7 @@ const en = {
       },
       help: {
         hasmultiple: {
-          title: 'Need help with multilpe citizenships?',
+          title: 'Need help with multiple citizenships?',
           message: 'If you have ever had a non-U.S. citizenship then select "yes"',
           note: ''
         },
@@ -2047,7 +2019,7 @@ const en = {
         opportunity: 'An opportunity will be provided to list multiple relatives for each type.',
         checkall: 'Check all that apply.',
         alias: 'Such as maiden, name by former marriage, former name, alias, or nickname.',
-        abroad: 'Born abroad to U.S. Parents',
+        abroad: 'Born abroad to U.S. Parents:',
         naturalized: 'Naturalized:',
         derived: 'Derived:',
         notcitizen: 'Not a U.S. Citizen:',
@@ -2186,8 +2158,8 @@ const en = {
         },
         citizenship: {
           title: 'Need help with the citizenship?',
-          message: 'Provide all of the citizenships',
-          note: ''
+          message: 'Tell us all of the citizenships for this person.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         },
         maiden: {
           title: 'Need help with the maiden name?',
@@ -2324,6 +2296,7 @@ const en = {
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Provide other names used',
+        citizenship: 'Provide country(ies) of citizenship',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2491,6 +2464,11 @@ const en = {
           title: 'Need help with this question?',
           message: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
           note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Tell us all of the citizenships this person has.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         }
       }
     },
@@ -2505,6 +2483,7 @@ const en = {
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
         othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+        citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
         cohabitationBegan: 'Provide date cohabitation residing with person began'
       },
       suggestion: {
@@ -2597,6 +2576,11 @@ const en = {
           title: 'Need help with when deciding if you have had a cohabitant?',
           message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
           note: ''
+        },
+        citizenship: {
+          title: 'Need help with their citizenship?',
+          message: 'Tell us all of the citizenships this person has.',
+          note: 'Note: You can provide multiple citizenships in this question.'
         }
       }
     },
@@ -2636,14 +2620,20 @@ const en = {
             friend: 'Friend',
             landlord: 'Landlord',
             business: 'Business',
-            other: 'Other'
+            other: 'Other',
+            explanation: 'Provide explanation'
           }
+        },
+        gap: {
+          title: 'Coverage gap',
+          para: 'There is a gap in your 7 year period. The entire 7 years should be covered with no gaps.',
+          button: 'Add another person'
         },
         help: {
           knownDates: {
-            title: 'Need help with known dates',
-            message: 'Provide the dates known for the person who knows you well',
-            note: ''
+            title: 'Need help with this date range?',
+            message: 'Tell us the entire time you have known this person.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           rank: {
             title: 'Need help with the rank/title?',
@@ -2680,6 +2670,7 @@ const en = {
           summary: {
             unknown: 'Provide the person\'s information below'
           },
+          description: 'Summary of people who know you',
           appendLabel: 'Add another person',
           appendTitle: 'Do you have an additional person who knows you well to list?',
           itemType: 'Person'
@@ -2779,7 +2770,7 @@ const en = {
   suggestions: {
     name: {
       title: 'Alternate names found',
-      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential mispellings.</p>',
+      para: 'Please consider one of the previous names you have used.<p>Using a consistent name helps us to process your case more quickly and eliminate potential misspellings.</p>',
       label: 'Suggested name',
       use: 'Use this name',
       dismiss: 'Use a different name instead'
@@ -2797,15 +2788,21 @@ const en = {
   intro: {
     tour: {
       title: 'One piece at a time',
-      button: 'Take me on the tour!'
+      para: 'Go through the form one piece at a time, each subsection on it\'s own page.',
+      button: 'Take me to the first section'
     },
     review: {
       title: 'Full section view',
+      para: 'See the entire section including all subsections on one page.',
       button: 'Show me the full section'
     },
-    errors: 'Looks like we have a few issues, here is how to fix them.',
-    neutral: 'Looks like you still have some items left, here is how to finish them.',
+    errors: 'Looks like we have a few issues, how would you like to fix them?',
+    neutral: 'Looks like you still have some items left, how would you like to finish them?',
     complete: 'Everything looks good here but you can still review your answers.'
+  },
+  review: {
+    title: 'Review your answers',
+    para: 'View the full section to make sure everything looks right and make changes if needed. You can also skip ahead to the next section and review later.'
   },
 
   military: {
@@ -2834,8 +2831,8 @@ const en = {
       },
       help: {
         born: {
-          title: 'Need help with when you were born?',
-          message: 'The selective service only applies to males born before a cerain date.',
+          title: 'Why are we asking?',
+          message: 'The selective service only applies to men born before after this date.',
           note: ''
         },
         registered: {
@@ -2849,8 +2846,8 @@ const en = {
           note: ''
         },
         explanation: {
-          title: 'Need help providing an explanation?',
-          message: 'To assist in the investigation please provide an explanation why you may be unregistered',
+          title: 'Need help with this explanation?',
+          message: 'To help the investigation let us know why you haven\'t registered.',
           note: ''
         },
         remember: {
@@ -2904,8 +2901,8 @@ const en = {
       },
       help: {
         served: {
-          title: 'Need help determining if you have served?',
-          message: 'If at any point you have served with the active military then you need to report those activities',
+          title: 'Need help with this question?',
+          message: 'If you have ever served in the Air Force, Air National Guard, Army, Army National Guard, Coast Guard, Marine Corps, or Navy answer "Yes".',
           note: ''
         },
         service: {
@@ -2930,7 +2927,7 @@ const en = {
         },
         dates: {
           title: 'Need help with your dates of service?',
-          message: 'Provide the closest dates of service',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         discharged: {
@@ -2951,7 +2948,7 @@ const en = {
           },
           date: {
             title: 'Need help with the date of discharge?',
-            message: 'Provide the closest date of your military discharge',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -2990,12 +2987,12 @@ const en = {
           note: ''
         },
         date: {
-          title: 'Need help with the date?',
-          message: 'Provide the date of the disciplinary procedures',
+          title: 'Need help with this date?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         offenses: {
-          title: 'Need help with the offenses?',
+          title: 'Need help with this description?',
           message: 'Provide a description of the Uniform Code of Military Justice (UCMJ) offense(s) for which you were charged',
           note: ''
         },
@@ -3083,7 +3080,7 @@ const en = {
         },
         dates: {
           title: 'Need help with the period of service?',
-          message: 'The date range you served',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         country: {
@@ -3093,7 +3090,7 @@ const en = {
         },
         rank: {
           title: 'Need help with the highest position/rank held?',
-          message: 'The hightest rank or position held within the service',
+          message: 'The highest rank or position held within the service',
           note: ''
         },
         division: {
@@ -3113,8 +3110,20 @@ const en = {
         },
         maintainscontact: {
           title: 'Need help with contacts with current or former associates?',
-          message: 'If you maintain contact with any current or former foreign associates please provide their contact information',
+          message: 'If you are still in contact with any current or former foreign associates answer "Yes" and provide their contact information below.',
           note: ''
+        },
+        contact: {
+          dates: {
+            title: 'Need help with this date range?',
+            message: 'Tell us the full time range you were in contact with this person.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          },
+          frequency: {
+            title: 'Need help with this question?',
+            message: 'Tell us how often you were in contact with this person.',
+            note: ''
+          }
         }
       },
       collection: {
@@ -3417,7 +3426,7 @@ const en = {
         },
         physicalAddress: {
           help: {
-            title: 'Need help with the physical addresss?',
+            title: 'Need help with the physical address?',
             message: 'Is/was your physical work address different than your employer\'s address?',
             note: ''
           },
@@ -4553,7 +4562,7 @@ const en = {
         },
         physicalAddress: {
           help: {
-            title: 'Need help with the physical addresss?',
+            title: 'Need help with the physical address?',
             message: 'Is/was your physical work address different than your employer\'s address?',
             note: ''
           },
@@ -4731,7 +4740,7 @@ const en = {
           note: ''
         },
         date: {
-          title: 'Need help with the date of acheivement?',
+          title: 'Need help with the date of achievement?',
           message: 'The date the degree or diploma was awarded',
           note: ''
         }
@@ -4794,7 +4803,7 @@ const en = {
       para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
-      review: 'Review Foreign Actitivies',
+      review: 'Review Foreign Activities',
       history: 'Your History',
       tbd: 'TBD',
       contacts: 'Foreign Contacts',
@@ -4901,9 +4910,9 @@ const en = {
             acquired: 'Provide the date acquired',
             howAcquired: 'Provide how the financial interest was acquired',
             cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
-            relinquished: 'Provide the date control or ownership was relinquished.',
-            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of. '
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of',
+            relinquished: 'Provide the date control or ownership was relinquished',
+            explanation: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of'
           },
           label: {
             relinquishedNotApplicable: 'Not applicable',
@@ -4924,13 +4933,13 @@ const en = {
               note: ''
             },
             interestType: {
-              title: 'Need help with the direct interest type?',
-              message: 'Provide the type of financial interest',
+              title: 'Specify everyone who had a foreign financial interests?',
+              message: 'Select all people involved with this specific foreign financial interests.',
               note: ''
             },
             acquired: {
               title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -4940,29 +4949,29 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             value: {
               title: 'Need help with the value?',
-              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             relinquished: {
-              title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              title: 'Need help with date relinquished?',
+              message: 'Tell us when you were no longer in control or an owner of this foreign financial interest.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             },
             explanation: {
-              title: 'Need help with this field?',
-              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              title: 'Need help with this explanation?',
+              message: 'Tell us how you got rid of your ownership or control of this financial interest.',
               note: ''
             }
           },
           coOwner: {
             heading: {
               name: 'Provide full name of co-owner',
-              address: 'Provide co-owner current address',
+              address: 'Provide co-owner\'s current address',
               countries: 'Provide co-owner’s country(ies) of citizenship',
               relationshipNature: 'Provide the nature of your relationship with the co-owner'
             },
@@ -4971,9 +4980,9 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
                 title: 'Need help with the nature of the relationship?',
@@ -4997,7 +5006,7 @@ const en = {
         collection: {
           summary: 'Provide your indirect financial interests here',
           description: 'Summary of financial interests',
-          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
@@ -5014,7 +5023,7 @@ const en = {
             acquired: 'Provide the date the financial interest was acquired',
             howAcquired: 'Provide details regarding how it was acquired',
             cost: 'Provide the cost (in U.S. dollars) at time of acquisition',
-            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+            value: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of',
             sold: 'Provide the date interest was sold, lost, or otherwise disposed of',
             explanation: 'Provide explanation if interest was sold, lost, or otherwise disposed of'
           },
@@ -5034,8 +5043,8 @@ const en = {
           },
           help: {
             interestTypes: {
-              title: 'Need help with the interest type field?',
-              message: 'Check all that apply',
+              title: 'Specify everyone who had a foreign financial interests',
+              message: 'Select all people involved with this specific foreign financial interest.',
               note: ''
             },
             interestType: {
@@ -5049,8 +5058,8 @@ const en = {
               note: ''
             },
             acquired: {
-              title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -5060,27 +5069,27 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             value: {
               title: 'Need help with the value?',
-              message: 'Provide the current value (in U.S. dollars) or the value at the time control or ownership was sold, lost or otherwise disposed of.',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             sold: {
-              title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              title: 'Need help with date relinquished?',
+              message: 'Tell us when you got rid of of this foreign financial interest.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             },
             explanation: {
-              title: 'Need help with the explanation?',
-              message: 'Provide explanation of how interest control or ownership was sold, lost or otherwise disposed of.',
+              title: 'Need help with this explanation?',
+              message: 'Tell us how you got rid of of this foreign financial interest.',
               note: ''
             },
             relationship: {
-              title: 'Need help with the relationship?',
-              message: 'Provide this individual’s relationship to you',
+              title: 'Need help with this relationship question?',
+              message: 'Let us know how you know this person and give us details of your relationship with them.',
               note: ''
             }
           },
@@ -5096,13 +5105,13 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
-                title: 'Need help with the nature of the relationship?',
-                message: 'Provide the nature of your relationship with the co-owner',
+                title: 'Need help with the nature of this relationship?',
+                message: 'Let us know how you know this person and give us details of your relationship with them.',
                 note: ''
               }
             }
@@ -5155,8 +5164,8 @@ const en = {
           },
           help: {
             interestTypes: {
-              title: 'Need help with the interest type field?',
-              message: 'Check all that apply',
+              title: 'Specify everyone who had a foreign financial interests',
+              message: 'Select all people involved with this specific foreign financial interest.',
               note: ''
             },
             realEstateType: {
@@ -5165,8 +5174,8 @@ const en = {
               note: ''
             },
             acquired: {
-              title: 'Need help with when the interest was acquired?',
-              message: 'Provide the date acquired',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             howAcquired: {
@@ -5176,13 +5185,13 @@ const en = {
             },
             cost: {
               title: 'Need help with the cost?',
-              message: 'Provide the cost (in U.S. dollars) at time of acquisition',
+              message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             sold: {
-              title: 'Need help with date reqlinquished?',
-              message: 'Provide the date control or ownership was relinquished',
-              note: ''
+              title: 'Need help with this date?',
+              message: 'If the real estate in question was sold tell us when.',
+              note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
             }
           },
           coOwner: {
@@ -5197,13 +5206,13 @@ const en = {
             },
             help: {
               countries: {
-                title: 'Need help with co-owners countries of citizenship?',
-                message: 'Provide the co-owners countries of citizenship',
-                note: ''
+                title: 'Need help with co-owner\'s country(ies) of citizenship?',
+                message: 'Tell us all of the citizenships this person has.',
+                note: 'Note: You can provide multiple citizenships in this question.'
               },
               relationshipNature: {
-                title: 'Need help with the nature of the relationship?',
-                message: 'Provide the nature of your relationship with the co-owner',
+                title: 'Need help with the nature of this relationship?',
+                message: 'Let us know how you know this person and give us details of your relationship with them.',
                 note: ''
               }
             }
@@ -5258,7 +5267,7 @@ const en = {
           citizenship: {
             title: 'Need help with the citizenship of this foreign national?',
             message: 'List all the known countries the foreign national is a citizen of',
-            note: ''
+            note: 'Note: You can provide multiple citizenships in this question.'
           }
         },
         collection: {
@@ -5352,8 +5361,8 @@ const en = {
           },
           help: {
             received: {
-              title: 'Need help when benefit was received?',
-              message: 'Provide the date the benefit was received',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             country: {
@@ -5404,8 +5413,8 @@ const en = {
           },
           help: {
             begin: {
-              title: 'Need help when benefit will be begin?',
-              message: 'Provide the date the benefit will begin',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {
@@ -5441,7 +5450,7 @@ const en = {
             end: 'Provide the date the benefit is expected to end',
             frequency: 'Provide the frequency that this benefit is received',
             country: 'Provide the name of the country providing the benefit',
-            value: 'Provide the total value (in U.S. dollars) of the benefit to be received.',
+            value: 'Provide the total value (in U.S. dollars) of the benefit to be received',
             reason: 'Provide the reason this benefit will be received',
             obligated: 'As a result of this benefit are you, your spouse or legally recognized civil union/domestic partner, your cohabitant, or dependent children obligated in any way to this foreign country?'
           },
@@ -5462,13 +5471,13 @@ const en = {
           },
           help: {
             began: {
-              title: 'Need help when the benefit began?',
-              message: 'Provide the date the benefit began',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             end: {
-              title: 'Need help when the benefit will end?',
-              message: 'Provide the date the benefit will end',
+              title: 'Need help with this date?',
+              message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
               note: ''
             },
             frequency: {
@@ -5844,11 +5853,11 @@ const en = {
           citizenship: {
             title: 'Need help with the foreign national\'s citizenship?',
             message: 'Provide the country(ies) the foreign national has citizenship',
-            note: ''
+            note: 'Note: You can provide multiple citizenships in this question.'
           },
           description: {
             title: 'Need help describing the business venture?',
-            message: 'Provide an accurate descsription of the business venture',
+            message: 'Provide an accurate description of the business venture',
             note: ''
           },
           relationship: {
@@ -5862,7 +5871,7 @@ const en = {
             note: ''
           },
           association: {
-            title: 'Need help with the assocition to the venture?',
+            title: 'Need help with the association to the venture?',
             message: 'Provide a description of how you were associated to the business venture',
             note: ''
           },
@@ -5971,7 +5980,7 @@ const en = {
             item: 'Conference',
             unknown: 'Provide details of conference below'
           },
-          appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings oustide the U.S.?',
+          appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings outside the U.S.?',
           appendMessage: [
             'Do not include those you attended or participated in on official business for the U.S. government.'
           ],
@@ -5998,8 +6007,15 @@ const en = {
           intro: 'For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
           branch: [
             'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
-            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjuction with a U.S. Government military duty.'
+            'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
           ]
+        },
+        label: {
+          location: 'Did this contact take place in the United States of America?'
+        },
+        placeholder: {
+          city: 'Please enter the city',
+          country: 'Please enter the country'
         },
         help: {
           branch: {
@@ -6020,7 +6036,7 @@ const en = {
           governments: {
             title: 'Need help with the governments associated?',
             message: 'Provide the governments associated with this contact.',
-            note: ''
+            note: 'Note: You can provide multiple government in this question.'
           },
           establishment: {
             title: 'Need help with the establishment?',
@@ -6122,7 +6138,7 @@ const en = {
           citizenship: {
             title: 'Need help with the foreign nationals citizenship(s)?',
             message: 'To the best of your knowledge provide the foreign nationals citizenship(s).',
-            note: ''
+            note: 'Note: You can provide multiple citizenships in this question.'
           },
           organization: {
             title: 'Need help with the organization?',
@@ -6282,7 +6298,7 @@ const en = {
         official: 'Has your travel in the last (7) years been solely for U.S. Government business/military overseas assignment on official government orders?',
         country: 'Provide the country visited',
         dates: 'Provide the dates of your travel to this country',
-        days: 'Provide the total number of days involved in the visit',
+        days: 'Provide the total number of days involved in the visit(s)',
         purpose: 'Provide the purpose of the travel to this country',
         questioned: 'While traveling to, or in this country, were you questioned, searched, or otherwise detained (other than for normal customs requirements) by the local customs or security service officials when entering or leaving this country?',
         encounter: 'While traveling to or in this country, were you involved in any encounter with the police?',
@@ -6294,12 +6310,12 @@ const en = {
         explanation: 'Provide explanation'
       },
       para: {
-        personal: 'I.e., no personal trips in conjuction with the official U.S. Government business.',
+        personal: '(i.e., no personal trips in conjunction with the official U.S. Government business.)',
         checkall: 'Check all that apply',
         explanation: 'If yes provide explanation.',
         timeframe: [
           'Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards.',
-          'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjuction with the official U.S. Government travel.'
+          'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.'
         ]
       },
       label: {
@@ -6310,7 +6326,7 @@ const en = {
         more: 'More than 30',
         many: 'Many short trips',
         business: 'Business/professional',
-        volunteer: 'Volunteer activites',
+        volunteer: 'Volunteer activities',
         education: 'Education',
         tourism: 'Tourism',
         conference: 'Trade shows, conferences, and seminars',
@@ -6334,9 +6350,9 @@ const en = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
-          message: 'Provide the approximate dates of your visit.',
-          note: ''
+          title: 'Need help with this date range?',
+          message: 'Tell us the full date range you visited this country including many short trips.',
+          note: 'Note: This date range can cover multiple trips to the same country.'
         },
         days: {
           title: 'Need help with how many days?',
@@ -6390,7 +6406,7 @@ const en = {
           item: 'Travel',
           unknown: 'Provide details of your travel below'
         },
-        appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for othe than solely U.S. Government business on official government orders?',
+        appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for other than solely U.S. Government business on official government orders?',
         appendMessage: [],
         append: 'Add another travel'
       }
@@ -6408,6 +6424,11 @@ const en = {
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
       domesticViolence: 'Domestic violence',
+      investigations: {
+        history: 'Ever been investigated',
+        revoked: 'Denied',
+        debarred: 'Debarment'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6660,6 +6681,173 @@ const en = {
         ],
         append: 'Add another offense'
       }
+    },
+    investigations: {
+      history: {
+        heading: {
+          title: 'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+          agency: 'Provide the investigating agency',
+          completed: 'Date the investigation was completed',
+          issued: 'Provide the name of agency that issued the clearance eligibility/access if different from the investigating agency',
+          granted: 'Provide the date clearance eligibility/access was granted',
+          clearance: 'Provide the level of clearance eligibility/access granted',
+          agencyExplanation: 'Provide the name of the bureau, government, or explanation',
+          clearanceExplanation: 'Provide an explanation'
+        },
+        label: {
+          idk: 'I don\'t know',
+          agency: {
+            dod: 'U.S. Department of Defense',
+            dos: 'U.S. Department of State',
+            opm: 'U.S. Office of Personnel Management',
+            fbi: 'Federal Bureau of Investigation',
+            dot: [
+              'U.S. Department of Treasury',
+              '(provide name of bureau)'
+            ],
+            dhs: 'U.S. Department of Homeland Security',
+            foreign: [
+              'Foreign government',
+              '(provide name of government)'
+            ],
+            other: [
+              'Other',
+              '(provide explanation)'
+            ]
+          },
+          level: {
+            none: 'None',
+            confidential: 'Confidential',
+            secret: 'Secret',
+            topsecret: 'Top Secret',
+            sci: [
+              'Sensitive Compartmented Information',
+              '(SCI)'
+            ],
+            q: 'Q',
+            l: 'L',
+            foreign: 'Issued by foreign country',
+            other: [
+              'Other',
+              '(provide explanation)'
+            ]
+          }
+        },
+        para: {
+          or: 'or'
+        },
+        collection: {
+          description: 'Summary of investigations',
+          item: 'Investigation',
+          unknown: 'Provide investigation details below',
+          appendTitle: 'Do you have another investigation to enter?',
+          appendLabel: 'Add another investigation'
+        },
+        help: {
+          agency: {
+            title: 'Need help with this investigative agency?',
+            message: 'If you are not sure of the agency issuing the investigation click "I don\'t know".',
+            note: ''
+          },
+          agencyExplanation: {
+            title: 'Need help explaining this agency?',
+            message: 'Provide any further explanation or name(s) required.',
+            note: ''
+          },
+          completed: {
+            title: 'Need help when this investigation was completed?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          issued: {
+            title: 'Need help with who issued this clearance?',
+            message: 'If an agency besides the one who initiated the investigation issued your clearance please tell us.',
+            note: ''
+          },
+          granted: {
+            title: 'Need help with when this clearance was granted?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          clearance: {
+            title: 'Need help with which clearance was granted?',
+            message: 'If you are not sure of the clearance being issued click "I don\'t know".',
+            note: ''
+          },
+          clearanceExplanation: {
+            title: 'Need help explaining this clearance?',
+            message: 'Provide any further explanation regarding the clearance.',
+            note: ''
+          }
+        }
+      },
+      revoked: {
+        heading: {
+          title: 'Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?',
+          date: 'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
+          agency: 'Provide the name of the agency that took the action',
+          explanation: 'Provide an explanation of the circumstances of the denial, suspension or revocation action'
+        },
+        para: {
+          downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
+        },
+        collection: {
+          description: 'Summary of revocations',
+          item: 'Revoked',
+          unknown: 'Provide revocation details below',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
+          appendLabel: 'Add another revocation'
+        },
+        help: {
+          date: {
+            title: 'Need help with the date of this revocation, denial, or suspension?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency authorization this termination?',
+            message: 'Provide the agency name to the best of your abilities responsible for authorizing this action.',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help providing an explanation of events?',
+            message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
+      },
+      debarred: {
+        heading: {
+          title: 'Have you EVER been debarred from government employment?',
+          agency: 'Provide the name of the government agency taking debarment action',
+          date: 'Provide the date the debarment occurred',
+          explanation: 'Provide an explanation of the circumstances of the debarment'
+        },
+        collection: {
+          description: 'Summary of debarments',
+          item: 'Debarment',
+          unknown: 'Provide debarment details below',
+          appendTitle: 'Do you have another Government debarment to enter?',
+          appendLabel: 'Add another debarment'
+        },
+        help: {
+          date: {
+            title: 'Need help with the date of this debarment?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          agency: {
+            title: 'Need help with the agency taking the debarment action?',
+            message: 'Provide the agency name to the best of your abilities responsible for this action.',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help providing an explanation of events?',
+            message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
+      }
     }
   },
   substance: {
@@ -6676,6 +6864,15 @@ const en = {
         ordered: 'Mandatory counseling or treatment',
         voluntary: 'Voluntary counseling or treatment',
         additional: 'Additional instances'
+      },
+      drugs: {
+        usage: 'Usage',
+        purchase: 'Purchase',
+        clearance: 'Security clearance position',
+        publicsafety: 'Public safety position',
+        misuse: 'Misuse',
+        ordered: 'Mandatory counseling or treatment',
+        voluntary: 'Voluntary counseling or treatment'
       },
       review: 'Review substance use'
     },
@@ -6901,6 +7098,461 @@ const en = {
             message: 'Provide details as to why you responded No to having successfully completed the treatment program',
             note: ''
           }
+        }
+      }
+    },
+    drugs: {
+      heading: {
+        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
+        drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
+        drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
+        drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
+        prescriptionUses: 'In the last seven (7) years have you intentionally engaged in the misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you or someone else?',
+        orderedTreatments: 'Have you EVER been ordered, advised, or asked to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
+        voluntaryTreatments: 'Have you EVER voluntarily sought counseling or treatment as a result of your use of a drug or controlled substance?'
+      },
+      para: {
+        drugUses: 'We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding. As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions pertain to the illegal use of drugs or controlled substances or drug or controlled substance activity in accordance with Federal laws, even though permissible under state laws.'
+      },
+      use: {
+        heading: {
+          drugType: 'Provide the type of drug or controlled substance',
+          firstUse: 'Provide an estimate of the month and year of first use',
+          recentUse: 'Provide an estimate of the month and year of most recent use',
+          natureOfUse: 'Provide nature of use, frequency, and number of times used',
+          useWhileEmployed: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          useWithClearance: 'Was your use while possessing a security clearance?',
+          useInFuture: 'Do you intend to use this drug or controlled substance in the future?',
+          explanation: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future'
+        },
+        para: {
+          drugUses: 'Use of a drug or controlled substance includes injecting, snorting, inhaling, swallowing, experimenting with or otherwise consuming any drug or controlled substance.'
+        },
+        help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
+          firstUse: {
+            title: 'Need help with the date of first use?',
+            message: 'Provide an estimate of the month and year of first use',
+            note: ''
+          },
+          recentUse: {
+            title: 'Need help with the date of most recent use?',
+            message: 'Provide an estimate of the month and year of first use',
+            note: ''
+          },
+          natureOfUse: {
+            title: 'Need help with the nature of drug use?',
+            message: 'Provide nature of use, frequency, and number of times used',
+            note: ''
+          },
+          useWhileEmployed: {
+            title: 'Need help with the use?',
+            message: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+            note: ''
+          },
+          useWithClearance: {
+            title: 'Need help with the drug use with a security clearance?',
+            message: 'Was your use while possessing a security clearance?',
+            note: ''
+          },
+          useInFuture: {
+            title: 'Need help with the drug use in the future?',
+            message: 'Mark if you intend to use this drug or controlled substance in the future',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug uses',
+          summary: 'Provide your drug use details below',
+          appendTitle: 'Do you have an additional instance(s) of illegal use of a drug or controlled substance to enter?',
+          appendLabel: 'Add another drug use',
+          itemType: 'Drug Use'
+        }
+      },
+      involvement: {
+        heading: {
+          drugType: 'Provide the type of drug or controlled substance',
+          firstInvolvement: 'Provide an estimate of the month and year of first involvement',
+          recentInvolvement: 'Provide an estimate of the month and year of most recent involvement',
+          natureOfInvolvement: 'Provide nature of and frequency of activity',
+          involvementWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          involvementWithClearance: 'Was your involvement while possessing a security clearance?',
+          involvementInFuture: 'Do you intend to engage in this activity in the future?',
+          reasons: 'Provide the reason(s) why you engaged in the activity.',
+          explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation'
+        },
+        help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
+          firstInvolvement: {
+            title: 'Need help with the date of first involvement?',
+            message: 'Provide an estimate of the month and year of first involvement',
+            note: ''
+          },
+          recentInvolvement: {
+            title: 'Need help with the date of most recent involvement?',
+            message: 'Provide an estimate of the month and year of first involvement',
+            note: ''
+          },
+          natureOfInvolvement: {
+            title: 'Need help with the nature of drug involvement?',
+            message: 'Provide nature of use, frequency, and number of times used',
+            note: ''
+          },
+          involvementWhileEmployed: {
+            title: 'Need help with the use?',
+            message: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+            note: ''
+          },
+          involvementWithClearance: {
+            title: 'Need help with the drug use with a security clearance?',
+            message: 'Was your use while possessing a security clearance?',
+            note: ''
+          },
+          involvementInFuture: {
+            title: 'Need help with the drug use in the future?',
+            message: 'Mark if you intend to use this drug or controlled substance in the future',
+            note: ''
+          },
+          reasons: {
+            title: 'Need help with the reasoning?',
+            message: 'Provide the reason(s) why you engaged in the activity',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug involvement',
+          summary: 'Provide your drug involvement details below',
+          appendTitle: 'Do you have an additional instance(s) of having been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance to enter?',
+          appendLabel: 'Add another drug involvement',
+          itemType: 'Drug involvement'
+        }
+      },
+      clearance: {
+        heading: {
+          description: 'Provide a description of your involvement',
+          involvementDates: 'Provide the dates of involvement/use',
+          estimatedUse: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while possessing a security clearance'
+        },
+        help: {
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide a description of your involvement',
+            note: ''
+          },
+          involvementDates: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide the dates of involvement/use',
+            note: ''
+          },
+          estimatedUse: {
+            title: 'Need help with the estimated times used?',
+            message: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while possessing a security clearance',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug involvement',
+          summary: 'Provide your drug involvement details below',
+          appendTitle: 'Do you have an additional instance(s) of the illegal use or involvement with a drug or controlled substance while possessing a security clearance to enter?',
+          appendLabel: 'Add another drug involvement',
+          itemType: 'Drug involvement'
+        }
+
+      },
+      publicSafety: {
+        heading: {
+          description: 'Provide a description of the drugs or controlled substances used and your involvement',
+          involvementDates: 'Provide the dates of involvement/use',
+          estimatedUse: 'Provide an estimate the number of times you used and/or were involved this drug or controlled substance while employed in this capacity'
+        },
+        help: {
+          description: {
+            title: 'Need help with the description?',
+            message: 'Provide a description of your involvement',
+            note: ''
+          },
+          involvementDates: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide the dates of involvement/use',
+            note: ''
+          },
+          estimatedUse: {
+            title: 'Need help with the estimated times used?',
+            message: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while possessing a security clearance',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug involvement',
+          summary: 'Provide your drug involvement details below',
+          appendTitle: 'Do you have an additional instance(s) of illegal use or involvement with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety to enter?',
+          appendLabel: 'Add another drug involvement',
+          itemType: 'Drug involvement'
+        }
+      },
+      prescription: {
+        heading: {
+          prescriptionName: 'Provide the name of the prescription drug that you misused',
+          involvementDates: 'Provide the dates of involvement in the above',
+          reason: 'Provide the reason(s) for and circumstances of the misuse of the prescription drug',
+          useWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
+          useWithClearance: 'Was your involvement while possessing a security clearance?'
+        },
+        help: {
+          prescriptionName: {
+            title: 'Need help with the prescriptin name?',
+            message: 'Provide the name of the prescription drug that you misused',
+            note: ''
+          },
+          reason: {
+            title: 'Need help with the reason?',
+            message: 'Provide the reason(s) for and circumstances of the misuse of the prescription drug',
+            note: ''
+          },
+          involvementDates: {
+            title: 'Need help with the dates of involvement?',
+            message: 'Provide the dates of involvement/use',
+            note: ''
+          },
+          useWhileEmployed: {
+            title: 'Need help with the use?',
+            message: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
+            note: ''
+          },
+          useWithClearance: {
+            title: 'Need help with the drug use with a security clearance?',
+            message: 'Was your involvement while possessing a security clearance?',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of drug misuse',
+          summary: 'Provide your drug misuse details below',
+          appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
+          appendLabel: 'Add another drug misuse',
+          itemType: 'Drug misuse'
+        }
+      },
+      ordered: {
+        heading: {
+          orderedBy: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
+          explanation: 'Provide explanation',
+          actionTaken: 'Did you take action to receive counseling or treatment?',
+          noActionTakenExplanation: 'You have indicated that you did not receive treatment. Provide explanation',
+          drugType: 'Provide the type of drug or controlled substance for which you were treated',
+          treatmentProvider: 'Provide the name of the treatment provider',
+          treatmentProviderAddress: 'Provide the address for this treatment provider',
+          treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
+          treatmentDates: 'Provide the dates of treatment',
+          treatmentCompleted: 'Did you successfully complete the treatment?',
+          noTreatmentExplanation: 'You have indicated that you did not successfully complete the treatment. Provide explanation.'
+        },
+        para: {
+          orderedBy: 'Check all that apply',
+          treatmentProvider: 'Last name, First name'
+        },
+        help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
+          orderedBy: {
+            title: 'Need help with who ordered treatment?',
+            message: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your illegal use of drugs or controlled substances?',
+            note: ''
+          },
+          explanation: {
+            title: 'Need help with the explanation?',
+            message: 'Provide explanation',
+            note: ''
+          },
+          actionTaken: {
+            title: 'Need help with taking action to receive counseling or treatment?',
+            message: 'Mark if you took action to receive counseling or treatment',
+            note: ''
+          },
+          noActionTakenExplanation: {
+            title: 'Need help with not having taken action?',
+            message: 'Provide explanation as to why you did not receive treatment',
+            note: ''
+          },
+          treatmentProvider: {
+            title: 'Need help with the treatment provider?',
+            message: 'Provide the name of the treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address of the treatment provider',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone of the treatment provider',
+            note: ''
+          },
+          treatmentDates: {
+            title: 'Need help with the treatment dates?',
+            message: 'Provide the dates of treatment',
+            note: ''
+          },
+          treatmentCompleted: {
+            title: 'Need help with the treatment completion?',
+            message: 'Mark yes if you successfully completed the treatment',
+            note: ''
+          },
+          noTreatmentExplanation: {
+            title: 'Need help with the explanation for not completing treatment?',
+            message: 'Explain why you did not complete treatment',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of treatments',
+          summary: 'Provide your treatment details below',
+          appendTitle: 'Do you have another instance of having been ordered, advised, or asked to seek drug or controlled substance counseling or treatment to enter?',
+          appendLabel: 'Add another treatment',
+          itemType: 'Treatment'
+        },
+        orderedBy: {
+          label: {
+            employer: 'An employer, military commander, or employee assistance program',
+            medicalProfessional: 'A medical professional',
+            mentalHealthProfessional: 'A mental health professional',
+            judge: 'A court official / judge',
+            none: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above.'
+          }
+        }
+      },
+      voluntary: {
+        heading: {
+          drugType: 'Provide the type of drug or controlled substance for which you were treated',
+          treatmentProvider: 'Provide the name of the treatment provider',
+          treatmentProviderAddress: 'Provide the address for this treatment provider',
+          treatmentProviderTelephone: 'Provide a telephone number for the treatment provider',
+          treatmentDates: 'Provide the dates of treatment',
+          treatmentCompleted: 'Did you successfully complete the treatment?',
+          noTreatmentExplanation: 'You have indicated that you did not you successfully complete the treatment. Provide explanation.'
+        },
+        para: {
+          treatmentProvider: 'Last name, First name'
+        },
+        help: {
+          drugType: {
+            title: 'Need help with the drug type?',
+            message: 'Provide the type of drug or controlled substance used',
+            note: ''
+          },
+          treatmentProvider: {
+            title: 'Need help with the treatment provider?',
+            message: 'Provide the name of the treatment provider',
+            note: ''
+          },
+          treatmentProviderAddress: {
+            title: 'Need help with the treatment provider address?',
+            message: 'Provide the address of the treatment provider',
+            note: ''
+          },
+          treatmentProviderTelephone: {
+            title: 'Need help with the treatment provider telephone?',
+            message: 'Provide the telephone of the treatment provider',
+            note: ''
+          },
+          treatmentDates: {
+            title: 'Need help with the treatment dates?',
+            message: 'Provide the dates of treatment',
+            note: ''
+          },
+          treatmentCompleted: {
+            title: 'Need help with the treatment completion?',
+            message: 'Mark yes if you successfully completed the treatment',
+            note: ''
+          },
+          noTreatmentExplanation: {
+            title: 'Need help with the explanation for not completing treatment?',
+            message: 'Explain why you did not complete treatment',
+            note: ''
+          }
+        },
+        collection: {
+          description: 'Summary of treatments',
+          summary: 'Provide your treatment details below',
+          appendTitle: 'Do you have another instance of EVER voluntarily seeking counseling or treatment as a result of your use of a drug or controlled substance?',
+          appendLabel: 'Add another treatment',
+          itemType: 'Treatment'
+        },
+        orderedBy: {
+          label: {
+            employer: 'An employer, military commander, or employee assistance program',
+            medicalProfessional: 'A medical professional',
+            mentalHealthProfessional: 'A mental health professional',
+            judge: 'A court official / judge',
+            none: 'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above.'
+          }
+        }
+      },
+      drugType: {
+        label: {
+          cocaine: [
+            'Cocaine or crack cocaine',
+            '(Such as rock, freebase, etc.)'
+          ],
+          stimulants: [
+            'Stimulants',
+            '(Such as amphetamines, speed, crystal meth, ecstasy, etc.)'
+          ],
+          thc: [
+            'THC',
+            '(Such as marijuana, weed, pot, hashish, etc.)'
+          ],
+          depressants: [
+            'Depressants',
+            '(Such as barbiturates, methaqualone, tranquilizers, etc.)'
+          ],
+          ketamine: [
+            'Ketamine',
+            '(Such as special K, jet, etc.)'
+          ],
+          narcotics: [
+            'Narcotics',
+            '(Such as opium, morphine, codeine, heroin, etc.)'
+          ],
+          hallucinogenic: [
+            'Hallucinogenic',
+            '(Such as LSD, PCP, mushrooms, etc.)'
+          ],
+          steroids: [
+            'Steroids',
+            '(Such as the clear, juice, etc.)'
+          ],
+          inhalants: [
+            'Inhalants',
+            '(Such as toluene, amyl nitrate, etc.)'
+          ],
+          other: [
+            'Other',
+            '(Provide explanation)'
+          ],
+          drugTypeOther: 'Provide explanation'
         }
       }
     }
@@ -7262,7 +7914,7 @@ const en = {
       facility: {
         heading: {
           name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
-          address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+          address: 'Provide the address of any agency/organization/facility where counseling/treatment was provided'
         },
         label: {
           name: 'Name',
@@ -7458,7 +8110,7 @@ const en = {
         facility: {
           heading: {
             name: 'Provide the name and telephone number of any agency/organization/facility where counseling/treatment was provided',
-            address: 'Provide the address of any agency/organization/facility where couseling/treatment was provided'
+            address: 'Provide the address of any agency/organization/facility where counseling/treatment was provided'
           },
           label: {
             address: 'This address is',
@@ -7789,3 +8441,5 @@ const en = {
 }
 
 export default en
+
+//  LocalWords:  citizenships

@@ -45,7 +45,7 @@ export default class Treatment extends ValidationElement {
                 className="treatment-name"
                 {...this.props.Name}
                 onUpdate={this.updateName}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 />
         </Field>
 
@@ -54,7 +54,7 @@ export default class Treatment extends ValidationElement {
                      label={i18n.t(`psychological.${prefix}.label.phone`)}
                      {...this.props.Phone}
                      onUpdate={this.updatePhone}
-                     onValidate={this.props.onValidate}
+                     onError={this.props.onError}
                      />
         </Field>
 
@@ -65,7 +65,7 @@ export default class Treatment extends ValidationElement {
                    {...this.props.Address}
                    label={i18n.t(`psychological.${prefix}.label.address`)}
                    onUpdate={this.updateAddress}
-                   onValidate={this.props.onValidate}
+                   onError={this.props.onError}
                    />
         </Field>
       </div>
@@ -74,5 +74,6 @@ export default class Treatment extends ValidationElement {
 }
 
 Treatment.defaultProps = {
-  prefix: 'treatment'
+  prefix: 'treatment',
+  onError: (value, arr) => { return arr }
 }

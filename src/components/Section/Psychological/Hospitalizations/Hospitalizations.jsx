@@ -1,25 +1,24 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../Form'
-import Hospitalization from './Hospitalization'
 import { HospitalizationsValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion, Branch, Show } from '../../../Form'
+import Hospitalization from './Hospitalization'
 import { dateRangeFormat } from '../summaryHelper'
 
-export default class Hospitalizations extends ValidationElement {
+export default class Hospitalizations extends SubsectionElement {
   constructor (props) {
     super(props)
 
     this.state = {
       Hospitalized: props.Hospitalized,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.update = this.update.bind(this)
     this.updateHospitalized = this.updateHospitalized.bind(this)
     this.updateList = this.updateList.bind(this)
-    this.handleValidation = this.handleValidation.bind(this)
   }
 
   update (field, values) {
@@ -27,7 +26,8 @@ export default class Hospitalizations extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Hospitalized: this.state.Hospitalized,
-          List: this.state.List
+          List: this.state.List,
+          ListBranch: this.state.ListBranch
         })
       }
     })
@@ -40,22 +40,6 @@ export default class Hospitalizations extends ValidationElement {
 
   updateHospitalized (values) {
     this.update('Hospitalized', values)
-  }
-
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
   }
 
   summary (item, index) {
@@ -76,17 +60,13 @@ export default class Hospitalizations extends ValidationElement {
     )
   }
 
-  isValid () {
-    return new HospitalizationsValidator(this.state).isValid()
-  }
-
   render () {
     return (
       <div className="hospitalizations">
         <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
                 value={this.state.Hospitalized}
-                onValidate={this.handleValidation}
+                onError={this.handleError}
                 onUpdate={this.updateHospitalized}>
         </Branch>
 
@@ -97,7 +77,7 @@ export default class Hospitalizations extends ValidationElement {
                      branch={this.state.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
@@ -113,8 +93,15 @@ export default class Hospitalizations extends ValidationElement {
   }
 }
 
-Hospitalization.defaultProps = {
+Hospitalizations.defaultProps = {
   List: [],
   ListBranch: '',
-  defaultState: true
+  defaultState: true,
+  onError: (value, arr) => { return arr },
+  section: 'psychological',
+  subsection: 'hospitalizations',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new HospitalizationsValidator(state, props).isValid()
+  }
 }

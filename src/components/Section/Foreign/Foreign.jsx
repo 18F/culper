@@ -1,27 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { push } from '../../../middleware/history'
 import { i18n } from '../../../config'
+import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
+import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader } from '../../Form'
+import { IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
 import Travel from './Travel'
 import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting } from './Business'
 
-class Foreign extends ValidationElement {
+class Foreign extends SectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      subsection: props.subsection
-    }
-
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
+    this.updatePassport = this.updatePassport.bind(this)
+    this.updateContacts = this.updateContacts.bind(this)
     this.updateAdvice = this.updateAdvice.bind(this)
     this.updateFamily = this.updateFamily.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
@@ -38,163 +34,75 @@ class Foreign extends ValidationElement {
     this.updateTravel = this.updateTravel.bind(this)
   }
 
-  componentDidMount () {
-    let current = this.launch(this.props.Foreign, this.props.subsection, 'passport')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/foreign/${current}`))
+  componentWillReceiveProps (next) {
+    // Redirect to direct control
+    if (next.subsection === 'activities') {
+      this.props.dispatch(push(`/form/foreign/activities/direct`))
     }
   }
 
-  handleTour (event) {
-    this.props.dispatch(push('/form/foreign/passport'))
+  updatePassport (values) {
+    this.handleUpdate('Passport', values)
   }
 
-  handleReview (event) {
-    this.props.dispatch(push('/form/foreign/review'))
-  }
-
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
-
-    if (!event.fake) {
-      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = 'neutral'
-    if (this.hasStatus('passport', status, true) &&
-        this.hasStatus('contacts', status, true) &&
-        this.hasStatus('directActivity', status, true) &&
-        this.hasStatus('indirectActivity', status, true) &&
-        this.hasStatus('realEstateActivity', status, true) &&
-        this.hasStatus('benefitActivity', status, true) &&
-        this.hasStatus('advice', status, true) &&
-        this.hasStatus('family', status, true) &&
-        this.hasStatus('employment', status, true) &&
-        this.hasStatus('ventures', status, true) &&
-        this.hasStatus('conferences', status, true) &&
-        this.hasStatus('contact', status, true) &&
-        this.hasStatus('sponsorship', status, true) &&
-        this.hasStatus('political', status, true) &&
-        this.hasStatus('voting', status, true) &&
-        this.hasStatus('travel', status, true)) {
-      cstatus = 'complete'
-    } else if (this.hasStatus('passport', status, false) ||
-               this.hasStatus('contacts', status, false) ||
-               this.hasStatus('directActivity', status, false) ||
-               this.hasStatus('indirectActivity', status, false) ||
-               this.hasStatus('realEstateActivity', status, false) ||
-               this.hasStatus('benefitActivity', status, false) ||
-               this.hasStatus('advice', status, false) ||
-               this.hasStatus('family', status, false) ||
-               this.hasStatus('employment', status, false) ||
-               this.hasStatus('ventures', status, false) ||
-               this.hasStatus('conferences', status, false) ||
-               this.hasStatus('contact', status, false) ||
-               this.hasStatus('sponsorship', status, false) ||
-               this.hasStatus('political', status, false) ||
-               this.hasStatus('voting', status, false) ||
-               this.hasStatus('travel', status, false)) {
-      cstatus = 'incomplete'
-    }
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
-  /**
-   * Update storage values for a subsection
-   */
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Foreign', field, values))
+  updateContacts (values) {
+    this.handleUpdate('Contacts', values)
   }
 
   updateAdvice (values) {
-    this.onUpdate('Advice', values)
+    this.handleUpdate('Advice', values)
   }
 
   updateFamily (values) {
-    this.onUpdate('Family', values)
+    this.handleUpdate('Family', values)
   }
 
   updateEmployment (values) {
-    this.onUpdate('Employment', values)
+    this.handleUpdate('Employment', values)
   }
 
   updateVentures (values) {
-    this.onUpdate('Ventures', values)
+    this.handleUpdate('Ventures', values)
   }
 
   updateDirectActivity (values) {
-    this.onUpdate('DirectActivity', values)
+    this.handleUpdate('DirectActivity', values)
   }
 
   updateIndirectActivity (values) {
-    this.onUpdate('IndirectActivity', values)
+    this.handleUpdate('IndirectActivity', values)
   }
 
   updateRealEstateActivity (values) {
-    this.onUpdate('RealEstateActivity', values)
+    this.handleUpdate('RealEstateActivity', values)
   }
 
   updateBenefitActivity (values) {
-    this.onUpdate('BenefitActivity', values)
+    this.handleUpdate('BenefitActivity', values)
   }
 
   updateConferences (values) {
-    this.onUpdate('Conferences', values)
+    this.handleUpdate('Conferences', values)
   }
 
   updateContact (values) {
-    this.onUpdate('Contact', values)
+    this.handleUpdate('Contact', values)
   }
 
   updateSponsorship (values) {
-    this.onUpdate('Sponsorship', values)
+    this.handleUpdate('Sponsorship', values)
   }
 
   updatePolitical (values) {
-    this.onUpdate('Political', values)
+    this.handleUpdate('Political', values)
   }
 
   updateVoting (values) {
-    this.onUpdate('Voting', values)
+    this.handleUpdate('Voting', values)
   }
 
   updateTravel (values) {
-    this.onUpdate('Travel', values)
-  }
-
-  /**
-   * Helper to test whether a subsection is complete
-   */
-  hasStatus (property, status, val) {
-    return (this.props.Completed[property] && this.props.Completed[property].status === val)
-      || (status && status[property] && status[property].status === val)
-  }
-
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      const keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
+    this.handleUpdate('Travel', values)
   }
 
   render () {
@@ -204,10 +112,8 @@ class Foreign extends ValidationElement {
           <SectionView name="">
             <div className="foreign intro review-screen">
               <div className="usa-grid-full">
-                <IntroHeader Errors={this.props.Errors}
-                             Completed={this.props.Completed}
-                             tour={i18n.t('foreign.tour.para')}
-                             review={i18n.t('foreign.review.para')}
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                             completed={() => { return this.props.Completed.length === 17 && this.props.Completed.every(x => x.valid === true) }}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -216,110 +122,179 @@ class Foreign extends ValidationElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="substance/drugs/usage"
+                       nextLabel={i18n.t('substance.destination.drugs.usage')}
                        >
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
-                      onUpdate={this.onUpdate.bind(this, 'Passport')}
-                      onValidate={this.onValidate.bind(this)}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updatePassport}
+                      onError={this.handleError}
                       />
+
+            <hr/>
             <Contacts name="contacts"
                       {...this.props.Contacts}
-                      onUpdate={this.onUpdate.bind(this, 'Contacts')}
-                      onValidate={this.onValidate.bind(this)}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateContacts}
+                      onError={this.handleError}
                       />
+
+            <hr/>
             <DirectActivity name="directActivity"
-                    {...this.props.DirectActivity}
-                    onUpdate={this.updateDirectActivity}
-                    onValidate={this.handleValidation}
-                    />
+                            {...this.props.DirectActivity}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDirectActivity}
+                            onError={this.handleError}
+                            />
+
+            <hr/>
             <IndirectActivity name="indirectActivity"
-                    {...this.props.IndirectActivity}
-                    onUpdate={this.updateIndirectActivity}
-                    onValidate={this.handleValidation}
-                    />
+                              {...this.props.IndirectActivity}
+                              defaultState={false}
+                              dispatch={this.props.dispatch}
+                              onUpdate={this.updateIndirectActivity}
+                              onError={this.handleError}
+                              />
+
+            <hr/>
             <RealEstateActivity name="realEstateActivity"
-                    {...this.props.RealEstateActivity}
-                    onUpdate={this.updateRealEstateActivity}
-                    onValidate={this.handleValidation}
-                    />
+                                {...this.props.RealEstateActivity}
+                                defaultState={false}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateRealEstateActivity}
+                                onError={this.handleError}
+                                />
+
+            <hr/>
             <BenefitActivity name="benefitActivity"
-                    {...this.props.BenefitActivity}
-                    onUpdate={this.updateBenefitActivity}
-                    onValidate={this.handleValidation}
-                    />
+                             {...this.props.BenefitActivity}
+                             defaultState={false}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.updateBenefitActivity}
+                             onError={this.handleError}
+                             />
+
+            <hr/>
             <Support name="support"
                      {...this.props.Support}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      />
+
+            <hr/>
             <Advice name="advice"
                     {...this.props.Advice}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
+
+            <hr/>
             <Family name="family"
                     {...this.props.Family}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
+
+            <hr/>
             <Employment name="employment"
                         {...this.props.Employment}
+                        defaultState={false}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
-                        onValidate={this.handleValidation}
+                        onError={this.handleError}
                         />
+
+            <hr/>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
-                      onValidate={this.handleValidation}
+                      onError={this.handleError}
                       />
+
+            <hr/>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         defaultState={false}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
-                         onValidate={this.handleValidation}
+                         onError={this.handleError}
                          />
+
+            <hr/>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      />
+
+            <hr/>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         defaultState={false}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
-                         onValidate={this.handleValidation}
+                         onError={this.handleError}
                          />
+
+            <hr/>
             <Political name="Political"
                        {...this.props.Political}
+                       defaultState={false}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
+
+            <hr/>
             <Voting name="Voting"
                     {...this.props.Voting}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
+
+            <hr/>
             <Travel name="Travel"
                     {...this.props.Travel}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
           </SectionView>
 
           <SectionView name="passport"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
-                       next="foreign/review"
-                       nextLabel={i18n.t('foreign.destination.review')}>
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="foreign/contacts"
+                       nextLabel={i18n.t('foreign.destination.contacts')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
+                      dispatch={this.props.dispatch}
                       suggestedNames={this.props.suggestedNames}
-                      onUpdate={this.onUpdate.bind(this, 'Passport')}
-                      onValidate={this.onValidate.bind(this)}
+                      onUpdate={this.updatePassport}
+                      onError={this.handleError}
                       />
           </SectionView>
 
@@ -330,8 +305,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.activities.activity')}>
             <Contacts name="contacts"
                       {...this.props.Contacts}
-                      onUpdate={this.onUpdate.bind(this, 'Contacts')}
-                      onValidate={this.onValidate.bind(this)}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateContacts}
+                      onError={this.handleError}
                       />
           </SectionView>
 
@@ -341,10 +317,11 @@ class Foreign extends ValidationElement {
                        next="foreign/activities/indirect"
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
-                    {...this.props.DirectActivity}
-                    onUpdate={this.updateDirectActivity}
-                    onValidate={this.handleValidation}
-                    />
+                            {...this.props.DirectActivity}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDirectActivity}
+                            onError={this.handleError}
+                            />
           </SectionView>
           <SectionView name="activities/direct"
                        back="foreign/contacts"
@@ -352,10 +329,11 @@ class Foreign extends ValidationElement {
                        next="foreign/activities/indirect"
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
-                    {...this.props.DirectActivity}
-                    onUpdate={this.updateDirectActivity}
-                    onValidate={this.handleValidation}
-                    />
+                            {...this.props.DirectActivity}
+                            dispatch={this.props.dispatch}
+                            onUpdate={this.updateDirectActivity}
+                            onError={this.handleError}
+                            />
           </SectionView>
 
           <SectionView name="activities/indirect"
@@ -364,10 +342,11 @@ class Foreign extends ValidationElement {
                        next="foreign/activities/realestate"
                        nextLabel={i18n.t('foreign.destination.activities.realestate')}>
             <IndirectActivity name="indirectActivity"
-                    {...this.props.IndirectActivity}
-                    onUpdate={this.updateIndirectActivity}
-                    onValidate={this.handleValidation}
-                    />
+                              {...this.props.IndirectActivity}
+                              dispatch={this.props.dispatch}
+                              onUpdate={this.updateIndirectActivity}
+                              onError={this.handleError}
+                              />
           </SectionView>
 
           <SectionView name="activities/realestate"
@@ -376,10 +355,11 @@ class Foreign extends ValidationElement {
                        next="foreign/activities/benefits"
                        nextLabel={i18n.t('foreign.destination.activities.benefits')}>
             <RealEstateActivity name="realEstateActivity"
-                    {...this.props.RealEstateActivity}
-                    onUpdate={this.updateRealEstateActivity}
-                    onValidate={this.handleValidation}
-                    />
+                                {...this.props.RealEstateActivity}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateRealEstateActivity}
+                                onError={this.handleError}
+                                />
           </SectionView>
 
           <SectionView name="activities/benefits"
@@ -388,10 +368,11 @@ class Foreign extends ValidationElement {
                        next="foreign/activities/support"
                        nextLabel={i18n.t('foreign.destination.activities.support')}>
             <BenefitActivity name="benefitActivity"
-                    {...this.props.BenefitActivity}
-                    onUpdate={this.updateBenefitActivity}
-                    onValidate={this.handleValidation}
-                    />
+                             {...this.props.BenefitActivity}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.updateBenefitActivity}
+                             onError={this.handleError}
+                             />
           </SectionView>
           <SectionView name="activities/support"
                        back="foreign/activities/benefits"
@@ -400,8 +381,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.advice')}>
             <Support name="support"
                      {...this.props.Support}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      />
           </SectionView>
 
@@ -412,8 +394,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.family')}>
             <Advice name="advice"
                     {...this.props.Advice}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
           </SectionView>
 
@@ -424,8 +407,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.family')}>
             <Advice name="advice"
                     {...this.props.Advice}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
           </SectionView>
 
@@ -436,8 +420,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.employment')}>
             <Family name="family"
                     {...this.props.Family}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
           </SectionView>
 
@@ -448,20 +433,22 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.ventures')}>
             <Employment name="employment"
                         {...this.props.Employment}
+                        dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
-                        onValidate={this.handleValidation}
+                        onError={this.handleError}
                         />
           </SectionView>
 
           <SectionView name="business/ventures"
                        back="foreign/business/employment"
                        backLabel={i18n.t('foreign.destination.business.employment')}
-                       next="foreign/business/events"
+                       next="foreign/business/conferences"
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
-                      onValidate={this.handleValidation}
+                      onError={this.handleError}
                       />
           </SectionView>
 
@@ -472,8 +459,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.contact')}>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
-                         onValidate={this.handleValidation}
+                         onError={this.handleError}
                          />
           </SectionView>
 
@@ -484,8 +472,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.sponsorship')}>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      />
           </SectionView>
 
@@ -496,8 +485,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.political')}>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
-                         onValidate={this.handleValidation}
+                         onError={this.handleError}
                          />
           </SectionView>
 
@@ -508,8 +498,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.business.voting')}>
             <Political name="Political"
                        {...this.props.Political}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
-                       onValidate={this.handleValidation}
+                       onError={this.handleError}
                        />
           </SectionView>
 
@@ -520,8 +511,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.travel')}>
             <Voting name="Voting"
                     {...this.props.Voting}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
           </SectionView>
 
@@ -532,8 +524,9 @@ class Foreign extends ValidationElement {
                        nextLabel={i18n.t('foreign.destination.review')}>
             <Travel name="Travel"
                     {...this.props.Travel}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
-                    onValidate={this.handleValidation}
+                    onError={this.handleError}
                     />
           </SectionView>
         </SectionViews>
@@ -588,7 +581,8 @@ function mapStateToProps (state) {
 }
 
 Foreign.defaultProps = {
-  subsection: ''
+  defaultView: 'passport',
+  store: 'Foreign'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Foreign))

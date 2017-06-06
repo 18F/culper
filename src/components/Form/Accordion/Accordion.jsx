@@ -27,8 +27,11 @@ export const doScroll = (first, item, scrollTo) => {
   // a fixed offset to constantly be applied
   const offset = findPosition(document.getElementById(first))[0] - top
 
+  // This is the additional offset for bike shedding
+  const offsetDeux = 130
+
   // Scroll to that position
-  window.scroll({ top: pos - offset, left: 0, behavior: 'smooth' })
+  window.scroll({ top: pos - offset - offsetDeux, left: 0, behavior: 'smooth' })
 }
 
 export default class Accordion extends ValidationElement {
@@ -270,7 +273,7 @@ export default class Accordion extends ValidationElement {
                   : value && value.name ? value.name : 'Extra'
             this.updateChild(item, propName, value)
           }
-          childProps.onValidate = this.props.onValidate
+          childProps.onError = this.props.onError
         }
       }
 
@@ -375,7 +378,6 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    // TODO: Add `value` and `onUpdate`
     const klassAppend = `addendum ${this.props.appendClass}`.trim()
     return (
       <Branch label={this.props.appendTitle}
@@ -384,7 +386,7 @@ export default class Accordion extends ValidationElement {
               help={this.props.appendHelp}
               value={this.props.branch}
               onUpdate={this.updateAddendum}
-              onValidate={this.props.onValidate}>
+              onError={this.props.onError}>
         {this.props.appendMessage}
       </Branch>
     )
@@ -413,8 +415,9 @@ export default class Accordion extends ValidationElement {
           <div className="items">
             {this.content()}
           </div>
-
-          {this.appendButton()}
+          <div className="append-button">
+            {this.appendButton()}
+          </div>
         </div>
 
         {this.addendum()}
@@ -447,7 +450,7 @@ Accordion.defaultProps = {
   realtime: true,
   inject: (items) => { return items },
   onUpdate: () => {},
-  onValidate: () => {},
+  onError: (value, arr) => { return arr },
   summary: (item, index, initial = false) => {
     return (
       <span>

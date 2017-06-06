@@ -4,7 +4,6 @@ import Sponsorship from './Sponsorship'
 
 describe('The foreign business sponsorship component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-sponsorship',
       HasForeignSponsorship: 'No'
@@ -14,7 +13,6 @@ describe('The foreign business sponsorship component', () => {
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-sponsorship',
       HasForeignSponsorship: 'Yes'
@@ -28,7 +26,10 @@ describe('The foreign business sponsorship component', () => {
     const expected = {
       name: 'foreign-business-sponsorship',
       HasForeignSponsorship: 'Yes',
-      onValidate: () => { validated = true }
+      onError: (value, arr) => {
+        validated = true
+        return arr
+      }
     }
     const component = mount(<Sponsorship {...expected} />)
     component.find('.branch .yes input').at(0).simulate('change')

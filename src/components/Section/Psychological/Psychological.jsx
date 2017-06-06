@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
-import { ValidationElement, IntroHeader, Show } from '../../Form'
-import { push } from '../../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../../actions/ApplicationActions'
 import { SectionViews, SectionView } from '../SectionView'
+import SectionElement from '../SectionElement'
+import AuthenticatedView from '../../../views/AuthenticatedView'
+import { IntroHeader, Show } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
@@ -14,62 +13,7 @@ import ExistingConditions from './ExistingConditions/ExistingConditions'
 import PsychologicalValidator, { showQuestion21E } from '../../../validators/psychological'
 import { extractApplicantBirthDate } from '../extractors'
 
-class Psychological extends ValidationElement {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      subsection: props.subsection
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
-    this.onValidate = this.onValidate.bind(this)
-  }
-
-  componentDidMount () {
-    let current = this.launch(this.props.Psychological, this.props.subsection, 'intro')
-    if (current !== '') {
-      this.props.dispatch(push(`/form/psychological/${current}`))
-    }
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push('/form/psychological/intro'))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push('/form/psychological/review'))
-  }
-
-  onUpdate (field, values) {
-    this.props.dispatch(updateApplication('Psychological', field, values))
-  }
-
-  /**
-   * Report errors and completion status
-   */
-  onValidate (event, status, errorCodes) {
-    if (!event) {
-      return
-    }
-
-    if (!event.fake) {
-      let errors = super.triageErrors(this.props.Section.section, [...this.props.Errors], errorCodes)
-      this.props.dispatch(reportErrors(this.props.Section.section, '', errors))
-    }
-
-    let cstatus = new PsychologicalValidator(null, this.props).completionStatus(status)
-    let completed = {
-      ...this.props.Completed,
-      ...status,
-      status: cstatus
-    }
-
-    this.props.dispatch(reportCompletion(this.props.Section.section, this.props.Section.subsection, completed))
-  }
-
+class Psychological extends SectionElement {
   diagnosesNextLabel () {
     if (this.props.ShowExistingConditions) {
       return i18n.t('psychological.destination.existingConditions')
@@ -84,22 +28,6 @@ class Psychological extends ValidationElement {
     return 'psychological/review'
   }
 
-  /**
-   * Determine the desired behaviour when visiting the
-   * root of a route
-   */
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
-  }
-
   render () {
     return (
       <div>
@@ -107,22 +35,20 @@ class Psychological extends ValidationElement {
           <SectionView name="">
             <div className="legal intro review-screen">
               <div className="usa-grid-full">
-                <IntroHeader Errors={this.props.Errors}
-                  Completed={this.props.Completed}
-                  tour={i18n.t('psychological.tour.para')}
-                  review={i18n.t('psychological.review.para')}
-                  onTour={this.handleTour}
-                  onReview={this.handleReview}
-                />
+                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
+                             completed={() => { return this.props.Completed.length === (this.props.ShowExistingConditions ? 5 : 4) && this.props.Completed.every(x => x.valid === true) }}
+                             onTour={this.handleTour}
+                             onReview={this.handleReview}
+                             />
               </div>
             </div>
           </SectionView>
 
           <SectionView name="intro"
-            back="legal/police/domesticviolence"
-            backLabel={ i18n.t('legal.destination.domesticViolence') }
-            next="psychological/competence"
-            nextLabel={ i18n.t('psychological.destination.competence') }>
+                       back="legal/police/domesticviolence"
+                       backLabel={ i18n.t('legal.destination.domesticViolence') }
+                       next="psychological/competence"
+                       nextLabel={ i18n.t('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
             { i18n.m('psychological.intro.para1') }
             { i18n.m('psychological.intro.para2') }
@@ -131,111 +57,125 @@ class Psychological extends ValidationElement {
           </SectionView>
 
           <SectionView name="competence"
-            back="psychological/intro"
-            backLabel={ i18n.t('psychological.destination.intro') }
-            next="psychological/consultations"
-            nextLabel={ i18n.t('psychological.destination.consultation') }>
+                       back="psychological/intro"
+                       backLabel={ i18n.t('psychological.destination.intro') }
+                       next="psychological/consultations"
+                       nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
-              {...this.props.Competence}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Competence')} />
+                        {...this.props.Competence}
+                        ApplicantBirthDate={this.props.ApplicantBirthDate}
+                        dispatch={this.props.dispatch}
+                        onError={this.handleError}
+                        onUpdate={this.handleUpdate.bind(this, 'Competence')} />
           </SectionView>
 
           <SectionView name="consultations"
-            back="psychological/competence"
-            backLabel={ i18n.t('psychological.destination.competence') }
-            next="psychological/hospitalizations"
-            nextLabel={ i18n.t('psychological.destination.hospitalization') }>
+                       back="psychological/competence"
+                       backLabel={ i18n.t('psychological.destination.competence') }
+                       next="psychological/hospitalizations"
+                       nextLabel={ i18n.t('psychological.destination.hospitalization') }>
             <Consultation name="Consultations"
-              {...this.props.Consultations}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+                          {...this.props.Consultations}
+                          ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          dispatch={this.props.dispatch}
+                          onError={this.handleError}
+                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
           </SectionView>
           <SectionView name="hospitalizations"
-            back="psychological/consultations"
-            backLabel={ i18n.t('psychological.destination.consultation') }
-            next="psychological/diagnoses"
-            nextLabel={ i18n.t('psychological.destination.diagnoses') }>
+                       back="psychological/consultations"
+                       backLabel={ i18n.t('psychological.destination.consultation') }
+                       next="psychological/diagnoses"
+                       nextLabel={ i18n.t('psychological.destination.diagnoses') }>
             <Hospitalizations name="Hospitalizations"
-              {...this.props.Hospitalizations}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
+                              {...this.props.Hospitalizations}
+                              ApplicantBirthDate={this.props.ApplicantBirthDate}
+                              dispatch={this.props.dispatch}
+                              onError={this.handleError}
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
           </SectionView>
           <SectionView name="diagnoses"
-            back="psychological/hospitalizations"
-            backLabel={ i18n.t('psychological.destination.hospitalization') }
-            next={this.diagnosesNext()}
-            nextLabel={this.diagnosesNextLabel()}>
+                       back="psychological/hospitalizations"
+                       backLabel={ i18n.t('psychological.destination.hospitalization') }
+                       next={this.diagnosesNext()}
+                       nextLabel={this.diagnosesNextLabel()}>
             <Diagnoses name="Diagnoses"
-              {...this.props.Diagnoses}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
-            />
+                       {...this.props.Diagnoses}
+                       ApplicantBirthDate={this.props.ApplicantBirthDate}
+                       dispatch={this.props.dispatch}
+                       onError={this.handleError}
+                       onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
+                       />
           </SectionView>
           <SectionView name="conditions"
-            back="psychological/diagnoses"
-            backLabel={ i18n.t('psychological.destination.diagnoses') }
-            next="psychological/review"
-            nextLabel={ i18n.t('psychological.destination.review') }>
+                       back="psychological/diagnoses"
+                       backLabel={ i18n.t('psychological.destination.diagnoses') }
+                       next="psychological/review"
+                       nextLabel={ i18n.t('psychological.destination.review') }>
             <ExistingConditions name="ExistingConditions"
-              {...this.props.ExistingConditions}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
-            />
+                                {...this.props.ExistingConditions}
+                                ApplicantBirthDate={this.props.ApplicantBirthDate}
+                                dispatch={this.props.dispatch}
+                                onError={this.handleError}
+                                onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                />
           </SectionView>
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="psychological/conditions"
                        backLabel={ i18n.t('psychological.destination.existingConditions') }>
 
             <Competence name="Competence"
-              {...this.props.Competence}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              defaultState={false}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Competence')} />
+                        {...this.props.Competence}
+                        ApplicantBirthDate={this.props.ApplicantBirthDate}
+                        defaultState={false}
+                        dispatch={this.props.dispatch}
+                        onError={this.handleError}
+                        onUpdate={this.handleUpdate.bind(this, 'Competence')} />
+
             <hr />
             <Consultation name="Consultations"
-              {...this.props.Consultations}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              defaultState={false}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Consultation')} />
+                          {...this.props.Consultations}
+                          ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onError={this.handleError}
+                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+
             <hr />
             <Hospitalizations name="Hospitalizations"
-              {...this.props.Hospitalizations}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              defaultState={false}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Hospitalization')} />
+                              {...this.props.Hospitalizations}
+                              ApplicantBirthDate={this.props.ApplicantBirthDate}
+                              defaultState={false}
+                              dispatch={this.props.dispatch}
+                              onError={this.handleError}
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+
             <hr />
             <Diagnoses name="Diagnoses"
-              {...this.props.Diagnoses}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              defaultState={false}
-              onValidate={this.onValidate}
-              onUpdate={this.onUpdate.bind(this, 'Diagnoses')}
-            />
+                       {...this.props.Diagnoses}
+                       ApplicantBirthDate={this.props.ApplicantBirthDate}
+                       defaultState={false}
+                       dispatch={this.props.dispatch}
+                       onError={this.handleError}
+                       onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
+                       />
+
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />
                 <ExistingConditions name="ExistingConditions"
-                  {...this.props.ExistingConditions}
-                  ApplicantBirthDate={this.props.ApplicantBirthDate}
-                  defaultState={false}
-                  onValidate={this.onValidate}
-                  onUpdate={this.onUpdate.bind(this, 'ExistingConditions')}
-                />
+                                    {...this.props.ExistingConditions}
+                                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                                    defaultState={false}
+                                    dispatch={this.props.dispatch}
+                                    onError={this.handleError}
+                                    onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                    />
               </div>
             </Show>
           </SectionView>
-
         </SectionViews>
       </div>
     )
@@ -264,7 +204,8 @@ function mapStateToProps (state) {
 }
 
 Psychological.defaultProps = {
-  subsection: ''
+  defaultView: 'intro',
+  store: 'Psychological'
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Psychological))

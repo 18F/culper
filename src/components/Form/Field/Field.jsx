@@ -17,6 +17,8 @@ export default class Field extends ValidationElement {
 
     this.toggleHelp = this.toggleHelp.bind(this)
     this.toggleComments = this.toggleComments.bind(this)
+    this.handleError = this.handleError.bind(this)
+    this.children = this.children.bind(this)
   }
 
   /**
@@ -51,67 +53,22 @@ export default class Field extends ValidationElement {
     return this.props.comments && (this.state.commentsValue || this.state.commentsActive || this.props.commentsActive)
   }
 
-  /**
-   * Handle validation event.
-   */
-  handleValidation (event, status, errors) {
-    if (!event || !this.props.validate) {
-      return
-    }
-
-    let e = [...this.state.errors]
-
-    // Let's clean out what we current have stored for this target.
-    let name = !event.target || !event.target.name ? 'input' : event.target.name
-    e = this.cleanErrors(e, `.${name}.`)
-
-    if (errors) {
-      let errorFlat = super.flattenObject(errors)
-
-      if (errorFlat.endsWith('.')) {
-        // If the error message ends with a period we can assume
-        // it needs to be flushed of similar errors
-        e = this.cleanErrors(e, errorFlat)
+  handleError (value, arr = []) {
+    let errors = [...this.state.errors]
+    for (const e of arr) {
+      const idx = errors.findIndex(x => x.code === e.code)
+      if (idx !== -1) {
+        errors[idx] = e
       } else {
-        // Append this to the list of errors.
-        let name = `${this.props.errorPrefix || ''}`
-        if (!errorFlat.startsWith(name)) {
-          errorFlat = `${name || 'input'}.${errorFlat}`
-        }
-
-        name = `error.${errorFlat}`
-        if (!e.includes(name) && !name.endsWith('.')) {
-          e.push(name)
-        }
+        errors.push(e)
       }
     }
 
-    this.setState({ errors: e }, () => {
-      super.handleValidation(event, status, errors)
-      if (e.length) {
+    this.setState({ errors: errors }, () => {
+      if (arr.length && arr.some(err => !err.valid)) {
         this.scrollIntoView()
       }
     })
-  }
-
-  /**
-   * Clean up error message array on matching string
-   */
-  cleanErrors (old, remove) {
-    let arr = []
-
-    // If we have to drop the kids off then clear our queue
-    if (remove.indexOf('drop_the_kids_off') !== -1) {
-      return arr
-    }
-
-    for (let err of old) {
-      if (err.indexOf(remove) === -1 && !err.endsWith('.')) {
-        arr.push(err)
-      }
-    }
-
-    return arr
   }
 
   /**
@@ -214,9 +171,10 @@ export default class Field extends ValidationElement {
       )
     }
 
-    if (this.state.errors && this.state.errors.length) {
-      const markup = this.state.errors.map(err => {
-        return message(err)
+    const errors = (this.state.errors || []).filter(err => !err.valid)
+    if (errors.length) {
+      const markup = errors.map(err => {
+        return message(`error.${err.code}`)
       })
 
       el.push(
@@ -245,26 +203,37 @@ export default class Field extends ValidationElement {
   /**
    * Iterate through the children and bind methods to them.
    */
-  children () {
-    return React.Children.map(this.props.children, (child) => {
-      let extendedProps = {}
+  children (el) {
+    return React.Children.map(el, (child) => {
+      if (!child || !child.props) {
+        return child
+      }
+
+      let props = child.props || {}
+      let extendedProps = { ...props }
 
       if (React.isValidElement(child)) {
         // Inject ourselves in to the validation callback
-        if (child.props.onValidate) {
-          extendedProps.onValidate = (event, status, errors) => {
-            this.handleValidation(event, status, errors)
-            if (child.props.onValidate) {
-              child.props.onValidate(event, status, errors)
+        if (props.onError) {
+          extendedProps.onError = (value, arr) => {
+            let childErrors = []
+            if (props.onError) {
+              childErrors = props.onError(value, arr)
             }
+            this.handleError(value, childErrors)
+            return childErrors
           }
         }
       }
 
-      return React.cloneElement(child, {
-        ...child.props,
-        ...extendedProps
-      })
+      if (props.children) {
+        const typeOfChildren = Object.prototype.toString.call(props.children)
+        if (props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+          extendedProps.children = this.children(props.children)
+        }
+      }
+
+      return React.cloneElement(child, extendedProps)
     })
   }
 
@@ -299,7 +268,7 @@ export default class Field extends ValidationElement {
         <div className="table">
           <span className="content">
             <span className={klassComponent}>
-              {this.children()}
+              {this.children(this.props.children)}
               {this.comments()}
               {this.commentsButton()}
             </span>

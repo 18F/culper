@@ -5,6 +5,7 @@ import { ValidationElement, Field, Textarea, DateControl, BranchCollection } fro
 export default class Reprimand extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       Reasons: props.Reasons
     }
@@ -36,7 +37,8 @@ export default class Reprimand extends ValidationElement {
                         appendLabel={i18n.t('history.employment.default.reprimand.append')}
                         help="history.employment.default.reprimand.help"
                         items={this.state.Reasons}
-                        onUpdate={this.updateReasons}>
+                        onUpdate={this.updateReasons}
+                        onError={this.props.onError}>
         <div>
           <Field title={i18n.t('history.employment.default.reprimand.description.label')}
                  titleSize="h4"
@@ -44,7 +46,7 @@ export default class Reprimand extends ValidationElement {
             <Textarea name="Text"
                       bind={true}
                       maxlength="100"
-                      onValidate={this.props.onValidate}
+                      onError={this.props.onError}
                       />
           </Field>
           <Field title={i18n.t('history.employment.default.reprimand.date.label')}
@@ -55,11 +57,15 @@ export default class Reprimand extends ValidationElement {
             <DateControl name="Date"
                          bind={true}
                          hideDay={true}
-                         onValidate={this.props.onValidate}
+                         onError={this.props.onError}
                          />
           </Field>
         </div>
       </BranchCollection>
     )
   }
+}
+
+Reprimand.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

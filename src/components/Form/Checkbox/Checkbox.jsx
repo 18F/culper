@@ -4,6 +4,7 @@ import ValidationElement from '../ValidationElement'
 export default class Checkbox extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       uid: super.guid(),
       checked: props.checked,
@@ -11,6 +12,8 @@ export default class Checkbox extends ValidationElement {
       error: props.error || false,
       valid: props.valid || false
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -24,15 +27,25 @@ export default class Checkbox extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({ checked: event.target.checked }, () => {
+    this.handleValidation(event)
+
+    const value = event.target.value
+    const checked = event.target.checked
+
+    this.setState({ checked: checked }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          value: event.target.value,
-          checked: event.target.checked
+          value: value,
+          checked: checked
         })
       }
+
       super.handleChange(event)
+
+      // HACK: Race condition was found where the majority of the time the `handleError` would
+      // beat the storage routines causing things not to show as valid.
+      window.setTimeout(() => { this.handleError(this.state.value) }, 200)
     })
   }
 
@@ -54,6 +67,24 @@ export default class Checkbox extends ValidationElement {
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
+  }
+
+  handleError (value, arr = []) {
+    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })) || []
+
+    this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+  }
+
+  /**
+   * Execute validation checks on the value.
+   */
+  handleValidation (event) {
+    this.handleError(this.state.value)
   }
 
   /**
@@ -167,5 +198,8 @@ Checkbox.defaultProps = {
   checked: false,
   focus: false,
   error: false,
-  valid: false
+  valid: false,
+  onError: (value, arr) => { return arr }
 }
+
+Checkbox.errors = []

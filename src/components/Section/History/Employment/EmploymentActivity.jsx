@@ -5,6 +5,7 @@ import { ValidationElement, Textarea, Field, Radio, RadioGroup, Show } from '../
 export default class EmploymentActivity extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
       value: props.value,
       otherExplanation: props.otherExplanation
@@ -53,7 +54,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="ActiveMilitary"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -62,7 +63,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="NationalGuard"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -71,7 +72,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="USPHS"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -80,7 +81,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="OtherFederal"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -89,7 +90,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="StateGovernment"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -98,7 +99,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="FederalContractor"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -108,7 +109,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="NonGovernment"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -117,7 +118,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="SelfEmployment"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -126,7 +127,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="Unemployment"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -135,7 +136,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="Other"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
-                onValidate={this.props.onValidate}
+                onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
@@ -149,6 +150,7 @@ export default class EmploymentActivity extends ValidationElement {
                         value={this.state.otherExplanation}
                         label={i18n.t('history.employment.default.activity.other.label')}
                         onChange={this.updateExplanation}
+                        onError={this.props.onError}
                         />
             </Field>
           </Show>
@@ -156,4 +158,8 @@ export default class EmploymentActivity extends ValidationElement {
       </div>
     )
   }
+}
+
+EmploymentActivity.defaultProps = {
+  onError: (value, arr) => { return arr }
 }

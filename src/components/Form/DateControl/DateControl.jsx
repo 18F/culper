@@ -66,7 +66,12 @@ export default class DateControl extends ValidationElement {
       validity: [null, null, null],
       errorCodes: []
     }
+
     this.beforeChange = this.beforeChange.bind(this)
+    this.handleError = this.handleError.bind(this)
+    this.handleErrorMonth = this.handleErrorMonth.bind(this)
+    this.handleErrorDay = this.handleErrorDay.bind(this)
+    this.handleErrorYear = this.handleErrorYear.bind(this)
   }
 
   componentWillReceiveProps (next) {
@@ -221,105 +226,58 @@ export default class DateControl extends ValidationElement {
       })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event || !event.target || !event.target.name) {
-      super.handleValidation(event, status, error)
-      return
-    }
+  handleErrorMonth (value, arr) {
+    return this.handleError('month', value, arr)
+  }
 
-    let errorCodes = []
-    this.state.errorCodes.forEach(e => {
-      if (e !== 'day.max') {
-        errorCodes.push(e)
+  handleErrorDay (value, arr) {
+    return this.handleError('day', value, arr)
+  }
+
+  handleErrorYear (value, arr) {
+    return this.handleError('year', value, arr)
+  }
+
+  handleError (code, value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `date.${code}.${err.code}`,
+        valid: err.valid
       }
     })
 
-    let month = this.state.validity[0]
-    let day = this.state.validity[1]
-    let year = this.state.validity[2]
-    let prefix = `${this.props.prefix ? this.props.prefix + '.' : ''}`
+    // Get the full date if we can
+    const date = validDate(this.state.month, this.state.day, this.state.year)
+        ? new Date(this.state.year, this.state.month, this.state.day)
+        : null
 
-    if (event.target.name.indexOf('month') !== -1) {
-      month = status != null ? status : null
-    }
-    if (event.target.name.indexOf('day') !== -1) {
-      day = status != null ? status : null
-    }
-    if (event.target.name.indexOf('year') !== -1) {
-      year = status != null ? status : null
+    // If it is not a valid date...
+    if (!date) {
+      return this.props.onError(date, arr)
     }
 
-    const isValidDate = validDate(this.state.month, this.state.day, this.state.year)
-    const validator = new DateControlValidator(this.state, this.props)
+    // Prepare some properties for the error testing
+    const props = {
+      ...this.props,
+      ...this.state,
+      validator: new DateControlValidator(this.state, this.props)
+    }
 
-    if (!isValidDate && !error) {
-      if (this.state.day > daysInMonth(this.state.month, this.state.year)) {
-        error = 'day.max'
-      } else {
-        error = { day: null }
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(date, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(date, props)
       }
-    }
-
-    // Make sure we have a valid date and that no other errors are present
-    // before validating max date
-    let handleMinMaxError = false
-    if (isValidDate) {
-      const minMaxErrorKey = `${prefix}datecontrol`
-
-      // Clear existing min/max errors
-      super.handleValidation(event, false, {[minMaxErrorKey]: null})
-
-      // Perform checks for min and max
-      if (!validator.validMaxDate()) {
-        error = `${minMaxErrorKey}.max`
-        handleMinMaxError = true
-      }
-      if (!validator.validMinDate()) {
-        error = `${minMaxErrorKey}.min`
-        handleMinMaxError = true
-      }
-    }
-
-    const codes = super.mergeError(errorCodes, error)
-    this.setState(
-      {
-        error: !isValidDate || (month === false && day === false && year === false),
-        valid: isValidDate && month === true && day === true && year === true,
-        validity: [month, day, year],
-        errorCodes: codes
-      },
-      () => {
-        const focus = this.state.foci[0] && this.state.foci[1] && this.state.foci[2]
-        const inputs = this.state.month && this.state.day && this.state.year && this.state.year.length > 3
-        if (!focus && inputs) {
-          // To calculate the overall status of the component we need to consider
-          // what is valid when comparing all three child components.
-          //
-          //  1. If all of the children are in a neutral state then so is this component
-          //  2. If all of the children are in a valid state then so is this component
-          //  3. All other permutations assume an invalid state
-          let s = false
-          if (!error && (month === null || day === null || year === null)) {
-            s = null
-          } else {
-            s = (!handleMinMaxError) && isValidDate
-          }
-          super.handleValidation(event, s, error)
-        } else {
-          super.handleValidation(event, status, error)
-        }
-      })
+    })))
   }
 
   beforeChange (value) {
     return value.replace(/\D/g, '')
   }
 
-  monthDisplayText (value, name) {
-    return `${name} (${value})`.trim()
+  monthDisplayText (value, text) {
+    return `${value} (${text})`.trim()
   }
 
   render () {
@@ -342,21 +300,21 @@ export default class DateControl extends ValidationElement {
                       beforeChange={this.beforeChange}
                       onFocus={this.handleFocus}
                       onBlur={this.handleBlur}
-                      onValidate={this.handleValidation}
+                      onError={this.handleErrorMonth}
                       displayText={this.monthDisplayText}
                       tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
-              <option key="jan" value="January">1</option>
-              <option key="feb" value="February">2</option>
-              <option key="mar" value="March">3</option>
-              <option key="apr" value="April">4</option>
-              <option key="may" value="May">5</option>
-              <option key="jun" value="June">6</option>
-              <option key="jul" value="July">7</option>
-              <option key="aug" value="August">8</option>
-              <option key="sep" value="September">9</option>
-              <option key="oct" value="October">10</option>
-              <option key="nov" value="November">11</option>
-              <option key="dec" value="December">12</option>
+              <option key="jan" value="1">January</option>
+              <option key="feb" value="2">February</option>
+              <option key="mar" value="3">March</option>
+              <option key="apr" value="4">April</option>
+              <option key="may" value="5">May</option>
+              <option key="jun" value="6">June</option>
+              <option key="jul" value="7">July</option>
+              <option key="aug" value="8">August</option>
+              <option key="sep" value="9">September</option>
+              <option key="oct" value="10">October</option>
+              <option key="nov" value="11">November</option>
+              <option key="dec" value="12">December</option>
             </Dropdown>
           </div>
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
@@ -378,7 +336,7 @@ export default class DateControl extends ValidationElement {
                     onChange={this.handleChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
-                    onValidate={this.handleValidation}
+                    onError={this.handleErrorDay}
                     tabBack={() => { this.refs.month.refs.autosuggest.input.focus() }}
                     tabNext={() => { this.refs.year.refs.number.refs.input.focus() }}
                     />
@@ -402,7 +360,7 @@ export default class DateControl extends ValidationElement {
                     onChange={this.handleChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
-                    onValidate={this.handleValidation}
+                    onError={this.handleErrorYear}
                     tabBack={() => { this.refs.day.refs.number.refs.input.focus() }}
                     />
           </div>
@@ -436,5 +394,30 @@ DateControl.defaultProps = {
   year: '',
   prefix: '',
   maxDate: new Date(),
-  minDate: null
+  minDate: null,
+  onError: (value, arr) => { return arr }
 }
+
+DateControl.errors = [
+  {
+    code: 'day.max',
+    func: (value, props) => {
+      if (value) {
+        return parseInt(props.day) <= daysInMonth(value.getMonth() + 1, value.getFullYear())
+      }
+      return parseInt(props.day) <= daysInMonth(parseInt(props.month), parseInt(props.year))
+    }
+  },
+  {
+    code: 'date.max',
+    func: (value, props) => {
+      return value && props.validator.validMaxDate()
+    }
+  },
+  {
+    code: 'date.min',
+    func: (value, props) => {
+      return value && props.validator.validMinDate()
+    }
+  }
+]

@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryDisciplinaryValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion } from '../../../Form'
 import Procedure from './Procedure'
 
 /**
@@ -16,14 +17,14 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class Disciplinary extends ValidationElement {
+export default class Disciplinary extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       HasDisciplinary: props.HasDisciplinary,
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -52,42 +53,6 @@ export default class Disciplinary extends ValidationElement {
   }
 
   /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      let statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new MilitaryDisciplinaryValidator(this.state, null).isValid()
-  }
-
-  /**
    * Assists in rendering the summary section.
    */
   summary (item, index) {
@@ -113,17 +78,17 @@ export default class Disciplinary extends ValidationElement {
       <div className="disciplinary">
         <Branch name="has_disciplinary"
                 value={this.state.HasDisciplinary}
-                help="military.disciplinary.help.branch"
                 onUpdate={this.updateDisciplinary}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.state.HasDisciplinary === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('military.disciplinary.collection.summary.title')}
                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
@@ -137,4 +102,15 @@ export default class Disciplinary extends ValidationElement {
       </div>
     )
   }
+}
+
+Disciplinary.defaultProps = {
+  onError: (value, arr) => { return arr },
+  section: 'military',
+  subsection: 'disciplinary',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new MilitaryDisciplinaryValidator(state, props).isValid()
+  },
+  defaultState: true
 }

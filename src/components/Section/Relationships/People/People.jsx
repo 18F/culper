@@ -1,25 +1,34 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, ValidationElement, Svg } from '../../../Form'
+import { Accordion, Svg } from '../../../Form'
+import { newGuid } from '../../../Form/ValidationElement'
 import Person from './Person'
 import { PeopleValidator } from '../../../../validators'
+import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
-import { dateRangeFormat } from './../../Psychological/summaryHelper'
+import { DateSummary, NameSummary } from '../../../Summary'
+import { today, daysAgo } from '../../History/dateranges'
+import { InjectGaps } from '../../History/summaries'
+import { Gap } from '../../History/Gap'
+import { openState, chevron } from '../../../Form/Accordion/Accordion'
 
-export default class People extends ValidationElement {
+export default class People extends SubsectionElement {
   constructor (props) {
     super(props)
 
     this.state = {
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
     this.peopleSummaryList = this.peopleSummaryList.bind(this)
+    this.fillGap = this.fillGap.bind(this)
+    this.inject = this.inject.bind(this)
+    this.customSummary = this.customSummary.bind(this)
+    this.customDetails = this.customDetails.bind(this)
   }
 
   update (field, values) {
@@ -38,54 +47,120 @@ export default class People extends ValidationElement {
     this.update('ListBranch', values.branch)
   }
 
-  isValid () {
-    return new PeopleValidator(this.state).isValid()
+  excludeGaps (items) {
+    return items.filter(item => !item.type || (item.type && item.type !== 'Gap'))
   }
 
-  handleValidation (event, status, error) {
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
+  sort (a, b) {
+    // Helper to find the date value or default it to 0
+    const getOptionalDate = (obj) => {
+      return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
     }
 
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
+    const first = getOptionalDate(a)
+    const second = getOptionalDate(b)
+
+    if (first < second) {
+      return 1
+    } else if (first > second) {
+      return -1
+    }
+
+    return 0
   }
 
-  summary (item, index) {
-    const o = (item || {}).Person || {}
-    const date = dateRangeFormat(o.KnownDates)
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''} ${date}`.trim()
-          : i18n.t('relationships.people.person.collection.summary.unknown')
+  fillGap (dates) {
+    let items = [...this.state.List]
+    items.push({
+      uuid: newGuid(),
+      open: true,
+      Item: {
+        Dates: {
+          receiveProps: true,
+          from: dates.from,
+          to: dates.to
+        }
+      }
+    })
+
+    this.update('List', InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort))
+  }
+
+  customSummary (item, index, initial, callback, toggle, openText, remove, byline) {
+    if (item.type === 'Gap') {
+      return null
+    }
+
+    const o = (item || {}).Item || {}
+    const name = NameSummary(o.Name, i18n.t('relationships.people.person.collection.summary.unknown'))
+    const date = DateSummary(o.Dates)
     const type = i18n.t('relationships.people.person.collection.itemType')
 
     return (
-      <span>
-        <span className="index">{type} {index + 1}:</span>
-        <span className="info"><strong>{name}</strong></span>
-      </span>
+      <div>
+        <div className="summary">
+          <span className={`left ${openState(item, initial)}`}>
+            <a onClick={toggle()}>
+              <span className="button-with-icon">
+                <i className={chevron(item)} aria-hidden="true"></i>
+                <span className="toggle">{openText()}</span>
+              </span>
+              <span>
+                <span className="index">{type} {index + 1}:</span>
+                <span className="info"><strong>{name}</strong></span>
+                <span className="dates"><strong>{date}</strong></span>
+              </span>
+            </a>
+          </span>
+          <a className="right remove" onClick={remove()}>
+            <span className="button-with-icon">
+              <i className="fa fa-trash" aria-hidden="true"></i>
+              <span>{i18n.t('collection.remove')}</span>
+            </span>
+          </a>
+        </div>
+        {byline()}
+      </div>
     )
   }
 
+  customDetails (item, index, initial, callback) {
+    if (item.type === 'Gap') {
+      const dates = (item.Item || {}).Dates || {}
+      return (
+        <Gap title={i18n.t('relationships.people.person.gap.title')}
+             para={i18n.t('relationships.people.person.gap.para')}
+             btnText={i18n.t('relationships.people.person.gap.button')}
+             first={index === 0}
+             dates={dates}
+             onClick={this.fillGap.bind(this, dates)}
+             />
+      )
+    }
+
+    return callback()
+  }
+
   peopleSummaryList () {
-    return this.state.List.reduce((dates, item) => {
-      if (!item || !item.Person || !item.Person.KnownDates) {
+    return this.excludeGaps(this.state.List).reduce((dates, item) => {
+      if (!item || !item.Item || !item.Item.Dates) {
         return dates
       }
 
-      const knownDates = item.Person.KnownDates
+      const knownDates = item.Item.Dates
       if (knownDates.from.date && knownDates.to.date) {
-        return dates.concat(item.Person.KnownDates)
+        return dates.concat(item.Item.Dates)
       }
       return dates
     }, [])
+  }
+
+  inject (items) {
+    if (this.props.defaultState) {
+      return this.excludeGaps(items)
+    }
+
+    return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
   }
 
   render () {
@@ -94,6 +169,7 @@ export default class People extends ValidationElement {
         <h2>{i18n.t('relationships.people.heading.title')}</h2>
         {i18n.m('relationships.people.para.intro')}
 
+        <span id="scrollToPeople"></span>
         <div className="summaryprogress progress">
           <SummaryProgress className="people-summary"
                            List={this.peopleSummaryList}
@@ -111,14 +187,21 @@ export default class People extends ValidationElement {
         </div>
 
         <Accordion minimum="1"
+                   scrollTo="scrollToPeople"
                    items={this.state.List}
+                   defaultState={this.props.defaultState}
+                   realtime={!this.props.defaultState}
+                   sort={this.sort}
+                   inject={this.inject}
                    branch={this.state.ListBranch}
-                   summary={this.summary}
+                   customSummary={this.customSummary}
+                   customDetails={this.customDetails}
                    onUpdate={this.updateList}
-                   onValidate={this.handleValidation}
+                   onError={this.handleError}
+                   description={i18n.t('relationships.people.person.collection.description')}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
-          <Person name="Person" bind={true} />
+          <Person name="Item" bind={true} />
         </Accordion>
       </div>
     )
@@ -127,5 +210,14 @@ export default class People extends ValidationElement {
 
 People.defaultProps = {
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr },
+  section: 'relationships',
+  subsection: 'people',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new PeopleValidator(state, props).isValid()
+  },
+  defaultState: true,
+  totalYears: 7
 }

@@ -1,2 +1,2 @@
-import { EducationItem } from './Education'
-export { EducationItem }
+import Education from './Education'
+export default Education

@@ -7,10 +7,10 @@ export default class ZipCode extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value,
-      error: props.error,
-      valid: props.valid
+      value: props.value
     }
+
+    this.handleError = this.handleError.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -28,31 +28,20 @@ export default class ZipCode extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    this.setState({error: status === false, valid: status === true}, () => {
-      super.handleValidation(event, status, error)
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `zipcode.${err.code}`,
+        valid: err.valid
+      }
     })
-  }
 
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    this.setState({ focus: true }, () => {
-      super.handleFocus(event)
-    })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    this.setState({ focus: false }, () => {
-      super.handleBlur(event)
-    })
+    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props)
+      }
+    })))
   }
 
   render () {
@@ -62,17 +51,13 @@ export default class ZipCode extends ValidationElement {
             label={this.props.label}
             placeholder={this.props.placeholder}
             className={this.props.className}
-            minlength="5"
-            maxlength="10"
             pattern="^\d{5}(?:[-\s]\d{4})?$"
             required="true"
             value={this.state.value}
-            error={this.state.error}
-            valid={this.state.valid}
             onChange={this.handleChange}
-            onValidate={this.handleValidation}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onError={this.handleError}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
             tabBack={this.props.tabBack}
             tabNext={this.props.tabNext}
             />
@@ -82,6 +67,7 @@ export default class ZipCode extends ValidationElement {
 
 ZipCode.defaultProps = {
   value: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr }
 }
+
+ZipCode.errors = []

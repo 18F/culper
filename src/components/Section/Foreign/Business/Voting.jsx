@@ -1,19 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessVotingValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateControl } from '../../../Form'
 
-export default class Voting extends ValidationElement {
+export default class Voting extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      error: props.error,
-      valid: props.valid,
-      errorCodes: []
-    }
 
     this.updateHasForeignVoting = this.updateHasForeignVoting.bind(this)
     this.updateList = this.updateList.bind(this)
@@ -48,36 +43,9 @@ export default class Voting extends ValidationElement {
     ])
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignBusinessVotingValidator(this.state, this.props).isValid()
-  }
-
   summary (item, index) {
     const obj = item || {}
-    const country = (item.Country || {}).value || i18n.t('foreign.business.voting.collection.summary.unknown')
+    const country = (obj.Country || {}).value || i18n.t('foreign.business.voting.collection.summary.unknown')
     const date = DateSummary(obj.Date)
 
     return (
@@ -98,15 +66,16 @@ export default class Voting extends ValidationElement {
                 help="foreign.business.voting.help.branch"
                 value={this.props.HasForeignVoting}
                 onUpdate={this.updateHasForeignVoting}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
           <Accordion minimum="1"
                      items={this.props.List}
+                     defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.voting.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.voting.collection.appendTitle')}
@@ -158,6 +127,12 @@ Voting.defaultProps = {
   HasForeignVoting: '',
   List: [],
   ListBranch: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/voting',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessVotingValidator(state, props).isValid()
+  },
+  defaultState: true
 }

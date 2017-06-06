@@ -60,6 +60,16 @@ import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
 import AlcoholReceivedCounselingsValidator from './alcoholreceivedcounseling'
+import DrugUsesValidator from './druguses'
+import DrugInvolvementsValidator from './druginvolvements'
+import DrugClearanceUsesValidator from './drugclearanceuses'
+import DrugPublicSafetyUsesValidator from './drugpublicsafetyuses'
+import DrugPrescriptionUsesValidator from './drugprescriptionuses'
+import DrugOrderedTreatmentsValidator from './drugorderedtreatments'
+import DrugVoluntaryTreatmentsValidator from './drugvoluntarytreatments'
+import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
+import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
+import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
 
 export {
   AddressValidator,
@@ -127,5 +137,15 @@ export {
   AlcoholNegativeImpactsValidator,
   AlcoholOrderedCounselingsValidator,
   AlcoholVoluntaryCounselingsValidator,
-  AlcoholReceivedCounselingsValidator
+  AlcoholReceivedCounselingsValidator,
+  DrugUsesValidator,
+  DrugInvolvementsValidator,
+  DrugClearanceUsesValidator,
+  DrugPublicSafetyUsesValidator,
+  DrugPrescriptionUsesValidator,
+  DrugOrderedTreatmentsValidator,
+  DrugVoluntaryTreatmentsValidator,
+  LegalInvestigationsHistoryValidator,
+  LegalInvestigationsRevokedValidator,
+  LegalInvestigationsDebarredValidator
 }

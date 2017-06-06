@@ -1,20 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { DateSummary } from '../../../Summary'
 import { ForeignBusinessPoliticalValidator } from '../../../../validators'
-import { ValidationElement, Branch, Show, Accordion, Field,
-         Text, Textarea, Country, DateControl, Address, Name,
-         BirthPlace, DateRange, NotApplicable } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Branch, Show, Accordion, Field,
+         Text, Textarea, Country, DateRange } from '../../../Form'
 
-export default class Political extends ValidationElement {
+export default class Political extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      error: props.error,
-      valid: props.valid,
-      errorCodes: []
-    }
 
     this.updateHasForeignPolitical = this.updateHasForeignPolitical.bind(this)
     this.updateList = this.updateList.bind(this)
@@ -49,37 +43,10 @@ export default class Political extends ValidationElement {
     ])
   }
 
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    const codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  isValid () {
-    return new ForeignBusinessPoliticalValidator(this.state, this.props).isValid()
-  }
-
   summary (item, index) {
     const obj = item || {}
-    const pos = (item.Position || {}).value || i18n.t('foreign.business.political.collection.summary.unknown')
-    const country = (item.Country || {}).value || ''
+    const pos = (obj.Position || {}).value || i18n.t('foreign.business.political.collection.summary.unknown')
+    const country = (obj.Country || {}).value || ''
     const dates = DateSummary(obj.Dates)
     const text = country.length ? `${pos} (${country})` : pos
 
@@ -101,15 +68,16 @@ export default class Political extends ValidationElement {
                 help="foreign.business.political.help.branch"
                 value={this.props.HasForeignPolitical}
                 onUpdate={this.updateHasForeignPolitical}
-                onValidate={this.handleValidation}>
+                onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.HasForeignPolitical === 'Yes'}>
           <Accordion minimum="1"
                      items={this.props.List}
+                     defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
-                     onValidate={this.handleValidation}
+                     onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.political.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
@@ -170,6 +138,12 @@ Political.defaultProps = {
   HasForeignPolitical: '',
   List: [],
   ListBranch: '',
-  error: false,
-  valid: false
+  onError: (value, arr) => { return arr },
+  section: 'foreign',
+  subsection: 'business/political',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new ForeignBusinessPoliticalValidator(state, props).isValid()
+  },
+  defaultState: true
 }

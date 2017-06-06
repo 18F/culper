@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import AddressValidator from './address'
-import { validGenericTextfield } from './helpers'
+import { validGenericTextfield, validBranch } from './helpers'
 
 export default class HospitalizationsValidator {
   constructor (state = {}, props) {
@@ -10,6 +10,10 @@ export default class HospitalizationsValidator {
   }
 
   validList () {
+    if (this.hospitalized === 'No') {
+      return true
+    }
+
     if (this.hospitalized === 'Yes' && this.list.length === 0) {
       return false
     }
@@ -27,7 +31,7 @@ export default class HospitalizationsValidator {
   }
 
   validHospitalization () {
-    return this.hospitalized === 'Yes' || this.hospitalized === 'No'
+    return validBranch(this.hospitalized)
   }
 
   isValid () {

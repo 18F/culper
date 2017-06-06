@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { RelativesValidator } from '../../../../validators'
-import { ValidationElement, Show, Accordion, Checkbox, CheckboxGroup, Field } from '../../../Form'
+import SubsectionElement from '../../SubsectionElement'
+import { Accordion } from '../../../Form'
 import Relative from './Relative'
 
 /**
@@ -16,13 +17,13 @@ const sendUpdate = (fn, name, props) => {
   }
 }
 
-export default class Relatives extends ValidationElement {
+export default class Relatives extends SubsectionElement {
   constructor (props) {
     super(props)
+
     this.state = {
       List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
+      ListBranch: props.ListBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -42,42 +43,6 @@ export default class Relatives extends ValidationElement {
   updateList (values) {
     this.onUpdate('List', values.items)
     this.onUpdate('ListBranch', values.branch)
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    let codes = super.mergeError(this.state.errorCodes, super.flattenObject(error))
-    let complexStatus = null
-    if (codes.length > 0) {
-      complexStatus = false
-    } else if (this.isValid()) {
-      complexStatus = true
-    }
-
-    this.setState({error: complexStatus === false, valid: complexStatus === true, errorCodes: codes}, () => {
-      const errorObject = { [this.props.name]: codes }
-      const statusObject = { [this.props.name]: { status: complexStatus } }
-      if (this.state.error === false || this.state.valid === true) {
-        super.handleValidation(event, statusObject, errorObject)
-        return
-      }
-
-      super.handleValidation(event, statusObject, errorObject)
-    })
-  }
-
-  /**
-   * Determine if all items in the collection are considered to be in
-   * a valid state.
-   */
-  isValid () {
-    return new RelativesValidator(this.status, null).isValid()
   }
 
   /**
@@ -108,9 +73,10 @@ export default class Relatives extends ValidationElement {
 
         <Accordion minimum="1"
                    items={this.state.List}
+                   defaultState={this.props.defaultState}
                    branch={this.state.ListBranch}
                    onUpdate={this.updateList}
-                   onValidate={this.handleValidation}
+                   onError={this.handleError}
                    summary={this.summary}
                    description={i18n.t('relationships.relatives.collection.summary.title')}
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
@@ -126,5 +92,13 @@ export default class Relatives extends ValidationElement {
 
 Relatives.defaultProps = {
   List: [],
-  ListBranch: ''
+  ListBranch: '',
+  onError: (value, arr) => { return arr },
+  section: 'relationships',
+  subsection: 'relatives',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new RelativesValidator(state, props).isValid()
+  },
+  defaultState: true
 }
