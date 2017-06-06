@@ -72,6 +72,7 @@ export default class Conferences extends SubsectionElement {
         <Show when={this.state.HasForeignConferences === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -150,5 +151,6 @@ Conferences.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBusinessConferencesValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

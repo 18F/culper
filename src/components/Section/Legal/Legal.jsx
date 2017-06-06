@@ -8,6 +8,7 @@ import { IntroHeader, Field } from '../../Form'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
+import { History, Revoked, Debarred } from './Investigations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -21,6 +22,9 @@ class Legal extends SectionElement {
     this.updatePoliceOffenses = this.updatePoliceOffenses.bind(this)
     this.updatePoliceOtherOffenses = this.updatePoliceOtherOffenses.bind(this)
     this.updatePoliceDomesticViolence = this.updatePoliceDomesticViolence.bind(this)
+    this.updateHistory = this.updateHistory.bind(this)
+    this.updateRevoked = this.updateRevoked.bind(this)
+    this.updateDebarred = this.updateDebarred.bind(this)
   }
 
   updatePolice (values) {
@@ -37,6 +41,18 @@ class Legal extends SectionElement {
 
   updatePoliceDomesticViolence (values) {
     this.handleUpdate('PoliceDomesticViolence', values)
+  }
+
+  updateHistory (values) {
+    this.handleUpdate('History', values)
+  }
+
+  updateRevoked (values) {
+    this.handleUpdate('Revoked', values)
+  }
+
+  updateDebarred (values) {
+    this.handleUpdate('Debarred', values)
   }
 
   render () {
@@ -60,8 +76,8 @@ class Legal extends SectionElement {
           <SectionView name="review"
                        title="Let&rsquo;s make sure everything looks right"
                        showTop="true"
-                       back="legal/police"
-                       backLabel={i18n.t('legal.destination.police')}
+                       back="legal/investigations/history"
+                       backLabel={i18n.t('legal.destination.investigations.history')}
                        next="psychological/intro"
                        nextLabel={i18n.t('psychological.destination.psychological')}>
             <Field title={i18n.t('legal.police.heading.title')}
@@ -73,17 +89,21 @@ class Legal extends SectionElement {
 
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
                       />
+            <hr/>
 
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           defaultState={false}
                            dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
                            />
+            <hr/>
 
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
@@ -91,6 +111,31 @@ class Legal extends SectionElement {
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   />
+            <hr/>
+
+            <History name="history"
+                     {...this.props.History}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateInvestigationsHistory}
+                     onError={this.handleError}
+                     />
+            <hr/>
+            <Revoked name="revoked"
+                     {...this.props.Revoked}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateRevoked}
+                     onError={this.handleError}
+                     />
+            <hr/>
+            <Debarred name="debarred"
+                      {...this.props.Debarred}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateDebarred}
+                      onError={this.handleError}
+                      />
           </SectionView>
 
           <SectionView name="police"
@@ -133,14 +178,66 @@ class Legal extends SectionElement {
           <SectionView name="police/domesticviolence"
                        back="legal/police/additionaloffenses"
                        backLabel={i18n.t('legal.destination.additionalOffenses')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+                       next="legal/investigations/history"
+                       nextLabel={i18n.t('legal.destination.investigations.history')}>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   />
+          </SectionView>
+
+          <SectionView name="investigations"
+                       back="legal/police/domesticviolence"
+                       backLabel={i18n.t('legal.destination.domesticViolence')}
+                       next="legal/investigations/revoked"
+                       nextLabel={i18n.t('legal.destination.investigations.revoked')}>
+            <History name="history"
+                     {...this.props.History}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateHistory}
+                     onError={this.handleError}
+                     />
+          </SectionView>
+
+          <SectionView name="investigations/history"
+                       back="legal/police/domesticviolence"
+                       backLabel={i18n.t('legal.destination.domesticViolence')}
+                       next="legal/investigations/revoked"
+                       nextLabel={i18n.t('legal.destination.investigations.revoked')}>
+            <History name="history"
+                     {...this.props.History}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateHistory}
+                     onError={this.handleError}
+                     />
+          </SectionView>
+
+          <SectionView name="investigations/revoked"
+                       back="legal/investigations/history"
+                       backLabel={i18n.t('legal.destination.investigations.history')}
+                       next="legal/investigations/debarred"
+                       nextLabel={i18n.t('legal.destination.investigations.debarred')}>
+            <Revoked name="revoked"
+                     {...this.props.Revoked}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateRevoked}
+                     onError={this.handleError}
+                     />
+          </SectionView>
+
+          <SectionView name="investigations/debarred"
+                       back="legal/investigations/revoked"
+                       backLabel={i18n.t('legal.destination.investigations.revoked')}
+                       next="legal/review"
+                       nextLabel={i18n.t('legal.destination.review')}>
+            <Debarred name="debarred"
+                      {...this.props.Debarred}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateDebarred}
+                      onError={this.handleError}
+                      />
           </SectionView>
         </SectionViews>
       </div>
@@ -161,6 +258,9 @@ function mapStateToProps (state) {
     PoliceOffenses: legal.PoliceOffenses || {},
     PoliceOtherOffenses: legal.PoliceOtherOffenses || {},
     PoliceDomesticViolence: legal.PoliceDomesticViolence || {},
+    History: legal.History || {},
+    Revoked: legal.Revoked || {},
+    Debarred: legal.Debarred || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }

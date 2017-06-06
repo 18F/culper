@@ -66,6 +66,12 @@ describe('Military disciplinary validation', function () {
           ListBranch: 'No'
         },
         expected: true
+      },
+      {
+        state: {
+          HasDisciplinary: 'No'
+        },
+        expected: true
       }
     ]
 

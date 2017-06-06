@@ -85,6 +85,7 @@ export default class Disciplinary extends SubsectionElement {
         <Show when={this.state.HasDisciplinary === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -110,5 +111,6 @@ Disciplinary.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new MilitaryDisciplinaryValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

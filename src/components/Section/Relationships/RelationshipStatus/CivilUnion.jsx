@@ -1,6 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable, Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, Checkbox } from '../../../Form'
+import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
+         Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange,
+         Checkbox, Country } from '../../../Form'
 import Divorce from './Divorce'
 import { CivilUnionValidator } from '../../../../validators'
 
@@ -18,6 +20,7 @@ export default class CivilUnion extends ValidationElement {
       OtherNameMaiden: props.OtherNameMaiden,
       OtherNameNotApplicable: props.OtherNameNotApplicable,
       DatesUsed: props.DatesUsed,
+      Citizenship: props.Citizenship,
       EnteredCivilUnion: props.EnteredCivilUnion,
       Address: props.Address,
       Telephone: props.Telephone,
@@ -27,8 +30,6 @@ export default class CivilUnion extends ValidationElement {
       AddressSeparated: props.AddressSeparated,
       AddressSeparatedNotApplicable: props.AddressSeparatedNotApplicable,
       Divorced: props.Divorced,
-      DivorcedList: props.DivorcedList,
-      DivorcedListBranch: props.DivorcedListBranch,
       UseCurrentAddress: props.UseCurrentAddress
     }
 
@@ -42,6 +43,7 @@ export default class CivilUnion extends ValidationElement {
     this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
     this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
     this.updateDatesUsed = this.updateDatesUsed.bind(this)
+    this.updateCitizenship = this.updateCitizenship.bind(this)
     this.updateEnteredCivilUnion = this.updateEnteredCivilUnion.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
     this.updateTelephone = this.updateTelephone.bind(this)
@@ -51,7 +53,6 @@ export default class CivilUnion extends ValidationElement {
     this.updateAddressSeparated = this.updateAddressSeparated.bind(this)
     this.updateAddressSeparatedNotApplicable = this.updateAddressSeparatedNotApplicable.bind(this)
     this.updateDivorced = this.updateDivorced.bind(this)
-    this.updateDivorcedList = this.updateDivorcedList.bind(this)
     this.updateUseCurrentAddress = this.updateUseCurrentAddress.bind(this)
   }
 
@@ -68,6 +69,7 @@ export default class CivilUnion extends ValidationElement {
           OtherNameMaiden: this.state.OtherNameMaiden,
           OtherNameNotApplicable: this.state.OtherNameNotApplicable,
           DatesUsed: this.state.DatesUsed,
+          Citizenship: this.state.Citizenship,
           EnteredCivilUnion: this.state.EnteredCivilUnion,
           Address: this.state.Address,
           Telephone: this.state.Telephone,
@@ -120,6 +122,10 @@ export default class CivilUnion extends ValidationElement {
     this.update('DatesUsed', values)
   }
 
+  updateCitizenship (values) {
+    this.update('Citizenship', values)
+  }
+
   updateOtherNameNotApplicable (value) {
     this.update('OtherNameNotApplicable', value.applicable)
   }
@@ -161,11 +167,6 @@ export default class CivilUnion extends ValidationElement {
     this.update('Divorced', values)
   }
 
-  updateDivorcedList (values) {
-    this.update('DivorcedList', values.items)
-    this.update('DivorcedListBranch', values.branch)
-  }
-
   updateUseCurrentAddress (cb) {
     if (cb.checked) {
       this.updateAddress(this.props.currentAddress)
@@ -173,22 +174,6 @@ export default class CivilUnion extends ValidationElement {
       this.updateAddress({})
     }
     this.update('UseCurrentAddress', cb.checked)
-  }
-
-  divorceSummary (item, index) {
-    const itemType = i18n.t('relationships.civilUnion.divorce.collection.itemType')
-    const o = (item || {}).Divorce || {}
-    const date = (o.DateDivorced || {}).date ? `${o.DateDivorced.month}/${o.DateDivorced.year}` : ''
-    const status = o.Status || ''
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('relationships.relatives.collection.summary.unknown')
-    return (
-      <span>
-        <span className="index">{itemType}:</span>
-        <span className="info"><strong>{name} {date} {status}</strong></span>
-      </span>
-    )
   }
 
   render () {
@@ -282,6 +267,18 @@ export default class CivilUnion extends ValidationElement {
                          />
             </Field>
           </NotApplicable>
+
+          <Field title={i18n.t('relationships.civilUnion.heading.citizenship')}
+                 help="relationships.civilUnion.help.citizenship"
+                 adjustFor="country">
+            <Country name="Citizenship"
+                     {...this.state.Citizenship}
+                     className="relationships-civilUnion-citizenship"
+                     multiple={true}
+                     onUpdate={this.updateCitizenship}
+                     onError={this.props.onError}
+                     />
+          </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.enteredCivilUnion')}>
             <DateControl name="enteredCivilUnion"
@@ -383,24 +380,6 @@ export default class CivilUnion extends ValidationElement {
                   onUpdate={this.updateDivorced}
                   onError={this.props.onError}>
           </Branch>
-
-          <Show when={this.state.Divorced === 'Yes'}>
-            <span id="scrollToCivilUnion"></span>
-            <Accordion minimum="1"
-                       scrollTo="scrollToCivilUnion"
-                       items={this.state.DivorcedList}
-                       branch={this.state.DivorcedListBranch}
-                       onUpdate={this.updateDivorcedList}
-                       onError={this.props.onError}
-                       summary={this.divorceSummary}
-                       description={i18n.t('relationships.civilUnion.divorce.collection.description')}
-                       appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
-                       appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
-              <Divorce name="Divorce"
-                       bind={true}
-                       />
-            </Accordion>
-          </Show>
         </div>
       </div>
     )
@@ -417,6 +396,7 @@ CivilUnion.defaultProps = {
   OtherNameMaiden: {},
   OtherNameNotApplicable: {},
   DatesUsed: {},
+  Citizenship: {},
   EnteredCivilUnion: {},
   Address: {},
   Telephone: {},
@@ -426,8 +406,7 @@ CivilUnion.defaultProps = {
   AddressSeparated: {},
   AddressSeparatedNotApplicable: {},
   Divorced: '',
-  DivorcedList: [],
-  DivorcedListBranch: '',
   UseCurrentAddress: false,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  defaultState: true
 }

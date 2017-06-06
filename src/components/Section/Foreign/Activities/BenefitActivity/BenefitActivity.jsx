@@ -52,7 +52,6 @@ export default class BenefitActivity extends SubsectionElement {
     return (
       <div className="benefit-activity">
         <Branch name="has_benefit"
-                help="foreign.activities.benefit.help.benefit"
                 className="has-benefits"
                 label={i18n.t('foreign.activities.benefit.heading.title')}
                 labelSize="h3"

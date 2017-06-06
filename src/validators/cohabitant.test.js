@@ -1,6 +1,36 @@
 import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 
 describe('Cohabitant validation', function () {
+  it('validates citizenship', () => {
+    const tests = [
+      {
+        state: {
+          Citizenship: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Citizenship: {
+            value: []
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Citizenship: {
+            value: ['Germany', 'United States']
+          }
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CohabitantValidator(test.state, null).validCitizenship()).toBe(test.expected)
+    })
+  })
+
   it('validates other name', () => {
     const tests = [
       {
@@ -92,6 +122,9 @@ describe('Cohabitant validation', function () {
               date: new Date('1/1/2016')
             },
             present: false
+          },
+          Citizenship: {
+            value: ['Germany', 'United States']
           },
           ForeignBornDocument: {
             DocumentType: 'FS240',
@@ -193,6 +226,9 @@ describe('Cohabitant validation', function () {
                     date: new Date('1/1/2016')
                   },
                   present: false
+                },
+                Citizenship: {
+                  value: ['Germany', 'United States']
                 },
                 ForeignBornDocument: {
                   DocumentType: 'FS240',

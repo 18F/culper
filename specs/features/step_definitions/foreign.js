@@ -15,7 +15,6 @@ const filenum = () => {
   return s
 }
 
-
 defineSupportCode(({Given, Then, When}) => {
   When(/^I go to the foreign section$/, () => {
     return navigateToSection('foreign')

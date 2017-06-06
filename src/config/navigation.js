@@ -120,7 +120,40 @@ const navigation = [
     url: 'substance',
     hidden: false,
     subsections: [
-      { hidden: true, name: 'Illegal use of drugs and drug activity', url: 'drugs' },
+      {
+        name: 'Illegal use of drugs and drug activity',
+        url: 'drugs',
+        subsections: [
+          {
+            name: 'Usage',
+            url: 'usage'
+          },
+          {
+            name: 'Purchase',
+            url: 'purchase'
+          },
+          {
+            name: 'Security clearance position',
+            url: 'clearance'
+          },
+          {
+            name: 'Public safety position',
+            url: 'publicsafety'
+          },
+          {
+            name: 'Misuse',
+            url: 'misuse'
+          },
+          {
+            name: 'Mandatory counseling or treatment',
+            url: 'ordered'
+          },
+          {
+            name: 'Voluntary counseling or treatment',
+            url: 'voluntary'
+          }
+        ]
+      },
       {
         name: 'Use of alcohol',
         url: 'alcohol',
@@ -160,7 +193,15 @@ const navigation = [
         ]
       },
       { hidden: true, name: 'Involvement in non-criminal court actions', url: 'court' },
-      { hidden: true, name: 'Investigations and clearance record', url: 'investigations' },
+      {
+        name: 'Investigations and clearance record',
+        url: 'investigations',
+        subsections: [
+          { name: 'Ever been investigated', url: 'history' },
+          { name: 'Denied', url: 'revoked' },
+          { name: 'Debarment', url: 'debarred' }
+        ]
+      },
       { hidden: true, name: 'Financial record', url: 'financial' },
       { hidden: true, name: 'Use of information technology systems', url: 'technology' },
       { hidden: true, name: 'Association record', url: 'associations' }

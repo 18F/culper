@@ -78,6 +78,7 @@ export default class Taxes extends SubsectionElement {
         <Show when={this.state.HasTaxes === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -191,5 +192,6 @@ Taxes.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new TaxesValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

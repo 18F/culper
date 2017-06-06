@@ -1,6 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange, NotApplicable, ValidationElement, Suggestions, Show } from '../../../Form'
+import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN,
+         MaidenName, DateRange, NotApplicable, ValidationElement,
+         Suggestions, Show, Country } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 
 export default class Cohabitant extends ValidationElement {
@@ -17,6 +19,7 @@ export default class Cohabitant extends ValidationElement {
       OtherNameNotApplicable: props.OtherNameNotApplicable,
       OtherNameMaiden: props.OtherNameMaiden,
       OtherNameUsed: props.OtherNameUsed,
+      Citizenship: props.Citizenship,
       CohabitationBegan: props.CohabitationBegan,
       SameSpouse: props.SameSpouse
     }
@@ -30,6 +33,7 @@ export default class Cohabitant extends ValidationElement {
     this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
     this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
     this.updateOtherNameUsed = this.updateOtherNameUsed.bind(this)
+    this.updateCitizenship = this.updateCitizenship.bind(this)
     this.updateCohabitationBegan = this.updateCohabitationBegan.bind(this)
     this.renderSpouseSuggestion = this.renderSpouseSuggestion.bind(this)
     this.dismissSpouseSuggestion = this.dismissSpouseSuggestion.bind(this)
@@ -50,6 +54,7 @@ export default class Cohabitant extends ValidationElement {
           OtherNameNotApplicable: this.state.OtherNameNotApplicable,
           OtherNameMaiden: this.state.OtherNameMaiden,
           OtherNameUsed: this.state.OtherNameUsed,
+          Citizenship: this.state.Citizenship,
           CohabitationBegan: this.state.CohabitationBegan,
           SameSpouse: this.state.SameSpouse,
           SameSpouseConfirmed: this.state.SameSpouseConfirmed
@@ -69,6 +74,7 @@ export default class Cohabitant extends ValidationElement {
       OtherNameNotApplicable: null,
       OtherNameMaiden: null,
       OtherNameUsed: null,
+      Citizenship: null,
       CohabitationBegan: null,
       SameSpouse: false,
       SameSpouseConfirmed: false
@@ -121,6 +127,10 @@ export default class Cohabitant extends ValidationElement {
 
   updateOtherNameNotApplicable (values) {
     this.update('OtherNameNotApplicable', values)
+  }
+
+  updateCitizenship (values) {
+    this.update('Citizenship', values)
   }
 
   updateCohabitationBegan (values) {
@@ -255,6 +265,18 @@ export default class Cohabitant extends ValidationElement {
           </Field>
         </NotApplicable>
 
+        <Field title={i18n.t('relationships.cohabitant.heading.citizenship')}
+               help="relationships.cohabitant.help.citizenship"
+               adjustFor="country">
+          <Country name="Citizenship"
+                   {...this.state.Citizenship}
+                   multiple={true}
+                   className="relationships-cohabitant-citizenship"
+                   onUpdate={this.updateCitizenship}
+                   onError={this.props.onError}
+                   />
+        </Field>
+
         <Field help="relationships.cohabitant.help.cohabitationBegan"
                title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
                shrink={true}
@@ -281,6 +303,7 @@ Cohabitant.defaultProps = {
   OtherNameNotApplicable: {},
   OtherNameMaiden: {},
   OtherNameUsed: {},
+  Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,
   onError: (value, arr) => { return arr }

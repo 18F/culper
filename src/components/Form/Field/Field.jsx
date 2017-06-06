@@ -65,7 +65,7 @@ export default class Field extends ValidationElement {
     }
 
     this.setState({ errors: errors }, () => {
-      if (arr.length) {
+      if (arr.length && arr.some(err => !err.valid)) {
         this.scrollIntoView()
       }
     })

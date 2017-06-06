@@ -176,6 +176,7 @@ export default class Offenses extends SubsectionElement {
             </Show>
             <Accordion minimum="1"
                        items={this.state.List}
+                       defaultState={this.props.defaultState}
                        branch={this.state.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.handleError}
@@ -202,5 +203,6 @@ Offenses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new PoliceOffensesValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

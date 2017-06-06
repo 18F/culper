@@ -125,8 +125,8 @@ class Navigation extends React.Component {
         <div key={subsection.name} className="subsection" >
           <Link to={subUrl} className={subClass}>
             <span className="name">{subsection.name}</span>
-            <span className="eapp-status-icon-valid"></span>
-            <span className="eapp-status-icon-error"></span>
+            <span className="mini eapp-status-icon-valid"></span>
+            <span className="mini eapp-status-icon-error"></span>
           </Link>
           { childSubsections }
         </div>
