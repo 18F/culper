@@ -156,10 +156,6 @@ export default class People extends SubsectionElement {
   }
 
   inject (items) {
-    if (this.props.defaultState) {
-      return this.excludeGaps(items)
-    }
-
     return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
   }
 
@@ -190,7 +186,7 @@ export default class People extends SubsectionElement {
                    scrollTo="scrollToPeople"
                    items={this.state.List}
                    defaultState={this.props.defaultState}
-                   realtime={!this.props.defaultState}
+                   realtime={true}
                    sort={this.sort}
                    inject={this.inject}
                    branch={this.state.ListBranch}

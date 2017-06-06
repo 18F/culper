@@ -7,6 +7,7 @@ import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
 import { InjectGaps, ResidenceCustomSummary, ResidenceCaption } from '../summaries'
 import ResidenceItem from './ResidenceItem'
+import { Gap } from '../Gap'
 
 const byline = (item, index, initial, translation, validator) => {
   if (!item.open && !initial && item.Item && !validator(item.Item)) {

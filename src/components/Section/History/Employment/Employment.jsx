@@ -7,6 +7,7 @@ import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary, EmploymentCaption } from '../summaries'
 import EmploymentItem from './EmploymentItem'
+import { Gap } from '../Gap'
 
 const byline = (item, index, initial, translation, validator) => {
   if (!item.open && !initial && item.Item && !validator(item.Item)) {
