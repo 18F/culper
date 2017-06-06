@@ -85,41 +85,38 @@ export default class Selective extends SubsectionElement {
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="registered"
+                    className="registered no-margin-bottom"
                     value={this.state.HasRegistered}
                     onUpdate={this.updateRegistered}
                     onError={this.handleError}>
             </Branch>
 
             <Show when={this.state.HasRegistered === 'Yes'}>
-              <div>
-                <Field title={i18n.t('military.selective.heading.number')}
-                       adjustFor="labels">
-                  <Text name="RegistrationNumber"
-                        className="registration-number"
-                        label={i18n.t('military.selective.label.number')}
-                        {...this.state.RegistrationNumber}
-                        onUpdate={this.updateRegistrationNumber}
-                        onError={this.handleError}
-                        />
-                </Field>
-              </div>
+              <Field title={i18n.t('military.selective.heading.number')}
+                     className="no-margin-bottom"
+                     adjustFor="labels">
+                <Text name="RegistrationNumber"
+                      className="registration-number"
+                      label={i18n.t('military.selective.label.number')}
+                      {...this.state.RegistrationNumber}
+                      onUpdate={this.updateRegistrationNumber}
+                      onError={this.handleError}
+                      />
+              </Field>
             </Show>
 
             <Show when={this.state.HasRegistered === 'No'}>
-              <div>
-                <Field help="military.selective.help.explanation"
-                       className="no-margin-bottom"
-                       adjustFor="labels">
-                  <Textarea name="Explanation"
-                            className="explanation"
-                            label={i18n.t('military.selective.label.explanation')}
-                            {...this.state.Explanation}
-                            onUpdate={this.updateExplanation}
-                            onError={this.handleError}
-                            />
-                </Field>
-              </div>
+              <Field help="military.selective.help.explanation"
+                     className="no-margin-bottom"
+                     adjustFor="labels">
+                <Textarea name="Explanation"
+                          className="explanation"
+                          label={i18n.t('military.selective.label.explanation')}
+                          {...this.state.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.handleError}
+                          />
+              </Field>
             </Show>
 
             <div className="field">
