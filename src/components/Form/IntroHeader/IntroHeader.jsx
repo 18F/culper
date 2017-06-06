@@ -7,7 +7,7 @@ export default class IntroHeader extends React.Component {
     return (
       <div className="review-tour">
         <h3>{i18n.t('intro.tour.title')}</h3>
-        <p>{this.props.tour}</p>
+        {this.props.tour}
         <button onClick={this.props.onTour}>{i18n.t('intro.tour.button')}</button>
       </div>
     )
@@ -17,7 +17,7 @@ export default class IntroHeader extends React.Component {
     return (
       <div className="review-full">
         <h3>{i18n.t('intro.review.title')}</h3>
-        <p>{this.props.review}</p>
+        {this.props.review}
         <button onClick={this.props.onReview}>{i18n.t('intro.review.button')}</button>
       </div>
     )
@@ -29,13 +29,13 @@ export default class IntroHeader extends React.Component {
         <div>
           <h1>{i18n.t('intro.errors')}</h1>
           <div className="review-column">
-            <div className="text-center">
+            <div>
               <Svg src="img/review-errors-chunk.svg" />
             </div>
             {this.tour()}
           </div>
           <div className="review-column">
-            <div className="text-center">
+            <div>
               <Svg src="img/review-error-all.svg" />
             </div>
             {this.review()}
@@ -47,16 +47,18 @@ export default class IntroHeader extends React.Component {
     if (this.props.completed()) {
       return (
         <div>
-          <div className="text-center"><i className="fa fa-check-circle"></i></div>
+          <div className="text-center">
+            <Svg src="img/checkmark.svg" className="checkmark" />
+          </div>
           <h1>{i18n.t('intro.complete')}</h1>
           <div className="review-column">
-            <div className="text-center">
+            <div>
               <Svg src="img/review-correct-chunk.svg" />
             </div>
             {this.tour()}
           </div>
           <div className="review-column">
-            <div className="text-center">
+            <div>
               <Svg src="img/review-correct-all.svg" />
             </div>
             {this.review()}
@@ -66,12 +68,18 @@ export default class IntroHeader extends React.Component {
     }
 
     return (
-      <div>
+      <div className="review-table">
         <h1>{i18n.t('intro.neutral')}</h1>
         <div className="review-column">
+          <div>
+            <Svg src="img/review-errors-chunk.svg" />
+          </div>
           {this.tour()}
         </div>
         <div className="review-column">
+          <div>
+            <Svg src="img/review-error-all.svg" />
+          </div>
           {this.review()}
         </div>
       </div>
@@ -82,8 +90,8 @@ export default class IntroHeader extends React.Component {
 IntroHeader.defaultProps = {
   errors: () => { return false },
   completed: () => { return false },
-  tour: '',
-  review: '',
+  tour: i18n.m('intro.tour.para'),
+  review: i18n.m('intro.review.para'),
   onTour: () => {},
   onReview: () => {}
 }

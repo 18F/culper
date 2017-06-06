@@ -64,7 +64,7 @@ describe('Person validator', function () {
             suffix: 'Jr'
           },
           Relationship: ['Friend'],
-          KnownDates: {
+          Dates: {
             from: {
               date: new Date('1/1/2005')
             },
@@ -121,7 +121,7 @@ describe('Person validator', function () {
       },
       {
         state: {
-          List: [{ Person: {} }, { Person: {} }, { Person: {} }],
+          List: [{ Item: {} }, { Item: {} }, { Item: {} }],
           ListBranch: 'No'
         },
         expected: false
@@ -130,7 +130,7 @@ describe('Person validator', function () {
         state: {
           List: [
             {
-              Person: {
+              Item: {
                 Name: {
                   first: 'Foo',
                   firstInitialOnly: false,
@@ -142,7 +142,7 @@ describe('Person validator', function () {
                   suffix: 'Jr'
                 },
                 Relationship: ['Friend'],
-                KnownDates: {
+                Dates: {
                   from: {
                     date: new Date('1/1/2009')
                   },
@@ -181,7 +181,7 @@ describe('Person validator', function () {
               }
             },
             {
-              Person: {
+              Item: {
                 Name: {
                   first: 'Foo',
                   firstInitialOnly: false,
@@ -193,7 +193,7 @@ describe('Person validator', function () {
                   suffix: 'Jr'
                 },
                 Relationship: ['Friend'],
-                KnownDates: {
+                Dates: {
                   from: {
                     date: new Date('1/1/2010')
                   },
@@ -232,7 +232,7 @@ describe('Person validator', function () {
               }
             },
             {
-              Person: {
+              Item: {
                 Name: {
                   first: 'Foo',
                   firstInitialOnly: false,
@@ -244,7 +244,7 @@ describe('Person validator', function () {
                   suffix: 'Jr'
                 },
                 Relationship: ['Friend'],
-                KnownDates: {
+                Dates: {
                   from: {
                     date: new Date('1/1/2010')
                   },
@@ -306,7 +306,7 @@ describe('Person validator', function () {
       {
         state: {
           List: [{
-            Person: {
+            Item: {
               Name: {
                 first: 'Foo',
                 firstInitialOnly: false,
@@ -318,7 +318,7 @@ describe('Person validator', function () {
                 suffix: 'Jr'
               },
               Relationship: ['Friend'],
-              KnownDates: {
+              Dates: {
                 from: {
                   date: new Date('1/1/2005')
                 },

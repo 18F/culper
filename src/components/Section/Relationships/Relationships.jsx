@@ -56,14 +56,13 @@ class Relationships extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('relationships.tour.para')}
-                             review={i18n.t('relationships.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
               </div>
             </div>
           </SectionView>
+
           <SectionView name="status"
                        back="financial/bankruptcy"
                        backLabel={i18n.t('financial.destination.bankruptcy')}
@@ -78,6 +77,7 @@ class Relationships extends SectionElement {
                      currentAddress={this.props.CurrentAddress}
                      />
           </SectionView>
+
           <SectionView name="status/marital"
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
@@ -92,6 +92,7 @@ class Relationships extends SectionElement {
                      currentAddress={this.props.CurrentAddress}
                      />
           </SectionView>
+
           <SectionView name="status/cohabitant"
                        back="relationships/status/marital"
                        backLabel={i18n.t('relationships.destination.marital')}
@@ -105,6 +106,7 @@ class Relationships extends SectionElement {
                          onError={this.handleError}
                          />
           </SectionView>
+
           <SectionView name="people"
                        back="relationships/status/cohabitant"
                        backLabel={i18n.t('relationships.destination.cohabitant')}
@@ -117,6 +119,7 @@ class Relationships extends SectionElement {
                     onError={this.handleError}
                     />
           </SectionView>
+
           <SectionView name="relatives"
                        back="relationships/people"
                        backLabel={i18n.t('relationships.destination.people')}
@@ -129,8 +132,10 @@ class Relationships extends SectionElement {
                        onError={this.handleError}
                        />
           </SectionView>
+
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}
@@ -145,8 +150,8 @@ class Relationships extends SectionElement {
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
                      />
-            <hr/>
 
+            <hr/>
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
                          defaultState={false}
@@ -155,8 +160,8 @@ class Relationships extends SectionElement {
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
                          />
-            <hr/>
 
+            <hr/>
             <People name="people"
                     {...this.props.People}
                     defaultState={false}
@@ -164,8 +169,8 @@ class Relationships extends SectionElement {
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
                     />
-            <hr/>
 
+            <hr/>
             <Relatives name="relatives"
                        {...this.props.Relatives}
                        defaultState={false}

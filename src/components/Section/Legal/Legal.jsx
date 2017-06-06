@@ -64,8 +64,6 @@ class Legal extends SectionElement {
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
                              completed={() => { return this.props.Completed.length === 3 && this.props.Completed.every(x => x.valid === true) }}
-                             tour={i18n.t('legal.tour.para')}
-                             review={i18n.t('legal.review.para')}
                              onTour={this.handleTour}
                              onReview={this.handleReview}
                              />
@@ -74,7 +72,8 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="review"
-                       title="Let&rsquo;s make sure everything looks right"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
                        showTop="true"
                        back="legal/investigations/history"
                        backLabel={i18n.t('legal.destination.investigations.history')}
@@ -94,8 +93,8 @@ class Legal extends SectionElement {
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
                       />
-            <hr/>
 
+            <hr/>
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
                            defaultState={false}
@@ -103,16 +102,16 @@ class Legal extends SectionElement {
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
                            />
-            <hr/>
 
+            <hr/>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   />
-            <hr/>
 
+            <hr/>
             <History name="history"
                      {...this.props.History}
                      defaultState={false}
@@ -120,6 +119,7 @@ class Legal extends SectionElement {
                      onUpdate={this.updateInvestigationsHistory}
                      onError={this.handleError}
                      />
+
             <hr/>
             <Revoked name="revoked"
                      {...this.props.Revoked}
@@ -128,6 +128,7 @@ class Legal extends SectionElement {
                      onUpdate={this.updateRevoked}
                      onError={this.handleError}
                      />
+
             <hr/>
             <Debarred name="debarred"
                       {...this.props.Debarred}

@@ -1,4 +1,10 @@
+import MilitaryHistoryValidator from './militaryhistory'
 import { validGenericTextfield, validDateField } from './helpers'
+
+export const hideDisciplinaryProcedures = (store = {}) => {
+  const history = (store.Military || {}).History
+  return !new MilitaryHistoryValidator(history, null).hasHistory()
+}
 
 export default class MilitaryDisciplinaryValidator {
   constructor (state = {}, props = {}) {

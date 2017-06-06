@@ -85,7 +85,7 @@ export default class Selective extends SubsectionElement {
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="registered"
+                    className="registered no-margin-bottom"
                     value={this.state.HasRegistered}
                     onUpdate={this.updateRegistered}
                     onError={this.handleError}>
@@ -94,6 +94,7 @@ export default class Selective extends SubsectionElement {
             <Show when={this.state.HasRegistered === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
+                       className="no-margin-bottom"
                        adjustFor="labels">
                   <Text name="RegistrationNumber"
                         className="registration-number"
@@ -103,43 +104,41 @@ export default class Selective extends SubsectionElement {
                         onError={this.handleError}
                         />
                 </Field>
-              </div>
-            </Show>
 
-            <Show when={this.state.HasRegistered === 'No'}>
-              <div>
-                <Field help="military.selective.help.explanation"
-                       className="no-margin-bottom"
-                       adjustFor="labels">
-                  <Textarea name="Explanation"
-                            className="explanation"
-                            label={i18n.t('military.selective.label.explanation')}
-                            {...this.state.Explanation}
-                            onUpdate={this.updateExplanation}
-                            onError={this.handleError}
-                            />
-                </Field>
-              </div>
-            </Show>
-
-            <div className="field">
-              <div className="table">
-                <div className="messages">
-                  <div className="message help">
-                    <i className="fa fa-question"></i>
-                    <h5>{i18n.m('military.selective.help.remember.title')}</h5>
-                    {i18n.m('military.selective.help.remember.message')}
-                    <div>
-                      <p>
-                        <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
-                          https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
-                        </a>
-                      </p>
+                <div className="field">
+                  <div className="table">
+                    <div className="messages">
+                      <div className="message help">
+                        <i className="fa fa-question"></i>
+                        <h5>{i18n.m('military.selective.help.remember.title')}</h5>
+                        {i18n.m('military.selective.help.remember.message')}
+                        <div>
+                          <p>
+                            <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
+                              https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
+                            </a>
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Show>
+
+            <Show when={this.state.HasRegistered === 'No'}>
+              <Field help="military.selective.help.explanation"
+                     className="no-margin-bottom"
+                     adjustFor="labels">
+                <Textarea name="Explanation"
+                          className="explanation"
+                          label={i18n.t('military.selective.label.explanation')}
+                          {...this.state.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.handleError}
+                          />
+              </Field>
+            </Show>
           </div>
         </Show>
       </div>

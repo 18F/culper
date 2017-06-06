@@ -8,7 +8,7 @@ export default class Person extends React.Component {
 
     this.state = {
       Name: props.Name,
-      KnownDates: props.KnownDates,
+      Dates: props.Dates,
       Rank: props.Rank,
       RankNotApplicable: props.RankNotApplicable,
       Relationship: props.Relationship,
@@ -22,7 +22,7 @@ export default class Person extends React.Component {
 
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
-    this.updateKnownDates = this.updateKnownDates.bind(this)
+    this.updateDates = this.updateDates.bind(this)
     this.updateRank = this.updateRank.bind(this)
     this.updateRankNotApplicable = this.updateRankNotApplicable.bind(this)
     this.updateRelationship = this.updateRelationship.bind(this)
@@ -39,7 +39,7 @@ export default class Person extends React.Component {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           Name: this.state.Name,
-          KnownDates: this.state.KnownDates,
+          Dates: this.state.Dates,
           Rank: this.state.Rank,
           RankNotApplicable: this.state.RankNotApplicable,
           Relationship: this.state.Relationship,
@@ -58,8 +58,8 @@ export default class Person extends React.Component {
     this.update('Name', values)
   }
 
-  updateKnownDates (values) {
-    this.update('KnownDates', values)
+  updateDates (values) {
+    this.update('Dates', values)
   }
 
   updateRank (values) {
@@ -114,10 +114,10 @@ export default class Person extends React.Component {
         <Field title={i18n.t('relationships.people.person.heading.knownDates')}
                help="relationships.people.person.help.knownDates"
                >
-          <DateRange name="KnownDates"
+          <DateRange name="Dates"
                      className="known-dates"
-                     {...this.state.KnownDates}
-                     onUpdate={this.updateKnownDates}
+                     {...this.state.Dates}
+                     onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
         </Field>

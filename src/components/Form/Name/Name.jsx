@@ -25,6 +25,16 @@ export default class Name extends ValidationElement {
       suffixOther: props.suffixOther
     }
 
+    this.updateFirst = this.updateFirst.bind(this)
+    this.updateFirstInitial = this.updateFirstInitial.bind(this)
+    this.updateMiddle = this.updateMiddle.bind(this)
+    this.updateMiddleInitial = this.updateMiddleInitial.bind(this)
+    this.updateMiddleNone = this.updateMiddleNone.bind(this)
+    this.updateLast = this.updateLast.bind(this)
+    this.updateLastInitial = this.updateLastInitial.bind(this)
+    this.updateSuffix = this.updateSuffix.bind(this)
+    this.updateSuffixOther = this.updateSuffixOther.bind(this)
+
     this.handleError = this.handleError.bind(this)
     this.handleErrorFirst = this.handleErrorFirst.bind(this)
     this.handleErrorMiddle = this.handleErrorMiddle.bind(this)
@@ -32,94 +42,67 @@ export default class Name extends ValidationElement {
     this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    let part = event.target.name || ''
-    let value = event.target.value
-    let updated = null
-
-    switch (part) {
-      case 'first':
-        updated = { first: value }
-        break
-      case 'last':
-        updated = { last: value }
-        break
-      case 'middle':
-        updated = { middle: value }
-        break
-      case 'suffix':
-        updated = { suffix: value }
-        break
-      case 'suffixOther':
-        updated = { suffixOther: value }
-        break
-      case 'firstInitialOnly':
-        event.persist()
-        updated = { firstInitialOnly: event.target.checked }
-        break
-      case 'lastInitialOnly':
-        event.persist()
-        updated = { lastInitialOnly: event.target.checked }
-        break
-      case 'middleInitialOnly':
-        event.persist()
-        updated = { middleInitialOnly: event.target.checked, noMiddleName: false }
-        break
-      case 'noMiddleName':
-        event.persist()
-        updated = { noMiddleName: event.target.checked, middleInitialOnly: false, middle: '' }
-        break
-
-    }
-
-    this.setState(updated, () => {
-      super.handleChange(event)
-
-      if (part.indexOf('InitialOnly') !== -1) {
-        // Blur/validation forced
-        this.refs.first.refs.text.refs.input.focus()
-        this.refs.first.refs.text.refs.input.blur()
-        this.refs.middle.refs.text.refs.input.focus()
-        this.refs.middle.refs.text.refs.input.blur()
-        this.refs.last.refs.text.refs.input.focus()
-        this.refs.last.refs.text.refs.input.blur()
-
-        // Re-focus on the target
-        if (event.target) {
-          event.target.focus()
-        }
-      }
-
+  update (name, value) {
+    this.setState({ [name]: value }, () => {
       if (this.props.onUpdate) {
-        const {
-          first,
-          firstInitialOnly,
-          last,
-          lastInitialOnly,
-          middle,
-          middleInitialOnly,
-          noMiddleName,
-          suffix,
-          suffixOther
-        } = this.state
-
         this.props.onUpdate({
-          name: this.props.name,
-          first: first,
-          firstInitialOnly: firstInitialOnly,
-          last: last,
-          lastInitialOnly: lastInitialOnly,
-          middle: middle,
-          middleInitialOnly: middleInitialOnly,
-          noMiddleName: noMiddleName,
-          suffix: suffix,
-          suffixOther: suffixOther
+          ...this.state,
+          [name]: value
         })
       }
     })
+  }
+
+  updateFirst (values) {
+    this.update('first', values.value)
+  }
+
+  updateFirstInitial (values) {
+    this.update('firstInitialOnly', values.checked)
+    this.refs.first.refs.text.refs.input.focus()
+    this.refs.first.refs.text.refs.input.blur()
+    this.refs.first.refs.text.refs.input.focus()
+    this.refs.firstInitialOnly.refs.checkbox.focus()
+  }
+
+  updateMiddle (values) {
+    this.update('middle', values.value)
+  }
+
+  updateMiddleInitial (values) {
+    this.update('middleInitialOnly', values.checked)
+    this.update('noMiddleName', false)
+    this.refs.middle.refs.text.refs.input.focus()
+    this.refs.middle.refs.text.refs.input.blur()
+    this.refs.middleInitialOnly.refs.checkbox.focus()
+  }
+
+  updateMiddleNone (values) {
+    this.update('noMiddleName', values.checked)
+    this.update('middleInitialOnly', false)
+    this.update('middle', '')
+    this.refs.middle.refs.text.refs.input.focus()
+    this.refs.middle.refs.text.refs.input.blur()
+    this.refs.noMiddleName.refs.checkbox.focus()
+  }
+
+  updateLast (values) {
+    this.update('last', values.value)
+  }
+
+  updateLastInitial (values) {
+    this.update('lastInitialOnly', values.checked)
+    this.refs.last.refs.text.refs.input.focus()
+    this.refs.last.refs.text.refs.input.blur()
+    this.refs.lastInitialOnly.refs.checkbox.focus()
+  }
+
+  updateSuffix (values) {
+    this.update('suffix', values.value)
+  }
+
+  updateSuffixOther (values) {
+    this.update('suffixOther', values.value)
   }
 
   handleErrorFirst (value, arr) {
@@ -155,22 +138,13 @@ export default class Name extends ValidationElement {
     })))
   }
 
-  isValid () {
-    return new NameValidator(this.state, null).isValid()
-  }
-
-  /**
-   * Toggles visibility class for the extended suffix element.
-   */
-  suffixOtherClass () {
-    return this.state.suffix === 'Other'
-      ? 'suffix-other'
-      : 'hidden'
-  }
-
   render () {
     const prefix = this.props.prefix
     const klass = `name ${this.props.className || ''}`.trim()
+    const maxFirst = this.state.firstInitialOnly ? '1' : '100'
+    const maxMiddle = this.state.middleInitialOnly ? '1' : '100'
+    const maxLast = this.state.lastInitialOnly ? '1' : '100'
+
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
@@ -181,21 +155,23 @@ export default class Name extends ValidationElement {
                 ref="first"
                 label={i18n.t(`${prefix}.label.first`)}
                 pattern="^[a-zA-Z\-\.' ]*$"
-                maxlength={this.state.firstInitialOnly ? '1' : '100'}
+                maxlength={maxFirst}
                 className="first"
                 value={this.state.first}
-                onChange={this.handleChange}
+                onUpdate={this.updateFirst}
                 onError={this.handleErrorFirst}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
           <div className="flags">
             <Checkbox name="firstInitialOnly"
+                      ref="firstInitialOnly"
                       label={i18n.t(`${prefix}.label.initialOnly`)}
+                      className="first-initial-only"
                       toggle="false"
-                      value="firstInitial"
+                      value={this.state.firstInitialOnly}
                       checked={this.state.firstInitialOnly}
-                      onChange={this.handleChange}
+                      onUpdate={this.updateFirstInitial}
                       onError={this.handleErrorFirst}
                       />
           </div>
@@ -207,30 +183,34 @@ export default class Name extends ValidationElement {
                 ref="middle"
                 label={i18n.t(`${prefix}.label.middle`)}
                 minlength="0"
-                maxlength={this.state.middleInitialOnly ? '1' : '100'}
+                maxlength={maxMiddle}
                 className="middle"
                 value={this.state.middle}
                 disabled={this.state.noMiddleName}
-                onChange={this.handleChange}
+                onUpdate={this.updateMiddle}
                 onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
           <div className="middle-options flags">
             <Checkbox name="noMiddleName"
+                      ref="noMiddleName"
                       label={i18n.t(`${prefix}.label.noMiddle`)}
+                      className="middle-none"
                       toggle="false"
-                      value="noMiddleName"
+                      value={this.state.noMiddleName}
                       checked={this.state.noMiddleName}
-                      onChange={this.handleChange}
+                      onUpdate={this.updateMiddleNone}
                       onError={this.handleErrorMiddle}
                       />
             <Checkbox name="middleInitialOnly"
+                      ref="middleInitialOnly"
                       label={i18n.t(`${prefix}.label.initialOnly`)}
+                      className="middle-initial-only"
                       toggle="false"
-                      value="middleInitialOnly"
+                      value={this.state.middleInitialOnly}
                       checked={this.state.middleInitialOnly}
-                      onChange={this.handleChange}
+                      onUpdate={this.updateMiddleInitial}
                       onError={this.handleErrorMiddle}
                       />
           </div>
@@ -241,22 +221,24 @@ export default class Name extends ValidationElement {
           <Text name="last"
                 ref="last"
                 label={i18n.t(`${prefix}.label.last`)}
-                maxlength={this.state.lastInitialOnly ? '1' : '100'}
+                maxlength={maxLast}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
                 value={this.state.last}
-                onChange={this.handleChange}
+                onUpdate={this.updateLast}
                 onError={this.handleErrorLast}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 />
           <div className="flags">
             <Checkbox name="lastInitialOnly"
+                      ref="lastInitialOnly"
                       label={i18n.t(`${prefix}.label.initialOnly`)}
+                      className="last-initial-only"
                       toggle="false"
-                      value="lastInitial"
+                      value={this.state.lastInitialOnly}
                       checked={this.state.lastInitialOnly}
-                      onChange={this.handleChange}
+                      onUpdate={this.updateLastInitial}
                       onError={this.handleErrorLast}
                       />
           </div>
@@ -269,104 +251,117 @@ export default class Name extends ValidationElement {
           <RadioGroup className="option-list suffix" selectedValue={this.state.suffix}>
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.jr`)}
+                   className="suffix-jr"
                    value="Jr"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.sr`)}
+                   className="suffix-sr"
                    value="Sr"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.i`)}
+                   className="suffix-i"
                    value="I"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.ii`)}
+                   className="suffix-ii"
                    value="II"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.iii`)}
+                   className="suffix-iii"
                    value="III"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.iv`)}
+                   className="suffix-iv"
                    value="IV"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.v`)}
+                   className="suffix-v"
                    value="V"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.vi`)}
+                   className="suffix-vi"
                    value="VI"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.vii`)}
+                   className="suffix-vii"
                    value="VII"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.viii`)}
+                   className="suffix-viii"
                    value="VIII"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.ix`)}
+                   className="suffix-ix"
                    value="IX"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.x`)}
+                   className="suffix-x"
                    value="X"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
                    />
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.other`)}
+                   className="suffix-more"
                    value="Other"
-                   onChange={this.handleChange}
+                   onUpdate={this.updateSuffix}
                    onError={this.handleErrorSuffix}
                    onFocus={this.props.onFocus}
                    onBlur={this.props.onBlur}
@@ -378,7 +373,7 @@ export default class Name extends ValidationElement {
                   maxlength="100"
                   className="suffix-other"
                   value={this.state.suffixOther}
-                  onChange={this.handleChange}
+                  onUpdate={this.updateSuffixOther}
                   onError={this.handleErrorSuffix}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}

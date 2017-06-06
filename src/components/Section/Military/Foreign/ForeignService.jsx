@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field } from '../../../Form'
+import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field, Country } from '../../../Form'
 import ForeignContact from './ForeignContact'
 import { DateSummary, NameSummary } from '../../../Summary'
 
@@ -199,14 +199,15 @@ export default class ForeignService extends ValidationElement {
                      />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.country')}>
-          <Text name="Country"
-                {...this.state.Country}
-                className="foreign-service-country"
-                maxlength="100"
-                onUpdate={this.updateCountry}
-                onError={this.props.onError}
-                />
+        <Field title={i18n.t('military.foreign.heading.country')}
+               adjustFor="country">
+          <Country name="Country"
+                   {...this.state.Country}
+                   className="foreign-service-country"
+                   maxlength="100"
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   />
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.rank')}>
