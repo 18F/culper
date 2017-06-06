@@ -127,8 +127,8 @@ class Foreign extends SectionElement {
                        showTop="true"
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
-                       next="substance/alcohol/negative"
-                       nextLabel={i18n.t('substance.destination.police.negative')}
+                       next="substance/drugs/usage"
+                       nextLabel={i18n.t('substance.destination.drugs.usage')}
                        >
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
