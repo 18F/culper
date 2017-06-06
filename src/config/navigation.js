@@ -120,7 +120,40 @@ const navigation = [
     url: 'substance',
     hidden: false,
     subsections: [
-      { hidden: true, name: 'Illegal use of drugs and drug activity', url: 'drugs' },
+      {
+        name: 'Illegal use of drugs and drug activity',
+        url: 'drugs',
+        subsections: [
+          {
+            name: 'Usage',
+            url: 'usage'
+          },
+          {
+            name: 'Purchase',
+            url: 'purchase'
+          },
+          {
+            name: 'Security clearance position',
+            url: 'clearance'
+          },
+          {
+            name: 'Public safety position',
+            url: 'publicsafety'
+          },
+          {
+            name: 'Misuse',
+            url: 'misuse'
+          },
+          {
+            name: 'Mandatory counseling or treatment',
+            url: 'ordered'
+          },
+          {
+            name: 'Voluntary counseling or treatment',
+            url: 'voluntary'
+          }
+        ]
+      },
       {
         name: 'Use of alcohol',
         url: 'alcohol',

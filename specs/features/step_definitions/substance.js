@@ -24,6 +24,20 @@ defineSupportCode(({Given, Then, When}) => {
         return completeAlcoholVoluntary(promise)
       case 'alcohol/additional':
         return completeAlcoholAdditional(promise)
+      case 'drugs/usage':
+        return completeDrugsUsage(promise)
+      case 'drugs/purchase':
+        return completeDrugsPurchase(promise)
+      case 'drugs/clearance':
+        return completeDrugsClearance(promise)
+      case 'drugs/publicsafety':
+        return completeDrugsPublicSafety(promise)
+      case 'drugs/misuse':
+        return completeDrugsMisuse(promise)
+      case 'drugs/ordered':
+        return completeDrugsOrderedTreatment(promise)
+      case 'drugs/voluntary':
+        return completeDrugsVoluntaryTreatment(promise)
       default:
         return promise
     }
@@ -82,6 +96,92 @@ const completeAlcoholAdditional = (promise) => {
     .then(() => { return setOption('.received-counselings .completed-treatment .yes') })
     .then(() => { return setText('.received-counselings .no-completed-treatment textarea', 'Stuff') })
 }
+
+const completeDrugsUsage = (promise) => {
+  return promise
+    .then(() => { return setOption('.used-drugs .yes') })
+    .then(() => { return setOption('.drug-type-use .cocaine') })
+    .then(() => { return setDate('.first-use', '1', '1', '2010') })
+    .then(() => { return setDate('.recent-use', '1', '1', '2010') })
+    .then(() => { return setText('.nature-of-use textarea', 'Nature of use') })
+    .then(() => { return setOption('.use-while-employed .yes') })
+    .then(() => { return setOption('.use-with-clearance .yes') })
+    .then(() => { return setOption('.use-in-future .yes') })
+    .then(() => { return setText('.explanation textarea', 'The explanation') })
+}
+
+const completeDrugsPurchase = (promise) => {
+  return promise
+    .then(() => { return setOption('.involved .yes') })
+    .then(() => { return setOption('.drug-type-involvement .cocaine') })
+    .then(() => { return setDate('.first-involvement', '1', '1', '2010') })
+    .then(() => { return setDate('.recent-involvement', '1', '1', '2012') })
+    .then(() => { return setText('.nature-of-involvement textarea', 'Nature of use') })
+    .then(() => { return setText('.reasons textarea', 'The reason') })
+    .then(() => { return setOption('.involvement-while-employed .yes') })
+    .then(() => { return setOption('.involvement-with-clearance .yes') })
+    .then(() => { return setOption('.involvement-in-future .yes') })
+    .then(() => { return setText('.explanation textarea', 'The explanation') })
+}
+
+const completeDrugsClearance = (promise) => {
+  return promise
+    .then(() => { return setOption('.used-drugs .yes') })
+    .then(() => { return setText('.description textarea', 'The description') })
+    .then(() => { return setDate('.involvement-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.involvement-dates .to', '1', '1', '2012') })
+    .then(() => { return setText('.estimated-use input', 'Estimated use') })
+}
+
+const completeDrugsPublicSafety = (promise) => {
+  return promise
+    .then(() => { return setOption('.used-drugs .yes') })
+    .then(() => { return setText('.description textarea', 'The description') })
+    .then(() => { return setDate('.involvement-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.involvement-dates .to', '1', '1', '2012') })
+    .then(() => { return setText('.estimated-use input', 'Estimated use') })
+}
+
+const completeDrugsMisuse = (promise) => {
+  return promise
+    .then(() => { return setOption('.misused .yes') })
+    .then(() => { return setText('.prescription-name input', 'The prescription') })
+    .then(() => { return setDate('.involvement-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.involvement-dates .to', '1', '1', '2012') })
+    .then(() => { return setText('.reason textarea', 'The reason') })
+    .then(() => { return setOption('.use-while-employed .yes') })
+    .then(() => { return setOption('.use-with-clearance .yes') })
+}
+
+const completeDrugsOrderedTreatment = (promise) => {
+  return promise
+    .then(() => { return setOption('.treatment-ordered .yes') })
+    .then(() => { return setOption('.ordered-by .employer') })
+    .then(() => { return setText('.explanation textarea', 'The explanation') })
+    .then(() => { return setOption('.action-taken .yes') })
+    .then(() => { return setOption('.drug-type-ordered .cocaine') })
+    .then(() => { return setText('.treatment-provider input', 'Provider, The') })
+    .then(() => { return setDomesticAddress('.treatment-provider-address', '123', 'Arlington', 'VA', '22202') })
+    .then(() => { return setDomesticTelephone('.treatment-provider-telephone .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setDate('.treatment-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.treatment-dates .to', '1', '1', '2012') })
+    .then(() => { return setOption('.treatment-completed .no') })
+    .then(() => { return setText('.no-treatment-explanation textarea', 'No treatment explanation') })
+}
+
+const completeDrugsVoluntaryTreatment = (promise) => {
+  return promise
+    .then(() => { return setOption('.treatment-voluntary .yes') })
+    .then(() => { return setOption('.drug-type-voluntary .cocaine') })
+    .then(() => { return setText('.treatment-provider input', 'Provider, The') })
+    .then(() => { return setDomesticAddress('.treatment-provider-address', '123', 'Arlington', 'VA', '22202') })
+    .then(() => { return setDomesticTelephone('.treatment-provider-telephone .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setDate('.treatment-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.treatment-dates .to', '1', '1', '2012') })
+    .then(() => { return setOption('.treatment-completed .no') })
+    .then(() => { return setText('.no-treatment-explanation textarea', 'No treatment explanation') })
+}
+
 
 const filenum = () => {
   const size = 4
