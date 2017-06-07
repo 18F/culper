@@ -2,20 +2,12 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
-export const trimLeadingZero = (num) => {
-  if (isNaN(num) || num === '') {
-    return ''
-  }
-
-  return '' + parseInt(`0${num}`, 10)
-}
-
 export default class Number extends ValidationElement {
   constructor (props) {
     super(props)
 
     this.state = {
-      value: trimLeadingZero(props.value),
+      value: isNaN(props.value) ? '' : props.value,
       max: props.max
     }
 
@@ -28,7 +20,7 @@ export default class Number extends ValidationElement {
     }
 
     const old = this.state.max
-    this.setState({ max: next.max, value: trimLeadingZero(next.value) }, () => {
+    this.setState({ max: next.max, value: next.value }, () => {
       if (old !== next.max) {
         this.handleValidation(
           {
@@ -53,7 +45,7 @@ export default class Number extends ValidationElement {
       value = value.replace(/\D/g, '')
     }
 
-    this.setState({ value: trimLeadingZero(value) }, () => {
+    this.setState({ value: value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
         this.props.onUpdate({
