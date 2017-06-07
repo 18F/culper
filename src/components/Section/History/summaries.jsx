@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { gaps } from './dateranges'
+import { gaps, gaps2 } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
@@ -278,11 +278,11 @@ export const InjectGaps = (list = [], start) => {
         .filter(item => { return item.Item && item.Item.Dates })
         .map(item => {
           return {
-            from: { date: new Date(item.Item.Dates.from.date) },
-            to: { date: new Date(item.Item.Dates.to.date) }
+            from: new Date(item.Item.Dates.from.date),
+            to: new Date(item.Item.Dates.to.date)
           }
         })
-  let holes = gaps(ranges, start)
+  let holes = gaps2(ranges, start)
 
   const equalDates = (first, second) => {
     return first.toDateString() === second.toDateString()
@@ -297,24 +297,30 @@ export const InjectGaps = (list = [], start) => {
       const gap = holes[i]
       console.log('gap', gap)
 
-      if (equalDates(gap.to.date, item.Item.Dates.from.date)) {
+      if (equalDates(gap.to, item.Item.Dates.from.date)) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',
           uuid: newGuid(),
           open: false,
           Item: {
-            Dates: g
+            Dates: {
+              from: { date: g.from },
+              to: { date: g.to }
+            }
           }
         })
-      } else if (equalDates(gap.from.date, item.Item.Dates.to.date)) {
+      } else if (equalDates(gap.from, item.Item.Dates.to.date)) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',
           uuid: newGuid(),
           open: false,
           Item: {
-            Dates: g
+            Dates: {
+              from: { date: g.from },
+              to: { date: g.to }
+            }
           }
         })
       }
