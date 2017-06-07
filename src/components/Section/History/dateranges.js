@@ -153,12 +153,9 @@ export const endOfMonth = (date) => {
     return null
   }
 
-  // const days = daysInMonth(date.getMonth() + 1, date.getFullYear())
-  // return new Date(date.getFullYear(), date.getMonth(), days + 1)
-
-  let fuck = new Date(date)
-  fuck.setDate(daysInMonth(fuck.getMonth() + 1, fuck.getFullYear()))
-  return fuck
+  let proposed = new Date(date)
+  proposed.setDate(daysInMonth(proposed.getMonth() + 1, proposed.getFullYear()))
+  return proposed
 }
 
 /**
