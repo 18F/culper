@@ -38,6 +38,7 @@ class Military extends SectionElement {
   }
 
   render () {
+    const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
@@ -79,7 +80,7 @@ class Military extends SectionElement {
                      onError={this.handleError}
                      />
 
-            <Show when={!hideDisciplinaryProcedures(this.props.Application)}>
+            <Show when={showDisciplinary}>
               <hr/>
               <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
               {i18n.m('military.disciplinary.para.info')}
@@ -121,8 +122,8 @@ class Military extends SectionElement {
           <SectionView name="history"
                        back="military/selective"
                        backLabel={i18n.t('military.destination.selective')}
-                       next="military/disciplinary"
-                       nextLabel={i18n.t('military.destination.disciplinary')}>
+                       next={showDisciplinary ? 'military/disciplinary' : 'military/foreign'}
+                       nextLabel={showDisciplinary ? i18n.t('military.destination.disciplinary') : i18n.t('military.destination.foreign')}>
             <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
@@ -148,8 +149,8 @@ class Military extends SectionElement {
           </SectionView>
 
           <SectionView name="foreign"
-                       back="military/disciplinary"
-                       backLabel={i18n.t('military.destination.disciplinary')}
+                       back={showDisciplinary ? 'military/disciplinary' : 'military/history'}
+                       backLabel={showDisciplinary ? i18n.t('military.destination.disciplinary') : i18n.t('military.destination.history')}
                        next="military/review"
                        nextLabel={i18n.t('military.destination.review')}>
             <h2>{i18n.t('military.foreign.heading.title')}</h2>
