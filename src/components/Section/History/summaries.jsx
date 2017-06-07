@@ -276,8 +276,17 @@ export const InjectGaps = (list = [], start) => {
   // Find all our "holes" for this type
   const ranges = list
         .filter(item => { return item.Item && item.Item.Dates })
-        .map(item => { return item.Item.Dates })
+        .map(item => {
+          return {
+            from: { date: new Date(item.Item.Dates.from.date) },
+            to: { date: new Date(item.Item.Dates.to.date) }
+          }
+        })
   let holes = gaps(ranges, start)
+
+  const equalDates = (first, second) => {
+    return first.toDateString() === second.toDateString()
+  }
 
   for (const item of list) {
     if (!item.Item || !item.Item.Dates) {
@@ -286,8 +295,9 @@ export const InjectGaps = (list = [], start) => {
 
     for (let i = holes.length - 1; i > -1; i--) {
       const gap = holes[i]
+      console.log('gap', gap)
 
-      if (gap.to.date === item.Item.Dates.from.date) {
+      if (equalDates(gap.to.date, item.Item.Dates.from.date)) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',
@@ -297,7 +307,7 @@ export const InjectGaps = (list = [], start) => {
             Dates: g
           }
         })
-      } else if (gap.from.date === item.Item.Dates.to.date) {
+      } else if (equalDates(gap.from.date, item.Item.Dates.to.date)) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',

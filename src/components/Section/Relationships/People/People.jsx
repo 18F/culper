@@ -83,7 +83,7 @@ export default class People extends SubsectionElement {
       }
     })
 
-    this.update('List', InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort))
+    this.update('List', this.inject(items).sort(this.sort))
   }
 
   customSummary (item, index, initial, callback, toggle, openText, remove, byline) {

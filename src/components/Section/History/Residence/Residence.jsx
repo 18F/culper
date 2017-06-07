@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { ResidenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
+import { newGuid } from '../../../Form/ValidationElement'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
 import { InjectGaps, ResidenceCustomSummary, ResidenceCaption } from '../summaries'
@@ -57,7 +58,7 @@ export default class Residence extends SubsectionElement {
   fillGap (dates) {
     let items = [...this.props.value]
     items.push({
-      uuid: super.guid(),
+      uuid: newGuid(),
       open: true,
       Item: {
         Dates: {
@@ -68,7 +69,10 @@ export default class Residence extends SubsectionElement {
       }
     })
 
-    this.props.onUpdate(InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort))
+    this.props.onUpdate({
+      items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+      branch: ''
+    })
   }
 
   inject (items) {

@@ -4,6 +4,7 @@ import { EmploymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
+import { newGuid } from '../../../Form/ValidationElement'
 import { today, daysAgo } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary, EmploymentCaption } from '../summaries'
 import EmploymentItem from './EmploymentItem'
@@ -40,7 +41,7 @@ export default class Employment extends SubsectionElement {
   fillGap (dates) {
     let items = [...this.props.value]
     items.push({
-      uuid: super.guid(),
+      uuid: newGuid(),
       open: true,
       Item: {
         Dates: {
@@ -51,7 +52,10 @@ export default class Employment extends SubsectionElement {
       }
     })
 
-    this.props.onUpdate(InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort))
+    this.props.onUpdate({
+      items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+      branch: ''
+    })
   }
 
   customEmploymentDetails (item, index, initial, callback) {

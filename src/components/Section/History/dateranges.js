@@ -148,6 +148,19 @@ export const validDate = (month, day, year) => {
   return (y > 1000 && y < 10000) && (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
 }
 
+export const endOfMonth = (date) => {
+  if (!date) {
+    return null
+  }
+
+  // const days = daysInMonth(date.getMonth() + 1, date.getFullYear())
+  // return new Date(date.getFullYear(), date.getMonth(), days + 1)
+
+  let fuck = new Date(date)
+  fuck.setDate(daysInMonth(fuck.getMonth() + 1, fuck.getFullYear()))
+  return fuck
+}
+
 /**
  * Find the gaps in the timeline
  */
@@ -157,14 +170,6 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
   const length = ranges.length - 1
 
   // Set the day to the last of the month
-  const endOfMonth = (date) => {
-    if (!date) {
-      return null
-    }
-
-    date.setDate(daysInMonth(date.getMonth() + 1, date.getFullYear()))
-    return date
-  }
   start = endOfMonth(start)
 
   ranges.sort(rangeSorter).forEach((range, i) => {
@@ -173,14 +178,14 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     }
 
     // Finds the gaps from the past to the present
-    const stop = range.from.date
+    const stop = new Date(range.from.date)
     if (stop > start && daysBetween(start, stop) > buffer) {
       holes.push({
         from: {
           date: start
         },
         to: {
-          date: stop
+          date: range.from.date
         }
       })
     }
@@ -192,7 +197,7 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {
       holes.push({
         from: {
-          date: start
+          date: range.to.date
         },
         to: {
           date: fullStop
