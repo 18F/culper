@@ -6,15 +6,6 @@ import Dropdown from '../Dropdown'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
-export const trimLeadingZero = (num) => {
-  if (isNaN(num)) {
-    return num
-  }
-
-  const i = parseInt(`0${num}`, 10)
-  return i === 0 ? '' : '' + i
-}
-
 export const datePart = (part, date) => {
   if (!date) {
     return ''
@@ -59,9 +50,9 @@ export default class DateControl extends ValidationElement {
       error: props.error,
       valid: props.valid,
       maxDate: props.maxDate,
-      month: trimLeadingZero(props.month) || datePart('m', props.value),
-      day: trimLeadingZero(props.day) || props.hideDay ? 1 : datePart('d', props.value),
-      year: trimLeadingZero(props.year) || datePart('y', props.value),
+      month: props.month || datePart('m', props.value),
+      day: props.day || props.hideDay ? 1 : datePart('d', props.value),
+      year: props.year || datePart('y', props.value),
       foci: [false, false, false],
       validity: [null, null, null],
       errorCodes: []
@@ -126,11 +117,11 @@ export default class DateControl extends ValidationElement {
     const name = target.name || target.id || ''
 
     if (name.indexOf('month') !== -1) {
-      month = trimLeadingZero(event.target.value)
+      month = event.target.value
     } else if (name.indexOf('day') !== -1) {
-      day = trimLeadingZero(event.target.value)
+      day = event.target.value
     } else if (name.indexOf('year') !== -1) {
-      year = trimLeadingZero(event.target.value)
+      year = event.target.value
     } else if (name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
@@ -312,6 +303,15 @@ export default class DateControl extends ValidationElement {
               <option key="jul" value="7">July</option>
               <option key="aug" value="8">August</option>
               <option key="sep" value="9">September</option>
+              <option key="ja0" value="01">January</option>
+              <option key="fe0" value="02">February</option>
+              <option key="ma0" value="03">March</option>
+              <option key="ap0" value="04">April</option>
+              <option key="ma0" value="05">May</option>
+              <option key="ju0" value="06">June</option>
+              <option key="ju0" value="07">July</option>
+              <option key="au0" value="08">August</option>
+              <option key="se0" value="09">September</option>
               <option key="oct" value="10">October</option>
               <option key="nov" value="11">November</option>
               <option key="dec" value="12">December</option>
@@ -350,7 +350,7 @@ export default class DateControl extends ValidationElement {
                     disabled={this.state.disabled}
                     min="1000"
                     max={this.props.maxDate && this.props.maxDate.getFullYear()}
-                    maxlength={this.props.maxDate && `${('' + this.props.maxDate.getFullYear()).length}`}
+                    maxlength="4"
                     pattern={this.props.pattern}
                     readonly={this.props.readonly}
                     step="1"
