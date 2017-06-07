@@ -84,7 +84,7 @@ class Navigation extends React.Component {
       return (
         <div key={section.name} className="section">
           <span className="title">
-            <Link to={url} className={sectionClass} onClick={this.blah}>
+            <Link to={url} className={sectionClass}>
               <span className="number">{sectionNum}</span>
               <span className="name">{section.name}</span>
               <span className="eapp-status-icon-valid"></span>
