@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Number, { trimLeadingZero } from './Number'
+import Number from './Number'
 
 describe('The number component', () => {
   it('default value is not numeric displays as empty', () => {
@@ -54,18 +54,5 @@ describe('The number component', () => {
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('change', { target: { value: '100a' } })
     expect(component.find({ type: 'text', value: expected.value }).length).toEqual(1)
-  })
-
-  it('trims zeroes appropriately', () => {
-    const tests = [
-      { given: '0', expected: '0' },
-      { given: '', expected: '' },
-      { given: '100', expected: '100' },
-      { given: '010', expected: '10' }
-    ]
-
-    tests.forEach(test => {
-      expect(trimLeadingZero(test.given)).toBe(test.expected)
-    })
   })
 })
