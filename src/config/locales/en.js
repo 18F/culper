@@ -861,7 +861,7 @@ const en = {
         eye: 'Eye color',
         height: 'Height',
         weight: 'Weight',
-        sex: 'Select your sex at the time of birth',
+        sex: 'Select your sex',
         comments: 'Add your comment about sex'
       },
       help: {
@@ -903,8 +903,8 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'Please select the sex at your time of birth.',
-          note: 'Note: If additional information is appropriate please use "Add a comment" above to detail it.'
+          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          note: ''
         }
       },
       label: {

@@ -1,26 +1,28 @@
 import AddressValidator from './address'
-import { validGenericTextfield, validGenericMonthYear } from './helpers'
+import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
 
 export default class DomesticViolence {
-  constructor (state = [], props = {}) {
-    this.list = state
+  constructor (state = {}, props = {}) {
+    this.list = state.List || []
   }
 
   isValid () {
-    if (!this.list || !this.list.length) {
+    if (!this.list) {
       return false
     }
 
-    for (let order of this.list) {
-      if (order.Has === 'No') {
-        continue
-      }
-      if (!new DomesticViolenceItem(order.domestic).isValid()) {
-        return false
-      }
+    const branchValidator = new BranchCollection(this.list)
+    if (!branchValidator.validKeyValues()) {
+      return false
     }
 
-    return true
+    if (branchValidator.hasNo()) {
+      return true
+    }
+
+    return branchValidator.each(item => {
+      return new DomesticViolenceItem(item.domestic).isValid()
+    })
   }
 }
 
