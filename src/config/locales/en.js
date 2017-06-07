@@ -6478,7 +6478,6 @@ const en = {
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
         },
-        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.',
         or: 'or'
       },
       label: {
@@ -7188,7 +7187,7 @@ const en = {
           involvementWithClearance: 'Was your involvement while possessing a security clearance?',
           involvementInFuture: 'Do you intend to engage in this activity in the future?',
           reasons: 'Provide the reason(s) why you engaged in the activity.',
-          explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation'
+          explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation.'
         },
         help: {
           drugType: {
