@@ -280,7 +280,6 @@ export default class Dropdown extends ValidationElement {
     const inputProps = {
       value: value,
       className: this.inputClass(),
-      id: this.state.uid,
       name: this.props.name,
       placeholder: this.props.placeholder,
       disabled: this.props.disabled,
@@ -302,7 +301,8 @@ export default class Dropdown extends ValidationElement {
                htmlFor={this.state.uid}>
           {this.props.label}
         </label>
-        <Autosuggest suggestions={this.state.suggestions}
+        <Autosuggest id={this.state.uuid}
+                     suggestions={this.state.suggestions}
                      onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                      onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                      onSuggestionSelected={this.onSuggestionSelected}

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link, hashHistory } from 'react-router'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
-import { navigation } from '../../config'
+import { navigation, env } from '../../config'
 
 class Navigation extends React.Component {
   /**
@@ -32,7 +32,7 @@ class Navigation extends React.Component {
       return null
     }
 
-    const location = hashHistory.getCurrentLocation()
+    const location = env.History().getCurrentLocation()
     const pathname = location.pathname
 
     return section.subsections.map(subsection => {
@@ -65,7 +65,7 @@ class Navigation extends React.Component {
   }
 
   render () {
-    const location = hashHistory.getCurrentLocation()
+    const location = env.History().getCurrentLocation()
     const pathname = location.pathname
     let sectionNum = 0
 

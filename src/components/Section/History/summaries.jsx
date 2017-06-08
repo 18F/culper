@@ -43,7 +43,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
 export const ResidenceCaption = (props) => {
   return (
     <span>
-      <Svg src="img/residence-house.svg" />
+      <Svg src="/img/residence-house.svg" />
       {i18n.t('history.residence.collection.caption')}
     </span>
   )
@@ -56,7 +56,7 @@ export const ResidenceSummary = (item, errors, open) => {
   const address = AddressSummary(item.Address, i18n.t('history.residence.collection.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg src="img/exclamation-point.svg" />
+        ? <Svg src="/img/exclamation-point.svg" />
         : null
 
   return (
@@ -111,7 +111,7 @@ export const ResidenceCustomSummary = (item, index, initial, callback, toggle, o
 export const EmploymentCaption = (props) => {
   return (
     <span>
-      <Svg src="img/employer-briefcase.svg" />
+      <Svg src="/img/employer-briefcase.svg" />
       {i18n.t('history.employment.default.collection.caption')}
     </span>
   )
@@ -126,7 +126,7 @@ export const EmploymentSummary = (item, errors, open) => {
         : i18n.t('history.employment.default.collection.summary.unknown')
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg src="img/exclamation-point.svg" />
+        ? <Svg src="/img/exclamation-point.svg" />
         : null
 
   return (
@@ -187,7 +187,7 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
 export const EducationCaption = (props) => {
   return (
     <span>
-      <Svg src="img/school-cap.svg" />
+      <Svg src="/img/school-cap.svg" />
       {i18n.t('history.education.collection.caption')}
     </span>
   )
@@ -200,7 +200,7 @@ export const EducationSummary = (item, errors, open) => {
   const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg src="img/exclamation-point.svg" />
+        ? <Svg src="/img/exclamation-point.svg" />
         : null
 
   return (

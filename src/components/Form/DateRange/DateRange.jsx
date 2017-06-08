@@ -147,7 +147,7 @@ export default class DateRange extends ValidationElement {
                        />
         </div>
         <div className="arrow">
-          <img src="../img/date-down-arrow.svg" />
+          <img src="../img/date-down-arrow.svg" alt="Range spanning from one date to another" />
         </div>
         <div className="usa-grid to-grid">
           <div className="from-label">

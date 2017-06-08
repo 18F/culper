@@ -1,7 +1,7 @@
 import React from 'react'
-import { PUSH_STATE, historyMiddleware, push } from './history'
-import { hashHistory } from 'react-router'
 import { mount } from 'enzyme'
+import { PUSH_STATE, historyMiddleware, push } from './history'
+import { env } from '../config'
 
 describe('history middleware', function () {
   const dispatch = () => {}
@@ -34,7 +34,7 @@ describe('history middleware', function () {
       to: '/foo'
     }
     actionHandler(action)
-    expect(hashHistory.getCurrentLocation().pathname).toEqual('/foo')
+    expect(env.History().getCurrentLocation().pathname).toEqual('/foo')
   })
 
   it('should push new state into history and scroll to', function () {
@@ -47,6 +47,6 @@ describe('history middleware', function () {
       scrollTo: 'gohere'
     }
     actionHandler(action)
-    expect(hashHistory.getCurrentLocation().pathname).toEqual('/foo')
+    expect(env.History().getCurrentLocation().pathname).toEqual('/foo')
   })
 })

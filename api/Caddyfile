@@ -5,9 +5,25 @@
     errors stdout
 
     proxy /api http://api:3000 {
-          without /api
-          transparent
+        without /api
+        transparent
     }
 
     browse /srv
+    index index.html
+
+    rewrite {
+        if {path} has /eqip.js
+        to /eqip.js
+    }
+
+    rewrite {
+        if {path} has /eqip.css
+        to /css/eqip.css
+    }
+
+    rewrite {
+        if {file} not_match .*\.(svg|png|gif|jpg|jpeg)
+        to /index.html
+    }
 }
