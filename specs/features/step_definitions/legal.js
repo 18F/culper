@@ -25,6 +25,8 @@ defineSupportCode(({Given, Then, When}) => {
       return completeInvestigationsRevoked(promise)
     case 'investigations/debarred':
       return completeInvestigationsDebarred(promise)
+    case 'court':
+      return completeCourt(promise)
     default:
       return promise
     }
@@ -100,6 +102,21 @@ const completeInvestigationsDebarred = (promise) => {
     .then(() => { return setDate('.legal-investigations-debarred-date', '1', '1', '2010') })
     .then(() => { return setText('.legal-investigations-debarred-explanation textarea', 'This is the explanation') })
     .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeCourt = (promise) => {
+  return promise
+    .then(() => { return setOption('.has-court-actions .branch .yes') })
+    .then(() => { return setDate('.civil-action-date', '1', '1', '2010') })
+    .then(() => { return setText('.court-name input', 'The Court of Courts') })
+    // Address
+    .then(() => { return setText('.court-address .mailing input', '1234 Some Rd') })
+    .then(() => { return setText('.court-address .city input', 'Arlington') })
+    .then(() => { return setText('.court-address .state input', 'VA') })
+
+    .then(() => { return setText('.nature-of-action textarea', 'The nature of the action') })
+    .then(() => { return setText('.results-of-action textarea', 'The results of the action') })
+    .then(() => { return setText('.principal-party-names textarea', 'John Doe and Jane Doe') })
 }
 
 let counter = 0

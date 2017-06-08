@@ -29,5 +29,13 @@ Feature: Legal
     And I log in
     And I fill in the legal investigations/debarred section
     And I click next
+    Then I should be in the legal court section
+    Then I log out
+
+  Scenario: Complete the non-criminal court actions section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal court section
+    And I click next
     Then I should be in the legal review section
     Then I log out
