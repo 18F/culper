@@ -113,7 +113,6 @@ const completeCourt = (promise) => {
     .then(() => { return setText('.court-address .mailing input', '1234 Some Rd') })
     .then(() => { return setText('.court-address .city input', 'Arlington') })
     .then(() => { return setText('.court-address .state input', 'VA') })
-
     .then(() => { return setText('.nature-of-action textarea', 'The nature of the action') })
     .then(() => { return setText('.results-of-action textarea', 'The results of the action') })
     .then(() => { return setText('.principal-party-names textarea', 'John Doe and Jane Doe') })
