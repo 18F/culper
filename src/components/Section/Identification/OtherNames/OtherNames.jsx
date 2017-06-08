@@ -70,6 +70,7 @@ export default class OtherNames extends SubsectionElement {
         <Show when={this.state.HasOtherNames === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
+                     defaultState={this.props.defaultState}
                      onUpdate={this.myDispatch}
                      onError={this.handleError}
                      summary={this.summary}
@@ -123,5 +124,6 @@ OtherNames.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new OtherNamesValidator(state, props).isValid()
-  }
+  },
+  defaultState: true
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import DateControl, { trimLeadingZero, datePart } from './DateControl'
+import DateControl, { datePart } from './DateControl'
 
 describe('The date component', () => {
   const children = 4
@@ -222,23 +222,6 @@ describe('The date component', () => {
     const component = mount(<DateControl {...expected} />)
     component.find('input[type="checkbox"]').simulate('change')
     expect(updates).toBe(1)
-  })
-
-  it('trims leading zeros', () => {
-    const tests = [
-      {
-        value: '01',
-        expected: '1'
-      },
-      {
-        value: '1f',
-        expected: '1f'
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(trimLeadingZero(test.value)).toBe(test.expected)
-    })
   })
 
   it('parses date part', () => {
