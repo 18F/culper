@@ -311,6 +311,7 @@ class Legal extends SectionElement {
             <hr />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
+                          defaultState={false}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateUnauthorized}
                           onError={this.handleError}
@@ -319,6 +320,7 @@ class Legal extends SectionElement {
             <hr />
             <Manipulating name="manipulating"
                           {...this.props.Manipulating}
+                          defaultState={false}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateManipulating}
                           onError={this.handleError}
@@ -327,6 +329,7 @@ class Legal extends SectionElement {
             <hr />
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateUnlawful}
                       onError={this.handleError}
