@@ -52,7 +52,7 @@ export default class Sex extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
-        <div className="options-list eapp-extend-labels">
+        <div className="blocks">
           <Radio name={this.props.name}
                  label={i18n.t('identification.traits.sex.female')}
                  placeholder={this.props.placeholder}
