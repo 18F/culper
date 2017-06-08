@@ -1,2 +1,3 @@
 import Unauthorized from './Unauthorized'
-export { Unauthorized }
+import Manipulating from './Manipulating'
+export { Unauthorized, Manipulating }

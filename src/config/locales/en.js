@@ -6899,6 +6899,45 @@ const en = {
             note: ''
           }
         }
+      },
+
+      manipulating: {
+        heading: {
+          title: 'In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        collection: {
+          description: 'Summary of modified, destroyed, manipulated, or denied access',
+          item: 'Incident',
+          unknown: 'Provide details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another incident'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
       }
     }
 

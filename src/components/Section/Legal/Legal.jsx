@@ -9,7 +9,7 @@ import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
-import { Unauthorized } from './Technology'
+import { Unauthorized, Manipulating } from './Technology'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -27,6 +27,7 @@ class Legal extends SectionElement {
     this.updateRevoked = this.updateRevoked.bind(this)
     this.updateDebarred = this.updateDebarred.bind(this)
     this.updateUnauthorized = this.updateUnauthorized.bind(this)
+    this.updateManipulating = this.updateManipulating.bind(this)
   }
 
   updatePolice (values) {
@@ -59,6 +60,10 @@ class Legal extends SectionElement {
 
   updateUnauthorized (values) {
     this.handleUpdate('Unauthorized', values)
+  }
+
+  updateManipulating (values) {
+    this.handleUpdate('Manipulating', values)
   }
 
   render () {
@@ -265,6 +270,12 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('legal.destination.technology.unauthorized')}
                        next="legal/technology/unlawful"
                        nextLabel={i18n.t('legal.destination.technology.unlawful')}>
+            <Manipulating name="manipulating"
+                          {...this.props.Manipulating}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateManipulating}
+                          onError={this.handleError}
+                          />
           </SectionView>
 
           <SectionView name="technology/unlawful"
@@ -296,6 +307,7 @@ function mapStateToProps (state) {
     Revoked: legal.Revoked || {},
     Debarred: legal.Debarred || {},
     Unauthorized: legal.Unauthorized || {},
+    Manipulating: legal.Manipulating || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }

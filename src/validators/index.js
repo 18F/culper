@@ -72,6 +72,7 @@ import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
 
 import LegalTechnologyUnauthorizedValidator from './legaltechnologyunauthorized'
+import LegalTechnologyManipulatingValidator from './legaltechnologymanipulating'
 
 export {
   AddressValidator,
@@ -151,5 +152,6 @@ export {
   LegalInvestigationsRevokedValidator,
   LegalInvestigationsDebarredValidator,
 
-  LegalTechnologyUnauthorizedValidator
+  LegalTechnologyUnauthorizedValidator,
+  LegalTechnologyManipulatingValidator
 }
