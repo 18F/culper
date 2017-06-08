@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { gaps } from './dateranges'
+import { gaps, gaps2 } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
@@ -276,8 +276,17 @@ export const InjectGaps = (list = [], start) => {
   // Find all our "holes" for this type
   const ranges = list
         .filter(item => { return item.Item && item.Item.Dates })
-        .map(item => { return item.Item.Dates })
-  let holes = gaps(ranges, start)
+        .map(item => {
+          return {
+            from: new Date(item.Item.Dates.from.date),
+            to: new Date(item.Item.Dates.to.date)
+          }
+        })
+  let holes = gaps2(ranges, start)
+
+  const equalDates = (first, second) => {
+    return first.toDateString() === second.toDateString()
+  }
 
   for (const item of list) {
     if (!item.Item || !item.Item.Dates) {
@@ -286,25 +295,32 @@ export const InjectGaps = (list = [], start) => {
 
     for (let i = holes.length - 1; i > -1; i--) {
       const gap = holes[i]
+      console.log('gap', gap)
 
-      if (gap.to.date === item.Item.Dates.from.date) {
+      if (equalDates(gap.to, item.Item.Dates.from.date)) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',
           uuid: newGuid(),
           open: false,
           Item: {
-            Dates: g
+            Dates: {
+              from: { date: g.from },
+              to: { date: g.to }
+            }
           }
         })
-      } else if (gap.from.date === item.Item.Dates.to.date) {
+      } else if (equalDates(gap.from, item.Item.Dates.to.date)) {
         let g = holes.splice(i, 1)[0]
         list.push({
           type: 'Gap',
           uuid: newGuid(),
           open: false,
           Item: {
-            Dates: g
+            Dates: {
+              from: { date: g.from },
+              to: { date: g.to }
+            }
           }
         })
       }

@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
+import { now } from '../../Section/History/dateranges'
 
 export default class DateRange extends ValidationElement {
   constructor (props) {
@@ -59,7 +60,6 @@ export default class DateRange extends ValidationElement {
 
     // If present is true then make the "to" date equal to today
     if (!this.state.present && futureState.present) {
-      let now = new Date()
       futureState.to = {}
       futureState.to.date = now
       futureState.to.year = now.getFullYear()
