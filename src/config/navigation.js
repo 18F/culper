@@ -193,7 +193,6 @@ const navigation = [
           { name: 'Domestic violence', url: 'domesticviolence' }
         ]
       },
-      { hidden: true, name: 'Involvement in non-criminal court actions', url: 'court' },
       {
         name: 'Investigations and clearance record',
         url: 'investigations',
@@ -203,6 +202,7 @@ const navigation = [
           { name: 'Debarment', url: 'debarred' }
         ]
       },
+      { name: 'Involvement in non-criminal court actions', url: 'court' },
       { hidden: true, name: 'Financial record', url: 'financial' },
       { hidden: true, name: 'Use of information technology systems', url: 'technology' },
       { hidden: true, name: 'Association record', url: 'associations' }

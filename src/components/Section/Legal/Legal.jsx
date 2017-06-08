@@ -9,6 +9,7 @@ import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
+import NonCriminalCourtActions from './NonCriminalCourtActions'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -25,6 +26,7 @@ class Legal extends SectionElement {
     this.updateHistory = this.updateHistory.bind(this)
     this.updateRevoked = this.updateRevoked.bind(this)
     this.updateDebarred = this.updateDebarred.bind(this)
+    this.updateNonCriminalCourtAction = this.updateNonCriminalCourtAction.bind(this)
   }
 
   updatePolice (values) {
@@ -53,6 +55,10 @@ class Legal extends SectionElement {
 
   updateDebarred (values) {
     this.handleUpdate('Debarred', values)
+  }
+
+  updateNonCriminalCourtAction (values) {
+    this.handleUpdate('NonCriminalCourtAction', values)
   }
 
   render () {
@@ -135,6 +141,13 @@ class Legal extends SectionElement {
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
+                      onError={this.handleError}
+                      />
+            <hr/>
+            <NonCriminalCourtActions name="nonCriminalCourtAction"
+                      {...this.props.NonCriminalCourtAction}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateNonCriminalCourtAction}
                       onError={this.handleError}
                       />
           </SectionView>
@@ -231,8 +244,8 @@ class Legal extends SectionElement {
           <SectionView name="investigations/debarred"
                        back="legal/investigations/revoked"
                        backLabel={i18n.t('legal.destination.investigations.revoked')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+                       next="legal/court"
+                       nextLabel={i18n.t('legal.destination.court')}>
             <Debarred name="debarred"
                       {...this.props.Debarred}
                       dispatch={this.props.dispatch}
@@ -240,6 +253,19 @@ class Legal extends SectionElement {
                       onError={this.handleError}
                       />
           </SectionView>
+          <SectionView name="court"
+                       back="legal/investigations/debarred"
+                       backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       next="legal/review"
+                       nextLabel={i18n.t('legal.destination.review')}>
+            <NonCriminalCourtActions name="nonCriminalCourtAction"
+                      {...this.props.NonCriminalCourtAction}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateNonCriminalCourtAction}
+                      onError={this.handleError}
+                      />
+          </SectionView>
+
         </SectionViews>
       </div>
     )
@@ -262,6 +288,7 @@ function mapStateToProps (state) {
     History: legal.History || {},
     Revoked: legal.Revoked || {},
     Debarred: legal.Debarred || {},
+    NonCriminalCourtAction: legal.NonCriminalCourtAction || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
