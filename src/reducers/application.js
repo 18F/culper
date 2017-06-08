@@ -5,7 +5,7 @@ import historyReducer from './history'
 const defaultState = {}
 
 // Defines the authentication sub-state for the application.
-const reducer = function (sectionName) {
+export const reducer = function (sectionName) {
   return function (state = defaultState, action) {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only
@@ -51,6 +51,7 @@ const errorReducer = function (sectionName) {
 
 // High level pre-defined sub-state tree
 export default combineReducers({
+  Settings: reducer('Settings'),
   Identification: reducer('Identification'),
   Financial: reducer('Financial'),
   Relationships: relationshipsReducer,

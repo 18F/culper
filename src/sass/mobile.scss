@@ -1,0 +1,106 @@
+.mobile-visible {
+  display: none !important;
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 850px) {
+  .mobile-visible {
+    display: block !important;
+    visibility: visible;
+  }
+
+  .mobile-hidden {
+    display: none !important;
+    visibility: hidden;
+  }
+
+  // General header information
+  .usa-header {
+    min-height: 5rem;
+
+    > .eapp-header {
+      display: block;
+      min-height: 5rem;
+
+      > .eapp-structure-row {
+        > .eapp-logo {
+          width: 100%;
+          height: 5.5rem;
+          display: inline-block;
+
+          > .eapp-logo-icon {
+            width: 3.5rem;
+            height: auto;
+            margin-left: 1rem;
+            vertical-align: text-bottom;
+          }
+
+          span {
+            margin-left: 1rem;
+          }
+
+          > .eapp-logo-text {
+            margin-top: 1rem;
+          }
+        }
+
+        > .eapp-title {
+          padding: 1rem;
+          display: block;
+          height: auto;
+
+          > .title {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Navigation
+  .eapp-structure-wrap > .eapp-structure-row > .eapp-navigation {
+    width: 100%;
+
+    .form-navigation {
+      margin: 0 1rem;
+    }
+  }
+
+  // Main content
+  .eapp-structure-wrap > .eapp-structure-row > .eapp-core {
+    display: block;
+    padding: 1rem !important;
+    width: 100%;
+
+    > .eapp-form {
+      max-width: initial;
+      min-width: initial;
+    }
+
+    .block > label {
+      width: 11rem;
+    }
+
+    .flags .block > label {
+      width: 100%;
+    }
+
+    .accordion {
+      padding: 0 0 5rem 1.2rem;
+    }
+
+    .btn-wrap {
+      .btn-cell {
+        width: 49%;
+
+        .icon {
+          padding-left: 0.5rem;
+        }
+      }
+
+      .btn-spacer {
+        width: 1%;
+      }
+    }
+  }
+}
