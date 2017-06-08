@@ -70,9 +70,9 @@ import DrugVoluntaryTreatmentsValidator from './drugvoluntarytreatments'
 import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
-
 import LegalTechnologyUnauthorizedValidator from './legaltechnologyunauthorized'
 import LegalTechnologyManipulatingValidator from './legaltechnologymanipulating'
+import LegalTechnologyUnlawfulValidator from './legaltechnologyunlawful'
 
 export {
   AddressValidator,
@@ -151,7 +151,7 @@ export {
   LegalInvestigationsHistoryValidator,
   LegalInvestigationsRevokedValidator,
   LegalInvestigationsDebarredValidator,
-
   LegalTechnologyUnauthorizedValidator,
-  LegalTechnologyManipulatingValidator
+  LegalTechnologyManipulatingValidator,
+  LegalTechnologyUnlawfulValidator
 }

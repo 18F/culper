@@ -1,3 +1,4 @@
 import Unauthorized from './Unauthorized'
 import Manipulating from './Manipulating'
-export { Unauthorized, Manipulating }
+import Unlawful from './Unlawful'
+export { Unauthorized, Manipulating, Unlawful }
