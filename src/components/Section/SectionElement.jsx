@@ -1,6 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
-import { updateApplication, reportErrors, reportCompletion } from '../../actions/ApplicationActions'
+import { updateApplication, reportErrors } from '../../actions/ApplicationActions'
 
 export default class SectionElement extends React.Component {
   constructor (props) {

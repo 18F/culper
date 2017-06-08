@@ -1,4 +1,7 @@
 import { hashHistory } from 'react-router'
+import { reducer } from '../reducers/application'
+import SectionConstants from '../actions/SectionConstants'
+import { updateApplication } from '../actions/ApplicationActions'
 
 export const findPosition = (el) => {
   let currentTop = 0
@@ -24,7 +27,16 @@ export const historyMiddleware = store => next => action => {
     if (action.scrollTo) {
       window.scroll(0, findPosition(document.getElementById(action.scrollTo)))
     }
-    return hashHistory.push(action.to)
+    hashHistory.push(action.to)
+  }
+
+  // Allow redux to continue the flow and executing the next middleware
+  next(action)
+}
+
+export const settingsMiddleware = store => next => action => {
+  if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
+    store.dispatch(updateApplication('Settings', 'mobileNavigation', false))
   }
 
   // Allow redux to continue the flow and executing the next middleware
