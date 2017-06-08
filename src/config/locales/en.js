@@ -6502,6 +6502,13 @@ const en = {
         notApplicable: 'Not applicable'
       },
       help: {
+        hasOffenses: {
+          title: 'Need help with answering these questions?',
+          message: [
+            'Exclude if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
+            'Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.'
+          ]
+        },
         summons: {
           title: 'Need help with a summons, citation, or ticket?',
           message: 'Answer "No" if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
@@ -6641,6 +6648,13 @@ const en = {
           title: 'Need help with awaiting trial explanation',
           message: 'Provide explanation',
           note: ''
+        },
+        hasOtherOffenses: {
+          title: 'Need help with answering these questions?',
+          message: [
+            'Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.',
+            'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.'
+          ]
         },
         otherConviction: {
           title: 'Need help with this conviction question?',
