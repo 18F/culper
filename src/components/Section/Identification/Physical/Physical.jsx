@@ -87,6 +87,8 @@ export default class Physical extends SubsectionElement {
                help="identification.traits.help.sex"
                adjustFor="big-buttons"
                shrink={true}
+               onUpdate={this.handleUpdate.bind(this, 'Comments')}
+               commentsValue={this.state.Comments}
                comments={true}>
           <Sex name="sex"
                value={this.props.Sex}
