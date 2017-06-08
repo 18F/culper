@@ -71,6 +71,8 @@ import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
 
+import LegalTechnologyUnauthorizedValidator from './legaltechnologyunauthorized'
+
 export {
   AddressValidator,
   BankruptcyValidator,
@@ -147,5 +149,7 @@ export {
   DrugVoluntaryTreatmentsValidator,
   LegalInvestigationsHistoryValidator,
   LegalInvestigationsRevokedValidator,
-  LegalInvestigationsDebarredValidator
+  LegalInvestigationsDebarredValidator,
+
+  LegalTechnologyUnauthorizedValidator
 }

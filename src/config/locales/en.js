@@ -6429,6 +6429,11 @@ const en = {
         revoked: 'Denied',
         debarred: 'Debarment'
       },
+      technology: {
+        unauthorized: 'Unauthorized access',
+        manipulating: 'Manipulating access',
+        unlawful: 'Unlawful use'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6848,7 +6853,55 @@ const en = {
           }
         }
       }
+    },
+
+    technology: {
+      unauthorized: {
+        heading: {
+          title: 'In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        para: {
+          intro: [
+            'We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.',
+            'As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.'
+          ]
+        },
+        collection: {
+          description: 'Summary of unauthorized access',
+          item: 'Access',
+          unknown: 'Provide unauthorized access details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another unauthorized access'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
+      }
     }
+
   },
   substance: {
     tour: {
