@@ -9,6 +9,7 @@ import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
+import { Unauthorized, Manipulating, Unlawful } from './Technology'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -25,6 +26,9 @@ class Legal extends SectionElement {
     this.updateHistory = this.updateHistory.bind(this)
     this.updateRevoked = this.updateRevoked.bind(this)
     this.updateDebarred = this.updateDebarred.bind(this)
+    this.updateUnauthorized = this.updateUnauthorized.bind(this)
+    this.updateManipulating = this.updateManipulating.bind(this)
+    this.updateUnlawful = this.updateUnlawful.bind(this)
   }
 
   updatePolice (values) {
@@ -55,6 +59,18 @@ class Legal extends SectionElement {
     this.handleUpdate('Debarred', values)
   }
 
+  updateUnauthorized (values) {
+    this.handleUpdate('Unauthorized', values)
+  }
+
+  updateManipulating (values) {
+    this.handleUpdate('Manipulating', values)
+  }
+
+  updateUnlawful (values) {
+    this.handleUpdate('Unlawful', values)
+  }
+
   render () {
     return (
       <div>
@@ -69,74 +85,6 @@ class Legal extends SectionElement {
                              />
               </div>
             </div>
-          </SectionView>
-
-          <SectionView name="review"
-                       title={i18n.t('review.title')}
-                       para={i18n.m('review.para')}
-                       showTop="true"
-                       back="legal/investigations/history"
-                       backLabel={i18n.t('legal.destination.investigations.history')}
-                       next="psychological/intro"
-                       nextLabel={i18n.t('psychological.destination.psychological')}>
-            <Field title={i18n.t('legal.police.heading.title')}
-                   titleSize="h2">
-              {i18n.m('legal.police.para.intro1')}
-              {i18n.m('legal.police.para.intro2')}
-              {i18n.m('legal.police.para.intro3')}
-            </Field>
-
-            <Offenses name="offenses"
-                      {...this.props.PoliceOffenses}
-                      defaultState={false}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.updatePoliceOffenses}
-                      onError={this.handleError}
-                      />
-
-            <hr/>
-            <OtherOffenses name="otheroffenses"
-                           {...this.props.PoliceOtherOffenses}
-                           defaultState={false}
-                           dispatch={this.props.dispatch}
-                           onUpdate={this.updatePoliceOtherOffenses}
-                           onError={this.handleError}
-                           />
-
-            <hr/>
-            <DomesticViolenceList name="domesticviolence"
-                                  {...this.props.PoliceDomesticViolence}
-                                  dispatch={this.props.dispatch}
-                                  onUpdate={this.updatePoliceDomesticViolence}
-                                  onError={this.handleError}
-                                  />
-
-            <hr/>
-            <History name="history"
-                     {...this.props.History}
-                     defaultState={false}
-                     dispatch={this.props.dispatch}
-                     onUpdate={this.updateInvestigationsHistory}
-                     onError={this.handleError}
-                     />
-
-            <hr/>
-            <Revoked name="revoked"
-                     {...this.props.Revoked}
-                     defaultState={false}
-                     dispatch={this.props.dispatch}
-                     onUpdate={this.updateRevoked}
-                     onError={this.handleError}
-                     />
-
-            <hr/>
-            <Debarred name="debarred"
-                      {...this.props.Debarred}
-                      defaultState={false}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.updateDebarred}
-                      onError={this.handleError}
-                      />
           </SectionView>
 
           <SectionView name="police"
@@ -231,8 +179,8 @@ class Legal extends SectionElement {
           <SectionView name="investigations/debarred"
                        back="legal/investigations/revoked"
                        backLabel={i18n.t('legal.destination.investigations.revoked')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+                       next="legal/technology/unauthorized"
+                       nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
             <Debarred name="debarred"
                       {...this.props.Debarred}
                       dispatch={this.props.dispatch}
@@ -240,6 +188,154 @@ class Legal extends SectionElement {
                       onError={this.handleError}
                       />
           </SectionView>
+
+          <SectionView name="technology"
+                       back="legal/investigations/debarred"
+                       backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       next="legal/technology/manipulating"
+                       nextLabel={i18n.t('legal.destination.technology.manipulating')}>
+            <Unauthorized name="unauthorized"
+                          {...this.props.Unauthorized}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateUnauthorized}
+                          onError={this.handleError}
+                          />
+          </SectionView>
+
+          <SectionView name="technology/unauthorized"
+                       back="legal/investigations/debarred"
+                       backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       next="legal/technology/manipulating"
+                       nextLabel={i18n.t('legal.destination.technology.manipulating')}>
+            <Unauthorized name="unauthorized"
+                          {...this.props.Unauthorized}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateUnauthorized}
+                          onError={this.handleError}
+                          />
+          </SectionView>
+
+          <SectionView name="technology/manipulating"
+                       back="legal/technology/unauthorized"
+                       backLabel={i18n.t('legal.destination.technology.unauthorized')}
+                       next="legal/technology/unlawful"
+                       nextLabel={i18n.t('legal.destination.technology.unlawful')}>
+            <Manipulating name="manipulating"
+                          {...this.props.Manipulating}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateManipulating}
+                          onError={this.handleError}
+                          />
+          </SectionView>
+
+          <SectionView name="technology/unlawful"
+                       back="legal/technology/manipulating"
+                       backLabel={i18n.t('legal.destination.technology.manipulating')}
+                       next="legal/review"
+                       nextLabel={i18n.t('legal.destination.review')}>
+            <Unlawful name="unlawful"
+                      {...this.props.Unlawful}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateUnlawful}
+                      onError={this.handleError}
+                      />
+          </SectionView>
+
+          <SectionView name="review"
+                       title={i18n.t('review.title')}
+                       para={i18n.m('review.para')}
+                       showTop="true"
+                       back="legal/technology/unlawful"
+                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       next="psychological/intro"
+                       nextLabel={i18n.t('psychological.destination.psychological')}>
+            <Field title={i18n.t('legal.police.heading.title')}
+                   titleSize="h2">
+              {i18n.m('legal.police.para.intro1')}
+              {i18n.m('legal.police.para.intro2')}
+              {i18n.m('legal.police.para.intro3')}
+            </Field>
+
+            <Offenses name="offenses"
+                      {...this.props.PoliceOffenses}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updatePoliceOffenses}
+                      onError={this.handleError}
+                      />
+
+            <hr/>
+            <OtherOffenses name="otheroffenses"
+                           {...this.props.PoliceOtherOffenses}
+                           defaultState={false}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.updatePoliceOtherOffenses}
+                           onError={this.handleError}
+                           />
+
+            <hr/>
+            <DomesticViolenceList name="domesticviolence"
+                                  {...this.props.PoliceDomesticViolence}
+                                  dispatch={this.props.dispatch}
+                                  onUpdate={this.updatePoliceDomesticViolence}
+                                  onError={this.handleError}
+                                  />
+
+            <hr/>
+            <History name="history"
+                     {...this.props.History}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateInvestigationsHistory}
+                     onError={this.handleError}
+                     />
+
+            <hr/>
+            <Revoked name="revoked"
+                     {...this.props.Revoked}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
+                     onUpdate={this.updateRevoked}
+                     onError={this.handleError}
+                     />
+
+            <hr/>
+            <Debarred name="debarred"
+                      {...this.props.Debarred}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateDebarred}
+                      onError={this.handleError}
+                      />
+
+            <hr />
+            <Unauthorized name="unauthorized"
+                          {...this.props.Unauthorized}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateUnauthorized}
+                          onError={this.handleError}
+                          />
+
+            <hr />
+            <Manipulating name="manipulating"
+                          {...this.props.Manipulating}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateManipulating}
+                          onError={this.handleError}
+                          />
+
+            <hr />
+            <Unlawful name="unlawful"
+                      {...this.props.Unlawful}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateUnlawful}
+                      onError={this.handleError}
+                      />
+          </SectionView>
+
         </SectionViews>
       </div>
     )
@@ -262,6 +358,9 @@ function mapStateToProps (state) {
     History: legal.History || {},
     Revoked: legal.Revoked || {},
     Debarred: legal.Debarred || {},
+    Unauthorized: legal.Unauthorized || {},
+    Manipulating: legal.Manipulating || {},
+    Unlawful: legal.Unlawful || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
