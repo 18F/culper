@@ -73,7 +73,6 @@ export default class Offenses extends SubsectionElement {
         <Branch name="has_offenses"
                 className="has-offenses"
                 value={this.props.HasOffenses}
-                help="legal.police.help.hasOffenses"
                 onUpdate={this.updateHasOffenses}
                 onError={this.handleError}>
                 <ul>
