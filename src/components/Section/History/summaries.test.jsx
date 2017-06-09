@@ -195,15 +195,15 @@ describe('The summary components', () => {
     const tests = [
       {
         component: mount(<ResidenceCaption />),
-        src: 'img/residence-house.svg'
+        src: '/img/residence-house.svg'
       },
       {
         component: mount(<EmploymentCaption />),
-        src: 'img/employer-briefcase.svg'
+        src: '/img/employer-briefcase.svg'
       },
       {
         component: mount(<EducationCaption />),
-        src: 'img/school-cap.svg'
+        src: '/img/school-cap.svg'
       }
     ]
 
