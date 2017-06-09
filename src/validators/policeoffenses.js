@@ -4,10 +4,6 @@ import { validBranch } from './helpers'
 export default class PoliceOffensesValidator {
   constructor (state = {}, props = {}) {
     this.hasOffenses = state.HasOffenses
-    this.hasArrests = state.HasArrests
-    this.hasCharges = state.HasCharges
-    this.hasProbation = state.HasProbation
-    this.hasTrial = state.HasTrial
     this.list = state.List || []
     this.listBranch = state.ListBranch
   }

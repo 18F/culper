@@ -4,12 +4,17 @@ import { validBranch } from './helpers'
 export default class PoliceOtherOffensesValidator {
   constructor (state = {}, props = {}) {
     this.list = state.List || []
+    this.listBranch = state.ListBranch
     this.hasOtherOffenses = state.HasOtherOffenses
   }
 
   validItems () {
     if (this.hasOtherOffenses === 'No') {
       return true
+    }
+
+    if (this.listBranch !== 'No') {
+      return false
     }
 
     if (this.list.length === 0) {

@@ -29,6 +29,15 @@ describe('Police record validation', function () {
       {
         state: {
           HasOtherOffenses: 'Yes',
+          ListBranch: 'No',
+          List: []
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasOtherOffenses: 'Yes',
+          ListBranch: 'No',
           List: [
             {
               Item: {

@@ -49,7 +49,9 @@ describe('Sentence record validation', function () {
       },
       {
         state: {
-          IncarcerationDates: null
+          IncarcerationDatesNA: {
+            applicable: false
+          }
         },
         expected: true
       }
@@ -78,7 +80,9 @@ describe('Sentence record validation', function () {
       },
       {
         state: {
-          ProbationDates: null
+          ProbationDatesNA: {
+            applicable: false
+          }
         },
         expected: true
       }
