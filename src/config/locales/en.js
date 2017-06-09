@@ -7080,7 +7080,7 @@ const en = {
           address: 'Provide the address/location of the organization',
           dates: 'Provide the dates of your involvement with the organization',
           positions: 'Provide all positions held in the organization, if any',
-          contributions: 'Provide all contributions made to the organization, if any',
+          contributions: 'Provide all contributions (in U.S. dollars) made to the organization, if any',
           reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
         },
         para: {
@@ -7102,27 +7102,14 @@ const en = {
       },
       activities: {
         heading: {
-          title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?',
-          organization: 'Provide the full name of the organization',
-          address: 'Provide the address/location of the organization',
-          dates: 'Provide the dates of your involvement with the organization',
-          positions: 'Provide all positions held in the organization, if any',
-          contributions: 'Provide all contributions (in U.S. dollars) made to the organization, if any',
-          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
-        },
-        para: {
-          or: 'or'
-        },
-        label: {
-          noposition: 'No positions held',
-          nocontribs: 'No contributions made'
+          title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?'
         },
         collection: {
           description: 'Summary of engaged activities',
           item: 'Activity',
           unknown: 'Provide details below',
           appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report?',
-          appendLabel: 'Add another engagment'
+          appendLabel: 'Add another activity'
         },
         help: {
         }

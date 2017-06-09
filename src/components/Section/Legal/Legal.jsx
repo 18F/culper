@@ -10,7 +10,7 @@ import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
-import { TerroristOrganization, MembershipOverthrow } from './Associations'
+import { TerroristOrganization, MembershipOverthrow, MembershipViolence } from './Associations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -32,6 +32,7 @@ class Legal extends SectionElement {
     this.updateUnlawful = this.updateUnlawful.bind(this)
     this.updateTerroristOrganization = this.updateTerroristOrganization.bind(this)
     this.updateMembershipOverthrow = this.updateMembershipOverthrow.bind(this)
+    this.updateMembershipViolence = this.updateMembershipViolence.bind(this)
   }
 
   updatePolice (values) {
@@ -80,6 +81,10 @@ class Legal extends SectionElement {
 
   updateMembershipOverthrow (values) {
     this.handleUpdate('MembershipOverthrow', values)
+  }
+
+  updateMembershipViolence (values) {
+    this.handleUpdate('MembershipViolence', values)
   }
 
   render () {
@@ -242,7 +247,7 @@ class Legal extends SectionElement {
           <SectionView name="technology/unlawful"
                        back="legal/technology/manipulating"
                        backLabel={i18n.t('legal.destination.technology.manipulating')}
-                       next="legal/association/terrorist-organization"
+                       next="legal/associations/terrorist-organization"
                        nextLabel={i18n.t('legal.destination.associations.terrorist')}>
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
@@ -279,25 +284,25 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="associations/engaged-in-terrorism"
-                       back="legal/technology/terrorist-organization"
+                       back="legal/associations/terrorist-organization"
                        backLabel={i18n.t('legal.destination.associations.terrorist')}
                        next="legal/associations/advocating"
                        nextLabel={i18n.t('legal.destination.associations.advocating')}>
           </SectionView>
 
           <SectionView name="associations/advocating"
-                       back="legal/technology/engaged-in-terrorism"
+                       back="legal/associations/engaged-in-terrorism"
                        backLabel={i18n.t('legal.destination.associations.engaged')}
                        next="legal/associations/membership-overthrow"
                        nextLabel={i18n.t('legal.destination.associations.overthrow')}>
           </SectionView>
 
           <SectionView name="associations/membership-overthrow"
-                       back="legal/technology/advocating"
+                       back="legal/associations/advocating"
                        backLabel={i18n.t('legal.destination.associations.advocating')}
                        next="legal/associations/membership-violence-or-force"
                        nextLabel={i18n.t('legal.destination.associations.violence')}>
-            <MembershipOverthrow name="MembershipOverthrow"
+            <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
@@ -306,21 +311,27 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="associations/membership-violence-or-force"
-                       back="legal/technology/membership-overthrow"
+                       back="legal/associations/membership-overthrow"
                        backLabel={i18n.t('legal.destination.associations.overthrow')}
                        next="legal/associations/activities-to-overthrow"
                        nextLabel={i18n.t('legal.destination.associations.activities')}>
+            <MembershipViolence name="membershipViolence"
+                                {...this.props.MembershipViolence}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateMembershipViolence}
+                                onError={this.handleError}
+                                />
           </SectionView>
 
           <SectionView name="associations/activities-to-overthrow"
-                       back="legal/technology/membership-violence-or-force"
+                       back="legal/associations/membership-violence-or-force"
                        backLabel={i18n.t('legal.destination.associations.violence')}
                        next="legal/associations/terrorism-association"
                        nextLabel={i18n.t('legal.destination.associations.terrorism')}>
           </SectionView>
 
           <SectionView name="associations/terrorism-association"
-                       back="legal/technology/activities-to-overthrow"
+                       back="legal/associations/activities-to-overthrow"
                        backLabel={i18n.t('legal.destination.associations.activities')}
                        next="legal/review"
                        nextLabel={i18n.t('legal.destination.review')}>
@@ -435,6 +446,14 @@ class Legal extends SectionElement {
                                  onUpdate={this.updateMembershipOverthrow}
                                  onError={this.handleError}
                                  />
+
+            <hr />
+            <MembershipViolence name="MembershipViolence"
+                                {...this.props.MembershipViolence}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateMembershipViolence}
+                                onError={this.handleError}
+                                />
           </SectionView>
 
         </SectionViews>
@@ -464,6 +483,7 @@ function mapStateToProps (state) {
     Unlawful: legal.Unlawful || {},
     TerroristOrganization: legal.TerroristOrganization || {},
     MembershipOverthrow: legal.MembershipOverthrow || {},
+    MembershipViolence: legal.MembershipViolence || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
