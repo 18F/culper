@@ -7122,14 +7122,8 @@ const en = {
       },
       terrorism: {
         heading: {
-          title: 'Have you EVER associated with anyone involved in activities to further terrorism?'
-        },
-        collection: {
-          description: 'Summary of associations to terrorism',
-          item: 'Activity',
-          unknown: 'Provide details below',
-          appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
-          appendLabel: 'Add another association'
+          title: 'Have you EVER associated with anyone involved in activities to further terrorism?',
+          explanation: 'Provide explanation'
         },
         help: {
         }

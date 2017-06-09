@@ -79,6 +79,7 @@ import LegalAssociationsViolenceValidator from './legalassociationsviolence'
 import LegalAssociationsEngagedValidator from './legalassociationsengaged'
 import LegalAssociationsAdvocatingValidator from './legalassociationsadvocating'
 import LegalAssociationsActivitiesValidator from './legalassociationsactivities'
+import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 
 export {
   AddressValidator,
@@ -165,5 +166,6 @@ export {
   LegalAssociationsViolenceValidator,
   LegalAssociationsEngagedValidator,
   LegalAssociationsAdvocatingValidator,
-  LegalAssociationsActivitiesValidator
+  LegalAssociationsActivitiesValidator,
+  LegalAssociationsTerrorismValidator
 }

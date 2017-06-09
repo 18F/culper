@@ -11,7 +11,7 @@ import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
 import { TerroristOrganization, MembershipOverthrow, MembershipViolence,
-         EngagedInTerrorism, Advocating, ActivitiesToOverthrow } from './Associations'
+         EngagedInTerrorism, Advocating, ActivitiesToOverthrow, TerrorismAssociation } from './Associations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -37,6 +37,7 @@ class Legal extends SectionElement {
     this.updateEngagedInTerrorism = this.updateEngagedInTerrorism.bind(this)
     this.updateAdvocating = this.updateAdvocating.bind(this)
     this.updateActivitiesToOverthrow = this.updateActivitiesToOverthrow.bind(this)
+    this.updateTerrorismAssociation = this.updateTerrorismAssociation.bind(this)
   }
 
   updatePolice (values) {
@@ -101,6 +102,10 @@ class Legal extends SectionElement {
 
   updateActivitiesToOverthrow (values) {
     this.handleUpdate('ActivitiesToOverthrow', values)
+  }
+
+  updateTerrorismAssociation (values) {
+    this.handleUpdate('TerrorismAssociation', values)
   }
 
   render () {
@@ -369,6 +374,12 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('legal.destination.associations.activities')}
                        next="legal/review"
                        nextLabel={i18n.t('legal.destination.review')}>
+            <TerrorismAssociation name="terrorismAssociation"
+                                  {...this.props.TerrorismAssociation}
+                                  dispatch={this.props.dispatch}
+                                  onUpdate={this.updateTerrorismAssociation}
+                                  onError={this.handleError}
+                                  />
           </SectionView>
 
           <SectionView name="review"
@@ -512,6 +523,14 @@ class Legal extends SectionElement {
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
                                    />
+
+            <hr />
+            <TerrorismAssociation name="terrorismAssociation"
+                                  {...this.props.TerrorismAssociation}
+                                  dispatch={this.props.dispatch}
+                                  onUpdate={this.updateTerrorismAssociation}
+                                  onError={this.handleError}
+                                  />
           </SectionView>
 
         </SectionViews>
@@ -545,6 +564,7 @@ function mapStateToProps (state) {
     EngagedInTerrorism: legal.EngagedInTerrorism || {},
     Advocating: legal.Advocating || {},
     ActivitiesToOverthrow: legal.ActivitiesToOverthrow || {},
+    TerrorismAssociation: legal.TerrorismAssociation || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
