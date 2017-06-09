@@ -5255,8 +5255,8 @@ const en = {
             note: ''
           },
           amount: {
-            title: 'Need help with the amount of financial support?',
-            message: 'Provide the amount of U.S. dollars',
+            title: 'Need help with this amount?',
+            message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           frequency: {
@@ -5265,8 +5265,8 @@ const en = {
             note: 'Note: Monthly, yearly, once, etc.'
           },
           citizenship: {
-            title: 'Need help with the citizenship of this foreign national?',
-            message: 'List all the known countries the foreign national is a citizen of',
+            title: 'Need help with the citizenship(s) of this foreign national?',
+            message: 'Tell us all of the citizenships this person has.',
             note: 'Note: You can provide multiple citizenships in this question.'
           }
         },
