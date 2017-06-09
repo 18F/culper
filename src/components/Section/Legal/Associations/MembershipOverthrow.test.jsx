@@ -1,32 +1,32 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import TerroristOrganization from './TerroristOrganization'
+import MembershipOverthrow from './MembershipOverthrow'
 
-describe('The legal associations terrorist organizations component', () => {
+describe('The legal associations overthrow component', () => {
   it('renders without errors', () => {
-    const component = mount(<TerroristOrganization />)
-    expect(component.find('.legal-associations-terrorist').length).toBe(1)
+    const component = mount(<MembershipOverthrow />)
+    expect(component.find('.legal-associations-overthrow').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<TerroristOrganization onUpdate={onUpdate} />)
-    component.find('.legal-associations-terrorist-has-terrorist .yes input').simulate('click')
+    const component = mount(<MembershipOverthrow onUpdate={onUpdate} />)
+    component.find('.legal-associations-overthrow-has-overthrow .yes input').simulate('click')
     expect(updates).toBe(1)
   })
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasTerrorist: 'Yes'
+      HasOverthrow: 'Yes'
     }
-    const component = mount(<TerroristOrganization {...props} />)
+    const component = mount(<MembershipOverthrow {...props} />)
     expect(component.find('.accordion').length).toBe(1)
   })
 
   it('renders summary', () => {
     const props = {
-      HasTerrorist: 'Yes',
+      HasOverthrow: 'Yes',
       List: [
         {
           Dates: {
@@ -40,7 +40,7 @@ describe('The legal associations terrorist organizations component', () => {
       ],
       ListBranch: ''
     }
-    const component = mount(<TerroristOrganization {...props} />)
+    const component = mount(<MembershipOverthrow {...props} />)
     const text = component.find('.accordion .summary .left .content').text()
     expect(text).toContain('Donut Brigade')
     expect(text).toContain('1/2010 - 1/2011')

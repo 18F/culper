@@ -1,2 +1,3 @@
 import TerroristOrganization from './TerroristOrganization'
-export { TerroristOrganization }
+import MembershipOverthrow from './MembershipOverthrow'
+export { TerroristOrganization, MembershipOverthrow }

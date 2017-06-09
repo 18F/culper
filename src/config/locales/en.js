@@ -6439,7 +6439,7 @@ const en = {
         engaged: 'Engaged in terrorism',
         advocating: 'Advocating',
         overthrow: 'Membership - overthrow',
-        violenc: 'Membership - violence or force',
+        violence: 'Membership - violence or force',
         activities: 'Activities to overthrow',
         terrorism: 'Terrorism association'
       },
@@ -6998,6 +6998,10 @@ const en = {
           reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
         },
         para: {
+          intro: [
+            'The following pertain to your associations. You required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
+            'For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.'
+          ],
           or: 'or'
         },
         label: {
@@ -7044,7 +7048,20 @@ const en = {
       },
       overthrow: {
         heading: {
-          title: 'Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities?'
+          title: 'Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
         },
         collection: {
           description: 'Summary of memberships',
