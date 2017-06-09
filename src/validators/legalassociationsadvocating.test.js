@@ -1,7 +1,7 @@
-import LegalAssociationsEngagedValidator, { EngagedValidator } from './legalassociationsengaged'
+import LegalAssociationsAdvocatingValidator, { AdvocatingValidator } from './legalassociationsadvocating'
 import { battery } from './helpers'
 
-describe('Legal associations engaged component validation', function () {
+describe('Legal associations advocated component validation', function () {
   it('validate dates', () => {
     const tests = [
       {
@@ -26,7 +26,7 @@ describe('Legal associations engaged component validation', function () {
       }
     ]
 
-    battery(tests, EngagedValidator, 'validDates')
+    battery(tests, AdvocatingValidator, 'validDates')
   })
 
   it('validate reasons', () => {
@@ -47,10 +47,10 @@ describe('Legal associations engaged component validation', function () {
       }
     ]
 
-    battery(tests, EngagedValidator, 'validReasons')
+    battery(tests, AdvocatingValidator, 'validReasons')
   })
 
-  it('validate associations engaged in terrorism', () => {
+  it('validate associations advocated', () => {
     const tests = [
       {
         props: {},
@@ -58,13 +58,13 @@ describe('Legal associations engaged component validation', function () {
       },
       {
         props: {
-          HasEngaged: 'No'
+          HasAdvocated: 'No'
         },
         expected: true
       },
       {
         props: {
-          HasEngaged: 'Yes',
+          HasAdvocated: 'Yes',
           List: [],
           ListBranch: 'No'
         },
@@ -72,7 +72,7 @@ describe('Legal associations engaged component validation', function () {
       },
       {
         props: {
-          HasEngaged: 'Yes',
+          HasAdvocated: 'Yes',
           List: [{}],
           ListBranch: ''
         },
@@ -80,7 +80,7 @@ describe('Legal associations engaged component validation', function () {
       },
       {
         props: {
-          HasEngaged: 'Yes',
+          HasAdvocated: 'Yes',
           List: [
             {
               Reasons: {
@@ -103,6 +103,6 @@ describe('Legal associations engaged component validation', function () {
       }
     ]
 
-    battery(tests, LegalAssociationsEngagedValidator, 'isValid')
+    battery(tests, LegalAssociationsAdvocatingValidator, 'isValid')
   })
 })

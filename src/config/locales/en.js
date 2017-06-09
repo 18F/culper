@@ -7036,14 +7036,16 @@ const en = {
       },
       advocating: {
         heading: {
-          title: 'Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?'
+          title: 'Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?',
+          reasons: 'Provide the reason(s) for advocating acts of terrorism',
+          dates: 'Provide the dates of advocating acts of terrorism'
         },
         collection: {
-          description: '',
-          item: '',
-          unknown: '',
+          description: 'Summary of advocating terrorism',
+          item: 'Instance',
+          unknown: 'Provide details of the instance below',
           appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
-          appendLabel: 'Add another advocation'
+          appendLabel: 'Add another instance'
         },
         help: {
         }

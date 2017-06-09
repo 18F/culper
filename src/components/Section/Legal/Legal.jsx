@@ -10,7 +10,7 @@ import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
-import { TerroristOrganization, MembershipOverthrow, MembershipViolence, EngagedInTerrorism } from './Associations'
+import { TerroristOrganization, MembershipOverthrow, MembershipViolence, EngagedInTerrorism, Advocating } from './Associations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -34,6 +34,7 @@ class Legal extends SectionElement {
     this.updateMembershipOverthrow = this.updateMembershipOverthrow.bind(this)
     this.updateMembershipViolence = this.updateMembershipViolence.bind(this)
     this.updateEngagedInTerrorism = this.updateEngagedInTerrorism.bind(this)
+    this.updateAdvocating = this.updateAdvocating.bind(this)
   }
 
   updatePolice (values) {
@@ -90,6 +91,10 @@ class Legal extends SectionElement {
 
   updateEngagedInTerrorism (values) {
     this.handleUpdate('EngagedInTerrorism', values)
+  }
+
+  updateAdvocating (values) {
+    this.handleUpdate('Advocating', values)
   }
 
   render () {
@@ -306,6 +311,12 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('legal.destination.associations.engaged')}
                        next="legal/associations/membership-overthrow"
                        nextLabel={i18n.t('legal.destination.associations.overthrow')}>
+            <Advocating name="advocating"
+                        {...this.props.Advocating}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.updateAdvocating}
+                        onError={this.handleError}
+                        />
           </SectionView>
 
           <SectionView name="associations/membership-overthrow"
@@ -459,6 +470,14 @@ class Legal extends SectionElement {
                                 />
 
             <hr />
+            <Advocating name="advocating"
+                        {...this.props.Advocating}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.updateAdvocating}
+                        onError={this.handleError}
+                        />
+
+            <hr />
             <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
                                  dispatch={this.props.dispatch}
@@ -504,6 +523,7 @@ function mapStateToProps (state) {
     MembershipOverthrow: legal.MembershipOverthrow || {},
     MembershipViolence: legal.MembershipViolence || {},
     EngagedInTerrorism: legal.EngagedInTerrorism || {},
+    Advocating: legal.Advocating || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
