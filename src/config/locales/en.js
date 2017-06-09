@@ -7020,14 +7020,16 @@ const en = {
       },
       engaged: {
         heading: {
-          title: 'Have you EVER knowingly engaged in any acts of terrorism?'
+          title: 'Have you EVER knowingly engaged in any acts of terrorism?',
+          reasons: 'Describe the nature and reasons for the activity',
+          dates: 'Provide the dates of such activities'
         },
         collection: {
-          description: '',
-          item: '',
-          unknown: '',
-          appendTitle: '',
-          appendLabel: ''
+          description: 'Summary of acts of terrorism',
+          item: 'Act',
+          unknown: 'Provide details for the terrorism below',
+          appendTitle: 'Do you have any other instances of knowingly engaging in acts of terrorism to report?',
+          appendLabel: 'Add another act of terrorism'
         },
         help: {
         }
@@ -7102,23 +7104,23 @@ const en = {
       },
       activities: {
         heading: {
-          title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?'
+          title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?',
+          reasons: 'Describe the nature and reasons for the activity',
+          dates: 'Provide the dates of such activities'
         },
         collection: {
-          description: 'Summary of engaged activities',
+          description: 'Summary of acts of terrorism',
           item: 'Activity',
           unknown: 'Provide details below',
           appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report?',
-          appendLabel: 'Add another activity'
+          appendLabel: 'Add another act of terrorism'
         },
         help: {
         }
       },
       terrorism: {
         heading: {
-          title: 'Have you EVER associated with anyone involved in activities to further terrorism?',
-          reasons: 'Describe the nature and reasons for the activity',
-          dates: 'Provide the dates of such activities'
+          title: 'Have you EVER associated with anyone involved in activities to further terrorism?'
         },
         collection: {
           description: 'Summary of associations to terrorism',

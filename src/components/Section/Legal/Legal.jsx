@@ -10,7 +10,7 @@ import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
-import { TerroristOrganization, MembershipOverthrow, MembershipViolence } from './Associations'
+import { TerroristOrganization, MembershipOverthrow, MembershipViolence, EngagedInTerrorism } from './Associations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -33,6 +33,7 @@ class Legal extends SectionElement {
     this.updateTerroristOrganization = this.updateTerroristOrganization.bind(this)
     this.updateMembershipOverthrow = this.updateMembershipOverthrow.bind(this)
     this.updateMembershipViolence = this.updateMembershipViolence.bind(this)
+    this.updateEngagedInTerrorism = this.updateEngagedInTerrorism.bind(this)
   }
 
   updatePolice (values) {
@@ -85,6 +86,10 @@ class Legal extends SectionElement {
 
   updateMembershipViolence (values) {
     this.handleUpdate('MembershipViolence', values)
+  }
+
+  updateEngagedInTerrorism (values) {
+    this.handleUpdate('EngagedInTerrorism', values)
   }
 
   render () {
@@ -288,6 +293,12 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('legal.destination.associations.terrorist')}
                        next="legal/associations/advocating"
                        nextLabel={i18n.t('legal.destination.associations.advocating')}>
+            <EngagedInTerrorism name="engagedInTerrorism"
+                                {...this.props.EngagedInTerrorism}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateEngagedInTerrorism}
+                                onError={this.handleError}
+                                />
           </SectionView>
 
           <SectionView name="associations/advocating"
@@ -440,7 +451,15 @@ class Legal extends SectionElement {
                                    />
 
             <hr />
-            <MembershipOverthrow name="MembershipOverthrow"
+            <EngagedInTerrorism name="engagedInTerrorism"
+                                {...this.props.EngagedInTerrorism}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateEngagedInTerrorism}
+                                onError={this.handleError}
+                                />
+
+            <hr />
+            <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
@@ -448,7 +467,7 @@ class Legal extends SectionElement {
                                  />
 
             <hr />
-            <MembershipViolence name="MembershipViolence"
+            <MembershipViolence name="membershipViolence"
                                 {...this.props.MembershipViolence}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
@@ -484,6 +503,7 @@ function mapStateToProps (state) {
     TerroristOrganization: legal.TerroristOrganization || {},
     MembershipOverthrow: legal.MembershipOverthrow || {},
     MembershipViolence: legal.MembershipViolence || {},
+    EngagedInTerrorism: legal.EngagedInTerrorism || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }

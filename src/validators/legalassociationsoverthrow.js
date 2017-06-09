@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import AddressValidator from './address'
 import { validGenericTextfield, validNotApplicable } from './helpers'
 
-export default class LegalOverthrowValidator {
+export default class LegalAssociationOverthrowValidator {
   constructor (state = {}, props = {}) {
     this.hasOverthrow = props.HasOverthrow
     this.list = props.List || []

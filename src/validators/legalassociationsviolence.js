@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import AddressValidator from './address'
 import { validGenericTextfield, validNotApplicable } from './helpers'
 
-export default class LegalViolenceValidator {
+export default class LegalAssociationViolenceValidator {
   constructor (state = {}, props = {}) {
     this.hasViolence = props.HasViolence
     this.list = props.List || []
