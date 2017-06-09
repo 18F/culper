@@ -6434,6 +6434,15 @@ const en = {
         manipulating: 'Manipulating access',
         unlawful: 'Unlawful use'
       },
+      associations: {
+        terrorist: 'Terrorist organization',
+        engaged: 'Engaged in terrorism',
+        advocating: 'Advocating',
+        overthrow: 'Membership - overthrow',
+        violenc: 'Membership - violence or force',
+        activities: 'Activities to overthrow',
+        terrorism: 'Terrorism association'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6975,7 +6984,150 @@ const en = {
           }
         }
       }
+    },
+    associations: {
+
+      terrorist: {
+        heading: {
+          title: 'Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
+        },
+        collection: {
+          description: 'Summary of terrorist organizations',
+          item: 'Organization',
+          unknown: 'Provide details of organization below',
+          appendTitle: 'Do you have any other instances of being a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities to report?',
+          appendLabel: 'Add another terrorist organization'
+        },
+        help: {
+        }
+      },
+      engaged: {
+        heading: {
+          title: 'Have you EVER knowingly engaged in any acts of terrorism?'
+        },
+        collection: {
+          description: '',
+          item: '',
+          unknown: '',
+          appendTitle: '',
+          appendLabel: ''
+        },
+        help: {
+        }
+      },
+      advocating: {
+        heading: {
+          title: 'Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?'
+        },
+        collection: {
+          description: '',
+          item: '',
+          unknown: '',
+          appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
+          appendLabel: 'Add another advocation'
+        },
+        help: {
+        }
+      },
+      overthrow: {
+        heading: {
+          title: 'Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities?'
+        },
+        collection: {
+          description: 'Summary of memberships',
+          item: 'Membership',
+          unknown: 'Please provide membership details below',
+          appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
+          appendLabel: 'Add another membership'
+        },
+        help: {
+        }
+      },
+      violence: {
+        heading: {
+          title: 'Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
+        },
+        collection: {
+          description: 'Summary of memberships',
+          item: 'Membership',
+          unknown: 'Provide membership details below',
+          appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence of force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities to report?',
+          appendLabel: 'Add another membership'
+        },
+        help: {
+        }
+      },
+      activities: {
+        heading: {
+          title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions (in U.S. dollars) made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
+        },
+        collection: {
+          description: 'Summary of engaged activities',
+          item: 'Activity',
+          unknown: 'Provide details below',
+          appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report?',
+          appendLabel: 'Add another engagment'
+        },
+        help: {
+        }
+      },
+      terrorism: {
+        heading: {
+          title: 'Have you EVER associated with anyone involved in activities to further terrorism?',
+          reasons: 'Describe the nature and reasons for the activity',
+          dates: 'Provide the dates of such activities'
+        },
+        collection: {
+          description: 'Summary of associations to terrorism',
+          item: 'Activity',
+          unknown: 'Provide details below',
+          appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
+          appendLabel: 'Add another association'
+        },
+        help: {
+        }
+      }
     }
+
   },
   substance: {
     tour: {

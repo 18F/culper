@@ -10,6 +10,7 @@ import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
+import { TerroristOrganization } from './Associations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -29,6 +30,7 @@ class Legal extends SectionElement {
     this.updateUnauthorized = this.updateUnauthorized.bind(this)
     this.updateManipulating = this.updateManipulating.bind(this)
     this.updateUnlawful = this.updateUnlawful.bind(this)
+    this.updateTerroristOrganization = this.updateTerroristOrganization.bind(this)
   }
 
   updatePolice (values) {
@@ -69,6 +71,10 @@ class Legal extends SectionElement {
 
   updateUnlawful (values) {
     this.handleUpdate('Unlawful', values)
+  }
+
+  updateTerroristOrganization (values) {
+    this.handleUpdate('TerroristOrganization', values)
   }
 
   render () {
@@ -231,8 +237,8 @@ class Legal extends SectionElement {
           <SectionView name="technology/unlawful"
                        back="legal/technology/manipulating"
                        backLabel={i18n.t('legal.destination.technology.manipulating')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+                       next="legal/association/terrorist-organization"
+                       nextLabel={i18n.t('legal.destination.associations.terrorist')}>
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
                       dispatch={this.props.dispatch}
@@ -241,12 +247,80 @@ class Legal extends SectionElement {
                       />
           </SectionView>
 
+          <SectionView name="associations"
+                       back="legal/technology/unlawful"
+                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       next="legal/associations/engaged-in-terrorism"
+                       nextLabel={i18n.t('legal.destination.associations.engaged')}>
+            <TerroristOrganization name="terroristOrganization"
+                                   {...this.props.TerroristOrganization}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateTerroristOrganization}
+                                   onError={this.handleError}
+                                   />
+          </SectionView>
+
+          <SectionView name="associations/terrorist-organization"
+                       back="legal/technology/unlawful"
+                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       next="legal/associations/engaged-in-terrorism"
+                       nextLabel={i18n.t('legal.destination.associations.engaged')}>
+            <TerroristOrganization name="terroristOrganization"
+                                   {...this.props.TerroristOrganization}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateTerroristOrganization}
+                                   onError={this.handleError}
+                                   />
+          </SectionView>
+
+          <SectionView name="associations/engaged-in-terrorism"
+                       back="legal/technology/terrorist-organization"
+                       backLabel={i18n.t('legal.destination.association.terrorist')}
+                       next="legal/associations/advocating"
+                       nextLabel={i18n.t('legal.destination.associations.advocating')}>
+          </SectionView>
+
+          <SectionView name="associations/advocating"
+                       back="legal/technology/engaged-in-terrorism"
+                       backLabel={i18n.t('legal.destination.association.engaged')}
+                       next="legal/associations/membership-overthrow"
+                       nextLabel={i18n.t('legal.destination.associations.overthrow')}>
+          </SectionView>
+
+          <SectionView name="associations/membership-overthrow"
+                       back="legal/technology/advocating"
+                       backLabel={i18n.t('legal.destination.association.advocating')}
+                       next="legal/associations/membership-violence-or-force"
+                       nextLabel={i18n.t('legal.destination.associations.violence')}>
+          </SectionView>
+
+          <SectionView name="associations/membership-violence-or-force"
+                       back="legal/technology/membership-overthrow"
+                       backLabel={i18n.t('legal.destination.association.overthrow')}
+                       next="legal/associations/activities-to-overthrow"
+                       nextLabel={i18n.t('legal.destination.associations.activities')}>
+          </SectionView>
+
+          <SectionView name="associations/activities-to-overthrow"
+                       back="legal/technology/membership-violence-or-force"
+                       backLabel={i18n.t('legal.destination.association.violence')}
+                       next="legal/associations/terrorism-association"
+                       nextLabel={i18n.t('legal.destination.associations.terrorism')}>
+          </SectionView>
+
+          <SectionView name="associations/terrorism-association"
+                       back="legal/technology/activities-to-overthrow"
+                       backLabel={i18n.t('legal.destination.association.activities')}
+                       next="legal/review"
+                       nextLabel={i18n.t('legal.destination.review')}>
+          </SectionView>
+
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="legal/technology/unlawful"
-                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       back="legal/associations/terrorism-activities"
+                       backLabel={i18n.t('legal.destination.associations.activities')}
                        next="psychological/intro"
                        nextLabel={i18n.t('psychological.destination.psychological')}>
             <Field title={i18n.t('legal.police.heading.title')}
@@ -334,6 +408,14 @@ class Legal extends SectionElement {
                       onUpdate={this.updateUnlawful}
                       onError={this.handleError}
                       />
+
+            <hr />
+            <TerroristOrganization name="terroristOrganization"
+                                   {...this.props.TerroristOrganization}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateTerroristOrganization}
+                                   onError={this.handleError}
+                                   />
           </SectionView>
 
         </SectionViews>
@@ -361,6 +443,7 @@ function mapStateToProps (state) {
     Unauthorized: legal.Unauthorized || {},
     Manipulating: legal.Manipulating || {},
     Unlawful: legal.Unlawful || {},
+    TerroristOrganization: legal.TerroristOrganization || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
