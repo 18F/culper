@@ -47,7 +47,7 @@ export default class Dropdown extends ValidationElement {
     super(props)
 
     this.state = {
-      uid: `${this.props.name}-${super.guid()}`,
+      uuid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       options: [],
       suggestions: [],
@@ -278,6 +278,7 @@ export default class Dropdown extends ValidationElement {
         : this.state.value
 
     const inputProps = {
+      id: this.state.uuid,
       value: value,
       className: this.inputClass(),
       name: this.props.name,
@@ -298,7 +299,7 @@ export default class Dropdown extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.uid}>
+               htmlFor={this.state.uuid}>
           {this.props.label}
         </label>
         <Autosuggest id={this.state.uuid}

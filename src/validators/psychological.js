@@ -51,6 +51,6 @@ export const showQuestion21E = (psychological = defaultPsychologicalState) => {
     Hospitalization.Hospitalized === 'No')
 }
 
-export const hideExistingConditions = (application) => {
+export const hideExistingConditions = (application = {}) => {
   return !showQuestion21E(application.Psychological)
 }

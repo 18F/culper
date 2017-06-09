@@ -285,6 +285,9 @@ export const InjectGaps = (list = [], start) => {
   let holes = gaps2(ranges, start)
 
   const equalDates = (first, second) => {
+    if (!first || !second) {
+      return false
+    }
     return first.toDateString() === second.toDateString()
   }
 
@@ -295,7 +298,6 @@ export const InjectGaps = (list = [], start) => {
 
     for (let i = holes.length - 1; i > -1; i--) {
       const gap = holes[i]
-      console.log('gap', gap)
 
       if (equalDates(gap.to, item.Item.Dates.from.date)) {
         let g = holes.splice(i, 1)[0]
