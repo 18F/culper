@@ -47,11 +47,12 @@ export default class DomesticViolenceList extends SubsectionElement {
 }
 
 DomesticViolenceList.defaultProps = {
+  List: [],
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/domesticviolence',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DomesticViolenceValidator(state, props).isValid()
+    return new DomesticViolenceValidator(props, props).isValid()
   }
 }

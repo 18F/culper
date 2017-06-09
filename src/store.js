@@ -3,13 +3,13 @@ import rootReducer from './reducers'
 import { createStore, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
 import { hashHistory } from 'react-router'
-import { historyMiddleware } from './middleware/history'
+import { historyMiddleware, settingsMiddleware } from './middleware/history'
 
 // Creates a redux store that defines the state tree for the application.
 // See rootReducer for all sub-states.
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk, createLogger(), historyMiddleware)
+  applyMiddleware(thunk, createLogger(), historyMiddleware, settingsMiddleware)
 )
 
 export default store

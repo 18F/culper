@@ -83,7 +83,7 @@ export default class People extends SubsectionElement {
       }
     })
 
-    this.update('List', InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort))
+    this.update('List', this.inject(items).sort(this.sort))
   }
 
   customSummary (item, index, initial, callback, toggle, openText, remove, byline) {
@@ -156,10 +156,6 @@ export default class People extends SubsectionElement {
   }
 
   inject (items) {
-    if (this.props.defaultState) {
-      return this.excludeGaps(items)
-    }
-
     return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
   }
 
@@ -190,7 +186,7 @@ export default class People extends SubsectionElement {
                    scrollTo="scrollToPeople"
                    items={this.state.List}
                    defaultState={this.props.defaultState}
-                   realtime={!this.props.defaultState}
+                   realtime={true}
                    sort={this.sort}
                    inject={this.inject}
                    branch={this.state.ListBranch}

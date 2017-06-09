@@ -35,46 +35,48 @@ describe('Domestic Violence validation', function () {
   it('can validate DomesticViolence', () => {
     const tests = [
       {
-        state: [
-          {
-            Has: 'Yes',
-            domestic: {
-              CourtName: {
-                value: '4th Circuit Court'
-              },
-              CourtAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202'
-              },
-              Explanation: {
-                value: 'Some content'
-              },
-              Issued: {
-                month: '1',
-                year: '2009'
+        state: {
+          List: [
+            {
+              Has: 'Yes',
+              domestic: {
+                CourtName: {
+                  value: '4th Circuit Court'
+                },
+                CourtAddress: {
+                  addressType: 'United States',
+                  address: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202'
+                },
+                Explanation: {
+                  value: 'Some content'
+                },
+                Issued: {
+                  month: '1',
+                  year: '2009'
+                }
               }
             }
-          }
-        ],
+          ]
+        },
         expected: true
       },
       {
-        state: null,
+        state: {},
         expected: false
       },
       {
-        state: [],
+        state: { List: [] },
         expected: false
       },
       {
-        state: [{ Has: 'No' }],
+        state: { List: [{ Has: 'No' }] },
         expected: true
       },
       {
-        state: [{ Has: 'Yes' }],
+        state: { List: [{ Has: 'Yes' }] },
         expected: false
       }
     ]
@@ -84,4 +86,3 @@ describe('Domestic Violence validation', function () {
     })
   })
 })
-

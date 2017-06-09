@@ -9,8 +9,7 @@
     "url": "https://github.com/18F/e-QIP-prototype/issues"
   },
   "homepage": "https://github.com/18F/e-QIP-prototype",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "notp": "^2.0.3",
     "thirty-two": "^1.0.2",

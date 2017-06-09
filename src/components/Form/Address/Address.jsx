@@ -37,24 +37,13 @@ export default class Address extends ValidationElement {
     }
 
     this.suggestionDismissContent = this.suggestionDismissContent.bind(this)
-    this.handleValidation = throttle(this.handleValidation.bind(this), 300, this)
     this.handleAsyncValidation = this.handleAsyncValidation.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
     this.handleAddressTypeChange = this.handleAddressTypeChange.bind(this)
     this.doUpdate = this.doUpdate.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
-
-  // componentWillReceiveProps (nextProps) {
-  //   this.setState({
-  //     address: nextProps.address,
-  //     city: nextProps.city,
-  //     zipcode: nextProps.zipcode,
-  //     state: nextProps.state,
-  //     country: nextProps.country,
-  //     addressType: nextProps.addressType
-  //   })
-  // }
 
   componentWillUnmount () {
     this.handleAsyncValidation = null
@@ -112,43 +101,7 @@ export default class Address extends ValidationElement {
       valid: false
     }, () => {
       this.doUpdate()
-      if (this.props.onValidate) {
-        super.handleValidation(event, null, { drop_the_kids_off: null })
-      }
     })
-  }
-
-  /**
-   * Handle the validation event.
-   */
-  handleValidation (event, status, error) {
-    if (!event) {
-      return
-    }
-
-    if (!this.handleAsyncValidation) {
-      return
-    }
-
-    // Currently USPS does not have the capability to
-    // validate internation addresses.
-    if (this.state.addressType === 'International') {
-      return
-    }
-
-    this.handleAsyncValidation({...this.state}, [])
-      .then(result => {
-        this.setState({
-          suggestions: result.suggestions,
-          geocodeErrorCode: result.geocodeErrorCode
-        }, () => {
-          if (!result.geocodeError) {
-            super.handleValidation(event, status, error)
-          }
-        })
-      }).catch(error => {
-        console.log(error)
-      })
   }
 
   handleError (value, arr) {
@@ -166,6 +119,35 @@ export default class Address extends ValidationElement {
         valid: err.func(value, this.props)
       }
     })))
+  }
+
+  handleBlur (event) {
+    super.handleBlur(event)
+
+    if (!this.handleAsyncValidation) {
+      return
+    }
+
+    // Currently USPS does not have the capability to
+    // validate internation addresses.
+    if (this.state.addressType === 'International') {
+      return
+    }
+
+    if (!new AddressValidator(this.state, null).isValid()) {
+      return
+    }
+
+    this.handleAsyncValidation({...this.state}, [])
+      .then(result => {
+        this.setState({
+          suggestions: result.suggestions,
+          geocodeErrorCode: result.geocodeErrorCode
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   /**
@@ -213,7 +195,7 @@ export default class Address extends ValidationElement {
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleAddressTypeChange}
-                 onBlur={this.props.onBlur}
+                 onBlur={this.handleBlur}
                  onFocus={this.props.onFocus}
                  />
           <Radio name="addressType"
@@ -223,7 +205,7 @@ export default class Address extends ValidationElement {
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleAddressTypeChange}
-                 onBlur={this.props.onBlur}
+                 onBlur={this.handleBlur}
                  onFocus={this.props.onFocus}
                  />
           <Radio name="addressType"
@@ -233,13 +215,12 @@ export default class Address extends ValidationElement {
                  ignoreDeselect="true"
                  disabled={this.props.disabled}
                  onChange={this.handleAddressTypeChange}
-                 onBlur={this.props.onBlur}
+                 onBlur={this.handleBlur}
                  onFocus={this.props.onFocus}
                  />
         </RadioGroup>
         <div className="fields">
           <Suggestions
-            onValidate={this.handleValidation}
             suggestions={this.state.suggestions}
             renderSuggestion={this.renderSuggestion}
             dismissSuggestions={false}
@@ -263,10 +244,9 @@ export default class Address extends ValidationElement {
                           placeholder={i18n.t('address.us.street.placeholder')}
                           value={this.state.address}
                           onChange={this.handleChange.bind(this, 'address')}
-                          onValidate={this.handleValidation}
                           onError={this.handleError}
                           onFocus={this.props.onFocus}
-                          onBlur={this.props.onBlur}
+                          onBlur={this.handleBlur}
                           />
                   <City name="city"
                         className="city"
@@ -274,10 +254,9 @@ export default class Address extends ValidationElement {
                         placeholder={i18n.t('address.us.city.placeholder')}
                         value={this.state.city}
                         onChange={this.handleChange.bind(this, 'city')}
-                        onValidate={this.handleValidation}
                         onError={this.handleError}
                         onFocus={this.props.onFocus}
-                        onBlur={this.props.onBlur}
+                        onBlur={this.handleBlur}
                         />
                   <div className="state-zip-wrap">
                     <MilitaryState name="state"
@@ -287,10 +266,9 @@ export default class Address extends ValidationElement {
                                    value={this.state.state}
                                    includeStates="true"
                                    onChange={this.handleChange.bind(this, 'state')}
-                                   onValidate={this.handleValidation}
                                    onError={this.handleError}
                                    onFocus={this.props.onFocus}
-                                   onBlur={this.props.onBlur}
+                                   onBlur={this.handleBlur}
                                    />
                     <ZipCode name="zipcode"
                              ref="us_zipcode"
@@ -300,10 +278,9 @@ export default class Address extends ValidationElement {
                              placeholder={i18n.t('address.us.zipcode.placeholder')}
                              value={this.state.zipcode}
                              onChange={this.handleChange.bind(this, 'zipcode')}
-                             onValidate={this.handleValidation}
                              onError={this.handleError}
                              onFocus={this.props.onFocus}
-                             onBlur={this.props.onBlur}
+                             onBlur={this.handleBlur}
                              />
                   </div>
                 </div>
@@ -316,10 +293,9 @@ export default class Address extends ValidationElement {
                           className="mailing"
                           value={this.state.address}
                           onChange={this.handleChange.bind(this, 'address')}
-                          onValidate={this.handleValidation}
                           onError={this.handleError}
                           onFocus={this.props.onFocus}
-                          onBlur={this.props.onBlur}
+                          onBlur={this.handleBlur}
                           />
                   <City name="city"
                         className="city"
@@ -327,10 +303,9 @@ export default class Address extends ValidationElement {
                         placeholder={i18n.t('address.international.city.placeholder')}
                         value={this.state.city}
                         onChange={this.handleChange.bind(this, 'city')}
-                        onValidate={this.handleValidation}
                         onError={this.handleError}
                         onFocus={this.props.onFocus}
-                        onBlur={this.props.onBlur}
+                        onBlur={this.handleBlur}
                         />
                   <Country name="country"
                            label={i18n.t('address.international.country.label')}
@@ -338,10 +313,9 @@ export default class Address extends ValidationElement {
                            value={this.state.country}
                            excludeUnitedStates="true"
                            onChange={this.handleChange.bind(this, 'country')}
-                           onValidate={this.handleValidation}
                            onError={this.handleError}
                            onFocus={this.props.onFocus}
-                           onBlur={this.props.onBlur}
+                           onBlur={this.handleBlur}
                            />
                 </div>
               </Show>
@@ -353,10 +327,9 @@ export default class Address extends ValidationElement {
                           className="mailing"
                           value={this.state.address}
                           onChange={this.handleChange.bind(this, 'address')}
-                          onValidate={this.handleValidation}
                           onError={this.handleError}
                           onFocus={this.props.onFocus}
-                          onBlur={this.props.onBlur}
+                          onBlur={this.handleBlur}
                           />
                   <label>{i18n.t('address.apoFpo.select.label')}</label>
                   <RadioGroup className="apofpo" selectedValue={this.state.city}>
@@ -365,7 +338,7 @@ export default class Address extends ValidationElement {
                            value="APO"
                            disabled={this.props.disabled}
                            onChange={this.handleChange.bind(this, 'city')}
-                           onBlur={this.props.onBlur}
+                           onBlur={this.handleBlur}
                            onFocus={this.props.onFocus}
                            />
                     <Radio name="addressType"
@@ -373,7 +346,7 @@ export default class Address extends ValidationElement {
                            value="FPO"
                            disabled={this.props.disabled}
                            onChange={this.handleChange.bind(this, 'city')}
-                           onBlur={this.props.onBlur}
+                           onBlur={this.handleBlur}
                            onFocus={this.props.onFocus}
                            />
                   </RadioGroup>
@@ -384,10 +357,9 @@ export default class Address extends ValidationElement {
                             placeholder={i18n.t('address.apoFpo.apoFpo.placeholder')}
                             value={this.state.state}
                             onChange={this.handleChange.bind(this, 'state')}
-                            onValidate={this.handleValidation}
                             onError={this.handleError}
                             onFocus={this.props.onFocus}
-                            onBlur={this.props.onBlur}
+                            onBlur={this.handleBlur}
                             tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
                       />
                       <ZipCode name="zipcode"
@@ -398,10 +370,9 @@ export default class Address extends ValidationElement {
                                placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
                                value={this.state.zipcode}
                                onChange={this.handleChange.bind(this, 'zipcode')}
-                               onValidate={this.handleValidation}
                                onError={this.handleError}
                                onFocus={this.props.onFocus}
-                               onBlur={this.props.onBlur}
+                               onBlur={this.handleBlur}
                                />
                   </div>
                 </div>

@@ -14,10 +14,10 @@ const eyeColors = [
 const hairColors = [
   'Bald',
   'Black',
-  'Blonde or Strawberry',
+  'Blonde',
   'Brown',
-  'Gray or Partially Gray',
-  'Red or Auburn',
+  'Gray',
+  'Red',
   'Sandy',
   'White',
   'Blue',
@@ -25,7 +25,7 @@ const hairColors = [
   'Orange',
   'Pink',
   'Purple',
-  'Unspecified or unknown'
+  'Unknown'
 ]
 
 export default class PhysicalValidator {

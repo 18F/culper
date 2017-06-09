@@ -861,7 +861,7 @@ const en = {
         eye: 'Eye color',
         height: 'Height',
         weight: 'Weight',
-        sex: 'Select your sex at the time of birth',
+        sex: 'Select your sex',
         comments: 'Add your comment about sex'
       },
       help: {
@@ -903,8 +903,8 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'Please select the sex at your time of birth.',
-          note: 'Note: If additional information is appropriate please use "Add a comment" above to detail it.'
+          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          note: ''
         }
       },
       label: {
@@ -6429,6 +6429,11 @@ const en = {
         revoked: 'Denied',
         debarred: 'Debarment'
       },
+      technology: {
+        unauthorized: 'Unauthorized access',
+        manipulating: 'Manipulating access',
+        unlawful: 'Unlawful use'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6472,19 +6477,18 @@ const en = {
         chargedetails: 'Such as found guilty, found not-guilty, charge dropped or "nolle pros," etc. If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
         otherOffense: {
           intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
-          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year?',
-          second: '**Have you EVER been charged** with any felony offense?',
+          first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form',
+          second: '**Have you EVER been charged** with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses',
           third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
           fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
           fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
         },
-        answeredMultiple: 'You answered yes to multiple questions. Add details for each individual offense below.',
         or: 'or'
       },
       label: {
-        summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you?',
+        summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.',
         arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
-        charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court?',
+        charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
         probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
         trial: 'Are you currently on trial or awaiting a trial on criminal charges?',
         violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
@@ -6673,9 +6677,9 @@ const en = {
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
         appendMessage: [
-          '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? (Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.)',
+          '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.',
           '- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
-          '- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? (Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.)',
+          '- **In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
           '- **In the last seven (7) years** have you been or are you currently on probation or parole?',
           '- Are you currently on trial or awaiting a trial on criminal charges?'
         ],
@@ -6844,6 +6848,128 @@ const en = {
           explanation: {
             title: 'Need help providing an explanation of events?',
             message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
+      }
+    },
+    technology: {
+      unauthorized: {
+        heading: {
+          title: 'In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        para: {
+          intro: [
+            'We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.',
+            'As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.'
+          ]
+        },
+        collection: {
+          description: 'Summary of unauthorized access',
+          item: 'Access',
+          unknown: 'Provide unauthorized access details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another unauthorized access'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
+      },
+      manipulating: {
+        heading: {
+          title: 'In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        collection: {
+          description: 'Summary of modified, destroyed, manipulated, or denied access',
+          item: 'Incident',
+          unknown: 'Provide details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another incident'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
+      },
+      unlawful: {
+        heading: {
+          title: 'In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        collection: {
+          description: 'Summary of unlawful use',
+          item: 'Use',
+          unknown: 'Provide details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another unlawful use'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
             note: ''
           }
         }
@@ -7188,7 +7314,7 @@ const en = {
           involvementWithClearance: 'Was your involvement while possessing a security clearance?',
           involvementInFuture: 'Do you intend to engage in this activity in the future?',
           reasons: 'Provide the reason(s) why you engaged in the activity.',
-          explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation'
+          explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation.'
         },
         help: {
           drugType: {

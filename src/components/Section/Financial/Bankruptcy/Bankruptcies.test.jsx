@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Bankruptcies from './Bankruptcies'
 
-describe('The bankruptcy component', () => {
+describe('The bankruptcies component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'bankruptcy'
@@ -43,12 +43,12 @@ describe('The bankruptcy component', () => {
             value: 'C1234'
           },
           DateFiled: {
-            month: 1,
-            year: 2010
+            month: '1',
+            year: '2010'
           },
           DateDischarged: {
-            month: 1,
-            year: 2012
+            month: '1',
+            year: '2012'
           },
           NameDebt: {
             first: 'Foo',
