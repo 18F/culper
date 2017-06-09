@@ -38,7 +38,7 @@ deploy:
     script: "./bin/deploy.sh dev"
     skip_cleanup: true
     on:
-      branch: develop
+      branch: wcag-compatibility
       repo: truetandem/e-QIP-prototype
   - provider: script
     script: "./bin/deploy.sh staging"
