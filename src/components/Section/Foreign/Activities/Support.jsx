@@ -60,7 +60,6 @@ export default class Support extends SubsectionElement {
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
                 labelSize="h3"
-                help="foreign.activities.support.help.branch"
                 value={this.state.HasForeignSupport}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
@@ -84,7 +83,6 @@ export default class Support extends SubsectionElement {
                   />
 
             <Field title={i18n.t('foreign.activities.support.heading.address')}
-                   help="foreign.activities.support.help.address"
                    adjustFor="address">
               <Address name="Address"
                        className="foreign-activities-support-address"
@@ -93,7 +91,6 @@ export default class Support extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.relationship')}
-                   help="foreign.activities.support.help.relationship"
                    adjustFor="textarea">
               <Textarea name="Relationship"
                         className="foreign-activities-support-relationship"
@@ -120,7 +117,6 @@ export default class Support extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.frequency')}
-                   help="foreign.activities.support.help.frequency"
                    adjustFor="text">
               <Text name="Frequency"
                     className="foreign-activities-support-frequency"
