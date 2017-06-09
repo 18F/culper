@@ -7114,8 +7114,8 @@ const en = {
           description: 'Summary of acts of terrorism',
           item: 'Activity',
           unknown: 'Provide details below',
-          appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report?',
-          appendLabel: 'Add another act of terrorism'
+          appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
+          appendLabel: 'Add another activity'
         },
         help: {
         }
