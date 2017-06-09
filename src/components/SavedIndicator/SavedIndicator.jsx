@@ -24,13 +24,13 @@ class SavedIndicator extends React.Component {
   }
 
   tick () {
-    let now = new Date().getTime()
-    let s = now
+    const currentTick = new Date().getTime()
+    let s = currentTick
     if (this.props && this.props.saved) {
       s = this.props.saved.getTime()
     }
 
-    this.setState({elapsed: now - s})
+    this.setState({elapsed: currentTick - s})
   }
 
   calculateTime () {

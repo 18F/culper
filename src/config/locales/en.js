@@ -861,7 +861,7 @@ const en = {
         eye: 'Eye color',
         height: 'Height',
         weight: 'Weight',
-        sex: 'Select your sex at the time of birth',
+        sex: 'Select your sex',
         comments: 'Add your comment about sex'
       },
       help: {
@@ -903,8 +903,8 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'Please select the sex at your time of birth.',
-          note: 'Note: If additional information is appropriate please use "Add a comment" above to detail it.'
+          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          note: ''
         }
       },
       label: {
@@ -6429,6 +6429,11 @@ const en = {
         revoked: 'Denied',
         debarred: 'Debarment'
       },
+      technology: {
+        unauthorized: 'Unauthorized access',
+        manipulating: 'Manipulating access',
+        unlawful: 'Unlawful use'
+      },
       review: 'Review investigative & criminal history'
     },
     police: {
@@ -6843,6 +6848,128 @@ const en = {
           explanation: {
             title: 'Need help providing an explanation of events?',
             message: 'Provide any circumstances leading to this action.',
+            note: ''
+          }
+        }
+      }
+    },
+    technology: {
+      unauthorized: {
+        heading: {
+          title: 'In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        para: {
+          intro: [
+            'We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.',
+            'As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.'
+          ]
+        },
+        collection: {
+          description: 'Summary of unauthorized access',
+          item: 'Access',
+          unknown: 'Provide unauthorized access details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another unauthorized access'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
+      },
+      manipulating: {
+        heading: {
+          title: 'In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        collection: {
+          description: 'Summary of modified, destroyed, manipulated, or denied access',
+          item: 'Incident',
+          unknown: 'Provide details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another incident'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
+      },
+      unlawful: {
+        heading: {
+          title: 'In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?',
+          date: 'Provide the date of the incident',
+          incident: 'Provide a description of the nature of the incident or offense',
+          location: 'Provide the location where the incident took place',
+          action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        },
+        collection: {
+          description: 'Summary of unlawful use',
+          item: 'Use',
+          unknown: 'Provide details below',
+          appendTitle: 'Are there any other incidents to report?',
+          appendLabel: 'Add another unlawful use'
+        },
+        help: {
+          date: {
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          incident: {
+            title: 'Need help with the nature of this offense?',
+            message: 'Provide a description of the offense.',
+            note: ''
+          },
+          location: {
+            title: 'Need help where this incident took place?',
+            message: 'Provide the address where this incident occurred.',
+            note: ''
+          },
+          action: {
+            title: 'Need help with any actions as a result of this incident?',
+            message: 'Provide all actions which took place as a result of this incident.',
             note: ''
           }
         }

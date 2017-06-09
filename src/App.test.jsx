@@ -1,5 +1,5 @@
 import React from 'react'
-import { App } from '../src/App'
+import App from '../src/App'
 import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -9,7 +9,14 @@ test('Renders homepage', () => {
   // Setup
   const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares)
-  const store = mockStore({ authentication: [] })
+  const store = mockStore({
+    authentication: [],
+    application: {
+      Settings: {
+        mobileNavigation: false
+      }
+    }
+  })
 
   const component = renderer.create(
     <Provider store={store}>

@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { validDateField } from '../../../../validators/helpers'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, DateControl } from '../../../Form'
+import { now } from '../../History/dateranges'
 
 export default class ApplicantBirthDate extends SubsectionElement {
   constructor (props) {
@@ -82,9 +83,7 @@ ApplicantBirthDate.errors = [
   {
     code: 'birthdate.age',
     func: (value, props) => {
-      const now = new Date()
       const m = now.getMonth() - value.getMonth()
-
       let age = now.getFullYear() - value.getFullYear()
       if (m < 0 || (m === 0 && now.getDate() < value.getDate())) {
         age--

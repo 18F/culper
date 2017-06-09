@@ -1,2 +1,3 @@
 import Navigation, { validations, isActive, isValid, hasErrors } from './Navigation.jsx'
-export { Navigation, validations, isActive, isValid, hasErrors }
+import NavigationToggle from './NavigationToggle.jsx'
+export { Navigation, NavigationToggle, validations, isActive, isValid, hasErrors }
