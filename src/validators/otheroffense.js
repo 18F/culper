@@ -1,6 +1,6 @@
 import AddressValidator from './address'
 import SentenceValidator from './sentence'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validGenericTextfield, validDateField, validBranch } from './helpers'
 
 export default class OtherOffenseValidator {
   constructor (state = {}, props = {}) {
@@ -19,6 +19,8 @@ export default class OtherOffenseValidator {
     this.courtDate = state.CourtDate
     this.sentence = state.Sentence
     this.wasSentenced = state.WasSentenced
+    this.awaitingTrial = state.AwaitingTrial
+    this.awaitingTrialExplanation = state.AwaitingTrialExplanation
   }
 
   validDate () {
@@ -77,6 +79,14 @@ export default class OtherOffenseValidator {
     return false
   }
 
+  validAwaitingTrial () {
+    if (this.wasSentenced === 'No') {
+      return validBranch(this.awaitingTrial) &&
+        validGenericTextfield(this.awaitingTrialExplanation)
+    }
+    return true
+  }
+
   isValid () {
     return this.validDate() &&
       this.validDescription() &&
@@ -88,6 +98,7 @@ export default class OtherOffenseValidator {
       this.validCourtCharge() &&
       this.validCourtOutcome() &&
       this.validCourtDate() &&
-      this.validSentenced()
+      this.validSentenced() &&
+      this.validAwaitingTrial()
   }
 }

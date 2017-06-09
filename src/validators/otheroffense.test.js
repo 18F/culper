@@ -404,7 +404,7 @@ describe('OtherOffense validation', function () {
           WasSentenced: 'No',
           Sentenced: null
         },
-        expected: true
+        expected: false
       }
     ]
 
