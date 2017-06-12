@@ -471,6 +471,7 @@ class Legal extends SectionElement {
             <hr />
             <NonCriminalCourtActions name="courtactions"
                       {...this.props.NonCriminalCourtActions}
+                      defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateNonCriminalCourtActions}
                       onError={this.handleError}
