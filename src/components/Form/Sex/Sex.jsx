@@ -66,7 +66,7 @@ export default class Sex extends ValidationElement {
                  onError={this.handleError}
                  >
             <div className="sex-icon">
-              <Svg src="img/female.svg" />
+              <Svg src="/img/female.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -82,7 +82,7 @@ export default class Sex extends ValidationElement {
                  onError={this.handleError}
                  >
             <div className="sex-icon">
-              <Svg src="img/male.svg" />
+              <Svg src="/img/male.svg" />
             </div>
           </Radio>
         </div>

@@ -1,4 +1,11 @@
+import { hashHistory, browserHistory } from 'react-router'
+
 class Env {
+  History () {
+    const useHashRouting = process.env.HASH_ROUTING || ''
+    return useHashRouting ? hashHistory : browserHistory
+  }
+
   ApiBaseURL () {
     let url = process.env.API_BASE_URL || ''
 
