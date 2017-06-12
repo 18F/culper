@@ -99,7 +99,7 @@ class App extends React.Component {
           <div className="eapp-structure-wrap eapp-header">
             <div className="eapp-structure-row">
               <div className="eapp-structure-left eapp-logo" id="logo">
-                <img className="eapp-logo-icon" src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
+                <img className="eapp-logo-icon" src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="Office of Personnet Management" />
                 <span className="eapp-logo-text">SF86</span>
                 <NavigationToggle />
               </div>

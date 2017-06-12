@@ -113,7 +113,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon airforce-icon">
-                <Svg src="img/airforce.png" />
+                <Svg src="/img/airforce.png" />
               </div>
             </Radio>
             <Radio name="service-airnationalguard"
@@ -124,7 +124,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon airnationalguard-icon">
-                <Svg src="img/airnationalguard.gif" />
+                <Svg src="/img/airnationalguard.gif" />
               </div>
             </Radio>
             <Radio name="service-army"
@@ -135,7 +135,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon army-icon">
-                <Svg src="img/army.png" />
+                <Svg src="/img/army.png" />
               </div>
             </Radio>
             <Radio name="service-armynationalguard"
@@ -146,7 +146,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon armynationalguard-icon">
-                <Svg src="img/armynationalguard.png" />
+                <Svg src="/img/armynationalguard.png" />
               </div>
             </Radio>
             <Radio name="service-coastguard"
@@ -157,7 +157,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon coastguard-icon">
-                <Svg src="img/coastguard.png" />
+                <Svg src="/img/coastguard.png" />
               </div>
             </Radio>
             <Radio name="service-marinecorps"
@@ -168,7 +168,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon marinecorps-icon">
-                <Svg src="img/marinecorps.png" />
+                <Svg src="/img/marinecorps.png" />
               </div>
             </Radio>
             <Radio name="service-navy"
@@ -179,7 +179,7 @@ export default class MilitaryService extends ValidationElement {
                    onError={this.props.onError}
                    >
               <div className="military-service-icon navy-icon">
-                <Svg src="img/navy.png" />
+                <Svg src="/img/navy.png" />
               </div>
             </Radio>
           </RadioGroup>

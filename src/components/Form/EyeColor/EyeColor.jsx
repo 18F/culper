@@ -44,7 +44,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon black">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -58,7 +58,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon blue">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -72,7 +72,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon brown">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -86,7 +86,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon gray">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -100,7 +100,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon green">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -114,7 +114,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon hazel">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -128,7 +128,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon maroon">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -142,7 +142,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon multi">
-              <Svg src="img/eye-multicolor.svg" />
+              <Svg src="/img/eye-multicolor.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -156,7 +156,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon pink">
-              <Svg src="img/eye.svg" />
+              <Svg src="/img/eye.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
@@ -170,7 +170,7 @@ export default class EyeColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="eye-icon unknown">
-              <Svg src="img/question.svg" />
+              <Svg src="/img/question.svg" />
             </div>
           </Radio>
         </RadioGroup>
