@@ -5745,8 +5745,8 @@ const en = {
           },
           date: {
             title: 'Need help with the date of the request?',
-            message: 'Provide the approximate date the request was made',
-            note: ''
+            message: 'Tell us when someone or an agency asked you to provide advice or serve as a consultant.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           circumstances: {
             title: 'Need help with the circumstances?',
