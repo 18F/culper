@@ -152,11 +152,11 @@ export default class OffenseValidator {
   }
 
   validAwaitingTrial () {
-    if (this.wasSentenced === 'Yes') {
-      return true
+    if (this.wasCharged === 'Yes' && this.wasCited === 'Yes' && this.wasSentenced === 'No') {
+      return validBranch(this.awaitingTrial) &&
+        validGenericTextfield(this.awaitingTrialExplanation)
     }
-    return validBranch(this.awaitingTrial) &&
-      validGenericTextfield(this.awaitingTrialExplanation)
+    return true
   }
 
   isValid () {

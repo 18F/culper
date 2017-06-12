@@ -31,7 +31,8 @@ export default class Sentence extends ValidationElement {
         Incarcerated: this.state.Incarcerated,
         IncarcerationDates: this.state.IncarcerationDates,
         IncarcerationDatesNA: this.state.IncarcerationDatesNA,
-        ProbationDates: this.state.ProbationDates
+        ProbationDates: this.state.ProbationDates,
+        ProbationDatesNA: this.state.ProbationDatesNA
       })
     })
   }
