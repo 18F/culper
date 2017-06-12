@@ -5670,7 +5670,7 @@ const en = {
           compensation: 'Describe what compensation, if any, was provided for your service'
         },
         para: {
-          branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business'
+          branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
         },
         help: {
           description: {
