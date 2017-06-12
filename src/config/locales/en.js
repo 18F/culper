@@ -6986,7 +6986,6 @@ const en = {
       }
     },
     associations: {
-
       terrorist: {
         heading: {
           title: 'Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities?',
@@ -7016,6 +7015,36 @@ const en = {
           appendLabel: 'Add another terrorist organization'
         },
         help: {
+          organization: {
+            title: 'Need help with this organization name?',
+            message: 'Provide the name of the organization.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with this address?',
+            message: 'Provide the address of the organization.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          positions: {
+            title: 'Need help with positions held?',
+            message: 'Provide any positions held during this time.',
+            note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          },
+          contributions: {
+            title: 'Need help with contributions?',
+            message: 'Provide any contributions made to organization.',
+            note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          },
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          }
         }
       },
       engaged: {
@@ -7032,6 +7061,16 @@ const en = {
           appendLabel: 'Add another act of terrorism'
         },
         help: {
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          }
         }
       },
       advocating: {
@@ -7048,6 +7087,16 @@ const en = {
           appendLabel: 'Add another instance'
         },
         help: {
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          }
         }
       },
       overthrow: {
@@ -7075,6 +7124,36 @@ const en = {
           appendLabel: 'Add another membership'
         },
         help: {
+          organization: {
+            title: 'Need help with this organization name?',
+            message: 'Provide the name of the organization.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with this address?',
+            message: 'Provide the address of the organization.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          positions: {
+            title: 'Need help with positions held?',
+            message: 'Provide any positions held during this time.',
+            note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          },
+          contributions: {
+            title: 'Need help with contributions?',
+            message: 'Provide any contributions made to organization.',
+            note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          },
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          }
         }
       },
       violence: {
@@ -7102,6 +7181,36 @@ const en = {
           appendLabel: 'Add another membership'
         },
         help: {
+          organization: {
+            title: 'Need help with this organization name?',
+            message: 'Provide the name of the organization.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with this address?',
+            message: 'Provide the address of the organization.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          positions: {
+            title: 'Need help with positions held?',
+            message: 'Provide any positions held during this time.',
+            note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          },
+          contributions: {
+            title: 'Need help with contributions?',
+            message: 'Provide any contributions made to organization.',
+            note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          },
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          }
         }
       },
       activities: {
@@ -7118,6 +7227,16 @@ const en = {
           appendLabel: 'Add another activity'
         },
         help: {
+          reasons: {
+            title: 'Need help with the nature and reasons of this activity?',
+            message: 'Provide an explanation of events surrounding this activity to the best of your knowledge.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          }
         }
       },
       terrorism: {
@@ -7126,10 +7245,14 @@ const en = {
           explanation: 'Provide explanation'
         },
         help: {
+          explanation: {
+            title: 'Need help with this explanation?',
+            message: 'If you have ever known or been in association with anyone who was involved in terrorist activities provide an explanation of the circumstances.',
+            note: ''
+          }
         }
       }
     }
-
   },
   substance: {
     tour: {
