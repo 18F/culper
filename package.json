@@ -65,7 +65,7 @@
     "jest": "^19.1.0-alpha.eed82034",
     "json-loader": "^0.5.4",
     "react-addons-test-utils": "^15.3.2",
-    "react-autosuggest": "^8.0.0",
+    "react-autosuggest": "^9.0.0",
     "react-markdown": "^2.4.4",
     "react-test-renderer": "^15.3.2",
     "react-tokeninput": "^2.4.0",

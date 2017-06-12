@@ -236,7 +236,7 @@ export default class Offense extends ValidationElement {
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    className="more title">
-              <Svg src="img/date-down-arrow.svg" className="more arrow" />
+              <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
             <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
@@ -290,7 +290,7 @@ export default class Offense extends ValidationElement {
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    className="more title">
-              <Svg src="img/date-down-arrow.svg" className="more arrow" />
+              <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
             <Field title={i18n.t('legal.police.heading.courtname')}
@@ -390,7 +390,7 @@ export default class Offense extends ValidationElement {
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
                        className="more title">
-                  <Svg src="img/date-down-arrow.svg" className="more arrow" />
+                  <Svg src="/img/date-down-arrow.svg" className="more arrow" />
                 </Field>
                 <Sentence name="Sentence"
                           {...this.state.Sentence}

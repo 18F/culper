@@ -451,7 +451,7 @@ export default class Relative extends ValidationElement {
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.needmore')}
                        className="more title">
-                  <Svg src="img/date-down-arrow.svg" className="more arrow" />
+                  <Svg src="/img/date-down-arrow.svg" className="more arrow" />
                 </Field>
                 <Alias name="Item"
                        onError={this.props.onError}
