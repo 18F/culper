@@ -26,27 +26,4 @@ describe('history middleware', function () {
       expect(s).toEqual(getState)
     })
   })
-
-  // it('should push new state into history', function () {
-  //   const actionHandler = nextHandler(dispatch, getState)
-  //   const action = {
-  //     type: PUSH_STATE,
-  //     to: '/foo'
-  //   }
-  //   actionHandler(action)
-  //   expect(env.History().getCurrentLocation().pathname).toEqual('/foo')
-  // })
-
-  // it('should push new state into history and scroll to', function () {
-  //   let newDiv = document.createElement('div', {id: 'gohere'})
-  //   document.body.appendChild(newDiv)
-  //   const actionHandler = nextHandler(dispatch, getState)
-  //   const action = {
-  //     type: PUSH_STATE,
-  //     to: '/foo',
-  //     scrollTo: 'gohere'
-  //   }
-  //   actionHandler(action)
-  //   expect(env.History().getCurrentLocation().pathname).toEqual('/foo')
-  // })
 })

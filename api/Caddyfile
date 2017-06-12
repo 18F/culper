@@ -13,6 +13,7 @@
     index index.html
 
     rewrite {
+        if {path} not_has api/
         to {path} /index.html
     }
 }
