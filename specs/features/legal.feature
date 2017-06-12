@@ -55,3 +55,59 @@ Feature: Legal
     And I click next
     Then I should be in the legal associations section
     Then I log out
+
+  Scenario: Complete the legal associations to terrorist organizations section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/terrorist-organization section
+    And I click next
+    Then I should be in the legal associations/engaged-in-terrorism section
+    Then I log out
+
+  Scenario: Complete the legal associations engaged in terrorism section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/engaged-in-terrorism section
+    And I click next
+    Then I should be in the legal associations/advocating section
+    Then I log out
+
+  Scenario: Complete the legal associations advocating terrorism section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/advocating section
+    And I click next
+    Then I should be in the legal associations/membership-overthrow section
+    Then I log out
+
+  Scenario: Complete the legal associations memberships to overthrow section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/membership-overthrow section
+    And I click next
+    Then I should be in the legal associations/membership-violence section
+    Then I log out
+
+  Scenario: Complete the legal associations membership promoting violence section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/membership-violence-or-force section
+    And I click next
+    Then I should be in the legal associations/activities-to-overthrow section
+    Then I log out
+
+  Scenario: Complete the legal associations activities to overthrow section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/activities-to-overthrow section
+    And I click next
+    Then I should be in the legal associations/terrorism-association section
+    Then I log out
+
+  Scenario: Complete the legal associations to terrorism section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal associations/terrorism-association section
+    And I click next
+    Then I should be in the legal review section
+    Then I log out
