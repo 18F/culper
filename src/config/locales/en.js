@@ -7050,7 +7050,7 @@ const en = {
         heading: {
           title: 'Have you EVER knowingly engaged in any acts of terrorism?',
           reasons: 'Describe the nature and reasons for the activity',
-          dates: 'Provide the dates of such activities'
+          dates: 'Provide the dates for any such activities'
         },
         collection: {
           description: 'Summary of acts of terrorism',
@@ -7119,7 +7119,7 @@ const en = {
           description: 'Summary of memberships',
           item: 'Membership',
           unknown: 'Please provide membership details below',
-          appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
+          appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence or force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization’s dedication to that end or with the specific intent to further such activities to report?',
           appendLabel: 'Add another membership'
         },
         help: {
@@ -7176,7 +7176,7 @@ const en = {
           description: 'Summary of memberships',
           item: 'Membership',
           unknown: 'Provide membership details below',
-          appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence of force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities to report?',
+          appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report',
           appendLabel: 'Add another membership'
         },
         help: {
