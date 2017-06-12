@@ -109,7 +109,7 @@ export default class Order extends ValidationElement {
 
           <Field title={i18n.t(`psychological.${prefix}.heading.needMore`)}
                  className="more title">
-            <Svg src="img/date-down-arrow.svg" className="more arrow" />
+            <Svg src="/img/date-down-arrow.svg" className="more arrow" />
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}>

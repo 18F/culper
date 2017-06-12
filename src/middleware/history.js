@@ -1,4 +1,4 @@
-import { hashHistory } from 'react-router'
+import { env } from '../config'
 import { reducer } from '../reducers/application'
 import SectionConstants from '../actions/SectionConstants'
 import { updateApplication } from '../actions/ApplicationActions'
@@ -27,7 +27,7 @@ export const historyMiddleware = store => next => action => {
     if (action.scrollTo) {
       window.scroll(0, findPosition(document.getElementById(action.scrollTo)))
     }
-    hashHistory.push(action.to)
+    env.History().push(action.to)
   }
 
   // Allow redux to continue the flow and executing the next middleware

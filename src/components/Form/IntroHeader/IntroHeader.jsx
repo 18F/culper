@@ -30,13 +30,13 @@ export default class IntroHeader extends React.Component {
           <h1>{i18n.t('intro.errors')}</h1>
           <div className="review-column">
             <div>
-              <Svg src="img/review-errors-chunk.svg" />
+              <Svg src="/img/review-errors-chunk.svg" />
             </div>
             {this.tour()}
           </div>
           <div className="review-column">
             <div>
-              <Svg src="img/review-error-all.svg" />
+              <Svg src="/img/review-error-all.svg" />
             </div>
             {this.review()}
           </div>
@@ -48,18 +48,18 @@ export default class IntroHeader extends React.Component {
       return (
         <div>
           <div className="text-center">
-            <Svg src="img/checkmark.svg" className="checkmark" />
+            <Svg src="/img/checkmark.svg" className="checkmark" />
           </div>
           <h1>{i18n.t('intro.complete')}</h1>
           <div className="review-column">
             <div>
-              <Svg src="img/review-correct-chunk.svg" />
+              <Svg src="/img/review-correct-chunk.svg" />
             </div>
             {this.tour()}
           </div>
           <div className="review-column">
             <div>
-              <Svg src="img/review-correct-all.svg" />
+              <Svg src="/img/review-correct-all.svg" />
             </div>
             {this.review()}
           </div>
@@ -72,13 +72,13 @@ export default class IntroHeader extends React.Component {
         <h1>{i18n.t('intro.neutral')}</h1>
         <div className="review-column">
           <div>
-            <Svg src="img/review-errors-chunk.svg" />
+            <Svg src="/img/review-errors-chunk.svg" />
           </div>
           {this.tour()}
         </div>
         <div className="review-column">
           <div>
-            <Svg src="img/review-error-all.svg" />
+            <Svg src="/img/review-error-all.svg" />
           </div>
           {this.review()}
         </div>

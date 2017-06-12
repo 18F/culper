@@ -52,7 +52,7 @@ export default class Email extends ValidationElement {
                label={this.props.label}
                placeholder={this.props.placeholder}
                className={`email ${this.props.className || ''}`.trim()}
-               type="email"
+               type="text"
                disabled={this.props.disabled}
                maxlength={this.props.maxlength}
                pattern={this.state.pattern}

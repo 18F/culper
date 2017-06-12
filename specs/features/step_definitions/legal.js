@@ -33,6 +33,20 @@ defineSupportCode(({Given, Then, When}) => {
       return completeTechnologyManipulating(promise)
     case 'technology/unlawful':
       return completeTechnologyUnlawful(promise)
+    case 'associations/terrorist-organization':
+      return completeAssociationsTerroristOrganization(promise)
+    case 'associations/engaged-in-terrorism':
+      return completeAssociationsEngagedInTerrorism(promise)
+    case 'associations/advocating':
+      return completeAssociationsAdvocating(promise)
+    case 'associations/membership-overthrow':
+      return completeAssociationsMembershipOverthrow(promise)
+    case 'associations/membership-violence-or-force':
+      return completeAssociationsMembershipViolence(promise)
+    case 'associations/activities-to-overthrow':
+      return completeAssociationsActivitiesToOverthrow(promise)
+    case 'associations/terrorism-association':
+      return completeAssociationsTerrorism(promise)
     default:
       return promise
     }
@@ -152,6 +166,78 @@ const completeTechnologyUnlawful = (promise) => {
     .then(() => { return setDomesticAddress('.legal-technology-unlawful-location', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setText('.legal-technology-unlawful-action textarea', 'This is the actions taken') })
     .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsTerroristOrganization = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-terrorist-has-terrorist .branch .yes') })
+    .then(() => { return setText('.legal-associations-terrorist-organization input', 'Donut brigade') })
+    .then(() => { return setDomesticAddress('.legal-associations-terrorist-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDate('.legal-associations-terrorist-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.legal-associations-terrorist-dates .to', '1', '1', '2011') })
+    .then(() => { return setText('.legal-associations-terrorist-positions input', 'Chef') })
+    .then(() => { return setText('.legal-associations-terrorist-contributions input', '2 dollars') })
+    .then(() => { return setText('.legal-associations-terrorist-reasons textarea', 'No reason') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsEngagedInTerrorism = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-engaged-has-engaged .branch .yes') })
+    .then(() => { return setText('.legal-associations-engaged-reasons textarea', 'No reason') })
+    .then(() => { return setDate('.legal-associations-engaged-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.legal-associations-engaged-dates .to', '1', '1', '2011') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsAdvocating = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-advocating-has-advocated .branch .yes') })
+    .then(() => { return setText('.legal-associations-advocating-reasons textarea', 'No reason') })
+    .then(() => { return setDate('.legal-associations-advocating-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.legal-associations-advocating-dates .to', '1', '1', '2011') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsMembershipOverthrow = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-overthrow-has-overthrow .branch .yes') })
+    .then(() => { return setText('.legal-associations-overthrow-organization input', 'Donut brigade') })
+    .then(() => { return setDomesticAddress('.legal-associations-overthrow-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDate('.legal-associations-overthrow-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.legal-associations-overthrow-dates .to', '1', '1', '2011') })
+    .then(() => { return setText('.legal-associations-overthrow-positions input', 'Chef') })
+    .then(() => { return setText('.legal-associations-overthrow-contributions input', '2 dollars') })
+    .then(() => { return setText('.legal-associations-overthrow-reasons textarea', 'No reason') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsMembershipViolence = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-violence-has-violence .branch .yes') })
+    .then(() => { return setText('.legal-associations-violence-organization input', 'Donut brigade') })
+    .then(() => { return setDomesticAddress('.legal-associations-violence-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDate('.legal-associations-violence-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.legal-associations-violence-dates .to', '1', '1', '2011') })
+    .then(() => { return setText('.legal-associations-violence-positions input', 'Chef') })
+    .then(() => { return setText('.legal-associations-violence-contributions input', '2 dollars') })
+    .then(() => { return setText('.legal-associations-violence-reasons textarea', 'No reason') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsActivitiesToOverthrow = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-activities-has-activities .branch .yes') })
+    .then(() => { return setText('.legal-associations-activities-reasons textarea', 'No reason') })
+    .then(() => { return setDate('.legal-associations-activities-dates .from', '1', '1', '2010') })
+    .then(() => { return setDate('.legal-associations-activities-dates .to', '1', '1', '2011') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeAssociationsTerrorism = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-associations-terrorism-has-terrorism .branch .yes') })
+    .then(() => { return setText('.legal-associations-terrorism-explanation textarea', 'No explanation') })
 }
 
 let counter = 0

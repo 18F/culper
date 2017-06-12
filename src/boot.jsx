@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { Login, Help, Form } from './views'
-import { Router, Route, IndexRedirect, hashHistory } from 'react-router'
+import { Router, Route, IndexRedirect } from 'react-router'
 import { Provider } from 'react-redux'
+import { env } from './config'
 import store from './store'
 import { api } from './services/api'
 import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthActions'
@@ -16,9 +17,8 @@ const app = document.getElementById('app')
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={env.History()}>
       <Route path="/" component={App} onEnter={onEnter}>
-        <IndexRedirect to="/form/identification/name" />
         <Route path="/help" component={Help} />
         <Route path="/form(/:section(/:subsection(/**)))" component={Form} />
       </Route>

@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
+import Svg from '../Svg'
 import { now } from '../../Section/History/dateranges'
 
 export default class DateRange extends ValidationElement {
@@ -147,7 +148,7 @@ export default class DateRange extends ValidationElement {
                        />
         </div>
         <div className="arrow">
-          <img src="../img/date-down-arrow.svg" />
+          <Svg src="/img/date-down-arrow.svg" alt="Range spanning from one date to another" />
         </div>
         <div className="usa-grid to-grid">
           <div className="from-label">

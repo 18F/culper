@@ -19,7 +19,7 @@ export default class Svg extends React.Component {
 }
 
 const dust = {
-  'img/info.svg': () => {
+  '/img/info.svg': () => {
     return (
       <svg viewBox="0 0 32.4 32.4">
         <circle className="eapp-help-circle" cx="16.2" cy="16.2" r="16.2"/>
@@ -33,14 +33,14 @@ const dust = {
       </svg>
     )
   },
-  'img/bald.svg': () => {
+  '/img/bald.svg': () => {
     return (
       <svg viewBox="0 0 30.9 36.8">
         <path d="M0,18.8C0,10.3,6.9,3.4,15.4,3.4s15.4,6.9,15.4,15.4H0z"/>
       </svg>
     )
   },
-  'img/hair.svg': () => {
+  '/img/hair.svg': () => {
     return (
       <svg viewBox="0 0 18 32" enableBackground="new 0 0 18 32">
         <path d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5
@@ -48,7 +48,7 @@ const dust = {
       </svg>
     )
   },
-  'img/question.svg': () => {
+  '/img/question.svg': () => {
     return (
       <svg viewBox="0 0 30.86 36.84">
         <path d="M15.43,34.25C6.91,34.25,0,27.34,0,18.82C0,10.3,6.91,3.39,15.43,3.39s15.43,6.91,15.43,15.43
@@ -61,7 +61,7 @@ const dust = {
       </svg>
     )
   },
-  'img/eye.svg': () => {
+  '/img/eye.svg': () => {
     return (
       <svg viewBox="0 0 36 36.84" enableBackground="new 0 0 36 36.84">
         <path d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11
@@ -73,7 +73,7 @@ const dust = {
       </svg>
     )
   },
-  'img/female.svg': () => {
+  '/img/female.svg': () => {
     return (
       <svg viewBox="0 0 50.81 79.19">
         <path d="M50.81,25.4C50.81,11.37,39.43,0,25.4,0S0,11.37,0,25.4c0,12.32,8.77,22.59,20.4,24.91v9.09h-9.79v10h9.79v9.79
@@ -82,7 +82,7 @@ const dust = {
       </svg>
     )
   },
-  'img/male.svg': () => {
+  '/img/male.svg': () => {
     return (
       <svg viewBox="-10 -10 80 80">
         <path d="M62.77,0.12V0H37.69v10h8.64l-6.4,6.4c-4.35-3.04-9.43-4.56-14.52-4.56c-6.5,0-13,2.48-17.96,7.44
@@ -93,7 +93,7 @@ const dust = {
       </svg>
     )
   },
-  'img/neighbor-icon.svg': () => {
+  '/img/neighbor-icon.svg': () => {
     return (
       <svg viewBox="0 0 74.94 28.35">
         <path d="M30.54,9.79V0.78c0-0.4-0.31-0.71-0.71-0.71h-4.24c-0.4,0-0.71,0.31-0.71,0.71v4.31l-5.39-4.51
@@ -111,7 +111,7 @@ const dust = {
       </svg>
     )
   },
-  'img/friend-icon.svg': () => {
+  '/img/friend-icon.svg': () => {
     return (
       <svg viewBox="0 0 44.33 34.84">
         <path d="M17.42,25.33c-1.51,0-2.97-0.15-4.35-0.4c-2.05,1.46-4.38,2.52-6.88,3.17c-0.67,0.17-1.39,0.3-2.13,0.4
@@ -124,7 +124,7 @@ const dust = {
       </svg>
     )
   },
-  'img/landlord-icon.svg': () => {
+  '/img/landlord-icon.svg': () => {
     return (
       <svg viewBox="0 0 29.56 37.62">
         <path d="M29.56,1.34v34.94c0,0.73-0.61,1.34-1.34,1.34H1.34C0.61,37.62,0,37.01,0,36.28V1.34C0,0.61,0.61,0,1.34,0
@@ -156,7 +156,7 @@ const dust = {
       </svg>
     )
   },
-  'img/business-associate-icon.svg': () => {
+  '/img/business-associate-icon.svg': () => {
     return (
       <svg viewBox="0 0 40.05 34.33">
         <path d="M40.05,17.88H0V9.3c0-1.97,1.61-3.58,3.58-3.58h7.87V2.15C11.44,0.96,12.4,0,13.59,0h12.87
@@ -166,7 +166,7 @@ const dust = {
       </svg>
     )
   },
-  'img/other-icon.svg': () => {
+  '/img/other-icon.svg': () => {
     return (
       <svg viewBox="0 0 36.62 36.62">
         <path d="M18.31,36.62C8.2,36.62,0,28.42,0,18.31C0,8.2,8.2,0,18.31,0s18.31,8.2,18.31,18.31

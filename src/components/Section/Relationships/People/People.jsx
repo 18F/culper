@@ -174,7 +174,7 @@ export default class People extends SubsectionElement {
                            total={7}
                            >
             <div className="summary-icon">
-              <Svg src="img/people-who-know-you.svg" />
+              <Svg src="/img/people-who-know-you.svg" />
             </div>
           </SummaryProgress>
         </div>
