@@ -5689,9 +5689,9 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates the service was provided?',
-            message: 'Provide the approximate date range your services your provided',
-            note: ''
+            title: 'Need help with the dates the advice or support was provided?',
+            message: 'Tell us the date or date range when this happened.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           compensation: {
             title: 'Need help with compensation?',
