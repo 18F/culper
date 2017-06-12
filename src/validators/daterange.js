@@ -1,5 +1,6 @@
 export default class DateRangeValidator {
   constructor (state = {}, props = {}) {
+    state = state || {}
     this.from = state.from
     this.to = state.present ? { date: new Date() } : state.to
     this.present = state.present

@@ -71,6 +71,9 @@ import LegalNonCriminalCourtActionsValidator from './legalnoncriminalcourtaction
 import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
+import LegalTechnologyUnauthorizedValidator from './legaltechnologyunauthorized'
+import LegalTechnologyManipulatingValidator from './legaltechnologymanipulating'
+import LegalTechnologyUnlawfulValidator from './legaltechnologyunlawful'
 
 export {
   AddressValidator,
@@ -149,5 +152,8 @@ export {
   LegalNonCriminalCourtActionsValidator,
   LegalInvestigationsHistoryValidator,
   LegalInvestigationsRevokedValidator,
-  LegalInvestigationsDebarredValidator
+  LegalInvestigationsDebarredValidator,
+  LegalTechnologyUnauthorizedValidator,
+  LegalTechnologyManipulatingValidator,
+  LegalTechnologyUnlawfulValidator
 }

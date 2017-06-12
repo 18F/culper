@@ -79,7 +79,7 @@ export const validPhoneNumber = (phone) => {
 /**
  * Validates a date
  */
-export const validDateField = (obj) => {
+export const validDateField = (obj = {}) => {
   if (!obj) {
     return false
   }

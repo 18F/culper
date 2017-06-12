@@ -204,7 +204,15 @@ const navigation = [
       },
       { name: 'Involvement in non-criminal court actions', url: 'court' },
       { hidden: true, name: 'Financial record', url: 'financial' },
-      { hidden: true, name: 'Use of information technology systems', url: 'technology' },
+      {
+        name: 'Use of information technology systems',
+        url: 'technology',
+        subsections: [
+          { name: 'Unauthorized access', url: 'unauthorized' },
+          { name: 'Manipulating access', url: 'manipulating' },
+          { name: 'Unlawful use', url: 'unlawful' }
+        ]
+      },
       { hidden: true, name: 'Association record', url: 'associations' }
     ]
   },

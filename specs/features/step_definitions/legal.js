@@ -27,6 +27,12 @@ defineSupportCode(({Given, Then, When}) => {
       return completeInvestigationsDebarred(promise)
     case 'court':
       return completeCourt(promise)
+    case 'technology/unauthorized':
+      return completeTechnologyUnauthorized(promise)
+    case 'technology/manipulating':
+      return completeTechnologyManipulating(promise)
+    case 'technology/unlawful':
+      return completeTechnologyUnlawful(promise)
     default:
       return promise
     }
@@ -118,6 +124,36 @@ const completeCourt = (promise) => {
     .then(() => { return setText('.principal-party-names textarea', 'John Doe and Jane Doe') })
 }
 
+const completeTechnologyUnauthorized = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-technology-unauthorized-has-unauthorized .branch .yes') })
+    .then(() => { return setDate('.legal-technology-unauthorized-date', '1', '1', '2010') })
+    .then(() => { return setText('.legal-technology-unauthorized-incident textarea', 'This is a description of the incident') })
+    .then(() => { return setDomesticAddress('.legal-technology-unauthorized-location', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.legal-technology-unauthorized-action textarea', 'This is the actions taken') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeTechnologyManipulating = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-technology-manipulating-has-manipulating .branch .yes') })
+    .then(() => { return setDate('.legal-technology-manipulating-date', '1', '1', '2010') })
+    .then(() => { return setText('.legal-technology-manipulating-incident textarea', 'This is a description of the incident') })
+    .then(() => { return setDomesticAddress('.legal-technology-manipulating-location', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.legal-technology-manipulating-action textarea', 'This is the actions taken') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
+const completeTechnologyUnlawful = (promise) => {
+  return promise
+    .then(() => { return setOption('.legal-technology-unlawful-has-unlawful .branch .yes') })
+    .then(() => { return setDate('.legal-technology-unlawful-date', '1', '1', '2010') })
+    .then(() => { return setText('.legal-technology-unlawful-incident textarea', 'This is a description of the incident') })
+    .then(() => { return setDomesticAddress('.legal-technology-unlawful-location', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.legal-technology-unlawful-action textarea', 'This is the actions taken') })
+    .then(() => { return setOption('.addendum .branch .no') })
+}
+
 let counter = 0
 const filenum = () => {
   const size = 4
@@ -192,4 +228,14 @@ const setDate = (selector, month, day, year) => {
     .setValue(selector + ' .day input', day)
     .setValue(selector + ' .year input', year)
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-set-date.png')
+}
+
+const setDomesticAddress = (selector, street, city, state, zipcode) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector + ' .mailing input', street)
+    .setValue(selector + ' .city input', city)
+    .setValue(selector + ' .state input', state)
+    .setValue(selector + ' .zipcode input', zipcode)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-address.png')
 }

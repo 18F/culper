@@ -1,54 +1,11 @@
 import PoliceOffensesValidator from './policeoffenses'
 
 describe('Police record validation', function () {
-  it('can validate checks against multiple branches', () => {
-    const tests = [
-      {
-        state: {
-          HasSummons: 'Yes',
-          HasArrests: null,
-          HasCharges: null,
-          HasProbation: null,
-          HasTrial: null
-        },
-        expected: false
-      },
-      {
-        state: {
-          HasSummons: 'Yes',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'No'
-        },
-        expected: true
-      },
-      {
-        state: {
-          HasSummons: 'Yes',
-          HasArrests: 'Yes',
-          HasCharges: 'Yes',
-          HasProbation: 'Yes',
-          HasTrial: 'Yes'
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(new PoliceOffensesValidator(test.state, null).validChecks()).toBe(test.expected)
-    })
-  })
-
   it('validates offenses', () => {
     const tests = [
       {
         state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'No',
+          HasOffenses: 'No',
           List: [],
           ListBranch: 'No'
         },
@@ -56,11 +13,7 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'Yes',
+          HasOffenses: 'Yes',
           ListBranch: 'No',
           List: [
             {
@@ -113,51 +66,31 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasSummons: 'No',
-          HasArrests: 'No',
-          HasCharges: 'No',
-          HasProbation: 'No',
-          HasTrial: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'No',
-                InvolvedSubstances: 'No',
-                Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
-                },
-                WasCited: 'Yes',
-                CitedBy: {
-                  value: 'Somebody'
-                },
-                WasCharged: 'No',
-                Explanation: {
-                  value: 'Some explanation'
-                },
-                AgencyAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
-                },
-
-                WasSentenced: 'No',
-                AwaitingTrial: 'Yes',
-                AwaitingTrialExplanation: {
-                  value: 'Yessss'
-                }
-              }
-            }
-          ]
+          HasOffenses: 'Yes',
+          List: [{Item: {}}]
         },
         expected: false
+      },
+      {
+        state: {
+          HasOffenses: 'Yes',
+          List: []
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasOffenses: 'Yes',
+          ListBranch: 'No',
+          List: [{Item: {}}]
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasOffenses: 'No'
+        },
+        expected: true
       }
     ]
 

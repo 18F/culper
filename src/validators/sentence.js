@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class SentenceValidator {
   constructor (state = {}, props = {}) {
@@ -7,7 +7,9 @@ export default class SentenceValidator {
     this.exceedsYear = state.ExceedsYear
     this.incarcerated = state.Incarcerated
     this.incarcerationDates = state.IncarcerationDates
+    this.incarcerationDatesNA = state.IncarcerationDatesNA
     this.probationDates = state.ProbationDates
+    this.probationDatesNA = state.ProbationDatesNA
   }
 
   validChecks () {
@@ -21,17 +23,15 @@ export default class SentenceValidator {
   }
 
   validIncarcerationDates () {
-    if (!this.incarcerationDates) {
-      return true
-    }
-    return new DateRangeValidator(this.incarcerationDates).isValid()
+    return validNotApplicable(this.incarcerationDatesNA, () => {
+      return new DateRangeValidator(this.incarcerationDates).isValid()
+    })
   }
 
   validProbationDates () {
-    if (!this.probationDates) {
-      return true
-    }
-    return new DateRangeValidator(this.probationDates).isValid()
+    return validNotApplicable(this.probationDatesNA, () => {
+      return new DateRangeValidator(this.probationDates).isValid()
+    })
   }
 
   validDescription () {
