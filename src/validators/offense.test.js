@@ -721,11 +721,7 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasSentenced: 'No',
-          AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: {
-            value: 'Yessss'
-          }
+          WasSentenced: 'No'
         },
         expected: true
       },
@@ -738,10 +734,14 @@ describe('Offense validation', function () {
       {
         state: {
           WasSentenced: 'No',
+          WasCited: 'Yes',
+          WasCharged: 'Yes',
           AwaitingTrial: 'Yes',
-          AwaitingTrialExplanation: null
+          AwaitingTrialExplanation: {
+            value: 'Trial explanation'
+          }
         },
-        expected: false
+        expected: true
       }
     ]
 
@@ -809,7 +809,7 @@ describe('Offense validation', function () {
           AwaitingTrial: 'Yes',
           AwaitingTrialExplanation: null
         },
-        expected: false
+        expected: true
       }
     ]
 
