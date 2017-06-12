@@ -6424,6 +6424,7 @@ const en = {
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
       domesticViolence: 'Domestic violence',
+      court: 'Non-criminal court actions',
       investigations: {
         history: 'Ever been investigated',
         revoked: 'Denied',
@@ -6859,6 +6860,56 @@ const en = {
             message: 'Provide any circumstances leading to this action.',
             note: ''
           }
+        }
+      }
+    },
+    nonCriminalAction: {
+      heading: {
+        hasCourtActions: 'In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?',
+        civilActionDate: 'Provide the date of the civil action',
+        courtName: 'Provide the court name',
+        courtAddress: 'Provide the address of the court',
+        natureOfAction: 'Provide details of the nature of the action',
+        resultsOfAction: 'Provide a description of the results of the action',
+        principalPartyNames: 'Provide the name(s) of the principal parties involved in the court action'
+      },
+      collection: {
+        description: 'Summary of court actions',
+        summary: 'Provide your court action details below',
+        appendTitle: 'Are there any other civil court actions in the last ten (10) years to report?',
+        appendLabel: 'Add another court action',
+        itemType: 'Court Action'
+      },
+      help: {
+        civilActionDate: {
+          title: 'Need help with the civil action date?',
+          message: 'Provide the date of the civil action',
+          note: ''
+        },
+        courtName: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court',
+          note: ''
+        },
+        courtAddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        natureOfAction: {
+          title: 'Need help with the nature of the action?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        resultsOfAction: {
+          title: 'Need help with the results of the action?',
+          message: 'Provide a description of the results of the action',
+          note: ''
+        },
+        principalPartyNames: {
+          title: 'Need help with the principal parties involved?',
+          message: 'Provide the name(s) of the principal parties involved in the court action',
+          note: ''
         }
       }
     },

@@ -67,6 +67,7 @@ import DrugPublicSafetyUsesValidator from './drugpublicsafetyuses'
 import DrugPrescriptionUsesValidator from './drugprescriptionuses'
 import DrugOrderedTreatmentsValidator from './drugorderedtreatments'
 import DrugVoluntaryTreatmentsValidator from './drugvoluntarytreatments'
+import LegalNonCriminalCourtActionsValidator from './legalnoncriminalcourtactions'
 import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
@@ -155,6 +156,7 @@ export {
   DrugPrescriptionUsesValidator,
   DrugOrderedTreatmentsValidator,
   DrugVoluntaryTreatmentsValidator,
+  LegalNonCriminalCourtActionsValidator,
   LegalInvestigationsHistoryValidator,
   LegalInvestigationsRevokedValidator,
   LegalInvestigationsDebarredValidator,

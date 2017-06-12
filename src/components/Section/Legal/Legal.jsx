@@ -10,6 +10,7 @@ import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
+import NonCriminalCourtActions from './NonCriminalCourtActions'
 import { TerroristOrganization, MembershipOverthrow, MembershipViolence,
          EngagedInTerrorism, Advocating, ActivitiesToOverthrow, TerrorismAssociation } from './Associations'
 
@@ -28,6 +29,7 @@ class Legal extends SectionElement {
     this.updateHistory = this.updateHistory.bind(this)
     this.updateRevoked = this.updateRevoked.bind(this)
     this.updateDebarred = this.updateDebarred.bind(this)
+    this.updateNonCriminalCourtActions = this.updateNonCriminalCourtActions.bind(this)
     this.updateUnauthorized = this.updateUnauthorized.bind(this)
     this.updateManipulating = this.updateManipulating.bind(this)
     this.updateUnlawful = this.updateUnlawful.bind(this)
@@ -66,6 +68,10 @@ class Legal extends SectionElement {
 
   updateDebarred (values) {
     this.handleUpdate('Debarred', values)
+  }
+
+  updateNonCriminalCourtActions (values) {
+    this.handleUpdate('NonCriminalCourtActions', values)
   }
 
   updateUnauthorized (values) {
@@ -216,8 +222,8 @@ class Legal extends SectionElement {
           <SectionView name="investigations/debarred"
                        back="legal/investigations/revoked"
                        backLabel={i18n.t('legal.destination.investigations.revoked')}
-                       next="legal/technology/unauthorized"
-                       nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
+                       next="legal/court"
+                       nextLabel={i18n.t('legal.destination.court')}>
             <Debarred name="debarred"
                       {...this.props.Debarred}
                       dispatch={this.props.dispatch}
@@ -226,9 +232,22 @@ class Legal extends SectionElement {
                       />
           </SectionView>
 
-          <SectionView name="technology"
+          <SectionView name="court"
                        back="legal/investigations/debarred"
                        backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       next="legal/technology/unauthorized"
+                       nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
+            <NonCriminalCourtActions name="courtactions"
+                      {...this.props.NonCriminalCourtActions}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateNonCriminalCourtActions}
+                      onError={this.handleError}
+                      />
+          </SectionView>
+
+          <SectionView name="technology"
+                       back="legal/court"
+                       backLabel={i18n.t('legal.destination.court')}
                        next="legal/technology/manipulating"
                        nextLabel={i18n.t('legal.destination.technology.manipulating')}>
             <Unauthorized name="unauthorized"
@@ -240,8 +259,8 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="technology/unauthorized"
-                       back="legal/investigations/debarred"
-                       backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       back="legal/court"
+                       backLabel={i18n.t('legal.destination.court')}
                        next="legal/technology/manipulating"
                        nextLabel={i18n.t('legal.destination.technology.manipulating')}>
             <Unauthorized name="unauthorized"
@@ -450,6 +469,14 @@ class Legal extends SectionElement {
                       />
 
             <hr />
+            <NonCriminalCourtActions name="courtactions"
+                      {...this.props.NonCriminalCourtActions}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateNonCriminalCourtActions}
+                      onError={this.handleError}
+                      />
+            <hr />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
                           defaultState={false}
@@ -555,6 +582,7 @@ function mapStateToProps (state) {
     History: legal.History || {},
     Revoked: legal.Revoked || {},
     Debarred: legal.Debarred || {},
+    NonCriminalCourtActions: legal.NonCriminalCourtActions || {},
     Unauthorized: legal.Unauthorized || {},
     Manipulating: legal.Manipulating || {},
     Unlawful: legal.Unlawful || {},

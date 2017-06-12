@@ -5,7 +5,7 @@ Feature: Legal
     And I log in
     And I fill in the legal police section
     And I click next
-    Then I should be in the legal review section
+    Then I should be in the legal investigations/history section
     Then I log out
 
   Scenario: Complete the legal investigations history section
@@ -29,7 +29,15 @@ Feature: Legal
     And I log in
     And I fill in the legal investigations/debarred section
     And I click next
-    Then I should be in the legal review section
+    Then I should be in the legal court section
+    Then I log out
+
+  Scenario: Complete the non-criminal court actions section
+    Given I am a registered user
+    And I log in
+    And I fill in the legal court section
+    And I click next
+    Then I should be in the legal technology/unauthorized section
     Then I log out
 
   Scenario: Complete the legal technology unauthorized access section
