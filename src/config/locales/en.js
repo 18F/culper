@@ -5792,8 +5792,8 @@ const en = {
           },
           date: {
             title: 'Need help with the date of the offer?',
-            message: 'Provide the approximate date the offer was extended to you',
-            note: ''
+            message: 'Tell us when the offer was extended to you.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           address: {
             title: 'Need help with the location?',
