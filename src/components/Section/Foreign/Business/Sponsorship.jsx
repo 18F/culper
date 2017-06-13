@@ -172,9 +172,10 @@ export default class Sponsorship extends SubsectionElement {
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.residence')}
                    help="foreign.business.sponsorship.help.residence"
-                   adjustFor="address">
+                   adjustFor="address no-buttons">
               <Address name="Residence"
                        className="foreign-business-sponsorship-residence"
+                       disableToggle={true}
                        bind={true}
                        />
             </Field>
