@@ -59,6 +59,10 @@ describe('The Email component', () => {
       {
         address: 'me@you',
         valid: false
+      },
+      {
+        address: 'tj@123.com',
+        valid: true
       }
     ]
 
