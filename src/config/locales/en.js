@@ -53,7 +53,8 @@ const en = {
     remove: 'Remove',
     warning: 'Are you sure you would like to remove this item?',
     open: 'Open',
-    close: 'Close'
+    close: 'Close',
+    incomplete: 'This information is incomplete.'
   },
   comments: {
     add: 'Add a comment',

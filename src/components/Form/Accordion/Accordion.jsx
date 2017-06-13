@@ -2,6 +2,8 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
+import Show from '../Show'
+import Svg from '../Svg'
 import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
@@ -297,6 +299,16 @@ export default class Accordion extends ValidationElement {
    * Render the item summary which can be overriden with `customSummary`
    */
   summary (item, index, initial = false) {
+    // If this is a `gap` then you cannot destroy what you did not create.
+    if (item.type && item.type === 'Gap') {
+      return null
+    }
+
+    const closedAndIncomplete = !item.open && !this.props.validator(this.props.transformer(item))
+    const svg = closedAndIncomplete
+          ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
+          : null
+
     return (
       <div>
         <div className="summary">
@@ -305,6 +317,7 @@ export default class Accordion extends ValidationElement {
               <i className={chevron(item)} aria-hidden="true"></i>
               <span className="toggle">{this.openText(item)}</span>
             </span>
+            {svg}
             {this.props.summary(item, index, initial)}
           </a>
           <a className="right remove" onClick={this.remove.bind(this, item)}>
@@ -314,7 +327,9 @@ export default class Accordion extends ValidationElement {
             </span>
           </a>
         </div>
-        {this.props.byline(item, index, initial)}
+        <Show when={closedAndIncomplete && !initial}>
+          {this.props.byline(item, index, initial, this.props.incomplete)}
+        </Show>
       </div>
     )
   }
@@ -443,6 +458,7 @@ Accordion.defaultProps = {
   closeLabel: i18n.t('collection.close'),
   removeLabel: i18n.t('collection.remove'),
   description: i18n.t('collection.summary'),
+  incomplete: i18n.t('collection.incomplete'),
   caption: null,
   scrollTo: '',
   timeout: 500,
@@ -458,8 +474,18 @@ Accordion.defaultProps = {
       </span>
     )
   },
-  byline: (item, index, initial = false) => {
-    return null
+  validator: (item) => {
+    return true
+  },
+  transformer: (item) => {
+    return item && item.Item ? item.Item : item
+  },
+  byline: (item, index, initial = false, message = '') => {
+    return (
+      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{message}</div>
+      </div>
+    )
   },
   customSummary: (item, index, initial, callback, toggle, openText, remove, byline) => {
     return callback()

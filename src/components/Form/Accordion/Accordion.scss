@@ -143,6 +143,14 @@
     &.open {
       border-left: 0.4rem solid $eapp-blue;
     }
+
+    .incomplete {
+      padding: 1rem 2rem;
+      background: $eapp-red-lightest;
+      border: 2px solid $eapp-red-light;
+      border-radius: 6px;
+      max-width: 64rem;
+    }
   }
 
   .summary {
@@ -252,6 +260,13 @@
           text-align: right;
           height: 4.9rem;
         }
+      }
+
+      .svg.incomplete {
+        height: 1.6rem;
+        width: auto;
+        margin-right: 1rem;
+        margin-left: -2.6rem;
       }
 
       &:hover {
