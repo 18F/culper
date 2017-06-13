@@ -7574,7 +7574,7 @@ const en = {
           firstUse: 'Provide an estimate of the month and year of first use',
           recentUse: 'Provide an estimate of the month and year of most recent use',
           natureOfUse: 'Provide nature of use, frequency, and number of times used',
-          useWhileEmployed: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          useWhileEmployed: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public?',
           useWithClearance: 'Was your use while possessing a security clearance?',
           useInFuture: 'Do you intend to use this drug or controlled substance in the future?',
           explanation: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future'

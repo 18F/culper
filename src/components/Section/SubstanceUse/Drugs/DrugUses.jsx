@@ -44,6 +44,7 @@ export default class DrugUses extends SubsectionElement {
     const dates = [firstUse, recentUse].reduce((p, c) => {
       const first = `First use ${p}`
       const recent = `Recent use ${c}`
+
       if (p && c) {
         return (
           <span className="drug-use">
@@ -52,24 +53,33 @@ export default class DrugUses extends SubsectionElement {
           </span>
         )
       }
+
       if (p) {
         return first
       }
+
       if (c) {
         return recent
       }
+
       return p
     })
+
     const type = i18n.t('substance.drugs.use.collection.itemType')
+    let drug = (o.DrugType || {}).DrugType
+    if (drug === 'Other') {
+      drug = ((o.DrugType || {}).DrugTypeOther || {}).value
+    }
+
+    if (!drug) {
+      drug = i18n.t('substance.drugs.use.collection.summary')
+    }
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {dates || i18n.t('substance.drugs.use.collection.summary')}
-          </strong>
-        </span>
+        <span className=""><strong>{drug}</strong></span>
+        <span className="dates"><strong>{dates}</strong></span>
       </span>
     )
   }
@@ -80,24 +90,24 @@ export default class DrugUses extends SubsectionElement {
         {i18n.m('substance.drugs.para.drugUses')}
         <h2>{i18n.m('substance.drugs.heading.drugUses')}</h2>
         <Branch name="UsedDrugs"
-          className="used-drugs"
-          value={this.props.UsedDrugs}
-          onError={this.handleError}
-          onUpdate={this.updateUsedDrugs}>
+                className="used-drugs"
+                value={this.props.UsedDrugs}
+                onError={this.handleError}
+                onUpdate={this.updateUsedDrugs}>
           {i18n.m('substance.drugs.use.para.drugUses')}
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('substance.drugs.use.collection.description')}
-            appendTitle={i18n.t('substance.drugs.use.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.use.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('substance.drugs.use.collection.description')}
+                     appendTitle={i18n.t('substance.drugs.use.collection.appendTitle')}
+                     appendLabel={i18n.t('substance.drugs.use.collection.appendLabel')}>
             <DrugUse name="DrugUse" bind={true} />
           </Accordion>
         </Show>
