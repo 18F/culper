@@ -20,6 +20,7 @@ export default class Address extends ValidationElement {
     let addressType = this.addressType()
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       address: props.address,
       city: props.city,
@@ -108,7 +109,8 @@ export default class Address extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `address.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
@@ -116,7 +118,8 @@ export default class Address extends ValidationElement {
     return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: err.func(value, this.props),
+        uid: this.state.uid
       }
     })))
   }

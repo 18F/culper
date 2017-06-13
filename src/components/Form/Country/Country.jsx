@@ -41,7 +41,8 @@ export default class Country extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `country.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
@@ -49,7 +50,8 @@ export default class Country extends ValidationElement {
     return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: err.func(value, this.props),
+        uid: err.uid
       }
     }))) || []
   }

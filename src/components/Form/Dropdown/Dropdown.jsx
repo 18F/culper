@@ -47,7 +47,7 @@ export default class Dropdown extends ValidationElement {
     super(props)
 
     this.state = {
-      uuid: `${this.props.name}-${super.guid()}`,
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       options: [],
       suggestions: [],
@@ -106,16 +106,15 @@ export default class Dropdown extends ValidationElement {
    */
   handleValidation (event) {
     const value = this.state.value
-    if (value.length) {
-      const errors = this.props.onError(value, this.constructor.errors.map(err => {
-        return {
-          code: err.code,
-          valid: err.func(value, { options: this.state.options })
-        }
-      })) || []
+    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: value.length ? err.func(value, { options: this.state.options }) : null,
+        uid: this.state.uid
+      }
+    })) || []
 
-      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
-    }
+    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
   }
 
   /**
@@ -278,7 +277,7 @@ export default class Dropdown extends ValidationElement {
         : this.state.value
 
     const inputProps = {
-      id: this.state.uuid,
+      id: this.state.uid,
       value: value,
       className: this.inputClass(),
       name: this.props.name,
@@ -299,10 +298,10 @@ export default class Dropdown extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label className={this.labelClass()}
-               htmlFor={this.state.uuid}>
+               htmlFor={this.state.uid}>
           {this.props.label}
         </label>
-        <Autosuggest id={this.state.uuid}
+        <Autosuggest id={this.state.uid}
                      suggestions={this.state.suggestions}
                      onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                      onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -344,6 +343,9 @@ Dropdown.errors = [
   {
     code: 'notfound',
     func: (value, props) => {
+      if (!value) {
+        return null
+      }
       return props.options.some(x => {
         return x.text.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()
       })

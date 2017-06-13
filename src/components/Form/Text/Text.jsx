@@ -41,7 +41,8 @@ export default class Text extends ValidationElement {
       arr = arr.map(err => {
         return {
           code: `${this.props.prefix}.${err.code}`,
-          valid: err.valid
+          valid: err.valid,
+          uid: err.uid
         }
       })
     }

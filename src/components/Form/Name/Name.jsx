@@ -125,7 +125,8 @@ export default class Name extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `name.${code}.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
@@ -133,7 +134,8 @@ export default class Name extends ValidationElement {
     return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: err.func(value, this.props),
+        uid: err.uid
       }
     })))
   }

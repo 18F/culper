@@ -9,6 +9,15 @@ export default class SubsectionElement extends React.Component {
     this.handleCompletion = this.handleCompletion.bind(this)
   }
 
+
+  componentDidMount () {
+    console.debug('componentDidMount')
+  }
+
+  componentWillReceiveProps () {
+    console.debug('componentWillReceiveProps')
+  }
+
   handleCompletion () {
     this.props.dispatch(reportCompletion(this.props.section, this.props.subsection, this.props.validator(this.state, this.props)))
   }

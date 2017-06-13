@@ -75,7 +75,7 @@ ApplicantBirthDate.defaultProps = {
   subsection: 'birthdate',
   dispatch: () => {},
   validator: (state, props) => {
-    return !!state && !!state.value
+    return !!state && !!state.value && !isNaN(state.value)
   }
 }
 
@@ -83,6 +83,9 @@ ApplicantBirthDate.errors = [
   {
     code: 'birthdate.age',
     func: (value, props) => {
+      if (!value || isNaN(value)) {
+        return null
+      }
       const m = now.getMonth() - value.getMonth()
       let age = now.getFullYear() - value.getFullYear()
       if (m < 0 || (m === 0 && now.getDate() < value.getDate())) {

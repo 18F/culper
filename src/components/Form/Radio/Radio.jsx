@@ -97,7 +97,8 @@ export default class Radio extends ValidationElement {
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: value ? err.func(value, this.props) : null,
+        uid: err.uid
       }
     })) || []
 

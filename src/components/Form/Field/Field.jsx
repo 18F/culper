@@ -171,7 +171,7 @@ export default class Field extends ValidationElement {
       )
     }
 
-    const errors = (this.state.errors || []).filter(err => !err.valid)
+    const errors = (this.state.errors || []).filter(err => err.valid === false)
     if (errors.length) {
       const markup = errors.map(err => {
         return message(`error.${err.code}`)
@@ -251,7 +251,7 @@ export default class Field extends ValidationElement {
     // Flag if help container bottom is within current viewport
     const notInView = (winHeight < helpBottom)
 
-    const active = this.state.helpActive || this.state.errors.length
+    const active = this.state.helpActive || this.state.errors.some(x => x.valid === false)
 
     if (active && this.props.scrollIntoView && notInView) {
       window.scrollBy({ top: (helpBottom - winHeight), left: 0, behavior: 'smooth' })
