@@ -203,7 +203,7 @@ class History extends SectionElement {
                        total={this.totalYears()}
                        >
         <div className="summary-icon">
-          <Svg src="img/residence-house.svg" />
+          <Svg src="/img/residence-house.svg" />
         </div>
       </SummaryProgress>
     )
@@ -218,7 +218,7 @@ class History extends SectionElement {
                        total={this.totalYears()}
                        >
         <div className="summary-icon">
-          <Svg src="img/employer-briefcase.svg" />
+          <Svg src="/img/employer-briefcase.svg" />
         </div>
       </SummaryProgress>
     )
@@ -235,7 +235,7 @@ class History extends SectionElement {
                       total={this.totalYears()}
                       >
         <div className="summary-icon">
-          <Svg src="img/school-cap.svg" />
+          <Svg src="/img/school-cap.svg" />
         </div>
       </SummaryCounter>
     )

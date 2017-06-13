@@ -193,7 +193,6 @@ const navigation = [
           { name: 'Domestic violence', url: 'domesticviolence' }
         ]
       },
-      { hidden: true, name: 'Involvement in non-criminal court actions', url: 'court' },
       {
         name: 'Investigations and clearance record',
         url: 'investigations',
@@ -203,6 +202,7 @@ const navigation = [
           { name: 'Debarment', url: 'debarred' }
         ]
       },
+      { name: 'Involvement in non-criminal court actions', url: 'court' },
       { hidden: true, name: 'Financial record', url: 'financial' },
       {
         name: 'Use of information technology systems',
@@ -213,7 +213,19 @@ const navigation = [
           { name: 'Unlawful use', url: 'unlawful' }
         ]
       },
-      { hidden: true, name: 'Association record', url: 'associations' }
+      {
+        name: 'Association record',
+        url: 'associations',
+        subsections: [
+          { name: 'Terrorist organization', url: 'terrorist-organization' },
+          { name: 'Engaged in terrorism', url: 'engaged-in-terrorism' },
+          { name: 'Advocating', url: 'advocating' },
+          { name: 'Membership - overthrow', url: 'membership-overthrow' },
+          { name: 'Membership - violence or force', url: 'membership-violence-or-force' },
+          { name: 'Activities to overthrow', url: 'activities-to-overthrow' },
+          { name: 'Terrorism association', url: 'terrorism-association' }
+        ]
+      }
     ]
   },
   {

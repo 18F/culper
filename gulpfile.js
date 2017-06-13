@@ -25,7 +25,10 @@ var paths = {
       './node_modules/uswds/src/stylesheets/**/*.s+(a|c)ss'
     ]
   },
-  html: ['./src/**/*.html'],
+  html: [
+    './src/**/*.html',
+    './Staticfile'
+  ],
   fonts: [
     './node_modules/font-awesome/fonts/**/*',
     './node_modules/uswds/dist/fonts/**/*'

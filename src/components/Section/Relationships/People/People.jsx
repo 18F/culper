@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { Accordion, Svg } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import Person from './Person'
-import { PeopleValidator } from '../../../../validators'
+import PeopleValidator, { PersonValidator } from '../../../../validators/people'
 import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
@@ -27,7 +27,7 @@ export default class People extends SubsectionElement {
     this.peopleSummaryList = this.peopleSummaryList.bind(this)
     this.fillGap = this.fillGap.bind(this)
     this.inject = this.inject.bind(this)
-    this.customSummary = this.customSummary.bind(this)
+    this.summary = this.summary.bind(this)
     this.customDetails = this.customDetails.bind(this)
   }
 
@@ -86,41 +86,18 @@ export default class People extends SubsectionElement {
     this.update('List', this.inject(items).sort(this.sort))
   }
 
-  customSummary (item, index, initial, callback, toggle, openText, remove, byline) {
-    if (item.type === 'Gap') {
-      return null
-    }
-
+  summary (item, index) {
     const o = (item || {}).Item || {}
     const name = NameSummary(o.Name, i18n.t('relationships.people.person.collection.summary.unknown'))
     const date = DateSummary(o.Dates)
     const type = i18n.t('relationships.people.person.collection.itemType')
 
     return (
-      <div>
-        <div className="summary">
-          <span className={`left ${openState(item, initial)}`}>
-            <a onClick={toggle()}>
-              <span className="button-with-icon">
-                <i className={chevron(item)} aria-hidden="true"></i>
-                <span className="toggle">{openText()}</span>
-              </span>
-              <span>
-                <span className="index">{type} {index + 1}:</span>
-                <span className="info"><strong>{name}</strong></span>
-                <span className="dates"><strong>{date}</strong></span>
-              </span>
-            </a>
-          </span>
-          <a className="right remove" onClick={remove()}>
-            <span className="button-with-icon">
-              <i className="fa fa-trash" aria-hidden="true"></i>
-              <span>{i18n.t('collection.remove')}</span>
-            </span>
-          </a>
-        </div>
-        {byline()}
-      </div>
+      <span>
+        <span className="index">{type} {index + 1}:</span>
+        <span className="info"><strong>{name}</strong></span>
+        <span className="dates"><strong>{date}</strong></span>
+      </span>
     )
   }
 
@@ -174,7 +151,7 @@ export default class People extends SubsectionElement {
                            total={7}
                            >
             <div className="summary-icon">
-              <Svg src="img/people-who-know-you.svg" />
+              <Svg src="/img/people-who-know-you.svg" />
             </div>
           </SummaryProgress>
         </div>
@@ -190,8 +167,9 @@ export default class People extends SubsectionElement {
                    sort={this.sort}
                    inject={this.inject}
                    branch={this.state.ListBranch}
-                   customSummary={this.customSummary}
+                   summary={this.summary}
                    customDetails={this.customDetails}
+                   validator={(props) => new PersonValidator(props, null).isValid() }
                    onUpdate={this.updateList}
                    onError={this.handleError}
                    description={i18n.t('relationships.people.person.collection.description')}

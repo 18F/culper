@@ -126,7 +126,7 @@ export default class Reference extends ValidationElement {
                       onChange={this.handleRelationshipChange}
                       >
               <div className="relationship-icon neighbor">
-                <Svg src="img/neighbor-icon.svg" />
+                <Svg src="/img/neighbor-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-friend"
@@ -135,7 +135,7 @@ export default class Reference extends ValidationElement {
                       onChange={this.handleRelationshipChange}
                       >
               <div className="relationship-icon friend">
-                <Svg src="img/friend-icon.svg" />
+                <Svg src="/img/friend-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-landlord"
@@ -144,7 +144,7 @@ export default class Reference extends ValidationElement {
                       onChange={this.handleRelationshipChange}
                       >
               <div className="relationship-icon landlord">
-                <Svg src="img/landlord-icon.svg" />
+                <Svg src="/img/landlord-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-business"
@@ -153,7 +153,7 @@ export default class Reference extends ValidationElement {
                       onChange={this.handleRelationshipChange}
                       >
               <div className="relationship-icon business">
-                <Svg src="img/business-associate-icon.svg" />
+                <Svg src="/img/business-associate-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-other"
@@ -162,7 +162,7 @@ export default class Reference extends ValidationElement {
                       onChange={this.handleRelationshipChange}
                       >
               <div className="relationship-icon other">
-                <Svg src="img/other-icon.svg" />
+                <Svg src="/img/other-icon.svg" />
               </div>
             </Checkbox>
           </CheckboxGroup>

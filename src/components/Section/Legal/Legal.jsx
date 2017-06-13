@@ -10,6 +10,9 @@ import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
 import { History, Revoked, Debarred } from './Investigations'
 import { Unauthorized, Manipulating, Unlawful } from './Technology'
+import NonCriminalCourtActions from './NonCriminalCourtActions'
+import { TerroristOrganization, MembershipOverthrow, MembershipViolence,
+         EngagedInTerrorism, Advocating, ActivitiesToOverthrow, TerrorismAssociation } from './Associations'
 
 class Legal extends SectionElement {
   constructor (props) {
@@ -26,9 +29,17 @@ class Legal extends SectionElement {
     this.updateHistory = this.updateHistory.bind(this)
     this.updateRevoked = this.updateRevoked.bind(this)
     this.updateDebarred = this.updateDebarred.bind(this)
+    this.updateNonCriminalCourtActions = this.updateNonCriminalCourtActions.bind(this)
     this.updateUnauthorized = this.updateUnauthorized.bind(this)
     this.updateManipulating = this.updateManipulating.bind(this)
     this.updateUnlawful = this.updateUnlawful.bind(this)
+    this.updateTerroristOrganization = this.updateTerroristOrganization.bind(this)
+    this.updateMembershipOverthrow = this.updateMembershipOverthrow.bind(this)
+    this.updateMembershipViolence = this.updateMembershipViolence.bind(this)
+    this.updateEngagedInTerrorism = this.updateEngagedInTerrorism.bind(this)
+    this.updateAdvocating = this.updateAdvocating.bind(this)
+    this.updateActivitiesToOverthrow = this.updateActivitiesToOverthrow.bind(this)
+    this.updateTerrorismAssociation = this.updateTerrorismAssociation.bind(this)
   }
 
   updatePolice (values) {
@@ -59,6 +70,10 @@ class Legal extends SectionElement {
     this.handleUpdate('Debarred', values)
   }
 
+  updateNonCriminalCourtActions (values) {
+    this.handleUpdate('NonCriminalCourtActions', values)
+  }
+
   updateUnauthorized (values) {
     this.handleUpdate('Unauthorized', values)
   }
@@ -71,6 +86,34 @@ class Legal extends SectionElement {
     this.handleUpdate('Unlawful', values)
   }
 
+  updateTerroristOrganization (values) {
+    this.handleUpdate('TerroristOrganization', values)
+  }
+
+  updateMembershipOverthrow (values) {
+    this.handleUpdate('MembershipOverthrow', values)
+  }
+
+  updateMembershipViolence (values) {
+    this.handleUpdate('MembershipViolence', values)
+  }
+
+  updateEngagedInTerrorism (values) {
+    this.handleUpdate('EngagedInTerrorism', values)
+  }
+
+  updateAdvocating (values) {
+    this.handleUpdate('Advocating', values)
+  }
+
+  updateActivitiesToOverthrow (values) {
+    this.handleUpdate('ActivitiesToOverthrow', values)
+  }
+
+  updateTerrorismAssociation (values) {
+    this.handleUpdate('TerrorismAssociation', values)
+  }
+
   render () {
     return (
       <div>
@@ -79,10 +122,10 @@ class Legal extends SectionElement {
             <div className="legal intro review-screen">
               <div className="usa-grid-full">
                 <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 3 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
+                  completed={() => { return this.props.Completed.length === 3 && this.props.Completed.every(x => x.valid === true) }}
+                  onTour={this.handleTour}
+                  onReview={this.handleReview}
+                  />
               </div>
             </div>
           </SectionView>
@@ -179,8 +222,8 @@ class Legal extends SectionElement {
           <SectionView name="investigations/debarred"
                        back="legal/investigations/revoked"
                        backLabel={i18n.t('legal.destination.investigations.revoked')}
-                       next="legal/technology/unauthorized"
-                       nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
+                       next="legal/court"
+                       nextLabel={i18n.t('legal.destination.court')}>
             <Debarred name="debarred"
                       {...this.props.Debarred}
                       dispatch={this.props.dispatch}
@@ -189,9 +232,22 @@ class Legal extends SectionElement {
                       />
           </SectionView>
 
-          <SectionView name="technology"
+          <SectionView name="court"
                        back="legal/investigations/debarred"
                        backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       next="legal/technology/unauthorized"
+                       nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
+            <NonCriminalCourtActions name="courtactions"
+                      {...this.props.NonCriminalCourtActions}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateNonCriminalCourtActions}
+                      onError={this.handleError}
+                      />
+          </SectionView>
+
+          <SectionView name="technology"
+                       back="legal/court"
+                       backLabel={i18n.t('legal.destination.court')}
                        next="legal/technology/manipulating"
                        nextLabel={i18n.t('legal.destination.technology.manipulating')}>
             <Unauthorized name="unauthorized"
@@ -203,8 +259,8 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="technology/unauthorized"
-                       back="legal/investigations/debarred"
-                       backLabel={i18n.t('legal.destination.investigations.debarred')}
+                       back="legal/court"
+                       backLabel={i18n.t('legal.destination.court')}
                        next="legal/technology/manipulating"
                        nextLabel={i18n.t('legal.destination.technology.manipulating')}>
             <Unauthorized name="unauthorized"
@@ -231,8 +287,8 @@ class Legal extends SectionElement {
           <SectionView name="technology/unlawful"
                        back="legal/technology/manipulating"
                        backLabel={i18n.t('legal.destination.technology.manipulating')}
-                       next="legal/review"
-                       nextLabel={i18n.t('legal.destination.review')}>
+                       next="legal/associations/terrorist-organization"
+                       nextLabel={i18n.t('legal.destination.associations.terrorist')}>
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
                       dispatch={this.props.dispatch}
@@ -241,12 +297,116 @@ class Legal extends SectionElement {
                       />
           </SectionView>
 
+          <SectionView name="associations"
+                       back="legal/technology/unlawful"
+                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       next="legal/associations/engaged-in-terrorism"
+                       nextLabel={i18n.t('legal.destination.associations.engaged')}>
+            <TerroristOrganization name="terroristOrganization"
+                                   {...this.props.TerroristOrganization}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateTerroristOrganization}
+                                   onError={this.handleError}
+                                   />
+          </SectionView>
+
+          <SectionView name="associations/terrorist-organization"
+                       back="legal/technology/unlawful"
+                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       next="legal/associations/engaged-in-terrorism"
+                       nextLabel={i18n.t('legal.destination.associations.engaged')}>
+            <TerroristOrganization name="terroristOrganization"
+                                   {...this.props.TerroristOrganization}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateTerroristOrganization}
+                                   onError={this.handleError}
+                                   />
+          </SectionView>
+
+          <SectionView name="associations/engaged-in-terrorism"
+                       back="legal/associations/terrorist-organization"
+                       backLabel={i18n.t('legal.destination.associations.terrorist')}
+                       next="legal/associations/advocating"
+                       nextLabel={i18n.t('legal.destination.associations.advocating')}>
+            <EngagedInTerrorism name="engagedInTerrorism"
+                                {...this.props.EngagedInTerrorism}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateEngagedInTerrorism}
+                                onError={this.handleError}
+                                />
+          </SectionView>
+
+          <SectionView name="associations/advocating"
+                       back="legal/associations/engaged-in-terrorism"
+                       backLabel={i18n.t('legal.destination.associations.engaged')}
+                       next="legal/associations/membership-overthrow"
+                       nextLabel={i18n.t('legal.destination.associations.overthrow')}>
+            <Advocating name="advocating"
+                        {...this.props.Advocating}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.updateAdvocating}
+                        onError={this.handleError}
+                        />
+          </SectionView>
+
+          <SectionView name="associations/membership-overthrow"
+                       back="legal/associations/advocating"
+                       backLabel={i18n.t('legal.destination.associations.advocating')}
+                       next="legal/associations/membership-violence-or-force"
+                       nextLabel={i18n.t('legal.destination.associations.violence')}>
+            <MembershipOverthrow name="membershipOverthrow"
+                                 {...this.props.MembershipOverthrow}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.updateMembershipOverthrow}
+                                 onError={this.handleError}
+                                 />
+          </SectionView>
+
+          <SectionView name="associations/membership-violence-or-force"
+                       back="legal/associations/membership-overthrow"
+                       backLabel={i18n.t('legal.destination.associations.overthrow')}
+                       next="legal/associations/activities-to-overthrow"
+                       nextLabel={i18n.t('legal.destination.associations.activities')}>
+            <MembershipViolence name="membershipViolence"
+                                {...this.props.MembershipViolence}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateMembershipViolence}
+                                onError={this.handleError}
+                                />
+          </SectionView>
+
+          <SectionView name="associations/activities-to-overthrow"
+                       back="legal/associations/membership-violence-or-force"
+                       backLabel={i18n.t('legal.destination.associations.violence')}
+                       next="legal/associations/terrorism-association"
+                       nextLabel={i18n.t('legal.destination.associations.terrorism')}>
+            <ActivitiesToOverthrow name="activitiesToOverthrow"
+                                   {...this.props.ActivitiesToOverthrow}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateActivitiesToOverthrow}
+                                   onError={this.handleError}
+                                   />
+          </SectionView>
+
+          <SectionView name="associations/terrorism-association"
+                       back="legal/associations/activities-to-overthrow"
+                       backLabel={i18n.t('legal.destination.associations.activities')}
+                       next="legal/review"
+                       nextLabel={i18n.t('legal.destination.review')}>
+            <TerrorismAssociation name="terrorismAssociation"
+                                  {...this.props.TerrorismAssociation}
+                                  dispatch={this.props.dispatch}
+                                  onUpdate={this.updateTerrorismAssociation}
+                                  onError={this.handleError}
+                                  />
+          </SectionView>
+
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="legal/technology/unlawful"
-                       backLabel={i18n.t('legal.destination.technology.unlawful')}
+                       back="legal/associations/terrorism-activities"
+                       backLabel={i18n.t('legal.destination.associations.activities')}
                        next="psychological/intro"
                        nextLabel={i18n.t('psychological.destination.psychological')}>
             <Field title={i18n.t('legal.police.heading.title')}
@@ -309,6 +469,14 @@ class Legal extends SectionElement {
                       />
 
             <hr />
+            <NonCriminalCourtActions name="courtactions"
+                      {...this.props.NonCriminalCourtActions}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.updateNonCriminalCourtActions}
+                      onError={this.handleError}
+                      />
+            <hr />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
                           defaultState={false}
@@ -334,6 +502,62 @@ class Legal extends SectionElement {
                       onUpdate={this.updateUnlawful}
                       onError={this.handleError}
                       />
+
+            <hr />
+            <TerroristOrganization name="terroristOrganization"
+                                   {...this.props.TerroristOrganization}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateTerroristOrganization}
+                                   onError={this.handleError}
+                                   />
+
+            <hr />
+            <EngagedInTerrorism name="engagedInTerrorism"
+                                {...this.props.EngagedInTerrorism}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateEngagedInTerrorism}
+                                onError={this.handleError}
+                                />
+
+            <hr />
+            <Advocating name="advocating"
+                        {...this.props.Advocating}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.updateAdvocating}
+                        onError={this.handleError}
+                        />
+
+            <hr />
+            <MembershipOverthrow name="membershipOverthrow"
+                                 {...this.props.MembershipOverthrow}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.updateMembershipOverthrow}
+                                 onError={this.handleError}
+                                 />
+
+            <hr />
+            <MembershipViolence name="membershipViolence"
+                                {...this.props.MembershipViolence}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateMembershipViolence}
+                                onError={this.handleError}
+                                />
+
+            <hr />
+            <ActivitiesToOverthrow name="activitiesToOverthrow"
+                                   {...this.props.ActivitiesToOverthrow}
+                                   dispatch={this.props.dispatch}
+                                   onUpdate={this.updateActivitiesToOverthrow}
+                                   onError={this.handleError}
+                                   />
+
+            <hr />
+            <TerrorismAssociation name="terrorismAssociation"
+                                  {...this.props.TerrorismAssociation}
+                                  dispatch={this.props.dispatch}
+                                  onUpdate={this.updateTerrorismAssociation}
+                                  onError={this.handleError}
+                                  />
           </SectionView>
 
         </SectionViews>
@@ -358,9 +582,17 @@ function mapStateToProps (state) {
     History: legal.History || {},
     Revoked: legal.Revoked || {},
     Debarred: legal.Debarred || {},
+    NonCriminalCourtActions: legal.NonCriminalCourtActions || {},
     Unauthorized: legal.Unauthorized || {},
     Manipulating: legal.Manipulating || {},
     Unlawful: legal.Unlawful || {},
+    TerroristOrganization: legal.TerroristOrganization || {},
+    MembershipOverthrow: legal.MembershipOverthrow || {},
+    MembershipViolence: legal.MembershipViolence || {},
+    EngagedInTerrorism: legal.EngagedInTerrorism || {},
+    Advocating: legal.Advocating || {},
+    ActivitiesToOverthrow: legal.ActivitiesToOverthrow || {},
+    TerrorismAssociation: legal.TerrorismAssociation || {},
     Errors: errors.legal || [],
     Completed: completed.legal || []
   }
