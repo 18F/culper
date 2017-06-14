@@ -73,8 +73,7 @@ export default class JobOffer extends ValidationElement {
               onError={this.props.onError}
               />
 
-        <Field title={i18n.t('foreign.business.employment.heading.description')}
-               help="foreign.business.employment.help.description">
+        <Field title={i18n.t('foreign.business.employment.heading.description')}>
           <Textarea name="Description"
                     className="employment-description"
                     onUpdate={this.updateDescription}
@@ -93,7 +92,6 @@ export default class JobOffer extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.employment.heading.address')}
-               help="foreign.business.employment.help.address"
                adjustFor="address">
           <Address name="Address"
                    className="employment-address"
@@ -105,7 +103,6 @@ export default class JobOffer extends ValidationElement {
         <Branch name="Accepted"
                 label={i18n.t('foreign.business.employment.heading.accepted')}
                 labelSize="h3"
-                help="foreign.business.employment.help.accepted"
                 className="employment-accepted"
                 value={this.props.Accepted}
                 onUpdate={this.updateAccepted}
