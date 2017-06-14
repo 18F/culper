@@ -7667,7 +7667,7 @@ const en = {
           firstUse: 'Provide an estimate of the month and year of first use',
           recentUse: 'Provide an estimate of the month and year of most recent use',
           natureOfUse: 'Provide nature of use, frequency, and number of times used',
-          useWhileEmployed: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          useWhileEmployed: 'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public?',
           useWithClearance: 'Was your use while possessing a security clearance?',
           useInFuture: 'Do you intend to use this drug or controlled substance in the future?',
           explanation: 'Provide explanation of why you intend or do not intend to use this drug or controlled substance in the future'
@@ -7731,10 +7731,10 @@ const en = {
           firstInvolvement: 'Provide an estimate of the month and year of first involvement',
           recentInvolvement: 'Provide an estimate of the month and year of most recent involvement',
           natureOfInvolvement: 'Provide nature of and frequency of activity',
-          involvementWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+          involvementWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
           involvementWithClearance: 'Was your involvement while possessing a security clearance?',
           involvementInFuture: 'Do you intend to engage in this activity in the future?',
-          reasons: 'Provide the reason(s) why you engaged in the activity.',
+          reasons: 'Provide the reason(s) why you engaged in the activity',
           explanation: 'You have indicated that you plan to engage in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance in the future. Provide explanation.'
         },
         help: {
