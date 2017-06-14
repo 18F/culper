@@ -109,7 +109,7 @@ export default class JobOffer extends ValidationElement {
                 onError={this.props.onError}
                 />
 
-        <Show when={this.props.Accepted === 'Yes'}>
+        <Show when={this.props.Accepted === 'Yes' || this.props.Accepted === 'No'}>
           <Field title={i18n.t('foreign.business.employment.label.explanation')}
                  titleSize="label">
             <Textarea name="Explanation"
