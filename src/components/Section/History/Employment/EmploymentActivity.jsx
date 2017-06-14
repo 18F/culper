@@ -43,7 +43,7 @@ export default class EmploymentActivity extends ValidationElement {
       <div className="employment-activity">
         <div className={this.props.className}>
           <Field help={`history.employment.default.activity.help`}
-                 adjustFor="labels"
+                 adjustFor="p"
                  shrink={true}>
             <RadioGroup name="employment_activity"
                         className="option-list"
@@ -52,6 +52,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.activeMilitary')}
                 value="ActiveMilitary"
+                className="employment-activity-active"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -61,6 +62,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.nationalGuard')}
                 value="NationalGuard"
+                className="employment-activity-national"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -70,6 +72,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.usphs')}
                 value="USPHS"
+                className="employment-activity-usphs"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -79,6 +82,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.otherFederal')}
                 value="OtherFederal"
+                className="employment-activity-other-federal"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -88,6 +92,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.stateGovernment')}
                 value="StateGovernment"
+                className="employment-activity-state-government"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -97,6 +102,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.federalContractor')}
                 value="FederalContractor"
+                className="employment-activity-federal-contractor"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -107,6 +113,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.nonGovernment')}
                 value="NonGovernment"
+                className="employment-activity-nongovernment"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -116,6 +123,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.selfEmployment')}
                 value="SelfEmployment"
+                className="employment-activity-self"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -125,6 +133,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.unemployment')}
                 value="Unemployment"
+                className="employment-activity-unemployment"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
@@ -134,6 +143,7 @@ export default class EmploymentActivity extends ValidationElement {
               <Radio
                 label={i18n.t('history.employment.default.activity.type.other')}
                 value="Other"
+                className="employment-activity-other"
                 disabled={this.props.disabled}
                 onChange={this.updateActivity}
                 onError={this.props.onError}
