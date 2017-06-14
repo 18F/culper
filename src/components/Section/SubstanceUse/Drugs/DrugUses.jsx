@@ -41,30 +41,6 @@ export default class DrugUses extends SubsectionElement {
     const o = (item || {}).DrugUse || {}
     const firstUse = DateSummary(o.FirstUse)
     const recentUse = DateSummary(o.RecentUse)
-    const dates = [firstUse, recentUse].reduce((p, c) => {
-      const first = `First use ${p}`
-      const recent = `Recent use ${c}`
-
-      if (p && c) {
-        return (
-          <span className="drug-use">
-            <span className="first">{first}</span>
-            <span className="recent">{recent}</span>
-          </span>
-        )
-      }
-
-      if (p) {
-        return first
-      }
-
-      if (c) {
-        return recent
-      }
-
-      return p
-    })
-
     const type = i18n.t('substance.drugs.use.collection.itemType')
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
@@ -79,7 +55,6 @@ export default class DrugUses extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className=""><strong>{drug}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
       </span>
     )
   }
