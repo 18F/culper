@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import BirthPlaceValidator from './birthplace'
 import { validPhoneNumber, validGenericTextfield } from './helpers'
 
 export default class CreditValidator {
@@ -53,7 +53,7 @@ export class CreditItemValidator {
     this.explanation = state.Explanation
     this.name = state.Name
     this.telephone = state.Telephone
-    this.address = state.Address
+    this.location = state.Location
     this.description = state.Description
   }
 
@@ -69,8 +69,8 @@ export class CreditItemValidator {
     return !!this.telephone && validPhoneNumber(this.telephone)
   }
 
-  validAddress () {
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+  validLocation () {
+    return !!this.location && new BirthPlaceValidator(this.location, { hideCounty: true }).isValid()
   }
 
   validDescription () {
@@ -81,7 +81,7 @@ export class CreditItemValidator {
     return this.validExplanation() &&
       this.validName() &&
       this.validTelephone() &&
-      this.validAddress() &&
+      this.validLocation() &&
       this.validDescription()
   }
 }

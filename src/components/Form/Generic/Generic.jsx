@@ -41,17 +41,6 @@ export default class Generic extends ValidationElement {
 
   componentWillReceiveProps (nextProps) {
     let updates = {}
-    // if (nextProps.focus !== this.state.focus) {
-    //   updates = { ...updates, focus: nextProps.focus }
-    // }
-
-    // if (nextProps.error !== this.state.error) {
-    //   this.setState({ error: nextProps.error })
-    // }
-
-    // if (nextProps.valid !== this.state.valid) {
-    //   updates = { ...updates, valid: nextProps.valid }
-    // }
 
     if (nextProps.value !== this.state.value) {
       updates = { ...updates, value: nextProps.value }
@@ -174,6 +163,10 @@ export default class Generic extends ValidationElement {
                maxLength={this.props.maxlength}
                pattern={this.props.pattern}
                readOnly={this.props.readonly}
+               autoCapitalize={this.props.autocapitalize}
+               autoCorrect={this.props.autocorrect}
+               autoComplete={this.props.autocomplete}
+               spellCheck={this.props.spellcheck}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.handleFocus}
@@ -198,6 +191,10 @@ Generic.defaultProps = {
   minlength: 0,
   maxlength: 255,
   clipboard: true,
+  spellcheck: true,
+  autocapitalize: true,
+  autocorrect: true,
+  autocomplete: true,
   tabNext: () => {},
   tabBack: () => {},
   onError: (value, arr) => { return arr }
