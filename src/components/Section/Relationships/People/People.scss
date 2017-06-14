@@ -2,9 +2,19 @@
   .summaryprogress {
     display: inline-block;
   }
+
   .people-summary {
     width: 54rem;
+
+    .content {
+      width: 75%;
+    }
+
+    .stats {
+      width: 25%;
+    }
   }
+
   .counter {
     height: 66px;
     vertical-align: middle;
