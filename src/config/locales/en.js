@@ -252,6 +252,98 @@ const en = {
       }
     },
     daterange: {
+      to: {
+        month: {
+          notfound: {
+            title: 'There is a problem with the Month',
+            message: 'The month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Month',
+            message: 'The month should be between 1(January) and 12(December).',
+            note: ''
+          }
+        },
+        day: {
+          length: {
+            title: 'There is a problem with the Day',
+            message: 'There is not that many days in this month.',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Day',
+            message: 'There is not that many days in this month.',
+            note: ''
+          }
+        },
+        year: {
+          max: {
+            title: 'There is a problem with the Year',
+            message: 'The year can\'t be in the future.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Year',
+            message: 'This year is too far in the past.',
+            note: ''
+          }
+        },
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The date should be on or after your date of birth.'
+        }
+      },
+      from: {
+        month: {
+          notfound: {
+            title: 'There is a problem with the Month',
+            message: 'The month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Month',
+            message: 'The month should be between 1(January) and 12(December).',
+            note: ''
+          }
+        },
+        day: {
+          length: {
+            title: 'There is a problem with the Day',
+            message: 'There is not that many days in this month.',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Day',
+            message: 'There is not that many days in this month.',
+            note: ''
+          }
+        },
+        year: {
+          max: {
+            title: 'There is a problem with the Year',
+            message: 'The year can\'t be in the future.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Year',
+            message: 'This year is too far in the past.',
+            note: ''
+          }
+        },
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The date should be on or after your date of birth.'
+        }
+      },
       order: {
         title: 'There is a problem with the date range',
         message: 'The **from** date should be before the **to** date.',

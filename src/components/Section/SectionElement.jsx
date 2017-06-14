@@ -45,7 +45,8 @@ export default class SectionElement extends React.Component {
         section: this.props.Section.section,
         subsection: this.props.Section.subsection,
         code: err.code,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 

@@ -95,19 +95,15 @@ export default class Generic extends ValidationElement {
    */
   handleValidation (event) {
     const value = `${this.state.value}`.trim()
-    if (value.length === 0) {
-      this.setState({ error: false, valid: false })
-      return
-    }
-
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: value.length ? err.func(value, this.props) : null,
+        uid: this.state.uid
       }
     })) || []
 
-    this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
   }
 
   /**

@@ -246,17 +246,13 @@ export default class Telephone extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `telephone.${code}.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    })))
+    return this.props.onError(value, arr)
   }
 
   dsn () {
