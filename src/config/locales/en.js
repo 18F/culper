@@ -1408,6 +1408,9 @@ const en = {
         address: 'Provide the location of the credit counseling organization',
         description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
       },
+      placeholder: {
+        city: 'Please enter the city'
+      },
       help: {
         branch: {
           title: 'Need help with credit counseling?',

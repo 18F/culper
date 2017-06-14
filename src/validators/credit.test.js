@@ -78,22 +78,21 @@ describe('credit component validation', function () {
     })
   })
 
-  it('validate address', () => {
+  it('validate location', () => {
     const tests = [
       {
         state: {
-          Address: {}
+          Location: {}
         },
         expected: false
       },
       {
         state: {
-          Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+          Location: {
+            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States'
           }
         },
         expected: true
@@ -101,7 +100,7 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditItemValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new CreditItemValidator(test.state, null).validLocation()).toBe(test.expected)
     })
   })
 
@@ -176,7 +175,11 @@ describe('credit component validation', function () {
       {
         state: {
           HasCreditCounseling: 'Yes',
-          List: [],
+          List: [{
+            Explanation: {
+              value: 'Completely forgot'
+            }
+          }],
           ListBranch: 'No'
         },
         expected: false
@@ -184,8 +187,16 @@ describe('credit component validation', function () {
       {
         state: {
           HasCreditCounseling: 'Yes',
+          List: [],
+          ListBranch: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasCreditCounseling: 'Yes',
           List: [{}],
-          ListBranch: 'No'
+          ListBranch: ''
         },
         expected: false
       },
@@ -207,12 +218,11 @@ describe('credit component validation', function () {
                 timeOfDay: 'Both',
                 extension: ''
               },
-              Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+              Location: {
+                domestic: 'Yes',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                country: 'United States'
               },
               Description: {
                 value: 'The description'
