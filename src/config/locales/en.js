@@ -53,7 +53,8 @@ const en = {
     remove: 'Remove',
     warning: 'Are you sure you would like to remove this item?',
     open: 'Open',
-    close: 'Close'
+    close: 'Close',
+    incomplete: 'This information is incomplete.'
   },
   comments: {
     add: 'Add a comment',
@@ -5762,7 +5763,7 @@ const en = {
           compensation: 'Describe what compensation, if any, was provided for your service'
         },
         para: {
-          branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business'
+          branch: 'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
         },
         help: {
           description: {
@@ -5781,9 +5782,9 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates the service was provided?',
-            message: 'Provide the approximate date range your services your provided',
-            note: ''
+            title: 'Need help with the dates the advice or support was provided?',
+            message: 'Tell us the date or date range when this happened.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           compensation: {
             title: 'Need help with compensation?',
@@ -5837,8 +5838,8 @@ const en = {
           },
           date: {
             title: 'Need help with the date of the request?',
-            message: 'Provide the approximate date the request was made',
-            note: ''
+            message: 'Tell us when someone or an agency asked you to provide advice or serve as a consultant.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           circumstances: {
             title: 'Need help with the circumstances?',
@@ -5884,8 +5885,8 @@ const en = {
           },
           date: {
             title: 'Need help with the date of the offer?',
-            message: 'Provide the approximate date the offer was extended to you',
-            note: ''
+            message: 'Tell us when the offer was extended to you.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           address: {
             title: 'Need help with the location?',

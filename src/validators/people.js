@@ -14,17 +14,7 @@ export default class PeopleValidator {
   }
 
   validCount () {
-    let count = 0
-
-    for (const item of this.people) {
-      if (!new PersonValidator(item.Item).isValid()) {
-        continue
-      }
-
-      count++
-    }
-
-    return count
+    return this.people.length
   }
 
   validYearRange () {
@@ -84,10 +74,6 @@ export default class PeopleValidator {
   }
 
   isValid () {
-    if (this.people.length < 1) {
-      return false
-    }
-
     if (this.listBranch !== 'No') {
       return false
     }
