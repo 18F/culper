@@ -242,6 +242,10 @@ a:focus {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+@-ms-viewport {
+  width: device-width;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
