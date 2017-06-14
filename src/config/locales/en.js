@@ -7639,7 +7639,7 @@ const en = {
           firstInvolvement: 'Provide an estimate of the month and year of first involvement',
           recentInvolvement: 'Provide an estimate of the month and year of most recent involvement',
           natureOfInvolvement: 'Provide nature of and frequency of activity',
-          involvementWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public?',
+          involvementWhileEmployed: 'Was your involvement while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
           involvementWithClearance: 'Was your involvement while possessing a security clearance?',
           involvementInFuture: 'Do you intend to engage in this activity in the future?',
           reasons: 'Provide the reason(s) why you engaged in the activity',
