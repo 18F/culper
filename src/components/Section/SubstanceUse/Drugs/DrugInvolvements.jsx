@@ -2,7 +2,6 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
-import { DateSummary } from '../../../Summary'
 import DrugInvolvement from './DrugInvolvement'
 import { DrugInvolvementsValidator } from '../../../../validators'
 
@@ -39,37 +38,20 @@ export default class DrugInvolvements extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).DrugInvolvement || {}
-    const firstUse = DateSummary(o.FirstInvolvement)
-    const recentUse = DateSummary(o.RecentInvolvement)
-    const dates = [firstUse, recentUse].reduce((p, c) => {
-      const first = `First ${p}`
-      const recent = `Recent ${c}`
-      if (p && c) {
-        return (
-          <span className="drug-use">
-            <span className="first">{first}</span>
-            <span className="recent">{recent}</span>
-          </span>
-        )
-      }
-      if (p) {
-        return first
-      }
-      if (c) {
-        return recent
-      }
-      return p
-    })
     const type = i18n.t('substance.drugs.involvement.collection.itemType')
+    let drug = (o.DrugType || {}).DrugType
+    if (drug === 'Other') {
+      drug = ((o.DrugType || {}).DrugTypeOther || {}).value
+    }
+
+    if (!drug) {
+      drug = i18n.t('substance.drugs.involvement.collection.summary')
+    }
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {dates || i18n.t('substance.drugs.involvement.collection.summary')}
-          </strong>
-        </span>
+        <span className=""><strong>{drug}</strong></span>
       </span>
     )
   }

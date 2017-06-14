@@ -1,5 +1,6 @@
 import React from 'react'
 import { reportCompletion } from '../../actions/ApplicationActions'
+import { newGuid } from '../Form/ValidationElement'
 
 export default class SubsectionElement extends React.Component {
   constructor (props) {
@@ -16,6 +17,10 @@ export default class SubsectionElement extends React.Component {
   handleError (value, arr) {
     this.handleCompletion()
     return this.props.onError(value, arr)
+  }
+
+  guid () {
+    return newGuid()
   }
 }
 

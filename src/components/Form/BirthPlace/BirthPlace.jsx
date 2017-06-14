@@ -72,16 +72,12 @@ export default class BirthPlace extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `address.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    })))
+    return this.props.onError(value, arr)
   }
 
   render () {

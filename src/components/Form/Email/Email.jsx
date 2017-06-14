@@ -33,17 +33,12 @@ export default class Email extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `email.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
-    // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    })))
+    return this.props.onError(value, arr)
   }
 
   render () {
@@ -73,7 +68,8 @@ export default class Email extends ValidationElement {
 }
 
 Email.defaultProps = {
-  pattern: `^([A-z0-9_\.-]+)@([\dA-z\.-]+)\.+([A-z\.]{2,6})$`,
+  // pattern: `^([A-z0-9_\.-]+)@([A-z0-9\.-]+)\.+([A-z\.]{2,6})$`,
+  pattern: /^([A-z0-9_\.-]+)@([A-z0-9\.-]+)\.+([A-z\.]{2,6})$/,
   value: '',
   spellcheck: false,
   autocapitalize: false,
