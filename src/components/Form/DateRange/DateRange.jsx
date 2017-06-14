@@ -8,7 +8,9 @@ import { now } from '../../Section/History/dateranges'
 export default class DateRange extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       from: props.from,
       to: props.to,
       present: props.present,
@@ -107,6 +109,14 @@ export default class DateRange extends ValidationElement {
   }
 
   handleError (code, value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `daterange.${code}.${err.code.replace('date.', '')}`,
+        valid: err.valid,
+        uid: err.uid
+      }
+    })
+
     if (this.state.from.date && this.state.to.date) {
       // Prepare some properties for the error testing
       const props = {
@@ -118,7 +128,8 @@ export default class DateRange extends ValidationElement {
       return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
         return {
           code: err.code,
-          valid: err.func(null, props)
+          valid: err.func(null, props),
+          uid: this.state.uid
         }
       })))
     }
@@ -198,6 +209,9 @@ DateRange.errors = [
   {
     code: 'daterange.order',
     func: (value, props) => {
+      if (!props.from || isNaN(props.from.date) || !props.to || isNaN(props.to.date)) {
+        return null
+      }
       return props.from.date && props.to.date && props.from.date < props.to.date
     }
   }

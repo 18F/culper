@@ -325,4 +325,9 @@ describe('The Address component', () => {
     component.find('.state input').simulate('keydown', { keyCode: 48, target: { value: 'AE' } })
     expect(tabbed).toBe(true)
   })
+
+  it('can disable toggling', () => {
+    const component = mount(<Address disableToggle={true} />)
+    expect(component.find('.address-options').length).toEqual(0)
+  })
 })

@@ -16,6 +16,7 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
     expect(component.find('.day input').length).toEqual(1)
+    expect(component.find('.flags .estimated').length).toBe(1)
   })
 
   it('renders appropriately with focus', () => {
@@ -293,5 +294,11 @@ describe('The date component', () => {
     expect(component.find('.datecontrol').length).toBe(1)
     component.find('.month input').simulate('change', { target: { name: 'month', value: '13' } })
     component.find('.month input').simulate('change', { target: { name: 'month', value: 'g' } })
+  })
+
+  it('can hide estimated option', () => {
+    const component = mount(<DateControl showEstimated={false} />)
+    expect(component.find('.datecontrol').length).toBe(1)
+    expect(component.find('.flags .estimated').length).toBe(0)
   })
 })

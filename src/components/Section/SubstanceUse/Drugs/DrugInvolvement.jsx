@@ -76,97 +76,99 @@ export default class DrugInvolvement extends ValidationElement {
     return (
       <div className="drug-involvement">
         <Field title={i18n.t('substance.drugs.involvement.heading.drugType')}
-          className="drug-type-involvement"
-          help={'substance.drugs.involvement.help.drugType'}
-          adjustFor="labels">
+               className="drug-type-involvement"
+               help={'substance.drugs.involvement.help.drugType'}
+               adjustFor="labels">
           <DrugType name="DrugType"
-            {...this.props.DrugType}
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-          />
+                    {...this.props.DrugType}
+                    onUpdate={this.updateDrugType}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.firstInvolvement')}
-          adjustFor="datecontrol"
-          help={'substance.drugs.involvement.help.firstInvolvement'}>
+               adjustFor="datecontrol"
+               help={'substance.drugs.involvement.help.firstInvolvement'}>
           <DateControl name="FirstInvolvement"
-            className="first-involvement"
-            {...this.props.FirstInvolvement}
-            hideDay={true}
-            onUpdate={this.updateFirstInvolvement}
-            onError={this.props.onError}
-          />
+                       className="first-involvement"
+                       {...this.props.FirstInvolvement}
+                       hideDay={true}
+                       showEstimated={false}
+                       onUpdate={this.updateFirstInvolvement}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.recentInvolvement')}
-          adjustFor="datecontrol"
-          help={'substance.drugs.involvement.help.recentInvolvement'}>
+               adjustFor="datecontrol"
+               help={'substance.drugs.involvement.help.recentInvolvement'}>
           <DateControl name="RecentInvolvement"
-            className="recent-involvement"
-            {...this.props.RecentInvolvement}
-            hideDay={true}
-            onUpdate={this.updateRecentInvolvement}
-            onError={this.props.onError}
-          />
+                       className="recent-involvement"
+                       {...this.props.RecentInvolvement}
+                       hideDay={true}
+                       showEstimated={false}
+                       onUpdate={this.updateRecentInvolvement}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.natureOfInvolvement')}
-          help={'substance.drugs.involvement.help.natureOfInvolvement'}>
+               help={'substance.drugs.involvement.help.natureOfInvolvement'}>
           <Textarea name="NatureOfInvolvement"
-            className="nature-of-involvement"
-            {...this.props.NatureOfInvolvement}
-            onUpdate={this.updateNatureOfInvolvement}
-            onError={this.props.onError}
-          />
+                    className="nature-of-involvement"
+                    {...this.props.NatureOfInvolvement}
+                    onUpdate={this.updateNatureOfInvolvement}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.reasons')}
-          help={'substance.drugs.involvement.help.reasons'}>
+               help={'substance.drugs.involvement.help.reasons'}>
           <Textarea name="Reasons"
-            className="reasons"
-            {...this.props.Reasons}
-            onUpdate={this.updateReasons}
-            onError={this.props.onError}
-          />
+                    className="reasons"
+                    {...this.props.Reasons}
+                    onUpdate={this.updateReasons}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <h3>{i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}</h3>
         <Branch name="InvolvementWhileEmployed"
-          className="involvement-while-employed"
-          help={'substance.drugs.involvement.help.involvementWhileEmployed'}
-          value={this.props.InvolvementWhileEmployed}
-          onError={this.props.onError}
-          onUpdate={this.updateInvolvementWhileEmployed}>
+                className="involvement-while-employed"
+                help={'substance.drugs.involvement.help.involvementWhileEmployed'}
+                value={this.props.InvolvementWhileEmployed}
+                onError={this.props.onError}
+                onUpdate={this.updateInvolvementWhileEmployed}>
         </Branch>
 
         <h3>{i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}</h3>
         <Branch name="InvolvementWithClearance"
-          className="involvement-with-clearance"
-          help={'substance.drugs.involvement.help.involvementWithClearance'}
-          value={this.props.InvolvementWithClearance}
-          onError={this.props.onError}
-          onUpdate={this.updateInvolvementWithClearance}>
+                className="involvement-with-clearance"
+                help={'substance.drugs.involvement.help.involvementWithClearance'}
+                value={this.props.InvolvementWithClearance}
+                onError={this.props.onError}
+                onUpdate={this.updateInvolvementWithClearance}>
         </Branch>
 
         <h3>{i18n.t('substance.drugs.involvement.heading.involvementInFuture')}</h3>
         <Branch name="InvolvementInFuture"
-          className="involvement-in-future"
-          help={'substance.drugs.involvement.help.involvementInFuture'}
-          value={this.props.InvolvementInFuture}
-          onError={this.props.onError}
-          onUpdate={this.updateInvolvementInFuture}>
+                className="involvement-in-future"
+                help={'substance.drugs.involvement.help.involvementInFuture'}
+                value={this.props.InvolvementInFuture}
+                onError={this.props.onError}
+                onUpdate={this.updateInvolvementInFuture}>
         </Branch>
 
         <Show when={this.props.InvolvementInFuture === 'Yes'}>
           <Field title={i18n.t('substance.drugs.involvement.heading.explanation')}
-            titleSize="h4"
-            help={'substance.drugs.involvement.help.explanation'}>
+                 titleSize="h4"
+                 help={'substance.drugs.involvement.help.explanation'}>
             <Textarea name="Explanation"
-              className="explanation"
-              {...this.props.Explanation}
-              onUpdate={this.updateExplanation}
-              onError={this.props.onError}
-            />
+                      className="explanation"
+                      {...this.props.Explanation}
+                      onUpdate={this.updateExplanation}
+                      onError={this.props.onError}
+                      />
           </Field>
         </Show>
       </div>

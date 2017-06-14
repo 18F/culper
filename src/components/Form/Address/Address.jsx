@@ -108,17 +108,13 @@ export default class Address extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `address.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    })))
+    return this.props.onError(value, arr)
   }
 
   handleBlur (event) {
@@ -186,39 +182,43 @@ export default class Address extends ValidationElement {
 
     return (
       <div className={klass}>
-        <label>{this.props.label}</label>
-        <RadioGroup className="address-options" selectedValue={this.state.addressType}>
-          <Radio name="addressType"
-                 label={i18n.m('address.options.us.label')}
-                 value="United States"
-                 className="domestic"
-                 ignoreDeselect="true"
-                 disabled={this.props.disabled}
-                 onChange={this.handleAddressTypeChange}
-                 onBlur={this.handleBlur}
-                 onFocus={this.props.onFocus}
-                 />
-          <Radio name="addressType"
-                 label={i18n.m('address.options.apoFpo.label')}
-                 value="APOFPO"
-                 className="apofpo"
-                 ignoreDeselect="true"
-                 disabled={this.props.disabled}
-                 onChange={this.handleAddressTypeChange}
-                 onBlur={this.handleBlur}
-                 onFocus={this.props.onFocus}
-                 />
-          <Radio name="addressType"
-                 label={i18n.m('address.options.international.label')}
-                 value="International"
-                 className="international"
-                 ignoreDeselect="true"
-                 disabled={this.props.disabled}
-                 onChange={this.handleAddressTypeChange}
-                 onBlur={this.handleBlur}
-                 onFocus={this.props.onFocus}
-                 />
-        </RadioGroup>
+        <Show when={!this.props.disableToggle}>
+          <div>
+            <label>{this.props.label}</label>
+            <RadioGroup className="address-options" selectedValue={this.state.addressType}>
+              <Radio name="addressType"
+                     label={i18n.m('address.options.us.label')}
+                     value="United States"
+                     className="domestic"
+                     ignoreDeselect="true"
+                     disabled={this.props.disabled}
+                     onChange={this.handleAddressTypeChange}
+                     onBlur={this.handleBlur}
+                     onFocus={this.props.onFocus}
+                     />
+              <Radio name="addressType"
+                     label={i18n.m('address.options.apoFpo.label')}
+                     value="APOFPO"
+                     className="apofpo"
+                     ignoreDeselect="true"
+                     disabled={this.props.disabled}
+                     onChange={this.handleAddressTypeChange}
+                     onBlur={this.handleBlur}
+                     onFocus={this.props.onFocus}
+                     />
+              <Radio name="addressType"
+                     label={i18n.m('address.options.international.label')}
+                     value="International"
+                     className="international"
+                     ignoreDeselect="true"
+                     disabled={this.props.disabled}
+                     onChange={this.handleAddressTypeChange}
+                     onBlur={this.handleBlur}
+                     onFocus={this.props.onFocus}
+                     />
+            </RadioGroup>
+          </div>
+        </Show>
         <div className="fields">
           <Suggestions
             suggestions={this.state.suggestions}
@@ -474,6 +474,7 @@ Address.defaultProps = {
   geocodeErrorCode: null,
   tab: (input) => { input.focus() },
   addressType: 'United States',
+  disableToggle: false,
   onError: (value, arr) => { return arr }
 }
 

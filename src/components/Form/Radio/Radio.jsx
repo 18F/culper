@@ -6,7 +6,7 @@ export default class Radio extends ValidationElement {
     super(props)
 
     this.state = {
-      uid: super.guid(),
+      uid: `${this.props.name}-${super.guid()}`,
       checked: props.checked,
       value: props.value,
       focus: props.focus,
@@ -97,7 +97,8 @@ export default class Radio extends ValidationElement {
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: value ? err.func(value, this.props) : null,
+        uid: this.state.uid
       }
     })) || []
 

@@ -46,7 +46,16 @@ describe('The field component', () => {
 
   it('help can display an error', () => {
     const expected = {
-      errors: ['error.Email.pattern', 'error.name.last.required']
+      errors: [
+        {
+          code: 'error.Email.pattern',
+          valid: false
+        },
+        {
+          code: 'error.name.last.required',
+          valid: true
+        }
+      ]
     }
     const component = mount(<Field {...expected} />)
     expect(component.find('.message.error').length).toEqual(1)
