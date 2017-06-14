@@ -20,7 +20,6 @@ export default class Address extends ValidationElement {
     let addressType = this.addressType()
 
     this.state = {
-      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       address: props.address,
       city: props.city,

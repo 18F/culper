@@ -45,10 +45,6 @@ export const settingsMiddleware = store => next => action => {
 
 export const clearErrorsMiddleware = store => next => action => {
   if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
-    //const state = store.getState()
-    //const errors = state.application.Errors[action.section] || []
-    //const filtered = errors.filter(x => x.section === action.section && x.subsection !== action.subsection)
-    //store.dispatch(updateApplication('Errors', action.section, filtered))
     store.dispatch(clearErrors(action.section, action.subsection))
   }
 
