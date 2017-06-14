@@ -52,8 +52,8 @@ describe('The DrugUses component', () => {
       {
         DrugUse: {
           DrugType: {
-            DrugType: 'Cocaine',
-            DrugTypeOther: null
+            DrugType: 'Other',
+            DrugTypeOther: 'Zombie'
           },
           NatureOfUse: {
             value: 'Some use'
@@ -65,6 +65,9 @@ describe('The DrugUses component', () => {
             value: 'Foo'
           }
         }
+      },
+      {
+        DrugUse: {}
       }
     ]
     const component = mount(<DrugUses onUpdate={onUpdate} UsedDrugs={'Yes'} List={list} />)

@@ -84,71 +84,73 @@ export default class DrugUse extends ValidationElement {
           adjustFor="datecontrol"
           help={'substance.drugs.use.help.firstUse'}>
           <DateControl name="FirstUse"
-            className="first-use"
-            {...this.props.FirstUse}
-            hideDay={true}
-            onUpdate={this.updateFirstUse}
-            onError={this.props.onError}
-          />
+                       className="first-use"
+                       {...this.props.FirstUse}
+                       hideDay={true}
+                       showEstimated={false}
+                       onUpdate={this.updateFirstUse}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.recentUse')}
-          adjustFor="datecontrol"
-          help={'substance.drugs.use.help.recentUse'}>
+               adjustFor="datecontrol"
+               help={'substance.drugs.use.help.recentUse'}>
           <DateControl name="RecentUse"
-            className="recent-use"
-            {...this.props.RecentUse}
-            hideDay={true}
-            onUpdate={this.updateRecentUse}
-            onError={this.props.onError}
-          />
+                       className="recent-use"
+                       {...this.props.RecentUse}
+                       hideDay={true}
+                       showEstimated={false}
+                       onUpdate={this.updateRecentUse}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.natureOfUse')}
-          help={'substance.drugs.use.help.natureOfUse'}>
+               help={'substance.drugs.use.help.natureOfUse'}>
           <Textarea name="NatureOfUse"
-            className="nature-of-use"
-            {...this.props.NatureOfUse}
-            onUpdate={this.updateNatureOfUse}
-            onError={this.props.onError}
-          />
+                    className="nature-of-use"
+                    {...this.props.NatureOfUse}
+                    onUpdate={this.updateNatureOfUse}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <h3>{i18n.t('substance.drugs.use.heading.useWhileEmployed')}</h3>
         <Branch name="UseWhileEmployed"
-          className="use-while-employed"
-          help={'substance.drugs.use.help.useWhileEmployed'}
-          value={this.props.UseWhileEmployed}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWhileEmployed}>
+                className="use-while-employed"
+                help={'substance.drugs.use.help.useWhileEmployed'}
+                value={this.props.UseWhileEmployed}
+                onError={this.props.onError}
+                onUpdate={this.updateUseWhileEmployed}>
         </Branch>
 
         <h3>{i18n.t('substance.drugs.use.heading.useWithClearance')}</h3>
         <Branch name="UseWithClearance"
-          className="use-with-clearance"
-          help={'substance.drugs.use.help.useWithClearance'}
-          value={this.props.UseWithClearance}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWithClearance}>
+                className="use-with-clearance"
+                help={'substance.drugs.use.help.useWithClearance'}
+                value={this.props.UseWithClearance}
+                onError={this.props.onError}
+                onUpdate={this.updateUseWithClearance}>
         </Branch>
 
         <h3>{i18n.t('substance.drugs.use.heading.useInFuture')}</h3>
         <Branch name="UseInFuture"
-          className="use-in-future"
-          help={'substance.drugs.use.help.useInFuture'}
-          value={this.props.UseInFuture}
-          onError={this.props.onError}
-          onUpdate={this.updateUseInFuture}>
+                className="use-in-future"
+                help={'substance.drugs.use.help.useInFuture'}
+                value={this.props.UseInFuture}
+                onError={this.props.onError}
+                onUpdate={this.updateUseInFuture}>
         </Branch>
 
         <Field title={i18n.t('substance.drugs.use.heading.explanation')}
-          help={'substance.drugs.use.help.explanation'}>
+               help={'substance.drugs.use.help.explanation'}>
           <Textarea name="Explanation"
-            className="explanation"
-            {...this.props.Explanation}
-            onUpdate={this.updateExplanation}
-            onError={this.props.onError}
-          />
+                    className="explanation"
+                    {...this.props.Explanation}
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )

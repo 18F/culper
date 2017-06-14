@@ -3,6 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Dropdown from '../Dropdown'
+import Show from '../Show'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
@@ -365,17 +366,20 @@ export default class DateControl extends ValidationElement {
                     />
           </div>
         </div>
-        <div className="flags">
-          <Checkbox name="estimated"
-                    ref="estimated"
-                    label="Estimated"
-                    toggle="false"
-                    value={this.state.estimated}
-                    checked={this.state.estimated}
-                    disabled={this.state.disabled}
-                    onChange={this.handleChange}
-                    />
-        </div>
+        <Show when={this.props.showEstimated}>
+          <div className="flags">
+            <Checkbox name="estimated"
+                      ref="estimated"
+                      label="Estimated"
+                      toggle="false"
+                      className="estimated"
+                      value={this.state.estimated}
+                      checked={this.state.estimated}
+                      disabled={this.state.disabled}
+                      onChange={this.handleChange}
+                      />
+          </div>
+        </Show>
       </div>
     )
   }
@@ -385,6 +389,7 @@ DateControl.defaultProps = {
   disabled: false,
   value: '',
   estimated: false,
+  showEstimated: true,
   focus: false,
   error: false,
   valid: false,

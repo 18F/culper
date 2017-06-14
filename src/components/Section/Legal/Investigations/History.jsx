@@ -92,6 +92,7 @@ export default class History extends SubsectionElement {
                    adjustFor="text">
               <NotApplicable name="AgencyNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
+                             label={i18n.t('legal.investigations.history.label.idk')}
                              bind={true}>
                 <InvestigatingAgency name="Agency"
                                      className="legal-investigations-history-agency"
@@ -105,6 +106,7 @@ export default class History extends SubsectionElement {
                    adjustFor="datecontrol">
               <NotApplicable name="CompletedNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
+                             label={i18n.t('legal.investigations.history.label.idk')}
                              bind={true}>
                 <DateControl name="Completed"
                              className="legal-investigations-history-completed"
@@ -127,6 +129,7 @@ export default class History extends SubsectionElement {
                    adjustFor="datecontrol">
               <NotApplicable name="GrantedNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
+                             label={i18n.t('legal.investigations.history.label.idk')}
                              bind={true}>
                 <DateControl name="Granted"
                              className="legal-investigations-history-granted"
@@ -140,6 +143,7 @@ export default class History extends SubsectionElement {
                    adjustFor="text">
               <NotApplicable name="clearanceNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
+                             label={i18n.t('legal.investigations.history.label.idk')}
                              bind={true}>
                 <ClearanceLevel name="Clearance"
                                 className="legal-investigations-history-clearance"
