@@ -61,11 +61,7 @@ export class EmploymentValidator {
   }
 
   validAcceptance () {
-    if (this.accepted === 'No') {
-      return true
-    }
-
-    if (this.accepted === 'Yes') {
+    if (this.accepted === 'Yes' || this.accepted === 'No') {
       return !!this.explanation && validGenericTextfield(this.explanation)
     }
 
