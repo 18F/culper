@@ -1,17 +1,8 @@
 import React from 'react'
-import ValidationElement, { newGuid } from '../ValidationElement'
+import ValidationElement from '../ValidationElement'
 import ReactMarkdown from 'react-markdown'
 import Autosuggest from 'react-autosuggest'
 import { autotab } from '../Generic'
-
-const trimLeadingZero = (num) => {
-  if (isNaN(num)) {
-    return num
-  }
-
-  const i = parseInt(`0${num}`, 10)
-  return i === 0 ? '' : '' + i
-}
 
 const getSuggestionValue = suggestion => suggestion.text
 

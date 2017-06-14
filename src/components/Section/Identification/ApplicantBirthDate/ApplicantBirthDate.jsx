@@ -10,6 +10,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       estimated: props.estimated
     }
@@ -44,7 +45,8 @@ export default class ApplicantBirthDate extends SubsectionElement {
     return super.handleError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(then, this.props)
+        valid: err.func(then, this.props),
+        uid: this.state.uid
       }
     })))
   }
@@ -86,6 +88,7 @@ ApplicantBirthDate.errors = [
       if (!value || isNaN(value)) {
         return null
       }
+
       const m = now.getMonth() - value.getMonth()
       let age = now.getFullYear() - value.getFullYear()
       if (m < 0 || (m === 0 && now.getDate() < value.getDate())) {

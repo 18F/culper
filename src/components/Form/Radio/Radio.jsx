@@ -6,7 +6,7 @@ export default class Radio extends ValidationElement {
     super(props)
 
     this.state = {
-      uid: super.guid(),
+      uid: `${this.props.name}-${super.guid()}`,
       checked: props.checked,
       value: props.value,
       focus: props.focus,
@@ -98,7 +98,7 @@ export default class Radio extends ValidationElement {
       return {
         code: err.code,
         valid: value ? err.func(value, this.props) : null,
-        uid: err.uid
+        uid: this.state.uid
       }
     })) || []
 

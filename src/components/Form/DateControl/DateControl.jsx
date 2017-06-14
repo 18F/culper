@@ -159,17 +159,19 @@ export default class DateControl extends ValidationElement {
           this.refs.day.refs.number.refs.input.blur()
           this.refs.year.refs.number.refs.input.focus()
           this.refs.year.refs.number.refs.input.blur()
+
           if (changed.month) {
             this.refs.month.refs.autosuggest.input.focus()
-          } else {
+          } else if (event.target.focus) {
             event.target.focus()
           }
         } else if (changed.year || changed.month) {
           this.refs.day.refs.number.refs.input.focus()
           this.refs.day.refs.number.refs.input.blur()
+
           if (changed.month) {
             this.refs.month.refs.autosuggest.input.focus()
-          } else {
+          } else if (event.target.focus) {
             event.target.focus()
           }
         }

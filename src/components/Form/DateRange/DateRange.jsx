@@ -8,7 +8,9 @@ import { now } from '../../Section/History/dateranges'
 export default class DateRange extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       from: props.from,
       to: props.to,
       present: props.present,
@@ -127,7 +129,7 @@ export default class DateRange extends ValidationElement {
         return {
           code: err.code,
           valid: err.func(null, props),
-          uid: err.uid
+          uid: this.state.uid
         }
       })))
     }

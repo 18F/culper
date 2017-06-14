@@ -20,13 +20,7 @@ export default class Currency extends React.Component {
       }
     })
 
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props),
-        uid: err.uid
-      }
-    })))
+    return this.props.onError(value, arr)
   }
 
   render () {
