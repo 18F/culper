@@ -2,7 +2,6 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
-import { DateSummary } from '../../../Summary'
 import DrugUse from './DrugUse'
 import { DrugUsesValidator } from '../../../../validators'
 
@@ -39,8 +38,6 @@ export default class DrugUses extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).DrugUse || {}
-    const firstUse = DateSummary(o.FirstUse)
-    const recentUse = DateSummary(o.RecentUse)
     const type = i18n.t('substance.drugs.use.collection.itemType')
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
