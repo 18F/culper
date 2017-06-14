@@ -276,6 +276,8 @@ export default class Telephone extends ValidationElement {
         uid: err.uid
       }
     })
+
+    // Take the original and concatenate our new error values to it
     return this.props.onError(value, arr)
   }
 
