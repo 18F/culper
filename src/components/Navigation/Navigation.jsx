@@ -183,7 +183,7 @@ export const isValid = (route, props = {}) => {
         .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
 
     if (crumbs.length === 1) {
-      return validations(navigation.find(n => n.url === section), props) === se.filter(e => e.valid === true).length
+      return se.filter(e => e.valid === true).length >= validations(navigation.find(n => n.url === section), props)
     } else if (crumbs.length > 1) {
       const sse = se.filter(e => e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase())
       return sse.length > 0 && sse.every(e => e.valid === true)

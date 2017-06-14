@@ -20,7 +20,7 @@ class ProgressBar extends React.Component {
       const valid = this.props.completed[section]
             .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
             .length
-      if (validations(navigation.find(n => n.url === section), this.props) === valid) {
+      if (valid >= validations(navigation.find(n => n.url === section), this.props)) {
         completed++
       }
     }
@@ -46,6 +46,7 @@ function mapStateToProps (state) {
   let app = state.application || {}
   let completed = app.Completed || {}
   return {
+    application: app,
     section: section,
     completed: completed
   }
