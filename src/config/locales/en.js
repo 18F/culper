@@ -2587,7 +2587,7 @@ const en = {
     },
     people: {
       heading: {
-        title: 'People know who you well'
+        title: 'People who know you well'
       },
       label: {
         unit: 'People added'
