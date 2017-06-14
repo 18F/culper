@@ -214,10 +214,32 @@ describe('The accordion component', () => {
     const expected = {
       minimum: 1,
       items: items,
+      defaultState: false,
+      initial: false,
+      validator: (props) => { return false },
+      summary: (item, index, initial) => { return <span>Summary</span> },
       byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.byline').length).toEqual(1)
+  })
+
+  it('displays if item is incomplete', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+
+    const expected = {
+      minimum: 1,
+      items: items,
+      defaultState: false,
+      initial: false,
+      validator: (props) => { return false },
+      summary: (item, index, initial) => { return <span>Summary</span> }
+    }
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.svg.incomplete').length).toEqual(1)
+    expect(component.find('.byline .incomplete').length).toEqual(1)
   })
 
   it('can support caption', () => {

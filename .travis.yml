@@ -30,9 +30,6 @@ after_script:
   - npm install -g pa11y-crawl
   - pa11y-crawl --run "docker-compose up" --ci http://localhost:8080
 
-# before_deploy:
-#   - ./bin/predeploy.sh
-
 deploy:
   - provider: script
     script: "./bin/deploy.sh dev"

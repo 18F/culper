@@ -23,23 +23,4 @@
       display: inline !important;
     }
   }
-
-  .nonpayment-date,
-  .nonpayment-resolved {
-    width: initial !important;
-  }
-
-  .fa.fa-dollar {
-    margin-left: -2rem;
-  }
-
-  .nonpayment-amount {
-    width: 100%;
-    margin-left: 1rem;
-    display: inline-block;
-
-    label {
-      margin-left: 1rem;
-    }
-  }
 }

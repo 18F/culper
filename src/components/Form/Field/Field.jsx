@@ -142,7 +142,7 @@ export default class Field extends ValidationElement {
          title="Show help"
          className={klass}
          onClick={this.toggleHelp}>
-        <Svg src="img/info.svg" />
+        <Svg src="/img/info.svg" />
       </a>
     )
   }

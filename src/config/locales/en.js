@@ -53,7 +53,8 @@ const en = {
     remove: 'Remove',
     warning: 'Are you sure you would like to remove this item?',
     open: 'Open',
-    close: 'Close'
+    close: 'Close',
+    incomplete: 'This information is incomplete.'
   },
   comments: {
     add: 'Add a comment',
@@ -5255,8 +5256,8 @@ const en = {
             note: ''
           },
           amount: {
-            title: 'Need help with the amount of financial support?',
-            message: 'Provide the amount of U.S. dollars',
+            title: 'Need help with this amount?',
+            message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           frequency: {
@@ -5265,8 +5266,8 @@ const en = {
             note: 'Note: Monthly, yearly, once, etc.'
           },
           citizenship: {
-            title: 'Need help with the citizenship of this foreign national?',
-            message: 'List all the known countries the foreign national is a citizen of',
+            title: 'Need help with the citizenship(s) of this foreign national?',
+            message: 'Tell us all of the citizenships this person has.',
             note: 'Note: You can provide multiple citizenships in this question.'
           }
         },
@@ -6424,6 +6425,7 @@ const en = {
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
       domesticViolence: 'Domestic violence',
+      court: 'Non-criminal court actions',
       investigations: {
         history: 'Ever been investigated',
         revoked: 'Denied',
@@ -6433,6 +6435,15 @@ const en = {
         unauthorized: 'Unauthorized access',
         manipulating: 'Manipulating access',
         unlawful: 'Unlawful use'
+      },
+      associations: {
+        terrorist: 'Terrorist organization',
+        engaged: 'Engaged in terrorism',
+        advocating: 'Advocating',
+        overthrow: 'Membership - overthrow',
+        violence: 'Membership - violence or force',
+        activities: 'Activities to overthrow',
+        terrorism: 'Terrorism association'
       },
       review: 'Review investigative & criminal history'
     },
@@ -6853,6 +6864,56 @@ const en = {
         }
       }
     },
+    nonCriminalAction: {
+      heading: {
+        hasCourtActions: 'In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?',
+        civilActionDate: 'Provide the date of the civil action',
+        courtName: 'Provide the court name',
+        courtAddress: 'Provide the address of the court',
+        natureOfAction: 'Provide details of the nature of the action',
+        resultsOfAction: 'Provide a description of the results of the action',
+        principalPartyNames: 'Provide the name(s) of the principal parties involved in the court action'
+      },
+      collection: {
+        description: 'Summary of court actions',
+        summary: 'Provide your court action details below',
+        appendTitle: 'Are there any other civil court actions in the last ten (10) years to report?',
+        appendLabel: 'Add another court action',
+        itemType: 'Court Action'
+      },
+      help: {
+        civilActionDate: {
+          title: 'Need help with the civil action date?',
+          message: 'Provide the date of the civil action',
+          note: ''
+        },
+        courtName: {
+          title: 'Need help with the court name?',
+          message: 'Provide the name of the court',
+          note: ''
+        },
+        courtAddress: {
+          title: 'Need help with the court address?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        natureOfAction: {
+          title: 'Need help with the nature of the action?',
+          message: 'Provide the address of the court',
+          note: ''
+        },
+        resultsOfAction: {
+          title: 'Need help with the results of the action?',
+          message: 'Provide a description of the results of the action',
+          note: ''
+        },
+        principalPartyNames: {
+          title: 'Need help with the principal parties involved?',
+          message: 'Provide the name(s) of the principal parties involved in the court action',
+          note: ''
+        }
+      }
+    },
     technology: {
       unauthorized: {
         heading: {
@@ -6970,6 +7031,274 @@ const en = {
           action: {
             title: 'Need help with any actions as a result of this incident?',
             message: 'Provide all actions which took place as a result of this incident.',
+            note: ''
+          }
+        }
+      }
+    },
+    associations: {
+      terrorist: {
+        heading: {
+          title: 'Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          intro: [
+            'The following pertain to your associations. You required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
+            'For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.'
+          ],
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
+        },
+        collection: {
+          description: 'Summary of terrorist organizations',
+          item: 'Organization',
+          unknown: 'Provide details of organization below',
+          appendTitle: 'Do you have any other instances of being a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities to report?',
+          appendLabel: 'Add another terrorist organization'
+        },
+        help: {
+          organization: {
+            title: 'Need help with this organization name?',
+            message: 'Provide the name of the organization.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with this address?',
+            message: 'Provide the address of the organization.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          positions: {
+            title: 'Need help with positions held?',
+            message: 'Provide any positions held during this time.',
+            note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          },
+          contributions: {
+            title: 'Need help with contributions?',
+            message: 'Provide any contributions made to organization.',
+            note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          },
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          }
+        }
+      },
+      engaged: {
+        heading: {
+          title: 'Have you EVER knowingly engaged in any acts of terrorism?',
+          reasons: 'Describe the nature and reasons for the activity',
+          dates: 'Provide the dates for any such activities'
+        },
+        collection: {
+          description: 'Summary of acts of terrorism',
+          item: 'Act',
+          unknown: 'Provide details for the terrorism below',
+          appendTitle: 'Do you have any other instances of knowingly engaging in acts of terrorism to report?',
+          appendLabel: 'Add another act of terrorism'
+        },
+        help: {
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          }
+        }
+      },
+      advocating: {
+        heading: {
+          title: 'Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?',
+          reasons: 'Provide the reason(s) for advocating acts of terrorism',
+          dates: 'Provide the dates of advocating acts of terrorism'
+        },
+        collection: {
+          description: 'Summary of advocating terrorism',
+          item: 'Instance',
+          unknown: 'Provide details of the instance below',
+          appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
+          appendLabel: 'Add another instance'
+        },
+        help: {
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          }
+        }
+      },
+      overthrow: {
+        heading: {
+          title: 'Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
+        },
+        collection: {
+          description: 'Summary of memberships',
+          item: 'Membership',
+          unknown: 'Please provide membership details below',
+          appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence or force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization’s dedication to that end or with the specific intent to further such activities to report?',
+          appendLabel: 'Add another membership'
+        },
+        help: {
+          organization: {
+            title: 'Need help with this organization name?',
+            message: 'Provide the name of the organization.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with this address?',
+            message: 'Provide the address of the organization.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          positions: {
+            title: 'Need help with positions held?',
+            message: 'Provide any positions held during this time.',
+            note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          },
+          contributions: {
+            title: 'Need help with contributions?',
+            message: 'Provide any contributions made to organization.',
+            note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          },
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          }
+        }
+      },
+      violence: {
+        heading: {
+          title: 'Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?',
+          organization: 'Provide the full name of the organization',
+          address: 'Provide the address/location of the organization',
+          dates: 'Provide the dates of your involvement with the organization',
+          positions: 'Provide all positions held in the organization, if any',
+          contributions: 'Provide all contributions (in U.S. dollars) made to the organization, if any',
+          reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        },
+        para: {
+          or: 'or'
+        },
+        label: {
+          noposition: 'No positions held',
+          nocontribs: 'No contributions made'
+        },
+        collection: {
+          description: 'Summary of memberships',
+          item: 'Membership',
+          unknown: 'Provide membership details below',
+          appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report',
+          appendLabel: 'Add another membership'
+        },
+        help: {
+          organization: {
+            title: 'Need help with this organization name?',
+            message: 'Provide the name of the organization.',
+            note: ''
+          },
+          address: {
+            title: 'Need help with this address?',
+            message: 'Provide the address of the organization.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          },
+          positions: {
+            title: 'Need help with positions held?',
+            message: 'Provide any positions held during this time.',
+            note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          },
+          contributions: {
+            title: 'Need help with contributions?',
+            message: 'Provide any contributions made to organization.',
+            note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          },
+          reasons: {
+            title: 'Need help with the nature and reasons of this incident?',
+            message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+            note: ''
+          }
+        }
+      },
+      activities: {
+        heading: {
+          title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?',
+          reasons: 'Describe the nature and reasons for the activity',
+          dates: 'Provide the dates of such activities'
+        },
+        collection: {
+          description: 'Summary of acts of terrorism',
+          item: 'Activity',
+          unknown: 'Provide details below',
+          appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
+          appendLabel: 'Add another activity'
+        },
+        help: {
+          reasons: {
+            title: 'Need help with the nature and reasons of this activity?',
+            message: 'Provide an explanation of events surrounding this activity to the best of your knowledge.',
+            note: ''
+          },
+          dates: {
+            title: 'Need help with the dates?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
+          }
+        }
+      },
+      terrorism: {
+        heading: {
+          title: 'Have you EVER associated with anyone involved in activities to further terrorism?',
+          explanation: 'Provide explanation'
+        },
+        help: {
+          explanation: {
+            title: 'Need help with this explanation?',
+            message: 'If you have ever known or been in association with anyone who was involved in terrorist activities provide an explanation of the circumstances.',
             note: ''
           }
         }

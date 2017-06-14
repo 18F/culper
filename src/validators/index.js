@@ -67,12 +67,20 @@ import DrugPublicSafetyUsesValidator from './drugpublicsafetyuses'
 import DrugPrescriptionUsesValidator from './drugprescriptionuses'
 import DrugOrderedTreatmentsValidator from './drugorderedtreatments'
 import DrugVoluntaryTreatmentsValidator from './drugvoluntarytreatments'
+import LegalNonCriminalCourtActionsValidator from './legalnoncriminalcourtactions'
 import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
 import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
 import LegalTechnologyUnauthorizedValidator from './legaltechnologyunauthorized'
 import LegalTechnologyManipulatingValidator from './legaltechnologymanipulating'
 import LegalTechnologyUnlawfulValidator from './legaltechnologyunlawful'
+import LegalAssociationsTerroristValidator from './legalassociationsterrorist'
+import LegalAssociationsOverthrowValidator from './legalassociationsoverthrow'
+import LegalAssociationsViolenceValidator from './legalassociationsviolence'
+import LegalAssociationsEngagedValidator from './legalassociationsengaged'
+import LegalAssociationsAdvocatingValidator from './legalassociationsadvocating'
+import LegalAssociationsActivitiesValidator from './legalassociationsactivities'
+import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 
 export {
   AddressValidator,
@@ -148,10 +156,18 @@ export {
   DrugPrescriptionUsesValidator,
   DrugOrderedTreatmentsValidator,
   DrugVoluntaryTreatmentsValidator,
+  LegalNonCriminalCourtActionsValidator,
   LegalInvestigationsHistoryValidator,
   LegalInvestigationsRevokedValidator,
   LegalInvestigationsDebarredValidator,
   LegalTechnologyUnauthorizedValidator,
   LegalTechnologyManipulatingValidator,
-  LegalTechnologyUnlawfulValidator
+  LegalTechnologyUnlawfulValidator,
+  LegalAssociationsTerroristValidator,
+  LegalAssociationsOverthrowValidator,
+  LegalAssociationsViolenceValidator,
+  LegalAssociationsEngagedValidator,
+  LegalAssociationsAdvocatingValidator,
+  LegalAssociationsActivitiesValidator,
+  LegalAssociationsTerrorismValidator
 }
