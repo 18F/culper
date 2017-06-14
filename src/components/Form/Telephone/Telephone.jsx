@@ -128,6 +128,32 @@ export default class Telephone extends ValidationElement {
       extension: '',
       ...defaultNumbers
     }, () => {
+      switch (this.state.type) {
+        case 'Domestic':
+          this.refs.domestic_first.refs.text.refs.input.focus()
+          this.refs.domestic_first.refs.text.refs.input.blur()
+          this.refs.domestic_second.refs.text.refs.input.focus()
+          this.refs.domestic_second.refs.text.refs.input.blur()
+          this.refs.domestic_third.refs.text.refs.input.focus()
+          this.refs.domestic_third.refs.text.refs.input.blur()
+          this.refs.domestic_extension.refs.text.refs.input.focus()
+          this.refs.domestic_extension.refs.text.refs.input.blur()
+          break
+        case 'DSN':
+          this.refs.dsn_first.refs.text.refs.input.focus()
+          this.refs.dsn_first.refs.text.refs.input.blur()
+          this.refs.dsn_second.refs.text.refs.input.focus()
+          this.refs.dsn_second.refs.text.refs.input.blur()
+          break
+        case 'International':
+          this.refs.int_first.refs.text.refs.input.focus()
+          this.refs.int_first.refs.text.refs.input.blur()
+          this.refs.int_second.refs.text.refs.input.focus()
+          this.refs.int_second.refs.text.refs.input.blur()
+          this.refs.int_extension.refs.text.refs.input.focus()
+          this.refs.int_extension.refs.text.refs.input.blur()
+          break
+      }
       this.onUpdate()
     })
   }
