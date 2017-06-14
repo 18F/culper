@@ -60,7 +60,6 @@ export default class Family extends SubsectionElement {
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h3"
                 adjustFor="p"
-                help="foreign.business.family.help.branch"
                 value={this.state.HasForeignFamily}
                 onUpdate={this.updateHasForeignFamily}
                 onError={this.handleError}>
@@ -85,16 +84,14 @@ export default class Family extends SubsectionElement {
                   bind={true}
                   />
 
-            <Field title={i18n.t('foreign.business.family.heading.agency')}
-                   help="foreign.business.family.help.agency">
+            <Field title={i18n.t('foreign.business.family.heading.agency')}>
               <Text name="Agency"
                     className="family-agency"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.country')}
-                   help="foreign.business.family.help.country">
+            <Field title={i18n.t('foreign.business.family.heading.country')}>
               <Country name="Country"
                        className="family-country"
                        bind={true}
@@ -110,8 +107,7 @@ export default class Family extends SubsectionElement {
                            />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.circumstances')}
-                   help="foreign.business.family.help.circumstances">
+            <Field title={i18n.t('foreign.business.family.heading.circumstances')}>
               <Textarea name="Circumstances"
                         className="family-circumstances"
                         bind={true}
