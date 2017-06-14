@@ -42,7 +42,7 @@ describe('The credit component', () => {
     component.find('.branch .yes input').simulate('change')
     component.find('.credit-explanation textarea').simulate('change', { target: { value: 'IRS' } })
     component.find('.credit-name input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.credit-address .mailing input').simulate('change', { target: { value: '123 Some Rd' } })
+    component.find('.credit-location .city input').simulate('change', { target: { value: 'Mesa' } })
     component.find('.credit-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBeGreaterThan(5)
   })

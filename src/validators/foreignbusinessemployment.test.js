@@ -111,7 +111,7 @@ describe('Foreign business employment component validation', function () {
         state: {
           Accepted: 'No'
         },
-        expected: true
+        expected: false
       },
       {
         state: {
@@ -122,6 +122,15 @@ describe('Foreign business employment component validation', function () {
       {
         state: {
           Accepted: 'Yes',
+          Explanation: {
+            value: 'this is the explanation'
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Accepted: 'No',
           Explanation: {
             value: 'this is the explanation'
           }
@@ -184,7 +193,10 @@ describe('Foreign business employment component validation', function () {
                   city: 'Munich',
                   country: 'Germany'
                 },
-                Accepted: 'No'
+                Accepted: 'Yes',
+                Explanation: {
+                  value: 'This is an explanation'
+                }
               }
             }
           ],
