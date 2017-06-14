@@ -58,6 +58,10 @@ export default class Email extends ValidationElement {
                pattern={this.state.pattern}
                readonly={this.props.readonly}
                required={this.props.required}
+               autocapitalize={this.props.autocapitalize}
+               autocorrect={this.props.autocorrect}
+               autocomplete={this.props.autocomplete}
+               spellcheck={this.props.spellcheck}
                value={this.state.value}
                onChange={this.handleChange}
                onFocus={this.props.Focus}
@@ -71,6 +75,10 @@ export default class Email extends ValidationElement {
 Email.defaultProps = {
   pattern: `^([A-z0-9_\.-]+)@([\dA-z\.-]+)\.+([A-z\.]{2,6})$`,
   value: '',
+  spellcheck: false,
+  autocapitalize: false,
+  autocorrect: false,
+  autocomplete: true,
   onError: (value, arr) => { return arr }
 }
 

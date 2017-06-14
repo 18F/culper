@@ -132,6 +132,10 @@ export default class Textarea extends ValidationElement {
                   maxLength={this.props.maxlength}
                   pattern={this.props.pattern}
                   readOnly={this.props.readonly}
+                  autoCapitalize={this.props.autocapitalize}
+                  autoCorrect={this.props.autocorrect}
+                  autoComplete={this.props.autocomplete}
+                  spellCheck={this.props.spellcheck}
                   required={this.props.required}
                   value={this.state.value}
                   onChange={this.handleChange}
@@ -149,6 +153,10 @@ Textarea.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  spellcheck: true,
+  autocapitalize: true,
+  autocorrect: true,
+  autocomplete: true,
   onError: (value, arr) => { return arr }
 }
 
