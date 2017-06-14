@@ -571,19 +571,19 @@ const en = {
       partial: {
         title: 'Alternate address found',
         label: 'Suggested Address',
-        para: 'Consider the highlighted change below. Using the US Postal Service suggested address will help us process your case more quickly'
+        para: 'Consider the highlighted change below. Using the US Postal Service suggested address will help us process your case more quickly.'
       },
       city: {
         title: 'City could not be found',
-        para: 'The city entered could not be found. Please ensure you have correctly typed the city associated to this address'
+        para: 'There is a city-state mismatch. Have you entered the correct city and state?'
       },
       notfound: {
         title: 'Address not found',
-        para: 'The address provided could not be found. Please ensure you have correctly typed all address fields correctly'
+        para: 'The address provided could not be found. Please ensure you have correctly typed all address fields correctly.'
       },
       generic: {
         title: 'Unable to validate address',
-        para: 'The address provided cannot be properly validated'
+        para: 'The address provided cannot be properly validated.'
       },
       multiple: {
         title: 'Multiple address found',
