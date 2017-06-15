@@ -34,7 +34,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'bankruptcy':
       return completeBankruptcy(promise)
     case 'gambling':
-      return promise
+      return completeGambling(promise)
     case 'taxes':
       return promise
     case 'card':
@@ -78,6 +78,20 @@ const completeBankruptcy = (promise) => {
     .then(() => { return click('.dismiss a') })
     .then(() => { return setOption('.has-discharge-explanation .branch .yes') })
     .then(() => { return setText('.discharge-explanation textarea', 'This is a test explanation') })
+}
+
+const completeGambling = (promise) => {
+  return promise
+    .then(() => { return setOption('.gambling .blocks.branch .yes') })
+    .then(() => { return setText('.daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.daterange .datecontrol.from .year input', '2001') })
+    .then(() => { return setText('.daterange .datecontrol.to .month input', '1') })
+    .then(() => { return setText('.daterange .datecontrol.to .day input', '1') })
+    .then(() => { return setText('.daterange .datecontrol.to .year input', '2002') })
+    .then(() => { return setText('input[name="Losses"]', '1000000') })
+    .then(() => { return setText('.content .description textarea', 'This is a test description') })
+    .then(() => { return setText('.content .actions textarea', 'This is a test action') })
 }
 
 const navigateToSection = (section) => {
