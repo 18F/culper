@@ -8,6 +8,10 @@ label, input, textarea, select {
   color: $eapp-grey-dark;
 }
 
+input, textarea, select {
+  border-radius: 3px;
+}
+
 /* bring in USWD validation classes and alter for our design */
 input[type='text'], textarea, select {
   padding-right: 3rem;
@@ -148,6 +152,7 @@ select {
     text-align: center;
     background: $eapp-grey-light;
     border: 1px solid $eapp-grey-dark;
+    border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     line-height: 4.6rem !important;
