@@ -42,7 +42,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'credit':
       return completeCredit(promise)
     case 'delinquent':
-      return promise
+      return completeDelinquent(promise)
     case 'nonpayment':
       return promise
     default:
@@ -134,6 +134,23 @@ const completeCredit = (promise) => {
     .then(() => { return setDomesticTelephone('.credit-counseling .telephone', '703', '111', '2222', 'Cell') })
     .then(() => { return setDomesticAddress('.credit-counseling .credit-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setText('.credit-counseling .credit-description textarea', 'This is a test description') })
+}
+
+const completeDelinquent = (promise) => {
+  return promise
+    .then(() => { return setOption('.delinquent .delinquent-branch .yes') })
+    .then(() => { return setText('input[name="Name"]', 'Organization debt was owed') })
+    .then(() => { return setOption('.delinquent .delinquent-infractions .delinquent-alimony') })
+    .then(() => { return setText('input[name="AccountNumber"]', '123456789') })
+    .then(() => { return setText('input[name="PropertyType"]', 'Property type for which debt is owed') })
+    .then(() => { return setText('input[name="Amount"]', '1000000') })
+    .then(() => { return setText('.delinquent .delinquent-reason textarea', 'This is a test reason') })
+    .then(() => { return setText('input[name="Status"]', 'This is a sample status') })
+    .then(() => { return setText('.delinquent .delinquent-date .month input', '1') })
+    .then(() => { return setText('.delinquent .delinquent-date .year input', '2001') })
+    .then(() => { return setText('input[name="CourtName"]', 'Sample Court Name') })
+    .then(() => { return setDomesticAddress('.delinquent .delinquent-courtaddress', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.delinquent .delinquent-description textarea', 'This is a test description') })
 }
 
 const navigateToSection = (section) => {
