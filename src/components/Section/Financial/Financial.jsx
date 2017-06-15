@@ -267,7 +267,7 @@ function mapStateToProps (state) {
 }
 
 Financial.defaultProps = {
-  defaultView: 'bankruptcy',
+  defaultView: (props) => { return 'bankruptcy' },
   store: 'Financial'
 }
 

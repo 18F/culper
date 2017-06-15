@@ -389,7 +389,7 @@ function mapStateToProps (state) {
 }
 
 SubstanceUse.defaultProps = {
-  defaultView: 'drugs/usage',
+  defaultView: (props) => { return 'drugs/usage' },
   store: 'SubstanceUse'
 }
 

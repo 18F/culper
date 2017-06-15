@@ -240,7 +240,7 @@ export function processApplicantBirthDate (birthDate) {
 }
 
 Identification.defaultProps = {
-  defaultView: 'name',
+  defaultView: (props) => { return 'name' },
   store: 'Identification'
 }
 

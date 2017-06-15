@@ -207,7 +207,7 @@ function mapStateToProps (state) {
 }
 
 Relationships.defaultProps = {
-  defaultView: 'marital',
+  defaultView: (props) => { return 'marital' },
   store: 'Relationships'
 }
 
