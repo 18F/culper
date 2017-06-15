@@ -36,7 +36,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'gambling':
       return completeGambling(promise)
     case 'taxes':
-      return promise
+      return completeTaxes(promise)
     case 'card':
       return promise
     case 'credit':
@@ -92,6 +92,20 @@ const completeGambling = (promise) => {
     .then(() => { return setText('input[name="Losses"]', '1000000') })
     .then(() => { return setText('.content .description textarea', 'This is a test description') })
     .then(() => { return setText('.content .actions textarea', 'This is a test action') })
+}
+
+const completeTaxes = (promise) => {
+  return promise
+    .then(() => { return setOption('.taxes .taxes-branch .yes') })
+    .then(() => { return setOption('.failure-file label') })
+    .then(() => { return setText('input[name="Year"]', '2001') })
+    .then(() => { return setText('.content .taxes-reason textarea', 'This is a test reason') })
+    .then(() => { return setText('input[name="Agency"]', 'Offended Agency') })
+    .then(() => { return setText('input[name="TaxType"]', 'Type of tax that was not paid') })
+    .then(() => { return setText('input[name="Amount"]', '1000000') })
+    .then(() => { return setText('.datecontrol.taxes-date .month input', '1') })
+    .then(() => { return setText('.datecontrol.taxes-date .year input', '2001') })
+    .then(() => { return setText('.content .taxes-description textarea', 'This is a test descriptions of actions taken') })
 }
 
 const navigateToSection = (section) => {

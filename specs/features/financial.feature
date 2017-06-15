@@ -7,11 +7,19 @@ Feature: Financial
   #   And I click next
   #   Then I should be in the financial gambling section
   #   Then I log out
+  #
+  # Scenario: Complete the Gambling subsection
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the financial gambling section
+  #   And I click next
+  #   Then I should be in the financial taxes section
+  #   Then I log out
 
-  Scenario: Complete the Gambling subsection
+  Scenario: Complete the Taxes subsection
     Given I am a registered user
     And I log in
-    And I fill in the financial gambling section
+    And I fill in the financial taxes section
     And I click next
-    Then I should be in the financial taxes section
+    Then I should be in the financial card section
     Then I log out
