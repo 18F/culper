@@ -49,7 +49,6 @@ export class NavigationToggle extends React.Component {
 function mapStateToProps (state) {
   let section = state.section || {}
   let app = state.application || {}
-  console.log('app', app)
   let settings = app.Settings || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
