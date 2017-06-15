@@ -11,7 +11,12 @@
   }
 
   // The text "Written correspondence" runs a little too long
-  .methods .methods-written,
+  .methods .methods-written {
+    label > span > div {
+      top: 25%;
+    }
+  }
+
   .relationship {
     .relationship-professional {
       label > span > div {
