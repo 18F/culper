@@ -44,7 +44,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'delinquent':
       return completeDelinquent(promise)
     case 'nonpayment':
-      return promise
+      return completeNonpayment(promise)
     default:
       return promise
     }
@@ -151,6 +151,23 @@ const completeDelinquent = (promise) => {
     .then(() => { return setText('input[name="CourtName"]', 'Sample Court Name') })
     .then(() => { return setDomesticAddress('.delinquent .delinquent-courtaddress', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setText('.delinquent .delinquent-description textarea', 'This is a test description') })
+}
+
+const completeNonpayment = (promise) => {
+  return promise
+    .then(() => { return setOption('.nonpayment .nonpayment-branch .yes') })
+    .then(() => { return setText('input[name="Name"]', 'Organization debt is or was owed') })
+    .then(() => { return setOption('.nonpayment .nonpayment-infractions .nonpayment-repossession') })
+    .then(() => { return setText('input[name="AccountNumber"]', '123456789') })
+    .then(() => { return setText('input[name="PropertyType"]', 'Property type for which debt is owed') })
+    .then(() => { return setText('input[name="Amount"]', '1000000') })
+    .then(() => { return setText('.nonpayment .nonpayment-reason textarea', 'This is a test reason') })
+    .then(() => { return setText('input[name="Status"]', 'This is the non-payment status') })
+    .then(() => { return setText('.nonpayment .datecontrol.nonpayment-resolved .month input', '1') })
+    .then(() => { return setText('.nonpayment .datecontrol.nonpayment-resolved .year input', '2002') })
+    .then(() => { return setText('.nonpayment .datecontrol.nonpayment-date .month input', '1') })
+    .then(() => { return setText('.nonpayment .datecontrol.nonpayment-date .year input', '2001') })
+    .then(() => { return setText('.nonpayment .nonpayment-description textarea', 'This is a test description') })
 }
 
 const navigateToSection = (section) => {
