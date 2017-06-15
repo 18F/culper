@@ -49,6 +49,7 @@ export default class Telephone extends ValidationElement {
     }
 
     this.handleNumberTypeChange = this.handleNumberTypeChange.bind(this)
+    this.handleNoNumberChange = this.handleNoNumberChange.bind(this)
     this.handleError = this.handleError.bind(this)
     this.handleErrorDomestic = this.handleErrorDomestic.bind(this)
     this.handleErrorDomesticFirst = this.handleErrorDomesticFirst.bind(this)
@@ -105,8 +106,8 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  handleNumberTypeChange (event) {
-    this.setState({ numberType: event.target.value }, () => {
+  handleNumberTypeChange (cb) {
+    this.setState({ numberType: cb.value }, () => {
       this.onUpdate()
     })
   }
@@ -120,9 +121,9 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  handleNoNumberChange (e) {
+  handleNoNumberChange (cb) {
     this.setState({
-      noNumber: e.target.value,
+      noNumber: cb.value,
       timeOfDay: '',
       numberType: '',
       extension: '',
@@ -326,7 +327,7 @@ export default class Telephone extends ValidationElement {
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
-                 onChange={this.handleNoNumberChange.bind(this)}
+                 onUpdate={this.handleNoNumberChange}
                  onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
@@ -415,7 +416,7 @@ export default class Telephone extends ValidationElement {
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
-                 onChange={this.handleNoNumberChange.bind(this)}
+                 onUpdate={this.handleNoNumberChange}
                  onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
@@ -484,7 +485,7 @@ export default class Telephone extends ValidationElement {
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
-                 onChange={this.handleNoNumberChange.bind(this)}
+                 onUpdate={this.handleNoNumberChange}
                  onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
@@ -572,7 +573,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.cell')}
                    value="Cell"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
             <Radio name="numbertype-home"
@@ -580,7 +581,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.home')}
                    value="Home"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
             <Radio name="numbertype-work"
@@ -588,7 +589,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.work')}
                    value="Work"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
             <Radio name="numbertype-other"
@@ -596,7 +597,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.other')}
                    value="Other"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
           </RadioGroup>
