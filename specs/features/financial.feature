@@ -15,11 +15,19 @@ Feature: Financial
   #   And I click next
   #   Then I should be in the financial taxes section
   #   Then I log out
+  #
+  # Scenario: Complete the Taxes subsection
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the financial taxes section
+  #   And I click next
+  #   Then I should be in the financial card section
+  #   Then I log out
 
-  Scenario: Complete the Taxes subsection
+  Scenario: Complete the Card subsection
     Given I am a registered user
     And I log in
-    And I fill in the financial taxes section
+    And I fill in the financial card section
     And I click next
-    Then I should be in the financial card section
+    Then I should be in the financial credit section
     Then I log out

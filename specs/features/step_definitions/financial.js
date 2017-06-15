@@ -38,7 +38,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'taxes':
       return completeTaxes(promise)
     case 'card':
-      return promise
+      return completeCard(promise)
     case 'credit':
       return promise
     case 'delinquent':
@@ -106,6 +106,24 @@ const completeTaxes = (promise) => {
     .then(() => { return setText('.datecontrol.taxes-date .month input', '1') })
     .then(() => { return setText('.datecontrol.taxes-date .year input', '2001') })
     .then(() => { return setText('.content .taxes-description textarea', 'This is a test descriptions of actions taken') })
+}
+
+const completeCard = (promise) => {
+  return promise
+    .then(() => { return setOption('.card-abuse .card-branch .yes') })
+    .then(() => { return setText('.details .card-agency input', 'Card Abuse Agency') })
+    .then(() => { return setText('.address.card-address .fields .mailing input', '1234 Some Rd') })
+    .then(() => { return setText('.address.card-address .fields .city input', 'Metropolis') })
+    .then(() => { return setText('.address.card-address .fields .state input', 'NY') })
+    .then(() => { return setText('.address.card-address .fields .zipcode input', '85010') })
+    .then(() => { return tab('.address.card-address .fields .zipcode input') })
+    .then(() => { return client.pause(3000) })
+    .then(() => { return click('.dismiss a') })
+    .then(() => { return setText('.datecontrol.card-date .month input', '1') })
+    .then(() => { return setText('.datecontrol.card-date .year input', '2001') })
+    .then(() => { return setText('.content .card-reason textarea', 'This is a test reason') })
+    .then(() => { return setText('input[name="Amount"]', '1000000') })
+    .then(() => { return setText('.content .card-description textarea', 'This is a test description') })
 }
 
 const navigateToSection = (section) => {
