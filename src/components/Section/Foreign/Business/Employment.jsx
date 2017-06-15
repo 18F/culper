@@ -61,7 +61,6 @@ export default class Employment extends SubsectionElement {
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
                 labelSize="h3"
-                help="foreign.business.employment.help.branch"
                 value={this.state.HasForeignEmployment}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}

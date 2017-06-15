@@ -7,6 +7,7 @@ export default class Number extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: isNaN(props.value) ? '' : props.value,
       max: props.max
     }
@@ -61,7 +62,8 @@ export default class Number extends ValidationElement {
     return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(value, this.props)
+        valid: err.func(value, this.props),
+        uid: this.state.uid
       }
     })))
   }
@@ -111,6 +113,10 @@ Number.errors = [
   {
     code: 'min',
     func: (value, props) => {
+      if (!value.length) {
+        return null
+      }
+
       if (props.min) {
         return parseInt(value) >= parseInt(props.min)
       }
@@ -121,6 +127,10 @@ Number.errors = [
   {
     code: 'max',
     func: (value, props) => {
+      if (!value.length) {
+        return null
+      }
+
       if (props.max) {
         return parseInt(value) <= parseInt(props.max)
       }

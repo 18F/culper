@@ -2,8 +2,19 @@
   .employment-activity {
     .block label {
       height: 8rem;
-      width: 24rem;
+      width: 19rem;
       padding-top: 2rem;
+      line-height: 1.4 !important;
+    }
+  }
+
+  .employment-activity-state-government,
+  .employment-activity-federal-contractor,
+  .employment-activity-self,
+  .employment-activity-unemployment,
+  .employment-activity-other {
+    &.block label {
+      padding-top: 2.5rem;
     }
   }
 

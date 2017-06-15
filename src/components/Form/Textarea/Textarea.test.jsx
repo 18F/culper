@@ -7,11 +7,10 @@ describe('The textarea component', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false
+      value: 'areistnaeisntieanstienarseitnaeirstn',
+      maxlength: 1
     }
-    const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Textarea {...expected} />)
     expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(1)
   })

@@ -56,7 +56,7 @@ function plugins () {
 
   // Plugins used by all environments
   [
-    new webpack.EnvironmentPlugin(['API_BASE_URL', 'ALLOW_2FA_RESET']),
+    new webpack.EnvironmentPlugin(['API_BASE_URL', 'ALLOW_2FA_RESET', 'HASH_ROUTING']),
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'

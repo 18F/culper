@@ -3,6 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Dropdown from '../Dropdown'
+import Show from '../Show'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
@@ -43,6 +44,7 @@ export default class DateControl extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       disabled: props.disabled,
       value: props.value,
       estimated: props.estimated,
@@ -72,25 +74,23 @@ export default class DateControl extends ValidationElement {
       let day = ''
       let year = ''
 
-      if (next.value) {
-        value = next.value
-        month = datePart('m', next.value)
-        day = datePart('d', next.value)
-        year = datePart('y', next.value)
-        this.setState({
-          disabled: next.disabled,
-          value: value,
-          month: month,
-          day: day,
-          year: year
-        })
-      } else if (next.date) {
+      if (next.date) {
         value = next.date
         month = '' + (next.date.getMonth() + 1)
         day = next.date.getDate()
         year = next.date.getFullYear()
         this.setState({
-          disabled: next.disabled,
+          value: value,
+          month: month,
+          day: day,
+          year: year
+        })
+      } else {
+        value = next.value
+        month = datePart('m', next.value)
+        day = datePart('d', next.value)
+        year = datePart('y', next.value)
+        this.setState({
           value: value,
           month: month,
           day: day,
@@ -115,13 +115,21 @@ export default class DateControl extends ValidationElement {
     let estimated = this.state.estimated
     const target = event.target || {}
     const name = target.name || target.id || ''
+    let changed = {
+      month: false,
+      day: false,
+      year: false
+    }
 
     if (name.indexOf('month') !== -1) {
       month = event.target.value
+      changed.month = true
     } else if (name.indexOf('day') !== -1) {
       day = event.target.value
+      changed.day = true
     } else if (name.indexOf('year') !== -1) {
       year = event.target.value
+      changed.year = year.length === 4
     } else if (name.indexOf('estimated') !== -1) {
       estimated = event.target.checked
     }
@@ -143,6 +151,31 @@ export default class DateControl extends ValidationElement {
       },
       () => {
         event.target.date = d
+
+        // This will force a blur/validation
+        if (d) {
+          this.refs.month.refs.autosuggest.input.focus()
+          this.refs.month.refs.autosuggest.input.blur()
+          this.refs.day.refs.number.refs.input.focus()
+          this.refs.day.refs.number.refs.input.blur()
+          this.refs.year.refs.number.refs.input.focus()
+          this.refs.year.refs.number.refs.input.blur()
+
+          if (changed.month) {
+            this.refs.month.refs.autosuggest.input.focus()
+          } else if (event.target.focus) {
+            event.target.focus()
+          }
+        } else if (changed.year || changed.month) {
+          this.refs.day.refs.number.refs.input.focus()
+          this.refs.day.refs.number.refs.input.blur()
+
+          if (changed.month) {
+            this.refs.month.refs.autosuggest.input.focus()
+          } else if (event.target.focus) {
+            event.target.focus()
+          }
+        }
 
         if (this.props.onUpdate) {
           this.props.onUpdate({
@@ -233,7 +266,8 @@ export default class DateControl extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `date.${code}.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
@@ -242,8 +276,10 @@ export default class DateControl extends ValidationElement {
         ? new Date(this.state.year, this.state.month, this.state.day)
         : null
 
+    const existingErr = arr.some(e => e.valid === false)
+
     // If it is not a valid date...
-    if (!date) {
+    if (!date || existingErr) {
       return this.props.onError(date, arr)
     }
 
@@ -258,7 +294,8 @@ export default class DateControl extends ValidationElement {
     return this.props.onError(date, arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: err.func(date, props)
+        valid: err.func(date, props),
+        uid: this.state.uid
       }
     })))
   }
@@ -365,26 +402,31 @@ export default class DateControl extends ValidationElement {
                     />
           </div>
         </div>
-        <div className="flags">
-          <Checkbox name="estimated"
-                    ref="estimated"
-                    label="Estimated"
-                    toggle="false"
-                    value={this.state.estimated}
-                    checked={this.state.estimated}
-                    disabled={this.state.disabled}
-                    onChange={this.handleChange}
-                    />
-        </div>
+        <Show when={this.props.showEstimated}>
+          <div className="flags">
+            <Checkbox name="estimated"
+                      ref="estimated"
+                      label="Estimated"
+                      toggle="false"
+                      className="estimated"
+                      value={this.state.estimated}
+                      checked={this.state.estimated}
+                      disabled={this.state.disabled}
+                      onChange={this.handleChange}
+                      />
+          </div>
+        </Show>
       </div>
     )
   }
 }
 
 DateControl.defaultProps = {
+  name: 'datecontrol',
   disabled: false,
   value: '',
   estimated: false,
+  showEstimated: true,
   focus: false,
   error: false,
   valid: false,
@@ -402,6 +444,9 @@ DateControl.errors = [
   {
     code: 'day.max',
     func: (value, props) => {
+      if (!value || isNaN(value)) {
+        return null
+      }
       if (value) {
         return parseInt(props.day) <= daysInMonth(value.getMonth() + 1, value.getFullYear())
       }
@@ -411,12 +456,18 @@ DateControl.errors = [
   {
     code: 'date.max',
     func: (value, props) => {
+      if (!value || isNaN(value)) {
+        return null
+      }
       return value && props.validator.validMaxDate()
     }
   },
   {
     code: 'date.min',
     func: (value, props) => {
+      if (!value || isNaN(value)) {
+        return null
+      }
       return value && props.validator.validMinDate()
     }
   }

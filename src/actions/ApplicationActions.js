@@ -7,6 +7,17 @@ export function updateApplication (section, property, values) {
   }
 }
 
+export function clearErrors (property, subsection) {
+  const section = 'Errors'
+  return {
+    type: `${section}.${property}`,
+    section: section,
+    property: property,
+    subsection: subsection,
+    clear: true
+  }
+}
+
 /**
  * This is a generic function to report any errors for a particular
  * section.
