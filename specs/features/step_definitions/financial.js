@@ -40,7 +40,7 @@ defineSupportCode(({Given, Then, When}) => {
     case 'card':
       return completeCard(promise)
     case 'credit':
-      return promise
+      return completeCredit(promise)
     case 'delinquent':
       return promise
     case 'nonpayment':
@@ -126,6 +126,16 @@ const completeCard = (promise) => {
     .then(() => { return setText('.content .card-description textarea', 'This is a test description') })
 }
 
+const completeCredit = (promise) => {
+  return promise
+    .then(() => { return setOption('.credit-counseling .credit-branch .yes') })
+    .then(() => { return setText('.credit-counseling .credit-explanation textarea', 'This is a test explanation') })
+    .then(() => { return setText('input[name="Name"]', 'Credit Counseling Organization Name') })
+    .then(() => { return setDomesticTelephone('.credit-counseling .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setDomesticAddress('.credit-counseling .credit-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.credit-counseling .credit-description textarea', 'This is a test description') })
+}
+
 const navigateToSection = (section) => {
   const selector = '.section a[href="#/form/' + section + '"]'
   return client
@@ -197,6 +207,16 @@ const setDomesticAddress = (selector, street, city, state, zipcode) => {
     .setValue(selector + ' .state input', state)
     .setValue(selector + ' .zipcode input', zipcode)
     .saveScreenshot('./screenshots/Financial/' + filenum() + '-set-address.png')
+}
+
+const setDomesticTelephone = (selector, first, second, third) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector + ' input[name="domestic_first"]', first)
+    .setValue(selector + ' input[name="domestic_second"]', second)
+    .setValue(selector + ' input[name="domestic_third"]', third)
+    .click(selector + ' .phonetype-option.cell')
+    .saveScreenshot('./screenshots/Financial/' + filenum() + '-set-telephone.png')
 }
 
 const tab = (selector) => {
