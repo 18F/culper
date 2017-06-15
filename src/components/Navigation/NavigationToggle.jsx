@@ -5,7 +5,7 @@ import { updateApplication } from '../../actions/ApplicationActions'
 import { logout } from '../../actions/AuthActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
-class NavigationToggle extends React.Component {
+export class NavigationToggle extends React.Component {
   constructor (props) {
     super(props)
     this.logout = this.logout.bind(this)
@@ -49,6 +49,7 @@ class NavigationToggle extends React.Component {
 function mapStateToProps (state) {
   let section = state.section || {}
   let app = state.application || {}
+  console.log('app', app)
   let settings = app.Settings || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
