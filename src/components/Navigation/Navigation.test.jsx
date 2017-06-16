@@ -12,7 +12,7 @@ describe('The navigation component', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
-    const store = mockStore({ authentication: [] })
+    const store = mockStore({ authentication: {} })
     const component = mount(<Provider store={store}><Navigation /></Provider>)
     expect(component.find('div').length).toEqual(0)
   })

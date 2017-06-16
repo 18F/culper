@@ -567,13 +567,11 @@ class Legal extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let legal = app.Legal || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     Legal: legal,
     Police: legal.Police || {},
     PoliceOffenses: legal.PoliceOffenses || {},
@@ -599,7 +597,8 @@ function mapStateToProps (state) {
 }
 
 Legal.defaultProps = {
-  defaultView: 'police',
+  section: 'legal',
+  defaultView: (props) => { return 'police' },
   store: 'Legal'
 }
 

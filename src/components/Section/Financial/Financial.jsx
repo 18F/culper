@@ -246,13 +246,11 @@ class Financial extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let financial = app.Financial || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     Financial: financial,
     Gambling: financial.Gambling || {},
     Bankruptcy: financial.Bankruptcy || {},
@@ -267,7 +265,8 @@ function mapStateToProps (state) {
 }
 
 Financial.defaultProps = {
-  defaultView: 'bankruptcy',
+  section: 'financial',
+  defaultView: (props) => { return 'bankruptcy' },
   store: 'Financial'
 }
 

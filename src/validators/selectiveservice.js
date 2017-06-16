@@ -1,5 +1,23 @@
 import { validGenericTextfield } from './helpers'
 
+export const hideSelectiveService = (store = {}) => {
+  const selectiveService = new Date(1959, 11, 31)
+  const birthdate = (store.Identification || {}).ApplicantBirthDate || {}
+
+  // If nothing has been persisted
+  if (!birthdate.date) {
+    return false
+  }
+
+  // If there is no valid date present
+  if (isNaN(birthdate.date)) {
+    return false
+  }
+
+  // Check the limits
+  return birthdate.date <= selectiveService
+}
+
 export default class SelectiveServiceValidator {
   constructor (state, props) {
     this.wasBornAfter = state.WasBornAfter
