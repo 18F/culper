@@ -42,7 +42,7 @@ export default class Name extends ValidationElement {
     this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
   }
 
-  update (name, value) {
+  update (name, value, f) {
     this.setState({ [name]: value }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -59,10 +59,11 @@ export default class Name extends ValidationElement {
 
   updateFirstInitial (values) {
     this.update('firstInitialOnly', values.checked)
-    this.refs.first.refs.text.refs.input.focus()
-    this.refs.first.refs.text.refs.input.blur()
-    this.refs.first.refs.text.refs.input.focus()
-    this.refs.firstInitialOnly.refs.checkbox.focus()
+    setTimeout(() => {
+      this.refs.first.refs.text.refs.input.focus()
+      this.refs.first.refs.text.refs.input.blur()
+      this.refs.firstInitialOnly.refs.checkbox.focus()
+    }, 10)
   }
 
   updateMiddle (values) {
@@ -72,9 +73,11 @@ export default class Name extends ValidationElement {
   updateMiddleInitial (values) {
     this.update('middleInitialOnly', values.checked)
     this.update('noMiddleName', false)
-    this.refs.middle.refs.text.refs.input.focus()
-    this.refs.middle.refs.text.refs.input.blur()
-    this.refs.middleInitialOnly.refs.checkbox.focus()
+    setTimeout(() => {
+      this.refs.middle.refs.text.refs.input.focus()
+      this.refs.middle.refs.text.refs.input.blur()
+      this.refs.middleInitialOnly.refs.checkbox.focus()
+    }, 10)
   }
 
   updateMiddleNone (values) {
@@ -92,9 +95,11 @@ export default class Name extends ValidationElement {
 
   updateLastInitial (values) {
     this.update('lastInitialOnly', values.checked)
-    this.refs.last.refs.text.refs.input.focus()
-    this.refs.last.refs.text.refs.input.blur()
-    this.refs.lastInitialOnly.refs.checkbox.focus()
+    setTimeout(() => {
+      this.refs.last.refs.text.refs.input.focus()
+      this.refs.last.refs.text.refs.input.blur()
+      this.refs.lastInitialOnly.refs.checkbox.focus()
+    }, 10)
   }
 
   updateSuffix (values) {
@@ -119,6 +124,17 @@ export default class Name extends ValidationElement {
 
   handleErrorSuffix (value, arr) {
     return this.handleError('suffix', value, arr)
+  }
+
+  handleErrorInitial (value, arr) {
+    if (value) {
+      const valid = String(this.state.first).length === 1
+      arr = arr.concat({
+        code: 'initial',
+        valid: valid
+      })
+    }
+    return this.handleError('initial', value, arr)
   }
 
   handleError (code, value, arr) {
