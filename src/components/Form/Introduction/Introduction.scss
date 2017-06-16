@@ -1,0 +1,43 @@
+@import 'eqip-colors';
+
+.introduction-modal {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+
+  .introduction-content {
+    width: 50%;
+    min-width: 100rem;
+    padding-left: 0;
+    padding-right: 0;
+    height: 90vh;
+    margin-top: 5vh !important;
+    margin-bottom: 5vh !important;
+
+    .introduction-legal {
+      overflow-y: scroll;
+      max-height: 55vh;
+      padding: 0 5rem;
+      border: 1px solid $eapp-grey;
+
+      hr {
+        margin-top: 4rem;
+      }
+    }
+
+    .introduction-acceptance {
+      max-height: 40vh;
+      padding: 0;
+      margin: 4rem 5rem 0 5rem;
+      border-top: 1px solid $eapp-grey;
+    }
+
+    .field {
+      .title {
+        max-width: initial;
+      }
+
+      .table > .content > .component > div {
+        max-width: initial;
+      }
+    }
+  }
+}

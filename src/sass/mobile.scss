@@ -102,5 +102,33 @@
         width: 1%;
       }
     }
+
+    // Form introduction
+    .introduction-modal {
+      position: fixed !important;
+      overflow: auto;
+      background-color: rgba(255, 255, 255, 1) !important;
+
+      .introduction-content {
+        width: 100%;
+        min-width: 100%;
+        height: initial;
+        margin: 0 !important;
+        border: none;
+        box-shadow: none;
+
+        .introduction-legal {
+          overflow-y: auto;
+          max-height: initial;
+          border: none;
+          padding: 0;
+        }
+
+        .introduction-acceptance {
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
