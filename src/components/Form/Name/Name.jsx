@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
+import { NameValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import Show from '../Show'
@@ -41,13 +42,17 @@ export default class Name extends ValidationElement {
     this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
   }
 
-  update (name, value, f) {
+  update (name, value, callback) {
     this.setState({ [name]: value }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           ...this.state,
           [name]: value
         })
+      }
+
+      if (callback) {
+        callback()
       }
     })
   }
@@ -57,12 +62,12 @@ export default class Name extends ValidationElement {
   }
 
   updateFirstInitial (values) {
-    this.update('firstInitialOnly', values.checked)
-    setTimeout(() => {
+    this.update('firstInitialOnly', values.checked, () => {
       this.refs.first.refs.text.refs.input.focus()
       this.refs.first.refs.text.refs.input.blur()
+      this.refs.first.refs.text.refs.input.focus()
       this.refs.firstInitialOnly.refs.checkbox.focus()
-    }, 10)
+    })
   }
 
   updateMiddle (values) {
@@ -70,22 +75,22 @@ export default class Name extends ValidationElement {
   }
 
   updateMiddleInitial (values) {
-    this.update('middleInitialOnly', values.checked)
     this.update('noMiddleName', false)
-    setTimeout(() => {
+    this.update('middleInitialOnly', values.checked, () => {
       this.refs.middle.refs.text.refs.input.focus()
       this.refs.middle.refs.text.refs.input.blur()
       this.refs.middleInitialOnly.refs.checkbox.focus()
-    }, 10)
+    })
   }
 
   updateMiddleNone (values) {
-    this.update('noMiddleName', values.checked)
     this.update('middleInitialOnly', false)
     this.update('middle', '')
-    this.refs.middle.refs.text.refs.input.focus()
-    this.refs.middle.refs.text.refs.input.blur()
-    this.refs.noMiddleName.refs.checkbox.focus()
+    this.update('noMiddleName', values.checked, () => {
+      this.refs.middle.refs.text.refs.input.focus()
+      this.refs.middle.refs.text.refs.input.blur()
+      this.refs.noMiddleName.refs.checkbox.focus()
+    })
   }
 
   updateLast (values) {
@@ -93,12 +98,11 @@ export default class Name extends ValidationElement {
   }
 
   updateLastInitial (values) {
-    this.update('lastInitialOnly', values.checked)
-    setTimeout(() => {
+    this.update('lastInitialOnly', values.checked, () => {
       this.refs.last.refs.text.refs.input.focus()
       this.refs.last.refs.text.refs.input.blur()
       this.refs.lastInitialOnly.refs.checkbox.focus()
-    }, 10)
+    })
   }
 
   updateSuffix (values) {

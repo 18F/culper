@@ -206,13 +206,13 @@ class Identification extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
+  // let section = state.section || {}
   let app = state.application || {}
   let identification = app.Identification || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
+    // Section: section,
     Identification: identification,
     ApplicantName: identification.ApplicantName || {},
     ApplicantBirthDate: processApplicantBirthDate(identification.ApplicantBirthDate) || {},
@@ -240,6 +240,7 @@ export function processApplicantBirthDate (birthDate) {
 }
 
 Identification.defaultProps = {
+  section: 'identification',
   defaultView: 'name',
   store: 'Identification'
 }
