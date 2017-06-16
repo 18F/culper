@@ -2,6 +2,7 @@ import React from 'react'
 import { push } from '../../middleware/history'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator } from '../../components'
+import { Introduction } from '../../components/Form'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -35,6 +36,7 @@ class Form extends React.Component {
     return (
       <div id="eapp-form" className="eapp-form">
         <div id="info">
+          <Introduction dispatch={this.props.dispatch} />
           <Section section={this.props.params.section} subsection={subsection} />
           <SavedIndicator interval="3000" />
         </div>
