@@ -511,14 +511,12 @@ const processDate = (date) => {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let identification = app.Identification || {}
   let history = app.History || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     History: history,
     Residence: history.Residence || [],
     Employment: history.Employment || [],
@@ -531,6 +529,7 @@ function mapStateToProps (state) {
 }
 
 History.defaultProps = {
+  section: 'history',
   defaultView: 'residence',
   store: 'History'
 }

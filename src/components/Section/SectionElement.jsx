@@ -40,7 +40,6 @@ export default class SectionElement extends React.Component {
   }
 
   handleError (value, arr) {
-    console.log('subsection shit: ', this.props.subsection)
     arr = arr.map(err => {
       return {
         section: this.props.section,
@@ -61,7 +60,6 @@ export default class SectionElement extends React.Component {
 }
 
 SectionElement.defaultProps = {
-  // Section: { section: '', subsection: '' },
   section: '',
   subsection: '',
   defaultView: '',

@@ -169,13 +169,11 @@ class Military extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let military = app.Military || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     Application: app || {},
     Military: military,
     Selective: military.Selective || {},
@@ -188,6 +186,7 @@ function mapStateToProps (state) {
 }
 
 Military.defaultProps = {
+  section: 'military',
   defaultView: 'selective',
   store: 'Military'
 }

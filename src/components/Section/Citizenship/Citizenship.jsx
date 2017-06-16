@@ -87,13 +87,11 @@ class Citizenship extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let citizenship = app.Citizenship || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     Citizenship: citizenship,
     Status: citizenship.Status || {},
     Multiple: citizenship.Multiple || {},
@@ -103,6 +101,7 @@ function mapStateToProps (state) {
 }
 
 Citizenship.defaultProps = {
+  section: 'citizenship',
   defaultView: 'status',
   store: 'Citizenship'
 }

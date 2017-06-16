@@ -364,13 +364,11 @@ class SubstanceUse extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let substance = app.SubstanceUse || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     SubstanceUse: substance,
     NegativeImpacts: substance.NegativeImpacts || {},
     OrderedCounselings: substance.OrderedCounselings || {},
@@ -389,6 +387,7 @@ function mapStateToProps (state) {
 }
 
 SubstanceUse.defaultProps = {
+  section: 'substance',
   defaultView: 'drugs/usage',
   store: 'SubstanceUse'
 }

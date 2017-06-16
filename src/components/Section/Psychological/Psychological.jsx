@@ -183,13 +183,11 @@ class Psychological extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let psychological = app.Psychological || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     Psychological: psychological,
     Competence: psychological.Competence,
     Consultations: psychological.Consultation,
@@ -204,6 +202,7 @@ function mapStateToProps (state) {
 }
 
 Psychological.defaultProps = {
+  section: 'psychological',
   defaultView: 'intro',
   store: 'Psychological'
 }
