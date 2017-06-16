@@ -536,7 +536,6 @@ class Foreign extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let foreign = app.Foreign || {}
   let errors = app.Errors || {}
@@ -555,7 +554,6 @@ function mapStateToProps (state) {
   }
 
   return {
-    Section: section,
     Foreign: foreign,
     Passport: foreign.Passport || {},
     Contacts: foreign.Contacts || {},
@@ -581,6 +579,7 @@ function mapStateToProps (state) {
 }
 
 Foreign.defaultProps = {
+  section: 'foreign',
   defaultView: (props) => { return 'passport' },
   store: 'Foreign'
 }
