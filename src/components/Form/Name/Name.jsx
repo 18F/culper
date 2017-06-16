@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { NameValidator } from '../../../validators'
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import Show from '../Show'
@@ -124,17 +123,6 @@ export default class Name extends ValidationElement {
 
   handleErrorSuffix (value, arr) {
     return this.handleError('suffix', value, arr)
-  }
-
-  handleErrorInitial (value, arr) {
-    if (value) {
-      const valid = String(this.state.first).length === 1
-      arr = arr.concat({
-        code: 'initial',
-        valid: valid
-      })
-    }
-    return this.handleError('initial', value, arr)
   }
 
   handleError (code, value, arr) {
