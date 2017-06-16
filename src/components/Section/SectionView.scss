@@ -13,23 +13,34 @@
   }
 
   .btn-wrap {
-    display: table;
+    display: block;
     width: 100%;
 
     .btn-container {
-      display: table-row;
+      display: flex;
 
       .btn-cell,
       .btn-spacer {
-        display: table-cell;
+        display: inline-block;
         vertical-align: middle;
       }
 
       .btn-cell {
         width: 30%;
+      }
+
+      .btn-spacer {
+        width: 40%;
+      }
+
+      .btn-cell.back,
+      .btn-cell.next {
         border-radius: 3px;
         transition: background-color 0.3s;
         background-color: $eapp-blue;
+        margin: 0;
+        line-height: normal !important;
+        padding: 1.5rem 2rem;
 
         .next {
           text-align: right;
@@ -39,41 +50,29 @@
           background-color: $eapp-blue-dark;
         }
 
-        button {
-          margin: 0;
-          line-height: normal !important;
+        .actions {
+          display: table;
           width: 100%;
-          padding: 1.5rem 2rem;
-          background: none;
 
-          &:hover {
-            background: none;
+          .direction {
+            font-weight: 600;
           }
 
-          .actions {
-            display: table;
-            width: 100%;
+          .text, .icon {
+            display: table-cell;
+            vertical-align: middle;
+          }
 
-            .direction {
-              font-weight: 600;
-            }
+          .icon {
+            width: 2.4rem;
+          }
 
-            .text, .icon {
-              display: table-cell;
-              vertical-align: middle;
-            }
+          &.next {
+            text-align: right;
+          }
 
-            .icon {
-              width: 2.4rem;
-            }
-
-            &.next {
-              text-align: right;
-            }
-
-            &.back {
-              text-align: left;
-            }
+          &.back {
+            text-align: left;
           }
         }
       }

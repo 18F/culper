@@ -4,12 +4,14 @@ import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { hideSelectiveService } from '../../../validators/selectiveservice'
 import { IntroHeader } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
 
 class Citizenship extends SectionElement {
   render () {
+    const showSelectiveService = !hideSelectiveService(this.props.Application)
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
@@ -32,7 +34,7 @@ class Citizenship extends SectionElement {
                        back="citizenship/multiple"
                        backLabel={i18n.t('citizenship.destination.multiple')}
                        next="military"
-                       nextLabel={i18n.t('military.destination.selective')}>
+                       nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
@@ -92,6 +94,7 @@ function mapStateToProps (state) {
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
+    Application: app,
     Citizenship: citizenship,
     Status: citizenship.Status || {},
     Multiple: citizenship.Multiple || {},
@@ -102,7 +105,7 @@ function mapStateToProps (state) {
 
 Citizenship.defaultProps = {
   section: 'citizenship',
-  defaultView: 'status',
+  defaultView: (props) => { return 'status' },
   store: 'Citizenship'
 }
 

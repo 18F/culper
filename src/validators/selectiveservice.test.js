@@ -1,6 +1,69 @@
-import SelectiveServiceValidator from './selectiveservice'
+import SelectiveServiceValidator, { hideSelectiveService } from './selectiveservice'
 
 describe('Selective service validation', function () {
+  it('', () => {
+    const tests = [
+      {
+        store: {},
+        expected: false
+      },
+      {
+        store: {
+          Identification: {
+            ApplicantBirthDate: {
+              date: null
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        store: {
+          Identification: {
+            ApplicantBirthDate: {
+              date: new Date('Invalid date')
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        store: {
+          Identification: {
+            ApplicantBirthDate: {
+              date: new Date()
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        store: {
+          Identification: {
+            ApplicantBirthDate: {
+              date: new Date(1940, 1, 1)
+            }
+          }
+        },
+        expected: true
+      },
+      {
+        store: {
+          Identification: {
+            ApplicantBirthDate: {
+              date: new Date(1959, 11, 31)
+            }
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(hideSelectiveService(test.store)).toBe(test.expected)
+    })
+  })
+
   it('handle whether subject was born after a date', () => {
     const tests = [
       {

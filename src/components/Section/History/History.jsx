@@ -530,7 +530,7 @@ function mapStateToProps (state) {
 
 History.defaultProps = {
   section: 'history',
-  defaultView: 'residence',
+  defaultView: (props) => { return 'residence' },
   store: 'History'
 }
 
