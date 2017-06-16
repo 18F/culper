@@ -29,7 +29,8 @@ export default class ApplicantBirthDate extends SubsectionElement {
           month: value.month,
           day: value.day,
           year: value.year,
-          estimated: value.estimated
+          estimated: value.estimated,
+          date: value.date
         })
       }
     })

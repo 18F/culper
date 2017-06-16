@@ -581,7 +581,7 @@ function mapStateToProps (state) {
 }
 
 Foreign.defaultProps = {
-  defaultView: 'passport',
+  defaultView: (props) => { return 'passport' },
   store: 'Foreign'
 }
 

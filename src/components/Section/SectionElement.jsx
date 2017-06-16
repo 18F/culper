@@ -13,7 +13,7 @@ export default class SectionElement extends React.Component {
   }
 
   componentDidMount () {
-    let current = this.launch(this.props[this.props.store], this.props.Section.subsection, this.props.defaultView)
+    let current = this.launch(this.props[this.props.store], this.props.Section.subsection, this.props.defaultView(this.props))
     if (current !== '') {
       this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
     }
@@ -32,7 +32,7 @@ export default class SectionElement extends React.Component {
   }
 
   handleTour (event) {
-    this.props.dispatch(push(`/form/${this.props.Section.section}/${this.props.defaultView}`))
+    this.props.dispatch(push(`/form/${this.props.Section.section}/${this.props.defaultView(this.props)}`))
   }
 
   handleReview (event) {
@@ -61,6 +61,6 @@ export default class SectionElement extends React.Component {
 
 SectionElement.defaultProps = {
   Section: { section: '', subsection: '' },
-  defaultView: '',
+  defaultView: (props) => { return '' },
   store: ''
 }

@@ -599,7 +599,7 @@ function mapStateToProps (state) {
 }
 
 Legal.defaultProps = {
-  defaultView: 'police',
+  defaultView: (props) => { return 'police' },
   store: 'Legal'
 }
 
