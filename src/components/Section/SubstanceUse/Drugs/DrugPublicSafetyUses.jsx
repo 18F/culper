@@ -77,9 +77,9 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            description={i18n.t('substance.drugs.clearance.collection.description')}
-            appendTitle={i18n.t('substance.drugs.clearance.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.clearance.collection.appendLabel')}>
+            description={i18n.t('substance.drugs.publicSafety.collection.description')}
+            appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
+            appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}>
             <DrugPublicSafetyUse name="DrugPublicSafetyUse" bind={true} />
           </Accordion>
         </Show>

@@ -39,9 +39,32 @@ export default class OrderedCounselings extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).OrderedCounseling || {}
-    const seekers = o.Seekers ? o.Seekers.join(', ') : ''
     const counselingDates = DateSummary(o.CounselingDates)
     const type = i18n.t('substance.alcohol.orderedCounseling.collection.itemType')
+
+    let seekers = []
+    for (const s of (o.Seekers || [])) {
+      switch (s) {
+        case 'Employer':
+          seekers.push('Employer')
+          break
+        case 'MedicalProfessional':
+          seekers.push('Medical professional')
+          break
+        case 'MentalHealthProfessional':
+          seekers.push('Mental health professional')
+          break
+        case 'CourtOfficial':
+          seekers.push('Court official')
+          break
+        case 'NotOrdered':
+          seekers.push('Not ordered')
+          break
+        case 'Other':
+          seekers.push((o.OtherSeeker || {}).value || 'Other')
+          break
+      }
+    }
 
     return (
       <span className="content">
@@ -51,7 +74,7 @@ export default class OrderedCounselings extends SubsectionElement {
             <strong>{i18n.t('substance.alcohol.receivedCounseling.collection.summary')}</strong>
           </Show>
           <Show when={seekers || counselingDates}>
-            <strong>{seekers}</strong>
+            <strong>{seekers.join(', ')}</strong>
           </Show>
         </span>
         <span className="dates"><strong>{counselingDates}</strong></span>

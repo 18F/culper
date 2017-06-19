@@ -75,66 +75,67 @@ export default class VoluntaryTreatment extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProvider')}
-          help={'substance.drugs.voluntary.help.treatmentProvider'}>
-          {i18n.m('substance.drugs.voluntary.para.treatmentProvider')}
+               help={'substance.drugs.voluntary.help.treatmentProvider'}
+               adjustFor="label">
           <Text name="TreatmentProvider"
-            className="treatment-provider"
-            {...this.props.TreatmentProvider}
-            onUpdate={this.updateTreatmentProvider}
-            onError={this.props.onError}
-          />
+                label={i18n.t('substance.drugs.voluntary.para.treatmentProvider')}
+                className="treatment-provider"
+                {...this.props.TreatmentProvider}
+                onUpdate={this.updateTreatmentProvider}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderAddress')}
-          adjustFor="address"
-          help={'substance.drugs.voluntary.help.treatmentProviderAddress'}>
+               adjustFor="address"
+               help={'substance.drugs.voluntary.help.treatmentProviderAddress'}>
           <Address name="TreatmentProviderAddress"
-            className="treatment-provider-address"
-            {...this.props.TreatmentProviderAddress}
-            onUpdate={this.updateTreatmentProviderAddress}
-            onError={this.props.onError}
-          />
+                   className="treatment-provider-address"
+                   {...this.props.TreatmentProviderAddress}
+                   onUpdate={this.updateTreatmentProviderAddress}
+                   onError={this.props.onError}
+                   />
         </Field>
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderTelephone')}
-          className="treatment-provider-telephone"
-          help={'substance.drugs.voluntary.help.treatmentProviderTelephone'}>
+               className="treatment-provider-telephone"
+               help={'substance.drugs.voluntary.help.treatmentProviderTelephone'}>
           <Telephone name="TreatmentProviderTelephone"
-            {...this.props.TreatmentProviderTelephone}
-            onUpdate={this.updateTreatmentProviderTelephone}
-            onError={this.props.onError}
-          />
+                     {...this.props.TreatmentProviderTelephone}
+                     onUpdate={this.updateTreatmentProviderTelephone}
+                     onError={this.props.onError}
+                     />
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentDates')}
-          adjustFor="daterange"
-          help={'substance.drugs.voluntary.help.treatmentDates'}>
+               adjustFor="daterange"
+               help={'substance.drugs.voluntary.help.treatmentDates'}>
           <DateRange name="TreatmentDates"
-            className="treatment-dates"
-            {...this.props.TreatmentDates}
-            onUpdate={this.updateTreatmentDates}
-            onError={this.props.onError}
-          />
+                     className="treatment-dates"
+                     {...this.props.TreatmentDates}
+                     onUpdate={this.updateTreatmentDates}
+                     onError={this.props.onError}
+                     />
         </Field>
 
         <h3>{i18n.t('substance.drugs.voluntary.heading.treatmentCompleted')}</h3>
         <Branch name="TreatmentCompleted"
-          className="treatment-completed"
-          help={'substance.drugs.voluntary.help.treatmentCompleted'}
-          value={this.props.TreatmentCompleted}
-          onError={this.props.onError}
-          onUpdate={this.updateTreatmentCompleted}>
+                className="treatment-completed"
+                help={'substance.drugs.voluntary.help.treatmentCompleted'}
+                value={this.props.TreatmentCompleted}
+                onError={this.props.onError}
+                onUpdate={this.updateTreatmentCompleted}>
         </Branch>
 
         <Show when={this.props.TreatmentCompleted === 'No'}>
           <Field title={i18n.t('substance.drugs.voluntary.heading.noTreatmentExplanation')}
-            titleSize="h4"
-            help={'substance.drugs.voluntary.help.noTreatmentExplanation'}>
+                 titleSize="h4"
+                 help={'substance.drugs.voluntary.help.noTreatmentExplanation'}>
             <Textarea name="NoTreatmentExplanation"
-              className="no-treatment-explanation"
-              {...this.props.NoTreatmentExplanation}
-              onUpdate={this.updateNoTreatmentExplanation}
-              onError={this.props.onError}
-            />
+                      className="no-treatment-explanation"
+                      {...this.props.NoTreatmentExplanation}
+                      onUpdate={this.updateNoTreatmentExplanation}
+                      onError={this.props.onError}
+                      />
           </Field>
         </Show>
       </div>

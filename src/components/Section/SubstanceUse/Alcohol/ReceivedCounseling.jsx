@@ -71,23 +71,22 @@ export default class ReceivedCounseling extends ValidationElement {
     })
   }
 
-  updatePresentTreatmentEndDate (event) {
-    const checked = event.target.checked
-    if (event.target.checked) {
+  updatePresentTreatmentEndDate (values) {
+    const checked = values.checked
+    let endDate = {...this.props.TreatmentEndDate}
+
+    if (checked) {
       const date = new Date()
-      this.update({
-        TreatmentEndDate: {
-          date: date,
-          estimated: false,
-          month: String(date.getMonth()),
-          year: String(date.getFullYear()),
-          day: String(date.getDate())
-        },
-        PresentTreatmentEndDate: checked
-      })
-    } else {
-      this.update({ PresentTreatmentEndDate: checked })
+      endDate = {
+        date: date,
+        estimated: false,
+        month: String(date.getMonth()),
+        year: String(date.getFullYear()),
+        day: String(date.getDate())
+      }
     }
+
+    this.update({ TreatmentEndDate: endDate, PresentTreatmentEndDate: checked })
   }
 
   updateAgencyAddress (values) {
@@ -170,8 +169,9 @@ export default class ReceivedCounseling extends ValidationElement {
           <DateControl name="TreatmentEndDate"
                        className="treatment-end-date"
                        {...this.props.TreatmentEndDate}
+                       receiveProps={this.props.PresentTreatmentEndDate || false}
+                       disabled={this.props.PresentTreatmentEndDate}
                        onUpdate={this.updateTreatmentEndDate}
-                       receiveProps={true}
                        onError={this.props.onError}
                        />
           <Checkbox name="PresentTreatmentEndDate"
@@ -179,7 +179,7 @@ export default class ReceivedCounseling extends ValidationElement {
                     label="Present"
                     value="present"
                     checked={this.props.PresentTreatmentEndDate}
-                    onChange={this.updatePresentTreatmentEndDate}
+                    onUpdate={this.updatePresentTreatmentEndDate}
                     onError={this.props.onError}
                     />
         </Field>
