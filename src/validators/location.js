@@ -45,7 +45,7 @@ export default class LocationValidator {
     }
   }
 
-  valid () {
+  isValid () {
     let valid = false
 
     for (let field of this.fields) {
@@ -70,5 +70,6 @@ export default class LocationValidator {
           break
       }
     }
+    return valid
   }
 }
