@@ -6197,7 +6197,7 @@ const en = {
           dates: 'Provide the dates of stay in the U.S. for the sponsored foreign national',
           residence: 'Provide the address of the sponsored foreign national while residing in the U.S.',
           stay: 'Provide the purpose of the stay in the U.S. for the sponsored foreign national',
-          sponsorship: 'Provide the purpose of sponsorship for the sponsored foreign national'
+          sponsorship: 'Provide the purpose of your sponsorship for the sponsored foreign national'
         },
         label: {
           idk: 'I don\'t know',
