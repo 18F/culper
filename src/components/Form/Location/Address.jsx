@@ -15,23 +15,6 @@ export default class Address extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      //value: props.value,
-      //address: props.address,
-      //city: props.city,
-      //state: props.state,
-      //zipcode: props.zipcode,
-      //country: props.country,
-      //focus: props.focus || false,
-      //error: props.error || false,
-      //valid: props.valid || false,
-      //addressType: addressType,
-      //suggestions: props.suggestions,
-      //errorCodes: [],
-      //validated: props.validated,
-      //geocodeErrorCode: props.geocodeErrorCode
-    }
-
     this.update = this.update.bind(this)
     this.updateStreet = this.updateStreet.bind(this)
     this.updateCity = this.updateCity.bind(this)
@@ -42,7 +25,7 @@ export default class Address extends ValidationElement {
   }
 
   updateStreet (event) {
-    this.update({ street: event.target.value })
+    this.update({ address: event.target.value })
   }
 
   updateCity (event) {
@@ -73,7 +56,7 @@ export default class Address extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         addressType: this.props.addressType,
-        street: this.props.street,
+        address: this.props.address,
         city: this.props.city,
         state: this.props.state,
         country: this.props.country,
@@ -112,7 +95,7 @@ export default class Address extends ValidationElement {
                 ignoreDeselect="true"
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
-                onBlur={this.handleBlur}
+                onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
               <Radio name="addressType"
@@ -122,7 +105,7 @@ export default class Address extends ValidationElement {
                 ignoreDeselect="true"
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
-                onBlur={this.handleBlur}
+                onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
               <Radio name="addressType"
@@ -132,7 +115,7 @@ export default class Address extends ValidationElement {
                 ignoreDeselect="true"
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
-                onBlur={this.handleBlur}
+                onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
             </RadioGroup>
@@ -150,7 +133,7 @@ export default class Address extends ValidationElement {
                   onChange={this.updateStreet}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
+                  onBlur={this.props.onBlur}
                 />
                 <City name="city"
                   className="city"
@@ -160,7 +143,7 @@ export default class Address extends ValidationElement {
                   onChange={this.updateCity}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
+                  onBlur={this.props.onBlur}
                 />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
@@ -172,7 +155,7 @@ export default class Address extends ValidationElement {
                     onChange={this.updateState}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
-                    onBlur={this.handleBlur}
+                    onBlur={this.props.onBlur}
                   />
                   <ZipCode name="zipcode"
                     ref="us_zipcode"
@@ -184,7 +167,7 @@ export default class Address extends ValidationElement {
                     onChange={this.updateZipcode}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
-                    onBlur={this.handleBlur}
+                    onBlur={this.props.onBlur}
                   />
                 </div>
               </div>

@@ -16,7 +16,9 @@ export default class ApplicantName extends SubsectionElement {
               onUpdate={this.props.onUpdate}
               onError={this.handleError}
               />
-        <Location fields={['fullAddress']}/>
+              <Location fields={['fullAddress']}
+                onUpdate={this.props.onUpdate}
+                {...this.props.value}/>
       </div>
     )
   }

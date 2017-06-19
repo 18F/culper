@@ -31,7 +31,7 @@ export default class Location extends ValidationElement {
   update (updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
-        street: this.props.street,
+        address: this.props.address,
         city: this.props.city,
         zipcode: this.props.zipcode,
         state: this.props.state,
@@ -54,7 +54,6 @@ export default class Location extends ValidationElement {
   }
 
   updateFullAddress (address) {
-    console.log(address)
     this.update({
       address: address.address,
       city: address.city,
