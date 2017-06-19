@@ -45,6 +45,7 @@ import SSN from './SSN'
 import BirthPlace, { DomesticBirthPlace, InternationalBirthPlace } from './BirthPlace'
 import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
 import Currency from './Currency'
+import Location from './Location'
 
 export {
   ValidationElement,
@@ -90,5 +91,6 @@ export {
   DomesticBirthPlace,
   InternationalBirthPlace,
   ForeignBornDocuments,
-  Currency
+  Currency,
+  Location
 }

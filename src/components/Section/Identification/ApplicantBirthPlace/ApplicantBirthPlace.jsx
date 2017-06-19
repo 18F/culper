@@ -1,7 +1,7 @@
 import React from 'react'
 import BirthPlaceValidator from '../../../../validators/birthplace'
 import SubsectionElement from '../../SubsectionElement'
-import { BirthPlace } from '../../../Form'
+import { BirthPlace, Location } from '../../../Form'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
   render () {
@@ -9,7 +9,8 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <BirthPlace name="ssn"
+        <Location name="ssn"
+             fields={['birthPlace']}
              {...this.props.value}
              onUpdate={this.props.onUpdate}
              onError={this.handleError}

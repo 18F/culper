@@ -13,16 +13,19 @@ import Show from '../Show'
 import Text from '../Text'
 import Address from './Address'
 import { i18n } from '../../../config'
+import BirthPlace from './BirthPlace'
 //import { AddressValidator } from '../../../validators'
 //import { AddressSuggestion } from './AddressSuggestion'
 
 export default class Location extends ValidationElement {
   constructor (props) {
     super(props)
+    this.update = this.update.bind(this)
     this.updateStreet = this.updateStreet.bind(this)
     this.updateCity = this.updateCity.bind(this)
     this.updateState = this.updateState.bind(this)
     this.updateFullAddress = this.updateFullAddress.bind(this)
+    this.updateBirthPlace = this.updateBirthPlace.bind(this)
     this.state = {
       suggestions: []
     }
@@ -36,21 +39,33 @@ export default class Location extends ValidationElement {
         zipcode: this.props.zipcode,
         state: this.props.state,
         country: this.props.country,
+        fields: this.props.fields,
         ...updateValues
       })
     }
   }
 
   updateStreet (event) {
-    this.update({ street: event.target.value })
+    this.update({ address: event.target.value })
   }
 
-  updateCity (city) {
-    this.update({ city: city.value })
+  updateCity (event) {
+    this.update({ city: event.target.value })
   }
 
   updateState (event) {
     this.update({state: event.target.value})
+  }
+
+  updateBirthPlace (birthPlace) {
+    this.update({
+      address: null,
+      city: birthPlace.city,
+      state: birthPlace.state,
+      county: birthPlace.county,
+      country: birthPlace.country,
+      domestic: birthPlace.domestic
+    })
   }
 
   updateFullAddress (address) {
@@ -65,7 +80,7 @@ export default class Location extends ValidationElement {
   }
 
   render () {
-    const klass = `address ${this.props.className || ''}`.trim()
+    const klass = `location ${this.props.className || ''}`.trim()
     const fields = this.props.fields.map(field => {
       switch (field) {
         case 'fullAddress':
@@ -76,6 +91,14 @@ export default class Location extends ValidationElement {
               onError={this.props.onError}
             />
           )
+        case 'birthPlace':
+          return (
+            <BirthPlace
+              {...this.props}
+              onUpdate={this.updateBirthPlace}
+              onError={this.props.onError}
+            />
+          )
         case 'street':
           return (
             <Street name="address"
@@ -83,9 +106,9 @@ export default class Location extends ValidationElement {
               className="mailing"
               label={i18n.t('address.us.street.label')}
               placeholder={i18n.t('address.us.street.placeholder')}
-              value={this.props.street}
-              onUpdate={this.updateStreet}
-              onError={this.handleError}
+              value={this.props.address}
+              onChange={this.updateStreet}
+              onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.handleBlur}
             />
@@ -94,12 +117,11 @@ export default class Location extends ValidationElement {
           return (
             <City name="city"
               key={field}
-              className="city"
               label={i18n.t('address.us.city.label')}
-              placeholder={i18n.t('address.us.city.placeholder')}
+              placeholder={this.props.cityPlaceholder}
               value={this.props.city}
-              onUpdate={this.updateCity}
-              onError={this.handleError}
+              onChange={this.updateCity}
+              onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.handleBlur}
             />
@@ -114,7 +136,7 @@ export default class Location extends ValidationElement {
               value={this.props.state}
               includeStates="true"
               onChange={this.updateState}
-              onError={this.handleError}
+              onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.handleBlur}
             />
@@ -128,7 +150,7 @@ export default class Location extends ValidationElement {
               value={this.props.country}
               excludeUnitedStates="true"
               onChange={this.handleChange.bind(this, 'country')}
-              onError={this.handleError}
+              onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.handleBlur}
             />
@@ -246,7 +268,8 @@ export default class Location extends ValidationElement {
 }
 
 Location.defaultProps = {
-  fields: []
+  fields: [],
+  cityPlaceholder: i18n.t('address.us.city.placeholder')
 }
 
 Location.errors = []
