@@ -258,7 +258,6 @@ class SubstanceUse extends SectionElement {
                        next="legal/police"
                        nextLabel={ i18n.t('legal.destination.police') }>
 
-            <hr />
             <DrugUses name="druguses"
                       {...this.props.DrugUses}
                       defaultState={false}
