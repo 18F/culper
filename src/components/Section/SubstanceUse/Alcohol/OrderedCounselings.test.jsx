@@ -60,4 +60,22 @@ describe('The OrderedCounselings component', () => {
     component.find('.seekers .seekers-employer input').simulate('change')
     expect(updates).toBe(2)
   })
+
+  it('Summary accordion text for seeker options', () => {
+    const expected = {
+      HasBeenOrdered: 'Yes',
+      ListBranch: 'No',
+      List: [{
+        OrderedCounseling: {
+          Seekers: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other']
+        }
+      }]
+    }
+    const component = mount(<OrderedCounselings {...expected} />)
+    const text = component.find('.item').text()
+    let options = ['Employer', 'Medical professional', 'Court official', 'Not ordered', 'Other']
+    options.forEach(o => {
+      expect(text.indexOf(o)).toBeGreaterThan(-1)
+    })
+  })
 })
