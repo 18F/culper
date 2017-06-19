@@ -39,14 +39,18 @@ export default class OrderedCounseling extends ValidationElement {
 
   updateSeekers (event) {
     let seeker = event.target.value
-    let selected = [...(this.props.Seekers || [])]
+    let selected = [...(this.props.Seekers || [])].filter(x => x !== 'NotOrdered')
 
-    if (selected.includes(seeker)) {
-      // Remove the relation if it was previously selected
-      selected.splice(selected.indexOf(seeker), 1)
+    if (seeker === 'NotOrdered') {
+      selected = [seeker]
     } else {
-      // Add the relation if it wasn't already
-      selected.push(seeker)
+      if (selected.includes(seeker)) {
+        // Remove the relation if it was previously selected
+        selected.splice(selected.indexOf(seeker), 1)
+      } else {
+        // Add the relation if it wasn't already
+        selected.push(seeker)
+      }
     }
 
     this.update({Seekers: selected})

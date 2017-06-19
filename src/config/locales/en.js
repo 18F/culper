@@ -7831,7 +7831,7 @@ const en = {
         heading: {
           description: 'Provide a description of the drugs or controlled substances used and your involvement',
           involvementDates: 'Provide the dates of involvement/use',
-          estimatedUse: 'Provide an estimate the number of times you used and/or were involved this drug or controlled substance while employed in this capacity'
+          estimatedUse: 'Provide an estimate of the number of times you used and/or were involved with this drug or controlled substance while employed in this capacity'
         },
         help: {
           description: {
