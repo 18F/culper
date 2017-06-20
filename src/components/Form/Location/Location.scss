@@ -1,0 +1,70 @@
+@import 'eqip-colors';
+.location {
+  input[type='text'] {
+    text-transform: capitalize;
+
+    &::-webkit-input-placeholder {
+      text-transform: none;
+    }
+    &:-moz-placeholder {
+      text-transform: none;
+    }
+    &::-moz-placeholder {
+      text-transform: none;
+    }
+    &:-ms-input-placeholder {
+      text-transform: none;
+    }
+  }
+
+  .branch {
+    margin-bottom: 0;
+  }
+
+  .state-zip-wrap {
+    display: table;
+
+    .state,
+    .apofpo,
+    .zipcode {
+      display: table-cell;
+      padding-right: 2rem;
+      vertical-align: top;
+    }
+  }
+
+  .domestic.block label > span > div,
+  .international.block label > span > div {
+    top: 25%;
+  }
+
+  .fields {
+    .apofpo {
+      .eapp-blocks-radio label {
+        display: inline-block !important;
+        width: 25.6rem;
+      }
+    }
+
+    label {
+      position: relative !important;
+      top: 0 !important;
+    }
+  }
+
+  > label {
+    margin-top: 0.6rem;
+  }
+
+  .address-suggestion {
+    div {
+      line-height: 2rem;
+      text-transform: uppercase;
+    }
+
+    .highlight {
+      background-color: $eapp-blue-lightest;
+      font-weight: 600;
+    }
+  }
+}

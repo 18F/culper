@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Svg, BranchCollection,
          Name, Text, Textarea, Address, DateControl,
          Checkbox, CheckboxGroup, Radio, RadioGroup, Country,
-         Field, NotApplicable, BirthPlace
+         Field, NotApplicable, BirthPlace, Location
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
 import Alias from './Alias'
@@ -393,7 +393,7 @@ export default class Relative extends ValidationElement {
         <Field title={i18n.t('relationships.relatives.heading.birthplace')}
                adjustFor="label"
                validate={false}>
-          <BirthPlace name="Birthplace"
+          <Location name="Birthplace"
                       label={i18n.t('relationships.relatives.label.birthplace')}
                       help=""
                       cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
@@ -401,6 +401,9 @@ export default class Relative extends ValidationElement {
                       hideCounty={true}
                       className="relative-birthplace"
                       {...this.state.Birthplace}
+                      toggle={true}
+                      domesticFields={['state', 'city']}
+                      internationalFields={['city', 'country']}
                       onError={this.props.onError}
                       onUpdate={this.updateBirthplace}
                       />

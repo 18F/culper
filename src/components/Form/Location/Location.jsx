@@ -7,15 +7,26 @@ import Country from '../Country'
 import ZipCode from '../ZipCode'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
-import ApoFpo from '../ApoFpo'
 import Suggestions from '../Suggestions'
 import Show from '../Show'
-import Text from '../Text'
 import Address from './Address'
 import { i18n } from '../../../config'
-import BirthPlace from './BirthPlace'
-//import { AddressValidator } from '../../../validators'
-//import { AddressSuggestion } from './AddressSuggestion'
+import ToggleableLocation from './ToggleableLocation'
+import { LocationValidator } from '../../../validators'
+import { AddressSuggestion } from './AddressSuggestion'
+
+export const fieldsToValidate = (props) => {
+  switch (true) {
+    // If we've defined domestic and international props, then send up the appropriate fields
+    case (!!props.domesticFields.length && !!props.internationalFields.length):
+      if (props.country === 'United States') {
+        return props.domesticFields
+      }
+      return props.internationalFields
+    default:
+      return props.fields
+  }
+}
 
 export default class Location extends ValidationElement {
   constructor (props) {
@@ -24,53 +35,95 @@ export default class Location extends ValidationElement {
     this.updateStreet = this.updateStreet.bind(this)
     this.updateCity = this.updateCity.bind(this)
     this.updateState = this.updateState.bind(this)
-    this.updateFullAddress = this.updateFullAddress.bind(this)
+    this.updateCountry = this.updateCountry.bind(this)
+    this.updateZipcode = this.updateZipcode.bind(this)
+    this.updateAddress = this.updateAddress.bind(this)
     this.updateBirthPlace = this.updateBirthPlace.bind(this)
+    this.updateToggleableLocation = this.updateToggleableLocation.bind(this)
+    this.renderSuggestion = this.renderSuggestion.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+    this.fields = this.fields.bind(this)
+
+    // Instance field to prevent setState calls after unmount
+    this.geocodeCancel = false
+
     this.state = {
-      suggestions: []
+      geocodeResult: {}
     }
   }
 
   update (updateValues) {
     if (this.props.onUpdate) {
+      const fields = fieldsToValidate(this.props)
+      console.log(fields)
       this.props.onUpdate({
-        address: this.props.address,
+        street: this.props.street,
         city: this.props.city,
         zipcode: this.props.zipcode,
         state: this.props.state,
         country: this.props.country,
-        fields: this.props.fields,
+        fields: fields,
+        validated: false,
         ...updateValues
       })
     }
   }
 
+  handleBlur (event) {
+    super.handleBlur(event)
+
+    const v = new LocationValidator(this.props)
+    console.log(v.isValid())
+    if (!this.props.geocode || this.props.validated || !v.canGeocode()) {
+      return
+    }
+    v.geocode().then(r => {
+      if (this.geocodeCancel) {
+        return
+      }
+      this.setState({
+        geocodeResult: r
+      })
+    })
+  }
+
+  componentWillUnmount () {
+    this.geocodeCancel = true
+  }
+
   updateStreet (event) {
-    this.update({ address: event.target.value })
+    this.update({street: event.target.value})
   }
 
   updateCity (event) {
-    this.update({ city: event.target.value })
+    this.update({city: event.target.value})
   }
 
   updateState (event) {
     this.update({state: event.target.value})
   }
 
+  updateCountry (event) {
+    this.update({country: event.target.value})
+  }
+
+  updateZipcode (event) {
+    this.update({zipcode: event.target.value})
+  }
+
   updateBirthPlace (birthPlace) {
     this.update({
-      address: null,
+      street: null,
       city: birthPlace.city,
       state: birthPlace.state,
       county: birthPlace.county,
-      country: birthPlace.country,
-      domestic: birthPlace.domestic
+      country: birthPlace.country
     })
   }
 
-  updateFullAddress (address) {
+  updateAddress (address) {
     this.update({
-      address: address.address,
+      street: address.street,
       city: address.city,
       state: address.state,
       zipcode: address.zipcode,
@@ -79,34 +132,35 @@ export default class Location extends ValidationElement {
     })
   }
 
-  render () {
-    const klass = `location ${this.props.className || ''}`.trim()
-    const fields = this.props.fields.map(field => {
+  updateToggleableLocation (location) {
+    this.update({
+      city: location.city,
+      state: location.state,
+      county: location.county,
+      country: location.country
+    })
+  }
+
+  fields () {
+    return this.props.fields.map(field => {
       switch (field) {
-        case 'fullAddress':
+        case 'address':
           return (
-            <Address name="fulladdress"
+            <Address name="address"
               {...this.props}
-              onUpdate={this.updateFullAddress}
-              onError={this.props.onError}
-            />
-          )
-        case 'birthPlace':
-          return (
-            <BirthPlace
-              {...this.props}
-              onUpdate={this.updateBirthPlace}
+              onBlur={this.handleBlur}
+              onUpdate={this.updateAddress}
               onError={this.props.onError}
             />
           )
         case 'street':
           return (
-            <Street name="address"
+            <Street name="street"
               key={field}
-              className="mailing"
+              className="street"
               label={i18n.t('address.us.street.label')}
               placeholder={i18n.t('address.us.street.placeholder')}
-              value={this.props.address}
+              value={this.props.street}
               onChange={this.updateStreet}
               onError={this.props.onError}
               onFocus={this.props.onFocus}
@@ -116,6 +170,7 @@ export default class Location extends ValidationElement {
         case 'city':
           return (
             <City name="city"
+              className="city"
               key={field}
               label={i18n.t('address.us.city.label')}
               placeholder={this.props.cityPlaceholder}
@@ -141,15 +196,44 @@ export default class Location extends ValidationElement {
               onBlur={this.handleBlur}
             />
           )
+        case 'stateZipcode':
+          return (
+            <div className="state-zip-wrap">
+              <MilitaryState name="state"
+                key={`state-${field}`}
+                className="state"
+                label={i18n.t('address.us.state.label')}
+                placeholder={i18n.t('address.us.state.placeholder')}
+                value={this.props.state}
+                includeStates="true"
+                onChange={this.updateState}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.handleBlur}
+              />
+              <ZipCode name="zipcode"
+                key={`zip-${field}`}
+                className="zipcode"
+                label={i18n.t('address.us.zipcode.label')}
+                placeholder={i18n.t('address.us.zipcode.placeholder')}
+                value={this.props.zipcode}
+                onChange={this.updateZipcode}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.handleBlur}
+              />
+            </div>
+          )
         case 'country':
           return (
             <Country name="country"
+              className="country"
               key={field}
               label={i18n.t('address.international.country.label')}
               placeholder={i18n.t('address.international.country.placeholder')}
               value={this.props.country}
               excludeUnitedStates="true"
-              onChange={this.handleChange.bind(this, 'country')}
+              onChange={this.updateCountry}
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.handleBlur}
@@ -157,11 +241,15 @@ export default class Location extends ValidationElement {
           )
       }
     })
+  }
+
+  render () {
+    const klass = `location ${this.props.className || ''}`.trim()
     return (
       <div className={klass}>
         <div className="fields">
           <Suggestions
-            suggestions={this.state.suggestions}
+            suggestions={this.state.geocodeResult.Suggestions}
             renderSuggestion={this.renderSuggestion}
             dismissSuggestions={false}
             withSuggestions={true}
@@ -176,7 +264,18 @@ export default class Location extends ValidationElement {
             onSuggestion={this.onSuggestion.bind(this)}
             suggestionUseLabel={i18n.t('suggestions.address.use')}>
             <div>
-              {fields}
+              <Show when={!this.props.toggle}>
+                <div>
+                  {this.fields()}
+                </div>
+              </Show>
+              <Show when={this.props.toggle}>
+                <ToggleableLocation
+                  {...this.props}
+                  onBlur={this.handleBlur}
+                  onUpdate={this.updateToggleableLocation}
+                />
+              </Show>
             </div>
           </Suggestions>
         </div>
@@ -188,11 +287,12 @@ export default class Location extends ValidationElement {
    * Determines what conditions render the address suggestion modal
    */
   showSuggestions () {
-    if (this.state.geocodeErrorCode) {
+    if (this.state.geocodeResult.Error) {
       return true
     }
 
-    if (this.state.suggestions && this.state.suggestions.length) {
+    const suggestions = this.state.geocodeResult.Suggestions
+    if (suggestions && suggestions.length) {
       return true
     }
 
@@ -200,19 +300,19 @@ export default class Location extends ValidationElement {
   }
 
   suggestionTitle () {
-    return i18n.t(`${this.state.geocodeErrorCode}.title`)
+    return i18n.t(`${this.state.geocodeResult.Error}.title`)
   }
 
   suggestionLabel () {
-    return i18n.t(`${this.state.geocodeErrorCode}.label`)
+    return i18n.t(`${this.state.geocodeResult.Error}.label`)
   }
 
   suggestionParagraph () {
-    return (<p>{i18n.t(`${this.state.geocodeErrorCode}.para`)}</p>)
+    return (<p>{i18n.t(`${this.state.geocodeResult.Error}.para`)}</p>)
   }
 
   dismissAlternative () {
-    if (!this.state.suggestions || this.state.suggestions.length === 0) {
+    if (!this.state.geocodeResult.Suggestions || this.state.geocodeResult.Suggestions.length === 0) {
       return i18n.t('suggestions.address.alternate')
     }
 
@@ -220,40 +320,35 @@ export default class Location extends ValidationElement {
   }
 
   onSuggestionDismiss () {
-    this.setState({
-      suggestions: [],
-      geocodeErrorCode: null,
-      address: this.state.address,
-      city: this.state.city,
-      state: this.state.state,
-      zipcode: this.state.zipcode,
+    this.update({
       validated: true
-    }, () => {
-      this.doUpdate()
+    })
+
+    this.setState({
+      geocodeResult: {}
     })
   }
 
   onSuggestion (suggestion) {
-    this.setState({
-      suggestions: [],
-      geocodeErrorCode: null,
-      address: suggestion.Address,
+    this.update({
+      street: suggestion.Address,
       city: suggestion.City,
       state: suggestion.State,
       zipcode: suggestion.Zipcode,
       validated: true
-    }, () => {
-      this.doUpdate()
+    })
+    this.setState({
+      geocodeResult: {}
     })
   }
 
   suggestionDismissContent () {
-    const { address, city, state, zipcode } = this.state
+    const { street, city, state, zipcode } = this.props
     return (
       <div>
         <h5>{i18n.t('error.geocode.original.title')}</h5>
         <div className="address-suggestion">
-          <div>{ address }</div>
+          <div>{ street }</div>
           <div>{ city }, { state } { zipcode }</div>
         </div>
       </div>
@@ -262,64 +357,23 @@ export default class Location extends ValidationElement {
 
   renderSuggestion (suggestion) {
     return (
-      <AddressSuggestion suggestion={suggestion} current={this.state} />
+      <AddressSuggestion suggestion={suggestion} current={this.props} />
     )
   }
 }
 
 Location.defaultProps = {
   fields: [],
-  cityPlaceholder: i18n.t('address.us.city.placeholder')
+  domesticFields: [],
+  internationalFields: [],
+  geocode: false,
+  cityLabel: i18n.t('address.us.city.label'),
+  cityPlaceholder: i18n.t('address.us.city.placeholder'),
+  countyLabel: i18n.t('identification.birthplace.label.county'),
+  countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
+  countryLabel: i18n.t('identification.birthplace.label.country'),
+  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
 }
 
 Location.errors = []
 
-/**
- * Helper function to extract geocoded information
- */
-export const handleGeocodeResponse = (response) => {
-  if (response.Errors && response.Errors.length) {
-    // Return the first response recieved (FIFO)
-    for (const err of response.Errors) {
-      if (err.Fieldname === 'Address') {
-        if (!err.Suggestions || !err.Suggestions.length) {
-          return {
-            suggestions: [],
-            geocodeErrorCode: err.Error,
-            geocodeError: true
-          }
-        }
-
-        return {
-          geocodeError: true,
-          geocodeErrorCode: err.Error,
-          suggestions: err.Suggestions || []
-        }
-      }
-    }
-  }
-
-  return { suggestions: [] }
-}
-
-/**
- * Used to prevent duplicate geocoding requests to be made. Since we perform various checks on the client-side
- * that trigger our components to re-render, we set a throttle so that the geocoding validation logic
- * executes once.
- */
-export const throttle = (callback, wait, context = this) => {
-  let timeout = null
-  let callbackArgs = null
-
-  const later = () => {
-    timeout = null
-    return callback.apply(context, callbackArgs)
-  }
-
-  return function () {
-    callbackArgs = arguments
-    if (!timeout) {
-      timeout = setTimeout(later, wait)
-    }
-  }
-}

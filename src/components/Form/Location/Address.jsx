@@ -25,7 +25,7 @@ export default class Address extends ValidationElement {
   }
 
   updateStreet (event) {
-    this.update({ address: event.target.value })
+    this.update({ street: event.target.value })
   }
 
   updateCity (event) {
@@ -56,7 +56,7 @@ export default class Address extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         addressType: this.props.addressType,
-        address: this.props.address,
+        street: this.props.street,
         city: this.props.city,
         state: this.props.state,
         country: this.props.country,
@@ -129,7 +129,7 @@ export default class Address extends ValidationElement {
                   className="mailing"
                   label={i18n.t('address.us.street.label')}
                   placeholder={i18n.t('address.us.street.placeholder')}
-                  value={this.props.address}
+                  value={this.props.street}
                   onChange={this.updateStreet}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
@@ -182,7 +182,7 @@ export default class Address extends ValidationElement {
                   onChange={this.updateStreet}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
+                  onBlur={this.props.onBlur}
                 />
                 <City name="city"
                   className="city"
@@ -192,7 +192,7 @@ export default class Address extends ValidationElement {
                   onChange={this.updateCity}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
+                  onBlur={this.props.onBlur}
                 />
                 <Country name="country"
                   label={i18n.t('address.international.country.label')}
@@ -202,7 +202,7 @@ export default class Address extends ValidationElement {
                   onChange={this.updateCountry}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
+                  onBlur={this.props.onBlur}
                 />
               </div>
             </Show>
@@ -216,7 +216,7 @@ export default class Address extends ValidationElement {
                   onChange={this.handleChange.bind(this, 'address')}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
+                  onBlur={this.props.onBlur}
                 />
                 <label>{i18n.t('address.apoFpo.select.label')}</label>
                 <RadioGroup className="apofpo" selectedValue={this.props.city}>
@@ -225,7 +225,7 @@ export default class Address extends ValidationElement {
                     value="APO"
                     disabled={this.props.disabled}
                     onChange={this.handleChange.bind(this, 'city')}
-                    onBlur={this.handleBlur}
+                    onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                   />
                   <Radio name="addressType"
@@ -233,7 +233,7 @@ export default class Address extends ValidationElement {
                     value="FPO"
                     disabled={this.props.disabled}
                     onChange={this.handleChange.bind(this, 'city')}
-                    onBlur={this.handleBlur}
+                    onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                   />
                 </RadioGroup>
@@ -246,7 +246,7 @@ export default class Address extends ValidationElement {
                     onChange={this.handleChange.bind(this, 'state')}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
-                    onBlur={this.handleBlur}
+                    onBlur={this.props.onBlur}
                     tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
                   />
                   <ZipCode name="zipcode"
@@ -259,7 +259,7 @@ export default class Address extends ValidationElement {
                     onChange={this.handleChange.bind(this, 'zipcode')}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
-                    onBlur={this.handleBlur}
+                    onBlur={this.props.onBlur}
                   />
                 </div>
               </div>

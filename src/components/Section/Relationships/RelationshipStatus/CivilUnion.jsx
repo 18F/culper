@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { Accordion, Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
          Email, Telephone, Name, BirthPlace, ForeignBornDocuments, SSN, MaidenName, DateRange,
-         Checkbox, Country } from '../../../Form'
+         Checkbox, Country, Location } from '../../../Form'
 import Divorce from './Divorce'
 import { CivilUnionValidator } from '../../../../validators'
 
@@ -203,10 +203,13 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <h3>{i18n.t('relationships.civilUnion.heading.birthplace')}</h3>
-          <BirthPlace name="birthplace"
+          <Location name="birthplace"
                       className="birthplace"
                       label={i18n.t('relationships.civilUnion.label.birthplace')}
                       {...this.state.BirthPlace}
+                      toggle={true}
+                      domesticFields={['state', 'city', 'county']}
+                      internationalFields={['city', 'country']}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       />

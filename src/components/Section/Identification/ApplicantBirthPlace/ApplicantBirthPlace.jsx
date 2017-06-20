@@ -10,7 +10,9 @@ export default class ApplicantBirthPlace extends SubsectionElement {
     return (
       <div className={klass}>
         <Location name="ssn"
-             fields={['birthPlace']}
+             toggle={true}
+             domesticFields={['state', 'city', 'county']}
+             internationalFields={['city', 'country']}
              {...this.props.value}
              onUpdate={this.props.onUpdate}
              onError={this.handleError}
