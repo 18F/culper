@@ -58,8 +58,7 @@ export default class NegativeImpact extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')}
-               adjustFor="labels"
-               help={'substance.alcohol.negativeImpact.help.circumstances'}>
+               adjustFor="labels">
           <Field>
             <Textarea name="Circumstances"
                       className="circumstances"
