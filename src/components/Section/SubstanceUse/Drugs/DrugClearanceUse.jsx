@@ -38,8 +38,7 @@ export default class DrugClearanceUse extends ValidationElement {
   render () {
     return (
       <div className="drug-clearance-use">
-        <Field title={i18n.t('substance.drugs.clearance.heading.description')}
-          help={'substance.drugs.clearance.help.description'}>
+        <Field title={i18n.t('substance.drugs.clearance.heading.description')}>
           <Textarea name="Description"
             className="description"
             {...this.props.Description}
@@ -59,8 +58,7 @@ export default class DrugClearanceUse extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.clearance.heading.estimatedUse')}
-          help={'substance.drugs.clearance.help.estimatedUse'}>
+        <Field title={i18n.t('substance.drugs.clearance.heading.estimatedUse')}>
           <Text name="EstimatedUse"
             className="estimated-use"
             {...this.props.EstimatedUse}
